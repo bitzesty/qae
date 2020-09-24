@@ -75,6 +75,11 @@ class AssessorAssignment < ApplicationRecord
 
   def visible_for?(subject)
     return true if owner_or_administrative?(subject)
+    # Adds ability to view assessments of past applications
+    if subject.is_a?(Assessor) && form_answer.from_previous_years?
+      return true
+    end
+
     # regular assessors flow
     assessments = Array(self)
     assessments << form_answer.assessor_assignments.secondary if primary?
@@ -83,6 +88,7 @@ class AssessorAssignment < ApplicationRecord
     if assessments.all?(&:submitted?)
       return assessments.any? { |a| a.assessor_id == subject.id }
     end
+
     false
   end
 

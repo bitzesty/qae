@@ -1,6 +1,6 @@
 .nav-subnav
   ul
-    - %w[users assessors admins].each do |role|
+    - %w[users assessors judges admins].each do |role|
       - if policy(role.singularize.to_sym).index?
         - role_name = role == "users" ? "Applicants" : role.titleize
         li class="role-#{role_name} #{'active' if controller_name == role}" role="presentation"

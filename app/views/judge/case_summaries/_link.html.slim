@@ -1,0 +1,11 @@
+- link_ops = { category: key, format: :pdf }
+- link_ops[:years_mode] = years_mode if key == "trade"
+
+li.download-item
+  p.download-item__title
+    - if key == "trade"
+      = "International Trade (#{years_mode} years)"
+    - else
+      = value
+
+  = link_to "Download", download_judge_case_summaries_path(link_ops), class: "download-link"

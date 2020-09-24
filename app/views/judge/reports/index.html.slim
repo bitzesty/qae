@@ -1,0 +1,18 @@
+.row
+  = render "layouts/admin_award_year"
+.clear
+br
+.row.clearfix
+  .show-sidebar
+    - if policy(:report).show?
+      .well
+        h2
+          ' Case Summaries
+        ul.list-unstyled.list-actions
+          - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |key, value| current_assessor.lead_roles.include?(key) }.each do |key, value|
+            - if key == "trade"
+              = render 'link', key: key, value: value, years_mode: 3
+              = render 'link', key: key, value: value, years_mode: 6
+            - else
+              = render 'link', key: key, value: value
+        .clear

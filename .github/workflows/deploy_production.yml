@@ -1,0 +1,26 @@
+name: "Production deployment"
+on: [workflow_dispatch]
+jobs:
+  deploy_production:
+    if: github.ref == 'refs/heads/production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Deploy production"
+        env:
+          name: production
+          url: "https://www.queens-awards-enterprise.service.gov.uk/"
+          CF_ENDPOINT: "api.london.cloud.service.gov.uk"
+          CF_SPACE: production
+          CF_APP: qae-production
+          CF_USER: ${{ secrets.CF_USER }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+          CF_ORG: ${{ secrets.CF_ORG }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+          sudo dpkg -i cf-cli_amd64.deb
+          cf -v
+          cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+          cf install-plugin blue-green-deploy -r CF-Community -f
+          ./bin/deploy
