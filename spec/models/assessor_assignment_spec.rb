@@ -128,6 +128,29 @@ describe AssessorAssignment do
         expect(moderated.visible_for?(lead)).to eq(true)
       end
     end
+
+    context "for previous award year" do
+      let(:previous_award_year) { AwardYear.for_year(AwardYear.current.year - 1).first_or_create }
+      let(:lead) {create(:assessor, :lead_for_all)}
+
+      it "moderated form is not visible" do
+        form_answer.award_year = previous_award_year
+        form_answer.save!
+
+        moderated = form_answer.assessor_assignments.moderated
+        expect(moderated.visible_for?(assessor1)).to eq(true)
+        expect(moderated.visible_for?(assessor2)).to eq(true)
+        expect(moderated.visible_for?(lead)).to eq(true)
+
+        expect(primary.visible_for?(assessor1)).to eq(true)
+        expect(primary.visible_for?(assessor2)).to eq(true)
+        expect(primary.visible_for?(lead)).to eq(true)
+
+        expect(secondary.visible_for?(assessor1)).to eq(true)
+        expect(secondary.visible_for?(assessor2)).to eq(true)
+        expect(secondary.visible_for?(lead)).to eq(true)
+      end
+    end
   end
 
   context "moderated assessment" do

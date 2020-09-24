@@ -3,9 +3,18 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? || assessor?
   end
 
+  # if subject is a lead or admin
+  # or the assessment is submitted, and it's a primary assessor
+  # or the assessment is submitted, and it's an application from previous award years and the subject is an assessor
   def show_section_appraisal_moderated?
     subject.lead?(record) ||
-      (record.assessor_assignments.moderated.submitted? && subject.primary?(record))
+      (
+        record.assessor_assignments.moderated.submitted? &&
+        (
+          subject.primary?(record) ||
+          (assessor? && record.from_previous_years?)
+        )
+      )
   end
 
   def review?
@@ -112,10 +121,10 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def can_download_original_pdf_of_application_before_deadline?
-    can_update_by_admin_lead_and_primary_assessors? &&
-    record.submitted? &&
-    record.submission_ended? &&
-    record.pdf_version.present?
+    (can_update_by_admin_lead_and_primary_assessors? || assessor?) &&
+      record.submitted? &&
+      record.submission_ended? &&
+      record.pdf_version.present?
   end
 
   def can_add_collaborators_to_application?

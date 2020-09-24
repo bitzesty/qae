@@ -1,0 +1,145 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:9-alpine
+        ports: ['5432:5432']
+        env:
+          POSTGRES_DB: qae_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 15s
+          --health-retries 5
+      redis:
+        image: redis
+        ports: ['6379:6379']
+        options: --entrypoint redis-server
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.8
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - run: npm install -g yarn
+      - uses: nanasess/setup-chromedriver@master
+      - name: Build and run tests
+        env:
+          DISPLAY_SOCIAL_MOBILITY_AWARD: true
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/qae_test"
+          BUNDLER_VERSION: 2.1.4
+          DOCKER_TLS_CERTDIR: ""
+        run: |
+          sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+          gem install bundler
+          gem update --system && gem update bundler
+          bundle config path vendor/bundle
+          yarn install
+          bundle install --jobs 4 --retry 3
+          RAILS_ENV=test bundle exec rake db:create db:migrate
+          RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml --format progress
+  deploy_dev:
+    needs: [test]
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.8
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - name: "Deploy dev"
+        env:
+          name: dev
+          url: "https://dev.queens-awards-enterprise.service.gov.uk/"
+          CF_ENDPOINT: "api.london.cloud.service.gov.uk"
+          CF_SPACE: dev
+          CF_APP: qae-dev
+          CF_USER: ${{ secrets.CF_USER }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+          CF_ORG: ${{ secrets.CF_ORG }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+          sudo dpkg -i cf-cli_amd64.deb
+          cf -v
+          cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+          cf install-plugin blue-green-deploy -r CF-Community -f
+          ./bin/deploy
+  deploy_staging:
+    needs: [test]
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.8
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - name: "Deploy staging"
+        env:
+          name: staging
+          url: "https://staging.queens-awards-enterprise.service.gov.uk/"
+          CF_ENDPOINT: "api.london.cloud.service.gov.uk"
+          CF_SPACE: staging
+          CF_APP: qae-staging
+          CF_USER: ${{ secrets.CF_USER }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+          CF_ORG: ${{ secrets.CF_ORG }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+          sudo dpkg -i cf-cli_amd64.deb
+          cf -v
+          cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+          cf install-plugin blue-green-deploy -r CF-Community -f
+          ./bin/deploy

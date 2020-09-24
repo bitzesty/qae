@@ -237,6 +237,10 @@ class FormAnswer < ApplicationRecord
     FormAnswerStateMachine::POSITIVE_STATES.map(&:to_s).include?(state)
   end
 
+  def from_previous_years?
+    award_year.year < AwardYear.current.year
+  end
+
   def document
     super || {}
   end

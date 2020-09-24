@@ -1,0 +1,132 @@
+= simple_form_for [:admin, resource], as: :judge, url: resource.persisted? ? admin_judge_path(resource) : admin_judges_path, html: { class: 'qae-form' } do |f|
+  .row.question-group
+    .col-lg-2.col-md-3.col-sm-4
+      h3 = f.label :first_name, class: "form-label"
+      = f.input :first_name,
+                wrapper_html: { class: 'form-group' },
+                input_html: { class: 'form-control' },
+                label: false
+
+  .row.question-group
+    .col-lg-2.col-md-3.col-sm-4
+      h3 = f.label :last_name, class: "form-label"
+      = f.input :last_name,
+                wrapper_html: { class: 'form-group' },
+                input_html: { class: 'form-control' },
+                label: false
+
+  .row.question-group#email-control-group
+    .col-md-4.col-sm-6
+      h3 = f.label :email, class: "form-label"
+      = f.input :email,
+                wrapper_html: { class: 'form-group' },
+                input_html: { class: 'form-control' },
+                label: false
+
+  .question-group#password-change-panel
+    #password-control-group
+      h3 = f.label :password, class: "form-label"
+      .row
+        .col-md-4.col-sm-6
+          .input-group
+            = f.input :password,
+                      wrapper_html: { class: 'form-group' },
+                      input_html: { class: 'form-control' },
+                      label: false
+            span#password-result-span.input-group-addon
+              i#password-result.glyphicon.glyphicon-ok
+      .clear
+    .guidance-panel.if-no-js-hide
+      #password-guidance
+        br
+        .alert.alert-warning
+          p.text-underline Please improve your password
+          p#password-too-short
+            ' It must be at least 10 characters.
+          p#parts-of-email It shouldn't include part or all of your email address.
+          p#password-entropy
+            ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
+
+    #password-confirmation-control-group
+      h3 = f.label :password_confirmation, label: "Retype password", class: "form-label"
+      .row
+        .col-md-4.col-sm-6
+          .input-group
+            = f.input :password_confirmation,
+                      wrapper_html: { class: 'form-group' },
+                      input_html: { class: 'form-control' },
+                      label: false
+            span#password-confirmation-result-span.input-group-addon
+              i#password-confirmation-result.glyphicon.glyphicon-ok
+      .clear
+
+    .if-no-js-hide
+      #password-confirmation-guidance
+        br
+        .alert.alert-warning
+          p#password-confirmation-match The confirmation must match the password
+
+  br
+
+  .row
+    .col-md-2.col-sm-3
+      = f.label :trade_role, FormAnswerDecorator::AWARD_TITLES["International Trade"]
+    .col-md-2.col-sm-3
+      = f.input :trade_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Judge.roles,
+                include_blank: false,
+                label: false
+
+  .row
+    .col-md-2.col-sm-3
+      = f.label :innovation_role, FormAnswerDecorator::AWARD_TITLES["Innovation"]
+    .col-md-2.col-sm-3
+      = f.input :innovation_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Judge.roles,
+                include_blank: false,
+                label: false
+
+  .row
+    .col-md-2.col-sm-3
+      = f.label :development_role, FormAnswerDecorator::AWARD_TITLES["Sustainable Development"]
+    .col-md-2.col-sm-3
+      = f.input :development_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Judge.roles,
+                include_blank: false,
+                label: false
+  .row
+    .col-md-2.col-sm-3
+      = f.label :mobility_role, FormAnswerDecorator::AWARD_TITLES["Promoting Opportunity"]
+    .col-md-2.col-sm-3
+      = f.input :mobility_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Judge.roles,
+                include_blank: false,
+                label: false
+
+  br
+  .row
+    .col-md-4.col-sm-6
+      - if action_name == "edit" && policy(resource).destroy?
+        = link_to 'Delete', admin_judge_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md pull-left'
+
+      .pull-right
+        = link_to "Cancel",
+                  admin_judges_path,
+                  class: 'btn btn-default btn-md'
+
+        ' &nbsp;
+
+        = f.submit "#{f.object.persisted? ? 'Update' : 'Create'} judge",
+                  class: 'btn btn-primary btn-md'
