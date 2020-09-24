@@ -55,19 +55,14 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def current_awards
-    if current_awards_question.present?
-      answer = filled_answers[current_awards_question.key.to_s]
+    awarded_applications = form_answers.account.form_answers.winners.where.not(id: form_answer.id)
 
-      if answer.present?
-        res = answer.map do |item|
-          if item["category"].present? && item["year"].present? && (item["outcome"].nil? || item["outcome"] == "won")
-            "#{item["year"]} - #{PREVIOUS_AWARDS[item["category"].to_s]}"
-          end
-        end.compact
-
-        res.present? ? res.join(", ") : undefined_value
-      else
-        undefined_value
+    if awarded_applications.any?
+      wins = awarded_applications.map do |application|
+        "#{application.award_type_full_name} #{application.award_year.year}"
+      end
+      wins.each_slice(4).map do |wins_group|
+        wins_group.join(", ")
       end
     else
       undefined_value
