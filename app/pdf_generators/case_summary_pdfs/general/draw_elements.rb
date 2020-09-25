@@ -83,7 +83,10 @@ module CaseSummaryPdfs::General::DrawElements
   end
 
   def render_current_awards(offset: 0)
-    current_awards.each_with_index do |awards_line, index|
+    awards = current_awards
+    awards = [awards] if awards.is_a?(String)
+
+    awards.each_with_index do |awards_line, index|
       if index == 0
         pdf_doc.text_box "Current Awards: #{awards_line}",
                          header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord('awards').mm + default_offset + offset])
