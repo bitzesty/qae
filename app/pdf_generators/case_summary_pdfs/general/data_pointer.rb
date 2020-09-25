@@ -55,7 +55,7 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def current_awards
-    awarded_applications = form_answers.account.form_answers.winners.where.not(id: form_answer.id)
+    awarded_applications = form_answer.account.form_answers.winners.where.not(id: form_answer.id)
 
     if awarded_applications.any?
       wins = awarded_applications.map do |application|
