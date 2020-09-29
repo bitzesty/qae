@@ -5,7 +5,7 @@ require 'award_years/v2021/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
-  include PgSearch
+  include PgSearch::Model
   extend Enumerize
   include FormAnswerStatesHelper
   include FormAnswerAppraisalFormHelpers

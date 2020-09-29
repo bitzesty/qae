@@ -20,7 +20,7 @@ gem 'paper_trail', '~> 10.3'
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', '>= 2.0.0'
 gem 'slim-rails', '3.1.0'
-gem 'coffee-rails', '4.2.2'
+gem 'coffee-rails', '5.0'
 gem 'jquery-rails', '4.3.5'
 gem 'jquery-ui-rails', '6.0.1'
 gem 'bootstrap-sass', '~> 3.4'
@@ -38,7 +38,7 @@ gem 'draper', '~> 4.0'
 gem 'decent_exposure'
 gem 'decent_decoration'
 
-gem 'hashie', '3.4.4'
+gem 'hashie', '~> 3.5'
 
 # Rails 4 Responders
 gem 'responders', '~> 3.0'
@@ -48,7 +48,7 @@ gem 'rails-html-sanitizer', '~> 1.3.0'
 
 # JSON
 gem 'json', '2.3.0'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.10.1'
 gem 'gon'
 
 # User authentication & authorization
@@ -110,7 +110,7 @@ gem 'rest-client'
 gem 'pusher', '0.15.2'
 
 # Text Search
-gem 'pg_search', "0.7.9"
+gem 'pg_search', "~> 2.3.3"
 
 # YAML/Hash loading
 gem 'active_hash'
@@ -177,7 +177,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara', '3.18'
   gem 'poltergeist'
-  gem 'database_cleaner', '1.6.1'
+  gem 'database_cleaner-active_record'
   gem 'launchy'
   gem 'turnip', '3.0.0'
   gem 'shoulda-matchers', require: false

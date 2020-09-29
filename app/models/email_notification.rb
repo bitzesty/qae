@@ -48,8 +48,8 @@ class EmailNotification < ApplicationRecord
   private
 
   def clear_cache
-    Rails.cache.clear("current_settings")
-    Rails.cache.clear("current_award_year")
-    Rails.cache.clear("#{kind.value}_notification")
+    Rails.cache.delete("current_settings")
+    Rails.cache.delete("current_award_year")
+    Rails.cache.delete("#{kind.value}_notification")
   end
 end

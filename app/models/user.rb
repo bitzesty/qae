@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
   extend Enumerize
 
   POSSIBLE_ROLES = %w(account_admin regular)
@@ -51,7 +51,7 @@ class User < ApplicationRecord
   end
 
   begin :scopes
-    scope :excluding, -> (user) {
+    scope :not_including, -> (user) {
       where.not(id: user.id)
     }
     scope :by_email, -> { order(:email) }

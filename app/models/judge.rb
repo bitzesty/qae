@@ -1,5 +1,5 @@
 class Judge < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
 
   AVAILABLE_ROLES = ["judge"]
 
