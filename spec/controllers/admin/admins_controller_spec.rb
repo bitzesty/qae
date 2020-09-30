@@ -24,7 +24,7 @@ RSpec.describe Admin::AdminsController do
 
   describe "POST create" do
     it "should create a resource" do
-      post :create, params: { admin: FactoryGirl.attributes_for(:admin) }
+      post :create, params: { admin: FactoryBot.attributes_for(:admin) }
       expect(response).to redirect_to admin_admins_url
       expect(Admin.count).to eq 2
     end

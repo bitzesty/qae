@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Users::CollaborationMailer do
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile,
+    FactoryBot.create :user, :completed_profile,
                               first_name: "Account Admin John",
                               role: "account_admin"
   end
@@ -12,7 +12,7 @@ describe Users::CollaborationMailer do
   describe "#access_granted" do
     describe "New user created and added to collaborators" do
       let!(:new_account_admin) do
-        FactoryGirl.create :user, :completed_profile,
+        FactoryBot.create :user, :completed_profile,
                                   first_name: "New Account Admin Mike",
                                   account: account,
                                   role: "account_admin"
@@ -50,7 +50,7 @@ describe Users::CollaborationMailer do
 
     describe "Existing user added to collaborators" do
       let!(:new_account_admin) do
-        FactoryGirl.create :user, :completed_profile,
+        FactoryBot.create :user, :completed_profile,
                                   first_name: "New Account Admin Mike",
                                   account: account,
                                   role: "account_admin"

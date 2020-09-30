@@ -25,7 +25,7 @@ RSpec.describe Admin::AssessorsController do
 
   describe "POST create" do
     it "should create a resource" do
-      post :create, params: { assessor: FactoryGirl.attributes_for(:assessor) }
+      post :create, params: { assessor: FactoryBot.attributes_for(:assessor) }
       expect(response).to redirect_to admin_assessors_url
       expect(Assessor.count).to eq 2
     end

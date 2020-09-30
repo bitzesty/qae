@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :email_notification do
     kind "reminder_to_submit"
     sent false

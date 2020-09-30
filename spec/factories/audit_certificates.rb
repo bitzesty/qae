@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :audit_certificate do
     association :form_answer, factory: :form_answer
     attachment do

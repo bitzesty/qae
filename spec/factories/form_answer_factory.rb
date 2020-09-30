@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :form_answer do
     award_type "trade"
     association :user, factory: [:user, :agreed_to_be_contacted]

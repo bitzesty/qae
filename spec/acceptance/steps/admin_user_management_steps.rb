@@ -30,11 +30,11 @@ step "I should see user in the list" do
 end
 
 step "a not confirmed user exists" do
-  @not_confirmed_user = FactoryGirl.create(:user, confirmed_at: nil, password: "my98ssdkjv9823kds=2")
+  @not_confirmed_user = FactoryBot.create(:user, confirmed_at: nil, password: "my98ssdkjv9823kds=2")
 end
 
 step "a locked user exists" do
-  @locked_user = FactoryGirl.create(:user, password: "my98ssdkjv9823kds=2")
+  @locked_user = FactoryBot.create(:user, password: "my98ssdkjv9823kds=2")
   @locked_user.lock_access!
 end
 

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :form_answer_attachment do
     association :form_answer, factory: :form_answer
     file do

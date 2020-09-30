@@ -201,11 +201,11 @@ GEM
       tzinfo
     excon (0.73.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     faraday-detailed_logger (2.1.2)
@@ -793,7 +793,7 @@ DEPENDENCIES
   draper (~> 4.0)
   email_validator
   enumerize
-  factory_girl_rails
+  factory_bot_rails
   fog (= 1.42.1)
   fog-aws
   gon (>= 6.4.0)

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :eligibility do
     association :account, factory: :account
     association :form_answer, factory: :form_answer

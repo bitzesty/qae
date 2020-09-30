@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Eligibility::Development, type: :model do
-  let(:account) { FactoryGirl.create(:account) }
+  let(:account) { FactoryBot.create(:account) }
 
   context 'answers storage' do
     it 'saves and reads answers' do

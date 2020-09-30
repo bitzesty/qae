@@ -13,7 +13,7 @@ RSpec.describe Assessor::CommentsController do
 
   describe "POST create" do
     it "should create a resource" do
-      post :create, params: { form_answer_id: form_answer.id, comment: FactoryGirl.attributes_for(:comment, section: "critical") }
+      post :create, params: { form_answer_id: form_answer.id, comment: FactoryBot.attributes_for(:comment, section: "critical") }
       expect(response).to redirect_to assessor_form_answer_path(form_answer)
       expect(Comment.count).to eq 2
     end

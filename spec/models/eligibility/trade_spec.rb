@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Eligibility::Trade, type: :model do
-  let(:account) { FactoryGirl.create(:account) }
+  let(:account) { FactoryBot.create(:account) }
   before { create :basic_eligibility, account: account }
 
   context "validation" do

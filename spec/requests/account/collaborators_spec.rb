@@ -5,7 +5,7 @@ describe 'API' do
   include ActiveJob::TestHelper
 
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile,
+    FactoryBot.create :user, :completed_profile,
                               first_name: "Account Admin John",
                               role: "account_admin"
   end
@@ -13,29 +13,29 @@ describe 'API' do
   let(:account) { account_admin.account }
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :innovation,
+    FactoryBot.create :form_answer, :innovation,
                                      user: account_admin,
                                      urn: "QA0001/19T",
                                      document: { company_name: "Bitzesty" }
   end
 
   let!(:basic_eligibility) do
-    FactoryGirl.create :basic_eligibility, form_answer: form_answer,
+    FactoryBot.create :basic_eligibility, form_answer: form_answer,
                                            account: account
   end
 
   let!(:innovation_eligibility) do
-    FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
+    FactoryBot.create :innovation_eligibility, form_answer: form_answer,
                                                 account: account
   end
 
   let!(:trade_eligibility) do
-    FactoryGirl.create :trade_eligibility, form_answer: form_answer,
+    FactoryBot.create :trade_eligibility, form_answer: form_answer,
                                            account: account
   end
 
   let!(:development_eligibility) do
-    FactoryGirl.create :development_eligibility, form_answer: form_answer,
+    FactoryBot.create :development_eligibility, form_answer: form_answer,
                                                  account: account
   end
 
@@ -91,7 +91,7 @@ describe 'API' do
 
   describe "DELETE /account/collaborators/:id" do
     let!(:existing_collaborator) do
-      FactoryGirl.create :user, :completed_profile,
+      FactoryBot.create :user, :completed_profile,
                                 first_name: "Collaborator Matt",
                                 account: account,
                                 role: "regular"

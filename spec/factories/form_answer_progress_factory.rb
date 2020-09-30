@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :form_answer_progress do
     form_answer_id 1
   end

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :press_summary do
     association(:form_answer)
     body "MyText"

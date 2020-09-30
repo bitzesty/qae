@@ -3,7 +3,7 @@ require 'rails_helper'
 
 shared_context "pdf file checks" do
   let!(:user) do
-    FactoryGirl.create :user
+    FactoryBot.create :user
   end
 
   let(:step2_question_answers) {

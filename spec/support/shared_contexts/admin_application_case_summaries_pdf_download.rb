@@ -38,7 +38,7 @@ shared_context "admin application case summaries pdf download" do
 
   it "should generate pdf" do
     expect(page.status_code).to eq(200)
-    expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
+    expect(page.response_headers["Content-Disposition"]).to include "attachment; filename=\"#{pdf_filename}\""
     expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
   end
 end

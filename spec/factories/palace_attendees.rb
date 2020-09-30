@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :palace_attendee do
     title "MyString"
     first_name "MyString"
