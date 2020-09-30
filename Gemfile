@@ -49,7 +49,7 @@ gem 'rails-html-sanitizer', '~> 1.3.0'
 # JSON
 gem 'json', '2.3.0'
 gem 'jbuilder', '~> 2.0'
-gem 'gon'
+gem 'gon', '>= 6.4.0'
 
 # User authentication & authorization
 gem 'devise', '~> 4.7'
