@@ -5,7 +5,7 @@ describe  "User sees the pre submission dashboard" do
   let(:user) { create(:user, :completed_profile) }
 
   before do
-    Settings.current_award_year_switch_date.update_attributes(trigger_at: 10.days.ago)
+    Settings.current_award_year_switch_date.update(trigger_at: 10.days.ago)
     login_as user
   end
 
@@ -18,7 +18,7 @@ describe  "User sees the pre submission dashboard" do
 
   describe "when visits the dashboard after some awards are opened" do
     it "should see message confirming that" do
-      Settings.current.deadlines.innovation_submission_start.update_attributes(trigger_at: 1.day.ago)
+      Settings.current.deadlines.innovation_submission_start.update(trigger_at: 1.day.ago)
       visit dashboard_path
       expect(page).to have_content("Please note, we are still in the process of updating some of the awards application forms for the year")
       expect(page).to have_link("New application", href: "/apply_innovation_award")
@@ -30,10 +30,10 @@ describe  "User sees the pre submission dashboard" do
 
   describe "when visits the dashboard after all awards are opened" do
     it "should see message confirming that" do
-      Settings.current.deadlines.innovation_submission_start.update_attributes(trigger_at: 1.day.ago)
-      Settings.current.deadlines.mobility_submission_start.update_attributes(trigger_at: 1.day.ago)
-      Settings.current.deadlines.development_submission_start.update_attributes(trigger_at: 1.day.ago)
-      Settings.current.deadlines.trade_submission_start.update_attributes(trigger_at: 1.day.ago)
+      Settings.current.deadlines.innovation_submission_start.update(trigger_at: 1.day.ago)
+      Settings.current.deadlines.mobility_submission_start.update(trigger_at: 1.day.ago)
+      Settings.current.deadlines.development_submission_start.update(trigger_at: 1.day.ago)
+      Settings.current.deadlines.trade_submission_start.update(trigger_at: 1.day.ago)
 
       visit dashboard_path
 
