@@ -19,7 +19,7 @@ gem 'paper_trail', '~> 10.3'
 # Assets & Templates
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', '>= 2.0.0'
-gem 'slim-rails', '3.1.0'
+gem 'slim-rails', '~> 3.2.0'
 gem 'coffee-rails', '5.0'
 gem 'jquery-rails', '4.3.5'
 gem 'jquery-ui-rails', '6.0.1'
