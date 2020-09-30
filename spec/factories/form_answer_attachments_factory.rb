@@ -10,7 +10,7 @@ FactoryBot.define do
     end
 
     trait :restricted_to_admin do
-      restricted_to_admin true
+      restricted_to_admin { true }
     end
   end
 end
