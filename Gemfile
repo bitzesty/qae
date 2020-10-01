@@ -160,7 +160,7 @@ end
 group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 4.0.1'
   gem "pry-byebug"
   gem 'rails-controller-testing'
   gem "selenium-webdriver"
@@ -179,7 +179,7 @@ group :test do
   gem 'poltergeist'
   gem 'database_cleaner-active_record'
   gem 'launchy'
-  gem 'turnip', '3.0.0'
+  gem 'turnip', '~> 4.2.0'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'codeclimate_circle_ci_coverage'

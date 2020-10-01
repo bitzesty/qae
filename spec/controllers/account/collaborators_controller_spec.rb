@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Account::CollaboratorsController do
+describe Account::CollaboratorsController, type: :controller do
   let(:user) { create :user, role: "account_admin" }
   let(:account) { user.account }
 
