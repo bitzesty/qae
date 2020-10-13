@@ -1,7 +1,10 @@
 strong Overall Summary
 .form-group
   .form-value.no-js-update
-    p = feedback.overall_summary.presence || content_tag(:i, "No feedback has been added yet")
+    - if feedback.overall_summary.present?
+      p = qae_simple_format(feedback.overall_summary)
+    - else
+      p = content_tag(:i, "No feedback has been added yet")
   .input.form-group
     = f.input :overall_summary, as: :text, input_html: { class: 'form-control js-char-count', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-overall_summary" }, label: false
   .clear

@@ -4,14 +4,20 @@ strong = feedback_field_value[:label]
     label.form-label
       | Key strength
   .form-value.no-js-update
-    p = feedback.public_send("#{feedback_field}_strength").presence || content_tag(:i, "No feedback has been added yet")
+    - if feedback.public_send("#{feedback_field}_strength").present?
+      p = qae_simple_format(feedback.public_send("#{feedback_field}_strength"))
+    - else
+      p = content_tag(:i, "No feedback has been added yet")
   .input.form-group
     = f.input "#{feedback_field}_strength", as: :text, input_html: { class: 'form-control js-char-count', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{form_answer.id}-#{f.object.id}-#{feedback_field}-strength" }, label: false
   .clear
 
   label.form-label Information to strengthen the application
   .form-value.no-js-update
-    p = feedback.public_send("#{feedback_field}_weakness").presence || content_tag(:i, "No feedback has been added yet")
+    - if feedback.public_send("#{feedback_field}_weakness").present?
+      p = qae_simple_format(feedback.public_send("#{feedback_field}_weakness"))
+    - else
+      p = content_tag(:i, "No feedback has been added yet")
   .input.form-group
     = f.input "#{feedback_field}_weakness", as: :text, input_html: { class: 'form-control js-char-count', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{form_answer.id}-#{f.object.id}-#{feedback_field}-weakness" }, label: false
   .clear
