@@ -1,26 +1,34 @@
-strong = feedback_field_value[:label]
-.form-group class=feedback_field
-  - unless feedback.form_answer.development?
-    label.form-label
-      | Key strength
-  .form-value.no-js-update
-    p = feedback.public_send("#{feedback_field}_strength").presence || content_tag(:i, "No feedback has been added yet")
-  .input.form-group
-    = f.input "#{feedback_field}_strength", as: :text, input_html: { class: 'form-control js-char-count', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{form_answer.id}-#{f.object.id}-#{feedback_field}-strength" }, label: false
-  .clear
+.form-group
+  .form-container
+    strong = feedback_field_value[:label]
+    .form-group class=feedback_field
+      - unless feedback.form_answer.development?
+        label.form-label
+          | Key strength
+      .form-value.no-js-update
+        - if feedback.public_send("#{feedback_field}_strength").present?
+          p = qae_simple_format(feedback.public_send("#{feedback_field}_strength"))
+        - else
+          p = content_tag(:i, "No feedback has been added yet")
+      .input.form-group
+        = f.input "#{feedback_field}_strength", as: :text, input_html: { class: 'form-control js-char-count', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{form_answer.id}-#{f.object.id}-#{feedback_field}-strength" }, label: false
+      .clear
 
-  label.form-label Information to strengthen the application
-  .form-value.no-js-update
-    p = feedback.public_send("#{feedback_field}_weakness").presence || content_tag(:i, "No feedback has been added yet")
-  .input.form-group
-    = f.input "#{feedback_field}_weakness", as: :text, input_html: { class: 'form-control js-char-count', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{form_answer.id}-#{f.object.id}-#{feedback_field}-weakness" }, label: false
-  .clear
+      label.form-label Information to strengthen the application
+      .form-value.no-js-update
+        - if feedback.public_send("#{feedback_field}_weakness").present?
+          p = qae_simple_format(feedback.public_send("#{feedback_field}_weakness"))
+        - else
+          p = content_tag(:i, "No feedback has been added yet")
+      .input.form-group
+        = f.input "#{feedback_field}_weakness", as: :text, input_html: { class: 'form-control js-char-count', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{form_answer.id}-#{f.object.id}-#{feedback_field}-weakness" }, label: false
+      .clear
 
-  - if policy(feedback).update?
-    = link_to "#", class: "form-edit-link pull-right" do
-      span.glyphicon.glyphicon-pencil
-      ' Edit
-    .form-actions.text-right
-      = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-      = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-.clear
+      - if policy(feedback).update?
+        = link_to "#", class: "form-edit-link pull-right" do
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+        .form-actions.text-right
+          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+    .clear
