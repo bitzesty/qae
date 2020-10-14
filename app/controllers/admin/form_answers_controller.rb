@@ -8,7 +8,6 @@ class Admin::FormAnswersController < Admin::BaseController
     :update_financials,
     :remove_audit_certificate
   ]
-  before_action :load_versions, only: :show
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
 
@@ -25,6 +24,11 @@ class Admin::FormAnswersController < Admin::BaseController
     else
       @award_year.form_answers
     end
+  end
+
+  def show
+    super
+    @audit_logs = AuditService.new.get_logs_for_form_answer(@form_answer)
   end
 
   def index
