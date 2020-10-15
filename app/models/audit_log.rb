@@ -7,7 +7,8 @@ class AuditLog < ApplicationRecord
   belongs_to :auditable, polymorphic: true
 
   ACTION_DESCRIPTIONS = {
-    "application_update": "updated their application",
+    "update": "updated their application",
+    "create": "created their application",
   }
 
   def to_s

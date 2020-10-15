@@ -26,11 +26,6 @@ class Admin::FormAnswersController < Admin::BaseController
     end
   end
 
-  def show
-    super
-    @audit_logs = AuditService.new.get_logs_for_form_answer(@form_answer)
-  end
-
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     params[:search].permit!
