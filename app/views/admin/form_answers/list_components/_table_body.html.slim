@@ -27,9 +27,9 @@
 
       = application_flags(obj, current_subject)
       = application_flags(obj)
-    / td
-      / = obj.updated_at.strftime("%d/%m/%Y")
-      / br
-      / span.muted
-        / = "by Scarborough"
+    td
+      = obj.last_updated_at
+      br
+      span.muted
+        = obj.last_updated_by
     td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
