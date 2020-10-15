@@ -4,7 +4,7 @@ class Admin::JudgesController < Admin::UsersController
     params[:search].permit!
     authorize :judge, :index?
 
-    @search = JudgeSearch.new(Judge.all).
+    @search = JudgeSearch.new(Judge.active).
                              search(params[:search])
     @resources = @search.results.page(params[:page])
   end
@@ -45,7 +45,7 @@ class Admin::JudgesController < Admin::UsersController
   private
 
   def find_resource
-    @resource = Judge.find(params[:id])
+    @resource = Judge.active.find(params[:id])
   end
 
   def resource_params
