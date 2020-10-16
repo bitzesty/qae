@@ -7,8 +7,28 @@ class AuditLog < ApplicationRecord
   belongs_to :auditable, polymorphic: true
 
   ACTION_DESCRIPTIONS = {
-    "update": "updated their application",
-    "create": "created their application",
+    "admin_comment_create": "added an admin comment",
+    "admin_comment_destroy": "deleted an admin comment",
+    "critical_comment_create": "added a critical comment",
+    "critical_comment_destroy": "deleted a critical comment",
+    "form_answer_attachment_create": "added an attachment",
+    "form_answer_attachment_destroy": "deleted an attachment",
+    "primary_appraisal_update": "updated the primary appraisal form",
+    "secondary_appraisal_update": "updated the secondary appraisal form",
+    "moderated_appraisal_update": "updated the moderated appraisal form",
+    "case_summary_update": "updated the case summary",
+    "feedback_create": "added feedback",
+    "feedback_update": "updated feedback",
+    "feedback_submit": "submitted feedback",
+    "feedback_unsubmit": "unsubmitted feedback",
+    "primary_appraisal_submit": "submitted primary appraisal",
+    "primary_appraisal_unsubmit": "unsubmitted primary appraisal",
+    "secondary_appraisal_submit": "submitted secondary appraisal",
+    "secondary_appraisal_unsubmit": "unsubmitted secondary appraisal",
+    "moderated_appraisal_submit": "submitted moderated appraisal",
+    "moderated_appraisal_unsubmit": "unsubmitted moderated appraisal",
+    "case_summary_submit": "submitted case summary",
+    "case_summary_unsubmit": "unsubmitted case summary",
   }
 
   def to_s
@@ -26,7 +46,7 @@ class AuditLog < ApplicationRecord
   end
 
   def description_for_action_type(action_type)
-    ACTION_DESCRIPTIONS[action_type.to_sym] || "Unsupported action"
+    ACTION_DESCRIPTIONS[action_type.to_sym] || action_type
   end
 
   def user_string
