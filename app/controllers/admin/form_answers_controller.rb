@@ -8,7 +8,6 @@ class Admin::FormAnswersController < Admin::BaseController
     :update_financials,
     :remove_audit_certificate
   ]
-  before_action :load_versions, only: :show
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
 

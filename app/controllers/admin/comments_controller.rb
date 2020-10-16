@@ -1,5 +1,6 @@
 class Admin::CommentsController < Admin::BaseController
   helper_method :form_answer
+  after_action :log_event, only: [:create, :update, :destroy]
 
   def new
     @comment = form_answer.comments.build
@@ -55,6 +56,14 @@ class Admin::CommentsController < Admin::BaseController
   end
 
   private
+
+  def action_type
+    "#{comment_type}_#{action_name}"
+  end
+
+  def comment_type
+    "#{resource.section}_comment"
+  end
 
   def update_params
     params.require(:comment).permit(:flagged)
