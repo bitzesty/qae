@@ -56,8 +56,8 @@ class FormAnswerSearch < Search
 
   def sort_by_updated_at(scoped_results, desc = false)
     scoped_results
-      .joins("LEFT OUTER JOIN audit_logs on audit_log.auditable_id = form_answers.id")
-      .order("audit_logs.created_at #{sort_order(desc)}")
+      .joins("LEFT OUTER JOIN audit_logs on audit_logs.auditable_id = form_answers.id AND audit_logs.auditable_type = 'FormAnswer'")
+      .order("audit_logs.created_at #{sort_order(desc)}").group("audit_logs.created_at")
   end
 
   def filter_by_status(scoped_results, value)
@@ -153,6 +153,6 @@ class FormAnswerSearch < Search
   end
 
   def sort_order(desc = false)
-    desc ? 'desc' : 'asc'
+    Arel.sql(desc ? 'desc' : 'asc')
   end
 end
