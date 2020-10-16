@@ -5,6 +5,7 @@ class Assessor::BaseController < ApplicationController
 
   before_action :authenticate_assessor!, :load_award_year_and_settings
   after_action :verify_authorized
+  after_action :log_event, only: [:create, :update, :destroy, :submit, :unlock]
 
   skip_before_action :authenticate_user!, raise: false
   skip_before_action :restrict_access_if_admin_in_read_only_mode!, raise: false

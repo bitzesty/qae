@@ -133,6 +133,14 @@ class ApplicationController < ActionController::Base
     AuditLog.create!(subject: current_subject, action_type: action_type)
   end
 
+  def log_event
+    AuditLog.create!(
+      subject: current_subject,
+      auditable: form_answer,
+      action_type: action_type
+      )
+  end
+
   #
   # Disabling browser caching in order
   # to protect sensitive data
