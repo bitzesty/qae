@@ -1,5 +1,6 @@
 class Assessor::CommentsController < Assessor::BaseController
   helper_method :form_answer
+  after_action :log_event, only: [:create, :update, :destroy]
 
   def create
     @comment = form_answer.comments.build(create_params)
@@ -46,6 +47,14 @@ class Assessor::CommentsController < Assessor::BaseController
   end
 
   private
+
+  def action_type
+    "#{comment_type}_#{action_name}"
+  end
+
+  def comment_type
+    "#{resource.section}_comment"
+  end
 
   def update_params
     params.require(:comment).permit(:flagged).merge(section: "critical")
