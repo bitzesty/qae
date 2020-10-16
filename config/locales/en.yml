@@ -243,6 +243,8 @@ en:
       moderated_appraisal_unsubmit: "unsubmitted moderated appraisal"
       case_summary_submit: "submitted case summary"
       case_summary_unsubmit: "unsubmitted case summary"
+      audit_certificate_downloaded: "downloaded verification of commerical figures form"
+      audit_certificate_uploaded: "uploaded verification of commerical figures form"
 
   form_answers:
     state:
