@@ -48,7 +48,7 @@ class Search
     @search_results = scope
 
     if ordered_by
-      if included_in_model_columns?(ordered_by)
+      if should_sort_in_database?(ordered_by)
         if ordered_desc
           @search_results = @search_results.order("#{ordered_by} DESC")
         else
@@ -62,7 +62,7 @@ class Search
     filter_params.each do |column, value|
       next unless value.present?
 
-      if included_in_model_columns?(column)
+      if should_filter_in_database?(column)
         @search_results = @search_results.where(column => value)
       else
         @search_results = apply_custom_filter(@search_results, column, value)
@@ -90,7 +90,11 @@ class Search
 
   private
 
-  def included_in_model_columns?(column)
+  def should_sort_in_database?(column)
+    column == "updated_at" ? false : scope.model.column_names.include?(column.to_s)
+  end
+
+  def should_filter_in_database?(column)
     scope.model.column_names.include?(column.to_s)
   end
 

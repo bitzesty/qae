@@ -15,6 +15,7 @@ class FormAnswerSearch < Search
 
     @scope = @scope.select(advanced_select)
                .joins("LEFT OUTER JOIN form_answers AS other_applications ON other_applications.account_id = form_answers.account_id AND other_applications.id != form_answers.id AND other_applications.state in #{post_submission_states_for_sql}")
+               .includes(:audit_logs)
   end
 
   # admin comments with flags + global flag per application
@@ -51,6 +52,12 @@ class FormAnswerSearch < Search
       .joins("LEFT OUTER JOIN assessors on form_answers.secondary_assessor_id = assessors.id")
       .select("form_answers.*, CONCAT(assessors.first_name, assessors.last_name) as assessor_full_name")
       .order("assessor_full_name #{sort_order(desc)}").group("assessors.first_name, assessors.last_name")
+  end
+
+  def sort_by_updated_at(scoped_results, desc = false)
+    scoped_results
+      .joins("LEFT OUTER JOIN audit_logs on audit_log.auditable_id = form_answers.id")
+      .order("audit_logs.created_at #{sort_order(desc)}")
   end
 
   def filter_by_status(scoped_results, value)
