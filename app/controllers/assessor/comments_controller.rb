@@ -47,6 +47,14 @@ class Assessor::CommentsController < Assessor::BaseController
 
   private
 
+  def action_type
+    "#{comment_type}_#{action_name}"
+  end
+
+  def comment_type
+    "#{resource.section}_comment"
+  end
+
   def update_params
     params.require(:comment).permit(:flagged).merge(section: "critical")
   end
