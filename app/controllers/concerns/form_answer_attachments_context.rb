@@ -55,6 +55,10 @@ module FormAnswerAttachmentsContext
 
   private
 
+  def action_type
+    "form_answer_attachment_#{action_name}"
+  end
+
   def resource
     @form_answer_attachment ||= form_answer.form_answer_attachments.find(params[:id])
   end
