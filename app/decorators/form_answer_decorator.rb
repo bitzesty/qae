@@ -516,11 +516,11 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def last_updated_at
-    latest_update.created_at.strftime("%d/%m/%Y")
+    latest_update && latest_update.created_at.strftime("%d/%m/%Y")
   end
 
   def last_updated_by
-    latest_update.subject.full_name
+    latest_update && latest_update.subject.full_name
   end
 
   private
