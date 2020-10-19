@@ -191,10 +191,6 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def current_subject
-    current_user || current_admin || current_assessor || current_judge || dummy_user
-  end
-
   def check_account_completion
     if !current_user.completed_registration?
       redirect_to correspondent_details_account_path
