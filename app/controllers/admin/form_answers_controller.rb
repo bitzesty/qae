@@ -38,6 +38,11 @@ class Admin::FormAnswersController < Admin::BaseController
                       .page(params[:page])
   end
 
+  def show
+    super
+    @audit_events = FormAnswerAuditor.new(@form_answer).get_audit_events
+  end
+
   def edit
     authorize resource
     sign_in(@form_answer.user, scope: :user, skip_session_limitable: true)
