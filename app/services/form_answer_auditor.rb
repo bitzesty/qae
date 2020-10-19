@@ -1,4 +1,5 @@
 class FormAnswerAuditor
+  include AuditHelper
 
   def initialize(form_answer)
     @form_answer = form_answer
@@ -34,6 +35,7 @@ class FormAnswerAuditor
   end
 
   def get_user_from_papertrail_version(version)
+    return dummy_user if version.whodunnit.nil?
     klass, id = version.whodunnit.split(":")
     klass.capitalize.constantize.find_by_id(id)
   end
