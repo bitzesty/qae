@@ -84,4 +84,8 @@ module PalaceAttendeesMixin
       :id
     )
   end
+
+  def action_type
+    "palace_attendee_#{action_name}"
+  end
 end

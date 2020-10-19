@@ -1,6 +1,7 @@
 class PalaceInvitesController < ApplicationController
   before_action :load_invite
   before_action :require_palace_invite_to_be_not_submitted_and_proper_stage!
+  before_action :log_event, only: [:update]
 
   def update
     if palace_invite_attributes.present? &&
@@ -55,5 +56,13 @@ class PalaceInvitesController < ApplicationController
 
       return
     end
+  end
+
+  def action_type
+    params[:submit] ? "palace_attendee_submit" : "palace_attendee_update"
+  end
+
+  def form_answer
+    @invite.form_answer
   end
 end
