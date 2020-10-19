@@ -16,6 +16,10 @@ class Admin::BaseController < ApplicationController
     current_admin
   end
 
+  def current_subject
+    current_admin
+  end
+
   private
 
   def user_not_authorized

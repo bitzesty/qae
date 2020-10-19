@@ -1,4 +1,5 @@
 require "app_responder"
+include AuditHelper
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -188,25 +189,6 @@ class ApplicationController < ActionController::Base
         :agree_being_contacted_by_department_of_business
       ]
     )
-  end
-
-  def current_subject
-    current_user || current_admin || current_assessor || current_judge || dummy_user
-  end
-
-  def dummy_user
-    User.find_by(email: "dummy_user@bitzesty.com") || User.create!(dummy_user_params)
-  end
-
-  def dummy_user_params
-   {
-     email: "dummy_user@bitzesty.com",
-     password: SecureRandom.base64(16),
-     agreed_with_privacy_policy: '1',
-     role: "regular",
-     first_name: "Unknown",
-     last_name: "User"
-   }
   end
 
   def check_account_completion
