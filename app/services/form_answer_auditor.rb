@@ -4,18 +4,28 @@ class FormAnswerAuditor
     @form_answer = form_answer
   end
 
-  def get_logs
-    logs = @form_answer.audit_logs + create_logs_from_papertrail_versions(@form_answer)
-    logs.sort_by(&:created_at)
+  def get_audit_events
+    events = create_events_from_audit_logs(@form_answer) + create_events_from_papertrail_versions(@form_answer)
+    events.sort_by(&:created_at)
   end
 
   private
 
-  def create_logs_from_papertrail_versions(form_answer)
+  def create_events_from_audit_logs(form_answer)
+    form_answer.audit_logs.map do |audit_log|
+      AuditEvent.new(
+        form_answer: form_answer,
+        action_type: audit_log.action_type,
+        subject: audit_log.subject,
+        created_at: audit_log.created_at
+        )
+    end
+  end
+
+  def create_events_from_papertrail_versions(form_answer)
     form_answer.versions.map do |version|
-      AuditLog.new(
-        auditable_type: "FormAnswer",
-        auditable_id: form_answer.id,
+      AuditEvent.new(
+        form_answer: form_answer,
         action_type: "application_#{version.event}",
         subject: get_user_from_papertrail_version(version),
         created_at: version.created_at
