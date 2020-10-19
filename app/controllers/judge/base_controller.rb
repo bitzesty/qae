@@ -23,10 +23,6 @@ class Judge::BaseController < ApplicationController
     :judge
   end
 
-  def current_subject
-    current_judge
-  end
-
   def user_not_authorized
     flash.alert = "You are not authorized to perform this action."
     redirect_to(judge_root_path)

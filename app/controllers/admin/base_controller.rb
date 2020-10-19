@@ -27,10 +27,6 @@ class Admin::BaseController < ApplicationController
     :admin
   end
 
-  def current_subject
-    current_admin
-  end
-
   def user_for_paper_trail
     "ADMIN:#{current_admin.id}" if current_admin.present?
   end
