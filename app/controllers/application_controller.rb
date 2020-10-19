@@ -142,6 +142,10 @@ class ApplicationController < ActionController::Base
       )
   end
 
+  def current_subject
+    current_user || dummy_user
+  end
+
   #
   # Disabling browser caching in order
   # to protect sensitive data
