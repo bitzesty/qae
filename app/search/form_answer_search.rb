@@ -56,8 +56,9 @@ class FormAnswerSearch < Search
 
   def sort_by_updated_at(scoped_results, desc = false)
     scoped_results
-      .joins("LEFT OUTER JOIN audit_logs on audit_logs.auditable_id = form_answers.id AND audit_logs.auditable_type = 'FormAnswer'")
-      .order("audit_logs.created_at #{sort_order(desc)}").group("audit_logs.created_at")
+      .joins("LEFT OUTER JOIN (SELECT audit_logs.auditable_id, audit_logs.auditable_type, MAX(audit_logs.created_at) latest_audit_date FROM audit_logs GROUP BY audit_logs.auditable_id, audit_logs.auditable_type) max_audit_dates ON max_audit_dates.auditable_id = form_answers.id AND max_audit_dates.auditable_type = 'FormAnswer'")
+      .order("COALESCE(max_audit_dates.latest_audit_date, '2010-10-31') #{sort_order(desc)}")
+      .group("max_audit_dates.latest_audit_date")
   end
 
   def filter_by_status(scoped_results, value)
