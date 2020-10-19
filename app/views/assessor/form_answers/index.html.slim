@@ -66,8 +66,8 @@ h1.admin-page-heading
             = render("assessor/form_answers/assessor_header", f: f)
             th.sortable width="110"
               = sort_link f, "Flag", @search, :flag, disabled: @search.query?
-            / th.sortable width="130"
-              / = sort_link f, "Last updated", @search, :updated_at, disabled: @search.query?
+            th.sortable width="130"
+              = sort_link f, "Last updated", @search, :updated_at, disabled: @search.query?
           = render(partial: "assessor/form_answers/list_body")
   .row
   .col-xs-12.text-right

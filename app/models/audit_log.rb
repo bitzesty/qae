@@ -1,10 +1,12 @@
 class AuditLog < ApplicationRecord
-  validates :subject_type, inclusion: { in: %w(Admin Assessor Judge) }, presence: true
+  validates :subject_type, inclusion: { in: %w(Admin User Assessor Judge) }, presence: true
   validates :subject_id, presence: true
   validates :action_type, presence: true
 
   belongs_to :subject, polymorphic: true
   belongs_to :auditable, polymorphic: true
+
+  scope :data_export, -> { AuditLog.where(auditable_type: nil).or(AuditLog.where(action_type: "download_form_answer")) }
 
   def to_s
     "On #{date_string} at #{time_string} #{user_string} #{description_for_action_type(action_type)}"

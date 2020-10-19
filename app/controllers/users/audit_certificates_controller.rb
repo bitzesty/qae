@@ -1,6 +1,7 @@
 class Users::AuditCertificatesController < Users::BaseController
 
   before_action :check_if_audit_certificate_already_exist!, only: [:create]
+  before_action :log_event, only: [:show, :create]
 
   expose(:form_answer) do
     current_user.account.
@@ -63,6 +64,10 @@ class Users::AuditCertificatesController < Users::BaseController
   end
 
   private
+
+  def action_type
+    action_name == "show" ? "audit_certificate_downloaded" : "audit_certificate_uploaded"
+  end
 
   def audit_certificate_params
     # This is fix of "missing 'audit_certificate' param"

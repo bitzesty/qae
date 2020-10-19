@@ -135,7 +135,7 @@ class ApplicationController < ActionController::Base
 
   def log_event
     AuditLog.create!(
-      subject: current_subject,
+      subject: current_user || current_subject,
       auditable: form_answer,
       action_type: action_type
       )
