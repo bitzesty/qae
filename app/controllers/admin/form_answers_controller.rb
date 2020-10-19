@@ -40,7 +40,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def show
     super
-    @audit_logs = FormAnswerAuditor.new(@form_answer).get_logs
+    @audit_events = FormAnswerAuditor.new(@form_answer).get_audit_events
   end
 
   def edit
