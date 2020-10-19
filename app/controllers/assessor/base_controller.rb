@@ -23,10 +23,6 @@ class Assessor::BaseController < ApplicationController
     :assessor
   end
 
-  def current_subject
-    current_assessor
-  end
-
   def user_not_authorized
     flash.alert = "You are not authorized to perform this action."
     redirect_to(assessor_root_path)
