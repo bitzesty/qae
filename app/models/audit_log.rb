@@ -6,6 +6,8 @@ class AuditLog < ApplicationRecord
   belongs_to :subject, polymorphic: true
   belongs_to :auditable, polymorphic: true
 
+  scope :data_export, -> { AuditLog.where(auditable_type: nil).or(AuditLog.where(action_type: "download_form_answer")) }
+
   def to_s
     "On #{date_string} at #{time_string} #{user_string} #{description_for_action_type(action_type)}"
   end
