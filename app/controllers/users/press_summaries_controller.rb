@@ -6,6 +6,7 @@ class Users::PressSummariesController < Users::BaseController
                 except: [:acceptance, :update_acceptance, :success, :failure]
 
   before_action :require_press_summary_to_be_valid!, only: [:show, :update]
+  after_action :log_event, only:[:update]
 
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
@@ -49,10 +50,14 @@ class Users::PressSummariesController < Users::BaseController
 
   private
 
+  def action_type
+    params[:submit] ? "press_summary_submit" : "press_summary_update"
+  end
+
   def press_summary_params
     params.require(:press_summary).permit(
-      :comment, 
-      :correct, 
+      :comment,
+      :correct,
       :title,
       :name,
       :last_name,
