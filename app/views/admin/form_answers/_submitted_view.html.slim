@@ -66,5 +66,5 @@
           ' Application Audit Log
     #section-logs.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="logs-heading"
       .panel-body
-        - @form_answer.audit_logs.sort_by(&:created_at).reverse.each do |log|
+        - @audit_logs.reverse.each do |log|
           p = log.to_s

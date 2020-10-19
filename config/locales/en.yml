@@ -252,6 +252,8 @@ en:
       press_summary_update: "updated press book notes"
       press_summary_submit: "confirmed press book notes"
       press_summary_signoff: "signed off press release"
+      application_create: "created the award application"
+      application_update: "updated the award application"
 
   form_answers:
     state:
