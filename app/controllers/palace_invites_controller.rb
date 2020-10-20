@@ -1,12 +1,11 @@
 class PalaceInvitesController < ApplicationController
   before_action :load_invite
   before_action :require_palace_invite_to_be_not_submitted_and_proper_stage!
-  before_action :log_event, only: [:update]
 
   def update
     if palace_invite_attributes.present? &&
       @invite_form.update(palace_invite_attributes.to_h.merge({submitted: params[:submit].present?}))
-
+      log_event
       if @invite.submitted?
         flash.notice = "Palace Attendees details are successfully submitted!"
         redirect_to edit_palace_invite_url(id: @invite.token)
