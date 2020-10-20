@@ -3,6 +3,7 @@ module AssessmentSubmissionMixin
     authorize resource, :submit?
     @service = AssessmentSubmissionService.new(resource, current_subject)
     @service.perform
+    log_event if resource.reload.locked_at.present?
 
     respond_to do |format|
       format.json { render(json_response) }
@@ -15,6 +16,7 @@ module AssessmentSubmissionMixin
   def unlock
     authorize resource, :can_unlock?
     resource.update_column(:locked_at, nil)
+    log_event
 
     redirect_to [namespace_name, resource.form_answer]
   end

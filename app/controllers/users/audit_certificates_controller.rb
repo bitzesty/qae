@@ -1,8 +1,6 @@
 class Users::AuditCertificatesController < Users::BaseController
 
   before_action :check_if_audit_certificate_already_exist!, only: [:create]
-  before_action :log_event, only: [:show], if: -> { request.format.pdf? }
-  before_action :log_event, only: [:create]
 
   expose(:form_answer) do
     current_user.account.
@@ -22,6 +20,7 @@ class Users::AuditCertificatesController < Users::BaseController
     respond_to do |format|
       format.html
       format.pdf do
+        log_event
         send_data pdf_data.render,
                   filename: "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf",
@@ -34,6 +33,7 @@ class Users::AuditCertificatesController < Users::BaseController
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
     if saved = audit_certificate.save
+      log_event
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       end
