@@ -1,7 +1,8 @@
 class Users::AuditCertificatesController < Users::BaseController
 
   before_action :check_if_audit_certificate_already_exist!, only: [:create]
-  before_action :log_event, only: [:show, :create]
+  before_action :log_event, only: [:show], if: -> { request.format.pdf? }
+  before_action :log_event, only: [:create]
 
   expose(:form_answer) do
     current_user.account.
