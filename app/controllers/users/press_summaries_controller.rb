@@ -6,7 +6,6 @@ class Users::PressSummariesController < Users::BaseController
                 except: [:acceptance, :update_acceptance, :success, :failure]
 
   before_action :require_press_summary_to_be_valid!, only: [:show, :update]
-  after_action :log_event, only:[:update]
 
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
@@ -26,6 +25,7 @@ class Users::PressSummariesController < Users::BaseController
     @press_summary.applicant_submitted = params[:submit].present?
 
     if @press_summary.update(press_summary_params)
+      log_event
       if @press_summary.applicant_submitted?
         flash.notice = "Press Book Notes successfully submitted"
         redirect_to dashboard_url
