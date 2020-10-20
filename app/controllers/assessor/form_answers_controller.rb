@@ -42,6 +42,11 @@ class Assessor::FormAnswersController < Assessor::BaseController
                       .page(params[:page])
   end
 
+  def show
+    super
+    @audit_events = FormAnswerAuditor.new(@form_answer).get_audit_events
+  end
+
   private
 
   def resource
