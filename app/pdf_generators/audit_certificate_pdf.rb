@@ -40,7 +40,8 @@ class AuditCertificatePdf < Prawn::Document
 
   def render_content
     render_main_header
-    render_guidance_section
+    render_applicant_guidance_section
+    render_accountant_guidance_section
 
     start_new_page
     render_financial_table
@@ -50,7 +51,11 @@ class AuditCertificatePdf < Prawn::Document
     render_additional_comments
     render_accountant_statement
     render_user_filling_block
+    render_applicants_management_statement
     render_feedback
+
+    start_new_page
+    render_appendix
   end
 
   def formatted_uk_sales_value(item)

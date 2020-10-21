@@ -13,7 +13,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_certificate_info
-    title = "The Queen's Awards for Enterprise #{form_answer.award_year.year}: Verification of Commercial Figures for #{header_full_award_type}"
+    title = "The Queen's Awards for Enterprise #{form_answer.award_year.year}: External Accountant’s Report"
     render_text_line(title, 5, default_text_header_ops.merge(align: :left))
   end
 
@@ -195,19 +195,19 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
-    b1 = %{Signed .................................................................................................................}
+    b1 = %{Signed (External Accountant) ............................................................................}
     render_text_line(b1, 1)
 
-    b2 = %{For and on behalf of: .........................................................................................}
-    render_text_line(b2, 1)
+    b3 = %{Company registration number/Professional body practising certificate number: }
+    render_text_line(b3, 1)
 
-    b3 = %{Company registration number: ......................................................................}
+    b3 = %{...............................................................................................................................}
     render_text_line(b3, 1)
 
     b4 = %{Address: ..............................................................................................................}
     render_text_line(b4, 1)
 
-    b5 = %{Telephone number: ..........................................................................................}
+    b5 = %{Telephone number: ...........................................................................................}
     render_text_line(b5, 1)
 
     b6 = %{Email: ...................................................................................................................}
@@ -216,9 +216,29 @@ module PdfAuditCertificates::General::SharedElements
     b7 = %{Date: ....................................................................................................................}
     render_text_line(b7, 5)
 
-    text_box "Company stamp:", default_text_ops.merge({
+    text_box "Company partnership name:", default_text_ops.merge({
       at: [120.mm, cursor + 38.mm]
     })
+  end
+
+  def render_applicants_management_statement
+    move_down 6.mm
+    render_text_line("APPLICANT’S MANAGEMENT’S STATEMENT (Only if providing revised figures)", 3, style: :bold)
+    move_down 6.mm
+
+    line = "We confirm we have updated the figures originally submitted in our application to the Queen’s Award for Enterprise. The revised figures should be used as the basis of our application."
+    render_text_line(line, 2, default_text_ops)
+
+    b1 = %{Signed ................................................................................................................}
+    render_text_line(b1, 1)
+
+    b2 = %{Job title: ..............................................................................................................}
+    render_text_line(b2, 1)
+
+    b3 = %{Company: ..........................................................................................................}
+    render_text_line(b3, 1)
+
+    move_down 6.mm
   end
 
   def render_revised_schedule
@@ -237,25 +257,48 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line("Additional comments:", 50, style: :bold)
   end
 
-  def render_options(opt1, opt2)
+  def render_accountant_statement
+    render_text_line("EXTERNAL ACCOUNTANT'S STATEMENT", 2, style: :bold)
+
     move_down 6.mm
     stroke_rectangle [0, cursor], 7, 7
-    render_text_line(opt1, 2, default_list_ops)
+
+    lines = []
+
+    first_line = "Statement 1 - We have checked the figures that the applicant’s management has provided in this form by undertaking the procedures as in the letter appended to this submission form. We report that no exceptions were found and that all samples were traced to underlying evidence."
+    render_text_line(first_line, 2, default_list_ops)
+
+    lines << "Because the above procedures do not constitute either an audit or a review made in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), we do not express any assurance on the form."
+
+    lines << "Had we performed additional procedures, or had we performed an audit or review of the financial statements in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), other matters might have come to our attention that would have been reported."
+
+    lines.each { |line| render_text_line(line, 2, default_text_ops) }
+
     stroke_rectangle [0, cursor], 7, 7
-    render_text_line(opt2, 6, default_list_ops)
-  end
+    first_line = "Statement 2 - We have checked the figures that the applicant’s management has provided in this form by undertaking the procedures as set out as in the letter appended to this submission form. We identified a number of exceptions during our work which we enumerate here:"
+    render_text_line(first_line, 2, default_list_ops)
 
-  def render_accountant_statement
-    render_text_line("ACCOUNTANT'S STATEMENT", 2, style: :bold)
+    render_text_line("Detail of exception(s)", 2, default_list_ops.merge(indent_paragraphs: 20))
+    move_down 70.mm
 
-    render_options(
-      "Statement 1 - We have reviewed the figures provided above and we confirm that, in our opinion, the figures are correct and that the applicable accounting standards have been complied with.",
-      "Statement 2 - We have reviewed and revised the figures provided above and we confirm that, in our opinion, the figures, as revised and explained, are correct and that the applicable accounting standards have been complied with."
-    )
+    line = "The applicant’s management have/have not [delete as appropriate] revised the figures in the form in response."
+    render_text_line(line, 2, default_text_ops)
+    render_text_line("Detail of revisions", 2, default_list_ops.merge(indent_paragraphs: 20))
+    move_down 70.mm
+
+    lines = []
+
+    lines << "Because the above procedures do not constitute either an audit or a review made in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), we do not express any assurance on the form."
+
+    lines << "Had we performed additional procedures or had we performed an audit or review of the financial statements in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), other matters might have come to our attention that would have been reported."
+    lines.each { |line| render_text_line(line, 2, default_text_ops) }
   end
 
   def render_feedback
     render_text_line("FEEDBACK", 5, style: :bold)
+    render_text_line("Immediate feedback", 1, style: :bold)
+    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
+
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
     render_text_line("We are committed to improving experiences for everyone who is involved in the Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
@@ -265,9 +308,66 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 5, style: :bold)
 
     render_text_line("Email: ....................................................................................................................", 5)
+  end
 
-    render_text_line("Immediate feedback", 5, style: :bold)
-    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 0)
+  def render_appendix
+    render_text_line("Appendix: Illustrative Agreed Upon Procedures", 6, style: :bold)
+
+    ps = []
+
+    ps << "The figures in the forms are provided by the applicant during their application for the Queen’s Awards for Enterprise. Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
+
+    ps << "While accountants should exercise their professional judgement when agreeing appropriate procedures, this appendix provides illustrative procedures that may be appropriate. The examples are illustrative, and other procedures may be undertaken."
+
+    ps << "As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25."
+
+    ps.each { |pr| render_text_line(pr, 2, default_text_ops) }
+
+    header = "Turnover:"
+    list = [
+      "Agree the total turnover figure per the form to the general ledger (account number [xxx]) for each year stated.",
+      "Agree the total turnover figure per the form to HMRC and/or Companies House filings for each year stated.",
+      "Trace a sample of sales from the general ledger for each year to underlying sales invoices."
+    ]
+    render_list_with_header(header, list)
+
+    header = "Employees:"
+    list = [
+      "Agree the total number of full-time employees in the form to [name of payroll report] for each year stated."
+    ]
+    render_list_with_header(header, list)
+
+    header = "Overseas sales (Non-UK sales):"
+    list = [
+      "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
+      "Trace a sample of non-UK sales from the general ledger to underlying sales invoices each year stated."
+    ]
+    render_list_with_header(header, list)
+
+    header = "Sales by product group"
+    list = [
+      "Agree the total sales by product group per the form to the general ledger (account numbers [xxx] and [xxx]).",
+      "Trace a sample of sales from the general ledger to underlying sales invoices."
+    ]
+    render_list_with_header(header, list)
+
+    header = "Net profit"
+    list = [
+      "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated."
+    ]
+    render_list_with_header(header, list)
+
+    render_text_line("Accountants should append the list of procedures undertaken, and the sample sizes selected to their submission from to the Queen’s Award Office.", 1, default_text_ops)
+  end
+
+  def render_list_with_header(header, list)
+    render_text_line(header, 1, default_text_ops)
+
+    list.each do |line|
+      render_text_line("\u2022 " + line, 1, default_list_ops)
+    end
+
+    move_down 3.mm
   end
 
 

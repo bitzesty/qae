@@ -1,3 +1,4 @@
+# coding: utf-8
 module PdfAuditCertificates::Awards2016::Innovation
   class Base < PdfAuditCertificates::Base
     # HERE YOU CAN OVERRIDE STANDART METHODS
@@ -10,14 +11,16 @@ module PdfAuditCertificates::Awards2016::Innovation
       "Innovation Award"
     end
 
-    def render_guidance_section
-      render_guidance_intro
+    def render_accountant_guidance_section
+      render_accountant_guidance_intro
       move_down 3.mm
-      render_guidance_general_notes
+      render_accountant_guidance_parent_figures
       move_down 3.mm
-      render_guidance_estimated_figures
+      render_accountant_guidance_estimated_figures
       move_down 3.mm
-      render_guidance_employees
+      render_accountant_guidance_employees
+      move_down 3.mm
+      render_accountant_guidance_general_notes
       move_down 3.mm
     end
 
@@ -32,9 +35,15 @@ module PdfAuditCertificates::Awards2016::Innovation
 
     def render_innovation_financial_table
       render_text_line("Innovation Financials", 2, style: :bold)
-      intro = "Where relevant to their innovation, the applicant provided additional information to help us understand the financial value of their innovation."
 
-      render_text_line(intro, 2)
+      ps = []
+      ps << "Where relevant to their innovation, the applicant provided additional information to help us understand the financial value of their innovation. Innovations are defined as per the gov.uk guidance. For the avoidance of doubt, accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for an innovation award. This is left to the sole discretion of the Queen’s Award Office."
+
+      ps << "Figures derived from financial statements should be based upon the Generally Accepted Accounting Principles (‘GAAP’) used by the company. A parent company making a group entry should include the trading figures of all UK members of the group (‘The UK business’)."
+
+      ps.each { |pr| render_text_line(pr, 2) }
+
+      render_accountant_guidance_general_notes
 
       data = financial_pointer.data
 
@@ -58,7 +67,7 @@ module PdfAuditCertificates::Awards2016::Innovation
     end
 
     def render_financial_main_table
-      render_text_line("Company Financials", 2, style: :bold)
+      render_text_line("The UK Business Financials", 2, style: :bold)
 
       rows = [
         financial_pointer.years_list.unshift(""),
