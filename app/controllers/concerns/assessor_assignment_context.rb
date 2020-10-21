@@ -5,6 +5,7 @@ module AssessorAssignmentContext
 
     respond_to do |format|
       if assessment.save
+        log_event
         format.json { render json: { errors: [] } }
       else
         format.json { render status: :unprocessable_entity,

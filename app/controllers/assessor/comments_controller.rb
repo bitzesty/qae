@@ -1,13 +1,12 @@
 class Assessor::CommentsController < Assessor::BaseController
   helper_method :form_answer
-  after_action :log_event, only: [:create, :update, :destroy]
 
   def create
     @comment = form_answer.comments.build(create_params)
     authorize @comment, :create?
 
     @comment.authorable = current_assessor
-    @comment.save
+    log_event if @comment.save
 
     respond_to do |format|
       format.html do
@@ -27,7 +26,7 @@ class Assessor::CommentsController < Assessor::BaseController
 
   def update
     authorize resource, :update?
-    resource.update(update_params)
+    log_event if resource.update(update_params)
 
     respond_to do |format|
       format.html { redirect_to([namespace_name, form_answer]) }
@@ -38,7 +37,7 @@ class Assessor::CommentsController < Assessor::BaseController
   def destroy
     authorize resource, :destroy?
 
-    resource.destroy
+    log_event if resource.destroy
 
     respond_to do |format|
       format.json { render(json: :ok) }

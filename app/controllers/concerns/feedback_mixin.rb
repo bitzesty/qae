@@ -20,7 +20,7 @@ module FeedbackMixin
 
     authorize @feedback, :create?
     @feedback.authorable = current_subject
-    @feedback.save
+    log_event if @feedback.save
 
     render_create
   end
@@ -30,7 +30,7 @@ module FeedbackMixin
 
     @feedback.assign_attributes(feedback_params)
     @feedback.authorable = current_subject
-    @feedback.save
+    log_event if @feedback.save
 
     render_create
   end
@@ -96,7 +96,7 @@ module FeedbackMixin
   end
 
   def save_and_render_submit(action)
-    @feedback.save
+    log_event if @feedback.save
 
     respond_to do |format|
       format.html do
