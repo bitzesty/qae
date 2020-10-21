@@ -13,6 +13,7 @@ module PalaceAttendeesMixin
     limit = palace_invite.attendees_limit
     if palace_invite.palace_attendees.count < limit
       palace_attendee = palace_invite.palace_attendees.create(create_params)
+      log_event if palace_attendee.persisted?
       render_attendee_form(palace_attendee, palace_invite)
     else
       head :ok
@@ -23,14 +24,14 @@ module PalaceAttendeesMixin
     authorize form_answer, :update?
 
     palace_attendee = palace_invite.palace_attendees.find(params[:id])
-    palace_attendee.update(create_params)
+    log_event if palace_attendee.update(create_params)
     render_attendee_form(palace_attendee, palace_invite)
   end
 
   def destroy
     authorize form_answer, :update?
     palace_attendee = palace_invite.palace_attendees.find(params[:id])
-    palace_attendee.destroy
+    log_event if palace_attendee.destroy
     respond_to do |format|
       format.html { redirect_to [namespace_name, form_answer] }
       format.js { head :ok }
@@ -83,5 +84,9 @@ module PalaceAttendeesMixin
       :palace_invite_id,
       :id
     )
+  end
+
+  def action_type
+    "palace_attendee_#{action_name}"
   end
 end

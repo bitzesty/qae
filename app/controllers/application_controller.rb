@@ -1,4 +1,5 @@
 require "app_responder"
+include AuditHelper
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -131,6 +132,18 @@ class ApplicationController < ActionController::Base
 
   def log_action(action_type)
     AuditLog.create!(subject: current_subject, action_type: action_type)
+  end
+
+  def log_event
+    AuditLog.create!(
+      subject: current_subject,
+      auditable: form_answer,
+      action_type: action_type
+      )
+  end
+
+  def current_subject
+    current_user || dummy_user
   end
 
   #

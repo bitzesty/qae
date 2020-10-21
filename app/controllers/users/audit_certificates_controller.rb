@@ -20,6 +20,7 @@ class Users::AuditCertificatesController < Users::BaseController
     respond_to do |format|
       format.html
       format.pdf do
+        log_event
         send_data pdf_data.render,
                   filename: "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf",
@@ -32,6 +33,7 @@ class Users::AuditCertificatesController < Users::BaseController
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
     if saved = audit_certificate.save
+      log_event
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       end
@@ -63,6 +65,10 @@ class Users::AuditCertificatesController < Users::BaseController
   end
 
   private
+
+  def action_type
+    action_name == "show" ? "audit_certificate_downloaded" : "audit_certificate_uploaded"
+  end
 
   def audit_certificate_params
     # This is fix of "missing 'audit_certificate' param"

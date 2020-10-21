@@ -221,6 +221,40 @@ en:
       feedbacks: Feedbacks
       case_summaries: Case summaries
       download_form_answer: Application PDF
+      admin_comment_create: "added an admin comment"
+      admin_comment_destroy: "deleted an admin comment"
+      critical_comment_create: "added a critical comment"
+      critical_comment_destroy: "deleted a critical comment"
+      form_answer_attachment_create: "added an attachment"
+      form_answer_attachment_destroy: "deleted an attachment"
+      primary_appraisal_update: "updated the primary appraisal form"
+      secondary_appraisal_update: "updated the secondary appraisal form"
+      moderated_appraisal_update: "updated the moderated appraisal form"
+      case_summary_update: "updated the case summary"
+      feedback_create: "added feedback"
+      feedback_update: "updated feedback"
+      feedback_submit: "submitted feedback"
+      feedback_unsubmit: "unlocked feedback"
+      primary_appraisal_submit: "submitted primary appraisal"
+      primary_appraisal_unsubmit: "unsubmitted primary appraisal"
+      secondary_appraisal_submit: "submitted secondary appraisal"
+      secondary_appraisal_unsubmit: "unsubmitted secondary appraisal"
+      moderated_appraisal_submit: "submitted moderated appraisal"
+      moderated_appraisal_unsubmit: "unsubmitted moderated appraisal"
+      case_summary_submit: "submitted case summary"
+      case_summary_unsubmit: "unlocked case summary"
+      audit_certificate_downloaded: "downloaded verification of commercial figures form"
+      audit_certificate_uploaded: "uploaded verification of commercial figures form"
+      palace_attendee_update: "updated Buckingham Palace attendee details"
+      palace_attendee_submit: "confirmed Buckingham Palace attendee details"
+      palace_attendee_create: "added a new Buckingham Palace attendee"
+      palace_attendee_destroy: "deleted a Buckingham Palace attendee"
+      press_summary_update: "updated press book notes"
+      press_summary_submit: "submitted press book notes"
+      press_summary_signoff: "signed off press release"
+      application_create: "created the award application"
+      application_update: "updated the award application"
+
   form_answers:
     state:
       eligibility_in_progress: Eligibility in progress

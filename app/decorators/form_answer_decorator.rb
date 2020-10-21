@@ -515,6 +515,14 @@ class FormAnswerDecorator < ApplicationDecorator
     "#{award_type_full_name} #{award_year.year - 1} - #{award_year.year}"
   end
 
+  def last_updated_at
+    latest_update && latest_update.created_at.strftime("%d/%m/%Y")
+  end
+
+  def last_updated_by
+    latest_update && latest_update.subject.full_name
+  end
+
   private
 
   def assessment_in_progress_status
@@ -532,5 +540,9 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def sanitize_html(str)
     html_full_sanitizer.sanitize(str)
+  end
+
+  def latest_update
+    object.audit_logs.order("created_at").last
   end
 end
