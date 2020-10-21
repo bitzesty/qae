@@ -4,6 +4,8 @@ module FormAnswerAttachmentsContext
     authorize service.resource, :create?
 
     if service.save
+      log_event
+
       respond_to do |format|
         format.html do
           redirect_to [namespace_name, form_answer]
@@ -40,7 +42,7 @@ module FormAnswerAttachmentsContext
 
   def destroy
     authorize resource, :destroy?
-    resource.destroy
+    log_event if resource.destroy
 
     respond_to do |format|
       format.html do
