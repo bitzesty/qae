@@ -278,12 +278,12 @@ module PdfAuditCertificates::General::SharedElements
     first_line = "Statement 2 - We have checked the figures that the applicant’s management has provided in this form by undertaking the procedures as set out as in the letter appended to this submission form. We identified a number of exceptions during our work which we enumerate here:"
     render_text_line(first_line, 2, default_list_ops)
 
-    render_text_line("Detail of exception(s)", 2, default_list_ops.merge(indent_paragraphs: 20))
-    move_down 70.mm
+    render_text_line("Details of exceptions", 2, default_list_ops.merge(indent_paragraphs: 20, style: :bold))
+    move_down 60.mm
 
     line = "The applicant’s management have/have not [delete as appropriate] revised the figures in the form in response."
     render_text_line(line, 2, default_text_ops)
-    render_text_line("Detail of revisions", 2, default_list_ops.merge(indent_paragraphs: 20))
+    render_text_line("Details of revisions", 2, default_list_ops.merge(indent_paragraphs: 20, style: :bold))
     move_down 70.mm
 
     lines = []
@@ -296,8 +296,10 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_feedback
     render_text_line("FEEDBACK", 5, style: :bold)
+
     render_text_line("Immediate feedback", 1, style: :bold)
     render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
+    move_down 60.mm
 
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
