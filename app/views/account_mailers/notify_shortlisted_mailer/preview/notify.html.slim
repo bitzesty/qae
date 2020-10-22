@@ -2,41 +2,52 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@user.decorate.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' We would like to inform you that your application by
-  => @company_name
-  ' has been shortlisted for a Queen's Award for Enterprise:
-  => @award_type_full_name
+  = "I would like to inform you that your application by #{@company_name} has been shortlisted for a Queen's Award for Enterprise: #{@award_type_full_name}."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | To enable us to proceed with your entry, you are now required to provide verification of the commercial figures you provided in your application, from an independent, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry).
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Failure to provide this return will mean we do not have sufficient information to complete the assessment of your application and it will not be considered at the next stage.
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | This must be submitted by 
+  | To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry).
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   strong
-    = "#{@deadline_time} on #{@deadline_date}."
+    = "Please do so by #{@deadline_time} on #{@deadline_date}."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | We cannot extend this deadline.
+  | Please follow the following steps:
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Please log in now to your Queen’s Award account to access the necessary template.
+  | 1. Log in now to your Queen's Award account and download the External Accountant's Report form.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    | Note - Please do not make any public announcement of your shortlisted status as the assessment process is on-going and reaching this stage is not a guarantee of success.
+  | 2. Send the report to the accountant to agree on the timelines and let them know if you will be providing revisions to the figures.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Furthermore, as stipulated in (Section F4 Confirmation of entry) on the application, the Queen’s Awards Office will undertake due diligence checks with a range of government departments, agencies and public bodies. If you require further information on this, please contact the team.
+  | 3. If relevant, make any revisions to the figures in the report. If you make revisions, you have to sign the Applicant's Management's Statement section in the report.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 4. Once you make the revisions (if any), the accountant will perform relevant procedures and will return the completed External Accountant's Report as well as the supplementary list of procedures document to you.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 5. Login and upload the External Accountant's Report as well as the supplementary list of procedures document to the Queen's Award online portal.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Please note:
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  = "1. The External Accountants Report and the supporting documentation must be submitted by #{@deadline_time} on #{@deadline_date}. We cannot extend this deadline."
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 2. Failure to provide this return on time will mean we do not have sufficient information to complete the assessment of your application, and it will not be considered at the next stage.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 3. Do not make any public announcement of your shortlisted status as the assessment process is ongoing, and reaching this stage is not a guarantee of success.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Furthermore, as stipulated in (Section F4 Confirmation of Entry) on the application, the Queen's Awards Office will undertake due diligence checks with a range of government departments, agencies and public bodies. If you require further information on this, please contact us.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Kind regards,
+  | Yours sincerely,
   br
   br
   | Nichola Bruno
   br
-  | Head of the Queen’s Awards Office
+  | Head, The Queen's Awards for Enterprise Office
