@@ -198,6 +198,9 @@ module PdfAuditCertificates::General::SharedElements
     b1 = %{Signed (External Accountant) ............................................................................}
     render_text_line(b1, 1)
 
+    b2 = %{Company partnership name: ............................................................................}
+    render_text_line(b2, 1)
+
     b3 = %{Company registration number/Professional body practising certificate number: }
     render_text_line(b3, 1)
 
@@ -215,10 +218,6 @@ module PdfAuditCertificates::General::SharedElements
 
     b7 = %{Date: ....................................................................................................................}
     render_text_line(b7, 5)
-
-    text_box "Company partnership name:", default_text_ops.merge({
-      at: [120.mm, cursor + 38.mm]
-    })
   end
 
   def render_applicants_management_statement
