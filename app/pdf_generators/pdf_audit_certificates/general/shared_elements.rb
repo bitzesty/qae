@@ -288,6 +288,8 @@ module PdfAuditCertificates::General::SharedElements
 
     lines = []
 
+    lines << "These adjustments remove/do not remove [delete as appropriate] the impact of the exception."
+
     lines << "Because the above procedures do not constitute either an audit or a review made in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), we do not express any assurance on the form."
 
     lines << "Had we performed additional procedures or had we performed an audit or review of the financial statements in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), other matters might have come to our attention that would have been reported."
