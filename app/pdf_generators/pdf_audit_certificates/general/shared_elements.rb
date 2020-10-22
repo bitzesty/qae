@@ -223,7 +223,6 @@ module PdfAuditCertificates::General::SharedElements
   def render_applicants_management_statement
     move_down 6.mm
     render_text_line("APPLICANT’S MANAGEMENT’S STATEMENT (Only if providing revised figures)", 3, style: :bold)
-    move_down 6.mm
 
     line = "We confirm we have updated the figures originally submitted in our application to the Queen’s Award for Enterprise. The revised figures should be used as the basis of our application."
     render_text_line(line, 2, default_text_ops)
@@ -308,9 +307,9 @@ module PdfAuditCertificates::General::SharedElements
 
     render_text_line("Yes       No", 10, style: :bold)
 
-    render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 5, style: :bold)
+    render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 3, style: :bold)
 
-    render_text_line("Email: ....................................................................................................................", 5)
+    render_text_line("Email: ....................................................................................................................", 1)
   end
 
   def render_appendix

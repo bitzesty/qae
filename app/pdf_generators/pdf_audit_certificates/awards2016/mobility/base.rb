@@ -12,7 +12,7 @@ module PdfAuditCertificates::Awards2016::Mobility
       render_accountant_guidance_parent_figures
       move_down 3.mm
       render_accountant_guidance_estimated_figures
-      move_down 3.mm
+      move_down 10.mm # new page
       render_accountant_guidance_employees
       move_down 3.mm
       render_accountant_po_guidance
