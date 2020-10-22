@@ -1,5 +1,5 @@
 .js-upload-wrapper data-max-attachments=1 data-form-name="audit-cert-form" data-name="audit-cert-name" data-filename="Uploaded Verification of Commercial Figures"
-  ul.js-uploaded-list.list-add class=("hidden" unless cert_exists)
+  ul.js-uploaded-list class=("hidden" unless cert_exists)
     li.li-audit-upload
       div
         = render "users/audit_certificates/file", cert_exists: cert_exists,

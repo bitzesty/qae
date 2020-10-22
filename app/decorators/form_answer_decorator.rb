@@ -543,6 +543,6 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def latest_update
-    object.audit_logs.order("created_at").last
+    object.audit_logs.data_update.order("created_at").last
   end
 end

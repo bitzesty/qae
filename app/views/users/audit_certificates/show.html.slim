@@ -7,12 +7,15 @@ header.page-header.group class=('page-header-wider')
   article.group role="article"
     .inner
       - unless cert_exists
-        p.js-audit-certificate-status-message
-          ' Please download
-          = link_to "this Verification of Commercial Figures",
-                    users_form_answer_audit_certificate_url(form_answer, format: :pdf),
-                    target: "_blank"
-          '  template and give it to your auditor/accountant to complete. You can then upload the completed certificate below.
+
+        p Please follow the steps below:
+        p
+          ol
+            li = link_to("Download the External Accountant's Report form.", users_form_answer_audit_certificate_url(form_answer, format: :pdf))
+            li Send the report to the accountant to agree on the timelines and let them know if you will be providing revisions to the figures.
+            li If relevant, make changes or provide actual figures to replace estimates submitted at the time of application in the External Accountant's Report from. If you make any of these revisions, you have to sign the Applicant's Management's Statement section in the report.
+            li Once you make the revisions (if any), the accountant will perform relevant procedures and will return the completed External Accountant's Report as well as the supplementary list of procedures document to you.
+            li = "Login and upload the External Accountant's Report as well as the supplementary list of procedures document to this online portal by <strong> noon on #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_date}</strong>.".html_safe
       br
 
       = render "users/audit_certificates/upload_block", award: form_answer,

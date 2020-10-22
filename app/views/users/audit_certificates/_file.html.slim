@@ -3,17 +3,17 @@
 
   - if att_record.attachment_scan_results.present?
     - if att_record.clean?
-      = link_to "Uploaded Verification of Commercial Figures", att_record.attachment_url,
+      = link_to "Uploaded External Accountant's Report", att_record.attachment_url,
                 target: "_blank", class: "js-audit-certificate-title"
     - elsif att_record.attachment_scan_results == "scanning"
-      | Uploaded Verification of Commercial Figures is scanning on viruses
+      | Uploaded External Accountant's Report is being scanned for viruses.
     - elsif att_record.attachment_scan_results == "infected"
       | Uploaded file has been blocked (virus detected), please remove.
     - else
       = link_to "Uploaded Verification of Commercial Figures", "",
                 target: "_blank", class: "js-audit-certificate-title"
   - else
-      | Uploaded Verification of Commercial Figures is scanning on viruses
+      | Uploaded External Accountant's Report is being scanned for viruses.
 - else
   = link_to "Uploaded Verification of Commercial Figures", "",
             target: "_blank", class: "js-audit-certificate-title"
