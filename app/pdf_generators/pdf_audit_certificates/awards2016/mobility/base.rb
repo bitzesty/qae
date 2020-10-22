@@ -9,6 +9,8 @@ module PdfAuditCertificates::Awards2016::Mobility
     def render_accountant_guidance_section
       render_accountant_guidance_intro
       move_down 3.mm
+      render_accountant_guidance_parent_figures
+      move_down 3.mm
       render_accountant_guidance_estimated_figures
       move_down 3.mm
       render_accountant_guidance_employees
