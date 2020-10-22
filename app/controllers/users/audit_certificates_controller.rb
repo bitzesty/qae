@@ -16,10 +16,6 @@ class Users::AuditCertificatesController < Users::BaseController
     form_answer.audit_certificate
   end
 
-  expose(:deadline) do
-    form_answer.award_year.settings.deadlines.find{ |d| d.kind == "audit_certificates" }
-  end
-
   def show
     respond_to do |format|
       format.html
