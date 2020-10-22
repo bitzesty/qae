@@ -22,7 +22,7 @@ class Users::AuditCertificatesController < Users::BaseController
       format.pdf do
         log_event
         send_data pdf_data.render,
-                  filename: "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}",
+                  filename: "External_Accountants_Report_#{form_answer.urn}_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf",
                   disposition: 'attachment'
       end

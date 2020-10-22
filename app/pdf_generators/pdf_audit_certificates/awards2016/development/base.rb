@@ -1,3 +1,4 @@
+# coding: utf-8
 module PdfAuditCertificates::Awards2016::Development
   class Base < PdfAuditCertificates::Base
     # HERE YOU CAN OVERRIDE STANDART METHODS
@@ -9,14 +10,16 @@ module PdfAuditCertificates::Awards2016::Development
       "Sustainable Development Award"
     end
 
-    def render_guidance_section
-      render_guidance_intro
+    def render_accountant_guidance_section
+      render_accountant_guidance_intro
       move_down 3.mm
-      render_guidance_general_notes
+      render_accountant_guidance_parent_figures
       move_down 3.mm
-      render_guidance_estimated_figures
+      render_accountant_guidance_estimated_figures
       move_down 3.mm
-      render_guidance_employees
+      render_accountant_guidance_employees
+      move_down 3.mm
+      render_accountant_guidance_general_notes
       move_down 3.mm
     end
 
@@ -31,9 +34,11 @@ module PdfAuditCertificates::Awards2016::Development
 
     def render_sd_financial_table
       render_text_line("Sustainable Development Financials", 2, style: :bold)
-      intro = "If relevant to their sustainable development, the applicant provided unit price, cost details and sales figures to help us understand the financial value of their sustainable development."
+      prs = []
+      prs << "Sustainable Development is defined as per the gov.uk guidance. For the avoidance of doubt, Accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for a sustainable development award. This is left to the sole discretion of the Queen’s Award Office."
+      prs << "If relevant to their sustainable development, the applicant provided unit price, cost details and sales figures to help us understand the financial value of their sustainable development."
 
-      render_text_line(intro, 2)
+      prs.each { |intro| render_text_line(intro, 2) }
 
       data = financial_pointer.data
 
@@ -57,7 +62,7 @@ module PdfAuditCertificates::Awards2016::Development
     end
 
     def render_financial_main_table
-      render_text_line("Company Financials", 2, style: :bold)
+      render_text_line("The UK Business Financials", 2, style: :bold)
 
       rows = [
         financial_pointer.years_list.unshift(""),
