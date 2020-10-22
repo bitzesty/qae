@@ -42,8 +42,6 @@ class AuditCertificatePdf < Prawn::Document
     render_main_header
     render_applicant_guidance_section
     render_accountant_guidance_section
-
-    start_new_page
     render_financial_table
     render_explanation_of_the_changes
 
