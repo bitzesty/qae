@@ -62,7 +62,7 @@ module PdfAuditCertificates::Awards2016::Development
     end
 
     def render_financial_main_table
-      render_text_line("Company Financials", 2, style: :bold)
+      render_text_line("The UK Business Financials", 2, style: :bold)
 
       rows = [
         financial_pointer.years_list.unshift(""),
