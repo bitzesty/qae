@@ -5,16 +5,16 @@ module PdfAuditCertificates::Awards2016::Trade
       "International Trade Award"
     end
 
-    def render_guidance_section
-      render_guidance_intro
+    def render_accountant_guidance_section
+      render_accountant_guidance_intro
       move_down 3.mm
-      render_guidance_general_notes
+      render_accountant_guidance_estimated_figures
       move_down 3.mm
-      render_guidance_estimated_figures
+      render_accountant_guidance_employees
       move_down 3.mm
-      render_guidance_employees
+      render_accountant_guidance_overseas_sales
       move_down 3.mm
-      render_guidance_overseas_sales
+      render_accountant_guidance_general_notes
       move_down 3.mm
     end
   end

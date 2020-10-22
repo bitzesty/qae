@@ -99,8 +99,9 @@ module PdfAuditCertificates::General::GuidanceElements
 
     render_text_line(header, 1, style: :bold)
     lines = []
+    lines << "Please note, this relates to the UK applicant’s overseas sales."
     lines << "Include only:"
-    lines << "Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how)."
+    lines << "Direct overseas sales of all products and services (including income from royalties, licence fees, provision of knowhow)."
     lines << "Total export agency commissions."
     lines << "Dividends remitted to the UK from direct overseas investments."
     lines << "Income from portfolio investment abroad remitted to the UK."
@@ -113,12 +114,19 @@ module PdfAuditCertificates::General::GuidanceElements
 
     move_down 3.mm
 
-    p1 = "If applicable, include the sales to, and the sales by the overseas branches or subsidiaries. For products/services which the applicant sells/invoices to them and they sell/invoice on, include only their mark-up, if any, over the price paid to the applicant."
+    p1 = "If applicable, include the sales to and the sales by the overseas branches or subsidiaries. For products/services which the applicant sells/invoices to them and they sell/invoice on, include only their mark-up, if any, over the price paid to the applicant."
 
-    p2 = "The products/services must have been shipped/provided and the customer invoiced, but the applicant need not have received the payment within the year concerned. Omit unfulfilled orders and payments received in advance of export."
+    p2 = "The products/services must have been shipped/provided, and the customer invoiced, but the applicant need not have received the payment within the year concerned. Omit unfulfilled orders and payments received in advance of export."
 
     [p1, p2].each do |paragraph|
       render_text_line(paragraph, 1, leading: 2)
     end
+  end
+
+  def render_accountant_po_guidance
+    render_text_line("Promoting Opportunity (through social mobility)", 1, style: :bold)
+
+    paragraph = "Promoting opportunity is defined as per the gov.uk guidance. For the avoidance of doubt, Accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for a promoting opportunity award. This is left to the sole discretion of the Queen’s Award Office."
+    render_text_line(paragraph, 1, leading: 2)
   end
 end
