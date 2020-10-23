@@ -1,0 +1,19 @@
+= simple_form_for (list_of_procedures || form_answer.build_list_of_procedures),
+                  as: :list_of_procedures,
+                  url: users_form_answer_list_of_procedures_path(form_answer),
+                  html: {class: "qae-form audit-certificate-upload-form #{"hidden" if list_exists}", method: :post} do |f|
+  .errors-container
+  .clear
+  span.button.button-add
+    span + Upload List of Procedures form
+    = f.input :attachment,
+              as: :file,
+              required: true,
+              label: false,
+              input_html: { class: "fileinput-button js-audit-certificate-file-upload" }
+
+  footer.display-none
+    nav.pagination role="navigation"
+      ul.group
+        li.submit
+          = f.submit "Upload", class: "button"

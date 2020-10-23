@@ -1,0 +1,19 @@
+- if list_exists
+  - att_record = award.list_of_procedures
+
+  - if att_record.attachment_scan_results.present?
+    - if att_record.clean?
+      = link_to "Uploaded List of Procedures", att_record.attachment_url,
+                target: "_blank", class: "js-audit-certificate-title"
+    - elsif att_record.attachment_scan_results == "scanning"
+      | Uploaded List of Procedures is being scanned for viruses.
+    - elsif att_record.attachment_scan_results == "infected"
+      | Uploaded file has been blocked (virus detected), please remove.
+    - else
+      = link_to "Uploaded List of Procedures", "",
+                target: "_blank", class: "js-audit-certificate-title"
+  - else
+      | Uploaded List of Procedures is being scanned for viruses.
+- else
+  = link_to "Uploaded List of Procedures", "",
+            target: "_blank", class: "js-audit-certificate-title"
