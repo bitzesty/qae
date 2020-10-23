@@ -245,6 +245,7 @@ en:
       case_summary_unsubmit: "unlocked case summary"
       audit_certificate_downloaded: "downloaded verification of commercial figures form"
       audit_certificate_uploaded: "uploaded verification of commercial figures form"
+      list_of_procedures_uploaded: "uploaded list of procedures document"
       palace_attendee_update: "updated Buckingham Palace attendee details"
       palace_attendee_submit: "confirmed Buckingham Palace attendee details"
       palace_attendee_create: "added a new Buckingham Palace attendee"
