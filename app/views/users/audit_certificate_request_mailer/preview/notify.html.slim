@@ -2,15 +2,16 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@recipient.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | We are emailing to remind you that you have until 
-  
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    = "#{@deadline_time} on #{@deadline}"
+  = "We are emailing to remind you that you have until"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | to upload your completed Verification of Commercial Figures via the link below:
-  br
+  strong
+    = "noon on #{@deadline}"
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' to provide verification of the commercial figures by submitting External Accountant's Report and the supplementary list of procedures by following the link below:
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = link_to users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer)
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
@@ -18,17 +19,33 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
     ' We cannot extend this deadline.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' If you do not submit your Verification of Commercial Figures before the deadline, we will not have sufficient information to assess your application and it will be withdrawn.
+  ' If you do not submit your External Accountant's Report and the accompanying List of Procedures document before the deadline, we will not have sufficient information to assess your application and it will be withdrawn.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' You can download a blank copy of the Verification of Commercial Figures via the link below:
-  br
-  = link_to users_form_answer_audit_certificate_url(@form_answer, format: :pdf), users_form_answer_audit_certificate_url(@form_answer, format: :pdf)
+  strong
+    ' Below is a reminder of the steps you need to take:
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 1. Log in now to your Queen's Award account and download the External Accountant's Report form by following the link below:<br/>
+  = link_to(users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer))
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 2. We recommend that you send the report to the accountant straight away so that you can agree on the timelines. Let them know if you will be providing revisions to the figures.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 3. If relevant, in the External Accountant's Report, provide actual figures to replace estimates submitted at the time of the application or make any other changes to the figures. If you make any revisions, you have to sign the Applicant's Management's Statement section in the report.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 4. Once you make the revisions (if any), the accountant will perform relevant procedures and will return the completed External Accountant's Report. Additionally, the accountant will give you a document that lists the procedures that they have performed to verify the figures. Please note, there is no template for the list of procedures document - accountants can use their preferred format for it.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | 5. Log in and upload the External Accountant's Report as well as the supplementary list of procedures document to the Queen’s Award online portal, “Verification of figures” page, by following the link below:<br/>
+  = link_to(users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer))
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Thank you,
+  | Yours sincerely,
   br
   br
   | Nichola Bruno
   br
-  | Head of the Queen's Awards Office
+  | Head, The Queen’s Awards for Enterprise Office
