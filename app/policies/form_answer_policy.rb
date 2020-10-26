@@ -90,6 +90,13 @@ class FormAnswerPolicy < ApplicationPolicy
     (Rails.env.development? || record.audit_certificate.clean?)
   end
 
+  def download_list_of_procedures_pdf?
+    (admin? || subject.lead_or_assigned?(record)) &&
+    record.list_of_procedures.present? &&
+    record.list_of_procedures.attachment.present? &&
+    (Rails.env.development? || record.list_of_procedures.clean?)
+  end
+
   def create_audit_certificate_pdf?
     admin? || subject.lead_or_assigned?(record)
     (record.audit_certificate.nil? || record.audit_certificate.attachment.nil?)
@@ -103,8 +110,7 @@ class FormAnswerPolicy < ApplicationPolicy
     download_feedback_pdf? ||
     download_case_summary_pdf? ||
     (admin? || subject.lead_or_assigned?(record)) &&
-    record.audit_certificate.present? &&
-    record.audit_certificate.attachment.present?
+    (audit_certificate_available? || list_of_procedures_available?)
   end
 
   def can_download_initial_audit_certificate_pdf?
@@ -129,5 +135,15 @@ class FormAnswerPolicy < ApplicationPolicy
 
   def can_add_collaborators_to_application?
     admin?
+  end
+
+  private
+
+  def audit_certificate_available?
+    record.audit_certificate.present? && record.audit_certificate.attachment.present?
+  end
+
+  def list_of_procedures_available?
+    record.list_of_procedures.present? && record.list_of_procedures.attachment.present?
   end
 end
