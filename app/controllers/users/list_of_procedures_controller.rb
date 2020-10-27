@@ -20,7 +20,7 @@ class Users::ListOfProceduresController < Users::BaseController
       format.html do
         if saved
           redirect_to users_form_answer_audit_certificate_url(form_answer),
-                      notice: "List of Procedures successfully uploaded!"
+                      notice: "List of procedures successfully uploaded!"
         else
           render :show
         end

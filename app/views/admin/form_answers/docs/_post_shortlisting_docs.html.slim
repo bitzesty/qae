@@ -23,10 +23,10 @@
 
     - if resource.object.list_of_procedures.present? && resource.object.list_of_procedures.clean?
       li
-        = link_to "View/print List of Procedures", [url_namespace, resource.object, resource.object.list_of_procedures], target: "_blank"
+        = link_to "View/print list of procedures", [url_namespace, resource.object, resource.object.list_of_procedures], target: "_blank"
     - elsif resource.object.list_of_procedures.present? && resource.object.list_of_procedures.attachment_scan_results.blank?
       li style="color:green"
-        ' Scanning List of Procedures. You may need to refresh the page.
+        ' Scanning list of procedures. You may need to refresh the page.
 
     - if policy(resource).download_case_summary_pdf?
       li
