@@ -175,7 +175,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'capybara', '3.18'
+  gem 'capybara', '3.33'
   gem 'poltergeist'
   gem 'database_cleaner', '1.6.1'
   gem 'launchy'
