@@ -26,8 +26,7 @@
     }
   }
 
-  .form-value,
-  .date-time-text {
+  .form-value {
     display: inline-block;
     width: 39em;
 
@@ -36,6 +35,10 @@
       width: auto;
       margin-right: 10px;
     }
+  }
+
+  .date-time-text {
+    padding-right: 1em;
   }
 
   .edit-deadline {

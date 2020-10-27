@@ -34,13 +34,13 @@
               span.pull-right
                 ' Due by
                 = application_deadline_short(:audit_certificates)
-              = link_to users_form_answer_audit_certificate_url(award)
-                - if award.audit_certificate.present?
-                  span.label-status.label-status-green
-                    ' Complete
-                - else
-                  span.label-status.label-status-red
-                    ' Incomplete
+              / = link_to users_form_answer_audit_certificate_url(award)
+              /   - if award.audit_certificate.present?
+              /     span.label-status.label-status-green
+              /       ' Complete
+              /   - else
+              /     span.label-status.label-status-red
+              /       ' Incomplete
         .clear
       .clear
   br
