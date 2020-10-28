@@ -1,3 +1,12 @@
+javascript:
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $( document ).ready(function() {
+      $(".js-remove-list-of-procedures-link").on("confirm:complete", function(){
+        $(".js-list-of-procedures-removal-form").submit()
+      });
+    });
+  });
+
 - if list_exists
   - att_record = award.list_of_procedures
 
@@ -14,6 +23,16 @@
                 target: "_blank", class: "js-audit-certificate-title"
   - else
       | Uploaded list of procedures is being scanned for viruses.
+
+  small.pull-right
+  = form_for(:list_of_procedures, url: users_form_answer_list_of_procedures_path(form_answer), html: { method: :delete, class: "js-list-of-procedures-removal-form", style: "display:inline-block;"}) do |f|
+
+    = f.submit 'Remove', class: 'if-js-hide'
+
+    = link_to "#", class: "text-danger if-no-js-hide js-remove-list-of-procedures-link", data: {confirm: "Are you sure?"}
+      span.glyphicon.glyphicon-remove
+      span.visible-lg.visible-md
+        ' Remove
 - else
   = link_to "Download list of procedures", "",
             target: "_blank", class: "js-audit-certificate-title"

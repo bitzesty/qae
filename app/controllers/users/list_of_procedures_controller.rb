@@ -39,6 +39,11 @@ class Users::ListOfProceduresController < Users::BaseController
     end
   end
 
+  def destroy
+    log_event if list_of_procedures.destroy
+    redirect_to users_form_answer_audit_certificate_url(form_answer)
+  end
+
   private
 
   def list_of_procedures_params
