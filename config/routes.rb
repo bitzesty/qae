@@ -102,7 +102,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resource :audit_certificate, only: [:show, :create]
+      resource :audit_certificate, only: [:show, :create, :destroy]
       resource :list_of_procedures, only: [:create]
       resource :support_letter_attachments, only: :create
       resources :supporters, only: [:create, :destroy]
