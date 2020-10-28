@@ -83,6 +83,8 @@ class Users::AuditCertificatesController < Users::BaseController
       "audit_certificate_uploaded"
     when "destroy"
       "audit_certificate_destroyed"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
     end
   end
 
