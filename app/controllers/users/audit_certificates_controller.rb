@@ -68,10 +68,22 @@ class Users::AuditCertificatesController < Users::BaseController
     end
   end
 
+  def destroy
+    log_event if audit_certificate.destroy
+    redirect_to users_form_answer_audit_certificate_url(form_answer)
+  end
+
   private
 
   def action_type
-    action_name == "show" ? "audit_certificate_downloaded" : "audit_certificate_uploaded"
+    case action_name
+    when "show"
+      "audit_certificate_downloaded"
+    when "create"
+      "audit_certificate_uploaded"
+    when "destroy"
+      "audit_certificate_destroyed"
+    end
   end
 
   def audit_certificate_params
