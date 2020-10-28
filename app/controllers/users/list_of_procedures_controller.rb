@@ -39,6 +39,11 @@ class Users::ListOfProceduresController < Users::BaseController
     end
   end
 
+  def destroy
+    log_event if list_of_procedures.destroy
+    redirect_to users_form_answer_audit_certificate_url(form_answer)
+  end
+
   private
 
   def list_of_procedures_params
@@ -55,7 +60,14 @@ class Users::ListOfProceduresController < Users::BaseController
   end
 
   def action_type
-    "list_of_procedures_uploaded"
+    case action_name
+    when "create"
+      "list_of_procedures_uploaded"
+    when "destroy"
+      "list_of_procedures_destroy"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
+    end
   end
 
   def humanized_errors

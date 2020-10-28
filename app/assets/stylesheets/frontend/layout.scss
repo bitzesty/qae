@@ -971,3 +971,48 @@ details {
   width: 1em;
   background-size: 12px auto !important;
 }
+
+
+
+.glyphicon-remove {
+  display: inline-block;
+  margin-right: 3px;
+  position:relative;
+  top: 1px;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &:before {
+    display: none;
+  }
+
+  width: 11px;
+  height: 11px;
+  background-image: image-url("icon-invalid.png");
+  background-size: 11px 11px;
+
+  @include is-retina {
+    background-image: image-url("icon-invalid@2.png");
+  }
+
+  .text-danger & {
+    background-image: image-url("icon-remove.png");
+
+    @include is-retina {
+      background-image: image-url("icon-remove@2.png");
+    }
+  }
+}
+
+.remove-verification-document {
+  font-size: 16px;
+  display: inline-block;
+
+  .text-danger {
+    color: #a94442;
+  }
+}
+
+.js-audit-certificate-title {
+  margin-right: 10px;
+}
