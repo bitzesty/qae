@@ -7,4 +7,5 @@ class AuditLog < ApplicationRecord
   belongs_to :auditable, polymorphic: true
 
   scope :data_export, -> { AuditLog.where(auditable_type: nil).or(AuditLog.where(action_type: "download_form_answer")) }
+  scope :data_update, -> { AuditLog.where(auditable_type: "FormAnswer").where("action_type != 'download_form_answer'") }
 end

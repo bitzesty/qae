@@ -903,6 +903,11 @@ input[type="file"] {
   margin-top: -1.5em;
 }
 
+.button-upload {
+  padding: 0.5em !important;
+  margin: -4.5em 0.5em 0em 0.5em !important;
+}
+
 .button-add {
   @include core-19;
   position: relative;

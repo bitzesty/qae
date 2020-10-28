@@ -70,6 +70,7 @@ def assert_rag_change(section_id, header_id)
 
   find("#{header_id} .panel-title a").click
 
+  expect(page).to have_css(section_id) # Forces capybara to wait for the section to become visible
   within section_id do
     expect(page).to have_selector(rag, text: "Select RAG", count: 4)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
@@ -85,6 +86,7 @@ def assert_rag_change(section_id, header_id)
   visit show_path
 
   find("#{header_id} .panel-title a").click
+  take_a_nap
 
   within section_id do
     expect(page).to have_selector(rag, text: "Select RAG", count: 3)
@@ -96,6 +98,8 @@ end
 
 def assert_description_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
+  take_a_nap
+
   selector = section_id == moderated ? "assessor_assignment_verdict_desc" : "assessor_assignment_level_of_innovation_desc"
   parent_selector = section_id == moderated ? ".form-overall-verdict" : ".form-level-of-innovation"
 
@@ -113,6 +117,7 @@ def assert_description_change(section_id, header_id)
   visit show_path
 
   find("#{header_id} .panel-title a").click
+  take_a_nap
 
   within section_id do
     expect(page).to have_selector(".form-value p", text: text, count: 1)
@@ -126,6 +131,7 @@ def assert_multiple_description_change(section_id, header_id)
   text = "should NOT be saved"
   text2 = "should be saved"
   find("#{header_id} .panel-title a").click
+  take_a_nap
 
   within section_id do
     unless section_id == moderated
@@ -139,6 +145,7 @@ def assert_multiple_description_change(section_id, header_id)
 
   visit show_path
   find("#{header_id} .panel-title a").click
+  take_a_nap
 
   within section_id do
     expect(page).to have_content(text2)
@@ -151,6 +158,7 @@ end
 
 def assert_verdict_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
+  take_a_nap
 
   within section_id do
     expect(page).to have_selector(".rag-text", text: "Select verdict", count: 1)
@@ -161,6 +169,8 @@ def assert_verdict_change(section_id, header_id)
 
   visit show_path
   page.find("#{header_id} .panel-title a").click
+  take_a_nap
+
   within section_id do
     expect(page).to_not have_selector(".rag-text", text: "Select verdict")
     expect(page).to have_content "Recommended"
@@ -173,4 +183,10 @@ def show_path
   else
     admin_form_answer_path form_answer
   end
+end
+
+# For some reason, Capybara isn't waiting for elements to become visible when JS fires.
+# Let's take a nap and give the DOM time to update.
+def take_a_nap
+  sleep(2)
 end

@@ -1,22 +1,22 @@
-- if cert_exists
-  - att_record = award.audit_certificate
+- if list_exists
+  - att_record = award.list_of_procedures
 
   - if att_record.attachment_scan_results.present?
     - if att_record.clean?
-      = link_to "Download External Accountant's Report", att_record.attachment_url,
+      = link_to "Download list of procedures", att_record.attachment_url,
                 target: "_blank", class: "js-audit-certificate-title"
     - elsif att_record.attachment_scan_results == "scanning"
-      | Uploaded External Accountant's Report is being scanned for viruses.
+      | Uploaded list of procedures is being scanned for viruses.
     - elsif att_record.attachment_scan_results == "infected"
       | Uploaded file has been blocked (virus detected), please remove.
     - else
-      = link_to "Download Verification of Commercial Figures", "",
+      = link_to "Download list of procedures", "",
                 target: "_blank", class: "js-audit-certificate-title"
   - else
-      | Uploaded External Accountant's Report is being scanned for viruses.
+      | Uploaded list of procedures is being scanned for viruses.
 
   small.pull-right.remove-verification-document
-    = form_for(users_form_answer_audit_certificate_path, html: { method: :delete, style: "display:inline-block;"}) do |f|
+    = form_for(:list_of_procedures, url: users_form_answer_list_of_procedures_path(form_answer), html: { method: :delete, style: "display:inline-block;"}) do |f|
 
       = f.submit 'Remove', class: 'if-js-hide'
 
@@ -25,5 +25,5 @@
         span.visible-lg.visible-md
           ' Remove
 - else
-  = link_to "Download Verification of Commercial Figures", "",
+  = link_to "Download list of procedures", "",
             target: "_blank", class: "js-audit-certificate-title"
