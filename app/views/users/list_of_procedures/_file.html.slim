@@ -1,12 +1,3 @@
-javascript:
-  document.addEventListener("DOMContentLoaded", function(event) {
-    $( document ).ready(function() {
-      $(".js-remove-list-of-procedures-link").on("confirm:complete", function(){
-        $(".js-list-of-procedures-removal-form").submit()
-      });
-    });
-  });
-
 - if list_exists
   - att_record = award.list_of_procedures
 

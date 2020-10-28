@@ -1,13 +1,3 @@
-javascript:
-  document.addEventListener("DOMContentLoaded", function(event) {
-    $( document ).ready(function() {
-      $(".js-remove-audit-certificate-link").on("confirm:complete", function(){
-        $(".js-audit-certificate-removal-form").submit();
-      });
-    });
-  });
-
-
 - if cert_exists
   - att_record = award.audit_certificate
 
