@@ -60,7 +60,14 @@ class Users::ListOfProceduresController < Users::BaseController
   end
 
   def action_type
-    "list_of_procedures_uploaded"
+    case action_name
+    when "create"
+      "list_of_procedures_uploaded"
+    when "destroy"
+      "list_of_procedures_destroy"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
+    end
   end
 
   def humanized_errors
