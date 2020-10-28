@@ -34,6 +34,7 @@ $gutter-one-sixth: $gutter/6;
 
 @import "admin/toggle";
 
+@import "mixins";
 @import "frontend/smart_answers";
 @import "frontend/layout";
 @import "frontend/forms";
