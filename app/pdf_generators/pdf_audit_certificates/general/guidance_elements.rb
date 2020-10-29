@@ -16,7 +16,7 @@ module PdfAuditCertificates::General::GuidanceElements
   def render_applicant_guidance_text
     p1 = "As a shortlisted applicant, you now need to check the figures which you have provided. If you need to make changes or provide actual figures to replace estimates submitted at the time of application, please make changes on this form and then ask your external accountant to complete this. If you have made changes, then you will need to sign the Applicant’s Management’s Statement section of this form."
 
-    p2 = "Once you and your external accountant has completed this report, please upload it together with the supplementary list of procedures document provided by the accountant  to the Queen’s Awards for Enterprise online portal by 12 noon on #{Settings.current_audit_certificates_deadline.strftime('%A %d %B')}. We are unable to accept late reports due to the strict assessment and judging timetable."
+    p2 = "Once you and your external accountant has completed this report, please upload it together with the accompanying list of procedures document provided by the accountant  to the Queen’s Awards for Enterprise online portal by 12 noon on #{Settings.current_audit_certificates_deadline.strftime('%A %d %B')}. We are unable to accept late reports due to the strict assessment and judging timetable."
 
     [p1, p2].each do |paragraph|
       render_text_line(paragraph, 2, leading: 2)
