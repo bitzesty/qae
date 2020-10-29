@@ -104,9 +104,9 @@ describe Notifiers::EmailNotificationService do
   context "shortlisted_audit_certificate_reminder" do
     let(:kind) { "shortlisted_audit_certificate_reminder" }
     let(:form_answer) { create(:form_answer, :trade, :submitted) }
+    let(:mailer) { double(deliver_later!: true) }
 
     it "triggers current notification" do
-      mailer = double(deliver_later!: true)
       expect(Users::AuditCertificateRequestMailer).to receive(:notify).with(
         form_answer.id,
         user.id
@@ -119,17 +119,34 @@ describe Notifiers::EmailNotificationService do
       expect(current_notification.reload).to be_sent
     end
 
-    context "with already submitted certificate" do
+    context "with a submitted audit_certificate but no list of procedures" do
       let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
 
       it "triggers current notification" do
-        expect(Users::AuditCertificateRequestMailer).not_to receive(:notify)
+        expect(Users::AuditCertificateRequestMailer).to receive(:notify).with(
+          form_answer.id,
+          user.id
+        ) { mailer }
 
         expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
 
         described_class.run
 
         expect(current_notification.reload).to be_sent
+      end
+    end
+
+    context "with a submitted audit certificate and submitted list of procedures" do
+      let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
+      let!(:list_of_procedures) { create(:list_of_procedures, form_answer: form_answer) }
+
+      it "does not trigger a notification" do
+        expect(Users::AuditCertificateRequestMailer).not_to receive(:notify).with(
+          form_answer.id,
+          user.id
+        ) { mailer }
+
+        described_class.run
       end
     end
   end

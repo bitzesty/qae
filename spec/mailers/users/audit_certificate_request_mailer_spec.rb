@@ -14,7 +14,7 @@ describe Users::AuditCertificateRequestMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) {
-    "Queen's Awards for Enterprise: Reminder to submit your Verification of Commercial Figures"
+    "Queen's Awards for Enterprise: Reminder to provide verification of commercial figures"
   }
 
   before do
@@ -33,7 +33,6 @@ describe Users::AuditCertificateRequestMailer do
     it "renders the body" do
       expect(mail.body.raw_source).to match(user.decorate.full_name)
       expect(mail.body.raw_source).to match(users_form_answer_audit_certificate_url(form_answer))
-      expect(mail.body.raw_source).to match(users_form_answer_audit_certificate_url(form_answer, format: :pdf))
       expect(mail.body.raw_source).to match(deadline)
     end
   end
