@@ -15,15 +15,16 @@
   - else
       | Uploaded list of procedures is being scanned for viruses.
 
-  small.pull-right.remove-verification-document
-    = form_for(:list_of_procedures, url: users_form_answer_list_of_procedures_path(form_answer), html: { method: :delete, style: "display:inline-block;"}) do |f|
-
-      = f.submit 'Remove', class: 'if-js-hide'
-
-      = link_to "#", class: "text-danger if-no-js-hide js-remove-verification-document-link", data: {confirm: "Are you sure?"}
-        span.glyphicon.glyphicon-remove
-        span.visible-lg.visible-md
-          ' Remove
 - else
   = link_to "Download list of procedures", "",
             target: "_blank", class: "js-audit-certificate-title"
+
+small.pull-right.remove-verification-document
+  = form_for(:list_of_procedures, url: users_form_answer_list_of_procedures_path(form_answer), html: { class: "js-remove-verification-document-form", method: :delete, style: "display:inline-block;"}) do |f|
+
+    = f.submit 'Remove', class: 'if-js-hide'
+
+    = link_to "#", class: "text-danger if-no-js-hide js-remove-verification-document-link", data: {confirm: "Are you sure?"}
+      span.glyphicon.glyphicon-remove
+      span.visible-lg.visible-md
+        ' Remove

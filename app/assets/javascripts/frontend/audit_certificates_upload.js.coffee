@@ -34,6 +34,7 @@ window.AuditCertificatesUpload =
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.find(".li-audit-upload").removeClass("hidden")
+      list.find(".js-remove-verification-document-form").removeClass("hidden")
       $(".js-audit-certificate-status-message").remove()
 
     failed = (error_message) ->
