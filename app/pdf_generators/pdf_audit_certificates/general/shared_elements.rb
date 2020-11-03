@@ -358,8 +358,6 @@ module PdfAuditCertificates::General::SharedElements
       "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated."
     ]
     render_list_with_header(header, list)
-
-    render_text_line("Accountants should append the list of procedures undertaken, and the sample sizes selected to their submission from to the Queen’s Award Office.", 1, default_text_ops)
   end
 
   def render_list_with_header(header, list)
