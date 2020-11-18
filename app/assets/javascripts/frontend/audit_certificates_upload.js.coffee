@@ -33,6 +33,7 @@ window.AuditCertificatesUpload =
       list.find(".js-audit-certificate-title").attr("href", file_url)
       list.find(".js-audit-certificate-title").text(filename)
       list.find(".js-audit-certificate-title").attr("download", filename)
+      list.find(".js-audit-certificate-title").attr("title", filename)
       list.removeClass("hidden")
 
       # Remove `Uploading...`

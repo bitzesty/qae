@@ -4,7 +4,7 @@
   - if att_record.attachment_scan_results.present?
     - if att_record.clean?
       = link_to att_record.attachment.file.filename, att_record.attachment_url,
-                target: "_blank", class: "js-audit-certificate-title download-link", download: att_record.attachment.file.filename
+                target: "_blank", class: "js-audit-certificate-title download-link", download: att_record.attachment.file.filename, title: att_record.attachment.file.filename
     - elsif att_record.attachment_scan_results == "scanning"
       | Uploaded list of procedures is being scanned for viruses.
     - elsif att_record.attachment_scan_results == "infected"
