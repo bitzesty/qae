@@ -1007,6 +1007,7 @@ details {
 .remove-verification-document {
   font-size: 16px;
   display: inline-block;
+  vertical-align: top;
 
   .text-danger {
     color: #a94442;
@@ -1022,6 +1023,11 @@ details {
   padding-left: 1.75em;
   position: relative;
   font-weight: bold;
+  max-width: 420px;
+  max-width: calc(100% - 150px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:before {
     content: " ";
