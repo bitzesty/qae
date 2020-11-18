@@ -4,7 +4,7 @@
   - if att_record.attachment_scan_results.present?
     - if att_record.clean?
       = link_to att_record.attachment.file.filename, att_record.attachment_url,
-                target: "_blank", class: "js-audit-certificate-title download-link"
+                target: "_blank", class: "js-audit-certificate-title download-link", download: att_record.attachment.file.filename
     - elsif att_record.attachment_scan_results == "scanning"
       | Uploaded External Accountant's Report is being scanned for viruses.
     - elsif att_record.attachment_scan_results == "infected"
@@ -15,7 +15,7 @@
   - else
       | Uploaded External Accountant's Report is being scanned for viruses.
 
-- else # The below link gets displayed by javascript when the user uploads a file (no page reload)
+- else # The below link gets displayed by javascript when the user uploads a file (no page reload). The link attributes are updated automatically.
   = link_to "Download Verification of Commercial Figures", "",
             target: "_blank", class: "js-audit-certificate-title download-link"
 
