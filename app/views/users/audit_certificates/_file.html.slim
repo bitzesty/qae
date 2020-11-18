@@ -3,21 +3,21 @@
 
   - if att_record.attachment_scan_results.present?
     - if att_record.clean?
-      = link_to "Download External Accountant's Report", att_record.attachment_url,
-                target: "_blank", class: "js-audit-certificate-title"
+      = link_to att_record.attachment.file.filename, att_record.attachment_url,
+                target: "_blank", class: "js-audit-certificate-title download-link", download: att_record.attachment.file.filename, title: att_record.attachment.file.filename
     - elsif att_record.attachment_scan_results == "scanning"
       | Uploaded External Accountant's Report is being scanned for viruses.
     - elsif att_record.attachment_scan_results == "infected"
       | Uploaded file has been blocked (virus detected), please remove.
     - else
-      = link_to "Download Verification of Commercial Figures", "",
-                target: "_blank", class: "js-audit-certificate-title"
+      = link_to att_record.attachment.file.filename, "",
+                target: "_blank", class: "js-audit-certificate-title download-link"
   - else
       | Uploaded External Accountant's Report is being scanned for viruses.
 
-- else
+- else # The below link gets displayed by javascript when the user uploads a file (no page reload). The link attributes are updated automatically.
   = link_to "Download Verification of Commercial Figures", "",
-            target: "_blank", class: "js-audit-certificate-title"
+            target: "_blank", class: "js-audit-certificate-title download-link"
 
 small.pull-right.remove-verification-document
   = form_for(users_form_answer_audit_certificate_path, html: { method: :delete, class:"js-remove-verification-document-form", style: "display:inline-block;"}) do |f|
