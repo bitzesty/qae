@@ -29,7 +29,7 @@ window.AuditCertificatesUpload =
     upload_done = (e, data, link) ->
       # Immediately show a link to download the uploaded file
       file_url = data.result["attachment"]["url"]
-      filename = file_url.split('/').pop()
+      filename = file_url.match(/[^\/?#]+(?=$|[?#])/);
       list.find(".js-audit-certificate-title").attr("href", file_url)
       list.find(".js-audit-certificate-title").text(filename)
       list.find(".js-audit-certificate-title").attr("download", filename)
