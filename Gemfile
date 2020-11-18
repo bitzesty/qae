@@ -168,7 +168,10 @@ end
 
 group :production do
   # Error reporting
-  gem 'sentry-raven'
+  gem "sentry-ruby"
+  gem "sentry-rails"
+  gem "sentry-sidekiq"
+
   # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
   gem 'rails_12factor', '~> 0.0.3'
 end
