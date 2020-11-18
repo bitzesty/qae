@@ -27,9 +27,14 @@ window.AuditCertificatesUpload =
       list.find(".li-audit-upload").addClass("hidden")
 
     upload_done = (e, data, link) ->
+      # Immediately show a link to download the uploaded file
       file_url = data.result["attachment"]["url"]
-      list.removeClass("hidden")
+      filename = file_url.split('/').pop()
       list.find(".js-audit-certificate-title").attr("href", file_url)
+      list.find(".js-audit-certificate-title").text(filename)
+      list.find(".js-audit-certificate-title").attr("download", filename)
+      list.find(".js-audit-certificate-title").attr("title", filename)
+      list.removeClass("hidden")
 
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
