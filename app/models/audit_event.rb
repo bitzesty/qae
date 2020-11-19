@@ -27,6 +27,7 @@ class AuditEvent
   end
 
   def user_string
-    "#{subject.full_name} (#{subject.class.name})"
+    user_type = subject.class.name == "User" ? "Applicant" : subject.class.name
+    "#{subject.full_name} (#{user_type})"
   end
 end
