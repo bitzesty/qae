@@ -336,7 +336,6 @@
 }
 
 .section-financial-summary .form-group {
-  margin-bottom: 30px;
   border-bottom: none;
 
   &:last-child {
@@ -346,6 +345,10 @@
   .table {
     margin-bottom: 0;
   }
+}
+
+.section-financial-summary .form-actions {
+  margin: 0 0 1em 0;
 }
 
 .form-edit-link {

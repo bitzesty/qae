@@ -5,7 +5,7 @@ class PalaceInvitesController < ApplicationController
   def update
     if palace_invite_attributes.present? &&
       @invite_form.update(palace_invite_attributes.to_h.merge({submitted: params[:submit].present?}))
-
+      log_event
       if @invite.submitted?
         flash.notice = "Palace Attendees details are successfully submitted!"
         redirect_to edit_palace_invite_url(id: @invite.token)
@@ -55,5 +55,13 @@ class PalaceInvitesController < ApplicationController
 
       return
     end
+  end
+
+  def action_type
+    params[:submit] ? "palace_attendee_submit" : "palace_attendee_update"
+  end
+
+  def form_answer
+    @invite.form_answer
   end
 end

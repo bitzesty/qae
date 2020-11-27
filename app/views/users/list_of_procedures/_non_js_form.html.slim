@@ -1,0 +1,13 @@
+= simple_form_for (list_of_procedures || form_answer.build_list_of_procedures),
+                  as: :list_of_procedures,
+                  url: users_form_answer_list_of_procedures_path(form_answer),
+                  html: {class: "qae-form", method: :post} do |f|
+  ul.list-add
+    li
+      = f.input :attachment,
+                as: :file,
+                required: true,
+                label: "Upload list of procedures document"
+
+  = f.submit "Upload", class: "button button-add button-upload non-js-audit-certificate-submit"
+.clear

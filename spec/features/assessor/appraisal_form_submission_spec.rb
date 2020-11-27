@@ -24,10 +24,10 @@ describe "Assessor submits appraisal form", %(
     it "submits the form" do
       allow_any_instance_of(AssessorAssignment).to receive(:valid?).and_return(true)
       find("#appraisal-form-primary-heading .panel-title a").click
+      take_a_nap
       within "#section-appraisal-form-primary" do
         click_button "Submit appraisal"
       end
-      expect(page).to have_selector(".feedback-holder", text: "Assessment submitted")
       expect(form_answer.assessor_assignments.primary).to be_submitted
     end
   end

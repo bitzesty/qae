@@ -37,7 +37,7 @@
             small.panel-subtitle-small
               | This will be sent  to the applicants to help improve their business and/or future award applications
               br
-              | Note: this section is pre-populated with the Primary appraisal, so it can be eddited if necessary
+              | Note: this section is pre-populated with the Primary appraisal, so it can be edited if necessary
             - if @form_answer.feedback_updated_by
               small
                 = @form_answer.feedback_updated_by
@@ -66,5 +66,5 @@
           ' Application Audit Log
     #section-logs.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="logs-heading"
       .panel-body
-        - @versions.reverse_each do |version|
-          p #{version.event} on #{version.created_at} by #{version.whodunnit}
+        - @audit_events.reverse.each do |log|
+          p = log.to_s

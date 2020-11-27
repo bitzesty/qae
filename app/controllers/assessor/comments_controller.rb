@@ -6,7 +6,7 @@ class Assessor::CommentsController < Assessor::BaseController
     authorize @comment, :create?
 
     @comment.authorable = current_assessor
-    @comment.save
+    log_event if @comment.save
 
     respond_to do |format|
       format.html do
@@ -26,7 +26,7 @@ class Assessor::CommentsController < Assessor::BaseController
 
   def update
     authorize resource, :update?
-    resource.update(update_params)
+    log_event if resource.update(update_params)
 
     respond_to do |format|
       format.html { redirect_to([namespace_name, form_answer]) }
@@ -37,7 +37,7 @@ class Assessor::CommentsController < Assessor::BaseController
   def destroy
     authorize resource, :destroy?
 
-    resource.destroy
+    log_event if resource.destroy
 
     respond_to do |format|
       format.json { render(json: :ok) }
@@ -46,6 +46,14 @@ class Assessor::CommentsController < Assessor::BaseController
   end
 
   private
+
+  def action_type
+    "#{comment_type}_#{action_name}"
+  end
+
+  def comment_type
+    "#{resource.section}_comment"
+  end
 
   def update_params
     params.require(:comment).permit(:flagged).merge(section: "critical")

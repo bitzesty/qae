@@ -105,13 +105,13 @@ GEM
     browser (2.4.0)
     builder (3.2.4)
     byebug (10.0.2)
-    capybara (3.18.0)
+    capybara (3.33.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      regexp_parser (~> 1.2)
+      regexp_parser (~> 1.5)
       xpath (~> 3.2)
     carrierwave (1.2.3)
       activemodel (>= 4.0.0)
@@ -520,7 +520,7 @@ GEM
     pry-byebug (3.6.0)
       byebug (~> 10.0)
       pry (~> 0.10)
-    public_suffix (4.0.1)
+    public_suffix (4.0.6)
     puma (4.3.6)
       nio4r (~> 2.0)
     pundit (0.3.0)
@@ -784,7 +784,7 @@ DEPENDENCIES
   bootscale
   bootstrap-sass (~> 3.4)
   browser (= 2.4.0)
-  capybara (= 3.18)
+  capybara (= 3.33)
   carrierwave (~> 1.2)
   ckeditor!
   codeclimate_circle_ci_coverage

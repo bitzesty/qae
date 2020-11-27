@@ -25,6 +25,7 @@ class Users::PressSummariesController < Users::BaseController
     @press_summary.applicant_submitted = params[:submit].present?
 
     if @press_summary.update(press_summary_params)
+      log_event
       if @press_summary.applicant_submitted?
         flash.notice = "Press Book Notes successfully submitted"
         redirect_to dashboard_url
@@ -49,10 +50,14 @@ class Users::PressSummariesController < Users::BaseController
 
   private
 
+  def action_type
+    params[:submit] ? "press_summary_submit" : "press_summary_update"
+  end
+
   def press_summary_params
     params.require(:press_summary).permit(
-      :comment, 
-      :correct, 
+      :comment,
+      :correct,
       :title,
       :name,
       :last_name,

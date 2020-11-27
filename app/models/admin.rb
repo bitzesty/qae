@@ -54,6 +54,10 @@ class Admin < ApplicationRecord
     30.minutes
   end
 
+  def full_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
+  end
+
   private
 
   def min_password_score

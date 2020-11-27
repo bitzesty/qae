@@ -1,4 +1,5 @@
 require "app_responder"
+include AuditHelper
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -6,6 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_raven_context
   before_action :set_paper_trail_whodunnit
   before_action :disable_browser_caching!
 
@@ -133,6 +135,18 @@ class ApplicationController < ActionController::Base
     AuditLog.create!(subject: current_subject, action_type: action_type)
   end
 
+  def log_event
+    AuditLog.create!(
+      subject: current_subject,
+      auditable: form_answer,
+      action_type: action_type
+      )
+  end
+
+  def current_subject
+    current_user || dummy_user
+  end
+
   #
   # Disabling browser caching in order
   # to protect sensitive data
@@ -141,6 +155,11 @@ class ApplicationController < ActionController::Base
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
+  end
+
+  def set_raven_context
+    context = { current_user: current_user.try(:id) }
+    Raven.user_context(context)
   end
 
   private

@@ -1,6 +1,5 @@
 - url_namespace = admin_signed_in? ? :admin : :assessor
 
-label.form-label Verification of Commercial Figures
 - if policy(resource).download_audit_certificate_pdf?
   p = link_to "View Verification of Commercial Figures", [url_namespace, resource, resource.audit_certificate],
       target: "_blank", class: "js-audit-certificate-title"

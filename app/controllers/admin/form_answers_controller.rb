@@ -8,7 +8,6 @@ class Admin::FormAnswersController < Admin::BaseController
     :update_financials,
     :remove_audit_certificate
   ]
-  before_action :load_versions, only: :show
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
 
@@ -37,6 +36,11 @@ class Admin::FormAnswersController < Admin::BaseController
                       .with_comments_counters
                       .group("form_answers.id")
                       .page(params[:page])
+  end
+
+  def show
+    super
+    @audit_events = FormAnswerAuditor.new(@form_answer).get_audit_events
   end
 
   def edit

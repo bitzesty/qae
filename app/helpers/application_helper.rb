@@ -119,7 +119,7 @@ module ApplicationHelper
     if paragraphs.present?
       paragraphs.map! { |paragraph|
         raw(paragraph)
-      }.join("\n\n").html_safe
+      }.join("<br/><br/>").html_safe
     end
   end
 

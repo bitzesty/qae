@@ -16,6 +16,10 @@ class Admin::BaseController < ApplicationController
     current_admin
   end
 
+  def current_subject
+    current_admin
+  end
+
   private
 
   def user_not_authorized
@@ -25,10 +29,6 @@ class Admin::BaseController < ApplicationController
 
   def namespace_name
     :admin
-  end
-
-  def current_subject
-    current_admin
   end
 
   def user_for_paper_trail

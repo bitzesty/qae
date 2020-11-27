@@ -30,7 +30,7 @@ So that I can check, complete it and then upload it to application
     it "should render page" do
       expect_to_see "Verification of Commercial Figures"
       expect(page).to have_link(
-        "this Verification of Commercial Figures",
+        "Download the External Accountant's Report form",
         href: users_form_answer_audit_certificate_url(form_answer, format: :pdf)
       )
     end
@@ -38,7 +38,7 @@ So that I can check, complete it and then upload it to application
 
   describe "Download Verification of Commercial Figures prefilled with my financial data" do
     let(:audit_certificate_filename) do
-      "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}"
+      "External_Accountants_Report_#{form_answer.urn}_#{form_answer.decorate.pdf_filename}"
     end
 
     before do

@@ -98,13 +98,13 @@ en:
     form_answers:
       financial_summary:
         years_row:
-          financial_year_changed_dates: Year-end date
+          financial_year_changed_dates: Year-end/Period-end date
         row:
           employees: Number of UK employees
           exports: Of which exports (£)
           overseas_sales: Overseas Sales (£)
           total_turnover: Total turnover (£)
-          net_profit: Net profit after tax but before dividends (£)
+          net_profit: Net profit (for Companies this is after tax but before dividends), (£)
           total_net_assets: Net assets (£)
           units_sold: Number of units, contracts, quantity sold
           sales: Sales value (£)
@@ -141,7 +141,7 @@ en:
     buckingham_palace_confirm_press_book_notes: Press Book Entry confirmation due by
     buckingham_palace_reception_attendee_information_due_by: Buckingham Palace reception attendee information due by
     buckingham_palace_attendees_invite: Buckingham Palace Reception on
-    audit_certificates: Verification of Commercial Figures due by
+    audit_certificates: Verification of Commercial Figures (External Accountant's Report & list of procedures) due by
 
   deadline_help_messages:
     award_year_switch: "This date marks the start of the new award year, and will update the website accordingly. Users will not yet be able to start any applications"
@@ -184,8 +184,8 @@ en:
     buckingham_palace_invite: "WINNERS : Buckingham Palace Invite - to heads of winning organisations only."
     unsuccessful_notification: "UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder."
     unsuccessful_ep_notification: "UNSUCCESSFUL: Email notification of unsuccessful QAEP nominations."
-    shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including Verification of Commercial Figures instructions."
-    shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit Verification of Commercial Figures (for shortlisted applicants who have not yet done so)."
+    shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including Verification of Commercial Figures (External Accountant's Report & list of procedures) instructions."
+    shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit Verification of Commercial Figures (External Accountant's Report & list of procedures) for shortlisted applicants who have not yet done so."
     not_shortlisted_notifier: "NOT SHORTLISTED : Email notifying unsuccessful applicants."
 
   custom_login_messages:
@@ -221,6 +221,43 @@ en:
       feedbacks: Feedbacks
       case_summaries: Case summaries
       download_form_answer: Application PDF
+      admin_comment_create: "added an admin comment"
+      admin_comment_destroy: "deleted an admin comment"
+      critical_comment_create: "added a critical comment"
+      critical_comment_destroy: "deleted a critical comment"
+      form_answer_attachment_create: "added an attachment"
+      form_answer_attachment_destroy: "deleted an attachment"
+      primary_appraisal_update: "updated the primary appraisal form"
+      secondary_appraisal_update: "updated the secondary appraisal form"
+      moderated_appraisal_update: "updated the moderated appraisal form"
+      case_summary_update: "updated the case summary"
+      feedback_create: "added feedback"
+      feedback_update: "updated feedback"
+      feedback_submit: "submitted feedback"
+      feedback_unsubmit: "unlocked feedback"
+      primary_appraisal_submit: "submitted primary appraisal"
+      primary_appraisal_unsubmit: "unsubmitted primary appraisal"
+      secondary_appraisal_submit: "submitted secondary appraisal"
+      secondary_appraisal_unsubmit: "unsubmitted secondary appraisal"
+      moderated_appraisal_submit: "submitted moderated appraisal"
+      moderated_appraisal_unsubmit: "unsubmitted moderated appraisal"
+      case_summary_submit: "submitted case summary"
+      case_summary_unsubmit: "unlocked case summary"
+      audit_certificate_downloaded: "downloaded External Accountant's Report form"
+      audit_certificate_uploaded: "uploaded External Accountant's Report form"
+      audit_certificate_destroyed: "removed External Accountant's Report form"
+      list_of_procedures_uploaded: "uploaded list of procedures document"
+      list_of_procedures_destroy: "removed list of procedures document"
+      palace_attendee_update: "updated Buckingham Palace attendee details"
+      palace_attendee_submit: "confirmed Buckingham Palace attendee details"
+      palace_attendee_create: "added a new Buckingham Palace attendee"
+      palace_attendee_destroy: "deleted a Buckingham Palace attendee"
+      press_summary_update: "updated press book notes"
+      press_summary_submit: "submitted press book notes"
+      press_summary_signoff: "signed off press release"
+      application_create: "created the award application"
+      application_update: "updated the award application"
+
   form_answers:
     state:
       eligibility_in_progress: Eligibility in progress

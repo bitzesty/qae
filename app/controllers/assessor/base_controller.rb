@@ -15,16 +15,16 @@ class Assessor::BaseController < ApplicationController
     current_assessor
   end
 
+  def current_subject
+    current_assessor
+  end
+
   private
 
   helper_method :namespace_name, :current_subject
 
   def namespace_name
     :assessor
-  end
-
-  def current_subject
-    current_assessor
   end
 
   def user_not_authorized

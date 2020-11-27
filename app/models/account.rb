@@ -44,6 +44,6 @@ class Account < ApplicationRecord
   end
 
   def collaborators_checked?
-    collaborators_checked_at && collaborators_checked_at > Time.zone.now - 3.months
+    collaborators_checked_at && collaborators_checked_at > Time.zone.now - 6.months
   end
 end

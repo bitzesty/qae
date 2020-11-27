@@ -58,6 +58,14 @@ module PressSummaryMixin
 
   private
 
+  def form_answer
+    load_form_answer
+  end
+
+  def action_type
+    "press_summary_#{action_name}"
+  end
+
   def change_state(message)
     @press_summary.save!
 

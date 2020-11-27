@@ -16,12 +16,17 @@ class Users::AuditCertificatesController < Users::BaseController
     form_answer.audit_certificate
   end
 
+  expose(:list_of_procedures) do
+    form_answer.list_of_procedures
+  end
+
   def show
     respond_to do |format|
       format.html
       format.pdf do
+        log_event
         send_data pdf_data.render,
-                  filename: "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}",
+                  filename: "External_Accountants_Report_#{form_answer.urn}_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf",
                   disposition: 'attachment'
       end
@@ -32,6 +37,7 @@ class Users::AuditCertificatesController < Users::BaseController
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
     if saved = audit_certificate.save
+      log_event
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       end
@@ -62,7 +68,25 @@ class Users::AuditCertificatesController < Users::BaseController
     end
   end
 
+  def destroy
+    log_event if audit_certificate.destroy
+    redirect_to users_form_answer_audit_certificate_url(form_answer)
+  end
+
   private
+
+  def action_type
+    case action_name
+    when "show"
+      "audit_certificate_downloaded"
+    when "create"
+      "audit_certificate_uploaded"
+    when "destroy"
+      "audit_certificate_destroyed"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
+    end
+  end
 
   def audit_certificate_params
     # This is fix of "missing 'audit_certificate' param"
