@@ -496,7 +496,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (0.21.0)
-    pg_search (2.3.3)
+    pg_search (2.3.5)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     poltergeist (1.18.1)
@@ -733,7 +733,7 @@ GEM
     turnip (4.2.0)
       cucumber-gherkin (~> 14.0)
       rspec (>= 3.0, < 4.0)
-    tzinfo (1.2.7)
+    tzinfo (1.2.8)
       thread_safe (~> 0.1)
     uglifier (4.1.19)
       execjs (>= 0.3.0, < 3)
@@ -770,7 +770,7 @@ GEM
     xmlrpc (0.3.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.0)
+    zeitwerk (2.4.1)
     zxcvbn-js (4.4.3)
       execjs
 
