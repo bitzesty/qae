@@ -155,8 +155,8 @@ ALTER SEQUENCE public.aggregated_award_year_pdfs_id_seq OWNED BY public.aggregat
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -273,8 +273,7 @@ CREATE TABLE public.audit_certificates (
     reviewable_id integer,
     reviewed_at timestamp without time zone,
     status integer,
-    attachment_scan_results character varying,
-    cached_filename character varying
+    attachment_scan_results character varying
 );
 
 
@@ -663,8 +662,7 @@ CREATE TABLE public.form_answer_attachments (
     title character varying,
     restricted_to_admin boolean DEFAULT false,
     question_key character varying,
-    file_scan_results character varying,
-    cached_filename character varying
+    file_scan_results character varying
 );
 
 
@@ -1186,8 +1184,7 @@ CREATE TABLE public.support_letter_attachments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     support_letter_id integer,
-    attachment_scan_results character varying,
-    cached_filename character varying
+    attachment_scan_results character varying
 );
 
 
@@ -3136,6 +3133,14 @@ ALTER TABLE ONLY public.scans
 
 
 --
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
 -- Name: settings settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3631,13 +3636,6 @@ CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING bt
 --
 
 CREATE INDEX index_versions_on_transaction_id ON public.versions USING btree (transaction_id);
-
-
---
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
 
 
 --

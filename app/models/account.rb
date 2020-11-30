@@ -22,7 +22,7 @@ class Account < ApplicationRecord
   end
 
   def collaborators_without(user)
-    users.excluding(user).by_email
+    users.not_including(user).by_email
   end
 
   def has_collaborators?

@@ -6,11 +6,11 @@ describe "CaseSummaryPdfs::Base" do
   end
 
   let!(:form_answer_current_year_innovation) do
-    FactoryGirl.create :form_answer, :recommended, :innovation, award_year: award_year
+    FactoryBot.create :form_answer, :recommended, :innovation, award_year: award_year
   end
 
   let!(:form_answer_current_year_trade) do
-    FactoryGirl.create :form_answer, :recommended, :trade, award_year: award_year
+    FactoryBot.create :form_answer, :recommended, :trade, award_year: award_year
   end
 
   before do

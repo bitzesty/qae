@@ -92,13 +92,13 @@ class Deadline < ApplicationRecord
   private
 
   def clear_cache
-    Rails.cache.clear("current_settings")
-    Rails.cache.clear("current_award_year")
-    Rails.cache.clear("#{kind.value}_deadline")
-    Rails.cache.clear("#{kind}_deadline_#{settings.award_year.year}")
+    Rails.cache.delete("current_settings")
+    Rails.cache.delete("current_award_year")
+    Rails.cache.delete("#{kind.value}_deadline")
+    Rails.cache.delete("#{kind}_deadline_#{settings.award_year.year}")
 
     if SUBMISSION_START_DEADLINES.include?(kind.to_s)
-      Rails.cache.clear("submission_start_deadlines")
+      Rails.cache.delete("submission_start_deadlines")
     end
   end
 end

@@ -8,7 +8,7 @@ So that I can review my progress or share the pdf with others
 } do
 
   let!(:user) do
-    FactoryGirl.create :user
+    FactoryBot.create :user
   end
 
   before do
@@ -17,7 +17,7 @@ So that I can review my progress or share the pdf with others
 
   describe "International Trade Award" do
     let!(:trade_award_form_answer) do
-      FactoryGirl.create :form_answer, :trade,
+      FactoryBot.create :form_answer, :trade,
         user: user,
         document: { company_name: "Bitzesty" }
     end
@@ -32,14 +32,14 @@ So that I can review my progress or share the pdf with others
 
     it "should generate pdf" do
       expect(page.status_code).to eq(200)
-      expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
+      expect(page.response_headers["Content-Disposition"]).to include "attachment; filename=\"#{pdf_filename}\""
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end
   end
 
   describe "Innovation Award" do
     let!(:innovation_award_form_answer) do
-      FactoryGirl.create :form_answer, :innovation,
+      FactoryBot.create :form_answer, :innovation,
         user: user,
         urn: "QA0001/19T",
         document: { company_name: "Bitzesty" }
@@ -55,14 +55,14 @@ So that I can review my progress or share the pdf with others
 
     it "should generate pdf" do
       expect(page.status_code).to eq(200)
-      expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
+      expect(page.response_headers["Content-Disposition"]).to include "attachment; filename=\"#{pdf_filename}\""
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end
   end
 
   describe "Sustainable Development Award" do
     let!(:development_award_form_answer) do
-      FactoryGirl.create :form_answer, :development,
+      FactoryBot.create :form_answer, :development,
         user: user,
         document: { company_name: "Bitzesty" }
     end
@@ -77,7 +77,7 @@ So that I can review my progress or share the pdf with others
 
     it "should generate pdf" do
       expect(page.status_code).to eq(200)
-      expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
+      expect(page.response_headers["Content-Disposition"]).to include "attachment; filename=\"#{pdf_filename}\""
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end
   end

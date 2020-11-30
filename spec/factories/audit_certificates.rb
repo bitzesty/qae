@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :audit_certificate do
     association :form_answer, factory: :form_answer
     attachment do
@@ -9,7 +9,7 @@ FactoryGirl.define do
       )
     end
 
-    attachment_scan_results "clean"
+    attachment_scan_results { "clean" }
   end
 
   sequence :financial_data_sample do

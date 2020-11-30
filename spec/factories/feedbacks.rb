@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :feedback do
     association :form_answer
-    submitted false
+    submitted { false }
   end
 end

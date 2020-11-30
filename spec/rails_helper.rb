@@ -82,7 +82,7 @@ ActiveRecord::Migration.maintain_test_schema!
 Qae::Application.load_tasks
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include UserStepDefinitions, type: :feature
   config.include ExpectationHelper, type: :feature
   config.include Devise::Test::ControllerHelpers, type: :controller
@@ -94,6 +94,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false
+
+  # #build is no longer building an association if this is set to true
+  # fixes some specs that use #build instead of #create
+  FactoryBot.use_parent_strategy = false
 
   config.before :each do
     # SENDGRID RELATED STUBS - BEGIN

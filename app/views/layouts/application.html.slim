@@ -172,7 +172,7 @@
       | }
 
 
-= render :file => 'layouts/govuk_template'
+= render template: 'layouts/govuk_template'
 
 - if should_enable_js?
   = javascript_tag "$(function() { #{yield(:javascript_code)} });" if content_for? :javascript_code

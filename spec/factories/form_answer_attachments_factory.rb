@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :form_answer_attachment do
     association :form_answer, factory: :form_answer
     file do
@@ -10,7 +10,7 @@ FactoryGirl.define do
     end
 
     trait :restricted_to_admin do
-      restricted_to_admin true
+      restricted_to_admin { true }
     end
   end
 end
