@@ -1,5 +1,5 @@
 class Assessor < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
   include AutosaveTokenGeneration
 
   AVAILABLE_ROLES = ["lead", "regular"]

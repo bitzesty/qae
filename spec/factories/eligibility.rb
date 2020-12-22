@@ -1,16 +1,16 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :eligibility do
     association :account, factory: :account
     association :form_answer, factory: :form_answer
 
     trait :passed do
-      passed true
+      passed { true }
     end
 
     trait :basic do
-      type "Eligibility::Basic"
-      current_step :current_holder
-      answers Proc.new {{
+      type { "Eligibility::Basic" }
+      current_step { :current_holder }
+      answers { {
         kind: "application",
         based_in_uk: true,
         do_you_file_company_tax_returns: true,
@@ -19,41 +19,41 @@ FactoryGirl.define do
         industry: "product_business",
         self_contained_enterprise: true,
         current_holder: "no"
-      }}.call
+      }}
     end
 
     trait :trade do
-      type "Eligibility::Trade"
-      answers Proc.new {{
+      type { "Eligibility::Trade" }
+      answers { {
         sales_above_100_000_pounds: "yes",
         any_dips_over_the_last_three_years: false,
         current_holder_of_qae_for_trade: false,
         qae_for_trade_award_year: "2015",
         growth_over_the_last_three_years: true
-      }}.call
+      } }
     end
 
     trait :innovation do
-      type "Eligibility::Innovation"
-      answers Proc.new {{
+      type { "Eligibility::Innovation" }
+      answers {{
         innovative_product: "yes",
         was_on_market_for_two_years: true,
         number_of_innovative_products: 1,
         had_impact_on_commercial_performace_over_two_years: true,
         have_you_recovered_all_investments: true
-      }}.call
+      }}
     end
 
     trait :development do
-      type "Eligibility::Development"
-      answers Proc.new {{
+      type { "Eligibility::Development" }
+      answers {{
         sustainable_development: "yes"
-      }}.call
+      }}
     end
 
     trait :promotion do
-      type "Eligibility::Promotion"
-      answers Proc.new {{
+      type { "Eligibility::Promotion" }
+      answers {{
         nominee: 'someone_else',
         nominee_contributes_to_promotion_of_business_enterprise: true,
         contribution_is_outside_requirements_of_activity: true,
@@ -64,7 +64,7 @@ FactoryGirl.define do
         nominee_has_honours: false,
         nominee_was_put_forward_for_honours_this_year: false,
         able_to_get_two_letters_of_support: true
-      }}.call
+      }}
     end
 
     factory :basic_eligibility, class: "Eligibility::Basic", traits: [:basic]

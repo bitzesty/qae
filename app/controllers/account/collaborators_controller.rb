@@ -11,7 +11,7 @@ class Account::CollaboratorsController < Account::BaseController
   end
   expose(:collaborators) do
     account.collaborators_without(current_user)
-           .excluding(account_owner)
+           .not_including(account_owner)
   end
   expose(:collaborator) do
     collaborators.find(params[:id])

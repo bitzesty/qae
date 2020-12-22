@@ -47,8 +47,8 @@ So that I can check, complete it and then upload it to application
 
     it "should generate pdf file" do
       expect(page.status_code).to eq(200)
-      expect(page.response_headers["Content-Disposition"]).to be_eql(
-        "attachment; filename=\"#{audit_certificate_filename}\""
+      expect(page.response_headers["Content-Disposition"]).to include(
+        "attachment; filename=\"#{CGI.escape(audit_certificate_filename)}\""
       )
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end

@@ -1,5 +1,5 @@
 class Admin < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
   include AutosaveTokenGeneration
 
   # Include default devise modules. Others available are:

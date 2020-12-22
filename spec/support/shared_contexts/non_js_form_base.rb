@@ -2,7 +2,7 @@ require 'rails_helper'
 
 shared_context "non js form base" do
   let!(:user) do
-    FactoryGirl.create :user, :completed_profile
+    FactoryBot.create :user, :completed_profile
   end
 
   let!(:account) do

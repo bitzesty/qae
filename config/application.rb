@@ -8,9 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Qae
   class Application < Rails::Application
-    initializer :regenerate_require_cache, before: :load_environment_config do
-      Bootscale.regenerate
-    end
+    #initializer :regenerate_require_cache, before: :load_environment_config do
+    #  Bootscale.regenerate
+    #end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

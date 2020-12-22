@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :assessor_assignment do
-    form_answer
+    association :form_answer
 
     trait :trade do
       form_answer { create(:form_answer, :trade) }
@@ -11,12 +11,12 @@ FactoryGirl.define do
     end
 
     trait :submitted do
-      submitted_at DateTime.now - 1.minute
+      submitted_at { DateTime.now - 1.minute }
     end
   end
 
   factory :assessor_assignment_moderated, class: AssessorAssignment do
-    form_answer
-    position "moderated"
+    association :form_answer
+    position { "moderated" }
   end
 end

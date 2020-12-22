@@ -6,11 +6,11 @@ describe "FeedbackPdfs::Base" do
   end
 
   let!(:form_answer_innovation) do
-    FactoryGirl.create :form_answer, :submitted, :innovation
+    FactoryBot.create :form_answer, :submitted, :innovation
   end
 
   let!(:form_answer_trade) do
-    FactoryGirl.create :form_answer, :submitted, :trade
+    FactoryBot.create :form_answer, :submitted, :trade
   end
 
   before do

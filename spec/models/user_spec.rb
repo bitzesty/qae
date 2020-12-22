@@ -15,8 +15,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'scopes' do
-    it ".excluding should exclude id" do
-      expect(User.where.not(id: 1).to_sql).to eq User.excluding(build_stubbed(:user, id: 1)).to_sql
+    it ".not_including should exclude id" do
+      expect(User.where.not(id: 1).to_sql).to eq User.not_including(build_stubbed(:user, id: 1)).to_sql
     end
 
     it ".not_in_ids should exclude ids" do
