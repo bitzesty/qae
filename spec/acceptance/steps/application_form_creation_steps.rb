@@ -1,9 +1,9 @@
 step "an eligible user exists" do
-  @user = FactoryGirl.create(:user, :eligible, password: "my98ssdkjv9823kds=2")
+  @user = FactoryBot.create(:user, :eligible, password: "my98ssdkjv9823kds=2")
 end
 
 step "settings with submission deadlines exists" do
-  FactoryGirl.create(:settings, :submission_deadlines)
+  FactoryBot.create(:settings, :submission_deadlines)
 end
 
 step "I am eligible user" do

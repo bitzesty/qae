@@ -1,9 +1,9 @@
 step "a form answer exists" do
-  FactoryGirl.create(:form_answer)
+  FactoryBot.create(:form_answer)
 end
 
 step "a withdrawn form answer exists" do
-  FactoryGirl.create(:form_answer, withdrawn: true)
+  FactoryBot.create(:form_answer, withdrawn: true)
 end
 
 step "I withdraw form answer" do

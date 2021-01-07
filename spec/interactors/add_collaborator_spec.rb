@@ -4,7 +4,7 @@ describe "Interactors::AddCollaborator" do
   include ActiveJob::TestHelper
 
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile,
+    FactoryBot.create :user, :completed_profile,
                               first_name: "Account Admin John",
                               role: "account_admin"
   end
@@ -12,7 +12,7 @@ describe "Interactors::AddCollaborator" do
   let(:account) { account_admin.account }
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :innovation,
+    FactoryBot.create :form_answer, :innovation,
                                      user: account_admin,
                                      urn: "QA0001/19T",
                                      document: { company_name: "Bitzesty" }
@@ -57,7 +57,7 @@ describe "Interactors::AddCollaborator" do
 
   describe "Attempt to add to Collaborators of existing user, which is belongs_to another Account" do
    let!(:existing_user_with_another_account_association) do
-      FactoryGirl.create :user, :completed_profile,
+      FactoryBot.create :user, :completed_profile,
                                 first_name: "Another Account Admin Dave",
                                 role: "account_admin"
     end
@@ -87,7 +87,7 @@ describe "Interactors::AddCollaborator" do
 
   describe "Attempt to add user to Collaborators twice" do
     let!(:existing_collaborator) do
-      FactoryGirl.create :user, :completed_profile,
+      FactoryBot.create :user, :completed_profile,
                                 first_name: "Collaborator Matt",
                                 account: account,
                                 role: "regular"

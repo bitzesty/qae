@@ -7,7 +7,7 @@ class UpdateDeadlineService
   end
 
   def perform
-    if deadline.update_attributes(params)
+    if deadline.update(params)
       trigger_states_transition
     end
   end

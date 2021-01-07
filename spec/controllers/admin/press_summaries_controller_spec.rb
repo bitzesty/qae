@@ -13,7 +13,7 @@ RSpec.describe Admin::PressSummariesController do
   describe "POST create" do
     it "should create a resource" do
       press_summary.destroy
-      post :create, params: { form_answer_id: form_answer.id, press_summary: FactoryGirl.attributes_for(:press_summary) }
+      post :create, params: { form_answer_id: form_answer.id, press_summary: FactoryBot.attributes_for(:press_summary) }
       expect(response).to redirect_to [:admin, form_answer]
       expect(PressSummary.count).to eq 1
     end

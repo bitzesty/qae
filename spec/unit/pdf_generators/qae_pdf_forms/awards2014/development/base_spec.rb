@@ -13,7 +13,7 @@ describe "QaePdfForms::Awards2016::Development::Base" do
   let(:award_type) { :development }
 
   let(:form_answer) do
-    fa = FactoryGirl.build(:form_answer, :submitted, award_type, user: user)
+    fa = FactoryBot.build(:form_answer, :submitted, award_type, user: user)
     fa.document = fa.document.merge(step1_question_answers.merge(step2_question_answers))
     fa.save!
 

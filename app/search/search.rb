@@ -47,18 +47,6 @@ class Search
   def results
     @search_results = scope
 
-    if ordered_by
-      if included_in_model_columns?(ordered_by)
-        if ordered_desc
-          @search_results = @search_results.order("#{ordered_by} DESC")
-        else
-          @search_results = @search_results.order(ordered_by)
-        end
-      else
-        @search_results = apply_custom_sort(@search_results, params[:sort])
-      end
-    end
-
     filter_params.each do |column, value|
       next unless value.present?
 
@@ -70,7 +58,19 @@ class Search
     end
 
     if query
-      @search_results = @search_results.basic_search(query)
+      @search_results = @search_results.basic_search(query).reorder(nil)
+    end
+
+    if ordered_by
+      if included_in_model_columns?(ordered_by)
+        if ordered_desc
+          @search_results = @search_results.order("#{ordered_by} DESC")
+        else
+          @search_results = @search_results.order(ordered_by)
+        end
+      else
+        @search_results = apply_custom_sort(@search_results, params[:sort])
+      end
     end
 
     @search_results

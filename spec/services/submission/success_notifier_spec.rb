@@ -7,7 +7,7 @@ describe Notifiers::Submission::SuccessNotifier do
   let!(:collaborator) { create :user, account: user.account, role: "regular" }
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :submitted, :innovation,
+    FactoryBot.create :form_answer, :submitted, :innovation,
                                                  user: user
   end
 

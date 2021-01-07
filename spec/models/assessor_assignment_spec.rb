@@ -170,25 +170,25 @@ describe AssessorAssignment do
         secondary = form.assessor_assignments.secondary
 
         expect {
-          primary.update_attributes(assessor_id: 1)
+          primary.update(assessor_id: 1)
         }.to change {
           form.reload.primary_assessor_id
         }.from(nil).to(1)
 
         expect {
-          secondary.update_attributes(assessor_id: 2)
+          secondary.update(assessor_id: 2)
         }.to change {
           form.reload.secondary_assessor_id
         }.from(nil).to(2)
 
         expect {
-          secondary.update_attributes(assessor: nil)
+          secondary.update(assessor: nil)
         }.to change {
           form.reload.secondary_assessor_id
         }.from(2).to(nil)
 
         expect {
-          primary.update_attributes(assessor: nil)
+          primary.update(assessor: nil)
         }.to change {
           form.reload.primary_assessor_id
         }.from(1).to(nil)
@@ -206,20 +206,22 @@ describe AssessorAssignment do
   end
 
   describe '#as_json' do
+    let(:form) { create(:form_answer, :trade )}
+
     it 'should return error' do
-      assessor_assignment = build :assessor_assignment, position: nil
+      assessor_assignment = build :assessor_assignment, position: nil, form_answer: form
       assessor_assignment.valid?
       expect(assessor_assignment.as_json).to eq({ :error => ["Position This field cannot be blank"] })
     end
 
     it 'should return empty json' do
-      assessor_assignment = build :assessor_assignment
+      assessor_assignment = build :assessor_assignment, form_answer: form
       expect(assessor_assignment.as_json).to eq({})
     end
   end
 
   describe "#secondary_assessor_can_edit?" do
-    let(:form) {create(:form_answer, :trade)}
+    let(:form) { create(:form_answer, :trade) }
     it 'should return true' do
       secondary = form.assessor_assignments.secondary
       expect(secondary.send(:secondary_assessor_can_edit?, build(:admin))).to be_truthy
@@ -227,7 +229,7 @@ describe AssessorAssignment do
   end
 
   describe "#assessor_assignment_to_category" do
-    let(:form) {create(:form_answer, :trade)}
+    let(:form) { create(:form_answer, :trade) }
     let(:assessor1) {create(:assessor, :regular_for_all)}
     it 'should return true' do
       allow_any_instance_of(Assessor).to receive(:assignable?) {false}

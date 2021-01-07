@@ -1,5 +1,5 @@
 step "Admin user exists" do
-  @admin = FactoryGirl.create(:admin, password: "my98ssdkjv9823kds=2")
+  @admin = FactoryBot.create(:admin, password: "my98ssdkjv9823kds=2")
 end
 
 step "I sign in as admin" do

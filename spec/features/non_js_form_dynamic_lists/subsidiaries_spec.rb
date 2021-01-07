@@ -19,19 +19,19 @@ So that I can fill form completelly even if Javascript is turned off
   end
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :trade,
+    FactoryBot.create :form_answer, :trade,
       user: user,
       account: account,
       document: { company_name: "Bitzesty", question_key => subsidiaries }
   end
 
   let!(:basic_eligibility) do
-    FactoryGirl.create :basic_eligibility, form_answer: form_answer,
+    FactoryBot.create :basic_eligibility, form_answer: form_answer,
                                            account: account
   end
 
   let!(:trade_eligibility) do
-    FactoryGirl.create :trade_eligibility, form_answer: form_answer,
+    FactoryBot.create :trade_eligibility, form_answer: form_answer,
                                            account: account
   end
 
