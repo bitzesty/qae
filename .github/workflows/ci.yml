@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       db:
-        image: postgres:9-alpine
+        image: postgres:12-alpine
         ports: ['5432:5432']
         env:
           POSTGRES_DB: qae_test
