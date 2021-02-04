@@ -10,7 +10,7 @@ module AssessorAssignmentContext
       else
         format.json { render status: :unprocessable_entity,
                              json: { errors: assessment.resource.errors } }
-        Raven.send_event("Failed to save `AssessorAssignment##{assessor_assignment.id}. \n #{assessment.resource.errors} \n #{params}")
+        Appsignal.send_error(Exception.new("Failed to save `AssessorAssignment##{assessor_assignment.id}. \n #{assessment.resource.errors} \n #{params}"))
       end
 
       format.html { redirect_back(fallback_location: root_path) }

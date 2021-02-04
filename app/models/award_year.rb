@@ -107,10 +107,6 @@ class AwardYear < ApplicationRecord
     if aggregated_hard_copies_completed?(type)
       update_column("aggregated_#{type}_hard_copy_state", "completed")
     else
-      Raven.capture_exception(
-        "[#{ENV['MAILER_HOST']} | HARD COPY GENERATION] ERROR with generation of aggregated #{type} hard copy for #{year}!"
-      )
-
       false
     end
   end
@@ -127,10 +123,6 @@ class AwardYear < ApplicationRecord
     if condition_rule
       update_column("#{type}_hard_copies_state", "completed")
     else
-      Raven.capture_exception(
-        "[#{ENV['MAILER_HOST']} | HARD COPY GENERATION] ERROR with generation of individual #{type} copies for #{year}!"
-      )
-
       false
     end
   end
