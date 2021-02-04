@@ -124,8 +124,8 @@ gem 'curb', '0.9.10'
 # Web server
 gem 'puma', '~> 4.3.6'
 
-# Performance
-gem 'scout_apm'
+# Performance & Error reporting
+gem 'appsignal'
 
 # Log formatting
 gem 'lograge'
@@ -167,8 +167,6 @@ group :development, :test do
 end
 
 group :production do
-  # Error reporting
-  gem 'sentry-raven'
   # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
   gem 'rails_12factor', '~> 0.0.3'
 end
