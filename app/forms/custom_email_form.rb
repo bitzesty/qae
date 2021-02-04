@@ -28,7 +28,7 @@ class CustomEmailForm
         Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
       rescue => e
         puts "Error: #{e}"
-        Raven.capture_exception(e)
+        Appsignal.set_error(e)
       end
     end
   end
