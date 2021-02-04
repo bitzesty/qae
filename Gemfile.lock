@@ -86,6 +86,8 @@ GEM
     afm (0.2.2)
     amoeba (3.0.0)
       activerecord (>= 3.2.6)
+    appsignal (2.11.5)
+      rack
     ast (2.4.0)
     authy (2.7.4)
       httpclient (>= 2.5.3.3)
@@ -674,12 +676,9 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     sassc (2.2.1)
       ffi (~> 1.9)
-    scout_apm (2.5.2)
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
-    sentry-raven (2.7.4)
-      faraday (>= 0.7.6, < 1.0)
     shog (0.2.1)
       colorize (>= 0.8)
       rails (>= 4)
@@ -782,6 +781,7 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   amoeba (= 3.0.0)
+  appsignal
   binding_of_caller
   bootscale
   bootstrap-sass (~> 3.4)
@@ -855,9 +855,7 @@ DEPENDENCIES
   rspec_junit_formatter (= 0.2.3)
   rubocop (~> 0.52)
   sanitize
-  scout_apm
   selenium-webdriver
-  sentry-raven
   shog
   shoulda-matchers
   sidekiq (~> 5.2)
@@ -882,4 +880,4 @@ RUBY VERSION
    ruby 2.5.6p201
 
 BUNDLED WITH
-   2.1.4
+   2.2.8

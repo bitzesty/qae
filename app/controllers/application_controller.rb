@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_raven_context
+  before_action :set_context_tags
   before_action :set_paper_trail_whodunnit
   before_action :disable_browser_caching!
 
@@ -157,9 +157,9 @@ class ApplicationController < ActionController::Base
     response.headers['Expires'] = '0'
   end
 
-  def set_raven_context
+  def set_context_tags
     context = { current_user: current_user.try(:id) }
-    Raven.user_context(context)
+    Appsignal.tag_request(context)
   end
 
   private
