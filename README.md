@@ -4,8 +4,6 @@
 
 "QAE" is the application which powers the application process for The Queen's Awards for Enterprise.
 
-Copy on Github is a **read only** mirror.
-
 ## Setup
 
 ### Pre-requisites
