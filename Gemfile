@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.5.6'
 
-gem 'rails', '~> 6.0.3.4'
+gem 'rails', '~> 6.0.3.5'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -31,7 +31,7 @@ gem 'js_cookie_rails', '2.1.4'
 gem 'ckeditor', github: 'galetahub/ckeditor', ref: "752bca97f78e5c5df3fbd876e51a06918da804e2"
 
 # Autolinking in admin mass user mailer
-gem 'rails_autolink'
+gem 'rails_autolink', '>= 1.1.6'
 
 # Decorators & Exposing named methods
 gem 'draper', '~> 4.0'
@@ -86,7 +86,7 @@ gem 'carrierwave', '~> 1.3'
 gem 'fog', "1.42.1"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails'
+gem 'vigilion-rails', '>= 2.0.0'
 
 # Background jobs
 gem "sidekiq", "~> 5.2"
@@ -136,7 +136,7 @@ gem 'bootscale', require: false
 gem 'browser', '2.4.0'
 
 # Simple colored logging
-gem 'shog'
+gem 'shog', '>= 0.2.1'
 
 # Used to convert HTML to text, with the exception of whitelisted attributes.
 # This makes it easier for us to display HTML content within PDF documents.
