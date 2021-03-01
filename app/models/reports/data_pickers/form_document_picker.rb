@@ -269,9 +269,9 @@ module Reports::DataPickers::FormDocumentPicker
     service = if innovation?
       doc("innovation_desc_short")
     elsif development?
-      doc("development_management_approach_briefly")
+      obj.award_year.year <= 2019 ? doc("development_management_approach_briefly") : doc("one_line_description_of_interventions")
     elsif mobility?
-      doc("mobility_desc_short")
+      obj.award_year.year <= 2020 ? doc("mobility_desc_short") : doc("organisation_desc_short")
     else
       doc("trade_goods_briefly")
     end
