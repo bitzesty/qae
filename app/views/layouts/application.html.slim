@@ -36,11 +36,25 @@
     ' with-proposition
 
 - content_for :cookie_message do
-  .outer-block
-    .inner-block
-      p
-        ' GOV.UK uses cookies to make the site simpler.
-        = link_to "Find out more about cookies", cookies_path
+  .govuk-cookie-banner role="region" aria-label="Cookies on Queen's Awards for Enterprise" aria-hidden="true"
+    .govuk-cookie-banner__message.govuk-width-container
+      .grid-row
+        .column-two-thirds
+          h2.govuk-cookie-banner__heading.govuk-heading-m
+            | Cookies on Queen's Awards for Enterprise
+
+          .govuk-cookie-banner__content
+            p 
+              | We use some essential cookies to make this service work.
+            p
+              | We’d also like to use analytics cookies so we can understand how you use the service and make improvements.
+
+      .govuk-button-group
+        button.button value="accept" type="button" name="cookies" data-module="govuk-button"
+          | Accept analytics cookies
+        button.button value="reject" type="button" name="cookies" data-module="govuk-button"
+          | Reject analytics cookies
+        = link_to "View cookies", cookies_path, class: "govuk-link"
 
 - content_for :proposition_header do
   - unless landing_page?
@@ -153,7 +167,8 @@
   - if ENV["GOOGLE_ANALYTICS_ID"].present?
     / Google Analytics
     script type="text/javascript"
-      | if (!Cookies.get("gaoptout")) {
+      | if (Cookies.get("gaconsent") === "accept" && !Cookies.get("gaoptout")) {
+      |   console.log("hi")
       |   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       |   ga('create', '#{ENV["GOOGLE_ANALYTICS_ID"]}', 'auto');
 

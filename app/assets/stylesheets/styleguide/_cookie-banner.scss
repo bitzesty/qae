@@ -1,0 +1,108 @@
+.govuk-cookie-banner {
+  @include core-19;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  border-bottom: 10px solid transparent;
+  background-color: $grey-3;
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    margin-bottom: 1.2em;
+    font-weight: 600;
+  }
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+.govuk-cookie-banner[hidden] {
+  display: none;
+}
+
+.govuk-cookie-banner__message {
+
+  margin-bottom: -10px;
+
+  &[hidden] {
+
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.govuk-button-group {
+ $horizontal-gap: 15px;
+  $vertical-gap: 15px;
+
+  // These need to be kept in sync with the button component's styles
+  $button-padding: 10px;
+  $button-shadow-size: 4px;
+
+  $link-spacing: 5px;
+
+  //lolwtf
+  // @include govuk-responsive-margin(6, "bottom", $adjustment: $vertical-gap * -1);
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+
+  .govuk-link {
+    @include core-19;
+    display: inline-block;
+    // Prevent links overflowing their container in IE10/11 because of bug
+    // with align-items: center
+    max-width: 100%;
+    margin-top: $link-spacing;
+    margin-bottom: $link-spacing + $vertical-gap;
+    text-align: center;
+  }
+
+  .govuk-button,
+  .button {
+    margin-bottom: $vertical-gap + $button-shadow-size;
+  }
+
+  @include screen-sm-min {
+
+    margin-right: ($horizontal-gap * -1);
+
+    -webkit-box-orient: horizontal;
+
+    -webkit-box-direction: normal;
+
+        -ms-flex-direction: row;
+
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+
+    .govuk-button,
+    .govuk-link,
+    .button {
+      margin-right: $horizontal-gap;
+    }
+
+    .govuk-link {
+      text-align: left;
+    }
+  }
+}

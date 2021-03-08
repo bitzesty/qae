@@ -44,6 +44,8 @@ $gutter-one-sixth: $gutter/6;
 //
 @import "qae-slimmer-patch";
 
+@import "styleguide/cookie-banner";
+
 // Page specific styles
 #QAE {
   @import "frontend/views/landing";
