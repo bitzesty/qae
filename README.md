@@ -4,15 +4,13 @@
 
 "QAE" is the application which powers the application process for The Queen's Awards for Enterprise.
 
-Copy on Github is a **read only** mirror.
-
 ## Setup
 
 ### Pre-requisites
 
 * Ruby 2.5.6
-* gem install bundler -v 2.0.1
-* Rails 5.2
+* `gem install bundler -v 2.0.1`
+* Rails 6.0
 * Postgresql 9.5+
 * Redis 2.8
 * Cloudfountry Client
