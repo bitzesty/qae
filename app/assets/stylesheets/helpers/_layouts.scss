@@ -1,6 +1,8 @@
-#wrapper {
+#wrapper,
+.govuk-width-container {
   @extend %site-width-container;
 }
+
 .grid-row {
   @extend %grid-row;
 
