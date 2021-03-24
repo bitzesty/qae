@@ -142,7 +142,7 @@ gem 'shog'
 # This makes it easier for us to display HTML content within PDF documents.
 gem 'sanitize'
 
-# https://github.com/minad/mimemagic/issues/98#issuecomment-805797534
+# https://github.com/minad/mimemagic/issues/98
 gem "mimemagic", ">= 0.3.6"
 
 
