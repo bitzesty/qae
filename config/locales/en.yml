@@ -257,6 +257,9 @@ en:
       press_summary_signoff: "signed off press release"
       application_create: "created the award application"
       application_update: "updated the award application"
+      document_update: "updated the company details"
+      document_create: "created the award application"
+      financial_data_update: "updated the commercial figures"
 
   form_answers:
     state:

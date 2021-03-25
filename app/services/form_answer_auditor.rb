@@ -27,7 +27,7 @@ class FormAnswerAuditor
     form_answer.versions.map do |version|
       AuditEvent.new(
         form_answer: form_answer,
-        action_type: "application_#{version.event}",
+        action_type: create_action_type_from_paper_trail(version),
         subject: get_user_from_papertrail_version(version),
         created_at: version.created_at
         )
@@ -38,6 +38,16 @@ class FormAnswerAuditor
     return dummy_user if version.whodunnit.nil?
     klass, id = version.whodunnit.split(":")
     klass.capitalize.constantize.find_by_id(id) || dummy_user
+  end
+
+  def create_action_type_from_paper_trail(version)
+    if version.changeset.include?(:document)
+      return "document_#{version.event}"
+    elsif version.changeset.include?(:financial_data)
+      return "financial_data_#{version.event}"
+    else
+      "application_#{version.event}"
+    end
   end
 
 end
