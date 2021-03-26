@@ -5,7 +5,7 @@ module AssessorAssignmentContext
 
     respond_to do |format|
       if assessment.save
-        log_event
+        log_event unless has_paper_trail?
         format.json { render json: { errors: [] } }
       else
         format.json { render status: :unprocessable_entity,
@@ -27,7 +27,12 @@ module AssessorAssignmentContext
     assessor_assignment.form_answer
   end
 
+  def has_paper_trail?
+    assessor_assignment.versions.last.object_changes.keys.include? "assessor_id"
+  end
+
   def action_type
     assessor_assignment.position == "case_summary" ? "case_summary_update" : "#{assessor_assignment.position}_appraisal_update"
   end
+
 end
