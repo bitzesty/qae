@@ -28,7 +28,7 @@ module AssessorAssignmentContext
   end
 
   def has_paper_trail?
-    assessor_assignment.versions.last.object_changes.keys.include? "assessor_id"
+    params[:assessor_assignment].keys.include? "assessor_id"
   end
 
   def action_type
