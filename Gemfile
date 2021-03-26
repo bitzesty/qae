@@ -143,7 +143,7 @@ gem 'shog'
 gem 'sanitize'
 
 # https://github.com/minad/mimemagic/issues/98
-gem "mimemagic", ">= 0.3.6"
+gem "mimemagic", ">= 0.3.9"
 
 
 group :development do
