@@ -41,11 +41,11 @@ class FormAnswerAuditor
   end
 
   def create_action_type_from_paper_trail(version)
-    if version.changeset.include?(:document)
-      return "document_#{version.event}"
-    elsif version.changeset.include?(:financial_data)
-      return "financial_data_#{version.event}"
-    else
+    if version.changeset.include? :document
+      "document_#{version.event}"
+    elsif version.changeset.include? :financial_data
+      "financial_data_#{version.event}"
+    else 
       "application_#{version.event}"
     end
   end
