@@ -260,8 +260,8 @@ en:
       document_update: "updated the company details"
       document_create: "created the award application"
       financial_data_update: "updated the commercial figures"
-      primary_assessor_update: "updated the primary assessor"
-      secondary_assessor_update: "updated the secondary assessor"
+      primary_assessor_id_update: "updated the primary assessor"
+      secondary_assessor_id_update: "updated the secondary assessor"
 
   form_answers:
     state:
