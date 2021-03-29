@@ -41,12 +41,9 @@ class FormAnswerAuditor
   end
 
   def create_action_type_from_paper_trail(version)
-    form_sections = [:document, :financial_data, :primary_assessor_id, :secondary_assessor_id]
-    
-    unless version.changeset.keys.include? "assessor_id"
-      form_section = form_sections.select {|id| version.changeset.has_key? id}.join
-      form_section.empty? ? "application_#{version.event}" : "#{form_section}_#{version.event}"
-    end
+    unlogged_actions = [:document, :financial_data, :primary_assessor_id, :secondary_assessor_id]
+    form_section = unlogged_actions.select {|action| version.changeset.has_key? action}.join
+    form_section.empty? ? "application_#{version.event}" : "#{form_section}_#{version.event}" 
   end
 
 end
