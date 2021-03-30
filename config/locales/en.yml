@@ -252,11 +252,18 @@ en:
       palace_attendee_submit: "confirmed Buckingham Palace attendee details"
       palace_attendee_create: "added a new Buckingham Palace attendee"
       palace_attendee_destroy: "deleted a Buckingham Palace attendee"
+      press_summary_create: "added press summary"
       press_summary_update: "updated press book notes"
       press_summary_submit: "submitted press book notes"
       press_summary_signoff: "signed off press release"
       application_create: "created the award application"
       application_update: "updated the award application"
+      document_update: "updated the company details"
+      document_create: "created the award application"
+      financial_data_update: "updated the commercial figures"
+      primary_assessor_id_update: "updated the primary assessor"
+      secondary_assessor_id_update: "updated the secondary assessor"
+      verification_of_commercial_figures_create: "confirmed the verification of commercial figures"
 
   form_answers:
     state:

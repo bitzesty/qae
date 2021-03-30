@@ -5,7 +5,7 @@ module AssessorAssignmentContext
 
     respond_to do |format|
       if assessment.save
-        log_event
+        log_event unless new_assessor_assigned?
         format.json { render json: { errors: [] } }
       else
         format.json { render status: :unprocessable_entity,
@@ -27,7 +27,12 @@ module AssessorAssignmentContext
     assessor_assignment.form_answer
   end
 
+  def new_assessor_assigned?
+    params[:assessor_assignment].keys.include? "assessor_id"
+  end
+
   def action_type
     assessor_assignment.position == "case_summary" ? "case_summary_update" : "#{assessor_assignment.position}_appraisal_update"
   end
+
 end
