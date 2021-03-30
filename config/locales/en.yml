@@ -263,6 +263,7 @@ en:
       financial_data_update: "updated the commercial figures"
       primary_assessor_id_update: "updated the primary assessor"
       secondary_assessor_id_update: "updated the secondary assessor"
+      verification_of_commercial_figures_create: "confirmed the verification of commercial figures"
 
   form_answers:
     state:
