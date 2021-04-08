@@ -498,6 +498,25 @@ class AwardYears::V2022::QAEForms
           )
           max_attachments 1
         end
+
+        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the Queen’s Awards for Enterprise award this year?" do
+          ref "A 16"
+          required
+          context %(
+            <p>Select all that apply.</p>
+          )
+          check_options [
+            ["qa_website", "Queen's Awards website"],
+            ["qa_twitter", "Queen's Awards Twitter"],
+            ["social_media", "Other social media"],
+            ["another_website", "Another website"],
+            ["qa_event", "Queen's Awards event"],
+            ["another_event", "A third party exhibition or event"],
+            ["publication", "A newspaper/publication"],
+            ["word_of_mouth", "Word of mouth"],
+            ["other", "Other"]
+          ]
+        end
       end
     end
   end

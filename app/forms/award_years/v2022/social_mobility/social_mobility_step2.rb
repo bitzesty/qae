@@ -53,6 +53,10 @@ class AwardYears::V2022::QAEForms
 
             <p>The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.</p>
 
+            <h3>COVID-19 impact</h3>
+            
+            <p>We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.</p>
+              
             <h3>Answering questions</h3>
 
             <p>Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.</p>
@@ -124,6 +128,11 @@ class AwardYears::V2022::QAEForms
             [:bold, "Small organisations"],
             [:normal, %(
               The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            )],
+
+            [:bold, "COVID-19 impact"],
+            [:normal, %(
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
 
             [:bold, "Answering questions"],
