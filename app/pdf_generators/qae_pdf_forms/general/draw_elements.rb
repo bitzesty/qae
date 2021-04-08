@@ -181,10 +181,16 @@ module QaePdfForms::General::DrawElements
     text title.to_s, ops.merge!({inline_format: true})
   end
 
-  def render_table(table_lines)
+  def render_table(table_lines, ops = {})
+    default_options = {
+      row_colors: %w(F0F0F0 FFFFFF),
+      cell_style: { size: 10, font_style: :bold }
+    }
+
+    options = {}.merge(default_options).merge(ops)
+
     default_bottom_margin
-    table table_lines, row_colors: %w(F0F0F0 FFFFFF),
-                       cell_style: { size: 10, font_style: :bold }
+    table table_lines, options
   end
 
   def render_header(title)

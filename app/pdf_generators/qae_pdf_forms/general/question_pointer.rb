@@ -583,9 +583,9 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.render_table(table_lines)
   end
 
-  def render_multirows_table(headers, rows)
+  def render_multirows_table(headers, rows, ops = {})
     table_lines = rows.unshift(headers).compact
-    form_pdf.render_table(table_lines)
+    form_pdf.render_table(table_lines, ops)
   end
 
   def render_single_row_list(headers, row)

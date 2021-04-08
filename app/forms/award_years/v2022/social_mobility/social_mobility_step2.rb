@@ -203,12 +203,11 @@ class AwardYears::V2022::QAEForms
 
         text :initiative_activities_other_specify, "Please list other activity types" do
           required
-          classes "sub-question"
+          classes "sub-question js-conditional-question-checkbox"
           sub_ref "B 2.1a"
           pdf_context_with_header_blocks [
             [:italic, "Answer this question if you selected 'Other activity types' in question B2a."]
           ]
-          words_max 50
           conditional :initiative_activities, "other"
         end
 
@@ -217,7 +216,6 @@ class AwardYears::V2022::QAEForms
           ref "B 2.2a"
           required
           pdf_context_with_header_blocks [
-            [:italic, "Answer this question if you selected 'Initiative' in question B1"],
             [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
             [:normal, "A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Where none, enter zeros."]
@@ -245,6 +243,7 @@ class AwardYears::V2022::QAEForms
             [ "advocacy_and_leadership", "Advocacy and leadership"],
             [ "other_activity_types", "Other activity types"]
           ]
+          conditional :application_category, "initiative"
         end
 
         header :initiative_header_b3a, "Summary of your promoting opportunity through social mobility initiative." do
@@ -295,7 +294,6 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 3.4a"
           required
           pdf_context_with_header_blocks [
-            [:italic, "Answer this question if you selected 'Initiative' in question B1."],
             [:normal, "Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups."],
             [:normal, "For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this."],
             [:normal, "Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this."],
@@ -380,7 +378,6 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 5.1a"
           required
           pdf_context_with_header_blocks [
-            [:italic, "Answer this question if you selected 'Initiative' in question B1"],
             [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Where none, enter zeros."]
@@ -425,7 +422,6 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 5.2a"
           required
           pdf_context_with_header_blocks [
-            [:italic, "Answer this question if you selected 'Initiative' in question B1"],
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
             [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
@@ -470,7 +466,6 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 5.3a"
           required
           pdf_context_with_header_blocks [
-            [:italic, "Answer this question if you selected 'Initiative' in question B1"],
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
             [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
@@ -515,7 +510,6 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 5.4a"
           required
           pdf_context_with_header_blocks [
-            [:italic, "Answer this question if you selected 'Initiative' in question B1"],
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
             [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
@@ -561,7 +555,7 @@ class AwardYears::V2022::QAEForms
           required
           words_max 150
           conditional :application_category, "initiative"
-          content %(
+          context %(
             <p>This may include, but is not limited to - internal records, third party evidence, survey responses.</p>
           )
         end
@@ -775,7 +769,7 @@ class AwardYears::V2022::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :initiative_exemplary_evidence, "Please provide evidence of what makes your organisation exemplary." do
+        textarea :organisation_exemplary_evidence, "Please provide evidence of what makes your organisation exemplary." do
           sub_ref "B 3.5b"
           required
           classes "sub-question"
