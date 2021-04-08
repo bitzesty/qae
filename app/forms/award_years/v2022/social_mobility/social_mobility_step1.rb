@@ -187,14 +187,14 @@ class AwardYears::V2022::QAEForms
           conditional :organisation_type, "other"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+        textarea :registration_number, "Provide your company or charity registration number or, if not registered, explain why." do
           classes "sub-question"
           required
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
           )
-          style "small"
+          words_max 50
         end
 
         text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
@@ -317,9 +317,18 @@ class AwardYears::V2022::QAEForms
           yes_no
         end
 
+        textarea :external_specify_organisations_contributions, "Specify the organisations that have contributed as well as what they contributed, including how and when." do
+          sub_ref "A 9.1"
+          required
+          classes "sub-question"
+          words_max 100
+          rows 5
+          conditional :external_contribute_to_sustainable_product, "yes"
+        end
+
         options :external_are_aware_about_award,
                 "Are they aware that you're applying for this award?" do
-          sub_ref "A 9.1"
+          sub_ref "A 9.2"
           classes "sub-question"
           required
           option "yes", "Yes, they are all aware"
