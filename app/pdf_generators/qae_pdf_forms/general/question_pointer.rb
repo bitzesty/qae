@@ -2,6 +2,7 @@
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::Lists
+  include QaePdfForms::CustomQuestions::Matrix
   include QaePdfForms::CustomQuestions::SupporterLists
   include QaePdfForms::CustomQuestions::CheckboxSeria
   include QaePdfForms::CustomQuestions::Textarea
@@ -47,6 +48,7 @@ class QaePdfForms::General::QuestionPointer
     QAEFormBuilder::UploadQuestion,
     QAEFormBuilder::ByYearsLabelQuestion,
     QAEFormBuilder::ByYearsQuestion,
+    QAEFormBuilder::MatrixQuestion,
     QAEFormBuilder::OneOptionByYearsLabelQuestion,
     QAEFormBuilder::OneOptionByYearsQuestion,
     QAEFormBuilder::SupportersQuestion,
@@ -378,6 +380,10 @@ class QaePdfForms::General::QuestionPointer
           form_pdf.render_standart_answer_block(question_text)
         else
           question_option_box interpolate_deadlines(question.pdf_text || question.text)
+        end
+      when QAEFormBuilder::MatrixQuestion
+        form_pdf.indent 7.mm do
+          render_matrix
         end
       when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::OneOptionByYearsLabelQuestion
         form_pdf.indent 7.mm do

@@ -1,0 +1,28 @@
+table.matrix-question-table
+  thead
+    tr
+      th
+        = question.corner_label
+      - question.x_headings.each do |heading|
+        th
+          = heading.label
+  tbody
+    - question.y_headings.each do |y_heading|
+      tr
+        td
+          = y_heading.label
+        - question.x_headings.each do |x_heading|
+          td
+            label.visuallyhidden for=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}")
+              = "Number for #{x_heading.label} - #{y_heading.label}"
+            input.js-trigger-autosave.tiny type="number" min="0" step="1" name=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}") value=question.input_value(suffix: "#{x_heading.key}_#{y_heading.key}") id=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}") autocomplete="off" *possible_read_only_ops
+            ul.errors-container aria-live="polite"
+    tr
+      th
+        = question.totals_label
+      - question.x_headings.each do |x_heading|
+        td
+          label.visuallyhidden for=question.input_name(suffix: "#{x_heading.key}_total")
+            = "Totals for #{x_heading.label}"
+          input.js-trigger-autosave.tiny type="number" min="0" step="1" name=question.input_name(suffix: "#{x_heading.key}_total") value=question.input_value(suffix: "#{x_heading.key}_total") id=question.input_name(suffix: "#{x_heading.key}_total") autocomplete="off" *possible_read_only_ops
+          ul.errors-container aria-live="polite"

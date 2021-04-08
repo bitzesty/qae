@@ -225,6 +225,12 @@ class AwardYears::V2022::QAEForms
           words_max 250
           conditional :product_estimated_figures, :yes
         end
+
+        textarea :covid_impact, "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
+          sub_ref "C 6"
+          required
+          rows 5
+        end
       end
     end
   end
