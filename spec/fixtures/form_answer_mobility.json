@@ -190,4 +190,13 @@
 "initiative_quantitative_evidence":"initiative quantitative evidence goes here.",
 "initiative_qualitative_evidence":"initiative qualititative evidence goes here.",
 "initiative_investments":"investment information goes here.",
-"how_did_you_hear_about_award": "other"}
+"how_did_you_hear_about_award": "other",
+"initiative_participants_activity_type": "participants activity goes here",
+"initiative_evidence_exemplary": "evidence goes here",
+"initiative_disadvantaged_groups_year": "disadvantaged groups year goes here",
+"initiative_disadvantaged_groups_impact_employment": "impact on employment goes here",
+"initiative_disadvantaged_groups_impact_education": "impact on education goes here",
+"initiative_disadvantaged_groups_impact_other": "other impact goes here",
+"initiative_explain_number_collection": "explanation goes here",
+"organisation_exemplary_evidence": "organisation evidence goes here",
+"covid_impact": "covid impact goes here"}
