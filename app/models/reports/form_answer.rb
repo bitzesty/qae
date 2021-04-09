@@ -22,7 +22,7 @@ class Reports::FormAnswer
 
       @secondary_assessor = @obj.secondary_assessor
 
-      if @obj.press_summary.present? && @obj.press_summary.submitted?
+      if @obj.press_summary.present?
         @press_summary = @obj.press_summary
       end
     end
