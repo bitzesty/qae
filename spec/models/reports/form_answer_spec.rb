@@ -20,7 +20,6 @@ describe Reports::FormAnswer do
     it "returns press contact's full name" do
       form_answer = build(:form_answer, :trade)
       summary = double(name: "Rob", title: "Earl", last_name: "Stark")
-      expect(summary).to receive(:submitted?).and_return(true)
       allow(form_answer).to receive(:press_summary).and_return(summary)
 
       expect(described_class.new(form_answer).press_contact_full_name).to eq("Earl Rob Stark")
