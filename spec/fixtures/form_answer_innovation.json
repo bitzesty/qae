@@ -195,7 +195,7 @@
 "press_contact_details_email": "test@example.com",
 "shortlisted_case_confirmation_i_am_not_aware_of_any_matter": "on",
 "agree_being_contacted_about_issues_not_related_to_application": "on",
-"how_did_you_hear_about_award": "other",
+"how_did_you_hear_about_award": [{"type":"other"}, {"type": "another_website"}],
 "innovation_timeline_long": "test",
 "innovation_improvement_details": "test",
 "innovation_strategies": "test",
