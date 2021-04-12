@@ -103,6 +103,14 @@ class QAEFormBuilder
         end.flatten
       end
 
+      if question.delegate_obj.is_a?(QAEFormBuilder::MatrixQuestion)
+        sub_question_keys += question.x_headings.map do |x_heading|
+          question.y_headings.map do |y_heading|
+            "#{x_heading.key}_#{y_heading.key}"
+          end
+        end.flatten
+      end
+
       if question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
         sub_question_keys += (1..3).map do |y|
           if question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion)

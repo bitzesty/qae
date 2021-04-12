@@ -46,6 +46,8 @@ require "qae_form_builder/trade_commercial_success_question"
 
 require "qae_form_builder/turnover_exports_calculation_question"
 
+require "qae_form_builder/matrix_question"
+
 class QAEFormBuilder
   class << self
 

@@ -2,6 +2,7 @@
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::Lists
+  include QaePdfForms::CustomQuestions::Matrix
   include QaePdfForms::CustomQuestions::SupporterLists
   include QaePdfForms::CustomQuestions::CheckboxSeria
   include QaePdfForms::CustomQuestions::Textarea
@@ -47,6 +48,7 @@ class QaePdfForms::General::QuestionPointer
     QAEFormBuilder::UploadQuestion,
     QAEFormBuilder::ByYearsLabelQuestion,
     QAEFormBuilder::ByYearsQuestion,
+    QAEFormBuilder::MatrixQuestion,
     QAEFormBuilder::OneOptionByYearsLabelQuestion,
     QAEFormBuilder::OneOptionByYearsQuestion,
     QAEFormBuilder::SupportersQuestion,
@@ -379,6 +381,10 @@ class QaePdfForms::General::QuestionPointer
         else
           question_option_box interpolate_deadlines(question.pdf_text || question.text)
         end
+      when QAEFormBuilder::MatrixQuestion
+        form_pdf.indent 7.mm do
+          render_matrix
+        end
       when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::OneOptionByYearsLabelQuestion
         form_pdf.indent 7.mm do
           render_years_labels_table
@@ -577,9 +583,9 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.render_table(table_lines)
   end
 
-  def render_multirows_table(headers, rows)
+  def render_multirows_table(headers, rows, ops = {})
     table_lines = rows.unshift(headers).compact
-    form_pdf.render_table(table_lines)
+    form_pdf.render_table(table_lines, ops)
   end
 
   def render_single_row_list(headers, row)
