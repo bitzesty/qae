@@ -6,7 +6,8 @@ class Admin::FormAnswersController < Admin::BaseController
     :show,
     :update,
     :update_financials,
-    :remove_audit_certificate
+    :remove_audit_certificate,
+    :remove_list_of_procedures
   ]
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
@@ -65,6 +66,23 @@ class Admin::FormAnswersController < Admin::BaseController
       end
     end
   end
+
+  def remove_list_of_procedures
+    authorize @form_answer, :remove_list_of_procedures?
+
+    @form_answer.list_of_procedures.destroy
+
+    respond_to do |format|
+      format.html do
+        flash.notice = "List of procedures successfully removed"
+        redirect_to admin_form_answer_url(@form_answer)
+      end
+      format.js do
+        head :ok
+      end
+    end
+  end
+
 
   def awarded_trade_applications
     @csv_data = AwardedTradeApplicationsCsv.run

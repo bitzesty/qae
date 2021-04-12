@@ -256,6 +256,7 @@ Rails.application.routes.draw do
 
       member do
         patch :remove_audit_certificate
+        patch :remove_list_of_procedures
         patch :update_financials
         get :review
       end
