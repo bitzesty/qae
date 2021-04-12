@@ -3,7 +3,7 @@
   ul.list-unstyled.list-actions
     - if resource.object.audit_certificate.present? && resource.object.audit_certificate.clean?
       li
-        = link_to "View/print Verification of Commercial Figures", [url_namespace, resource.object, resource.object.audit_certificate], target: "_blank"
+        = link_to "View/print External Accountant's Report", [url_namespace, resource.object, resource.object.audit_certificate], target: "_blank"
 
         - if policy(resource).remove_audit_certificate?
           small.pull-right
