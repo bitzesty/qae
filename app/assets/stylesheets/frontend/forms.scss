@@ -1505,3 +1505,11 @@ fieldset.account-contact-preferences-other-ops {
     margin-top: 2.5em;
   }
 }
+
+.matrix-question-input {
+  display: inline-block !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  min-width: 4em !important;
+  box-sizing: border-box !important;
+}

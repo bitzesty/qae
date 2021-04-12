@@ -516,7 +516,6 @@ window.FormValidation =
       @validateYear(question)
 
     if question.hasClass("question-matrix")
-      console.log "questionMatrix"
       @validateMatrix(question)
 
     if question.hasClass("question-money-by-years")
@@ -581,12 +580,8 @@ window.FormValidation =
 
     for question in $(".question-block")
       question = $(question)
-      # console.log "----"
-      # console.log question.find("h2").text()
 
       @validateIndividualQuestion(question)
-
-      #console.log @validates
 
     return @validates
 

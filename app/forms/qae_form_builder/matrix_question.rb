@@ -1,23 +1,26 @@
 class QAEFormBuilder
   class MatrixQuestionValidator < QuestionValidator
-    # def errors
-    #   result = super
+    def errors
+      result = super
 
-    #   if question.required?
-    #     question.required_sub_fields.each do |sub_field|
-    #       suffix = sub_field.keys[0]
-    #       if !question.input_value(suffix: suffix).present?
-    #         result[question.hash_key(suffix: suffix)] ||= ""
-    #         result[question.hash_key(suffix: suffix)] << " Can't be blank."
-    #       end
-    #     end
-    #   end
+      if question.required?
+        question.y_headings.each do |y_heading|
+          question.x_headings.each do |x_heading|
+            suffix = "#{x_heading.key}_#{y_heading.key}"
 
-    #   # need to add question-has-errors class
-    #   result[question.hash_key] ||= "" if result.any?
+            if !question.input_value(suffix: suffix).present?
+              result[question.hash_key(suffix: suffix)] ||= ""
+              result[question.hash_key(suffix: suffix)] << "Required"
+            end
+          end
+        end
+      end
 
-    #   result
-    # end
+      # need to add question-has-errors class
+      result[question.hash_key] ||= "" if result.any?
+
+      result
+    end
   end
 
   class MatrixQuestionDecorator < QuestionDecorator
