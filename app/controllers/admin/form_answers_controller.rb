@@ -58,7 +58,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
     respond_to do |format|
       format.html do
-        flash.notice = "Verification of Commercial Figures successfully removed"
+        flash.notice = "External Accountant's Report successfully removed"
         redirect_to admin_form_answer_url(@form_answer)
       end
       format.js do
