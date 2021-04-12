@@ -24,6 +24,19 @@
     - if resource.object.list_of_procedures.present? && resource.object.list_of_procedures.clean?
       li
         = link_to "View/print list of procedures", [url_namespace, resource.object, resource.object.list_of_procedures], target: "_blank"
+
+        - if policy(resource).remove_list_of_procedures?
+          small.pull-right
+            = form_for(resource.object,
+                       url: remove_list_of_procedures_admin_form_answer_url(resource.object),
+                       html: { method: :patch, style: "display:inline-block;" }) do |f|
+
+              = f.submit 'Remove', class: 'if-js-hide'
+
+              = link_to "#", class: "text-danger if-no-js-hide js-remove-audit-certificate-link", data: {confirm: "Are you sure?"}
+                span.glyphicon.glyphicon-remove
+                span.visible-lg.visible-md
+
     - elsif resource.object.list_of_procedures.present? && resource.object.list_of_procedures.attachment_scan_results.blank?
       li style="color:green"
         ' Scanning list of procedures. You may need to refresh the page.
