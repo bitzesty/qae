@@ -101,13 +101,13 @@ class FormAnswerPolicy < ApplicationPolicy
 
   def download_list_of_procedures_pdf?
     (admin? || subject.lead_or_assigned?(record)) &&
-    record.list_of_procedures.present? &&
-    record.list_of_procedures.attachment.present? &&
-    (Rails.env.development? || record.list_of_procedures.clean?)
+    record.list_of_procedure.present? &&
+    record.list_of_procedure.attachment.present? &&
+    (Rails.env.development? || record.list_of_procedure.clean?)
   end
 
   def remove_list_of_procedures?
-    admin? && record.list_of_procedures.present?
+    admin? && record.list_of_procedure.present?
   end
 
   def has_access_to_post_shortlisting_docs?
@@ -148,6 +148,6 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def list_of_procedures_available?
-    record.list_of_procedures.present? && record.list_of_procedures.attachment.present?
+    record.list_of_procedure.present? && record.list_of_procedure.attachment.present?
   end
 end

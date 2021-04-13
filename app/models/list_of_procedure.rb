@@ -1,4 +1,4 @@
-class ListOfProcedures < ApplicationRecord
+class ListOfProcedure < ApplicationRecord
   mount_uploader :attachment, ListOfProceduresUploader
   scan_file      :attachment
 
