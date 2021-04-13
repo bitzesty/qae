@@ -6,14 +6,14 @@ class Users::ListOfProceduresController < Users::BaseController
                 find(params[:form_answer_id])
   end
 
-  expose(:list_of_procedures) do
-    form_answer.list_of_procedures
+  expose(:list_of_procedure) do
+    form_answer.list_of_procedure
   end
 
   def create
-    self.list_of_procedures = form_answer.build_list_of_procedures(list_of_procedures_params)
+    self.list_of_procedure = form_answer.build_list_of_procedure(list_of_procedures_params)
 
-    saved = list_of_procedures.save
+    saved = list_of_procedure.save
     log_event if saved
 
     respond_to do |format|
@@ -28,7 +28,7 @@ class Users::ListOfProceduresController < Users::BaseController
 
       format.json do
         if saved
-          render json: list_of_procedures,
+          render json: list_of_procedure,
                  status: :created,
                  content_type: "text/plain"
         else
@@ -40,7 +40,7 @@ class Users::ListOfProceduresController < Users::BaseController
   end
 
   def destroy
-    log_event if list_of_procedures.destroy
+    log_event if list_of_procedure.destroy
     redirect_to users_form_answer_audit_certificate_url(form_answer)
   end
 
@@ -48,15 +48,15 @@ class Users::ListOfProceduresController < Users::BaseController
 
   def list_of_procedures_params
     # Handle situation where user hasn't attached anything through the file picker
-    if params[:list_of_procedures].blank?
+    if params[:list_of_procedure].blank?
       params.merge!(
-        list_of_procedures: {
+        list_of_procedure: {
           attachment: ""
         }
       )
     end
 
-    params.require(:list_of_procedures).permit(:attachment)
+    params.require(:list_of_procedure).permit(:attachment)
   end
 
   def action_type
@@ -71,7 +71,7 @@ class Users::ListOfProceduresController < Users::BaseController
   end
 
   def humanized_errors
-    list_of_procedures.errors
+    list_of_procedure.errors
                      .full_messages
                      .reject { |m| m == "Attachment This field cannot be blank" }
                      .join(", ")

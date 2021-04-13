@@ -7,7 +7,7 @@ module ListOfProceduresContext
   private
 
   def resource
-    @list_of_procedures ||= form_answer.list_of_procedures
+    @list_of_procedure ||= form_answer.list_of_procedure
   end
 
   def form_answer

@@ -103,7 +103,7 @@ Rails.application.routes.draw do
       end
 
       resource :audit_certificate, only: [:show, :create, :destroy]
-      resource :list_of_procedures, only: [:create, :destroy]
+      resource :list_of_procedure, only: [:create, :destroy]
       resource :support_letter_attachments, only: :create
       resources :supporters, only: [:create, :destroy]
       resources :support_letters, only: [:create, :show, :destroy]
@@ -268,7 +268,7 @@ Rails.application.routes.draw do
       resources :audit_certificates, only: [:show, :create] do
         get :download_initial_pdf, on: :collection
       end
-      resources :list_of_procedures, only: [:show]
+      resources :list_of_procedures, only: [:show, :create]
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit

@@ -70,7 +70,7 @@ class Admin::FormAnswersController < Admin::BaseController
   def remove_list_of_procedures
     authorize @form_answer, :remove_list_of_procedures?
 
-    @form_answer.list_of_procedures.destroy
+    @form_answer.list_of_procedure.destroy
 
     respond_to do |format|
       format.html do

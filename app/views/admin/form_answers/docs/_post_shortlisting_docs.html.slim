@@ -21,9 +21,9 @@
       li style="color:green"
         ' Scanning audit certificate. You may need to refresh the page.
 
-    - if resource.object.list_of_procedures.present? && resource.object.list_of_procedures.clean?
+    - if resource.object.list_of_procedure.present? && resource.object.list_of_procedure.clean?
       li
-        = link_to "View/print list of procedures", [url_namespace, resource.object, resource.object.list_of_procedures], target: "_blank"
+        = link_to "View/print list of procedures", [url_namespace, resource.object, resource.object.list_of_procedure], target: "_blank"
 
         - if policy(resource).remove_list_of_procedures?
           small.pull-right
@@ -37,7 +37,7 @@
                 span.glyphicon.glyphicon-remove
                 span.visible-lg.visible-md
                   ' Remove
-    - elsif resource.object.list_of_procedures.present? && resource.object.list_of_procedures.attachment_scan_results.blank?
+    - elsif resource.object.list_of_procedure.present? && resource.object.list_of_procedure.attachment_scan_results.blank?
       li style="color:green"
         ' Scanning list of procedures. You may need to refresh the page.
 
