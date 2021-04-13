@@ -55,7 +55,7 @@ class AwardYears::V2022::QAEForms
               a) How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
             </p>
             <p>
-              b)  What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
+              b) What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
             </p>
             <p>
               Outline how you evaluate and report on the impact.
