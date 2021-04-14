@@ -46,13 +46,19 @@ class Reports::FormAnswer
   end
 
   def press_contact_full_name
-    if @press_summary
+    if @press_summary.try(:name).present? && @press_summary.last_name.present?
       [
         @press_summary.title,
         @press_summary.name,
         @press_summary.last_name
-      ].map(&:presence).compact.join(" ")
-    end
+      ]
+    else
+      [
+        @obj.document["press_contact_details_title"],
+        @obj.document["press_contact_details_first_name"],
+        @obj.document["press_contact_details_last_name"]
+      ]
+    end.map(&:presence).compact.join(" ")
   end
 
   private
@@ -177,11 +183,11 @@ class Reports::FormAnswer
   end
 
   def press_contact_tel
-    @press_summary.try(:phone_number)
+    @press_summary.try(:phone_number) || @obj.document["press_contact_details_telephone"]
   end
 
   def press_contact_email
-    @press_summary.try(:email)
+    @press_summary.try(:email) || @obj.document["press_contact_details_email"]
   end
 
   def press_contact_notes
