@@ -69,7 +69,7 @@ class FormAnswer < ApplicationRecord
     has_one :mobility_eligibility, class_name: 'Eligibility::Mobility', dependent: :destroy
     has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
     has_one :audit_certificate, dependent: :destroy
-    has_one :list_of_procedures, dependent: :destroy
+    has_one :list_of_procedure, dependent: :destroy
     has_one :feedback, dependent: :destroy
     has_one :press_summary, dependent: :destroy
     has_one :draft_note, as: :notable, dependent: :destroy

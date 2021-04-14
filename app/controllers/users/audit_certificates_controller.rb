@@ -16,8 +16,8 @@ class Users::AuditCertificatesController < Users::BaseController
     form_answer.audit_certificate
   end
 
-  expose(:list_of_procedures) do
-    form_answer.list_of_procedures
+  expose(:list_of_procedure) do
+    form_answer.list_of_procedure
   end
 
   def show

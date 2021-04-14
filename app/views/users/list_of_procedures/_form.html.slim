@@ -1,6 +1,6 @@
-= simple_form_for (list_of_procedures || form_answer.build_list_of_procedures),
-                  as: :list_of_procedures,
-                  url: users_form_answer_list_of_procedures_path(form_answer),
+= simple_form_for (list_of_procedure || form_answer.build_list_of_procedure),
+                  as: :list_of_procedure,
+                  url: users_form_answer_list_of_procedure_path(form_answer),
                   html: {class: "qae-form audit-certificate-upload-form #{"hidden" if list_exists}", method: :post} do |f|
   .errors-container
   .clear
