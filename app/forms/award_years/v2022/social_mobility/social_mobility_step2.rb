@@ -220,7 +220,6 @@ class AwardYears::V2022::QAEForms
         end
 
         matrix :initiative_participants_activity_type, "Provide the number of participants in each activity type that your initiative supports each year." do
-          # column_widths({ 1 => 100 })
           classes "sub-question question-matrix"
           ref "B 2.2a"
           required
@@ -742,7 +741,6 @@ class AwardYears::V2022::QAEForms
         end
 
         matrix :organisation_participants_activity_type, "Provide the number of participants in each activity type that your organisation supports each year." do
-          # column_widths({ 1 => 100 })
           classes "sub-question question-matrix"
           ref "B 2.2a"
           required
