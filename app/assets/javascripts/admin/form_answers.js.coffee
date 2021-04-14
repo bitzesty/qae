@@ -175,8 +175,6 @@ ready = ->
 
           $("#audit-certificate-buffer").empty()
 
-    moveAttachDocumentButton()
-
   if $("html").hasClass("lte-ie7")
     $(".attachment-link", $("#list-of-procedure-form")).removeClass("if-js-hide")
   else
@@ -187,7 +185,7 @@ ready = ->
         forceIframeTransport: true
         add: (e, data) ->
           newForm = $("#new_list_of-procedure")
-          $("#list-of-procedure-form .attachment-title").val(data.files[0].name)
+          $("#new_list_of_procedure .attachment-title").val(data.files[0].name)
           newForm.closest(".sidebar-section").addClass("show-attachment-form")
           newForm.find(".btn-submit").focus().blur()
           newForm.find(".btn-submit").unbind("click").on "click", (e) ->
@@ -208,6 +206,8 @@ ready = ->
             sidebarSection.removeClass("show-attachment-form")
 
           $("#list-of-procedure-buffer").empty()
+
+    moveAttachDocumentButton()
 
   $(document).on "click", ".js-attachment-form .btn-cancel", (e) ->
     e.preventDefault()

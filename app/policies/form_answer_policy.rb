@@ -106,6 +106,11 @@ class FormAnswerPolicy < ApplicationPolicy
     (Rails.env.development? || record.list_of_procedure.clean?)
   end
 
+  def create_list_of_procedures_pdf?
+    admin? || subject.lead_or_assigned?(record)
+    (record.list_of_procedure.nil? || record.list_of_procedure.attachment.nil?)
+  end
+
   def remove_list_of_procedures?
     admin? && record.list_of_procedure.present?
   end
