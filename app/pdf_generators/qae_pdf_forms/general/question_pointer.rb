@@ -382,9 +382,7 @@ class QaePdfForms::General::QuestionPointer
           question_option_box interpolate_deadlines(question.pdf_text || question.text)
         end
       when QAEFormBuilder::MatrixQuestion
-        form_pdf.indent 7.mm do
-          render_matrix
-        end
+        render_matrix
       when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::OneOptionByYearsLabelQuestion
         form_pdf.indent 7.mm do
           render_years_labels_table

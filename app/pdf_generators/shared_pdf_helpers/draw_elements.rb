@@ -47,7 +47,7 @@ module SharedPdfHelpers::DrawElements
                                column_widths: column_widths
   end
 
-  def render_table(table_lines, column_widths)
+  def render_table(table_lines, column_widths = {})
     pdf_doc.table table_lines, row_colors: %w(FFFFFF),
                                cell_style: { size: 12 },
                                column_widths: column_widths

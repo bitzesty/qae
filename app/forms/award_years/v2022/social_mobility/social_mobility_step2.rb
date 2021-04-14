@@ -194,7 +194,7 @@ class AwardYears::V2022::QAEForms
           classes "question-limited-selections"
           selection_limit 3
           context %(
-            <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
+            <p>If necessary, you can select more than one activity.</p>
           )
           check_options [
             ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
@@ -210,17 +210,17 @@ class AwardYears::V2022::QAEForms
           conditional :application_category, "initiative"
         end
 
-        text :initiative_activities_other_specify, "Please list other activity types" do
+        textarea :initiative_activities_other_specify, "Please list other activity types" do
           required
           classes "sub-question js-conditional-question-checkbox"
           sub_ref "B 2.1a"
-          pdf_context_with_header_blocks [
-            [:italic, "Answer this question if you selected 'Other activity types' in question B2a."]
-          ]
           conditional :initiative_activities, "other"
+          words_max 50
+          rows 2
         end
 
         matrix :initiative_participants_activity_type, "Provide the number of participants in each activity type that your initiative supports each year." do
+          # column_widths({ 1 => 100 })
           classes "sub-question question-matrix"
           ref "B 2.2a"
           required
@@ -253,6 +253,7 @@ class AwardYears::V2022::QAEForms
             [ "other_activity_types", "Other activity types"]
           ]
           conditional :application_category, "initiative"
+          column_widths({ 1 => 16.mm, 2 => 16.mm, 3 => 16.mm, 4 => 16.mm, 5 => 16.mm })
         end
 
         header :initiative_header_b3a, "Summary of your promoting opportunity through social mobility initiative." do
@@ -408,6 +409,7 @@ class AwardYears::V2022::QAEForms
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
             [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
@@ -424,6 +426,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
+          column_widths({ 1 => 16.mm, 2 => 16.mm, 3 => 16.mm, 4 => 16.mm, 5 => 16.mm })
         end
 
         matrix :initiative_disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of employment opportunities." do
@@ -452,6 +455,7 @@ class AwardYears::V2022::QAEForms
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
             [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
@@ -468,6 +472,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
+          column_widths({ 1 => 20.mm, 2 => 20.mm, 3 => 23.mm, 4 => 23.mm })
         end
 
         matrix :initiative_disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your initiative resulted in terms of education opportunities." do
@@ -496,6 +501,7 @@ class AwardYears::V2022::QAEForms
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
             [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
@@ -512,6 +518,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
+          column_widths({ 1 => 20.mm, 2 => 25.mm, 3 => 20.mm, 4 => 23.mm, 5 => 23.mm })
         end
 
         matrix :initiative_disadvantaged_groups_impact_other, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of other opportunities." do
@@ -540,6 +547,7 @@ class AwardYears::V2022::QAEForms
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
             [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
@@ -556,6 +564,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
+          column_widths({ 1 => 25.mm, 2 => 20.mm, 3 => 23.mm, 4 => 20.mm, 5 => 15.mm })
         end
 
         textarea :initiative_explain_number_collection, "Explain how you collected the impact numbers." do

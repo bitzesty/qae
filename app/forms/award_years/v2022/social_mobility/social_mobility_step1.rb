@@ -347,9 +347,9 @@ class AwardYears::V2022::QAEForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this application." do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           classes "sub-question"
-          sub_ref "A 9.2"
+          sub_ref "A 9.3"
           required
           words_max 200
           conditional :external_contribute_to_sustainable_product, "yes"

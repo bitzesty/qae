@@ -1,8 +1,6 @@
 module QaePdfForms::CustomQuestions::Matrix
   def matrix_headers
-    size = question.x_headings.length + 1
-
-    ([question.corner_label] + question.x_headings.map(&:label)).flatten
+    question.x_headings.map(&:label).unshift(question.corner_label)
   end
 
   def matrix_rows
@@ -25,7 +23,14 @@ module QaePdfForms::CustomQuestions::Matrix
     rows
   end
 
+  def matrix_options
+    {
+      header: true,
+      column_widths: question.column_widths || {}
+    }
+  end
+
   def render_matrix
-    render_multirows_table(matrix_headers, matrix_rows, header: true)
+    render_multirows_table(matrix_headers, matrix_rows, matrix_options)
   end
 end
