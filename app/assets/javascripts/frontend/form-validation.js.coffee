@@ -285,25 +285,6 @@ window.FormValidation =
             @appendMessage(subq.closest(".span-financial"), "Minimum of #{employeeLimit} employees")
             @addErrorClass(question)
 
-  validateMatrix: (question) ->
-    for subquestion in question.find("input")
-      subq = $(subquestion)
-      qParent = subq.parent()
-      val = subq.val().trim()
-
-      if not val
-        @appendMessage(qParent, "Required")
-        @addErrorClass(question)
-      else if isNaN(val)
-        @appendMessage(qParent, "Only numbers")
-        @addErrorClass(question)
-      else
-        t = parseInt(val, 10)
-        if t < 0
-          @appendMessage(qParent, "At least 0")
-          @addErrorClass(question)
-        
-        
   validateCurrentAwards: (question) ->
     $(".errors-container", question).empty()
 
@@ -331,7 +312,6 @@ window.FormValidation =
 
     for subquestion in question.find("input")
       subq = $(subquestion)
-      qParent = subq.closest(".js-fy-entries")
       errContainer = subq.closest(".span-financial")
 
       shownQuestion = true
@@ -515,9 +495,6 @@ window.FormValidation =
       # console.log "validateYear"
       @validateYear(question)
 
-    if question.hasClass("question-matrix")
-      @validateMatrix(question)
-
     if question.hasClass("question-money-by-years")
       # console.log "validateMoneyByYears"
       @validateMoneyByYears(question)
@@ -580,8 +557,12 @@ window.FormValidation =
 
     for question in $(".question-block")
       question = $(question)
+      # console.log "----"
+      # console.log question.find("h2").text()
 
       @validateIndividualQuestion(question)
+
+      #console.log @validates
 
     return @validates
 

@@ -187,14 +187,14 @@ class AwardYears::V2022::QAEForms
           conditional :organisation_type, "other"
         end
 
-        textarea :registration_number, "Provide your company or charity registration number or, if not registered, explain why." do
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
           classes "sub-question"
           required
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
           )
-          words_max 50
+          style "small"
         end
 
         text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
@@ -317,18 +317,9 @@ class AwardYears::V2022::QAEForms
           yes_no
         end
 
-        textarea :external_specify_organisations_contributions, "Specify the organisations that have contributed as well as what they contributed, including how and when." do
-          sub_ref "A 9.1"
-          required
-          classes "sub-question"
-          words_max 100
-          rows 5
-          conditional :external_contribute_to_sustainable_product, "yes"
-        end
-
         options :external_are_aware_about_award,
                 "Are they aware that you're applying for this award?" do
-          sub_ref "A 9.2"
+          sub_ref "A 9.1"
           classes "sub-question"
           required
           option "yes", "Yes, they are all aware"
@@ -497,25 +488,6 @@ class AwardYears::V2022::QAEForms
             </p>
           )
           max_attachments 1
-        end
-
-        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the Queen’s Awards for Enterprise award this year?" do
-          ref "A 16"
-          required
-          context %(
-            <p>Select all that apply.</p>
-          )
-          check_options [
-            ["qa_website", "Queen's Awards website"],
-            ["qa_twitter", "Queen's Awards Twitter"],
-            ["social_media", "Other social media"],
-            ["another_website", "Another website"],
-            ["qa_event", "Queen's Awards event"],
-            ["another_event", "A third party exhibition or event"],
-            ["publication", "A newspaper/publication"],
-            ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
-          ]
         end
       end
     end
