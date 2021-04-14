@@ -9,15 +9,10 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Thank you for your entry to The Queen's Awards for Enterprise
-  = @year
-  ' . I am sorry to inform you that your organisation was not among those recommended to Her Majesty The Queen for an Award this year.
+  ' Thank you for your entry to The Queen's Awards for Enterprise #{@year}. I am sorry to inform you that your organisation was not among those recommended to Her Majesty The Queen for an Award this year.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' This year's entries were of a very high standard and selecting those organisations which had demonstrated the most outstanding achievements was particularly difficult.
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' I understand that the application process can be time-consuming and, for this reason, our assessors have compiled some feedback on your application which we hope will help with any future applications you make.
+  ' I know that this news is disappointing but I hope that you will find the comprehensive feedback useful. It often takes more than one attempt to achieve an Award and previously unsuccessful applicants report that they have found the assessors' feedback tremendously insightful. If, when you submitted your application, you agreed to share your contact details with your local Lord-Lieutenant, they may be in touch with you to discuss your application and feedback. Even if you did not agree to share your contact details with your local Lord-Lieutenant, may I encourage you to contact them or discuss your feedback with another independent person as those who reflect and act upon the feedback, often achieve future success.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | You can view your application feedback via the link below:
@@ -25,7 +20,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = link_to users_form_answer_feedback_url(@form_answer, format: "pdf"), users_form_answer_feedback_url(@form_answer, format: "pdf")
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Please also find, at Annex A, some contacts, both within government and externally, which I hope you might find useful.
+  ' To help you identify the range of business support, advice and opportunities available, please find some useful contacts, both within government and externally at Annex A.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ' Thank you once again for taking the time to enter The Queen's Awards for Enterprise and I wish you every success in the future.
@@ -46,38 +41,35 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    ' Industrial Strategy
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Find out how the Government's Industrial Strategy is working to transform the business environment to enable businesses like yours to start, grow and thrive.
-  br 
-  = link_to "https://www.gov.uk/government/topical-events/the-uks-industrial-strategy", "https://www.gov.uk/government/topical-events/the-uks-industrial-strategy"
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  strong
     ' Helping businesses access the finance they need
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Explore the different types of finance available during your business' journey to start, grow, stay ahead, to innovate, and to trade overseas:
+  | Explore the different types of finance which may be available during your business' journey to start, grow, stay ahead, to innovate, and to trade overseas:
 
   ul
     li
-      =<> "British Business bank"
-      = link_to "https://www.british-business-bank.co.uk/", "https://www.british-business-bank.co.uk/"
-    li
       =<> "Start-Up Loans"
       = link_to "https://www.startuploans.co.uk/", "https://www.startuploans.co.uk/"
+    li
+      =<> "British Business bank"
+      = link_to "https://www.british-business-bank.co.uk/", "https://www.british-business-bank.co.uk/"
     li
       =<> "BBB Finance Hub"
       = link_to "https://www.british-business-bank.co.uk/finance-hub/", "https://www.british-business-bank.co.uk/finance-hub/"
     li
       =<> "Innovate UK"
-      = link_to "https://www.gov.uk/government/organisations/innovate-uk", "https://www.gov.uk/government/organisations/innovate-uk"
+      = link_to "https://www.ukri.org/councils/innovate-uk/", "https://www.ukri.org/councils/innovate-uk/"
+    li
+      =<> "Export advice"
+      = link_to "https://www.great.gov.uk/advice/", "https://www.great.gov.uk/advice/"
+    li
+      =<> "Export Academy"
+      = link_to "www.events.great.gov.uk/ExportAcademy", "www.events.great.gov.uk/ExportAcademy/"
     li
       =<> "UK Export Finance"
       = link_to "https://www.gov.uk/government/organisations/uk-export-finance", "https://www.gov.uk/government/organisations/uk-export-finance"
     li
-      =<> "Growth Hubs"
+      =<> "Growth Hubs (in England)"
       = link_to "https://www.lepnetwork.net/growth-hubs/", "https://www.lepnetwork.net/growth-hubs/"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
@@ -92,24 +84,43 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
       =<> "The UK has left the EU"
       = link_to "https://www.gov.uk/transition", "https://www.gov.uk/transition"
     li
-      =<> "Business Support"
-      = link_to "https://www.businesssupport.gov.uk/", "https://www.businesssupport.gov.uk/"
+      =<> "Agriculture, food and Drink Open Doors Campaign"
+      = link_to "https://exports.campaign.gov.uk", "https://exports.campaign.gov.uk"
+    li
+      =<> "Government Business Support Pages"
+      = link_to "https://www.gov.uk/browse/business", "https://www.gov.uk/browse/business"
     li
       =<> "Growth Hubs"
-      = link_to "https://www.lepnetwork.net/growth-hubs/", "https://www.lepnetwork.net/growth-hubs/"
-    li
-      =<> "Exporting support"
-      = link_to "https://www.great.gov.uk/international/?lang=en-gb", "https://www.great.gov.uk/international/?lang=en-gb"
+      = link_to "https://www.lepnetwork.net/growth-hubs", "https://www.lepnetwork.net/growth-hubs"
     li
       =<> "Be The Business"
-      = link_to "https://www.bethebusiness.com/", "https://www.bethebusiness.com/"
+      = link_to "https://www.bethebusiness.com", "https://www.bethebusiness.com"
     li
-      =<> "Small Business Commissioner"
-      = link_to "https://www.smallbusinesscommissioner.gov.uk/", "https://www.smallbusinesscommissioner.gov.uk/"
+      =<> "Small Business commissioner"
+      = link_to "https://www.smallbusinesscommissioner.gov.uk", "https://www.smallbusinesscommissioner.gov.uk"
+      =<> " - for help with late payments"
+    li
+      =<> "Export advice"
+      = link_to "https://www.great.gov.uk/advice", "https://www.great.gov.uk/advice"
+    li
+      =<> "Business Support Helpline"
+      = link_to "https://www.gov.uk/business-support-helpline", "https://www.gov.uk/business-support-helpline"
+      =<> " - as business support is devolved, page includes sources of advice for Northern Ireland, Scotland and Wales"
+    li
+      =<> "Innovate UK EDGE"
+      = link_to "https://www.innovateukedge.ukri.org", "https://www.innovateukedge.ukri.org"
+      =<> " - Innovate UK EDGE is a key part of the UK innovation agency's investment in the innovative businesses that drive economic growth. It helps businesses to exploit innovation, enter new markets and source funding."
+    li
+      =<> "KTN"
+      = link_to "https://ktn-uk.org", "https://ktn-uk.org"
+      =<> " - which helps connect ideas, people and communities to respond to global challenges and drive positive change through innovation."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    ' Opportunities for Business
+    ' Opportunities for Business - Government contracts
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  | Contracts Finder lets you search for information about contracts worth over £10,000 with the government and its agencies.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ul
@@ -117,7 +128,11 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
       =<> "Contract finder"
       = link_to "https://www.gov.uk/contracts-finder", "https://www.gov.uk/contracts-finder"
       =<> "to bid on Government contracts"
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  | Find a Tender service lets you find and apply for high value contracts (usually above £118,000) in the UK .
+
+  ul
     li
-      =<> "Queen's Awards for Enterprise"
-      = link_to "https://www.gov.uk/queens-awards-for-enterprise", "https://www.gov.uk/queens-awards-for-enterprise"
-      =<> "have you considered entering another category?"
+      =<> "Find a tender"
+      = link_to "https://www.gov.uk/find-tender", "https://www.gov.uk/find-tender"
