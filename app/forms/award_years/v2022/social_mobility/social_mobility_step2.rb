@@ -253,7 +253,7 @@ class AwardYears::V2022::QAEForms
             [ "other_activity_types", "Other activity types"]
           ]
           conditional :application_category, "initiative"
-          column_widths({ 1 => 16.mm, 2 => 16.mm, 3 => 16.mm, 4 => 16.mm, 5 => 16.mm })
+          column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
         header :initiative_header_b3a, "Summary of your promoting opportunity through social mobility initiative." do
@@ -426,7 +426,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
-          column_widths({ 1 => 16.mm, 2 => 16.mm, 3 => 16.mm, 4 => 16.mm, 5 => 16.mm })
+          column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
         matrix :initiative_disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of employment opportunities." do
@@ -472,7 +472,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
-          column_widths({ 1 => 20.mm, 2 => 20.mm, 3 => 23.mm, 4 => 23.mm })
+          column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
         end
 
         matrix :initiative_disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your initiative resulted in terms of education opportunities." do
@@ -518,7 +518,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
-          column_widths({ 1 => 20.mm, 2 => 25.mm, 3 => 20.mm, 4 => 23.mm, 5 => 23.mm })
+          column_widths({ 1 => 20, 2 => 25, 3 => 20, 4 => 23, 5 => 23 })
         end
 
         matrix :initiative_disadvantaged_groups_impact_other, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of other opportunities." do
@@ -564,7 +564,7 @@ class AwardYears::V2022::QAEForms
             ["others", "Others receiving support from you"]
           ]
           conditional :application_category, "initiative"
-          column_widths({ 1 => 25.mm, 2 => 20.mm, 3 => 23.mm, 4 => 20.mm, 5 => 15.mm })
+          column_widths({ 1 => 25, 2 => 20, 3 => 23, 4 => 20, 5 => 15 })
         end
 
         textarea :initiative_explain_number_collection, "Explain how you collected the impact numbers." do
@@ -726,9 +726,56 @@ class AwardYears::V2022::QAEForms
             ["early_careers", "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
-            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
+            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
+            ["other", "Other activity types"]
           ]
           conditional :application_category, "organisation"
+        end
+
+        textarea :organisation_activities_other_specify, "Please list other activity types" do
+          required
+          classes "sub-question js-conditional-question-checkbox"
+          sub_ref "B 2.1a"
+          conditional :organisation_activities, "other"
+          words_max 50
+          rows 2
+        end
+
+        matrix :organisation_participants_activity_type, "Provide the number of participants in each activity type that your organisation supports each year." do
+          # column_widths({ 1 => 100 })
+          classes "sub-question question-matrix"
+          ref "B 2.2a"
+          required
+          pdf_context_with_header_blocks [
+            [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
+            [:normal, "A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal, "Where none, enter zeros."]
+          ]
+          context %(
+            <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
+		
+            <p>A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
+
+            <p>Where none, enter zeros.</p>
+          )
+          corner_label "Activity type"
+          totals_label "Total number of discreet participants supported each year"
+          
+          x_headings [2017, 2018, 2019, 2020, 2021]
+
+          y_headings [
+            ["careers_advice", "Careers advice"],
+            [ "fairer_recruitment", "Fairer recruitment"],
+            [ "skills_development", "Skills development"],
+            [ "work_placements", "Work placements"],
+            [ "early_careers", "Early careers"],
+            [ "job_opportunities", "Job opportunities"],
+            [ "advancement", "Advancement"],
+            [ "advocacy_and_leadership", "Advocacy and leadership"],
+            [ "other_activity_types", "Other activity types"]
+          ]
+          conditional :application_category, "organisation"
+          column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
         header :organisation_header_b3b, "Details of how your organisation has made a significant difference by promoting opportunity through social mobility." do
@@ -841,139 +888,204 @@ class AwardYears::V2022::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_disadvantaged_groups, "Describe which disadvantaged groups you target." do
-          classes "sub-question"
+        matrix :organisation_disadvantaged_groups_year, "Provide the number of participants in each disadvantaged group that your organisation supports each year." do
+          classes "sub-question question-matrix"
           sub_ref "B 5.1b"
           required
+          pdf_context_with_header_blocks [
+            [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
+            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal, "Where none, enter zeros."]
+          ]
           context %(
-            <p>This award aims to recognise promoting opportunity through social mobility efforts that focus on the disadvantaged groups listed below:</p>
-            <ul>
-              <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
-              <li>Asylum seekers and refugees or children of refugees;</li>
-              <li>Young people (over 16 years old) with English as a second language;</li>
-              <li>Long-term unemployed or people who grew up in workless households;</li>
-              <li>People on low incomes;</li>
-              <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
-              <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
-              <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
-              <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
-              <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
-              <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
-              <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
-              <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
-              <li>People recovering or who have recovered from addiction;</li>
-              <li>Survivors of domestic violence;</li>
-              <li>Military veterans;</li>
-              <li>Ex-offenders;</li>
-              <li>Families of prisoners.</li>
-            </ul>
-            <p>Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.</p>
-            <p> Please provide the totals and year by year breakdown of:</p>
-            <ol>
-              <li>the total number of participants;</li>
-              <li>the proportion of participants from disadvantaged backgrounds;</li>
-              <li>the breakdown of these participants by disadvantaged group;</li>
-              <li>for each disadvantaged group, specify the participant age range and in what UK counties they are based.</li>
-            </ol>
-            <p>Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.</p>
+            <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
+		
+            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
+
+            <p>Where none, enter zeros.</p>
           )
-          pdf_context %(
-            This award aims to recognise promoting opportunity through social mobility efforts that focus on the disadvantaged groups listed below:
+          corner_label "Disadvantaged group type"
+          totals_label "Total number of discreet participants supported each year"
+          
+          x_headings [2017, 2018, 2019, 2020, 2021]
 
-              \u2022 People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;
-
-              \u2022 Asylum seekers and refugees or children of refugees;
-
-              \u2022 Young people (over 16 years old) with English as a second language;
-
-              \u2022 Long-term unemployed or people who grew up in workless households;
-
-              \u2022 People on low incomes;
-
-              \u2022 Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;
-
-              \u2022 People who received free school meals or if there are children in the person’s current household who receive free school meals;
-
-              \u2022 Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;
-
-              \u2022 Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;
-
-              \u2022 Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;
-
-              \u2022 People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;
-
-              \u2022 People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;
-
-              \u2022 People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;
-
-              \u2022 People recovering or who have recovered from addiction;
-
-              \u2022 Survivors of domestic violence;
-
-              \u2022 Military veterans;
-
-              \u2022 Ex-offenders;
-
-              \u2022 Families of prisoners.
-
-              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement. 
-
-              Please provide the totals and year by year breakdown of:
-
-              1. the total number of participants;
-
-              2. the proportion of participants from disadvantaged backgrounds;
-
-              3. the breakdown of these participants by disadvantaged group;
-
-              4.for each disadvantaged group, specify the participant age range and in what UK counties they are based.
-
-              Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.
-          )
-          words_max 300
+          y_headings [
+            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            [ "refugees", "Asylum seekers and refugees or children of refugees"],
+            [ "young_language", "Young people (over 16 years old) with English as a second language"],
+            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
+            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered","People recovering or who have recovered from addiction "],
+            ["domestic_violence", "Survivors of domestic violence"],
+            ["military_veterans", "Military veterans"],
+            ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
+            ["others", "Others receiving support from you"]
+          ]
           conditional :application_category, "organisation"
+          column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
-        textarea :organisation_quantitative_evidence, "Provide quantitative evidence on the impact that your organisation has achieved for your participants." do
-          classes "sub-question"
+        matrix :organisation_disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your organisation had impacted in terms of employment opportunities." do
+          classes "sub-question question-matrix"
           sub_ref "B 5.2b"
           required
+          pdf_context_with_header_blocks [
+            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
+            [:normal, "Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells."]
+          ]
           context %(
-            <p>Provide <strong>quantitative data</strong> (for example, numbers, figures) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants.</p>
-            <ul>
-              <li>Explain your impact in the context of your KPIs or equivalent performance targets that you have identified in section B4.</li>
-              <li>Provide total figures of your overall impact over the years (minimum for the last two years).</li>
-              <li>Provide year by year breakdown to demonstrate growth and improvement (minimum for the last two years).</li>
-              <li>Include any <strong>output</strong> data. For example, a number of participants successfully completing a training course.</li>
-              <li>Include any <strong>outcome</strong> data, including <strong>short-term</strong> and, where available, <strong>longer-term</strong> outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after two years.</li>
-              <li>Provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.</li>
-              <li>Explain where the data comes from - this may include, but is not limited to - internal records, third party evidence, survey responses.</li>
-            </ul>
+            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
+		
+            <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
+
+            <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
-          pdf_context %(
-            Provide quantitative data (for example, numbers, figures) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants.
+          corner_label "Disadvantaged group type"
+          totals_label "Total number of discreet participants supported"
+          
+          x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
-            \u2022 Explain your impact in the context of your KPIs or equivalent performance targets that you have identified in section B4.
-
-            \u2022 Provide total figures of your overall impact over the years (minimum for the last two years).
-
-            \u2022 Provide year by year breakdown to demonstrate growth and improvement (minimum for the last two years).
-
-            \u2022 Include any output data. For example, a number of participants successfully completing a training course.
-
-            \u2022 Include any outcome data, including short-term and, where available, longer-term outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after two years.
-
-            \u2022 Provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.
-
-            \u2022 Explain where the data comes from - this may include, but is not limited to - internal records, third party evidence, survey responses.
-          )
-          words_max 750
+          y_headings [
+            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            [ "refugees", "Asylum seekers and refugees or children of refugees"],
+            [ "young_language", "Young people (over 16 years old) with English as a second language"],
+            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
+            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered","People recovering or who have recovered from addiction "],
+            ["domestic_violence", "Survivors of domestic violence"],
+            ["military_veterans", "Military veterans"],
+            ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
+            ["others", "Others receiving support from you"]
+          ]
           conditional :application_category, "organisation"
+          column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
+        end
+
+        matrix :organisation_disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your organisation resulted in terms of education opportunities." do
+          classes "sub-question question-matrix"
+          sub_ref "B 5.3b"
+          required
+          pdf_context_with_header_blocks [
+            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
+            [:normal, "Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells."]
+          ]
+          context %(
+            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
+		
+            <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
+
+            <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
+          )
+          corner_label "Disadvantaged group type"
+          totals_label "Total number of discreet participants supported"
+          
+          x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
+
+          y_headings [
+            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            [ "refugees", "Asylum seekers and refugees or children of refugees"],
+            [ "young_language", "Young people (over 16 years old) with English as a second language"],
+            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
+            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered","People recovering or who have recovered from addiction "],
+            ["domestic_violence", "Survivors of domestic violence"],
+            ["military_veterans", "Military veterans"],
+            ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
+            ["others", "Others receiving support from you"]
+          ]
+          conditional :application_category, "organisation"
+          column_widths({ 1 => 20, 2 => 25, 3 => 20, 4 => 23, 5 => 23 })
+        end
+
+        matrix :organisation_disadvantaged_groups_impact_other, "Provide the number of participants in each disadvantaged group that your organisation had impacted in terms of other opportunities." do
+          classes "sub-question question-matrix"
+          sub_ref "B 5.4b"
+          required
+          pdf_context_with_header_blocks [
+            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
+            [:normal, "Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells."]
+          ]
+          context %(
+            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
+		
+            <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
+
+            <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
+          )
+          corner_label "Disadvantaged group type"
+          totals_label "Total number of discreet participants supported"
+          
+          x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
+
+          y_headings [
+            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            [ "refugees", "Asylum seekers and refugees or children of refugees"],
+            [ "young_language", "Young people (over 16 years old) with English as a second language"],
+            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
+            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered","People recovering or who have recovered from addiction "],
+            ["domestic_violence", "Survivors of domestic violence"],
+            ["military_veterans", "Military veterans"],
+            ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
+            ["others", "Others receiving support from you"]
+          ]
+          conditional :application_category, "organisation"
+          column_widths({ 1 => 25, 2 => 20, 3 => 23, 4 => 20, 5 => 15 })
+        end
+
+        textarea :organisation_explain_number_collection, "Explain how you collected the impact numbers." do
+          classes "sub-question"
+          sub_ref "B 5.5b"
+          required
+          words_max 150
+          conditional :application_category, "organisation"
+          context %(
+            <p>This may include, but is not limited to - internal records, third party evidence, survey responses.</p>
+          )
         end
 
         textarea :organisation_qualitative_evidence, "Provide qualitative evidence on the impact that your organisation has achieved for your participants." do
           classes "sub-question"
-          sub_ref "B 5.3b"
+          sub_ref "B 5.6b"
           required
           context %(
             <p>Provide <strong>qualitative data</strong> (for example, people stories as well as comments, feedback from participants and key stakeholders) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
@@ -1001,7 +1113,7 @@ class AwardYears::V2022::QAEForms
 
         textarea :organisation_feedback, "Describe what feedback, if any, you sought on how your organisation could be improved (in the context of your core aim to promote opportunity through social mobility). What, if any, of the suggested improvements have you implemented?" do
           classes "sub-question"
-          sub_ref "B 5.4b"
+          sub_ref "B 5.7b"
           required
           context %(
             <ul>

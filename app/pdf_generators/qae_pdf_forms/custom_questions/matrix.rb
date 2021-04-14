@@ -23,10 +23,20 @@ module QaePdfForms::CustomQuestions::Matrix
     rows
   end
 
+  def millimeterized_column_widths
+    (question.column_widths || {}).transform_values do |value| 
+      if value.respond_to?(:mm)
+        value.public_send(:mm)
+      else
+        value
+      end
+    end
+  end
+
   def matrix_options
     {
       header: true,
-      column_widths: question.column_widths || {}
+      column_widths: millimeterized_column_widths
     }
   end
 
