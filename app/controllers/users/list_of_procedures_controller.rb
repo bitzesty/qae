@@ -19,7 +19,7 @@ class Users::ListOfProceduresController < Users::BaseController
     respond_to do |format|
       format.html do
         if saved
-          redirect_to users_form_answer_audit_certificate_url(form_answer),
+          redirect_to users_form_answer_list_of_procedure_url(form_answer),
                       notice: "List of procedures successfully uploaded!"
         else
           render :show
@@ -41,7 +41,7 @@ class Users::ListOfProceduresController < Users::BaseController
 
   def destroy
     log_event if list_of_procedure.destroy
-    redirect_to users_form_answer_audit_certificate_url(form_answer)
+    redirect_to users_form_answer_list_of_procedure_url(form_answer)
   end
 
   private
