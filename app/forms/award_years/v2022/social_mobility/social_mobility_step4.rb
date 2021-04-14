@@ -53,24 +53,15 @@ class AwardYears::V2022::QAEForms
           ref "D 1"
           required
           context %(
-            <ol type="a">
-              <li>
-                How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
-              </li>
-              <li>
-                What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
-              </li>
-            </ol>
             <p>
-              Outline how you evaluate and report on the impact.
+              How does your business try to ensure a beneficial impact of all your practices and activites on society?
             </p>
-          )
-          pdf_context %(
-            a\) How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
-            
-            b\) What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
-            
-            Outline how you evaluate and report on the impact.
+            <p>
+              What activities do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.
+            </p>
+            <p>
+              If you have operations in emerging or developing markets, are these conducted with proper regard for the current and future welfare of the people employed there?
+            </p>
           )
           rows 5
           words_max 250

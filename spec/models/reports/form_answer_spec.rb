@@ -24,20 +24,6 @@ describe Reports::FormAnswer do
 
       expect(described_class.new(form_answer).press_contact_full_name).to eq("Earl Rob Stark")
     end
-
-    it "returns cotact's full name taken from application if PS is not submitted" do
-      form_answer = build(:form_answer, :trade)
-      form_answer.document = form_answer.document.merge(
-        press_contact_details_title: "Countess",
-        press_contact_details_first_name: "Kathleen",
-        press_contact_details_last_name: "Stark"
-      )
-
-      summary = double(name: "", title: "Earl", last_name: "Stark")
-      allow(form_answer).to receive(:press_summary).and_return(summary)
-
-      expect(described_class.new(form_answer).press_contact_full_name).to eq("Countess Kathleen Stark")
-    end
   end
 
   describe 'user methods' do

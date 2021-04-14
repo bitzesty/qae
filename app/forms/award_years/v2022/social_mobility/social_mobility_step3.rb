@@ -13,10 +13,6 @@ class AwardYears::V2022::QAEForms
             <p>
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
-            <h3>COVID-19 impact</h3>
-            <p>
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            </p>
             <h3>Latest financial year and COVID-19</h3>
             <p>
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
@@ -34,10 +30,6 @@ class AwardYears::V2022::QAEForms
             [:bold, "Small organisations"],
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-            )],
-            [:bold, "COVID-19 impact"],
-            [:normal, %(
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
             [:bold, "Latest financial year and COVID-19"],
             [:normal, %(
@@ -232,12 +224,6 @@ class AwardYears::V2022::QAEForms
           rows 5
           words_max 250
           conditional :product_estimated_figures, :yes
-        end
-
-        textarea :covid_impact, "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
-          sub_ref "C 6"
-          required
-          rows 5
         end
       end
     end

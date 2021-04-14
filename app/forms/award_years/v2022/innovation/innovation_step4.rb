@@ -50,17 +50,17 @@ class AwardYears::V2022::QAEForms
         textarea :impact_on_society, "The impact of your business operations on society" do
           ref "D 1"
           required
-          context %{
+          context %(
             <p>
-              a) How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
+              How does your business try to ensure a beneficial impact of all your practices and activites on society?
             </p>
             <p>
-              b)  What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
+              What activities do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.
             </p>
             <p>
-              Outline how you evaluate and report on the impact.
+              If you have operations in emerging or developing markets, are these conducted with proper regard for the current and future welfare of the people employed there?
             </p>
-          }
+          )
           rows 5
           words_max 250
         end

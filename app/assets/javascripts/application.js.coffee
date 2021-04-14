@@ -103,18 +103,13 @@ jQuery ->
   simpleConditionalQuestion = (input, clicked) ->
     answer = input.closest(".js-conditional-answer").attr("data-answer")
     question = $(".conditional-question[data-question='#{answer}']")
-    isCheckbox = input.attr('type') == 'checkbox'
-    checkboxVal = input.val()
-    answerVal = if isCheckbox then input.is(':checked').toString() else input.val()
-    boolean_values = ["0", "1", "true", "false"]
+    answerVal = input.val()
+
+    if input.attr('type') == 'checkbox'
+      answerVal = input.is(':checked').toString()
 
     question.each () ->
-      nonBooleanCheckboxMeetsCriteria = isCheckbox &&
-                                        input.is(':checked') &&
-                                        boolean_values.indexOf(checkboxVal) is -1 &&
-                                        $(this).attr('data-value') == checkboxVal
-      
-      if $(this).attr('data-value') == answerVal || nonBooleanCheckboxMeetsCriteria || ($(this).attr('data-value') == "true" && (answerVal != 'false' && answerVal != false)) || ($(this).attr('data-type') == "in_clause_collection" && $(this).attr('data-value') <= answerVal)
+      if $(this).attr('data-value') == answerVal || ($(this).attr('data-value') == "true" && (answerVal != 'false' && answerVal != false)) || ($(this).attr('data-type') == "in_clause_collection" && $(this).attr('data-value') <= answerVal)
         if clicked || (!clicked && input.attr('type') == 'radio' && input.is(':checked')) || (!clicked && input.attr('type') != 'radio')
           $(this).addClass("show-question")
       else

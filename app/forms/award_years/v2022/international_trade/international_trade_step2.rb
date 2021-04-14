@@ -16,10 +16,6 @@ class AwardYears::V2022::QAEForms
             <p>
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
-            <h3>COVID-19 impact</h3>
-            <p>
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            </p>
           )
 
           pdf_context_with_header_blocks [
@@ -31,10 +27,6 @@ class AwardYears::V2022::QAEForms
             [:bold, "Small organisations"],
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-            )],
-            [:bold, "COVID-19 impact"],
-            [:normal, %(
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )]
           ]
         end
@@ -184,17 +176,9 @@ class AwardYears::V2022::QAEForms
           words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade, especially due to COVID-19, and how you overcame them." do
+        textarea :trade_factors, "Describe any special challenges affecting your trade in products or services, and how you overcame them." do
           ref "B 5"
           required
-          context %(
-            <p>
-              1. Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?
-            </p>
-            <p>
-              2. Describe any other challenges affecting your trade, and how you overcame them.
-            </p>
-          )
           rows 5
           words_max 200
         end
