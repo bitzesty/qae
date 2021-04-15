@@ -329,6 +329,7 @@ class AwardYears::V2022::QAEForms
           context %(
             <p>Provide third-party evidence of what makes your initiative exemplary compared to other similar initiatives and how you are going 'above and beyond' compared to your sector. For example, provide links to independent evaluation reports, details of awards won, client feedback ratings and how that compares with other similar organisations.</p>
           )
+          conditional :application_category, "initiative"
         end
 
         header :initiative_header_b4a, "Measuring success" do
@@ -709,13 +710,13 @@ class AwardYears::V2022::QAEForms
           ]
         end
 
-        checkbox_seria :organisation_activities, "What activities did you implement to make a positive impact by promoting opportunity through social mobility?" do
+        checkbox_seria :organisation_activities, "What type of activities does your organization focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2b"
           required
           classes "question-limited-selections"
           selection_limit 3
           context %(
-            <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
+            <p>If necessary, you can select more than one activity.</p>
           )
           check_options [
             ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
@@ -726,7 +727,7 @@ class AwardYears::V2022::QAEForms
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
             ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
-            ["other", "Other activity types"]
+            ["other", "<strong>Other activity types</strong>"]
           ]
           conditional :application_category, "organisation"
         end
@@ -734,7 +735,7 @@ class AwardYears::V2022::QAEForms
         textarea :organisation_activities_other_specify, "Please list other activity types" do
           required
           classes "sub-question js-conditional-question-checkbox"
-          sub_ref "B 2.1a"
+          sub_ref "B 2.1b"
           conditional :organisation_activities, "other"
           words_max 50
           rows 2
@@ -742,7 +743,7 @@ class AwardYears::V2022::QAEForms
 
         matrix :organisation_participants_activity_type, "Provide the number of participants in each activity type that your organisation supports each year." do
           classes "sub-question question-matrix"
-          ref "B 2.2a"
+          ref "B 2.2b"
           required
           pdf_context_with_header_blocks [
             [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
