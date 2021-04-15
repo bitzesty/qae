@@ -184,7 +184,7 @@ ready = ->
         dataType: "html"
         forceIframeTransport: true
         add: (e, data) ->
-          newForm = $("#new_list_of-procedure")
+          newForm = $("#new_list_of_procedure")
           $("#new_list_of_procedure .attachment-title").val(data.files[0].name)
           newForm.closest(".sidebar-section").addClass("show-attachment-form")
           newForm.find(".btn-submit").focus().blur()
