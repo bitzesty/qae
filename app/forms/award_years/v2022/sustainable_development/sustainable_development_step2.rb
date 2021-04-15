@@ -344,7 +344,9 @@ class AwardYears::V2022::QAEForms
             </p>
             <p>
               d) How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?<br />
-              Please include links to relevant pages on your company’s website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.<br />
+              Please include links to relevant pages on your company’s website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.
+            </p>
+            <p>
               If applicable, include in your answer or attach in section D of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.
             </p>
             <p>
