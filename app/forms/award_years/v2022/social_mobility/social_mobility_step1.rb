@@ -182,7 +182,8 @@ class AwardYears::V2022::QAEForms
           option "other", "Other"
         end
 
-        text :other_organisation_type, "" do
+        text :other_organisation_type, "Please specify" do
+          classes "other-organization-type"
           required
           conditional :organisation_type, "other"
         end
