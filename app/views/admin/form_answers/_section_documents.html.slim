@@ -30,11 +30,12 @@
         #audit-certificate-form
           = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate
 
-    - if @form_answer.list_of_procedure.blank?
+    - if @form_answer.list_of_procedure.blank? && Settings.after_shortlisting_stage?
       br
       .sidebar-section.no-margin-bottom
         #list-of-procedure-form
           = render "admin/list_of_procedures/form", form_answer: @form_answer, list_of_procedure: @form_answer.build_list_of_procedure
+          
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section
     h2.todo-placeholder
