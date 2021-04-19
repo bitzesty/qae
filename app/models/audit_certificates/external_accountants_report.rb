@@ -1,0 +1,2 @@
+class ExternalAccountantsReport < AuditCertificate
+end
