@@ -16,8 +16,8 @@ class ListOfProcedure < ApplicationRecord
     validates :attachment, presence: true,
                            on: :create,
                            file_size: {
-                             maximum: 5.megabytes.to_i
-                           }
+                           maximum: 5.megabytes.to_i
+                             }
     validates :reviewable_type,
               :reviewable_id,
               :reviewed_at,
