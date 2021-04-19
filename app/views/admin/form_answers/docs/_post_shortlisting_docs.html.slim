@@ -36,13 +36,8 @@
               = link_to "#", class: "text-danger if-no-js-hide js-remove-audit-certificate-link", data: {confirm: "Are you sure?"}
                 span.glyphicon.glyphicon-remove
                 span.visible-lg.visible-md
-<<<<<<< HEAD
                   ' Remove
     - elsif resource.object.list_of_procedure.present? && resource.object.list_of_procedure.attachment_scan_results.blank?
-=======
-
-    - elsif resource.object.list_of_procedures.present? && resource.object.list_of_procedures.attachment_scan_results.blank?
->>>>>>> Adds a remove link to list of procedures attachment
       li style="color:green"
         ' Scanning list of procedures. You may need to refresh the page.
 
