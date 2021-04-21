@@ -390,9 +390,9 @@ window.FormValidation =
           @appendMessage(qParent, "Not a valid date")
           @addErrorClass(question)
         # temporary condition
-        else if parseInt(year) > 2020 || parseInt(year) < 2012
-          @logThis(question, "validateDateByYears", "the year must be from 2012 to 2020")
-          @appendMessage(qParent, "the year must be from 2012 to 2020")
+        else if parseInt(year) > 2021 || parseInt(year) < 2012
+          @logThis(question, "validateDateByYears", "the year must be from 2012 to 2021")
+          @appendMessage(qParent, "the year must be from 2012 to 2021")
           @addErrorClass(question)
 
 
