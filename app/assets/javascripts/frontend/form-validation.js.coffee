@@ -286,6 +286,17 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateMatrix: (question) ->
+    # if it's a conditional question, but condition was not satisfied
+    conditional = true
+
+    question.find(".js-conditional-question").each ->
+      if !$(this).hasClass("show-question")
+        conditional = false
+
+    if !conditional
+      return
+    # end of conditional validation
+
     for subquestion in question.find("input")
       subq = $(subquestion)
       qParent = subq.parent()
@@ -302,8 +313,8 @@ window.FormValidation =
         if t < 0
           @appendMessage(qParent, "At least 0")
           @addErrorClass(question)
-        
-        
+
+
   validateCurrentAwards: (question) ->
     $(".errors-container", question).empty()
 
