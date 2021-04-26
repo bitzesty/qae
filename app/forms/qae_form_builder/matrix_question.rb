@@ -86,6 +86,10 @@ class QAEFormBuilder
         end
       end
     end
+
+    def column_widths widths
+      @q.column_widths = widths
+    end
   end
 
   class MatrixQuestion < Question
@@ -94,12 +98,14 @@ class QAEFormBuilder
                   :corner_label,
                   :x_headings,
                   :y_headings,
-                  :values
-                  
+                  :values,
+                  :column_widths
+             
     def after_create
       @x_headings = []
       @y_headings = []
       @values = []
+      @column_widths = nil
     end
 
     def classes

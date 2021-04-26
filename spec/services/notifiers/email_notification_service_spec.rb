@@ -138,7 +138,7 @@ describe Notifiers::EmailNotificationService do
 
     context "with a submitted audit certificate and submitted list of procedures" do
       let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
-      let!(:list_of_procedures) { create(:list_of_procedures, form_answer: form_answer) }
+      let!(:list_of_procedure) { create(:list_of_procedure, form_answer: form_answer) }
 
       it "does not trigger a notification" do
         expect(Users::AuditCertificateRequestMailer).not_to receive(:notify).with(

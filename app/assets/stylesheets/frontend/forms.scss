@@ -1513,3 +1513,20 @@ fieldset.account-contact-preferences-other-ops {
   min-width: 4em !important;
   box-sizing: border-box !important;
 }
+
+.other-organization-type {
+
+  max-width: 465px !important;
+  
+  input {
+    width: 100% !important;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-weight: normal;
+    @include core-19;
+    margin-bottom: 0;
+  }
+}
