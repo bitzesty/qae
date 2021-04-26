@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :list_of_procedures do
+  factory :list_of_procedure do
     association :form_answer, factory: :form_answer
     attachment_scan_results { "clean" }
     attachment do

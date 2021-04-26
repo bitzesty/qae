@@ -96,7 +96,7 @@ class Notifiers::EmailNotificationService
     collaborator_data = []
 
     award_year.form_answers.business.shortlisted.each do |form_answer|
-      next if form_answer.audit_certificate && form_answer.list_of_procedures
+      next if form_answer.audit_certificate && form_answer.list_of_procedure
 
       form_answer.collaborators.each do |collaborator|
         collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }

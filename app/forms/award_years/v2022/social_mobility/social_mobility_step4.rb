@@ -52,26 +52,17 @@ class AwardYears::V2022::QAEForms
         textarea :impact_on_society, "The impact of your business operations on society" do
           ref "D 1"
           required
-          context %(
-            <ol type="a">
-              <li>
-                How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
-              </li>
-              <li>
-                What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
-              </li>
-            </ol>
+          context %{
+            <p>
+              a) How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
+            </p>
+            <p>
+              b) What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
+            </p>
             <p>
               Outline how you evaluate and report on the impact.
             </p>
-          )
-          pdf_context %(
-            a\) How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
-            
-            b\) What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
-            
-            Outline how you evaluate and report on the impact.
-          )
+          }
           rows 5
           words_max 250
         end

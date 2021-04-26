@@ -684,7 +684,10 @@
       display: block;
     }
   }
+  .btn-cancel { float: left; margin-right: 0 }
 }
+
+.sidebar-section.no-margin-bottom { margin-bottom: 0; }
 
 .uploaded-file .btn-attachment {
   display: none;
