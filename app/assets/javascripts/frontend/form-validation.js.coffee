@@ -11,11 +11,11 @@ window.FormValidation =
 
   clearErrors: (container) ->
     if container.closest(".question-financial").size() > 0
-      if container.closest("label").find(".errors-container li").size() > 0
-        container.closest("label").find(".errors-container").empty()
+      container.closest("label").find(".errors-container").empty()
+    else if container.closest('.question-matrix').length > 0
+      container.closest("td").find(".errors-container").empty()
     else
-      if container.closest(".question-block").find(".errors-container li").size() > 0
-        container.closest(".question-block").find(".errors-container").empty()
+      container.closest(".question-block").find(".errors-container").empty()
     container.closest(".question-has-errors").removeClass("question-has-errors")
 
   addErrorMessage: (question, message) ->
@@ -285,7 +285,7 @@ window.FormValidation =
             @appendMessage(subq.closest(".span-financial"), "Minimum of #{employeeLimit} employees")
             @addErrorClass(question)
 
-  validateMatrix: (question) ->
+  validateMatrix: (question, input) ->
     # if it's a conditional question, but condition was not satisfied
     conditional = true
 
@@ -297,23 +297,27 @@ window.FormValidation =
       return
     # end of conditional validation
 
-    for subquestion in question.find("input")
+    subquestions = question.find("input")
+
+    if input
+      subquestions = [input]
+
+    for subquestion in subquestions
       subq = $(subquestion)
-      qParent = subq.parent()
+      qParent = subq.closest("td")
       val = subq.val().trim()
 
       if not val
         @appendMessage(qParent, "Required")
-        @addErrorClass(question)
+        @addErrorClass(qParent)
       else if isNaN(val)
         @appendMessage(qParent, "Only numbers")
-        @addErrorClass(question)
+        @addErrorClass(qParent)
       else
         t = parseInt(val, 10)
         if t < 0
           @appendMessage(qParent, "At least 0")
-          @addErrorClass(question)
-
+          @addErrorClass(qParent)
 
   validateCurrentAwards: (question) ->
     $(".errors-container", question).empty()
@@ -511,10 +515,10 @@ window.FormValidation =
 
     $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
       self.clearErrors $(this)
-      self.validateIndividualQuestion($(@).closest(".question-block"))
+      self.validateIndividualQuestion($(@).closest(".question-block"), $(@))
 
-  validateIndividualQuestion: (question) ->
-    if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
+  validateIndividualQuestion: (question, triggeringElement) ->
+    if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years") and not question.hasClass("question-matrix")
       # console.log "validateRequiredQuestion"
       @validateRequiredQuestion(question)
 
@@ -527,7 +531,7 @@ window.FormValidation =
       @validateYear(question)
 
     if question.hasClass("question-matrix")
-      @validateMatrix(question)
+      @validateMatrix(question, triggeringElement)
 
     if question.hasClass("question-money-by-years")
       # console.log "validateMoneyByYears"
