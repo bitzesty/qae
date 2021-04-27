@@ -21,7 +21,7 @@ class AwardYears::V2022::QAEForms
             <p>For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:</p>
 
             <ul>
-              <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
+              <li>Black, Asian and minority ethnic people, including Gypsy and Traveller people;</li>
               <li>Asylum seekers and refugees or children of refugees;</li>
               <li>Young people (over 16 years old) with English as a second language;</li>
               <li>Long-term unemployed or people who grew up in workless households;</li>
@@ -79,7 +79,7 @@ class AwardYears::V2022::QAEForms
             [:normal, %(
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
 
-              \u2022 People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;
+              \u2022 Black, Asian and minority ethnic people, including Gypsy and Traveller people;
 
               \u2022 Asylum seekers and refugees or children of refugees;
 
@@ -405,7 +405,7 @@ class AwardYears::V2022::QAEForms
           x_headings [2017, 2018, 2019, 2020, 2021]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
@@ -451,7 +451,7 @@ class AwardYears::V2022::QAEForms
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
@@ -497,7 +497,7 @@ class AwardYears::V2022::QAEForms
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
@@ -543,7 +543,7 @@ class AwardYears::V2022::QAEForms
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
@@ -909,7 +909,7 @@ class AwardYears::V2022::QAEForms
           x_headings [2017, 2018, 2019, 2020, 2021]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
@@ -955,7 +955,7 @@ class AwardYears::V2022::QAEForms
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
@@ -1001,7 +1001,7 @@ class AwardYears::V2022::QAEForms
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
@@ -1047,7 +1047,7 @@ class AwardYears::V2022::QAEForms
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
           y_headings [
-            ["ethnic", "People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people"],
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
             [ "refugees", "Asylum seekers and refugees or children of refugees"],
             [ "young_language", "Young people (over 16 years old) with English as a second language"],
             [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
