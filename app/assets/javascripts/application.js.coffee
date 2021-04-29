@@ -107,12 +107,10 @@ jQuery ->
     checkboxVal = input.val()
     answerVal = if isCheckbox then input.is(':checked').toString() else input.val()
     boolean_values = ["0", "1", "true", "false"]
+    values = input.closest(".question-block").find("input[type='checkbox']").map(() -> if $(@).is(":checked") then $(@).val() else null ).filter((e) -> !!e)
 
     question.each () ->
-      nonBooleanCheckboxMeetsCriteria = isCheckbox &&
-                                        input.is(':checked') &&
-                                        boolean_values.indexOf(checkboxVal) is -1 &&
-                                        $(this).attr('data-value') == checkboxVal
+      nonBooleanCheckboxMeetsCriteria = isCheckbox && $(this).attr('data-value') in values
       
       if $(this).attr('data-value') == answerVal || nonBooleanCheckboxMeetsCriteria || ($(this).attr('data-value') == "true" && (answerVal != 'false' && answerVal != false)) || ($(this).attr('data-type') == "in_clause_collection" && $(this).attr('data-value') <= answerVal)
         if clicked || (!clicked && input.attr('type') == 'radio' && input.is(':checked')) || (!clicked && input.attr('type') != 'radio')
