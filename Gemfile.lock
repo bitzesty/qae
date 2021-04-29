@@ -462,7 +462,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.0)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.4)
     money (6.13.1)
       i18n (>= 0.6.4, <= 2)
