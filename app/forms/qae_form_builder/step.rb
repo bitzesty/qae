@@ -109,6 +109,9 @@ class QAEFormBuilder
             "#{x_heading.key}_#{y_heading.key}"
           end
         end.flatten
+        sub_question_keys += question.x_headings.map do |x_heading|
+          "#{x_heading.key}_total"
+        end.flatten
       end
 
       if question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
