@@ -42,7 +42,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5.8
+          ruby-version: 2.5.9
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
@@ -80,7 +80,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5.8
+          ruby-version: 2.5.9
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
@@ -120,7 +120,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5.8
+          ruby-version: 2.5.9
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
