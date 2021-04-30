@@ -40,7 +40,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.5.9
       - uses: actions/setup-node@v2-beta
@@ -78,7 +78,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.5.9
       - uses: actions/setup-node@v2-beta
@@ -118,7 +118,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.5.9
       - uses: actions/setup-node@v2-beta

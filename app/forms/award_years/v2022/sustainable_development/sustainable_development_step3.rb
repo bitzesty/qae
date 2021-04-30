@@ -14,9 +14,15 @@ class AwardYears::V2022::QAEForms
             <p>
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
+
+            <h3>COVID-19 impact</h3>
+            <p>
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+            </p>
+
             <h3>Latest financial year and COVID-19</h3>
             <p>
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             </p>
             <h3>Estimated figures</h3>
             <p>
@@ -32,9 +38,13 @@ class AwardYears::V2022::QAEForms
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
+            [:bold, "COVID-19 impact"],
+            [:normal, %(
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+            )],
             [:bold, "Latest financial year and COVID-19"],
             [:normal, %(
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
             [:normal, %(
@@ -80,7 +90,7 @@ class AwardYears::V2022::QAEForms
 
           context %(
             <p>
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             </p>
             <p>
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
@@ -218,84 +228,8 @@ class AwardYears::V2022::QAEForms
           )
         end
 
-        options :entry_relates_to, "How do your sustainable development actions or interventions, that form the basis of this application, fit within the overall business?" do
-          ref "C 5"
-          required
-          option :entire_business, "It's integral to the whole business"
-          option :single_product_or_service, "It affects specific sustainable development actions or intervention"
-          context %(
-            <p>
-              It is important that we know whether or not your sustainable development is the key thing your business does or forms part of a wider approach. This is so we can understand the commercial value of your sustainable development in the context of your overall commercial performance.
-            </p>
-          )
-        end
-
-        header :product_financials, "Sustainable Development Financials" do
-          ref "C 6"
-          context %(
-            <p>If applicable, please provide your unit price, cost details and sales figures  to help us understand the value of your sustainable development.</p>
-
-            <p>Some questions may not apply, please answer the ones that are applicable to your sustainable development.</p>
-
-            <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
-
-            <p>Please do not separate your figures with commas.</p>
-          )
-        end
-
-        one_option_by_years :units_sold, "Number of units/contracts sold (if applicable)" do
-          classes "sub-question"
-          sub_ref "C 6.1"
-          type :number
-          label "..."
-        end
-
-        one_option_by_years :sales, "Sales (if applicable)" do
-          classes "sub-question"
-          sub_ref "C 6.2"
-          type :money
-          label "..."
-        end
-
-        one_option_by_years :sales_exports, "Of which exports (if applicable)" do
-          classes "sub-question"
-          sub_ref "C 6.3"
-          context %(<p>Please enter '0' if you had none.</p>)
-          type :money
-          label "..."
-        end
-
-        one_option_by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
-          classes "sub-question"
-          sub_ref "C 6.4"
-          context %(<p>Please enter '0' if you had none.</p>)
-          type :money
-          label "..."
-        end
-
-        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
-          classes "sub-question"
-          sub_ref "C 6.5"
-          rows 5
-          words_max 250
-        end
-
-        one_option_by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
-          sub_ref "C 6.6"
-          classes "sub-question"
-          type :money
-          label "..."
-        end
-
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.7"
-          rows 5
-          words_max 250
-        end
-
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "C 7"
+          ref "C 5"
           required
           yes_no
 
@@ -304,7 +238,7 @@ class AwardYears::V2022::QAEForms
 
         textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "C 7.1"
+          sub_ref "C 5.1"
           required
           rows 5
           words_max 250
@@ -312,7 +246,7 @@ class AwardYears::V2022::QAEForms
         end
 
         textarea :development_performance, "What cost-savings have you or your customers’ businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
-          ref "C 8"
+          ref "C 6"
           required
           context %(
             <p>
@@ -324,7 +258,7 @@ class AwardYears::V2022::QAEForms
         end
 
         textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
-          ref "C 9"
+          ref "C 7"
           required
           context %(
             <p>
@@ -335,17 +269,11 @@ class AwardYears::V2022::QAEForms
           words_max 400
         end
 
-        textarea :roi_details, "How long did it take or will it take you to break even? When and how was or will this be achieved?" do
-          sub_ref "C 9.1"
-          classes "sub-question"
+        textarea :covid_19_impact, "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
+          ref "C 8"
           required
-          context %(
-            <p>
-              'Breaking even' is when you reach a point where profits are equal to all costs (capital and operating).
-            </p>
-          )
           rows 5
-          words_max 250
+          words_max 400
         end
       end
     end

@@ -2,8 +2,8 @@
 / we search for this input in success callback to determine
 / whether file was saved or not
 .span
-  = hidden_field_tag "valid", "false", id: "form-audit_certificate-valid"
-= form_for [namespace_name, form_answer, audit_certificate], html: { multipart: true } do |form|
+  = hidden_field_tag "valid", "false", id: "form-list_of_procedure-valid"
+= form_for [namespace_name, form_answer, list_of_procedure], html: { multipart: true } do |form|
   .well.js-attachment-form
     h3 Attach document
 
@@ -21,4 +21,4 @@
 
     .form-actions.text-right
       = link_to "Cancel", "#", class: "btn btn-default btn-cancel"
-      = form.submit "Attach accountant's report", class: "btn btn-primary btn-submit"
+      = form.submit "Attach list of procedures", class: "btn btn-primary btn-submit"

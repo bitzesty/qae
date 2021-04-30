@@ -18,6 +18,11 @@ class AwardYears::V2022::QAEForms
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
 
+            <h3>COVID-19 impact</h3>
+            <p>
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+            </p>
+
             <h3>Sustainable Development Goals (SDGs)</h3>
             <p>
               You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
@@ -57,6 +62,10 @@ class AwardYears::V2022::QAEForms
             [:bold, "Small organisations"],
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            )],
+            [:bold, "COVID-19 impact"],
+            [:normal, %(
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
             [:bold, "Sustainable Development Goals (SDGs)"],
             [:normal, %(
@@ -262,10 +271,13 @@ class AwardYears::V2022::QAEForms
               c) The impact of your sustainable objectives. For example, impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.
             </p>
             <p>
-              d) What longer-term outcomes do you expect as a result of your sustainable development efforts?
+              d) How the impact compares to the sector. Please state what sector research or other evidence you have used to benchmark this. Include a web link to any research, if available.
             </p>
             <p>
-              e) State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation.
+              e) What longer-term outcomes do you expect as a result of your sustainable development efforts?
+            </p>
+            <p>
+              f) State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation.
             </p>
           }
           rows 10
@@ -331,8 +343,11 @@ class AwardYears::V2022::QAEForms
               c) How do you increase positive perceptions of your organisation’s sustainability among customers, stakeholders, or the media?
             </p>
             <p>
-              d) What mechanisms are in place to communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?<br />
-              If applicable, include in your answer or attach in section D of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability. Please note, where applicable, your company website or social media channels will be researched for evidence of your sustainability values, policies or promotion.
+              d) How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?<br />
+              Please include links to relevant pages on your company’s website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.
+            </p>
+            <p>
+              If applicable, include in your answer or attach in section D of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.
             </p>
             <p>
               e) Explain your strategy in developing sustainably for the future. For example, how are you changing your business model, approach, products or services to respond to future sustainability challenges in your business or sector?
