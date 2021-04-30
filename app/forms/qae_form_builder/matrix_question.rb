@@ -100,7 +100,7 @@ class QAEFormBuilder
                   :y_headings,
                   :values,
                   :column_widths
-             
+
     def after_create
       @x_headings = []
       @y_headings = []
