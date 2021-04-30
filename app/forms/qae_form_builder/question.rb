@@ -14,7 +14,8 @@ class QAEFormBuilder
       "QueenAwardApplicationsQuestion",
       "SupportersQuestion",
       "SubsidiariesAssociatesPlantsQuestion",
-      "ByTradeGoodsAndServicesLabelQuestion"
+      "ByTradeGoodsAndServicesLabelQuestion",
+      "MatrixQuestion"
     ]
 
     attr_reader :question, :answers
