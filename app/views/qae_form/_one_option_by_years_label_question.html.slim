@@ -6,7 +6,7 @@
           = "If you had growth in the last 3 years"
     .row
       - (1..3).each do |y|
-        .span-4.js-fy-entries class="#{'fy-latest' if y == 3}"
+        .span-6.js-fy-entries class="#{'fy-latest' if y == 3}"
           span.js-year-end.show-default data-year="#{y}of3"
             span.js-year-default
               = question.format_label(y)
