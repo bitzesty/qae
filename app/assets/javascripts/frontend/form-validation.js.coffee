@@ -69,11 +69,11 @@ window.FormValidation =
     if question.find("input").hasClass("not-required")
       return true
     else
-      if @isTextishQuestion(question)
-        return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().trim().length
-
       if @isSelectQuestion(question)
         return question.find("select").val()
+
+      if @isTextishQuestion(question)
+        return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().trim().length
 
       if @isOptionsQuestion(question)
         return question.find("input[type='radio']").filter(":checked").length
