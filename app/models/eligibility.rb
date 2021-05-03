@@ -16,7 +16,11 @@ class Eligibility < ApplicationRecord
   end
 
   def self.hint(name)
-    @questions[name.to_sym][:hint]
+    if @questions[name.to_sym][:hint].respond_to?(:call)
+      @questions[name.to_sym][:hint].call
+    else
+      @questions[name.to_sym][:hint]
+    end
   end
 
   def self.hint_partial(name)
