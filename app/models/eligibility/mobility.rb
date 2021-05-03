@@ -5,7 +5,7 @@ class Eligibility::Mobility < Eligibility
             boolean: true,
             label: "Are you able to provide financial figures for the last three years for your organisation?",
             accept: :true,
-            hint: "<p class='question-context'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>"
+            hint: proc { "<p class='question-context'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>" }
 
   property :promoting_social_mobility,
             boolean: true,
