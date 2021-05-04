@@ -82,7 +82,7 @@ deploy_dev:
     name: dev
     url: https://dev.queens-awards-enterprise.service.gov.uk/
   only:
-    - master
+    - main
 
 deploy_staging:
   stage: deploy

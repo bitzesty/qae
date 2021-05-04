@@ -15,7 +15,7 @@ SimpleCov.coverage_dir(coverage_dir)
 exit if !node_index.zero?
 
 # Only submit coverage to codeclimate on master branch
-exit if branch != 'master'
+exit if branch != 'main'
 
 if node_total > 0
   # Copy coverage results from all nodes to circle artifacts directory
