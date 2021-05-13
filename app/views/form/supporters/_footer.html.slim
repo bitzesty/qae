@@ -10,7 +10,7 @@ footer
               = step.previous.title
       - else
         li.previous.previous-alternate
-          = link_to [:award_info, @form_answer.award_type, form_id: @form_answer.id], rel: "prev", title: "Navigate to previous part" do
+          = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: "Navigate to previous part" do
             span.pagination-label
               | Back
 
