@@ -17,7 +17,7 @@
       p
         = "Search results for '#{@search.query}'"
         small
-          = link_to "(Clear search)", [:admin, controller_name], class: "btn btn-link"
+          = link_to "(Clear search)", [:admin, controller_name.to_sym], class: "btn btn-link"
 
   = render 'list', resources: @resources, f: f
 
