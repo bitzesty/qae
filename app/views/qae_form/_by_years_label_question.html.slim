@@ -8,7 +8,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
               = "If you had growth in the last #{c.years} years"
         .row
           - (1..c.years).each do |y|
-            .span-4.js-fy-entries class="#{'fy-latest' if y == c.years}"
+            .span-6.js-fy-entries class="#{'fy-latest' if y == c.years}"
               span.js-year-end.show-default data-year="#{y}of#{c.years}"
                 span.js-year-default
                   = question.format_label(y)

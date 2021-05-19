@@ -42,7 +42,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5.9
+          ruby-version: 2.6.6
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
@@ -65,7 +65,7 @@ jobs:
           RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml --format progress
   deploy_dev:
     needs: [test]
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
@@ -80,7 +80,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5.9
+          ruby-version: 2.6.6
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
@@ -120,7 +120,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5.9
+          ruby-version: 2.6.6
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
