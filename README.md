@@ -33,7 +33,7 @@ If you need to test collaborators editing the application at the same time, inst
 
 ## Deploying
 
-Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (master, staging, production).
+Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging, production).
 
 CF based PaaS is used for hosting [https://cloud.service.gov.uk](https://www.cloud.service.gov.uk/)
 

@@ -15,7 +15,7 @@ footer
           - if step.index == 0
             - aria_label = "Back to Useful Application Information page"
           
-          = link_to [:award_info, @form_answer.award_type, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label do
+          = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label do
             span.pagination-label
               | Back
 

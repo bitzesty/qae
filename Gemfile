@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 git_source(:github) { |name| "https://github.com/#{name}.git" }
 
-ruby '~> 2.5.6'
+ruby '~> 2.6.6'
 
-gem 'rails', '~> 6.0.3.6'
+gem 'rails', '~> 6.0.3.7'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -187,6 +187,6 @@ group :test do
   gem 'codeclimate_circle_ci_coverage'
   gem 'rspec_junit_formatter', '0.2.3'
   gem 'timecop'
-  gem 'webmock', '3.3.0'
+  gem 'webmock', '3.5.0'
   gem 'rspec-sidekiq'
 end
