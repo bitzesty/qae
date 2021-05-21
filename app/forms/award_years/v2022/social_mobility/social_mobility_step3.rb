@@ -238,6 +238,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 6"
           required
           rows 5
+          words_max 300
         end
       end
     end
