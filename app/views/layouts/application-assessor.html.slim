@@ -1,4 +1,5 @@
 doctype html
+<html lang="en">
 /[if lt IE 7]
   <html class="ie ie6 lte-ie9 lte-ie8 lte-ie7 lte-ie6 no-js">
 /[if IE 7]
@@ -78,7 +79,7 @@ html.no-js
           = render "shared/staging_banner"
           = render "shared/non_js_banner"
 
-        #main-container
+        #main-container role="main"
           .container
             - unless notice.blank?
               .alert-container
