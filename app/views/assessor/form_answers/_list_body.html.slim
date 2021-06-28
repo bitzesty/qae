@@ -15,7 +15,7 @@ tbody
 
       td
         - if obj.urn.present?
-          = link_to obj.urn, polymorphic_url([namespace_name, obj], search: params.permit[:search])
+          = link_to obj.urn, polymorphic_url([namespace_name, obj], search: params.permit[:search]),  aria: { label: "View submitted application, reference #{obj.urn}" }
         - else
           span.urn-not-generated Not yet generated
 
