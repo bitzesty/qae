@@ -3,10 +3,10 @@
   tr
     td.td-title
       - unless obj.company_or_nominee_name.nil?
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) do
+        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]),  aria: { label: "View submitted application, for #{obj.company_or_nominee_name}" } do
           = obj.company_or_nominee_name
       - else
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) do
+        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) ,  aria: { label: "View submitted application, company or nominee name not found" }do
           em
             ' Not found
     td
