@@ -8,7 +8,7 @@
   - if user_record.debounce_api_latest_check_at.present?
 
     - if user_record.marked_at_bounces_email?
-      = image_tag "icon-important-sm-red.png"
+      = image_tag "icon-important-sm-red.png", aria: { hidden: true }
       span.check-result-title
         | Bounces
       br
@@ -19,7 +19,7 @@
         = user_record.decorate.debounce_api_check_cycle_details
 
     - else
-      = image_tag "icon-grade-positive.png"
+      = image_tag "icon-grade-positive.png", aria: { hidden: true }
       span.check-result-title
         | Valid!
       br
@@ -28,7 +28,7 @@
         = user_record.decorate.debounce_api_check_cycle_details
 
   - else
-    = image_tag "icon-info.png"
+    = image_tag "icon-info.png", aria: { hidden: true }
     span.check-result-title
       | Not scanned yet!
     br

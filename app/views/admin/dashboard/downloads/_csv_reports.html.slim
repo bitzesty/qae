@@ -7,7 +7,7 @@ ul.download-list
     / p.download-item__description
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
-    = link_to "Download", admin_report_path("registered-users", format: :csv, year: @award_year.year), class: "download-link"
+    = link_to "Download", admin_report_path("registered-users", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Registered users entry" }
 
 
   li.download-item
@@ -16,7 +16,7 @@ ul.download-list
     / p.download-item__description
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
-    = link_to "Download", admin_report_path("cases-status", format: :csv, year: @award_year.year), class: "download-link"
+    = link_to "Download", admin_report_path("cases-status", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Case status" }
 
   li.download-item
     p.download-item__title
@@ -24,7 +24,7 @@ ul.download-list
     / p.download-item__description
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
-    = link_to "Download", admin_report_path("entries-report", format: :csv, year: @award_year.year), class: "download-link"
+    = link_to "Download", admin_report_path("entries-report", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Entries report" }
 
   li.download-item
     p.download-item__title
@@ -32,7 +32,7 @@ ul.download-list
     / p.download-item__description
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
-    = link_to "Download", admin_report_path("press-book-list", class: "action-title", format: :csv, year: @award_year.year), class: "download-link"
+    = link_to "Download", admin_report_path("press-book-list", class: "action-title", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Press book list" }
 
   li.download-item
     p.download-item__title
@@ -40,4 +40,4 @@ ul.download-list
     / p.download-item__description
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
-    = link_to "Download", admin_report_path("reception-buckingham-palace", class: "action-title", format: :csv, year: @award_year.year), class: "download-link"
+    = link_to "Download", admin_report_path("reception-buckingham-palace", class: "action-title", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Reception Buckingham Palace" }
