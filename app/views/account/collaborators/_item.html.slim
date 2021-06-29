@@ -1,4 +1,4 @@
-li.list-group-item id=dom_id(collaborator)
+li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator == account_owner ? "Account owner" : collaborator.role_name} summary"
   - if current_user.account_admin? && collaborator != account_owner
     .pull-right
       = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link"
@@ -12,4 +12,4 @@ li.list-group-item id=dom_id(collaborator)
       br
     = mail_to collaborator.email
   p.collaborator__role
-    = collaborator == account_owner ? "Account owner" : collaborator.role_name
+    = role
