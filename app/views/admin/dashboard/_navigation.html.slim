@@ -1,5 +1,5 @@
 .nav-subnav
-  ul
+  ul role="navigation"
     li class="dashboard-live #{'active' if params[:action] == "index"}" role="presentation"
       = link_to "Live data", admin_dashboard_index_path
     li class="dashboard-monthly #{'active' if params[:action] == "totals_by_month"}" role="presentation"
