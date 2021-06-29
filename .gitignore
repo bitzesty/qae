@@ -13,6 +13,7 @@ certs/*
 
 *.swp
 *.swo
+*.rdb
 .idea
 
 .ruby-gemset
