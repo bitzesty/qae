@@ -3,14 +3,14 @@
   tr
     td.td-title
       - unless obj.company_or_nominee_name.nil?
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) do
+        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]),  aria: { label: "View submitted application, for #{obj.company_or_nominee_name}" } do
           = obj.company_or_nominee_name
       - else
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) do
+        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) ,  aria: { label: "View submitted application, company or nominee name not found" }do
           em
             ' Not found
     td
-      = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type])
+      = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]),  aria: { label: "View submitted application, reference #{obj.urn.present? ? obj.urn : 'Not generated'}" }
         - if obj.urn.present?
           = obj.urn
         - else
@@ -32,4 +32,4 @@
       br
       span.muted
         = obj.last_updated_by
-    td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
+    td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view", aria: { label: "View application form, reference #{obj.urn.present? ? obj.urn : 'Not generated'}" }
