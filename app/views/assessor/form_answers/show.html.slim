@@ -10,7 +10,7 @@
         .clear
 .row.inline-form-view
   .show-sidebar-container
-    .show-sidebar
+    .show-sidebar aria-label="Application summary"
       = render("admin/form_answers/applicant_details")
 
       = render("admin/form_answers/applicant_status")
@@ -18,5 +18,5 @@
       = render("admin/form_answers/assessors_section")
       = render("admin/form_answers/previous_applications_section")
 
-  .show-main-content.submitted-view
+  .show-main-content.submitted-view aria-label="Additional application details"
     = render "submitted_view"

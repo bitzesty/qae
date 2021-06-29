@@ -54,7 +54,7 @@ header.page-header.group.page-header-over-sidebar
 
           = simple_form_for current_user, url: complete_registration_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
             // TODO remove form_contact_settins
-            .visuallyhidden
+            // .visuallyhidden
               = render "accounts/form_contact_settings", f: f
 
             = render "list"
