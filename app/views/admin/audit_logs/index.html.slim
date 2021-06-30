@@ -1,41 +1,44 @@
-.row
-  .col-xs-12
-    .table-overflow-container
-      table.table.audit-log-table
-        colgroup
-          col width="100"
-          col width="100"
-          col width="400"
-        thead
-          tr
-            th.sortable
-              ' Date
-            th.sortable
-              ' User
-            th.sortable
-              ' Data Exported
-        tbody
-          - if @audit_logs.none?
+.dashboard
+  h1.dashboard__heading
+    | Data Export Log
+  .row
+    .col-xs-12
+      .table-overflow-container
+        table.table.audit-log-table
+          colgroup
+            col width="100"
+            col width="100"
+            col width="400"
+          thead
             tr
-              td.text-center colspan=100
-                br
-                p.p-empty No audit logs.
-                br
-          - else
-            - @audit_logs.each do |audit_log|
+              th.sortable
+                ' Date
+              th.sortable
+                ' User
+              th.sortable
+                ' Data Exported
+          tbody
+            - if @audit_logs.none?
               tr
-                td
-                  = audit_log.created_at.strftime("%d/%m/%Y %-l:%M%P")
-                td
-                  = audit_log.subject.email
-                td
-                  - if audit_log.action_type != "download_form_answer"
-                    = t("audit_logs.action_types.#{audit_log.action_type.gsub(/-/, '_')}")
-                  - else
-                    = link_to t("audit_logs.action_types.#{audit_log.action_type}"), admin_form_answers_path(audit_log.auditable)
+                td.text-center colspan=100
+                  br
+                  p.p-empty No audit logs.
+                  br
+            - else
+              - @audit_logs.each do |audit_log|
+                tr
+                  td
+                    = audit_log.created_at.strftime("%d/%m/%Y %-l:%M%P")
+                  td
+                    = audit_log.subject.email
+                  td
+                    - if audit_log.action_type != "download_form_answer"
+                      = t("audit_logs.action_types.#{audit_log.action_type.gsub(/-/, '_')}")
+                    - else
+                      = link_to t("audit_logs.action_types.#{audit_log.action_type}"), admin_form_answers_path(audit_log.auditable)
 
 
-.row
-  .col-xs-12.text-right
-    = paginate @audit_logs
-    .clear
+  .row
+    .col-xs-12.text-right
+      = paginate @audit_logs
+      .clear
