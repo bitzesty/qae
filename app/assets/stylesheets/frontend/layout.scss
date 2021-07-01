@@ -58,7 +58,7 @@ details + details {
   }
 
   &.floated-children {
-    @extend %contain-floats;
+    // @extend %contain-floats;
 
     padding: 0;
 
@@ -369,48 +369,9 @@ header.page-header div {
   }
 }
 
-// Alpha tag next to title
-.beta-tag {
-  @include phase-tag(beta);
-  margin-left: 4px;
-
-  @media (min-width: 641px) {
-    position: relative;
-    top: -3px;
-    margin-left: 8px;
-  }
-
-  @include ie-lte(8) {
-    position: relative;
-    top: 3px;
-  }
-}
-
 // Removes bullet point list-style from proposition-links
 #proposition-links {
   list-style: none;
-}
-
-// Position account links to be top right and make them a dropdown
-#proposition-menu {
-  @media (min-width: 990px) {
-    position: relative;
-    margin-top: 10px;
-  }
-
-  #proposition-name {
-    &:focus {
-      background: transparent;
-    }
-  }
-
-  li {
-    padding-right: 25px;
-
-    a {
-      // font-size: 1px;
-    }
-  }
 }
 
 #global-header .header-proposition #proposition-menu {
@@ -819,10 +780,6 @@ article .help-notice ul {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    @include ie-lte(7) {
-      height: 4.5em;
-    }
-
     &:hover,
     &:active {
       background-color: $canvas-colour;
@@ -902,11 +859,6 @@ article .help-notice ul {
   line-height: 1.5;
   text-align: center;
   vertical-align: baseline;
-
-  .lte-ie6 & {
-    display: block;
-    visibility: visible;
-  }
 
   a {
     color: $white;

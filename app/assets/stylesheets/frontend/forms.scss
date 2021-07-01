@@ -114,21 +114,6 @@ h2 > .boolean.control-label {
   overflow: hidden;
 }
 
-// Expanded the standard input style to include other types
-input[type="text"],
-input[type="search"],
-input[type="number"],
-input[type="email"],
-input[type="password"],
-input[type="url"],
-input[type="tel"],
-input[type="file"] {
-  @media (max-width: 640px) {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-}
 
 .fileinput-button {
   position: absolute;
@@ -141,129 +126,6 @@ input[type="file"] {
   filter: alpha(opacity=0) !important;
   opacity: 0 !important;
   direction: ltr;
-}
-
-input[type="text"],
-input[type="search"],
-input[type="number"],
-input[type="email"],
-input[type="password"],
-input[type="url"],
-input[type="tel"],
-input[type="file"],
-textarea {
-  @include core-19;
-  border: 1px solid #bbb;
-  min-width: 8em;
-  margin: 0 0.5em;
-  padding: 0.25em;
-
-  @include ie-lte(7) {
-    width: 8em;
-  }
-
-  @media (max-width: 640px) {
-    width: 100%;
-  }
-
-  // Alternate width sizes for inputs based on
-  // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
-  &.tiny {
-    min-width: 2.5em;
-    max-width: 2.5em;
-
-    @include ie-lte(7) {
-      width: 2.5em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-    }
-  }
-
-  &.small {
-    max-width: 8em;
-
-    @include ie-lte(7) {
-      width: 8em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-    }
-  }
-
-  &.small-medium {
-    max-width: 9.25em;
-
-    @include ie-lte(7) {
-      width: 9.25em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-    }
-  }
-
-  &.medium {
-    min-width: 16em;
-
-    @include ie-lte(7) {
-      width: 16em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-      max-width: 16em;
-    }
-  }
-
-  &.large {
-    min-width: 24em;
-
-    @include ie-lte(7) {
-      width: 24em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-      max-width: 24em;
-    }
-  }
-
-  &.largest {
-    width: 100%;
-    min-width: 0;
-    max-width: none;
-  }
-
-  .span-1 &,
-  .span-2 &,
-  .span-3 &,
-  .span-4 &,
-  .span-5 &,
-  .span-6 &,
-  .span-7 &,
-  .span-8 &,
-  .span-9 &,
-  .span-10 &,
-  .span-11 &,
-  .span-12 & {
-    @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-              box-sizing: border-box;
-    }
-
-    .lte-ie7 & {
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-    }
-  }
 }
 
 .custom-select {
@@ -637,18 +499,6 @@ input[type="file"] {
     color: $white !important;
   }
 
-  &.large {
-    @include core-24($line-height: (16 / 24));
-    padding: 0.45em 0.5em 0.35em 0.5em;
-    display: inline-block;
-    line-height: 1;
-
-    /* IE6 adds its own side padding so requires no extra */
-    @include ie(6) {
-      padding: 0.45em 0.5em 0.62em 0.5em;
-    }
-  }
-
   &.button-block {
     display: block;
     text-align: center;
@@ -692,11 +542,6 @@ input[type="file"] {
     @media (max-width: 640px) {
       line-height: 1.9;
     }
-
-    @include ie-lte(8) {
-      font-size: 26px;
-      line-height: 0.75;
-    }
   }
 
   .hidden-arrow-down {
@@ -704,11 +549,6 @@ input[type="file"] {
 
     @media (max-width: 640px) {
       line-height: 1.9;
-    }
-
-    @include ie-lte(8) {
-      font-size: 16px;
-      line-height: 1.2;
     }
   }
 
@@ -721,10 +561,6 @@ input[type="file"] {
     padding-left: 1em;
     text-decoration: underline;
     font-weight: normal;
-
-    @include ie-lte(8) {
-      padding-left: 20px;
-    }
   }
 
   .hidden-content {
@@ -1147,16 +983,10 @@ input[type="file"] {
   }
 
   .button {
-    @include button;
     @include core-24($line-height: (16 / 24));
     padding: 0.45em 0.5em 0.35em 0.5em;
     display: inline-block;
     line-height: 1;
-
-    /* IE6 adds its own side padding so requires no extra */
-    @include ie(6) {
-      padding: 0.45em 0.5em 0.62em 0.5em;
-    }
   }
 }
 
@@ -1487,10 +1317,6 @@ fieldset.account-contact-preferences-other-ops {
     margin-right: 20px;
     margin-top: 20px !important;
   }
-}
-
-.form-actions {
-  margin-top: 3em;
 }
 
 .static-field {

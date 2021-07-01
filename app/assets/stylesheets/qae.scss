@@ -1,3 +1,5 @@
+//= require govuk-frontend-3.13.0.min.css
+
 @font-face{
   font-family:GDS Transport;
   font-style:normal;
@@ -14,7 +16,11 @@
       asset-url("bold-affa96571d-v2.woff") format("woff");
   font-display:fallback
 }
-@import 'govuk-frontend-3.13.0.min.css';
+
+@mixin media($size:"", $min-width: "") {
+  @content;
+}
+
 // @import "shims";
 // @import "grid_layout";
 // @import "conditionals";
@@ -35,33 +41,33 @@ $gutter-two-thirds: $gutter-one-third*2;
 $gutter-one-sixth: $gutter/6;
 
 // local styleguide includes
-// @import "styleguide/conditionals2";
+@import "styleguide/conditionals2";
 
 // // App specific styles
-// @import "helpers/layouts";
-// @import "helpers/reset";
-// @import "helpers/buttons";
-// @import "helpers/core";
-// @import "helpers/ancillary-pages";
-// @import "helpers/footer";
-// @import "helpers/header";
-// @import "helpers/multi-step";
-// @import "helpers/notifications";
-// @import "helpers/organisations";
-// @import "helpers/publisher";
-// @import "helpers/text";
-// @import "helpers/alpha-label";
-// @import "helpers/beta-label";
-// @import "helpers/selectable";
+@import "helpers/layouts";
+@import "helpers/reset";
+@import "helpers/buttons";
+@import "helpers/core";
+@import "helpers/ancillary-pages";
+@import "helpers/footer";
+@import "helpers/header";
+@import "helpers/multi-step";
+@import "helpers/notifications";
+@import "helpers/organisations";
+@import "helpers/publisher";
+@import "helpers/text";
+@import "helpers/alpha-label";
+@import "helpers/beta-label";
+@import "helpers/selectable";
 
-// @import "admin/toggle";
+@import "admin/toggle";
 
-// @import "mixins";
-// @import "frontend/smart_answers";
-// @import "frontend/layout";
-// @import "frontend/forms";
-// @import "frontend/attachment";
-// @import "frontend/tables";
+@import "mixins";
+@import "frontend/smart_answers";
+@import "frontend/layout";
+@import "frontend/forms";
+@import "frontend/attachment";
+@import "frontend/tables";
 
 //
 @import "qae-slimmer-patch";
