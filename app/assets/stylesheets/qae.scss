@@ -1,50 +1,73 @@
-@import "shims";
-@import "grid_layout";
-@import "conditionals";
-@import "colours";
+@font-face{
+  font-family:GDS Transport;
+  font-style:normal;
+  font-weight:400;
+  src:asset-url("light-94a07e06a1-v2.woff2") format("woff2"),
+      asset-url("light-f591b13f7d-v2.woff") format("woff");
+  font-display:fallback
+}
+@font-face{
+  font-family:GDS Transport;
+  font-style:normal;
+  font-weight:700;
+  src:asset-url("bold-b542beb274-v2.woff2") format("woff2"),
+      asset-url("bold-affa96571d-v2.woff") format("woff");
+  font-display:fallback
+}
+@import 'govuk-frontend-3.13.0.min.css';
+// @import "shims";
+// @import "grid_layout";
+// @import "conditionals";
+// @import "colours";
 @import "styleguide/palette";
-@import "css3";
-@import "typography";
-@import "device-pixels";
-@import "measurements";
-@import "design-patterns/buttons";
-@import "design-patterns/alpha-beta";
+@import "styleguide/typography";
+// @import "css3";
+// @import "typography";
+// @import "device-pixels";
+// @import "measurements";
+// @import "design-patterns/buttons";
+// @import "design-patterns/alpha-beta";
 
+$gutter: 30px;
+$gutter-half: $gutter/2;
+$gutter-one-third: $gutter/3;
+$gutter-two-thirds: $gutter-one-third*2;
 $gutter-one-sixth: $gutter/6;
 
 // local styleguide includes
-@import "styleguide/conditionals2";
+// @import "styleguide/conditionals2";
 
-// App specific styles
-@import "helpers/layouts";
-@import "helpers/reset";
-@import "helpers/buttons";
-@import "helpers/core";
-@import "helpers/ancillary-pages";
-@import "helpers/footer";
-@import "helpers/header";
-@import "helpers/multi-step";
-@import "helpers/notifications";
-@import "helpers/organisations";
-@import "helpers/publisher";
-@import "helpers/text";
-@import "helpers/alpha-label";
-@import "helpers/beta-label";
-@import "helpers/selectable";
+// // App specific styles
+// @import "helpers/layouts";
+// @import "helpers/reset";
+// @import "helpers/buttons";
+// @import "helpers/core";
+// @import "helpers/ancillary-pages";
+// @import "helpers/footer";
+// @import "helpers/header";
+// @import "helpers/multi-step";
+// @import "helpers/notifications";
+// @import "helpers/organisations";
+// @import "helpers/publisher";
+// @import "helpers/text";
+// @import "helpers/alpha-label";
+// @import "helpers/beta-label";
+// @import "helpers/selectable";
 
-@import "admin/toggle";
+// @import "admin/toggle";
 
-@import "mixins";
-@import "frontend/smart_answers";
-@import "frontend/layout";
-@import "frontend/forms";
-@import "frontend/attachment";
-@import "frontend/tables";
+// @import "mixins";
+// @import "frontend/smart_answers";
+// @import "frontend/layout";
+// @import "frontend/forms";
+// @import "frontend/attachment";
+// @import "frontend/tables";
 
 //
 @import "qae-slimmer-patch";
 
-@import "styleguide/cookie-banner";
+
+// @import "styleguide/cookie-banner";
 
 // Page specific styles
 #QAE {

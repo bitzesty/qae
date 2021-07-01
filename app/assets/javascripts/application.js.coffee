@@ -1,3 +1,4 @@
+#= require govuk-frontend-3.13.0.min
 #= require jquery
 #= require jquery_ujs
 #= require vendor/file_upload/jquery.ui.widget
@@ -5,7 +6,6 @@
 #= require vendor/file_upload/jquery.fileupload
 #= require vendor/file_upload/jquery.fileupload-process
 #= require vendor/file_upload/jquery.fileupload-validate
-#= require select2.full.min
 #= require ckeditor/init
 #= require ./ckeditor/config.js
 #= require Countable
@@ -44,14 +44,12 @@ ordinal = (n) ->
 
 jQuery ->
   GOVUK.details.init();
+  GOVUKFrontend.initAll();
 
-  $("html").removeClass("no-js").addClass("js")
+  $("html").removeClass("no-js")
 
   offlineCheck = new Offline
   offlineCheck.start()
-
-  # initialize Select dropdowns, if needed
-  window.Select2Dropdowns.init()
 
   # This is a very primitive way of testing.
   # Should be refactored once forms stabilize.

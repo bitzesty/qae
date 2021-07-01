@@ -6,7 +6,8 @@ SimpleForm.setup do |config|
   # stack. The options given below are used to wrap the
   # whole input.
   config.wrappers :default,
-                  class: :input,
+                  class: 'govuk-form-group',
+                  label_class: 'govuk-label',
                   hint_class: "field-with-hint",
                   error_class: "field-with-errors" do |b|
     ## Extensions enabled by default
@@ -63,7 +64,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :inline
 
   # Default class for buttons
-  config.button_class = 'button'
+  config.button_class = 'govuk-button'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -103,7 +104,7 @@ SimpleForm.setup do |config|
   config.label_text = lambda { |label, required, explicit_label| label }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
+  config.label_class = 'govuk-label'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form

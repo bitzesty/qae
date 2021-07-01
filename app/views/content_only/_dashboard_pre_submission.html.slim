@@ -3,7 +3,7 @@
     article.group role="article"
       .inner
         - if @user_award_forms.any?
-          h2
+          h2.govuk-heading-m
             ' Current Applications
           = render "current_applications", award_applications: @user_award_forms_trade
           = render "current_applications", award_applications: @user_award_forms_innovation

@@ -70,7 +70,7 @@ module ApplicationHelper
   end
 
   def show_navigation_links?
-    current_user.completed_registration? && current_user.account.has_collaborators?
+    current_user.present? && current_user.completed_registration? && current_user.account.has_collaborators?
   end
 
   def application_deadline(kind)

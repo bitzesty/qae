@@ -17,22 +17,20 @@
 
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-          .form-inputs
-            .question
-              h2 = f.label :email
-              .question-body
-                = f.input :email, required: false, autofocus: true, label: false, input_html: {class: "large"}
+          .govuk-form-group
+            = f.input :email, required: false, autofocus: true, label: 'Email', input_html: {class: "govuk-input"}
+          .govuk-form-group
+            = f.input :password, required: false, label: 'Password', input_html: {class: "govuk-input"}
 
-          .form-inputs
-            .question
-              h2 = f.label :password
-              .question-body
-                = f.input :password, required: false, label: false, input_html: {class: "medium"}
+          .govuk-form-group
+            .govuk-checkboxes
+             = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
           .form-inputs
             .question
               .question-body
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          
 
           - if login_email_or_password_is_incorrect?
             .guidance-panel.account-notice
