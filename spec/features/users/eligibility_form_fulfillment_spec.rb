@@ -96,6 +96,6 @@ def form_choice(labels)
 end
 
 def new_application(type)
-  header = find(".applications-list li h3", text: type)
-  header.find(:xpath, '..').first("a").click
+  header = find(".applications-list .govuk-summary-list__row .govuk-summary-list__key .govuk-heading-s", text: type)
+  header.find(:xpath, '../..').first("a").click
 end
