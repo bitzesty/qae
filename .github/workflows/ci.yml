@@ -65,7 +65,7 @@ jobs:
           RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml --format progress
   deploy_dev:
     needs: [test]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/toolkit-upgrade'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
