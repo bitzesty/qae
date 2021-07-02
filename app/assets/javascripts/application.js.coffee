@@ -11,11 +11,8 @@
 #= require Countable
 #= require moment.min
 #= require core
-#= require vendor/polyfills/bind
-#= require govuk/selection-buttons
 #= require libs/suchi/isOld.js
 #= require libs/pusher.min.js
-#= require govuk_toolkit
 #= require mobile
 #= require browser-check
 #= require vendor/zxcvbn

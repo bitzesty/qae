@@ -19,16 +19,17 @@ gem 'paper_trail', '~> 10.3'
 # Assets & Templates
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', '>= 2.0.0'
+gem 'sassc-rails', '~> 2.0.0'
 gem 'slim-rails', '~> 3.2.0'
 gem 'coffee-rails', '5.0'
 gem 'jquery-rails', '4.3.5'
 gem 'jquery-ui-rails', '6.0.1'
 gem 'bootstrap-sass', '~> 3.4'
-gem 'govuk_frontend_toolkit', '~> 3.1.0'
-gem 'govuk_template', '0.12.0'
+gem 'govuk-components'
 gem 'uglifier', '>= 2.7.2'
 gem 'js_cookie_rails', '2.1.4'
 gem 'ckeditor', github: 'galetahub/ckeditor', ref: "752bca97f78e5c5df3fbd876e51a06918da804e2"
+gem 'webpacker', '~> 6.x'
 
 # Autolinking in admin mass user mailer
 gem 'rails_autolink'

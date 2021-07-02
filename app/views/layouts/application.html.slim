@@ -2,22 +2,6 @@
 
 - content_for :head do
   = stylesheet_link_tag "application.css"
-  /[if IE 6]
-    = stylesheet_link_tag "application-ie6.css"
-    script type="text/javascript"
-      | var ieVersion = 6;
-  /[if IE 7]
-    = stylesheet_link_tag "application-ie7.css"
-    script type="text/javascript"
-      | var ieVersion = 7;
-  /[if IE 8]
-    = stylesheet_link_tag "application-ie8.css"
-    script type="text/javascript"
-      | var ieVersion = 8;
-  /[if IE 9]
-    = stylesheet_link_tag "application-ie9.css"
-    script type="text/javascript"
-      | var ieVersion = 9;
 
   - if Rails.env.test?
     style
@@ -49,8 +33,8 @@
             = link_to "Collaborators", account_collaborators_path, class: 'govuk-header__link'
           li.govuk-header__navigation-item
             = link_to "Account details", correspondent_details_account_path, class: 'govuk-header__link'
-        li.govuk-header__navigation-item
-          = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'govuk-header__link'
+          li.govuk-header__navigation-item
+            = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'govuk-header__link'
 
 - content_for :inside_header do
   - if landing_page?

@@ -45,7 +45,7 @@ jobs:
           ruby-version: 2.6.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: '14'
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
       - name: Build and run tests
@@ -83,7 +83,7 @@ jobs:
           ruby-version: 2.6.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: '14'
       - name: "Deploy dev"
         env:
           name: dev
@@ -97,6 +97,7 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: |
+          npm install -g yarn
           curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
           sudo dpkg -i cf-cli_amd64.deb
           cf -v
