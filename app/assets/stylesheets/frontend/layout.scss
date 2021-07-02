@@ -804,30 +804,30 @@ article .help-notice ul {
   &.previous button {
     padding: 0.75em 0 0.75em 3em;
 
-    &:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
-      margin: -4px 0 0 -32px;
-      display: block;
-      float: left;
-      width: 30px;
-      height: 38px;
-      content: " ";
-    }
+    // &:before {
+    //   background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
+    //   margin: -4px 0 0 -32px;
+    //   display: block;
+    //   float: left;
+    //   width: 30px;
+    //   height: 38px;
+    //   content: " ";
+    // }
   }
 
   &.next button {
     padding: 0.75em 3em 0.75em 0;
     text-align: right;
 
-    &:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
-      margin: -4px -32px 0 0;
-      display: block;
-      float: right;
-      width: 30px;
-      height: 38px;
-      content: " ";
-    }
+    // &:before {
+    //   background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
+    //   margin: -4px -32px 0 0;
+    //   display: block;
+    //   float: right;
+    //   width: 30px;
+    //   height: 38px;
+    //   content: " ";
+    // }
   }
 
   @include media-down(mobile) {

@@ -380,25 +380,25 @@ aside .page-navigation-closed {
       text-align: right;
     }
 
-    &.next a:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
-      margin: -4px -32px 0 0;
-      display: block;
-      float: right;
-      width: 30px;
-      height: 38px;
-      content: " ";
-    }
+    // &.next a:before {
+    //   background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
+    //   margin: -4px -32px 0 0;
+    //   display: block;
+    //   float: right;
+    //   width: 30px;
+    //   height: 38px;
+    //   content: " ";
+    // }
 
-    &.previous a:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
-      margin: -4px 0 0 -32px;
-      display: block;
-      float: left;
-      width: 30px;
-      height: 38px;
-      content: " ";
-      }
+    // &.previous a:before {
+    //   background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
+    //   margin: -4px 0 0 -32px;
+    //   display: block;
+    //   float: left;
+    //   width: 30px;
+    //   height: 38px;
+    //   content: " ";
+    //   }
 
     &.previous {
       float: left;
