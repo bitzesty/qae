@@ -1,4 +1,4 @@
-- title "Queen's Awards for Enterprise. Winners' Resources 2018"
+- title "Winners' Resources 2018"
 
 - winners = FormAnswerDecorator.decorate_collection(@user_award_forms_submitted).select{ |app| app.awarded? }
 - any_promotion_winner = winners.select{ |app| app.mobility? }.any?
