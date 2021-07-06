@@ -15,22 +15,22 @@ footer
           - if step.index == 0
             - aria_label = "Back to Useful Application Information page"
           
-          = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label do
+          = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label, class: "govuk-button govuk-button--secondary" do
             span.pagination-label
               | Back
 
       - if current_form_is_editable?
         li.save-quit-link
           span.if-js-hide
-            = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
+            = button_tag "Save and come back later", class: "govuk-button save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
           span.if-no-js-hide
-            = link_to "Save and come back later", dashboard_url, class: "js-save-and-come-back"
+            = link_to "Save and come back later", dashboard_url, class: " govuk-button js-save-and-come-back"
 
       - if step.next
         li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
           - opts = possible_read_only_ops
           - opts[:class] ||= ""
-          - opts[:class] << " button"
+          - opts[:class] << " govuk-button"
           = button_tag opts.merge(rel: "next", title: "Navigate to next part") do
             ' Save and continue
 

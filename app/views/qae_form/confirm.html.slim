@@ -5,16 +5,17 @@
   - ordinal_sufix = ActiveSupport::Inflector.ordinal(day)
   - notification_date = "#{month} #{day}#{ordinal_sufix}"
 
-header.page-header.group.page-header-wider
-  div
-    h1 Confirmation of submission
+h1.govuk-heading-xl Confirmation of submission
 
-.inner-block
-  .call-to-action
-    p
+.govuk-notification-banner.govuk-notification-banner--success role="alert" aria-labelledby="confirmation-banner-title" data-module="govuk-notification-banner"
+  .govuk-notification-banner__header
+    h2.confirmation-banner__title#govuk-notification-banner-title
+      | Success
+  .govuk-notification-banner__content
+    p.govuk-body
       ' Thank you,
     br
-    p
+    p.govuk-body
       ' Your
       - if @form_answer.promotion?
         ' nomination for The Queen's Award for Enterprise Promotion Award
@@ -22,11 +23,11 @@ header.page-header.group.page-header-wider
         ' application for The Queen's Award for #{@form_answer.award_type_full_name}
       ' was submitted. We have sent you an email confirming your submission.
     br
-    p
+    p.govuk-body
       strong
         ' Your Unique Reference Number (URN) is #{@form_answer.urn}
     br
-    p
+    p.govuk-body
       ' You can still edit your submitted
       - if @form_answer.promotion?
         ' nomination
@@ -35,90 +36,92 @@ header.page-header.group.page-header-wider
       ' up until
       = application_deadline(:submission_end)
       ' .
+  </div>
+</div>
+  
 
 .article-related-positioning-container
   .article-container
     article.group role="article"
-      .inner
-        .form-download
-          p
-            = render "qae_form/pdf_link"
+      .form-download
+        p.govuk-body
+          = render "qae_form/pdf_link"
 
-        .application-notice.help-notice
-          p
-            ' We will contact you and all your collaborators regarding your entry.
-            - if @collaborators.none?
-              ' We recommend that you
-              = link_to "add at least one collaborator", account_collaborators_path
-              ' &nbsp; in case you are unavailable.
+      .application-notice.help-notice
+        p.govuk-body
+          ' We will contact you and all your collaborators regarding your entry.
+          - if @collaborators.none?
+            ' We recommend that you
+            = link_to "add at least one collaborator", account_collaborators_path, class: 'govuk-link'
+            ' &nbsp; in case you are unavailable.
 
-        h2
-          ' What happens next
-        - if @form_answer.promotion?
-          h3 October/November
+      h2.govuk-heading-l
+        ' What happens next
+      - if @form_answer.promotion?
+        h3.govuk-heading-m October/November
 
-          p Independent assessment of all nominations received and a shortlist is drawn up. The Queen's Awards Office undertakes due diligence checks of the shortlisted candidates.
+        p.govuk-body Independent assessment of all nominations received and a shortlist is drawn up. The Queen's Awards Office undertakes due diligence checks of the shortlisted candidates.
 
-          h3 January
+        h3.govuk-heading-m January
 
-          p Shortlisted candidates considered by the Enterprise Promotion Assessment Committee.
+        p.govuk-body Shortlisted candidates considered by the Enterprise Promotion Assessment Committee.
 
-          h3 March
+        h3.govuk-heading-m March
 
-          p The final shortlist is reviewed by the Prime Minister, and approved by HM The Queen.
-          p Successful nominees are notified.
+        p.govuk-body The final shortlist is reviewed by the Prime Minister, and approved by HM The Queen.
+        p.govuk-body Successful nominees are notified.
 
-          - if notification_date
-            h3 = month
+        - if notification_date
+          h3.govuk-heading-m = month
 
 
-            p Nominators of both successful and unsuccessful nominees informed.
-            p #{notification_date} – winners are announced publicly.
+          p.govuk-body Nominators of both successful and unsuccessful nominees informed.
+          p.govuk-body #{notification_date} – winners are announced publicly.
 
-          h3 July
-          p All winning individuals and their nominators attend Buckingham Palace reception hosted by Her Majesty The Queen.
+        h3.govuk-heading-m July
+        p.govuk-body All winning individuals and their nominators attend Buckingham Palace reception hosted by Her Majesty The Queen.
 
+      - else
+
+        / V1: version before july 30 2019
+        / h3 November
+
+        / p We will contact to let you know if you've been shortlisted.
+
+        / p If you are shortlisted you will need to get your commercial figures verified by an independent accountant and supply them to us by 18th of November (please note, audited accounts are not required).
+
+        / h3 March
+        / p Winning organisations are informed.
+
+        / - if notification_date
+        /   h3 = month
+        /   p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved).
+        /   p #{notification_date} – winners are announced publicly.
+
+        / h3 July
+        / p Two representatives of the winning organisations attend Buckingham Palace reception hosted by Her Majesty The Queen.
+
+        / V2: version since july 30 2019
+        h3.govuk-heading-m November
+
+        p.govuk-body We will contact you to let you know if you've been shortlisted.
+
+        p.govuk-body If you are shortlisted you will need to get your commercial figures verified by an independent accountant and supply them to us by mid-November (please note, audited accounts are not required).
+
+        h3.govuk-heading-m March
+
+        p.govuk-body Winning organisations are informed.
+
+        h3.govuk-heading-m June
+
+        p.govuk-body Representatives of the winning organisations attend a Royal reception.
+      br
+
+      p.govuk-body
+        ' Return to
+        = link_to "Applications", dashboard_path, class: 'govuk-link'
+        '  or
+        - if current_admin
+          = link_to "Sign out", destroy_admin_session_path, method: :delete, class: 'govuk-link'
         - else
-
-          / V1: version before july 30 2019
-          / h3 November
-
-          / p We will contact to let you know if you've been shortlisted.
-
-          / p If you are shortlisted you will need to get your commercial figures verified by an independent accountant and supply them to us by 18th of November (please note, audited accounts are not required).
-
-          / h3 March
-          / p Winning organisations are informed.
-
-          / - if notification_date
-          /   h3 = month
-          /   p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved).
-          /   p #{notification_date} – winners are announced publicly.
-
-          / h3 July
-          / p Two representatives of the winning organisations attend Buckingham Palace reception hosted by Her Majesty The Queen.
-
-          / V2: version since july 30 2019
-          h3 November
-
-          p We will contact you to let you know if you've been shortlisted.
-
-          p If you are shortlisted you will need to get your commercial figures verified by an independent accountant and supply them to us by mid-November (please note, audited accounts are not required).
-
-          h3 March
-
-          p Winning organisations are informed.
-
-          h3 June
-
-          p Representatives of the winning organisations attend a Royal reception.
-        br
-
-        p
-          ' Return to
-          = link_to "Applications", dashboard_path
-          '  or
-          - if current_admin
-            = link_to "Sign out", destroy_admin_session_path, method: :delete
-          - else
-            = link_to "Sign out", destroy_user_session_path, method: :delete
+          = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'govuk-link'

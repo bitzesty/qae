@@ -45,13 +45,17 @@ SimpleForm.setup do |config|
     ## Inputs
     b.use :label
     b.use :error, wrap_with: { tag: :span, class: :error }
-    b.use :input
+    b.use :input, class: 'govuk-input'
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
   end
 
-  config.wrappers :checkbox do |b|
-    b.use :input
-    b.use :label
+  config.wrappers :checkbox, class: '', label_class: 'govuk-label govuk-checkboxes__label', input_class: '' do |b|
+    b.wrapper tag: :div, class: 'govuk-checkboxes', data: { module: 'govuk-checkboxes' } do |component|
+      b.wrapper tag: :div, class: 'govuk-checkboxes__item' do |inner|
+        inner.use :input, class: 'govuk-checkboxes__input'
+        inner.use :label, class: 'govuk-label govuk-checkboxes__label'
+      end
+    end
   end
 
   # The default wrapper to be used by the FormBuilder.

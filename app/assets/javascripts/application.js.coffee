@@ -90,7 +90,7 @@ jQuery ->
 
   $(".supporters-list input").change ->
     $(this).closest("label").find(".errors-container").empty()
-    $(this).closest(".question-has-errors").removeClass("question-has-errors")
+    $(this).closest(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
 
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
@@ -563,7 +563,7 @@ jQuery ->
       new_el.append(div)
       list.append(new_el)
       list.removeClass("visuallyhidden")
-      wrapper.removeClass("question-has-errors")
+      wrapper.removeClass("govuk-form-group--errors")
       wrapper.find(".errors-container").empty()
 
     success_or_error = (e, data) ->
@@ -576,7 +576,7 @@ jQuery ->
 
     failed = (error_message) ->
       if error_message
-        wrapper.addClass("question-has-errors")
+        wrapper.addClass("govuk-form-group--errors")
         wrapper.find(".errors-container").html("<li>" + error_message + "</li>")
 
       # Remove `Uploading...`
@@ -588,7 +588,7 @@ jQuery ->
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.addClass("visuallyhidden")
-      wrapper.removeClass("question-has-errors")
+      wrapper.removeClass("govuk-form-group--errors")
       wrapper.find(".errors-container").empty()
 
       # Show new upload
@@ -1002,7 +1002,7 @@ jQuery ->
         target_id = event.editor.name
 
         spinner = group.find(".js-ckeditor-spinner-block")
-        spinner.addClass('hidden')
+        spinner.addClass('govuk-!-display-none')
 
     for i of CKEDITOR.instances
       instance = CKEDITOR.instances[i]

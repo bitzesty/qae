@@ -1,10 +1,12 @@
-span.row
-  span.span-6
-    label
-      ' Name used previously
-      input.medium.js-toggle-autosave type="text" name=question.input_name(suffix: 'name') value=question.input_value(suffix: 'name') autocomplete="off" *possible_read_only_ops
-  span.span-6
-    label
-      ' Reference number used previously
-      input.small.js-toggle-autosave type="text" name=question.input_name(suffix: 'refnum') value=question.input_value(suffix: 'refnum') autocomplete="off" *possible_read_only_ops
+.govuk-grid-row
+  .govuk-grid-column-one-half
+    .govuk-form-group
+      label.govuk-label
+        ' Name used previously
+      input.govuk-input.govuk-input--width-10.js-toggle-autosave type="text" name=question.input_name(suffix: 'name') value=question.input_value(suffix: 'name') autocomplete="off" *possible_read_only_ops
+  .govuk-grid-column-one-half
+    .govuk-form-group
+      label.govuk-label
+        ' Reference number used previously
+      input.govuk-input.govuk-input--width-6.js-toggle-autosave type="text" name=question.input_name(suffix: 'refnum') value=question.input_value(suffix: 'refnum') autocomplete="off" *possible_read_only_ops
 span.clear

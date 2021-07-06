@@ -2,13 +2,13 @@
   - for c in question.by_year_conditions
     .js-conditional-question.by-years-wrapper data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
       .if-js-hide
-        label
+        label.govuk-label
           strong
             = "If you had growth in the last #{c.years} years"
-      .row
+      .govuk-grid-row
         - (1..c.years).each do |y|
-          div class="span-financial span-4"
-            label for=question.input_name(suffix: "#{y}of#{c.years}")
+          .span-financial.govuk-grid-column-one-third
+            label.govuk-label for=question.input_name(suffix: "#{y}of#{c.years}")
               span.js-year-end.show-default data-year="#{y}of#{c.years}"
                 span.js-year-default
                   ' Financial year
@@ -16,10 +16,9 @@
                   - if y == c.years
                     '  (latest)
                 span.js-year-text
-            ul.errors-container
-            .clear
+            span.govuk-error-message
             span class="#{'currency-input' if question.type == :money}"
               - if question.type == :money
                 span.currency-unit £
-              input.small.js-trigger-autosave.js-form-financial-data type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+              input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
       .clear

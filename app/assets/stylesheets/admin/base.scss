@@ -884,69 +884,69 @@ table .ellipsis {
 }
 
 // Pagination
-  .pagination {
-    font-size: 14px;
+  // .pagination {
+  //   font-size: 14px;
 
-    > span {
-      float: left;
-    }
+  //   > span {
+  //     float: left;
+  //   }
 
-    .page.current,
-    a,
-    .page.gap {
-      display: inline-block;
-      padding: 2px 8px;
+  //   .page.current,
+  //   a,
+  //   .page.gap {
+  //     display: inline-block;
+  //     padding: 2px 8px;
 
-      &,
-      &:hover,
-      &:active,
-      &:focus {
-        color: $black;
-      }
-    }
+  //     &,
+  //     &:hover,
+  //     &:active,
+  //     &:focus {
+  //       color: $black;
+  //     }
+  //   }
 
-    .page.current {
-      font-weight: bold;
-      -webkit-font-smoothing: initial;
-      -moz-osx-font-smoothing: initial;
-    }
+  //   .page.current {
+  //     font-weight: bold;
+  //     -webkit-font-smoothing: initial;
+  //     -moz-osx-font-smoothing: initial;
+  //   }
 
-    .page + .page {
-      border-left: 1px solid $black;
-    }
+  //   .page + .page {
+  //     border-left: 1px solid $black;
+  //   }
 
-    .first,
-    .prev,
-    .next,
-    .last {
-      margin: 0 3px;
+  //   .first,
+  //   .prev,
+  //   .next,
+  //   .last {
+  //     margin: 0 3px;
 
-      a {
-        margin-bottom: 0;
-        font-weight: normal;
-        text-align: center;
-        text-decoration: none;
-        line-height: 1.42857143;
-        white-space: nowrap;
-        vertical-align: middle;
-        background-image: none;
-        background-color: $white-true;
-        border: 1px solid $grey-light;
-        border-radius: 4px;
-        cursor: pointer;
+  //     a {
+  //       margin-bottom: 0;
+  //       font-weight: normal;
+  //       text-align: center;
+  //       text-decoration: none;
+  //       line-height: 1.42857143;
+  //       white-space: nowrap;
+  //       vertical-align: middle;
+  //       background-image: none;
+  //       background-color: $white-true;
+  //       border: 1px solid $grey-light;
+  //       border-radius: 4px;
+  //       cursor: pointer;
 
-        &:hover {
-          border-color: $pagination-border;
-          background-color: $pagination-background;
-        }
-      }
-    }
+  //       &:hover {
+  //         border-color: $pagination-border;
+  //         background-color: $pagination-background;
+  //       }
+  //     }
+  //   }
 
-    .first,
-    .last {
-      display: none;
-    }
-  }
+  //   .first,
+  //   .last {
+  //     display: none;
+  //   }
+  // }
 
 // Sortable Tables
 .sortable {

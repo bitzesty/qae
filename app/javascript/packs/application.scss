@@ -1,2 +1,13 @@
 $govuk-assets-path: "~govuk-frontend/govuk/assets/";
 @import "node_modules/govuk-frontend/govuk/all";
+
+.alert,
+.notice {
+  @extend .govuk-body;
+  margin: 20px 0 !important;
+}
+
+.conditional-hint,
+.application-notice {
+  @extend .govuk-body;
+}

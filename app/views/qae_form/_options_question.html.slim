@@ -1,7 +1,8 @@
-- for answer in question.options do
-  .selectable
-    input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) *possible_read_only_ops
-    label for="#{question.input_name}_#{answer.value.to_s.parameterize}"
-      = answer.text.html_safe
-    span.question-context
-      p = question.context_for_options[answer.value].try(:html_safe)
+.govuk-radios
+  - for answer in question.options do
+    .govuk-radios__item
+      input.js-trigger-autosave.govuk-radios__input type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) *possible_read_only_ops
+      label.govuk-label.govuk-radios__label for="#{question.input_name}_#{answer.value.to_s.parameterize}"
+        = answer.text.html_safe
+      span.question-context
+        p = question.context_for_options[answer.value].try(:html_safe)

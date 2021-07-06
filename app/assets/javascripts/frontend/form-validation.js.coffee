@@ -5,7 +5,7 @@ window.FormValidation =
 
   clearAllErrors: ->
     @validates = true
-    $(".question-has-errors").removeClass("question-has-errors")
+    $(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
     $(".errors-container").empty()
     $(".steps-progress-bar .js-step-link").removeClass("step-errors")
 
@@ -16,7 +16,7 @@ window.FormValidation =
       container.closest("td").find(".errors-container").empty()
     else
       container.closest(".question-block").find(".errors-container").empty()
-    container.closest(".question-has-errors").removeClass("question-has-errors")
+    container.closest(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
 
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
@@ -29,7 +29,7 @@ window.FormValidation =
     @validates = false
 
   addErrorClass: (container) ->
-    container.addClass("question-has-errors")
+    container.addClass("govuk-form-group--errors")
     page = container.closest(".step-article")
     if !page.hasClass("step-errors")
       # highlight the error sections in sidebar and in error message
@@ -607,7 +607,7 @@ window.FormValidation =
 
     stepContainer = $(".article-container[data-step='" + currentStep + "']")
 
-    stepContainer.find(".question-has-errors").removeClass("question-has-errors")
+    stepContainer.find(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
     stepContainer.find(".errors-container").empty()
     $(".steps-progress-bar .js-step-link[data-step='" + currentStep + "']").removeClass("step-errors")
 
