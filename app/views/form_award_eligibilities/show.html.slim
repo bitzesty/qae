@@ -1,7 +1,9 @@
 - if @form_answer.promotion?
   - page_title = "Enterprise Promotion Award Nomination"
+  - title "Eligibility: #{page_title}"
 - else
   - page_title =  "#{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award Application"
+  - title  "Eligibility: #{page_title}"
   - page_title = "Promoting Opportunity Award (through social mobility) Application" if @form_answer.award_type == "mobility"
 
 header.page-header.group.page-header-over-sidebar

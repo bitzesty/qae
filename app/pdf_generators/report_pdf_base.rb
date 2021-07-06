@@ -3,6 +3,7 @@ require "prawn/measurement_extensions"
 class ReportPdfBase < Prawn::Document
   include SharedPdfHelpers::DrawElements
   include SharedPdfHelpers::FontHelper
+  include SharedPdfHelpers::LanguageHelper
 
   attr_reader :mode,
               :form_answer,
@@ -19,6 +20,7 @@ class ReportPdfBase < Prawn::Document
     @form_answer = form_answer
     @options = options
     set_fonts!
+    set_language!
     @award_year = if mode == "singular"
       form_answer.award_year
     else

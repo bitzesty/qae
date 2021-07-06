@@ -1,4 +1,4 @@
-- content_for?(:title) ? yield(:title) : "Queen's Awards for Enterprise"
+title = content_for?(:title) ? yield(:title)  + " - Queen's Awards for Enterprise" : "Queen's Awards for Enterprise"
 
 - content_for :head do
   = stylesheet_link_tag "application.css"
