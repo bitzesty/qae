@@ -11,11 +11,10 @@ tbody
           em
             ' Not yet specified
       td
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]),  aria: { label: "Open submitted application page, for #{obj.company_or_nominee_name.presence || "company not yet specified"} application #{ obj.urn.presence ||  obj.id}" }
-          - if obj.urn.present?
-            = obj.urn
-          - else
-            span.urn-not-generated Draft id: #{obj.id}
+        - if obj.urn.present?
+          = link_to obj.urn, polymorphic_url([namespace_name, obj], search: params.permit[:search]), aria: { label: "Open submitted application page, for #{obj.company_or_nominee_name.presence || "company not yet specified"} application #{ obj.urn.presence ||  obj.id}" }
+        - else
+          span.urn-not-generated Draft id: #{obj.id}
 
       td = obj.dashboard_status
       td = obj.sic_code
