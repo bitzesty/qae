@@ -3,10 +3,10 @@
 - deletion_attrs[:holder] = true if question.award_years_present
 
 li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=award["title"]
-  ul.errors-container
-    - errors = @form_answer.validator_errors
-    - if errors && errors[question.key] && errors[question.key][index]
-      li = errors[question.key][index]
+  - errors = @form_answer.validator_errors
+  - if errors && errors[question.key] && errors[question.key][index]
+    span.govuk-error-message
+      = errors[question.key][index]
 
   - unless admin_in_read_only_mode?
     = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide"

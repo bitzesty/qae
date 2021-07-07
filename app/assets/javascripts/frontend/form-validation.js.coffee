@@ -5,18 +5,18 @@ window.FormValidation =
 
   clearAllErrors: ->
     @validates = true
-    $(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
-    $(".errors-container").empty()
+    $(".govuk-form-group--error").removeClass("govuk-form-group--error")
+    $(".govuk-error-message").empty()
     $(".steps-progress-bar .js-step-link").removeClass("step-errors")
 
   clearErrors: (container) ->
     if container.closest(".question-financial").size() > 0
-      container.closest("label").find(".errors-container").empty()
+      container.closest("label").find(".govuk-error-message").empty()
     else if container.closest('.question-matrix').length > 0
-      container.closest("td").find(".errors-container").empty()
+      container.closest("td").find(".govuk-error-message").empty()
     else
-      container.closest(".question-block").find(".errors-container").empty()
-    container.closest(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
+      container.closest(".question-block").find(".govuk-error-message").empty()
+    container.closest(".govuk-form-group--error").removeClass("govuk-form-group--error")
 
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
@@ -25,11 +25,11 @@ window.FormValidation =
     @validates = false
 
   appendMessage: (container, message) ->
-    container.find(".errors-container").first().append("<li>#{message}</li>")
+    container.find(".govuk-error-message").first().append(message)
     @validates = false
 
   addErrorClass: (container) ->
-    container.addClass("govuk-form-group--errors")
+    container.addClass("govuk-form-group--error")
     page = container.closest(".step-article")
     if !page.hasClass("step-errors")
       # highlight the error sections in sidebar and in error message
@@ -101,9 +101,9 @@ window.FormValidation =
     # like name and address
     if question.find(".js-by-trade-goods-and-services-amount").size() > 0
       # If it's the trade B1 question which has multiple siblings that have js-conditional-question
-      subquestions = question.find(".js-by-trade-goods-and-services-amount .js-conditional-question.show-question .question-group")
+      subquestions = question.find(".js-by-trade-goods-and-services-amount .js-conditional-question.show-question .govuk-form-group")
     else
-      subquestions = question.find(".question-group .question-group")
+      subquestions = question.find(".govuk-form-group .govuk-form-group")
 
     if subquestions.length
       for subquestion in subquestions
@@ -320,7 +320,7 @@ window.FormValidation =
           @addErrorClass(qParent)
 
   validateCurrentAwards: (question) ->
-    $(".errors-container", question).empty()
+    $(".govuk-error-message", question).empty()
 
     for subquestion in question.find(".list-add li")
       errorText = ""
@@ -385,7 +385,7 @@ window.FormValidation =
     for subquestionBlock in question.find(".js-fy-entry-container.show-question .date-input")
       subq = $(subquestionBlock)
       qParent = subq.closest(".js-fy-entries")
-      errorsContainer = qParent.find(".errors-container").html()
+      errorsContainer = qParent.find(".govuk-error-message").html()
 
       day = subq.find("input.js-fy-day").val()
       month = subq.find("input.js-fy-month").val()
@@ -607,8 +607,8 @@ window.FormValidation =
 
     stepContainer = $(".article-container[data-step='" + currentStep + "']")
 
-    stepContainer.find(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
-    stepContainer.find(".errors-container").empty()
+    stepContainer.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
+    stepContainer.find(".govuk-error-message").empty()
     $(".steps-progress-bar .js-step-link[data-step='" + currentStep + "']").removeClass("step-errors")
 
     for question in stepContainer.find(".question-block")

@@ -5,12 +5,12 @@ $.fn.charcount = function() {
   }
 
   // Adds class to parent so that we can position the question and input closer
-  var prevElement = this.closest(".question-group").prev();
+  var prevElement = this.closest(".govuk-form-group").prev();
   if (prevElement.hasClass("clear")) {
     prevElement = prevElement.prev();
   }
   prevElement.addClass("char-spacing");
-  if (prevElement.hasClass("errors-container")) {
+  if (prevElement.hasClass(".govuk-error-message")) {
     if (prevElement.prev().find(".char-space").size() <= 0) {
       prevElement.prev().append("<span class='char-space'></div>");
     }

@@ -2,9 +2,8 @@
   - sub_field_key = sub_field_block[0]
   - sub_field_title = sub_field_block[1]
 
-  .question-group
+  .govuk-form-group
     label
       = sub_field_title
-      ul.errors-container
-      .clear
+      span.govuk-error-message
       input.js-trigger-autosave.medium.required type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops

@@ -17,8 +17,8 @@
                     '  (latest)
                 span.js-year-text
             span.govuk-error-message
-            span class="#{'currency-input' if question.type == :money}"
+            span class="#{'govuk-input__wrapper' if question.type == :money}"
               - if question.type == :money
-                span.currency-unit £
+                .govuk-input__prefix £
               input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
       .clear

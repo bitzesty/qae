@@ -43,7 +43,7 @@ window.AuditCertificatesUpload =
       $(".js-audit-certificate-status-message").remove()
 
     failed = (error_message) ->
-      parent.find(".errors-container").html("<li>" + error_message + "</li>")
+      parent.find(".govuk-error-message").html(error_message)
       list.addClass("hidden")
       form.removeClass("hidden")
 

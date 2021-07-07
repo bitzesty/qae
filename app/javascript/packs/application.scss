@@ -1,4 +1,9 @@
 $govuk-assets-path: "~govuk-frontend/govuk/assets/";
+
+p {
+  margin-top: 0 !important;
+}
+
 @import "node_modules/govuk-frontend/govuk/all";
 
 .alert,
@@ -10,4 +15,43 @@ $govuk-assets-path: "~govuk-frontend/govuk/assets/";
 .conditional-hint,
 .application-notice {
   @extend .govuk-body;
+}
+
+body.js-enabled {
+  .if-js-hide,
+  .conditional-hint {
+    display: none;
+  }
+}
+
+.govuk-form-group:not(.govuk-form-group--error) > .govuk-error-message {
+  margin: 0 !important;
+}
+
+.pagination {
+  @supports (flex-wrap: wrap) {
+    margin-bottom: 3rem;
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0 0 0;
+
+      .govuk-button {
+        margin-bottom: 0 !important;
+        white-space: nowrap;
+      }
+    }
+
+    .previous {
+      flex: 1;
+    }
+
+    .submit {
+      width: auto !important;
+      margin-left: 1.5rem;
+    }
+  }
 }

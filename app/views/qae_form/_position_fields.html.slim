@@ -6,7 +6,7 @@ li.js-add-example
     ' Position/Role
     input.govuk-input.govuk-input--width-10.js-trigger-autosave name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
   .validate-date-start-end
-    .errors-container
+    span.govuk-error-message
     .govuk-grid-row
       .govuk-grid-column-one-quarter
         label.govuk-label

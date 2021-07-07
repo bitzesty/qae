@@ -89,8 +89,8 @@ jQuery ->
     hidden_link.toggleClass("show-hint")
 
   $(".supporters-list input").change ->
-    $(this).closest("label").find(".errors-container").empty()
-    $(this).closest(".govuk-form-group--errors").removeClass("govuk-form-group--errors")
+    $(this).closest("label").find(".govuk-error-message").empty()
+    $(this).closest(".govuk-form-group--error").removeClass("govuk-form-group--error")
 
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
@@ -102,7 +102,7 @@ jQuery ->
     checkboxVal = input.val()
     answerVal = if isCheckbox then input.is(':checked').toString() else input.val()
     boolean_values = ["0", "1", "true", "false"]
-    values = input.closest(".question-group").find("input[type='checkbox']").filter(":checked").map(() -> $(@).val()).toArray()
+    values = input.closest(".govuk-form-group").find("input[type='checkbox']").filter(":checked").map(() -> $(@).val()).toArray()
 
     question.each () ->
       nonBooleanCheckboxMeetsCriteria = isCheckbox && $(this).attr('data-value') in values
@@ -563,8 +563,8 @@ jQuery ->
       new_el.append(div)
       list.append(new_el)
       list.removeClass("visuallyhidden")
-      wrapper.removeClass("govuk-form-group--errors")
-      wrapper.find(".errors-container").empty()
+      wrapper.removeClass("govuk-form-group--error")
+      wrapper.find(".govuk-error-message").empty()
 
     success_or_error = (e, data) ->
       errors = data.result.errors
@@ -576,8 +576,8 @@ jQuery ->
 
     failed = (error_message) ->
       if error_message
-        wrapper.addClass("govuk-form-group--errors")
-        wrapper.find(".errors-container").html("<li>" + error_message + "</li>")
+        wrapper.addClass("govuk-form-group--error")
+        wrapper.find(".govuk-error-message").html(error_message)
 
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
@@ -588,8 +588,8 @@ jQuery ->
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.addClass("visuallyhidden")
-      wrapper.removeClass("govuk-form-group--errors")
-      wrapper.find(".errors-container").empty()
+      wrapper.removeClass("govuk-form-group--error")
+      wrapper.find(".govuk-error-message").empty()
 
       # Show new upload
       new_el = $("<li>")
@@ -818,7 +818,7 @@ jQuery ->
           question.find(".list-add").find("li:last-child .remove-link").attr("aria-label", "Remove " + ordinal(idx) + " " + entity)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
-            question.find(".list-add li.js-list-item:last .errors-container").empty()
+            question.find(".list-add li.js-list-item:last .govuk-error-message").empty()
             clearFormElements(question.find(".list-add li.js-list-item:last"))
 
           # If .js-add-example has file field (like in SupportLetters)
@@ -838,11 +838,11 @@ jQuery ->
           triggerAutosave()
 
   # Removing these added fields
-  $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
+  $(document).on "click", ".govuk-form-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("read-only")
       parent_ul = $(this).closest("ul")
-      $(this).closest(".question-group")
+      $(this).closest(".govuk-form-group")
              .find(".js-button-add")
              .removeClass("visuallyhidden")
 
@@ -982,7 +982,7 @@ jQuery ->
   if $('.js-ckeditor').length > 0
 
     $('.js-ckeditor').each (index) ->
-      group = $(this).closest(".question-group")
+      group = $(this).closest(".govuk-form-group")
 
       spacer = $("<div class='js-ckeditor-spacer'></div>")
       spacer.insertAfter($(this).parent().find(".hint"))

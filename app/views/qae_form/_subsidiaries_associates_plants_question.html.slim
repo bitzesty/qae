@@ -19,10 +19,10 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         .clear
         span.row
-          ul.errors-container
-            - errors = @form_answer.validator_errors
-            - if errors && errors[question.key] && errors[question.key][index]
-              li = errors[question.key][index]
+          - errors = @form_answer.validator_errors
+          - if errors && errors[question.key] && errors[question.key][index]
+            span.govuk-error-message
+              = errors[question.key][index]
 
           span.span-4
             label.small
