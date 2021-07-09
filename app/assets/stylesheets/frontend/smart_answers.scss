@@ -253,13 +253,13 @@ $is-ie: false !default;
 
   .step.current {
     background-color: #fff;
-    margin-right: 15em;
-    padding: 0 10em 1em 2em;
+    margin-right: 0;
+    padding: 0;
     position: relative;
 
     @include media-down(tablet) {
       margin-right: 0;
-      padding: 0 1em 1em 1em;
+      padding: 0;
     }
   }
 

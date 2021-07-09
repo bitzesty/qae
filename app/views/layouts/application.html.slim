@@ -91,11 +91,11 @@
           = yield
 
           - unless landing_page?
-            p.footer-helpline
+            p.footer-helpline.govuk-body
               ' Need help? Ring us on
               strong 020 7215 6880
               ' . Alternatively, email us at
-              = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk"
+              = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk", class: 'govuk-link'
 
 - content_for :footer_support_links do
   h2.govuk-visually-hidden Support links

@@ -657,9 +657,8 @@ input[type="file"] {
   li {
     margin: 0;
     margin-bottom: $gutter-half;
-    padding: $gutter-half;
-    padding-top: 18px;
-    background: $grey-4;
+    padding: 20px !important;
+    border: 2px solid #000 !important;
 
     .lte-ie7 & {
       display: inline;
@@ -700,16 +699,9 @@ input[type="file"] {
 
   .remove-link,
   .edit-link {
-    @include core-16;
-    float: right;
     border: none;
-    background: transparent;
-    color: $govuk-blue;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
+    margin-top: 10px;
+    display: inline-block;
 
     &.read-only,
     &.disabled,
@@ -734,68 +726,68 @@ input[type="file"] {
 }
 
 .button-add {
-  @include core-19;
-  position: relative;
-  margin-right: $gutter-half;
-  margin-bottom: $gutter-one-third;
-  padding: (18px $gutter $gutter-half $gutter);
-  border: 1px solid $panel-colour;
-  cursor: pointer;
-  overflow: hidden;
+  // @include core-19;
+  // position: relative;
+  // margin-right: $gutter-half;
+  // margin-bottom: $gutter-one-third;
+  // padding: (18px $gutter $gutter-half $gutter);
+  // border: 1px solid $panel-colour;
+  // cursor: pointer;
+  // overflow: hidden;
 
-  &.onfocus {
-    outline: 3px solid $focus-colour;
-  }
+  // &.onfocus {
+  //   outline: 3px solid $focus-colour;
+  // }
 
-  &,
-  &:link,
-  &:hover,
-  &:focus,
-  &:visited,
-  &.disabled,
-  &.disabled:hover,
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled="disabled"],
-  &[disabled="disabled"]:hover {
-    color: $black;
-    background: $panel-colour;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
+  // &,
+  // &:link,
+  // &:hover,
+  // &:focus,
+  // &:visited,
+  // &.disabled,
+  // &.disabled:hover,
+  // &[disabled],
+  // &[disabled]:hover,
+  // &[disabled="disabled"],
+  // &[disabled="disabled"]:hover {
+  //   color: $black;
+  //   background: $panel-colour;
+  //   -webkit-box-shadow: none;
+  //   -moz-box-shadow: none;
+  //   box-shadow: none;
+  // }
 
-  &:visited {
-    color: $black !important;
-  }
+  // &:visited {
+  //   color: $black !important;
+  // }
 
-  &:hover {
-    border-color: $black;
-  }
+  // &:hover {
+  //   border-color: $black;
+  // }
 
-  &.disabled,
-  &.disabled:hover,
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled="disabled"],
-  &[disabled="disabled"]:hover {
-    border-color: transparent;
-    cursor: default;
-  }
+  // &.disabled,
+  // &.disabled:hover,
+  // &[disabled],
+  // &[disabled]:hover,
+  // &[disabled="disabled"],
+  // &[disabled="disabled"]:hover {
+  //   border-color: transparent;
+  //   cursor: default;
+  // }
 
-  &:focus {
-    outline: none;
-    border-color: $black;
-  }
+  // &:focus {
+  //   outline: none;
+  //   border-color: $black;
+  // }
 
-  &:active {
-    top: auto;
-    background: $white;
-  }
+  // &:active {
+  //   top: auto;
+  //   background: $white;
+  // }
 
-  &:before {
-    display: none;
-  }
+  // &:before {
+  //   display: none;
+  // }
 
   input[type="file"] {
     position: absolute;

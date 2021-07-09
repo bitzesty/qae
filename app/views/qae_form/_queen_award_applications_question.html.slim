@@ -23,62 +23,61 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         - else
           - remove_title = award['category'].split("_").map(&:capitalize).join(" ") + " award"
 
-        = link_to "Remove", confirm_deletion_form_form_answer_current_queens_awards_path(@form_answer.id, current_queens_award: { category: award["category"], year: award["year"] }), class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Remove #{remove_title}"
-
-        = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Edit #{remove_title}"
-
         - if award["category"].empty? && award["year"].empty? && award["outcome"].empty?
           span.if-js-hide
             label -
+        .govuk-grid-row
+          .govuk-grid-column-one-quarter
+            label.govuk-label
+              | Category
+            span.if-no-js-hide
+              select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                option value=""
+                  ' Category
+                - question.categories.each do |category|
+                  option value=category.value selected=(category.value.to_s == award['category'])
+                    = category.text
 
-        label.govuk-label
-          | Category
-        span.if-no-js-hide
-          select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-            option value=""
-              ' Category
-            - question.categories.each do |category|
-              option value=category.value selected=(category.value.to_s == award['category'])
-                = category.text
+            span.inline.if-js-hide
+              = award['category'].split("_").map(&:capitalize).join(" ")
+            
+          .govuk-grid-column-one-quarter
+            label.govuk-label
+              | Year
+            span.if-no-js-hide
+              select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                option value=""
+                  ' Year
+                - question.years.each do |year|
+                  option value=year selected=(award['year'] == year.to_s)
+                    = year
 
-        span.inline.if-js-hide
-          = award['category'].split("_").map(&:capitalize).join(" ")
+            span.inline.if-js-hide
+              =< award['year']
 
-        label.govuk-label
-          | Year
-        span.if-no-js-hide
-          select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-            option value=""
-              ' Year
-            - question.years.each do |year|
-              option value=year selected=(award['year'] == year.to_s)
-                = year
+          .govuk-grid-column-one-half
+            label.govuk-label
+              | Outcome (Won/Did not win)
+            span.if-no-js-hide
+              select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                option value=""
+                  ' Outcome (Won/Did not win)
+                - question.outcomes.each do |outcome|
+                  option value=outcome.value selected=(outcome.value.to_s == award['outcome'])
+                    = outcome.text
 
-        span.inline.if-js-hide
-          =< award['year']
+            span.inline.if-js-hide
+              - outcome = question.outcomes.detect { |o| o.value == award['outcome'] }
+              = outcome && outcome.text
 
+        = link_to "Remove", confirm_deletion_form_form_answer_current_queens_awards_path(@form_answer.id, current_queens_award: { category: award["category"], year: award["year"] }), class: "govuk-link remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Remove #{remove_title}"
 
-        label.govuk-label
-          | Outcome (Won/Did not win)
-        span.if-no-js-hide
-          select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-            option value=""
-              ' Outcome (Won/Did not win)
-            - question.outcomes.each do |outcome|
-              option value=outcome.value selected=(outcome.value.to_s == award['outcome'])
-                = outcome.text
-
-        span.inline.if-js-hide
-          - outcome = question.outcomes.detect { |o| o.value == award['outcome'] }
-          = outcome && outcome.text
-
-        span.clear
+        = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "govuk-link remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Edit #{remove_title}"
 
     - if question.entities.none?
       li.js-add-example.if-no-js-hide.govuk-form-group
         span.govuk-error-message
-        = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
-
+        
         label.govuk-label
           | Category
         select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
@@ -107,7 +106,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
             option value=outcome.value
               = outcome.text
 
-        span.clear
+        = link_to "Remove", "#", class: "govuk-link remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
 a.govuk-button.govuk-button--secondary.js-button-add.if-no-js-hide href="#" aria-label="Add another award" data-entity="award" *possible_read_only_ops
   | + Add another award

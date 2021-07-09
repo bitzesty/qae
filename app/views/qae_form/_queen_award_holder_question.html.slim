@@ -24,9 +24,9 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         - else
           - remove_title = award['category'].split("_").map(&:capitalize).join(" ") + " award"
 
-        = link_to "Remove", confirm_deletion_form_form_answer_current_queens_awards_path(@form_answer.id, current_queens_award: { category: award["category"], year: award["year"] }), class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Remove #{remove_title}"
+        = link_to "Remove", confirm_deletion_form_form_answer_current_queens_awards_path(@form_answer.id, current_queens_award: { category: award["category"], year: award["year"] }), class: "govuk-link remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Remove #{remove_title}"
 
-        = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Edit #{remove_title}"
+        = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "govuk-link remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Edit #{remove_title}"
 
         - if award["category"].empty? && award["year"].empty?
           span.if-js-hide

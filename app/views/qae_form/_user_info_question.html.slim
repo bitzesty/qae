@@ -3,7 +3,7 @@
   - sub_field_title = sub_field_block[1]
 
   .govuk-form-group
-    label
+    label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
       = sub_field_title
-      span.govuk-error-message
-      input.js-trigger-autosave.medium.required type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops
+    span.govuk-error-message
+    input.js-trigger-autosave.govuk-input.medium.required type="text" id=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops

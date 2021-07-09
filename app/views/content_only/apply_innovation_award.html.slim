@@ -1,9 +1,6 @@
-header.page-header.group.page-header-wider
-  div
-    h1 Innovation Award Application
+h1.govuk-heading-xl Innovation Award Application
 
 .article-related-positioning-container
-  .article-container
-    article.group role="article"
-      = form_tag new_innovation_form_path, method: :get do
-        = render "award_nickname", award_type: "innovation"
+  article.group role="article"
+    = form_tag new_innovation_form_path, method: :get do
+      = render "award_nickname", award_type: "innovation"

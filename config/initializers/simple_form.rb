@@ -58,6 +58,20 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :radio_buttons, item_wrapper_class: 'govuk-radios__item', item_label_class: 'govuk-label govuk-radios__label', tag: 'fieldset', class: 'govuk-fieldset' do |b|
+    b.use :html5
+    b.optional :readonly
+    
+    b.use :label, wrap_with: { tag: :legend, class: 'govuk-fieldset__legend govuk-fieldset__legend--l' }, tag: :h2, class: 'govuk-fieldset__heading'
+    
+    b.use :full_error, wrap_with: { class: 'govuk-error-message' }
+    b.use :hint, wrap_with: { class: 'govuk-hint' }
+    
+    b.wrapper tag: :div, class: 'govuk-radios' do |ba|
+      ba.use :input, class: 'govuk-radios__input', error_class: '', valid_class: ''
+    end
+  end
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
 
@@ -136,7 +150,10 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  config.wrapper_mappings = { boolean: :checkbox }
+  config.wrapper_mappings = {
+    boolean: :checkbox,
+    radio_buttons: :radio_buttons
+  }
 
   # Default priority for time_zone inputs.
   # config.time_zone_priority = nil

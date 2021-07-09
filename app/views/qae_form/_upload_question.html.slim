@@ -14,49 +14,49 @@
 
               - unless admin_in_read_only_mode?
                 - if question.key == :org_chart
-                  = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
+                  = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "govuk-link remove-link if-js-hide govuk-link"
 
                   = link_to "Remove", form_form_answer_organisational_chart_url(@form_answer.id, el['file'].to_i),
-                                      possible_read_only_ops.merge({class: "remove-link if-no-js-hide",
+                                      possible_read_only_ops.merge({class: "govuk-link remove-link if-no-js-hide  govuk-link",
                                                                     remote: true,
                                                                     method: :delete})
                 - else
                   = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
-                                      possible_read_only_ops.merge({class: "remove-link",
+                                      possible_read_only_ops.merge({class: "govuk-link remove-link  govuk-link",
                                                                     remote: true,
                                                                     method: :delete})
 
             - elsif el['link'].present?
-              - unless admin_in_read_only_mode?
-                a.remove-link href="#" *possible_read_only_ops
-                  | Remove
-              label
-                ' Website address
-                input.large.js-trigger-autosave type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)  *possible_read_only_ops
+              .govuk-form-group
+                label.govuk-label for=question.input_name(suffix: 'link', index: idx)
+                  ' Website address
+                input.govuk-input.js-trigger-autosave type="text" id=question.input_name(suffix: 'link', index: idx) name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)  *possible_read_only_ops
           - if question.description
-            div
-              label for=question.input_name(suffix: 'description', index: idx)
+            .govuk-form-group
+              label.govuk-label for=question.input_name(suffix: 'description', index: idx)
                 span.label-char-count-reposition
                   ' Description
                 / (optional)
-              textarea.js-char-count.js-trigger-autosave rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)  *possible_read_only_ops
+              textarea.govuk-textarea.js-char-count.js-trigger-autosave rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)  *possible_read_only_ops
                 = question.input_value(suffix: 'description', index: idx)
+          - unless admin_in_read_only_mode?
+            a.govuk-link.remove-link.govuk-link href="#" *possible_read_only_ops
+              | Remove
 
   span.govuk-error-message
-
   .if-no-js-hide
-    span.button.button-add aria-label="Upload" data-entity="file" *possible_read_only_ops
+    span.govuk-button.govuk-button--secondary.button-add aria-label="Upload" data-entity="file" *possible_read_only_ops
       span
         | + Upload
       input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops data-question-key=question.key
     - if question.links
       | &nbsp;
-      a.button.button-add.js-file-upload data-add-link="1" href="#" aria-label="Add website address" data-entity="website address" *possible_read_only_ops
+      a.govuk-button.govuk-button--secondary.button-add.js-file-upload data-add-link="1" href="#" aria-label="Add website address" data-entity="website address" *possible_read_only_ops
         | + Add website address
 
   - if question.key == :org_chart && @form_answer.document["org_chart"].blank?
     .if-js-hide
       = link_to "+ Upload", new_form_form_answer_organisational_chart_url(@form_answer.id),
-                            class: "button button-add",
+                            class: "govuk-button govuk-button--secondary button-add",
                             "aria-label" => "Upload",
                             "data-entity" => "organisational chart"

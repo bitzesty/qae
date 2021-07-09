@@ -72,9 +72,14 @@ class AwardYears::V2022::QAEForms
           text %(
             I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
 
-            <p>
-              <a href='#' class='js-form-expandable-content-link' data-ref='js-authorize-and-submit-step-view-gov-departments-and-agencies'>View Government Departments and Agencies we undertake due diligence checks with ></a>
-              <ul class='js-authorize-and-submit-step-view-gov-departments-and-agencies hidden'>
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  View Government Departments and Agencies we undertake due diligence checks with ></a>
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <ul class='js-authorize-and-submit-step-view-gov-departments-and-agencies hidden'>
                 <li>Biotechnology & Biological Sciences Research Council</li>
                 <li>Charity Commission</li>
                 <li>Companies House</li>
@@ -117,7 +122,8 @@ class AwardYears::V2022::QAEForms
                 <li>UK Export Finance</li>
                 <li>Wales Government</li>
               </ul>
-            </p>
+              </div>
+            </details>
           )
 
           pdf_text %(

@@ -46,12 +46,17 @@ fieldset.govuk-form-group class=question.fieldset_classes data=question.fieldset
       - if question.ref || question.sub_ref
           span.question-context.question-debug.govuk-hint
             = "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions."
-    - if question.context
-      span.question-context.question-debug.govuk-hint
+      - if question.context
         == question.context
-    - for help in question.help
-      span.question-context.question-debug.govuk-hint
+      - for help in question.help
         == help.text
+    - else
+      - if question.context
+        span.question-context.question-debug.govuk-hint
+          == question.context
+      - for help in question.help
+        span.question-context.question-debug.govuk-hint
+          == help.text
 
     - question.hint.each_with_index do |help, index|
       details.govuk-details data-module='govuk-details'
@@ -67,10 +72,10 @@ fieldset.govuk-form-group class=question.fieldset_classes data=question.fieldset
         span.govuk-visually-hidden
           | Error:
         =< @form_answer.validator_errors[question.hash_key]
+    span.govuk-hint = question.form_hint
+    = question.delegate_obj.class.name.demodulize.underscore
     = render partial: "qae_form/#{question.delegate_obj.class.name.demodulize.underscore}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
-    span.hint = question.form_hint
-    .clear
-
+    
     / Conditional hints
     - if question.can_have_conditional_hints?
       = render "qae_form/conditional_hints/list", question: question

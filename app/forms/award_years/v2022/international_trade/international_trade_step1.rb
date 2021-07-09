@@ -5,17 +5,17 @@ class AwardYears::V2022::QAEForms
       @trade_step1 ||= proc do
         header :company_information_header, "" do
           context %(
-            <h3>About this section</h3>
-            <p>
+            <h3 class='govuk-heading-m'>About this section</h3>
+            <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>
-            <details>
-              <summary>
-                <span class="summary">
+            <details class='govuk-details' data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
                   View Government Departments and Agencies we undertake due diligence checks with >
                 </span>
               </summary>
-              <div class="panel panel-border-narrow">
+              <div class="govuk-details__text">
                 <ul>
                   <li>Biotechnology & Biological Sciences Research Council</li>
                   <li>Charity Commission</li>
@@ -61,8 +61,8 @@ class AwardYears::V2022::QAEForms
                 </ul>
               </div>
             </details>
-            <h3>Small organisations</h3>
-            <p>
+            <h3 class="govuk-heading-m">Small organisations</h3>
+            <p class="govuk-body">
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
           )
@@ -135,7 +135,7 @@ class AwardYears::V2022::QAEForms
         header :business_division_header, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
+            <p class="govuk-hint">
               Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
             </p>
           )
@@ -146,7 +146,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+            <p class="govuk-hint">If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
           )
         end
 
@@ -154,7 +154,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 3"
           context %(
-            <p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
+            <p class="govuk-hint">We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
           )
           yes_no
         end
@@ -180,7 +180,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           ref "A 4.1"
           context %(
-            <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
+            <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
         end
@@ -190,7 +190,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           ref "A 4.2"
           context %(
-            <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
+            <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
         end
@@ -200,7 +200,7 @@ class AwardYears::V2022::QAEForms
           ref "A 5"
           context -> do
             %(
-              <p>
+              <p class="govuk-hint">
                 Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
               </p>
             )
@@ -265,7 +265,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           sub_ref "A 7.1"
           required
-          context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
+          context "<p class='govuk-hint'>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
           conditional :other_awards_won, :yes
           rows 5
           words_max 250
@@ -279,10 +279,10 @@ class AwardYears::V2022::QAEForms
             [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
           ]
           county_context %(
-            <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+            <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p> 
-              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
+            <p class='govuk-hint'> 
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
                 See the full list of London districts on Wikipedia
               </a>
             </p>
@@ -305,7 +305,7 @@ class AwardYears::V2022::QAEForms
         header :press_contact_details_header, "Contact details for press enquiries" do
           ref "A 9"
           context %(
-            <p>
+            <p class='govuk-hint'>
               If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
@@ -351,7 +351,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 11"
           context %(
-            <p>
+            <p class='govuk-hint'>
               The Standard Industrial Classification (SIC) is a system for classifying industries. If you are a registered company, this is the same code you would have provided Companies House.
             </p>
           )
@@ -360,7 +360,7 @@ class AwardYears::V2022::QAEForms
         options :parent_group_entry, "Are you a parent company making a group entry?" do
           ref "A 12"
           context %(
-            <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
+            <p class='govuk-hint'>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
           )
           yes_no
         end
@@ -439,7 +439,7 @@ class AwardYears::V2022::QAEForms
           required
           yes_no
           context %(
-            <p>
+            <p class='govuk-hint'>
               An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
             </p>
           )
@@ -450,17 +450,17 @@ class AwardYears::V2022::QAEForms
           required
           yes_no
           help "What is an export unit?", %(
-            <p>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities.</p>
+            <p class='govuk-hint'>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities.</p>
           )
         end
 
         upload :org_chart, "Upload an organisational chart." do
           ref "A 17"
           context %(
-            <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
+            <p class='govuk-hint'>You can submit a file in any common format, as long as it is less than 5mb.</p>
           )
           hint "What are the allowed file formats?", %(
-            <p>
+            <p class='govuk-hint'>
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
@@ -471,7 +471,7 @@ class AwardYears::V2022::QAEForms
           ref "A 18"
           required
           context %(
-            <p>Select all that apply.</p>
+            <p class='govuk-hint'>Select all that apply.</p>
           )
           check_options [
             ["qa_website", "Queen's Awards website"],
