@@ -82,7 +82,7 @@ def form_choice(labels)
   label_ids = Array(labels)
 
   label_ids.each do |label_id|
-    l = all(".question-body .selectable").detect do |label|
+    l = all(".question-body .govuk-radios__item").detect do |label|
       if label_id.is_a?(String)
         label.text == label_id
       elsif label_id.is_a?(Regexp)
