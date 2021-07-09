@@ -4,6 +4,8 @@
   - page_title =  "#{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award Application"
   - page_title = "Promoting Opportunity Award (through social mobility) Application" if @form_answer.award_type == "mobility"
 
+- input_steps = ['number_of_eligible_initiatives', 'number_of_innovative_products']
+
 h1.govuk-heading-xl = page_title
 
 .steps-progress-container.min-height-800
@@ -15,9 +17,10 @@ h1.govuk-heading-xl = page_title
             = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
               .govuk-form-group.current-question.qae-form#current-question
                 fieldset.govuk-fieldset class="question-#{step.to_s.gsub!(/_/, '-')}"
-                  legend.govuk-fieldset__legend.govuk-fieldset__legend--l.eligibilty-label for="eligibility_#{step.to_s}" id="eligibility_#{step.to_s}_label" class="govuk-!-margin-bottom-5"
-                    h2.govuk-fieldset__heading
-                      = @eligibility.class.label(step).html_safe
+                  - if @eligibility.is_a?(Eligibility::Basic) || !input_steps.include?(step.to_s)
+                    legend.govuk-fieldset__legend.govuk-fieldset__legend--l.eligibilty-label for="eligibility_#{step.to_s}" id="eligibility_#{step.to_s}_label" class="govuk-!-margin-bottom-5"
+                      h2.govuk-fieldset__heading
+                        = @eligibility.class.label(step).html_safe
                   - if @eligibility.is_a?(Eligibility::Basic)
                     = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f, question: step.to_s
                   - else
@@ -39,7 +42,7 @@ h1.govuk-heading-xl = page_title
 
                 - if (!step || step.to_s == "wicked_finish")
                   br
-                  = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "button medium"
+                  = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium"
                   br
 
               - else
@@ -69,13 +72,13 @@ h1.govuk-heading-xl = page_title
         - if (!step || step.to_s == "wicked_finish")
           - if @form_answer.eligible?
             .eligibility-continue-button
-              = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "button medium"
+              = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium"
           - else
             footer
               nav.pagination.no-border role="navigation" aria-label="Pagination"
                 ul.group
                   li.previous
-                    = link_to dashboard_path, rel: "prev", title: "Navigate to previous part" do
+                    = link_to dashboard_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-button govuk-button--secondary' do
                       span.pagination-label
                         ' Back
 
