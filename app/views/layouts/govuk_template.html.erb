@@ -29,7 +29,6 @@
     </script>
     <![endif]-->
 
-    <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
 
     <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="<%= image_url('favicon.ico') %>]" type="image/x-icon">
@@ -115,6 +114,8 @@
     <!--end footer-->
 
     <div id="global-app-error" class="app-error hidden"></div>
+
+    <%= javascript_pack_tag 'application' %>
 
     <% if should_enable_js? %>
       <%= yield :body_end %>

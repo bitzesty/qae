@@ -63,7 +63,7 @@ SimpleForm.setup do |config|
     b.use :input, class: 'govuk-select'
   end
 
-  config.wrappers :textarea do |b|
+  config.wrappers :textarea, class: 'govuk-form-group' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -77,7 +77,7 @@ SimpleForm.setup do |config|
     b.use :input, class: 'govuk-textarea'
   end
 
-  config.wrappers :checkbox, class: '', label_class: 'govuk-label govuk-checkboxes__label', input_class: '' do |b|
+  config.wrappers :checkbox, class: 'govuk-form-group', label_class: 'govuk-label govuk-checkboxes__label', input_class: '' do |b|
     b.wrapper tag: :div, class: 'govuk-checkboxes', data: { module: 'govuk-checkboxes' } do |component|
       b.wrapper tag: :div, class: 'govuk-checkboxes__item' do |inner|
         inner.use :input, class: 'govuk-checkboxes__input'
@@ -156,7 +156,7 @@ SimpleForm.setup do |config|
   # config.form_class = :simple_form
 
   # You can define which elements should obtain additional classes
-  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+  config.generate_additional_classes_for = [:wrapper, :label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -201,5 +201,5 @@ SimpleForm.setup do |config|
   # config.cache_discovery = !Rails.env.development?
 
   # Default class for inputs
-  # config.input_class = nil
+  config.input_class = nil
 end

@@ -79,14 +79,18 @@
             = render "shared/session_expired_message"
 
           - if landing_page?
-            #global-breadcrumb.header-context
-              ol.group role="navigation" aria-label="breadcrumbs"
-                li = link_to "Home", "https://www.gov.uk/"
+            #global-breadcrumb.header-context.govuk-breadcrumbs
+              ol.govuk-breadcrumbs__list role="navigation" aria-label="breadcrumbs"
+                li.govuk-breadcrumbs__list-item
+                  = link_to "Home", "https://www.gov.uk/", class: 'govuk-breadcrumbs__link'
                 - if action_name == "cookies" or action_name == "privacy"
-                  li = link_to "Help", "https://www.gov.uk/help/"
+                  li.govuk-breadcrumbs__list-item
+                    = link_to "Help", "https://www.gov.uk/help/", class: 'govuk-breadcrumbs__link'
                 - else
-                  li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
-                  li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
+                  li.govuk-breadcrumbs__list-item
+                    = link_to "Business and self-employed", "https://www.gov.uk/browse/business", class: 'govuk-breadcrumbs__link'
+                  li.govuk-breadcrumbs__list-item
+                    = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company", class: 'govuk-breadcrumbs__link'
 
           = yield
 
