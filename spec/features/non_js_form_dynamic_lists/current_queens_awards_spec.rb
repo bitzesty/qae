@@ -85,7 +85,7 @@ So that I can fill form completelly even if Javascript is turned off
       }
 
       %w(Category Year).each do |field_name|
-        expect_to_see "#{field_name}can't be blank"
+        expect_to_see "#{field_name} can't be blank"
       end
 
       select new_award_category_name, from: "Category"
