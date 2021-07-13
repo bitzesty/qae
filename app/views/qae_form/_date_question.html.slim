@@ -1,16 +1,16 @@
 .govuk-date-input role="group" aria-labelledby="q_#{question.key}_label" id="q_#{question.key}"
   .govuk-date-input__item
     .govuk-form-group
-      label.govuk-label.govuk-date-input__label
+      label.govuk-label.govuk-date-input__label for=question.input_name(suffix: 'day')
         ' Day
-      input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-date-input-day type="text" name=question.input_name(suffix: 'day') value=question.input_value(suffix: 'day') maxlength=2 autocomplete="off" *possible_read_only_ops
+      input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-date-input-day type="text" id=question.input_name(suffix: 'day') name=question.input_name(suffix: 'day') value=question.input_value(suffix: 'day') maxlength=2 autocomplete="off" *possible_read_only_ops
   .govuk-date-input__item
     .govuk-form-group
-      label.govuk-label.govuk-date-input__label
+      label.govuk-label.govuk-date-input__label for=question.input_name(suffix: 'month')
         ' Month
-      input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-date-input-month type="text" name=question.input_name(suffix: 'month') value=question.input_value(suffix: 'month') maxlength=2 autocomplete="off" *possible_read_only_ops
+      input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-date-input-month type="text" id=question.input_name(suffix: 'month') name=question.input_name(suffix: 'month') value=question.input_value(suffix: 'month') maxlength=2 autocomplete="off" *possible_read_only_ops
   .govuk-date-input__item
     .govuk-form-group
-      label.govuk-label.govuk-date-input__label
+      label.govuk-label.govuk-date-input__label for=question.input_name(suffix: 'year')
         ' Year
-      input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-4.js-date-input-year type="text" name=question.input_name(suffix: 'year') value=question.input_value(suffix: 'year') maxlength=4 autocomplete="off" *possible_read_only_ops
+      input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-4.js-date-input-year type="text" id=question.input_name(suffix: 'year') name=question.input_name(suffix: 'year') value=question.input_value(suffix: 'year') maxlength=4 autocomplete="off" *possible_read_only_ops

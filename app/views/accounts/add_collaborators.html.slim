@@ -1,21 +1,18 @@
 - provide(:page_content_class, "multi-page page-account")
 
 header.page-header.group.page-header-over-sidebar
-  div
-    h1
-      ' Account details
+  h1.govuk-heading-xl
+    ' Account details
 
 .steps-progress-container
   .steps-progress-content
-    header.page-header.group
-      div
-        h2
-          ' Collaborators
+    h2.govuk-heading-l
+      ' Collaborators
 
     .article-container
       article.group role="article"
-        .inner
-          p Because the application process is long and requires a wide variety of information, we recommend that you add at least one collaborator. Many applicants involve their finance and marketing departments, as well as senior team members.
+        div
+          p.govuk-body Because the application process is long and requires a wide variety of information, we recommend that you add at least one collaborator. Many applicants involve their finance and marketing departments, as well as senior team members.
 
           br
 
@@ -30,15 +27,15 @@ header.page-header.group.page-header-over-sidebar
               nav.pagination.no-border role="navigation" aria-label="Pagination"
                 ul.group
                   li.previous.previous-alternate
-                    = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
+                    = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-button govuk-button--secondary' do
                       span class="pagination-label"
                         ' Back
 
                   - unless current_user.completed_registration
                     li.submit
-                      = f.submit "Continue to applications", class: "button"
+                      = f.submit "Continue to applications", class: "govuk-button"
                   - else
                     li.submit
-                      = f.submit "Save and continue", class: "button"
+                      = f.submit "Save and continue", class: "govuk-button"
 
   = render "steps_progress_bar"

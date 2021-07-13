@@ -43,10 +43,38 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     ## Inputs
-    b.use :label
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :label, class: 'govuk-label'
+    b.use :error, wrap_with: { tag: :span, class: 'govuk-error-message' }
+    b.use :hint,  wrap_with: { tag: :span, class: 'govuk-hint' }
     b.use :input, class: 'govuk-input'
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
+  end
+
+  config.wrappers :select do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: 'govuk-label'
+    b.use :full_error, wrap_with: { class: 'gobuk-error-message' }
+    b.use :hint, wrap_with: { class: 'govuk-hint' }
+    b.use :input, class: 'govuk-select'
+  end
+
+  config.wrappers :textarea do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: 'govuk-label'
+    b.use :full_error, wrap_with: { class: 'gobuk-error-message' }
+    b.use :hint, wrap_with: { class: 'govuk-hint' }
+    b.use :input, class: 'govuk-textarea'
   end
 
   config.wrappers :checkbox, class: '', label_class: 'govuk-label govuk-checkboxes__label', input_class: '' do |b|
@@ -152,7 +180,9 @@ SimpleForm.setup do |config|
   # type as key and the wrapper that will be used for all inputs with specified type.
   config.wrapper_mappings = {
     boolean: :checkbox,
-    radio_buttons: :radio_buttons
+    radio_buttons: :radio_buttons,
+    select: :select,
+    text: :textarea
   }
 
   # Default priority for time_zone inputs.

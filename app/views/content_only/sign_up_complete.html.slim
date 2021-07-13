@@ -3,10 +3,10 @@
 .article-related-positioning-container
   .article-container.group.article-container-headerless
     article.group role="article"
-      .inner
+      div
         header
-          h1
+          h1.govuk-heading-xl
             = I18n.t(:custom_login_messages)[:we_just_sent_you_confirmation_email]
 
-        p
+        p.govuk-body
           ' To proceed, go to your email account and click the link in the email we've just sent you. If you can't find the confirmation email, check your junk folder too.

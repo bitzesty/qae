@@ -1,55 +1,59 @@
 - provide(:page_content_class, "multi-page page-account")
 
-header.page-header.group.page-header-over-sidebar
-  div
-    h1
-      ' Account details
+h1.govuk-heading-xl
+  ' Account details
 
 .steps-progress-container
   .steps-progress-content
-    header.page-header.group
-      div
-        h2
-          ' Collaborators and account owner
+    h2.govuk-heading-l
+      ' Collaborators and account owner
 
     .article-container
       article.group role="article"
-        .inner
+        div
           - if current_user.account_admin?
             - if current_account.has_collaborators?
-              .application-notice.help-notice
-                p
+              .govuk-warning-text
+                span.govuk-warning-text__icon aria-hidden="true"
+                  | !
+                strong.govuk-warning-text__text
+                  span.govuk-warning-text__assistive
+                    | Warning
                   | Please check if collaborators' details are up to date.
             - else
-              .application-notice.help-notice.warning-notice
-                p
+              .govuk-warning-text
+                span.govuk-warning-text__icon aria-hidden="true"
+                  | !
+                strong.govuk-warning-text__text
+                  span.govuk-warning-text__assistive
+                    | Warning
                   | You don't have any collaborators added. Please add at least one collaborator.
 
-                = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
+                = link_to new_account_collaborator_path(form_id: @form_answer), class: "govuk-button"
                   ' + Add a collaborator
 
-            p Adding collaborators lets your colleagues sign in and contribute to your applications.
+            p.govuk-body Adding collaborators lets your colleagues sign in and contribute to your applications.
 
-            p They will also receive any correspondence from us regarding your applications. This will help to ensure that any correspondence from us is less likely to be overlooked or not addressed in time. Also, if you leave the organisation, we will have a person to contact regarding applications.
+            p.govuk-body They will also receive any correspondence from us regarding your applications. This will help to ensure that any correspondence from us is less likely to be overlooked or not addressed in time. Also, if you leave the organisation, we will have a person to contact regarding applications.
 
-            p
+            p.govuk-body
               strong
                 | Please note, collaborators will be able to see and edit all of your applications.
 
             br
 
-            details
-              summary
-                span.summary
+            details.govuk-details data-module="govuk-details"
+              summary.govuk-details__summary
+                span.govuk-details__summary-text
                   | Are you the owner of a micro organisation?
-              .panel.panel-border-narrow
+              .govuk-details__text
                 | If you are an owner of a very small organisation and don't feel comfortable sharing your business details with your employees, you can add someone else who you trust.
 
-            details
-              summary
-                span.summary
+            details.govuk-details data-module="govuk-details"
+              summary.govuk-details__summary
+                span.govuk-details__summary-text
                   | Is a marketing agency helping you to apply?
-              .panel.panel-border-narrow
+              .govuk-details__text
                 | If you are using a marketing agency to help you with your application, you can add them as collaborators.
 
           = simple_form_for current_user, url: complete_registration_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
@@ -60,12 +64,12 @@ header.page-header.group.page-header-over-sidebar
             = render "list"
 
             - if current_user.account_admin?
-              p.collaborators__add
+              p.collaborators__add.govuk-body
                 - if collaborators.any?
-                  = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button--secondary"
+                  = link_to new_account_collaborator_path(form_id: @form_answer), class: "govuk-button govuk-button--secondary"
                     ' + Add another collaborator
                 - else
-                  = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
+                  = link_to new_account_collaborator_path(form_id: @form_answer), class: "govuk-button"
                     ' + Add a collaborator
 
               - if collaborators.any?
@@ -80,10 +84,10 @@ header.page-header.group.page-header-over-sidebar
 
                         li.submit
                           - if current_user.registration_in_progress?
-                            = f.submit "Save and continue", class: "button"
+                            = f.submit "Save and continue", class: "govuk-button"
                           - elsif came_from_application_form?
-                            = link_to "Save and return", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer], class: "button"
+                            = link_to "Save and return", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer], class: "govuk-button"
                           - elsif user_redirected_to_collaborators_page?
-                            = link_to "Save and continue", dashboard_path, class: "button"
+                            = link_to "Save and continue", dashboard_path, class: "govuk-button"
 
   = render "accounts/steps_progress_bar"

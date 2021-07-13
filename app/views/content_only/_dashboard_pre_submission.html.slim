@@ -1,9 +1,9 @@
 .article-related-positioning-container
   .article-container
     article.group role="article"
-      .inner
+      div
         - if @user_award_forms.any?
-          h2.govuk-heading-m
+          h2.govuk-heading-l
             ' Current Applications
           = render "current_applications", award_applications: @user_award_forms_trade
           = render "current_applications", award_applications: @user_award_forms_innovation
@@ -15,10 +15,10 @@
           br
 
         - if submission_started? && !submission_ended?
-          h2
+          h2.govuk-heading-l class="govuk-!-margin-top-8"
             ' Applying for a Queen's Award for your organisation?
 
-          p To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
+          p.govuk-body To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
 
           = render "shared/application_awards_status"
 
@@ -29,6 +29,7 @@
       .related-container
         .related#related
           .highlighted-event
-            p
+            p.govuk-body
               ' Submission deadline
-              em = submission_deadline.decorate.formatted_trigger_time
+              em class="govuk-!-font-size-36 govuk-!-font-weight-bold"
+                = submission_deadline.decorate.formatted_trigger_time

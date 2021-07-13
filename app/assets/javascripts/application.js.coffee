@@ -40,7 +40,7 @@ ordinal = (n) ->
     return n + "th"
 
 jQuery ->
-  GOVUK.details.init();
+  # GOVUK.details.init();
   GOVUKFrontend.initAll();
 
   $("html").removeClass("no-js")

@@ -26,7 +26,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
     - when :country
       .govuk-form-group
-        label.govuk-label
+        label.govuk-label for="#{question.key}_country"
           ' Country
         = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: question.input_name(suffix: 'country'), class: 'js-trigger-autosave required govuk-select'}))
         - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
@@ -55,7 +55,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
     - else
       .govuk-form-group
-        label.govuk-label
+        label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
           = sub_field_title
         - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
           span.govuk-error-message
@@ -66,4 +66,4 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         - klass = "#{sub_field_title.parameterize == 'postcode' ? 'govuk-input--width-10' : 'govuk-input--width-20'}"
         - klass <<(QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
-        input.govuk-input.js-trigger-autosave class=klass type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops
+        input.govuk-input.js-trigger-autosave class=klass type="text" id=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) name=question.input_name(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops

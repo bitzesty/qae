@@ -73,3 +73,8 @@ body.js-enabled {
     @extend .govuk-input--width-30;
   }
 }
+
+.govuk-table__head.govuk-visuallyhidden {
+  height: 1px;
+  overflow: hidden;
+}

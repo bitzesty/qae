@@ -1,6 +1,6 @@
 - if award_applications.none?
   .application-notice.help-notice
-    p You did not submit any applications.
+    p.govuk-body You did not submit any applications.
 - else
   - if Settings.winners_stage?
     = render("content_only/post_submission/winners", award_applications: award_applications)

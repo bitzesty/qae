@@ -1,6 +1,6 @@
 module ApplicationHelper
   def step_link_to(name, url, opts = {})
-    opts[:class] ||= ""
+    opts[:class] ||= "govuk-body"
     step_status = ""
 
     if opts[:index]
@@ -20,7 +20,7 @@ module ApplicationHelper
         opts[:class] += " step-current"
       else
         if opts[:disable_progression].present? && opts[:disable_progression]
-          opts[:class] = "step-regular"
+          opts[:class] += " step-regular"
         elsif opts[:index] < opts[:active]
           step_status  = "past"
           opts[:class] += " step-past"
@@ -30,11 +30,11 @@ module ApplicationHelper
 
     content_tag :li, opts do
       if step_status == "current" or (step_status != "past" && opts[:cant_access_future])
-        content_tag :span do
+        content_tag :span, class: 'govuk-body' do
           index_step_text
         end
       else
-        link_to url do
+        link_to url, class: 'govuk-link' do
           index_step_text
         end
       end

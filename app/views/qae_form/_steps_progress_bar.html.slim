@@ -55,6 +55,7 @@
     - if submission_deadline && submission_deadline.trigger_at
       li.govuk-body
         .highlighted-event
-          p
+          p.govuk-body
             ' Submission deadline
-            em = submission_deadline.decorate.formatted_trigger_time
+            em class="govuk-!-font-size-36 govuk-!-font-weight-bold"
+              = submission_deadline.decorate.formatted_trigger_time

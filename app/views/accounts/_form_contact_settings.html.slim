@@ -1,5 +1,5 @@
 fieldset
-  p
+  p.govuk-body
     | I would like to receive yearly email notifications when the submission period opens for the following awards:
 
   = f.input :notification_when_innovation_award_open, label: "Innovation", wrapper_class: "selectable unsubscribe_award_specific_option"
@@ -18,12 +18,12 @@ fieldset.account-contact-preferences-other-ops
   = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.", wrapper_class: "selectable"
 
   = f.input :agree_sharing_of_details_with_lieutenancies, checkbox: true, label: "I am happy for my and my organisation's name, contact details and application status to be shared with Lieutenancies so that they can contact us to assist as appropriate.<br/><br/> <div class='question-context'>The Queen's Awards Office works closely with Lord-Lieutenants. They are Her Majesty’s representatives in each lieutenancy area of the United Kingdom. The Lord-Lieutenants present the Awards, promote them locally and offer support to companies and organisations.</div>".html_safe, wrapper_class: "selectable"
-p
+p.govuk-body
   | Please note, once anyone in your organisation submits an application, you will receive emails about the status of the application. You cannot unsubscribe to these status emails.
 
 
 /fieldset
-  h3
+  h3.govuk-heading-m
     ' How you would prefer us to contact you regarding your application?
   = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: "selectable", label: false
   .clear

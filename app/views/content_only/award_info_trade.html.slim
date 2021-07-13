@@ -1,7 +1,5 @@
-header.page-header.group.page-header-over-sidebar
-  div
-    h1
-      ' International Trade Award Application
+h1.govuk-heading-xl
+  ' International Trade Award Application
 
 .application-info-page
   .steps-progress-container.min-height-800
@@ -9,30 +7,29 @@ header.page-header.group.page-header-over-sidebar
       .article-related-positioning-container
         .article-container
           article.group role="article"
-            .inner
-              .page-header
-                h2 Useful Application Info Before You Begin
+            div
+              h2.govuk-heading-l Useful Application Info Before You Begin
               
-              p You are eligible to begin your application for an International Trade Award.
+              p.govuk-body You are eligible to begin your application for an International Trade Award.
 
               = render "content_only/pdf_link"
 
-              h3 Collaborators
+              h3.govuk-heading-m Collaborators
 
-              p
+              p.govuk-body
                 | We recommend that you&nbsp;
-                = link_to "add collaborators", account_collaborators_path(form_id: @form_answer.id)
+                = link_to "add collaborators", account_collaborators_path(form_id: @form_answer.id), class: 'govuk-link'
                 | &nbsp; to help you fill out the application, but be aware that&nbsp;
                 strong
                   | they are able to see and edit all of your applications.
-              p
+              p.govuk-body
                 | Adding collaborators also means that more people are on our contact list and any correspondence is less likely to be overlooked or not addressed in time.
 
               - if @collaborators.any?
                 br
-                p
+                p.govuk-body
                   ' You have already added these people as collaborators:
-                ul
+                ul.govuk-list.govuk-list--bullet
                   - @collaborators.each do |collaborator|
                     li
                       - if collaborator.first_name.present?
@@ -40,8 +37,8 @@ header.page-header.group.page-header-over-sidebar
                       - else
                         ' Anonymous
 
-              h3 Application guidance:
-              ul
+              h3.govuk-heading-m Application guidance:
+              ul.govuk-list.govuk-list--bullet
                 li
                   ' The deadline for submissions is
                   = submission_deadline.decorate.formatted_trigger_time
@@ -54,31 +51,31 @@ header.page-header.group.page-header-over-sidebar
                 li Question numbers aren't always consecutive, as we show and hide different questions depending on your answers.
                 li Your answers are saved automatically as you go.
 
-              h3 Need help?
+              h3.govuk-heading-m Need help?
 
-              p
+              p.govuk-body
                 | If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with us:
 
-              p
+              p.govuk-body
                 | By calling&nbsp;
                 strong
                   | 020 7215 6880
                 br
                 | Or emailing&nbsp;
-                = link_to "queensawards@beis.gov.uk", "mailto: queensawards@beis.gov.uk"
+                = link_to "queensawards@beis.gov.uk", "mailto: queensawards@beis.gov.uk", class: 'govuk-link'
 
-              h3 What you will need:
-              h4 Section A: Company Info
-              p Basic information about your organisation and its structure.
+              h3.govuk-heading-m What you will need:
+              h4.govuk-heading-s Section A: Company Info
+              p.govuk-body Basic information about your organisation and its structure.
 
-              h4 Section B: Your International Trade
-              p Detailed knowledge of your international trade - including goods, strategies and overseas markets.
+              h4.govuk-heading-s Section B: Your International Trade
+              p.govuk-body Detailed knowledge of your international trade - including goods, strategies and overseas markets.
 
-              h4 Section C: Commercial Performance
-              p Detailed financial information.
+              h4.govuk-heading-s Section C: Commercial Performance
+              p.govuk-body Detailed financial information.
 
               br
-              p#get-started.get-started.group
+              p#get-started.get-started.group.govuk-body
                 = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
                   ' Continue
                   / TODO if application is started
