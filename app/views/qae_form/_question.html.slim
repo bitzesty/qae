@@ -3,7 +3,7 @@
     = question.header
   - if question.header_context
     == question.header_context
-
+- is_sub_question = question.fieldset_classes.include?('sub-question')
 fieldset class=question.fieldset_classes data=question.fieldset_data_hash
   = condition_divs question do
     .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
@@ -16,9 +16,8 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
                 span.todo
                   = ref.to_s
             - unless question.title.blank?
-              - if question.respond_to?(:sub_fields) && !question.sub_fields.empty?
-                span class="govuk-body govuk-!-display-block"
-                  == question.title
+              - if is_sub_question
+                == question.title
               - else
                 span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
                   == question.title
@@ -32,9 +31,8 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
                 span.todo
                   = ref.to_s
             - unless question.title.blank? 
-              - if question.respond_to?(:sub_fields) && !question.sub_fields.empty?
-                span class="govuk-body govuk-!-display-block"
-                  == question.title
+              - if is_sub_question
+                == question.title
               - else
                 span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
                   == question.title
@@ -81,7 +79,8 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
           span.govuk-visually-hidden
             | Error:
           =< @form_answer.validator_errors[question.hash_key]
-      span.govuk-hint = question.form_hint
+      - unless question.form_hint.blank?
+        span.govuk-hint = question.form_hint
       = render partial: "qae_form/#{question.delegate_obj.class.name.demodulize.underscore}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
       
       / Conditional hints
