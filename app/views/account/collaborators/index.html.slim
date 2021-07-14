@@ -63,14 +63,14 @@ header.page-header.group.page-header-over-sidebar
 
             - if current_user.account_admin?
               p.collaborators__add
-                - if collaborators.any?
+                - if current_account.has_collaborators?
                   = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button--secondary"
                     ' + Add another collaborator
                 - else
                   = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
                     ' + Add a collaborator
 
-              - if collaborators.any?
+              - if current_account.has_collaborators?
                   footer
                     nav.pagination.no-border role="navigation" aria-label="Pagination"
                       ul.group
