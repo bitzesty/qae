@@ -1,124 +1,147 @@
-doctype html
-<html lang="en">
-/[if lt IE 7]
-  <html class="ie ie6 lte-ie9 lte-ie8 lte-ie7 lte-ie6 no-js">
-/[if IE 7]
-  <html class="ie ie7 lte-ie9 lte-ie8 lte-ie7 no-js">
-/[if IE 8]
-  <html class="ie ie8 lte-ie9 lte-ie8 no-js">
-/[if IE 9]
-  <html class="ie ie9 lte-ie9 no-js">
-/[if gt IE 9]
-  <html class="ie no-js">
-| <!--[if !(IE)]<!-->
-html.no-js
-  | <!--<![endif]-->
-  head
-    title Queen's Awards for Enterprise - Admin
-    meta content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport"
-    meta http-equiv="content-type" content="text/html; charset=UTF-8"
-    | <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    /[if IE 8]
-    | <meta http-equiv="x-ua-compatible" content="IE=8" >
-    / <!--<![endif]-->
+- content_for?(:title) ? yield(:title) : "Queen's Awards for Enterprise"
 
-    = stylesheet_link_tag "application-admin", media: "all"
+- content_for :head do
+  = stylesheet_link_tag "application-admin.css"
 
-    = yield :section_meta_tags
-    = csrf_meta_tags
+  - if Rails.env.test?
+    style
+      | * { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }
 
-    = yield(:head) if content_for?(:head)
+  = csrf_meta_tags
 
-    - if Rails.env.test?
-     = javascript_tag("$.fx.off = true;")
+  = yield :section_meta_tags
 
-     style
-       | * { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }
+  = yield :head
 
-  body#admin-layout data-autosave-token="#{current_admin.try(:autosave_token)}" class="admin-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
-    #site-wrapper
-      #site-wrapper-margin
-        #site-header.clearfix
-          .navbar.clearfix role="navigation"
-            .container.clearfix
-              .navbar-header
-                button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#nav-main-collapse"
-                  span.sr-only Toggle navigation
-                  span.icon-bar
-                  span.icon-bar
-                  span.icon-bar
 
-                = link_to "Queen's Awards for Enterprise - Admin",
-                          admin_root_path,
-                          class: 'navbar-brand'
 
-              .navbar-collapse.collapse#nav-main-collapse.clearfix
-                ul.nav.navbar-nav role="navigation"
-                  li class=('active' if controller_name == 'dashboard')
-                    = link_to "Dashboard", admin_dashboard_index_path
+- content_for :header_class do
+  - unless landing_page?
+    ' with-proposition
 
-                  - if policy(:form_answer).index?
-                    li class=('active' if controller_name == 'form_answers')
-                      = link_to "Applications", admin_form_answers_path
 
-                  - if policy(:user).index?
-                    li class=('active' if %w[users admins assessors].include?(controller_name))
-                      = link_to "Users", admin_users_path
+- content_for :proposition_header do
+  - unless landing_page?
+    nav
+      ul.govuk-header__navigation#navigation aria-label="Navigation menu"
+        li.govuk-header__navigation-item class=('active' if controller_name == 'dashboard')
+          = link_to "Dashboard", admin_dashboard_index_path, class: 'govuk-header__link'
 
-                  li class=('active' if controller_name == 'settings')
-                    = link_to "Settings", admin_settings_path(year: AwardYear.current.year)
+        - if policy(:form_answer).index?
+          li.govuk-header__navigation-item class=('active' if controller_name == 'form_answers')
+            = link_to "Applications", admin_form_answers_path, class: 'govuk-header__link'
 
-                  / li class=("active" if controller_name == "custom_emails")
-                  /  = link_to "Custom email", admin_custom_email_path
+        - if policy(:user).index?
+          li.govuk-header__navigation-item class=('active' if %w[users admins assessors].include?(controller_name))
+            = link_to "Users", admin_users_path, class: 'govuk-header__link'
 
-                  li class=("active" if controller_name == "users_feedbacks")
-                    = link_to "Feedback", admin_users_feedback_path
+        li.govuk-header__navigation-item class=('active' if controller_name == 'settings')
+          = link_to "Settings", admin_settings_path(year: AwardYear.current.year), class: 'govuk-header__link'
 
-                  li class=("active" if controller_name == "audit_logs")
-                    = link_to "Data Export Log", admin_audit_logs_path
+        / li.govuk-header__navigation-item class=("active" if controller_name == "custom_emails")
+        /  = link_to "Custom email", admin_custom_email_path, class: 'govuk-header__link'
 
-                ul.nav.navbar-nav.navbar-right role="navigation"
-                  li.dropdown
-                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                      ' My account
-                      span.caret
-                    ul.dropdown-menu
-                      li
-                        span
-                          strong = current_subject.decorate.full_name
-                          br
-                          small = current_subject.email
-                      li.divider
-                      - unless current_admin.authy_enabled
-                        li
-                          = link_to "Enable 2FA", admin_enable_authy_path
-                      li
-                        = link_to "Sign out",
-                                  destroy_admin_session_path,
-                                  method: :delete
-          = render "shared/staging_banner"
-          = render "shared/non_js_banner"
+        li.govuk-header__navigation-item class=("active" if controller_name == "users_feedbacks")
+          = link_to "Feedback", admin_users_feedback_path, class: 'govuk-header__link'
 
-        #main-container role="main"
-          .container
-            - unless notice.blank?
-              .alert-container
-                .alert.alert-success
-                  == notice
-            - unless alert.blank?
-              .alert-container
-                .alert.alert-danger
-                  == alert
-            - unless flash[:error].blank?
-              .alert-container
-                .alert.alert-danger
-                  == flash[:error]
+        li.govuk-header__navigation-item class=("active" if controller_name == "audit_logs")
+          = link_to "Data Export Log", admin_audit_logs_path, class: 'govuk-header__link'
 
-            = yield
+- content_for :inside_header do
+  - if landing_page?
+    = link_to "Search", "#search", class: "search-toggle js-header-toggle"
+    form#search.site-search action="/search" method="get" role="search"
+      .content
+        label for="site-search-text"
+          ' Search
+        input.js-search-focus#site-search-text type="search" name="q" title="Search"
+        input.submit type="submit" value="Search"
 
-    #site-footer
-      .footer-container
+- content_for :content do
+  = render "shared/offline_message"
+  = render "shared/staging_banner"
 
-    - if should_enable_js?
-      = javascript_include_tag 'application-admin'
-      = javascript_tag "$(function() { AdminAssessorAutomatedPollingOfSession.init('admin'); });"
+  #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
+    #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
+      .govuk-width-container
+        main#content.group class="govuk-main-wrapper app-main-class #{yield :page_content_class}"
+          - if !content_for?(:flash_disabled) && [:alert, :notice].any? { |kind| flash[kind].presence }
+            .flash
+              .flash-inner
+                - [:alert, :notice].each do |kind|
+                  - if flash[kind]
+                    div class="#{kind}"
+                      = flash[kind]
+
+          - if params[:session_expired].present?
+            = render "shared/session_expired_message"
+
+          - if landing_page?
+            #global-breadcrumb.header-context.govuk-breadcrumbs
+              ol.govuk-breadcrumbs__list role="navigation" aria-label="breadcrumbs"
+                li.govuk-breadcrumbs__list-item
+                  = link_to "Home", "https://www.gov.uk/", class: 'govuk-breadcrumbs__link'
+                - if action_name == "cookies" or action_name == "privacy"
+                  li.govuk-breadcrumbs__list-item
+                    = link_to "Help", "https://www.gov.uk/help/", class: 'govuk-breadcrumbs__link'
+                - else
+                  li.govuk-breadcrumbs__list-item
+                    = link_to "Business and self-employed", "https://www.gov.uk/browse/business", class: 'govuk-breadcrumbs__link'
+                  li.govuk-breadcrumbs__list-item
+                    = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company", class: 'govuk-breadcrumbs__link'
+
+          = yield
+
+          - unless landing_page?
+            p.footer-helpline.govuk-body
+              ' Need help? Ring us on
+              strong 020 7215 6880
+              ' . Alternatively, email us at
+              = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk", class: 'govuk-link'
+
+- content_for :footer_support_links do
+  h2.govuk-visually-hidden Support links
+  ul.govuk-footer__inline-list
+    li.govuk-footer__inline-list-item
+      = link_to "Help", "https://www.gov.uk/help", class: 'govuk-footer__link'
+    li.govuk-footer__inline-list-item
+      = link_to "Privacy Statement", privacy_path, class: 'govuk-footer__link'
+    li.govuk-footer__inline-list-item
+      ' Built by
+      = link_to "The Queen's Awards Office", "http://blogs.bis.gov.uk/queensawards/", class: 'govuk-footer__link'
+
+- content_for :body_end do
+  - if should_enable_js?
+    = include_gon
+    = javascript_include_tag 'application'
+
+  - if Rails.env.test?
+    = javascript_tag("$.fx.off = true;")
+
+  - if ENV["GOOGLE_ANALYTICS_ID"].present?
+    / Google Analytics
+    script type="text/javascript"
+      | if (Cookies.get("gaconsent") === "accept" && !Cookies.get("gaoptout")) {
+      |   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      |   ga('create', '#{ENV["GOOGLE_ANALYTICS_ID"]}', 'auto');
+
+      |   ga('create', 'UA-145652997-1', 'auto', 'govuk_shared', {'allowLinker': true});
+      |   ga('govuk_shared.require', 'linker');
+      |   ga('govuk_shared.linker.set', 'anonymizeIp', true);
+      |   ga('govuk_shared.linker:autoLink', ['www.gov.uk']);
+
+      - if current_user
+        | ga('set', 'userId', '#{current_user.id}');
+        | ga('set', 'dimension1', '#{current_user.id}');
+
+      |   ga('set', 'anonymizeIp', true);
+      |   ga('send', 'pageview');
+      |   ga('govuk_shared.send', 'pageview');
+      | }
+
+
+= render template: 'layouts/govuk_template'
+
+- if should_enable_js?
+  = javascript_include_tag 'application-admin'
+  = javascript_tag "$(function() { AdminAssessorAutomatedPollingOfSession.init('admin'); });"

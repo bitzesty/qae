@@ -1,12 +1,7 @@
 /*
  *= require_self
  *= require jquery-ui
- *= require select2.min
  */
-
-// Bootstrap
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
 // Password strength bar
 $error-colour: #df3034;

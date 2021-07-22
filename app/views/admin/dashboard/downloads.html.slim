@@ -2,13 +2,13 @@
 
 .dashboard
   .dashboard__header
-    h1.dashboard__heading
+    h1.govuk-heading-xl
       | Downloads
     .row
       = render "layouts/admin_award_year"
 
     .dashboard__action
-      = link_to import_csv_into_ms_excel_guide_pdf_admin_reports_url(format: :pdf), target: "_blank", class: "download-link" do
+      = link_to import_csv_into_ms_excel_guide_pdf_admin_reports_url(format: :pdf), target: "_blank", class: "download-link govuk-link" do
         ' Import CSV into MS Excel Guide
 
   .downloads-page

@@ -1,28 +1,29 @@
-table.dashboard-table
-  caption Submitted applications
-  thead
-    tr
-      th.bold.border-right width="250" Award
-      th.bold width="125" Last 24h
-      th.bold width="125" Last 7 days
-      th.bold width="125" Total
-  tbody
+table.dashboard-table.govuk-table
+  caption.govuk-table__caption.govuk-table__caption--m
+   | Submitted applications
+  thead.govuk-table__head
+    tr.govuk-table__row
+      th.bold.border-right.govuk-table__header width="250" Award
+      th.bold.govuk-table__header.govuk-table__header--numeric width="125" Last 24h
+      th.bold.govuk-table__header.govuk-table__header--numeric width="125" Last 7 days
+      th.bold.govuk-table__header.govuk-table__header--numeric width="125" Total
+  tbody.govuk-table__body
     - submissions = @statistics.applications_submissions
     - FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |slug, name|
-      tr
-        th.bold = name
+      tr.govuk-table__row
+        th.bold.govuk-table__header = name
         - ar_size = submissions[slug].size
         - submissions[slug].each_with_index do |count, index|
           - if index + 1 == ar_size
-            td.bold =count
+            td.bold.govuk-table__cell.govuk-table__cell--numeric =count
           - else
-            td= count
-    tr
-      th.bold Total
+            td.govuk-table__cell.govuk-table__cell--numeric = count
+    tr.govuk-table__row
+      th.bold.govuk-table__header Total
       - submissions["total"].each do |count|
-        td.bold = count
+        td.bold.govuk-table__cell.govuk-table__cell--numeric = count
     - unless hide_promotion?
-      tr
-        th.bold = FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+      tr.govuk-table__row
+        th.bold.govuk-table__header = FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
         - submissions["promotion"].each do |count|
-          td = count
+          td.govuk-table__cell.govuk-table__cell--numeric = count

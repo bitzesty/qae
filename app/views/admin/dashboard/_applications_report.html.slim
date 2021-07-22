@@ -1,12 +1,12 @@
 .dashboard-table__wrapper.dashboard-report
-  table.dashboard-table.dashboard-table--small width="1000"
-    caption
+  table.govuk-table
+    caption.govuk-table__caption.govuk-table__caption--m
       = title
-      a.btn.btn-primary.btn--load.update-report href=url
+      button.btn.btn-primary.btn--load.update-report data-href=url
         | Load data
       button.btn.btn-primary.btn--loading.updating-data.hidden
         | Updating data
     = render "admin/dashboard/totals_#{kind}/table_head"
 
-    tbody
+    tbody.govuk-table__body
       = render "admin/dashboard/totals_#{kind}/table_body"

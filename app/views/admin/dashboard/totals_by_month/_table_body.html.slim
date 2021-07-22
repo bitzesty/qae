@@ -1,28 +1,28 @@
 - if @report
   - @report.stats.each do |row|
-    tr
-      th = row.label
+    tr.govuk-table__row
+      th scope="row" class="govuk-table__header" = row.label
       - row.content.each_with_index do |cell, i|
         - if i == 10 || i == 11
-          td.bold = cell
+          td.govuk-table__cell.govuk-table__cell--numeric.bold = cell
         - elsif i % 1 == 0
-          td.border-right = cell
+          td.govuk-table__cell.govuk-table__cell--numeric.border-right = cell
         - else
-          td = cell
+          td.govuk-table__cell.govuk-table__cell--numeric = cell
 - else
   - dummy_report = Reports::Dashboard::Base.new
   - dummy_report.award_year_range.each do |award_year|
-    tr
-      th = dummy_report.label(award_year)
-      td &nbsp;
-      td.border-right &nbsp;
-      td &nbsp;
-      td.border-right &nbsp;
-      td &nbsp;
-      td.border-right &nbsp;
-      td &nbsp;
-      td.border-right &nbsp;
-      td &nbsp;
-      td.border-right &nbsp;
-      td.bold &nbsp;
-      td.bold &nbsp;
+    tr.govuk-table__row
+      th scope="row" class="govuk-table__header" = dummy_report.label(award_year)
+      td.govuk-table__cell.govuk-table__cell--numeric &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric.border-right &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric.border-right &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric.border-right &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric.border-right &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric.border-right &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric.bold &nbsp;
+      td.govuk-table__cell.govuk-table__cell--numeric.bold &nbsp;
