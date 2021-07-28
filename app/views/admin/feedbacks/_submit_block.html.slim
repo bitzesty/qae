@@ -1,3 +1,6 @@
+.dashboard
+  h1.dashboard__heading
+    | Feedback
 - if policy(feedback).can_be_submitted? || policy(feedback).can_be_re_submitted?
   - if feedback.persisted?
     = form_tag(polymorphic_url([:submit, namespace_name, form_answer, feedback]), authenticity_token: true, class: "submit-feedback", "data-type" => "json")

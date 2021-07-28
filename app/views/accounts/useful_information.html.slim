@@ -1,10 +1,12 @@
+- title "Useful information"
+
 .useful-information-page
   header.page-header.group
-    h2 Useful information
+    h1 Useful information
 
   .article-container
     article.group role="article"
-      h3 Application guidance:
+      h2 Application guidance:
       ul
         li = "The deadline for submissions is #{Settings.current_submission_deadline.decorate.formatted_trigger_time}".html_safe
         li = "Start #{link_to('a relevant award application', dashboard_path)} to see if you meet the eligibility criteria.".html_safe
@@ -12,12 +14,12 @@
         li You do not need to complete the online application in one go, it is saved as you go and you can come back to it later.
         li The majority of previous applicants reported taking around 20 hours to complete the form. However, others took up to 50 hours, so please take time to prepare your responses to ensure submission before the deadline.
 
-      h3 Collaborators
+      h2 Collaborators
       p = "We recommend that you #{link_to('add collaborators', account_collaborators_path)} to help you fill out the application, but be aware that <strong>they are able to see and edit all of your applications</strong>.".html_safe
 
       p Adding collaborators also means that more people are on our contact list and any correspondence is less likely to be overlooked or not addressed in time.
 
-      h3 Need help?
+      h2 Need help?
       p If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with The Queen’s Awards Office:
       p = "By calling <strong>020 7215 6880</strong> <br/> Or emailing #{mail_to('queensawards@beis.gov.uk')}".html_safe
 

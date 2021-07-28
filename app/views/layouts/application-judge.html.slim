@@ -1,4 +1,5 @@
 doctype html
+<html lang="en">
 /[if lt IE 7]
   <html class="ie ie6 lte-ie9 lte-ie8 lte-ie7 lte-ie6 no-js">
 /[if IE 7]
@@ -13,7 +14,7 @@ doctype html
 html.no-js
   | <!--<![endif]-->
   head
-    title Queen's Awards for Enterprise - Judge
+    title = content_for?(:title) ? yield(:title) + " - Queen's Awards for Enterprise" : "Judge - Queen's Awards for Enterprise"
     meta content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport"
     meta http-equiv="content-type" content="text/html; charset=UTF-8"
     | <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -75,7 +76,7 @@ html.no-js
           = render "shared/staging_banner"
           = render "shared/non_js_banner"
 
-        #main-container
+        #main-container role="main"
           .container
             - unless notice.blank?
               .alert-container

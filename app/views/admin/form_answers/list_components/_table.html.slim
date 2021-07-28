@@ -16,6 +16,6 @@ table.table.applications-table
         = sort_link f, "Flag", @search, :flag, disabled: @search.query?
       th.sortable width="130"
         = sort_link f, "Last updated", @search, :audit_updated_at, disabled: @search.query?
-      th &nbsp;
+      th View Application
   tbody
     = render("admin/form_answers/list_components/table_body")

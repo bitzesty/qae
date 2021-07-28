@@ -1,3 +1,5 @@
+- title "Winners' Resources 2016"
+
 - winners = FormAnswerDecorator.decorate_collection(@user_award_forms_submitted).select{ |app| app.awarded? }
 - any_promotion_winner = winners.select{ |app| app.promotion? }.any?
 - any_innovation_winner = winners.select{ |app| app.innovation? }.any?

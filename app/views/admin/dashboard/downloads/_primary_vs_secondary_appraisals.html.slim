@@ -11,4 +11,4 @@ ul.download-list
       / p.download-item__description
         ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
-      = link_to "Download", admin_report_path("discrepancies_between_primary_and_secondary_appraisals", link_ops), class: "download-link"
+      = link_to "Download", admin_report_path("discrepancies_between_primary_and_secondary_appraisals", link_ops), class: "download-link", aria: { label: "Download #{value}" }

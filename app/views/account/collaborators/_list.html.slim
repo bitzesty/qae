@@ -1,4 +1,4 @@
-ul.list-add.collaborators-list.list-group
+ul.list-add.collaborators-list.list-group aria-label="Account owner and collaborators summary"
   = render 'account/collaborators/item', collaborator: account_owner.decorate
 
   - collaborators.decorate.each do |collaborator|

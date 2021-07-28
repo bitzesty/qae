@@ -5,19 +5,16 @@ tbody
         td = check_box_tag :check, obj.id, false, class: "form-answer-check"
 
       td.td-title
-        = link_to polymorphic_url([namespace_name, obj], search: params.permit[:search]) do
-          - unless obj.company_or_nominee_name.nil?
-            span.ellipsis
-              = obj.company_or_nominee_name
-          - else
-            em
-              ' Not found
-
+        - unless obj.company_or_nominee_name.nil?
+          = obj.company_or_nominee_name
+        - else
+          em
+            ' Not yet specified
       td
         - if obj.urn.present?
-          = link_to obj.urn, polymorphic_url([namespace_name, obj], search: params.permit[:search])
+          = link_to obj.urn, polymorphic_url([namespace_name, obj], search: params.permit[:search]), aria: { label: "Open submitted application page, for #{obj.company_or_nominee_name.presence || "company not yet specified"} application #{ obj.urn.presence ||  obj.id}" }
         - else
-          span.urn-not-generated Not yet generated
+          span.urn-not-generated Draft id: #{obj.id}
 
       td = obj.dashboard_status
       td = obj.sic_code
