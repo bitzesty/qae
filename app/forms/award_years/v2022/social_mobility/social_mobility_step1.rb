@@ -214,11 +214,11 @@ class AwardYears::V2022::QAEForms
           context -> do
             %(
               <p>
-                 Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award.
+                 Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award.
               </p>
             )
           end
-          date_max AwardYear.start_trading_since(3)
+          date_max AwardYear.start_trading_since(2)
         end
 
         options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
@@ -368,7 +368,7 @@ class AwardYears::V2022::QAEForms
           county_context %(
             <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p> 
+            <p>
               <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
                 See the full list of London districts on Wikipedia
               </a>
