@@ -132,7 +132,7 @@ class FormAnswerStatistics::Picker
     out << range3.count
     range4 = scope.where("fill_progress >= ? AND fill_progress < ?", 0.5, 0.75)
     out << range4.count
-    range5 = scope.where("fill_progress >= ? AND fill_progress < ?", 0.75, 1)
+    range5 = scope.where("fill_progress >= ? AND fill_progress <= ?", 0.75, 1)
     out << range5.count
     out << scope.count
     out
