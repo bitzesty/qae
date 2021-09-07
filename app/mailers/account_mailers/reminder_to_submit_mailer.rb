@@ -6,7 +6,7 @@ class AccountMailers::ReminderToSubmitMailer < AccountMailers::BaseMailer
     collaborator = User.find(collaborator_id)
 
     # subject = "Queen's Awards for Enterprise: Reminder to submit"
-    subject = "Awards deadline extended till Wednesday, the 22nd of September"
+    subject = "Awards deadline extended until Wednesday 22nd of September"
 
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
   end
