@@ -63,7 +63,8 @@ class Notifiers::EmailNotificationService
 
   def reminder_to_submit(award_year)
     collaborator_data = []
-    scope = award_year.form_answers.business.where(submitted_at: nil)
+    not_submitted_accounts = award_year.form_answers.business.where(submitted_at: nil).map(&:account_id)
+    scope = award_year.form_answers.business.where.not(submitted_at: nil, account_id: not_submitted_accounts)
 
     scope.each do |form_answer|
       form_answer.collaborators.each do |collaborator|
@@ -152,10 +153,10 @@ class Notifiers::EmailNotificationService
     end
 
     form_answer_ids.each do |form_answer_id|
-      # 
+      #
       # 1: to Head of Organization
       AccountMailers::BuckinghamPalaceInviteMailer.invite(form_answer_id).deliver_later!
-      # 
+      #
       # 2: to Press Contact
       AccountMailers::BuckinghamPalaceInviteMailer.invite(form_answer_id, true).deliver_later!
     end
