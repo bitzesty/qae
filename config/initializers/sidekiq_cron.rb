@@ -1,6 +1,6 @@
 default_schedule = {
   "email_notification_service" => {
-    "cron" => "0 * * * *",
+    "cron" => "*/30 * * * *",
     "class" => "Scheduled::EmailNotificationServiceWorker"
   },
   "trigger_audit_deadlines" => {
