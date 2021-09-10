@@ -165,6 +165,7 @@ group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-github', require: false
   gem "pry-byebug"
   gem 'rails-controller-testing'
   gem "selenium-webdriver"

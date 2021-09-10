@@ -63,7 +63,7 @@ jobs:
           yarn install
           bundle install --jobs 4 --retry 3
           RAILS_ENV=test bundle exec rake db:create db:migrate
-          RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml --format progress
+          RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RSpec::Github::Formatter --format progress
   deploy_dev:
     needs: [test]
     if: github.ref == 'refs/heads/main'
