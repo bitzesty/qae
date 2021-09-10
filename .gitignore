@@ -2,7 +2,8 @@
 .bundle
 /log/*.log
 /log/*.pid
-/tmp/**/*
+/tmp/*
+!/tmp/.gitkeep
 /vendor/bundle
 rspec.watchr
 /public/uploads/*
