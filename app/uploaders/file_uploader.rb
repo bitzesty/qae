@@ -9,4 +9,8 @@ class FileUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+
+  def filename
+    "#{original_filename.gsub!(/\W/,'')}.#{file.extension}" if original_filename.present?
+  end
 end
