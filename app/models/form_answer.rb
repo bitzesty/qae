@@ -344,11 +344,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def collaborators
-    if account
-      account.collaborators_with(user)
-    else
-      User.none
-    end
+    account.collaborators_with(user)
   end
 
   def has_more_than_one_contributor?

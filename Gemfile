@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.6.6'
 
-gem 'rails', '~> 6.0.4.1'
+gem 'rails', '~> 6.0.3.7'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -141,6 +141,10 @@ gem 'shog'
 # Used to convert HTML to text, with the exception of whitelisted attributes.
 # This makes it easier for us to display HTML content within PDF documents.
 gem 'sanitize'
+
+# https://github.com/minad/mimemagic/issues/98
+gem "mimemagic", ">= 0.3.9"
+
 
 group :development do
   gem 'letter_opener'
