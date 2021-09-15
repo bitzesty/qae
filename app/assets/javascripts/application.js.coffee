@@ -41,7 +41,7 @@ ordinal = (n) ->
 
 jQuery ->
   # GOVUK.details.init();
-  GOVUKFrontend.initAll();
+  # GOVUKFrontend.initAll();
 
   $("html").removeClass("no-js")
 

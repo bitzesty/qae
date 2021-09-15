@@ -16,5 +16,6 @@
 // const imagePath = (name) => images(name, true)
 
 require("govuk-frontend/govuk/all").initAll()
+console.log("lolo")
 require.context('govuk-frontend/govuk/assets/images', true)
 import './application.scss';
