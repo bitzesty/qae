@@ -63,8 +63,8 @@ class Notifiers::EmailNotificationService
 
   def reminder_to_submit(award_year)
     collaborator_data = []
-    not_submitted_accounts = award_year.form_answers.business.where(submitted_at: nil).map(&:account_id)
-    scope = award_year.form_answers.business.where.not(submitted_at: nil, account_id: not_submitted_accounts)
+
+    scope = award_year.form_answers.business.where(submitted_at: nil)
 
     scope.each do |form_answer|
       form_answer.collaborators.each do |collaborator|
