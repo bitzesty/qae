@@ -29,7 +29,7 @@ class PalaceInvite < ApplicationRecord
     if form_answer.promotion?
       1 # nominator
     else
-      2
+      1 # 2020 COVID inspired rules
     end
   end
 
