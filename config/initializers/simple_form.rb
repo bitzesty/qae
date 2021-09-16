@@ -9,7 +9,7 @@ SimpleForm.setup do |config|
                   class: 'govuk-form-group',
                   label_class: 'govuk-label',
                   hint_class: "field-with-hint",
-                  error_class: "field-with-errors" do |b|
+                  error_class: "govuk-form-group--error" do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -49,7 +49,7 @@ SimpleForm.setup do |config|
     b.use :input, class: 'govuk-input'
   end
 
-  config.wrappers :select do |b|
+  config.wrappers :select, class: 'govuk-form-group', error_class: "govuk-form-group--error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -58,12 +58,12 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'govuk-label'
-    b.use :full_error, wrap_with: { class: 'gobuk-error-message' }
+    b.use :error, wrap_with: { class: 'govuk-error-message' }
     b.use :hint, wrap_with: { class: 'govuk-hint' }
     b.use :input, class: 'govuk-select'
   end
 
-  config.wrappers :textarea, class: 'govuk-form-group' do |b|
+  config.wrappers :textarea, class: 'govuk-form-group', error_class: "govuk-form-group--error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -72,7 +72,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'govuk-label'
-    b.use :full_error, wrap_with: { class: 'gobuk-error-message' }
+    b.use :error, wrap_with: { class: 'govuk-error-message' }
     b.use :hint, wrap_with: { class: 'govuk-hint' }
     b.use :input, class: 'govuk-textarea'
   end
@@ -86,17 +86,19 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :radio_buttons, item_wrapper_class: 'govuk-radios__item', item_label_class: 'govuk-label govuk-radios__label', tag: 'fieldset', class: 'govuk-fieldset' do |b|
-    b.use :html5
-    b.optional :readonly
-    
-    b.use :label, wrap_with: { tag: :legend, class: 'govuk-fieldset__legend govuk-fieldset__legend--l' }, tag: :h2, class: 'govuk-fieldset__heading'
-    
-    b.use :full_error, wrap_with: { class: 'govuk-error-message' }
-    b.use :hint, wrap_with: { class: 'govuk-hint' }
-    
-    b.wrapper tag: :div, class: 'govuk-radios' do |ba|
-      ba.use :input, class: 'govuk-radios__input', error_class: '', valid_class: ''
+  config.wrappers :radio_buttons, item_wrapper_class: 'govuk-radios__item', item_label_class: 'govuk-label govuk-radios__label', class: 'govuk-form-group', error_class: "govuk-form-group--error" do |b|
+    b.wrapper tag: :fieldset, class: 'govuk-fieldset' do |bb|
+      bb.use :html5
+      bb.optional :readonly
+
+      bb.use :label, wrap_with: { tag: :legend, class: 'govuk-fieldset__legend' }, tag: :h2, class: 'govuk-label govuk-label--l'
+
+      bb.use :error, wrap_with: { class: 'govuk-error-message' }
+      bb.use :hint, wrap_with: { class: 'govuk-hint' }
+
+      bb.wrapper tag: :div, class: 'govuk-radios' do |ba|
+        ba.use :input, class: 'govuk-radios__input', error_class: '', valid_class: ''
+      end
     end
   end
 

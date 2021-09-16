@@ -1,6 +1,6 @@
 li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator == account_owner ? "Account owner" : collaborator.role_name} summary"
   - if current_user.account_admin? && collaborator != account_owner
-    .pull-right
+    p class="govuk-!-margin-bottom-3"
       = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link govuk-link"
   h4.collaborator__name.govuk-heading-s
     = collaborator.full_name_with_status

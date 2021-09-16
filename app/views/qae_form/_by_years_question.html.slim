@@ -8,7 +8,7 @@
       .govuk-grid-row
         - (1..c.years).each do |y|
           .span-financial.govuk-grid-column-one-third
-            label.govuk-label for=question.input_name(suffix: "#{y}of#{c.years}")
+            label.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5" for=question.input_name(suffix: "#{y}of#{c.years}")
               span.js-year-end.show-default data-year="#{y}of#{c.years}"
                 span.js-year-default
                   ' Financial year
@@ -16,7 +16,7 @@
                   - if y == c.years
                     '  (latest)
                 span.js-year-text
-            span.govuk-error-message
+            span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
             span class="#{'govuk-input__wrapper' if question.type == :money}"
               - if question.type == :money
                 .govuk-input__prefix £

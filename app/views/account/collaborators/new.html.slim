@@ -1,21 +1,16 @@
 - provide(:page_content_class, "multi-page page-account")
 
-header.page-header.group.page-header-over-sidebar
-  div
-    h1
-      ' Account details
+h1.govuk-heading-xl
+  ' Account details
 
 .steps-progress-container
   .steps-progress-content
-    header.page-header.group
-      div
-        h2
-          ' Add new collaborator
+    h2.govuk-heading-l
+      ' Add new collaborator
 
 
     .article-container
       article.group role="article"
-        .inner
-          = render "form"
+        = render "form"
 
   = render "accounts/steps_progress_bar"

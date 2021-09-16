@@ -40,24 +40,21 @@
       - else
         = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
 
-    fieldset
-      legend.body-font-size
-        ' Administrative rights
-      p.question-context
-        ' A 'Collaborator only' can only write and edit your applications/nominations. Whilst an 'Admin and collaborator' is also able to add new collaborators.
+    fieldset.govuk-fieldset
       = f.input :role,
                 collection: [["Collaborator only", "regular"],
                              ["Admin and collaborator", "account_admin"]],
                 as: :radio_buttons,
                 required: true,
                 include_blank: false,
+                label: 'Administrative rights',
+                hint: "A 'Collaborator only' can only write and edit your applications/nominations. Whilst an 'Admin and collaborator' is also able to add new collaborators.",
                 input_html: { autocomplete: "off"},
-                label_html: { class: "visuallyhidden" },
-                item_wrapper_class: "selectable"
+                label_html: { class: 'govuk-label--s govuk-!-font-weight-regular' }
 
     p.inline-form-actions
-      = link_to "Cancel", account_collaborators_path, class: "button button--link"
       - if f.object.persisted?
-        = f.submit "Save collaborator details", class: "button"
+        = f.submit "Save collaborator details", class: "govuk-button"
       - else
-        = f.submit "Add the collaborator", class: "button"
+        = f.submit "Add the collaborator", class: "govuk-button"
+      = link_to "Cancel", account_collaborators_path, class: "govuk-button govuk-button--secondary"

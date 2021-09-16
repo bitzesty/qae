@@ -51,9 +51,12 @@ body.js-enabled {
 
     .submit {
       width: auto !important;
-      margin-left: 1.5rem;
     }
   }
+}
+
+.govuk-button.govuk-button--secondary {
+  color: govuk-colour('black') !important;
 }
 
 .govuk-input {

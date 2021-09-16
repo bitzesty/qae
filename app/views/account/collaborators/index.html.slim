@@ -28,9 +28,10 @@ h1.govuk-heading-xl
                   span.govuk-warning-text__assistive
                     | Warning
                   | You don't have any collaborators added. Please add at least one collaborator.
-
-                = link_to new_account_collaborator_path(form_id: @form_answer), class: "govuk-button"
-                  ' + Add a collaborator
+                  br
+                  br
+                  = link_to new_account_collaborator_path(form_id: @form_answer), class: "govuk-button"
+                    ' + Add a collaborator
 
             p.govuk-body Adding collaborators lets your colleagues sign in and contribute to your applications.
 
@@ -78,9 +79,8 @@ h1.govuk-heading-xl
                       ul.group
                         - if current_user.registration_in_progress?
                           li.previous.previous-alternate
-                            = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
-                              span class="pagination-label"
-                                ' Back
+                            = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part", class: "govuk-button govuk-button--secondary" do
+                              ' Back
 
                         li.submit
                           - if current_user.registration_in_progress?
