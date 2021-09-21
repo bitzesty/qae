@@ -216,6 +216,13 @@ class AwardYear < ApplicationRecord
     years[0] if years.count > 1
   end
 
+  def fetch_deadline(title)
+    res = settings
+            .deadlines
+            .where(kind: title)
+            .first
+  end
+
   class << self
     # Buckingham Palace Reception date
     # is usually 14th July
