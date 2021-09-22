@@ -1,10 +1,10 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Palace Attendees", %q{
+describe "Castle Attendees", %q{
 As a head of organization
-I want to be able to setup Palace attendees details
-So that I provide a full list of attendees for Buckingham Palace reception
+I want to be able to setup Windsor Castle attendees details
+So that I provide a full list of attendees for Windsor Castle reception
 } do
 
   let(:user) do
@@ -56,7 +56,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         expect(page).to_not have_link("Palace Attendees")
 
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect(page).to have_no_content("Buckingham Palace Attendees")
+        expect(page).to have_no_content("Windsor Castle Attendee")
 
         settings.email_notifications.create!(
           kind: "buckingham_palace_invite",
@@ -64,7 +64,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         )
 
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect(page).to have_content("Buckingham Palace Attendees")
+        expect(page).to have_content("Windsor Castle Attendee")
       end
     end
 
@@ -80,7 +80,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
       it "should reject applicant with access denied message" do
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect_to_see "Palace Attendees"
+        expect_to_see "Windsor Castle Attendee"
         expect(page).to have_no_content("Save")
       end
     end
@@ -108,20 +108,20 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "First name", with: my_first_name
 
         expect {
-          click_on "Confirm Attendees"
+          click_on "Confirm Attendee"
         }.not_to change {
           palace_invite.reload.submitted
         }
 
         expect_to_see "This field cannot be blank"
-        expect_to_see_no "Palace Attendees details are successfully submitted!"
+        expect_to_see_no "Windsor Castle Attendee details are successfully submitted!"
 
         click_on "Save"
 
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
 
-        expect_to_see "Attendee details have been successfully updated"
+        expect_to_see "Windsor Castle Attendee details have been successfully updated"
       end
     end
 
@@ -140,7 +140,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Telephone number", with: "Test"
 
         expect {
-          click_on "Confirm Attendees"
+          click_on "Confirm Attendee"
         }.to change {
           palace_invite.reload.submitted
         }
@@ -148,7 +148,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
 
-        expect_to_see "Palace Attendees details are successfully submitted!"
+        expect_to_see "Windsor Castle Attendee details are successfully submitted!"
       end
     end
   end
