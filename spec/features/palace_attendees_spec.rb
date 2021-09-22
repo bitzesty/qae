@@ -1,10 +1,10 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Palace Attendees", %q{
+describe "Castle Attendees", %q{
 As a head of organization
-I want to be able to setup Palace attendees details
-So that I provide a full list of attendees for Buckingham Palace reception
+I want to be able to setup Windsor Castle attendees details
+So that I provide a full list of attendees for Windsor Castle reception
 } do
 
   let(:user) do
@@ -114,14 +114,14 @@ So that I provide a full list of attendees for Buckingham Palace reception
         }
 
         expect_to_see "This field cannot be blank"
-        expect_to_see_no "Palace Attendee details are successfully submitted!"
+        expect_to_see_no "Windsor Castle Attendee details are successfully submitted!"
 
         click_on "Save"
 
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
 
-        expect_to_see "Attendee details have been successfully updated"
+        expect_to_see "Windsor Castle Attendee details have been successfully updated"
       end
     end
 
@@ -148,7 +148,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
 
-        expect_to_see "Palace Attendee details are successfully submitted!"
+        expect_to_see "Windsor Castle Attendee details are successfully submitted!"
       end
     end
   end
