@@ -1,3 +1,4 @@
+# coding: utf-8
 class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
   def invite(form_answer_id, notify_to_press_contact=false)
     form_answer = FormAnswer.find(form_answer_id).decorate
@@ -18,7 +19,7 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
     palace_attendees_due = form_answer.award_year.fetch_deadline("buckingham_palace_reception_attendee_information_due_by").try(:trigger_at)
     @palace_attendees_due = palace_attendees_due.try(:strftime, "%A, #{palace_attendees_due.day.ordinalize} %B %Y")
 
-    subject = "An invitation to HM The Queen's Reception at Windsor Castle"
+    subject = "Clarification: The Queen’s Awards for Enterprise Reception at Windsor Castle"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @email, subject: subject_with_env_prefix(subject)
   end
 end
