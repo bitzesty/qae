@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.6.6'
 
-gem 'rails', '~> 6.0.3.7'
+gem 'rails', '~> 6.0.4.1'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -143,10 +143,6 @@ gem 'shog'
 # This makes it easier for us to display HTML content within PDF documents.
 gem 'sanitize'
 
-# https://github.com/minad/mimemagic/issues/98
-gem "mimemagic", ">= 0.3.9"
-
-
 group :development do
   gem 'letter_opener'
   gem 'rack-mini-profiler', '>= 0.10.1', require: false
@@ -166,6 +162,7 @@ group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-github', require: false
   gem "pry-byebug"
   gem 'rails-controller-testing'
   gem "selenium-webdriver"

@@ -2,7 +2,10 @@
 .bundle
 /log/*.log
 /log/*.pid
-/tmp/**/*
+/tmp/*
+!/tmp/.gitkeep
+/tmp/uploads/*
+!/tmp/uploads/.gitkeep
 /vendor/bundle
 rspec.watchr
 /public/uploads/*
@@ -13,6 +16,7 @@ certs/*
 
 *.swp
 *.swo
+*.rdb
 .idea
 
 .ruby-gemset

@@ -8,4 +8,4 @@ li.download-item
     - else
       = value
 
-  = link_to "Download", download_judge_case_summaries_path(link_ops), class: "download-link"
+  = link_to "Download", download_judge_case_summaries_path(link_ops), class: "download-link", aria: { label: "Download #{ key == "trade"? "International Trade #{years_mode} years" : value }" }

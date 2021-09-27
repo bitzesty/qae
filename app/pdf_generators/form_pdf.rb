@@ -4,6 +4,7 @@ class FormPdf < Prawn::Document
   include QaePdfForms::General::DrawElements
   include FormAnswersBasePointer
   include SharedPdfHelpers::FontHelper
+  include SharedPdfHelpers::LanguageHelper
 
   UNDEFINED_TITLE = "No answer ..."
   NOTHING_SELECTED = "Nothing selected"
@@ -40,6 +41,7 @@ class FormPdf < Prawn::Document
     @pdf_blank_mode = pdf_blank_mode
     @answers = fetch_answers(pdf_blank_mode)
     set_fonts!
+    set_language!
     @award_form = form_answer.award_form.decorate(answers: answers)
     @steps = award_form.steps
     @all_questions = steps.map(&:questions).flatten

@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
+
   def step_link_to(name, url, opts = {})
     opts[:class] ||= "govuk-body"
     step_status = ""
