@@ -11,7 +11,7 @@ $.fn.charcount = function() {
   }
   prevElement.addClass("char-spacing");
   if (prevElement.hasClass("errors-container")) {
-    if (prevElement.prev().find(".char-space").size() <= 0) {
+    if (prevElement.prev().find(".char-space").length <= 0) {
       prevElement.prev().append("<span class='char-space'></div>");
     }
   }
@@ -34,7 +34,7 @@ $.fn.charcount = function() {
         maxlengthlimit = 5;
       }
       // Strict limit with no extra words
-      if ($(this).closest(".word-max-strict").size() > 0) {
+      if ($(this).closest(".word-max-strict").length > 0) {
         maxlengthlimit = 0;
       }
       $(this).attr("data-word-max-limit", (maxlengthlimit));
