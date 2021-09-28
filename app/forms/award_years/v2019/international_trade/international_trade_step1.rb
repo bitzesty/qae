@@ -19,7 +19,7 @@ class AwardYears::V2019::QAEForms
         end
 
         header :business_division_header, "" do
-          classes "application-notice help-notice"
+          classes "application-notice"
           context %(
             <p>
               Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
