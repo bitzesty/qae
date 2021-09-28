@@ -135,7 +135,7 @@ class AwardYears::V2022::QAEForms
         header :business_division_header, "" do
           classes "application-notice help-notice"
           context %(
-            <p class="govuk-hint">
+            <p>
               Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
             </p>
           )
@@ -281,7 +281,7 @@ class AwardYears::V2022::QAEForms
           county_context %(
             <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p class='govuk-hint'> 
+            <p class='govuk-hint'>
               <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
                 See the full list of London districts on Wikipedia
               </a>
