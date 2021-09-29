@@ -73,8 +73,7 @@ h1.govuk-heading-xl = page_title
 
         - if (!step || step.to_s == "wicked_finish")
           - if @form_answer.eligible?
-            .eligibility-continue-button
-              = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium"
+            = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium"
           - else
             footer
               nav.pagination.no-border role="navigation" aria-label="Pagination"
