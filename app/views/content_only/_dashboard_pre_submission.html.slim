@@ -26,10 +26,12 @@
 
   - if submission_deadline && submission_deadline.trigger_at
     .related-positioning.related-positioning-no-header
-      .related-container
-        .related#related
-          .highlighted-event
-            p.govuk-body
-              ' Submission deadline
-              em class="govuk-!-font-size-36 govuk-!-font-weight-bold"
-                = submission_deadline.decorate.formatted_trigger_time
+      .related
+        .govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+          .govuk-notification-banner__header
+            h2.govuk-notification-banner__title#govuk-notification-banner-title
+              | Important
+          .govuk-notification-banner__content
+            p.govuk-notification-banner__heading
+              | Submission deadline is
+              =< submission_deadline.decorate.formatted_trigger_time
