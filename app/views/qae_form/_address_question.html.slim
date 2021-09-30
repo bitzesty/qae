@@ -5,46 +5,29 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
     - case sub_field_key
     - when :building
-      .govuk-form-group
+      .govuk-form-group.question-required
         label.govuk-label for="q_#{question.key}_line_1"
           ' Building
-        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "building"))
-          span.govuk-error-message
-            span.govuk-visually-hidden
-              | Error:
-            = @form_answer.validator_errors[question.hash_key(suffix: "building")]
-
+        span.govuk-error-message
         input.govuk-input.govuk-input--width-10.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
-      .govuk-form-group
+      .govuk-form-group.question-required
         label.govuk-label for="q_#{question.key}_line_2"
           ' Street
-        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "street"))
-          span.govuk-error-message
-            span.govuk-visually-hidden
-              | Error:
-            = @form_answer.validator_errors[question.hash_key(suffix: "street")]
+        span.govuk-error-message
         input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
     - when :country
-      .govuk-form-group
+      .govuk-form-group.question-required
         label.govuk-label for="#{question.key}_country"
           ' Country
         = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: question.input_name(suffix: 'country'), class: 'js-trigger-autosave required govuk-select'}))
-        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
-          span.govuk-error-message
-            span.govuk-visually-hidden
-              | Error:
-            =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        span.govuk-error-message
         .clear
 
     - when :county
       .govuk-form-group.question-required
         label.govuk-label id="#{question.key}_region_label" for="#{question.key}_county" aria-describedby="#{question.key}_county_hint"
           ' County
-        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
-          span.govuk-error-message
-            span.govuk-visually-hidden
-              | Error:
-            =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        span.govuk-error-message
         .clear
 
         - if question.county_context.present?
@@ -54,14 +37,10 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         = select_tag("#{question.key}_county", options_for_select(question.counties, question.input_value(suffix: "county")), possible_read_only_ops.merge({name: question.input_name(suffix: 'county'), class: "js-trigger-autosave required custom-select govuk-select", include_blank: true}))
 
     - else
-      .govuk-form-group
+      .govuk-form-group.question-required
         label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
           = sub_field_title
-        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
-          span.govuk-error-message
-            span.govuk-visually-hidden
-              | Error:
-            =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        span.govuk-error-message
         .clear
 
         - klass = "#{sub_field_title.parameterize == 'postcode' ? 'govuk-input--width-10' : 'govuk-input--width-20'}"
