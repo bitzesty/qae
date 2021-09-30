@@ -60,8 +60,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         .govuk-grid-row
           .govuk-grid-column-full
-            label.govuk-label.question-required
-              span.govuk-error-message
+            label.govuk-label
               .if-no-js-hide
                 ' Specify the reason why you are including it.
                 textarea.govuk-textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[#{index}][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
