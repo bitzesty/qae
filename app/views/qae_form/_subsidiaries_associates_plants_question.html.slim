@@ -15,7 +15,8 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
           span.govuk-grid-column-one-third
             label.govuk-label
-              .govuk-form-group
+              .govuk-form-group.question-required
+                span.govuk-error-message
                 .if-no-js-hide
                   ' Name of subsidiary
                   input.govuk-input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][name]" value=subsidiary["name"] autocomplete="off" *possible_read_only_ops
@@ -29,7 +30,8 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
                     ' -
           span.govuk-grid-column-one-third
             label.govuk-label
-              .govuk-form-group
+              .govuk-form-group.question-required
+                span.govuk-error-message
                 .if-no-js-hide
                   ' Location
                   input.govuk-input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][location]" value=subsidiary["location"]  autocomplete="off" *possible_read_only_ops
@@ -42,7 +44,8 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
                     ' -
           span.govuk-grid-column-one-third
             label.govuk-label
-              .govuk-form-group
+              .govuk-form-group.question-required
+                span.govuk-error-message
                 .if-no-js-hide
                   ' Amount of UK employees
                   input.govuk-input.small.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary["employees"]  autocomplete="off" *possible_read_only_ops
@@ -57,7 +60,8 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         .govuk-grid-row
           .govuk-grid-column-full
-            label.govuk-label
+            label.govuk-label.question-required
+              span.govuk-error-message
               .if-no-js-hide
                 ' Specify the reason why you are including it.
                 textarea.govuk-textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[#{index}][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
