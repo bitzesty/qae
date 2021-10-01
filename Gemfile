@@ -150,7 +150,6 @@ group :development do
   # When need to copy model with nested associations
   gem 'amoeba', '3.0.0'
   # for RailsPanel Chrome extension
-  gem 'meta_request'
   gem 'listen'
 
   # Fixes https://github.com/rails/rails/issues/26658#issuecomment-255590071
