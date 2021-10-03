@@ -8,7 +8,7 @@ class MailRenderer
       { host: "www.queens-awards-enterprise.service.gov.uk" }
     end
   end
-  
+
   def submission_started_notification
     #
     # NOTE: This one is old.
@@ -193,7 +193,7 @@ class MailRenderer
   private
 
   def render(assigns, template)
-    view = View.new(ActionController::Base.view_paths, assigns)
+    view = View.with_empty_template_cache.with_view_paths(ActionController::Base.view_paths, assigns)
     view.render(template: template)
   end
 
