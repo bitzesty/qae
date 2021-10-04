@@ -68,11 +68,14 @@ title = content_for?(:title) ? yield(:title)  + " - Queen's Awards for Enterpris
       .govuk-width-container
         main#content.group class="govuk-main-wrapper app-main-class #{yield :page_content_class}"
           - if !content_for?(:flash_disabled) && [:alert, :notice].any? { |kind| flash[kind].presence }
-            .flash
-              .flash-inner
-                - [:alert, :notice].each do |kind|
-                  - if flash[kind]
-                    div class="#{kind}"
+            - [:alert, :notice].each do |kind|
+              - if flash[kind]
+                .govuk-notification-banner class="govuk-notification-banner--#{ kind }" role="region" aria-labelledby="flash-message-#{kind}-title" data-module="govuk-notification-banner"
+                  .govuk-notification-banner__header
+                    h2.govuk-notification-banner__title id="flash-message-#{kind}-title"
+                      = kind.to_s.titleize
+                  .govuk-notification-banner__content
+                    .govuk-notification-banner__heading
                       = flash[kind]
 
           - if params[:session_expired].present?
