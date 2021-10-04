@@ -4,14 +4,14 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.7.4'
 
-gem 'rails', '~> 6.0.4.1'
+gem 'rails', '>= 6.1.3.2'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
 gem 'rack-ssl-enforcer'
 
 # PostgreSQL
-gem 'pg', '~> 0.20'
+gem 'pg'
 
 # Track Changes
 gem 'paper_trail', '~> 10.3'
@@ -150,7 +150,6 @@ group :development do
   # When need to copy model with nested associations
   gem 'amoeba', '3.0.0'
   # for RailsPanel Chrome extension
-  gem 'meta_request'
   gem 'listen'
 
   # Fixes https://github.com/rails/rails/issues/26658#issuecomment-255590071
@@ -160,7 +159,7 @@ end
 group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-rails'
   gem 'rspec-github', require: false
   gem "pry-byebug"
   gem 'rails-controller-testing'
