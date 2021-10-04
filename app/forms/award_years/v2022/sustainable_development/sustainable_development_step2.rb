@@ -130,7 +130,7 @@ class AwardYears::V2022::QAEForms
         header :sustainable_development_interventions_header, "Your sustainable development interventions" do
           ref "B 1"
           context %(
-            <p>
+            <p class='govuk-body'>
               In questions B1.1 and B1.2 you need to summarise your actions or interventions to sustainable development and demonstrate a sustainable strategy across the business. This is to help us understand the size and scale of your actions or interventions. This summary might be used in publicity material if your application is successful.
             </p>
           )
