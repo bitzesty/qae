@@ -366,10 +366,10 @@ class AwardYears::V2022::QAEForms
             [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
           ]
           county_context %(
-            <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+            <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p>
-              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
+            <p class='govuk-hint'>
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
                 See the full list of London districts on Wikipedia
               </a>
             </p>
