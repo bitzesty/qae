@@ -371,7 +371,7 @@ class AwardYears::V2022::QAEForms
         header :press_contact_details_header, "Contact details for press enquiries" do
           ref "A 12"
           context %(
-            <p>
+            <p class='govuk-hint'>
               If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
