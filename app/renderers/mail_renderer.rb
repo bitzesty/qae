@@ -197,7 +197,7 @@ class MailRenderer
   private
 
   def render(assigns, template)
-    view = View.new(ActionView::LookupContext.new(ActionController::Base.view_paths), assigns, nil)
+    view = View.with_view_paths(ActionController::Base.view_paths, assigns, nil)
     view.render(template: template)
   end
 
