@@ -4,7 +4,7 @@
   ol
     = step_link_to "Eligibility", form_award_eligibility_path(form_id: @form_answer.id), index: 1, active: 2, index_name: "",  cant_access_future: false
 
-    li.js-step-condition.step-current
+    li.js-step-condition.step-current.govuk-body
       span
         = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id] do
           span.step-number
