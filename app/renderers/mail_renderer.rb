@@ -7,6 +7,10 @@ class MailRenderer
     def default_url_options
       { host: "www.queens-awards-enterprise.service.gov.uk" }
     end
+
+    def compiled_method_container
+      return self.class
+    end
   end
 
   def submission_started_notification
@@ -193,7 +197,7 @@ class MailRenderer
   private
 
   def render(assigns, template)
-    view = View.with_empty_template_cache.new(ActionView::LookupContext.new(ActionController::Base.view_paths), assigns, nil)
+    view = View.new(ActionView::LookupContext.new(ActionController::Base.view_paths), assigns, nil)
     view.render(template: template)
   end
 
