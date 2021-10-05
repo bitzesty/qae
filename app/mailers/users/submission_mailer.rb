@@ -1,5 +1,5 @@
 class Users::SubmissionMailer < ApplicationMailer
-  add_template_helper(ApplicationHelper)
+  helper ApplicationHelper
 
   def success(user_id, form_answer_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
