@@ -5,22 +5,24 @@ class AwardYears::V2022::QAEForms
       @mobility_step2 ||= proc do
         header :mobility_b_section_header, "" do
           context %(
-            <h3>About this section</h3>
-
-            <p>This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.</p>
-
-            <h3>Social mobility definition</h3>
-
-            <p>Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.</p>
-            <ul>
+            <h3 class='govuk-heading-m'>About this section</h3>
+            <p class='govuk-body'>
+              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
+            </p>
+            <h3 class="govuk-heading-m">Social mobility definition</h3>
+            <p class="govuk-body">
+              Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
               <li>Socio-economic background is a set of social and economic circumstances from which a person has come.</li>
               <li>Socio-economic status is a person's current social and economic circumstances.</li>
             </ul>
 
-            <h3>Disadvantaged groups that Queens’ Awards for Enterprise focuses on</h3>
-            <p>For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:</p>
-
-            <ul>
+            <h3 class="govuk-heading-m">Disadvantaged groups that Queens’ Awards for Enterprise focuses on</h3>
+            <p class="govuk-body">
+              For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
               <li>Black, Asian and minority ethnic people, including Gypsy and Traveller people;</li>
               <li>Asylum seekers and refugees or children of refugees;</li>
               <li>Young people (over 16 years old) with English as a second language;</li>
@@ -41,25 +43,37 @@ class AwardYears::V2022::QAEForms
               <li>Families of prisoners.</li>
             </ul>
 
-            <p>Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.</p>
+            <p class="govuk-body">
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+            </p>
 
-            <h3>Evidence</h3>
+            <h3 class="govuk-heading-m">Evidence</h3>
 
-            <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
+            <p class="govuk-body">
+              Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
+            </p>
 
-            <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
+            <p class="govuk-body">
+              The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+            </p>
 
-            <h3>Small organisations</h3>
+            <h3 class="govuk-heading-m">Small organisations</h3>
 
-            <p>The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.</p>
+            <p class="govuk-body">
+              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            </p>
 
-            <h3>COVID-19 impact</h3>
+            <h3 class="govuk-heading-m">COVID-19 impact</h3>
             
-            <p>We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.</p>
+            <p class="govuk-body">
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+            </p>
               
-            <h3>Answering questions</h3>
+            <h3 class="govuk-heading-m">Answering questions</h3>
 
-            <p>Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.</p>
+            <p class="govuk-body">
+              Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.
+            </p>
           )
 
           pdf_context_with_header_blocks [

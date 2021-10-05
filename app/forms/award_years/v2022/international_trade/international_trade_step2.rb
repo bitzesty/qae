@@ -5,19 +5,19 @@ class AwardYears::V2022::QAEForms
       @trade_step2 ||= proc do
         header :your_internation_trade_header, "" do
           context %(
-            <h3>About this section</h3>
-            <p>
+            <h3 class='govuk-heading-m'>About this section</h3>
+            <p class='govuk-body'>
               This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.
             </p>
-            <p>
+            <p class='govuk-body'>
               Please avoid using technical language in this section.
             </p>
-            <h3>Small organisations</h3>
-            <p>
+            <h3 class="govuk-heading-m">Small organisations</h3>
+            <p class="govuk-body">
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
-            <h3>COVID-19 impact</h3>
-            <p>
+            <h3 class="govuk-heading-m">COVID-19 impact</h3>
+            <p class="govuk-body">
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             </p>
           )
@@ -149,7 +149,7 @@ class AwardYears::V2022::QAEForms
         header :overseas_markets_header, "Overseas Markets" do
           ref "B 4"
           context %(
-            <p>
+            <p class="govuk-body">
               If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?
             </p>
           )

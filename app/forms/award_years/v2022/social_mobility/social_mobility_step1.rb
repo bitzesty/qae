@@ -5,17 +5,17 @@ class AwardYears::V2022::QAEForms
       @mobility_step1 ||= proc do
         header :company_information_header, "" do
           context %(
-            <h3>About this section</h3>
-            <p>
+            <h3 class='govuk-heading-m'>About this section</h3>
+            <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>
-            <details>
-              <summary>
-                <span class="summary">
+            <details class='govuk-details' data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
                   View Government Departments and Agencies we undertake due diligence checks with >
                 </span>
               </summary>
-              <div class="panel panel-border-narrow">
+              <div class="govuk-details__text">
                 <ul>
                   <li>Biotechnology & Biological Sciences Research Council</li>
                   <li>Charity Commission</li>
@@ -61,8 +61,8 @@ class AwardYears::V2022::QAEForms
                 </ul>
               </div>
             </details>
-            <h3>Small organisations</h3>
-            <p>
+            <h3 class="govuk-heading-m">Small organisations</h3>
+            <p class="govuk-body">
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
           )
@@ -366,10 +366,10 @@ class AwardYears::V2022::QAEForms
             [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
           ]
           county_context %(
-            <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+            <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p>
-              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
+            <p class='govuk-hint'>
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
                 See the full list of London districts on Wikipedia
               </a>
             </p>
@@ -392,7 +392,7 @@ class AwardYears::V2022::QAEForms
         header :press_contact_details_header, "Contact details for press enquiries" do
           ref "A 11"
           context %(
-            <p>
+            <p class='govuk-hint'>
               If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
