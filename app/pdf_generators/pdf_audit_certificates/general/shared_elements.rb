@@ -297,10 +297,6 @@ module PdfAuditCertificates::General::SharedElements
   def render_feedback
     render_text_line("FEEDBACK", 5, style: :bold)
 
-    render_text_line("Immediate feedback", 1, style: :bold)
-    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
-    move_down 60.mm
-
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
     render_text_line("We are committed to improving experiences for everyone who is involved in the Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
@@ -310,6 +306,9 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 3, style: :bold)
 
     render_text_line("Email: ....................................................................................................................", 1)
+    render_text_line("Immediate feedback", 1, style: :bold)
+    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
+    move_down 60.mm
   end
 
   def render_appendix
