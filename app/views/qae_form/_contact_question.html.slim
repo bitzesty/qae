@@ -1,15 +1,41 @@
-.govuk-form-group
-  label.govuk-label
-    ' Title
-  span.govuk-error-message
-  input.govuk-input.govuk-input--width-2.js-trigger-autosave type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'primary') autocomplete="off" *possible_read_only_ops
-.govuk-form-group
-  label.govuk-label
-    ' First name
-  span.govuk-error-message
-  input.govuk-input.govuk-input--width-5.js-trigger-autosave type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops
-.govuk-form-group
-  label.govuk-label
-    ' Last name
-  span.govuk-error-message
-  input.govuk-input.govuk-input--width-5.js-trigger-autosave type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops
+div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+  - question.rendering_sub_fields.each do |sub_field_block|
+    - sub_field_key = sub_field_block[0]
+    - sub_field_title = sub_field_block[1]
+
+    - case sub_field_key
+    - when :title
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_line_1"
+          ' Title
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
+        .clear
+    - when :first_name
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_line_2"
+          ' First name
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
+        .clear
+    - when :last_name
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_line_2"
+          ' Last name
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
+        .clear
+    - when :telephone
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_line_2"
+          ' Telephone
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'telephone') value=question.input_value(suffix: 'telephone') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
+        .clear
+    - when :email_address
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_line_2"
+          ' Email address
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'email_address') value=question.input_value(suffix: 'email_address') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
+        .clear

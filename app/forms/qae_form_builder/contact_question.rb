@@ -1,21 +1,54 @@
 class QAEFormBuilder
   class ContactQuestionValidator < QuestionValidator
+    def errors
+      result = super
+
+      if question.required?
+        question.required_sub_fields.each do |sub_field|
+          suffix = sub_field.keys[0]
+          if !question.input_value(suffix: suffix).present? && NO_VALIDATION_SUB_FIELDS.exclude?(suffix)
+            result[question.hash_key(suffix: suffix)] ||= ""
+            result[question.hash_key(suffix: suffix)] << " Can't be blank."
+          end
+        end
+      end
+
+      # need to add govuk-form-group--errors class
+      result[question.hash_key] ||= "" if result.any?
+
+      result
+    end
   end
 
   class ContactQuestionDecorator < QuestionDecorator
     def required_sub_fields
-      [
-        {title: "Title"},
-        {first_name: "First name"},
-        {last_name: "Last name"}
-      ]
+      if sub_fields.present?
+        sub_fields
+      else
+        [
+          { press_contact_details_title: "Title" },
+          { press_contact_details_first_name: "First name" },
+          { press_contact_details_last_name: "Last name" },
+          { press_contact_details_telephone: "Telephone" },
+          { press_contact_details_email: "Email address" }
+        ]
+      end
+    end
+
+    def rendering_sub_fields
+      required_sub_fields.map do |f|
+        [f.keys.first, f.values.first]
+      end
     end
   end
 
   class ContactQuestionBuilder < QuestionBuilder
+    def sub_fields(fields)
+      @q.sub_fields = fields
+    end
   end
 
   class ContactQuestion < Question
+    attr_accessor :sub_fields
   end
-
 end
