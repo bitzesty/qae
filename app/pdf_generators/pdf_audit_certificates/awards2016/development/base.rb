@@ -4,7 +4,6 @@ module PdfAuditCertificates::Awards2016::Development
     # HERE YOU CAN OVERRIDE STANDART METHODS
 
     FIRST_TABLE_ROWS = %i[employees total_turnover exports uk_sales net_profit total_net_assets].freeze
-    SECOND_TABLE_ROWS = %i[units_sold sales sales_exports sales_royalties avg_unit_cost_self].freeze
 
     def header_full_award_type
       "Sustainable Development Award"
