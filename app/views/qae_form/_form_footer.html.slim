@@ -21,12 +21,11 @@ footer
             button type="submit" name="submit" value="true" class="govuk-button #{step.submit.style.presence}"
               = step.submit.text
 
-
     - if step.previous
       li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
         = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part", "aria-label" => "Back to #{step.previous.title}", class: 'govuk-button govuk-button--secondary' do
           span.pagination-label
-            | Back
+            | Go back to previous page
           /span class="pagination-part-title"
             = step.previous.title
 
@@ -39,4 +38,4 @@ footer
         
         = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label, class: "govuk-back-link govuk-!-font-size-19" do
           span.pagination-label
-            | Back
+            | Go back to previous page
