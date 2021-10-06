@@ -319,9 +319,7 @@ module PdfAuditCertificates::General::SharedElements
 
     ps << "The figures in the forms are provided by the applicant during their application for the Queen’s Awards for Enterprise. Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
 
-    ps << "Accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate. The examples are illustrative, and other procedures may be undertaken."
-
-    ps << "As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25."
+    ps << "Accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate."
 
     ps.each { |pr| render_text_line(pr, 2, default_text_ops) }
 
@@ -342,7 +340,7 @@ module PdfAuditCertificates::General::SharedElements
     header = "Overseas sales (Non-UK sales):"
     list = [
       "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
-      "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices each year stated.",
+      "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices.",
       "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
     ]
     render_list_with_header(header, list)
