@@ -5,19 +5,19 @@ class AwardYears::V2022::QAEForms
       @innovation_step2 ||= proc do
         header :innovation_b_section_header, "" do
           context %(
-            <h3>About this section</h3>
-            <p>
+            <h3 class='govuk-heading-m'>About this section</h3>
+            <p class='govuk-body'>
               This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
             </p>
-            <p>
+            <p class='govuk-body'>
               Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             </p>
-            <h3>Small organisations</h3>
-            <p>
+            <h3 class="govuk-heading-m">Small organisations</h3>
+            <p class="govuk-body">
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
-            <h3>COVID-19 impact</h3>
-            <p>
+            <h3 class="govuk-heading-m">COVID-19 impact</h3>
+            <p class="govuk-body">
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             </p>
           )

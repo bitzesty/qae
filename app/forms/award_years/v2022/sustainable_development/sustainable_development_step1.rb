@@ -5,8 +5,8 @@ class AwardYears::V2022::QAEForms
       @development_step1 ||= proc do
         header :company_information_header, "" do
           context %(
-            <p>
-              We need this information to ensure we have some basic information about your organisation, which will help us to undertake due diligence checks if your application is shortlisted.
+            <p class='govuk-body'>
+              We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>
           )
         end
@@ -240,10 +240,10 @@ class AwardYears::V2022::QAEForms
             [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
           ]
           county_context %(
-            <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+            <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p> 
-              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
+            <p class='govuk-hint'>
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
                 See the full list of London districts on Wikipedia
               </a>
             </p>
@@ -266,7 +266,7 @@ class AwardYears::V2022::QAEForms
         header :press_contact_details_header, "Contact details for press enquiries" do
           ref "A 11"
           context %(
-            <p>
+            <p class='govuk-hint'>
               If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
