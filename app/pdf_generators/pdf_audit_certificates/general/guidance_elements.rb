@@ -35,10 +35,10 @@ module PdfAuditCertificates::General::GuidanceElements
 
     render_text_line(header, 3, style: :bold)
 
-    if form_answer.trade? || form_answer.mobility?
-      table = "table"
-    else
+    if form_answer.innovation?
       table = "tables"
+    else
+      table = "table"
     end
 
     ps = []
