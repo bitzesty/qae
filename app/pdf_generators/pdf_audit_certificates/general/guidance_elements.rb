@@ -83,7 +83,7 @@ module PdfAuditCertificates::General::GuidanceElements
 
     render_text_line(header, 1, style: :bold)
 
-    paragraph = "The applicant hasn’t reached or finalised the relevant year-end by the application submission deadline, they were able to provide estimated figures, provided the actual figures are provided at this verification stage."
+    paragraph = "If the applicant hasn’t reached or finalised the relevant year-end by the application submission deadline, they were able to provide estimated figures, provided the actual figures are provided at this verification stage."
 
     render_text_line(paragraph, 1, leading: 2)
   end

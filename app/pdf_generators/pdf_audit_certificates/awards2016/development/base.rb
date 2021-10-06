@@ -29,36 +29,6 @@ module PdfAuditCertificates::Awards2016::Development
       render_financial_main_table
 
       start_new_page
-      render_sd_financial_table
-    end
-
-    def render_sd_financial_table
-      render_text_line("Sustainable Development Financials", 2, style: :bold)
-      prs = []
-      prs << "Sustainable Development is defined as per the gov.uk guidance. For the avoidance of doubt, Accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for a sustainable development award. This is left to the sole discretion of the Queen’s Award Office."
-      prs << "If relevant to their sustainable development, the applicant provided unit price, cost details and sales figures to help us understand the financial value of their sustainable development."
-
-      prs.each { |intro| render_text_line(intro, 2) }
-
-      data = financial_pointer.data
-
-      rows = [financial_pointer.years_list.unshift("")]
-
-      SECOND_TABLE_ROWS.each_with_index do |field, index|
-        row = data.detect { |r| r[field] }
-
-        rows << render_financial_row(row, index + FIRST_TABLE_ROWS.length + 2)
-
-        rows << revised_row(row.values.first.length, index + FIRST_TABLE_ROWS.length + 2)
-      end
-
-      table(rows, table_default_ops(:main_table)) do
-        rows.each_with_index do |row, i|
-          if row.first.include?("Revised")
-            style(row(i), text_color: "808080")
-          end
-        end
-      end
     end
 
     def render_financial_main_table

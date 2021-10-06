@@ -297,6 +297,10 @@ module PdfAuditCertificates::General::SharedElements
   def render_feedback
     render_text_line("FEEDBACK", 5, style: :bold)
 
+    render_text_line("Immediate feedback", 1, style: :bold)
+    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
+    move_down 60.mm
+
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
     render_text_line("We are committed to improving experiences for everyone who is involved in the Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
@@ -306,9 +310,6 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 3, style: :bold)
 
     render_text_line("Email: ....................................................................................................................", 1)
-    render_text_line("Immediate feedback", 1, style: :bold)
-    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
-    move_down 60.mm
   end
 
   def render_appendix
@@ -316,9 +317,9 @@ module PdfAuditCertificates::General::SharedElements
 
     ps = []
 
-    ps << "The figures in the forms are provided by the applicant during their application for the Queen’s Awards for Enterprise. Queen’s Awards for Enterprise requests that applicants engage an accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
+    ps << "The figures in the forms are provided by the applicant during their application for the Queen’s Awards for Enterprise. Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
 
-    ps << "While accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate. The examples are illustrative, and other procedures may be undertaken."
+    ps << "Accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate. The examples are illustrative, and other procedures may be undertaken."
 
     ps << "As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25."
 
@@ -342,7 +343,7 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
       "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices each year stated.",
-      "NB. For International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
+      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
     ]
     render_list_with_header(header, list)
 
@@ -361,7 +362,7 @@ module PdfAuditCertificates::General::SharedElements
 
     render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
 
-    render_text_line("Accountants should append the list of procedures undertaken, and the sample sizes selected to their submission from to the Queen’s Award Office.", 5)
+    render_text_line("Accountants should append the list of procedures undertaken, and the sample sizes selected to their submission to the Queen’s Award Office.", 5)
   end
 
   def render_list_with_header(header, list)
