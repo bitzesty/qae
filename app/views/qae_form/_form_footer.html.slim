@@ -26,8 +26,6 @@ footer
         = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part", "aria-label" => "Back to #{step.previous.title}", class: 'govuk-button govuk-button--secondary' do
           span.pagination-label
             | Go back to previous page
-          /span class="pagination-part-title"
-            = step.previous.title
 
     - else
       previous.previous-alternate
