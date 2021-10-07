@@ -64,10 +64,10 @@ module PdfAuditCertificates::General::SharedElements
       rows << if row[:uk_sales]
         render_financial_uk_sales_row(row, index + 2)
       else
-        render_financial_row(row, index + 2)
+        render_financial_row(row, index + 1)
       end
 
-      rows << revised_row(row.values.first.length, index + 2)
+      rows << revised_row(row.values.first.length, index + 1)
     end
 
     table(rows, table_default_ops(:main_table)) do
