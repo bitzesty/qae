@@ -26,8 +26,6 @@ module PdfAuditCertificates::Awards2016::Development
       render_text_line("FIGURES TO BE REVISED OR VERIFIED", 3, style: :bold)
 
       render_financial_main_table
-
-      start_new_page
     end
 
     def render_financial_main_table
