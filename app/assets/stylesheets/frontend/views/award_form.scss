@@ -185,7 +185,6 @@ label > .visible-read-only,
 
 input.read-only, textarea.read-only {
   color: #000000;
-  opacity: 0.9;
 }
 
 select.read-only {
@@ -272,7 +271,6 @@ select.read-only {
 .step-download a {
   display: inline-block;
   position: relative;
-  text-decoration: none;
   
   &:focus {
     color: black;

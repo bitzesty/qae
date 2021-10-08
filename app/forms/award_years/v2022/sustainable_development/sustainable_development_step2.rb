@@ -32,6 +32,10 @@ class AwardYears::V2022::QAEForms
             </p>
 
             <p class='govuk-body'>
+              You can find more information about each goal on the United Nations (UN) website by clicking on the links below:
+            </p>
+
+            <p class='govuk-body'>
               <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal1.html">GOAL 1: No Poverty</a><br />
               <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal2.html">GOAL 2: Zero Hunger</a><br />
               <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal3.html">GOAL 3: Good Health and Well-being</a><br />

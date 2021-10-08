@@ -32,11 +32,12 @@
 
       - if f.object.persisted?
         .question-group
-          label.control-label
+          label.govuk-label
             | Email
-          p.question-context
+          p.govuk-hint
             | If you would like to change the email, please ask the collaborator to login and do so themselves, or contact the Queen's Award for Enterprise team.
-          = f.object.email
+          p.govuk-body
+            = f.object.email
       - else
         = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
 
@@ -52,7 +53,7 @@
                 input_html: { autocomplete: "off"},
                 label_html: { class: 'govuk-label--s govuk-!-font-weight-regular' }
 
-    p.inline-form-actions
+    p.govuk-button-group
       - if f.object.persisted?
         = f.submit "Save collaborator details", class: "govuk-button"
       - else

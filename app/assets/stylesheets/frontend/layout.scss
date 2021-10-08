@@ -552,7 +552,7 @@ header.page-header aside .inner {
     text-align: left;
 
     &,
-    a {
+    a:not(#sidenav-download-link){
       color: $grey-1;
       text-decoration: none;
     }
