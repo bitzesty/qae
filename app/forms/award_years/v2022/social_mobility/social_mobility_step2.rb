@@ -349,7 +349,7 @@ class AwardYears::V2022::QAEForms
         header :initiative_header_b4a, "Measuring success" do
           ref "B 4a"
           context %(
-            <p>The questions in B4 are not about the actual output or outcomes, but rather the targets you set and how you go about measuring outputs and outcomes against them.</p>
+            <p class="govuk-body">The questions in B4 are not about the actual output or outcomes, but rather the targets you set and how you go about measuring outputs and outcomes against them.</p>
           )
           conditional :application_category, "initiative"
         end
@@ -860,7 +860,7 @@ class AwardYears::V2022::QAEForms
         header :organisation_header_b4b, "Measuring success" do
           ref "B 4b"
           context %(
-            <p>The questions in B4 are not about the actual output or outcomes, but rather the targets you set and how you go about measuring outputs and outcomes against them.</p>
+            <p class="govuk-body">The questions in B4 are not about the actual output or outcomes, but rather the targets you set and how you go about measuring outputs and outcomes against them.</p>
           )
           conditional :application_category, "organisation"
         end

@@ -151,17 +151,17 @@ class AwardYears::V2022::QAEForms
           ref "C 4"
 
           context %(
-            <h3 class='govuk-body'>Group entries</h3>
+            <h3 class='govuk-heading-s'>Group entries</h3>
             <p class='govuk-body'>
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
 
-            <h3 class='govuk-body'>Estimated figures</h3>
+            <h3 class='govuk-heading-s'>Estimated figures</h3>
             <p class='govuk-body'>
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
 
-            <h3 class='govuk-body'>Figures - format</h3>
+            <h3 class='govuk-heading-s'>Figures - format</h3>
             <p class='govuk-body'>
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
             </p>

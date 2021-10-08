@@ -3,7 +3,7 @@ div.question-body
 
   div.govuk-radios.optional.eligibility_application_category role="radiogroup" id="eligibility_application_category" aria-labelledby="eligibility_application_category_label" class=("field-with-errors" if @eligibility.errors.any?)
     - if @eligibility.errors.any?
-      span.error
+      span.govuk-error-message
         p = @eligibility.errors[:application_category].join(",")
     input.radio_buttons.optional type="hidden" name="eligibility[application_category]"
     - for answer in @eligibility.options_for_question(step)
