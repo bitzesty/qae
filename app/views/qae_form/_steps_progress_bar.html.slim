@@ -36,12 +36,12 @@
     - unless QAE.hide_pdf_links?
       li.divider
       li.step-past.step-download.govuk-body
-        = link_to users_form_answer_path(@form_answer, format: :pdf)
+        = link_to users_form_answer_path(@form_answer, format: :pdf), id: "sidenav-download-link"
           = render "content_only/download_icon"
           - if @form_answer.award_type == "promotion"
-            ' Download your nomination
+            ' Download your nomination (PDF)
           - else
-            ' Download your application
+            ' Download your application (PDF)
 
     li.divider
     li.sidebar-helpline.govuk-body
