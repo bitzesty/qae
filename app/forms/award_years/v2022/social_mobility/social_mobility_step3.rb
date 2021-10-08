@@ -107,7 +107,7 @@ class AwardYears::V2022::QAEForms
           type :number
           label ->(y) { "Financial year #{y}" }
 
-
+          conditional :financial_year_date_changed, :true
           employees_question
         end
 

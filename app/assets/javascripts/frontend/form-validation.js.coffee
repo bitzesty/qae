@@ -518,7 +518,7 @@ window.FormValidation =
       self.validateIndividualQuestion($(@).closest(".question-block"), $(@))
 
   validateIndividualQuestion: (question, triggeringElement) ->
-    if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years") and not question.hasClass("question-matrix")
+    if question.hasClass("question-required") and not question.hasClass("question-employee-min") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years") and not question.hasClass("question-matrix")
       # console.log "validateRequiredQuestion"
       @validateRequiredQuestion(question)
 
