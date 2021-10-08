@@ -5,7 +5,7 @@ class Eligibility::Mobility < Eligibility
             boolean: true,
             label: "Are you able to provide financial figures for the last three years for your organisation?",
             accept: :true,
-            hint: proc { "<p class='question-context'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>" }
+            hint: proc { "<p class='govuk-hint'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>" }
 
   property :promoting_social_mobility,
             boolean: true,
@@ -34,7 +34,7 @@ class Eligibility::Mobility < Eligibility
             label: "Are you able to provide evidence of the impact of your promoting opportunity through social mobility activities?",
             accept: :true,
             hint: %(
-              <div class='question-context'>
+              <div class='govuk-hint'>
                 <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
                 <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
               </div>
