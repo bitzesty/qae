@@ -11,5 +11,4 @@ li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator == 
   p.collaborator__role.govuk-body
     = role
   - if current_user.account_admin? && collaborator != account_owner
-    p
-      = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link govuk-link"
+    = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link govuk-link"
