@@ -2,36 +2,34 @@
   .article-container
     article.group role="article"
       div
-        - if @user_award_forms.any?
-          h2.govuk-heading-l
-            ' Current Applications
-          = render "current_applications", award_applications: @user_award_forms_trade
-          = render "current_applications", award_applications: @user_award_forms_innovation
-          = render "current_applications", award_applications: @user_award_forms_development
-          - if display_social_mobility?
-            = render "current_applications", award_applications: @user_award_forms_mobility
-          / = render "current_applications", award_applications: @user_award_forms_promotion
+        - if submission_deadline && submission_deadline.trigger_at
+          .govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+            .govuk-notification-banner__header
+              .govuk-notification-banner__title#govuk-notification-banner-title
+                | Important
+            .govuk-notification-banner__content
+              p.govuk-notification-banner__heading
+                | Submission deadline is
+                =< submission_deadline.decorate.formatted_trigger_time
 
-          br
+      - if @user_award_forms.any?
+        h2.govuk-heading-l
+          ' Current Applications
+        = render "current_applications", award_applications: @user_award_forms_trade
+        = render "current_applications", award_applications: @user_award_forms_innovation
+        = render "current_applications", award_applications: @user_award_forms_development
+        - if display_social_mobility?
+          = render "current_applications", award_applications: @user_award_forms_mobility
+        / = render "current_applications", award_applications: @user_award_forms_promotion
 
-        - if submission_started? && !submission_ended?
-          h2.govuk-heading-l class="govuk-!-margin-top-8"
-            ' Applying for a Queen's Award for your organisation?
+        br
 
-          p.govuk-body To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
+      - if submission_started? && !submission_ended?
+        h2.govuk-heading-l class="govuk-!-margin-top-8"
+          ' Applying for a Queen's Award for your organisation?
 
-          = render "shared/application_awards_status"
+        p.govuk-body To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
 
-          / = render "apply_to_promotion_award_block"
+        = render "shared/application_awards_status"
 
-  - if submission_deadline && submission_deadline.trigger_at
-    .related-positioning.related-positioning-no-header
-      .related
-        .govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-          .govuk-notification-banner__header
-            .govuk-notification-banner__title#govuk-notification-banner-title
-              | Important
-          .govuk-notification-banner__content
-            p.govuk-notification-banner__heading
-              | Submission deadline is
-              =< submission_deadline.decorate.formatted_trigger_time
+        / = render "apply_to_promotion_award_block"
