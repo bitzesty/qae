@@ -79,11 +79,6 @@ h1.govuk-heading-xl
                   footer
                     nav.pagination.no-border role="navigation" aria-label="Pagination"
                       ul.group
-                        - if current_user.registration_in_progress?
-                          li.previous.previous-alternate
-                            = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part", class: "govuk-button govuk-button--secondary" do
-                              ' Back
-
                         li.submit
                           - if current_user.registration_in_progress?
                             = f.submit "Save and continue", class: "govuk-button"
@@ -91,5 +86,8 @@ h1.govuk-heading-xl
                             = link_to "Save and return", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer], class: "govuk-button"
                           - elsif user_redirected_to_collaborators_page?
                             = link_to "Save and continue", dashboard_path, class: "govuk-button"
-
+                      - if current_user.registration_in_progress?
+                        previous.previous-alternate
+                          = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part", class: "govuk-back-link govuk-!-font-size-19 govuk-!-margin-top-3" do
+                            ' Go back to previous page
   = render "accounts/steps_progress_bar"
