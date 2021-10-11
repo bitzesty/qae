@@ -381,28 +381,33 @@ class AwardYears::V2022::QAEForms
 
         text :press_contact_details_title, "Title" do
           required
+          is_contact_question
           classes "sub-question"
           style "tiny"
         end
 
         text :press_contact_details_first_name, "First name" do
           required
+          is_contact_question
           classes "sub-question"
         end
 
         text :press_contact_details_last_name, "Last name" do
           required
+          is_contact_question
           classes "sub-question"
         end
 
         text :press_contact_details_telephone, "Telephone" do
           required
+          is_contact_question
           classes "sub-question"
           style "small"
         end
 
         text :press_contact_details_email, "Email address" do
           classes "sub-question"
+          is_contact_question
           style "large"
           required
         end

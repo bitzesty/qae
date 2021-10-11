@@ -26,9 +26,13 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
               span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                 span.todo
                   = ref.to_s
-            - unless question.title.blank? 
-              span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
-                == question.title
+            - unless question.title.blank?
+              - if question.is_contact_question
+                span class="govuk-label"
+                  == question.title
+              - else
+                span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
+                  == question.title
 
             = render "qae_form/question_sub_title", question: question
 
