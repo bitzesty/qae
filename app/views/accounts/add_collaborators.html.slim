@@ -27,9 +27,9 @@ header.page-header.group.page-header-over-sidebar
               nav.pagination.no-border role="navigation" aria-label="Pagination"
                 ul.group
                   li.previous.previous-alternate
-                    = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-button govuk-button--secondary' do
+                    = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-back-link govuk-!-font-size-19 govuk-!-margin-top-3' do
                       span class="pagination-label"
-                        ' Back
+                        ' Go back to previous page
 
                   - unless current_user.completed_registration
                     li.submit

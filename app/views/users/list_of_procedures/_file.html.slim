@@ -17,7 +17,7 @@
 
 - else # The below link gets displayed by javascript when the user uploads a file (no page reload). The link attributes are updated automatically.
   = link_to "Download list of procedures", "",
-            target: "_blank", class: "js-audit-certificate-title download-link"
+            target: "_blank", class: "js-audit-certificate-title download-link govuk-link govuk-link--no-visited-state"
 
 small.pull-right.remove-verification-document
   = form_for(:list_of_procedure, url: users_form_answer_list_of_procedure_path(form_answer), html: { class: "js-remove-verification-document-form", method: :delete, style: "display:inline-block;"}) do |f|
@@ -26,5 +26,5 @@ small.pull-right.remove-verification-document
 
     = link_to "#", class: "text-danger if-no-js-hide js-remove-verification-document-link", data: {confirm: "Are you sure?"}
       span.glyphicon.glyphicon-remove
-      span.visible-lg.visible-md
+      span.visible-lg.visible-md.govuk-link
         ' Remove

@@ -16,8 +16,8 @@
                   '  (latest)
               span.js-year-text
           span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
-          span class="#{'currency-input' if question.type == :money}"
+          span class="#{'govuk-input__wrapper' if question.type == :money}"
             - if question.type == :money
-              span.currency-unit £
-            input.govuk-input.govuk-input--width-4.js-trigger-autosave.js-form-financial-data type="text" name=question.input_name(suffix: "#{y}of3") value=question.input_value(suffix: "#{y}of3").to_s.delete(",") id=question.input_name(suffix: "#{y}of3") autocomplete="off" *possible_read_only_ops
+              .govuk-input__prefix £
+            input.govuk-input.govuk-input--width-4.js-trigger-autosave.js-form-financial-data.govuk-input type="text" name=question.input_name(suffix: "#{y}of3") value=question.input_value(suffix: "#{y}of3").to_s.delete(",") id=question.input_name(suffix: "#{y}of3") autocomplete="off" *possible_read_only_ops
     .clear
