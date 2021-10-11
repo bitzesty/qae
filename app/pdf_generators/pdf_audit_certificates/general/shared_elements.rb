@@ -64,10 +64,10 @@ module PdfAuditCertificates::General::SharedElements
       rows << if row[:uk_sales]
         render_financial_uk_sales_row(row, index + 2)
       else
-        render_financial_row(row, index + 2)
+        render_financial_row(row, index + 1)
       end
 
-      rows << revised_row(row.values.first.length, index + 2)
+      rows << revised_row(row.values.first.length, index + 1)
     end
 
     table(rows, table_default_ops(:main_table)) do
@@ -319,9 +319,7 @@ module PdfAuditCertificates::General::SharedElements
 
     ps << "The figures in the forms are provided by the applicant during their application for the Queen’s Awards for Enterprise. Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
 
-    ps << "While accountants should exercise their professional judgement when agreeing appropriate procedures, this appendix provides illustrative procedures that may be appropriate. The examples are illustrative, and other procedures may be undertaken."
-
-    ps << "As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25."
+    ps << "Accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate."
 
     ps.each { |pr| render_text_line(pr, 2, default_text_ops) }
 
@@ -329,7 +327,7 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total turnover figure per the form to the general ledger (account number [xxx]) for each year stated.",
       "Agree the total turnover figure per the form to HMRC and/or Companies House filings for each year stated.",
-      "Trace a sample of sales from the general ledger for each year to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices."
     ]
     render_list_with_header(header, list)
 
@@ -342,14 +340,15 @@ module PdfAuditCertificates::General::SharedElements
     header = "Overseas sales (Non-UK sales):"
     list = [
       "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
-      "Trace a sample of non-UK sales from the general ledger to underlying sales invoices each year stated."
+      "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices.",
+      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
     ]
     render_list_with_header(header, list)
 
     header = "Sales by product group"
     list = [
       "Agree the total sales by product group per the form to the general ledger (account numbers [xxx] and [xxx]).",
-      "Trace a sample of sales from the general ledger to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger to underlying sales invoices."
     ]
     render_list_with_header(header, list)
 
@@ -358,6 +357,10 @@ module PdfAuditCertificates::General::SharedElements
       "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated."
     ]
     render_list_with_header(header, list)
+
+    render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
+
+    render_text_line("Accountants should append the list of procedures undertaken, and the sample sizes selected to their submission to the Queen’s Award Office.", 5)
   end
 
   def render_list_with_header(header, list)
