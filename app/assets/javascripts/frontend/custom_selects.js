@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(".govuk-select").each(function() {
+  $(".custom-select").each(function() {
     var field = $(this)[0];
 
     if ($(this).is(":disabled") || $(this).is("[readonly]")) {

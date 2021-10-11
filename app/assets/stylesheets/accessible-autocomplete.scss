@@ -1,5 +1,13 @@
 .autocomplete__wrapper{
-    position:relative
+    position:relative;
+    input, li {
+        font-family: "GDS Transport", arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 1.2rem;
+        line-height: 1.25;
+        margin-bottom: 5px;
+      }
 }
 .autocomplete__hint,.autocomplete__input{
     -webkit-appearance:none;
