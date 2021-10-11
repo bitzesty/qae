@@ -128,6 +128,12 @@ h2 > .boolean.control-label {
   direction: ltr;
 }
 
+.custom-select:disabled,
+.custom-select[readonly] {
+  background-color: #ccc;
+  color: black;
+}
+
 .autocomplete__wrapper {
   max-width: 24.5em;
   // max-width: 100%;
