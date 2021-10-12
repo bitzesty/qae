@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
-    confirmations: "users/confirmations"
+    confirmations: "users/confirmations",
+    sessions: "users/sessions"
   }
 
   devise_for :admins, controllers: {
