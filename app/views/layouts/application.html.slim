@@ -67,25 +67,7 @@ title = content_for?(:title) ? yield(:title)  + " - Queen's Awards for Enterpris
 
       .govuk-width-container
         main#content.group class="govuk-main-wrapper app-main-class #{yield :page_content_class}"
-          - if !content_for?(:flash_disabled) && [:alert, :notice].any? { |kind| flash[kind].presence }
-            - [:alert, :notice].each do |kind|
-              - if flash[kind]
-                - if kind.to_s == 'notice'
-                  .govuk-notification-banner class="govuk-notification-banner--success" role="region" aria-labelledby="flash-message-success-title" data-module="govuk-notification-banner"
-                    .govuk-notification-banner__header
-                      h2.govuk-notification-banner__title id="flash-message-success-title"
-                        ' Success
-                    .govuk-notification-banner__content
-                      .govuk-notification-banner__heading
-                        = flash[kind]
-                - else
-                  .govuk-notification-banner class="govuk-notification-banner--#{ kind }" role="region" aria-labelledby="flash-message-#{kind}-title" data-module="govuk-notification-banner"
-                    .govuk-notification-banner__header
-                      h2.govuk-notification-banner__title id="flash-message-#{kind}-title"
-                        = kind.to_s.titleize
-                    .govuk-notification-banner__content
-                      .govuk-notification-banner__heading
-                        = flash[kind]
+          = render "layouts/flash"
 
           - if params[:session_expired].present?
             = render "shared/session_expired_message"
