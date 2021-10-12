@@ -360,7 +360,7 @@ module PdfAuditCertificates::General::SharedElements
 
     render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
 
-    render_text_line("Accountants should append the list of procedures undertaken, and the sample sizes selected to their submission to the Queen’s Award Office.", 5)
+    render_text_line("Accountants should provide the list of procedures undertaken, outlining the sample sizes selected so that the applicant can upload it together with the report to the Queen’s Award for Enterprise online portal.", 5)
   end
 
   def render_list_with_header(header, list)
