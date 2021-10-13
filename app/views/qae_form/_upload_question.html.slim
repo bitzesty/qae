@@ -14,15 +14,15 @@
 
               - unless admin_in_read_only_mode?
                 - if question.key == :org_chart
-                  = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "govuk-link remove-link if-js-hide govuk-link"
+                  = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "govuk-link remove-link if-js-hide"
 
                   = link_to "Remove", form_form_answer_organisational_chart_url(@form_answer.id, el['file'].to_i),
-                                      possible_read_only_ops.merge({class: "govuk-link remove-link if-no-js-hide  govuk-link",
+                                      possible_read_only_ops.merge({class: "govuk-link remove-link if-no-js-hide",
                                                                     remote: true,
                                                                     method: :delete})
                 - else
                   = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
-                                      possible_read_only_ops.merge({class: "govuk-link remove-link  govuk-link",
+                                      possible_read_only_ops.merge({class: "govuk-link remove-link",
                                                                     remote: true,
                                                                     method: :delete})
 
