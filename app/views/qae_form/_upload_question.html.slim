@@ -28,26 +28,26 @@
 
             - elsif el['link'].present?
               .govuk-form-group
-                label.govuk-label for=question.input_name(suffix: 'link', index: idx)
+                label.govuk-label class="govuk-!-margin-bottom-2" for=question.input_name(suffix: 'link', index: idx)
                   ' Website address
-                input.govuk-input.js-trigger-autosave type="text" id=question.input_name(suffix: 'link', index: idx) name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)  *possible_read_only_ops
+                input.govuk-input.js-trigger-autosave class="govuk-!-margin-bottom-2" type="text" id=question.input_name(suffix: 'link', index: idx) name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)  *possible_read_only_ops
           - if question.description
             .govuk-form-group
-              label.govuk-label for=question.input_name(suffix: 'description', index: idx)
+              label.govuk-label class="govuk-!-margin-top-2" for=question.input_name(suffix: 'description', index: idx)
                 span.label-char-count-reposition
                   ' Description
                 / (optional)
-              textarea.govuk-textarea.js-char-count.js-trigger-autosave rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)  *possible_read_only_ops
+              textarea.govuk-textarea.js-char-count.js-trigger-autosave  class="govuk-!-margin-top-2" rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)  *possible_read_only_ops
                 = question.input_value(suffix: 'description', index: idx)
           - unless admin_in_read_only_mode?
-            a.govuk-link.remove-link.govuk-link href="#" *possible_read_only_ops
-              | Remove
+            a.govuk-button.govuk-button--warning.remove-link class="govuk-!-margin-bottom-3" href="#" *possible_read_only_ops
+              | Remove website address
 
   span.govuk-error-message
   .if-no-js-hide.govuk-button-group
     span.govuk-button.govuk-button--secondary.button-add aria-label="Upload" data-entity="file" *possible_read_only_ops
       span
-        | Upload
+        | Upload a file
       input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops data-question-key=question.key
     - if question.links
       | &nbsp;
