@@ -18,13 +18,13 @@ $.fn.charcount = function() {
 
   // Creates the character count elements
   this.wrap("<div class='char-count'></div>");
-  this.after("<div class='char-text'>Word count: <span class='current-count'>0</span></div>");
+  this.after("<div class='char-text govuk-hint'>Word count: <span class='current-count'>0</span></div>");
 
   // Includes character limit if there is one
   this.each(function(){
     var maxlength = parseInt($(this).attr("data-word-max"), 10);
     if (maxlength) {
-      $(this).before("<div class='char-text-limit'>Word limit: <span class='total-count'>" +maxlength+ "</span></div>");
+      $(this).before("<div class='char-text-limit govuk-hint'>Word limit: <span class='total-count'>" +maxlength+ "</span></div>");
       $(this).closest(".char-count").addClass("char-max-shift");
       $(this).closest(".char-count").find(".char-text").append("/<span class='total-count'>" +maxlength+ "</span>");
 
