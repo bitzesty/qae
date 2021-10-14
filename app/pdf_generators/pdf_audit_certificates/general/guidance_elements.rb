@@ -14,7 +14,7 @@ module PdfAuditCertificates::General::GuidanceElements
   end
 
   def render_applicant_guidance_text
-    p1 = "We would like to inform you that your application by #{form_answer.company_or_nominee_name} has been shortlisted for a Queen's Award for Enterprise: #{header_full_award_type}. To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application. This verification must be from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry form)."
+    p1 = "We would like to inform you that your application has been shortlisted for a Queen's Award for Enterprise: #{header_full_award_type}. To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application. This verification must be from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry form)."
 
     p2 = "We recommend that you send the report to the accountant straight away so that you can agree on the timelines. Let them know if you will be providing revisions to the figures."
 
@@ -22,7 +22,7 @@ module PdfAuditCertificates::General::GuidanceElements
 
     p4 = "For applicants that are not for profit organisations or charities, to be eligible for a Queen’s Award for Enterprise, your organisation must be on a sustainable financial footing."
 
-    p5 = "Once you and your external accountant has completed this report, please upload it to the Queen’s Awards for Enterprise online portal by 12 noon on #{Settings.current_submission_deadline.strftime('%d %b %Y')}. We are unable to accept late reports due to the strict assessment and judging timetable."
+    p5 = "Once you and your external accountant have completed this report, please upload it as well as a list of procedures undertaken by the accountant, to the Queen’s Awards for Enterprise online portal by 12 noon on #{Settings.current_submission_deadline.strftime('%d %b %Y')}. We are unable to accept late reports due to the strict assessment and judging timetable."
 
     [p1, p2, p3, p4, p5].each do |paragraph|
       render_text_line(paragraph, 2, leading: 2)
@@ -51,7 +51,7 @@ module PdfAuditCertificates::General::GuidanceElements
 
     ps << "If exceptions are found, and they are not adjusted, this should be confirmed in Statement 2."
 
-    ps << "We understand that the External Accountant’s Report has been prepared solely for the organisation’s exclusive use and solely for the purpose of the organisation’s application for The Queen’s Awards for Enterprise: [#{header_full_award_type}] #{form_answer.award_year.year}. However, we may request a copy of this Report solely for the purpose of enabling The Queen’s Award Office to further assess the application. The Queen’s Award Office accepts that the Accountant will accept no duty, liability or responsibility to The Queen’s Awards Office in relation to this Report. We will not use the Report for any other purpose, recited or referred to in any document, copied or made available (in whole or in part) to any other person without the Accountant’s prior written express consent. We accept that the Accountant accepts no duty, responsibility or liability to any party, other than the company, in connection with the Report."
+    ps << "We understand that the External Accountant’s Report has been prepared solely for the organisation’s exclusive use and solely for the purpose of the organisation’s application for The Queen’s Awards for Enterprise: #{header_full_award_type} #{form_answer.award_year.year}. However, we may request a copy of this Report solely for the purpose of enabling The Queen’s Award Office to further assess the application. The Queen’s Award Office accepts that the Accountant will accept no duty, liability or responsibility to The Queen’s Awards Office in relation to this Report. We will not use the Report for any other purpose, recited or referred to in any document, copied or made available (in whole or in part) to any other person without the Accountant’s prior written express consent. We accept that the Accountant accepts no duty, responsibility or liability to any party, other than the company, in connection with the Report."
 
     ps << "Figures derived from financial statements should be based upon the Generally Accepted Accounting Principles (‘GAAP’) used by the company."
 
