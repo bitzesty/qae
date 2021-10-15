@@ -1,4 +1,4 @@
-fieldset
+.
   p.govuk-body
     | I would like to receive yearly email notifications when the submission period opens for the following awards:
 
@@ -10,7 +10,7 @@ fieldset
 
   = f.input :notification_when_mobility_award_open, label: "Promoting Opportunity through Social Mobility", wrapper_class: "selectable unsubscribe_award_specific_option"
 
-fieldset.account-contact-preferences-other-ops
+.account-contact-preferences-other-ops
   = f.input :notification_when_submission_deadline_is_coming, label: "I would like to receive email reminders of submission deadlines - these are sent at regular intervals closer to the deadline.", wrapper_class: "selectable"
 
   = f.input :subscribed_to_emails, checkbox: true, label: "I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, request to act as a case study, newsletters, other information).", wrapper_class: "selectable"
