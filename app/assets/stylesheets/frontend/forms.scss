@@ -635,7 +635,7 @@ input[type="file"] {
     margin: 0;
     margin-bottom: $gutter-half;
     padding: 20px !important;
-    border: 2px solid #000 !important;
+    border: 2px solid $govuk-input-border-colour !important;
 
     .lte-ie7 & {
       display: inline;
