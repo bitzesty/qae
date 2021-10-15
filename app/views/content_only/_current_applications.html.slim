@@ -3,7 +3,7 @@
     - award_applications.each_with_index do |award, index|
       .govuk-summary-list__row
         dt.govuk-summary-list__key
-          h4.govuk-heading-s
+          h3.govuk-heading-s
             - app_name = award.decorate.application_name
             = app_name == "Promoting Opportunity" ? "Social Mobility" : app_name
           br
