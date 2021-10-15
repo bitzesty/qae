@@ -74,7 +74,7 @@ title = content_for?(:title) ? yield(:title)  + " - Queen's Awards for Enterpris
 
           - if landing_page?
             #global-breadcrumb.header-context.govuk-breadcrumbs
-              ol.govuk-breadcrumbs__list role="navigation" aria-label="breadcrumbs"
+              ol.govuk-breadcrumbs__list aria-label="breadcrumbs"
                 li.govuk-breadcrumbs__list-item
                   = link_to "Home", "https://www.gov.uk/", class: 'govuk-breadcrumbs__link'
                 - if action_name == "cookies" or action_name == "privacy"
