@@ -2124,7 +2124,7 @@ table .ellipsis {
   .active a {
     background: transparent image-url("icon-arrow-admin-subnav.png") no-repeat center 110%;
     background-size: 24px 12px;
-    color: $bootstrap-blue;
+    color: $govuk-link-colour;
 
     @include is-retina {
       background-image: image-url("icon-arrow-admin-subnav@2.png");
