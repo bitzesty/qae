@@ -3,7 +3,7 @@ th.filter
     = f.input :award_type,
               collection: award_types_collection(params[:year]),
               label: false,
-              input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
+              input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide', aria: {label: 'Award category select'} }
 
   .dropdown.if-no-js-hide
     button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
