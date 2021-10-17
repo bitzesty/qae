@@ -998,14 +998,14 @@ table .ellipsis {
 }
 
 .muted {
-  color: $grey;
+  color: $grey-dark;
 }
 
 // Filterable Dropdowns
 .filter {
   .dropdown-toggle {
     padding: 4px 10px;
-    color: $grey;
+    color: $grey-dark;
     font-size: inherit;
 
     .lte-ie7 & {
@@ -2124,7 +2124,7 @@ table .ellipsis {
   .active a {
     background: transparent image-url("icon-arrow-admin-subnav.png") no-repeat center 110%;
     background-size: 24px 12px;
-    color: $govuk-link-colour;
+    color: $blue-link-colour;
 
     @include is-retina {
       background-image: image-url("icon-arrow-admin-subnav@2.png");
