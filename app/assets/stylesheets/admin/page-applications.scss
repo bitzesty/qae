@@ -86,6 +86,9 @@
   > tbody > tr > td {
     padding-top: 13px;
     padding-bottom: 12px;
+    a:not(.link-edit-user) {
+      color: $blue-link-colour;
+    }
   }
 
   td,
@@ -98,7 +101,7 @@
   }
 }
 
-.applications-table {
+.applications-table, .assessor-table {
   .urn-not-generated {
     color: $grey-dark;
     font-style: italic;
