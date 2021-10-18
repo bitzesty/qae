@@ -2,7 +2,7 @@
 - applications.each do |award|
   .container-split.award-list
     .content-left
-      h3.govuk-heading-m
+      h2.govuk-heading-m
         = award.application_name
         small
           = award.award_type_full_name
@@ -11,7 +11,7 @@
       p.govuk-body
         ' Your
         - link_name = award.promotion? ? "nomination" : "application"
-        => link_to link_name, edit_form_url(award.id), class: 'govuk-link'
+        => link_to link_name, edit_form_url(award.id), class: 'govuk-link', aria: {label: "Open your #{award.application_name} application, reference number:  #{award.id}"}
     .clear
 br
 br
