@@ -23,23 +23,22 @@
             span.error
               = error
 
-    fieldset
-      = f.input :title, input_html: { class: "big tiny", autocomplete: "off"}
-      = f.input :first_name, required: true, input_html: { class: 'big medium', autocomplete: "off"}
-      = f.input :last_name, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
-      = f.input :job_title, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
-      = f.input :phone_number, required: true, input_html: { class: 'big medium', autocomplete: "off"}, label: "Telephone number"
+    = f.input :title, input_html: { class: "big tiny", autocomplete: "off"}
+    = f.input :first_name, required: true, input_html: { class: 'big medium', autocomplete: "off"}
+    = f.input :last_name, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
+    = f.input :job_title, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
+    = f.input :phone_number, required: true, input_html: { class: 'big medium', autocomplete: "off"}, label: "Telephone number"
 
-      - if f.object.persisted?
-        .question-group
-          label.govuk-label
-            | Email
-          p.govuk-hint
-            | If you would like to change the email, please ask the collaborator to login and do so themselves, or contact the Queen's Award for Enterprise team.
-          p.govuk-body
-            = f.object.email
-      - else
-        = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
+    - if f.object.persisted?
+      .question-group
+        label.govuk-label
+          | Email
+        p.govuk-hint
+          | If you would like to change the email, please ask the collaborator to login and do so themselves, or contact the Queen's Award for Enterprise team.
+        p.govuk-body
+          = f.object.email
+    - else
+      = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
 
     fieldset.govuk-fieldset
       = f.input :role,
