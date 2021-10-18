@@ -5,7 +5,7 @@ class AwardYears::V2022::QAEForms
       @innovation_step2 ||= proc do
         header :innovation_b_section_header, "" do
           context %(
-            <h3 class='govuk-heading-m'>About this section</h3>
+            <legend class='govuk-heading-m'>About this section</legend>
             <p class='govuk-body'>
               This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
             </p>

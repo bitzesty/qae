@@ -5,7 +5,7 @@ class AwardYears::V2022::QAEForms
       @development_step2 ||= proc do
         header :development_b_section_header, "" do
           context %(
-            <h3 class='govuk-heading-m'>About this section</h3>
+            <legend class='govuk-heading-m'>About this section</legend>
             <p class='govuk-body'>
               Read this section before planning the answers.
               Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.

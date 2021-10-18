@@ -5,7 +5,7 @@ class AwardYears::V2022::QAEForms
       @trade_step2 ||= proc do
         header :your_internation_trade_header, "" do
           context %(
-            <h3 class='govuk-heading-m'>About this section</h3>
+            <legend class='govuk-heading-m'>About this section</legend>
             <p class='govuk-body'>
               This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.
             </p>

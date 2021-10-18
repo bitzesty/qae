@@ -5,7 +5,7 @@ class AwardYears::V2022::QAEForms
       @development_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
-            <h3 class="govuk-heading-m">About this section</h3>
+            <legend class="govuk-heading-m">About this section</legend>
             <p class="govuk-body">
               To be eligible for a Queen's Awards for Enterprise, your business must be financially viable. You are required to demonstrate this by providing three years of financial growth figures that cover the period your sustainable development actions or interventions have been in place.
             </p>
