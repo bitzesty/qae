@@ -43,6 +43,7 @@
 
   .edit-deadline {
     margin-right: 10px;
+    color: $blue-link-colour;
   }
 
   .email-notification-help {
@@ -88,6 +89,7 @@
 
   .link-email-example {
     text-decoration: underline;
+    color: $blue-link-colour;
   }
 
   .well {
@@ -183,7 +185,7 @@
 
       input[type="submit"] {
         text-align: center;
-        color: #337ab7;
+        color: $blue-link-colour;
         background: none;
         padding: 0;
         border: none;

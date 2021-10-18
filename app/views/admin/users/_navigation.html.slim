@@ -1,8 +1,8 @@
 .nav-subnav
-  ul role="navigation"
+  ul role="tablist"
     - %w[users assessors judges admins].each do |role|
       - if policy(role.singularize.to_sym).index?
         - role_name = role == "users" ? "Applicants" : role.titleize
         li class="role-#{role_name} #{'active' if controller_name == role}" role="presentation"
-          = link_to role_name, public_send("admin_#{role}_path")
+          = link_to role_name, public_send("admin_#{role}_path"), role:"tab"
   .clear

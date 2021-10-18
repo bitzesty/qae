@@ -48,7 +48,7 @@ html.no-js
 
               .navbar-collapse.collapse#nav-main-collapse
 
-                ul.nav.navbar-nav.navbar-right role="navigation"
+                ul.nav.navbar-nav.navbar-right
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account
@@ -60,7 +60,7 @@ html.no-js
                                   method: :delete
 
 
-        #main-container
+        #main-container role="main"
           .container
             - unless notice.blank?
               .alert-container

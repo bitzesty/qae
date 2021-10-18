@@ -6,8 +6,8 @@ h1.admin-page-heading
   .row
     .col-md-4.col-sm-5.col-xs-12
       .form-group.search-input
-        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden"
-        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden", aria: { label: "Search applications" }
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search", aria: {label: 'Search applications'} }
         = submit_tag :submit, class: 'search-submit'
 
   = render "shared/form_answers/top_statuses_filters", f: f,

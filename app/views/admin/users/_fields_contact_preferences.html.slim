@@ -1,4 +1,4 @@
-fieldset.question-group
+.question-group
   h3
     label Yearly email notifications (when the submission period opens) for the following awards:
 
@@ -21,7 +21,7 @@ fieldset.question-group
 
   = f.input :agree_sharing_of_details_with_lieutenancies, label: "I am happy for my and my organisation's name, contact details and application status to be shared with Lieutenancies so that they can contact us to assist as appropriate.", wrapper_class: "selectable"
 
-fieldset.question-group
+.question-group
   h3 = f.label :qae_info_source, label: "How did the #{controller_name == "users" ? "applicant" : controller_name.singularize} hear about The Queen's Awards?"
   .row
     .col-md-4.col-sm-5

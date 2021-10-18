@@ -1,4 +1,4 @@
-fieldset.question-group
+.question-group
   h3
     = f.label :title
   .row
@@ -8,7 +8,7 @@ fieldset.question-group
                 input_html: { class: "form-control" },
                 label: false
 
-fieldset.question-group
+.question-group
   h3
     = f.label :first_name
   .row
@@ -18,7 +18,7 @@ fieldset.question-group
                 input_html: { class: "form-control" },
                 label: false
 
-fieldset.question-group
+.question-group
   h3
     = f.label :last_name
   .row
@@ -28,7 +28,7 @@ fieldset.question-group
                 input_html: { class: "form-control" },
                 label: false
 
-fieldset.question-group
+.question-group
   h3
     = f.label :job_title
   .row
@@ -38,7 +38,7 @@ fieldset.question-group
                 input_html: { class: "form-control" },
                 label: false
 
-fieldset.question-group
+.question-group
   h3 = f.label :phone_number, label: "Telephone number"
   .row
     .col-md-2.col-sm-3
@@ -47,7 +47,7 @@ fieldset.question-group
                 input_html: { class: "form-control" },
                 label: false
 
-fieldset.question-group#email-control-group
+.question-group#email-control-group
   h3 = f.label :email
   .row
     .col-md-4.col-sm-5
@@ -59,7 +59,7 @@ fieldset.question-group#email-control-group
     - if f.object.persisted?
       = render "debounce_api_check_details", f: f
 
-fieldset.question-group
+.question-group
   h3 = f.label :role, label: "Account type"
   .row
     .col-md-2.col-sm-3

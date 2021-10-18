@@ -53,7 +53,7 @@ html.no-js
                           class: 'navbar-brand'
 
               .navbar-collapse.collapse#nav-main-collapse.clearfix
-                ul.nav.navbar-nav role="navigation"
+                ul.nav.navbar-nav
                   li class=('active' if controller_name == 'dashboard')
                     = link_to "Dashboard", admin_dashboard_index_path
 
@@ -77,7 +77,7 @@ html.no-js
                   li class=("active" if controller_name == "audit_logs")
                     = link_to "Data Export Log", admin_audit_logs_path
 
-                ul.nav.navbar-nav.navbar-right role="navigation"
+                ul.nav.navbar-nav.navbar-right
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account

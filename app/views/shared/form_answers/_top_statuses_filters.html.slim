@@ -5,7 +5,7 @@
       = g.input :status,
                 collection: options,
                 label: false,
-                input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
+                input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide', aria: {label: 'Status select'} }
     label.applications-filter__label
       ' Status
     .dropdown.if-no-js-hide
@@ -36,7 +36,7 @@
       = h.input :sub_status,
                 collection: sub_options,
                 label: false,
-                input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
+                input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide', aria: {label: 'Post Submission Status select'}}
     label.applications-filter__label
       ' Post Submission Status
     .dropdown.if-no-js-hide
