@@ -34,7 +34,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
           .question-context[id="#{question.key}_county_hint"]
             == question.county_context
 
-          = select_tag("#{question.key}_county", options_for_select(question.counties, question.input_value(suffix: "county")), possible_read_only_ops.merge({name: question.input_name(suffix: 'county'), class: "js-trigger-autosave required custom-select", include_blank: true, aria: { label: "Select #{question.key}" }}))
+        = select_tag("#{question.key}_county", options_for_select(question.counties, question.input_value(suffix: "county")), possible_read_only_ops.merge({name: question.input_name(suffix: 'county'), class: "js-trigger-autosave required custom-select", include_blank: true, aria: { label: "Select #{question.key}" }}))
 
     - else
       .govuk-form-group.question-required
