@@ -1,7 +1,7 @@
 = simple_form_for (list_of_procedure || form_answer.build_list_of_procedure),
                   as: :list_of_procedure,
                   url: users_form_answer_list_of_procedure_path(form_answer),
-                  html: {class: "qae-form", method: :post} do |f|
+                  html: {class: "qae-form", method: :post, id: "new_list_of_procedures_for_#{award.id}"} do |f|
   ul.list-add
     li
       = f.input :attachment,
