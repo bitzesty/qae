@@ -46,6 +46,7 @@
 
   .download-link {
     margin-top: 2em;
+    color: $blue-link-colour;
 
     @media (min-width: 992px) {
       margin-top: 0;
@@ -272,6 +273,7 @@
       .download-link {
         display: inline-block;
         margin-top: 1.5em;
+        color: $blue-link-colour;
 
         @media (min-width: 992px) {
           margin-top: 0;
