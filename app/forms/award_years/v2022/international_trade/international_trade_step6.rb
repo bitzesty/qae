@@ -12,8 +12,8 @@ class AwardYears::V2022::QAEForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { honours: "Personal Honours" },
-            { head_job_title: "Job title / role in the organisation" },
-            { head_email: "Email address" }
+            { job_title: "Job title / role in the organisation" },
+            { email: "Email address" }
           ])
         end
 
