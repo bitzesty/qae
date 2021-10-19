@@ -5,7 +5,9 @@ class AwardYears::V2022::QAEForms
       @mobility_step1 ||= proc do
         header :company_information_header, "" do
           context %(
-            <legend class='govuk-heading-m'>About this section</legend>
+            <legend class="govuk-fieldset__legend">
+              <h3 class='govuk-heading-m'>About this section</h3>
+            </legend>
             <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>

@@ -5,7 +5,9 @@ class AwardYears::V2022::QAEForms
       @trade_step4 ||= proc do
         header :complete_now_header, "" do
           context %(
-            <legend class="govuk-heading-m">About this section</legend>
+            <legend class="govuk-fieldset__legend">
+              <h3 class='govuk-heading-m'>About this section</h3>
+            </legend>
             <p class="govuk-body">
               The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact. All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. Applicants who are not able to demonstrate corporate social responsibility will not be successful.
             </p>

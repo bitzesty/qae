@@ -5,7 +5,9 @@ class AwardYears::V2022::QAEForms
       @mobility_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
-            <legend class="govuk-heading-m">About this section</legend>
+            <legend class="govuk-fieldset__legend">
+              <h3 class='govuk-heading-m'>About this section</h3>
+            </legend>
             <p class="govuk-body">
               All applicants for any Queen’s Award must demonstrate financial sustainability.
             </p>

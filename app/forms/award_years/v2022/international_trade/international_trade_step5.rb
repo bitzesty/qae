@@ -5,9 +5,11 @@ class AwardYears::V2022::QAEForms
         upload :innovation_materials, "If there is additional material you feel would help us to assess your entry then you can add up to 3 files or website addresses here" do
           ref "E 1"
           context %(
-            <legend>
-              Please include any vital information in the form as we can't guarantee the additional material will be reviewed. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
-            <legend>
+            <legend class="govuk-fieldset__legend">
+              <p>
+                Please include any vital information in the form as we can't guarantee the additional material will be reviewed. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
+              </p>
+            </legend>
 
             <p>
               You can upload files in all common formats, as long as they're less than 5mb each.
