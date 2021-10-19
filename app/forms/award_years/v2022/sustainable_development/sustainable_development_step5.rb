@@ -6,32 +6,15 @@ class AwardYears::V2022::QAEForms
           ref "E 1"
         end
 
-        text :head_of_bussines_title, "Title" do
-          required
-          classes "sub-question"
-          style "tiny"
-        end
-
         head_of_business :head_of_business, "" do
           sub_fields([
+            { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
-            { honours: "Personal Honours" }
+            { honours: "Personal Honours" },
+            { job_title: "Job title / role in the organisation" },
+            { email: "Email address" }
           ])
-        end
-
-        text :head_job_title, "Job title / role in the organisation" do
-          classes "sub-question"
-          required
-          form_hint %(
-            e.g. CEO, Managing Director, Founder
-          )
-        end
-
-        text :head_email, "Email address" do
-          classes "sub-question"
-          style "large"
-          required
         end
 
         confirm :confirmation_of_consent, "Confirmation of consent" do
