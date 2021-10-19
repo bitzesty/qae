@@ -8,7 +8,7 @@ class AwardYears::V2022::QAEForms
             <legend class="govuk-fieldset__legend">
               <h3 class='govuk-heading-m'>About this section</h3>
             </legend>
-              <p class='govuk-body'>
+            <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>
             <details class='govuk-details' data-module="govuk-details">
