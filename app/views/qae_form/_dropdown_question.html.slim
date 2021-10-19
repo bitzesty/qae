@@ -1,4 +1,4 @@
-select.govuk-select.js-trigger-autosave name=question.input_name *possible_read_only_ops id="q_#{question.key}"
+select.govuk-select.js-trigger-autosave name=question.input_name *possible_read_only_ops id="q_#{question.key}" aria-label="#{question.title}"
   - question.options.each do |option|
     option value="#{option.value}" selected=((question.input_value || '').to_s == option.value.to_s)
       = option.text
