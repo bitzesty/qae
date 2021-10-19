@@ -137,9 +137,11 @@ class AwardYears::V2022::QAEForms
         header :business_division_header, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
-              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
-            </p>
+            <legend>
+              <p>
+                Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
+              </p>
+            </legend>
           )
           conditional :applying_for, "division branch subsidiary"
         end
@@ -342,9 +344,11 @@ class AwardYears::V2022::QAEForms
         header :external_organization_or_individual_info_header_no, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
-              We recommend that you notify all the contributors to your social mobility programme relating to this entry.
-            </p>
+            <legend>
+              <p>
+                We recommend that you notify all the contributors to your social mobility programme relating to this entry.
+              </p>
+            </legend>
           )
           conditional :external_contribute_to_sustainable_product, "yes"
           conditional :external_are_aware_about_award, "no"
