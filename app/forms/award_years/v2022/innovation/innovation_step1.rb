@@ -135,7 +135,7 @@ class AwardYears::V2022::QAEForms
         header :business_division_header, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
+            <p class="govuk-hint">
               Where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary.
             </p>
           )
@@ -307,7 +307,7 @@ class AwardYears::V2022::QAEForms
         header :innovation_contributors_aware_header_no, "" do
           classes "application-notice help-notice"
           context %(
-            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
+            <p class="govuk-body">We recommend that you notify all the contributors to your innovation of this entry.</p>
           )
           conditional :innovation_any_contributors, :yes
           conditional :innovation_contributors_aware, :no
