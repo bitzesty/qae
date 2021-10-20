@@ -53,8 +53,9 @@ h1.admin-page-heading
           tr
             - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
               th
+                span.visuallyhidden Select for bulk action
                 span.if-no-js-hide
-                  = check_box_tag :check_all
+                  = check_box_tag :check_all, "Check all", false, aria: { label: "Select all applications for bulk action" }
             th.sortable width="250"
               = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable width="120"
