@@ -200,7 +200,7 @@ class AwardYears::V2022::QAEForms
 
         comment :initiative_question_guidance, "" do
           pdf_context_with_header_blocks [
-            [:italic, "<legend>Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility.</legend>"]
+            [:italic, "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."]
           ]
         end
 
