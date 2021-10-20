@@ -5,11 +5,9 @@ class AwardYears::V2022::QAEForms
       @development_step1 ||= proc do
         header :company_information_header, "" do
           context %(
-            <legend class="govuk-fieldset__legend">
               <p>
               Please include any vital information in the form as we can't guarantee the additional material will be reviewed. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
               </p>
-            </legend>
           )
         end
 

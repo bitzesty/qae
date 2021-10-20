@@ -5,9 +5,7 @@ class AwardYears::V2022::QAEForms
       @mobility_step2 ||= proc do
         header :mobility_b_section_header, "" do
           context %(
-            <legend class="govuk-fieldset__legend">
-              <h3 class='govuk-heading-m'>About this section</h3>
-            </legend>
+            <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
               This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
             </p>

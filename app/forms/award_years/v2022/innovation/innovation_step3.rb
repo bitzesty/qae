@@ -5,9 +5,7 @@ class AwardYears::V2022::QAEForms
       @innovation_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
-            <legend class="govuk-fieldset__legend">
-              <h3 class='govuk-heading-m'>About this section</h3>
-            </legend>
+            <h3 class='govuk-heading-m'>About this section</h3>
             <p class="govuk-body">
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation had on your organisation's financial performance.
             </p>
