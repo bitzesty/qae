@@ -38,14 +38,12 @@ class AwardYears::V2022::QAEForms
         header :declaration_and_corporate_responsibility_intro, "" do
           classes "application-notice help-notice"
           context %(
-            <legend>
-              <p>
-                You may have answered some of the questions in this section in other parts of the form. If you believe this is the case, you do not need to repeat the information, but make it clear by referencing other parts of the form.
-              </p>
-              <p>
-                Please use this section to give us additional information about corporate responsibility that you have not covered elsewhere in the form and would like us to see.
-              </p>
-            </legend>
+            <p>
+              You may have answered some of the questions in this section in other parts of the form. If you believe this is the case, you do not need to repeat the information, but make it clear by referencing other parts of the form.
+            </p>
+            <p>
+              Please use this section to give us additional information about corporate responsibility that you have not covered elsewhere in the form and would like us to see.
+            </p>
           )
         end
 
