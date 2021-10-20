@@ -64,6 +64,8 @@ class Eligibility < ApplicationRecord
 
     store_accessor :answers, name
 
+    validates name, presence: true, if: proc { current_step == name }
+
     if values && values.any?
       enumerize name, in: values
     end
