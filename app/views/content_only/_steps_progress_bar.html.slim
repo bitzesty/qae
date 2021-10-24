@@ -26,11 +26,11 @@
       ' Alternatively, email us at
       = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk"
 
-    - if submission_deadline && submission_deadline.trigger_at
-      .govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-        .govuk-notification-banner__header
-          h2.govuk-notification-banner__title#govuk-notification-banner-title
-            | Important
-        p.govuk-notification-banner__heading
-          | Submission deadline is
-          =< submission_deadline.decorate.formatted_trigger_time
+  - if submission_deadline && submission_deadline.trigger_at
+    .govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+      .govuk-notification-banner__header
+        h2.govuk-notification-banner__title#govuk-notification-banner-title
+          | Important
+      p.govuk-notification-banner__heading
+        | Submission deadline is
+        =< submission_deadline.decorate.formatted_trigger_time

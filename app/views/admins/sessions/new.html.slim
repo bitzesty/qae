@@ -16,13 +16,15 @@
 
           .form-inputs
             .question
-              h2 Email
+              label for="#{resource.model_name.to_s.downcase}_email"
+                h2 Email
               .question-body
                 = f.input :email, required: false, autofocus: true, label: false, input_html: {class: "large"}
 
           .form-inputs
             .question
-              h2 Password
+              label for="#{resource.model_name.to_s.downcase}_password"
+                h2 Password
               .question-body
                 = f.input :password, required: false, label: false, input_html: {class: "medium"}
 

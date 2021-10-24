@@ -1,4 +1,4 @@
-select.govuk-select.js-trigger-autosave.custom-select.sic_code-selector class="govuk-!-width-one-third" name=question.input_name *possible_read_only_ops id="q_#{question.key}"
+select.govuk-select.js-trigger-autosave.custom-select.sic_code-selector class="govuk-!-width-one-third" name=question.input_name *possible_read_only_ops id="q_#{question.key}" aria-label="Select #{question.key}"
   - if defined?(placeholder)
     option value=""
       = placeholder

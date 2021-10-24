@@ -7,12 +7,13 @@ h1.govuk-heading-xl
 
 .steps-progress-container
   .steps-progress-content
-    h2.govuk-heading-l
-      ' Add new collaborator
+    fieldset
+      legend.govuk-heading-l
+        ' Add new collaborator
 
 
-    .article-container
-      article.group role="article"
-        = render "form"
+      .article-container
+        article.group role="article"
+          = render "form"
 
   = render "accounts/steps_progress_bar"

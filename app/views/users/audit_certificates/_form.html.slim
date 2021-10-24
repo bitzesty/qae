@@ -10,7 +10,7 @@
               as: :file,
               required: true,
               label: false,
-              input_html: { class: "fileinput-button js-audit-certificate-file-upload" }
+              input_html: { class: "fileinput-button js-audit-certificate-file-upload", id: "upload_external_accountants_report_for_#{form_answer.id}", aria: { label:"Upload external accountants report for #{form_answer.id}" } }
 
   footer.display-none
     nav.pagination role="navigation"
