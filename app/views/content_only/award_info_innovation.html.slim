@@ -5,6 +5,7 @@ h1.govuk-heading-xl
 
 .application-info-page
   .steps-progress-container.min-height-800
+    = render "steps_progress_bar", cant_access_future: true
     .steps-progress-content
       .article-related-positioning-container
         .article-container
@@ -84,5 +85,3 @@ h1.govuk-heading-xl
                   / ' Continue application
                   / - else
                   / ' Start application
-
-    = render "steps_progress_bar", cant_access_future: true
