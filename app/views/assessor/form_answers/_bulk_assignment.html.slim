@@ -20,7 +20,7 @@
                          class: "form-control"
 
             .input.select.form-group.secondary-assessor-group
-              = f.label :primary_assessor_id, "Assign Secondary Assessor to these applications", class: "control-label"
+              = f.label :secondary_assessor_id, "Assign Secondary Assessor to these applications", class: "control-label"
               = f.select :secondary_assessor_id,
                          assessors_collection_for_bulk,
                          { include_blank: true },
