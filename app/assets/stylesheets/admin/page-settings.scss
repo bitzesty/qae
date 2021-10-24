@@ -180,6 +180,9 @@
   }
 
   .actions {
+    a {
+      color: $blue-link-colour;
+    }
     .button_to {
       display: inline;
 
