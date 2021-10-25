@@ -1,3 +1,5 @@
+- title "#{@form_answer.award_type_full_name} Award application #{@form_answer.id}"
+
 - provide(:page_wrapper_class, "page-award-form #{'page-read-only-form' if current_form_is_not_editable?}")
 
 - if application_collaborator_group_mode?
