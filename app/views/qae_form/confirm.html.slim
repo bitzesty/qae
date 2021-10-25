@@ -7,38 +7,19 @@
 
 h1.govuk-heading-xl Confirmation of submission
 
-.govuk-notification-banner.govuk-notification-banner--success role="alert" aria-labelledby="confirmation-banner-title" data-module="govuk-notification-banner"
-  .govuk-notification-banner__header
-    h2.confirmation-banner__title#govuk-notification-banner-title
-      | Success
-  .govuk-notification-banner__content
-    p.govuk-body
-      ' Thank you,
-    br
-    p.govuk-body
-      ' Your
-      - if @form_answer.promotion?
-        ' nomination for The Queen's Award for Enterprise Promotion Award
-      - else
-        ' application for The Queen's Award for #{@form_answer.award_type_full_name}
-      ' was submitted. We have sent you an email confirming your submission.
-    br
-    p.govuk-body
-      strong
-        ' Your Unique Reference Number (URN) is #{@form_answer.urn}
-    br
-    p.govuk-body
-      ' You can still edit your submitted
-      - if @form_answer.promotion?
-        ' nomination
-      - else
-        ' application
-      ' up until
-      = application_deadline(:submission_end)
-      ' .
-  </div>
-</div>
-  
+.govuk-width-container
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      .govuk-panel.govuk-panel--confirmation
+        h1.govuk-panel__title
+          - if @form_answer.promotion?
+            ' Nomination for The Queen's Award for Enterprise Promotion Award
+          - else
+            ' Application for The Queen's Award for #{@form_answer.award_type_full_name}
+          ' was submitted.
+        br
+        p.govuk-panel__body
+          ' Your unique reference number (URN) is <strong> #{@form_answer.urn} </strong>
   
 .govuk-width-container
   .article-related-positioning-container
