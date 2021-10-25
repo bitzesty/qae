@@ -40,14 +40,16 @@ h1.admin-page-heading
 
   - # status filters need to be here because the filtering is done in the other form above, so in order not to break filtering, we need to duplicate it here
   = f.simple_fields_for [:filters, @search.filters] do |h|
+    = h.label :status, class: "visuallyhidden"
     = h.input :status,
               collection: FormAnswerStatus::AssessorFilter.options,
-              label: "Status",
+              label: false,
               input_html: { multiple: true, class: 'visuallyhidden'}
 
+    = h.label :sub_status, class: "visuallyhidden"
     = h.input :sub_status,
               collection: FormAnswerStatus::AssessorFilter.sub_options(current_assessor),
-              label: "Sub-status",
+              label: false,
               input_html: { multiple: true, class: 'visuallyhidden'}
 
   .row
