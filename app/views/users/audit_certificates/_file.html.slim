@@ -6,13 +6,16 @@
       = link_to att_record.attachment.file.filename, att_record.attachment_url,
                 target: "_blank", class: "js-audit-certificate-title download-link", download: att_record.attachment.file.filename, title: att_record.attachment.file.filename
     - elsif att_record.attachment_scan_results == "scanning"
-      | Uploaded External Accountant's Report is being scanned for viruses.
+      p.govuk-body
+        | Uploaded External Accountant's Report is being scanned for viruses.
     - elsif att_record.attachment_scan_results == "infected"
-      | Uploaded file has been blocked (virus detected), please remove.
+      p.govuk-body
+        | Uploaded file has been blocked (virus detected), please remove.
     - else
       = link_to att_record.attachment.file.filename, "",
                 target: "_blank", class: "js-audit-certificate-title download-link"
   - else
+    p.govuk-body
       | Uploaded External Accountant's Report is being scanned for viruses.
 
 - else # The below link gets displayed by javascript when the user uploads a file (no page reload). The link attributes are updated automatically.
