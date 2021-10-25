@@ -6,6 +6,7 @@ h1.govuk-heading-xl
   ' Account details
 
 .steps-progress-container
+  = render "accounts/steps_progress_bar"
   .steps-progress-content
     h2.govuk-heading-l
       ' Collaborators and account owner
@@ -90,4 +91,3 @@ h1.govuk-heading-xl
                         previous.previous-alternate
                           = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part", class: "govuk-back-link govuk-!-font-size-19 govuk-!-margin-top-3" do
                             ' Go back to previous page
-  = render "accounts/steps_progress_bar"
