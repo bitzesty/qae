@@ -2,7 +2,7 @@ footer
   nav.pagination.no-border class="#{'pagination-alternative' unless step.next}" aria-label="Pagination for step #{step.index + 1}"
     ul.govuk-button-group
       - if current_form_is_editable?
-        li.save-quit-link
+        li.save-quit-link role="button"
           span.if-no-js-hide
             = link_to "Save and come back later", dashboard_url, class: "govuk-button govuk-button--secondary js-save-and-come-back"
           span.if-js-hide
@@ -23,7 +23,7 @@ footer
 
     - if step.previous
       previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
-        = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part", "aria-label" => "Back to #{step.previous.title}", class: 'govuk-back-link govuk-!-font-size-19' do
+        = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part", "aria-label" => "Back to #{step.previous.title}", class: 'govuk-back-link govuk-!-font-size-19', role: "button" do
           span.pagination-label
             | Go back to previous page
 
@@ -34,6 +34,6 @@ footer
         - if step.index == 0
           - aria_label = "Back to Useful Application Information page"
         
-        = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label, class: "govuk-back-link govuk-!-font-size-19" do
+        = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label, class: "govuk-back-link govuk-!-font-size-19", role: "button" do
           span.pagination-label
             | Go back to previous page
