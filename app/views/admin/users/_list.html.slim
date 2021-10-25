@@ -23,14 +23,14 @@
                   ' All
                 span.caret
               ul.dropdown-menu role="menu"
-                li.checkbox role="presentation"
+                li.checkbox role="menuitem"
                   label data-value="select_all"
                     input type="checkbox"
                     span.label-contents
                       em Select all
                 li.divider
                 - User.role.options.each do |role|
-                  li.checkbox role="presentation"
+                  li.checkbox role="menuitem"
                     label data-value=role[1]
                       input type="checkbox"
                       span.label-contents

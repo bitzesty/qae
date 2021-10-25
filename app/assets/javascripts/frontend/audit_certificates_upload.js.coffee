@@ -19,7 +19,7 @@ window.AuditCertificatesUpload =
       form.addClass("hidden")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
-      label = $("<label>").text("Uploading...")
+      label = $("<label class='govuk-body'>").text("Uploading...")
       div.append(label)
       new_el.append(div)
       list.append(new_el)

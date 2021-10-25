@@ -91,10 +91,10 @@ h1.govuk-heading-xl
         ' If you are signed in, we may use your user ID in combination with.govuk-table__header Google Analytics to track and analyse the pages of the site that you visit. We do this only to better understand how you use the site, with.govuk-table__header a view to offering improvements for all users of the service.
       p.govuk-body
         .hidden-hint
-          span.hidden-link
+          span.hidden-link.govuk-link
             | I want to opt out of Google Analytics cookies
           span.hidden-content
-            p.hint
+            p.govuk-hint
               | If you opt out, weʼll set a QAE cookie to remember your decision.
             table.govuk-table
               thead.govuk-table__head
@@ -112,12 +112,12 @@ h1.govuk-heading-xl
                   td.govuk-table__cell Stores explicit consent from user whether or not they allow Google Analytics to track them.
                   td.govuk-table__cell 10 years
 
-            label.hint
+            label.govuk-hint
               => check_box_tag "ga-optout-input", "1"
               | Opt out and delete Google Analytics cookies from my browser
             br
 
-            = button_tag "Save", class: "button", id: "ga-optout"
+            = button_tag "Save", class: "govuk-button", id: "ga-optout"
 
       h3.govuk-heading-m Our introductory message
 

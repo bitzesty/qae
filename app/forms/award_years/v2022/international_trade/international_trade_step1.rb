@@ -134,28 +134,20 @@ class AwardYears::V2022::QAEForms
 
         header :business_division_header, "" do
           classes "application-notice help-notice"
-          context %(
-            <p>
-              Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
-            </p>
-          )
+          form_hint "Where the form refers to your organisation, enter the details of your division, branch or subsidiary."
           conditional :applying_for, "division branch subsidiary"
         end
 
         text :company_name, "Full/legal name of your organisation" do
           required
           ref "A 2"
-          context %(
-            <p class="govuk-hint">If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
-          )
+          form_hint "If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates."
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
           required
           ref "A 3"
-          context %(
-            <p class="govuk-hint">We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
-          )
+          form_hint "We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments."
           yes_no
         end
 
@@ -179,9 +171,7 @@ class AwardYears::V2022::QAEForms
           required
           classes "sub-question"
           ref "A 4.1"
-          context %(
-            <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's number.</p>
-          )
+          form_hint "If you're an unregistered subsidiary, enter your parent company's number."
           style "small"
         end
 
@@ -198,14 +188,7 @@ class AwardYears::V2022::QAEForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
-            %(
-              <p class="govuk-hint">
-                Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
-              </p>
-            )
-          end
-
+          form_hint "Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award)."
           date_max AwardYear.start_trading_since(3)
         end
 
@@ -265,7 +248,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           sub_ref "A 7.1"
           required
-          context "<p class='govuk-hint'>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
+          form_hint "If you can't fit all of your awards below, then choose those you're most proud of."
           conditional :other_awards_won, :yes
           rows 5
           words_max 250
@@ -350,18 +333,12 @@ class AwardYears::V2022::QAEForms
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
           required
           ref "A 11"
-          context %(
-            <p class='govuk-hint'>
-              The Standard Industrial Classification (SIC) is a system for classifying industries. If you are a registered company, this is the same code you would have provided Companies House.
-            </p>
-          )
+          form_hint "The Standard Industrial Classification (SIC) is a system for classifying industries. If you are a registered company, this is the same code you would have provided Companies House."
         end
 
         options :parent_group_entry, "Are you a parent company making a group entry?" do
           ref "A 12"
-          context %(
-            <p class='govuk-hint'>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
-          )
+          form_hint "A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control."
           yes_no
         end
 
@@ -438,11 +415,7 @@ class AwardYears::V2022::QAEForms
           ref "A 15"
           required
           yes_no
-          context %(
-            <p class='govuk-hint'>
-              An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
-            </p>
-          )
+          form_hint "An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process)."
         end
 
         options :export_unit, "Are you an export unit?" do
@@ -470,9 +443,7 @@ class AwardYears::V2022::QAEForms
         checkbox_seria :how_did_you_hear_about_award, "How did you hear about the Queen’s Awards for Enterprise award this year?" do
           ref "A 18"
           required
-          context %(
-            <p class='govuk-hint'>Select all that apply.</p>
-          )
+          form_hint "Select all that apply."
           check_options [
             ["qa_website", "Queen's Awards website"],
             ["qa_twitter", "Queen's Awards Twitter"],

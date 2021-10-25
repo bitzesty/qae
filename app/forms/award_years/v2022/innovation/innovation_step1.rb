@@ -134,11 +134,7 @@ class AwardYears::V2022::QAEForms
 
         header :business_division_header, "" do
           classes "application-notice help-notice"
-          context %(
-            <p class="govuk-hint">
-              Where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary.
-            </p>
-          )
+          form_hint "Where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary."
           conditional :applying_for, "division branch subsidiary"
         end
 

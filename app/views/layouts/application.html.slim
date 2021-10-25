@@ -53,7 +53,7 @@ title = content_for?(:title) ? yield(:title)  + " - Queen's Awards for Enterpris
 
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
-      .govuk-width-container
+      .govuk-width-container role="region"
         .govuk-phase-banner
           p.govuk-phase-banner__content
             strong.govuk-tag.govuk-phase-banner__content__tag
