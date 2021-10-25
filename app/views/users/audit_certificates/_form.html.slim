@@ -4,7 +4,7 @@
                   html: {class: "qae-form audit-certificate-upload-form #{"hidden" if cert_exists}", method: :post} do |f|
   .errors-container
   .clear
-  span.button.button-add
+  span.button.button-add.govuk-button
     span + Upload External Accountant's Report
     = f.input :attachment,
               as: :file,
