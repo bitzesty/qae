@@ -6,6 +6,7 @@ h1.govuk-heading-xl
   ' Account details
 
 .steps-progress-container
+  = render "steps_progress_bar"
   .steps-progress-content
     fieldset
       legend.h2.govuk-heading-l class="govuk-!-margin-bottom-2"
@@ -27,4 +28,3 @@ h1.govuk-heading-xl
                   .form-actions
                     = f.submit "Save", class: "govuk-button"
 
-  = render "steps_progress_bar"

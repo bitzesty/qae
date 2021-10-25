@@ -6,6 +6,7 @@ h1.govuk-heading-xl
   ' Account details
 
 .steps-progress-container
+  = render "steps_progress_bar"
   .steps-progress-content
     h2.govuk-heading-l
       ' Organisation details
@@ -32,5 +33,3 @@ h1.govuk-heading-xl
                     = f.submit "Save", class: "govuk-button"
           - else
             = render "show_company_details"
-
-  = render "steps_progress_bar"
