@@ -82,11 +82,11 @@ h1.govuk-heading-xl
                       ul.group
                         li.submit
                           - if current_user.registration_in_progress?
-                            = f.submit "Save and continue", class: "govuk-button"
+                            = f.submit "Save and continue", class: "govuk-button", aria: {label: "Save and continue to additional contact preferences"}
                           - elsif came_from_application_form?
-                            = link_to "Save and return", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer], class: "govuk-button"
+                            = link_to "Save and return", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer], class: "govuk-button", aria: {label: "Save and return to award information"}
                           - elsif user_redirected_to_collaborators_page?
-                            = link_to "Save and continue", dashboard_path, class: "govuk-button"
+                            = link_to "Save and continue", dashboard_path, class: "govuk-button", aria: {label: "Save and continue to applicant dashboard"}
                       - if current_user.registration_in_progress?
                         previous.previous-alternate
                           = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part", class: "govuk-back-link govuk-!-font-size-19 govuk-!-margin-top-3" do
