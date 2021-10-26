@@ -30,7 +30,7 @@
           - award_name = award.award_type_full_name + " Award"
           - nick = award.nickname.present? ? " (#{award.nickname})" : ""
           - action = award.submitted? ? "Edit" : "Continue"
-          - aria_label = "#{action} applicaction #{award.id} for #{award_name}"
+          - aria_label = "#{action} application #{award.id} for #{award_name}"
 
           - if award.award_type == "innovation"
             - if award.nickname.present?
