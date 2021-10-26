@@ -113,7 +113,18 @@ class QAEFormBuilder
         "regions_question",
         "trade_commercial_success_question",
         "checkbox_seria_question",
-        "confirm_question"
+        "confirm_question",
+        "address_question",
+        "date_question",
+        "queen_award_applications_question",
+        "subsidiaries_associates_plants_question",
+        "by_trade_goods_and_services_label_question",
+        "innovation_financial_year_date_question",
+        "one_option_by_years_question",
+        "one_option_by_years_label_question",
+        "by_years_question",
+        "by_years_label_question",
+        "matrix_question"
       ]
 
       legend_types.include?(type)

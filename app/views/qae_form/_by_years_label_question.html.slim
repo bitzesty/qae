@@ -1,4 +1,4 @@
-div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+div role="group" id="q_#{question.key}"
   .js-financial-year-changed-dates
     - for c in question.by_year_conditions
       .js-conditional-question.js-fy-entry-container.by-years-wrapper data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
