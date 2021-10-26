@@ -1,6 +1,6 @@
 = render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add subsidiary, associate or plant"
 
-div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+div role="group" id="q_#{question.key}"
   input name="#{question.input_name}[array]" value="true" type="hidden" *possible_read_only_ops
   ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1 id="non_js_#{question.key}-list-question"
 
