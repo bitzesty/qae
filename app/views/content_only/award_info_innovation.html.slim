@@ -79,7 +79,7 @@ h1.govuk-heading-xl
               p.govuk-body Detailed financial information.
 
               p#get-started.get-started.group.govuk-body
-                = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "govuk-button", rel: "external"
+                = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "govuk-button", rel: "external", role: "button", aria: {label: "Continue to application"}
                   ' Continue
                   / TODO if application is started
                   / ' Continue application
