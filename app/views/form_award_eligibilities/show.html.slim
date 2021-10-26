@@ -11,6 +11,7 @@
 h1.govuk-heading-xl = page_title
 
 .steps-progress-container.min-height-800
+  = render "steps_progress_bar", cant_access_future: true, previous_questions: step
   .steps-progress-content
     div
       article.group role="article"
@@ -29,7 +30,7 @@ h1.govuk-heading-xl = page_title
                     = render("form_award_eligibilities/questions/#{step.to_s}", f: f, question: step.to_s) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
 
                 .next-question
-                  = f.submit "Continue", class: "govuk-button"
+                  = f.submit "Continue", class: "govuk-button", aria: {label: "Continue to next question"}
           - else
             .previous-answers
               - if @form_answer.eligible?
@@ -44,7 +45,7 @@ h1.govuk-heading-xl = page_title
 
                 - if (!step || step.to_s == "wicked_finish")
                   br
-                  = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium"
+                  = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium", role: "button", aria: {label:"Continue to useful application info"}
                   br
 
               - else
@@ -73,7 +74,7 @@ h1.govuk-heading-xl = page_title
 
         - if (!step || step.to_s == "wicked_finish")
           - if @form_answer.eligible?
-            = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium"
+            = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium", role: "button"
           - else
             footer
               nav.pagination.no-border role="navigation" aria-label="Pagination"
@@ -82,5 +83,3 @@ h1.govuk-heading-xl = page_title
                     = link_to dashboard_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-button govuk-button--secondary' do
                       span.pagination-label
                         ' Back
-
-  = render "steps_progress_bar", cant_access_future: true, previous_questions: step
