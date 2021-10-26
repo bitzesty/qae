@@ -33,7 +33,7 @@ h1.govuk-heading-xl
                 nav.pagination.no-border role="navigation" aria-label="Pagination"
                   ul.group
                     li.submit
-                      = f.submit "Save and continue", class: "govuk-button"
+                      = f.submit "Save and continue", class: "govuk-button", aria: {label: "Save my contact preferences and continue to organisation details"}
                   previous.previous-alternate
                     = link_to correspondent_details_account_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-back-link govuk-!-font-size-19 govuk-!-margin-top-3' do
                       span class="pagination-label"
@@ -41,5 +41,5 @@ h1.govuk-heading-xl
 
               - else
                 .form-actions
-                  = f.submit "Save", class: "govuk-button"
+                  = f.submit "Save", class: "govuk-button", aria: {label: "Save my contact preferences"}
 

@@ -12,7 +12,7 @@ footer
           - opts = possible_read_only_ops
           - opts[:class] ||= ""
           - opts[:class] << " govuk-button"
-          = button_tag opts.merge(rel: "next", title: "Navigate to next part") do
+          = button_tag opts.merge(rel: "next", title: "Save and continue to #{step.next.title}") do
             ' Save and continue
 
       - else
