@@ -2,9 +2,9 @@ footer
   nav.pagination.no-border class="#{'pagination-alternative' unless step.next}" aria-label="Pagination for step #{step.index + 1}"
     ul.govuk-button-group
       - if current_form_is_editable?
-        li.save-quit-link role="button"
+        li.save-quit-link
           span.if-no-js-hide
-            = link_to "Save and come back later", dashboard_url, class: "govuk-button govuk-button--secondary js-save-and-come-back"
+            = link_to "Save and come back later", dashboard_url, class: "govuk-button govuk-button--secondary js-save-and-come-back", role:"button"
           span.if-js-hide
             = button_tag "Save and come back later", class: "govuk-button save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
       - if step.next
