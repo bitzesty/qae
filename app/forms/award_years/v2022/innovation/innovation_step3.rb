@@ -53,7 +53,7 @@ class AwardYears::V2022::QAEForms
         header :commercial_success_intro, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
+            <p class="govuk-body">
               You can provide estimated figures for now but, should you be shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
