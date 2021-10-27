@@ -386,6 +386,7 @@ class AwardYears::V2022::QAEForms
         text :org_telephone, "Main telephone number" do
           required
           ref "A 10.1"
+          type "tel"
           style "small"
         end
 
@@ -419,12 +420,14 @@ class AwardYears::V2022::QAEForms
         text :press_contact_details_telephone, "Telephone" do
           required
           classes "sub-question"
+          type "tel"
           style "small"
         end
 
         text :press_contact_details_email, "Email address" do
           classes "sub-question"
           style "large"
+          type "email"
           required
         end
 
