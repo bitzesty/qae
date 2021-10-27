@@ -539,6 +539,10 @@ class QaePdfForms::General::QuestionPointer
       render_context_and_answer_blocks
     end
 
+    if question.delegate_obj.class.to_s == "QAEFormBuilder::PressContactDetailsQuestion"
+      render_context_and_answer_blocks
+    end
+
     form_pdf.indent 25.mm do
       if sub_answers.length > 1
         sub_answers_by_type
