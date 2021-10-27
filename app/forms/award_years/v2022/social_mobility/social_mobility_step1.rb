@@ -135,7 +135,7 @@ class AwardYears::V2022::QAEForms
         header :business_division_header, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
+            <p class="govuk-body">
               Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
             </p>
           )
@@ -340,7 +340,7 @@ class AwardYears::V2022::QAEForms
         header :external_organization_or_individual_info_header_no, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
+            <p class="govuk-body">
               We recommend that you notify all the contributors to your social mobility programme relating to this entry.
             </p>
           )
