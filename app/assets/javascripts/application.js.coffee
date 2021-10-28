@@ -512,7 +512,7 @@ jQuery ->
       idx++
 
   appendRemoveLinkForWebsiteLink = (div) ->
-    remove_link = $("<a>").addClass("remove-link").prop("href", "#").text("Remove")
+    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning").attr("id", "remove-website").prop("href", "#").text("Remove")
     div.append(remove_link)
 
   appendRemoveLinkForAttachment = (div, wrapper, data) ->
@@ -596,9 +596,10 @@ jQuery ->
 
       if link
         div = $("<div>")
-        label = $("<label>").text('Website address')
+        label = $("<label class='govuk-label'>").text('Website address')
         input = $("<input class=\"medium js-trigger-autosave\" type=\"text\">").
           prop('name', "#{form_name}[#{name}][][link]")
+        label.append("<br/>")
         label.append(input)
         appendRemoveLinkForWebsiteLink(div)
         div.append(label)
@@ -624,7 +625,7 @@ jQuery ->
       if needs_description
         desc_div = $("<div>")
         unique_name = "#{form_name}[#{name}][][description]"
-        label = ($("<label>").text("Description").attr("for", unique_name))
+        label = ($("<label class='govuk-label'>").text("Description").attr("for", unique_name))
         label.append($("<textarea class='js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
              .attr("name", unique_name)
              .attr("id", unique_name))
