@@ -264,7 +264,7 @@ class AwardYears::V2022::QAEForms
           style "small"
         end
 
-        header :press_contact_details_header, "Contact details for press enquiries" do
+        press_contact_details :press_contact_details, "Contact details for press enquiries" do
           ref "A 11"
           context %(
             <p class='govuk-hint'>
