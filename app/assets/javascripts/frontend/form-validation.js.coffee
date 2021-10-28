@@ -45,7 +45,7 @@ window.FormValidation =
     @validates = false
 
   isTextishQuestion: (question) ->
-    question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").length
+    question.find("input[type='text'],  input[type='tel'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").length
 
   isSelectQuestion: (question) ->
     question.find("select").length
@@ -73,7 +73,7 @@ window.FormValidation =
         return question.find("select").val()
 
       if @isTextishQuestion(question)
-        return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().trim().length
+        return question.find("input[type='text'], input[type='tel'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().trim().length
 
       if @isOptionsQuestion(question)
         return question.find("input[type='radio']").filter(":checked").length

@@ -264,7 +264,7 @@ class AwardYears::V2022::QAEForms
           style "small"
         end
 
-        header :press_contact_details_header, "Contact details for press enquiries" do
+        press_contact_details :press_contact_details, "Contact details for press enquiries" do
           ref "A 11"
           context %(
             <p class='govuk-hint'>
@@ -273,36 +273,13 @@ class AwardYears::V2022::QAEForms
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>
           )
-        end
-
-        text :press_contact_details_title, "Title" do
-          required
-          classes "sub-question"
-          style "tiny"
-        end
-
-        text :press_contact_details_first_name, "First name" do
-          required
-          classes "sub-question"
-        end
-
-        text :press_contact_details_last_name, "Last name" do
-          required
-          classes "sub-question"
-        end
-
-        text :press_contact_details_telephone, "Telephone" do
-          required
-          classes "sub-question"
-          type "tel"
-          style "small"
-        end
-
-        text :press_contact_details_email, "Email address" do
-          classes "sub-question"
-          style "large"
-          type "email"
-          required
+          sub_fields([
+            { title: "Title" },
+            { first_name: "First name" },
+            { last_name: "Last name" },
+            { telephone: "Telephone" },
+            { email: "Email address" }
+          ])
         end
 
         text :website_url, "Website address" do
