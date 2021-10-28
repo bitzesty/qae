@@ -80,6 +80,6 @@ h1.govuk-heading-xl = page_title
               nav.pagination.no-border role="navigation" aria-label="Pagination"
                 ul.group
                   li.previous
-                    = link_to dashboard_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-button govuk-button--secondary' do
+                    = link_to dashboard_path, rel: "prev", title: "Back to dashboard", class: 'govuk-button govuk-button--secondary', role: "button" do
                       span.pagination-label
                         ' Back
