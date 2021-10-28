@@ -486,10 +486,10 @@ window.FormValidation =
         @appendMessage(question, "% of your total overseas trade should add up to 100")
         @addErrorClass(question)
 
-  validateGoodsServicesText: (question) ->
+  validateGoodsServicesDescription: (question) ->
     totalOverseasTradeTextInput = question.find(".js-by-trade-goods-and-services-amount textarea")
     if !totalOverseasTradeTextInput.val().toString().trim().length
-        @logThis(question, "This field is required")
+        @logThis(question, "validateGoodsServicesDescription", "This field is required")
         @appendMessage(question, "This field is required")
         @addErrorClass(question)
 
@@ -593,7 +593,7 @@ window.FormValidation =
     if question.find(".js-by-trade-goods-and-services-amount").length
       # console.log "validateGoodsServicesPercentage"
       @validateGoodsServicesPercentage(question)
-      @validateGoodsServicesText(question)
+      @validateGoodsServicesDescription(question)
 
     if question.hasClass("question-limited-selections")
       @validateSelectionLimit(question)
