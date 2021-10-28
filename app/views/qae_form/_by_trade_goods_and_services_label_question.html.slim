@@ -19,4 +19,4 @@
         label.govuk-label for=question.input_name(suffix: "total_overseas_trade_#{placement}")
           ' % of your total overseas trade:
         span.govuk-error-message
-        input.js-trigger-autosave.govuk-input.govuk-input--width-5 type="text" min=question.min max=question.max name="#{question.input_name}[#{index}][total_overseas_trade]" value=(item.present? ? item['total_overseas_trade'] : '') autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
+        input.js-trigger-autosave.govuk-input.govuk-input--width-5 type="number" min=question.min max=question.max name="#{question.input_name}[#{index}][total_overseas_trade]" value=(item.present? ? item['total_overseas_trade'] : '') autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
