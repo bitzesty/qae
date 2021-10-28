@@ -20,12 +20,12 @@
       p.govuk-body
         ' We will be providing a Press Book to the media containing information about all the winners at
         => deadline_for("buckingham_palace_media_information", "%H.%M hrs on %A %d %B %Y")
-        ' under the terms of the embargo. Click the 'Press Book Notes' link below to check your press note, organisation details and enter details of a contact for press enquiries, and
+        ' under the terms of the embargo. Click the 'Press Book Notes' link following this paragraph to check your press note, organisation details and enter details of a contact for press enquiries, and
         strong
           'submit it by
           = deadline_for("buckingham_palace_confirm_press_book_notes", "%H.%M hrs on %A %d %B")
           ' .
-        ' If we do not hear from you by the above deadline, we will use the proposed text along with the contact details that we already hold.
+        ' If we do not hear from you by this deadline, we will use the proposed text along with the contact details that we already hold.
     .clear
   - winners.each do |award|
     .container-split.award-list

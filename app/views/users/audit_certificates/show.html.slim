@@ -10,7 +10,7 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
     .inner
       - unless cert_exists
 
-        p.govuk-body Please follow the steps below:
+        p.govuk-body Please continue with the following steps:
         p
           ol.govuk-list.govuk-list--number
             li = link_to("Download the External Accountant's Report form.", users_form_answer_audit_certificate_url(form_answer, format: :pdf))
