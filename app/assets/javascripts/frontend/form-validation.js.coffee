@@ -487,8 +487,8 @@ window.FormValidation =
         @addErrorClass(question)
 
   validateGoodsServicesDescription: (question) ->
-    totalOverseasTradeTextInput = question.find(".js-by-trade-goods-and-services-amount textarea")
-    if !totalOverseasTradeTextInput.val().toString().trim().length
+    totalOverseasTradeDescriptionInput = question.find(".js-by-trade-goods-and-services-amount textarea")
+    if !totalOverseasTradeDescriptionInput.val().toString().trim().length
         @logThis(question, "validateGoodsServicesDescription", "This field is required")
         @appendMessage(question, "This field is required")
         @addErrorClass(question)
