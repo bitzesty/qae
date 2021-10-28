@@ -13,7 +13,7 @@
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
           - if question.label_as_legend?
-            legend.govuk-label aria-label="#{ref.to_s.gsub(' ', '-')} #{question.title.blank? ? '' : ':' + question.title}"
+            legend.govuk-label
               - if question.ref || question.sub_ref
                 span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                   span.todo
@@ -25,7 +25,7 @@
               = render "qae_form/question_sub_title", question: question
 
           - else
-            legend.govuk-label aria-label="#{ref.to_s.gsub(' ', '-')} #{question.title.blank? ? '' : ':' + question.title}"
+            legend.govuk-label
             label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
               - if question.ref || question.sub_ref
                 span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
