@@ -472,7 +472,7 @@ window.FormValidation =
       @addErrorClass(question)
 
   validateGoodsServicesPercentage: (question) ->
-    totalOverseasTradeInputs = question.find(".js-by-trade-goods-and-services-amount .show-question input[type='text']")
+    totalOverseasTradeInputs = question.find(".js-by-trade-goods-and-services-amount .show-question input[type='number']")
     totalOverseasTradePercentage = 0
     missingOverseasTradeValue = false
     totalOverseasTradeInputs.each ->
