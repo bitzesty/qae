@@ -22,8 +22,9 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
 
       = render "users/audit_certificates/upload_block", award: form_answer,
                                                         cert_exists: cert_exists
-      = render "users/list_of_procedures/upload_block", award: form_answer,
-                                                        list_exists: list_exists
+      // Temporarily commenting out until needed again
+      / = render "users/list_of_procedures/upload_block", award: form_answer,
+      /                                                   list_exists: list_exists
 
       footer
         nav.pagination.no-border aria-label="Pagination" role="navigation"
