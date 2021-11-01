@@ -241,6 +241,14 @@ jQuery ->
     $(this).prop('required', true)
     $(this).attr('aria-required', 'true')
 
+  $('.question-required').find('input,select,textarea').each ->
+    $(this).prop('required', true)
+    $(this).attr('aria-required', 'true')
+
+  $('.qae-form').find('input[type="number"]').each -> 
+    $(this).attr('pattern', '[0-9]*')
+    $(this).attr('inputmode', 'decimal')
+
   # Calculates the UK Sales for Sus Dev form
   # UK sales = turnover - exports
   updateTurnoverExportCalculation = ->
@@ -280,6 +288,7 @@ jQuery ->
 
     window.location.hash = "##{step.substr(5)}"
     $(".js-step-condition[data-step='#{step}']").addClass("step-current")
+    $(".js-step-condition[data-step='#{step}']").focus()
 
     # Show past link status
     $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
@@ -839,7 +848,7 @@ jQuery ->
 
           # remove the default reached class to allow removing again
           questionAddDefaultReached(question.find(".list-add"))
-
+          window.FormValidation.validateStep()
           triggerAutosave()
 
   # Removing these added fields
@@ -865,6 +874,7 @@ jQuery ->
         $(this).closest("li").remove()
 
       questionAddDefaultReached(parent_ul)
+      window.FormValidation.validateStep()
       triggerAutosave()
 
   questionAddDefaultReached = (ul) ->
