@@ -237,6 +237,10 @@ jQuery ->
   $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
     updateYearEnd()
 
+  $('.question-required').find('input,select,textarea').each ->
+    $(this).prop('required', true)
+    $(this).attr('aria-required', 'true')
+
   # Calculates the UK Sales for Sus Dev form
   # UK sales = turnover - exports
   updateTurnoverExportCalculation = ->

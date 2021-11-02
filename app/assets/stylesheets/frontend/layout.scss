@@ -862,7 +862,6 @@ details {
 
   summary {
     display: inline-block;
-    color: #005ea5;
     cursor: pointer;
     position: relative;
     margin-bottom: 0.26316em;
@@ -884,6 +883,10 @@ details {
   .arrow {
     margin-right: .35em;
     font-style: normal;
+  }
+
+  span {
+    color: $dark-blue-link-colour;
   }
 }
 

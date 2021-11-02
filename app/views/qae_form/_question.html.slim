@@ -6,36 +6,22 @@
 - if !question.ref && !question.sub_ref
   .govuk-form-group
     == question.context
-- else
+- elsif question.label_as_legend?
   fieldset class=question.fieldset_classes data=question.fieldset_data_hash
     = condition_divs question do
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
-          - if question.label_as_legend?
-            legend.govuk-label aria-label="#{ref.to_s.gsub(' ', '-')} #{question.title.blank? ? '' : ':' + question.title}"
-              - if question.ref || question.sub_ref
-                span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
-                  span.todo
-                    = ref.to_s
-              - unless question.title.blank?
-                span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
-                  == question.title
+          legend.govuk-fieldset__legend
+            - if question.ref || question.sub_ref
+              span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
+                span.todo
+                  = ref.to_s
+            - unless question.title.blank?
+              span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
+                == question.title
 
-              = render "qae_form/question_sub_title", question: question
-
-          - else
-            legend.govuk-label aria-label="#{ref.to_s.gsub(' ', '-')} #{question.title.blank? ? '' : ':' + question.title}"
-            label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
-              - if question.ref || question.sub_ref
-                span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
-                  span.todo
-                    = ref.to_s
-              - unless question.title.blank? 
-                span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
-                  == question.title
-
-              = render "qae_form/question_sub_title", question: question
+            = render "qae_form/question_sub_title", question: question
 
         - else
           - if question.ref || question.sub_ref
@@ -71,7 +57,7 @@
                   = help.title.html_safe
             .govuk-details__text
               == help.text
-        
+
         span.govuk-error-message
           - if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key].present? && @form_answer.validator_errors[question.hash_key].is_a?(String)
             span.govuk-visually-hidden
@@ -80,7 +66,72 @@
         - unless question.form_hint.blank?
           span.govuk-hint = question.form_hint
         = render partial: "qae_form/#{question.delegate_obj.class.name.demodulize.underscore}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
-        
+
+        / Conditional hints
+        - if question.can_have_conditional_hints?
+          = render "qae_form/conditional_hints/list", question: question
+
+- else
+  div class=question.fieldset_classes data=question.fieldset_data_hash
+    = condition_divs question do
+      .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
+        - ref = question.ref ? question.ref : question.sub_ref
+        - if question.title != "" || question.show_ref_always.present?
+          label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
+            - if question.ref || question.sub_ref
+              span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
+                span.todo
+                  = ref.to_s
+            - unless question.title.blank?
+              span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
+                == question.title
+
+            = render "qae_form/question_sub_title", question: question
+
+        - else
+          - if question.ref || question.sub_ref
+            .if-js-hide
+              label.govuk-label for="q_#{question.key}" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
+                span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
+                  span.visuallyhidden
+                    = ref.to_s
+                  span.todo
+                    = ref.to_s
+
+        - if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
+          - if question.ref || question.sub_ref
+              span.question-context.question-debug.govuk-hint
+                = "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions."
+          - if question.context
+            == question.context
+          - for help in question.help
+            == help.text
+        - else
+          - if question.context
+            span.question-context.question-debug.govuk-hint
+              == question.context
+          - for help in question.help
+            span.question-context.question-debug.govuk-hint
+              == help.text
+
+        - question.hint.each_with_index do |help, index|
+          details.govuk-details data-module='govuk-details'
+            - if help.title.present?
+              summary.govuk-details__summary
+                span.govuk-details__summary-text
+                  = help.title.html_safe
+            .govuk-details__text
+              == help.text
+
+        span.govuk-error-message
+          - if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key].present? && @form_answer.validator_errors[question.hash_key].is_a?(String)
+            span.govuk-visually-hidden
+              | Error:
+            =< @form_answer.validator_errors[question.hash_key]
+        - unless question.form_hint.blank?
+          span.govuk-hint = question.form_hint
+        = render partial: "qae_form/#{question.delegate_obj.class.name.demodulize.underscore}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
+
         / Conditional hints
         - if question.can_have_conditional_hints?
           = render "qae_form/conditional_hints/list", question: question
