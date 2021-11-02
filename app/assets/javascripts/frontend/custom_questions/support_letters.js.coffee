@@ -8,7 +8,7 @@ window.SupportLetters =
     SupportLetters.clean_up_system_tags(el)
     SupportLetters.enable_item_fields_and_controls(el)
     SupportLetters.fileupload_init(el.find(".js-support-letter-attachment"))
-    el.find('input,textarea,select').first().focus()
+    el.find('input,textarea,select').filter(':visible').first().focus()
 
   fileupload_init: (el) ->
     $el = $(el)
