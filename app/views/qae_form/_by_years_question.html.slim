@@ -20,8 +20,8 @@
             span class="#{'govuk-input__wrapper' if question.type == :money}"
               - if question.type == :money
                 .govuk-input__prefix £
-                - type = "number"
+                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="number" pattern="[0-9]+" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
               - else
                 - type = "#{question.type || "text"}"
-              input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="#{ type }" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="#{ type }" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
       .clear
