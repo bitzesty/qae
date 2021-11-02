@@ -10,10 +10,14 @@ class QAEFormBuilder
     def type type
       @q.type = type
     end
+
+    def pattern pattern
+      @q.pattern = pattern
+    end
   end
 
   class TextQuestion < Question
-    attr_accessor :type, :style
+    attr_accessor :type, :style, :pattern
   end
 
 end
