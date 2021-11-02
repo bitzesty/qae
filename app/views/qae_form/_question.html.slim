@@ -12,7 +12,7 @@
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
-          legend.govuk-label
+          legend.govuk-fieldset__legend
             - if question.ref || question.sub_ref
               span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                 span.todo
@@ -77,7 +77,6 @@
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
-          legend.govuk-label
           label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
             - if question.ref || question.sub_ref
               span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
