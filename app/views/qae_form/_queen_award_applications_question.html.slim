@@ -33,7 +33,7 @@ div role="group" id="q_#{question.key}"
                 | Category
               span.govuk-error-message
               span.if-no-js-hide
-                select.govuk-select.js-trigger-autosave id="form[applied_for_queen_awards_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops id="form[applied_for_queen_awards_details][#{index}][category]"
                   option value=""
                     ' Category
                   - question.categories.each do |category|
@@ -49,7 +49,7 @@ div role="group" id="q_#{question.key}"
                 | Year
               span.govuk-error-message
               span.if-no-js-hide
-                select.govuk-select.js-trigger-autosave id="form[applied_for_queen_awards_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops id="form[applied_for_queen_awards_details][#{index}][year]"
                   option value=""
                     ' Year
                   - question.years.each do |year|
@@ -65,7 +65,7 @@ div role="group" id="q_#{question.key}"
                 | Outcome (Won/Did not win)
               span.govuk-error-message
               span.if-no-js-hide
-                select.govuk-select.js-trigger-autosave id="form[applied_for_queen_awards_details][#{index}][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops id="form[applied_for_queen_awards_details][#{index}][outcome]"
                   option value=""
                     ' Outcome (Won/Did not win)
                   - question.outcomes.each do |outcome|
