@@ -283,7 +283,6 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 8.1"
           type "tel"
-          pattern "[0-9]+"
           style "small"
         end
 
