@@ -241,10 +241,6 @@ jQuery ->
     $(this).prop('required', true)
     $(this).attr('aria-required', 'true')
 
-  $('.qae-form').find('input[type="number"]').each -> 
-    $(this).attr('pattern', '[0-9]*')
-    $(this).attr('inputmode', 'decimal')
-
   # Calculates the UK Sales for Sus Dev form
   # UK sales = turnover - exports
   updateTurnoverExportCalculation = ->
