@@ -21,11 +21,23 @@ window.FormValidation =
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
     @addErrorClass(question)
+    @addErrorAriaLabel(question)
+    @addAriaInvalid(question)
 
     @validates = false
 
   appendMessage: (container, message) ->
     container.find(".govuk-error-message").first().append(message)
+    console.log(container)
+    @validates = false
+
+  addErrorAriaLabel: (container, message) ->
+    input = container.find("textarea, select, input").attr('name')
+    container.find(".govuk-error-message").first().attr("aria-describedby", input);
+    @validates = false
+
+  addAriaInvalid: (container) ->
+    container.find("textarea, select, input").attr("aria-invalid", "true")
     @validates = false
 
   addErrorClass: (container) ->
