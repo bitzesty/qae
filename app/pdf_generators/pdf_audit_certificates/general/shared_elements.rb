@@ -195,17 +195,21 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
+
+    dotted_line = %{...............................................................................................................................}
+
     b1 = %{Signed (External Accountant) ............................................................................}
     render_text_line(b1, 1)
+    render_text_line(dotted_line, 1)
 
     b2 = %{Company partnership name: ............................................................................}
     render_text_line(b2, 1)
+    render_text_line(dotted_line, 1)
 
     b3 = %{Company registration number/Professional body practising certificate number: }
     render_text_line(b3, 1)
-
-    b3 = %{...............................................................................................................................}
-    render_text_line(b3, 1)
+    render_text_line(dotted_line, 1)
+    render_text_line(dotted_line, 1)
 
     b4 = %{Address: ..............................................................................................................}
     render_text_line(b4, 1)
@@ -263,17 +267,17 @@ module PdfAuditCertificates::General::SharedElements
 
     lines = []
 
-    first_line = "Statement 1 - We have checked the figures that the applicant’s management has provided in this form by undertaking the procedures as in the letter appended to this submission form. We report that no exceptions were found and that all samples were traced to underlying evidence."
+    first_line = "Statement 1 - We have checked the figures that the applicant’s management has provided in this form by undertaking the agreed upon procedures. We report that no exceptions were found and that all samples were traced to underlying evidence."
     render_text_line(first_line, 2, default_list_ops)
 
-    lines << "Because the above procedures do not constitute either an audit or a review made in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), we do not express any assurance on the form."
+    lines << "Because the agreed upon procedures do not constitute either an audit or a review made in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), we do not express any assurance on the form."
 
     lines << "Had we performed additional procedures, or had we performed an audit or review of the financial statements in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), other matters might have come to our attention that would have been reported."
 
     lines.each { |line| render_text_line(line, 2, default_text_ops) }
 
     stroke_rectangle [0, cursor], 7, 7
-    first_line = "Statement 2 - We have checked the figures that the applicant’s management has provided in this form by undertaking the procedures as set out as in the letter appended to this submission form. We identified a number of exceptions during our work which we enumerate here:"
+    first_line = "Statement 2 - We have checked the figures that the applicant’s management have provided in this form. We identified a number of exceptions during our work which we enumerate here:"
     render_text_line(first_line, 2, default_list_ops)
 
     render_text_line("Details of exceptions", 2, default_list_ops.merge(indent_paragraphs: 20, style: :bold))
