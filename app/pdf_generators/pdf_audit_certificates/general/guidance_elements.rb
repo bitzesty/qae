@@ -22,7 +22,7 @@ module PdfAuditCertificates::General::GuidanceElements
 
     p4 = "For applicants that are not for profit organisations or charities, to be eligible for a Queen’s Award for Enterprise, your organisation must be on a sustainable financial footing."
 
-    p5 = "Once you and your external accountant have completed this report, please upload it to the Queen’s Awards for Enterprise online portal by 12 noon on #{Settings.current_submission_deadline.strftime('%d %b %Y')}. We are unable to accept late reports due to the strict assessment and judging timetable."
+    p5 = "Once you and your external accountant have completed this report, please upload it to The Queen’s Awards for Enterprise online portal by 12 noon on #{Settings.current_submission_deadline.strftime('%d %b %Y')}. We are unable to accept late reports due to the strict assessment and judging timetable."
 
     [p1, p2, p3, p4, p5].each do |paragraph|
       render_text_line(paragraph, 2, leading: 2)
@@ -43,7 +43,7 @@ module PdfAuditCertificates::General::GuidanceElements
 
     ps = []
 
-    ps << "The figures in the #{table} below have been provided by the applicant during their application for the Queen’s Awards for Enterprise. Please check the figures the business has submitted to underlying calculations and compare these to a sample of underlying supporting documentation, including, where appropriate, filings with HMRC and/or Companies House. For the avoidance of doubt, we do not expect you to undertake an assurance engagement. We expect an agreed upon procedures engagement to be undertaken. Accountants should exercise their professional judgement when agreeing appropriate procedures. Appendix 1 provides illustrative procedures that may be appropriate and our expectations on sample sizes."
+    ps << "The figures in the #{table} below have been provided by the applicant during their application for The Queen’s Awards for Enterprise. Please check the figures the business has submitted to underlying calculations and compare these to a sample of underlying supporting documentation, including, where appropriate, filings with HMRC and/or Companies House. For the avoidance of doubt, we do not expect you to undertake an assurance engagement. We expect an agreed upon procedures engagement to be undertaken. Accountants should exercise their professional judgement when agreeing appropriate procedures. Appendix 1 provides illustrative procedures that may be appropriate and our expectations on sample sizes."
 
     ps << "If no exceptions are found, please confirm this by selecting Statement 1 in this form."
 
@@ -129,7 +129,7 @@ module PdfAuditCertificates::General::GuidanceElements
   def render_accountant_po_guidance
     render_text_line("Promoting Opportunity (through social mobility)", 1, style: :bold)
 
-    paragraph = "Promoting opportunity is defined as per the gov.uk guidance. For the avoidance of doubt, Accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for a promoting opportunity award. This is left to the sole discretion of the Queen’s Award Office."
+    paragraph = "Promoting opportunity is defined as per the gov.uk guidance. For the avoidance of doubt, Accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for a promoting opportunity award. This is left to the sole discretion of The Queen’s Award Office."
     render_text_line(paragraph, 1, leading: 2)
   end
 end

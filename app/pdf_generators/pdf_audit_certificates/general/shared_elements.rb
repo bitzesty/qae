@@ -224,7 +224,7 @@ module PdfAuditCertificates::General::SharedElements
     move_down 6.mm
     render_text_line("APPLICANT’S MANAGEMENT’S STATEMENT (Only if providing revised figures)", 3, style: :bold)
 
-    line = "We confirm we have updated the figures originally submitted in our application to the Queen’s Award for Enterprise. The revised figures should be used as the basis of our application."
+    line = "We confirm we have updated the figures originally submitted in our application to The Queen’s Award for Enterprise. The revised figures should be used as the basis of our application."
     render_text_line(line, 2, default_text_ops)
 
     b1 = %{Signed ................................................................................................................}
@@ -303,7 +303,7 @@ module PdfAuditCertificates::General::SharedElements
 
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
-    render_text_line("We are committed to improving experiences for everyone who is involved in the Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
+    render_text_line("We are committed to improving experiences for everyone who is involved in The Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
 
     render_text_line("Yes       No", 10, style: :bold)
 
@@ -317,7 +317,7 @@ module PdfAuditCertificates::General::SharedElements
 
     ps = []
 
-    ps << "The figures in the forms are provided by the applicant during their application for the Queen’s Awards for Enterprise. Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
+    ps << "The figures in the forms are provided by the applicant during their application for The Queen’s Awards for Enterprise. The Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
 
     ps << "Accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate."
 
@@ -358,7 +358,7 @@ module PdfAuditCertificates::General::SharedElements
     ]
     render_list_with_header(header, list)
 
-    render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
+    render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, The Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, The Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
   end
 
   def render_list_with_header(header, list)
