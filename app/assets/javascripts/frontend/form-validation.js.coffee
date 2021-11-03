@@ -18,6 +18,9 @@ window.FormValidation =
       container.closest(".question-block").find(".govuk-error-message").empty()
     container.closest(".govuk-form-group--error").removeClass("govuk-form-group--error")
 
+  clearAriaDescribedby: (container) ->
+    container.closest('input,textarea,select').filter(':visible').removeAttr("aria-describedby")
+
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
     @addAriaDescribedByToInput(question)
@@ -524,6 +527,7 @@ window.FormValidation =
 
     $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
       self.clearErrors $(this)
+      self.clearAriaDescribedby $(this)
       self.validateIndividualQuestion($(@).closest(".question-block"), $(@))
 
   validateIndividualQuestion: (question, triggeringElement) ->
