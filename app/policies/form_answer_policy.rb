@@ -99,27 +99,11 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? && record.audit_certificate.present?
   end
 
-  def download_list_of_procedures_pdf?
-    (admin? || subject.lead_or_assigned?(record)) &&
-    record.list_of_procedure.present? &&
-    record.list_of_procedure.attachment.present? &&
-    (Rails.env.development? || record.list_of_procedure.clean?)
-  end
-
-  def create_list_of_procedures_pdf?
-    admin? || subject.lead_or_assigned?(record)
-    (record.list_of_procedure.nil? || record.list_of_procedure.attachment.nil?)
-  end
-
-  def remove_list_of_procedures?
-    admin? && record.list_of_procedure.present?
-  end
-
   def has_access_to_post_shortlisting_docs?
     download_feedback_pdf? ||
     download_case_summary_pdf? ||
     (admin? || subject.lead_or_assigned?(record)) &&
-    (audit_certificate_available? || list_of_procedures_available?)
+    audit_certificate_available?
   end
 
   def can_download_initial_audit_certificate_pdf?
@@ -150,9 +134,5 @@ class FormAnswerPolicy < ApplicationPolicy
 
   def audit_certificate_available?
     record.audit_certificate.present? && record.audit_certificate.attachment.present?
-  end
-
-  def list_of_procedures_available?
-    record.list_of_procedure.present? && record.list_of_procedure.attachment.present?
   end
 end

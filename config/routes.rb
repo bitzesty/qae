@@ -163,7 +163,6 @@ Rails.application.routes.draw do
       resources :form_answer_attachments, only: [:create, :show, :destroy]
       resources :support_letters, only: [:show]
       resources :audit_certificates, only: [:show, :create]
-      resources :list_of_procedures, only: [:show, :create]
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit
@@ -256,7 +255,6 @@ Rails.application.routes.draw do
 
       member do
         patch :remove_audit_certificate
-        patch :remove_list_of_procedures
         patch :update_financials
         get :review
       end
@@ -266,9 +264,6 @@ Rails.application.routes.draw do
       resources :form_answer_attachments, only: [:create, :show, :destroy]
       resources :support_letters, only: [:show]
       resources :audit_certificates, only: [:show, :create] do
-        get :download_initial_pdf, on: :collection
-      end
-      resources :list_of_procedures, only: [:show, :create] do
         get :download_initial_pdf, on: :collection
       end
       resources :feedbacks, only: [:create, :update] do
