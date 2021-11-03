@@ -20,25 +20,22 @@ window.FormValidation =
 
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
+    @addAriaDescribedByToInput(question)
     @addErrorClass(question)
-    @addErrorAriaLabel(question)
-    @addAriaInvalid(question)
 
     @validates = false
 
   appendMessage: (container, message) ->
     container.find(".govuk-error-message").first().append(message)
-    console.log(container)
     @validates = false
 
-  addErrorAriaLabel: (container, message) ->
-    input = container.find("textarea, select, input").attr('name')
-    container.find(".govuk-error-message").first().attr("aria-describedby", input);
-    @validates = false
-
-  addAriaInvalid: (container) ->
-    container.find("textarea, select, input").attr("aria-invalid", "true")
-    @validates = false
+  addAriaDescribedByToInput: (container, message) ->
+    input = container.find('input,textarea,select').filter(':visible')
+    input_id = input.attr('id')
+    error = container.find(".govuk-error-message").first()
+    error.attr("id", "error_for_#{input_id}");
+    error_id = error.attr('id')
+    input.attr("aria-describedby", error_id);
 
   addErrorClass: (container) ->
     container.addClass("govuk-form-group--error")
