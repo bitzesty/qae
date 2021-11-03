@@ -107,19 +107,5 @@ FactoryBot.define do
       state { "submitted" }
       submitted_at { Time.current }
     end
-
-    trait :with_list_of_procedure do
-      document do
-        FormAnswer::DocumentParser.parse_json_document(
-          JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_development.json"))
-          )
-        )
-      end
-      list_of_procedure
-      award_type { "development" }
-      state { "submitted" }
-      submitted_at { Time.current }
-    end
   end
 end
