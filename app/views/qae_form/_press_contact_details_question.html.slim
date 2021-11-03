@@ -17,7 +17,7 @@
   label.govuk-label for=question.input_name(suffix:'telephone')
     ' Telephone
   span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="tel" pattern="[0-9]+" name=question.input_name(suffix: 'telephone') value=question.input_value(suffix: 'telephone') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'telephone')
+  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="tel" pattern="[0-9]*" name=question.input_name(suffix: 'telephone') value=question.input_value(suffix: 'telephone') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'telephone')
 .govuk-form-group.question-block.question-required
   label.govuk-label for=question.input_name(suffix:'email')
     ' Email address
