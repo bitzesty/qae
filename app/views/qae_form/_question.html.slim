@@ -9,10 +9,10 @@
 - elsif question.label_as_legend?
   fieldset class=question.fieldset_classes data=question.fieldset_data_hash
     = condition_divs question do
-      .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key]) aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
+      .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
-          legend.govuk-fieldset__legend
+          legend.govuk-fieldset__legend aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
             - if question.ref || question.sub_ref
               span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                 span.todo
@@ -74,10 +74,10 @@
 - else
   div class=question.fieldset_classes data=question.fieldset_data_hash
     = condition_divs question do
-      .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key]) aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
+      .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
-          label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
+          label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}" aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
             - if question.ref || question.sub_ref
               span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                 span.todo
