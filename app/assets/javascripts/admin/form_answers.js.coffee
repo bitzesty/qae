@@ -31,13 +31,6 @@ ready = ->
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
     $(".attachment-link", wrapper).prependTo("#new_audit_certificate")
 
-    wrapper = $("#list-of-procedure-form")
-    $(".attachment-link", wrapper).removeClass("if-js-hide")
-    $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
-    $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach list of procedures</span>")
-    $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
-    $(".attachment-link", wrapper).prependTo("#new_list_of_procedure")
-
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
     $(this).find(".form-edit-link").remove()
@@ -101,12 +94,6 @@ ready = ->
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
       "audit_certificate[attachment]": $("#audit_certificate_attachment").val()
-
-  $("#new_list_of_procedure").on "fileuploadsubmit", (e, data) ->
-    data.formData =
-      authenticity_token: $("meta[name='csrf-token']").attr("content")
-      format: "js"
-      "list_of_procedure[attachment]": $("#list_of_procedure_attachment").val()
 
   if $("html").hasClass("lte-ie7")
     $(".attachment-link", $("#application-attachment-form")).removeClass("if-js-hide")
@@ -174,40 +161,6 @@ ready = ->
             sidebarSection.removeClass("show-attachment-form")
 
           $("#audit-certificate-buffer").empty()
-
-  if $("html").hasClass("lte-ie7")
-    $(".attachment-link", $("#list-of-procedure-form")).removeClass("if-js-hide")
-  else
-    do initializeFileUpload = ->
-      $("#new_list_of_procedure").fileupload
-        autoUpload: false
-        dataType: "html"
-        forceIframeTransport: true
-        add: (e, data) ->
-          newForm = $("#new_list_of_procedure")
-          $("#new_list_of_procedure .attachment-title").val(data.files[0].name)
-          newForm.closest(".sidebar-section").addClass("show-attachment-form")
-          newForm.find(".btn-submit").focus().blur()
-          newForm.find(".btn-submit").unbind("click").on "click", (e) ->
-            e.preventDefault()
-            data.submit()
-        success: (result, textStatus, jqXHR) ->
-          result = $($.parseHTML(result))
-          $("#list-of-procedure-buffer").append(result.text())
-
-          if $("#form-list_of_procedure-valid", $("#list-of-procedure-buffer")).length
-            $("#list-of-procedure-form").html(result.text())
-            moveAttachDocumentButton()
-            initializeFileUpload()
-          else
-            form = $("#new_list_of_procedure")
-            sidebarSection = form.closest(".sidebar-section")
-            sidebarSection.find(".document-list").html(result.text())
-            sidebarSection.removeClass("show-attachment-form")
-
-          $("#list-of-procedure-buffer").empty()
-
-    moveAttachDocumentButton()
 
   $(document).on "click", ".js-attachment-form .btn-cancel", (e) ->
     e.preventDefault()

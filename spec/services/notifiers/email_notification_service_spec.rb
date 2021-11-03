@@ -118,37 +118,6 @@ describe Notifiers::EmailNotificationService do
 
       expect(current_notification.reload).to be_sent
     end
-
-    context "with a submitted audit_certificate but no list of procedures" do
-      let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
-
-      it "triggers current notification" do
-        expect(Users::AuditCertificateRequestMailer).to receive(:notify).with(
-          form_answer.id,
-          user.id
-        ) { mailer }
-
-        expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
-
-        described_class.run
-
-        expect(current_notification.reload).to be_sent
-      end
-    end
-
-    context "with a submitted audit certificate and submitted list of procedures" do
-      let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
-      let!(:list_of_procedure) { create(:list_of_procedure, form_answer: form_answer) }
-
-      it "does not trigger a notification" do
-        expect(Users::AuditCertificateRequestMailer).not_to receive(:notify).with(
-          form_answer.id,
-          user.id
-        ) { mailer }
-
-        described_class.run
-      end
-    end
   end
 
   context "not_shortlisted_notifier" do
