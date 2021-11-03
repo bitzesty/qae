@@ -42,12 +42,11 @@
           - for help in question.help
             == help.text
         - else
+          span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
           - if question.context
-            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
-              == question.context
+            == question.context
           - for help in question.help
-            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
-              == help.text
+            == help.text
 
         - question.hint.each_with_index do |help, index|
           details.govuk-details data-module='govuk-details'
@@ -101,19 +100,18 @@
 
         - if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
           - if question.ref || question.sub_ref
-              span.question-context.question-debug.govuk-hint
+              span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
                 = "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions."
           - if question.context
             == question.context
           - for help in question.help
             == help.text
         - else
+          span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
           - if question.context
-            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}_question"
-              == question.context
+            == question.context
           - for help in question.help
-            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
-              == help.text
+            == help.text
 
         - question.hint.each_with_index do |help, index|
           details.govuk-details data-module='govuk-details'
