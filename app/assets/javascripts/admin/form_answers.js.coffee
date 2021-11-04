@@ -162,6 +162,8 @@ ready = ->
 
           $("#audit-certificate-buffer").empty()
 
+    moveAttachDocumentButton()
+
   $(document).on "click", ".js-attachment-form .btn-cancel", (e) ->
     e.preventDefault()
     $(this).closest(".sidebar-section").removeClass("show-attachment-form")
