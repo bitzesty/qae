@@ -10,6 +10,6 @@
     span.govuk-body
       | Loading Editor ...
 
-textarea.js-trigger-autosave.js-ckeditor.govuk-textarea rows=question.rows data-word-max=question.words_max name=question.input_name id="q_#{question.key}" *possible_read_only_ops
+textarea.js-trigger-autosave.js-ckeditor.govuk-textarea rows=question.rows data-word-max=question.words_max name=question.input_name id="q_#{question.key}" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
   = question.input_value
 
