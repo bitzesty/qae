@@ -193,8 +193,8 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 4.5"
           required
           context %(
-            <p>For example, explain:</p>
-            <ul>
+            <p class="govuk-body">For example, explain:</p>
+            <ul class="govuk-list">
               <li>How you are funded;</li>
               <li>If you have received any form of investment or funding, if so, please specify the amounts;</li>
               <li>How you plan to sustain your organisation in future (if you have an investment or funding strategy, please set out its objectives).</li>

@@ -367,7 +367,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 4.2a"
           required
           context %(
-            <ul>
+            <ul class="govuk-list">
               <li>Provide information on what targets you set for your initiative.</li>
               <li>Explain how you monitor performance against the target.</li>
               <li>Explain what evidence you gather to show short and longer-term outcomes - this may include but is not limited to - internal records, third party evidence, survey responses, interviews, ad-hoc feedback.</li>
@@ -597,8 +597,8 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 5.6a"
           required
           context %(
-            <p>Provide <strong>qualitative data</strong> (for example, people’s stories as well as comments, feedback from participants and key stakeholders) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
-            <ul>
+            <p class="govuk-body">Provide <strong>qualitative data</strong> (for example, people’s stories as well as comments, feedback from participants and key stakeholders) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
+            <ul class="govuk-list">
               <li>Include stories of impact on participants’ lives. If possible, provide a range of examples.</li>
               <li>Include feedback, such as quotes, that you have gathered from participants to understand how they have benefited.</li>
               <li>If applicable, include feedback that you have gathered from third-party stakeholders to understand how the participants have benefited. </li>
@@ -625,7 +625,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 5.7a"
           required
           context %(
-            <ul>
+            <ul class="govuk-list">
               <li>Explain how you sought feedback.</li>
               <li>Include a summary of the feedback gathered such as participant or third-party stakeholder quotes as well as quantitative data, for example, scores on how likely they are to recommend the organisation to their peers or similar ratings.</li>
               <li>Explain what, if any, of the suggested improvements have you implemented.</li>
