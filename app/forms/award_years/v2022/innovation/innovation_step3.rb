@@ -64,7 +64,7 @@ class AwardYears::V2022::QAEForms
           ref "C 1"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).
             </p>
           )
@@ -90,7 +90,7 @@ class AwardYears::V2022::QAEForms
           required
           yes_no
           context %(
-            <p>
+            <p class="govuk-body">
               We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers two or five full 12-month periods.
             </p>
           )
@@ -105,10 +105,10 @@ class AwardYears::V2022::QAEForms
           label ->(y) { "Financial year #{y}" }
 
           context %(
-            <p>
+            <p class="govuk-body">
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             </p>
-            <p>
+            <p class="govuk-body">
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
@@ -134,7 +134,7 @@ class AwardYears::V2022::QAEForms
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents.</p>
+            <p class="govuk-body">You can use the number of full-time employees at the year-end, or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents.</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -204,7 +204,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           sub_ref "C 4.2"
           required
-          context %(<p>Enter '0' if you had none.</p>)
+          context %(<p class="govuk-body">Enter '0' if you had none.</p>)
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -220,7 +220,7 @@ class AwardYears::V2022::QAEForms
         turnover_exports_calculation :uk_sales, "Of which UK sales" do
           classes "sub-question"
           sub_ref "C 4.3"
-          context %(<p>This number is automatically calculated using your total turnover and export figures.</p>)
+          context %(<p class="govuk-body">This number is automatically calculated using your total turnover and export figures.</p>)
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
@@ -242,7 +242,7 @@ class AwardYears::V2022::QAEForms
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           context %(
-            <p>
+            <p class="govuk-body">
               Use a minus symbol to record any losses.
             </p>
           )
@@ -258,7 +258,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 4.5"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               As per your balance sheet. Total assets (fixed and current) minus liabilities (current and long-term).
             </p>
           )
@@ -281,10 +281,10 @@ class AwardYears::V2022::QAEForms
           rows 5
           words_max 300
           context %(
-            <p>
+            <p class="govuk-body">
               Sustained or unexplained drops or losses may lead to the entry being rejected.
             </p>
-            <p>
+            <p class="govuk-body">
               If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
             </p>
           )
@@ -315,7 +315,7 @@ class AwardYears::V2022::QAEForms
           option :entire_business, "It's integral to the whole business"
           option :single_product_or_service, "It affects a single product/service"
           context %(
-            <p>
+            <p class="govuk-body">
               It is important that we know whether or not your innovation is the key thing your business does or forms part of a wider approach. This is so we can understand the value of your innovation in the context of your overall commercial performance.
             </p>
           )
@@ -381,7 +381,7 @@ class AwardYears::V2022::QAEForms
         by_years :sales_exports, "Of which exports (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.3"
-          context %(<p>Enter '0' if you had none.</p>)
+          context %(<p class="govuk-body">Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
 
@@ -393,7 +393,7 @@ class AwardYears::V2022::QAEForms
         by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.4"
-          context %(<p>Enter '0' if you had none.</p>)
+          context %(<p class="govuk-body">Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
 
@@ -413,7 +413,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           sub_ref "C 6.6"
           context %(
-            <p>
+            <p class="govuk-body">
               If your innovation is a product, you must provide the unit price.
             </p>
           )
@@ -436,7 +436,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           sub_ref "C 6.8"
           context %(
-            <p>If you haven't reached your latest year-end, use estimates to complete this question.</p>
+            <p class="govuk-body">If you haven't reached your latest year-end, use estimates to complete this question.</p>
           )
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           type :money
@@ -457,7 +457,7 @@ class AwardYears::V2022::QAEForms
           yes_no
 
           context %(
-            <p>
+            <p class="govuk-body">
               If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
@@ -480,7 +480,7 @@ class AwardYears::V2022::QAEForms
           ref "C 8"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               For example, new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
             </p>
           )
@@ -494,7 +494,7 @@ class AwardYears::V2022::QAEForms
           rows 5
           words_max 250
           context %(
-            <p>
+            <p class="govuk-body">
               This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non-cash resources.
             </p>
           )
@@ -507,7 +507,7 @@ class AwardYears::V2022::QAEForms
           rows 5
           words_max 250
           context %(
-            <p>
+            <p class="govuk-body">
               If your innovation is expected to recover its full costs in the future, explain how and when this will happen.
             </p>
           )

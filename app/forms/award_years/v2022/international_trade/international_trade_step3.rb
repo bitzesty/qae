@@ -89,7 +89,7 @@ class AwardYears::V2022::QAEForms
           default_option "6 plus"
           sub_category_question
           context %(
-            <p>
+            <p class="govuk-body">
               Your answer here will determine whether you are assessed for outstanding growth (over three years) or continuous growth (over six years).
             </p>
           )
@@ -107,7 +107,7 @@ class AwardYears::V2022::QAEForms
           required
           yes_no
           context %(
-            <p>
+            <p class="govuk-body">
               We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3 or 6</span> full 12-month periods.
             </p>
           )
@@ -122,10 +122,10 @@ class AwardYears::V2022::QAEForms
           label ->(y) { "Financial year #{y}" }
 
           context %(
-            <p>
+            <p class="govuk-body">
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             </p>
-            <p>
+            <p class="govuk-body">
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
@@ -151,7 +151,7 @@ class AwardYears::V2022::QAEForms
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>
+            <p class="govuk-body">You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -202,7 +202,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Include only:
             </p>
             <ul class="govuk-list">
@@ -225,22 +225,22 @@ class AwardYears::V2022::QAEForms
                 Other earnings from overseas residents remitted to the UK.
               </li>
             </ul>
-            <p>
+            <p class="govuk-body">
               If applicable, include your sales to and the sales by your overseas branches or subsidiaries. For products/services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
             </p>
-            <p>
+            <p class="govuk-body">
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
-            <p>
+            <p class="govuk-body">
               If you haven't reached your latest year-end, use estimates to complete this question.
             </p>
           )
 
           pdf_context %(
-            <p>
+            <p class="govuk-body">
               Include only:
             </p>
-            <p>
+            <p class="govuk-body">
               \u2022 Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how).
 
               \u2022 Total export agency commissions.
@@ -253,13 +253,13 @@ class AwardYears::V2022::QAEForms
 
               \u2022 Other earnings from overseas residents remitted to the UK.
             </p>
-            <p>
+            <p class="govuk-body">
               If applicable, include your sales to and the sales by your overseas branches or subsidiaries. For products/services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
             </p>
-            <p>
+            <p class="govuk-body">
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
-            <p>
+            <p class="govuk-body">
               If you haven't reached your latest year-end, use estimates to complete this question.
             </p>
           )
@@ -280,7 +280,7 @@ class AwardYears::V2022::QAEForms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
-            <p>
+            <p class="govuk-body">
               Exclude VAT, overseas taxes and, where applicable, excise duties.
             </p>
                     )
@@ -295,10 +295,10 @@ class AwardYears::V2022::QAEForms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
-            <p>
+            <p class="govuk-body">
               If you haven't reached your latest year-end, use estimates to complete this question.
             </p>
-            <p>
+            <p class="govuk-body">
               Use a minus symbol to record any losses.
             </p>
           )
@@ -310,10 +310,10 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 4.4"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Sustained or unexplained drops or losses may lead to the entry being rejected.
             </p>
-            <p>
+            <p class="govuk-body">
               If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
             </p>
           )
@@ -341,7 +341,7 @@ class AwardYears::V2022::QAEForms
           ref "C 5"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )

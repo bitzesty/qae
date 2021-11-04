@@ -54,7 +54,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 1"
           required
           context %(
-            <p>To be eligible for a Queen’s Award for Enterprise, your organisation must be on a sustainable financial footing.</p>
+            <p class="govuk-body">To be eligible for a Queen’s Award for Enterprise, your organisation must be on a sustainable financial footing.</p>
           )
           rows 5
           words_max 250
@@ -64,7 +64,7 @@ class AwardYears::V2022::QAEForms
           ref "C 2"
           required
           financial_date_pointer
-          context "<p>You will have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.</p>"
+          context %(<p class="govuk-body">You will have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.</p>)
         end
 
         options :financial_year_date_changed, "Did your year-end date change in the last three-years?" do
@@ -80,9 +80,9 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 2.2"
           required
           context %(
-            <p>Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.</p>
+            <p class="govuk-body">Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.</p>
 
-            <p>If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.</p>
+            <p class="govuk-body">If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.</p>
           )
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -102,7 +102,7 @@ class AwardYears::V2022::QAEForms
           classes "question-employee-min"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the twelve-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+            <p class="govuk-body">You can use the number of full-time employees at the year-end, or the average for the twelve-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -144,8 +144,8 @@ class AwardYears::V2022::QAEForms
           ref "C 4.1"
           required
           context %(
-            <p>If you are a charity, please provide your total income figures; if you are a company, please provide your turnover figures.</p>
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+            <p class="govuk-body">If you are a charity, please provide your total income figures; if you are a company, please provide your turnover figures.</p>
+            <p class="govuk-body">If you haven't reached your latest year-end, please use estimates to complete this question.</p>
           )
 
           type :money
@@ -158,8 +158,8 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 4.2"
           required
           context %(
-            <p>If you are a charity, please provide your net income figures; if you are a company, please provide your net profit after tax but before dividends figures.</p>
-            <p>Use a minus symbol to record any losses.</p>
+            <p class="govuk-body">If you are a charity, please provide your net income figures; if you are a company, please provide your net profit after tax but before dividends figures.</p>
+            <p class="govuk-body">Use a minus symbol to record any losses.</p>
           )
 
           type :money
@@ -170,7 +170,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question total-net-assets"
           sub_ref "C 4.3"
           required
-          context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
+          context %(<p class="govuk-body">As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>)
           type :money
           label ->(y) { "As at the end of year #{y}" }
 
@@ -181,8 +181,8 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 4.4"
           required
           context %(
-            <p>Sustained or unexplained drops or losses may lead to the entry being rejected.</p>
-            <p>Answer this question if you have any dips or losses in total income/turnover, net income/profits or total net assets. If you didn't have any drops or losses, please state so.</p>
+            <p class="govuk-body">Sustained or unexplained drops or losses may lead to the entry being rejected.</p>
+            <p class="govuk-body">Answer this question if you have any dips or losses in total income/turnover, net income/profits or total net assets. If you didn't have any drops or losses, please state so.</p>
           )
           rows 5
           words_max 300
@@ -199,7 +199,7 @@ class AwardYears::V2022::QAEForms
               <li>If you have received any form of investment or funding, if so, please specify the amounts;</li>
               <li>How you plan to sustain your organisation in future (if you have an investment or funding strategy, please set out its objectives).</li>
             </ul>
-            <p>This information is particularly useful when ascertaining your company’s financial viability, especially when you have drops in total turnover and losses.</p>
+            <p class="govuk-body">This information is particularly useful when ascertaining your company’s financial viability, especially when you have drops in total turnover and losses.</p>
           )
           pdf_context %(
             For example, explain:
@@ -220,7 +220,7 @@ class AwardYears::V2022::QAEForms
           ref "C 5"
           required
           context %(
-            <p>If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.</p>
+            <p class="govuk-body">If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.</p>
           )
           yes_no
         end

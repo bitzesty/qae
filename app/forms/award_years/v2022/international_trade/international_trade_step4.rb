@@ -51,13 +51,13 @@ class AwardYears::V2022::QAEForms
           ref "D 1"
           required
           context %{
-            <p>
+            <p class="govuk-body">
               a) How does your business ensure that your activities have a beneficial impact on society and your local community? If you have operations in emerging or developing markets, please describe how you ensure the current and future welfare of the people employed there.
             </p>
-            <p>
+            <p class="govuk-body">
               b) What impact your organisation has on society and your local community that results from your activities that are beyond your core business? For example, apprenticeship programmes, supporting any disadvantaged groups, charitable activities.
             </p>
-            <p>
+            <p class="govuk-body">
               Outline how you evaluate and report on the impact.
             </p>
             }
@@ -69,13 +69,13 @@ class AwardYears::V2022::QAEForms
           ref "D 2"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Describe any environmental considerations within your business. For example, energy efficiency strategies, recycling policies, emissions reduction policies.
             </p>
-            <p>
+            <p class="govuk-body">
               State if and how you undertake environmental impact assessments of major projects.
             </p>
-            <p>
+            <p class="govuk-body">
               How are environmental considerations and efficient use of resources built into your business/ products/ services?
             </p>
           )
@@ -87,22 +87,22 @@ class AwardYears::V2022::QAEForms
           ref "D 3"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Do you have a code of conduct or employee policies? For example, health and safety, training, staff welfare, whistleblowing and equal opportunities.
             </p>
-            <p>
+            <p class="govuk-body">
               Do you offer any special employment conditions? For example, flexible working, extended maternity pay.
             </p>
-            <p>
+            <p class="govuk-body">
               How do you keep your employees engaged? For example, communication, assessments, incentives, opportunities for career development.
             </p>
-            <p>
+            <p class="govuk-body">
               How are you training and developing your staff?
             </p>
-            <p>
+            <p class="govuk-body">
               Do you encourage/support them to learn new skills and gain new qualifications?
             </p>
-            <p>
+            <p class="govuk-body">
               Do you take on apprentices, and if so, how many?
             </p>
           )
@@ -114,19 +114,19 @@ class AwardYears::V2022::QAEForms
           ref "D 4"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               How do you encourage your suppliers to meet ethical standards?
             </p>
-            <p>
+            <p class="govuk-body">
               To what extent are you sourcing or encouraging your supply chain to source UK goods and services?
             </p>
-            <p>
+            <p class="govuk-body">
               By what criteria do you select clients and ensure they are appropriate for your services?
             </p>
-            <p>
+            <p class="govuk-body">
               How do you measure customer satisfaction and what have been the results?
             </p>
-            <p>
+            <p class="govuk-body">
               By what criteria do you select clients and ensure they are appropriate for your services?
             </p>
           )

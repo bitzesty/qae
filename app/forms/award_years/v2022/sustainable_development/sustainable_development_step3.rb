@@ -57,7 +57,7 @@ class AwardYears::V2022::QAEForms
           ref "C 1"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               For example, you could briefly explain your financial model, income or profit growth, how you are funded, your cash flow position and investments secured. Some of these may not apply to your organisation, in that case, explain by what other means your organisation ensures financial viability.
             </p>
           )
@@ -77,7 +77,7 @@ class AwardYears::V2022::QAEForms
           required
           yes_no
           context %(
-            <p>
+            <p class="govuk-body">
               We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3</span> full 12-month periods.
             </p>
           )
@@ -89,10 +89,10 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 2.2"
 
           context %(
-            <p>
+            <p class="govuk-body">
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             </p>
-            <p>
+            <p class="govuk-body">
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
@@ -116,7 +116,7 @@ class AwardYears::V2022::QAEForms
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
+            <p class="govuk-body">You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -156,7 +156,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           sub_ref "C 4.2"
           required
-          context %(<p>Please enter '0' if you had none.</p>)
+          context %(<p class="govuk-body">Please enter '0' if you had none.</p>)
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -176,7 +176,7 @@ class AwardYears::V2022::QAEForms
           one_option_financial_data_mode true
 
           context %(
-            <p>
+            <p class="govuk-body">
               This number is automatically calculated using your total turnover and export figures.
             </p>
           )
@@ -191,7 +191,7 @@ class AwardYears::V2022::QAEForms
           label ->(y) { "Financial year #{y}" }
 
           context %(
-            <p>
+            <p class="govuk-body">
               Use a minus symbol to record any losses.
             </p>
           )
@@ -204,7 +204,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "C 4.5"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               As per your balance sheet. Total assets (fixed and current) minus liabilities (current and long-term).
             </p>
           )
@@ -222,7 +222,7 @@ class AwardYears::V2022::QAEForms
           words_max 200
 
           context %(
-            <p>
+            <p class="govuk-body">
               If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
             </p>
           )
@@ -249,7 +249,7 @@ class AwardYears::V2022::QAEForms
           ref "C 6"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
             </p>
           )
@@ -261,7 +261,7 @@ class AwardYears::V2022::QAEForms
           ref "C 7"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
             </p>
           )
