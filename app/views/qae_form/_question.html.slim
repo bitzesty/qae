@@ -42,11 +42,12 @@
           - for help in question.help
             == help.text
         - else
-          span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
           - if question.context
-            == question.context
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
+              == question.context
           - for help in question.help
-            == help.text
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
+              == help.text
 
         - question.hint.each_with_index do |help, index|
           details.govuk-details data-module='govuk-details'
@@ -107,11 +108,12 @@
           - for help in question.help
             == help.text
         - else
-          span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
           - if question.context
-            == question.context
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
+              == question.context
           - for help in question.help
-            == help.text
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
+              == help.text
 
         - question.hint.each_with_index do |help, index|
           details.govuk-details data-module='govuk-details'
