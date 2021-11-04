@@ -1,34 +1,108 @@
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'title')
-    ' Title
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.tiny type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'title')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'first_name')
-    ' First name
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'first_name')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'last_name')
-    ' Last name
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'last_name')
-.govuk-form-group
-  label.govuk-label for=question.input_name(suffix:'honours')
-    ' Personal Honours (optional)
-  span.govuk-error-message
-  span.govuk-hint
-    ' e.g. OBE (Not including educational qualifications or institutional memberships.)
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10.js-ignore-substitution type="text" name=question.input_name(suffix: 'honours') value=question.input_value(suffix: 'honours') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'honours')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'job_title')
-    ' Job title / role in the organisation
-  span.govuk-error-message
-  span.govuk-hint
-    ' e.g. CEO, Managing Director, Founder
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10.js-ignore-substitution type="text" name=question.input_name(suffix: 'job_title') value=question.input_value(suffix: 'job_title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'job_title')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'email')
-    ' Email address
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'email') value=question.input_value(suffix: 'email') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'email')
+/ .govuk-form-group.question-block.question-required class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key]) role="group" id="q_#{question.key}"
+/   label.govuk-label for=question.input_name(suffix:'title')
+/     ' Title22
+/   span.govuk-error-message
+/   input.js-trigger-autosave.govuk-input.tiny type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'title')
+/ .govuk-form-group.question-block.question-required
+/   label.govuk-label for=question.input_name(suffix:'first_name')
+/     ' First name
+/   span.govuk-error-message
+/   input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'first_name')
+/ .govuk-form-group.question-block.question-required
+/   label.govuk-label for=question.input_name(suffix:'last_name')
+/     ' Last name
+/   span.govuk-error-message
+/   input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'last_name')
+/ .govuk-form-group
+/   label.govuk-label for=question.input_name(suffix:'honours')
+/     ' Personal Honours (optional)
+/   span.govuk-error-message
+/   span.govuk-hint
+/     ' e.g. OBE (Not including educational qualifications or institutional memberships.)
+/   input.js-trigger-autosave.govuk-input.govuk-input--width-10.js-ignore-substitution type="text" name=question.input_name(suffix: 'honours') value=question.input_value(suffix: 'honours') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'honours')
+/ .govuk-form-group.question-block.question-required
+/   label.govuk-label for=question.input_name(suffix:'job_title')
+/     ' Job title / role in the organisation
+/   span.govuk-error-message
+/   span.govuk-hint
+/     ' e.g. CEO, Managing Director, Founder
+/   input.js-trigger-autosave.govuk-input.govuk-input--width-10.js-ignore-substitution type="text" name=question.input_name(suffix: 'job_title') value=question.input_value(suffix: 'job_title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'job_title')
+/ .govuk-form-group.question-block.question-required
+/   label.govuk-label for=question.input_name(suffix:'email')
+/     ' Email address
+/   span.govuk-error-message
+/   input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'email') value=question.input_value(suffix: 'email') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'email')
+
+div role="group" id="q_#{question.key}"
+  - question.rendering_sub_fields.each do |sub_field_block|
+    - sub_field_key = sub_field_block[0]
+    - sub_field_title = sub_field_block[1]
+
+    - case sub_field_key
+    - when :title
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_title"
+          ' Title
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "title"))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            = @form_answer.validator_errors[question.hash_key(suffix: "title")]
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_title" : nil )
+    - when :first_name
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_first_name"
+          ' First name
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "first_name"))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            = @form_answer.validator_errors[question.hash_key(suffix: "first_name")]
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_first_name" : nil )
+    - when :last_name
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_last_name"
+          ' Last name
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "last_name"))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            = @form_answer.validator_errors[question.hash_key(suffix: "last_name")]
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_last_name" : nil )
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_honours"
+          ' Personal Honours (optional)
+        span.govuk-hint
+          ' e.g. OBE (Not including educational qualifications or institutional memberships.)
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
+    - when :job_title
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_job_title"
+          ' Job title / role in the organisation
+        span.govuk-hint
+          ' e.g. CEO, Managing Director, Founder
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "job_title"))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            = @form_answer.validator_errors[question.hash_key(suffix: "job_title")]
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'job_title') value=question.input_value(suffix: 'job_title') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_job_title" : nil )
+    - else
+      .govuk-form-group.question-required
+        label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
+          = sub_field_title
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        span.govuk-error-message
+        .clear
+
+        - klass = "govuk-input--width-10"
+        - klass <<(QAEFormBuilder::HeadOfBusinessQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
+        input.govuk-input.js-trigger-autosave class=klass type="text" id=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) name=question.input_name(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{sub_field_key}" : nil )
