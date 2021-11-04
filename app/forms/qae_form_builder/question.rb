@@ -15,7 +15,8 @@ class QAEFormBuilder
       "SupportersQuestion",
       "SubsidiariesAssociatesPlantsQuestion",
       "ByTradeGoodsAndServicesLabelQuestion",
-      "MatrixQuestion"
+      "MatrixQuestion",
+      "HeadOfBusinessQuestion"
     ]
 
     attr_reader :question, :answers
@@ -125,7 +126,8 @@ class QAEFormBuilder
         "by_years_question",
         "by_years_label_question",
         "matrix_question",
-        "press_contact_details_question"
+        "press_contact_details_question",
+        "head_of_business_question"
       ]
 
       legend_types.include?(type)

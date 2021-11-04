@@ -2,11 +2,9 @@ class AwardYears::V2022::QAEForms
   class << self
     def innovation_step6
       @innovation_step6 ||= proc do
-        header :head_of_bussines_header, "Head of your organisation" do
+        head_of_business :head_of_business, "Head of your organisation" do
+          required
           ref "F 1"
-        end
-
-        head_of_business :head_of_business, "" do
           sub_fields([
             { title: "Title" },
             { first_name: "First name" },
