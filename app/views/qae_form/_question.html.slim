@@ -12,7 +12,7 @@
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
-          legend.govuk-fieldset__legend
+          legend.govuk-fieldset__legend aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
             - if question.ref || question.sub_ref
               span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                 span.todo
@@ -35,7 +35,7 @@
 
         - if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
           - if question.ref || question.sub_ref
-              span.question-context.question-debug.govuk-hint
+              span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
                 = "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions."
           - if question.context
             == question.context
@@ -43,10 +43,10 @@
             == help.text
         - else
           - if question.context
-            span.question-context.question-debug.govuk-hint
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
               == question.context
           - for help in question.help
-            span.question-context.question-debug.govuk-hint
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
               == help.text
 
         - question.hint.each_with_index do |help, index|
@@ -64,7 +64,8 @@
               | Error:
             =< @form_answer.validator_errors[question.hash_key]
         - unless question.form_hint.blank?
-          span.govuk-hint = question.form_hint
+          span.govuk-hint id="hint_for_#{question.key}"
+            = question.form_hint
         = render partial: "qae_form/#{question.delegate_obj.class.name.demodulize.underscore}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
 
         / Conditional hints
@@ -77,7 +78,7 @@
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
-          label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
+          label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}" aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
             - if question.ref || question.sub_ref
               span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                 span.todo
@@ -100,7 +101,7 @@
 
         - if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
           - if question.ref || question.sub_ref
-              span.question-context.question-debug.govuk-hint
+              span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
                 = "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions."
           - if question.context
             == question.context
@@ -108,10 +109,10 @@
             == help.text
         - else
           - if question.context
-            span.question-context.question-debug.govuk-hint
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
               == question.context
           - for help in question.help
-            span.question-context.question-debug.govuk-hint
+            span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
               == help.text
 
         - question.hint.each_with_index do |help, index|
@@ -129,7 +130,8 @@
               | Error:
             =< @form_answer.validator_errors[question.hash_key]
         - unless question.form_hint.blank?
-          span.govuk-hint = question.form_hint
+          span.govuk-hint id="hint_for_#{question.key}"
+            = question.form_hint
         = render partial: "qae_form/#{question.delegate_obj.class.name.demodulize.underscore}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
 
         / Conditional hints
