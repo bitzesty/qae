@@ -473,7 +473,7 @@ class AwardYears::V2022::QAEForms
             <p class="govuk-body">You can submit a file in any common format, as long as it is less than 5mb.</p>
           )
           hint "What are the allowed file formats?", %(
-            <p class="govuk-body">
+            <p class="govuk-hint">
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
