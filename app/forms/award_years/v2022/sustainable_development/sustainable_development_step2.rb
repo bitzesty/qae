@@ -145,19 +145,19 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           sub_ref "B 1.1"
           context %{
-            <p>
+            <p class="govuk-body">
               Where relevant, please include:
             </p>
-            <p>
+            <p class="govuk-body">
               a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
             </p>
-            <p>
+            <p class="govuk-body">
               b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
             </p>
-            <p>
+            <p class="govuk-body">
               c) The proportion of these interventions compared to your whole organisation’s size.
             </p>
-            <p>
+            <p class="govuk-body">
               d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
             </p>
             <ul>
@@ -177,22 +177,22 @@ class AwardYears::V2022::QAEForms
           }
 
           pdf_context %{
-            <p>
+            <p class="govuk-body">
               Where relevant, please include:
             </p>
-            <p>
+            <p class="govuk-body">
               a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
             </p>
-            <p>
+            <p class="govuk-body">
               b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
             </p>
-            <p>
+            <p class="govuk-body">
               c) The proportion of these interventions compared to your whole organisation’s size.
             </p>
-            <p>
+            <p class="govuk-body">
               d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
             </p>
-            <p>
+            <p class="govuk-body">
               \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
 
               \u2022 Developing unique or innovative ways, products or services to be sustainable.
@@ -212,7 +212,7 @@ class AwardYears::V2022::QAEForms
           ref "B 1.2"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               If your application is successful, this description will appear in the London Gazette.
             </p>
           )
@@ -228,22 +228,22 @@ class AwardYears::V2022::QAEForms
             Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
           }
           context %{
-            <p>
+            <p class="govuk-body">
               Please include:
             </p>
-            <p>
+            <p class="govuk-body">
               a) A brief summary of your organisation.
             </p>
-            <p>
+            <p class="govuk-body">
               b) What was the situation before your organisation adopted a sustainability purpose, objective, intervention or action?
             </p>
-            <p>
+            <p class="govuk-body">
               c) Why did you choose these particular actions or interventions, and how do they align with the core aims and values of your organisation?
             </p>
-            <p>
+            <p class="govuk-body">
               d) How have you embedded sustainability objectives or purpose in your organisation?
             </p>
-            <p>
+            <p class="govuk-body">
               e) If your application is focussed on a sustainable product, service or approach, please explain how your business also operates sustainably.
             </p>
           }
@@ -259,28 +259,28 @@ class AwardYears::V2022::QAEForms
             Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
           }
           context %{
-            <p>
+            <p class="govuk-body">
               Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
             </p>
-            <p>
+            <p class="govuk-body">
               Where possible, please include:
             </p>
-            <p>
+            <p class="govuk-body">
               a) How you measure the success of your sustainability intervention? For example, are key performance indicators (KPIs) or targets used? If so, how are they set and monitored? Are the KPIs or targets being met, and what happens if they are not?
             </p>
-            <p>
+            <p class="govuk-body">
               b) State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance.
             </p>
-            <p>
+            <p class="govuk-body">
               c) The impact of your sustainable objectives. For example, impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.
             </p>
-            <p>
+            <p class="govuk-body">
               d) How the impact compares to the sector. Please state what sector research or other evidence you have used to benchmark this. Include a web link to any research, if available.
             </p>
-            <p>
+            <p class="govuk-body">
               e) What longer-term outcomes do you expect as a result of your sustainable development efforts?
             </p>
-            <p>
+            <p class="govuk-body">
               f) State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation.
             </p>
           }
@@ -296,29 +296,29 @@ class AwardYears::V2022::QAEForms
             Please describe the driving force of your organisation’s sustainability.
           }
           context %{
-            <p>
+            <p class="govuk-body">
               a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?
             </p>
-            <p>
+            <p class="govuk-body">
               b) Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?<br />
               You may include flow charts to make it easier for assessors to understand how your programme is managed in section D of this form.
             </p>
-            <p>
+            <p class="govuk-body">
               c) What is the senior decision makers’ commitment to the future sustainable growth of the organisation?
             </p>
-            <p>
+            <p class="govuk-body">
               d) If possible, provide details on how the scale of this programme compares with similar organisations in your sector or industry.
             </p>
-            <p>
+            <p class="govuk-body">
               e) How does your organisation inspire other organisations to be more sustainable? For example, businesses in your supply chain, stakeholders, customers or local communities.
             </p>
-            <p>
+            <p class="govuk-body">
               f) If relevant, provide details on how you collaborate with partners and others to develop best practice.
             </p>
-            <p>
+            <p class="govuk-body">
               g) Describe your organisation’s strategy to attract, recruit, promote and retain a diverse workforce.
             </p>
-            <p>
+            <p class="govuk-body">
               h) How has your employee relations improved motivation, well-being and satisfaction?
             </p>
           }
@@ -334,29 +334,29 @@ class AwardYears::V2022::QAEForms
             Describe how your organisation’s culture fosters and supports sustainability.
           }
           context %{
-            <p>
+            <p class="govuk-body">
               Please include:
             </p>
-            <p>
+            <p class="govuk-body">
               a) How is sustainability embedded in your organisation’s culture and values?
             </p>
-            <p>
+            <p class="govuk-body">
               b) How sustainability interventions benefit the overall business strategy?
             </p>
-            <p>
+            <p class="govuk-body">
               c) How do you increase positive perceptions of your organisation’s sustainability among customers, stakeholders, or the media?
             </p>
-            <p>
+            <p class="govuk-body">
               d) How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?<br />
               Please include links to relevant pages on your company’s website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.
             </p>
-            <p>
+            <p class="govuk-body">
               If applicable, include in your answer or attach in section D of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.
             </p>
-            <p>
+            <p class="govuk-body">
               e) Explain your strategy in developing sustainably for the future. For example, how are you changing your business model, approach, products or services to respond to future sustainability challenges in your business or sector?
             </p>
-            <p>
+            <p class="govuk-body">
               f) What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?
             </p>
           }

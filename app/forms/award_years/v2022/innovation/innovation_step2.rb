@@ -43,7 +43,7 @@ class AwardYears::V2022::QAEForms
           ref "B 1"
           required
           context %(
-            <p>Select all that apply.</p>
+            <p class="govuk-body">Select all that apply.</p>
           )
           check_options [
             ["product", "A product"],
@@ -58,7 +58,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 1.1"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               This summary will be used in publicity material if your application is successful.
             </p>
             <p>
@@ -80,13 +80,13 @@ class AwardYears::V2022::QAEForms
             </ul>
           )
           pdf_context %(
-            <p>
+            <p class="govuk-body">
               This summary will be used in publicity material if your application is successful.
             </p>
-            <p>
+            <p class="govuk-body">
               For example:
             </p>
-            <p>
+            <p class="govuk-body">
               \u2022 Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
 
               \u2022 Innovative software testing tool to improve the efficiency and quality of software.
@@ -105,7 +105,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 1.2"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Describe the product, service or business model itself. Explain any aspect(s) that you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Explain if and why your innovation is hard to copy, for example, patents held, market position. Explain how it fits within the overall business, for example, is it your sole product. Also, please explain how the idea for the innovation came about.
             </p>
           )
@@ -118,7 +118,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 1.3"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               Please include:
             </p>
             <ul>
@@ -129,19 +129,19 @@ class AwardYears::V2022::QAEForms
                 Significant milestones after the launch.
               </li>
             </ul>
-            <p>
+            <p class="govuk-body">
               If the innovation was conceived more than ten years ago, explain why it would be considered still innovative now.
             </p>
           )
           pdf_context %(
-            <p>
+            <p class="govuk-body">
               Please include:
             </p>
-            <p>
+            <p class="govuk-body">
               \u2022 Significant milestones during the development.
               \u2022 Significant milestones after the launch.
             </p>
-            <p>
+            <p class="govuk-body">
               If the innovation was conceived more than ten years ago, explain why it would be considered still innovative now.
             </p>
           )
@@ -167,7 +167,7 @@ class AwardYears::V2022::QAEForms
           required
           context -> do
             %(
-              <p>
+              <p class="govuk-body">
                 Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (if you are applying for the two-year award) or after #{AwardYear.start_trading_since(5)} (if you are applying for the five-year award).
               </p>
             )
@@ -195,10 +195,10 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 3.1"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               If your innovation is adoptive or continuous, explain how it differs from and builds on what was available before (and may still be available on the market) and what adaptations you made to make it fit your business.
             </p>
-            <p>
+            <p class="govuk-body">
               If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
             </p>
           )
@@ -217,7 +217,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 4.1"
           required
           context %(
-            <p>Include patent number.</p>
+            <p class="govuk-body">Include patent number.</p>
           )
           rows 5
           words_max 100
@@ -264,7 +264,7 @@ class AwardYears::V2022::QAEForms
           ref "B 9"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               For example, increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You will have the opportunity to include more details of the financial benefits to your organisation in the Commercial Performance section of the form.
             </p>
           )
@@ -276,7 +276,7 @@ class AwardYears::V2022::QAEForms
           ref "B 10"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               For example, increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. Please quantify if possible. You can also include testimonials to support your claim.
             </p>
           )
@@ -297,7 +297,7 @@ class AwardYears::V2022::QAEForms
           rows 5
           words_max 250
           context %(
-            <p>We ask this so that we can assess how outstanding your innovation is, compared to others in your field.</p>
+            <p class="govuk-body">We ask this so that we can assess how outstanding your innovation is, compared to others in your field.</p>
           )
         end
 
@@ -313,7 +313,7 @@ class AwardYears::V2022::QAEForms
           required
           yes_no
           context %(
-            <p>
+            <p class="govuk-body">
               If you have received grants for this innovation, it may strengthen your application. However, if you have not received any grants, it does not put you at a disadvantage.
             </p>
           )
@@ -333,7 +333,7 @@ class AwardYears::V2022::QAEForms
           rows 5
           words_max 200
           context %(
-            <p>Use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
+            <p class="govuk-body">Use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
           )
         end
       end

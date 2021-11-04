@@ -146,7 +146,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses. Please note, if successful, we will use this name on any award materials – for example, award certificates.</p>
+            <p class="govuk-body">If applicable, include 'trading as', or any other name your organisation uses. Please note, if successful, we will use this name on any award materials – for example, award certificates.</p>
           )
         end
 
@@ -154,7 +154,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 3"
           context %(
-            <p>
+            <p class="govuk-body">
               We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
             </p>
           )
@@ -193,7 +193,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 4.1"
           context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p class="govuk-body">If you're an unregistered subsidiary, please enter your parent company's number.</p>
           )
           words_max 50
         end
@@ -203,7 +203,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 4.2"
           context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p class="govuk-body">If you're an unregistered subsidiary, please enter your parent company's number.</p>
                     )
           style "small"
         end
@@ -213,7 +213,7 @@ class AwardYears::V2022::QAEForms
           ref "A 5"
           context -> do
             %(
-              <p>
+              <p class="govuk-body">
                  Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award.
               </p>
             )
@@ -274,7 +274,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "A 7.1"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               If you can't fit all your awards below, then choose those you're most proud of.
             </p>
           )
@@ -288,10 +288,10 @@ class AwardYears::V2022::QAEForms
           ref "A 8"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               If two or more organisations made a significant contribution to the social mobility programme, then you should make a joint entry.
             </p>
-            <p>
+            <p class="govuk-body">
               Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
@@ -311,7 +311,7 @@ class AwardYears::V2022::QAEForms
           ref "A 9"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               <strong>Excluding</strong> paid suppliers and consultants.
             </p>
           )
@@ -393,10 +393,9 @@ class AwardYears::V2022::QAEForms
         press_contact_details :press_contact_details, "Contact details for press enquiries" do
           ref "A 11"
           context %(
-            <p class='govuk-hint'><em>
-              If your application is successful, you may get contacted by the press.
-            </em></p>
             <p class='govuk-hint'>
+              If your application is successful, you may get contacted by the press.
+              <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>
           )
@@ -419,7 +418,7 @@ class AwardYears::V2022::QAEForms
           required
           ref "A 13"
           context %(
-            <p>
+            <p class="govuk-body">
               The Standard Industrial Classification (SIC) is a system for classifying industries. If you are a registered company, this is the same code you would have provided Companies House.
             </p>
           )
@@ -471,10 +470,10 @@ class AwardYears::V2022::QAEForms
         upload :org_chart, "Upload an organisational chart (optional)." do
           ref "A 15"
           context %(
-            <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
+            <p class="govuk-body">You can submit a file in any common format, as long as it is less than 5mb.</p>
           )
           hint "What are the allowed file formats?", %(
-            <p>
+            <p class="govuk-body">
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
@@ -485,7 +484,7 @@ class AwardYears::V2022::QAEForms
           ref "A 16"
           required
           context %(
-            <p>Select all that apply.</p>
+            <p class="govuk-body">Select all that apply.</p>
           )
           check_options [
             ["qa_website", "Queen's Awards website"],

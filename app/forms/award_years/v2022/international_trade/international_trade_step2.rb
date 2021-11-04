@@ -67,16 +67,16 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 1.3"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               This summary will be used in publicity material if your application is successful.
             </p>
-            <p>
+            <p class="govuk-body">
               For example:
             </p>
-            <p>
+            <p class="govuk-body">
               “Design and manufacture of contract fabrics for commercial interiors. Design and manufacture of mass passenger transport fabrics.”
             </p>
-            <p>
+            <p class="govuk-body">
               “Musical heritage tours and events, exploring popular music history by theme, genre or artist.”
             </p>
           )
@@ -88,7 +88,7 @@ class AwardYears::V2022::QAEForms
           ref "B 2"
           required
           context %(
-            <p>Select all that apply.</p>
+            <p class="govuk-body">Select all that apply.</p>
           )
           check_options [
             ["products", "Products"],
@@ -102,7 +102,7 @@ class AwardYears::V2022::QAEForms
           ref "B 2.1"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               If you have more than 5, group them into fewer types of products/services.
             </p>
           )
@@ -120,7 +120,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 2.2"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
             </p>
           )
@@ -138,7 +138,7 @@ class AwardYears::V2022::QAEForms
           ref "B 3"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               For example, you may include: your overseas market structure, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice, activities to sustain/grow markets, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.
             </p>
           )
@@ -160,7 +160,7 @@ class AwardYears::V2022::QAEForms
           sub_ref "B 4.1"
           classes "sub-question"
           context %(
-            <p>
+            <p class="govuk-body">
               Include evidence of how you segment and manage geographical regions to demonstrate your company’s focus. Please supply market share information.
             </p>
           )
@@ -188,10 +188,10 @@ class AwardYears::V2022::QAEForms
           ref "B 5"
           required
           context %(
-            <p>
+            <p class="govuk-body">
               1. Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?
             </p>
-            <p>
+            <p class="govuk-body">
               2. Describe any other challenges affecting your trade, and how you overcame them.
             </p>
           )
@@ -203,7 +203,7 @@ class AwardYears::V2022::QAEForms
           ref "B 6"
           required
           context %(
-            <p>Select all that apply.</p>
+            <p class="govuk-body">Select all that apply.</p>
           )
           check_options [
             ["franchise", "As a franchise"],
@@ -224,7 +224,7 @@ class AwardYears::V2022::QAEForms
           required
           yes_no
           context %(
-            <p>
+            <p class="govuk-body">
               We ask this to help us carry out due diligence if your application is shortlisted.
             </p>
           )
