@@ -194,7 +194,7 @@ class AwardYears::V2022::QAEForms
           required
           context %(
             <p class="govuk-body">For example, explain:</p>
-            <ul>
+            <ul class="govuk-list">
               <li>How you are funded;</li>
               <li>If you have received any form of investment or funding, if so, please specify the amounts;</li>
               <li>How you plan to sustain your organisation in future (if you have an investment or funding strategy, please set out its objectives).</li>

@@ -205,7 +205,7 @@ class AwardYears::V2022::QAEForms
             <p class="govuk-body">
               Include only:
             </p>
-            <ul>
+            <ul class="govuk-list">
               <li>
                 Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how).
               </li>

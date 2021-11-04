@@ -61,10 +61,10 @@ class AwardYears::V2022::QAEForms
             <p class="govuk-body">
               This summary will be used in publicity material if your application is successful.
             </p>
-            <p>
+            <p class="govuk-body">
               For example:
             </p>
-            <ul>
+            <ul class="govuk-list">
               <li>
                 Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
               </li>
@@ -121,7 +121,7 @@ class AwardYears::V2022::QAEForms
             <p class="govuk-body">
               Please include:
             </p>
-            <ul>
+            <ul class="govuk-list">
               <li>
                 Significant milestones during the development.
               </li>

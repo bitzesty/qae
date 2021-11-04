@@ -160,7 +160,7 @@ class AwardYears::V2022::QAEForms
             <p class="govuk-body">
               d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
             </p>
-            <ul>
+            <ul class="govuk-list">
               <li>
                 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
               </li>
