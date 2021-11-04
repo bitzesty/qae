@@ -177,22 +177,22 @@ class AwardYears::V2022::QAEForms
           }
 
           pdf_context %{
-            <p class="govuk-body">
+            <p>
               Where relevant, please include:
             </p>
-            <p class="govuk-body">
+            <p>
               a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
             </p>
-            <p class="govuk-body">
+            <p>
               b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
             </p>
-            <p class="govuk-body">
+            <p>
               c) The proportion of these interventions compared to your whole organisation’s size.
             </p>
-            <p class="govuk-body">
+            <p>
               d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
             </p>
-            <p class="govuk-body">
+            <p>
               \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
 
               \u2022 Developing unique or innovative ways, products or services to be sustainable.

@@ -237,10 +237,10 @@ class AwardYears::V2022::QAEForms
           )
 
           pdf_context %(
-            <p class="govuk-body">
+            <p>
               Include only:
             </p>
-            <p class="govuk-body">
+            <p>
               \u2022 Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how).
 
               \u2022 Total export agency commissions.
@@ -253,13 +253,13 @@ class AwardYears::V2022::QAEForms
 
               \u2022 Other earnings from overseas residents remitted to the UK.
             </p>
-            <p class="govuk-body">
+            <p>
               If applicable, include your sales to and the sales by your overseas branches or subsidiaries. For products/services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
             </p>
-            <p class="govuk-body">
+            <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
-            <p class="govuk-body">
+            <p>
               If you haven't reached your latest year-end, use estimates to complete this question.
             </p>
           )

@@ -80,13 +80,13 @@ class AwardYears::V2022::QAEForms
             </ul>
           )
           pdf_context %(
-            <p class="govuk-body">
+            <p>
               This summary will be used in publicity material if your application is successful.
             </p>
-            <p class="govuk-body">
+            <p>
               For example:
             </p>
-            <p class="govuk-body">
+            <p>
               \u2022 Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
 
               \u2022 Innovative software testing tool to improve the efficiency and quality of software.
@@ -134,14 +134,14 @@ class AwardYears::V2022::QAEForms
             </p>
           )
           pdf_context %(
-            <p class="govuk-body">
+            <p>
               Please include:
             </p>
-            <p class="govuk-body">
+            <p>
               \u2022 Significant milestones during the development.
               \u2022 Significant milestones after the launch.
             </p>
-            <p class="govuk-body">
+            <p>
               If the innovation was conceived more than ten years ago, explain why it would be considered still innovative now.
             </p>
           )
