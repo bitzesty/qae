@@ -1,4 +1,5 @@
 require "rails_helper"
+include Warden::Test::Helpers
 
 describe MailRenderer do
   describe "#submission_started_notification" do
