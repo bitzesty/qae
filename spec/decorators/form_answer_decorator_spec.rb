@@ -21,7 +21,7 @@ describe FormAnswerDecorator do
     nominator_email: "personal_email",
     registration_number: "registration_number",
     website_url: "website_url",
-    head_of_bussines_title: "head_of_bussines_title",
+    head_of_business_title: "head_of_business_title",
     head_of_business_honours: "head_of_business_honours",
     head_job_title: "head_job_title",
     head_email: "head_email",

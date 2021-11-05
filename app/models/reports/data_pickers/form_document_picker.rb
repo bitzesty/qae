@@ -36,7 +36,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def head_full_name
     if business_form?
-      "#{doc('head_of_bussines_title')} #{doc('head_of_business_first_name')} #{doc('head_of_business_last_name')} #{doc('head_of_business_honours')}"
+      "#{doc('head_of_business_title')} #{doc('head_of_business_first_name')} #{doc('head_of_business_last_name')} #{doc('head_of_business_honours')}"
     end
   end
 
@@ -65,7 +65,7 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def head_title
-    doc("head_of_bussines_title")
+    doc("head_of_business_title")
   end
 
   def innovation_type
