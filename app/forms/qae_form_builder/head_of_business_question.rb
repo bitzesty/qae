@@ -38,9 +38,9 @@ class QAEFormBuilder
     end
 
     def rendering_sub_fields
-      # We are rejecting :street, because :building and :street
+      # We are rejecting :honours, because :last_name and :honours
       # are rendering together in same block
-      # and the :building is the first one
+      # and the :last_name is the first one
       required_sub_fields.reject do |f|
         f.keys.include?(:honours)
       end.map do |f|

@@ -3,6 +3,7 @@ class AwardYears::V2022::QAEForms
     def development_step5
       @development_step5 ||= proc do
         head_of_business :head_of_business, "Head of your organisation" do
+          required
           ref "E 1"
           sub_fields([
             { title: "Title" },
