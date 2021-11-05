@@ -60,7 +60,7 @@
 
         span.govuk-error-message
           - if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key].present? && @form_answer.validator_errors[question.hash_key].is_a?(String)
-            span.govuk-visually-hidden
+            span.govuk-visually-hidden id="error_for_#{question.key}"
               | Error:
             =< @form_answer.validator_errors[question.hash_key]
         - unless question.form_hint.blank?
@@ -126,7 +126,7 @@
 
         span.govuk-error-message
           - if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key].present? && @form_answer.validator_errors[question.hash_key].is_a?(String)
-            span.govuk-visually-hidden
+            span.govuk-visually-hidden id="error_for_#{question.key}"
               | Error:
             =< @form_answer.validator_errors[question.hash_key]
         - unless question.form_hint.blank?
