@@ -11,24 +11,24 @@
 
           .form-value
             p
-              - if @form_answer.head_of_bussines_title.present?
-                = @form_answer.head_of_bussines_title
+              - if @form_answer.head_of_business_title.present?
+                = @form_answer.head_of_business_title
                 '
               = @form_answer.head_of_business_full_name
               - if @form_answer.head_of_business_honours.present?
                 '
                 = @form_answer.head_of_business_honours
               br
-              - if @form_answer.head_job_title.present?
-                = @form_answer.head_job_title
+              - if @form_answer.head_of_business_job_title.present?
+                = @form_answer.head_of_business_job_title
                 br
-              - if @form_answer.head_email.present?
-                = @form_answer.head_email
+              - if @form_answer.head_of_business_email.present?
+                = @form_answer.head_of_business_email
           .form-fields.form-block
             = f.simple_fields_for(:data) do |f|
               .row
                 .col-md-2
-                  = f.input :head_of_bussines_title,
+                  = f.input :head_of_business_title,
                             as: :string,
                             label: "Title",
                             input_html: { class: "form-control" }
@@ -50,13 +50,13 @@
                             input_html: { class: "form-control" }
               .row
                 .col-md-8
-                  = f.input :head_job_title,
+                  = f.input :head_of_business_job_title,
                             as: :string,
                             label: "Job title",
                             input_html: { class: "form-control" }
               .row
                 .col-md-8
-                  = f.input :head_email,
+                  = f.input :head_of_business_email,
                             as: :string,
                             label: "Email",
                             input_html: { class: "form-control" }
@@ -75,16 +75,16 @@
         label.form-label Head of organisation
 
         p
-          - if @form_answer.head_of_bussines_title.present?
-            = @form_answer.head_of_bussines_title
+          - if @form_answer.head_of_business_title.present?
+            = @form_answer.head_of_business_title
             '
           = @form_answer.head_of_business_full_name
           - if @form_answer.head_of_business_honours.present?
             '
             = @form_answer.head_of_business_honours
           br
-          - if @form_answer.head_job_title.present?
-            = @form_answer.head_job_title
+          - if @form_answer.head_of_business_job_title.present?
+            = @form_answer.head_of_business_job_title
             br
-          - if @form_answer.head_email.present?
-            = @form_answer.head_email
+          - if @form_answer.head_of_business_email.present?
+            = @form_answer.head_of_business_email
