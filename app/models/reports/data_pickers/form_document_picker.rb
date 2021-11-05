@@ -58,9 +58,9 @@ module Reports::DataPickers::FormDocumentPicker
     doc "nominee_email"
   end
 
-  def head_email
+  def head_of_business_email
     if business_form?
-      doc "head_email"
+      doc "head_of_business_email"
     end
   end
 

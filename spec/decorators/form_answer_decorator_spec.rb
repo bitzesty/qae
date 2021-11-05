@@ -24,7 +24,7 @@ describe FormAnswerDecorator do
     head_of_business_title: "head_of_business_title",
     head_of_business_honours: "head_of_business_honours",
     head_of_business_job_title: "head_of_business_job_title",
-    head_email: "head_email",
+    head_of_business_email: "head_of_business_email",
     applying_for: "applying_for",
     parent_company: "parent_company",
     parent_company_country: "parent_company_country",

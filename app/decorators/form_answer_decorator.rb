@@ -355,8 +355,8 @@ class FormAnswerDecorator < ApplicationDecorator
     document["head_of_business_job_title"]
   end
 
-  def head_email
-    document["head_email"]
+  def head_of_business_email
+    document["head_of_business_email"]
   end
 
   def press_contact_details_email
