@@ -339,8 +339,8 @@ class FormAnswerDecorator < ApplicationDecorator
     document["website_url"]
   end
 
-  def head_of_business_title
-    document["head_of_business_title"]
+  def head_of_bussines_title
+    document["head_of_bussines_title"]
   end
 
   def head_of_business_full_name
