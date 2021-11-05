@@ -30,7 +30,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def head_position
     if business_form?
-      doc("head_job_title")
+      doc("head_of_business_job_title")
     end
   end
 

@@ -23,7 +23,7 @@ describe FormAnswerDecorator do
     website_url: "website_url",
     head_of_business_title: "head_of_business_title",
     head_of_business_honours: "head_of_business_honours",
-    head_job_title: "head_job_title",
+    head_of_business_job_title: "head_of_business_job_title",
     head_email: "head_email",
     applying_for: "applying_for",
     parent_company: "parent_company",
