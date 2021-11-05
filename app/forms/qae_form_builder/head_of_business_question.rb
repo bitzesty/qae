@@ -23,18 +23,7 @@ class QAEFormBuilder
 
   class HeadOfBusinessQuestionDecorator < QuestionDecorator
     def required_sub_fields
-      if sub_fields.present?
-        sub_fields
-      else
-        [
-          { title: "Title" },
-          { first_name: "First name" },
-          { last_name: "Last name" },
-          { honours: "Personal Honours", ignore_validation: true },
-          { job_title: "Job title / role in the organisation" },
-          { email: "Email address" }
-        ]
-      end
+      sub_fields
     end
 
     def rendering_sub_fields
