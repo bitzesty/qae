@@ -6,7 +6,7 @@ class AwardYears::V2019::QAEForms
           ref "F 1"
         end
 
-        text :head_of_bussines_title, "Title" do
+        text :head_of_business_title, "Title" do
           required
           classes "sub-question"
           style "tiny"
@@ -20,7 +20,7 @@ class AwardYears::V2019::QAEForms
           ])
         end
 
-        text :head_job_title, "Job title/role in the organisation" do
+        text :head_of_business_job_title, "Job title/role in the organisation" do
           classes "sub-question"
           required
           form_hint %(
@@ -28,7 +28,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        text :head_email, "Email address" do
+        text :head_of_business_email, "Email address" do
           classes "sub-question"
           style "large"
           required
