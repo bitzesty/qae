@@ -4,7 +4,7 @@ class AccountMailers::NotifyShortlistedMailer < AccountMailers::BaseMailer
     @user = @form_answer.user.decorate
     collaborator = User.find(collaborator_id)
 
-    @subject = "Clarification: the External Accountants Report submission deadline is midday on 26th November 2021"
+    @subject = "Clarification: the External Accountant's Report submission deadline is midday on 26th November 2021"
     @company_name = @form_answer.company_or_nominee_name
 
     @deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
