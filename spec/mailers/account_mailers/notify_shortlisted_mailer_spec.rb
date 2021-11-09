@@ -17,7 +17,7 @@ describe AccountMailers::NotifyShortlistedMailer do
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) do
     # "[Queen's Awards for Enterprise] Congratulations! You've been shortlisted!"
-    "Clarification: the External Accountant’s Report submission deadline is midday on 26th November 2021"
+    "Clarification: the External Accountant's Report submission deadline is midday on 26th November 2021"
   end
 
   let(:mail) {
