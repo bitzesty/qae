@@ -32,6 +32,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           style "large"
           required
+          type "email"
         end
 
         # TODO Pull in info for A13

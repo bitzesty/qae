@@ -32,6 +32,7 @@ class AwardYears::V2022::QAEForms
           classes "sub-question"
           style "large"
           required
+          type "email"
         end
 
         confirm :confirmation_of_consent, "Confirmation of consent" do
