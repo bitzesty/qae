@@ -4,6 +4,7 @@ class AwardYears::V2022::QAEForms
     def development_step1
       @development_step1 ||= proc do
         header :company_information_header, "" do
+          section_info
           context %(
             <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
