@@ -16,8 +16,7 @@ describe AccountMailers::NotifyShortlistedMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) do
-    # "[Queen's Awards for Enterprise] Congratulations! You've been shortlisted!"
-    "Clarification: the External Accountant's Report submission deadline is midday on 26th November 2021"
+    "[Queen's Awards for Enterprise] Congratulations! You've been shortlisted!"
   end
 
   let(:mail) {
@@ -40,8 +39,7 @@ describe AccountMailers::NotifyShortlistedMailer do
 
     it "renders the body" do
       expect(mail.body.raw_source).to match(user.decorate.full_name)
-      # expect(mail.body.raw_source).to match(deadline)
-      expect(mail.body.raw_source).to match "midday on 26th November 2021"
+      expect(mail.body.raw_source).to match(deadline)
     end
   end
 end
