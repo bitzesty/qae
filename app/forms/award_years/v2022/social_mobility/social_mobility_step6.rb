@@ -14,7 +14,6 @@ class AwardYears::V2022::QAEForms
 
         head_of_business :head_of_business, "" do
           sub_fields([
-            { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
             { honours: "Personal Honours" }
