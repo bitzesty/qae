@@ -12,7 +12,7 @@ describe "Eligibility forms" do
   end
 
   context "trade" do
-    it "process the eligibility form" do
+    it "process the eligibility form", js: true do
       visit dashboard_path
       new_application("International Trade Award")
       # fill_in("nickname", with: "trade nick")
@@ -90,7 +90,7 @@ def form_choice(labels)
       end
     end
 
-    l.find("input").set(true)
+    l.find("input", visible: false).set(true)
     click_button "Continue"
   end
 end
