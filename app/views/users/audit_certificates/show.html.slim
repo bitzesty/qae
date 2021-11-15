@@ -1,7 +1,6 @@
 - title "Verification of Commercial Figures"
 
 - cert_exists = form_answer.audit_certificate.present? && form_answer.audit_certificate.persisted?
-- list_exists = form_answer.list_of_procedure.present? && form_answer.list_of_procedure.persisted?
 
 header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
   h1.govuk-heading-xl Verification of Commercial Figures
@@ -22,9 +21,6 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
 
       = render "users/audit_certificates/upload_block", award: form_answer,
                                                         cert_exists: cert_exists
-      // Temporarily commenting out until needed again
-      / = render "users/list_of_procedures/upload_block", award: form_answer,
-      /                                                   list_exists: list_exists
 
       footer
         nav.pagination.no-border aria-label="Pagination" role="navigation"
