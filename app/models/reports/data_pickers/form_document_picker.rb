@@ -9,7 +9,11 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def business_reg_no
-    doc "registration_number"
+    if doc("registration_number").to_s.present?
+      ActionView::Base.full_sanitizer.sanitize(doc("registration_number").to_s)
+    else
+      ""
+    end
   end
 
   def unit_website

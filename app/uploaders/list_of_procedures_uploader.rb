@@ -1,2 +1,0 @@
-class ListOfProceduresUploader < FileUploader
-end
