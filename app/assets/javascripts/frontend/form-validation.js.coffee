@@ -394,7 +394,7 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateDateByYears: (question) ->
-    for subquestionBlock in question.find(".js-fy-entry-container.show-question .date-input")
+    for subquestionBlock in question.find(".js-fy-entry-container.show-question .govuk-date-input")
       subq = $(subquestionBlock)
       qParent = subq.closest(".js-fy-entries")
       errorsContainer = qParent.find(".govuk-error-message").html()
