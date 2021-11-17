@@ -16,15 +16,15 @@ window.AuditCertificatesUpload =
 
     upload_started = (e, data) ->
       # Show `Uploading...`
-      form.addClass("hidden")
+      form.addClass("govuk-!-display-none")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
       label = $("<label class='govuk-body'>").text("Uploading...")
       div.append(label)
       new_el.append(div)
       list.append(new_el)
-      list.removeClass("hidden")
-      list.find(".li-audit-upload").addClass("hidden")
+      list.removeClass("govuk-!-display-none")
+      list.find(".li-audit-upload").addClass("govuk-!-display-none")
 
     upload_done = (e, data, link) ->
       # Immediately show a link to download the uploaded file
@@ -34,22 +34,22 @@ window.AuditCertificatesUpload =
       list.find(".js-audit-certificate-title").text(filename)
       list.find(".js-audit-certificate-title").attr("download", filename)
       list.find(".js-audit-certificate-title").attr("title", filename)
-      list.removeClass("hidden")
+      list.removeClass("govuk-!-display-none")
 
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
-      list.find(".li-audit-upload").removeClass("hidden")
-      list.find(".js-remove-verification-document-form").removeClass("hidden")
+      list.find(".li-audit-upload").removeClass("govuk-!-display-none")
+      list.find(".js-remove-verification-document-form").removeClass("govuk-!-display-none")
       $(".js-audit-certificate-status-message").remove()
 
     failed = (error_message) ->
       parent.find(".govuk-error-message").html(error_message)
-      list.addClass("hidden")
-      form.removeClass("hidden")
+      list.addClass("govuk-!-display-none")
+      form.removeClass("govuk-!-display-none")
 
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
-      list.removeClass("hidden")
+      list.removeClass("govuk-!-display-none")
 
     success_or_error = (e, data) ->
       errors = data.result.errors
