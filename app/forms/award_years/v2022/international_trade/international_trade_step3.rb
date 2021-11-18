@@ -4,6 +4,7 @@ class AwardYears::V2022::QAEForms
     def trade_step3
       @trade_step3 ||= proc do
         header :commercial_success_info_block, "" do
+          section_info
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">
