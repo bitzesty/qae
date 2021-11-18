@@ -28,11 +28,10 @@ div
 
         = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer, token: params[:token]), html: { class: "qae-form" } do |f|
           .question-block.sub-question.js-press-comment-correct
-            h2 = f.label :correct, label: "Do you have any comments on the Press Book Notes or organisation details?"
             ul.errors-container
             .clear
             .question-group
-              = f.input :correct, as: :radio_buttons, item_wrapper_class: 'govuk-radios__item', wrapper_class: 'govuk-radios govuk-radios--inline', label: false
+              = f.input :correct, as: :radio_buttons, label: 'Do you have any comments on the Press Book Notes or organisation details?', item_wrapper_class: 'govuk-radios__item', wrapper_class: 'govuk-radios govuk-radios--inline', label_html: { class: 'govuk-label--s govuk-!-font-weight-regular' }
               span.clear
 
           br
