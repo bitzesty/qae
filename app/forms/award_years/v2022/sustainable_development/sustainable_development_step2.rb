@@ -4,6 +4,7 @@ class AwardYears::V2022::QAEForms
     def development_step2
       @development_step2 ||= proc do
         header :development_b_section_header, "" do
+          section_info
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
