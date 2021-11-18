@@ -30,7 +30,7 @@
       - elsif award.not_submitted?
         p.govuk-body The application was not submitted on time.
       - else
-        h4 Feedback
+        h4.govuk-heading-s Feedback
         - if award.feedback.try(:submitted?)
           p.govuk-body
             ' Please
