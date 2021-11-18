@@ -61,14 +61,13 @@ div
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"
               ul.group
-                li.previous.previous-alternate
-                  = link_to dashboard_path, class: "govuk-back-link govuk-!-font-size-19"
-                    span.pagination-label Go back to previous page
                 li.submit
-                  = f.submit "Save", class: "govuk-button save-press-summary-button",
+                  = f.submit "Save", class: "govuk-button govuk-button--secondary",
                                      name: "save"
                   span.press-summary-action-devider.govuk-body
-                    ' OR
+
                   = f.submit "Submit", class: "govuk-button",
                                        rel: "next",
                                        name: "submit"
+              = link_to dashboard_path, class: "govuk-back-link govuk-!-font-size-19"
+                span.pagination-label Go back to previous page
