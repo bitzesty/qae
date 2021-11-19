@@ -4,6 +4,7 @@ class AwardYears::V2022::QAEForms
     def mobility_step4
       @mobility_step4 ||= proc do
         header :complete_now_header, "" do
+          section_info
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">

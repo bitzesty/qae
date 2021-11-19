@@ -27,6 +27,6 @@ h1.admin-page-heading
     .col-xs-12
       = render("admin/form_answers/list_components/table", f: f)
   .row
-    .col-xs-12.text-right
+    .col-xs-12.text-right.paginate-links
       = paginate @form_answers
       .clear
