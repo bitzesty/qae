@@ -77,7 +77,7 @@ class AwardYears::V2022::QAEForms
         end
 
         one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question"
+          classes "sub-question one-option-by-years"
           sub_ref "C 2.2"
           required
           context %(
