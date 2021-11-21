@@ -45,7 +45,7 @@
 
   span.govuk-error-message
   .if-no-js-hide.govuk-button-group
-    span.govuk-button.govuk-button--secondary.button-add data-entity="file" *possible_read_only_ops
+    span.govuk-button.govuk-button--secondary.js-button-add.button-add data-entity="file" *possible_read_only_ops
       span
         | Upload a file
       input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops data-question-key=question.key aria-label="Upload" 
