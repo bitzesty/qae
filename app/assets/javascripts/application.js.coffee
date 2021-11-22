@@ -558,15 +558,13 @@ jQuery ->
     if $(el).is("input")
       $el.on "focus", ->
         button.addClass("onfocus")
-        console.log(button)
-        button.removeClass('.govuk-button .govuk-button--secondary')
-        button.addClass('.upload-focus')
-        # $el.removeClass("fileinput-button")
+        govuk_button.removeClass('govuk-button govuk-button--secondary')
+        govuk_button.addClass('upload-focus')
 
       $el.on "blur", ->
         button.removeClass("onfocus")
-        # $el.removeClass("upload-focus")
-        # $el.addClass("fileinput-button")
+        govuk_button.addClass('govuk-button govuk-button--secondary')
+        govuk_button.removeClass('upload-focus')
 
     progress_all = (e, data) ->
       # TODO
