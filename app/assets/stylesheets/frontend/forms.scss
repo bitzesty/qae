@@ -128,6 +128,24 @@ h2 > .boolean.control-label {
   direction: ltr;
 }
 
+.upload-focus {
+  background-color: #FFDC03;
+  font-family: "GDS Transport",arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 19px;
+  line-height: 1;
+  -webkit-box-sizing: border-box;
+  display: inline-block;
+  padding: 8px 10px 7px;
+  border: 2px solid transparent;
+  margin-right: 15px;
+  -webkit-box-shadow: 0 2px 0 #002d18;
+  cursor: pointer;
+  -webkit-appearance: none;
+  color: black;
+}
+
 .custom-select:disabled,
 .custom-select[readonly] {
   background-color: #ccc;

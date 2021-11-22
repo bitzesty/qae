@@ -552,11 +552,19 @@ jQuery ->
     has_filename = !!wrapper.data('filename')
     is_link = !!$el.data('add-link')
 
-    $el.on "focus", ->
-      button.addClass("onfocus")
+    govuk_button = $(el).closest('.govuk-button')
 
-    $el.on "blur", ->
-      button.removeClass("onfocus")
+    #  Searching for inputs only excludes 'Add website address' button
+    if $(el).is("input")
+      $el.on "focus", ->
+        button.addClass("onfocus")
+        govuk_button.removeClass('govuk-button govuk-button--secondary')
+        govuk_button.addClass('upload-focus')
+
+      $el.on "blur", ->
+        button.removeClass("onfocus")
+        govuk_button.addClass('govuk-button govuk-button--secondary')
+        govuk_button.removeClass('upload-focus')
 
     progress_all = (e, data) ->
       # TODO
