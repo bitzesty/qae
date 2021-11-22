@@ -552,7 +552,7 @@ jQuery ->
     has_filename = !!wrapper.data('filename')
     is_link = !!$el.data('add-link')
 
-    govuk_button = $(el).closest('.govuk-button--secondary')
+    govuk_button = $(el).closest('.govuk-button')
 
     #  Searching for inputs only excludes 'Add website address' button
     if $(el).is("input")
