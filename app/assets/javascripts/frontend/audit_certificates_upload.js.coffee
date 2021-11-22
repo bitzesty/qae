@@ -3,6 +3,13 @@ window.AuditCertificatesUpload =
     $('.js-audit-certificate-file-upload').each (idx, el) ->
       AuditCertificatesUpload.fileupload_init(el)
 
+      govuk_button = $(el).closest('.govuk-button')
+      $(el).on "focus", ->
+        govuk_button.addClass('upload-focus')
+
+      $(el).on "blur", ->
+        govuk_button.removeClass('upload-focus')
+
   fileupload_init: (el) ->
     form = $(el).closest('form')
     $el = $(el)
