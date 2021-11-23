@@ -57,6 +57,6 @@
                     p#password-confirmation-match The confirmation must match the password
 
           .form-actions
-            = f.button :submit, class: "button large", params[:locals] && params[:locals][:password_not_set] ? "Create a password" : "Change your password"
+            = f.button :submit, params[:locals] && params[:locals][:password_not_set] ? "Create a password" : "Change your password", class: "button large"
 
         = render "users/shared/links"
