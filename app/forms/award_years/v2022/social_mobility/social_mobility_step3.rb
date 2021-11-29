@@ -4,6 +4,7 @@ class AwardYears::V2022::QAEForms
     def mobility_step3
       @mobility_step3 ||= proc do
         header :commercial_success_info_block, "" do
+          section_info
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">
@@ -76,7 +77,7 @@ class AwardYears::V2022::QAEForms
         end
 
         one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question"
+          classes "sub-question one-option-by-years"
           sub_ref "C 2.2"
           required
           context %(

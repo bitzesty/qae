@@ -5,7 +5,8 @@
 .article-related-positioning-container
   .article-container.group
     article.group role="article"
-      h1.govuk-heading-xl Change your password
+      h1.govuk-heading-xl
+        = params[:locals] && params[:locals][:password_not_set] ? "Create a password" : "Change your password"
       = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
         /= f.error_notification
         = f.input :reset_password_token, as: :hidden
@@ -45,6 +46,6 @@
                   p#password-confirmation-match The confirmation must match the password
 
         .form-actions
-          = f.button :submit, "Change my password"
+          = f.button :submit, params[:locals] && params[:locals][:password_not_set] ? "Create a password" : "Change your password"
 
       = render "users/shared/links"

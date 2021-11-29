@@ -18,8 +18,12 @@ window.FormValidation =
       container.closest(".question-block").find(".govuk-error-message").empty()
     container.closest(".govuk-form-group--error").removeClass("govuk-form-group--error")
 
+  clearAriaDescribedby: (container) ->
+    container.closest('input,textarea,select').filter(':visible').removeAttr("aria-describedby")
+
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
+    @addAriaDescribedByToInput(question)
     @addErrorClass(question)
 
     @validates = false
@@ -27,6 +31,14 @@ window.FormValidation =
   appendMessage: (container, message) ->
     container.find(".govuk-error-message").first().append(message)
     @validates = false
+
+  addAriaDescribedByToInput: (container, message) ->
+    input = container.find('input,textarea,select').filter(':visible')
+    input_id = input.attr('id')
+    error = container.find(".govuk-error-message").first()
+    error.attr("id", "error_for_#{input_id}");
+    error_id = error.attr('id')
+    input.attr("aria-describedby", error_id);
 
   addErrorClass: (container) ->
     container.addClass("govuk-form-group--error")
@@ -382,7 +394,7 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateDateByYears: (question) ->
-    for subquestionBlock in question.find(".js-fy-entry-container.show-question .date-input")
+    for subquestionBlock in question.find(".js-fy-entry-container.show-question .govuk-date-input")
       subq = $(subquestionBlock)
       qParent = subq.closest(".js-fy-entries")
       errorsContainer = qParent.find(".govuk-error-message").html()
@@ -515,6 +527,7 @@ window.FormValidation =
 
     $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
       self.clearErrors $(this)
+      self.clearAriaDescribedby $(this)
       self.validateIndividualQuestion($(@).closest(".question-block"), $(@))
 
   validateIndividualQuestion: (question, triggeringElement) ->

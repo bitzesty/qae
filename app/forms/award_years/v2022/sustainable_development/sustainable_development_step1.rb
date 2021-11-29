@@ -4,6 +4,7 @@ class AwardYears::V2022::QAEForms
     def development_step1
       @development_step1 ||= proc do
         header :company_information_header, "" do
+          section_info
           context %(
             <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
@@ -267,9 +268,10 @@ class AwardYears::V2022::QAEForms
         press_contact_details :press_contact_details, "Contact details for press enquiries" do
           ref "A 11"
           context %(
-            <p class='govuk-hint'>
+            <p class='govuk-hint'><em>
               If your application is successful, you may get contacted by the press.
-              <br/>
+            </em></p>
+            <p class='govuk-hint'>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>
           )

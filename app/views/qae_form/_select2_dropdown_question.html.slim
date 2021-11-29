@@ -1,4 +1,4 @@
-select.govuk-select.js-trigger-autosave.custom-select.sic_code-selector class="govuk-!-width-one-third" name=question.input_name *possible_read_only_ops id="q_#{question.key}" aria-label="Select #{question.key}"
+select.govuk-select.js-trigger-autosave.custom-select.sic_code-selector class="govuk-!-width-one-third" name=question.input_name *possible_read_only_ops id="q_#{question.key}" aria-label="Select #{question.key}" aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
   - if defined?(placeholder)
     option value=""
       = placeholder

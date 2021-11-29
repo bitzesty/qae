@@ -16,7 +16,7 @@ class AuditCertificate < ApplicationRecord
     validates :attachment, presence: true,
                            on: :create,
                            file_size: {
-                             maximum: 5.megabytes.to_i
+                             maximum: 10.megabytes.to_i
                            }
     validates :reviewable_type,
               :reviewable_id,

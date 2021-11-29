@@ -186,6 +186,10 @@ class QAEFormBuilder
       delegate_obj.required
     end
 
+    def section_info?
+      delegate_obj.section_info
+    end
+
     def have_conditional_parent?
       delegate_obj.conditions.any?
     end
@@ -403,6 +407,10 @@ class QAEFormBuilder
       @q.required = true
     end
 
+    def section_info
+      @q.section_info = true
+    end
+
     def help title, text
       @q.help << QuestionHelp.new(title, text)
     end
@@ -480,7 +488,8 @@ class QAEFormBuilder
                   :classes,
                   :drop_condition,
                   :drop_condition_parent,
-                  :drop_block_condition
+                  :drop_block_condition,
+                  :section_info
 
     def initialize step, key, title, opts={}
       @step = step

@@ -64,10 +64,10 @@ module PdfAuditCertificates::General::SharedElements
       rows << if row[:uk_sales]
         render_financial_uk_sales_row(row, index + 2)
       else
-        render_financial_row(row, index + 2)
+        render_financial_row(row, index + 1)
       end
 
-      rows << revised_row(row.values.first.length, index + 2)
+      rows << revised_row(row.values.first.length, index + 1)
     end
 
     table(rows, table_default_ops(:main_table)) do
@@ -195,17 +195,21 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
+
+    dotted_line = %{...............................................................................................................................}
+
     b1 = %{Signed (External Accountant) ............................................................................}
     render_text_line(b1, 1)
+    render_text_line(dotted_line, 1)
 
     b2 = %{Company partnership name: ............................................................................}
     render_text_line(b2, 1)
+    render_text_line(dotted_line, 1)
 
     b3 = %{Company registration number/Professional body practising certificate number: }
     render_text_line(b3, 1)
-
-    b3 = %{...............................................................................................................................}
-    render_text_line(b3, 1)
+    render_text_line(dotted_line, 1)
+    render_text_line(dotted_line, 1)
 
     b4 = %{Address: ..............................................................................................................}
     render_text_line(b4, 1)
@@ -224,7 +228,7 @@ module PdfAuditCertificates::General::SharedElements
     move_down 6.mm
     render_text_line("APPLICANT’S MANAGEMENT’S STATEMENT (Only if providing revised figures)", 3, style: :bold)
 
-    line = "We confirm we have updated the figures originally submitted in our application to the Queen’s Award for Enterprise. The revised figures should be used as the basis of our application."
+    line = "We confirm we have updated the figures originally submitted in our application to The Queen’s Award for Enterprise. The revised figures should be used as the basis of our application."
     render_text_line(line, 2, default_text_ops)
 
     b1 = %{Signed ................................................................................................................}
@@ -263,17 +267,17 @@ module PdfAuditCertificates::General::SharedElements
 
     lines = []
 
-    first_line = "Statement 1 - We have checked the figures that the applicant’s management has provided in this form by undertaking the procedures as in the letter appended to this submission form. We report that no exceptions were found and that all samples were traced to underlying evidence."
+    first_line = "Statement 1 - We have checked the figures that the applicant’s management has provided in this form by undertaking the agreed upon procedures. We report that no exceptions were found and that all samples were traced to underlying evidence."
     render_text_line(first_line, 2, default_list_ops)
 
-    lines << "Because the above procedures do not constitute either an audit or a review made in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), we do not express any assurance on the form."
+    lines << "Because the agreed upon procedures do not constitute either an audit or a review made in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), we do not express any assurance on the form."
 
     lines << "Had we performed additional procedures, or had we performed an audit or review of the financial statements in accordance with International Standards on Auditing or International Standards on Review Engagements (or relevant national standards or practices), other matters might have come to our attention that would have been reported."
 
     lines.each { |line| render_text_line(line, 2, default_text_ops) }
 
     stroke_rectangle [0, cursor], 7, 7
-    first_line = "Statement 2 - We have checked the figures that the applicant’s management has provided in this form by undertaking the procedures as set out as in the letter appended to this submission form. We identified a number of exceptions during our work which we enumerate here:"
+    first_line = "Statement 2 - We have checked the figures that the applicant’s management have provided in this form. We identified a number of exceptions during our work which we enumerate here:"
     render_text_line(first_line, 2, default_list_ops)
 
     render_text_line("Details of exceptions", 2, default_list_ops.merge(indent_paragraphs: 20, style: :bold))
@@ -303,7 +307,7 @@ module PdfAuditCertificates::General::SharedElements
 
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
-    render_text_line("We are committed to improving experiences for everyone who is involved in the Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
+    render_text_line("We are committed to improving experiences for everyone who is involved in The Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
 
     render_text_line("Yes       No", 10, style: :bold)
 
@@ -317,11 +321,9 @@ module PdfAuditCertificates::General::SharedElements
 
     ps = []
 
-    ps << "The figures in the forms are provided by the applicant during their application for the Queen’s Awards for Enterprise. Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
+    ps << "The figures in the forms are provided by the applicant during their application for The Queen’s Awards for Enterprise. The Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
 
-    ps << "While accountants should exercise their professional judgement when agreeing appropriate procedures, this appendix provides illustrative procedures that may be appropriate. The examples are illustrative, and other procedures may be undertaken."
-
-    ps << "As a minimum, Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25."
+    ps << "Accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate."
 
     ps.each { |pr| render_text_line(pr, 2, default_text_ops) }
 
@@ -329,7 +331,7 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total turnover figure per the form to the general ledger (account number [xxx]) for each year stated.",
       "Agree the total turnover figure per the form to HMRC and/or Companies House filings for each year stated.",
-      "Trace a sample of sales from the general ledger for each year to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices."
     ]
     render_list_with_header(header, list)
 
@@ -342,14 +344,15 @@ module PdfAuditCertificates::General::SharedElements
     header = "Overseas sales (Non-UK sales):"
     list = [
       "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
-      "Trace a sample of non-UK sales from the general ledger to underlying sales invoices each year stated."
+      "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices.",
+      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
     ]
     render_list_with_header(header, list)
 
     header = "Sales by product group"
     list = [
       "Agree the total sales by product group per the form to the general ledger (account numbers [xxx] and [xxx]).",
-      "Trace a sample of sales from the general ledger to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger to underlying sales invoices."
     ]
     render_list_with_header(header, list)
 
@@ -358,6 +361,8 @@ module PdfAuditCertificates::General::SharedElements
       "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated."
     ]
     render_list_with_header(header, list)
+
+    render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, The Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, The Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
   end
 
   def render_list_with_header(header, list)

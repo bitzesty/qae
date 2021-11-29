@@ -37,7 +37,7 @@ module PdfAuditCertificates::Awards2016::Innovation
       render_text_line("Innovation Financials", 2, style: :bold)
 
       ps = []
-      ps << "Where relevant to their innovation, the applicant provided additional information to help us understand the financial value of their innovation. Innovations are defined as per the gov.uk guidance. For the avoidance of doubt, accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for an innovation award. This is left to the sole discretion of the Queen’s Award Office."
+      ps << "Where relevant to their innovation, the applicant provided additional information to help us understand the financial value of their innovation. Innovations are defined as per the gov.uk guidance. For the avoidance of doubt, accountants are not asked to apply judgement in determining whether the financial values disclosed meet the requirements for an innovation award. This is left to the sole discretion of The Queen’s Award Office."
 
       ps << "Figures derived from financial statements should be based upon the Generally Accepted Accounting Principles (‘GAAP’) used by the company. A parent company making a group entry should include the trading figures of all UK members of the group (‘The UK business’)."
 

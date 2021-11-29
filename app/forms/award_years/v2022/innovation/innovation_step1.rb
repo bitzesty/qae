@@ -4,6 +4,7 @@ class AwardYears::V2022::QAEForms
     def innovation_step1
       @innovation_step1 ||= proc do
         header :company_information_header, "" do
+          section_info
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
@@ -134,7 +135,11 @@ class AwardYears::V2022::QAEForms
 
         header :business_division_header, "" do
           classes "application-notice help-notice"
-          form_hint "Where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary."
+          context %(
+            <p class="govuk-body">
+              "Where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary."
+            </p>
+          )
           conditional :applying_for, "division branch subsidiary"
         end
 
@@ -368,9 +373,10 @@ class AwardYears::V2022::QAEForms
         press_contact_details :press_contact_details, "Contact details for press enquiries" do
           ref "A 12"
           context %(
-            <p class='govuk-hint'>
+            <p class='govuk-hint'><em>
               If your application is successful, you may get contacted by the press.
-              <br/>
+            </em></p>
+            <p class='govuk-hint'>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>
           )

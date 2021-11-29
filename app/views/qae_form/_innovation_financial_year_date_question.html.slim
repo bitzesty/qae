@@ -7,8 +7,8 @@
         .govuk-grid-column-one-half
           label.govuk-label.govuk-date-input__label.js-fy-day for=question.input_name(suffix:'day')
             ' Day
-          input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="text" name=question.input_name(suffix: 'day') value=question.input_value(suffix: "day") id=question.input_name(suffix: "day") maxlength=2 autocomplete="off" *possible_read_only_ops
+          input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="number" pattern="[0-9]*" name=question.input_name(suffix: 'day') value=question.input_value(suffix: "day") id=question.input_name(suffix: "day") maxlength=2 autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
         .govuk-grid-column-one-half
           label.govuk-label.govuk-date-input__label.js-fy-day for=question.input_name(suffix:'month')
             ' Month
-          input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="text" name=question.input_name(suffix: 'month') value=question.input_value(suffix: "month") id=question.input_name(suffix: "month") maxlength=2 autocomplete="off" *possible_read_only_ops
+          input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="number" pattern="[0-9]*" name=question.input_name(suffix: 'month') value=question.input_value(suffix: "month") id=question.input_name(suffix: "month") maxlength=2 autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
