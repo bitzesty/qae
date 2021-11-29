@@ -6,7 +6,6 @@
 #= require vendor/file_upload/jquery.fileupload
 #= require vendor/file_upload/jquery.fileupload-process
 #= require vendor/file_upload/jquery.fileupload-validate
-#= require ckeditor/init
 #= require ./ckeditor/config.js
 #= require Countable
 #= require moment.min
@@ -241,7 +240,7 @@ jQuery ->
     $(this).prop('required', true)
     $(this).attr('aria-required', 'true')
 
-  $('.qae-form').find('input[type="number"]').each -> 
+  $('.qae-form').find('input[type="number"]').each ->
     $(this).attr('pattern', '[0-9]*')
     $(this).attr('inputmode', 'decimal')
 
