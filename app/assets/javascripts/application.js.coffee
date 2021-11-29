@@ -704,7 +704,7 @@ jQuery ->
       false
 
   # Show current holder info when they are a current holder on basic eligibility current holder question
-  if $(".eligibility_current_holder").size() > 0
+  if $(".eligibility_current_holder").length > 0
     $(".eligibility_current_holder input").change () ->
       if $(this).val() == "true"
         $("#current-holder-info").removeClass("visuallyhidden")
@@ -712,7 +712,7 @@ jQuery ->
         $("#current-holder-info").addClass("visuallyhidden")
 
   # Show innovation amount info when the amount is greater than 1 on innovation eligibility
-  if $(".innovative_amount_input").size() > 0
+  if $(".innovative_amount_input").length > 0
     $(".innovative_amount_input").bind "propertychange change click keyup input paste", ->
       if $(this).val() > 1
         $("#innovative-amount-info").removeClass("visuallyhidden")
@@ -720,7 +720,7 @@ jQuery ->
         $("#innovative-amount-info").addClass("visuallyhidden")
 
   # Show text about submitting multiple applications when the number of eligible initiatives is greater than 1
-  if $(".number_of_eligible_initiatives_input").size() > 0
+  if $(".number_of_eligible_initiatives_input").length > 0
     $(".number_of_eligible_initiatives_input").bind "propertychange change click keyup input paste", ->
       if $(this).val() > 1
         $("#number-of-eligible-initiatives-info").removeClass("visuallyhidden")
@@ -729,7 +729,7 @@ jQuery ->
 
   # Show trade org fulfilled info when checked yes
   trade_org_q = ".question-organisation-fulfill-above-exceptions"
-  if $(trade_org_q).size() > 0
+  if $(trade_org_q).length > 0
     $("#{trade_org_q} input[type='radio']").bind "propertychange change click keyup input paste", ->
       radio_val = $("#{trade_org_q} input[type='radio']:checked").val()
       if radio_val == "yes"
@@ -748,7 +748,7 @@ jQuery ->
      " (on outstanding short term growth over 3 years basis).</p>"
 
   # Show trade awarded info if it isn't 2010 (lowest year)
-  if $(".trade-awarded-input").size() > 0
+  if $(".trade-awarded-input").length > 0
     $(document).on "change", ".trade-awarded-input", (e) ->
       lowest_year = "9999"
       last_year = "2000"
@@ -787,7 +787,7 @@ jQuery ->
   $(".trade-awarded-input").trigger "change"
 
   # Show the eligibility failure contact message
-  if $("#basic-eligibility-failure-submit").size() > 0
+  if $("#basic-eligibility-failure-submit").length > 0
     $(document).on "click", "#basic-eligibility-failure-submit", (e) ->
       e.preventDefault()
       if $(this).closest("form").find("input:checked").val()
@@ -795,7 +795,7 @@ jQuery ->
         $("#basic-eligibility-failure-show").removeClass("visuallyhidden")
 
   # Change your eligibility answers for award eligibility
-  if $(".award-finish-previous-answers").size() > 0
+  if $(".award-finish-previous-answers").length > 0
     $(document).on "click", ".award-finish-previous-answers a", (e) ->
       e.preventDefault()
       $("#form_eligibility_show").addClass("visuallyhidden")
@@ -811,13 +811,13 @@ jQuery ->
       question = $(this).closest(".question-block")
       add_eg = question.find(".js-add-example").html()
 
-      if question.find(".list-add").size() > 0
+      if question.find(".list-add").length > 0
         can_add = true
 
         # Are there add limits
         add_limit_attr = question.find(".list-add").attr("data-add-limit")
 
-        li_size = question.find(".list-add > li:visible").size()
+        li_size = question.find(".list-add > li:visible").length
 
         if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
 
@@ -887,7 +887,7 @@ jQuery ->
       triggerAutosave()
 
   questionAddDefaultReached = (ul) ->
-    if ul.size() > 0
+    if ul.length > 0
       attr = ul.attr("data-default")
       hasAttrDefault = false
 
@@ -896,7 +896,7 @@ jQuery ->
 
       if hasAttrDefault
         ul.removeClass("js-default-reached")
-        if ul.find("li").not(".hidden").size() <= attr
+        if ul.find("li").not(".hidden").length <= attr
           ul.addClass("js-default-reached")
 
   $(".list-add").each ->
@@ -922,7 +922,7 @@ jQuery ->
         new_text = 6
     $(".js-entry-period-subtext").each () ->
       $(this).text(new_text)
-  if $(".js-entry-period input:checked").size() > 0
+  if $(".js-entry-period input:checked").length > 0
     replaceEntryPeriodText()
 
   $(".js-entry-period input").change () ->
@@ -960,7 +960,7 @@ jQuery ->
   # Remove alerts from registration page as soon as user starts typing
   $(".page-devise input").on 'keypress keydown keyup change', () ->
     $(this).closest(".field-with-errors").removeClass("field-with-errors")
-    if $(this).closest(".form-inputs-group").size() > 0
+    if $(this).closest(".form-inputs-group").length > 0
       $(this).closest(".form-inputs-group").find(".error").remove()
     else
       $(this).closest(".question-body").find(".error").remove()
@@ -1005,6 +1005,9 @@ jQuery ->
 
   if $('.js-ckeditor').length > 0
 
+    CKEDITOR.plugins.addExternal( 'wordcount', '/ckeditor/plugins/notification/plugin.js' );
+    CKEDITOR.plugins.addExternal( 'wordcount', '/ckeditor/plugins/wordcount/plugin.js' );
+
     $('.js-ckeditor').each (index) ->
       group = $(this).closest(".govuk-form-group")
 
@@ -1012,7 +1015,26 @@ jQuery ->
       spacer.insertAfter($(this).parent().find(".hint"))
 
       CKEDITOR.replace this,
+        title: group.find('label').first().text(),
         toolbar: 'mini'
+        language: 'en'
+        toolbar_mini: [
+          {name: 'p1', items: ["Cut", "Copy", "PasteText", "-", "Undo", "Redo"]},
+          {name: 'p2', items: ["Bold", "Italic",  "-", "RemoveFormat"]},
+          {name: 'p3', items: ["NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']}
+        ]
+        toolbar: "mini";
+        extraPlugins: 'wordcount'
+
+        wordcount: {
+          showParagraphs: false,
+          showWordCount: true
+        }
+
+        removePlugins: 'link,elementspath,contextmenu,liststyle,tabletools,tableselection'
+        disableNativeSpellChecker: false
+
+        allowedContent: 'h1 h2 h3 blockquote p ul ol li em i strong b i br'
         height: 200
         wordcount:
           maxWordCount: $(this).data('word-max')

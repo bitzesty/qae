@@ -92,9 +92,9 @@ $(function() {
     var $passwordField = $(this);
     var $passwordConfirmationField = $("form #password-confirmation-control-group input[type=password]");
     var $emailField = "";
-    if ($("form #email-control-group input[type=email]").size() > 0) {
+    if ($("form #email-control-group input[type=email]").length > 0) {
       $emailField = $("form #email-control-group input[type=email]");
-    } else if ($("[data-email-field]").size() > 0) {
+    } else if ($("[data-email-field]").length > 0) {
       $emailField = $("[data-email-field]").attr("data-email-field").split(/\W+/).join(" ");
     }
     $passwordField.parent().parent().prepend('<input type="hidden" id="password-strength-score" name="password-strength-score" value=""/>');

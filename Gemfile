@@ -22,13 +22,13 @@ gem 'sprockets-rails', '>= 2.0.0'
 gem 'sassc-rails', '~> 2.0.0'
 gem 'slim-rails', '~> 3.2.0'
 gem 'coffee-rails', '5.0'
-gem 'jquery-rails', '4.3.5'
+gem 'jquery-rails', '4.4.0'
 gem 'jquery-ui-rails', '6.0.1'
 gem 'bootstrap-sass', '~> 3.4'
 gem 'govuk-components'
 gem 'uglifier', '>= 2.7.2'
 gem 'js_cookie_rails', '2.1.4'
-gem 'ckeditor', github: 'galetahub/ckeditor', ref: "752bca97f78e5c5df3fbd876e51a06918da804e2"
+gem 'ckeditor'
 gem 'webpacker', '6.0.0.beta.7'
 
 # Autolinking in admin mass user mailer
