@@ -869,44 +869,6 @@ ALTER SEQUENCE public.judges_id_seq OWNED BY public.judges.id;
 
 
 --
--- Name: list_of_procedures; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.list_of_procedures (
-    id bigint NOT NULL,
-    form_answer_id bigint,
-    attachment character varying,
-    changes_description text,
-    reviewable_type character varying,
-    reviewable_id bigint,
-    reviewed_at timestamp without time zone,
-    status integer,
-    attachment_scan_results character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: list_of_procedures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.list_of_procedures_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: list_of_procedures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.list_of_procedures_id_seq OWNED BY public.list_of_procedures.id;
-
-
---
 -- Name: palace_attendees; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2811,13 +2773,6 @@ ALTER TABLE ONLY public.judges ALTER COLUMN id SET DEFAULT nextval('public.judge
 
 
 --
--- Name: list_of_procedures id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.list_of_procedures ALTER COLUMN id SET DEFAULT nextval('public.list_of_procedures_id_seq'::regclass);
-
-
---
 -- Name: palace_attendees id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3082,14 +3037,6 @@ ALTER TABLE ONLY public.form_answers
 
 ALTER TABLE ONLY public.judges
     ADD CONSTRAINT judges_pkey PRIMARY KEY (id);
-
-
---
--- Name: list_of_procedures list_of_procedures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.list_of_procedures
-    ADD CONSTRAINT list_of_procedures_pkey PRIMARY KEY (id);
 
 
 --
@@ -3464,20 +3411,6 @@ CREATE UNIQUE INDEX index_judges_on_unlock_token ON public.judges USING btree (u
 
 
 --
--- Name: index_list_of_procedures_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_list_of_procedures_on_form_answer_id ON public.list_of_procedures USING btree (form_answer_id);
-
-
---
--- Name: index_list_of_procedures_on_reviewable_type_and_reviewable_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_list_of_procedures_on_reviewable_type_and_reviewable_id ON public.list_of_procedures USING btree (reviewable_type, reviewable_id);
-
-
---
 -- Name: index_palace_attendees_on_palace_invite_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3692,14 +3625,6 @@ ALTER TABLE ONLY public.feedbacks
 
 ALTER TABLE ONLY public.feedbacks
     ADD CONSTRAINT fk_rails_85a1d7f049 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
-
-
---
--- Name: list_of_procedures fk_rails_89004f7c1e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.list_of_procedures
-    ADD CONSTRAINT fk_rails_89004f7c1e FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
 
 
 --
@@ -3973,6 +3898,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200814122259'),
 ('20200918110854'),
 ('20200918151320'),
-('20201023115307');
-
-
+('20201023115307'),
+('20211103110822');
