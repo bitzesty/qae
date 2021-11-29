@@ -1,4 +1,4 @@
-.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize)
+.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize) tabindex="-1"
   article.group
     - steps_first_char = 65 # aka 'A'
     h2.govuk-heading-l.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize)

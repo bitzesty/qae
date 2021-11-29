@@ -81,3 +81,73 @@ body.js-enabled {
   height: 1px;
   overflow: hidden;
 }
+
+
+table td::before,
+tbody th::before {
+  display: none;
+}
+
+
+@media all and (max-width: 37em) {
+  table,
+  tr,
+  td {
+    display: block;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: #eaeaea;
+  }
+
+  caption {
+    display: block !important;
+    width: 100%;
+  }
+
+  tr {
+    padding: 0.7em 2vw;
+    border-bottom-width: 3px;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .govuk-table__head,
+  .row-heading {
+    display: none;
+  }
+
+  tbody td,
+  tbody th {
+    display: flex;
+  }
+
+  tbody td::before,
+  tbody th::before {
+    display: block !important;
+    font-weight: bold;
+    width: 50%;
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+.visuallyhidden-on-desktop {
+  @media (min-width: 37em) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
+
+.matrix-question-table td .matrix-question-input {
+  @media (max-width: 37em) {
+    width: 5em !important;
+  }
+}

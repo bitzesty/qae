@@ -284,6 +284,8 @@ jQuery ->
 
     window.location.hash = "##{step.substr(5)}"
     $(".js-step-condition[data-step='#{step}']").addClass("step-current")
+    $(".js-step-condition[data-step='#{step}'] h2").attr('tabindex', '-1')
+    $(".js-step-condition[data-step='#{step}'] h2").focus()
 
     # Show past link status
     $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
@@ -574,7 +576,8 @@ jQuery ->
       button.addClass("visuallyhidden")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
-      label = $("<label>").text("Uploading...")
+      uid = '_' + Math.random().toString(36).substr(2, 9);
+      label = $("<label for='#{uid}'>").text("Uploading...")
       div.append(label)
       new_el.append(div)
       list.append(new_el)
@@ -612,9 +615,9 @@ jQuery ->
 
       if link
         div = $("<div>")
-        label = $("<label class='govuk-label'>").text('Website address')
-        input = $("<input class=\"medium js-trigger-autosave\" type=\"text\">").
-          prop('name', "#{form_name}[#{name}][][link]")
+        uid = '_' + Math.random().toString(36).substr(2, 9);
+        label = $("<label class='govuk-label' for='#{uid}'>").text('Website address')
+        input = $("<input class=\"govuk-input js-trigger-autosave\" type=\"text\" id='#{uid}'>").prop('name', "#{form_name}[#{name}][][link]")
         label.append("<br/>")
         label.append(input)
         appendRemoveLinkForWebsiteLink(div)
@@ -635,14 +638,14 @@ jQuery ->
         hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
 
         div.append(hidden_input)
-        appendRemoveLinkForAttachment(div, wrapper, data)
         new_el.append(div)
+        appendRemoveLinkForAttachment(div, wrapper, data)
 
       if needs_description
         desc_div = $("<div>")
         unique_name = "#{form_name}[#{name}][][description]"
         label = ($("<label class='govuk-label'>").text("Description").attr("for", unique_name))
-        label.append($("<textarea class='js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
+        label.append($("<textarea class='govuk-textarea js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
              .attr("name", unique_name)
              .attr("id", unique_name))
         desc_div.append(label)
@@ -654,6 +657,7 @@ jQuery ->
       list.removeClass('visuallyhidden')
       updateUploadListVisiblity(list, button, max)
       reindexUploadListInputs(list)
+      new_el.find('input,textarea,select').filter(':visible').first().focus()
 
     updateUploadListVisiblity(list, button, max)
 
@@ -821,7 +825,7 @@ jQuery ->
             can_add = false
 
           if li_size + 1 >= add_limit_attr
-            question.find(".js-button-add").addClass("visuallyhidden")
+            question.find(".js-button-add").addClass("govuk-!-display-none")
 
         if can_add
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size}]")
@@ -843,6 +847,8 @@ jQuery ->
           example_has_file_field = question.find(".list-add").attr("data-example-has-file-field")
           if (typeof(example_has_file_field) != typeof(undefined) && example_has_file_field != false)
             SupportLetters.new_item_init(question.find(".list-add li.js-list-item:last"))
+          else
+            question.find(".list-add").find("li:last-child").find('input,textarea,select').filter(':visible').first()
 
           # charcount needs to be reinitialized
           if (textareas = question.find(".list-add > li:last .js-char-count")).length
@@ -851,7 +857,7 @@ jQuery ->
 
           # remove the default reached class to allow removing again
           questionAddDefaultReached(question.find(".list-add"))
-
+          window.FormValidation.validateStep()
           triggerAutosave()
 
   # Removing these added fields
@@ -877,6 +883,7 @@ jQuery ->
         $(this).closest("li").remove()
 
       questionAddDefaultReached(parent_ul)
+      window.FormValidation.validateStep()
       triggerAutosave()
 
   questionAddDefaultReached = (ul) ->
