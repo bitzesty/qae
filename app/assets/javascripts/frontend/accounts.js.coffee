@@ -3,7 +3,7 @@ jQuery ->
     do e.preventDefault
     do ($ '#account-form').submit
 
-  if $('#user_qae_info_source').size() > 0
+  if $('#user_qae_info_source').length > 0
     toggleOther = (select) ->
       if select.val() == 'other'
         ($ '#qae_info_source_other').removeClass('visuallyhidden')
