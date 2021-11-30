@@ -125,8 +125,10 @@
     <div id="global-app-error" class="app-error hidden"></div>
 
     <% if should_enable_js? %>
+      <%= javascript_include_tag Ckeditor.cdn_url %>
       <script src="<%= asset_path "govuk-template.js" %>" type="text/javascript"></script>
       <%= yield :body_end %>
+
     <% end %>
   </body>
 </html>

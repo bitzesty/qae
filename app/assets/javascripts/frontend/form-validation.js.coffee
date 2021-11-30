@@ -10,7 +10,7 @@ window.FormValidation =
     $(".steps-progress-bar .js-step-link").removeClass("step-errors")
 
   clearErrors: (container) ->
-    if container.closest(".question-financial").size() > 0
+    if container.closest(".question-financial").length > 0
       container.closest("label").find(".errors-container").empty()
     else if container.closest('.question-matrix').length > 0
       container.closest("td").find(".errors-container").empty()
@@ -85,9 +85,9 @@ window.FormValidation =
     # if it's a conditional question, but condition was not satisfied
     conditional = true
 
-    if question.find(".js-by-trade-goods-and-services-amount").size() > 0
+    if question.find(".js-by-trade-goods-and-services-amount").length > 0
       # If it's the trade B1 question which has multiple siblings that have js-conditional-question
-      if question.find(".js-conditional-question.show-question .js-by-trade-goods-and-services-amount .js-conditional-question.show-question").size() == 0
+      if question.find(".js-conditional-question.show-question .js-by-trade-goods-and-services-amount .js-conditional-question.show-question").length == 0
         conditional = false
     else
       question.find(".js-conditional-question").each ->
@@ -99,7 +99,7 @@ window.FormValidation =
 
     # This handles questions with multiple fields,
     # like name and address
-    if question.find(".js-by-trade-goods-and-services-amount").size() > 0
+    if question.find(".js-by-trade-goods-and-services-amount").length > 0
       # If it's the trade B1 question which has multiple siblings that have js-conditional-question
       subquestions = question.find(".js-by-trade-goods-and-services-amount .js-conditional-question.show-question .question-group")
     else
@@ -416,7 +416,7 @@ window.FormValidation =
       rootThis = @
       question.find(".validate-date-start-end").each () ->
         # Whether we need to validate if date is ongoing
-        if $(this).find(".validate-date-end input[disabled]").size() == 0
+        if $(this).find(".validate-date-end input[disabled]").length == 0
           startYear = parseInt($(this).find(".validate-date-start .js-date-input-year").val())
           startMonth = parseInt($(this).find(".validate-date-start .js-date-input-month").val())
           startDate = "01/#{startMonth}/#{startYear}"
@@ -465,7 +465,7 @@ window.FormValidation =
       return
 
   validateSupportLetters: (question) ->
-    lettersReceived = $(".js-support-letter-received").size()
+    lettersReceived = $(".js-support-letter-received").length
     if lettersReceived < 2
       @logThis(question, "validateSupportLetters", "You need to request or upload at least 2 letters of support")
       @appendMessage(question, "You need to request or upload at least 2 letters of support")
@@ -570,7 +570,7 @@ window.FormValidation =
       # console.log "validateCurrentAwards"
       @validateCurrentAwards(question)
 
-    if question.find(".validate-date-start-end").size() > 0
+    if question.find(".validate-date-start-end").length > 0
       # console.log "validateDateStartEnd"
       @validateDateStartEnd(question)
 
