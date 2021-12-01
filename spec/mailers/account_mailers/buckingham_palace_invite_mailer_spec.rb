@@ -58,7 +58,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
     #   expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
     # end
 
-    xit "renders the body" do
+    it "renders the body" do
       expect(mail.body.raw_source).to match(account_holder_name)
       expect(mail.body.raw_source).to include(edit_palace_invite_url(id: palace_invite.token))
     end
