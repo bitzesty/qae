@@ -1,18 +1,15 @@
-.question-group
-  label
+.govuk-form-group
+  label.govuk-label
     ' Title
-    ul.errors-container
-    .clear
-    input.small.js-trigger-autosave type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'primary') autocomplete="off" *possible_read_only_ops
-.question-group
-  label
+  span.govuk-error-message
+  input.govuk-input.govuk-input--width-2.js-trigger-autosave type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'primary') autocomplete="off" *possible_read_only_ops
+.govuk-form-group
+  label.govuk-label
     ' First name
-    ul.errors-container
-    .clear
-    input.medium.js-trigger-autosave type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops
-.question-group
-  label
+  span.govuk-error-message
+  input.govuk-input.govuk-input--width-5.js-trigger-autosave type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops
+.govuk-form-group
+  label.govuk-label
     ' Last name
-    ul.errors-container
-    .clear
-    input.medium.js-trigger-autosave type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops
+  span.govuk-error-message
+  input.govuk-input.govuk-input--width-5.js-trigger-autosave type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops

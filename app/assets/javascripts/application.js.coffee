@@ -1,3 +1,4 @@
+#= require govuk-frontend-3.13.0.min
 #= require jquery
 #= require jquery_ujs
 #= require vendor/file_upload/jquery.ui.widget
@@ -5,16 +6,12 @@
 #= require vendor/file_upload/jquery.fileupload
 #= require vendor/file_upload/jquery.fileupload-process
 #= require vendor/file_upload/jquery.fileupload-validate
-#= require select2.full.min
 #= require ./ckeditor/config.js
 #= require Countable
 #= require moment.min
 #= require core
-#= require vendor/polyfills/bind
-#= require govuk/selection-buttons
 #= require libs/suchi/isOld.js
 #= require libs/pusher.min.js
-#= require govuk_toolkit
 #= require mobile
 #= require browser-check
 #= require vendor/zxcvbn
@@ -42,15 +39,13 @@ ordinal = (n) ->
     return n + "th"
 
 jQuery ->
-  GOVUK.details.init();
+  # GOVUK.details.init();
+  # GOVUKFrontend.initAll();
 
-  $("html").removeClass("no-js").addClass("js")
+  $("html").removeClass("no-js")
 
   offlineCheck = new Offline
   offlineCheck.start()
-
-  # initialize Select dropdowns, if needed
-  window.Select2Dropdowns.init()
 
   # This is a very primitive way of testing.
   # Should be refactored once forms stabilize.
@@ -93,8 +88,8 @@ jQuery ->
     hidden_link.toggleClass("show-hint")
 
   $(".supporters-list input").change ->
-    $(this).closest("label").find(".errors-container").empty()
-    $(this).closest(".question-has-errors").removeClass("question-has-errors")
+    $(this).closest("label").find(".govuk-error-message").empty()
+    $(this).closest(".govuk-form-group--error").removeClass("govuk-form-group--error")
 
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
@@ -106,7 +101,7 @@ jQuery ->
     checkboxVal = input.val()
     answerVal = if isCheckbox then input.is(':checked').toString() else input.val()
     boolean_values = ["0", "1", "true", "false"]
-    values = input.closest(".question-group").find("input[type='checkbox']").filter(":checked").map(() -> $(@).val()).toArray()
+    values = input.closest(".govuk-form-group").find("input[type='checkbox']").filter(":checked").map(() -> $(@).val()).toArray()
 
     question.each () ->
       nonBooleanCheckboxMeetsCriteria = isCheckbox && $(this).attr('data-value') in values
@@ -179,7 +174,7 @@ jQuery ->
     # $(".js-financial-year-changed-dates .js-fy-entries").each ->
     #  if $(this).find("input.js-fy-year").val() == ""
     #    parent_fy = $(this).parent().find(".js-fy-entries")
-    #    this_year = fy_year - (parent_fy.length - parent_fy.index($(this)) - 1)
+    #    this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
     #    $(this).find("input.js-fy-year").val(this_year)
 
     # fy_latest_changed_input.find("input").attr("disabled", "disabled")
@@ -241,6 +236,14 @@ jQuery ->
   $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
     updateYearEnd()
 
+  $('.question-required').find('input,select,textarea').each ->
+    $(this).prop('required', true)
+    $(this).attr('aria-required', 'true')
+
+  $('.qae-form').find('input[type="number"]').each ->
+    $(this).attr('pattern', '[0-9]*')
+    $(this).attr('inputmode', 'decimal')
+
   # Calculates the UK Sales for Sus Dev form
   # UK sales = turnover - exports
   updateTurnoverExportCalculation = ->
@@ -280,6 +283,8 @@ jQuery ->
 
     window.location.hash = "##{step.substr(5)}"
     $(".js-step-condition[data-step='#{step}']").addClass("step-current")
+    $(".js-step-condition[data-step='#{step}'] h2").attr('tabindex', '-1')
+    $(".js-step-condition[data-step='#{step}'] h2").focus()
 
     # Show past link status
     $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
@@ -295,7 +300,7 @@ jQuery ->
 
   if window.location.hash
     step = window.location.hash.substr(1)
-    if $(".js-step-condition[data-step='step-#{step}']").length > 0
+    if $(".js-step-condition[data-step='step-#{step}']").size() > 0
       showAwardStep("step-#{step}")
       # Resize textareas that were previously hidden
       resetResizeTextarea()
@@ -516,7 +521,7 @@ jQuery ->
       idx++
 
   appendRemoveLinkForWebsiteLink = (div) ->
-    remove_link = $("<a>").addClass("remove-link").prop("href", "#").text("Remove")
+    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning").attr("id", "remove-website").prop("href", "#").text("Remove")
     div.append(remove_link)
 
   appendRemoveLinkForAttachment = (div, wrapper, data) ->
@@ -538,7 +543,7 @@ jQuery ->
     $el = $(el)
 
     wrapper = $el.closest('div.js-upload-wrapper')
-    button = wrapper.find(".button-add")
+    button = wrapper.find(".js-button-add")
     list = wrapper.find('.js-uploaded-list')
 
     max = wrapper.data('max-attachments')
@@ -548,11 +553,19 @@ jQuery ->
     has_filename = !!wrapper.data('filename')
     is_link = !!$el.data('add-link')
 
-    $el.on "focus", ->
-      button.addClass("onfocus")
+    govuk_button = $(el).closest('.govuk-button')
 
-    $el.on "blur", ->
-      button.removeClass("onfocus")
+    #  Searching for inputs only excludes 'Add website address' button
+    if $(el).is("input")
+      $el.on "focus", ->
+        button.addClass("onfocus")
+        govuk_button.removeClass('govuk-button govuk-button--secondary')
+        govuk_button.addClass('upload-focus')
+
+      $el.on "blur", ->
+        button.removeClass("onfocus")
+        govuk_button.addClass('govuk-button govuk-button--secondary')
+        govuk_button.removeClass('upload-focus')
 
     progress_all = (e, data) ->
       # TODO
@@ -562,13 +575,14 @@ jQuery ->
       button.addClass("visuallyhidden")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
-      label = $("<label>").text("Uploading...")
+      uid = '_' + Math.random().toString(36).substr(2, 9);
+      label = $("<label for='#{uid}'>").text("Uploading...")
       div.append(label)
       new_el.append(div)
       list.append(new_el)
       list.removeClass("visuallyhidden")
-      wrapper.removeClass("question-has-errors")
-      wrapper.find(".errors-container").empty()
+      wrapper.removeClass("govuk-form-group--error")
+      wrapper.find(".govuk-error-message").empty()
 
     success_or_error = (e, data) ->
       errors = data.result.errors
@@ -580,8 +594,8 @@ jQuery ->
 
     failed = (error_message) ->
       if error_message
-        wrapper.addClass("question-has-errors")
-        wrapper.find(".errors-container").html("<li>" + error_message + "</li>")
+        wrapper.addClass("govuk-form-group--error")
+        wrapper.find(".govuk-error-message").html(error_message)
 
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
@@ -592,17 +606,18 @@ jQuery ->
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.addClass("visuallyhidden")
-      wrapper.removeClass("question-has-errors")
-      wrapper.find(".errors-container").empty()
+      wrapper.removeClass("govuk-form-group--error")
+      wrapper.find(".govuk-error-message").empty()
 
       # Show new upload
       new_el = $("<li>")
 
       if link
         div = $("<div>")
-        label = $("<label>").text('Website address')
-        input = $("<input class=\"medium js-trigger-autosave\" type=\"text\">").
-          prop('name', "#{form_name}[#{name}][][link]")
+        uid = '_' + Math.random().toString(36).substr(2, 9);
+        label = $("<label class='govuk-label' for='#{uid}'>").text('Website address')
+        input = $("<input class=\"govuk-input js-trigger-autosave\" type=\"text\" id='#{uid}'>").prop('name', "#{form_name}[#{name}][][link]")
+        label.append("<br/>")
         label.append(input)
         appendRemoveLinkForWebsiteLink(div)
         div.append(label)
@@ -622,14 +637,14 @@ jQuery ->
         hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
 
         div.append(hidden_input)
-        appendRemoveLinkForAttachment(div, wrapper, data)
         new_el.append(div)
+        appendRemoveLinkForAttachment(div, wrapper, data)
 
       if needs_description
         desc_div = $("<div>")
         unique_name = "#{form_name}[#{name}][][description]"
-        label = ($("<label>").text("Description").attr("for", unique_name))
-        label.append($("<textarea class='js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
+        label = ($("<label class='govuk-label'>").text("Description").attr("for", unique_name))
+        label.append($("<textarea class='govuk-textarea js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
              .attr("name", unique_name)
              .attr("id", unique_name))
         desc_div.append(label)
@@ -641,6 +656,7 @@ jQuery ->
       list.removeClass('visuallyhidden')
       updateUploadListVisiblity(list, button, max)
       reindexUploadListInputs(list)
+      new_el.find('input,textarea,select').filter(':visible').first().focus()
 
     updateUploadListVisiblity(list, button, max)
 
@@ -677,7 +693,7 @@ jQuery ->
       li = $(this).closest 'li'
       list = li.closest(".js-uploaded-list")
       wrapper = list.closest(".js-upload-wrapper")
-      button = wrapper.find(".button-add")
+      button = wrapper.find(".js-button-add")
       max = wrapper.data('max-attachments')
 
       li.remove()
@@ -808,7 +824,7 @@ jQuery ->
             can_add = false
 
           if li_size + 1 >= add_limit_attr
-            question.find(".js-button-add").addClass("visuallyhidden")
+            question.find(".js-button-add").addClass("govuk-!-display-none")
 
         if can_add
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size}]")
@@ -822,7 +838,7 @@ jQuery ->
           question.find(".list-add").find("li:last-child .remove-link").attr("aria-label", "Remove " + ordinal(idx) + " " + entity)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
-            question.find(".list-add li.js-list-item:last .errors-container").empty()
+            question.find(".list-add li.js-list-item:last .govuk-error-message").empty()
             clearFormElements(question.find(".list-add li.js-list-item:last"))
 
           # If .js-add-example has file field (like in SupportLetters)
@@ -830,6 +846,8 @@ jQuery ->
           example_has_file_field = question.find(".list-add").attr("data-example-has-file-field")
           if (typeof(example_has_file_field) != typeof(undefined) && example_has_file_field != false)
             SupportLetters.new_item_init(question.find(".list-add li.js-list-item:last"))
+          else
+            question.find(".list-add").find("li:last-child").find('input,textarea,select').filter(':visible').first()
 
           # charcount needs to be reinitialized
           if (textareas = question.find(".list-add > li:last .js-char-count")).length
@@ -838,15 +856,15 @@ jQuery ->
 
           # remove the default reached class to allow removing again
           questionAddDefaultReached(question.find(".list-add"))
-
+          window.FormValidation.validateStep()
           triggerAutosave()
 
   # Removing these added fields
-  $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
+  $(document).on "click", ".govuk-form-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("read-only")
       parent_ul = $(this).closest("ul")
-      $(this).closest(".question-group")
+      $(this).closest(".govuk-form-group")
              .find(".js-button-add")
              .removeClass("visuallyhidden")
 
@@ -864,6 +882,7 @@ jQuery ->
         $(this).closest("li").remove()
 
       questionAddDefaultReached(parent_ul)
+      window.FormValidation.validateStep()
       triggerAutosave()
 
   questionAddDefaultReached = (ul) ->
@@ -1027,8 +1046,8 @@ jQuery ->
       CKEDITOR.on 'instanceReady', (event) ->
         target_id = event.editor.name
 
-        spinner = $("##{target_id}").closest(".question-group").find(".js-ckeditor-spinner-block")
-        spinner.remove()
+        spinner = group.find(".js-ckeditor-spinner-block")
+        spinner.addClass('govuk-!-display-none')
 
     for i of CKEDITOR.instances
       instance = CKEDITOR.instances[i]

@@ -8,6 +8,7 @@ window.SupportLetters =
     SupportLetters.clean_up_system_tags(el)
     SupportLetters.enable_item_fields_and_controls(el)
     SupportLetters.fileupload_init(el.find(".js-support-letter-attachment"))
+    el.find('input,textarea,select').filter(':visible').first().focus()
 
   fileupload_init: (el) ->
     $el = $(el)
@@ -23,16 +24,16 @@ window.SupportLetters =
       file_title = $("<span class='support-letter-attachment-filename'>" + filename + "</span>")
       hidden_input = $("<input class='js-support-letter-attachment-id' type='hidden' name='#{$el.attr("name")}' value='#{data.result['id']}' />")
 
-      parent.find(".errors-container").html("")
-      parent.find(".errors-container").closest("label").removeClass("question-has-errors")
+      parent.find(".govuk-error-message").html("")
+      parent.find(".govuk-error-message").closest(".govuk-form-group").removeClass("govuk-form-group--error")
       parent.append(file_title)
       parent.append(hidden_input)
       SupportLetters.autosave()
 
     failed = (error_message) ->
       SupportLetters.clean_up_system_tags(parent)
-      parent.find(".errors-container").html("<li>" + error_message + "</li>")
-      parent.closest("label").addClass("question-has-errors")
+      parent.find(".govuk-error-message").html(error_message)
+      parent.closest(".govuk-form-group").addClass("govuk-form-group--error")
 
     success_or_error = (e, data) ->
       errors = data.result.errors
@@ -62,7 +63,7 @@ window.SupportLetters =
     parent.find(".remove-link").removeClass("visuallyhidden")
     fields = parent.find("input")
     fields.removeClass("read-only")
-    parent.find(".errors-container").html("")
+    parent.find(".govuk-error-message").html("")
     form_name_prefix = parent.find(".js-system-tag").data("new-hidden-input-name")
     letter_id_hidden_input = $("<input class='js-support-entry-id'>").prop('type', 'hidden').
                                                                        prop('name', form_name_prefix)
@@ -111,8 +112,8 @@ window.SupportLetters =
             dataType: 'json'
             success: (response) ->
               parent.find(".js-support-entry-id").prop('value', response)
-              parent.find(".errors-container").html("")
-              parent.find(".errors-container").closest("label").addClass("question-has-errors")
+              parent.find(".govuk-error-message").html("")
+              parent.find(".govuk-error-message").closest(".govuk-form-group").addClass("govuk-form-group--error")
               parent.addClass("read-only")
               parent.addClass("js-support-letter-received")
               parent.find("input[type='text']").each ->
@@ -123,16 +124,16 @@ window.SupportLetters =
 
               return
             error: (response) ->
-              parent.find(".errors-container").html("")
-              parent.find(".errors-container").closest("label").removeClass("question-has-errors")
+              parent.find(".govuk-error-message").html("")
+              parent.find(".govuk-error-message").closest(".govuk-form-group").removeClass("govuk-form-group--error")
               error_message = response.responseText
               $.each $.parseJSON(response.responseText), (question_key, error_message) ->
                 key_selector = ".js-support-letter-" + question_key.replace(/_/g, "-")
                 field_error_container = parent.find(key_selector).
-                                              closest("label").
-                                              find(".errors-container")
-                field_error_container.html("<li>" + error_message[0] + "</li>")
-                field_error_container.closest("label").addClass("question-has-errors")
+                                              closest(".govuk-form-group").
+                                              find(".govuk-error-message")
+                field_error_container.html(error_message[0])
+                field_error_container.closest(".govuk-form-group").addClass("govuk-form-group--error")
               button.removeClass("visuallyhidden")
 
               return

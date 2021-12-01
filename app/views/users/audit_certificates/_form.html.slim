@@ -1,16 +1,16 @@
 = simple_form_for (audit_certificate || form_answer.build_audit_certificate),
                   as: :audit_certificate,
                   url: users_form_answer_audit_certificate_path(form_answer),
-                  html: {class: "qae-form audit-certificate-upload-form #{"hidden" if cert_exists}", method: :post} do |f|
+                  html: {class: "qae-form audit-certificate-upload-form #{"govuk-!-display-none" if cert_exists}", method: :post} do |f|
   .errors-container
   .clear
-  span.button.button-add
+  span.button-add.govuk-button role="button"
     span + Upload External Accountant's Report
     = f.input :attachment,
               as: :file,
               required: true,
               label: false,
-              input_html: { class: "fileinput-button js-audit-certificate-file-upload" }
+              input_html: { class: "fileinput-button js-audit-certificate-file-upload", id: "upload_external_accountants_report_for_#{form_answer.id}", aria: { label:"Upload external accountants report for #{form_answer.id}" } }
 
   footer.display-none
     nav.pagination role="navigation"

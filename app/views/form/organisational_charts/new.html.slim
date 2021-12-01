@@ -15,7 +15,7 @@ header.page-header.group.page-header-over-sidebar
       article.group role="article"
         .inner
           fieldset.question-block
-            h2 Upload an organisational chart.
+            h2.govuk-heading-m Upload an organisational chart.
 
             ul.list-add
               = render "form/organisational_charts/form"
@@ -24,7 +24,7 @@ header.page-header.group.page-header-over-sidebar
             nav.pagination.no-border aria-label="Pagination" role="navigation"
               ul.group
                 li.previous.previous-alternate
-                  = link_to edit_form_url(id: params[:form_answer_id], step: "company-information"), rel: "prev", title: "Navigate to previous part" do
-                    span.pagination-label Back
+                  = link_to edit_form_url(id: params[:form_answer_id], step: "company-information"), rel: "prev", title: "Navigate to previous part", class: "govuk-back-link govuk-!-font-size-19 govuk-!-margin-top-0" do
+                    span.pagination-label Go back to previous page
 
     = render "qae_form/steps_progress_bar", current_step: "company-information"

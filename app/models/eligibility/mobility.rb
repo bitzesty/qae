@@ -5,7 +5,7 @@ class Eligibility::Mobility < Eligibility
             boolean: true,
             label: "Are you able to provide financial figures for the last three years for your organisation?",
             accept: :true,
-            hint: proc { "<p class='question-context'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>" }
+            hint: proc { "<p class='govuk-hint'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>" }
 
   property :promoting_social_mobility,
             boolean: true,
@@ -34,7 +34,7 @@ class Eligibility::Mobility < Eligibility
             label: "Are you able to provide evidence of the impact of your promoting opportunity through social mobility activities?",
             accept: :true,
             hint: %(
-              <div class='question-context'>
+              <div class='govuk-hint'>
                 <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
                 <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
               </div>
@@ -47,13 +47,13 @@ class Eligibility::Mobility < Eligibility
               ["organisation", "<strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."]
             ],
             context_for_options: {
-              "initiative": "<div class='question-context'>
+              "initiative": "<div class='question-context govuk-!-margin-left-3'>
                                <p>Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.</p>
                                <p>For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.</p>
                                <p>If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim.</p>
                              </div>",
 
-              "organisation": "<div class='question-context'>
+              "organisation": "<div class='question-context govuk-!-margin-left-3'>
                                  <p>For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.</p>
                                </div>"
             },

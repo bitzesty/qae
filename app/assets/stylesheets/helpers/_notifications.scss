@@ -14,10 +14,6 @@
     padding:0.5em 0;
     max-width: 1020px;
     overflow: hidden;
-
-    @include ie-lte(7) {
-      width: 956px;
-    }
   }
 
   p {

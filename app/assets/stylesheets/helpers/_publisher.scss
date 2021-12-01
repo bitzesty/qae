@@ -11,9 +11,6 @@
   }
 
   article {
-    @include ie-lte(7) {
-      min-height: 40em;
-    }
 
     @include media-down(mobile) {
       width:auto;
@@ -30,10 +27,6 @@
 
     @include media(tablet) {
       margin: 0 0 2.5em 2em;
-    }
-
-    @include ie(6) {
-      zoom: 1;
     }
 
     .inner {
@@ -200,10 +193,6 @@ aside .page-navigation {
     overflow: hidden;
     width:50%;
 
-    @include ie-lte(7) {
-      width: 49%;
-    }
-
     @include media-down(mobile) {
       float: none;
       display: block;
@@ -220,12 +209,6 @@ aside .page-navigation {
 
     @include core-16;
 
-    @include ie-lte(7) {
-      list-style: none;
-      margin-left: 0;
-      display: list-item;
-    }
-
     @include media-down(mobile) {
       float: none;
       margin: 0 1em 0 2.25em;
@@ -234,11 +217,6 @@ aside .page-navigation {
     a {
       display: block;
       padding: 0.25em 1em 0.25em 0;
-
-      @include ie-lte(7) {
-        display: inline;
-        float: left;
-      }
 
       span {
         cursor: pointer;
@@ -253,18 +231,9 @@ aside .page-navigation {
     }
 
     span {
-      @include ie-lte(7) {
-        float: left;
-      }
-
       &.part-number {
         display: none;
         width: 1.75em;
-
-        @include ie-lte(7) {
-          display: inline;
-          padding: 0.25em 0;
-        }
       }
 
       &.part-label,
@@ -361,137 +330,119 @@ aside .page-navigation-closed {
 }
 
 /* guides pagination */
-.pagination {
-  display: block;
-  margin: 4em 0 0 0;
-  border-bottom: 1px solid $border-colour;
+// .pagination {
+//   display: block;
+//   margin: 4em 0 0 0;
+//   border-bottom: 1px solid $border-colour;
 
-  @include media-down(mobile) {
-    margin: 2em 0 0 0;
-  }
+//   @include media-down(mobile) {
+//     margin: 2em 0 0 0;
+//   }
 
-  ul {
-    margin: 0;
-    padding: 0;
-  }
+//   ul {
+//     margin: 0;
+//     padding: 0;
+//   }
 
-  li {
-    @include core-16($line-height: (20 / 16));
-    float: left;
-    list-style: none;
-    text-align: right;
-    margin: 0;
-    padding: 0;
-    width: 49%;
+//   li {
+//     @include core-16($line-height: (20 / 16));
+//     float: left;
+//     list-style: none;
+//     text-align: right;
+//     margin: 0;
+//     padding: 0;
+//     width: 49%;
 
-    a {
-      background-color: transparent;
-      display: block;
-      color: $link-colour;
-      text-decoration: none;
+//     a {
+//       background-color: transparent;
+//       display: block;
+//       color: $link-colour;
+//       text-decoration: none;
 
-      @include ie-lte(7) {
-        height: 4.5em;
-      }
+//       &:hover,
+//       &:active {
+//         background-color: $canvas-colour;
+//       }
 
-      &:hover,
-      &:active {
-        background-color: $canvas-colour;
-      }
+//       .pagination-label {
+//         @include core-27($line-height: (33.75 / 27));
+//         margin-bottom: 0.1em;
+//         display: block;
+//       }
 
-      .pagination-label {
-        @include core-27($line-height: (33.75 / 27));
-        margin-bottom: 0.1em;
-        display: block;
-      }
+//       .pagination-part-title {
+//         text-decoration: underline;
+//       }
+//     }
 
-      .pagination-part-title {
-        text-decoration: underline;
-      }
-    }
+//     &.next {
+//       float: right;
+//       text-align: right;
+//     }
 
-    &.next {
-      float: right;
-      text-align: right;
-    }
+//     // &.next a:before {
+//     //   background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
+//     //   margin: -4px -32px 0 0;
+//     //   display: block;
+//     //   float: right;
+//     //   width: 30px;
+//     //   height: 38px;
+//     //   content: " ";
+//     // }
 
-    &.next a:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
-      margin: -4px -32px 0 0;
-      display: block;
-      float: right;
-      width: 30px;
-      height: 38px;
-      content: " ";
-    }
+//     // &.previous a:before {
+//     //   background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
+//     //   margin: -4px 0 0 -32px;
+//     //   display: block;
+//     //   float: left;
+//     //   width: 30px;
+//     //   height: 38px;
+//     //   content: " ";
+//     //   }
 
-    &.previous a:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
-      margin: -4px 0 0 -32px;
-      display: block;
-      float: left;
-      width: 30px;
-      height: 38px;
-      content: " ";
-      }
+//     &.previous {
+//       float: left;
+//       text-align: left;
+//     }
 
-    &.previous {
-      float: left;
-      text-align: left;
-    }
-
-    &.previous a {
-      padding: 0.75em 0 0.75em 3em;
-    }
+//     &.previous a {
+//       padding: 0.75em 0 0.75em 3em;
+//     }
     
-    &.next a {
-      padding: 0.75em 3em 0.75em 0;
-    }
+//     &.next a {
+//       padding: 0.75em 3em 0.75em 0;
+//     }
 
-    @include media-down(mobile) {
-      &.previous,
-      &.next {
-        float: none;
-        width: 100%;
-      }
+//     @include media-down(mobile) {
+//       &.previous,
+//       &.next {
+//         float: none;
+//         width: 100%;
+//       }
 
-      &.next a {
-        text-align: right;
-      }
-    }
-  }
+//       &.next a {
+//         text-align: right;
+//       }
+//     }
+//   }
 
-  .first,
-  .last {
-    min-height: 4.5em;
+//   .first,
+//   .last {
+//     min-height: 4.5em;
 
-    @include ie-lte(7) {
-      height: 4.5em;
-    }
+//     span {
+//       display: block;
+//       min-height: 4.5em;
+//       padding: 0.75em 5%;
+//       width: 90%;
+//     }
 
-    span {
-      display: block;
-      min-height: 4.5em;
-      padding: 0.75em 5%;
-      width: 90%;
-
-      @include ie-lte(7) {
-        height: 4.5em;
-      }
-    }
-
-    .pagination-label {
-      display: block;
-      margin-bottom: 0.5em;
-    }
-  }
-
-  @include ie(6) {
-    .first {
-      text-align: left;
-    }
-  }
-}
+//     .pagination-label {
+//       display: block;
+//       margin-bottom: 0.5em;
+//     }
+//   }
+// }
 
 /*
  * Transactions and local transactions styles
@@ -580,10 +531,6 @@ ul.helpers li.active h3 a {
 
   article {
     min-height: 20em;
-
-    @include ie(6) {
-      height: 20em;
-    }
 
     @include media-down(mobile) {
       min-height: 0;

@@ -1,3 +1,5 @@
+- title "#{@form_answer.award_type_full_name} Award application #{@form_answer.id}"
+
 - provide(:page_wrapper_class, "page-award-form #{'page-read-only-form' if current_form_is_not_editable?}")
 
 - if application_collaborator_group_mode?
@@ -10,26 +12,22 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
 
   = hidden_field_tag :current_step_id, (params[:step].present? ? params[:step] : @form.steps.first.title.parameterize)
 
-  header.page-header.group.page-header-over-sidebar
-    div
-      h1
-        = @form.title
+  h1.govuk-heading-xl
+    = @form.title
 
   .steps-progress-container.min-height-800
     = render "qae_form/steps_progress_bar", current_step: params[:step]
     
     .steps-progress-content
       - if @form_answer.promotion? && @form_answer.validator_errors && @form_answer.validator_errors["supporters"].present?
-        article.group role="article"
-          .inner
-            .errors-box.letters-of-support-error
-              h3 There was a problem submitting the form
-              p
-                ' You need to request or upload at least 2 letters of support.
-              p
-                = link_to "Add more letters of support", form_form_answer_supporters_path(@form_answer)
+        .govuk-error-summary aria-labelledby="letters-of-support-error-title" role="alert" tabindex="-1" data-module="govuk-error-summary"
+          h2.govuk-error-summary__title#letters-of-support-error-title There was a problem submitting the form
+          .govuk-error-summary__body
+            p.govuk-body
+              ' You need to request or upload at least 2 letters of support.
+            p.govuk-body
+              = link_to "Add more letters of support", form_form_answer_supporters_path(@form_answer), class: 'govuk-link'
 
-      = render 'qae_form/form_header', form: @form, current_step: params[:step]
       = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {})), attachments: HashWithIndifferentAccess.new(@attachments)}
 
       = render "qae_form/step_error"

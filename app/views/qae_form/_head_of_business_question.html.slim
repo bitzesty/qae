@@ -1,20 +1,17 @@
-.question-group.question-block.question-required
-  label
+.govuk-form-group.question-block.question-required
+  label.govuk-label for=question.input_name(suffix:'first_name')
     ' First name
-    ul.errors-container
-    .clear
-    input.js-trigger-autosave.medium type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops
-.question-group.question-block.question-required
-  label
+  span.govuk-error-message
+  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'first_name')
+.govuk-form-group.question-block.question-required
+  label.govuk-label for=question.input_name(suffix:'last_name')
     ' Last name
-    ul.errors-container
-    .clear
-    input.js-trigger-autosave.medium type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops
-.question-group
-  label
+  span.govuk-error-message
+  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'last_name')
+.govuk-form-group
+  label.govuk-label for=question.input_name(suffix:'honours')
     ' Personal Honours (optional)
-    ul.errors-container
-    .clear
-    input.js-trigger-autosave.medium.js-ignore-substitution type="text" name=question.input_name(suffix: 'honours') value=question.input_value(suffix: 'honours') autocomplete="off" *possible_read_only_ops
-  span.hint
+  span.govuk-error-message
+  span.govuk-hint
     ' e.g. OBE (Not including educational qualifications or institutional memberships.)
+  input.js-trigger-autosave.govuk-input.govuk-input--width-10.js-ignore-substitution type="text" name=question.input_name(suffix: 'honours') value=question.input_value(suffix: 'honours') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'honours')

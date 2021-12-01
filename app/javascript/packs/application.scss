@@ -1,0 +1,153 @@
+$govuk-assets-path: "~govuk-frontend/govuk/assets/";
+
+p {
+  margin-top: 0 !important;
+}
+
+@import "node_modules/govuk-frontend/govuk/all";
+
+.alert,
+.notice {
+  @extend .govuk-body;
+  margin: 20px 0 !important;
+}
+
+.conditional-hint,
+.application-notice {
+  @extend .govuk-body;
+}
+
+body.js-enabled {
+  .if-js-hide,
+  .conditional-hint {
+    display: none;
+  }
+}
+
+.govuk-form-group:not(.govuk-form-group--error) > .govuk-error-message {
+  margin: 0 !important;
+}
+
+.pagination {
+  @supports (flex-wrap: wrap) {
+    margin-bottom: 3rem;
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0 0 0;
+
+      .govuk-button {
+        margin-bottom: 0 !important;
+        white-space: nowrap;
+      }
+    }
+
+    .previous {
+      flex: 1;
+    }
+
+    .submit {
+      width: auto !important;
+    }
+  }
+}
+
+.govuk-button.govuk-button--secondary {
+  color: govuk-colour('black') !important;
+}
+
+.govuk-input {
+  &.tiny {
+    @extend .govuk-input--width-3;
+  }
+
+  &.small {
+    @extend .govuk-input--width-10;
+  }
+
+  &.medium {
+    @extend .govuk-input--width-20;
+  }
+
+  &.large {
+    @extend .govuk-input--width-30;
+  }
+}
+
+.govuk-table__head.govuk-visuallyhidden {
+  height: 1px;
+  overflow: hidden;
+}
+
+
+table td::before,
+tbody th::before {
+  display: none;
+}
+
+
+@media all and (max-width: 37em) {
+  table,
+  tr,
+  td {
+    display: block;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: #eaeaea;
+  }
+
+  caption {
+    display: block !important;
+    width: 100%;
+  }
+
+  tr {
+    padding: 0.7em 2vw;
+    border-bottom-width: 3px;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .govuk-table__head,
+  .row-heading {
+    display: none;
+  }
+
+  tbody td,
+  tbody th {
+    display: flex;
+  }
+
+  tbody td::before,
+  tbody th::before {
+    display: block !important;
+    font-weight: bold;
+    width: 50%;
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+.visuallyhidden-on-desktop {
+  @media (min-width: 37em) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
+
+.matrix-question-table td .matrix-question-input {
+  @media (max-width: 37em) {
+    width: 5em !important;
+  }
+}

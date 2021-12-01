@@ -128,25 +128,6 @@ $(function() {
 
         $passwordChangePanel.removeClass(GOVUK.passwordConfirmationPossibleGuidance.join(" "));
         $passwordChangePanel.addClass(guidance.join(" "));
-
-        var indicator = $('#password-confirmation-result');
-
-        if ($passwordConfirmationField.val().length == 0) {
-          indicator.attr('aria-invalid', "true");
-          indicator.removeClass('glyphicon-remove').addClass('glyphicon-ok');
-        } else if ($.inArray('confirmation-not-matching', guidance) >= 0) {
-          $passwordConfirmationField.attr('aria-invalid', "true");
-          indicator.removeClass('glyphicon glyphicon-ok').addClass('glyphicon glyphicon-remove');
-          indicator.parent().removeClass('confirmation-matching');
-        } else if ($.inArray('confirmation-matching', guidance) >= 0) {
-          $passwordConfirmationField.attr('aria-invalid', "false");
-          indicator.removeClass('glyphicon glyphicon-remove');
-          // Add tick only if password field is also valid.
-          if($.inArray('good-password', guidance) >= 0) {
-            indicator.addClass('glyphicon glyphicon-ok');
-            indicator.parent().addClass('confirmation-matching');
-          }
-        }
       }
     });
   });

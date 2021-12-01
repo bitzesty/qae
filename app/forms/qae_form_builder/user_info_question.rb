@@ -13,7 +13,7 @@ class QAEFormBuilder
         end
       end
 
-      # need to add question-has-errors class
+      # need to add govuk-form-group--errors class
       result[question.hash_key] ||= "" if result.any?
 
       result

@@ -14,25 +14,25 @@ $(function() {
   }
 
   // we don't show the message when the cookie warning is also there
-  if (GOVUK.cookie('seen_cookie_message')) {
-    if (typeof suchi != "undefined") {
-      if (suchi.isOld(navigator.userAgent)) {
-        if(GOVUK.cookie('govuk_not_first_visit') !== null && GOVUK.cookie('govuk_browser_upgrade_dismissed') === null){
-          var $prompt = browserWarning();
-          $('#global-cookie-message').after($prompt);
-          $prompt.show();
-          window._gaq && _gaq.push(['_trackEvent', 'browser-check', 'prompt-shown', '', 1, true]);
-          $prompt.on("click", ".dismiss", function(e) {
-            $prompt.hide();
-            // the warning is dismissable for 4 weeks, for users who are not in a
-            // position to upgrade right now or unable to (no control of browser)
-            GOVUK.cookie('govuk_browser_upgrade_dismissed', 'yes', { days: 28 });
-          });
-        }
-      }
-    }
+  // if (GOVUK.cookie('seen_cookie_message')) {
+  //   if (typeof suchi != "undefined") {
+  //     if (suchi.isOld(navigator.userAgent)) {
+  //       if(GOVUK.cookie('govuk_not_first_visit') !== null && GOVUK.cookie('govuk_browser_upgrade_dismissed') === null){
+  //         var $prompt = browserWarning();
+  //         $('#global-cookie-message').after($prompt);
+  //         $prompt.show();
+  //         window._gaq && _gaq.push(['_trackEvent', 'browser-check', 'prompt-shown', '', 1, true]);
+  //         $prompt.on("click", ".dismiss", function(e) {
+  //           $prompt.hide();
+  //           // the warning is dismissable for 4 weeks, for users who are not in a
+  //           // position to upgrade right now or unable to (no control of browser)
+  //           GOVUK.cookie('govuk_browser_upgrade_dismissed', 'yes', { days: 28 });
+  //         });
+  //       }
+  //     }
+  //   }
 
-    // We're not showing the message on first visit
-    GOVUK.cookie('govuk_not_first_visit', 'yes', { days: 28 });
-  }
+  //   // We're not showing the message on first visit
+  //   GOVUK.cookie('govuk_not_first_visit', 'yes', { days: 28 });
+  // }
 });

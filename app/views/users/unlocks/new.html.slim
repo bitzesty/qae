@@ -3,25 +3,17 @@
 - provide(:page_wrapper_class, "page-devise")
 
 .article-related-positioning-container
-  header.page-header.group
-    div
-      h1
-        | Resend unlock instructions
-
   .article-container.group
     article.group role="article"
-      .inner
-        = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-          /= f.error_notification
-          = f.full_error :unlock_token
+      h1.govuk-heading-xl
+        | Resend unlock instructions
+      = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+        /= f.error_notification
+        = f.full_error :unlock_token
 
-          .form-inputs
-            .question
-              h2 = f.label :email
-              .question-body
-                = f.input :email, required: true, autofocus: true, label: false, input_html: {class: "large"}
+        = f.input :email, required: true, autofocus: true, label: 'Email', input_html: {class: "govuk-input--width-20"}
 
-          .form-actions
-            = f.button :submit, "Resend unlock instructions", class: "button large"
+        .form-actions
+          = f.button :submit, "Resend unlock instructions"
 
-        = render "users/shared/links"
+      = render "users/shared/links"

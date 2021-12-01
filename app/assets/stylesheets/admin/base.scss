@@ -104,6 +104,10 @@ table .ellipsis {
   color: black;
 }
 
+.paginate-links a {
+  color: $blue-link-colour;
+}
+
 .btn {
   border-radius: 0;
 
@@ -217,6 +221,7 @@ table .ellipsis {
   .btn-link {
     padding-right: 0;
     padding-left: 0;
+    color: $blue-link-colour;
   }
 
   .pull-right a {
@@ -883,71 +888,6 @@ table .ellipsis {
   }
 }
 
-// Pagination
-  .pagination {
-    font-size: 14px;
-
-    > span {
-      float: left;
-    }
-
-    .page.current,
-    a,
-    .page.gap {
-      display: inline-block;
-      padding: 2px 8px;
-
-      &,
-      &:hover,
-      &:active,
-      &:focus {
-        color: $black;
-      }
-    }
-
-    .page.current {
-      font-weight: bold;
-      -webkit-font-smoothing: initial;
-      -moz-osx-font-smoothing: initial;
-    }
-
-    .page + .page {
-      border-left: 1px solid $black;
-    }
-
-    .first,
-    .prev,
-    .next,
-    .last {
-      margin: 0 3px;
-
-      a {
-        margin-bottom: 0;
-        font-weight: normal;
-        text-align: center;
-        text-decoration: none;
-        line-height: 1.42857143;
-        white-space: nowrap;
-        vertical-align: middle;
-        background-image: none;
-        background-color: $white-true;
-        border: 1px solid $grey-light;
-        border-radius: 4px;
-        cursor: pointer;
-
-        &:hover {
-          border-color: $pagination-border;
-          background-color: $pagination-background;
-        }
-      }
-    }
-
-    .first,
-    .last {
-      display: none;
-    }
-  }
-
 // Sortable Tables
 .sortable {
   a {
@@ -997,15 +937,15 @@ table .ellipsis {
   }
 }
 
-.muted {
-  color: $grey;
+.muted, .text-muted {
+  color: $grey-dark;
 }
 
 // Filterable Dropdowns
 .filter {
   .dropdown-toggle {
     padding: 4px 10px;
-    color: $grey;
+    color: $grey-dark;
     font-size: inherit;
 
     .lte-ie7 & {
@@ -2124,7 +2064,7 @@ table .ellipsis {
   .active a {
     background: transparent image-url("icon-arrow-admin-subnav.png") no-repeat center 110%;
     background-size: 24px 12px;
-    color: $bootstrap-blue;
+    color: $blue-link-colour;
 
     @include is-retina {
       background-image: image-url("icon-arrow-admin-subnav@2.png");

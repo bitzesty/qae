@@ -3,7 +3,7 @@ th.filter
     = f.input :award_type,
               collection: award_types_collection(params[:year]),
               label: false,
-              input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
+              input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide', aria: {label: 'Award category select'} }
 
   .dropdown.if-no-js-hide
     button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
@@ -12,14 +12,14 @@ th.filter
         ' All
       span.caret
     ul.dropdown-menu role="menu"
-      li.checkbox role="presentation"
+      li.checkbox role="menuitem"
         label data-value='select_all'
           input type="checkbox"
           span.label-contents
             em Select all
       li.divider
       - award_types_collection(params[:year]).each do |key,v|
-        li.checkbox role="presentation"
+        li.checkbox role="menuitem"
           label data-value=v
             input type="checkbox"
             span.label-contents

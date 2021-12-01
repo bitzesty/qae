@@ -2,12 +2,12 @@
 - if winners.present?
   .container-split
     .content-left
-      h2 Successful
+      h2.govuk-heading-l Successful
     .content-right.content-offset-36
-      p
+      p.govuk-body
         strong
           ' Congratulations on winning a Queen's Award for Enterprise
-      p
+      p.govuk-body
         ' We know you'll be keen to share your success. However, please remember there is a
         strong
           ' strict embargo preventing public announcement or publication of any Awards information
@@ -15,22 +15,22 @@
           '  until
           = deadline_for("buckingham_palace_attendees_details", "%H.%M hrs on %A %d %B %Y")
           ' . You must not make any announcements about your Award, either to employees or outside your organisation, before this date.
-      p
+      p.govuk-body
         strong Approve your Press Book entry
-      p
+      p.govuk-body
         ' We will be providing a Press Book to the media containing information about all the winners at
         => deadline_for("buckingham_palace_media_information", "%H.%M hrs on %A %d %B %Y")
-        ' under the terms of the embargo. Click the 'Press Book Notes' link below to check your press note, organisation details and enter details of a contact for press enquiries, and
+        ' under the terms of the embargo. Click the 'Press Book Notes' link following this paragraph to check your press note, organisation details and enter details of a contact for press enquiries, and
         strong
           'submit it by
           = deadline_for("buckingham_palace_confirm_press_book_notes", "%H.%M hrs on %A %d %B")
           ' .
-        ' If we do not hear from you by the above deadline, we will use the proposed text along with the contact details that we already hold.
+        ' If we do not hear from you by this deadline, we will use the proposed text along with the contact details that we already hold.
     .clear
   - winners.each do |award|
     .container-split.award-list
       .content-left
-        h3
+        h3.govuk-heading-m
           = award.application_name
           small
             = award.award_type_full_name
@@ -38,7 +38,7 @@
       .content-right.content-offset-24
         / Nominators don't get any options after submision
         - if award.promotion?
-          p Your nomination was successful.
+          p.govuk-body Your nomination was successful.
         - else
           - if award.press_summary.present? && award.press_summary.submitted?
             ul.post-dashboard-actions
@@ -46,9 +46,9 @@
                 - if award.press_summary.applicant_submitted?
                   ' Press Book Notes
                 - else
-                  = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token)
+                  = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token), class: 'govuk-link'
                 span.award-info
-                  span.pull-right
+                  span.pull-right.govuk-body
                     ' Due by
                     = application_deadline_short(:buckingham_palace_confirm_press_book_notes)
                   - if award.press_summary.applicant_submitted?
@@ -60,15 +60,15 @@
                         ' Incomplete
             .clear
           - else
-            p You will be notified when your press book notes are ready.
+            p.govuk-body You will be notified when your press book notes are ready.
 
           = render "content_only/post_submission/palace_invite_info", award: award if Settings.buckingham_palace_invites_stage?
       .clear
   br
   .container-split
     .content-right
-      p
-        = link_to "Visit Winners' Resources", award_winners_section_path
+      p.govuk-body
+        = link_to "Visit Winners' Resources", award_winners_section_path, class: 'govuk-link'
         '  to download media for websites and advertisements.
     .clear
   br

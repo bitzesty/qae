@@ -1,17 +1,14 @@
-.question-group.js-financial-year.js-financial-year-latest role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
-  ul.errors-container 
+.govuk-form-group.js-financial-year.js-financial-year-latest class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key]) role="group" id="q_#{question.key}"
+  span.govuk-error-message
   .clear
-  label.inline.js-fy-day
-    ' Day
-    select.js-trigger-autosave name=question.input_name(suffix: 'day') *possible_read_only_ops
-      option value="" Day
-      - (1..31).each do |day|
-        option value="#{day}" selected=((question.input_value(suffix: 'day') || '').to_s == day.to_s)
-          = day
-  label.inline.js-fy-month
-    ' Month
-    select.js-trigger-autosave name=question.input_name(suffix: 'month') *possible_read_only_ops
-      option value="" Month
-      - (1..12).each do |month|
-        option value="#{month}" selected=((question.input_value(suffix: 'month') || '').to_s == month.to_s)
-          = Date::MONTHNAMES[month]
+  .govuk-date-input
+    .govuk-date-input__item
+      .govuk-grid-row
+        .govuk-grid-column-one-half
+          label.govuk-label.govuk-date-input__label.js-fy-day for=question.input_name(suffix:'day')
+            ' Day
+          input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="number" pattern="[0-9]*" name=question.input_name(suffix: 'day') value=question.input_value(suffix: "day") id=question.input_name(suffix: "day") maxlength=2 autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
+        .govuk-grid-column-one-half
+          label.govuk-label.govuk-date-input__label.js-fy-day for=question.input_name(suffix:'month')
+            ' Month
+          input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="number" pattern="[0-9]*" name=question.input_name(suffix: 'month') value=question.input_value(suffix: "month") id=question.input_name(suffix: "month") maxlength=2 autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )

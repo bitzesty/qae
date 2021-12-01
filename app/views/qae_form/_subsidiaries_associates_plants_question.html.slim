@@ -1,74 +1,69 @@
 = render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add subsidiary, associate or plant"
 
-div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+div role="group" id="q_#{question.key}"
   input name="#{question.input_name}[array]" value="true" type="hidden" *possible_read_only_ops
   ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1 id="non_js_#{question.key}-list-question"
 
     - question.subsidiaries.each_with_index do |subsidiary, index|
       li.js-add-example non-js-attribute=subsidiary['name']
 
-        - unless admin_in_read_only_mode?
-          - aria_title = ordinal(index + 1) + " subsidiary"
-          
-          - if !subsidiary["name"].blank?
-            - aria_title = subsidiary["name"] + " subsidiary"
+        span.govuk-grid-row
+          - errors = @form_answer.validator_errors
+          - if errors && errors[question.key] && errors[question.key][index]
+            span.govuk-error-message
+              = errors[question.key][index]
 
-          = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, subsidiary: { name: subsidiary['name'], location: subsidiary['location'] }), class: "remove-link", "aria-label" => "Remove " + aria_title
-
-          = link_to "Edit", edit_form_form_answer_subsidiaries_path(@form_answer, subsidiary: subsidiary), class: "remove-link non-js-edit-link if-js-hide", "aria-label" => "Edit " + aria_title
-
-        .clear
-        span.row
-          ul.errors-container
-            - errors = @form_answer.validator_errors
-            - if errors && errors[question.key] && errors[question.key][index]
-              li = errors[question.key][index]
-
-          span.span-4
-            label.small
-              .if-no-js-hide
-                ' Name of subsidiary
-                input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][name]" value=subsidiary["name"] autocomplete="off" *possible_read_only_ops
-              .if-js-hide
-                strong
+          span.govuk-grid-column-one-third
+            label.govuk-label
+              .govuk-form-group.question-required
+                span.govuk-error-message
+                .if-no-js-hide
                   ' Name of subsidiary
-                br
-                - if subsidiary["name"].present?
-                  = subsidiary["name"]
-                - else
-                  ' -
-          span.span-4
-            label.small
-              .if-no-js-hide
-                ' Location
-                input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][location]" value=subsidiary["location"]  autocomplete="off" *possible_read_only_ops
-              .if-js-hide
-                strong Location
-                br
-                - if subsidiary["location"].present?
-                  = subsidiary["location"]
-                - else
-                  ' -
-          span.span-4
-            label.small
-              .if-no-js-hide
-                ' Amount of UK employees
-                input.small.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary["employees"]  autocomplete="off" *possible_read_only_ops
-              .if-js-hide
-                strong
+                  input.govuk-input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][name]" value=subsidiary["name"] autocomplete="off" *possible_read_only_ops
+                .if-js-hide
+                  strong
+                    ' Name of subsidiary
+                  br
+                  - if subsidiary["name"].present?
+                    = subsidiary["name"]
+                  - else
+                    ' -
+          span.govuk-grid-column-one-third
+            label.govuk-label
+              .govuk-form-group.question-required
+                span.govuk-error-message
+                .if-no-js-hide
+                  ' Location
+                  input.govuk-input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][location]" value=subsidiary["location"]  autocomplete="off" *possible_read_only_ops
+                .if-js-hide
+                  strong Location
+                  br
+                  - if subsidiary["location"].present?
+                    = subsidiary["location"]
+                  - else
+                    ' -
+          span.govuk-grid-column-one-third
+            label.govuk-label
+              .govuk-form-group.question-required
+                span.govuk-error-message
+                .if-no-js-hide
                   ' Amount of UK employees
-                br
-                - if subsidiary["employees"].present?
-                  = subsidiary["employees"]
-                - else
-                  ' -
+                  input.govuk-input.small.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary["employees"]  autocomplete="off" *possible_read_only_ops
+                .if-js-hide
+                  strong
+                    ' Amount of UK employees
+                  br
+                  - if subsidiary["employees"].present?
+                    = subsidiary["employees"]
+                  - else
+                    ' -
 
-        span.row
-          span.span-12
-            label.small
+        .govuk-grid-row
+          .govuk-grid-column-full
+            label.govuk-label
               .if-no-js-hide
                 ' Specify the reason why you are including it.
-                textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[#{index}][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
+                textarea.govuk-textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[#{index}][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
                   = subsidiary["description"]
               .if-js-hide
                 strong
@@ -79,33 +74,44 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
                 - else
                   ' -
 
-        span.clear
+        - unless admin_in_read_only_mode?
+          - aria_title = ordinal(index + 1) + " subsidiary"
+          
+          - if !subsidiary["name"].blank?
+            - aria_title = subsidiary["name"] + " subsidiary"
+
+          = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, subsidiary: { name: subsidiary['name'], location: subsidiary['location'] }), class: "govuk-link remove-link", "aria-label" => "Remove " + aria_title
+
+          = link_to "Edit", edit_form_form_answer_subsidiaries_path(@form_answer, subsidiary: subsidiary), class: "govuk-link remove-link non-js-edit-link if-js-hide", "aria-label" => "Edit " + aria_title
     - if question.subsidiaries.none?
       li.js-add-example.if-no-js-hide
         - unless admin_in_read_only_mode?
           = link_to "Remove", "#", class: "remove-link js-remove-link"
         .clear
 
-        span.row
-          span.span-4
-            label.small
-              ' Name of subsidiary
-              input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][name]" autocomplete="off" *possible_read_only_ops
-          span.span-4
-            label.small
-              ' Location
-              input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][location]" autocomplete="off" *possible_read_only_ops
-          span.span-4
-            label.small
-              ' Amount of UK employees
-              input.small.js-trigger-autosave type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
+        .govuk-grid-row
+          .govuk-grid-column-one-third
+            .govuk-form-group
+              label.govuk-label
+                ' Name of subsidiary
+              input.govuk-input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][name]" autocomplete="off" *possible_read_only_ops
+          .govuk-grid-column-one-third
+            .govuk-form-group
+              label.govuk-label
+                ' Location
+              input.govuk-input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][location]" autocomplete="off" *possible_read_only_ops
+          .govuk-grid-column-one-third
+            .govuk-form-group
+              label.govuk-label
+                ' Amount of UK employees
+              input.govuk-input.small.js-trigger-autosave type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
 
-        span.row
-          span.span-12
-            label.small
+        .govuk-grid-row
+          .govuk-grid-column-full
+            label.govuk-label
               ' Specify the reason why you are including it.
-              textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[0][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
+            textarea.govuk-textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[0][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
 
-        span.clear
+        
 
-= link_to "+ Add subsidiary, associate or plant", new_form_form_answer_subsidiaries_url(@form_answer.id), class: "button button-add js-button-add", "aria-label" => "Add subsidiary, associate or plant", "data-entity" => "subsidiary"
+= link_to "+ Add subsidiary, associate or plant", new_form_form_answer_subsidiaries_url(@form_answer.id), class: "govuk-button govuk-button--secondary button-add js-button-add", "aria-label" => "Add subsidiary, associate or plant", "data-entity" => "subsidiary"

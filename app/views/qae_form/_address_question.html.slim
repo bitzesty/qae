@@ -1,57 +1,73 @@
-div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+div role="group" id="q_#{question.key}"
   - question.rendering_sub_fields.each do |sub_field_block|
     - sub_field_key = sub_field_block[0]
     - sub_field_title = sub_field_block[1]
 
     - case sub_field_key
     - when :building
-      .question-group
-        label for="q_#{question.key}_line_1"
-          ' Building and
-        label for="q_#{question.key}_line_2"
-          ' street
-        ul.errors-container
-          - if @form_answer.validator_errors
-            li = @form_answer.validator_errors[question.hash_key(suffix: "building")]
-            li = @form_answer.validator_errors[question.hash_key(suffix: "street")]
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_line_1"
+          ' Building
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "building"))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            = @form_answer.validator_errors[question.hash_key(suffix: "building")]
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_building" : nil )
+      .govuk-form-group.question-required
+        label.govuk-label for="q_#{question.key}_line_2"
+          ' Street
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: "street"))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            = @form_answer.validator_errors[question.hash_key(suffix: "street")]
+        span.govuk-error-message
+        input.govuk-input.govuk-input--width-10.js-trigger-autosave type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_street" : nil )
+    - when :country
+      .govuk-form-group.question-required
+        label.govuk-label for="#{question.key}_country"
+          ' Country
+        = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: question.input_name(suffix: 'country'), class: 'js-trigger-autosave required custom-select govuk-!-width-one-half', aria: {describedby:(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_country" : nil )}}))
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        span.govuk-error-message
         .clear
 
-        input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
-        input.large.js-trigger-autosave type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
-    - when :country
-      .question-group
-        label
-          ' Country
-          = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: question.input_name(suffix: 'country'), class: 'js-trigger-autosave required'}))
-          ul.errors-container
-            - if @form_answer.validator_errors
-              li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
-          .clear
-
     - when :county
-      .question-group.question-required
-        label id="#{question.key}_region_label" for="#{question.key}_county" aria-describedby="#{question.key}_county_hint"
+      .govuk-form-group.question-required
+        label.govuk-label id="#{question.key}_region_label" for="#{question.key}_county" aria-describedby="#{question.key}_county_hint"
           ' County
-          ul.errors-container
-            - if @form_answer.validator_errors
-              li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
-          .clear
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        span.govuk-error-message
+        .clear
 
-          - if question.county_context.present?
-            .question-context[id="#{question.key}_county_hint"]
-              == question.county_context
+        - if question.county_context.present?
+          .question-context[id="#{question.key}_county_hint"]
+            == question.county_context
 
-          = select_tag("#{question.key}_county", options_for_select(question.counties, question.input_value(suffix: "county")), possible_read_only_ops.merge({name: question.input_name(suffix: 'county'), class: "js-trigger-autosave required custom-select", include_blank: true}))
+        = select_tag("#{question.key}_county", options_for_select(question.counties, question.input_value(suffix: "county")), possible_read_only_ops.merge({name: question.input_name(suffix: 'county'), class: "js-trigger-autosave required custom-select govuk-!-width-one-third", include_blank: true, aria: { label: "Select #{question.key}", describedby:(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_county" : nil )}}))
 
     - else
-      .question-group
-        label
+      .govuk-form-group.question-required
+        label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
           = sub_field_title
-          ul.errors-container
-            - if @form_answer.validator_errors
-              li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
-          .clear
+        - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
+          span.govuk-error-message
+            span.govuk-visually-hidden
+              | Error:
+            =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        span.govuk-error-message
+        .clear
 
-          - klass = "#{sub_field_title.parameterize == 'postcode' ? 'small' : 'medium'}"
-          - klass <<(QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
-          input.js-trigger-autosave class=klass type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops
+        - klass = "#{sub_field_title.parameterize == 'postcode' ? 'govuk-input--width-10' : 'govuk-input--width-20'}"
+        - klass <<(QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
+        input.govuk-input.js-trigger-autosave class=klass type="text" id=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) name=question.input_name(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{sub_field_key}" : nil )

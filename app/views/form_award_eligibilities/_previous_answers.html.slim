@@ -1,15 +1,6 @@
 - if [@basic_eligibility, @award_eligibility].any? { |e| e && e.answers && e.answers.any? }
-  .previous-answers
-    .done-questions
-      article
-        table.eligibility-previous-answers
-          thead
-            tr
-              th.previous-answers-title colspan="2"
-                ' Your eligibility answers
-              /th.link-right.restart
-                = link_to "Start again", form_award_eligibility_path(form_id: @form_answer.id)
-          tbody
-            - @already_has_invalid_questions = false
-            = render "answers", eligibility: @basic_eligibility if @basic_eligibility
-            = render "answers", eligibility: @award_eligibility
+  h4.govuk-heading-m class="govuk-!-margin-top-8"
+    ' Your eligibility answers
+  dl.govuk-summary-list
+    = render "answers", eligibility: @basic_eligibility if @basic_eligibility
+    = render "answers", eligibility: @award_eligibility
