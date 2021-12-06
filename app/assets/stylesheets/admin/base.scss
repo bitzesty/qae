@@ -369,6 +369,27 @@ table .ellipsis {
   }
 }
 
+.field-with-errors {
+  .error {
+    display: block;
+    margin-bottom: 5px;
+    color: $error-colour;
+
+    @include screen-md-min {
+      min-width: 22em;
+    }
+  }
+
+  .form-control {
+    border-color: $error-colour;
+    background-color: $error-border-colour;
+  }
+
+  .feedback-holder {
+    margin-bottom: 15px;
+  }
+}
+
 .govuk-form-group--error {
   .govuk-error-message {
     display: block;
