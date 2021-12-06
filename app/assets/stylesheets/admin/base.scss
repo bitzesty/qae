@@ -369,8 +369,8 @@ table .ellipsis {
   }
 }
 
-.field-with-errors {
-  .error {
+.govuk-form-group--error {
+  .govuk-error-message {
     display: block;
     margin-bottom: 5px;
     color: $error-colour;
