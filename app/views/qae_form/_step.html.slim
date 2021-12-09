@@ -1,10 +1,14 @@
-.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize)
+.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize) tabindex="-1"
   article.group
-    .inner
-      - if step.context
-        == step.context
-      = render partial: "qae_form/question", collection: step.questions, locals: { answers: answers, attachments: attachments }
-      - if step.submit
-        = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'
+    - steps_first_char = 65 # aka 'A'
+    h2.govuk-heading-l.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize)
+      = (steps_first_char + step.index).chr
+      ' .
+      = step.title
+    - if step.context
+      == step.context
+    = render partial: "qae_form/question", collection: step.questions, locals: { answers: answers, attachments: attachments }
+    - if step.submit
+      = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'
 
-      = render partial: "qae_form/form_footer", object: step, as: 'step'
+    = render partial: "qae_form/form_footer", object: step, as: 'step'

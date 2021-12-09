@@ -1,33 +1,33 @@
 .steps-progress-bar
   ol
-    li.js-step-condition.step-past
+    li.js-step-condition.step-past.govuk-body
       span
-        = link_to form_award_eligibility_url(form_id: @form_answer.id) do
+        = link_to form_award_eligibility_url(form_id: @form_answer.id), class: 'govuk-link' do
           span.step-number
             ' Eligibility
 
-    li.js-step-condition.step-past
+    li.js-step-condition.step-past.govuk-body
       span
-        = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id] do
+        = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: 'govuk-link' do
           span.step-number
             ' Useful Application Info
 
     - step_letters = ["A", "B", "C", "D", "E", "F"]
-    li.js-step-condition
+    li.js-step-condition.govuk-body
       span
         span.step-number.text-black
           ' Form
         ul
           - for step in @form.steps do
-           li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!current_step && step.index == 0) || current_step == step.title.parameterize)
+           li.js-step-link.js-step-condition.govuk-body data-step="step-#{step.title.parameterize}" class=('step-current' if (!current_step && step.index == 0) || current_step == step.title.parameterize)
              - if step.opts[:id] == :letters_of_support_step
-               = link_to form_form_answer_supporters_path(@form_answer), class: "js-step-link js-step-condition", data: { step: "step-#{step.title.parameterize}" } do
+               = link_to form_form_answer_supporters_path(@form_answer), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}" } do
                  span
                    span.step-number
                      ' #{step_letters[step.index]}.
                    = step.short_title.html_safe
              - else
-               = link_to edit_form_path(@form_answer.id, step: step.title.parameterize), class: "js-step-link js-step-condition", data: { step: "step-#{step.title.parameterize}" } do
+               = link_to edit_form_path(@form_answer.id, step: step.title.parameterize), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}" } do
                  span
                    span.step-number
                      ' #{step_letters[step.index]}.
@@ -35,26 +35,29 @@
 
     - unless QAE.hide_pdf_links?
       li.divider
-      li.step-past.step-download
-        = link_to users_form_answer_path(@form_answer, format: :pdf)
+      li.step-past.step-download.govuk-body
+        = link_to users_form_answer_path(@form_answer, format: :pdf), id: "sidenav-download-link"
           = render "content_only/download_icon"
           - if @form_answer.award_type == "promotion"
-            ' Download your nomination
+            ' Download your nomination (PDF)
           - else
-            ' Download your application
+            ' Download your application (PDF)
 
     li.divider
-    li.sidebar-helpline
+    li.sidebar-helpline.govuk-body
       ' Need help? Ring us on
       br
       ' 020 7215 6880
       span.helpline-space
       ' Alternatively, email us at
-      = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk"
+      = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk", class: 'govuk-link'
 
-    - if submission_deadline && submission_deadline.trigger_at
-      li
-        .highlighted-event
-          p
-            ' Submission deadline
-            em = submission_deadline.decorate.formatted_trigger_time
+  - if submission_deadline && submission_deadline.trigger_at
+    .govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+      .govuk-notification-banner__header
+        h2.govuk-notification-banner__title#govuk-notification-banner-title
+          | Important
+      .govuk-notification-banner__content
+        p.govuk-notification-banner__heading
+          | Submission deadline is
+          =< submission_deadline.decorate.formatted_trigger_time

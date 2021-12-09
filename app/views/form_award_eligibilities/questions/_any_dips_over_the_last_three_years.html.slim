@@ -1,10 +1,10 @@
 .question-body
-  p.question-context
+  p.govuk-hint
     == @eligibility.class.hint(step)
-  p.question-context
+  p.govuk-hint
     ' You can choose to be assessed for outstanding growth (over three years) or continuous growth (over six years), depending if your international trade has resulted in:
-  ul.question-context
+  ul.govuk-hint
     li Outstanding year on year growth in the last 3 years with no dips
     li Continuous year on year growth in the last 6 years with no dips
-  = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }
+  = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, label: false
 span.clear

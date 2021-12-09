@@ -1,11 +1,11 @@
 #QAE {
   &.admin-mode {
     margin-bottom: 0;
-    padding-bottom: $gutter*2;
+    padding-bottom: 30px;
   }
 
   .page-landing {
-    margin-bottom: $gutter*2;
+    margin-bottom: 30px;
   }
 }
 
@@ -22,13 +22,13 @@
 }
 
 main .phase-banner {
-  margin: 0 $gutter;
+  margin: 0 15px;
 
   @media (max-width: 640px) {
     margin-right: 0;
     margin-left: 0;
-    padding-right: $gutter-half;
-    padding-left: $gutter-half;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
   }
 }
 

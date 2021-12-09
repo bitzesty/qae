@@ -23,41 +23,38 @@
             span.error
               = error
 
-    fieldset
-      = f.input :title, input_html: { class: "big tiny", autocomplete: "off"}
-      = f.input :first_name, required: true, input_html: { class: 'big medium', autocomplete: "off"}
-      = f.input :last_name, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
-      = f.input :job_title, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
-      = f.input :phone_number, required: true, input_html: { class: 'big small-medium', autocomplete: "off"}, label: "Telephone number"
+    = f.input :title, input_html: { class: "big tiny", autocomplete: "off"}
+    = f.input :first_name, required: true, input_html: { class: 'big medium', autocomplete: "off"}
+    = f.input :last_name, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
+    = f.input :job_title, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
+    = f.input :phone_number, required: true, input_html: { class: 'big medium', autocomplete: "off"}, label: "Telephone number"
 
-      - if f.object.persisted?
-        .question-group
-          label.control-label
-            | Email
-          p.question-context
-            | If you would like to change the email, please ask the collaborator to login and do so themselves, or contact the Queen's Award for Enterprise team.
+    - if f.object.persisted?
+      .question-group
+        label.govuk-label
+          | Email
+        p.govuk-hint
+          | If you would like to change the email, please ask the collaborator to login and do so themselves, or contact the Queen's Award for Enterprise team.
+        p.govuk-body
           = f.object.email
-      - else
-        = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
+    - else
+      = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
 
-    fieldset
-      legend.body-font-size
-        ' Administrative rights
-      p.question-context
-        ' A 'Collaborator only' can only write and edit your applications/nominations. Whilst an 'Admin and collaborator' is also able to add new collaborators.
+    fieldset.govuk-fieldset
       = f.input :role,
                 collection: [["Collaborator only", "regular"],
                              ["Admin and collaborator", "account_admin"]],
                 as: :radio_buttons,
                 required: true,
                 include_blank: false,
+                label: 'Administrative rights',
+                hint: "A 'Collaborator only' can only write and edit your applications/nominations. Whilst an 'Admin and collaborator' is also able to add new collaborators.",
                 input_html: { autocomplete: "off"},
-                label_html: { class: "visuallyhidden" },
-                item_wrapper_class: "selectable"
+                label_html: { class: 'govuk-label--s govuk-!-font-weight-regular' }
 
-    p.inline-form-actions
-      = link_to "Cancel", account_collaborators_path, class: "button button--link"
+    p.govuk-button-group
       - if f.object.persisted?
-        = f.submit "Save collaborator details", class: "button"
+        = f.submit "Save collaborator details", class: "govuk-button"
       - else
-        = f.submit "Add the collaborator", class: "button"
+        = f.submit "Add the collaborator", class: "govuk-button"
+      = link_to "Cancel", account_collaborators_path, class: "govuk-button govuk-button--secondary"

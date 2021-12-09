@@ -1,9 +1,9 @@
 .container-split
   .content-left
-    h2 Successful
+    h2.govuk-heading-l Successful
 
   .content-right.content-offset-36
-    p
+    p.govuk-body
       strong
         ' Congratulations on winning a Queen's Award for Enterprise
   .clear
@@ -13,7 +13,7 @@
 
   .container-split.award-list
     .content-left
-      h3
+      h3.govuk-heading-m
         = award.application_name
         small
           = award.award_type_full_name
@@ -22,36 +22,36 @@
       = render "content_only/past_applications/download_pdf_link", award: award
 
       - if award.promotion?
-        p Your nomination was successful.
+        p.govuk-body Your nomination was successful.
       - else
         - if award.press_summary.present? && award.press_summary.submitted?
-          ul.post-dashboard-actions
+          ul.post-dashboard-actions.govuk-list.govuk-list--bullet
             li
               - if award.press_summary.applicant_submitted?
                 ' Press Book Notes
               - else
-                = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token)
+                = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token), class: 'govuk-link'
               span.award-info
-                span.pull-right
+                span.pull-right.govuk-body
                   ' Due by
                   = application_deadline_for_year(award.award_year, :buckingham_palace_confirm_press_book_notes)
                 - if award.press_summary.applicant_submitted?
                   span.label-status.label-status-green
                     ' Complete
                 - else
-                  = link_to users_form_answer_press_summary_url(award, token: award.press_summary.token)
+                  = link_to users_form_answer_press_summary_url(award, token: award.press_summary.token), class: 'govuk-link'
                     span.label-status.label-status-red
                       ' Incomplete
           .clear
         - else
-          p You will be notified when your press book notes are ready.
+          p.govuk-body You will be notified when your press book notes are ready.
 
         = render "content_only/post_submission/palace_invite_info", award: award if Settings.buckingham_palace_invites_stage?(award.award_year.settings)
     .clear
 br
 .container-split
   .content-right
-    p
+    p.govuk-body
       = link_to "Visit Winners' Resources",
                 award_winners_section_path(award_year_id: award_year.id)
       '  to download media for websites and advertisements.

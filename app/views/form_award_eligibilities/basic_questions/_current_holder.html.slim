@@ -1,9 +1,9 @@
 .question-body
-  = f.input :current_holder, as: :radio_buttons, item_wrapper_class: 'selectable', wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
-  span.clear
-
   #current-holder-info.visuallyhidden
     br
     .application-notice.help-notice
       p
         ' If you won your award in the last two years you can still apply, but new applicants will be given priority.
+  = f.input :current_holder, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
+  span.clear
+

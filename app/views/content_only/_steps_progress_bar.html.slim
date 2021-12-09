@@ -4,7 +4,7 @@
   ol
     = step_link_to "Eligibility", form_award_eligibility_path(form_id: @form_answer.id), index: 1, active: 2, index_name: "",  cant_access_future: false
 
-    li.js-step-condition.step-current
+    li.js-step-condition.step-current.govuk-body
       span
         = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id] do
           span.step-number
@@ -26,9 +26,12 @@
       ' Alternatively, email us at
       = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk"
 
-    - if submission_deadline && submission_deadline.trigger_at
-      li
-        .highlighted-event
-          p
-            ' Submission deadline
-            em = submission_deadline.decorate.formatted_trigger_time
+  - if submission_deadline && submission_deadline.trigger_at
+    .govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+      .govuk-notification-banner__header
+        .govuk-notification-banner__title#govuk-notification-banner-title
+          | Important
+      .govuk-notification-banner__content
+        p.govuk-notification-banner__heading
+          | Submission deadline is
+          =< submission_deadline.decorate.formatted_trigger_time

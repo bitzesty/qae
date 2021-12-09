@@ -3,10 +3,10 @@
 - deletion_attrs[:holder] = true if question.award_years_present
 
 li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=award["title"]
-  ul.errors-container
-    - errors = @form_answer.validator_errors
-    - if errors && errors[question.key] && errors[question.key][index]
-      li = errors[question.key][index]
+  - errors = @form_answer.validator_errors
+  - if errors && errors[question.key] && errors[question.key][index]
+    span.govuk-error-message
+      = errors[question.key][index]
 
   - unless admin_in_read_only_mode?
     = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide"
@@ -15,9 +15,9 @@ li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=a
 
     = link_to "Edit", edit_form_form_answer_awards_path(@form_answer, award: award, holder: question.award_years_present.present? ? true : nil), class: "remove-link non-js-edit-link if-js-hide"
 
-  span.row
-    span.span-6
-      label
+  .govuk-grid-row
+    .govuk-grid-column-one-half
+      label.govuk-label
         span.if-no-js-hide
           ' Award/personal honour title
           input.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title'] data-dependable-option-siffix="title" *possible_read_only_ops
@@ -32,8 +32,8 @@ li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=a
             ' -
 
     - if question.award_years_present
-      span.span-3
-        label
+      .govuk-grid-column-one-quarter
+        label.govuk-label
           span.if-no-js-hide
             ' Year
             input.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year'] data-dependable-option-siffix="year" *possible_read_only_ops
@@ -46,17 +46,16 @@ li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=a
               = award["year"]
             - else
               ' -
-  span.clear
 
   span.if-no-js-hide
-    label for="form[#{question.key}][#{index}][details]"
+    label.govuk-label for="form[#{question.key}][#{index}][details]"
       span.label-char-count-reposition
         ' Details
     textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="form[#{question.key}][#{index}][details]" id="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max data-dependable-option-siffix="details" *possible_read_only_ops
       = award['details']
   span.if-js-hide
     br
-    label
+    label.govuk-label
       strong
         ' Details
     br

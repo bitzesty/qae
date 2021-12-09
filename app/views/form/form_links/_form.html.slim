@@ -1,6 +1,5 @@
 li
   = simple_form_for form_link, url: form_form_answer_form_links_url(@form_answer), html: { class: 'qae-form' } do |f|
-
     div
       = f.input :link,
           input_html: { class: "form-control medium" },
@@ -16,5 +15,5 @@ li
                                 label: false
       .row
         .span-12
-          = f.submit "Save link", class: "button button-alt"
+          = f.submit "Save link", class: "govuk-button govuk-!-margin-bottom-1"
       .clear

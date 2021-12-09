@@ -5,36 +5,32 @@ $.fn.charcount = function() {
   }
 
   // Adds class to parent so that we can position the question and input closer
-  var prevElement = this.closest(".question-group").prev();
+  var prevElement = this.closest(".govuk-form-group").prev();
   if (prevElement.hasClass("clear")) {
     prevElement = prevElement.prev();
   }
   prevElement.addClass("char-spacing");
-  if (prevElement.hasClass("errors-container")) {
-    if (prevElement.prev().find(".char-space").length <= 0) {
+  if (prevElement.hasClass(".govuk-error-message")) {
+    if (prevElement.prev().find(".char-space").size() <= 0) {
       prevElement.prev().append("<span class='char-space'></div>");
     }
   }
 
   // Creates the character count elements
   this.wrap("<div class='char-count'></div>");
-  this.after("<div class='char-text'>Word count: <span class='current-count'>0</span></div>");
+  this.after("<div class='char-text govuk-hint'>Word count: <span class='current-count'>0</span></div>");
 
   // Includes character limit if there is one
   this.each(function(){
     var maxlength = parseInt($(this).attr("data-word-max"), 10);
     if (maxlength) {
-      $(this).before("<div class='char-text-limit'>Word limit: <span class='total-count'>" +maxlength+ "</span></div>");
-      $(this).closest(".char-count").addClass("char-max-shift");
-      $(this).closest(".char-count").find(".char-text").append("/<span class='total-count'>" +maxlength+ "</span>");
-
       // hard limit to word count
       var maxlengthlimit = maxlength * 0.1;
       if (maxlengthlimit < 5) {
         maxlengthlimit = 5;
       }
       // Strict limit with no extra words
-      if ($(this).closest(".word-max-strict").length > 0) {
+      if ($(this).closest(".word-max-strict").size() > 0) {
         maxlengthlimit = 0;
       }
       $(this).attr("data-word-max-limit", (maxlengthlimit));

@@ -1,17 +1,15 @@
 br
 
-fieldset.question-block
-  h2
-    = label_tag :nickname, "Please choose a reference for this application (optional):"
+.govuk-form-group
+  h2.govuk-label-wrapper
+    = label_tag :nickname, "Please choose a reference for this application (optional):", class: 'govuk-label govuk-label--l', for: 'award-nickname'
 
-  p.question-context
+  p.govuk-hint
     | If you have more than one innovation (and want them to be considered for an award), you will have to submit a separate application for each of them.
-    br
+  p.govuk-hint
     | You can create a reference, e.g. 'Fibre optic device' so that it helps you and your collaborators to distinguish between different innovation applications. It will appear on the Applications page. Once chosen, your reference is permanent.
 
-  .question-group
-    = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "big medium"
-
-    p.hint
-      | e.g. 'Fibre optic device'
-    .clear
+  p.govuk-hint
+    | e.g. 'Fibre optic device'
+  
+  = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "govuk-input govuk-!-width-two-thirds", id: 'award-nickname'

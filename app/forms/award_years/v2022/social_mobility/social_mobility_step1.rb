@@ -4,18 +4,19 @@ class AwardYears::V2022::QAEForms
     def mobility_step1
       @mobility_step1 ||= proc do
         header :company_information_header, "" do
+          section_info
           context %(
-            <h3>About this section</h3>
-            <p>
+            <h3 class='govuk-heading-m'>About this section</h3>
+            <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>
-            <details>
-              <summary>
-                <span class="summary">
+            <details class='govuk-details' data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
                   View Government Departments and Agencies we undertake due diligence checks with >
                 </span>
               </summary>
-              <div class="panel panel-border-narrow">
+              <div class="govuk-details__text">
                 <ul>
                   <li>Biotechnology & Biological Sciences Research Council</li>
                   <li>Charity Commission</li>
@@ -61,8 +62,8 @@ class AwardYears::V2022::QAEForms
                 </ul>
               </div>
             </details>
-            <h3>Small organisations</h3>
-            <p>
+            <h3 class="govuk-heading-m">Small organisations</h3>
+            <p class="govuk-body">
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
           )
@@ -135,7 +136,7 @@ class AwardYears::V2022::QAEForms
         header :business_division_header, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
+            <p class="govuk-body">
               Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
             </p>
           )
@@ -340,7 +341,7 @@ class AwardYears::V2022::QAEForms
         header :external_organization_or_individual_info_header_no, "" do
           classes "application-notice help-notice"
           context %(
-            <p>
+            <p class="govuk-body">
               We recommend that you notify all the contributors to your social mobility programme relating to this entry.
             </p>
           )
@@ -366,10 +367,10 @@ class AwardYears::V2022::QAEForms
             [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
           ]
           county_context %(
-            <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+            <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p>
-              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
+            <p class='govuk-hint'>
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
                 See the full list of London districts on Wikipedia
               </a>
             </p>
@@ -386,46 +387,27 @@ class AwardYears::V2022::QAEForms
         text :org_telephone, "Main telephone number" do
           required
           ref "A 10.1"
+          type "tel"
           style "small"
         end
 
-        header :press_contact_details_header, "Contact details for press enquiries" do
+        press_contact_details :press_contact_details, "Contact details for press enquiries" do
           ref "A 11"
           context %(
-            <p>
+            <p class='govuk-hint'><em>
               If your application is successful, you may get contacted by the press.
-              <br/>
+            </em></p>
+            <p class='govuk-hint'>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>
           )
-        end
-
-        text :press_contact_details_title, "Title" do
-          required
-          classes "sub-question"
-          style "tiny"
-        end
-
-        text :press_contact_details_first_name, "First name" do
-          required
-          classes "sub-question"
-        end
-
-        text :press_contact_details_last_name, "Last name" do
-          required
-          classes "sub-question"
-        end
-
-        text :press_contact_details_telephone, "Telephone" do
-          required
-          classes "sub-question"
-          style "small"
-        end
-
-        text :press_contact_details_email, "Email address" do
-          classes "sub-question"
-          style "large"
-          required
+          sub_fields([
+            { title: "Title" },
+            { first_name: "First name" },
+            { last_name: "Last name" },
+            { telephone: "Telephone" },
+            { email: "Email address" }
+          ])
         end
 
         text :website_url, "Website address" do

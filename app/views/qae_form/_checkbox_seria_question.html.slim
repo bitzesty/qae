@@ -2,11 +2,12 @@ input name="form[#{question.key}][array]" value="true" type="hidden"
 
 - values = question.entities
 
-- question.check_options.each_with_index do |check_option, placement|
-  - value_selected = values.is_a?(Array) && values.detect { |el| el['type'].to_s == check_option[0].to_s }
+.govuk-checkboxes data-module="govuk-checkboxes"
+  - question.check_options.each_with_index do |check_option, placement|
+    - value_selected = values.is_a?(Array) && values.detect { |el| el['type'].to_s == check_option[0].to_s }
 
-  .selectable.qae-form-checkbox-seria-question-item
-    input.js-trigger-autosave type="checkbox" id=question.input_name(suffix: "type_#{placement}") name="#{question.input_name}[#{placement}][type]" value="#{check_option[0]}" checked=('checked' if value_selected) *possible_read_only_ops
-    
-    label for=question.input_name(suffix: "type_#{placement}")
-      = check_option[1].html_safe
+    .govuk-checkboxes__item.qae-form-checkbox-seria-question-item
+      input.govuk-checkboxes__input.js-trigger-autosave type="checkbox" id=question.input_name(suffix: "type_#{placement}") name="#{question.input_name}[#{placement}][type]" value="#{check_option[0]}" checked=('checked' if value_selected) *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
+      
+      label.govuk-label.govuk-checkboxes__label for=question.input_name(suffix: "type_#{placement}")
+        = check_option[1].html_safe
