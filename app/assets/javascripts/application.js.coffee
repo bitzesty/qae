@@ -576,7 +576,7 @@ jQuery ->
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
       uid = '_' + Math.random().toString(36).substr(2, 9);
-      label = $("<label for='#{uid}'>").text("Uploading...")
+      label = $("<label class='govuk-label' for='#{uid}'>").text("Uploading...")
       div.append(label)
       new_el.append(div)
       list.append(new_el)
