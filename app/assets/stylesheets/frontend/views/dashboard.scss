@@ -266,6 +266,7 @@ $status-green: #3b816f;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
+  font-family: "GDS Transport", arial, sans-serif;
 
   &.label-status-red {
     border-color: $status-red;
