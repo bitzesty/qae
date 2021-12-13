@@ -31,8 +31,8 @@
                 ' Press Book Notes
               - else
                 = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token), class: 'govuk-link'
-              span.award-info
-                span.pull-right.govuk-body
+              span.award-info.govuk-body
+                span.pull-right
                   ' Due by
                   = application_deadline_for_year(award.award_year, :buckingham_palace_confirm_press_book_notes)
                 - if award.press_summary.applicant_submitted?

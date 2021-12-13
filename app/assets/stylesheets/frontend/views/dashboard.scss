@@ -266,6 +266,8 @@ $status-green: #3b816f;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
+  text-decoration: none !important;
+  display: inline-block;
 
   &.label-status-red {
     border-color: $status-red;
@@ -315,6 +317,7 @@ $status-green: #3b816f;
 
     @media (max-width: 1000px) {
       position: static;
+      margin-top: 3px;
     }
   }
 }

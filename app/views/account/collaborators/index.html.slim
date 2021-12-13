@@ -83,8 +83,8 @@ h1.govuk-heading-xl
                         li.submit
                           - if current_user.registration_in_progress?
                             = f.submit "Save and continue", class: "govuk-button", aria: {label: "Save and continue to additional contact preferences"}
-                          - elsif came_from_application_form?
-                            = link_to "Save and return", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer], class: "govuk-button", aria: {label: "Save and return to award information"}
+                          - elsif true || came_from_application_form?
+                            = link_to "Save and return", [:award_info, :trade, form_id: @form_answer], class: "govuk-button", aria: {label: "Save and return to award information"}
                           - elsif user_redirected_to_collaborators_page?
                             = link_to "Save and continue", dashboard_path, class: "govuk-button", aria: {label: "Save and continue to applicant dashboard"}
                       - if current_user.registration_in_progress?

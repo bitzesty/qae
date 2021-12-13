@@ -847,7 +847,7 @@ jQuery ->
           if (typeof(example_has_file_field) != typeof(undefined) && example_has_file_field != false)
             SupportLetters.new_item_init(question.find(".list-add li.js-list-item:last"))
           else
-            question.find(".list-add").find("li:last-child").find('input,textarea,select').filter(':visible').first()
+            question.find(".list-add").find("li:last-child").find("input,textarea,select").filter(':visible').first().focus()
 
           # charcount needs to be reinitialized
           if (textareas = question.find(".list-add > li:last .js-char-count")).length
