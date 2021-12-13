@@ -335,16 +335,17 @@ window.FormValidation =
     $(".govuk-error-message", question).empty()
 
     for subquestion in question.find(".list-add li")
-      errorText = ""
-      $(subquestion).find("select, input, textarea").each ->
-        if !$(this).val()
-          fieldName = $(this).data("dependable-option-siffix")
+      errors = false
+      for input in $(subquestion).find("select, input, textarea")
+        $(input).closest('.govuk-form-group').find('.govuk-error-message').empty()
+        if !$(input).val()
+          fieldName = $(input).data("dependable-option-siffix")
           fieldName = fieldName[0].toUpperCase() + fieldName.slice(1)
           fieldError = "#{fieldName} can't be blank. "
-          errorText += fieldError
-      if errorText
-        @logThis(question, "validateCurrentAwards", errorText)
-        @appendMessage($(subquestion), errorText)
+          @logThis(question, "validateCurrentAwards", fieldError)
+          @appendMessage($(input).closest('.govuk-form-group'), fieldError)
+          errors = true
+      if errors
         @addErrorClass(question)
 
   validateMoneyByYears: (question) ->
@@ -532,7 +533,7 @@ window.FormValidation =
 
   validateIndividualQuestion: (question, triggeringElement) ->
     if question.hasClass("question-required") and not question.hasClass("question-employee-min") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years") and not question.hasClass("question-matrix")
-      # console.log "validateRequiredQuestion"
+      # console.log "validateRequiredQuestion", question
       @validateRequiredQuestion(question)
 
     if question.hasClass("question-number")

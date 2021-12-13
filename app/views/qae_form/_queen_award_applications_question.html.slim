@@ -42,7 +42,7 @@ div role="group" id="q_#{question.key}"
 
             span.inline.if-js-hide
               = award['category'].split("_").map(&:capitalize).join(" ")
-            
+
           .govuk-grid-column-one-quarter
             .govuk-form-group
               label.govuk-label for="form[applied_for_queen_awards_details][#{index}][year]"
@@ -85,7 +85,7 @@ div role="group" id="q_#{question.key}"
         .govuk-grid-row
           .govuk-grid-column-one-quarter
             .govuk-form-group
-              label.govuk-label
+              label.govuk-label for="form[applied_for_queen_awards_details][0][category]"
                 | Category
               span.govuk-error-message
               select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
@@ -96,7 +96,7 @@ div role="group" id="q_#{question.key}"
                     = category.text
           .govuk-grid-column-one-quarter
             .govuk-form-group
-              label.govuk-label
+              label.govuk-label for="form[applied_for_queen_awards_details][0][year]"
                 | Year
               span.govuk-error-message
               select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
@@ -107,7 +107,7 @@ div role="group" id="q_#{question.key}"
                     = year
           .govuk-grid-column-one-half
             .govuk-form-group
-              label.govuk-label
+              label.govuk-label for="form[applied_for_queen_awards_details][0][outcome]"
                 | Outcome (Won/Did not win)
               span.govuk-error-message
               select.govuk-select.js-trigger-autosave name="form[applied_for_queen_awards_details][0][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops

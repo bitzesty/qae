@@ -53,6 +53,13 @@ body.js-enabled {
       width: auto !important;
     }
   }
+
+  .govuk-button:not(.govuk-button--secondary):link,
+  .govuk-button:not(.govuk-button--secondary):visited,
+  .govuk-button:not(.govuk-button--secondary):hover {
+    color: #ffffff !important;
+    text-decoration: none;
+  }
 }
 
 .govuk-button.govuk-button--secondary {
