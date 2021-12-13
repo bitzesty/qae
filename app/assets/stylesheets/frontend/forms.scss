@@ -709,9 +709,12 @@ input[type="file"] {
 .button-upload {
   padding: 0.5em !important;
   margin: -4.5em 0.5em 0em 0.5em !important;
+  position: relative;
 }
 
 .button-add {
+  position: relative;
+
   input[type="file"] {
     position: absolute;
     width: auto;
@@ -724,6 +727,7 @@ input[type="file"] {
     margin: 0;
     padding: 0;
     border: none;
+    cursor: pointer;
 
     &[disabled] {
       cursor: default;
