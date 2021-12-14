@@ -1,15 +1,14 @@
 li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator == account_owner ? "Account owner" : collaborator.role_name} summary"
-  - if current_user.account_admin? && collaborator != account_owner
-    .pull-right
-      = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link"
-  h4.collaborator__name
+  h3.collaborator__name.govuk-heading-s
     = collaborator.full_name_with_status
-  p.collaborator__jobtitle
+  p.collaborator__jobtitle.govuk-body
     = collaborator.job_title
-  p.collaborator__contact
+  p.collaborator__contact.govuk-body
     - if collaborator.phone_number.present?
       = collaborator.phone_number
       br
     = mail_to collaborator.email
-  p.collaborator__role
+  p.collaborator__role.govuk-body
     = role
+  - if current_user.account_admin? && collaborator != account_owner
+    = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link govuk-link"

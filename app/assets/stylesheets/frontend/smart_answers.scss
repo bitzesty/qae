@@ -97,7 +97,7 @@ $is-ie: false !default;
           width: 50%;
 
           &.section-title {
-            @include bold-14;
+            // @include bold-14;
             padding-top: 0.5em;
           }
 
@@ -105,7 +105,7 @@ $is-ie: false !default;
             list-style: none;
             padding: 0;
             li {
-              @include core-14;
+              // @include core-14;
               padding: 0;
               margin: 0;
             }
@@ -213,12 +213,6 @@ $is-ie: false !default;
             }
           }
         }
-
-        @include ie-lte(8) {
-          list-style: none;
-          position: relative;
-          overflow: hidden;
-        }
       }
     }
   }
@@ -242,15 +236,6 @@ $is-ie: false !default;
     margin: 0;
     @include core-14;
 
-    @include ie-lte(8) {
-      margin: 0;
-    }
-
-    @include ie-lte(6) {
-      position: absolute;
-      right: 1em;
-    }
-
     a {
       color: $text-colour;
       display: block;
@@ -268,23 +253,13 @@ $is-ie: false !default;
 
   .step.current {
     background-color: #fff;
-    margin-right: 15em;
-    padding: 0 10em 1em 2em;
+    margin-right: 0;
+    padding: 0;
     position: relative;
 
     @include media-down(tablet) {
       margin-right: 0;
-      padding: 0 1em 1em 1em;
-    }
-  }
-
-  @include ie(6) {
-    .smart-answer-questions .current {
-      background-color: #fff;
-      margin-right: 15em;
-      padding: 0 2em 1em 5em;
-      position: relative;
-      zoom: 1;
+      padding: 0;
     }
   }
 
@@ -310,10 +285,6 @@ $is-ie: false !default;
         padding-right: 0.25em;
         font-weight: 400;
       }
-
-      @include ie-lte(8) {
-        line-height: 1.2em;
-      }
     }
 
     ul {
@@ -327,7 +298,7 @@ $is-ie: false !default;
 
       /* this is the multiple choice selector */
       &.options {
-        @extend %contain-floats;
+        // @extend %contain-floats;
         list-style: none;
         padding: 0; /* this aligns optional questions with gutter */
 
@@ -396,7 +367,7 @@ $is-ie: false !default;
 
 
   .article-container {
-    @extend %contain-floats;
+    // @extend %contain-floats;
   }
 
   /*
@@ -430,7 +401,7 @@ $is-ie: false !default;
    * loading indicators
    */
   .loading .next-step {
-    @include inline-block;
+    // @include inline-block;
     line-height: 1.5em;
     height: 32px;
     margin: 0 0 0 1.3em;
@@ -443,12 +414,12 @@ $is-ie: false !default;
 .edit_eligibility {
   .hint,
   .question-context {
-    @include core-17;
+    // @include core-17;
 
-    ul li,
-    * {
-      @include core-17-important;
-    }
+    // ul li,
+    // * {
+    //   @include core-17-important;
+    // }
 
     strong,
     h3,

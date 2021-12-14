@@ -113,7 +113,19 @@ class QAEFormBuilder
         "regions_question",
         "trade_commercial_success_question",
         "checkbox_seria_question",
-        "confirm_question"
+        "confirm_question",
+        "address_question",
+        "date_question",
+        "queen_award_applications_question",
+        "subsidiaries_associates_plants_question",
+        "by_trade_goods_and_services_label_question",
+        "innovation_financial_year_date_question",
+        "one_option_by_years_question",
+        "one_option_by_years_label_question",
+        "by_years_question",
+        "by_years_label_question",
+        "matrix_question",
+        "press_contact_details_question"
       ]
 
       legend_types.include?(type)
@@ -172,6 +184,10 @@ class QAEFormBuilder
 
     def required?
       delegate_obj.required
+    end
+
+    def section_info?
+      delegate_obj.section_info
     end
 
     def have_conditional_parent?
@@ -391,6 +407,10 @@ class QAEFormBuilder
       @q.required = true
     end
 
+    def section_info
+      @q.section_info = true
+    end
+
     def help title, text
       @q.help << QuestionHelp.new(title, text)
     end
@@ -468,7 +488,8 @@ class QAEFormBuilder
                   :classes,
                   :drop_condition,
                   :drop_condition_parent,
-                  :drop_block_condition
+                  :drop_block_condition,
+                  :section_info
 
     def initialize step, key, title, opts={}
       @step = step

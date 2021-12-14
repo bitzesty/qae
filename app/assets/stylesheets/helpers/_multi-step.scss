@@ -92,12 +92,6 @@
           }
         }
       }
-
-      @include ie-lte(8) {
-        list-style: none;
-        position: relative;
-        overflow: hidden;
-      }
     }
   }
 }
@@ -120,15 +114,6 @@ li.done .undo {
   right: (1.5em/0.9);
   margin: 0;
   @include core-14;
-
-  @include ie-lte(8) {
-    margin: 0;
-  }
-
-  @include ie-lte(6) {
-    position: absolute;
-    right: 1em;
-  }
 
   a {
     color: $text-colour;
@@ -157,16 +142,6 @@ li.done:hover .undo a {
   }
 }
 
-@include ie(6) {
-  .smart-answer-questions .current {
-    background-color: #fff;
-    margin-right: 15em;
-    padding: 0 2em 1em 5em;
-    position: relative;
-    zoom: 1;
-  }
-}
-
 .question-body + p input.button {
   margin-top: 0.5em;
 }
@@ -185,10 +160,6 @@ li.done:hover .undo a {
       padding-right: 0.25em;
       font-weight: 400;
     }
-
-    @include ie-lte(8) {
-      line-height: 1.2em;
-    }
   }
 
   ul {
@@ -202,7 +173,7 @@ li.done:hover .undo a {
 
     /* this is the multiple choice selector */
     &.options {
-      @extend %contain-floats;
+      // @extend %contain-floats;
       list-style: none;
       padding: 0; /* this aligns optional questions with gutter */
 

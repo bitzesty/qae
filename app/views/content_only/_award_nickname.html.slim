@@ -1,10 +1,10 @@
-.inner.page-pre-eligibility
-  h2 The Process
+.page-pre-eligibility
+  h2.govuk-heading-l The Process
 
-  ol
+  ol.govuk-list.govuk-list--number
     li
-      p Complete the eligibility questionnaire
-      ul
+      p.govuk-body Complete the eligibility questionnaire
+      ul.govuk-list.govuk-list--bullet
         li
           ' This is to ensure that your
           - if award_type == "promotion"
@@ -15,20 +15,20 @@
         li It will take about 10 minutes to complete.
 
     li
-      p Complete the form
-      ul
+      p.govuk-body Complete the form
+      ul.govuk-list.govuk-list--bullet
         li The form can be completed over a number of days.
         li You can save and return to the form at any point.
         li You will be given more detailed instructions after the eligibility questionnaire.
 
     li
-      p
+      p.govuk-body
         ' Submit your
         - if award_type == "promotion"
           ' nomination
         - else
           ' application
-      ul
+      ul.govuk-list.govuk-list--bullet
         li
           ' The deadline for submissions is
           = submission_deadline.decorate.formatted_trigger_time
@@ -44,7 +44,7 @@
   - if award_type == "innovation"
     = render "content_only/award_nickname_block"
 
-  p#get-started.get-started.group
+  p#get-started.get-started.group.govuk-body
     - title = award_type == "innovation" ? "Save and start eligibility questionnaire" : "Start eligibility questionnaire"
-    = submit_tag title, class: "button", rel: "external"
+    = submit_tag title, class: "govuk-button", rel: "external"
 

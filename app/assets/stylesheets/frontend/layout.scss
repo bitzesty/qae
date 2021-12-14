@@ -58,7 +58,7 @@ details + details {
   }
 
   &.floated-children {
-    @extend %contain-floats;
+    // @extend %contain-floats;
 
     padding: 0;
 
@@ -125,8 +125,7 @@ details + details {
     color: $grey-1;
   }
 
-  h3,
-  .steps-progress-bar {
+  h3 {
     margin-left: 48px;
 
     @media (max-width: 1131px) {
@@ -203,7 +202,7 @@ header.page-header div {
 .call-to-action {
   margin: $gutter 0;
   background: $panel-colour none no-repeat 98% $gutter-two-thirds;
-  padding: $gutter-one-third ($gutter*2) $gutter-one-third $gutter-half;
+  padding: $gutter-one-third (30px) $gutter-one-third $gutter-half;
   position: relative;
 
   p {
@@ -369,48 +368,9 @@ header.page-header div {
   }
 }
 
-// Alpha tag next to title
-.beta-tag {
-  @include phase-tag(beta);
-  margin-left: 4px;
-
-  @media (min-width: 641px) {
-    position: relative;
-    top: -3px;
-    margin-left: 8px;
-  }
-
-  @include ie-lte(8) {
-    position: relative;
-    top: 3px;
-  }
-}
-
 // Removes bullet point list-style from proposition-links
 #proposition-links {
   list-style: none;
-}
-
-// Position account links to be top right and make them a dropdown
-#proposition-menu {
-  @media (min-width: 990px) {
-    position: relative;
-    margin-top: 10px;
-  }
-
-  #proposition-name {
-    &:focus {
-      background: transparent;
-    }
-  }
-
-  li {
-    padding-right: 25px;
-
-    a {
-      // font-size: 1px;
-    }
-  }
 }
 
 #global-header .header-proposition #proposition-menu {
@@ -560,19 +520,12 @@ header.page-header aside .inner {
   width: 240px;
   margin: 0;
   margin-top: 2.5em;
-  margin-left: 32px;
   padding: 0;
 
   @media (max-width: 990px) {
     position: static;
     width: auto;
-    margin: 0 2em;
     margin-bottom: $gutter;
-  }
-
-  @media (max-width: 640px) {
-    margin-right: 1em;
-    margin-left: 1em;
   }
 
   ol,
@@ -599,7 +552,7 @@ header.page-header aside .inner {
     text-align: left;
 
     &,
-    a {
+    a:not(#sidenav-download-link){
       color: $grey-1;
       text-decoration: none;
     }
@@ -731,7 +684,7 @@ header.page-header aside .inner {
 .steps-progress-content {
   margin: 0;
   margin-left: 272px;
-  padding-right: 32px;
+  padding-left: 32px;
   min-height: 1020px;
 
   @media (max-width: 990px) {
@@ -740,7 +693,7 @@ header.page-header aside .inner {
   }
 
   @media (max-width: 640px) {
-    padding-right: 0;
+    padding-left: 0;
   }
 
   .article-container,
@@ -806,84 +759,79 @@ article .help-notice ul {
 // Pagination style applied to buttons
 // And adapted for button
 // https://github.com/alphagov/static/blob/726ffb04b01bad019affd0ef2f2aef78873ef0ae/app/assets/stylesheets/helpers/_publisher.scss
-.pagination li {
-  button {
-    background-color: transparent;
-    display: block;
-    color: $link-colour;
-    text-decoration: none;
-    width: 100%;
-    text-align: left;
-    border: none;
-    cursor: pointer;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+// .pagination li {
+//   button {
+//     background-color: transparent;
+//     display: block;
+//     color: $link-colour;
+//     text-decoration: none;
+//     width: 100%;
+//     text-align: left;
+//     border: none;
+//     cursor: pointer;
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
 
-    @include ie-lte(7) {
-      height: 4.5em;
-    }
+//     &:hover,
+//     &:active {
+//       background-color: $canvas-colour;
+//     }
 
-    &:hover,
-    &:active {
-      background-color: $canvas-colour;
-    }
+//     .pagination-label {
+//       @include core-27($line-height: (33.75 / 27));
+//       margin-bottom: 0.1em;
+//       display: block;
+//     }
 
-    .pagination-label {
-      @include core-27($line-height: (33.75 / 27));
-      margin-bottom: 0.1em;
-      display: block;
-    }
+//     &,
+//     .pagination-part-title {
+//       @include core-16($line-height: (20 / 16));
+//     }
 
-    &,
-    .pagination-part-title {
-      @include core-16($line-height: (20 / 16));
-    }
+//     .pagination-part-title {
+//       text-decoration: underline;
+//     }
+//   }
 
-    .pagination-part-title {
-      text-decoration: underline;
-    }
-  }
+//   &.previous button {
+//     padding: 0.75em 0 0.75em 3em;
 
-  &.previous button {
-    padding: 0.75em 0 0.75em 3em;
+//     // &:before {
+//     //   background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
+//     //   margin: -4px 0 0 -32px;
+//     //   display: block;
+//     //   float: left;
+//     //   width: 30px;
+//     //   height: 38px;
+//     //   content: " ";
+//     // }
+//   }
 
-    &:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
-      margin: -4px 0 0 -32px;
-      display: block;
-      float: left;
-      width: 30px;
-      height: 38px;
-      content: " ";
-    }
-  }
+//   &.next button {
+//     padding: 0.75em 3em 0.75em 0;
+//     text-align: right;
 
-  &.next button {
-    padding: 0.75em 3em 0.75em 0;
-    text-align: right;
+//     // &:before {
+//     //   background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
+//     //   margin: -4px -32px 0 0;
+//     //   display: block;
+//     //   float: right;
+//     //   width: 30px;
+//     //   height: 38px;
+//     //   content: " ";
+//     // }
+//   }
 
-    &:before {
-      background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
-      margin: -4px -32px 0 0;
-      display: block;
-      float: right;
-      width: 30px;
-      height: 38px;
-      content: " ";
-    }
-  }
-
-  @include media-down(mobile) {
-    &.next button {
-      text-align: right;
-    }
-  }
-}
+//   @include media-down(mobile) {
+//     &.next button {
+//       text-align: right;
+//     }
+//   }
+// }
 
 .footer-helpline {
-  margin: 1.5em;
   margin-bottom: 0;
-  padding: 1.5em 0;
+  padding: 80px 0;
   border-top: 1px solid $border-colour;
 
   .page-devise & {
@@ -903,11 +851,6 @@ article .help-notice ul {
   text-align: center;
   vertical-align: baseline;
 
-  .lte-ie6 & {
-    display: block;
-    visibility: visible;
-  }
-
   a {
     color: $white;
   }
@@ -919,7 +862,6 @@ details {
 
   summary {
     display: inline-block;
-    color: #005ea5;
     cursor: pointer;
     position: relative;
     margin-bottom: 0.26316em;
@@ -941,6 +883,10 @@ details {
   .arrow {
     margin-right: .35em;
     font-style: normal;
+  }
+
+  span {
+    color: $dark-blue-link-colour;
   }
 }
 

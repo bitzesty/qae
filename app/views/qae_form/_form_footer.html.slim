@@ -1,41 +1,39 @@
 footer
   nav.pagination.no-border class="#{'pagination-alternative' unless step.next}" aria-label="Pagination for step #{step.index + 1}"
-    ul.group
-      - if step.previous
-        li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
-          = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part", "aria-label" => "Back to #{step.previous.title}" do
-            span.pagination-label
-              | Back
-            /span class="pagination-part-title"
-              = step.previous.title
-      - else
-        li.previous.previous-alternate
-          - aria_label = "Back to step " + step.index.to_s
-          
-          - if step.index == 0
-            - aria_label = "Back to Useful Application Information page"
-          
-          = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label do
-            span.pagination-label
-              | Back
-
+    ul.govuk-button-group
       - if current_form_is_editable?
         li.save-quit-link
-          span.if-js-hide
-            = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
           span.if-no-js-hide
-            = link_to "Save and come back later", dashboard_url, class: "js-save-and-come-back"
-
+            = link_to "Save and come back later", dashboard_url, class: "govuk-button govuk-button--secondary js-save-and-come-back", role:"button"
+          span.if-js-hide
+            = button_tag "Save and come back later", class: "govuk-button save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
       - if step.next
         li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
           - opts = possible_read_only_ops
           - opts[:class] ||= ""
-          - opts[:class] << " button"
-          = button_tag opts.merge(rel: "next", title: "Navigate to next part") do
+          - opts[:class] << " govuk-button"
+          = button_tag opts.merge(rel: "next", title: "Save and continue to #{step.next.title}") do
             ' Save and continue
 
       - else
         - if step.submit && current_form_is_editable?
           li.submit.qae-form
-            button type="submit" name="submit" value="true" class="button #{step.submit.style.presence}"
+            button type="submit" name="submit" value="true" class="govuk-button #{step.submit.style.presence}"
               = step.submit.text
+
+    - if step.previous
+      previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
+        = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part", "aria-label" => "Back to #{step.previous.title}", class: 'govuk-back-link govuk-!-font-size-19', role: "button" do
+          span.pagination-label
+            | Go back to previous page
+
+    - else
+      previous.previous-alternate
+        - aria_label = "Back to step " + step.index.to_s
+        
+        - if step.index == 0
+          - aria_label = "Back to Useful Application Information page"
+        
+        = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label, class: "govuk-back-link govuk-!-font-size-19", role: "button" do
+          span.pagination-label
+            | Go back to previous page

@@ -3,11 +3,15 @@
 
 $thumbnail-width: 99px;
 
+.audit_certificate_attachment {
+  margin-bottom: 0 !important;
+}
+
 .attachment {
   position: relative;
   margin: $gutter 0;
   padding: $gutter-half 0 0 ($thumbnail-width + $gutter);
-  @extend %contain-floats;
+  // @extend %contain-floats;
 
   &.inline {
     background: transparent;
@@ -32,9 +36,6 @@ $thumbnail-width: 99px;
       height: 140px;
       background: white;
       outline: $gutter-one-sixth solid transparentize($black, 0.9);
-      @include ie-lte(8) {
-        border: $gutter-one-sixth solid $grey-3;
-      }
       @include box-shadow(0 2px 2px rgba(0,0,0,0.4));
     }
   }
@@ -95,9 +96,6 @@ $thumbnail-width: 99px;
   .opendocument-help {
     margin: 0;
     @include core-14;
-    a {
-      @include external-link-14;
-    }
   }
 
   .accessibility-warning {

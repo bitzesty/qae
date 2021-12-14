@@ -2,7 +2,7 @@
   .panel-group#user-form-panel-parent role="tablist" aria-multiselectable="true"
     .panel.panel-default
       .panel-heading#user-details-heading role="tab"
-        h4.panel-title
+        h2.panel-title
           a data-toggle="collapse" data-parent="#user-form-panel" href="#user-details" aria-expanded="true" aria-controls="user-details"
             = controller_name == "users" ? "Applicant" : controller_name.singularize.titleize
             '  Details
@@ -12,7 +12,7 @@
 
     .panel.panel-default
       .panel-heading role="tab" id="organisation-details-header"
-        h4.panel-title
+        h2.panel-title
           a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#organisation-details" aria-expanded="false" aria-controls="organisation-details"
             ' Organisation Details
       #organisation-details.section-organisation-details.panel-collapse.collapse role="tabpanel" aria-labelledby="organisation-details-header"
@@ -21,7 +21,7 @@
 
     .panel.panel-default
       .panel-heading role="tab" id="contact-preferences-header"
-        h4.panel-title
+        h2.panel-title
           a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#contact-preferences" aria-expanded="false" aria-controls="contact-preferences"
             ' Contact Preferences
       #contact-preferences.section-contact-preferences.panel-collapse.collapse role="tabpanel" aria-labelledby="contact-preferences-header"
@@ -31,7 +31,7 @@
     - unless action_name == "new"
       .panel.panel-default
         .panel-heading role="tab" id="section-collaborators-header"
-          h4.panel-title
+          h2.panel-title
             a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-collaborators" aria-expanded="false" aria-controls="section-collaborators"
               ' Collaborators
         #section-collaborators.section-collaborators.panel-collapse.collapse role="tabpanel" aria-labelledby="section-collaborators-header"
@@ -40,7 +40,7 @@
 
     .panel.panel-default
       .panel-heading role="tab" id="section-password-header"
-        h4.panel-title
+        h2.panel-title
           a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-password" aria-expanded="false" aria-controls="section-password"
             ' Password
       #section-password.section-password.panel-collapse.collapse role="tabpanel" aria-labelledby="section-password-header"

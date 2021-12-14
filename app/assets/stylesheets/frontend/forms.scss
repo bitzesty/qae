@@ -114,21 +114,6 @@ h2 > .boolean.control-label {
   overflow: hidden;
 }
 
-// Expanded the standard input style to include other types
-input[type="text"],
-input[type="search"],
-input[type="number"],
-input[type="email"],
-input[type="password"],
-input[type="url"],
-input[type="tel"],
-input[type="file"] {
-  @media (max-width: 640px) {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-}
 
 .fileinput-button {
   position: absolute;
@@ -143,150 +128,22 @@ input[type="file"] {
   direction: ltr;
 }
 
-input[type="text"],
-input[type="search"],
-input[type="number"],
-input[type="email"],
-input[type="password"],
-input[type="url"],
-input[type="tel"],
-input[type="file"],
-textarea {
-  @include core-19;
-  border: 1px solid #bbb;
-  min-width: 8em;
-  margin: 0 0.5em;
-  padding: 0.25em;
-
-  @include ie-lte(7) {
-    width: 8em;
-  }
-
-  @media (max-width: 640px) {
-    width: 100%;
-  }
-
-  // Alternate width sizes for inputs based on
-  // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
-  &.tiny {
-    min-width: 2.5em;
-    max-width: 2.5em;
-
-    @include ie-lte(7) {
-      width: 2.5em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-    }
-  }
-
-  &.small {
-    max-width: 8em;
-
-    @include ie-lte(7) {
-      width: 8em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-    }
-  }
-
-  &.small-medium {
-    max-width: 9.25em;
-
-    @include ie-lte(7) {
-      width: 9.25em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-    }
-  }
-
-  &.medium {
-    min-width: 16em;
-
-    @include ie-lte(7) {
-      width: 16em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-      max-width: 16em;
-    }
-  }
-
-  &.large {
-    min-width: 24em;
-
-    @include ie-lte(7) {
-      width: 24em;
-    }
-
-    @media (max-width: 640px) {
-      min-width: 0;
-      max-width: 24em;
-    }
-  }
-
-  &.largest {
-    width: 100%;
-    min-width: 0;
-    max-width: none;
-  }
-
-  .span-1 &,
-  .span-2 &,
-  .span-3 &,
-  .span-4 &,
-  .span-5 &,
-  .span-6 &,
-  .span-7 &,
-  .span-8 &,
-  .span-9 &,
-  .span-10 &,
-  .span-11 &,
-  .span-12 & {
-    @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-      -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-              box-sizing: border-box;
-    }
-
-    .lte-ie7 & {
-      width: 100%;
-      min-width: 0;
-      max-width: none;
-    }
-  }
-}
-
-.custom-select {
+.upload-focus {
+  background-color: #FFDC03;
+  font-family: "GDS Transport",arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 19px;
+  line-height: 1;
+  -webkit-box-sizing: border-box;
+  display: inline-block;
+  padding: 8px 10px 7px;
+  border: 2px solid transparent;
+  margin-right: 15px;
+  -webkit-box-shadow: 0 2px 0 #002d18;
+  cursor: pointer;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  @include core-19;
-  
-  border: 1px solid #bbb;
-  min-width: 8em;
-  margin: 0;
-  padding: 0.25em;
-  padding-right: 1.5em;
-  display: block;
-  width: 24em;
-  max-width: 100%;
-
-  background-color: white;
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMC8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMtU1ZHLTIwMDEwOTA0L0RURC9zdmcxMC5kdGQnPjxzdmcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjQgMjQiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHBvaW50cz0iMjEsOC41IDEyLDE3LjUgMyw4LjUgIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+");
-  background-position: calc(100% - 0.5em) center;
-  background-repeat: no-repeat;
-  background-size: 1em auto;
+  color: black;
 }
 
 .custom-select:disabled,
@@ -519,30 +376,6 @@ input[type="file"] {
     }
   }
 
-  // span.selectable {
-  //   padding: 0;
-  //
-  //   .lte-ie7 & {
-  //     width: 85%;
-  //   }
-  //
-  //   label {
-  //     display: block;
-  //     padding: 18px 30px 15px 45px;
-  //   }
-  // }
-
-  input,
-  select,
-  textarea {
-    display: block;
-    margin: 0.2em 0 0.5em 0;
-
-    &.inline {
-      display: inline;
-    }
-  }
-
   // Bigger sized inputs based on https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
   // but adapted from https://www.gov.uk/jobsearch 18 Nov 2014
   input.big {
@@ -637,18 +470,6 @@ input[type="file"] {
     color: $white !important;
   }
 
-  &.large {
-    @include core-24($line-height: (16 / 24));
-    padding: 0.45em 0.5em 0.35em 0.5em;
-    display: inline-block;
-    line-height: 1;
-
-    /* IE6 adds its own side padding so requires no extra */
-    @include ie(6) {
-      padding: 0.45em 0.5em 0.62em 0.5em;
-    }
-  }
-
   &.button-block {
     display: block;
     text-align: center;
@@ -684,6 +505,7 @@ input[type="file"] {
   .hidden-arrow-down {
     position: absolute;
     font-size: 0.8em;
+    color: $blue-link-colour;
   }
 
   .hidden-arrow-right {
@@ -692,11 +514,6 @@ input[type="file"] {
     @media (max-width: 640px) {
       line-height: 1.9;
     }
-
-    @include ie-lte(8) {
-      font-size: 26px;
-      line-height: 0.75;
-    }
   }
 
   .hidden-arrow-down {
@@ -704,11 +521,6 @@ input[type="file"] {
 
     @media (max-width: 640px) {
       line-height: 1.9;
-    }
-
-    @include ie-lte(8) {
-      font-size: 16px;
-      line-height: 1.2;
     }
   }
 
@@ -721,10 +533,6 @@ input[type="file"] {
     padding-left: 1em;
     text-decoration: underline;
     font-weight: normal;
-
-    @include ie-lte(8) {
-      padding-left: 20px;
-    }
   }
 
   .hidden-content {
@@ -832,9 +640,8 @@ input[type="file"] {
   li {
     margin: 0;
     margin-bottom: $gutter-half;
-    padding: $gutter-half;
-    padding-top: 18px;
-    background: $grey-4;
+    padding: 20px !important;
+    border: 2px solid $govuk-input-border-colour !important;
 
     .lte-ie7 & {
       display: inline;
@@ -875,16 +682,9 @@ input[type="file"] {
 
   .remove-link,
   .edit-link {
-    @include core-16;
-    float: right;
     border: none;
-    background: transparent;
-    color: $govuk-blue;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
+    margin-top: 10px;
+    display: inline-block;
 
     &.read-only,
     &.disabled,
@@ -896,6 +696,9 @@ input[type="file"] {
       opacity: 0.5;
     }
   }
+  #remove-website {
+    float: right;
+  }
 }
 
 .lte-ie7 .js-uploaded-list .js-file-uploaded .remove-link {
@@ -906,71 +709,11 @@ input[type="file"] {
 .button-upload {
   padding: 0.5em !important;
   margin: -4.5em 0.5em 0em 0.5em !important;
+  position: relative;
 }
 
 .button-add {
-  @include core-19;
   position: relative;
-  margin-right: $gutter-half;
-  margin-bottom: $gutter-one-third;
-  padding: (18px $gutter $gutter-half $gutter);
-  border: 1px solid $panel-colour;
-  cursor: pointer;
-  overflow: hidden;
-
-  &.onfocus {
-    outline: 3px solid $focus-colour;
-  }
-
-  &,
-  &:link,
-  &:hover,
-  &:focus,
-  &:visited,
-  &.disabled,
-  &.disabled:hover,
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled="disabled"],
-  &[disabled="disabled"]:hover {
-    color: $black;
-    background: $panel-colour;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-
-  &:visited {
-    color: $black !important;
-  }
-
-  &:hover {
-    border-color: $black;
-  }
-
-  &.disabled,
-  &.disabled:hover,
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled="disabled"],
-  &[disabled="disabled"]:hover {
-    border-color: transparent;
-    cursor: default;
-  }
-
-  &:focus {
-    outline: none;
-    border-color: $black;
-  }
-
-  &:active {
-    top: auto;
-    background: $white;
-  }
-
-  &:before {
-    display: none;
-  }
 
   input[type="file"] {
     position: absolute;
@@ -984,6 +727,7 @@ input[type="file"] {
     margin: 0;
     padding: 0;
     border: none;
+    cursor: pointer;
 
     &[disabled] {
       cursor: default;
@@ -997,167 +741,6 @@ input[type="file"] {
 
 .js-default-reached .js-remove-link {
   display: none !important;
-}
-
-// Styles and positions submit button in pagination
-.pagination {
-  &.no-border {
-    border: none;
-  }
-
-  ul {
-    text-align: right !important;
-  }
-
-  li a:hover,
-  li a:active {
-    .lte-ie7 & {
-      background-color: transparent;
-    }
-  }
-
-  li.submit a {
-    &:hover,
-    &:active {
-      .lte-ie7 & {
-        background-color: $button-colour;
-      }
-    }
-  }
-
-  li:hover {
-    .lte-ie7 & {
-      background-color: $grey-4;
-    }
-  }
-
-  li.submit:hover,
-  li.save-quit-link:hover {
-    .lte-ie7 & {
-      background-color: transparent;
-    }
-  }
-
-  li.previous {
-    .lte-ie7 & {
-      background-image: image-url("icon-arrow-pagination-left.png");
-      background-repeat: no-repeat;
-      background-position: left 8px;
-    }
-  }
-
-  li.next {
-    .lte-ie7 & {
-      background-image: image-url("icon-arrow-pagination-right.png");
-      background-repeat: no-repeat;
-      background-position: right 8px;
-    }
-  }
-
-  li.previous-alternate {
-    width: 120px;
-    margin-top: 13px;
-
-    @media (max-width: 740px) {
-      width: 100%;
-    }
-
-    .lte-ie7 & {
-      background-position: -10px 8px;
-    }
-
-    a {
-      padding-left: 2.2em;
-
-      &:hover {
-        background: none;
-
-        .pagination-label {
-          text-decoration: none;
-        }
-      }
-
-      .pagination-label {
-        @include core-24;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  // Save and quit link next to form submit
-  li.save-quit-link {
-    width: 42%;
-    display: inline-block;
-    text-align: right;
-    float: none;
-
-    @media (max-width: 740px) {
-      width: 100%;
-      display: block;
-      margin-top: 1em;
-    }
-
-    .lte-ie7 & {
-      float:left;
-      width: 45%;
-      margin-right: 10px;
-    }
-
-    button, a {
-      @include core-24;
-      margin: 25px 0;
-      margin-bottom: 0;
-      padding: 0;
-      text-decoration: underline;
-
-      &:hover {
-        background: none;
-        text-decoration: none;
-      }
-    }
-  }
-
-  li.submit {
-    display: inline-block;
-    text-align: right;
-    margin-top: 1em;
-    float: none;
-
-    @media (max-width: 740px) {
-      width: 100% !important;
-      display: block;
-    }
-
-    .lte-ie7 & {
-      float: right;
-      max-width: 100%;
-    }
-
-    a,
-    button {
-      width: auto;
-      height: auto;
-      margin: 0.2em 0 0.5em 0;
-    }
-
-    button {
-      position: relative;
-      top: -3px;
-    }
-  }
-
-  .button {
-    @include button;
-    @include core-24($line-height: (16 / 24));
-    padding: 0.45em 0.5em 0.35em 0.5em;
-    display: inline-block;
-    line-height: 1;
-
-    /* IE6 adds its own side padding so requires no extra */
-    @include ie(6) {
-      padding: 0.45em 0.5em 0.62em 0.5em;
-    }
-  }
 }
 
 .page-award-form .pagination {
@@ -1256,7 +839,7 @@ input[type="file"] {
 
 .field-with-errors .error,
 .smart-answer article .error,
-.question-has-errors .errors-container li,
+.govuk-form-group--error .errors-container li,
 .supporters-list .errors-container li,
 .audit-certificate-upload-form .errors-container li {
   @include core-19;
@@ -1270,7 +853,7 @@ input[type="file"] {
   color: $red;
 }
 
-.question-has-errors .errors-container li,
+.govuk-form-group--error .errors-container li,
 .supporters-list .errors-container li,
 .audit-certificate-upload-form .errors-container li {
   .lte-ie7 & {
@@ -1280,7 +863,7 @@ input[type="file"] {
   }
 }
 
-.show-question.question-has-errors,
+.show-question.govuk-form-group--error,
 .field-with-errors {
   display: block;
   margin-bottom: 2.45em;
@@ -1489,10 +1072,6 @@ fieldset.account-contact-preferences-other-ops {
   }
 }
 
-.form-actions {
-  margin-top: 3em;
-}
-
 .static-field {
   margin: 1em 0 0;
 
@@ -1517,7 +1096,7 @@ fieldset.account-contact-preferences-other-ops {
 .other-organization-type {
 
   max-width: 465px !important;
-  
+
   input {
     width: 100% !important;
     display: block;

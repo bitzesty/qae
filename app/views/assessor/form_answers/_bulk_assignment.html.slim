@@ -1,6 +1,6 @@
 - if show_bulk_assignment?
   .if-no-js-hide
-    .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
+    .btn.bulk-assign-assessors-link Bulk Assign Assessors
 
     .bulk-assign-assessors-form
       .well
@@ -11,7 +11,7 @@
 
         = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
           = flash[:error]
-          fieldset.question-group
+          .question-group
             .input.select.form-group.primary-assessor-group
               = f.label :primary_assessor_id, "Assign Primary Assessor to these applications", class: "control-label"
               = f.select :primary_assessor_id,
@@ -20,11 +20,12 @@
                          class: "form-control"
 
             .input.select.form-group.secondary-assessor-group
-              = f.label :primary_assessor_id, "Assign Secondary Assessor to these applications", class: "control-label"
+              = f.label :secondary_assessor_id, "Assign Secondary Assessor to these applications", class: "control-label"
               = f.select :secondary_assessor_id,
                          assessors_collection_for_bulk,
                          { include_blank: true },
                          class: "form-control"
+            = f.label :form_answer_ids, class: "if-js-hide visuallyhidden"
             = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
 
             .pull-right

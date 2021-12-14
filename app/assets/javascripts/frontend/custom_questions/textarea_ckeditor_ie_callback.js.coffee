@@ -12,7 +12,7 @@ window.TextareaCkeditorIeCallback =
     if ms_ie
       waitCKEDITOR = setInterval((->
         if window.CKEDITOR
-          $(".js-ckeditor-spinner-block").addClass('hidden')
+          $(".js-ckeditor-spinner-block").addClass('govuk-!-display-none')
           clearInterval waitCKEDITOR
         return
       ), 6000)

@@ -8,10 +8,8 @@
   = render "content_only/info_messages/award_season_opens_soon"
 
 - if Settings.after_current_submission_deadline_start? || past_applications.present?
-  header.page-header.group
-    div
-      h1
-        ' Applications
+  h1.govuk-heading-xl
+    ' Applications
 
 - if Settings.after_current_submission_deadline?
   .dashboard-post-submission

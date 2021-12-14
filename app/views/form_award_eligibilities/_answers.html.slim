@@ -2,10 +2,18 @@
   - answer = eligibility.public_send(question)
   - if question != step
     - if (final_eligibility_page?(step) && !@already_has_invalid_questions) || answer.present?
-      tr.section
-        td.previous-question-title
+      .govuk-summary-list__row
+        dt.govuk-summary-list__key class="govuk-!-width-three-quarters"
           = eligibility.class.label(question).html_safe
-        td.previous-question-body
+          - if final_eligibility_page?(step) && !@already_has_invalid_questions && !eligibility.answer_valid?(question, answer)
+            - @already_has_invalid_questions = true
+            .govuk-warning-text class="govuk-!-padding-top-4"
+              span.govuk-warning-text__icon aria-hidden="true"
+                | !
+              strong.govuk-warning-text__text
+                span.govuk-warning-text__assistive Warning
+                | This excludes you from entering the Queen's Award for Voluntary Service
+        dd.govuk-summary-list__value
           - if eligibility.class.boolean_question?(question)
             - unless answer.nil?
               = eligibility.public_send("#{question}?") ? 'Yes' : 'No'
@@ -18,19 +26,18 @@
               = eligibility.class.enumerized_attributes[question].find_value(answer).text
 
         - unless admin_in_read_only_mode?
-          td.link-right
-            = link_to wizard_path(question, form_id: @form_answer.id, skipped: eligibility.answer_valid?(question, answer)) do
+          dd.govuk-summary-list__actions
+            = link_to wizard_path(question, form_id: @form_answer.id, skipped: eligibility.answer_valid?(question, answer)), class: 'govuk-link' do
               ' Change
               span.visuallyhidden
                 = ' answer to' + eligibility.class.label(question)
 
       - if final_eligibility_page?(step) && !@already_has_invalid_questions && !eligibility.answer_valid?(question, answer)
         - @already_has_invalid_questions = true
-        tr.previous-answer-invalid
-          td colspan=3
-            span
-              ' This excludes you from entering the
-              - if eligibility.is_a?(Eligibility::Basic)
-                ' Queen's Awards for Enterprise
-              - else
-                = eligibility.class.award_name
+        .govuk-summary-list__row
+          dt.govuk-summary-list__key
+            ' This excludes you from entering the
+            - if eligibility.is_a?(Eligibility::Basic)
+              ' Queen's Awards for Enterprise
+            - else
+              = eligibility.class.award_name

@@ -15,7 +15,7 @@ html.no-js
   | <!--<![endif]-->
   head
     title = content_for?(:title) ? yield(:title) + " - Queen's Awards for Enterprise" : "Assessor - Queen's Awards for Enterprise"
-    meta content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport"
+    meta content="minimal-ui, width=device-width, initial-scale=1.0" name="viewport"
     meta http-equiv="content-type" content="text/html; charset=UTF-8"
     | <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     /[if IE 8]
@@ -53,14 +53,14 @@ html.no-js
                           class: 'navbar-brand'
 
               .navbar-collapse.collapse#nav-main-collapse
-                ul.nav.navbar-nav role="navigation"
-                  li class=('active' if controller_name == 'form_answers')
-                    = link_to "Applications", assessor_form_answers_path
+                ul.nav.navbar-nav role="tablist"
+                  li  role="presentation" class=('active' if controller_name == 'form_answers')
+                    = link_to "Applications", assessor_form_answers_path, role: "tab"
                   - if current_subject.lead_for_any_category?
-                    li class=('active' if controller_name == 'reports')
-                      = link_to "Reports", assessor_reports_path(year: @award_year.year)
+                    li role="presentation" class=('active' if controller_name == 'reports')
+                      = link_to "Reports", assessor_reports_path(year: @award_year.year), role: "tab"
 
-                ul.nav.navbar-nav.navbar-right role="navigation"
+                ul.nav.navbar-nav.navbar-right
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account

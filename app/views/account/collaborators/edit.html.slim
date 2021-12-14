@@ -1,24 +1,24 @@
+- title "Edit collaborator"
+
 - provide(:page_content_class, "multi-page page-account")
 
-header.page-header.group.page-header-over-sidebar
-  div
-    h1
-      ' Account details
+h1.govuk-heading-xl
+  ' Account details
 
 .steps-progress-container
   .steps-progress-content
     header.page-header.group
       div.remove-link-right
-        h2
+        h2.govuk-heading-l
           ' Edit collaborator details
         - if params.has_key? :form_id
           = link_to "Remove collaborator", account_collaborator_path(collaborator, form_id: params[:form_id]),
                               method: :delete,
-                              class: "collaborator-remove-link"
+                              class: "collaborator-remove-link govuk-link"
         - else
           = link_to "Remove collaborator", account_collaborator_path(collaborator),
                               method: :delete,
-                              class: "collaborator-remove-link"
+                              class: "collaborator-remove-link govuk-link"
 
 
     .article-container

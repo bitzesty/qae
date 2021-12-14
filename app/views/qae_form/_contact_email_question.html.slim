@@ -1,8 +1,8 @@
-.question-group
-  input.js-trigger-autosave.mediumjs-disable-copy type="text" name=question.input_name(suffix: 'primary') value=question.input_value(suffix: 'primary') *possible_read_only_ops
-.question-group
-  label
+.govuk-form-group
+  input.js-trigger-autosave.govuk-input.govuk-input--width-20.js-disable-copy type="text" name=question.input_name(suffix: 'primary') value=question.input_value(suffix: 'primary') *possible_read_only_ops
+.govuk-form-group
+  label.
     ' Confirm email address
-    ul.errors-container
-    .clear
-    input.js-trigger-autosave.medium.match.js-disable-copy type="text" name=question.input_name(suffix: 'confirmation') value=question.input_value(suffix: 'primary') data-match="#{question.key}_primary" autocomplete="off" *possible_read_only_ops
+  span.govuk-error-message
+  .clear
+  input.js-trigger-autosave.govuk-input.govuk-input--width-20.match.js-disable-copy type="text" name=question.input_name(suffix: 'confirmation') value=question.input_value(suffix: 'primary') data-match="#{question.key}_primary" autocomplete="off" *possible_read_only_ops
