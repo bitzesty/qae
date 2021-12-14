@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  include Users::ReasonablyParanoidable
+
   # The path used after confirmation.
   def after_confirmation_path_for(resource_name, resource)
     if resource.is_a?(User) && resource.encrypted_password.blank?

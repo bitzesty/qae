@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     confirmations: "users/confirmations",
     passwords: "users/passwords",
-    sessions: "users/sessions"
+    sessions: "users/sessions",
+    unlocks: "users/unlocks"
   }
 
   devise_for :admins, controllers: {
