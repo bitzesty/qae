@@ -190,6 +190,10 @@ class QAEFormBuilder
       delegate_obj.section_info
     end
 
+    def excluded_header_questions?
+      delegate_obj.excluded_header_questions
+    end
+
     def have_conditional_parent?
       delegate_obj.conditions.any?
     end
@@ -411,6 +415,10 @@ class QAEFormBuilder
       @q.section_info = true
     end
 
+    def excluded_header_questions
+      @q.excluded_header_questions = true
+    end
+
     def help title, text
       @q.help << QuestionHelp.new(title, text)
     end
@@ -489,7 +497,8 @@ class QAEFormBuilder
                   :drop_condition,
                   :drop_condition_parent,
                   :drop_block_condition,
-                  :section_info
+                  :section_info,
+                  :excluded_header_questions
 
     def initialize step, key, title, opts={}
       @step = step
