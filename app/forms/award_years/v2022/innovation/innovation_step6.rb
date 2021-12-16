@@ -77,7 +77,7 @@ class AwardYears::V2022::QAEForms
             <details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
-                  View Government Departments and Agencies we undertake due diligence checks with >
+                  View Government Departments and Agencies we undertake due diligence checks with
                 </span>
               </summary>
               <div class="govuk-details__text">
