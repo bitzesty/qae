@@ -84,8 +84,12 @@
                 span.todo
                   = ref.to_s
             - unless question.title.blank?
-              span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
-                == question.title
+              - if question.excluded_header_questions?
+                span.govuk-label
+                  == question.title
+              - else
+                span class="govuk-body govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-display-block"
+                  == question.title
 
             = render "qae_form/question_sub_title", question: question
 

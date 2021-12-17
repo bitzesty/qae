@@ -9,6 +9,7 @@ class AwardYears::V2022::QAEForms
         text :head_of_bussines_title, "Title" do
           required
           classes "sub-question"
+          excluded_header_questions
           style "tiny"
         end
 
@@ -22,6 +23,7 @@ class AwardYears::V2022::QAEForms
 
         text :head_job_title, "Job title / role in the organisation" do
           classes "sub-question"
+          excluded_header_questions
           required
           form_hint %(
             e.g. CEO, Managing Director, Founder
@@ -30,6 +32,7 @@ class AwardYears::V2022::QAEForms
 
         text :head_email, "Email address" do
           classes "sub-question"
+          excluded_header_questions
           style "large"
           required
           type "email"
@@ -75,7 +78,7 @@ class AwardYears::V2022::QAEForms
             <details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
-                  View Government Departments and Agencies we undertake due diligence checks with >
+                  View Government Departments and Agencies we undertake due diligence checks with
                 </span>
               </summary>
               <div class="govuk-details__text">

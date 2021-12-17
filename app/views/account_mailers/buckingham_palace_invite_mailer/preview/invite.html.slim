@@ -1,34 +1,34 @@
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | The Queen's Awards for Enterprise Reception at Windsor Castle,
+  =< @reception_date
+  | .
+
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@name},"
 
-p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Reminder to submit guest details by 12:00 (noon) this Wednesday, 29th September 2021, for the Queen’s Awards for Enterprise Reception at Windsor Castle
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | We are delighted to announce that HRH The Prince of Wales will be hosting a Reception on behalf of The Queen, for The Queen's Awards for Enterprise Winners at Windsor Castle on the evening of
+  =< @reception_date
+  | . In these unprecedented times, this Reception will celebrate the achievements of winners from both 2020 and 2021. Only one company representative can be accommodated, and unfortunately, this number cannot be increased.
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | As per our email last week, HRH The Prince of Wales will be hosting a Reception on behalf of The Queen, for The Queen’s Awards for Enterprise Winners from both 2020 and 2021 at Windsor Castle on the evening of Wednesday 10th November 2021.
+p style="font-weight: 700; font-size: 19px;; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | Important notice: We kindly ask that you do not publicise the date of this event in advance.
 
-p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Submission of Guest Details – due by 12:00 (noon) this Wednesday 29th September 2021
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | Submission of Guest Details
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | You must submit details of one company representative who can attend the event no later than 12:00 (noon) on Wednesday 29th September 2021.
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | Please note, the guest must be an employed representative of the company. Only one company representative can be accommodated, and unfortunately, this number cannot be increased.
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | To submit their details, please follow the link below:
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | The guest must be an employed representative of the company. To submit their details, please follow the link below:
   br
   = link_to edit_palace_invite_url(id: @token), edit_palace_invite_url(id: @token)
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | If you have already submitted the details last week or today, please ignore this email.
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Please ensure the address details are those of the company representative being invited to the Reception and not of the person or agent submitting the details. I would be grateful if you could provide the requested information no later than 12:00 (noon) on
+  =< @palace_attendees_due
+  | .
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | Specific details about the event, including the exact time, will be confirmed with the invitation, which the Royal Household will send to guests approximately 4 weeks prior to the event.
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | We kindly ask that you do not publicise the date of this event in advance.
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Specific details about the event will be included with the invitation, which the Royal Household will send to guests approximately 4 weeks prior to the event.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Yours sincerely,
@@ -38,4 +38,4 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   br
   ' The Secretary
   br
-  ' The Queen’s Awards Office
+  ' The Queen's Awards Office
