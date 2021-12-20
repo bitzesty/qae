@@ -176,9 +176,9 @@ GEM
     devise-authy (2.3.0)
       authy (~> 3.0)
       devise (>= 4.0.0)
-    devise_zxcvbn (5.1.0)
+    devise_zxcvbn (6.0.0)
       devise
-      zxcvbn-js (~> 4.4.1)
+      zxcvbn (~> 0.1.7)
     diff-lcs (1.4.4)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -796,8 +796,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
-    zxcvbn-js (4.4.3)
-      execjs
+    zxcvbn (0.1.7)
 
 PLATFORMS
   ruby
