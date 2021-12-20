@@ -34,8 +34,7 @@
           - if question.description
             .govuk-form-group
               label.govuk-label class="govuk-!-margin-top-5" for=question.input_name(suffix: 'description', index: idx)
-                span.label-char-count-reposition
-                  ' Description
+                ' Description
                 / (optional)
               textarea.govuk-textarea.js-char-count.js-trigger-autosave rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)  *possible_read_only_ops
                 = question.input_value(suffix: 'description', index: idx)
