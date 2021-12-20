@@ -38,7 +38,7 @@
                 / (optional)
               textarea.govuk-textarea.js-char-count.js-trigger-autosave rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)  *possible_read_only_ops
                 = question.input_value(suffix: 'description', index: idx)
-          - unless admin_in_read_only_mode?
+          - unless admin_in_read_only_mode? || question.key == :org_chart
             a.govuk-button.govuk-button--warning.remove-link class="govuk-!-margin-bottom-3" href="#" *possible_read_only_ops
               | Remove website address
 

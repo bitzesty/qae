@@ -423,6 +423,18 @@ window.FormValidation =
           @appendMessage(qParent, "the year must be from 2012 to 2021")
           @addErrorClass(question)
 
+  validateInnovationFinancialDate: (question) ->
+
+    val = question.find("input[type='number']").val()
+
+    questionDay = parseInt(question.find(".innovation-day").val())
+    questionMonth = parseInt(question.find(".innovation-month").val())
+    questionDate = "#{questionDay}/#{questionMonth}"
+
+    if not @toDate(questionDate).isValid()
+      @logThis(question, "validateMaxDate", "Not a valid date")
+      @addErrorMessage(question, "Not a valid date")
+      return
 
   validateDateStartEnd: (question) ->
     if question.find(".validate-date-start-end").length > 0
@@ -603,6 +615,9 @@ window.FormValidation =
 
     if question.hasClass("question-limited-selections")
       @validateSelectionLimit(question)
+
+    if question.find(".js-financial-year-latest").length
+      @validateInnovationFinancialDate(question)
 
   validate: ->
     @clearAllErrors()

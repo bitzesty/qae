@@ -44,7 +44,8 @@
             ul.post-dashboard-actions
               li
                 - if award.press_summary.applicant_submitted?
-                  ' Press Book Notes
+                  p.govuk-body 
+                    ' Press Book Notes
                 - else
                   = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token), class: 'govuk-link'
                 span.award-info.govuk-body
