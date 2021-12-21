@@ -136,7 +136,7 @@ window.FormValidation =
       @addErrorMessage(question, "Emails don't match")
 
   validateMaxDate: (question) ->
-    val = question.find("input[type='number']").val()
+    val = question.find("input[type='text']").val()
 
     questionYear = parseInt(question.find(".js-date-input-year").val())
     questionMonth = parseInt(question.find(".js-date-input-month").val())
@@ -425,7 +425,7 @@ window.FormValidation =
 
   validateInnovationFinancialDate: (question) ->
 
-    val = question.find("input[type='number']").val()
+    val = question.find("input[type='text']").val()
 
     questionDay = parseInt(question.find(".innovation-day").val())
     questionMonth = parseInt(question.find(".innovation-month").val())
