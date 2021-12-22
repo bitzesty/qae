@@ -572,7 +572,7 @@ jQuery ->
 
     upload_started = (e, data) ->
       # Show `Uploading...`
-      button.addClass("visuallyhidden")
+      govuk_button.addClass("visuallyhidden")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
       uid = '_' + Math.random().toString(36).substr(2, 9);
@@ -600,7 +600,7 @@ jQuery ->
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.removeClass("visuallyhidden")
-      button.removeClass("visuallyhidden")
+      govuk_button.removeClass("visuallyhidden")
 
     upload_done = (e, data, link) ->
       # Remove `Uploading...`
@@ -632,7 +632,7 @@ jQuery ->
             filename = data.result['original_filename']
           else
             filename = "File uploaded"
-        div = $("<div>").text(filename)
+        div = $("<div><p class='govuk-body'>#{filename}</p></div>")
 
         hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
 
@@ -658,7 +658,7 @@ jQuery ->
       reindexUploadListInputs(list)
       new_el.find('input,textarea,select').filter(':visible').first().focus()
 
-    updateUploadListVisiblity(list, button, max)
+    updateUploadListVisiblity(list, govuk_button, max)
 
     if is_link
       $el.click (e) ->
@@ -693,7 +693,7 @@ jQuery ->
       li = $(this).closest 'li'
       list = li.closest(".js-uploaded-list")
       wrapper = list.closest(".js-upload-wrapper")
-      button = wrapper.find(".js-button-add")
+      button = wrapper.find(".button-add")
       max = wrapper.data('max-attachments')
 
       li.remove()
