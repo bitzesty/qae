@@ -69,7 +69,7 @@ window.FormValidation =
     question.find("input[type='checkbox']").length
 
   toDate: (str) ->
-    moment(str, "DD/MM/YYYY")
+    moment(str, ["DD/MM/YYYY", "D/M/YYYY", "D/MM/YYYY", "DD/M/YYYY"], true)
 
   compareDateInDays: (date1, date2) ->
     date = @toDate(date1)
@@ -138,9 +138,9 @@ window.FormValidation =
   validateMaxDate: (question) ->
     val = question.find("input[type='number']").val()
 
-    questionYear = parseInt(question.find(".js-date-input-year").val())
-    questionMonth = parseInt(question.find(".js-date-input-month").val())
-    questionDay = parseInt(question.find(".js-date-input-day").val())
+    questionYear = question.find(".js-date-input-year").val()
+    questionMonth = question.find(".js-date-input-month").val()
+    questionDay = question.find(".js-date-input-day").val()
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
     if not val
@@ -161,9 +161,9 @@ window.FormValidation =
   validateDynamicMaxDate: (question) ->
     val = question.find("input[type='text']").val()
 
-    questionYear = parseInt(question.find(".js-date-input-year").val())
-    questionMonth = parseInt(question.find(".js-date-input-month").val())
-    questionDay = parseInt(question.find(".js-date-input-day").val())
+    questionYear = question.find(".js-date-input-year").val()
+    questionMonth = question.find(".js-date-input-month").val()
+    questionDay = question.find(".js-date-input-day").val()
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
     if not val
@@ -195,9 +195,9 @@ window.FormValidation =
   validateMinDate: (question) ->
     val = question.find("input[type='text']").val()
 
-    questionYear = parseInt(question.find(".js-date-input-year").val())
-    questionMonth = parseInt(question.find(".js-date-input-month").val())
-    questionDay = parseInt(question.find(".js-date-input-day").val())
+    questionYear = question.find(".js-date-input-year").val()
+    questionMonth = question.find(".js-date-input-month").val()
+    questionDay = question.find(".js-date-input-day").val()
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
     if not val
@@ -218,9 +218,9 @@ window.FormValidation =
   validateBetweenDate: (question) ->
     val = question.find("input[type='text']").val()
 
-    questionYear = parseInt(question.find(".js-date-input-year").val())
-    questionMonth = parseInt(question.find(".js-date-input-month").val())
-    questionDay = parseInt(question.find(".js-date-input-day").val())
+    questionYear = question.find(".js-date-input-year").val()
+    questionMonth = question.find(".js-date-input-month").val()
+    questionDay = question.find(".js-date-input-day").val()
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
     if not val
@@ -423,6 +423,18 @@ window.FormValidation =
           @appendMessage(qParent, "the year must be from 2012 to 2021")
           @addErrorClass(question)
 
+  validateInnovationFinancialDate: (question) ->
+
+    val = question.find("input[type='number']").val()
+
+    questionDay = parseInt(question.find(".innovation-day").val())
+    questionMonth = parseInt(question.find(".innovation-month").val())
+    questionDate = "#{questionDay}/#{questionMonth}/#{moment().format('Y')}"
+
+    if not @toDate(questionDate).isValid()
+      @logThis(question, "validateMaxDate", "Not a valid date")
+      @addErrorMessage(question, "Not a valid date")
+      return
 
   validateDateStartEnd: (question) ->
     if question.find(".validate-date-start-end").length > 0
@@ -603,6 +615,9 @@ window.FormValidation =
 
     if question.hasClass("question-limited-selections")
       @validateSelectionLimit(question)
+
+    if question.find(".js-financial-year-latest").length
+      @validateInnovationFinancialDate(question)
 
   validate: ->
     @clearAllErrors()
