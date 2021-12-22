@@ -693,7 +693,7 @@ jQuery ->
       li = $(this).closest 'li'
       list = li.closest(".js-uploaded-list")
       wrapper = list.closest(".js-upload-wrapper")
-      button = wrapper.find(".js-button-add")
+      button = wrapper.find(".button-add")
       max = wrapper.data('max-attachments')
 
       li.remove()
