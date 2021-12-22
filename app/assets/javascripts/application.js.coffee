@@ -632,7 +632,7 @@ jQuery ->
             filename = data.result['original_filename']
           else
             filename = "File uploaded"
-        div = $("<div>").text(filename)
+        div = $("<div><p class='govuk-body'>#{filename}</p></div>")
 
         hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
 
