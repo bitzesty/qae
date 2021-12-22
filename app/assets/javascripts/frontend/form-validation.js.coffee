@@ -429,7 +429,7 @@ window.FormValidation =
 
     questionDay = parseInt(question.find(".innovation-day").val())
     questionMonth = parseInt(question.find(".innovation-month").val())
-    questionDate = "#{questionDay}/#{questionMonth}"
+    questionDate = "#{questionDay}/#{questionMonth}/#{moment().format('Y')}"
 
     if not @toDate(questionDate).isValid()
       @logThis(question, "validateMaxDate", "Not a valid date")
