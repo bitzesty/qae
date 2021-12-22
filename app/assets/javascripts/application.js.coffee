@@ -572,7 +572,7 @@ jQuery ->
 
     upload_started = (e, data) ->
       # Show `Uploading...`
-      button.addClass("visuallyhidden")
+      govuk_button.addClass("visuallyhidden")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
       uid = '_' + Math.random().toString(36).substr(2, 9);
@@ -600,7 +600,7 @@ jQuery ->
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.removeClass("visuallyhidden")
-      button.removeClass("visuallyhidden")
+      govuk_button.removeClass("visuallyhidden")
 
     upload_done = (e, data, link) ->
       # Remove `Uploading...`
@@ -658,7 +658,7 @@ jQuery ->
       reindexUploadListInputs(list)
       new_el.find('input,textarea,select').filter(':visible').first().focus()
 
-    updateUploadListVisiblity(list, button, max)
+    updateUploadListVisiblity(list, govuk_button, max)
 
     if is_link
       $el.click (e) ->
