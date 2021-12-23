@@ -7,166 +7,164 @@
 - any_development_winner = winners.select{ |app| app.development? }.any?
 
 div
-  header.group.page-header.page-header-wider
-    div
-      h1 Winners' Resources
+  h1.govuk-heading-xl Winners' Resources
 
   .article-container.article-container-wider
     article.group role="article"
-      .inner
-        p Here you can download Queen's Awards for Enterprise resources for use in your websites and advertising materials. The Winners' Manual provides more detailed information on where and how you are allowed to use these resources.
+      div
+        p.govuk-body Here you can download Queen's Awards for Enterprise resources for use in your websites and advertising materials. The Winners' Manual provides more detailed information on where and how you are allowed to use these resources.
 
         br
 
-        h2 Download the Queen's Awards for Enterprise Winners' Manual 2015
+        h2.govuk-heading-l Download the Queen's Awards for Enterprise Winners' Manual 2015
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise Winners' Manual 2015 (PDF, 15.7MB)",
                       static_s3_asset_path(2015, "Queen's Awards for Enterprise Winners Manual 2015.pdf"),
-                      class: "thumbnail",
+                      class: "thumbnail govuk-link",
                       target: "_blank"
 
         - if any_promotion_winner
-          h2 Download the Queen's Awards for Enterprise Promotion 2015 Emblems in various formats
+          h2.govuk-heading-l Download the Queen's Awards for Enterprise Promotion 2015 Emblems in various formats
 
           .form-download
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise Promotion 2015 Emblem (EPS, 651KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Promotion 2015 Emblem.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise Promotion 2015 Emblem (JPG, 727KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Promotion 2015 Emblem.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise Promotion 2015 Emblem - black on white (EPS, 673KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Promotion 2015 Emblem - black on white.eps"),
                         class: "thumbnail",
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise Promotion 2015 Emblem - black on white (JPG, 298KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Promotion 2015 Emblem - black on white.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise Promotion 2015 Emblem - white on black (EPS, 878KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Promotion 2015 Emblem - white on black.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise Promotion 2015 Emblem - white on black (JPG, 314KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Promotion 2015 Emblem - white on black.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
         - if any_innovation_winner
-          h2 Download The Queen's Awards for Enterprise: Innovation 2015 Emblems in various formats
+          h2.govuk-heading-l Download The Queen's Awards for Enterprise: Innovation 2015 Emblems in various formats
 
           .form-download
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Innovation 2015 Emblem (EPS, 680KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Innovation 2015 Emblem.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Innovation 2015 Emblem (JPG, 778KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Innovation 2015 Emblem.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Innovation 2015 Emblem - black on white (EPS, 1.3MB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Innovation 2015 Emblem - black on white.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-              p
+              p.govuk-body
                 = link_to "Queen's Award for Enterprise: Innovation 2015 Emblem - black on white (JPG, 356KB)",
                           static_s3_asset_path(2015, "Queen's Award for Enterprise Innovation 2015 Emblem - black on white.jpg"),
-                          target: "_blank"
+                          target: "_blank", class: "govuk-link"
 
-              p
+              p.govuk-body
                 = link_to "Queen's Award for Enterprise: Innovation 2015 Emblem - white on black (EPS, 677KB)",
                           static_s3_asset_path(2015, "Queen's Award for Enterprise Innovation 2015 Emblem - white on black.eps"),
-                          target: "_blank"
+                          target: "_blank", class: "govuk-link"
 
-              p
+              p.govuk-body
                 = link_to "Queen's Award for Enterprise: Innovation 2015 Emblem - white on black (JPG, 316KB)",
                           static_s3_asset_path(2015, "Queen's Award for Enterprise Innovation 2015 Emblem - white on black.jpg"),
-                          target: "_blank"
+                          target: "_blank", class: "govuk-link"
 
         - if any_trade_winner
-          h2 Download the Queen's Awards for Enterprise: International Trade 2015 Emblems in various formats
+          h2.govuk-heading-l Download the Queen's Awards for Enterprise: International Trade 2015 Emblems in various formats
 
           .form-download
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: International Trade 2015 Emblem (EPS, 693KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise International Trade 2015 Emblem.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: International Trade 2015 Emblem (JPG, 804KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise International Trade 2015 Emblem.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: International Trade 2015 Emblem - black on white (EPS, 688KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise International Trade 2015 Emblem - black on white.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: International Trade 2015 Emblem - black on white (JPG, 215KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise International Trade 2015 Emblem - black on white.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: International Trade 2015 Emblem - white on black (EPS, 1.3MB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise International Trade 2015 Emblem - white on black.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: International Trade 2015 Emblem - white on black (JPG, 367KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise International Trade 2015 Emblem - white on black.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
         - if any_development_winner
-          h2 Download the Queen's Awards for Enterprise: Sustainable Development 2015 Emblems in various formats
+          h2.govuk-heading-l Download the Queen's Awards for Enterprise: Sustainable Development 2015 Emblems in various formats
 
           .form-download
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Sustainable Development 2015 Emblem (EPS, 749KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Sustainable Development 2015 Emblem.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Sustainable Development 2015 Emblem (JPG, 840KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Sustainable Development 2015 Emblem.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Sustainable Development 2015 Emblem - black on white (EPS, 744KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Sustainable Development 2015 Emblem - black on white.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Sustainable Development 2015 Emblem - black on white (JPG, 341KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Sustainable Development 2015 Emblem - black on white.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Sustainable Development 2015 Emblem - white on black (EPS, 1.3MB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Sustainable Development 2015 Emblem - white on black.eps"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
-            p
+            p.govuk-body
               = link_to "Queen's Award for Enterprise: Sustainable Development 2015 Emblem - white on black (JPG, 377KB)",
                         static_s3_asset_path(2015, "Queen's Award for Enterprise Sustainable Development 2015 Emblem - white on black.jpg"),
-                        target: "_blank"
+                        target: "_blank", class: "govuk-link"
 
         footer
           nav.pagination.no-border aria-label="Pagination" role="navigation"
             ul.group
               li.previous.previous-alternate
-                = link_to dashboard_path
+                = link_to dashboard_path, class: 'govuk-button govuk-button-secondary'
                   span.pagination-label Back
