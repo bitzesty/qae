@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :form_answer do
     award_type { "trade" }
     association :user, factory: [:user, :agreed_to_be_contacted]
-    award_year_id { AwardYear.where(year: 2020).first_or_create.id }
+    award_year_id { AwardYear.where(year: 2021).first_or_create.id }
 
     trait :submitted do
       submitted_at { Time.current }
