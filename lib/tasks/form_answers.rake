@@ -216,4 +216,28 @@ namespace :form_answers do
     form_answer = FormAnswer.find(args[:id])
     ManualUpdaters::TradeAwardDowngrader.new(form_answer).run!
   end
+
+  desc "Fixes misspelt regions/counties within form answers"
+  task fix_address_counties: :environment do
+    counter = 0
+    county_mapper = {
+      "Befordshire" => "Bedfordshire",
+      "Stafffordshire" => "Staffordshire"
+    }
+
+    puts "Updating form answers..."
+
+    county_mapper.each do |wrong_county, correct_county|
+      %w(personal_address_county nominee_personal_address_county organization_address_county).each do |key|
+        FormAnswer.where("document ->> '#{key}' = '#{wrong_county}'").find_each do |answer|
+          answer.document[key] = correct_county
+          answer.save(validate: false)
+
+          counter += 1
+        end
+      end
+    end
+
+    puts "Fixed #{counter} form answers!"
+  end
 end
