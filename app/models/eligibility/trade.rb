@@ -20,14 +20,14 @@ class Eligibility::Trade < Eligibility
 
   property :sales_above_100_000_pounds,
            values: %w[yes no skip],
-           label: "Have you made a minimum of £100,000 in overseas sales in each year of your entry (i.e. in the last 3 or 6 years)?",
+           label: "Have you made a minimum of £100,000 in overseas sales in each year of your entry (either for the last 3 or 6 years)?",
            accept: :true,
            acts_like_boolean: true,
            hint: %(
-              <p class='question-context'>
+              <p class='govuk-hint'>
                 You can choose to be assessed for outstanding growth (over three years) or continuous growth (over six years).
               </p>
-              <ul class='question-context'>
+              <ul class='govuk-hint'>
                 <li>Outstanding Short Term Growth: a steep year on year growth over three years</li>
                 <li>Outstanding Continued Growth: a substantial year on year growth over six years</li>
               </ul>

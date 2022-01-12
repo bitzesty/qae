@@ -6,62 +6,59 @@
   - title  "Eligibility: #{page_title}"
   - page_title = "Promoting Opportunity Award (through social mobility) Application" if @form_answer.award_type == "mobility"
 
-header.page-header.group.page-header-over-sidebar
-  div
-    h1 = page_title
+- input_steps = ['number_of_eligible_initiatives', 'number_of_innovative_products']
+
+h1.govuk-heading-xl = page_title
 
 .steps-progress-container.min-height-800
+  = render "steps_progress_bar", cant_access_future: true, previous_questions: step
   .steps-progress-content
-    header.page-header.group.page-header-wider
-      div
-        h2
-          ' Eligibility
-
-    .article-container.article-container-wider
+    div
       article.group role="article"
-        .inner.step.current
+        .step.current
           - if step && step.to_s != "wicked_finish"
             = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
-              .current-question.qae-form#current-question
-                .question class="question-#{step.to_s.gsub!(/_/, '-')}"
-                  label.eligibilty-label for="eligibility_#{step.to_s}" id="eligibility_#{step.to_s}_label"
-                    h2
-                      = @eligibility.class.label(step).html_safe
+              .govuk-form-group.current-question.qae-form#current-question
+                fieldset.govuk-fieldset class="question-#{step.to_s.gsub!(/_/, '-')}"
+                  - if @eligibility.is_a?(Eligibility::Basic) || !input_steps.include?(step.to_s)
+                    legend.govuk-fieldset__legend.govuk-fieldset__legend--l.eligibilty-label for="eligibility_#{step.to_s}" id="eligibility_#{step.to_s}_label" class="govuk-!-margin-bottom-5"
+                      h2.govuk-fieldset__heading
+                        = @eligibility.class.label(step).html_safe
                   - if @eligibility.is_a?(Eligibility::Basic)
                     = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f, question: step.to_s
                   - else
                     = render("form_award_eligibilities/questions/#{step.to_s}", f: f, question: step.to_s) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
 
                 .next-question
-                  = f.submit "Continue", class: "button medium"
+                  = f.submit "Continue", class: "govuk-button", aria: {label: "Continue to next question"}
           - else
             .previous-answers
               - if @form_answer.eligible?
                 .eligibility-passed
                   - if @form_answer.promotion?
-                    p You are eligible to begin your application for an Enterprise Promotion Award Nomination.
+                    p.govuk-body-l You are eligible to begin your application for an Enterprise Promotion Award Nomination.
                   - elsif @form_answer.award_type == "mobility"
-                    p You are eligible to begin your application for a Promoting Opportunity Award (through social mobility).
+                    p.govuk-body-l You are eligible to begin your application for a Promoting Opportunity Award (through social mobility).
                   - else
-                    p You are eligible to begin your application for a #{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award.
-                  p Before you start your application, please check your eligibility answers are correct.
+                    p.govuk-body-l You are eligible to begin your application for a #{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award.
+                  p.govuk-body-l Before you start your application, please check your eligibility answers are correct.
 
                 - if (!step || step.to_s == "wicked_finish")
                   br
-                  = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "button medium"
+                  = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium", role: "button", aria: {label:"Continue to useful application info"}
                   br
 
               - else
                 .eligibility-failed
-                  p
+                  p.govuk-body-l
                     - if @form_answer.promotion?
                       ' Your nominee is
                     - else
                       ' At the moment you are
                     strong not eligible
-                    '  for this award. Please see your answers below for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
+                    '  for this award. Please see your answers in the next section for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
 
-                  p
+                  p.govuk-body-l
                     - if @form_answer.promotion?
                       ' Also, you may consider nominating someone else or your organisation
                     - else
@@ -77,15 +74,12 @@ header.page-header.group.page-header-over-sidebar
 
         - if (!step || step.to_s == "wicked_finish")
           - if @form_answer.eligible?
-            .eligibility-continue-button
-              = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "button medium"
+            = link_to "Continue", [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: "govuk-button medium", role: "button"
           - else
             footer
               nav.pagination.no-border role="navigation" aria-label="Pagination"
                 ul.group
                   li.previous
-                    = link_to dashboard_path, rel: "prev", title: "Navigate to previous part" do
+                    = link_to dashboard_path, rel: "prev", title: "Back to dashboard", class: 'govuk-button govuk-button--secondary', role: "button" do
                       span.pagination-label
                         ' Back
-
-  = render "steps_progress_bar", cant_access_future: true, previous_questions: step

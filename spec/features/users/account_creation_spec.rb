@@ -8,6 +8,15 @@ describe "Account forms" do
       visit new_user_registration_path
     end
 
+    it "does not create account when terms and conditions not accepted" do
+      fill_in("Email", with: "test@example.com")
+      fill_in("Password", with: "asldkj902lkads-0asd")
+      fill_in("Password confirmation", with: "asldkj902lkads-0asd")
+
+      click_button "Create account"
+      expect(page).to have_content("Must be accepted")
+    end
+
     it "creates the User account" do
       fill_in("Email", with: "test@example.com")
       fill_in("Password", with: "asldkj902lkads-0asd")

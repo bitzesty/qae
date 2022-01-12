@@ -36,7 +36,7 @@ class FormAnswerSearch < Search
   end
 
   def sort_by_sic_code(scoped_results, desc = false)
-    scoped_results.order("(form_answers.document #>> '{sic_code}') #{sort_order(desc)}")
+    scoped_results.order(Arel.sql("(form_answers.document #>> '{sic_code}') #{sort_order(desc)}"))
   end
 
   def sort_by_primary_assessor_name(scoped_results, desc = false)
@@ -58,7 +58,7 @@ class FormAnswerSearch < Search
       .joins("LEFT OUTER JOIN (SELECT audit_logs.auditable_id, audit_logs.auditable_type, MAX(audit_logs.created_at) latest_audit_date FROM audit_logs
        WHERE audit_logs.action_type != 'download_form_answer'
        GROUP BY audit_logs.auditable_id, audit_logs.auditable_type) max_audit_dates ON max_audit_dates.auditable_id = form_answers.id AND max_audit_dates.auditable_type = 'FormAnswer'")
-      .order("COALESCE(max_audit_dates.latest_audit_date, TO_DATE('20101031', 'YYYYMMDD')) #{sort_order(desc)}")
+      .order(Arel.sql("COALESCE(max_audit_dates.latest_audit_date, TO_DATE('20101031', 'YYYYMMDD')) #{sort_order(desc)}"))
       .group("max_audit_dates.latest_audit_date")
   end
 

@@ -1,8 +1,11 @@
-- question.regions.each_slice(question.regions.length / 2).each do |slice|
-  .regions-half
-    - slice.each do |region|
-      .selectable
-        = check_box_tag "#{question.input_name}[]", region, question.entities.include?(region), class: "js-trigger-autosave required", id: "#{question.input_name}_#{region}"
-        label for="#{question.input_name}_#{region}"
-          = region
+
+.govuk-checkboxes data-module="govuk-checkboxes"
+  .govuk-grid-row
+    - question.regions.each_slice(question.regions.length / 2).each do |slice|
+      .govuk-grid-column-one-half
+        - slice.each do |region|
+          .govuk-checkboxes__item
+            = check_box_tag "#{question.input_name}[]", region, question.entities.include?(region), class: "js-trigger-autosave required govuk-checkboxes__input", id: "#{question.input_name}_#{region}"
+            label.govuk-label.govuk-checkboxes__label for="#{question.input_name}_#{region}"
+              = region
 = hidden_field_tag "#{question.input_name}[]", ""

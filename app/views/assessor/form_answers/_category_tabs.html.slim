@@ -1,7 +1,7 @@
 - if category_picker.show_award_tabs_for_assessor?
   .nav-subnav
-    ul role="navigation"
+    ul role="tablist"
       - category_picker.visible_categories.each do |category|
         li class="cat-#{category.text_label.parameterize} #{'active' if category.active?(params)}" role="presentation"
-          = link_to category.text_label, assessor_form_answers_path(award_type: category.slug, year: params[:year] || @award_year.year)
+          = link_to category.text_label, assessor_form_answers_path(award_type: category.slug, year: params[:year] || @award_year.year), role: 'tab'
     .clear

@@ -6,9 +6,9 @@ li
       = f.input :form_answer_id, as: :hidden, input_html: { value: @form_answer.id }
       .row
         .span-6
-          = f.input :file, as: :file, input_html: { class: "form-control" }
+          = f.input :file, as: :file, input_html: { class: "govuk-file-upload" }
       .clear
       .row
         .span-12
-          = f.submit "Save", class: "button button-alt"
+          = f.submit "Save", class: "govuk-button"
       .clear

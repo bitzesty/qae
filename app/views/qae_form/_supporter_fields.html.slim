@@ -15,8 +15,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
     span.span-6
       label
         ' First Name
-        ul.errors-container
-        .clear
+        span.govuk-error-message
         input.js-support-letter-first-name.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"] *possible_read_only_ops
         span.visible-read-only = supporter["first_name"]
   span.clear
@@ -24,8 +23,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
     span.span-6
       label
         ' Surname
-        ul.errors-container
-        .clear
+        span.govuk-error-message
         input.js-support-letter-last-name.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"] *possible_read_only_ops
         span.visible-read-only = supporter["last_name"]
   span.clear
@@ -33,8 +31,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
     span.span-6
       label
         ' Relationship to Nominee
-        ul.errors-container
-        .clear
+        span.govuk-error-message
         input.js-support-letter-relationship-to-nominee.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"] *possible_read_only_ops
         span.visible-read-only = supporter["relationship_to_nominee"]
   span.clear
@@ -43,8 +40,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
       span.span-12
         label
           ' Letter of Support
-          ul.errors-container
-          .clear
+          span.govuk-error-message
           input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][#{index}][letter_of_support]" type='file' *possible_read_only_ops
           - if supporter['letter_of_support'].present?
             = render "support_letters/attachment", question: question,
@@ -54,8 +50,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
       span.span-6
         label
           ' Email address
-          ul.errors-container
-          .clear
+          span.govuk-error-message
           input.js-support-letter-email.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email'] *possible_read_only_ops
           span.visible-read-only = supporter['email']
   span.clear

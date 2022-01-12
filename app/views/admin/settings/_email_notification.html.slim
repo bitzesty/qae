@@ -20,7 +20,7 @@
   = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule if-no-js-hide"
 
   .notification-form
-    = render "schedule_new", notification: @settings.email_notifications.build(kind: kind)
+    = render "schedule_new", notification: @settings.email_notifications.build(kind: kind), kind: kind
 
   ul.notifications
     - notifications.each do |notification|

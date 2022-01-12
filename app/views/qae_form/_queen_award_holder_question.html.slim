@@ -9,10 +9,10 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
     - question.entities.each_with_index do |award, index|
       li.js-add-example non-js-attribute="#{award["category"]}_#{award['year']}"
-        ul.errors-container
-          - errors = @form_answer.validator_errors
-          - if errors && errors[question.key] && errors[question.key][index]
-            li = errors[question.key][index]
+        - errors = @form_answer.validator_errors
+        - if errors && errors[question.key] && errors[question.key][index]
+          span.govuk-error-message
+            = errors[question.key][index]
 
         - remove_title = ""
         - if award["category"].blank? && award["year"].blank?
@@ -24,71 +24,76 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         - else
           - remove_title = award['category'].split("_").map(&:capitalize).join(" ") + " award"
 
-        = link_to "Remove", confirm_deletion_form_form_answer_current_queens_awards_path(@form_answer.id, current_queens_award: { category: award["category"], year: award["year"] }), class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Remove #{remove_title}"
+        = link_to "Remove", confirm_deletion_form_form_answer_current_queens_awards_path(@form_answer.id, current_queens_award: { category: award["category"], year: award["year"] }), class: "govuk-link remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Remove #{remove_title}"
 
-        = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Edit #{remove_title}"
+        = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "govuk-link remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}", "aria-label" => "Edit #{remove_title}"
 
         - if award["category"].empty? && award["year"].empty?
           span.if-js-hide
             label -
 
-        label
-          span.visuallyhidden Category
-          span.if-no-js-hide
-            select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-              option value=""
-                ' Category
-              - question.categories.each do |category|
-                option value=category.value selected=(category.value.to_s == award['category'])
-                  = category.text
+        .govuk-grid-row
+          .govuk-grid-column-one-third
+            .govuk-form-group
+              label.govuk-form-label for="form[queen_award_holder_details][#{index}][category]"
+                | Category
+              div.if-no-js-hide
+                select.inline.govuk-select.js-trigger-autosave name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                  option value=""
+                    ' Category
+                  - question.categories.each do |category|
+                    option value=category.value selected=(category.value.to_s == award['category'])
+                      = category.text
 
-          span.inline.if-js-hide
-            = award['category'].split("_").map(&:capitalize).join(" ")
+              div.inline.if-js-hide
+                = award['category'].split("_").map(&:capitalize).join(" ")
+          .govuk-grid-column-one-third
+            .govuk-form-group
+              label.govuk-form-label name="form[queen_award_holder_details][#{index}][year]"
+                | Year Awarded
+              span.if-no-js-hide
+                select.govuk-select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                  option value=""
+                    ' Year Awarded
+                  - question.years.each do |year|
+                    option value=year selected=(award['year'] == year.to_s)
+                      = year
 
-        label
-          span.visuallyhidden Year Awarded
-          span.if-no-js-hide
-            select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-              option value=""
-                ' Year Awarded
-              - question.years.each do |year|
-                option value=year selected=(award['year'] == year.to_s)
-                  = year
-
-          span.inline.if-js-hide
-            =< award['year']
-
-        span.clear
+              span.inline.if-js-hide
+                =< award['year']
 
     - if question.entities.none?
       li.js-add-example.if-no-js-hide
-        ul.errors-container
+        span.govuk-error-message
         = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
-        label
-          span.visuallyhidden Category
-          select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-            option value=""
-              ' Category
-            - question.categories.each do |category|
-              option value=category.value
-                = category.text
+        .govuk-grid-row
+          .govuk-grid-one-third
+            .govuk-form-group
+              label for="form[queen_award_holder_details][0][category]"
+                | Category
+              select.govuk-select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                option value=""
+                  ' Category
+                - question.categories.each do |category|
+                  option value=category.value
+                    = category.text
 
-        label
-          span.visuallyhidden Year Awarded
-          select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-            option value=""
-              ' Year Awarded
-            - question.years.each do |year|
-              option value=year
-                = year
+          .govuk-grid-one-third
+            .govuk-form-group
+              label for="form[queen_award_holder_details][0][year]"
+                | Year Awarded
+              select.govuk-select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                option value=""
+                  ' Year Awarded
+                - question.years.each do |year|
+                  option value=year
+                    = year
 
-        span.clear
-
-a.button.button-add.js-button-add.if-no-js-hide href="#" aria-label="Add another award" data-entity="award" *possible_read_only_ops
+a.govuk-button.govuk-button--secondary.button-add.js-button-add.if-no-js-hide href="#" aria-label="Add another award" data-entity="award" *possible_read_only_ops
   | + Add another award
 
 = link_to "+ Add award", new_form_form_answer_current_queens_awards_url(@form_answer.id),
-                         class: "button button-add if-js-hide",
+                         class: "govuk-button govuk-button--secondary button-add if-js-hide",
                          "aria-label" => "Add award",
                          "data-entity" => "award"

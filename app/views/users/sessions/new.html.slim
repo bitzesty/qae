@@ -4,67 +4,52 @@
 - provide(:flash_disabled, disable_flash_on_login?)
 
 .article-related-positioning-container
-  header.page-header.group
-    div
-      h1
-        | Sign in
-
   .article-container.group
     article.group role="article"
-      .inner
-        p
-          ' Sign in or
-          = link_to 'create an account', new_user_registration_path
-          '  to get started.
+      h1.govuk-heading-xl
+        | Sign in
+      p.govuk-body
+        ' Sign in or
+        = link_to 'create an account', new_user_registration_path, class: 'govuk-link'
+        '  to get started
 
-        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-          .form-inputs
-            .question
-              h2 = f.label :email
-              .question-body
-                = f.input :email, required: false, autofocus: true, label: false, input_html: {class: "large"}
+        - if login_email_or_password_is_incorrect?
+          .guidance-panel.account-notice
+            .application-notice.help-notice
+              .alert.alert-warning
+                p.text-underline
+                  = I18n.t(:custom_login_messages)[:invalid_email_or_password]
+                p.text-normal
+                  = I18n.t(:custom_login_messages)[:have_no_account]
+                  =< link_to "create an account page", new_user_registration_path
+                  ' .
+                p.text-normal
+                  = I18n.t(:custom_login_messages)[:forgot_password]
+                  =< link_to "reset password instructions", new_password_path(resource_name)
+                  ' .
+        
+        - if login_account_isnt_confirmed?
+          .guidance-panel.account-notice
+            .application-notice.help-notice
+              .alert.alert-warning
+                p.text-underline
+                  = I18n.t(:custom_login_messages)[:not_confirmed]
+                p.text-normal
+                  = I18n.t(:custom_login_messages)[:when_you_had_created_account]
+                p.text-normal
+                  = I18n.t(:custom_login_messages)[:not_received_confirmation_email]
+                  =< link_to "request confirmation instructions again", new_confirmation_path(resource_name)
+                  ' .
 
-          .form-inputs
-            .question
-              h2 = f.label :password
-              .question-body
-                = f.input :password, required: false, label: false, input_html: {class: "medium"}
+        .govuk-form-group
+          = f.input :email, required: false, autofocus: true, label: 'Email', input_html: {class: "govuk-input--width-20"}
+        .govuk-form-group
+          = f.input :password, required: false, label: 'Password', input_html: {class: "govuk-input--width-10"}
 
-          .form-inputs
-            .question
-              .question-body
-                = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        
+        = f.button :submit, "Sign in", class: "button large"
 
-          - if login_email_or_password_is_incorrect?
-            .guidance-panel.account-notice
-              .application-notice.help-notice
-                .alert.alert-warning
-                  p.text-underline
-                    = I18n.t(:custom_login_messages)[:invalid_email_or_password]
-                  p.text-normal
-                    = I18n.t(:custom_login_messages)[:have_no_account]
-                    =< link_to "create an account page", new_user_registration_path
-                    ' .
-                  p.text-normal
-                    = I18n.t(:custom_login_messages)[:forgot_password]
-                    =< link_to "reset password instructions", new_password_path(resource_name)
-                    ' .
-
-          - if login_account_isnt_confirmed?
-            .guidance-panel.account-notice
-              .application-notice.help-notice
-                .alert.alert-warning
-                  p.text-underline
-                    = I18n.t(:custom_login_messages)[:not_confirmed]
-                  p.text-normal
-                    = I18n.t(:custom_login_messages)[:when_you_had_created_account]
-                  p.text-normal
-                    = I18n.t(:custom_login_messages)[:not_received_confirmation_email]
-                    =< link_to "request confirmation instructions again", new_confirmation_path(resource_name)
-                    ' .
-
-          .form-actions
-            = f.button :submit, "Sign in", class: "button large"
-
-        = render "users/shared/links"
+      = render "users/shared/links"

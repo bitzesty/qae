@@ -9,6 +9,7 @@ class AwardYears::V2022::QAEForms
         text :head_of_bussines_title, "Title" do
           required
           classes "sub-question"
+          excluded_header_questions
           style "tiny"
         end
 
@@ -20,8 +21,9 @@ class AwardYears::V2022::QAEForms
           ])
         end
 
-        text :head_job_title, "Job title / role in the organisation" do
+        text :head_job_title, "Job title/role in the organisation" do
           classes "sub-question"
+          excluded_header_questions
           required
           form_hint %(
             e.g. CEO, Managing Director, Founder
@@ -30,8 +32,10 @@ class AwardYears::V2022::QAEForms
 
         text :head_email, "Email address" do
           classes "sub-question"
+          excluded_header_questions
           style "large"
           required
+          type "email"
         end
 
         confirm :confirmation_of_consent, "Confirmation of consent" do

@@ -1,14 +1,14 @@
-.js-financial-conditional data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message  aria-labelledby="q_#{question.key}_label" id="q_#{question.key}" role="group"
+.js-financial-conditional data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message id="q_#{question.key}" role="group"
   - for c in question.by_year_conditions
     .js-conditional-question.by-years-wrapper data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
       .if-js-hide
-        label
+        label.govuk-label
           strong
             = "If you had growth in the last #{c.years} years"
-      .row
+      .govuk-grid-row
         - (1..c.years).each do |y|
-          div class="span-financial span-4"
-            label for=question.input_name(suffix: "#{y}of#{c.years}")
+          .span-financial.govuk-grid-column-one-third
+            label.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5" for=question.input_name(suffix: "#{y}of#{c.years}")
               span.js-year-end.show-default data-year="#{y}of#{c.years}"
                 span.js-year-default
                   ' Financial year
@@ -16,10 +16,12 @@
                   - if y == c.years
                     '  (latest)
                 span.js-year-text
-            ul.errors-container
-            .clear
-            span class="#{'currency-input' if question.type == :money}"
+            span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
+            span class="#{'govuk-input__wrapper' if question.type == :money}"
               - if question.type == :money
-                span.currency-unit £
-              input.small.js-trigger-autosave.js-form-financial-data type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+                .govuk-input__prefix £
+                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+              - else
+                - type = "#{question.type || 'text'}"
+                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="#{type}" pattern="#{'[0-9]*' if type == 'number'}" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
       .clear

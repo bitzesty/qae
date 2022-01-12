@@ -15,11 +15,7 @@ Rails.application.config.assets.precompile += [
   "application.js",
   "application-admin.css",
   "application-admin.js",
-  "twofactor.js",
-  "application-ie6.css",
-  "application-ie7.css",
-  "application-ie8.css",
-  "application-ie9.css"
+  "twofactor.js"
 ]
 
 Rails.application.config.assets.precompile += %w( ckeditor/* )

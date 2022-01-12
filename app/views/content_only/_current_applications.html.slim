@@ -1,52 +1,45 @@
 - if award_applications && award_applications.any?
-  table.applications-table.current-applications-table
-    tbody
-      /tr
-        td colspan="3"
-          h3
-            = award_applications.first.award_type_full_name
+  dl.govuk-summary-list
+    - award_applications.each_with_index do |award, index|
+      .govuk-summary-list__row
+        dt.govuk-summary-list__key
+          h3.govuk-heading-s
+            - app_name = award.decorate.application_name
+            = app_name == "Promoting Opportunity" ? "Social Mobility" : app_name
+          br
+          span.govuk-body-s
+            = award.award_type_full_name
             '  Award
-      - award_applications.each_with_index do |award, index|
-        tr
-          td
-            h4
-              - app_name = award.decorate.application_name
-              = app_name == "Promoting Opportunity" ? "Social Mobility" : app_name
+        dd.govuk-summary-list__value
+          - if award.submitted?
+            ' Submitted
+
+            - if QAE.hide_pdf_links?
               br
-              small
-                = award.award_type_full_name
-                '  Award
-          td
-            p
-              - if award.submitted?
-                ' Submitted
-
-                - if QAE.hide_pdf_links?
-                  br
-                  | Your application will be available to download from 17th of May
-                - else
-                  = render "content_only/past_applications/download_pdf_link", award: award
-
-              - else
-                ' In progress
-                / TODO fix progress percentage
-                / = award.decorate.fill_progress_in_percents
-                / '  completed
-          td.pull-right
-            - name = award.award_type == "promotion" ? "nomination" : "application"
-            - award_name = award.award_type_full_name + " Award"
-            - nick = award.nickname.present? ? " (#{award.nickname})" : ""
-            - action = award.submitted? ? "Edit" : "Continue"
-            - aria_label = "#{action} #{award_name} #{name}"
-
-            - if award.award_type == "innovation"
-              - if award.nickname.present?
-                - aria_label = "#{action} #{award_name} (#{award.nickname}) #{name}"
-              - else
-                - row = ordinal(index + 1)
-                - aria_label = "#{row} row - #{action} #{award_name} #{name}"
-
-            - if award.submitted?
-              = link_to "Edit #{name}", edit_form_path(award.id), "aria-label" => aria_label
+              | Your application will be available to download from 17th of May
             - else
-              = link_to "Continue #{name}", edit_form_path(award.id), "aria-label" => aria_label
+              = render "content_only/past_applications/download_pdf_link", award: award
+
+          - else
+            ' In progress
+            / TODO fix progress percentage
+            / = award.decorate.fill_progress_in_percents
+            / '  completed
+        dd.govuk-summary-list__actions
+          - name = award.award_type == "promotion" ? "nomination" : "application"
+          - award_name = award.award_type_full_name + " Award"
+          - nick = award.nickname.present? ? " (#{award.nickname})" : ""
+          - action = award.submitted? ? "Edit" : "Continue"
+          - aria_label = "#{action} application #{award.id} for #{award_name}"
+
+          - if award.award_type == "innovation"
+            - if award.nickname.present?
+              - aria_label = "#{action} application #{award.id} for #{award_name} (#{award.nickname})"
+            - else
+              - row = ordinal(index + 1)
+              - aria_label = "#{row} row - #{action} application #{award.id} for #{award_name}"
+
+          - if award.submitted?
+            = link_to "Edit #{name}", edit_form_path(award.id), "aria-label" => aria_label, class: 'govuk-link'
+          - else
+            = link_to "Continue #{name}", edit_form_path(award.id), "aria-label" => aria_label, class: 'govuk-link'
