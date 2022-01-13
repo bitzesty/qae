@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get "/sign_up_complete"                               => "content_only#sign_up_complete",                               as: "sign_up_complete"
   get "/privacy"                                        => "content_only#privacy",                                        as: "privacy"
   get "/cookies"                                        => "content_only#cookies",                                        as: "cookies"
+  get "/accessibility-statement"                        => "content_only#accessibility_statement",                        as: "accessibility_statement"
 
   get  "/new_innovation_form"                           => "form#new_innovation_form",                                    as: "new_innovation_form"
   get  "/new_international_trade_form"                  => "form#new_international_trade_form",                           as: "new_international_trade_form"
