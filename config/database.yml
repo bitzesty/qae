@@ -2,12 +2,15 @@ default: &default
   adapter: postgresql
   encoding: utf8
 
-development:
+development: &development
   <<: *default
   database: qae_development
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  username: postgres
+  password: password
 
 test:
-  <<: *default
+  <<: *development
   database: qae_test
 
 production:

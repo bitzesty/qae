@@ -1,6 +1,6 @@
-ARG RUBY_VERSION=2.5.0
+ARG RUBY_VERSION=2.7.4
 
-FROM convox/rails
+FROM ruby:2.7.4
 
 ENV HOME=/app
 WORKDIR /app
@@ -8,7 +8,6 @@ WORKDIR /app
 ENV SSL_CERT_DIR=/etc/ssl/certs
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
-ENV DATABASE_URL postgresql://localhost/dummy_url
 ENV AWS_ACCESS_KEY_ID dummy
 ENV AWS_SECRET_ACCESS_KEY dummy
 
@@ -18,4 +17,15 @@ ENV CURL_CONNECT_TIMEOUT=0 CURL_TIMEOUT=0 GEM_PATH="$HOME/vendor/bundle/ruby/${R
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 COPY . /app
-RUN bundle install --without development test --jobs 4 && RAILS_ENV=production bundle exec rake assets:precompile
+
+# Install NodeJS
+RUN apt-get -qq update
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -qqy nodejs
+RUN npm install yarn -g --quiet
+
+RUN yarn install --silent
+RUN bundle install --without development test \
+                   --jobs 4 \
+                   --quiet && \
+    RAILS_ENV=production bundle exec rake assets:precompile
