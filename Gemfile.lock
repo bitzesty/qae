@@ -605,7 +605,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       optimist (~> 3.0)
-    redis (4.1.4)
+    redis (4.5.1)
     redis-actionpack (5.2.0)
       actionpack (>= 5, < 7)
       redis-rack (>= 2.1.0, < 3)
@@ -698,11 +698,10 @@ GEM
       rails (>= 4)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
-    sidekiq (5.2.9)
-      connection_pool (~> 2.2, >= 2.2.2)
+    sidekiq (6.4.0)
+      connection_pool (>= 2.2.2)
       rack (~> 2.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 4.2)
+      redis (>= 4.2.0)
     sidekiq-cron (1.2.0)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)
@@ -881,7 +880,7 @@ DEPENDENCIES
   selenium-webdriver
   shog
   shoulda-matchers
-  sidekiq (~> 5.2)
+  sidekiq (~> 6.4)
   sidekiq-cron (~> 1.1)
   simple_form (~> 5.0)
   sinatra (~> 2.0)
