@@ -52,6 +52,9 @@ gem 'json', '2.3.0'
 gem 'jbuilder', '~> 2.10.1'
 gem 'gon', '>= 6.4.0'
 
+# XLSX generation
+gem 'rubyXL', '~> 3.4'
+
 # User authentication & authorization
 gem 'devise', '~> 4.7'
 gem 'devise-authy', '>= 1.10.0'
