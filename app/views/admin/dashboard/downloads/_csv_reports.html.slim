@@ -33,6 +33,11 @@ ul.download-list
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
     = link_to "Download", admin_report_path("press-book-list", class: "action-title", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Press book list" }
+  li.download-item
+    p.download-item__title
+      ' Press book
+
+    = link_to "Download", admin_report_path("compiled-press-book", class: "action-title", format: :xlsx, year: @award_year.year), class: "download-link", aria: { label: "Download Press book" }
 
   li.download-item
     p.download-item__title

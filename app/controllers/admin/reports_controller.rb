@@ -15,6 +15,12 @@ class Admin::ReportsController < Admin::BaseController
         send_data resource.as_csv, type: "text/csv", disposition: 'attachment'
       end
 
+      format.xlsx do
+        send_data resource.as_xlsx.stream.string,
+                  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                  disposition: 'attachment'
+      end
+
       format.pdf do
         pdf = resource.as_pdf
 

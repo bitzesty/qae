@@ -16,14 +16,20 @@ describe "Admin downloads CSV reports" do
     (1..links_count).each do |i|
       within first(".download-list") do
         link = all(:css, "a.download-link", text: "Download")[i - 1]
+
         link.click
-        expect(page.response_headers["Content-Type"]).to eq("text/csv")
+
+        if i == 5 # press book, 5th link
+          expect(page.response_headers["Content-Type"]).to eq("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        else
+          expect(page.response_headers["Content-Type"]).to eq("text/csv")
+        end
       end
 
       visit downloads_admin_dashboard_index_path
     end
 
-    expect(AuditLog.count).to eq(5)
+    expect(AuditLog.count).to eq(6)
     log = AuditLog.last
     expect(log.subject).to eq(admin)
     expect(log.action_type).to eq("reception-buckingham-palace")
