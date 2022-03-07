@@ -141,7 +141,11 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_county
     if business_form?
-      doc "organization_address_county"
+      if county = doc("organization_address_county")
+        county.split(" - ").first
+      else
+        ""
+      end
     else
       doc "nominee_personal_address_county"
     end

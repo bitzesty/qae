@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.7.4'
 
-gem 'rails', '>= 6.1.3.2'
+gem 'rails', '6.1.4.6'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -51,6 +51,9 @@ gem 'rails-html-sanitizer', '~> 1.3.0'
 gem 'json', '2.3.0'
 gem 'jbuilder', '~> 2.10.1'
 gem 'gon', '>= 6.4.0'
+
+# XLSX generation
+gem 'rubyXL', '~> 3.4'
 
 # User authentication & authorization
 gem 'devise', '~> 4.7'
