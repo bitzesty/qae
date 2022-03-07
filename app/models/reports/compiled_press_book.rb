@@ -114,6 +114,7 @@ class Reports::CompiledPressBook
 
     main_header = "Region: #{region}"
     header_cell = worksheet.add_cell(1, 0, main_header)
+    worksheet.merge_cells(1, 0, 1, 1)
 
     worksheet.change_row_height(1, 35)
     header_cell.change_font_color(WHITE_FONT)
@@ -121,22 +122,23 @@ class Reports::CompiledPressBook
     header_cell.change_font_bold(true)
     header_cell.change_vertical_alignment('center')
 
-    worksheet.change_column_width(0, 30)
+    worksheet.change_column_width(0, 20)
     worksheet.change_column_width(1, 60)
-    worksheet.add_cell(1, 1)
 
-    2.times { |i| worksheet.sheet_data[1][i].change_fill(DARK_BG) }
+    worksheet.sheet_data[1][0].change_fill(DARK_BG)
 
     current_row_index = 3
 
-    render_category(:innovation, worksheet, current_row_index, form_answers)
-    render_category(:trade, worksheet, current_row_index, form_answers)
-    render_category(:mobility, worksheet, current_row_index, form_answers)
+    current_row_index = render_category(:innovation, worksheet, current_row_index, form_answers)
+    current_row_index = render_category(:trade, worksheet, current_row_index, form_answers)
+    current_row_index = render_category(:mobility, worksheet, current_row_index, form_answers)
     render_category(:development, worksheet, current_row_index, form_answers)
   end
 
   def render_category(category, worksheet, current_row_index, form_answers = [])
     category_form_answers = form_answers.select(&:"#{category}?")
+
+    return current_row_index if category_form_answers.none?
 
     # Category header
     header = "Category: #{FormAnswer::AWARD_TYPE_FULL_NAMES[category.to_s]}"
@@ -144,8 +146,8 @@ class Reports::CompiledPressBook
     header_cell = worksheet.add_cell(current_row_index, 0, header)
 
     worksheet.change_row_height(current_row_index, 25)
-    worksheet.add_cell(current_row_index, 1)
-    2.times { |i| worksheet.sheet_data[current_row_index][i].change_fill(DARK_BG) }
+    worksheet.merge_cells(current_row_index, 0, current_row_index, 1)
+    worksheet.sheet_data[current_row_index][0].change_fill(DARK_BG)
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
@@ -180,6 +182,8 @@ class Reports::CompiledPressBook
 
       current_row_index += 1
     end
+
+    current_row_index
   end
 
   def render_stats(workbook)
@@ -198,9 +202,9 @@ class Reports::CompiledPressBook
     ]
 
     header_cell = worksheet.add_cell(0, 0, main_header)
-    # styling the header
-    5.times { |i| worksheet.add_cell(0, i + 1) }
-    6.times { |i| worksheet.sheet_data[0][i].change_fill(DARK_BG) }
+    worksheet.merge_cells(0, 0, 0, 5)
+    worksheet.sheet_data[0][0].change_fill(DARK_BG)
+
     worksheet.change_row_height(0, 35)
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
