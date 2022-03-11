@@ -13,7 +13,7 @@ class Reports::CompiledPressBook
   WHITE_FONT = "FFFFFF"
   COLORED_FONT = "2E497A"
 
-  HEADER_FONT_SIZE = 14
+  HEADER_FONT_SIZE = 11
   FONT_SIZE = 11
 
   class PressBookFormAnswer
