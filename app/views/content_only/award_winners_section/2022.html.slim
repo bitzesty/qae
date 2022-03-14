@@ -1,0 +1,143 @@
+- title "Winners' Resources 2022"
+
+- winners = FormAnswerDecorator.decorate_collection(@user_award_forms_submitted).select{ |app| app.awarded? }
+- any_promotion_winner = winners.select{ |app| app.mobility? }.any?
+- any_innovation_winner = winners.select{ |app| app.innovation? }.any?
+- any_trade_winner = winners.select{ |app| app.trade? }.any?
+- any_development_winner = winners.select{ |app| app.development? }.any?
+
+div
+  h1.govuk-heading-xl Winners' Resources 2022
+
+  .article-container.article-container-wider
+    article.group role="article"
+      div
+        p.govuk-body Here you can download Queen's Awards for Enterprise resources for use in your websites and advertising materials. The Winners' Manual provides more detailed information on where and how you are allowed to use these resources.
+
+        br
+
+        h2.govuk-heading-m Download The Queen's Awards for Enterprise Winners' Manual 2022
+
+        .form-download
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise Winners' Manual 2022 (PDF, 819.6KB)",
+                      static_s3_asset_path(2022, "Winners_Manual_2022.pdf"),
+                      class: "thumbnail",
+                      target: "_blank", class: 'govuk-link'
+
+        h2.govuk-heading-m Download a Sample Press Release
+
+        .form-download
+          p.govuk-body
+            = link_to "Sample Press Release 2022 (PDF, 115.8KB)",
+                      static_s3_asset_path(2022, "Sample_Press_Release_2022.pdf"),
+                      class: "thumbnail",
+                      target: "_blank", class: 'govuk-link'
+
+        h2.govuk-heading-m Download The Queen's Awards Emblem Guidance 2022
+
+        .form-download
+          p.govuk-body
+            = link_to "Queen's Awards Emblem Guidance 2022 (PDF, 561.1KB)",
+                      static_s3_asset_path(2022, "Emblem_2022.pdf"),
+                      class: "thumbnail",
+                      target: "_blank", class: 'govuk-link'
+
+        h2.govuk-heading-m Download The Queen's Awards for Enterprise 2022 Emblems in various formats
+
+        .form-download
+          - if any_promotion_winner
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - Promoting Opportunities (PNG, 102.7KB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_promoting.png"),
+                        target: "_blank", class: 'govuk-link'
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - Promoting Opportunities (EPS, 5.3MB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_promoting.eps"),
+                        target: "_blank", class: 'govuk-link'
+
+          - if any_innovation_winner
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - Enterprise Innovation (PNG, 97.7KB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_innovation.png"),
+                        target: "_blank", class: 'govuk-link'
+
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - Enterprise Innovation (EPS, 5.4MB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_innovation.eps"),
+                        target: "_blank", class: 'govuk-link'
+
+          - if any_trade_winner
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - International Trade (PNG, 99KB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_international_trade.png"),
+                        target: "_blank", class: 'govuk-link'
+
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - International Trade (EPS, 5.3MB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_international_trade.eps"),
+                        target: "_blank", class: 'govuk-link'
+
+          - if any_development_winner
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - Sustainable Development (PNG, 102.8KB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_Sustainable.png"),
+                        target: "_blank", class: 'govuk-link'
+            p.govuk-body
+              = link_to "Queen's Awards for Enterprise 2022 Emblem - Sustainable Development (EPS, 5.4MB)",
+                        static_s3_asset_path(2022, "QA-logo-categories-2022_Sustainable.eps"),
+                        target: "_blank", class: 'govuk-link'
+
+        .form-download
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: Black (PNG, 80.8KB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_black.png"),
+                      target: "_blank", class: 'govuk-link'
+
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: Black (EPS, 5.1MB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_black.eps"),
+                      target: "_blank", class: 'govuk-link'
+
+
+        .form-download
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: Blue (PNG, 79.4KB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_blue.png"),
+                      target: "_blank", class: 'govuk-link'
+
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: Blue (EPS, 5.1MB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_blue.eps"),
+                      target: "_blank", class: 'govuk-link'
+
+
+        .form-download
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: Gold (PNG, 79.3KB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_gold.png"),
+                      target: "_blank", class: 'govuk-link'
+
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: Gold (EPS, 5.1MB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_gold.eps"),
+                      target: "_blank", class: 'govuk-link'
+
+
+        .form-download
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: White (PNG, 76.9KB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_white.png"),
+                      target: "_blank", class: 'govuk-link'
+
+          p.govuk-body
+            = link_to "Queen's Awards for Enterprise 2022 Emblem: White (EPS, 5.1MB)",
+                      static_s3_asset_path(2022, "QA-logo2022-print-_white.eps"),
+                      target: "_blank", class: 'govuk-link'
+
+        footer
+          nav.pagination.no-border aria-label="Pagination" role="navigation"
+            ul.group
+              li.previous.previous-alternate
+                = link_to dashboard_path, class: 'govuk-button govuk-button-secondary'
+                  span.pagination-label Back
