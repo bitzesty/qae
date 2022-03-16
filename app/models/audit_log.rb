@@ -8,10 +8,4 @@ class AuditLog < ApplicationRecord
 
   scope :data_export, -> { where(auditable_type: nil).or(where(action_type: "download_form_answer")) }
   scope :data_update, -> { where(auditable_type: "FormAnswer").where("action_type != 'download_form_answer'") }
-
-  def subject
-    subject_type.constantize.unscoped.where(id: subject_id).first
-  rescue NameError
-    nil
-  end
 end
