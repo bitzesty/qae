@@ -263,6 +263,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 28px 37px;
+    color: $govuk-light-blue;
 
     @include is-retina {
       background-image: image-url("logo-admin@2.png");

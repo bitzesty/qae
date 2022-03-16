@@ -6,9 +6,11 @@ h1.admin-page-heading
   .row
     .col-md-4.col-sm-5.col-xs-12
       .form-group.search-input
-        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden"
+        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden", aria: { label: "Search applications" }
+        label for="award_type" class="visuallyhidden"
+          ' Award type
         = text_field_tag :award_type, params[:award_type], class: "visuallyhidden"
-        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search", aria: {label: 'Search applications'} }
         = submit_tag :submit, class: 'search-submit'
 
   = render "shared/form_answers/top_statuses_filters", f: f,
@@ -32,15 +34,19 @@ h1.admin-page-heading
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   = hidden_field_tag :award_type, category_picker.current_award_type
+  label for="year" class="visuallyhidden"
+    ' Award year
   = text_field_tag :year, @award_year.year, class: "visuallyhidden"
 
   - # status filters need to be here because the filtering is done in the other form above, so in order not to break filtering, we need to duplicate it here
   = f.simple_fields_for [:filters, @search.filters] do |h|
+    = h.label :status, class: "visuallyhidden"
     = h.input :status,
               collection: FormAnswerStatus::AssessorFilter.options,
               label: false,
               input_html: { multiple: true, class: 'visuallyhidden'}
 
+    = h.label :sub_status, class: "visuallyhidden"
     = h.input :sub_status,
               collection: FormAnswerStatus::AssessorFilter.sub_options(current_assessor),
               label: false,
@@ -53,8 +59,9 @@ h1.admin-page-heading
           tr
             - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
               th
+                span.visuallyhidden Select for bulk action
                 span.if-no-js-hide
-                  = check_box_tag :check_all
+                  = check_box_tag :check_all, "Check all", false, aria: { label: "Select all applications for bulk action" }
             th.sortable width="250"
               = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable width="120"
@@ -72,6 +79,6 @@ h1.admin-page-heading
               = sort_link f, "Last updated", @search, :audit_updated_at, disabled: @search.query?
           = render(partial: "assessor/form_answers/list_body")
   .row
-  .col-xs-12.text-right
+  .col-xs-12.text-right.paginate-links
     = paginate @form_answers
     .clear

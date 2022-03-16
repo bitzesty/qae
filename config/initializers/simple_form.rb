@@ -6,9 +6,10 @@ SimpleForm.setup do |config|
   # stack. The options given below are used to wrap the
   # whole input.
   config.wrappers :default,
-                  class: :input,
+                  class: 'govuk-form-group',
+                  label_class: 'govuk-label',
                   hint_class: "field-with-hint",
-                  error_class: "field-with-errors" do |b|
+                  error_class: "govuk-form-group--error" do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -42,15 +43,63 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     ## Inputs
-    b.use :label
-    b.use :error, wrap_with: { tag: :span, class: :error }
-    b.use :input
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :label, class: 'govuk-label'
+    b.use :error, wrap_with: { tag: :span, class: 'govuk-error-message' }
+    b.use :hint,  wrap_with: { tag: :span, class: 'govuk-hint' }
+    b.use :input, class: 'govuk-input'
   end
 
-  config.wrappers :checkbox do |b|
-    b.use :input
-    b.use :label
+  config.wrappers :select, class: 'govuk-form-group', error_class: "govuk-form-group--error" do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: 'govuk-label'
+    b.use :error, wrap_with: { class: 'govuk-error-message' }
+    b.use :hint, wrap_with: { class: 'govuk-hint' }
+    b.use :input, class: 'govuk-select'
+  end
+
+  config.wrappers :textarea, class: 'govuk-form-group', error_class: "govuk-form-group--error" do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: 'govuk-label'
+    b.use :error, wrap_with: { class: 'govuk-error-message' }
+    b.use :hint, wrap_with: { class: 'govuk-hint' }
+    b.use :input, class: 'govuk-textarea'
+  end
+
+  config.wrappers :checkbox, class: 'govuk-form-group', label_class: 'govuk-label govuk-checkboxes__label', input_class: '' do |b|
+    b.wrapper tag: :div, class: 'govuk-checkboxes', data: { module: 'govuk-checkboxes' } do |component|
+      b.wrapper tag: :div, class: 'govuk-checkboxes__item' do |inner|
+        inner.use :input, class: 'govuk-checkboxes__input'
+        inner.use :label, class: 'govuk-label govuk-checkboxes__label'
+      end
+    end
+  end
+
+  config.wrappers :radio_buttons, item_wrapper_class: 'govuk-radios__item', item_label_class: 'govuk-label govuk-radios__label', class: 'govuk-form-group', error_class: "govuk-form-group--error" do |b|
+    b.wrapper tag: :fieldset, class: 'govuk-fieldset' do |bb|
+      bb.use :html5
+      bb.optional :readonly
+
+      bb.use :label, wrap_with: { tag: :legend, class: 'govuk-fieldset__legend' }, tag: :h2, class: 'govuk-label govuk-label--l'
+
+      bb.use :error, wrap_with: { class: 'govuk-error-message' }
+      bb.use :hint, wrap_with: { class: 'govuk-hint' }
+
+      bb.wrapper tag: :div, class: 'govuk-radios' do |ba|
+        ba.use :input, class: 'govuk-radios__input', error_class: '', valid_class: ''
+      end
+    end
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -63,7 +112,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :inline
 
   # Default class for buttons
-  config.button_class = 'button'
+  config.button_class = 'govuk-button'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -103,13 +152,13 @@ SimpleForm.setup do |config|
   config.label_text = lambda { |label, required, explicit_label| label }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
+  config.label_class = 'govuk-label'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form
 
   # You can define which elements should obtain additional classes
-  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+  config.generate_additional_classes_for = [:wrapper, :label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -131,7 +180,12 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  config.wrapper_mappings = { boolean: :checkbox }
+  config.wrapper_mappings = {
+    boolean: :checkbox,
+    radio_buttons: :radio_buttons,
+    select: :select,
+    text: :textarea
+  }
 
   # Default priority for time_zone inputs.
   # config.time_zone_priority = nil
@@ -149,5 +203,5 @@ SimpleForm.setup do |config|
   # config.cache_discovery = !Rails.env.development?
 
   # Default class for inputs
-  # config.input_class = nil
+  config.input_class = nil
 end

@@ -30,12 +30,6 @@
         padding-right: 2.5em;
       }
     }
-
-    h2 {
-      @include ie-lte(8) {
-        clear: both;
-      }
-    }
   }
 }
 

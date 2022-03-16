@@ -1,10 +1,10 @@
 - award_year = AwardYear.current
 
 article.group role="article"
-  .inner
+  div
     br
     .application-notice.info-notice
-      p
+      p.govuk-body
         = render "content_only/info_messages/new_users_message"
 
         - if !Settings.all_awards_ready?

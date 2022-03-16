@@ -2,21 +2,18 @@
 
 - provide(:page_content_class, "multi-page page-account")
 
-header.page-header.group.page-header-over-sidebar
-  div
-    h1
-      ' Account details
+h1.govuk-heading-xl
+  ' Account details
 
 .steps-progress-container
+  = render "steps_progress_bar"
   .steps-progress-content
-    header.page-header.group
-      div
-        h2
-          ' Organisation details
+    h2.govuk-heading-l
+      ' Organisation details
 
     .article-container.sic-code
       article.group role="article"
-        .inner
+        div
           - if current_user.account_admin?
             = simple_form_for current_user, url: update_company_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
               = render "form_company_details", f: f
@@ -25,17 +22,14 @@ header.page-header.group.page-header-over-sidebar
                 - if !current_user.completed_registration?
                   nav.pagination.no-border role="navigation" aria-label="Pagination"
                     ul.group
-                      li.previous.previous-alternate
-                        = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
-                          span class="pagination-label"
-                            ' Back
-
                       li.submit
-                        = f.submit "Save and continue", class: "button"
+                        = f.submit "Save and continue", class: "govuk-button", aria: {label: "Save organisation details and continue to collaborators"}
+                    previous.previous-alternate
+                        = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part", class: 'govuk-back-link govuk-!-font-size-19 govuk-!-margin-top-3' do
+                          span class="pagination-label"
+                            ' Go back to previous page
                 - else
                   .form-actions
-                    = f.submit "Save", class: "button"
+                    = f.submit "Save", class: "govuk-button", aria: {label: "Save organisation details"}
           - else
             = render "show_company_details"
-
-  = render "steps_progress_bar"

@@ -1,37 +1,28 @@
 - provide(:page_wrapper_class, "page-feedback")
 
-header.page-header.group.page-header-wider
-  div
-    h1 Send Feedback
+h1.govuk-heading-xl Send Feedback
 .article-container.article-container-wider
   article.group role="article"
-    .inner
-      p
+    div
+      p.govuk-body
         ' This is for feedback, not support. If you need help, please ring us on 020 7215 6880. Alternatively, email us at
         = mail_to "queensawards@beis.gov.uk"
 
       = simple_form_for @feedback, url: feedback_path do |f|
-        ul.list-add
-          li
-            fieldset.question-block.sub-question  
-              legend.light How would you rate your experience with this service?
-              .errors-container
-              .clear
-              = f.input :rating, as: :radio_buttons, label_html: { class: "visuallyhidden" }, wrapper_html: { class: "question-group"}
+        .govuk-form-group
+          fieldset.govuk-fieldset  
+            legend.govuk-fieldset__legend
+              | How would you rate your experience with this service?
+            .govuk-error-message
+            = f.input :rating, as: :radio_buttons, label_html: { class: "visuallyhidden" }
 
-              span.clear
-        fieldset.question-block.sub-question
-          h2
-            label Please take a moment to tell us about your experience, what worked and what didn't
-          .errors-container
-          .clear
-          .question-group
-            = f.input :comment,
-                      as: :text,
-                      input_html: { rows: 5, data: { word_max: "2000" }, class: "js-char-count" },
-                      label_html: { class: "visuallyhidden" }
-            .clear
-
+        .govuk-character-count data-module="govuk-character-count" data-maxwords="2000"
+          = f.input :comment,
+                    as: :text,
+                    input_html: { rows: 5, class: 'govuk-js-character-count', 'aria-describedby' => "feedback-comment-word-count" },
+                    label: "Please take a moment to tell us about your experience, what worked and what didn't"
+          #feedback-comment-word-count.govuk-hint.govuk-character-count__message aria-live="polite"
+            | You can enter up to 2000 words
         br
 
-        = f.submit "Send Feedback", class: "button large"
+        = f.submit "Send Feedback", class: "govuk-button large"

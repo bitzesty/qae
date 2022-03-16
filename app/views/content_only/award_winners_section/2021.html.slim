@@ -7,138 +7,136 @@
 - any_development_winner = winners.select{ |app| app.development? }.any?
 
 div
-  header.group.page-header.page-header-wider
-    div
-      h1 Winners' Resources 2021
+  h1.govuk-heading-xl Winners' Resources 2021
 
   .article-container.article-container-wider
     article.group role="article"
-      .inner
-        p Here you can download Queen's Awards for Enterprise resources for use in your websites and advertising materials. The Winners' Manual provides more detailed information on where and how you are allowed to use these resources.
+      div
+        p.govuk-body Here you can download Queen's Awards for Enterprise resources for use in your websites and advertising materials. The Winners' Manual provides more detailed information on where and how you are allowed to use these resources.
 
         br
 
-        h2 Download The Queen's Awards for Enterprise Winners' Manual 2021
+        h2.govuk-heading-m Download The Queen's Awards for Enterprise Winners' Manual 2021
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise Winners' Manual 2021 (PDF, 877KB)",
                       static_s3_asset_path(2021, "Winners- Manual 2021.pdf"),
                       class: "thumbnail",
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-        h2 Download a Sample Press Release
+        h2.govuk-heading-m Download a Sample Press Release
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Sample Press Release 2021 (PDF, 74KB)",
                       static_s3_asset_path(2021, "Sample Press Release 2021.pdf"),
                       class: "thumbnail",
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-        h2 Download The Queen's Awards Emblem Guidance 2021
+        h2.govuk-heading-m Download The Queen's Awards Emblem Guidance 2021
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Queen's Awards Emblem Guidance 2021 (PDF, 991)",
                       static_s3_asset_path(2021, "QAE Emblem Guidance 2021.pdf"),
                       class: "thumbnail",
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-        h2 Download The Queen's Awards for Enterprise 2021 Emblems in various formats
+        h2.govuk-heading-m Download The Queen's Awards for Enterprise 2021 Emblems in various formats
 
         .form-download
           - if any_promotion_winner
-            p
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - Promoting Opportunities (PNG, 100KB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_promoting_digital.png"),
-                      target: "_blank"
-            p
+                      target: "_blank", class: 'govuk-link'
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - Promoting Opportunities (EPS, 5.5MB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_promoting-print-.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
           - if any_innovation_winner
-            p
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - Enterprise Innovation (PNG, 95KB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_innovation_digital.png"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-            p
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - Enterprise Innovation (EPS, 5.6MB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_innovation-print-.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
           - if any_trade_winner
-            p
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - International Trade (PNG, 96KB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_international trade_digital.png"),
-                      target: "_blank"
-            p
+                      target: "_blank", class: 'govuk-link'
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - International Trade (EPS, 5.5MB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_international trade-print-.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
           - if any_development_winner
-            p
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - Sustainable Development (PNG, KB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_Sustainable_digital.png"),
-                      target: "_blank"
-            p
+                      target: "_blank", class: 'govuk-link'
+            p.govuk-body
               = link_to "Queen's Awards for Enterprise 2021 Emblem - Sustainable Development (EPS, 5.6MB)",
                       static_s3_asset_path(2021, "QA-logo-categories-2021_Sustainable-print-.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: Black (PNG, 78KB)",
                       static_s3_asset_path(2021, "QA-logo2021-digital-_black.png"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: Black (EPS, 5.4B)",
                       static_s3_asset_path(2021, "QA-logo2021-print-_black.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: Blue (PNG, 77KB)",
                       static_s3_asset_path(2021, "QA-logo2021-digital-_blue.png"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: Blue (EPS, 5.4MB)",
                       static_s3_asset_path(2021, "QA-logo2021-print-_blue.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: Gold (PNG, 77KB)",
                       static_s3_asset_path(2021, "QA-logo2021-digital-_gold.png"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: Gold (EPS, 5.4MB)",
                       static_s3_asset_path(2021, "QA-logo2021-print-_gold.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
 
         .form-download
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: White (PNG, 73KB)",
                       static_s3_asset_path(2021, "QA-logo2021-digital-_white.png"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
-          p
+          p.govuk-body
             = link_to "Queen's Awards for Enterprise 2021 Emblem: White (EPS, 5.4MB)",
                       static_s3_asset_path(2021, "QA-logo2021-print-_white.eps"),
-                      target: "_blank"
+                      target: "_blank", class: 'govuk-link'
 
         footer
           nav.pagination.no-border aria-label="Pagination" role="navigation"
             ul.group
               li.previous.previous-alternate
-                = link_to dashboard_path
+                = link_to dashboard_path, class: 'govuk-button govuk-button-secondary'
                   span.pagination-label Back

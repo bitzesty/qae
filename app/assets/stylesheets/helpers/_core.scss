@@ -1,21 +1,12 @@
 /*
  * Core global styles
  */
-body {
-  @include ie(8) {
-    min-width:1024px;
-  }
-}
-
 a:link {
   color: #005798;
 }
 
 #wrapper {
   background-color: $white;
-  @include ie-lte(7) {
-    zoom: 1;
-  }
 }
 
 .inner {
@@ -31,10 +22,6 @@ section#content {
   position: relative;
   display:block;
 
-  @include ie-lte(7) {
-    width: 960px;
-  }
-
   @include media-down(mobile) {
     max-width: auto;
   }
@@ -48,10 +35,15 @@ h2, h3, h4 {
   font-weight: 400;
 }
 
+h1 {
+  line-height: 1.4;
+}
+
 h2 {
   @include core-24;
   margin-top: 0.5em;
   margin-bottom: 0.25em;
+  line-height: 1.4;
 }
 
 h3 {
@@ -96,14 +88,6 @@ h4 {
   width: 100%;
   z-index: 0;
 
-  @include ie-lte(8) {
-    z-index: 0;
-  }
-
-  @include ie-lte(7) {
-    position: absolute !important;
-  }
-
   @include media-down(tablet) {
     position: static;
     top: auto;
@@ -130,10 +114,6 @@ h4 {
   margin: 0 auto;
   max-width: 1020px;
   z-index: 50;
-
-  @include ie-lte(8) {
-    width: 960px;
-  }
 
   @include media-down(tablet) {
     max-width: auto;
@@ -216,10 +196,6 @@ h4 {
 
       &:hover {
         background-position: 0 10px;
-      }
-
-      @include ie-lte(8) {
-        height: 1%;
       }
     }
 
@@ -339,37 +315,33 @@ h4 {
  */
 
 header.page-header {
-    div {
-      background-color: #fff;
-      display: block;
+  div {
+    background-color: #fff;
+    display: block;
+    margin: 0;
+    padding:0;
+
+    @include media(tablet) {
+      padding: 2em 2em 2em 2em;
       margin: 0;
-      padding:0;
+    }
 
-      @include media(tablet) {
-        padding: 2em 2em 2em 2em;
-        margin: 0;
-      }
+    @include media(desktop) {
+      margin: 0 24em 0 0;
+    }
 
-      @include media(desktop) {
-        margin: 0 24em 0 0;
-      }
+    h1 {
+      @include heading-48;
+      background-repeat: no-repeat;
+      color: $text-colour;
+      font-weight: 600;
 
-      h1 {
-        @include heading-48;
-        background-repeat: no-repeat;
-        color: $text-colour;
-        font-weight: 600;
-
-        span {
-          @include core-27($line-height: 1);
-          display: block;
-          margin-bottom: 0.25em;
-          text-shadow: none;
-          color: $secondary-text-colour ;
-
-        @include ie-lte(8) {
-          height: 1%;
-        }
+      span {
+        @include core-27($line-height: 1);
+        display: block;
+        margin-bottom: 0.25em;
+        text-shadow: none;
+        color: $secondary-text-colour ;
       }
     }
   }
@@ -402,13 +374,6 @@ body.full-width {
 
   h1 {
     margin-left: 0;
-
-    @include ie(6) {
-      position: relative;
-      z-index: 1;
-      zoom: 1;
-    }
-
   }
 
   @include media-down(mobile) {
@@ -523,18 +488,6 @@ article {
   width: 100%;
   z-index: 1;
 
-  @include ie-lte(8) {
-    float: none;
-  }
-
-  @include ie-lte(7) {
-  }
-
-  &.group {
-    @include ie-lte(7) {
-      height: auto;
-    }
-  }
 
   .inner {
     padding: 0 0 2em 3em;
@@ -631,20 +584,8 @@ article {
     padding: 0 2em 0 0;
   }
 
-  @include ie-lte(7) {
-    width: 60%;
-  }
-
-  @include ie(6) {
-    zoom: 1;
-  }
-
   p{
     text-align: left;
-
-    @include ie-lte(7) {
-      zoom: 1;
-    }
 
     a{
       color: $secondary-text-colour;
@@ -751,13 +692,6 @@ article {
   position: absolute;
   bottom: 1em;
   right: 1em;
-
-  @include ie-lte(8) {
-    bottom: auto;
-    right: auto;
-    margin-top: 1em;
-    position: relative;
-  }
 }
 
 .find-location-for-service .cookie-container {
@@ -797,11 +731,6 @@ article {
     position: relative;
     z-index: 5;
 
-    @include ie-lte(7) {
-      overflow: hidden;
-      padding: 1px 1px 0 0;
-    }
-
     @include media-down(mobile) {
       float: none;
       margin: 0 -16px;
@@ -830,11 +759,6 @@ article {
       text-align: center;
       top: 0;
 
-      @include ie-lte(7) {
-        background-image: none;
-        padding: 0 0.5em;
-      }
-
       @include media-down(mobile) {
         display: block;
         position: static;
@@ -860,10 +784,6 @@ article {
       position: relative;
       text-decoration: none;
       z-index: 5;
-
-      @include ie-lte(7) {
-        bottom: -1px;
-      }
 
       @include media-down(mobile) {
         border: none;
@@ -1049,10 +969,6 @@ article {
 
   @include media-down(mobile) {
     padding-right: 0;
-  }
-
-  @include ie(6) {
-    zoom: 1;
   }
 
   h2 {

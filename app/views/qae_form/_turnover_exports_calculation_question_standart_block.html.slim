@@ -5,13 +5,13 @@
         div class="span-financial span-4"
           label for=question.input_name(suffix: "#{y}of#{c.years}")
             span.js-year-end.show-default data-year="#{y}of#{c.years}"
-              span.js-year-default
+              span.js-year-default.govuk-label
                 ' Financial year
                 = y
                 - if y == c.years
                   '  (latest)
               span.js-year-text
-          span
+          span.govuk-body
             span.currency-unit
               ' £
             - turnover_q = question.form[question.turnover_question]

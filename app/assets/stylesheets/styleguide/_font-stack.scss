@@ -10,28 +10,28 @@
 //  than with the usual font-family.
 
 // New Transport Light
-@font-face {
-  font-family: GDS-Regular;
-  src: local("NTA-Light"),
-       local("HelveticaNeue"),
-       local("Helvetica Neue"),
-       local("Arial"),
-       local("Helvetica");
-}
+// @font-face {
+//   font-family: GDS-Regular;
+//   src: local("NTA-Light"),
+//        local("HelveticaNeue"),
+//        local("Helvetica Neue"),
+//        local("Arial"),
+//        local("Helvetica");
+// }
 
-$NTA-Light:
-    "nta",
-    "GDS-Regular",
-    sans-serif;
+// $NTA-Light:
+//     "nta",
+//     "GDS-Regular",
+//     sans-serif;
 
-@font-face {
-  font-family: GDS-Logo;
-  src: local("HelveticaNeue"),
-       local("Helvetica Neue"),
-       local("Arial"),
-       local("Helvetica");
-}
+// @font-face {
+//   font-family: GDS-Logo;
+//   src: local("HelveticaNeue"),
+//        local("Helvetica Neue"),
+//        local("Arial"),
+//        local("Helvetica");
+// }
 
-$Helvetica-Regular:
-    "GDS-Logo",
-    sans-serif;
+// $Helvetica-Regular:
+//     "GDS-Logo",
+//     sans-serif;

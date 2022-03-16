@@ -1,31 +1,32 @@
-.js-financial-year-changed-dates role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+.js-financial-year-changed-dates role="group" id="q_#{question.key}"
   .js-fy-entry-container.show-question
     .if-js-hide
-      label
+      label.govuk-label
         strong
           = "If you had growth in the last 3 years"
-    .row
+    .govuk-grid-row
       - (1..3).each do |y|
-        .span-6.js-fy-entries class="#{'fy-latest' if y == 3}"
+        .govuk-grid-column-one-half.js-fy-entries class="#{'fy-latest' if y == 3} govuk-!-margin-bottom-4"
           span.js-year-end.show-default data-year="#{y}of3"
-            span.js-year-default
+            label.js-year-default.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5"
               = question.format_label(y)
               - if y == 3
                 '  (latest)
           br
-          ul.errors-container
-          .clear
-          .date-input
-            span.date-input-field
-              label for=question.input_name(suffix: "#{y}of3day")
-                ' Day
-              input.js-trigger-autosave.tiny.js-fy-day type="text" name=question.input_name(suffix: "#{y}of3day") value=question.input_value(suffix: "#{y}of3day") id=question.input_name(suffix: "#{y}of3day") maxlength=2 autocomplete="off" *possible_read_only_ops
-            span.date-input-field
-              label for=question.input_name(suffix: "#{y}of3month")
-                ' Month
-              input.js-trigger-autosave.tiny.js-fy-month type="text" name=question.input_name(suffix: "#{y}of3month") value=question.input_value(suffix: "#{y}of3month") id=question.input_name(suffix: "#{y}of3month") maxlength=2 autocomplete="off" *possible_read_only_ops
-            span.date-input-field
-              label for=question.input_name(suffix: "#{y}of3year")
-                ' Year
-              input.js-trigger-autosave.small.js-fy-year type="text" name=question.input_name(suffix: "#{y}of3year") value=question.input_value(suffix: "#{y}of3year") id=question.input_name(suffix: "#{y}of3year") maxlength=4 autocomplete="off" *possible_read_only_ops
-    .clear
+          span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
+          .govuk-date-input
+            .govuk-date-input__item
+              .govuk-form-group
+                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of3day")
+                  ' Day
+                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-fy-day type="text" name=question.input_name(suffix: "#{y}of3day") value=question.input_value(suffix: "#{y}of3day") id=question.input_name(suffix: "#{y}of3day") maxlength=2 autocomplete="off" *possible_read_only_ops
+            .govuk-date-input__item
+              .govuk-form-group
+                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of3month")
+                  ' Month
+                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-fy-month type="text" name=question.input_name(suffix: "#{y}of3month") value=question.input_value(suffix: "#{y}of3month") id=question.input_name(suffix: "#{y}of3month") maxlength=2 autocomplete="off" *possible_read_only_ops
+            .govuk-date-input__item
+              .govuk-form-group
+                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of3year")
+                  ' Year
+                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-4.js-fy-year type="text" name=question.input_name(suffix: "#{y}of3year") value=question.input_value(suffix: "#{y}of3year") id=question.input_name(suffix: "#{y}of3year") maxlength=4 autocomplete="off" *possible_read_only_ops

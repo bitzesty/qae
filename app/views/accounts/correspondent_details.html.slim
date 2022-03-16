@@ -2,32 +2,29 @@
 
 - provide(:page_content_class, "multi-page page-account")
 
-header.page-header.group.page-header-over-sidebar
-  div
-    h1
-      ' Account details
+h1.govuk-heading-xl
+  ' Account details
 
 .steps-progress-container
-  .steps-progress-content
-    header.page-header.group
-      div
-        h2
-          ' My details
-
-    .article-container.group
-      article.group role="article"
-        .inner
-          = simple_form_for current_user, url: update_correspondent_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
-            = render "form_correspondent_details", f: f
-
-            footer
-              - if !current_user.completed_registration?
-                nav.pagination.no-border role="navigation" aria-label="Pagination"
-                  ul.group
-                    li.submit
-                      = f.submit "Save and continue", class: "button"
-              - else
-                .form-actions
-                  = f.submit "Save", class: "button"
-
   = render "steps_progress_bar"
+  .steps-progress-content
+    fieldset
+      legend.h2.govuk-heading-l class="govuk-!-margin-bottom-2"
+        ' My details
+
+      .article-container.group
+        article.group role="article"
+          div
+            = simple_form_for current_user, url: update_correspondent_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+              = render "form_correspondent_details", f: f
+
+              footer
+                - if !current_user.completed_registration?
+                  nav.pagination.no-border role="navigation" aria-label="Pagination"
+                    ul.group
+                      li.submit
+                        = f.submit "Save and continue", class: "govuk-button", aria: {label: "Save my details and continue to contact preferences"}
+                - else
+                  .form-actions
+                    = f.submit "Save", class: "govuk-button", aria: {label: "Save my details"}
+
