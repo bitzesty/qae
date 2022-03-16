@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.7.4'
 
-gem 'rails', '6.1.4.7'
+gem 'rails', '>= 6.1.3.2'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -90,7 +90,7 @@ gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails'
 
 # Background jobs
-gem "sidekiq", "~> 6.4"
+gem "sidekiq", "~> 5.2"
 gem "sidekiq-cron", "~> 1.1"
 gem 'sinatra', '~> 2.0', require: nil
 gem "rack-protection"
