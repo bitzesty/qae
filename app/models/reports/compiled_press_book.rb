@@ -116,7 +116,6 @@ class Reports::CompiledPressBook
     header_cell = worksheet.add_cell(1, 0, main_header)
     worksheet.merge_cells(1, 0, 1, 1)
 
-    worksheet.change_row_height(1, 35)
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
@@ -145,7 +144,6 @@ class Reports::CompiledPressBook
 
     header_cell = worksheet.add_cell(current_row_index, 0, header)
 
-    worksheet.change_row_height(current_row_index, 25)
     worksheet.merge_cells(current_row_index, 0, current_row_index, 1)
     worksheet.sheet_data[current_row_index][0].change_fill(DARK_BG)
     header_cell.change_font_color(WHITE_FONT)
@@ -205,7 +203,6 @@ class Reports::CompiledPressBook
     worksheet.merge_cells(0, 0, 0, 5)
     worksheet.sheet_data[0][0].change_fill(DARK_BG)
 
-    worksheet.change_row_height(0, 35)
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
