@@ -30,6 +30,13 @@ class Reports::AdminReport
     end
   end
 
+  def as_xlsx
+    case id
+    when "compiled-press-book"
+      Reports::CompiledPressBook.new(year).build
+    end
+  end
+
   def as_pdf
     pdf_klass = case id
     when "feedbacks"

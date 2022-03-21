@@ -104,7 +104,7 @@ module RegionHelper
   end
 
   def regions
-    COUNTY_REGION_MAPPINGS.values.sort
+    COUNTY_REGION_MAPPINGS.values.uniq.sort
   end
 
   def lookup_region_for_county(county)
