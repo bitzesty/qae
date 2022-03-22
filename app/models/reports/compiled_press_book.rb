@@ -19,12 +19,13 @@ class Reports::CompiledPressBook
   class PressBookFormAnswer
     include Reports::DataPickers::FormDocumentPicker
 
-    attr_reader :obj
+    attr_reader :obj, :financial_data
     def initialize(obj)
       @obj = obj
+      @financial_data = obj.financial_data || {}
     end
 
-    delegate :company_or_nominee_name, :mobility?, :development?, :financial_data, to: :obj
+    delegate :company_or_nominee_name, :mobility?, :development?, to: :obj
 
     def principal_address
       [
