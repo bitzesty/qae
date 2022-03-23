@@ -32,7 +32,7 @@ class Reports::CompiledPressBook
         doc("organization_address_building"),
         doc("organization_address_street"),
         doc("organization_address_city"),
-        doc("organization_address_county"),
+        principal_county,
         doc("organization_address_postcode")
       ].map(&:presence).compact.join(", ")
     end
@@ -69,6 +69,10 @@ class Reports::CompiledPressBook
 
     def business_form?
       true
+    end
+
+    def principal_county
+      doc("organization_address_county").to_s.split(" - ").first.to_s
     end
 
     def doc(key)
