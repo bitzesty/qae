@@ -6,7 +6,7 @@ class AwardYears::V2023::QAEForms
         header :company_information_header, "" do
           section_info
           context %(
-            <h3 class='govuk-heading-m'>About this section</h3>
+            <h3 class='govuk-heading-m'>About section A</h3>
             <p class='govuk-body'>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>
@@ -64,11 +64,11 @@ class AwardYears::V2023::QAEForms
             </details>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              The Queen’s Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider what is a reasonable performance, given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to the degree you can.
             </p>
           )
           pdf_context_with_header_blocks [
-            [:bold, "About this section"],
+            [:bold, "About section A"],
             [:normal, %(
                 We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
               )
@@ -120,8 +120,7 @@ class AwardYears::V2023::QAEForms
             ],
             [:bold, "Small organisations"],
             [:normal, %(
-                Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-              )
+              The Queen’s Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider what is a reasonable performance, given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to the degree you can.              )
             ]
           ]
         end
@@ -131,6 +130,11 @@ class AwardYears::V2023::QAEForms
           required
           option "organisation", "Whole organisation (with ultimate control)"
           option "division branch subsidiary", "A division, branch or subsidiary"
+          pdf_context %(
+            <p>
+              If you have selected 'A division, branch or subsidiary', where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary.
+            </p>
+          )
         end
 
         header :business_division_header, "" do
@@ -143,11 +147,11 @@ class AwardYears::V2023::QAEForms
           conditional :applying_for, "division branch subsidiary"
         end
 
-        text :company_name, "Full/legal name of your organisation" do
+        text :company_name, "Full legal name of your organisation" do
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials – for example in award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses or has used. Please note, if successful, we will use this name on any award materials – for example, in award certificates.</p>
           )
         end
 
@@ -156,22 +160,22 @@ class AwardYears::V2023::QAEForms
           ref "A 3"
           context %(
             <p>
-              We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
+            We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
             </p>
           )
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
+        textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit and the arrangements made." do
           classes "sub-question"
           sub_ref "A 3.1"
           required
           conditional :principal_business, :no
           words_max 100
-          rows 5
+          rows 2
         end
 
-        options :organisation_type, "Are you a company or charity?" do
+        options :organisation_type, "Are you a company or a charity?" do
           required
           ref "A 4"
           option "company", "Company"
@@ -212,135 +216,9 @@ class AwardYears::V2023::QAEForms
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
-          required
-          ref "A 6"
-          yes_no
-          classes "queen-award-holder"
-        end
-
-        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years." do
-          classes "sub-question question-current-awards"
-          sub_ref "A 6.1"
-
-          conditional :applied_for_queen_awards, :yes
-
-          category :innovation, "Innovation"
-          category :international_trade, "International Trade"
-          category :sustainable_development, "Sustainable Development"
-          category :social_mobility, "Promoting Opportunity"
-
-          ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
-            year y
-          end
-
-          outcome "won", "Won"
-          outcome "did_not_win", "Did not win"
-        end
-
-        options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
-          classes "sub-question"
-          sub_ref "A 6.2"
-
-          conditional :applied_for_queen_awards, :yes
-
-          yes_no
-        end
-
-        text :previous_business_name, "Name used previously" do
-          classes "regular-question"
-          sub_ref "A 6.3"
-          required
-          conditional :business_name_changed, :yes
-          conditional :applied_for_queen_awards, :yes
-        end
-
-        options :other_awards_won, "Have you won any other awards in the past?" do
-          ref "A 7"
-          required
-          yes_no
-        end
-
-        textarea :other_awards_desc, "Please describe them." do
-          classes "sub-question"
-          sub_ref "A 7.1"
-          required
-          context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
-          conditional :other_awards_won, :yes
-          rows 5
-          words_max 250
-        end
-
-        options :innovation_joint_contributors, "Is this application part of a joint entry with any contributing organisation(s)?" do
-          ref "A 8"
-          required
-          context %(
-            <p>
-              If two or more organisations made a significant contribution to the product, service or business model then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
-            </p>
-          )
-          yes_no
-        end
-
-        textarea :innovation_contributors, "Please enter their name(s)." do
-          classes "sub-question"
-          sub_ref "A 8.1"
-          conditional :innovation_joint_contributors, :yes
-          rows 2
-          words_max 100
-        end
-
-        options :innovation_any_contributors, "Did any external organisation(s) or individual(s) contribute to your innovation?" do
-          ref "A 9"
-          required
-          yes_no
-        end
-
-        options :innovation_contributors_aware, "Are they aware that you're applying for this award?" do
-          classes "sub-question"
-          sub_ref "A 9.1"
-          required
-          conditional :innovation_any_contributors, :yes
-          option :yes, "Yes, they are all aware"
-          option :no, "No, they are not all aware"
-        end
-
-        header :innovation_contributors_aware_header_no, "" do
-          classes "application-notice help-notice"
-          context %(
-            <p class="govuk-body">We recommend that you notify all the contributors to your innovation of this entry.</p>
-          )
-          conditional :innovation_any_contributors, :yes
-          conditional :innovation_contributors_aware, :no
-        end
-
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
-          classes "sub-question"
-          sub_ref "A 9.2"
-          required
-          conditional :innovation_any_contributors, :yes
-          conditional :innovation_contributors_aware, :no
-          rows 3
-          words_max 200
-        end
-
-        options :innovation_under_license, "Is your innovation under licence from another organisation?" do
-          ref "A 10"
-          yes_no
-        end
-
-        textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
-          classes "sub-question"
-          sub_ref "A 10.1"
-          required
-          conditional :innovation_under_license, :yes
-          rows 5
-          words_max 100
-        end
-
         address :organization_address, "Trading address of your organisation" do
           required
-          ref "A 11"
+          ref "A 6"
           pdf_context_with_header_blocks [
             [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
             [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
@@ -365,13 +243,13 @@ class AwardYears::V2023::QAEForms
 
         text :org_telephone, "Main telephone number" do
           required
-          ref "A 11.1"
+          ref "A 6.1"
           type "tel"
           style "small"
         end
 
         press_contact_details :press_contact_details, "Contact details for press enquiries" do
-          ref "A 12"
+          ref "A 7"
           context %(
             <p class='govuk-hint'><em>
               If your application is successful, you may get contacted by the press.
@@ -390,14 +268,14 @@ class AwardYears::V2023::QAEForms
         end
 
         text :website_url, "Website address" do
-          ref "A 13"
+          ref "A 8"
           style "large"
           form_hint "e.g. www.example.com"
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
           required
-          ref "A 14"
+          ref "A 9"
           context %(
             <p>
               The Standard Industrial Classification (SIC) is a system for classifying industries. If you are a registered company, this is the same code you would have provided Companies House.
@@ -406,50 +284,50 @@ class AwardYears::V2023::QAEForms
         end
 
         options :has_parent_company, "Do you have a parent or a holding company?" do
-          ref "A 15"
+          ref "A 10"
           yes_no
           required
         end
 
         text :parent_company, "Name of immediate parent company" do
-          sub_ref "A 15.1"
+          sub_ref "A 10.1"
           classes "sub-question"
           conditional :has_parent_company, "yes"
         end
 
         country :parent_company_country, "Country of immediate parent company" do
-          sub_ref "A 15.2"
+          sub_ref "A 10.2"
           classes "sub-question"
           conditional :has_parent_company, "yes"
         end
 
-        options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
-          sub_ref "A 15.3"
+        options :parent_ultimate_control, "Does your immediate parent company have ultimate control of your organisation?" do
+          sub_ref "A 10.3"
           classes "sub-question"
           conditional :has_parent_company, "yes"
           yes_no
         end
 
-        text :ultimate_control_company, "Name of organisation with ultimate control" do
+        text :ultimate_control_company, "The name of the organisation with ultimate control" do
           classes "sub-question"
-          sub_ref "A 15.4"
+          sub_ref "A 10.4"
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "sub-question"
-          sub_ref "A 15.5"
+          sub_ref "A 10.5"
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)" do
-          ref "A 16"
+        upload :org_chart, "Upload an organisational chart. (optional)" do
+          ref "A 11"
           context %(
-            <p>You can submit a file in any common format, as long as it is less than 5mb. </p>
+            <p>You can submit a file in most formats if it is less than five megabytes.</p>
           )
-          hint "What are the allowed file formats?", %(
+          hint "What are the accepted file formats?", %(
             <p>
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
@@ -458,22 +336,86 @@ class AwardYears::V2023::QAEForms
         end
 
         checkbox_seria :how_did_you_hear_about_award, "How did you hear about the Queen’s Awards for Enterprise award this year?" do
-          ref "A 17"
+          ref "A 12"
           required
           context %(
             <p>Select all that apply.</p>
           )
           check_options [
-            ["qa_website", "Queen's Awards website"],
-            ["qa_twitter", "Queen's Awards Twitter"],
+            ["qa_website", "The Queen's Awards website"],
+            ["qa_twitter", "The Queen's Awards Twitter"],
             ["social_media", "Other social media"],
             ["another_website", "Another website"],
-            ["qa_event", "Queen's Awards event"],
+            ["qa_event", "The Queen's Awards event"],
             ["another_event", "A third party exhibition or event"],
-            ["publication", "A newspaper/publication"],
+            ["publication", "A newspaper or publication"],
             ["word_of_mouth", "Word of mouth"],
             ["other", "Other"]
           ]
+        end
+
+        options :applied_for_queen_awards, "In the last ten years, have you applied for a Queen’s Awards for Enterprise award in any category?" do
+          required
+          ref "A 13"
+          yes_no
+          context %(
+            <p>
+              Please answer yes, even if you have not won any of the Queen's Awards you have applied for.
+            </p>
+          )
+          classes "queen-award-holder"
+        end
+
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years." do
+          classes "sub-question question-current-awards"
+          sub_ref "A 13.1"
+
+          conditional :applied_for_queen_awards, :yes
+
+          category :innovation, "Innovation"
+          category :international_trade, "International Trade"
+          category :sustainable_development, "Sustainable Development"
+          category :social_mobility, "Promoting Opportunity"
+
+          ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
+            year y
+          end
+
+          outcome "won", "Won"
+          outcome "did_not_win", "Did not win"
+        end
+
+        options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
+          classes "sub-question"
+          sub_ref "A 13.2"
+
+          conditional :applied_for_queen_awards, :yes
+
+          yes_no
+        end
+
+        text :previous_business_name, "Name used previously" do
+          classes "regular-question"
+          sub_ref "A 13.3"
+          required
+          conditional :business_name_changed, :yes
+          conditional :applied_for_queen_awards, :yes
+        end
+
+        options :other_awards_won, "Have you won any other awards in the past?" do
+          ref "A 14"
+          required
+          yes_no
+        end
+
+        textarea :other_awards_desc, "Please describe the awards." do
+          classes "sub-question"
+          sub_ref "A 14.1"
+          required
+          context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
+          conditional :other_awards_won, :yes
+          rows 3
+          words_max 150
         end
       end
     end
