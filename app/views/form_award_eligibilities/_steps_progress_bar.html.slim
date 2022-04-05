@@ -21,6 +21,14 @@
               span.step-number = "#{step_letters[index]}. "
               = step.short_title.html_safe
 
+              - if step.sub_headers.any?
+                ul
+                  - step.sub_headers.each do |sub_header|
+                    li
+                      span.govuk-body
+                        span.step-number = "#{sub_header.ref}. "
+                        = sub_header.title
+
     li.divider
     li.sidebar-helpline.govuk-body
       ' Need help? Ring us on

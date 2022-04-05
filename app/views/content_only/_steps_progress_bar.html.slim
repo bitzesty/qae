@@ -17,6 +17,11 @@
         ul
           - @form.steps.each_with_index do |step, index|
             = step_link_to step.short_title.html_safe, result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.title.html_safe.parameterize), index: index + 3, active: 2, index_name: "#{step_letters[index]}.", cant_access_future: false
+            - if step.sub_headers.any?
+              ul
+                - step.sub_headers.each do |sub_header|
+                  = step_link_to sub_header.title, result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.title.html_safe.parameterize), index: index + 3, active: 2, index_name: "#{sub_header.ref}.", cant_access_future: false
+
     li.divider
     li.sidebar-helpline
       ' Need help? Ring us on
