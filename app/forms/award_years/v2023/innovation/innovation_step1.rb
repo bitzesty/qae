@@ -147,7 +147,7 @@ class AwardYears::V2023::QAEForms
           conditional :applying_for, "division branch subsidiary"
         end
 
-        text :company_name, "Full legal name of your organisation" do
+        text :company_name, "Full legal name of your organisation." do
           required
           ref "A 2"
           context %(
@@ -202,7 +202,7 @@ class AwardYears::V2023::QAEForms
           style "small"
         end
 
-        date :started_trading, "Date started trading" do
+        date :started_trading, "Date started trading." do
           required
           ref "A 5"
           context -> do
@@ -216,7 +216,7 @@ class AwardYears::V2023::QAEForms
           date_max AwardYear.start_trading_since(2)
         end
 
-        address :organization_address, "Trading address of your organisation" do
+        address :organization_address, "Trading address of your organisation." do
           required
           ref "A 6"
           pdf_context_with_header_blocks [
@@ -241,14 +241,14 @@ class AwardYears::V2023::QAEForms
           ])
         end
 
-        text :org_telephone, "Main telephone number" do
+        text :org_telephone, "Main telephone number." do
           required
           ref "A 6.1"
           type "tel"
           style "small"
         end
 
-        press_contact_details :press_contact_details, "Contact details for press enquiries" do
+        press_contact_details :press_contact_details, "Contact details for press enquiries." do
           ref "A 7"
           context %(
             <p class='govuk-hint'><em>
@@ -267,13 +267,13 @@ class AwardYears::V2023::QAEForms
           ])
         end
 
-        text :website_url, "Website address" do
+        text :website_url, "Website address." do
           ref "A 8"
           style "large"
           form_hint "e.g. www.example.com"
         end
 
-        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
+        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do
           required
           ref "A 9"
           context %(
@@ -289,13 +289,13 @@ class AwardYears::V2023::QAEForms
           required
         end
 
-        text :parent_company, "Name of immediate parent company" do
+        text :parent_company, "Name of immediate parent company." do
           sub_ref "A 10.1"
           classes "sub-question"
           conditional :has_parent_company, "yes"
         end
 
-        country :parent_company_country, "Country of immediate parent company" do
+        country :parent_company_country, "Country of immediate parent company." do
           sub_ref "A 10.2"
           classes "sub-question"
           conditional :has_parent_company, "yes"
@@ -308,14 +308,14 @@ class AwardYears::V2023::QAEForms
           yes_no
         end
 
-        text :ultimate_control_company, "The name of the organisation with ultimate control" do
+        text :ultimate_control_company, "The name of the organisation with ultimate control." do
           classes "sub-question"
           sub_ref "A 10.4"
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
         end
 
-        country :ultimate_control_company_country, "Country of organisation with ultimate control" do
+        country :ultimate_control_company_country, "Country of organisation with ultimate control." do
           classes "sub-question"
           sub_ref "A 10.5"
           conditional :parent_ultimate_control, :no
@@ -394,7 +394,7 @@ class AwardYears::V2023::QAEForms
           yes_no
         end
 
-        text :previous_business_name, "Name used previously" do
+        text :previous_business_name, "Name used previously." do
           classes "regular-question"
           sub_ref "A 13.3"
           required
