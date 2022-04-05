@@ -40,8 +40,13 @@ class AwardYears::V2022::QAEForms
           ]
         end
 
-        checkbox_seria :application_relate_to_header, "This entry relates to:" do
+        header :first_header, "First subsection" do
           ref "B 1"
+          linkable true
+        end
+
+        checkbox_seria :application_relate_to_header, "This entry relates to:" do
+          ref "B 1.0"
           required
           context %(
             <p>Select all that apply.</p>
@@ -52,6 +57,7 @@ class AwardYears::V2022::QAEForms
             ["business_model", "A business model"]
           ]
           application_type_question true
+          sub_section :first_header
         end
 
         textarea :innovation_desc_short, "Briefly describe your innovative product, service or business model." do
@@ -99,6 +105,7 @@ class AwardYears::V2022::QAEForms
           )
           rows 2
           words_max 15
+          sub_section :first_header
         end
 
         textarea :innovation_desc_long, "Summarise your innovative product, service or business model." do
@@ -112,6 +119,7 @@ class AwardYears::V2022::QAEForms
           )
           rows 5
           words_max 750
+          sub_section :first_header
         end
 
         textarea :innovation_timeline_long, "Provide more details about your innovation’s timeline." do
@@ -148,10 +156,12 @@ class AwardYears::V2022::QAEForms
           )
           rows 5
           words_max 200
+          sub_section :first_header
         end
 
         header :innovation_timeline_header, "Your innovation timeline" do
           ref "B 2"
+          linkable true
         end
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
@@ -160,6 +170,7 @@ class AwardYears::V2022::QAEForms
           required
           min 2000
           max 2020
+          sub_section :innovation_timeline_header
         end
 
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
@@ -175,6 +186,8 @@ class AwardYears::V2022::QAEForms
           end
 
           date_max AwardYear.start_trading_since(2)
+
+          sub_section :innovation_timeline_header
         end
 
         options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation" do
@@ -189,6 +202,8 @@ class AwardYears::V2022::QAEForms
           option "adoptive_innovation", %(
             Adoptive innovation: Innovation that has been done elsewhere but is used in a new way
           )
+
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_improvement_details, "Explain how your innovation differs from what was available before and how it is an improvement." do
@@ -205,12 +220,16 @@ class AwardYears::V2022::QAEForms
           )
           rows 5
           words_max 400
+
+          sub_section :innovation_timeline_header
         end
 
         options :innovation_hold_existing_patent, "Do you hold the existing patent for this innovation?" do
           ref "B 4"
           required
           yes_no
+
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_hold_existing_patent_details, "Provide details of the patent. If you do not have a patent, please explain the reasons why not." do
@@ -222,6 +241,8 @@ class AwardYears::V2022::QAEForms
           )
           rows 5
           words_max 100
+
+          sub_section :innovation_timeline_header
         end
 
 
@@ -229,6 +250,8 @@ class AwardYears::V2022::QAEForms
           ref "B 5"
           required
           yes_no
+
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_other_countries_it_was_developed, "Describe in what other countries (and by what parties) it was developed. Estimate what proportion of the innovation was developed there." do
@@ -238,6 +261,8 @@ class AwardYears::V2022::QAEForms
           conditional :innovation_conceived_and_developed, :no
           rows 5
           words_max 400
+
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_external_contributors, 'Name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
@@ -245,6 +270,8 @@ class AwardYears::V2022::QAEForms
           required
           rows 5
           words_max 400
+
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market. " do
@@ -252,6 +279,8 @@ class AwardYears::V2022::QAEForms
           required
           rows 5
           words_max 500
+
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_overcomes_issues, "Describe the degree to which your innovation solves previous problems, and any difficulties you overcame in achieving these solutions." do
@@ -259,6 +288,8 @@ class AwardYears::V2022::QAEForms
           required
           rows 5
           words_max 750
+
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_befits_details_business, "How does the innovation benefit your business?" do
@@ -271,6 +302,7 @@ class AwardYears::V2022::QAEForms
           )
           rows 5
           words_max 400
+          sub_section :innovation_timeline_header
         end
 
         textarea :innovation_befits_details_customers, "Does the innovation benefit your customers and, if so, how?" do
@@ -283,12 +315,14 @@ class AwardYears::V2022::QAEForms
           )
           rows 5
           words_max 400
+          sub_section :innovation_timeline_header
         end
 
         textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation bring benefit to others, and if so how and to whom?" do
           ref "B 11"
           required
           rows 5
+          sub_section :innovation_timeline_header
           words_max 400
         end
 
@@ -297,6 +331,7 @@ class AwardYears::V2022::QAEForms
           required
           rows 5
           words_max 250
+          sub_section :innovation_timeline_header
           context %(
             <p>We ask this so that we can assess how outstanding your innovation is, compared to others in your field.</p>
           )
@@ -307,11 +342,13 @@ class AwardYears::V2022::QAEForms
           required
           rows 5
           words_max 250
+          sub_section :innovation_timeline_header
         end
 
         options :innovations_grant_funding, "Have you received any grant funding to support your innovation?" do
           ref "B 14"
           required
+          sub_section :innovation_timeline_header
           yes_no
           context %(
             <p>
@@ -323,6 +360,7 @@ class AwardYears::V2022::QAEForms
         textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
           sub_ref "B 14.1"
+          sub_section :innovation_timeline_header
           required
           conditional :innovations_grant_funding, :yes
           rows 5
@@ -333,6 +371,7 @@ class AwardYears::V2022::QAEForms
           ref "B 15"
           rows 5
           words_max 200
+          sub_section :innovation_timeline_header
           context %(
             <p>Use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
           )
