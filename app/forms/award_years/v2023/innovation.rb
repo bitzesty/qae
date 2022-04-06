@@ -21,12 +21,12 @@ class AwardYears::V2023::QAEForms
              "Commercial Performance",
              &AwardYears::V2023::QAEForms.innovation_step3
 
-        step "Declaration of Corporate Responsibility",
-             "Declaration of Corporate Responsibility",
+        step "Environmental Social Governance",
+             "Environmental Social Governance",
              &AwardYears::V2023::QAEForms.innovation_step4
 
-        step "Add Website Address/Documents",
-             "Add Website Address/Documents",
+        step "Supplementary Materials",
+             "Supplementary Materials",
              { id: :add_website_address_documents_step },
              &AwardYears::V2023::QAEForms.innovation_step5
 
