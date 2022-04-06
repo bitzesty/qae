@@ -350,6 +350,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_for_option :single_product_or_service, %(
             Select this option if your innovation is embodied within a service or product (or range of products) that forms a part of a broader offering to your customers. If you select this option, you will be asked to enter unit sales and financial data specific to the innovation. This enables assessors to quantify the contribution to overall commercial performance made by the innovation.
           )
+          default_option "it's integral to the whole business"
         end
 
         textarea :innovation_impact_integral_description, "Explain how, and by how much, your innovation has impacted your commercial performance." do
