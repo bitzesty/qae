@@ -3,6 +3,7 @@ require 'award_years/v2019/qae_forms'
 require 'award_years/v2020/qae_forms'
 require 'award_years/v2021/qae_forms'
 require 'award_years/v2022/qae_forms'
+require 'award_years/v2023/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
