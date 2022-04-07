@@ -9,10 +9,10 @@ class AwardYears::V2023::QAEForms
               Please include any vital information in the form as we can't guarantee the additional material will be reviewed. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
             </p>
             <p>
-              You can upload files in all common formats, as long as they're less than 5mb each. You may link to videos, websites or other media you feel relevant.
+              We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.
             </p>
             <p>
-              We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.
+              You can upload files in most common formats, if they are less than 5 megabytes. You may link to videos, websites or other media you feel relevant.
             </p>
           )
           hint "What are the allowed file formats?", %(
