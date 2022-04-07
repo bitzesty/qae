@@ -48,6 +48,7 @@ class AwardYears::V2023::QAEForms
 
         header :innovation_background_header, "Innovation background" do
           ref "B 1"
+          linkable true
         end
 
         header :innovation_background_section_header, "" do
@@ -66,6 +67,7 @@ class AwardYears::V2023::QAEForms
         end
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.1"
           required
@@ -83,6 +85,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_desc_short, "Briefly describe your innovative product, service, business model or process." do
+          sub_section :innovation_background_header
           classes "sub-question word-max-strict"
           sub_ref "B 1.2"
           required
@@ -130,6 +133,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation." do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.3"
           required
@@ -142,6 +146,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :innovation_hold_existing_patent, "Do you hold the existing patent for this innovation?" do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.4"
           required
@@ -165,6 +170,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.5"
           required
@@ -186,6 +192,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :innovation_joint_contributors, "Is this application part of a joint entry with any contributing organisations?" do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.6"
           required
@@ -206,6 +213,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :innovation_any_contributors, "Did any external organisations or individuals contribute to your innovation?" do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.7"
           required
@@ -252,6 +260,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :innovation_under_license, "Is your innovation under licence from another organisation?" do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.8"
           yes_no
@@ -267,6 +276,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :innovations_grant_funding, "Have you received any grant funding or made use of any government support in relation to your innovation?" do
+          sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.9"
           required
@@ -293,6 +303,7 @@ class AwardYears::V2023::QAEForms
 
         header :innovation_timeline_header, "Innovation development" do
           ref "B 2"
+          linkable true
         end
 
         header :innovation_timeline_section_header, "" do
@@ -311,6 +322,7 @@ class AwardYears::V2023::QAEForms
         end
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.1"
           required
@@ -319,6 +331,7 @@ class AwardYears::V2023::QAEForms
         end
 
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.2"
           required
@@ -334,6 +347,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.3"
           required
@@ -347,6 +361,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_desc_long, "Describe your innovative product, service, or business model." do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.4"
           required
@@ -360,6 +375,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_selection_details, "How did you select this innovation as the one to satisfy the gap in the market?" do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.5"
           required
@@ -373,6 +389,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_improvement_details, "Why is your innovation innovative?" do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.6"
           required
@@ -395,6 +412,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_overcomes_issues, "Describe any difficulties you encountered in developing your innovation and how you overcame them." do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.7"
           required
@@ -408,6 +426,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_strategies, "Explain the market opportunities and what strategies you used to penetrate the market." do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.8"
           required
@@ -421,6 +440,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_competitors, "Who offers products, services or business models that compete with yours?" do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.9"
           required
@@ -434,6 +454,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.10"
           required
@@ -447,6 +468,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_additional_comments, "Additional comments. (optional)" do
+          sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.11"
           context %(
@@ -460,6 +482,7 @@ class AwardYears::V2023::QAEForms
 
         header :innovation_value_add_header, "Innovation value-add" do
           ref "B 3"
+          linkable true
         end
 
         header :innovation_value_add_section_header, "" do
@@ -490,6 +513,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_befits_details_business, "How has the innovation added non-financial value to your business?" do
+          sub_section :innovation_value_add_header
           classes "sub-question"
           sub_ref "B 3.1"
           required
@@ -541,6 +565,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :innovation_befits_details_customers, "Does the innovation benefit your customers, and if so, how?" do
+          sub_section :innovation_value_add_header
           classes "sub-question"
           sub_ref "B 3.2"
           required
@@ -586,6 +611,7 @@ class AwardYears::V2023::QAEForms
         end
 
         textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation benefit others, and if so, how and to whom?" do
+          sub_section :innovation_value_add_header
           classes "sub-question"
           sub_ref "B 3.3"
           required
