@@ -46,7 +46,7 @@ class AwardYears::V2023::QAEForms
           ]
         end
 
-        header :innovation_background_header, "Innovation Background" do
+        header :innovation_background_header, "Innovation background" do
           ref "B 1"
         end
 
@@ -291,7 +291,7 @@ class AwardYears::V2023::QAEForms
         end
 
 
-        header :innovation_timeline_header, "Innovation Development" do
+        header :innovation_timeline_header, "Innovation development" do
           ref "B 2"
         end
 
@@ -458,7 +458,7 @@ class AwardYears::V2023::QAEForms
           words_max 200
         end
 
-        header :innovation_value_add_header, "Innovation Value Add" do
+        header :innovation_value_add_header, "Innovation value-add" do
           ref "B 3"
         end
 

@@ -35,15 +35,6 @@ class AwardYears::V2023::QAEForms
           ]
         end
 
-        header :commercial_success_intro, "" do
-          classes "application-notice help-notice"
-          context %(
-            <p class="govuk-body">
-              You can provide estimated figures for now but, should you be shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            </p>
-          )
-        end
-
         options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
@@ -381,7 +372,7 @@ class AwardYears::V2023::QAEForms
           words_max 200
         end
 
-        header :product_financials, "Innovation Financials" do
+        header :product_financials, "Innovation financials" do
           ref "C 6"
 
           context %(
