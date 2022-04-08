@@ -9,8 +9,8 @@ class AwardYears::V2023::QAEForms
   class << self
     def mobility
       @mobility ||= QAEFormBuilder.build "Promoting Opportunity Award (through social mobility) Application" do
-        step "Company Information",
-             "Company Information",
+        step "Company information",
+             "Company information",
              &AwardYears::V2023::QAEForms.mobility_step1
 
         step "Your Social Mobility Programme(s)",

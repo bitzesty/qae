@@ -9,8 +9,8 @@ class AwardYears::V2023::QAEForms
   class << self
     def trade
       @trade ||= QAEFormBuilder.build "International Trade Award Application" do
-        step "Company Information",
-             "Company Information",
+        step "Company information",
+             "Company information",
              &AwardYears::V2023::QAEForms.trade_step1
 
         step "Your International Trade",

@@ -6,9 +6,6 @@ class AwardYears::V2023::QAEForms
           ref "F 1"
         end
 
-        header :head_of_business_title_and_name, "Title and name" do
-        end
-
         text :head_of_bussines_title, "Title" do
           required
           classes "sub-question"
