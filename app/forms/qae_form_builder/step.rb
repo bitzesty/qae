@@ -174,6 +174,11 @@ class QAEFormBuilder
       b = builder_klass.new q
       b.instance_eval &block if block_given?
       @step.questions << q
+
+      if q.respond_to?(:linkable?) && q.linkable?
+        @step.sub_headers << q
+      end
+
       raise ArgumentError, "Duplicate question key #{q.key}" if @step.form[q.key]
       @step.form.questions_by_key[q.key] = q
       q
@@ -203,7 +208,7 @@ class QAEFormBuilder
   end
 
   class Step
-    attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit
+    attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit, :sub_headers
 
     def initialize form, title, short_title, opts={}
       @form = form
@@ -211,6 +216,7 @@ class QAEFormBuilder
       @short_title = short_title
       @opts = opts
       @questions = []
+      @sub_headers = []
     end
 
     def decorate options = {}

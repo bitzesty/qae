@@ -142,12 +142,16 @@ class QAEFormBuilder
     end
 
     def fieldset_data_hash
-      result = {answer: delegate_obj.parameterized_title}
+      result = { answer: delegate_obj.parameterized_title }
 
       if delegate_obj.drop_condition.present?
         result['drop-question'] = Array.wrap(delegate_obj.drop_condition).map do |k|
           delegate_obj.form[k].parameterized_title
         end.join(',')
+      end
+
+      if delegate_obj.sub_section.present?
+        result['sub-section'] = delegate_obj.sub_section
       end
 
       result
@@ -407,6 +411,10 @@ class QAEFormBuilder
       @q.show_ref_always = mode
     end
 
+    def sub_section(section_key)
+      @q.sub_section = section_key
+    end
+
     def required
       @q.required = true
     end
@@ -498,7 +506,8 @@ class QAEFormBuilder
                   :drop_condition_parent,
                   :drop_block_condition,
                   :section_info,
-                  :excluded_header_questions
+                  :excluded_header_questions,
+                  :sub_section
 
     def initialize step, key, title, opts={}
       @step = step
