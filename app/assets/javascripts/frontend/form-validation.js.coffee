@@ -63,6 +63,13 @@ window.FormValidation =
       $(".steps-progress-bar .step-errors > a").each ->
         stepLink = $(this).parent().html()
         stepLink = stepLink.replace("step-errors", "").replace("step-current", "")
+
+        # remove nested links
+        div = document.createElement('div')
+        div.innerHTML = stepLink
+        $("ul", div).remove()
+        stepLink = div.innerHTML
+
         $(".js-review-sections").append("<li>#{stepLink}</li>")
 
       # uncheck confirmation of entry
