@@ -60,17 +60,23 @@ window.FormValidation =
             substep_link.parent().removeClass("step-errors")
 
       $(".js-review-sections").empty()
-      $(".steps-progress-bar .step-errors > a").each ->
-        stepLink = $(this).parent().html()
-        stepLink = stepLink.replace("step-errors", "").replace("step-current", "")
+      $(".steps-progress-bar a.step-errors").each ->
+        stepLink = $(this).parent().clone()
 
-        # remove nested links
-        div = document.createElement('div')
-        div.innerHTML = stepLink
-        $("ul", div).remove()
-        stepLink = div.innerHTML
+        if stepLink.data('step').indexOf('/') > -1
+          return
+        if stepLink.find('ul').length > 0
+          stepLink.find("ul li:not(.step-errors)").remove()
+          if stepLink.find("ul li").length == 0
+            stepLink.find("ul").remove()
 
-        $(".js-review-sections").append("<li>#{stepLink}</li>")
+        stepLink.removeClass('step-errors')
+        stepLink.removeClass('step-current')
+
+        stepLink.find('a').removeClass('step-errors')
+        stepLink.find('a').removeClass('step-current')
+
+        $(".js-review-sections").append(stepLink)
 
       # uncheck confirmation of entry
       $(".question-block[data-answer='entry_confirmation-confirmation-of-entry'] input[type='checkbox']").prop("checked", false)
