@@ -10,7 +10,8 @@
 
 h1.govuk-heading-xl = page_title
 
-.steps-progress-container.min-height-800
+- side_bar_menu_height = @form_answer.innovation? ? "min-height-1300" : "min-height-800"
+div[class="steps-progress-container #{side_bar_menu_height}"]
   = render "steps_progress_bar", cant_access_future: true, previous_questions: step
   .steps-progress-content
     div
