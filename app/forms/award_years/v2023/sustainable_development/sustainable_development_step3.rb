@@ -13,7 +13,7 @@ class AwardYears::V2023::QAEForms
 
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
 
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
@@ -37,7 +37,7 @@ class AwardYears::V2023::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(
@@ -258,7 +258,7 @@ class AwardYears::V2023::QAEForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :development_performance, "What cost-savings have you or your customers’ businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
+        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
           ref "C 7"
           required
           context %(

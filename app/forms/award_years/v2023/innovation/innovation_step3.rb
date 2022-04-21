@@ -8,7 +8,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class="govuk-heading-m">About section C</h3>
             <p class="govuk-body">
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation had on your organisation's financial performance.
+              All applicants for any Queen's Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation had on your organisation's financial performance.
             </p>
             <h3 class="govuk-heading-m">COVID-19 impact & last financial year</h3>
             <p class="govuk-body">
@@ -22,7 +22,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About section C"],
             [:normal, %(
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation had on your organisation's financial performance.
+              All applicants for any Queen's Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation had on your organisation's financial performance.
             )],
             [:bold, "COVID-19 impact & last financial year"],
             [:normal, %(

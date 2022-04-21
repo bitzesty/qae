@@ -8,11 +8,11 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
+              All applicants for any Queen's Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
             <p class="govuk-body">
@@ -31,11 +31,11 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
+              All applicants for any Queen's Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(

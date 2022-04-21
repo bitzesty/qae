@@ -8,11 +8,11 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">
-              All applicants for any Queen’s Award must demonstrate financial sustainability.
+              All applicants for any Queen's Award must demonstrate financial sustainability.
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
             <p class="govuk-body">
@@ -30,11 +30,11 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              All applicants for any Queen’s Award must demonstrate financial sustainability.
+              All applicants for any Queen's Award must demonstrate financial sustainability.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(
@@ -55,7 +55,7 @@ class AwardYears::V2023::QAEForms
           sub_ref "C 1"
           required
           context %(
-            <p>To be eligible for a Queen’s Award for Enterprise, your organisation must be on a sustainable financial footing.</p>
+            <p>To be eligible for a Queen's Award for Enterprise, your organisation must be on a sustainable financial footing.</p>
           )
           rows 5
           words_max 250
@@ -200,7 +200,7 @@ class AwardYears::V2023::QAEForms
               <li>If you have received any form of investment or funding, if so, please specify the amounts;</li>
               <li>How you plan to sustain your organisation in future (if you have an investment or funding strategy, please set out its objectives).</li>
             </ul>
-            <p>This information is particularly useful when ascertaining your company’s financial viability, especially when you have drops in total turnover and losses.</p>
+            <p>This information is particularly useful when ascertaining your company's financial viability, especially when you have drops in total turnover and losses.</p>
           )
           pdf_context %(
             For example, explain:
@@ -211,7 +211,7 @@ class AwardYears::V2023::QAEForms
 
             \u2022 How you plan to sustain your organisation in future (if you have an investment or funding strategy, please set out its objectives).
 
-            This information is particularly useful when ascertaining your company’s financial viability, especially when you have drops in total turnover and losses.
+            This information is particularly useful when ascertaining your company's financial viability, especially when you have drops in total turnover and losses.
           )
           rows 5
           words_max 300
