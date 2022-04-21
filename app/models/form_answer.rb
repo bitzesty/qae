@@ -267,7 +267,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def fill_progress_in_percents
-    ((fill_progress || 0) * 100).round.to_s + "%"
+    ((fill_progress || 0) * 100).floor.to_s + "%"
   end
 
   def performance_years
