@@ -154,6 +154,7 @@
 "parent_company": "test",
 "parent_ultimate_control": "yes",
 "investment_strategy_and_its_objectives": "test",
+"covid_impact_details": "test",
 "are_any_of_the_figures_used_estimates": "no",
 "press_contact_details_title": "Mr",
 "press_contact_details_first_name": "John",
