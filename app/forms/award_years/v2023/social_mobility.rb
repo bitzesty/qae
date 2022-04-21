@@ -21,8 +21,8 @@ class AwardYears::V2023::QAEForms
              "Commercial Performance",
              &AwardYears::V2023::QAEForms.mobility_step3
 
-        step "Declaration of Corporate Responsibility",
-             "Declaration of Corporate Responsibility",
+        step "Environmental, social and governance (ESG)",
+             "Environmental, social and governance (ESG)",
              &AwardYears::V2023::QAEForms.mobility_step4
 
         step "Add Website Address/Documents",
