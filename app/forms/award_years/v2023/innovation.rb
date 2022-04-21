@@ -21,8 +21,8 @@ class AwardYears::V2023::QAEForms
              "Commercial performance",
              &AwardYears::V2023::QAEForms.innovation_step3
 
-        step "Environmental, social and governance (ESG)",
-             "Environmental, social and governance (ESG)",
+        step "Corporate Social Responsibility (CSR)",
+             "Corporate Social Responsibility (CSR)",
              &AwardYears::V2023::QAEForms.innovation_step4
 
         step "Supplementary materials",
