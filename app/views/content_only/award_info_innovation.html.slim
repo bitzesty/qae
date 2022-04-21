@@ -69,7 +69,7 @@ h1.govuk-heading-xl
                 li Section F: Authorise and submit
               p.govuk-body
                 | Please review all the questions by downloading the
-                =< link_to "blank PDF form.", users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true), class: "govuk-link"
+                =< link_to "blank innovation application form (PDF).", users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true), class: "govuk-link"
               br
               p.govuk-body We recommend that you read through all the questions carefully before beginning your application. Sections B, C and D, require longer text responses, so planning these first will help you to avoid repetition and submit in the shortest possible time.
 
@@ -88,7 +88,7 @@ h1.govuk-heading-xl
 
               p#get-started.get-started.group.govuk-body
                 = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "govuk-button", rel: "external", role: "button", aria: {label: "Continue to application"}
-                  ' Continue
+                  ' Continue to online form
                   / TODO if application is started
                   / ' Continue application
                   / - else
