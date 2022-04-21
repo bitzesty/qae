@@ -6,14 +6,15 @@ class Eligibility::Innovation < Eligibility
   property :innovative_product,
             values: %w[yes no skip],
             acts_like_boolean: true,
-            label: "Do you have one or more innovative product, service, business model or process?",
+            label: "Do you have one or more innovative products, services, business models or processes?",
             accept: :true,
             hint: "A product, service, business model or process is innovative if it has not been done before and provides a benefit or solves prior problems for its users."
 
   property :number_of_innovative_products,
             positive_integer: true,
-            label: "How many innovative products, services, business models or processes do you have?",
+            label: "How many innovative products, services, business models or processes would you like to enter for the award?",
             accept: :not_nil,
+            hint: "You can apply for multiple awards if you have more than one innovation. Each one requires a separate application to be submitted. If so, we recommend that you continue with this application with one innovation in mind and then start new applications for each one of the others.",
             if: proc { !skipped? && (innovative_product.nil? || innovative_product?) }
 
   property :was_on_market_for_two_years,
