@@ -338,8 +338,20 @@ class AwardYears::V2023::QAEForms
           words_max 300
         end
 
-        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
           ref "C 5"
+          required
+          context %(
+            <p>
+              How have you adapted to or mitigated the impacts of recent volatile markets due to factors such as Covid, and with what results? How are you planning to respond in the year ahead? This could include opportunities you have identified as well as any contextual information or challenges you would like the assessors to consider.
+            </p>
+          )
+          rows 4
+          words_max 350
+        end
+
+        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+          ref "C 6"
           required
           context %(
             <p>
@@ -351,7 +363,7 @@ class AwardYears::V2023::QAEForms
 
         textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "C 5.1"
+          sub_ref "C 6.1"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes
           rows 5
