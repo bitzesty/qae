@@ -13,7 +13,7 @@ class AwardYears::V2023::QAEForms
 
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
 
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
@@ -23,7 +23,7 @@ class AwardYears::V2023::QAEForms
 
             <h3 class="govuk-heading-m">Latest financial year and COVID-19</h3>
             <p class="govuk-body">
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             </p>
             <h3 class="govuk-heading-m">Estimated figures</h3>
             <p class="govuk-body">
@@ -37,7 +37,7 @@ class AwardYears::V2023::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(
@@ -45,7 +45,7 @@ class AwardYears::V2023::QAEForms
             )],
             [:bold, "Latest financial year and COVID-19"],
             [:normal, %(
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
             [:normal, %(
@@ -91,7 +91,7 @@ class AwardYears::V2023::QAEForms
 
           context %(
             <p>
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             </p>
             <p>
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
@@ -258,7 +258,7 @@ class AwardYears::V2023::QAEForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :development_performance, "What cost-savings have you or your customers’ businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
+        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
           ref "C 7"
           required
           context %(
@@ -282,12 +282,6 @@ class AwardYears::V2023::QAEForms
           words_max 400
         end
 
-        textarea :covid_19_impact, "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
-          ref "C 9"
-          required
-          rows 5
-          words_max 400
-        end
       end
     end
   end
