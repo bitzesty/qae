@@ -91,7 +91,7 @@ class AwardYears::V2023::QAEForms
           required
           context %(
             <p>
-              This summary will be used in publicity material if your application is successful.
+              This 15 word summary will be used in publicity material if your application is successful.
             </p>
             <p>
               For example:
@@ -113,7 +113,7 @@ class AwardYears::V2023::QAEForms
           )
           pdf_context %(
             <p>
-              This summary will be used in publicity material if your application is successful.
+              This 15 word summary will be used in publicity material if your application is successful.
             </p>
             <p>
               For example:
@@ -137,6 +137,11 @@ class AwardYears::V2023::QAEForms
           classes "sub-question"
           sub_ref "B 1.3"
           required
+          context %(
+            <p>
+              Please note, both types are equally eligible for the award. Your answer will assist assessors in understanding the nature of the type of innovation.
+            </p>
+          )
           option "disruptive_innovation", %(
             Disruptive innovation: A new or creative-in-thought innovation that does not seem to have been done before. While having a financial return, it may not yet have secured substantial market impact and did not displace many other firms and products.
           )
@@ -361,7 +366,7 @@ class AwardYears::V2023::QAEForms
           required
           context %(
             <p>
-              What was the need or opportunity that prompted you to commence your innovation project? What research did you do? How did you decide it was an opportunity worth working on? Was the innovation serendipitous? Was it consumer-led, or did it arise out of research and development?
+              What was the need or opportunity that prompted you to initiate your innovation project? What research did you do? How did you decide it was an opportunity worth working on? Did the innovation happen by chance? Was it consumer-led, or did it arise out of research and development?
             </p>
           )
           rows 4
@@ -419,14 +424,14 @@ class AwardYears::V2023::QAEForms
           words_max 400
         end
 
-        textarea :innovation_overcomes_issues, "Describe any difficulties you encountered in developing your innovation and how you overcame them." do
+        textarea :innovation_overcomes_issues, "Describe any challenges you encountered in developing your innovation and how you overcame them." do
           sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.7"
           required
           context %(
             <p>
-              What challenges did you overcome, for example, technical, materials or capacity? How did you overcome the challenges? Did you create or identify solutions to challenges internally? Or did you seek external help, for example, from a university, business support organisation, or collaborative company? Did you identify technology or existing approaches that helped you overcome challenges? How did you establish which solution was the correct one?
+              What challenges did you overcome, for example, technical, materials or capacity issues? How did you overcome the challenges? Did you create or identify solutions to challenges internally? Or did you seek external help, for example, from a university, business support organisation, or collaborative company? Did you identify technology or existing approaches that helped you overcome challenges? How did you establish which solution was the correct one?
             </p>
           )
           rows 5
