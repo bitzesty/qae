@@ -287,7 +287,7 @@ class AwardYears::V2023::QAEForms
           words_max 100
         end
 
-        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support in relation to your innovation?" do
+        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as innovation loan, in relation to your innovation?" do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.9"
@@ -295,10 +295,7 @@ class AwardYears::V2023::QAEForms
           yes_no
           context %(
             <p>
-              For example, this may include innovation loans or R&D tax credits.
-            </p>
-            <p>
-              If you can evidence the use of government schemes or grant funding for this innovation, please include this. It will help the assessors build up a better picture of your innovation and the investment it has attracted.
+              To receive grant funding or other government support, usually the company must go through a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance and the assessors appreciate that as well.
             </p>
           )
         end
@@ -373,18 +370,53 @@ class AwardYears::V2023::QAEForms
           words_max 400
         end
 
-        textarea :innovation_desc_long, "Describe your innovative product, service, or business model." do
+        textarea :innovation_desc_long, "Describe your innovation and why it is innovative." do
           sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.4"
           required
           context %(
+            <ol>
+              <li>
+                Describe what it is, how it works, what it does?
+              </li>
+              <li>
+                <p>
+                  Explain how your innovation differs from what came before and how it is an improvement.
+                </p>
+                <p>
+                  If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
+                </p>
+                <p>
+                  If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
+                </p>
+                <p>
+                  Explain any aspects that you think are innovative and why you think they are innovative.
+                </p>
+                <p>
+                  If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
+                </p>
+              </li>
+            </ol>
+          )
+          pdf_context %(
             <p>
-              Describe: What is it? How does it work? What does it do?
+              1. Describe what it is, how it works, what it does?
+            </p>
+            <p>
+              2. Explain how your innovation differs from what came before and how it is an improvement.
+
+                 If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
+
+                 If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
+
+                 Explain any aspects that you think are innovative and why you think they are innovative.
+
+                 If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
             </p>
           )
           rows 5
-          words_max 500
+          words_max 800
         end
 
         textarea :innovation_selection_details, "How did you select this innovation as the one to satisfy the gap in the market?" do
@@ -401,33 +433,10 @@ class AwardYears::V2023::QAEForms
           words_max 350
         end
 
-        textarea :innovation_improvement_details, "Why is your innovation innovative?" do
-          sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.6"
-          required
-          context %(
-            <p>
-              Explain how your innovation differs from what came before and how it is an improvement.
-            </p>
-            <p>
-              If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business. If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
-            </p>
-            <p>
-            Explain any aspects that you think are innovative and why you think they are innovative.
-            </p>
-            <p>
-              If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
-            </p>
-          )
-          rows 4
-          words_max 400
-        end
-
         textarea :innovation_overcomes_issues, "Describe any challenges you encountered in developing your innovation and how you overcame them." do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "B 2.7"
+          sub_ref "B 2.6"
           required
           context %(
             <p>
@@ -441,7 +450,7 @@ class AwardYears::V2023::QAEForms
         textarea :innovation_strategies, "Explain the market opportunities and what strategies you used to penetrate the market." do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "B 2.8"
+          sub_ref "B 2.7"
           required
           context %(
             <p>
@@ -455,7 +464,7 @@ class AwardYears::V2023::QAEForms
         textarea :innovation_competitors, "Who offers products, services or business models that compete with yours?" do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "B 2.9"
+          sub_ref "B 2.8"
           required
           context %(
             <p>
@@ -469,7 +478,7 @@ class AwardYears::V2023::QAEForms
         textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "B 2.10"
+          sub_ref "B 2.9"
           required
           context %(
             <p>
@@ -483,7 +492,7 @@ class AwardYears::V2023::QAEForms
         textarea :innovation_additional_comments, "Additional comments. (optional)" do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "B 2.11"
+          sub_ref "B 2.10"
           context %(
             <p>
               Use this box to explain if your innovation was launched by someone else or any other unusual circumstances surrounding your innovation.
@@ -502,75 +511,78 @@ class AwardYears::V2023::QAEForms
           section_info
           context %(
             <p class='govuk-body'>
-              The questions in subsection B3 give you the opportunity to describe how your innovation adds value beyond any financial impact.
+              The questions in subsection B3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
             </p>
             <p class='govuk-body'>
-              You will be asked to include details of the financial benefits to your organisation in section C - Commercial Performance - of the form.
+              Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
             </p>
             <p class='govuk-body'>
-              Please focus on providing the strongest examples within the permitted word limits. Adding testimonials and quantified data to support your statements will strengthen your application.
+              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section E - if you do so, please reference it in your answer.
             </p>
           )
 
           pdf_context %(
             <p>
-              The questions in subsection B3 give you the opportunity to describe how your innovation adds value beyond any financial impact.
+              The questions in subsection B3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
             </p>
             <p>
-              You will be asked to include details of the financial benefits to your organisation in section C - Commercial Performance - of the form.
+              Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
             </p>
             <p>
-              Please focus on providing the strongest examples within the permitted word limits. Adding testimonials and quantified data to support your statements will strengthen your application.
+              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section E - if you do so, please reference it in your answer.
             </p>
           )
         end
 
-        textarea :innovation_befits_details_business, "How has the innovation added non-financial value to your business?" do
+        textarea :innovation_befits_details_business, "How has the innovation added value to your business?" do
           sub_section :innovation_value_add_header
           classes "sub-question"
           sub_ref "B 3.1"
           required
           context %(
             <p>
-              For example:
+              When answering this question, please focus on softer, not directly financial benefits.
+            </p>
+            <p>
+              For example, depending on what is applicable, you could mention that the innovation:
             </p>
             <ul>
-              <li>Increased efficiency</li>
-              <li>Reduced costs</li>
-              <li>Design, production, marketing, distribution or after-sales support improvements</li>
-              <li>Better after-sales support</li>
-              <li>Reduced downtime</li>
-              <li>Increased reliability</li>
+              <li>Resulted in design, production, marketing, distribution and after-sales support improvements.</li>
+              <li>Developed people's skills, knowledge, and expertise.</li>
+              <li>Recruited new people into new roles or changed structure of the business that will benefit the business in the future.</li>
+              <li>Made your organisation more sustainable.</li>
+              <li>Turned around business decline or increased the rate of growth.</li>
+              <li>Increased efficiency, quality, reliability.</li>
+              <li>Reduced costs, reduced downtime.</li>
             </ul>
             <p>
-              What skills, knowledge, and expertise have you developed? Have you recruited people to new roles as a result of the innovation process? Have you changed the structure of your business to benefit in the future from the learnings you have made?
-            </p>
-            <p>
-              Has the innovation made your organisation more sustainable? Has it turned around a decline? Or increased the rate of growth? Please answer this question in narrative format rather than detailed financial figures - you will have an opportunity to add these in section C - Commercial Performance -  of the form.
+              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section C of the form (Commercial Performance).
             </p>
           )
           pdf_context %(
             <p>
-              For example:
+              When answering this question, please focus on softer, not directly financial benefits.
             </p>
             <p>
-              \u2022 Increased efficiency
-
-              \u2022 Reduced costs
-
-              \u2022 Design, production, marketing, distribution or after-sales support improvements
-
-              \u2022 Better after-sales support
-
-              \u2022 Reduced downtime
-
-              \u2022 Increased reliability
+              For example, depending on what is applicable, you could mention that the innovation:
             </p>
             <p>
-              What skills, knowledge, and expertise have you developed? Have you recruited people to new roles as a result of the innovation process? Have you changed the structure of your business to benefit in the future from the learnings you have made?
+              \u2022 Resulted in design, production, marketing, distribution and after-sales support improvements.
+
+              \u2022 Developed people's skills, knowledge, and expertise.
+
+              \u2022 Recruited new people into new roles or changed structure of the business that will benefit the business in the future.
+
+              \u2022 Made your organisation more sustainable.
+
+              \u2022 Turned around business decline or increased the rate of growth.
+
+              \u2022 Increased efficiency, quality, reliability.
+
+              \u2022 Reduced costs, reduced downtime.
             </p>
             <p>
-              Has the innovation made your organisation more sustainable? Has it turned around a decline? Or increased the rate of growth? Please answer this question in narrative format rather than detailed financial figures - you will have an opportunity to add these in section C - Commercial Performance -  of the form.
+              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section C of the form (Commercial Performance).
             </p>
           )
           rows 4

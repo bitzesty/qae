@@ -194,14 +194,22 @@ class AwardYears::V2023::QAEForms
           required
           context %(
             <p>
-              You may wish to describe:
+              If you are a large organisation, you may wish to describe:
             </p>
             <ul>
               <li>How you uphold ethical standards within your core business.</li>
-              <li>How you ensure diversity of representation (if relevant, including at very senior levels).</li>
+              <li>How you ensure diversity of representation, including at very senior levels.</li>
               <li>How you engage stakeholders in your governance.</li>
-              <li>Your company's policies on pay for performance and shareholder rights.</li>
+              <li>Your company's policies on pay and shareholder rights.</li>
               <li>Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.</li>
+            </ul>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <ul>
+              <li>Involvement of Non-Executive Directors on the board.</li>
+              <li>How the board ensures that ethical standards are considered and adhered to.</li>
+              <li>How the board ensures that statutory obligations are met.</li>
             </ul>
           )
           pdf_context %(
@@ -211,13 +219,23 @@ class AwardYears::V2023::QAEForms
             <p>
               \u2022 How you uphold ethical standards within your core business.
 
-              \u2022 How you ensure diversity of representation (if relevant, including at very senior levels).
+              \u2022 How you ensure diversity of representation, including at very senior levels.
 
               \u2022 How you engage stakeholders in your governance.
 
-              \u2022 Your company's policies on pay for performance and shareholder rights.
+              \u2022 Your company's policies on pay and shareholder rights.
 
               \u2022 Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.
+            </p>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <p>
+              \u2022 Involvement of Non-Executive Directors on the board.
+
+              \u2022 How the board ensures that ethical standards are considered and adhered to.
+
+              \u2022 How the board ensures that statutory obligations are met.
             </p>
           )
           rows 2

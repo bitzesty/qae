@@ -46,16 +46,16 @@ class AwardYears::V2023::QAEForms
           required
           context %(
             <p>
-              Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).
+              Your answer will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).
             </p>
             <p>
-              <strong>Outstanding commercial performance</strong> over two years would typically show a level of growth of more than 20% year on year.
+              <strong>Outstanding commercial performance</strong> over two years would typically show a level of growth of more than 20% year on year. Please note, this is not a fixed number - there may be exceptions.
             </p>
             <p>
-              <strong>Continuous commercial performance</strong> over five years would typically show a consistent level of growth of more than 10% year on year.
+              <strong>Continuous commercial performance</strong> over five years would typically show a consistent level of growth of more than 10% year on year. Please note, this is not a fixed number - there may be exceptions.
             </p>
             <p>
-              These are not fixed rules, and there may be exceptions to these guidelines. For example, if a business has been in a declining market and the innovation opens new market opportunities. In this instance, sales growth may not be significant, but the turnaround of business potential and safeguarding of jobs may be.
+              Please note, the above percentages are indicative, we will consider your specific circumstances. For example, if a business has been in a declining market and the innovation opens new market opportunities. In this instance, sales growth may not be significant, but the turnaround of business potential and safeguarding of jobs may be.
             </p>
           )
           option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over two years"
