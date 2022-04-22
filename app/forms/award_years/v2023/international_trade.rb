@@ -21,8 +21,8 @@ class AwardYears::V2023::QAEForms
              "Commercial Performance",
              &AwardYears::V2023::QAEForms.trade_step3
 
-        step "Declaration of Corporate Responsibility",
-             "Declaration of Corporate Responsibility",
+        step "Corporate Social Responsibility (CSR)",
+             "Corporate Social Responsibility (CSR)",
              &AwardYears::V2023::QAEForms.trade_step4
 
         step "Add Website Address/Documents",
