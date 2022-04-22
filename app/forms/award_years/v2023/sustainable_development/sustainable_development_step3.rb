@@ -8,48 +8,44 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">
-              To be eligible for a Queen's Awards for Enterprise, your business must be financially viable. You are required to demonstrate this by providing three years of financial growth figures that cover the period your sustainable development actions or interventions have been in place.
+              All applicants for any Queen's Award must demonstrate financial sustainability.
             </p>
 
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
 
-            <h3 class="govuk-heading-m">COVID-19 impact</h3>
+            <h3 class="govuk-heading-m">Volatile markets & last financial year</h3>
             <p class="govuk-body">
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
             </p>
-
-            <h3 class="govuk-heading-m">Latest financial year and COVID-19</h3>
             <p class="govuk-body">
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             </p>
             <h3 class="govuk-heading-m">Estimated figures</h3>
             <p class="govuk-body">
-              If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
             </p>
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              To be eligible for a Queen's Awards for Enterprise, your business must be financially viable. You are required to demonstrate this by providing three years of financial growth figures that cover the period your sustainable development actions or interventions have been in place.
+              All applicants for any Queen's Award must demonstrate financial sustainability.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
-            [:bold, "COVID-19 impact"],
+            [:bold, "Volatile markets & last financial year"],
             [:normal, %(
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            )],
-            [:bold, "Latest financial year and COVID-19"],
-            [:normal, %(
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
+              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
+
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline).However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
             [:normal, %(
-              If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
             )]
           ]
         end
@@ -85,16 +81,25 @@ class AwardYears::V2023::QAEForms
           default_option "no"
         end
 
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+          classes "sub-question"
+          sub_ref "C 2.1.1"
+          required
+          rows 2
+          words_max 100
+          conditional :financial_year_date_changed, :yes
+        end
+
         one_option_by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
           classes "sub-question one-option-by-years"
           sub_ref "C 2.2"
 
           context %(
             <p>
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             </p>
             <p>
-              If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
             </p>
           )
 
@@ -103,13 +108,32 @@ class AwardYears::V2023::QAEForms
           label ->(y) { "Financial year #{y}" }
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        upload :supporting_materials, "To support your figures, please upload your financial statements for the years entered in question C2.2." do
           classes "sub-question"
           sub_ref "C 2.3"
-          required
-          rows 5
-          words_max 100
-          conditional :financial_year_date_changed, :yes
+          context %(
+            <p>
+              If you are a company, upload relevant accounts as submitted to the Companies House. In addition, upload the full accounts prepared by your company and your corporation tax returns as submitted to HMRC.
+            </p>
+            <p>
+              If you are a Charity, upload relevant returns as submitted to the Charity Commission.
+            </p>
+            <p>
+              If you are a sole trader or unincorporated partnership, upload relevant accounts and your tax returns as submitted to HMRC.
+            </p>
+            <p>
+              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
+            </p>
+            <p>
+              You can upload files in most common formats, if they are less than five megabytes.
+            </p>
+          )
+          hint "What are the accepted file formats?", %(
+            <p>
+              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
+            </p>
+          )
+          max_attachments 15
         end
 
         one_option_by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
