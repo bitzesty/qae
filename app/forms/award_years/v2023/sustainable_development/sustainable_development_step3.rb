@@ -108,7 +108,7 @@ class AwardYears::V2023::QAEForms
           label ->(y) { "Financial year #{y}" }
         end
 
-        upload :supporting_materials, "To support your figures, please upload your financial statements for the years entered in question C2.2." do
+        upload :supporting_financials, "To support your figures, please upload your financial statements for the years entered in question C2.2." do
           classes "sub-question"
           sub_ref "C 2.3"
           context %(
