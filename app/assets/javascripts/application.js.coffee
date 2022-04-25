@@ -674,7 +674,7 @@ jQuery ->
       new_el.find("textarea").val("")
       new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
-      updateUploadListVisiblity(list, button, max)
+      updateUploadListVisiblity(list, govuk_button, max)
       reindexUploadListInputs(list)
       new_el.find('input,textarea,select').filter(':visible').first().focus()
 
