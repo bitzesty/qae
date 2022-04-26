@@ -378,7 +378,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <ol>
               <li>
-                Describe what it is, how it works, what it does?
+                Describe what it is, how it works, what it does.
               </li>
               <li>
                 <p>
@@ -401,7 +401,7 @@ class AwardYears::V2023::QAEForms
           )
           pdf_context %(
             <p>
-              1. Describe what it is, how it works, what it does?
+              1. Describe what it is, how it works, what it does.
             </p>
             <p>
               2. Explain how your innovation differs from what came before and how it is an improvement.
