@@ -251,7 +251,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Activity type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -415,7 +415,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -461,7 +461,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
@@ -507,7 +507,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
@@ -553,7 +553,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
@@ -725,7 +725,7 @@ class AwardYears::V2023::QAEForms
           ]
         end
 
-        checkbox_seria :organisation_activities, "What type of activities does your organization focus on to make a positive impact by promoting opportunity through social mobility?" do
+        checkbox_seria :organisation_activities, "What type of activities does your organisation focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2b"
           required
           classes "question-limited-selections"
@@ -773,7 +773,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Activity type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -856,6 +856,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <p>Provide third-party evidence of what makes your organisation exemplary compared to other similar organisations and how you are going 'above and beyond' compared to your sector.  For example, provide links to independent evaluation reports, details of awards won, client feedback ratings and how that compares with other similar organisations.</p>
           )
+          conditional :application_category, "organisation"
         end
 
         header :organisation_header_b4b, "Measuring success" do
@@ -919,7 +920,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -965,7 +966,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
@@ -1011,7 +1012,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
@@ -1057,7 +1058,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 

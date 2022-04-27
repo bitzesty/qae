@@ -14,7 +14,7 @@ class AwardYears::V2023::QAEForms
              &AwardYears::V2023::QAEForms.mobility_step1
 
         step "Your Social Mobility Programme(s)",
-             "Your Social Mobility",
+             "Your Social Mobility Programme(s)",
              &AwardYears::V2023::QAEForms.mobility_step2
 
         step "Commercial Performance",
