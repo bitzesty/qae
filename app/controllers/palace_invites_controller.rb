@@ -41,6 +41,8 @@ class PalaceInvitesController < ApplicationController
           :postcode,
           :phone_number,
           :additional_info,
+          :has_royal_family_connections,
+          :royal_family_connection_details,
           :id,
           :_remove
         ]

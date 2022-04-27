@@ -65,7 +65,7 @@ class Reports::ReceptionBuckinghamPalaceReport
     {
       label: "Previous years won",
       method: :previous_years_won
-    },
+    }
   ]
 
   def initialize(year)
