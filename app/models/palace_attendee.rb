@@ -10,4 +10,8 @@ class PalaceAttendee < ApplicationRecord
             :address_2,
             :postcode,
             presence: true
+
+  validates :has_royal_family_connections, inclusion: { in: [ true, false ] }
+
+  validates :royal_family_connection_details, presence: true, if: :has_royal_family_connections?
 end
