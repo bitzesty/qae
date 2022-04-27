@@ -597,6 +597,10 @@ input[type="file"] {
   .list-add & {
     color: darken($grey-1, 10%);
   }
+
+  .char-over & {
+    color: $error-colour;
+  }
 }
 
 // Show/hide conditional questions
@@ -637,7 +641,7 @@ input[type="file"] {
   padding: 0;
   list-style: none;
 
-  li {
+  & > li {
     margin: 0;
     margin-bottom: $gutter-half;
     padding: 20px !important;
