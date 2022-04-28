@@ -166,7 +166,6 @@ class AwardYears::V2023::QAEForms
               <li>To what extent you are sourcing or encouraging your supply chain to source UK goods and services.</li>
               <li>By what criteria you select clients and ensure they are appropriate for your services.</li>
               <li>How you measure customer satisfaction - and what the results have been.</li>
-              <li>By what criteria you select clients and ensure they are appropriate for your services.</li>
             </ul>
           )
           pdf_context %(
@@ -181,8 +180,6 @@ class AwardYears::V2023::QAEForms
               \u2022 By what criteria you select clients and ensure they are appropriate for your services.
 
               \u2022 How you measure customer satisfaction - and what the results have been.
-
-              \u2022 By what criteria you select clients and ensure they are appropriate for your services.
             </p>
           )
           rows 2
