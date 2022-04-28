@@ -10,7 +10,7 @@
       span
         = link_to [:award_info, @form_answer.award_type.to_sym, form_id: @form_answer.id], class: 'govuk-link' do
           span.step-number
-            ' Useful Application Info
+            ' Useful application info
 
     - step_letters = ["A", "B", "C", "D", "E", "F"]
     li.js-step-condition.govuk-body
@@ -32,6 +32,17 @@
                    span.step-number
                      ' #{step_letters[step.index]}.
                    = step.short_title.html_safe
+
+               - if step.sub_headers.any?
+                 ul
+                   - step.sub_headers.each do |sub_header|
+                     li.govuk-body data-step="step-#{step.title.parameterize}/header_#{sub_header.key}"
+                       = link_to edit_form_path(@form_answer.id, step: step.title.parameterize, anchor: "header_#{sub_header.key}"), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}/header_#{sub_header.key}" } do
+                         span
+                           span.step-number
+                             ' #{sub_header.ref}.
+                           = sub_header.title
+
 
     - unless QAE.hide_pdf_links?
       li.divider

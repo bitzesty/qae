@@ -278,13 +278,31 @@ jQuery ->
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $("body").removeClass("show-error-page")
+    sub_step = null
+    parent_step = step
+
+    if step.indexOf("/") > -1
+      parts = step.split("/")
+      parent_step = parts[0]
+      sub_step = parts[1]
 
     $(".js-step-condition.step-current").removeClass("step-current")
 
     window.location.hash = "##{step.substr(5)}"
-    $(".js-step-condition[data-step='#{step}']").addClass("step-current")
-    $(".js-step-condition[data-step='#{step}'] h2").attr('tabindex', '-1')
-    $(".js-step-condition[data-step='#{step}'] h2").focus()
+    $(".js-step-condition[data-step='#{parent_step}']").addClass("step-current")
+
+    if sub_step
+      setTimeout(() ->
+        $("##{sub_step}").attr('tabindex', '-1')
+        $("##{sub_step}").focus()
+        if $("##{sub_step}")[0].scrollIntoView
+          $("##{sub_step}")[0].scrollIntoView({
+            block: 'center'
+          })
+      , 100)
+    else
+      $(".js-step-condition[data-step='#{parent_step}'] h2").attr('tabindex', '-1')
+      $(".js-step-condition[data-step='#{parent_step}'] h2").focus()
 
     # Show past link status
     $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
@@ -300,7 +318,9 @@ jQuery ->
 
   if window.location.hash
     step = window.location.hash.substr(1)
-    if $(".js-step-condition[data-step='step-#{step}']").size() > 0
+    parent_step = step.split('/')[0]
+
+    if $(".js-step-condition[data-step='step-#{parent_step}']").size() > 0
       showAwardStep("step-#{step}")
       # Resize textareas that were previously hidden
       resetResizeTextarea()
@@ -654,7 +674,7 @@ jQuery ->
       new_el.find("textarea").val("")
       new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
-      updateUploadListVisiblity(list, button, max)
+      updateUploadListVisiblity(list, govuk_button, max)
       reindexUploadListInputs(list)
       new_el.find('input,textarea,select').filter(':visible').first().focus()
 

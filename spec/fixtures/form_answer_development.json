@@ -138,6 +138,7 @@
 "part_of_joint_entry_names": "",
 "previous_business_ref_num": "",
 "organization_address_county": "Buckinghamshire",
+"covid_impact_details": "test",
 "product_estimated_figures": "no",
 "environmental_contribution": "1",
 "head_of_business_last_name": "White",
@@ -188,4 +189,5 @@
 "culture_and_values_regarding_sustainability": "test",
 "explain_why_your_organisation_is_financially_viable": "test",
 "how_did_you_hear_about_award": [{"type":"other"}, {"type": "another_website"}],
-"covid_19_impact": "test"}
+"covid_19_impact": "test",
+"governance": "test"}

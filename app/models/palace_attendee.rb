@@ -10,4 +10,21 @@ class PalaceAttendee < ApplicationRecord
             :address_2,
             :postcode,
             presence: true
+
+  validates :has_royal_family_connections, inclusion: { in: [ true, false ] }
+
+  validates :royal_family_connection_details, presence: true, if: :has_royal_family_connections?
+  validate :royal_family_connection_details_length
+
+
+  private
+
+  def royal_family_connection_details_length
+    return if royal_family_connection_details.blank?
+    return unless has_royal_family_connections?
+
+    if royal_family_connection_details.split.size > 100
+      errors.add(:royal_family_connection_details, message: "is too long (maximum is 100 words)")
+    end
+  end
 end

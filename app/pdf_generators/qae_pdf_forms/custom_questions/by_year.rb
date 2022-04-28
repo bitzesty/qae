@@ -51,7 +51,7 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def year_headers
-    if financial_year_changed_dates_value
+    if financial_year_changed_dates?
       financial_dates_changed_year_headers
     else
       financial_dates_not_changed_year_headers
@@ -64,7 +64,7 @@ module QaePdfForms::CustomQuestions::ByYear
 
     financial_table_headers.each_with_index do |item, placement|
       header_item = "#{FINANCIAL_YEAR_PREFIX} #{placement + 1}"
-      header_item += " (latest)" if size == (placement + 1)
+      header_item += " (last)" if size == (placement + 1)
 
       res << header_item
     end
@@ -76,19 +76,19 @@ module QaePdfForms::CustomQuestions::ByYear
     prefix = if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
       AS_AT_DATE_PREFIX
     else
-      financial_year_changed_dates_value.present? ? YEAR_ENDING_IN_PREFIX : ""
+      financial_year_changed_dates? ? YEAR_ENDING_IN_PREFIX : ""
     end
 
     if form_pdf.pdf_blank_mode.present? # BLANK FOR MODE
       financial_table_default_headers.map.with_index do |item, index|
-        financial_table_default_headers.size == (index + 1) ? "#{item} (latest)" : item
+        financial_table_default_headers.size == (index + 1) ? "#{item} (last)" : item
       end
     else
       size = financial_table_headers.size
 
       financial_table_headers.map.with_index do |item, index|
         item = "#{prefix} #{item}"
-        size == (index.to_i + 1) && item.include?(FINANCIAL_YEAR_PREFIX) ? "#{item} (latest)" : item
+        size == (index.to_i + 1) && item.include?(FINANCIAL_YEAR_PREFIX) ? "#{item} (last)" : item
       end
     end
   end

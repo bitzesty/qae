@@ -1,6 +1,14 @@
 class Eligibility::Mobility < Eligibility
   AWARD_NAME = 'Social Mobility'
 
+  property :promoting_opportunity_involvement,
+            values: [
+              "Our main activity is focused on something else, but we have activities or initiatives that are positively supporting social mobility",
+              "Our organisation's core purpose is to improve social mobility"
+            ],
+            label: "Which of the below best describes your involvement with promoting opportunity through social mobility:",
+            accept: "other_focus"
+
   property :can_provide_financial_figures,
             boolean: true,
             label: "Are you able to provide financial figures for the last three years for your organisation?",

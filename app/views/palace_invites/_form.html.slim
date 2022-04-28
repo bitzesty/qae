@@ -31,6 +31,20 @@
                                        label: "Decorations / Post Nominals"
 
           .question-group
+            label.govuk-label Do you or your organisation have any associations and connections with the Royal Family?
+            span.govuk-hint
+              | Answer yes, if:
+              ol.govuk-list.govuk-list--number
+                li.govuk-hint 1. A member of the Royal Family has visited your organisation or is a patron of your charity, or if your company is a Duchy company.
+                li.govuk-hint 2. You have met a member of a Royal Family before, have received an Honour or Royal award, are involved with the Prince's Trust or any other organisation supported by a member of the Royal Family, or have other association with the Royal Family.
+
+
+            = ff.input :has_royal_family_connections, as: :radio_buttons, label: false, input_html: { class: "js-has-royal-connections" }
+          .question-group
+            = ff.input :royal_family_connection_details, as: :text, input_html: { rows: 5, data: { "word-max" => 100 }, class: "js-char-count js-royal-connection-details" }, label: "Please provide details of your or your organisation's associations with the Royal Family."
+
+
+          .question-group
             label
               ' Address 1
               = ff.input :address_1, input_html: { class: "large" },
@@ -40,15 +54,12 @@
           - %w(address_2 address_3 address_4).each do |attr|
             .question-group
               = ff.input attr, input_html: { class: "large" }
-
           .question-group
             = ff.input :postcode, input_html: { class: "small" }
-
           .question-group
             = ff.input :phone_number, input_html: { class: "small" },
                                       label: "Telephone number",
                                       hint: "if known"
-
           .question-group
             = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Additional Information e.g. Wheelchair user"
 

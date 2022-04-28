@@ -1,5 +1,8 @@
 .question-body
-  = f.input :number_of_innovative_products, input_html: { class: 'tiny innovative_amount_input', autocomplete: "off" }, label_html: { class: 'govuk-body govuk-!-font-weight-bold govuk-!-font-size-36 govuk-!-margin-bottom-5' }, label: @eligibility.class.label(step).html_safe
+  = f.input :number_of_innovative_products, input_html: { class: 'tiny innovative_amount_input', autocomplete: "off" },
+    label_html: { class: 'govuk-body govuk-!-font-weight-bold govuk-!-font-size-36 govuk-!-margin-bottom-5' },
+    label: @eligibility.class.label(step).html_safe,
+    hint: @eligibility.class.hint(step)
 
   #innovative-amount-info.visuallyhidden
     br

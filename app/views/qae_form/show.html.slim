@@ -15,9 +15,10 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
   h1.govuk-heading-xl
     = @form.title
 
-  .steps-progress-container.min-height-800
+  - side_bar_menu_height = @form_answer.innovation? ? "min-height-1300" : "min-height-800"
+  div[class="steps-progress-container #{side_bar_menu_height}"]
     = render "qae_form/steps_progress_bar", current_step: params[:step]
-    
+
     .steps-progress-content
       - if @form_answer.promotion? && @form_answer.validator_errors && @form_answer.validator_errors["supporters"].present?
         .govuk-error-summary aria-labelledby="letters-of-support-error-title" role="alert" tabindex="-1" data-module="govuk-error-summary"
