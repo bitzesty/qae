@@ -125,7 +125,8 @@ class QAEFormBuilder
         "by_years_question",
         "by_years_label_question",
         "matrix_question",
-        "press_contact_details_question"
+        "press_contact_details_question",
+        "upload_question"
       ]
 
       legend_types.include?(type)

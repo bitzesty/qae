@@ -13,13 +13,14 @@
           label.control-label Set date and time
         = f.hint "Please don't choose 00:00 or 12:00 as this time and date are automatically pulled in various places and these times often confuse people unless it is specified if it is noon/midday or midnight, and the system cannot specify that. Please choose 11:00 or 13:00 instead.",
                     class: "control-hint"
-        = f.input :trigger_at,
-                  as: :separated_date_time,
-                  input_html: { id: '' }
+        .deadline-form-wrapper
+          = f.input :trigger_at,
+                    as: :separated_date_time,
+                    input_html: { id: '' }
 
-        .control-action
-          = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide"
-          input type="button" value="Save" class="btn btn-primary btn-submit"
+          .control-action
+            = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide"
+            input type="button" value="Save" class="btn btn-primary btn-submit"
         .clear
 
     = link_to "Edit", "#", class: "edit-deadline if-no-js-hide"
