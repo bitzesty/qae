@@ -891,7 +891,7 @@ CREATE TABLE public.palace_attendees (
     palace_invite_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    has_royal_family_connections boolean DEFAULT false,
+    has_royal_family_connections boolean,
     royal_family_connection_details text
 );
 
@@ -3904,6 +3904,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200918151320'),
 ('20201023115307'),
 ('20211103110822'),
-('20220427093339');
+('20220427093339'),
+('20220428081645');
 
 

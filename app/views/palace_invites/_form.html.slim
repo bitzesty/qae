@@ -9,7 +9,7 @@
 
         li.js-add-example
           = hidden_field_tag "palace_invite[palace_attendees_attributes][#{i}][_remove]", "", class: 'remove'
-          a.remove-link.js-remove-link href="#" Remove
+          / a.remove-link.js-remove-link href="#" Remove
           - i += 1
 
           .question-group
