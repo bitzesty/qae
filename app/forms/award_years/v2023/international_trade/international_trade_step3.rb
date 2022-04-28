@@ -60,7 +60,7 @@ class AwardYears::V2023::QAEForms
           classes "application-notice help-notice"
           context %(
             <p class="govuk-body">
-              You can provide estimated figures for now but, should you be shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              You can provide estimated figures for now but, should you be shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
             </p>
           )
         end
@@ -178,7 +178,7 @@ class AwardYears::V2023::QAEForms
 
             <h3 class='govuk-heading-m govuk-!-margin-bottom-1'>Estimated figures</h3>
             <p class='govuk-body'>
-              If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
             </p>
 
             <h3 class='govuk-heading-m govuk-!-margin-bottom-1'>Figures - format</h3>
@@ -193,7 +193,7 @@ class AwardYears::V2023::QAEForms
             )],
             [:bold, "Estimated figures"],
             [:normal, %(
-              If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
             )],
             [:bold, "Figures - format"],
             [:normal, %(
@@ -359,7 +359,7 @@ class AwardYears::V2023::QAEForms
           required
           context %(
             <p>
-              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
             </p>
           )
           yes_no
