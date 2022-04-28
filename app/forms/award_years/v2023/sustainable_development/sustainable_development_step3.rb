@@ -253,8 +253,32 @@ class AwardYears::V2023::QAEForms
           )
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
+        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
           ref "C 5"
+          required
+          context %(
+            <p>
+              Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
+            </p>
+          )
+          rows 5
+          words_max 250
+        end
+
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
+          ref "C 6"
+          required
+          context %(
+            <p>
+              Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
+            </p>
+          )
+          rows 5
+          words_max 400
+        end
+
+        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
+          ref "C 7"
           required
           context %(
             <p>
@@ -266,7 +290,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "C 6"
+          ref "C 8"
           required
           yes_no
           context %(
@@ -279,35 +303,11 @@ class AwardYears::V2023::QAEForms
 
         textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "C 6.1"
+          sub_ref "C 8.1"
           required
           rows 5
           words_max 250
           conditional :product_estimated_figures, :yes
-        end
-
-        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
-          ref "C 7"
-          required
-          context %(
-            <p>
-              Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
-            </p>
-          )
-          rows 5
-          words_max 250
-        end
-
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
-          ref "C 8"
-          required
-          context %(
-            <p>
-              Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
-            </p>
-          )
-          rows 5
-          words_max 400
         end
 
       end
