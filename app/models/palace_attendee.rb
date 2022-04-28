@@ -24,7 +24,7 @@ class PalaceAttendee < ApplicationRecord
     return unless has_royal_family_connections?
 
     if royal_family_connection_details.split.size > 100
-      errors.add(:royal_family_connection_details, message: "is too long (maximum is 100 words)")
+      errors.add(:royal_family_connection_details, message: "Exceeded 100 words limit.")
     end
   end
 end

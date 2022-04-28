@@ -31,6 +31,20 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
           = f.input :post_nominals, input_html: { class: "form-control" }, label: false, as: :string
       .row
         .col-md-8
+          label Do you or your organisation have any associations and connections with the Royal Family?
+          span.govuk-hint
+            | Answer yes, if:
+            ol.govuk-list.govuk-list--number
+              li.govuk-hint 1. A member of the Royal Family has visited your organisation or is a patron of your charity, or if your company is a Duchy company.
+              li.govuk-hint 2. You have met a member of a Royal Family before, have received an Honour or Royal award, are involved with the Prince's Trust or any other organisation supported by a member of the Royal Family, or have other association with the Royal Family.
+          = f.input :has_royal_family_connections, as: :radio_buttons, label: false, input_html: { class: "js-has-royal-connections" }, wrapper_html: { class: "has-royal-family-connections-wrapper" }
+      .row.royal-connection-wrapper
+        .col-md-8
+          label Please provide details of your or your organisation's associations with the Royal Family.
+          = f.input :royal_family_connection_details, as: :text, input_html: { rows: 5, data: { "word-max" => 100 }, class: "js-char-count js-royal-connection-details form-control" }, label: false
+
+      .row
+        .col-md-8
           label Address 1
           = f.input :address_1, input_html: { class: "form-control" }, label: false, as: :string
           p.help-block First line on envelope
@@ -59,7 +73,7 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
       - unless @form_answer.promotion?
         .row
           .col-md-12
-            label Additional Information e.g. Wheelchair user
+            label Additional Information, for example, wheelchair user
             = f.input :additional_info, as: :text, input_html: { class: "form-control", rows: 2 }, label: false
       .row
         .col-md-12
