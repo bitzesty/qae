@@ -204,4 +204,24 @@
       }
     }
   }
+
+  .deadline-form-wrapper {
+    @media (min-width: 768px) {
+      &:after {
+        clear: both;
+        content: " ";
+        display: table;
+        zoom: 1;
+      }
+
+      .govuk-form-group {
+        float: left;
+      }
+
+      .control-action {
+        float: right !important;
+        margin-top: 0 !important;
+      }
+    }
+  }
 }
