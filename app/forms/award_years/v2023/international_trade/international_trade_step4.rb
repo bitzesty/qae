@@ -28,7 +28,7 @@ class AwardYears::V2023::QAEForms
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
           )
 
@@ -48,6 +48,10 @@ class AwardYears::V2023::QAEForms
               The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or procedures that you have in place.
 
               Finally, there is no need to provide information on how you are adhering to statutory laws or regulations - such as 'we pay minimum wage'. We're more interested in how you are going above and beyond.
+            )],
+            [:bold, "Small organisations"],
+            [:normal, %(
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )]
           ]
         end
@@ -160,7 +164,6 @@ class AwardYears::V2023::QAEForms
               <li>To what extent you are sourcing or encouraging your supply chain to source UK goods and services.</li>
               <li>By what criteria you select clients and ensure they are appropriate for your services.</li>
               <li>How you measure customer satisfaction - and what the results have been.</li>
-              <li>By what criteria you select clients and ensure they are appropriate for your services.</li>
             </ul>
           )
           pdf_context %(
@@ -175,8 +178,6 @@ class AwardYears::V2023::QAEForms
               \u2022 By what criteria you select clients and ensure they are appropriate for your services.
 
               \u2022 How you measure customer satisfaction - and what the results have been.
-
-              \u2022 By what criteria you select clients and ensure they are appropriate for your services.
             </p>
           )
           rows 2
@@ -188,14 +189,22 @@ class AwardYears::V2023::QAEForms
           required
           context %(
             <p>
-              You may wish to describe:
+              If you are a large organisation, you may wish to describe:
             </p>
             <ul>
               <li>How you uphold ethical standards within your core business.</li>
-              <li>How you ensure diversity of representation (if relevant, including at very senior levels).</li>
+              <li>How you ensure diversity of representation, including at very senior levels.</li>
               <li>How you engage stakeholders in your governance.</li>
-              <li>Your company's policies on pay for performance and shareholder rights.</li>
+              <li>Your company's policies on pay and shareholder rights.</li>
               <li>Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.</li>
+            </ul>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <ul>
+              <li>Involvement of Non-Executive Directors on the board.</li>
+              <li>How the board ensures that ethical standards are considered and adhered to.</li>
+              <li>How the board ensures that statutory obligations are met.</li>
             </ul>
           )
           pdf_context %(
@@ -205,13 +214,23 @@ class AwardYears::V2023::QAEForms
             <p>
               \u2022 How you uphold ethical standards within your core business.
 
-              \u2022 How you ensure diversity of representation (if relevant, including at very senior levels).
+              \u2022 How you ensure diversity of representation, including at very senior levels.
 
               \u2022 How you engage stakeholders in your governance.
 
-              \u2022 Your company's policies on pay for performance and shareholder rights.
+              \u2022 Your company's policies on pay and shareholder rights.
 
               \u2022 Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.
+            </p>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <p>
+              \u2022 Involvement of Non-Executive Directors on the board.
+
+              \u2022 How the board ensures that ethical standards are considered and adhered to.
+
+              \u2022 How the board ensures that statutory obligations are met.
             </p>
           )
           rows 2

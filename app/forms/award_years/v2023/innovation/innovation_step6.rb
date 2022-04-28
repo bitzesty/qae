@@ -141,7 +141,7 @@ class AwardYears::V2023::QAEForms
           required
           show_ref_always true
           text %(
-            I agree that if the application is shortlisted, I will supply commercial figures verified by an independent accountant before the specified November deadline. I understand that if verified figures are not provided by the specified deadline at shortlist stage, the entry will be rejected.
+            I agree that if the application is shortlisted, I will supply commercial figures verified by an external accountant before the specified November deadline. I understand that if verified figures are not provided by the specified deadline at shortlist stage, the entry will be rejected.
           )
         end
 

@@ -21,7 +21,7 @@ class AwardYears::V2023::QAEForms
               We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
             </p>
             <p class="govuk-body">
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             </p>
             <h3 class="govuk-heading-m">Estimated figures</h3>
             <p class="govuk-body">
@@ -41,7 +41,7 @@ class AwardYears::V2023::QAEForms
             [:normal, %(
               We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
 
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline).However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline).However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
             [:normal, %(
@@ -96,7 +96,7 @@ class AwardYears::V2023::QAEForms
 
           context %(
             <p>
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             </p>
             <p>
               If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
@@ -253,8 +253,32 @@ class AwardYears::V2023::QAEForms
           )
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
+        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
           ref "C 5"
+          required
+          context %(
+            <p>
+              Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
+            </p>
+          )
+          rows 5
+          words_max 250
+        end
+
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
+          ref "C 6"
+          required
+          context %(
+            <p>
+              Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
+            </p>
+          )
+          rows 5
+          words_max 400
+        end
+
+        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
+          ref "C 7"
           required
           context %(
             <p>
@@ -266,7 +290,7 @@ class AwardYears::V2023::QAEForms
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "C 6"
+          ref "C 8"
           required
           yes_no
           context %(
@@ -279,35 +303,11 @@ class AwardYears::V2023::QAEForms
 
         textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "C 6.1"
+          sub_ref "C 8.1"
           required
           rows 5
           words_max 250
           conditional :product_estimated_figures, :yes
-        end
-
-        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
-          ref "C 7"
-          required
-          context %(
-            <p>
-              Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
-            </p>
-          )
-          rows 5
-          words_max 250
-        end
-
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
-          ref "C 8"
-          required
-          context %(
-            <p>
-              Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
-            </p>
-          )
-          rows 5
-          words_max 400
         end
 
       end
