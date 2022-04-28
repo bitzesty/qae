@@ -41,7 +41,11 @@
 
             = ff.input :has_royal_family_connections, as: :radio_buttons, label: false, input_html: { class: "js-has-royal-connections" }
           .question-group
-            = ff.input :royal_family_connection_details, as: :text, input_html: { rows: 5, data: { "word-max" => 100 }, class: "js-char-count js-royal-connection-details" }, label: "Please provide details of your or your organisation's associations with the Royal Family."
+            = ff.input :royal_family_connection_details,
+                       as: :text,
+                       input_html: { rows: 5, data: { "word-max" => 100 }, class: "js-char-count js-royal-connection-details" },
+                       label: "Please provide details of your or your organisation's associations with the Royal Family.",
+                       wrapper_html: { class: "royal-connection-wrapper" }
 
 
           .question-group
@@ -61,7 +65,7 @@
                                       label: "Telephone number",
                                       hint: "if known"
           .question-group
-            = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Additional Information e.g. Wheelchair user"
+            = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Additional Information, for example, wheelchair user"
 
     = link_to "+ Add Attendee", "#",
               class: "button button-add js-button-add #{'visuallyhidden' if @invite_form.invite.palace_attendees.count == 1 || @invite_form.palace_attendees.count == 1}"
