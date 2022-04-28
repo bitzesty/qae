@@ -77,7 +77,7 @@ class AwardYears::V2023::QAEForms
           required
           show_ref_always true
           text %(
-            By ticking this box, you agree that if your application is shortlisted, you will supply commercial figures verified by an independent accountant before the specified November deadline.
+            By ticking this box, you agree that if your application is shortlisted, you will supply commercial figures verified by an external accountant before the specified November deadline.
             <br>
             <br>
             If verified figures are not provided by the specified November deadline at shortlist stage, your entry will be rejected.
