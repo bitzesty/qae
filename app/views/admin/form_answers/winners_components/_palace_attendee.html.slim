@@ -21,7 +21,7 @@
           p
             strong Royal Affiliation / Previous Links
             br
-            = pa.royal_family_connection_details.presence || "-"
+            = pa.has_royal_family_connections? && pa.royal_family_connection_details.presence || "-"
             br
           p
             = pa.address_1
