@@ -61,7 +61,7 @@ class AwardYears::V2023::QAEForms
             <h3 class="govuk-heading-m">Small organisations</h3>
 
             <p class="govuk-body">
-              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
 
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
@@ -142,7 +142,7 @@ class AwardYears::V2023::QAEForms
 
             [:bold, "Small organisations"],
             [:normal, %(
-              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
 
             [:bold, "COVID-19 impact"],

@@ -49,11 +49,9 @@
 
 
           .question-group
-            label
-              ' Address 1
-              = ff.input :address_1, input_html: { class: "large" },
+            = ff.input :address_1, input_html: { class: "large" },
                                      hint: "First line on envelope",
-                                     label: false
+                                     label: "Address 1"
 
           - %w(address_2 address_3 address_4).each do |attr|
             .question-group
