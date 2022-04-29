@@ -64,7 +64,7 @@ class AwardYears::V2023::QAEForms
           required
           text -> do
             %(
-              By submitting this entry for consideration for The Queen's Awards for Enterprise 2022, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
+              By submitting this entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
             )
           end
         end
