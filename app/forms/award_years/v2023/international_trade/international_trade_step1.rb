@@ -313,7 +313,7 @@ class AwardYears::V2023::QAEForms
         text :website_url, "Website address" do
           ref "A 10"
           style "large"
-          form_hint "Please provide full wesbite address, for example, www.example.com"
+          form_hint "Please provide full wesbite address, for example, www.yourcompanyname.com"
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
