@@ -80,6 +80,8 @@ module PalaceAttendeesMixin
       :address_4,
       :postcode,
       :phone_number,
+      :has_royal_family_connections,
+      :royal_family_connection_details,
       :additional_info,
       :palace_invite_id,
       :id

@@ -340,7 +340,9 @@ $status-green: #3b816f;
   }
 }
 
-.palace-attendees-action-devider {
+.palace-attendees-action-divider {
+  display: inline-block;
+  padding-top: 8px;
   margin-right: 7px;
 }
 

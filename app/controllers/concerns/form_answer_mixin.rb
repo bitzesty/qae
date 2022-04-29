@@ -85,7 +85,6 @@ module FormAnswerMixin
       (k.to_sym == :company_or_nominee_name || k.to_sym == :nominee_title) &&
       !CompanyDetailPolicy.new(pundit_user, resource).can_manage_company_name?
     end
-
     ops
   end
 

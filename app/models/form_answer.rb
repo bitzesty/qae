@@ -3,6 +3,7 @@ require 'award_years/v2019/qae_forms'
 require 'award_years/v2020/qae_forms'
 require 'award_years/v2021/qae_forms'
 require 'award_years/v2022/qae_forms'
+require 'award_years/v2023/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -266,7 +267,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def fill_progress_in_percents
-    ((fill_progress || 0) * 100).round.to_s + "%"
+    ((fill_progress || 0) * 100).floor.to_s + "%"
   end
 
   def performance_years

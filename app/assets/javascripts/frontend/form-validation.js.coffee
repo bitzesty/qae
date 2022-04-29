@@ -46,11 +46,37 @@ window.FormValidation =
     if !page.hasClass("step-errors")
       # highlight the error sections in sidebar and in error message
       $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]").addClass("step-errors")
+
+      if $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]").parent().find("ul").size() > 0
+        step_link = $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]")
+        step_link.parent().find("ul a").each ->
+          substep_link = $(@)
+          question = substep_link.data('step').split('/')[1].replace('header_', '')
+
+          has_errors = $('.govuk-form-group--error[data-sub-section="' + question + '"]').size() > 0
+          if has_errors
+            substep_link.parent().addClass("step-errors")
+          else
+            substep_link.parent().removeClass("step-errors")
+
       $(".js-review-sections").empty()
-      $(".steps-progress-bar .step-errors a").each ->
-        stepLink = $(this).parent().html()
-        stepLink = stepLink.replace("step-errors", "").replace("step-current", "")
-        $(".js-review-sections").append("<li>#{stepLink}</li>")
+      $(".steps-progress-bar a.step-errors").each ->
+        stepLink = $(this).parent().clone()
+
+        if stepLink.data('step').indexOf('/') > -1
+          return
+        if stepLink.find('ul').length > 0
+          stepLink.find("ul li:not(.step-errors)").remove()
+          if stepLink.find("ul li").length == 0
+            stepLink.find("ul").remove()
+
+        stepLink.removeClass('step-errors')
+        stepLink.removeClass('step-current')
+
+        stepLink.find('a').removeClass('step-errors')
+        stepLink.find('a').removeClass('step-current')
+
+        $(".js-review-sections").append(stepLink)
 
       # uncheck confirmation of entry
       $(".question-block[data-answer='entry_confirmation-confirmation-of-entry'] input[type='checkbox']").prop("checked", false)
@@ -418,9 +444,9 @@ window.FormValidation =
           @appendMessage(qParent, "Not a valid date")
           @addErrorClass(question)
         # temporary condition
-        else if parseInt(year) > 2021 || parseInt(year) < 2012
-          @logThis(question, "validateDateByYears", "the year must be from 2012 to 2021")
-          @appendMessage(qParent, "the year must be from 2012 to 2021")
+        else if parseInt(year) > 2022 || parseInt(year) < 2014
+          @logThis(question, "validateDateByYears", "the year must be from 2014 to 2022")
+          @appendMessage(qParent, "the year must be from 2014 to 2022")
           @addErrorClass(question)
 
   validateInnovationFinancialDate: (question) ->

@@ -20,9 +20,12 @@ describe "Admin fulfills the Palace Attendees" do
         within first("#new_palace_attendee") do
           all("input.form-control").each_with_index do |input, index|
             val = "val-#{index}"
+
             field_values << val
             input.set(val)
           end
+          choose "Yes"
+
           click_button "Save"
         end
       end
@@ -39,16 +42,19 @@ describe "Admin fulfills the Palace Attendees" do
         within "#new_palace_attendee" do
           # waiting for the last input to be rendered
           find("input#palace_attendee_phone_number")
-
+          choose "Yes"
+          fill_in "palace_attendee_royal_family_connection_details", with: "connection details"
           all("input.form-control").each_with_index do |input, index|
             val = "val-#{index}"
             field_values << val
             input.set(val)
           end
         end
+
         click_button "Save"
         wait_for_ajax
       end
+
       visit admin_form_answer_path(form_answer)
       find("#palace-attendees-heading .panel-title a").click
 
@@ -56,6 +62,8 @@ describe "Admin fulfills the Palace Attendees" do
         field_values.each do |val|
           expect(page).to have_content(val)
         end
+
+        expect(page).to have_content("connection details")
       end
     end
   end

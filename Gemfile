@@ -90,7 +90,7 @@ gem 'carrierwave', '~> 1.3'
 gem 'fog', "1.42.1"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails'
+gem 'vigilion-rails', '~> 2.1.0'
 
 # Background jobs
 gem "sidekiq", "~> 6.4"
@@ -126,7 +126,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '~> 4.3.9'
+gem 'puma', '~> 4.3.12'
 
 # Performance & Error reporting
 gem 'appsignal'

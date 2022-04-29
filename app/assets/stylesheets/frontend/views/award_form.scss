@@ -26,7 +26,7 @@
       background-image: image-url("icon-important-sm-red-2x.png");
     }
 
-    a {
+    > a {
       background: transparent;
       color: $error-colour !important;
     }
@@ -35,6 +35,42 @@
   &.step-current a {
     cursor: default;
     color: $black;
+  }
+
+  + ul li.step-errors {
+    background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.75em;
+    background-size: 16px 16px;
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+      background-image: image-url("icon-important-sm-red-2x.png");
+    }
+
+    > a {
+      background: transparent;
+      color: $error-colour !important;
+    }
+  }
+}
+
+.js-review-sections li ul {
+  padding: 1em 0 0 0;
+  list-style-image: image-url("bullet-disc-5px-red.gif");
+
+  li.step-errors {
+    background: transparent;
+  }
+}
+
+ul.subsections {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  li {
+    padding-left: 50px !important;
+  }
+
+  li + li {
+    margin-top: 0 !important;
   }
 }
 
@@ -271,12 +307,12 @@ select.read-only {
 .step-download a {
   display: inline-block;
   position: relative;
-  
+
   &:focus {
     color: black;
     text-decoration: underline;
   }
-  
+
   svg {
     display: inline-block;
     height: 1.4em;
