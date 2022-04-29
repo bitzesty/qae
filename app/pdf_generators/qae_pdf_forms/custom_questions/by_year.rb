@@ -21,7 +21,7 @@ module QaePdfForms::CustomQuestions::ByYear
     # not needed for 2021
     # rows.push(latest_year_label)
 
-    year_headers.each_with_index do |header_item, placement|
+    financial_dates_changed_year_headers.each_with_index do |header_item, placement|
       form_pdf.default_bottom_margin
       if OMIT_COLON_KEYS.include?(question.key)
         title = "#{header_item} #{ANSWER_FONT_START}#{rows[placement].join("/")}#{ANSWER_FONT_END}"
