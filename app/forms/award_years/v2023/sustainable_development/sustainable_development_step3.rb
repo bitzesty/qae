@@ -295,7 +295,7 @@ class AwardYears::V2023::QAEForms
           yes_no
           context %(
             <p>
-              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
+              If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
             </p>
           )
           conditional :financial_year_date_changed, :true
