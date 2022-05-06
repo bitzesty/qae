@@ -866,7 +866,7 @@ DEPENDENCIES
   pusher (= 0.15.2)
   rack-cors (~> 1.0)
   rack-mini-profiler (>= 0.10.1)
-  rack-protection
+  rack-protection (= 2.2.0)
   rack-ssl-enforcer
   rails (= 6.1.5.1)
   rails-controller-testing
@@ -892,7 +892,7 @@ DEPENDENCIES
   sidekiq (~> 6.4)
   sidekiq-cron (~> 1.1)
   simple_form (~> 5.0)
-  sinatra (~> 2.0)
+  sinatra (= 2.2.0)
   slim-rails (~> 3.2.0)
   sprockets (~> 3.7.2)
   sprockets-rails (>= 2.0.0)
