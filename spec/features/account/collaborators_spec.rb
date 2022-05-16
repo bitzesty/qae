@@ -234,7 +234,7 @@ So that they can collaborate form answers
           expect_to_see "Are you sure you want remove this collaborator?"
 
           expect {
-            click_link "Remove collaborator"
+            click_link "Yes, remove collaborator"
           }.to change {
             account.reload.users.count
           }.by(-1)
