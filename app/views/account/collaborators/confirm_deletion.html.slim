@@ -16,7 +16,7 @@
     .govuk-button-group
       - form_id = params[:form_id].presence
 
-      = link_to "Remove collaborator", account_collaborator_path(collaborator, form_id: form_id),
+      = link_to "Yes, remove collaborator", account_collaborator_path(collaborator, form_id: form_id),
                 method: :delete,
                 class: "govuk-button govuk-button--warning"
 
