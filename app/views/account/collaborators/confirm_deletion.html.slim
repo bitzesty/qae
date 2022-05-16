@@ -1,0 +1,24 @@
+- title "Confirm removal of collaborator"
+
+- provide(:page_content_class, "multi-page page-account")
+
+.article-container
+  article.group role="article"
+    h1.govuk-heading-l
+      ' Are you sure you want remove this collaborator?
+
+    p.govuk-body
+      ' You need to have at least one collaborator added to your account. If you remove this collaborator, please add another one; otherwise, you won't be able to:
+    ul.govuk-list.govuk-list--bullet
+      li access or submit your applications;
+      li access the winners' dashboard if you win the award.
+
+    .govuk-button-group
+      - form_id = params[:form_id].presence
+
+      = link_to "Yes, remove collaborator", account_collaborator_path(collaborator, form_id: form_id),
+                method: :delete,
+                class: "govuk-button govuk-button--warning"
+
+      = link_to "Cancel", edit_account_collaborator_path(collaborator, form_id: form_id),
+                  class: "govuk-button govuk-button--secondary"

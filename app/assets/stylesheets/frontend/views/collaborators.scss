@@ -41,7 +41,7 @@ details {
 .remove-link-right {
   @media (min-width: 992px) {
     position: relative;
-    
+
     h2 {
       max-width: calc(100% - 200px);
     }
@@ -50,6 +50,7 @@ details {
 
 .collaborator-remove-link {
   @media (min-width: 768px) {
+    color: 	#d4351c;
     position: absolute;
     right: 0;
     top: 12px;

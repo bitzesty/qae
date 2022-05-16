@@ -39,6 +39,7 @@ describe 'API' do
                                                  account: account
   end
 
+
   before do
     login_as account_admin
   end
@@ -97,14 +98,22 @@ describe 'API' do
                                 role: "regular"
     end
 
+    let!(:another_account_admin) do
+      create :user,
+             :completed_profile,
+             first_name: "Another Account Admin Mike",
+             account: account,
+             role: "account_admin"
+    end
+
     before do
       clear_enqueued_jobs
       delete account_collaborator_path(existing_collaborator), xhr: true
     end
 
     it "should remove user from collaborators, but do not remove user account" do
-      expect(User.count).to be_eql 2
-      expect(account.reload.users.count).to be_eql 1
+      expect(User.count).to be_eql 3
+      expect(account.reload.users.count).to be_eql 2
 
       expect(enqueued_jobs.size).to be_eql(0)
     end

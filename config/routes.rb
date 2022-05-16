@@ -317,7 +317,11 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :collaborators, except: [:show]
+    resources :collaborators, except: [:show] do
+      member do
+        get :confirm_deletion
+      end
+    end
   end
 
   namespace :judge do
