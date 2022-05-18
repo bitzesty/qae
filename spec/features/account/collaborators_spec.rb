@@ -220,6 +220,25 @@ So that they can collaborate form answers
 
           expect_to_see "#{collaborator.email} successfully removed from Collaborators!"
         end
+
+        it "should redirect to an confirmation page if the only collaborator" do
+          regular_user.delete
+          another_account_admin.delete
+
+          within(".collaborators-list #user_#{collaborator.id}") do
+            expect_to_see collaborator.email
+            click_on "Edit details"
+          end
+
+          click_link "Remove collaborator"
+          expect_to_see "Are you sure you want remove this collaborator?"
+
+          expect {
+            click_link "Yes, remove collaborator"
+          }.to change {
+            account.reload.users.count
+          }.by(-1)
+        end
       end
 
       describe "I'm logged in as regular user and I can access the Collaborators section" do
