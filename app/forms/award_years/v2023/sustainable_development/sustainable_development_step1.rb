@@ -7,7 +7,7 @@ class AwardYears::V2023::QAEForms
           section_info
           context %(
             <p class='govuk-body'>
-              We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
+              We need some essential information about your organisation so that we can undertake due diligence with various agencies if your application is shortlisted.
             </p>
             <p class='govuk-body'>
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
@@ -27,7 +27,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
+              We need some essential information about your organisation so that we can undertake due diligence with various agencies if your application is shortlisted.
 
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
 
