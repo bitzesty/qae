@@ -8,8 +8,22 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
-              We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
+              We need some essential information about your organisation so that we can undertake due diligence with various agencies if your application is shortlisted.
             </p>
+            <p class='govuk-body'>
+              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
+            </p>
+            <p class='govuk-body'>
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The Queen's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+            </p>
+            <p class='govuk-body'>
+              Some examples of issues that may prevent your organisation from receiving clearance for The Queen's Awards for Enterprise Award:
+            </p>
+            <ul class='govuk-list govuk-list--bullet'>
+              <li>A failure to pay staff the minimum wage;</li>
+              <li>An accident within the workplace, which has resulted in harm being caused to the environment or employees;</li>
+              <li>A failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.</li>
+            </ul>
             <details class='govuk-details' data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
@@ -70,9 +84,18 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-                We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
-              )
-            ],
+              We need some essential information about your organisation so that we can undertake due diligence with various agencies if your application is shortlisted.
+
+              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
+
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The Queen's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+
+              Some examples of issues that may prevent your organisation from receiving clearance for The Queen's Awards for Enterprise Award:
+
+              \u2022 A failure to pay staff the minimum wage;
+              \u2022 An accident within the workplace, which has resulted in harm being caused to the environment or employees;
+              \u2022 A failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
+            )],
             [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
             [:normal, %(
                 \u2022 Biotechnology & Biological Sciences Research Council
