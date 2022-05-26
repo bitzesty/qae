@@ -134,8 +134,17 @@ class AwardYears::V2023::QAEForms
           )
         end
 
-        confirm :shortlisted_case_confirmation, "" do
+        confirm :due_diligence, "" do
           ref "F 4.2"
+          required
+          show_ref_always true
+          text %(
+            I understand and agree the outcome of the due diligence checks which The Queen's Awards for Enterprise Office undertakes with Government Departments and Agencies is final and cannot be overturned.
+          )
+        end
+
+        confirm :shortlisted_case_confirmation, "" do
+          ref "F 4.3"
           required
           show_ref_always true
           text %(
