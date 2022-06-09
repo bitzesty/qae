@@ -8,10 +8,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class="govuk-heading-m">About section D</h3>
             <p class="govuk-body">
-              Corporate Social Responsibility (CSR) section enables you to demonstrate your responsible business conduct, including governance and social, economic, environmental impact.
-            </p>
-            <p class="govuk-body">
-              All applicants for a Queen's Award for Enterprise must demonstrate how they meet commonly accepted standards for Corporate Social Responsibility. Applicants who are not able to demonstrate Corporate Social Responsibility will not be successful.
+              The Declaration of Corporate Social Responsibility is an opportunity for you to highlight your responsible business conduct and its social, economic and environmental impact within your organisation, supply chain and wider community. We expect all applicants for a Queen's Award for Enterprise to adhere to commonly accepted standards for corporate responsibility. Provide examples for each heading, relative to the size and scale of your business. For this section, you may wish to consider the following points: How do you invest in employees, or select suppliers with the same high standards? Do you provide opportunities such as mentoring, coaching or work experience placements? How have you reduced your carbon footprint? Applicants who are not able to demonstrate corporate social responsibility will not be successful.
             </p>
             <h3 class="govuk-heading-m">Answering questions</h3>
             <p class="govuk-body">
@@ -35,9 +32,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About section D"],
             [:normal, %(
-              Corporate Social Responsibility (CSR) section enables you to demonstrate your responsible business conduct, including governance and social, economic, environmental impact.
-
-              All applicants for a Queen's Award for Enterprise must demonstrate how they meet commonly accepted standards for Corporate Social Responsibility. Applicants who are not able to demonstrate Corporate Social Responsibility will not be successful.
+              The Declaration of Corporate Social Responsibility is an opportunity for you to highlight your responsible business conduct and its social, economic and environmental impact within your organisation, supply chain and wider community. We expect all applicants for a Queen's Award for Enterprise to adhere to commonly accepted standards for corporate responsibility. Provide examples for each heading, relative to the size and scale of your business. For this section, you may wish to consider the following points: How do you invest in employees, or select suppliers with the same high standards? Do you provide opportunities such as mentoring, coaching or work experience placements? How have you reduced your carbon footprint? Applicants who are not able to demonstrate corporate social responsibility will not be successful.
             )],
             [:bold, "Answering questions"],
             [:normal, %(

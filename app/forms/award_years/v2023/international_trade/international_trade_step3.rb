@@ -8,7 +8,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">
-              All applicants for any Queen's Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
+              All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities have had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate as you will need to verify them if shortlisted.
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
@@ -29,7 +29,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              All applicants for any Queen's Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
+              All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities have had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate as you will need to verify them if shortlisted.
             )],
             [:bold, "Small organisations"],
             [:normal, %(

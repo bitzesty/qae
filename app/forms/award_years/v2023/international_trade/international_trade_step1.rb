@@ -8,7 +8,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
-              We need some essential information about your organisation so that we can undertake due diligence with various agencies if your application is shortlisted.
+              The purpose of this section is to collect all vital information about your company. For example, your company's registration number and address. It is important for the details provided to be accurate as it cannot be changed later. This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
             </p>
             <p class='govuk-body'>
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
@@ -84,7 +84,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              We need some essential information about your organisation so that we can undertake due diligence with various agencies if your application is shortlisted.
+              The purpose of this section is to collect all vital information about your company. For example, your company's registration number and address. It is important for the details provided to be accurate as it cannot be changed later. This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
 
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
 
