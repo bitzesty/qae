@@ -8,7 +8,7 @@
 
 ### Pre-requisites
 
-* Ruby 2.7.4
+* Ruby 2.7.6
 * `gem install bundler -v 2.3.4`
 * Rails 6.1
 * Postgresql 9.5+

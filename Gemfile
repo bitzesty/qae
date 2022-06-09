@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |name| "https://github.com/#{name}.git" }
 
-ruby '~> 2.7.4'
+ruby '~> 2.7.6'
 
 gem 'rails', '6.1.5.1'
 gem 'websocket-extensions', '~> 0.1.5'
