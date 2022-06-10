@@ -8,14 +8,14 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
-              This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.
+              The purpose of this section is to enable the Assessing Team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts on the overall performance of your business.
             </p>
             <p class='govuk-body'>
               Please avoid using technical language in this section.
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
             <p class="govuk-body">
@@ -26,12 +26,13 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.
+              The purpose of this section is to enable the Assessing Team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts on the overall performance of your business.
+
               Please avoid using technical language in this section.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(
