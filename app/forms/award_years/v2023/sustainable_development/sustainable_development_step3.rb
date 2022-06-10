@@ -8,7 +8,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class="govuk-heading-m">About this section</h3>
             <p class="govuk-body">
-              All applicants for any Queen's Award must demonstrate financial sustainability.
+              All applicants must demonstrate their viability and you will need to upload your accounts to provide evidence of this.
             </p>
 
             <h3 class="govuk-heading-m">Small organisations</h3>
@@ -31,7 +31,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              All applicants for any Queen's Award must demonstrate financial sustainability.
+              All applicants must demonstrate their viability and you will need to upload your accounts to provide evidence of this.
             )],
             [:bold, "Small organisations"],
             [:normal, %(

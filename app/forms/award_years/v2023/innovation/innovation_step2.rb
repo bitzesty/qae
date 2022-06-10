@@ -7,7 +7,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class='govuk-heading-m'>About section B</h3>
             <p class='govuk-body'>
-              Questions in section B are structured to help tell the story of your innovation’s development, implementation, and impact - and why it deserves an award.
+              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the Assessing Team to understand the role innovation plays within your overall business and how this impacts on the performance of your business.
             </p>
 
             <h3 class='govuk-heading-s'>Word limits</h3>
@@ -29,7 +29,7 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About section B"],
             [:normal, %(
-              Questions in section B are structured to help tell the story of your innovation’s development, implementation, and impact - and why it deserves an award.
+              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the Assessing Team to understand the role innovation plays within your overall business and how this impacts on the performance of your business.
             )],
             [:bold, "Word limits"],
             [:normal, %(
