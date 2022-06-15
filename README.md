@@ -4,9 +4,9 @@
 
 "QAE" is the application which powers the application process for The Queen's Awards for Enterprise.
 
-## Setup
+# Setup
 
-### Pre-requisites
+## Pre-requisites
 
 * Ruby 2.7.6
 * `gem install bundler -v 2.3.4`
@@ -25,83 +25,6 @@ bundle exec sidekiq -C config/sidekiq.yml
 
 If you're running this on your local dev setup, start redis first before starting sidekiq
 
-### Install Poxa
-
-If you need to test collaborators editing the application at the same time, install poxa.
-
-[https://gitlab.bitzesty.com/clients/qae/qae-poxa/blob/master/QAE_README.md#setup-on-local](https://gitlab.bitzesty.com/clients/qae/qae-poxa/blob/master/QAE_README.md#setup-on-local)
-
-## Deploying
-
-Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging, production).
-
-CF based PaaS is used for hosting [https://cloud.service.gov.uk](https://www.cloud.service.gov.uk/)
-
-Follow these instructions to install in your dev env [https://www.notion.so/bitzesty/GDS-PaaS-Cloud-Foundry-CF-3ed30a317c5d4387acebe1a3529f6dfa](https://www.notion.so/bitzesty/GDS-PaaS-Cloud-Foundry-CF-3ed30a317c5d4387acebe1a3529f6dfa).
-
-
-#### Dev
-
-```bash
-cf l # login to CLI tool, select space
-cf target -o "beis-queens-awards-for-enterprise" -s dev # target a space
-cf create-app-manifest qae-dev-worker
-cf push -f qae-dev-worker_manifest.yml # deploy worker
-
-cf create-app-manifest qae-dev
-cf bgd qae-dev -f qae-dev_manifest.yml --delete-old-apps # deploy application with blue green deploy plugin
-```
-
-
-#### Staging
-
-```bash
-cf l # login to CLI tool, select space
-cf target -o "beis-queens-awards-for-enterprise" -s staging # target a space
-cf create-app-manifest qae-staging-worker
-cf push -f qae-staging-worker_manifest.yml # deploy worker
-
-cf create-app-manifest qae-staging
-cf bgd qae-dev -f qae-staging_manifest.yml --delete-old-apps # deploy application with blue green deploy plugin
-```
-
-
-#### Production
-
-```bash
-cf l # login to CLI tool, select space
-cf target -o "beis-queens-awards-for-enterprise" -s production # target a space
-cf create-app-manifest qae-production-worker
-cf push -f qae-production-worker_manifest.yml # deploy worker
-
-cf create-app-manifest qae-production
-cf bgd qae-dev -f qae-production_manifest.yml --delete-old-apps # deploy application with blue green deploy plugin
-```
-
-
-
-## Usefull commands
-
-##### SSH
-
-```bash
-cf ssh qae-production
-```
-
-##### Logs
-
-```bash
-cf logs qae-production # for the stream
-cf logs qae-production --recent # for recent log entries
-```
-
-Better logs in Papertrail for QAE.
-
-https://papertrailapp.com
-
-Login in 1password
-
-
 #### Help
 
 If you see the following error:
@@ -117,15 +40,31 @@ This means, that `hstore postgresql` extension needs to be installed:
 sudo apt-get install postgresql-contrib
 ```
 
-## Check Cron schedule on live
+### Install Poxa
 
-https://www.queens-awards-enterprise.service.gov.uk/sidekiq/cron
+If you need to test collaborators editing the application at the same time, install poxa.
+
+# Deploying
+
+Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging, production). For more details see the Github Actions.
+
+CF based GOV.UK PaaS is used for hosting [https://cloud.service.gov.uk](https://www.cloud.service.gov.uk/).
+
+# License
+
+qae is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
+software, and may be redistributed under the terms specified in the
+[LICENSE] file.
+
+[LICENSE]: https://github.com/bitzesty/qae/blob/master/LICENSE
 
 
-## Profile mode in Development
+# About Bit Zesty
 
-To enable [rack mini profiler](https://github.com/MiniProfiler/rack-mini-profiler)
-in development mode set in .env:
-```
-PROFILE_MODE=true
-```
+![Bit Zesty](https://bitzesty.com/wp-content/uploads/2017/01/logo_dark.png)
+
+qae is maintained by Bit Zesty LTD.
+The names and logos for Bit Zesty are trademarks of Bit Zesty LTD.
+
+See [our other projects](https://bitzesty.com/client-stories/) or
+[hire us](https://bitzesty.com/contact/) to design, develop, and support your product or service.
