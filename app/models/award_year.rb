@@ -279,4 +279,8 @@ class AwardYear < ApplicationRecord
       end
     end
   end
+
+  def before_vocf_switch?
+    year <= 2022
+  end
 end

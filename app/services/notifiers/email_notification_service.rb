@@ -96,7 +96,13 @@ class Notifiers::EmailNotificationService
   def shortlisted_audit_certificate_reminder(award_year)
     collaborator_data = []
 
-    award_year.form_answers.business.shortlisted.each do |form_answer|
+    scope = if award_year.before_vocf_switch?
+      award_year.form_answers.business
+    else
+      award_year.form_answers.require_vocf
+    end
+
+    scope.shortlisted.each do |form_answer|
       next if form_answer.audit_certificate
 
       form_answer.collaborators.each do |collaborator|

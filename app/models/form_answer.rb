@@ -312,7 +312,7 @@ class FormAnswer < ApplicationRecord
 
   def requires_vocf?
     return false if !business?
-    return true if award_year && award_year.year <= 2022
+    return true if award_year && award_year.before_vocf_switch?
 
     award_type != "development" && award_type != "mobility"
   end
