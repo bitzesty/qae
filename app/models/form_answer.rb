@@ -142,7 +142,7 @@ class FormAnswer < ApplicationRecord
     scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
-    scope :require_vocf, -> { where(award_type: %[trade innovation]) }
+    scope :require_vocf, -> { where(award_type: %w[trade innovation]) }
 
     scope :past, -> {
       where(award_year_id: AwardYear.past.pluck(:id)).order("award_type")
