@@ -79,6 +79,33 @@ RSpec.describe FormAnswer, type: :model do
     end
   end
 
+  describe "#reqires_vocf?" do
+    context "after 2023 AY" do
+      it "returns false for development, mobility and promotion" do
+        expect(build(:form_answer, :mobility).requires_vocf?).to eq(false)
+        expect(build(:form_answer, :development).requires_vocf?).to eq(false)
+      end
+
+      it "returns true for other awards" do
+        expect(build(:form_answer, :trade).requires_vocf?).to eq(true)
+        expect(build(:form_answer, :innovation).requires_vocf?).to eq(true)
+      end
+    end
+
+    context "before 2023 AY" do
+      let(:award_year) { create(:award_year, year: 2022) }
+
+      it "always returns true except for promotion" do
+        expect(build(:form_answer, :mobility, award_year: award_year).requires_vocf?).to eq(true)
+        expect(build(:form_answer, :development, award_year: award_year).requires_vocf?).to eq(true)
+        expect(build(:form_answer, :trade).requires_vocf?).to eq(true)
+        expect(build(:form_answer, :innovation).requires_vocf?).to eq(true)
+
+        expect(build(:form_answer, :promotion).requires_vocf?).to eq(false)
+       end
+    end
+  end
+
   describe "pdf generation" do
     it '#generate_pdf_version! triggers correctly' do
       expect(HardCopyGenerators::FormDataGenerator).to receive_message_chain(:new, :run)

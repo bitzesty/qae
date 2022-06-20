@@ -142,6 +142,7 @@ class FormAnswer < ApplicationRecord
     scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
+    scope :require_vocf, -> { where(award_type: %[trade innovation]) }
 
     scope :past, -> {
       where(award_year_id: AwardYear.past.pluck(:id)).order("award_type")
@@ -307,6 +308,13 @@ class FormAnswer < ApplicationRecord
 
   def business?
     BUSINESS_AWARD_TYPES.include?(award_type)
+  end
+
+  def requires_vocf?
+    return false if !business?
+    return true if award_year && award_year.year <= 2022
+
+    award_type != "development" && award_type != "mobility"
   end
 
   #
