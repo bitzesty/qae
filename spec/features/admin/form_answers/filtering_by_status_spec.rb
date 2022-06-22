@@ -61,11 +61,12 @@ describe "As Admin I want to filter applications", js: true do
     click_status_option("Assessors not assigned")
     assert_results_number(3)
 
-    # Add Verification of Commercial Figures to the first 2 applications and check filter
-    first_two_forms = @forms.slice(0..1)
-    assign_dummy_audit_certificate(first_two_forms)
+    # Add Verification of Commercial Figures to the first 1 application and check filter
+    # (it should exclude dev and trade)
+    assign_dummy_audit_certificate(@forms.first)
     click_status_option("Missing Verification of Commercial Figures")
-    assert_results_number(2)
+    assert_results_number(1)
+    click_status_option("Missing Verification of Commercial Figures")
 
     # Add feedback to the first 3 applications and check filter
     first_three_forms = @forms.slice(0..2)

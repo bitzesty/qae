@@ -39,6 +39,11 @@ FactoryBot.define do
       mobility_role { "lead" }
     end
 
+    trait :lead_for_trade_mobility do
+      trade_role { "lead" }
+      mobility_role { "lead" }
+    end
+
     trait :regular_for_all do
       trade_role { "regular" }
       innovation_role { "regular" }

@@ -8,7 +8,7 @@ So that User can re-upload Verification of Commercial Figures
 } do
 
   let!(:form_answer) do
-    create(:form_answer, :development, :submitted, :with_audit_certificate)
+    create(:form_answer, :trade, :submitted, :with_audit_certificate)
   end
 
   describe "Policies" do
@@ -61,14 +61,10 @@ So that User can re-upload Verification of Commercial Figures
 
       wait_for_ajax
 
-      expect {
-        find(".js-remove-audit-certificate-link").click()
-        page.driver.browser.switch_to.alert.accept
-
-        wait_for_ajax
-      }.to change {
-        form_answer.reload.audit_certificate
-      }
+      find(".js-remove-audit-certificate-link").click()
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_content("External Accountant's Report successfully removed")
+      expect(form_answer.reload.audit_certificate).not_to be
     end
   end
 end

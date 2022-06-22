@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "Assessor reviews the audit certificate" do
   let(:assessor) { create(:assessor, :lead_for_all) }
-  let!(:form_answer) { create(:form_answer, :with_audit_certificate) }
+  let!(:form_answer) { create(:form_answer, :trade, :with_audit_certificate) }
 
   before do
     login_as(assessor, scope: :assessor)
