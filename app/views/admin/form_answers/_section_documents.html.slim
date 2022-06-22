@@ -24,7 +24,7 @@
     .document-list
       = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
 
-    - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
+    - if @form_answer.requires_vocf? && @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
       br
       .sidebar-section.no-margin-bottom
         #audit-certificate-form

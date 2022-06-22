@@ -107,7 +107,7 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def can_download_initial_audit_certificate_pdf?
-    admin? && !record.promotion? && record.shortlisted?
+    admin? && record.requires_vocf? && record.shortlisted?
   end
 
   def can_see_corp_responsibility?

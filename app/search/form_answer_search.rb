@@ -79,11 +79,11 @@ class FormAnswerSearch < Search
       when "secondary_assessment_submitted"
         out = secondary_assessment_submitted(out)
       when "missing_audit_certificate"
-        out = out.joins(
+        out = out.require_vocf.joins(
           "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id"
         ).where("audit_certificates.id IS NULL")
       when "audit_certificate_not_reviewed"
-        out = out.joins(
+        out = out.require_vocf.joins(
           "JOIN audit_certificates auditcerts ON auditcerts.form_answer_id=form_answers.id"
         ).where("auditcerts.reviewed_at IS NULL")
       when "missing_feedback"
