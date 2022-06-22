@@ -28,19 +28,21 @@
         ul.post-dashboard-actions.govuk-list.govuk-list--bullet
           li
             = render "content_only/past_applications/download_pdf_link", award: award
-          li
-            = link_to "Verification of Commercial Figures", users_form_answer_audit_certificate_url(award)
-            span.award-info.govuk-body
-              span.pull-right
-                ' Due by
-                = application_deadline_short(:audit_certificates)
-              = link_to users_form_answer_audit_certificate_url(award)
-                - if award.audit_certificate.present?
-                  span.label-status.label-status-green
-                    ' Complete
-                - else
-                  span.label-status.label-status-red
-                    ' Incomplete
+
+          - if award.requires_vocf?
+            li
+              = link_to "Verification of Commercial Figures", users_form_answer_audit_certificate_url(award)
+              span.award-info.govuk-body
+                span.pull-right
+                  ' Due by
+                  = application_deadline_short(:audit_certificates)
+                = link_to users_form_answer_audit_certificate_url(award)
+                  - if award.audit_certificate.present?
+                    span.label-status.label-status-green
+                      ' Complete
+                  - else
+                    span.label-status.label-status-red
+                      ' Incomplete
         .clear
       .clear
   br
