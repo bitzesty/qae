@@ -81,8 +81,15 @@ class Notifiers::EmailNotificationService
 
   def shortlisted_notifier(award_year)
     gather_data_and_send_emails!(
-      award_year.form_answers.business.shortlisted,
+      award_year.form_answers.require_vocf.shortlisted,
       AccountMailers::NotifyShortlistedMailer
+    )
+  end
+
+  def shortlisted_vocf_free_notifier(award_year)
+    gather_data_and_send_emails!(
+      award_year.form_answers.vocf_free.shortlisted,
+      AccountMailers::NotifyShortlistedVocfFreeMailer
     )
   end
 

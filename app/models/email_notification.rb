@@ -14,6 +14,7 @@ class EmailNotification < ApplicationRecord
                          :unsuccessful_notification,
                          :unsuccessful_ep_notification,
                          :shortlisted_notifier,
+                         :shortlisted_vocf_free_notifier,
                          :shortlisted_audit_certificate_reminder,
                          :not_shortlisted_notifier,
                          :winners_head_of_organisation_notification,

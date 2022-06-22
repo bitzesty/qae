@@ -128,6 +128,17 @@ class MailRenderer
     render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify")
   end
 
+  def shortlisted_vocf_free_notifier
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+
+    assigns[:award_type_full_name] = "Sustainable Development"
+
+    render(assigns, "account_mailers/notify_shortlisted_vocf_free_mailer/preview/notify")
+  end
+
   def winners_notification
     assigns = {}
 
