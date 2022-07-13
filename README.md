@@ -25,6 +25,12 @@ bundle exec sidekiq -C config/sidekiq.yml
 
 If you're running this on your local dev setup, start redis first before starting sidekiq
 
+### Running with docker
+
+    $ cp Dockerfile.local Dockerfile
+    $ cp docker-compose.yml.local docker-compose.yml
+    $ docker-compose up
+
 #### Help
 
 If you see the following error:
