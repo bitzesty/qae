@@ -36,6 +36,10 @@ class Reports::PalaceAttendeePointer
     form_answer_pointer.send(:product_service)
   end
 
+  def royal_family_connection_details
+    palace_attendee.royal_family_connection_details if palace_attendee.has_royal_family_connections?
+  end
+
   def previous_years_won
     form_answer_pointer.send(:current_queens_award_holder)
   end

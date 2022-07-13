@@ -10,7 +10,8 @@
 
 h1.govuk-heading-xl = page_title
 
-.steps-progress-container.min-height-800
+- side_bar_menu_height = @form_answer.innovation? ? "min-height-1300" : "min-height-800"
+div[class="steps-progress-container #{side_bar_menu_height}"]
   = render "steps_progress_bar", cant_access_future: true, previous_questions: step
   .steps-progress-content
     div
@@ -39,8 +40,10 @@ h1.govuk-heading-xl = page_title
                     p.govuk-body-l You are eligible to begin your application for an Enterprise Promotion Award Nomination.
                   - elsif @form_answer.award_type == "mobility"
                     p.govuk-body-l You are eligible to begin your application for a Promoting Opportunity Award (through social mobility).
+                  - elsif @form_answer.award_type == "development"
+                    p.govuk-body-l You are eligible to begin your application for a Sustainable Development Award.
                   - else
-                    p.govuk-body-l You are eligible to begin your application for a #{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award.
+                    p.govuk-body-l You are eligible to begin your application for an #{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award.
                   p.govuk-body-l Before you start your application, please check your eligibility answers are correct.
 
                 - if (!step || step.to_s == "wicked_finish")
@@ -51,24 +54,28 @@ h1.govuk-heading-xl = page_title
               - else
                 .eligibility-failed
                   p.govuk-body-l
-                    - if @form_answer.promotion?
+                    - if @eligibility.is_a?(Eligibility::Basic)
+                      ' At the moment you are
+                      strong not eligible
+                      '  for any of the Queen's Award for Enterprise awards. Please see your answers in the next section to determine what eligibility criteria you haven't met. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
+                    - elsif @form_answer.promotion?
                       ' Your nominee is
                     - else
                       ' At the moment you are
-                    strong not eligible
-                    '  for this award. Please see your answers in the next section for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
+                      strong not eligible
+                      '  for this award. Please see your answers in the next section for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
 
                   p.govuk-body-l
                     - if @form_answer.promotion?
                       ' Also, you may consider nominating someone else or your organisation
                     - else
                       ' Also, you
-                    ' might be eligible for awards in other categories. Go to the
+                    ' might be eligible for awards in other categories. Please go to the
                     = link_to "applications page", dashboard_path
                     - if @form_answer.promotion?
                       '  to nominate/apply.
                     - else
-                      '  to apply.
+                      '  to check your eligibility for those awards.
 
         = render "previous_answers"
 

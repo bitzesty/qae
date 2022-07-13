@@ -2,7 +2,7 @@ class AwardYears::V2023::QAEForms
   class << self
     def innovation_step6
       @innovation_step6 ||= proc do
-        header :head_of_bussines_header, "Head of your organisation" do
+        header :head_of_bussines_header, "Head of your organisation." do
           ref "F 1"
         end
 
@@ -39,13 +39,13 @@ class AwardYears::V2023::QAEForms
         end
 
         # TODO Pull in info for A13
-        confirm :confirmation_of_consent, "Confirmation of consent" do
+        confirm :confirmation_of_consent, "Confirmation of consent." do
           ref "F 2"
           required
-          text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
+          text "I confirm that I have the consent of the head of my organisation (as identified in question F1) to submit this entry form."
         end
 
-        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
           ref "F 3"
           text %(
             I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
@@ -60,12 +60,12 @@ class AwardYears::V2023::QAEForms
           )
         end
 
-        confirm :entry_confirmation, "Confirmation of entry" do
+        confirm :entry_confirmation, "Confirmation of entry." do
           ref "F 4"
           required
           text -> do
             %(
-              By submitting this entry for consideration for The Queen's Awards for Enterprise 2022, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
+              By submitting this entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
             )
           end
         end
@@ -136,12 +136,21 @@ class AwardYears::V2023::QAEForms
           )
         end
 
-        confirm :shortlisted_case_confirmation, "" do
+        confirm :due_diligence, "" do
           ref "F 4.2"
           required
           show_ref_always true
           text %(
-            I agree that if the application is shortlisted, I will supply commercial figures verified by an independent accountant before the specified November deadline. I understand, that if verified figures are not provided by the specified deadline at shortlist stage, the entry will be rejected.
+            I understand and agree the outcome of the due diligence checks which The Queen's Awards for Enterprise Office undertakes with Government Departments and Agencies is final and cannot be overturned.
+          )
+        end
+
+        confirm :shortlisted_case_confirmation, "" do
+          ref "F 4.3"
+          required
+          show_ref_always true
+          text %(
+            I agree that if the application is shortlisted, I will supply commercial figures verified by an external accountant before the specified November deadline. I understand that if verified figures are not provided by the specified deadline at shortlist stage, the entry will be rejected.
           )
         end
 

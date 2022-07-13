@@ -16,7 +16,7 @@ class AwardYears::V2023::QAEForms
 
             <h3 class='govuk-heading-m'>Small organisations</h3>
             <p class='govuk-body'>
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
 
             <h3 class='govuk-heading-m'>COVID-19 impact</h3>
@@ -66,7 +66,7 @@ class AwardYears::V2023::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(
@@ -363,6 +363,59 @@ class AwardYears::V2023::QAEForms
           }
           rows 10
           words_max 1000
+        end
+
+        textarea :governance, "Governance" do
+          ref "B 6"
+          required
+          context %(
+            <p>
+              If you are a large organisation, you may wish to describe:
+            </p>
+            <ul>
+              <li>How you uphold ethical standards within your core business.</li>
+              <li>How you ensure diversity of representation, including at very senior levels.</li>
+              <li>How you engage stakeholders in your governance.</li>
+              <li>Your company's policies on pay and shareholder rights.</li>
+              <li>Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.</li>
+            </ul>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <ul>
+              <li>Involvement of Non-Executive Directors on the board.</li>
+              <li>How the board ensures that ethical standards are considered and adhered to.</li>
+              <li>How the board ensures that statutory obligations are met.</li>
+            </ul>
+          )
+          pdf_context %(
+            <p>
+              You may wish to describe:
+            </p>
+            <p>
+              \u2022 How you uphold ethical standards within your core business.
+
+              \u2022 How you ensure diversity of representation, including at very senior levels.
+
+              \u2022 How you engage stakeholders in your governance.
+
+              \u2022 Your company's policies on pay and shareholder rights.
+
+              \u2022 Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.
+            </p>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <p>
+              \u2022 Involvement of Non-Executive Directors on the board.
+
+              \u2022 How the board ensures that ethical standards are considered and adhered to.
+
+              \u2022 How the board ensures that statutory obligations are met.
+            </p>
+          )
+          rows 2
+          words_max 200
         end
 
         header :additional_materials_notes, "" do

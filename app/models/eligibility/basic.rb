@@ -9,15 +9,15 @@ class Eligibility::Basic < Eligibility
 
   property :do_you_file_company_tax_returns,
             values: %w[true false na],
-            label: "Do you file your Company Tax Returns with HM Revenue and Customs (HMRC)?",
-            hint: "All companies and partnerships have to select Yes or No. However, if you are a charity or are based in the Channel Islands or the Isle of Man and do not pay tax to the HMRC, please select N/A.",
+            label: "Do you have a good compliance record with HM Revenue and Customs (HMRC)?",
+            hint: "All companies and partnerships have to select Yes or No. However, if you are a charity or if you are based in the Channel Islands or the Isle of Man and do not pay tax to the HMRC, please select N/A.",
             accept: :not_no
 
   property :has_management_and_two_employees,
             boolean: true,
-            label: "Did your organisation have two or more full-time UK employees for the last two years?",
+            label: "Did your organisation have two or more full-time UK employees in each of the years of your proposed entry?",
             accept: :true,
-            hint: "Part-time staff should be counted in full-time equivalents (FTE). "
+            hint: "Part-time staff should be counted in full-time equivalents (FTE)."
 
   property :organization_kind,
             values: %w[business charity],

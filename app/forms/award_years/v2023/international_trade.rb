@@ -9,8 +9,8 @@ class AwardYears::V2023::QAEForms
   class << self
     def trade
       @trade ||= QAEFormBuilder.build "International Trade Award Application" do
-        step "Company Information",
-             "Company Information",
+        step "Company information",
+             "Company information",
              &AwardYears::V2023::QAEForms.trade_step1
 
         step "Your International Trade",
@@ -21,8 +21,8 @@ class AwardYears::V2023::QAEForms
              "Commercial Performance",
              &AwardYears::V2023::QAEForms.trade_step3
 
-        step "Declaration of Corporate Responsibility",
-             "Declaration of Corporate Responsibility",
+        step "Corporate Social Responsibility (CSR)",
+             "Corporate Social Responsibility (CSR)",
              &AwardYears::V2023::QAEForms.trade_step4
 
         step "Add Website Address/Documents",

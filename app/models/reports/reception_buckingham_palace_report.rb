@@ -66,6 +66,11 @@ class Reports::ReceptionBuckinghamPalaceReport
       label: "Previous years won",
       method: :previous_years_won
     },
+    {
+      label: "Royal Affiliation / Previous Links",
+      method: :royal_family_connection_details
+    }
+
   ]
 
   def initialize(year)

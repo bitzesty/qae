@@ -97,7 +97,7 @@ class Reports::CompiledPressBook
     @scope = year.form_answers
               .where(state: "awarded")
               .includes(:user, :palace_invite)
-              .order(Arel.sql("form_answers.document->>'organization_address_region', form_answers.document->>'organization_address_county', company_or_nominee_name"))
+              .order(Arel.sql("form_answers.document->>'organization_address_region', company_or_nominee_name"))
 
     @groupped_form_answers = group_form_answers(scope)
   end

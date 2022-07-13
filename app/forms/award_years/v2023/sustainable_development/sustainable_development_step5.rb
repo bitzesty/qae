@@ -72,15 +72,21 @@ class AwardYears::V2023::QAEForms
           end
         end
 
-        confirm :shortlisted_case_confirmation, "" do
+        confirm :due_diligence, "" do
           ref "E 4.1"
           required
           show_ref_always true
           text %(
-            By ticking this box, you agree that if your application is shortlisted, you will supply commercial figures verified by an independent accountant before the specified November deadline.
-            <br>
-            <br>
-            If verified figures are not provided by the specified November deadline at shortlist stage, your entry will be rejected.
+            I understand and agree the outcome of the due diligence checks which The Queen's Awards for Enterprise Office undertakes with Government Departments and Agencies is final and cannot be overturned.
+          )
+        end
+
+        confirm :shortlisted_case_confirmation, "" do
+          ref "E 4.2"
+          required
+          show_ref_always true
+          text %(
+            I agree that if the application is shortlisted, if asked, I will supply actual commercial figures and the latest year's VAT returns by October/November.
           )
         end
 

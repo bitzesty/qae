@@ -52,6 +52,7 @@
 "other_awards_desc": "",
 "entry_confirmation": "on",
 "shortlisted_case_confirmation": "on",
+"due_diligence": "on",
 "innovation_context": "1",
 "innovation_part_of": "single_product_or_service",
 "parent_group_entry": "no",
@@ -201,4 +202,5 @@
 "innovation_strategies": "test",
 "covid_impact_details": "test",
 "innovation_selection_details": "test",
-"innovation_protect_market_position_details": "test"}
+"innovation_protect_market_position_details": "test",
+"governance": "test"}

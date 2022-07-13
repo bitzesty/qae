@@ -12,7 +12,7 @@
                 | !
               strong.govuk-warning-text__text
                 span.govuk-warning-text__assistive Warning
-                | This excludes you from entering the Queen's Award for Enterprise
+                | This excludes you from applying for the Queen's Award for Enterprise
         dd.govuk-summary-list__value
           - if eligibility.class.boolean_question?(question)
             - unless answer.nil?
@@ -36,7 +36,7 @@
         - @already_has_invalid_questions = true
         .govuk-summary-list__row
           dt.govuk-summary-list__key
-            ' This excludes you from entering the
+            ' This excludes you from applying for the
             - if eligibility.is_a?(Eligibility::Basic)
               ' Queen's Awards for Enterprise
             - else

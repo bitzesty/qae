@@ -9,29 +9,29 @@ class AwardYears::V2023::QAEForms
   class << self
     def innovation
       @innovation ||= QAEFormBuilder.build "Innovation Award Application" do
-        step "Company Information",
-             "Company Information",
+        step "Company information",
+             "Company information",
              &AwardYears::V2023::QAEForms.innovation_step1
 
-        step "Your Innovation",
-             "Your Innovation",
+        step "Your innovation",
+             "Your innovation",
              &AwardYears::V2023::QAEForms.innovation_step2
 
-        step "Commercial Performance",
-             "Commercial Performance",
+        step "Commercial performance",
+             "Commercial performance",
              &AwardYears::V2023::QAEForms.innovation_step3
 
-        step "Declaration of Corporate Responsibility",
-             "Declaration of Corporate Responsibility",
+        step "Corporate Social Responsibility (CSR)",
+             "Corporate Social Responsibility (CSR)",
              &AwardYears::V2023::QAEForms.innovation_step4
 
-        step "Add Website Address/Documents",
-             "Add Website Address/Documents",
+        step "Supplementary materials",
+             "Supplementary materials",
              { id: :add_website_address_documents_step },
              &AwardYears::V2023::QAEForms.innovation_step5
 
-        step "Authorise & Submit",
-             "Authorise & Submit",
+        step "Authorise and submit",
+             "Authorise and submit",
              &AwardYears::V2023::QAEForms.innovation_step6
       end
     end

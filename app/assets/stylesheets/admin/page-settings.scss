@@ -132,6 +132,11 @@
       }
     }
 
+    .control-hint {
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
     .control-action {
       position: relative;
       margin-top: 1.7em;
@@ -196,6 +201,26 @@
         .lte-ie7 & {
           font-size: 16px;
         }
+      }
+    }
+  }
+
+  .deadline-form-wrapper {
+    @media (min-width: 768px) {
+      &:after {
+        clear: both;
+        content: " ";
+        display: table;
+        zoom: 1;
+      }
+
+      .govuk-form-group {
+        float: left;
+      }
+
+      .control-action {
+        float: right !important;
+        margin-top: 0 !important;
       }
     }
   }

@@ -4,7 +4,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   # This section is used in case if JS disabled
 
   expose(:step_name) do
-    "Company Information"
+    "Company information"
   end
 
   expose(:input_name) do

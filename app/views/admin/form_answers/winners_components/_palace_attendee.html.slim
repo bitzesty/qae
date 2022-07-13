@@ -19,6 +19,11 @@
             br
             small.text-muted= pa.job_name
           p
+            strong Royal Affiliation / Previous Links
+            br
+            = pa.has_royal_family_connections? && pa.royal_family_connection_details.presence || "-"
+            br
+          p
             = pa.address_1
             br
             = pa.address_2

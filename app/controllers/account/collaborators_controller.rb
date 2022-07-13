@@ -66,20 +66,20 @@ class Account::CollaboratorsController < Account::BaseController
     end
   end
 
+  def confirm_deletion
+  end
+
   def destroy
+    form_id = params[:form_id].presence
+
     collaborator.account_id = Account.create(owner: collaborator).id
     collaborator.role = "account_admin"
     collaborator.save!
     collaborator.form_answers
                 .update_all(user_id: account.owner_id)
 
-    if params.has_key? :form_id
-      redirect_to account_collaborators_path(form_id: params[:form_id]),
-                  notice: "#{collaborator.email} successfully removed from Collaborators!"
-    else
-      redirect_to account_collaborators_path,
-                  notice: "#{collaborator.email} successfully removed from Collaborators!"
-    end
+    redirect_to account_collaborators_path(form_id: form_id),
+                notice: "#{collaborator.email} successfully removed from Collaborators!"
   end
 
   def set_form_answer

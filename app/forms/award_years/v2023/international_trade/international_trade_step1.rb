@@ -8,8 +8,22 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
-              We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
+              The purpose of this section is to collect all vital information about your company. For example, your company's registration number and address. It is important for the details provided to be accurate as it cannot be changed later. This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
             </p>
+            <p class='govuk-body'>
+              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
+            </p>
+            <p class='govuk-body'>
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The Queen's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+            </p>
+            <p class='govuk-body'>
+              Some examples of issues that may prevent your organisation from receiving clearance for The Queen's Awards for Enterprise Award:
+            </p>
+            <ul class='govuk-list govuk-list--bullet'>
+              <li>A failure to pay staff the minimum wage;</li>
+              <li>An accident within the workplace, which has resulted in harm being caused to the environment or employees;</li>
+              <li>A failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.</li>
+            </ul>
             <details class='govuk-details' data-module="govuk-details">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
@@ -64,15 +78,24 @@ class AwardYears::V2023::QAEForms
             </details>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-                We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
-              )
-            ],
+              The purpose of this section is to collect all vital information about your company. For example, your company's registration number and address. It is important for the details provided to be accurate as it cannot be changed later. This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
+
+              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
+
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The Queen's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+
+              Some examples of issues that may prevent your organisation from receiving clearance for The Queen's Awards for Enterprise Award:
+
+              \u2022 A failure to pay staff the minimum wage;
+              \u2022 An accident within the workplace, which has resulted in harm being caused to the environment or employees;
+              \u2022 A failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
+            )],
             [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
             [:normal, %(
                 \u2022 Biotechnology & Biological Sciences Research Council
@@ -120,7 +143,7 @@ class AwardYears::V2023::QAEForms
             ],
             [:bold, "Small organisations"],
             [:normal, %(
-                Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+                Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
               )
             ]
           ]
@@ -313,7 +336,7 @@ class AwardYears::V2023::QAEForms
         text :website_url, "Website address" do
           ref "A 10"
           style "large"
-          form_hint "e.g. www.example.com"
+          form_hint "Please provide full wesbite address, for example, www.yourcompanyname.com"
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do

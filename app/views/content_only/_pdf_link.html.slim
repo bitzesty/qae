@@ -1,14 +1,16 @@
 h3.govuk-heading-m Blank application form in PDF format
 p.govuk-body
   - if QAE.hide_pdf_links?
-    strong 
+    strong
       | All applications must be completed online
     | , but if you find it useful to have it in PDF format for planning purposes, downloadable PDF of the form will be available from 17th of May.
   - else
-    strong 
+    strong
       | All applications must be completed online
-    | , but you may find it useful to have a blank copy of it in PDF format for planning purposes.
+    | . However, we recommend that you download a blank copy of the application form for planning purposes.
 
 =< link_to users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true), class: "download-pdf-link govuk-link" do
   = render "download_icon"
-  | Download blank PDF form (PDF)
+  | Download blank
+  =<> @form_answer.award_type_full_name.downcase
+  | application form (PDF)

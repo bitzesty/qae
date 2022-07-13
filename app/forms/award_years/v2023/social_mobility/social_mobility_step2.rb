@@ -8,8 +8,15 @@ class AwardYears::V2023::QAEForms
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
-              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
+              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility, for at least two years. It is to recognise those organisations engaged in enterprise whose core activity is <u>not</u> social mobility but have a programme that supports it.
             </p>
+            <p class='govuk-body'>
+              Not-for-profits, social enterprises and charities are welcome to apply.
+            </p>
+            <p class='govuk-body'>
+              Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society. Explain the reasons why you implemented a programme or policy and the outcomes it has achieved.
+            </p>
+
             <h3 class="govuk-heading-m">Social mobility definition</h3>
             <p class="govuk-body">
               Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
@@ -19,7 +26,7 @@ class AwardYears::V2023::QAEForms
               <li>Socio-economic status is a person's current social and economic circumstances.</li>
             </ul>
 
-            <h3 class="govuk-heading-m">Disadvantaged groups that Queens’ Awards for Enterprise focuses on</h3>
+            <h3 class="govuk-heading-m">Disadvantaged groups that Queen's Awards for Enterprise focuses on</h3>
             <p class="govuk-body">
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
             </p>
@@ -35,7 +42,7 @@ class AwardYears::V2023::QAEForms
               <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
               <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
               <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
-              <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
+              <li>People whose parents' or guardians' highest level of qualifications by the time the person was 18 was secondary school;</li>
               <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
               <li>People recovering or who have recovered from addiction;</li>
               <li>Survivors of domestic violence;</li>
@@ -61,7 +68,7 @@ class AwardYears::V2023::QAEForms
             <h3 class="govuk-heading-m">Small organisations</h3>
 
             <p class="govuk-body">
-              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
 
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
@@ -80,7 +87,11 @@ class AwardYears::V2023::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
+              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility, for at least two years. It is to recognise those organisations engaged in enterprise whose core activity is not social mobility but have a programme that supports it.
+
+              Not-for-profits, social enterprises and charities are welcome to apply.
+
+              Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society. Explain the reasons why you implemented a programme or policy and the outcomes it has achieved.
             )],
 
             [:bold, "Social mobility definition"],
@@ -90,7 +101,7 @@ class AwardYears::V2023::QAEForms
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
               \u2022 Socio-economic status is a person's current social and economic circumstances.)],
-            [:bold, "Disadvantaged groups that Queens’ Awards for Enterprise focuses on"],
+            [:bold, "Disadvantaged groups that Queen's Awards for Enterprise focuses on"],
             [:normal, %(
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
 
@@ -116,7 +127,7 @@ class AwardYears::V2023::QAEForms
 
               \u2022 People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;
 
-              \u2022 People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;
+              \u2022 People whose parents' or guardians' highest level of qualifications by the time the person was 18 was secondary school;
 
               \u2022 People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;
 
@@ -142,7 +153,7 @@ class AwardYears::V2023::QAEForms
 
             [:bold, "Small organisations"],
             [:normal, %(
-              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
 
             [:bold, "COVID-19 impact"],
@@ -251,7 +262,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Activity type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -415,7 +426,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -461,7 +472,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
@@ -507,7 +518,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
@@ -553,7 +564,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
@@ -725,7 +736,7 @@ class AwardYears::V2023::QAEForms
           ]
         end
 
-        checkbox_seria :organisation_activities, "What type of activities does your organization focus on to make a positive impact by promoting opportunity through social mobility?" do
+        checkbox_seria :organisation_activities, "What type of activities does your organisation focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2b"
           required
           classes "question-limited-selections"
@@ -773,7 +784,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Activity type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -856,6 +867,7 @@ class AwardYears::V2023::QAEForms
           context %(
             <p>Provide third-party evidence of what makes your organisation exemplary compared to other similar organisations and how you are going 'above and beyond' compared to your sector.  For example, provide links to independent evaluation reports, details of awards won, client feedback ratings and how that compares with other similar organisations.</p>
           )
+          conditional :application_category, "organisation"
         end
 
         header :organisation_header_b4b, "Measuring success" do
@@ -919,7 +931,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported each year"
+          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2017, 2018, 2019, 2020, 2021]
 
@@ -965,7 +977,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
@@ -1011,7 +1023,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
@@ -1057,7 +1069,7 @@ class AwardYears::V2023::QAEForms
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discreet participants supported"
+          totals_label "Total number of discrete participants supported"
 
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
