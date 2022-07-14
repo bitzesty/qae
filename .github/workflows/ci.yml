@@ -45,14 +45,14 @@ jobs:
           ruby-version: 2.7.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '14'
+          node-version: '16'
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
       - name: Build and run tests
         env:
           DISPLAY_SOCIAL_MOBILITY_AWARD: true
           DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/qae_test"
-          BUNDLER_VERSION: 2.1.4
+          BUNDLER_VERSION: 2.3.15
           DOCKER_TLS_CERTDIR: ""
         run: |
           sudo apt update
@@ -84,7 +84,7 @@ jobs:
           ruby-version: 2.7.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '14'
+          node-version: '16'
       - name: "Deploy dev"
         env:
           name: dev
@@ -125,7 +125,7 @@ jobs:
           ruby-version: 2.7.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: '16'
       - name: "Deploy staging"
         env:
           name: staging
