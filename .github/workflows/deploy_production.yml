@@ -20,7 +20,7 @@ jobs:
           ruby-version: 2.7.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: '16'
       - name: "Deploy production"
         env:
           name: production
