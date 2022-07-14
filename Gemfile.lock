@@ -590,7 +590,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.3.0)
+    rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
     rails_12factor (0.0.3)
       rails_serve_static_assets
@@ -879,7 +879,7 @@ DEPENDENCIES
   rack-ssl-enforcer
   rails (= 6.1.6.1)
   rails-controller-testing
-  rails-html-sanitizer (~> 1.3.0)
+  rails-html-sanitizer (~> 1.4.3)
   rails_12factor (~> 0.0.3)
   rails_autolink
   rb-readline
