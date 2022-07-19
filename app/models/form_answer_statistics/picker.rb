@@ -45,9 +45,10 @@ class FormAnswerStatistics::Picker
 
   def applications_completions
     out = {}
-    out["total"] = [0,0,0,0,0,0,0]
+    out["total"] = [0,0,0,0,0,0,0,0]
     klass::POSSIBLE_AWARDS.each do |aw|
-      scope = fa_year_scope.where(award_type: aw).where(state: %w(application_in_progress not_eligible))
+      scope = fa_year_scope.where(award_type: aw).where(state: %w(application_in_progress eligibility_in_progress not_eligible))
+
       out[aw] = collect_completion_ranges(scope)
       unless aw == "promotion"
         out[aw].each_with_index do |val, index|
@@ -137,17 +138,20 @@ class FormAnswerStatistics::Picker
     out = []
     not_e = scope.where(state: "not_eligible").count
     out << not_e
-    scope = scope.where.not(state: "not_eligible").where(submitted_at: nil)
-    out << scope.where(fill_progress: 0).count
-    range2 = scope.where("fill_progress > ? AND fill_progress < ?", 0, 0.25)
+    eligibility_in_progress = scope.where(state: "eligibility_in_progress").count
+    out << eligibility_in_progress
+    applications_in_progress = scope.where(state: "application_in_progress").where(submitted_at: nil)
+    out << applications_in_progress.where(fill_progress: 0).count
+    range2 = applications_in_progress.where("fill_progress > ? AND fill_progress < ?", 0, 0.25)
     out << range2.count
-    range3 = scope.where("fill_progress >= ? AND fill_progress < ?", 0.25, 0.5)
+    range3 = applications_in_progress.where("fill_progress >= ? AND fill_progress < ?", 0.25, 0.5)
     out << range3.count
-    range4 = scope.where("fill_progress >= ? AND fill_progress < ?", 0.5, 0.75)
+    range4 = applications_in_progress.where("fill_progress >= ? AND fill_progress < ?", 0.5, 0.75)
     out << range4.count
-    range5 = scope.where("fill_progress >= ? AND fill_progress <= ?", 0.75, 1)
+    range5 = applications_in_progress.where("fill_progress >= ? AND fill_progress <= ?", 0.75, 1)
     out << range5.count
-    out << scope.count
+    total_in_progress = scope.in_progress.where(submitted_at: nil).count
+    out << total_in_progress
     out
   end
 
