@@ -77,7 +77,7 @@ describe FormAnswerStatistics::Picker do
     describe "#applications_completions" do
       it "calculates proper stats" do
         populate_application_completions
-        expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 1, 4])
+        expect(subject.applications_completions["trade"]).to eq([1, 1, 1, 0, 1, 1, 1, 5])
       end
     end
   end
@@ -129,19 +129,20 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_completions" do
       it "calculates proper stats" do
-        expect(subject.applications_completions["trade"]).to eq([0, 0, 0, 0, 0, 0, 0])
+        expect(subject.applications_completions["trade"]).to eq([0, 0, 0, 0, 0, 0, 0, 0])
 
         date = Date.today.month == 12? Date.today + 12.months : Date.today + 12.months
         Timecop.freeze(date) do
           populate_application_completions
         end
-        expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 1, 4])
+        expect(subject.applications_completions["trade"]).to eq([1, 1, 1, 0, 1, 1, 1, 5])
       end
     end
   end
 end
 
 def populate_application_completions
+  create(:form_answer, :trade, state: "eligibility_in_progress").update_column(:fill_progress, 0.99)
   create(:form_answer, :trade, state: "application_in_progress").update_column(:fill_progress, 0.0)
   create(:form_answer, :trade, state: "application_in_progress").update_column(:fill_progress, 0.25)
   create(:form_answer, :trade, state: "application_in_progress").update_column(:fill_progress, 0.50)
