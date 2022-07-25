@@ -140,7 +140,7 @@ class FormAnswerStatistics::Picker
     out << not_e
     eligibility_in_progress = scope.where(state: "eligibility_in_progress").count
     out << eligibility_in_progress
-    applications_in_progress = scope.where(state: "application_in_progress").where(submitted_at: nil)
+    applications_in_progress = scope.where(state: "application_in_progress")
     out << applications_in_progress.where(fill_progress: 0).count
     range2 = applications_in_progress.where("fill_progress > ? AND fill_progress < ?", 0, 0.25)
     out << range2.count
@@ -150,7 +150,7 @@ class FormAnswerStatistics::Picker
     out << range4.count
     range5 = applications_in_progress.where("fill_progress >= ? AND fill_progress <= ?", 0.75, 1)
     out << range5.count
-    total_in_progress = scope.in_progress.where(submitted_at: nil).count
+    total_in_progress = scope.in_progress.count
     out << total_in_progress
     out
   end
