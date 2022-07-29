@@ -48,28 +48,8 @@ class Eligibility::Mobility < Eligibility
               </div>
             )
 
-  property :application_category,
-            label: "Is your application going to be for:",
-            values: [
-              ["initiative", "<strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds."],
-              ["organisation", "<strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."]
-            ],
-            context_for_options: {
-              "initiative": "<div class='question-context govuk-!-margin-left-3'>
-                               <p>Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.</p>
-                               <p>For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.</p>
-                               <p>If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim.</p>
-                             </div>",
-
-              "organisation": "<div class='question-context govuk-!-margin-left-3'>
-                                 <p>For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.</p>
-                               </div>"
-            },
-            accept: :not_nil
-
   property :number_of_eligible_initiatives,
             positive_integer: true,
             label: "How many initiatives do you have that meets the criteria for the award?",
-            accept: :not_nil,
-            if: proc { application_category.present? && application_category == "initiative" }
+            accept: :not_nil
 end
