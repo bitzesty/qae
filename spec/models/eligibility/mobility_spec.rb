@@ -35,7 +35,6 @@ RSpec.describe Eligibility::Mobility, type: :model do
       eligibility.social_mobility_activities = 'yes'
       eligibility.active_for_atleast_two_years = 'yes'
       eligibility.evidence_of_impact = 'yes'
-      eligibility.application_category = "organisation"
       expect(eligibility).to be_eligible
     end
 
