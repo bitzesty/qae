@@ -51,5 +51,5 @@ class Eligibility::Mobility < Eligibility
   property :number_of_eligible_initiatives,
             positive_integer: true,
             label: "How many initiatives do you have that meets the criteria for the award?",
-            accept: :not_nil
+            accept: :all
 end
