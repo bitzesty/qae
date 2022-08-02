@@ -200,7 +200,8 @@ class AwardYears::V2023::QAEForms
           pdf_context_for_option "organisation", [
 
             [:normal, "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
-            [:bold, "If you selected option b, you cannot proceed. As per our eligibility questionnaire and information listed on our website, we are no longer accepting applications for organisations whose sole purpose is promoting opportunity through Social Mobility."]
+            [:bold, "If you selected option b, you cannot proceed. As per our eligibility questionnaire and information listed on our website, we are no longer accepting applications for organisations whose sole purpose is promoting opportunity through Social Mobility.\n"],
+            [:bold, "However, if your organisation’s core purpose is not social mobility, but improving social mobility is a big part of your mission, please apply on the basis of having the initiative - please select the option “a) An initiative” in question B1."]
           ]
 
           default_option "initiative"
