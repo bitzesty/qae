@@ -91,6 +91,9 @@ window.FormValidation =
   isOptionsQuestion: (question) ->
     question.find("input[type='radio']").length
 
+  isApplicationCategoryOptionsQuestion: (question) ->
+    question.find("input[type='radio']").length && question.find("input[data-options-kind='mobility_application_category']").length
+
   isCheckboxQuestion: (question) ->
     question.find("input[type='checkbox']").length
 
@@ -322,6 +325,11 @@ window.FormValidation =
             @logThis(question, "validateEmployeeMin", "Minimum of #{employeeLimit} employees")
             @appendMessage(subq.closest(".span-financial"), "Minimum of #{employeeLimit} employees")
             @addErrorClass(question)
+
+  validateApplicationCategory: (question) ->
+    if question.find("input[type='radio']").filter(":checked").val() == "organisation"
+      categoryError = "You can only apply on the basis of having an initiative which promotes opportunity through social mobility. As per our eligibility questionnaire, we are no longer accepting applications for organisations whose sole purpose is promoting opportunity through Social Mobility. <br /> However, if your organisation’s core purpose is not social mobility, but improving social mobility is a big part of your mission, please apply on the basis of having the initiative - please select the option “a) An initiative” in question B1."
+      @addErrorMessage(question, categoryError)
 
   validateMatrix: (question, input) ->
     # if it's a conditional question, but condition was not satisfied
@@ -581,6 +589,9 @@ window.FormValidation =
     if question.hasClass("question-year")
       # console.log "validateYear"
       @validateYear(question)
+
+    if @isApplicationCategoryOptionsQuestion(question)
+      @validateApplicationCategory(question)
 
     if question.hasClass("question-matrix")
       @validateMatrix(question, triggeringElement)
