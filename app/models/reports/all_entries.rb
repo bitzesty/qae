@@ -185,13 +185,14 @@ class Reports::AllEntries
     }
   ]
 
-  def initialize(year)
+  def initialize(year, params)
     @year = year
+    @params = params
   end
 
   def build
     rows = []
-    f_ids = @year.form_answers.order(:id).pluck(:id)
+    f_ids = filtered_scope(@year, @params).order(:id).pluck(:id)
 
     f_ids.in_groups_of(1000, false) do |batch_of_ids|
       form_answers = ::FormAnswer.where(id: batch_of_ids)

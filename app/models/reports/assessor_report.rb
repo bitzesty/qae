@@ -11,7 +11,7 @@ class Reports::AssessorReport
   def as_csv
     case id
     when "cases-status"
-      Reports::CasesStatusReport.new(year).build_for_lead(@current_subject)
+      Reports::CasesStatusReport.new(year, @params).build_for_lead(@current_subject)
     when "discrepancies_between_primary_and_secondary_appraisals"
       Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals.new(year, params[:category], @current_subject).build
     when /assessors-progress/

@@ -10,17 +10,17 @@ class Reports::AdminReport
   def as_csv
     case id
     when "registered-users"
-      Reports::RegisteredUsers.new(year).build
+      Reports::RegisteredUsers.new(year, params).build
     when "press-book-list"
-      Reports::PressBookList.new(year).build
+      Reports::PressBookList.new(year, params).build
     when "cases-status"
-      Reports::CasesStatusReport.new(year).build
+      Reports::CasesStatusReport.new(year, params).build
     when "entries-report"
-      Reports::AllEntries.new(year).build
+      Reports::AllEntries.new(year, params).build
     when "discrepancies_between_primary_and_secondary_appraisals"
       Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals.new(year, params[:category]).build
     when "reception-buckingham-palace"
-      Reports::ReceptionBuckinghamPalaceReport.new(year).build
+      Reports::ReceptionBuckinghamPalaceReport.new(year, params).build
     when /assessors-progress/
       if FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
         Reports::AssessorsProgressReport.new(year, params[:category]).build
@@ -33,7 +33,7 @@ class Reports::AdminReport
   def as_xlsx
     case id
     when "compiled-press-book"
-      Reports::CompiledPressBook.new(year).build
+      Reports::CompiledPressBook.new(year, params).build
     end
   end
 
