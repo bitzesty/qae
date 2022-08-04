@@ -67,7 +67,7 @@ RSpec.describe Assessor, type: :model do
       year = create(:award_year)
       assessor =  create(:assessor, :regular_for_trade)
       allow_any_instance_of(Reports::CasesStatusReport).to receive(:as_csv) {"csv string"}
-      expect(Reports::CasesStatusReport.new(year).build_for_lead(assessor)).to eq "csv string"
+      expect(Reports::CasesStatusReport.new(year, params: { year: year }).build_for_lead(assessor)).to eq "csv string"
     end
 
     it 'AssessorsProgressReport should return csv' do
@@ -82,7 +82,7 @@ RSpec.describe Assessor, type: :model do
       assessor =  create(:assessor, :regular_for_trade)
 
       expect(Reports::CasesStatusReport).to receive_message_chain(:new, :build_for_lead)
-      Reports::AssessorReport.new("cases-status", year, assessor).as_csv
+      Reports::AssessorReport.new("cases-status", year, assessor, params: { year: year }).as_csv
 
       expect(Reports::AssessorsProgressReport).to receive_message_chain(:new, :build)
       Reports::AssessorReport.new("assessors-progress", year, assessor, category: 'trade').as_csv

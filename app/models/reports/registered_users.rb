@@ -104,14 +104,15 @@ class Reports::RegisteredUsers
     }
   ]
 
-  def initialize(year)
+  def initialize(year, params)
     @year = year
+    @params = params
   end
 
   def build
     rows = []
+    scope = filtered_scope(@year, @params).order(:id)
 
-    scope = @year.form_answers.order(:id)
     scope.find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
                      .order(:id)
