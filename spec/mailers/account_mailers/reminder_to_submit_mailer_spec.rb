@@ -3,13 +3,18 @@ require "rails_helper"
 describe AccountMailers::ReminderToSubmitMailer do
   let(:user) { create :user }
   let(:form_answer) { create :form_answer, user: user }
+  let!(:settings) { create(:settings, :submission_deadlines) }
 
-  let(:mail) {
+  let(:mail) do
     AccountMailers::ReminderToSubmitMailer.notify(
       form_answer.id,
       user.id
     )
-  }
+  end
+
+  before do
+
+  end
 
   describe "#notify" do
     it "renders the headers" do
