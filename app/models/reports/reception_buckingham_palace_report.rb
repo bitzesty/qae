@@ -73,23 +73,17 @@ class Reports::ReceptionBuckinghamPalaceReport
 
   ]
 
-  def initialize(year, params)
+  def initialize(year)
     @year = year
-    @params = params
   end
 
   def build
     rows = []
-    if @params[:year] == "all_years"
-      scope = PalaceAttendee.includes(palace_invite: :form_answer)
-                            .where("palace_invites.submitted = ?", true)
-                            .order("palace_invites.form_answer_id ASC, palace_attendees.id ASC")
-    else
-      scope = PalaceAttendee.includes(palace_invite: :form_answer)
-                            .where("form_answers.award_year_id = ?", @year.id)
-                            .where("palace_invites.submitted = ?", true)
-                            .order("palace_invites.form_answer_id ASC, palace_attendees.id ASC")
-    end
+
+    scope = PalaceAttendee.includes(palace_invite: :form_answer)
+                          .where("form_answers.award_year_id = ?", @year.id)
+                          .where("palace_invites.submitted = ?", true)
+                          .order("palace_invites.form_answer_id ASC, palace_attendees.id ASC")
 
     scope.each do |attendee|
       attendee_pointer = Reports::PalaceAttendeePointer.new(attendee)

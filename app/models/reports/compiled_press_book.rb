@@ -7,7 +7,6 @@ require 'rubyXL/convenience_methods/worksheet'
 
 class Reports::CompiledPressBook
   attr_reader :groupped_form_answers, :scope
-  include Reports::CSVHelper
 
   DARK_BG = "0C2050"
   LIGHT_BG = "2E497A"
@@ -94,10 +93,11 @@ class Reports::CompiledPressBook
     press_contact_notes: "Press Book Notes"
   }
 
-  def initialize(year, params)
-    @scope = filtered_scope(year, params).where(state: "awarded")
-                                         .includes(:user, :palace_invite)
-                                         .order(Arel.sql("form_answers.document->>'organization_address_region', company_or_nominee_name"))
+  def initialize(year)
+    @scope = year.form_answers
+              .where(state: "awarded")
+              .includes(:user, :palace_invite)
+              .order(Arel.sql("form_answers.document->>'organization_address_region', company_or_nominee_name"))
 
     @groupped_form_answers = group_form_answers(scope)
   end
