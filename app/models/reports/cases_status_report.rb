@@ -92,15 +92,14 @@ class Reports::CasesStatusReport
     }
   ]
 
-  def initialize(year, params)
+  def initialize(year)
     @year = year
-    @params = params
   end
 
   def build
     rows = []
-    scope = filtered_scope(@year, @params).submitted.order(:id)
-    
+
+    scope = @year.form_answers.submitted.order(:id)
     scope.find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
                      .order(:id)
@@ -124,8 +123,8 @@ class Reports::CasesStatusReport
 
   def build_for_lead(current_subject)
     rows = []
-    scope = filtered_scope(@year, @params).submitted.where(award_type: current_subject.categories_as_lead).order(:id)
 
+    scope = @year.form_answers.submitted.where(award_type: current_subject.categories_as_lead).order(:id)
     scope.find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
                      .order(:id)
