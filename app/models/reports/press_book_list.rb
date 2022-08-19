@@ -100,8 +100,8 @@ class Reports::PressBookList
     }
   ]
 
-  def initialize(year, params)
-    @scope = filtered_scope(year, params).where(state: ["awarded", "recommended"]).order(:id).includes(:user, :palace_invite)
+  def initialize(year)
+    @scope = year.form_answers.where(state: ["awarded", "recommended"]).order(:id).includes(:user, :palace_invite)
   end
 
   private

@@ -31,10 +31,6 @@ module Reports::CSVHelper
     end
   end
 
-  def filtered_scope(year, params)
-    params[:year] == "all_years" ? FormAnswer.all : year.form_answers
-  end
-
   private
 
     def headers
