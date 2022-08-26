@@ -22,15 +22,20 @@
                                                                     method: :delete})
                 - else
                   = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
-                                      possible_read_only_ops.merge({class: "govuk-link remove-link",
+                                      possible_read_only_ops.merge({class: "govuk-link remove-link govuk-button govuk-button--warning float-right display-inline",
                                                                     remote: true,
                                                                     method: :delete})
 
             - elsif el['link'].present?
               .govuk-form-group
-                label.govuk-label class="govuk-!-margin-bottom-2" for=question.input_name(suffix: 'link', index: idx)
+                label.govuk-label class="govuk-!-margin-bottom-2 display-inline" for=question.input_name(suffix: 'link', index: idx)
                   ' Website address
+                = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
+                                      possible_read_only_ops.merge({class: "remove-link govuk-button govuk-button--warning remove-website display-inline",
+                                                                    remote: true,
+                                                                    method: :delete})
                 input.govuk-input.js-trigger-autosave type="text" id=question.input_name(suffix: 'link', index: idx) name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)  *possible_read_only_ops
+
           - if question.description
             .govuk-form-group
               label.govuk-label class="govuk-!-margin-top-5" for=question.input_name(suffix: 'description', index: idx)
@@ -44,13 +49,13 @@
 
   span.govuk-error-message
   .if-no-js-hide.govuk-button-group
-    span.govuk-button.govuk-button--secondary.button-add data-entity="file" *possible_read_only_ops
+    span.govuk-button.govuk-button--secondary.button-add class=("website-document-btns" if question.links) data-entity="file" *possible_read_only_ops
       span
         | Upload a file
       input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops data-question-key=question.key aria-label="Upload"
     - if question.links
       | &nbsp;
-      a.govuk-button.govuk-button--secondary.button-add.js-file-upload data-add-link="1" href="#" aria-label="Add website address" data-entity="website address" *possible_read_only_ops
+      a.govuk-button.govuk-button--secondary.button-add.js-file-upload.website-document-btns data-add-link="1" href="#" aria-label="Add website address" data-entity="website address" *possible_read_only_ops
         | Add website address
 
   - if question.key == :org_chart && @form_answer.document["org_chart"].blank?
