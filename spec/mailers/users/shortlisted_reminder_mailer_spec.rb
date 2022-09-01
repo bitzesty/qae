@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Users::AuditCertificateRequestMailer do
+describe Users::ShortlistedReminderMailer do
   let!(:user) { create :user }
   let(:form_answer) do
     create :form_answer, :submitted, :innovation, user: user
@@ -13,9 +13,9 @@ describe Users::AuditCertificateRequestMailer do
   end
 
   let(:award_title) { form_answer.decorate.award_application_title }
-  let(:subject) {
-    "Queen's Awards for Enterprise: Reminder to provide verification of commercial figures"
-  }
+  let(:subject) do
+    "Queen's Awards for Enterprise: Reminder to provide actual figures & VAT returns"
+  end
 
   before do
     form_answer
@@ -32,7 +32,8 @@ describe Users::AuditCertificateRequestMailer do
 
     it "renders the body" do
       expect(mail.body.raw_source).to match(user.decorate.full_name)
-      expect(mail.body.raw_source).to match(users_form_answer_audit_certificate_url(form_answer))
+      # TODO: change to actual url with figures/vat returns
+      # expect(mail.body.raw_source).to match(users_form_answer_audit_certificate_url(form_answer))
       expect(mail.body.raw_source).to match(deadline)
     end
   end

@@ -1,0 +1,26 @@
+Dear <%= @recipient.full_name %>,
+
+We are emailing to remind you that you have until
+
+#Please do so by <%= @deadline_time %> on <%= @deadline %>
+
+to provide actual figures & VAT returns by following the link below:
+
+<%= users_form_answer_audit_certificate_url(@form_answer) %>
+
+#We cannot extend this deadline.
+
+If you do not submit your actual figures & VAT returns before the deadline, we will not have sufficient information to assess your application, and it will be withdrawn.
+
+Below is a reminder of the steps you need to take:
+
+  1. If you do not have your filled-in application form handy, download it by logging into your Queen's Award account dashboard via the link:
+     <%= users_form_answer_audit_certificate_url(@form_answer) %>
+  2. Download the filled-in application form in the shortlisted entries in the table on the dashboard page to see questions <%= @question_refs %>.
+  3. Create your own document with updated answers to questions <%= @question_refs %>. You can do so in any popular document format, including Word, Excel and PDF.
+  4. Login again and upload the document with actual figures and the latest year’s VAT returns one by one by following the “Upload actual figures and VAT returns” link.
+
+Yours sincerely,
+
+Nichola Bruno
+Head, The Queen’s Awards for Enterprise Office

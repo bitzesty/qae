@@ -106,6 +106,18 @@ class MailRenderer
     render(assigns, "users/audit_certificate_request_mailer/preview/notify")
   end
 
+  def shortlisted_po_sd_reminder
+    assigns = {}
+
+    assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company").decorate
+    assigns[:form_answer] = form_answer
+    assigns[:deadline] = deadline_str("audit_certificates")
+    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:question_refs] = "C4.1, C4.2 and C4.3"
+
+    render(assigns, "users/shortlisted_reminder_mailer/preview/notify")
+  end
+
   def not_shortlisted_notifier
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
@@ -126,6 +138,22 @@ class MailRenderer
     assigns[:award_type_full_name] = "Innovation"
 
     render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify")
+  end
+
+  def shortlisted_po_sd_notifier
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+    assigns[:question_refs] = "C4.1, C4.2 and C4.3"
+
+
+    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_date] = deadline_str("audit_certificates")
+
+    assigns[:award_type_full_name] = "Innovation"
+
+    render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify_po_sd")
   end
 
   def winners_notification

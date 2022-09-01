@@ -14,7 +14,9 @@ class EmailNotification < ApplicationRecord
                          :unsuccessful_notification,
                          :unsuccessful_ep_notification,
                          :shortlisted_notifier,
+                         :shortlisted_po_sd_notifier,
                          :shortlisted_audit_certificate_reminder,
+                         :shortlisted_po_sd_reminder,
                          :not_shortlisted_notifier,
                          :winners_head_of_organisation_notification,
                          :buckingham_palace_invite
