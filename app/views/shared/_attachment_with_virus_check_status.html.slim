@@ -1,4 +1,4 @@
-p.govuk-body
+p.govuk-body.display-inline
   - if item.send(mount_name)
     - scan_results = item.send("#{mount_name}_scan_results")
     - if item.clean?
