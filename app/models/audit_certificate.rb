@@ -1,18 +1,11 @@
-class AuditCertificate < ApplicationRecord
-  mount_uploader :attachment, AuditCertificateUploader
-  scan_file      :attachment
-
-  include ::InfectedFileCleaner
-  clean_after_scan :attachment
+class AuditCertificate < ActiveRecord::Base
+  include ShortlistedDocument
 
   begin :associations
-    belongs_to :form_answer
     belongs_to :reviewable, polymorphic: true
   end
 
   begin :validations
-    validates :form_answer_id, uniqueness: true,
-                               presence: true
     validates :attachment, presence: true,
                            on: :create,
                            file_size: {
@@ -23,6 +16,9 @@ class AuditCertificate < ApplicationRecord
               :reviewed_at,
               presence: true,
               if: :reviewed?
+
+    validates :form_answer_id, uniqueness: true,
+              presence: true
   end
 
   before_save :clean_changes_description

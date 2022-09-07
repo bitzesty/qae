@@ -75,6 +75,7 @@ class FormAnswer < ApplicationRecord
     has_one :draft_note, as: :notable, dependent: :destroy
     has_one :palace_invite, dependent: :destroy
     has_one :form_answer_progress, dependent: :destroy
+    has_one :shortlisted_documents_wrapper, dependent: :destroy
 
     # PDF Hard Copies
     #
@@ -85,6 +86,8 @@ class FormAnswer < ApplicationRecord
     belongs_to :secondary_assessor, class_name: "Assessor", foreign_key: :secondary_assessor_id
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
+    has_many :commercial_figures_files, dependent: :destroy
+    has_many :vat_returns_files, dependent: :destroy
 
     has_many :audit_logs, as: :auditable
     has_many :supporters, dependent: :destroy, autosave: true
@@ -387,6 +390,14 @@ class FormAnswer < ApplicationRecord
 
   def agree_sharing_of_details_with_lieutenancies?
     user.agree_sharing_of_details_with_lieutenancies ? "Yes" : "No"
+  end
+
+  def requires_vocf?
+    %w(trade innovation).include?(award_type)
+  end
+
+  def shortlisted_documents_submitted?
+    shortlisted_documents_wrapper&.submitted?
   end
 
   private

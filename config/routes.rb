@@ -106,7 +106,15 @@ Rails.application.routes.draw do
         end
       end
 
+      # shortlisted docs block
       resource :audit_certificate, only: [:show, :create, :destroy]
+      resource :figures_and_vat_returns, only: [:show] do
+        patch :submit, on: :member
+      end
+
+      resources :actual_figures, only: [:show, :create, :destroy]
+      resources :vat_returns, only: [:show, :create, :destroy]
+
       resource :support_letter_attachments, only: :create
       resources :supporters, only: [:create, :destroy]
       resources :support_letters, only: [:create, :show, :destroy]

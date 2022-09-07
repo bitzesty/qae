@@ -1,5 +1,5 @@
 p.govuk-body
-  - if item.send(mount_name)
+  - if item && item.send(mount_name)
     - scan_results = item.send("#{mount_name}_scan_results")
     - if item.clean?
       = link_to item.try(:original_filename),
@@ -15,4 +15,4 @@ p.govuk-body
       = item.try(:original_filename)
       |  didn't pass virus scanner check, please remove
   - else
-    = item.try(:original_filename)
+    = link_to "", "#", target: "_blank"

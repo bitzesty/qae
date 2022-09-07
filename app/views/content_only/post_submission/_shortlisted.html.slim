@@ -23,24 +23,60 @@
             = award.award_type_full_name
             '  Award
       .content-right.content-offset-24
-        / Nominators don't get any options after submision
-        p.govuk-body Please review the following actions to complete your shortlisted application.
+        p.govuk-body
+          ' Please review the following actions to complete your shortlisted application.
+          = link_to users_form_answer_path(award, format: :pdf), "target" => "_blank", "aria-label" => "Download application #{award.id} for #{award.award_type_full_name + 'Award'}", class: 'govuk-link' do
+            | Download your aplication
+
         ul.post-dashboard-actions.govuk-list.govuk-list--bullet
-          li
-            = render "content_only/past_applications/download_pdf_link", award: award
-          li
-            = link_to "Verification of Commercial Figures", users_form_answer_audit_certificate_url(award)
-            span.award-info.govuk-body
-              span.pull-right
-                ' Due by
-                = application_deadline_short(:audit_certificates)
-              = link_to users_form_answer_audit_certificate_url(award)
-                - if award.audit_certificate.present?
-                  span.label-status.label-status-green
-                    ' Complete
-                - else
-                  span.label-status.label-status-red
-                    ' Incomplete
+          - if award.requires_vocf?
+            li
+              strong
+                | Verification of commerical figures
+              span.award-info.govuk-body
+                - unless award.audit_certificate.present?
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:audit_certificates)
+                = link_to users_form_answer_audit_certificate_url(award)
+                  - if award.audit_certificate.present?
+                    span.label-status.label-status-green
+                      ' Completed
+                  - else
+                    span.label-status.label-status-red
+                      ' Incomplete
+            - if award.audit_certificate.present?
+              li
+                = link_to "View verification of commercial figures", users_form_answer_audit_certificate_url(award), class: 'govuk-link', "aria-label" => "View verification of commercial figures for #{award.id} #{award.award_type_full_name + 'Award'}"
+            - else
+              li
+                = link_to "Download the external accountant’s report form", users_form_answer_audit_certificate_url(award, format: :pdf), "aria-label" => "Download the external accountant’s report form for #{award.id} for #{award.award_type_full_name + 'Award'}", class: 'govuk-link'
+              li
+                = link_to "Provide verification of commercial figures", users_form_answer_audit_certificate_url(award), class: "govuk-button", "aria-label" => "Provide verification of commercial figures for #{award.id} #{award.award_type_full_name + 'Award'}"
+          - else # if award.requires_vocf?
+            li
+              strong
+                | Actual figures and VAT returns
+
+              span.award-info.govuk-body
+                - unless award.shortlisted_documents_submitted?
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:audit_certificates)
+                = link_to users_form_answer_figures_and_vat_returns_url(award)
+                  - if award.shortlisted_documents_submitted?
+                    span.label-status.label-status-green
+                      ' Completed
+                  - else
+                    span.label-status.label-status-red
+                      ' Incomplete
+            - if award.shortlisted_documents_submitted?
+              li
+                = link_to "View actual figures and VAT returns", users_form_answer_figures_and_vat_returns_url(award), class: 'govuk-link', "aria-label" => "View actual figures and VAT returns for #{award.id} #{award.award_type_full_name + 'Award'}"
+            - else
+              li
+                = link_to "Provide actual figures and VAT returns", users_form_answer_figures_and_vat_returns_url(award), class: "govuk-button", "aria-label" => "Provide actual figures and VAT returns for #{award.id} #{award.award_type_full_name + 'Award'}"
+
         .clear
       .clear
   br
