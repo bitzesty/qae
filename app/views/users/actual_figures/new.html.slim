@@ -5,6 +5,6 @@
     .inner
       = simple_form_for @actual_figures, url: users_form_answer_actual_figures_path(@form_answer), html: {class: "qae-form actual-figures-upload-form", method: :post} do |f|
         = render "users/figures_and_vat_returns/file_upload_details", label: "Upload actual figures"
-        = f.input :attachment, as: :file, label: false
+        = f.input :attachment, as: :file, label: "Upload actual figures", label_html: { class: "govuk-!-display-none" }
 
         = f.submit "Upload", class: "govuk-button"

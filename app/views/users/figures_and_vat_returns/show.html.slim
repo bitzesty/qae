@@ -21,8 +21,10 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
             li Create your own document with updated answers to questions C4.1, C4.2 and C4.3. You can do so in any popular document format, including Word, Excel and PDF.
             li Upload the document with actual figures and the latest year’s VAT returns one by one.
 
-      = render "vat_returns", form_answer: @form_answer, figures_form: @figures_form
-      = render "actual_figures", form_answer: @form_answer, figures_form: @figures_form
+      .vat-returns-wrapper
+        = render "vat_returns", form_answer: @form_answer, figures_form: @figures_form
+      .actual-figures-wrapper
+        = render "actual_figures", form_answer: @form_answer, figures_form: @figures_form
 
       = simple_form_for @figures_form, url: submit_users_form_answer_figures_and_vat_returns_url(@form_answer, @figures_form) do |f|
         footer
