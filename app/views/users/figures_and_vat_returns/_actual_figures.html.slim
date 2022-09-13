@@ -6,24 +6,31 @@
       = render "file", item: figures_form.commercial_figures_file, mount_name: :attachment, url_method: "users_form_answer_actual_figure_url"
 
 
-  = simple_form_for (figures_form.commercial_figures_file || figures_form.build_commercial_figures_file),
-                    as: :commercial_figures_file,
-                    url: users_form_answer_actual_figures_path(form_answer),
-                    html: {class: "qae-form actual-figures-upload-form #{"govuk-!-display-none" if figures_form.commercial_figures_file.attachment.present?}", method: :post} do |f|
-    .errors-container
-      .govuk-error-message
-    .clear
+  .if-no-js-hide
+    = simple_form_for (figures_form.commercial_figures_file || figures_form.build_commercial_figures_file),
+                      as: :commercial_figures_file,
+                      url: users_form_answer_actual_figures_path(form_answer),
+                      html: {class: "qae-form actual-figures-upload-form #{"govuk-!-display-none" if figures_form.commercial_figures_file.attachment.present?}", method: :post} do |f|
+      .errors-container
+        .govuk-error-message
+      .clear
 
-    span.govuk-button.govuk-button--secondary role="button"
-      span Upload a file
-      = f.input :attachment,
-                as: :file,
-                required: true,
-                label: false,
-                input_html: { class: "fileinput-button js-actual-figures-upload button", id: "upload_actual_figures_for_#{form_answer.id}", aria: { label: "Upload actual figures for #{form_answer.id}" } }
+      span.govuk-button.govuk-button--secondary role="button"
+        span Upload a file
+        = f.input :attachment,
+                  as: :file,
+                  required: true,
+                  label: false,
+                  input_html: { class: "fileinput-button js-actual-figures-upload button", id: "upload_actual_figures_for_#{form_answer.id}", aria: { label: "Upload actual figures for #{form_answer.id}" } }
 
-    footer.display-none
-      nav.pagination role="navigation"
-        ul.group
-          li.submit
-            = f.submit "Upload", class: "button"
+      footer.display-none
+        nav.pagination role="navigation"
+          ul.group
+            li.submit
+              = f.submit "Upload", class: "govuk-button govuk-button--secondary"
+
+  .if-js-hide
+    - unless figures_form.commercial_figures_file.persisted?
+      = link_to "Upload a file", new_users_form_answer_actual_figure_url(form_answer), class: "govuk-button govuk-button--secondary"
+      br
+      br

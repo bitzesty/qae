@@ -8,19 +8,33 @@ class Users::VatReturnsController < Users::BaseController
               disposition: "attachment"
   end
 
-  def create
-    vat_returns = figures_wrapper.vat_returns_files.new(vat_returns_file_params)
-    vat_returns.form_answer = form_answer
+  def new
+    @form_answer = form_answer
+    @vat_returns = figures_wrapper.vat_returns_files.new
+  end
 
-    if saved = vat_returns.save
+  def create
+    @vat_returns = figures_wrapper.vat_returns_files.new(vat_returns_file_params)
+    @vat_returns.form_answer = form_answer
+
+    if saved = @vat_returns.save
       # log_event
     end
 
 
     respond_to do |format|
+      format.html do
+        if saved
+          redirect_to users_form_answer_figures_and_vat_returns_url(form_answer)
+        else
+          @form_answer = form_answer
+          render :new
+        end
+      end
+
       format.json do
         if saved
-          render json: vat_returns,
+          render json: @vat_returns,
                  status: :created,
                  content_type: "text/plain"
         else

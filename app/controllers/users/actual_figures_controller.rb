@@ -1,4 +1,8 @@
 class Users::ActualFiguresController < Users::BaseController
+  def new
+    @form_answer = form_answer
+    @actual_figures = figures_wrapper.build_commercial_figures_file
+  end
 
   def show
     actual_figures = form_answer.commercial_figures_files.find(params[:id])
@@ -9,18 +13,26 @@ class Users::ActualFiguresController < Users::BaseController
   end
 
   def create
-    actual_figures = figures_wrapper.build_commercial_figures_file(commercial_figures_file_params)
-    actual_figures.form_answer = form_answer
+    @actual_figures = figures_wrapper.build_commercial_figures_file(commercial_figures_file_params)
+    @actual_figures.form_answer = form_answer
 
-    if saved = actual_figures.save
+    if saved = @actual_figures.save!
       # log_event
     end
 
-
     respond_to do |format|
+      format.html do
+        if saved
+          redirect_to users_form_answer_figures_and_vat_returns_url(form_answer)
+        else
+          @form_answer = form_answer
+          render :new
+        end
+      end
+
       format.json do
         if saved
-          render json: actual_figures,
+          render json: @actual_figures,
                  status: :created,
                  content_type: "text/plain"
         else

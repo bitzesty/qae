@@ -112,8 +112,8 @@ Rails.application.routes.draw do
         patch :submit, on: :member
       end
 
-      resources :actual_figures, only: [:show, :create, :destroy]
-      resources :vat_returns, only: [:show, :create, :destroy]
+      resources :actual_figures, only: [:new, :show, :create, :destroy]
+      resources :vat_returns, only: [:new, :show, :create, :destroy]
 
       resource :support_letter_attachments, only: :create
       resources :supporters, only: [:create, :destroy]
