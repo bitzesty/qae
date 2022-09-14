@@ -12,4 +12,11 @@ class Assessors::GeneralMailer < ApplicationMailer
     @subject = "Application Ref: #{@form_answer.urn} External Accountant's Report submitted"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @assessor.email, subject: subject_with_env_prefix(@subject)
   end
+
+  def vat_returns_submitted(form_answer_id)
+    @form_answer = FormAnswer.find(form_answer_id)
+    @assessor = @form_answer.assessors.primary
+    @subject = "Application Ref: #{@form_answer.urn} VAT returns submitted"
+    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @assessor.email, subject: subject_with_env_prefix(@subject)
+  end
 end

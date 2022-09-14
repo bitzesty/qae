@@ -11,10 +11,10 @@ class Users::FiguresAndVatReturnsController < Users::BaseController
     if @figures_form.submit
 
       if form_answer.assessors.primary.present?
-        # Assessors::GeneralMailer
+        Assessors::GeneralMailer.vat_returns_submitted(form_answer.id).deliver_later!
       end
 
-      # Users::AuditCertificateMailer
+      Users::CommercialFiguresMailer.notify(form_answer.id, current_user.id).deliver_later!
 
       redirect_to dashboard_url
     else
