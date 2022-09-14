@@ -29,8 +29,6 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
       = simple_form_for @figures_form, url: submit_users_form_answer_figures_and_vat_returns_url(@form_answer, @figures_form) do |f|
         footer
           nav.pagination.no-border aria-label="Pagination" role="navigation"
-            ul.group
-              li
-                = f.submit "Submit", class: "govuk-button"
-              li
-                = link_to "Cancel", dashboard_path, class: "govuk-link govuk-!-font-size-19"
+            .govuk-button-group
+              = f.submit "Submit", class: "govuk-button"
+              = link_to "Cancel", dashboard_path, class: "govuk-link govuk-!-font-size-19"

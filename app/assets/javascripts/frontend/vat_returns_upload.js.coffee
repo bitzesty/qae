@@ -11,12 +11,11 @@ window.VatReturnsUpload =
         govuk_button.removeClass('upload-focus')
 
   fileupload_init: (el) ->
-    form = $(el).closest('form')
     $el = $(el)
 
     parent = $el.closest('div.js-upload-wrapper')
     list = parent.find('.js-uploaded-list')
-    form = parent.find('form')
+    form = parent.find('form.vat-returns-upload-form')
 
     progress_all = (e, data) ->
       # TODO
@@ -45,7 +44,7 @@ window.VatReturnsUpload =
       dummy_el.find(".js-commercial-figures-file a.file-url").attr("title", filename)
       dummy_el.removeClass("dummy")
 
-      remove_link_el = list.find("a.remove-link")
+      remove_link_el = dummy_el.find("a.remove-link")
       remove_link = remove_link_el.attr("href")
       remove_link = remove_link.replace("PLACEHOLDER", data.result["id"])
       remove_link_el.attr("href", remove_link)

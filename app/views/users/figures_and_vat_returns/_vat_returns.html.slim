@@ -24,7 +24,8 @@
                   as: :file,
                   required: true,
                   label: false,
-                  input_html: { class: "fileinput-button js-vat-returns-upload button", id: "upload_vat_reutrns_for_#{form_answer.id}", aria: { label: "Upload VAT returns for #{form_answer.id}" } }
+                  input_html: { class: "fileinput-button js-vat-returns-upload button", id: "upload_vat_reutrns_for_#{form_answer.id}", aria: { label: "Upload VAT returns for #{form_answer.id}" } },
+                  wrapper_html: { class: "govuk-!-margin-bottom-0" }
 
       footer.display-none
         nav.pagination role="navigation"

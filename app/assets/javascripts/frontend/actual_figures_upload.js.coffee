@@ -11,12 +11,11 @@ window.ActualFiguresUpload =
         govuk_button.removeClass('upload-focus')
 
   fileupload_init: (el) ->
-    form = $(el).closest('form')
     $el = $(el)
 
     parent = $el.closest('div.js-upload-wrapper')
     list = parent.find('.js-uploaded-list')
-    form = parent.find('form')
+    form = parent.find('form.actual-figures-upload-form')
 
     progress_all = (e, data) ->
       # TODO
