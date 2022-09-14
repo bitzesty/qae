@@ -16,8 +16,8 @@ class Users::ActualFiguresController < Users::BaseController
     @actual_figures = figures_wrapper.build_commercial_figures_file(commercial_figures_file_params)
     @actual_figures.form_answer = form_answer
 
-    if saved = @actual_figures.save!
-      # log_event
+    if saved = @actual_figures.save
+      log_event
     end
 
     respond_to do |format|
@@ -45,7 +45,9 @@ class Users::ActualFiguresController < Users::BaseController
 
   def destroy
     if deadline_allows_deletion?
-      form_answer.commercial_figures_files.find(params[:id]).destroy
+      if form_answer.commercial_figures_files.find(params[:id]).destroy
+        log_event
+      end
     end
 
     redirect_to users_form_answer_figures_and_vat_returns_url(form_answer)
@@ -55,6 +57,17 @@ class Users::ActualFiguresController < Users::BaseController
 
   def deadline_allows_deletion?
     true
+  end
+
+  def action_type
+    case action_name
+    when "create"
+      "actual_figures_file_uploaded"
+    when "destroy"
+      "actual_figures_file_destroyed"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
+    end
   end
 
   def form_answer

@@ -18,9 +18,8 @@ class Users::VatReturnsController < Users::BaseController
     @vat_returns.form_answer = form_answer
 
     if saved = @vat_returns.save
-      # log_event
+      log_event
     end
-
 
     respond_to do |format|
       format.html do
@@ -47,7 +46,9 @@ class Users::VatReturnsController < Users::BaseController
 
   def destroy
     if deadline_allows_deletion?
-      form_answer.vat_returns_files.find(params[:id]).destroy
+      if form_answer.vat_returns_files.find(params[:id]).destroy
+        log_event
+      end
     end
 
     redirect_to users_form_answer_figures_and_vat_returns_url(form_answer)
@@ -79,6 +80,17 @@ class Users::VatReturnsController < Users::BaseController
       .reject { |m| m == "Attachment This field cannot be blank" }
       .join(", ")
       .gsub("Attachment ", "")
+  end
+
+  def action_type
+    case action_name
+    when "create"
+      "vat_returns_file_uploaded"
+    when "destroy"
+      "vat_returns_file_destroyed"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
+    end
   end
 
   def vat_returns_file_params
