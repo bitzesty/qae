@@ -26,17 +26,6 @@ class Users::FiguresAndVatReturnsController < Users::BaseController
 
   private
 
-  def action_type
-    case action_name
-    when "vat_returns"
-    when "figures"
-    when "destroy_vat_returns"
-    when "destroy_figures"
-    else
-      raise "Attempted to log an unsupported action (#{action_name})"
-    end
-  end
-
   def form_answer
     @form_answer ||= current_user.account.
                        form_answers.
