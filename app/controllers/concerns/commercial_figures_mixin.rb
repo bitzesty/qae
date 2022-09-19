@@ -11,6 +11,8 @@ module CommercialFiguresMixin
       if file_record.destroy
         log_event
       end
+    else
+      flash[:notice] = "Can't delete files after the deadline"
     end
 
     redirect_to users_form_answer_figures_and_vat_returns_url(form_answer)
@@ -75,6 +77,6 @@ module CommercialFiguresMixin
   end
 
   def deadline_allows_deletion?
-    true
+    !Settings.after_current_audit_certificates_deadline?
   end
 end
