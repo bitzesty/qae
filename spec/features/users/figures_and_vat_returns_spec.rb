@@ -48,7 +48,7 @@ describe "User uploads VAT returns and actual figures" do
 
     expect(page).to have_link("users.csv")
 
-    click_button "Submit"
+    click_button "Confirm submission"
 
     expect(page).to have_link("Completed")
   end

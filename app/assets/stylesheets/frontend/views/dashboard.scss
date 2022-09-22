@@ -348,3 +348,11 @@ $status-green: #3b816f;
 .palace-attendees-info-note p {
   font-weight: normal;
 }
+
+ul.no-bullet {
+  list-style: none;
+
+  li {
+    list-style-type: none;
+  }
+}

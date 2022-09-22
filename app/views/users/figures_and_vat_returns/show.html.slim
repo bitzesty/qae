@@ -1,7 +1,7 @@
-- title "Actual figures and VAT returns"
+- title "The latest financial information"
 
 header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
-  h1.govuk-heading-xl Actual figures and VAT returns
+  h1.govuk-heading-xl The latest financial information
 .article-container
   article.group role="article"
     .inner
@@ -11,15 +11,21 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
             span.error.govuk-error-message
               = error
 
-      - unless @figures_form.submitted?
-        p.govuk-body Please continue with the following steps:
-        p
-          ol.govuk-list.govuk-list--number
-            li
-              => link_to("Download your filled in application form", users_form_answer_url(@form_answer, format: :pdf))
-              | to see questions C4.1, C4.2 and C4.3. (If you do not have the application form handy otherwise.
-            li Create your own document with updated answers to questions C4.1, C4.2 and C4.3. You can do so in any popular document format, including Word, Excel and PDF.
-            li Upload the document with actual figures and the latest year’s VAT returns one by one.
+      p.govuk-body Please continue with the following steps:
+      p.govuk-body
+        ol.govuk-list.govuk-list--number
+          li Upload any latest financial statements and VAT returns (in the “Latest financial statements and VAT returns” section on this page).
+          li
+            | Check how the estimated figures you provided in section C of your application form compare with the actuals. (If you do not have your filled-in application form handy, please
+            => link_to("download your filled in application form", users_form_answer_url(@form_answer, format: :pdf))
+            | .)
+          li You will have to create and submit a separate variance explanation document (in the “Variance explanation document” section on this page), if:
+            ul.govuk-list.no-bullet
+              li
+                | a) any of the actual figures are worse by 10% or more. Please explain the reasons for the difference.
+              li
+                | b) the actuals include losses that you did not state on your application form. Please explain the reasons for the losses and how your business is financially viable.
+
 
       .vat-returns-wrapper
         = render "vat_returns", form_answer: @form_answer, figures_form: @figures_form
@@ -30,5 +36,5 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
         footer
           nav.pagination.no-border aria-label="Pagination" role="navigation"
             .govuk-button-group
-              = f.submit "Submit", class: "govuk-button"
-              = link_to "Cancel", dashboard_path, class: "govuk-link govuk-!-font-size-19"
+              = link_to "Continue later", dashboard_path, class: "govuk-button govuk-button--secondary"
+              = f.submit "Confirm submission", class: "govuk-button"

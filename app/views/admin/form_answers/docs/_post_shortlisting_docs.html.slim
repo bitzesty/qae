@@ -21,6 +21,12 @@
       li style="color:green"
         ' Scanning audit certificate. You may need to refresh the page.
 
+    - if policy(resource).download_commercial_figures?
+      - resource.vat_returns_files.each do |vat_returns_file|
+        = render "admin/form_answers/docs/scanned_file_link", file: vat_returns_file, url_namespace: url_namespace
+      - if cff = resource.shortlisted_documents_wrapper.commercial_figures_file
+        = render "admin/form_answers/docs/scanned_file_link", file: cff, url_namespace: url_namespace
+
     - if policy(resource).download_case_summary_pdf?
       li
         = link_to "View/print Case Summary", admin_form_answer_case_summaries_path(resource.object, format: :pdf), target: admin_conditional_pdf_link_target(resource.object, "case_summary")

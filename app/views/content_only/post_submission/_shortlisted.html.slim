@@ -57,26 +57,23 @@
           - else # if award.requires_vocf?
             li
               strong
-                | Actual figures and VAT returns
+                | Latest financial information
 
               span.award-info.govuk-body
                 - unless award.shortlisted_documents_submitted?
                   span.pull-right
                     ' Due by
                     = application_deadline_short(:audit_certificates)
-                = link_to users_form_answer_figures_and_vat_returns_url(award)
-                  - if award.shortlisted_documents_submitted?
-                    span.label-status.label-status-green
-                      ' Completed
-                  - else
+                - if award.shortlisted_documents_submitted?
+                  span.label-status.label-status-green
+                    ' Completed
+                - else
+                  = link_to users_form_answer_figures_and_vat_returns_url(award)
                     span.label-status.label-status-red
                       ' Incomplete
-            - if award.shortlisted_documents_submitted?
+            - if !award.shortlisted_documents_submitted?
               li
-                = link_to "View actual figures and VAT returns", users_form_answer_figures_and_vat_returns_url(award), class: 'govuk-link', "aria-label" => "View actual figures and VAT returns for #{award.id} #{award.award_type_full_name + 'Award'}"
-            - else
-              li
-                = link_to "Provide actual figures and VAT returns", users_form_answer_figures_and_vat_returns_url(award), class: "govuk-button govuk-!-margin-bottom-0", "aria-label" => "Provide actual figures and VAT returns for #{award.id} #{award.award_type_full_name + 'Award'}"
+                = link_to "Provide the latest financial information", users_form_answer_figures_and_vat_returns_url(award), class: "govuk-button govuk-!-margin-bottom-0", "aria-label" => "Provide the latest financial information for #{award.id} #{award.award_type_full_name + 'Award'}"
 
         .clear
       .clear

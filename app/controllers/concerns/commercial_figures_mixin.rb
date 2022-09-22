@@ -2,7 +2,7 @@ module CommercialFiguresMixin
 
   def show
     send_data file_record.attachment.read,
-              filename: "#{file_record.attachment.file.filename}_#{form_answer.urn}_#{form_answer.decorate.pdf_filename}",
+              filename: file_record.attachment.file.filename,
               disposition: "attachment"
   end
 
