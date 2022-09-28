@@ -1148,7 +1148,12 @@ CREATE TABLE public.shortlisted_documents_wrappers (
     form_answer_id bigint,
     submitted_at timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    status character varying,
+    reviewable_type character varying,
+    reviewable_id integer,
+    reviewed_at timestamp without time zone,
+    changes_description text
 );
 
 
@@ -4088,6 +4093,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220428081645'),
 ('20220906085430'),
 ('20220906085443'),
-('20220906085454');
+('20220906085454'),
+('20220927093210');
 
 

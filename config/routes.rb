@@ -167,6 +167,7 @@ Rails.application.routes.draw do
     end
 
     resources :review_audit_certificates, only: [:create]
+    resources :review_commercial_figures, only: [:create]
 
     resources :form_answers do
       resources :form_answer_state_transitions, only: [:create]
@@ -255,6 +256,7 @@ Rails.application.routes.draw do
       get :import_csv_into_ms_excel_guide_pdf, on: :collection
     end
     resources :review_audit_certificates, only: [:create]
+    resources :review_commercial_figures, only: [:create]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
     resources :palace_invites, only: [] do
       member do

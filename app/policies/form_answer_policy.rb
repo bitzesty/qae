@@ -83,6 +83,10 @@ class FormAnswerPolicy < ApplicationPolicy
     (admin? || subject.lead_or_assigned?(record))
   end
 
+  def review_commercial_figures?
+    (admin? || subject.lead_or_assigned?(record))
+  end
+
   def download_case_summary_pdf?
     admin? && record.in_positive_state? && record.lead_or_primary_assessor_assignments.any?
   end

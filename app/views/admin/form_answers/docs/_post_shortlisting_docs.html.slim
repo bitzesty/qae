@@ -21,7 +21,7 @@
       li style="color:green"
         ' Scanning audit certificate. You may need to refresh the page.
 
-    - if policy(resource).download_commercial_figures?
+    - if resource.shortlisted_documents_wrapper && policy(resource).download_commercial_figures?
       - resource.vat_returns_files.each do |vat_returns_file|
         = render "admin/form_answers/docs/scanned_file_link", file: vat_returns_file, url_namespace: url_namespace
       - if cff = resource.shortlisted_documents_wrapper.commercial_figures_file

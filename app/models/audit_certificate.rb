@@ -1,9 +1,6 @@
 class AuditCertificate < ActiveRecord::Base
   include ShortlistedDocument
-
-  begin :associations
-    belongs_to :reviewable, polymorphic: true
-  end
+  include Reviewable
 
   begin :validations
     validates :attachment, presence: true,
@@ -11,11 +8,6 @@ class AuditCertificate < ActiveRecord::Base
                            file_size: {
                              maximum: 10.megabytes.to_i
                            }
-    validates :reviewable_type,
-              :reviewable_id,
-              :reviewed_at,
-              presence: true,
-              if: :reviewed?
 
     validates :form_answer_id, uniqueness: true,
               presence: true
@@ -27,10 +19,6 @@ class AuditCertificate < ActiveRecord::Base
     no_changes_necessary: 0,
     confirmed_changes: 1
   }
-
-  def reviewed?
-    reviewed_at.present?
-  end
 
   private
 

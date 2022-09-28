@@ -1,0 +1,84 @@
+- if resource.requires_vocf?
+  label.form-label Verification of Commercial Figures
+  - if resource.audit_certificate.present?
+    - review_audit_certificate = ReviewAuditCertificate.new(form_answer_id: resource.id, status: resource.audit_certificate.status, changes_description: resource.audit_certificate.changes_description)
+
+    - if policy(review_audit_certificate).create?
+      = simple_form_for([namespace_name, review_audit_certificate],
+                        remote: true,
+                        authenticity_token: true) do |f|
+
+        = f.input :form_answer_id, as: :hidden
+
+        .form-group
+          = render "admin/form_answers/financial_summary/audit_certificate"
+          .input.form-group.form-fields
+            .radio
+              label
+                input type="radio" name="review_audit_certificate[status]" id="radio-audit-cert1" value="no_changes_necessary" checked=("checked" if review_audit_certificate.status == "no_changes_necessary")
+                ' No change necessary
+            .radio
+              label
+                input type="radio" name="review_audit_certificate[status]" id="radio-audit-cert2" value="confirmed_changes" checked=("checked" if review_audit_certificate.status == "confirmed_changes")
+                ' Confirmed changes
+            = f.submit "Save", class: "if-js-hide"
+
+          .audit-cert-description class=("if-js-hide" unless review_audit_certificate.status == "confirmed_changes" )
+            .input.form-group.form-fields.form-block
+              = f.input :changes_description, as: :text, input_html: { rows: 5, class: "form-control" }, label: "Changes made"
+              .clear
+          = link_to "#", class: "form-edit-link pull-right edit-review-audit"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .form-actions.text-left
+            .form-fields
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right", style: "display: none"
+
+          .clear
+  - else # resource.audit_certificate.present?
+    .form-group
+      = render "admin/form_answers/financial_summary/audit_certificate"
+- else # resource.requires_vocf?
+  label.form-label Latest financial information
+  - if resource.shortlisted_documents_wrapper.submitted?
+    - review_form = ShortlistedDocumentsReviewForm.new(form_answer_id: resource.id, status: resource.shortlisted_documents_wrapper.status, changes_description: resource.shortlisted_documents_wrapper.changes_description)
+
+    - if policy(resource).review_commercial_figures?
+      = simple_form_for(review_form,
+                        remote: true,
+                        url: [namespace_name, :review_commercial_figures],
+                        method: :post,
+                        authenticity_token: true) do |f|
+
+        = f.input :form_answer_id, as: :hidden
+
+        .form-group
+          = render "admin/form_answers/financial_summary/shortlisted_financial_docs", docs_wrapper: resource.shortlisted_documents_wrapper
+          .input.form-group.form-fields
+            .radio
+              label
+                input type="radio" name="shortlisted_documents_review_form[status]" id="radio-docs-review1" value="no_changes_necessary" checked=("checked" if review_form.status == "no_changes_necessary")
+                ' No change necessary
+            .radio
+              label
+                input type="radio" name="shortlisted_documents_review_form[status]" id="radio-docs-review2" value="confirmed_changes" checked=("checked" if review_form.status == "confirmed_changes")
+                ' Confirmed changes
+            = f.submit "Save", class: "if-js-hide"
+
+          .review-docs-description class=("if-js-hide" unless review_form.status == "confirmed_changes" )
+            .input.form-group.form-fields.form-block
+              = f.input :changes_description, as: :text, input_html: { rows: 5, class: "form-control" }, label: "Changes made"
+              .clear
+          = link_to "#", class: "form-edit-link pull-right edit-review-financials"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .form-actions.text-left
+            .form-fields
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Save", "#", class: "btn btn-primary save-docs-review pull-right", style: "display: none"
+
+          .clear
+  - else
+    p.govuk-body
+      | Latest financial documents have not been submitted yet

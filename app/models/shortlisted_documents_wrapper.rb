@@ -1,4 +1,5 @@
 class ShortlistedDocumentsWrapper < ActiveRecord::Base
+  include Reviewable
 
   has_one :commercial_figures_file
   has_many :vat_returns_files
@@ -13,6 +14,14 @@ class ShortlistedDocumentsWrapper < ActiveRecord::Base
 
   def submitted?
     submitted_at?
+  end
+
+  def no_changes_necessary?
+    status == "no_changes_necessary"
+  end
+
+  def confirmed_changes?
+    status == "confirmed_changes"
   end
 
   private
