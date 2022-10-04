@@ -12,10 +12,6 @@ describe AccountMailers::ReminderToSubmitMailer do
     )
   end
 
-  before do
-
-  end
-
   describe "#notify" do
     it "renders the headers" do
       expect(mail.to).to eq([user.email])

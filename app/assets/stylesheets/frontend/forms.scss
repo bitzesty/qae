@@ -700,9 +700,26 @@ input[type="file"] {
       opacity: 0.5;
     }
   }
-  #remove-website {
-    float: right;
-  }
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mt--5 {
+  margin-top: -5px !important;
+}
+
+.remove-website {
+  float: right;
+}
+
+.float-right {
+  float: right;
+}
+
+.display-inline {
+  display: inline;
 }
 
 .lte-ie7 .js-uploaded-list .js-file-uploaded .remove-link {

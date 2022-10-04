@@ -523,9 +523,12 @@ jQuery ->
       list.removeClass("visuallyhidden")
 
     if !max || count < max
-      button.removeClass("visuallyhidden")
+      button.each ->
+        $(this).removeClass("visuallyhidden")
+
     else
-      button.addClass("visuallyhidden")
+      button.each ->
+        $(this).addClass("visuallyhidden")
 
   reindexUploadListInputs = (list) ->
     idx = 0
@@ -541,7 +544,7 @@ jQuery ->
       idx++
 
   appendRemoveLinkForWebsiteLink = (div) ->
-    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning").attr("id", "remove-website").prop("href", "#").text("Remove")
+    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning remove-website").prop("href", "#").text("Remove")
     div.append(remove_link)
 
   appendRemoveLinkForAttachment = (div, wrapper, data) ->
@@ -550,12 +553,14 @@ jQuery ->
     list_namespace = wrapper.attr("data-list-namespace")
     destroy_url = "/form/form_answers/" + form_answer_id + "/" + list_namespace + "/" + attachment_id
 
-    remove_link = $("<a>").addClass("remove-link")
+    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning")
                           .prop("href", destroy_url)
                           .attr("data-method", "delete")
                           .attr("data-remote", "true")
                           .text("Remove")
     div.append(remove_link)
+
+  govuk_buttons = $( ".website-document-btns" )
 
   $('.js-file-upload').each (idx, el) ->
     form = $(el).closest('form')
@@ -640,6 +645,7 @@ jQuery ->
         label.append("<br/>")
         label.append(input)
         appendRemoveLinkForWebsiteLink(div)
+        updateUploadListVisiblity(list, govuk_buttons, max)
         div.append(label)
         new_el.append(div)
       else
@@ -675,10 +681,11 @@ jQuery ->
       new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
       updateUploadListVisiblity(list, govuk_button, max)
+      updateUploadListVisiblity(list, govuk_buttons, max)
       reindexUploadListInputs(list)
       new_el.find('input,textarea,select').filter(':visible').first().focus()
 
-    updateUploadListVisiblity(list, govuk_button, max)
+    updateUploadListVisiblity(list, govuk_buttons, max)
 
     if is_link
       $el.click (e) ->

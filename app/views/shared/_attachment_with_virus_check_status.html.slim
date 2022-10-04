@@ -1,4 +1,4 @@
-p.govuk-body
+p.govuk-body.display-inline
   - if item && item.send(mount_name)
     - scan_results = item.send("#{mount_name}_scan_results")
     - if item.clean?
@@ -7,12 +7,15 @@ p.govuk-body
                 target: "_blank"
     - elsif scan_results == "scanning" || scan_results == "pending"
       = item.try(:original_filename)
+      br
       |  (scanning on viruses)
     - elsif scan_results == "infected"
       = item.try(:original_filename)
+      br
       |  has been blocked (virus detected), please remove.
     - else
       = item.try(:original_filename)
+      br
       |  didn't pass virus scanner check, please remove
   - else
     = link_to "", "#", target: "_blank"
