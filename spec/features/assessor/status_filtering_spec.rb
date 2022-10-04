@@ -90,14 +90,14 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
           wait_for_ajax
           @development_forms.slice!(0)
           assert_results_number(2)
-          click_status_option("Missing Verification of Commercial Figures")
+          click_status_option("Missing additional financials")
           wait_for_ajax
           assert_results_number(2)
-          click_status_option("Missing Verification of Commercial Figures")
+          click_status_option("Missing additional financials")
           wait_for_ajax
           assert_results_number(2)
           assign_dummy_audit_certificate(@development_forms.slice!(0))
-          click_status_option("Missing Verification of Commercial Figures")
+          click_status_option("Missing additional financials")
           wait_for_ajax
           assert_results_number(1)
         end

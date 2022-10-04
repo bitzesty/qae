@@ -20,10 +20,10 @@ describe "User uploads VAT returns and actual figures" do
 
     expect(page).to have_content("Congratulations! Your application was shortlisted.")
 
-    click_link "Provide actual figures and VAT returns"
+    click_link "Provide the latest financial information"
 
     # can't submit without a single vat returns file
-    click_button "Submit"
+    click_button "Confirm submission"
     expect(page).to have_content("You need to add at least one VAT returns file")
 
     # uploading actual figures
@@ -42,7 +42,7 @@ describe "User uploads VAT returns and actual figures" do
       click_link "Upload a file"
     end
 
-    attach_file("Upload actual figures", Rails.root + "spec/fixtures/users.csv")
+    attach_file("Variance explanation document (if applicable)", Rails.root + "spec/fixtures/users.csv")
 
     click_button "Upload"
 
@@ -50,6 +50,6 @@ describe "User uploads VAT returns and actual figures" do
 
     click_button "Confirm submission"
 
-    expect(page).to have_link("Completed")
+    expect(page).to have_text("Complete")
   end
 end

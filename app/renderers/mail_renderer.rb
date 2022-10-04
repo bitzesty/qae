@@ -113,7 +113,6 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:deadline] = deadline_str("audit_certificates")
     assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
-    assigns[:question_refs] = "C4.1, C4.2 and C4.3"
 
     render(assigns, "users/shortlisted_reminder_mailer/preview/notify")
   end
