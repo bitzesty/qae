@@ -1,4 +1,8 @@
-= render "file_upload_details", label: "Upload VAT Returns"
+.govuk-form-group
+  label.govuk-label class="govuk-!-font-size-24 govuk-!-font-weight-bold"
+    | Upload VAT Returns
+
+= render "file_upload_details"
 
 .js-upload-wrapper
   ul.js-uploaded-list.no-bullets.list-group.list-add class=("govuk-!-display-none" unless figures_form.vat_returns_files.any?)

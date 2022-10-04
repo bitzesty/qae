@@ -19,12 +19,19 @@ header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
             | Check how the estimated figures you provided in section C of your application form compare with the actuals. (If you do not have your filled-in application form handy, please
             => link_to("download your filled in application form", users_form_answer_url(@form_answer, format: :pdf))
             | .)
-          li You will have to create and submit a separate variance explanation document (in the “Variance explanation document” section on this page), if:
+          li
+            | You will have to create and submit a separate variance explanation document (in the “Variance explanation document” section on this page), if:
             ul.govuk-list.no-bullet
               li
                 | a) any of the actual figures are worse by 10% or more. Please explain the reasons for the difference.
               li
                 | b) the actuals include losses that you did not state on your application form. Please explain the reasons for the losses and how your business is financially viable.
+
+      p.govuk-body
+        - deadline = Settings.current_audit_certificates_deadline.decorate
+        ' You can leave and continue later if needed - any uploaded documents have been saved. However, please complete all applicable steps and make sure to confirm submission by
+        = deadline.formatted_trigger_time
+        | .
 
 
       .vat-returns-wrapper

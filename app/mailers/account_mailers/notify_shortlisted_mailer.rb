@@ -4,7 +4,7 @@ class AccountMailers::NotifyShortlistedMailer < AccountMailers::BaseMailer
     @user = @form_answer.user.decorate
     collaborator = User.find(collaborator_id)
 
-    @subject = "Queen's Awards for Enterprise: Congratulations! You've been shortlisted!"
+    @subject = "Queen's Awards for Enterprise: Congratulations, you've been shortlisted."
     @company_name = @form_answer.company_or_nominee_name
 
     @deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
@@ -21,10 +21,9 @@ class AccountMailers::NotifyShortlistedMailer < AccountMailers::BaseMailer
     @user = @form_answer.user.decorate
     collaborator = User.find(collaborator_id)
 
-    @subject = "Queen's Awards for Enterprise: Congratulations! You've been shortlisted!"
+    @subject = "Queen's Awards for Enterprise: Congratulations, you've been shortlisted."
 
     @company_name = @form_answer.company_or_nominee_name
-    @question_refs = "C4.1, C4.2 and C4.3"
 
     @deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
     @deadline_time = @deadline.trigger_at.strftime("%H:%M")

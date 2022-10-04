@@ -1,4 +1,15 @@
-= render "file_upload_details", label: "Upload actual figures"
+.govuk-form-group
+  label.govuk-label class="govuk-!-font-size-24 govuk-!-font-weight-bold"
+    | Variance explanation document (if applicable)
+
+
+p.govuk-hint
+  | You have to create and submit a variance explanation document, if:
+  ul.govuk-list.no-bullet.govuk-hint
+    li a) any of the actual figures are worse by 10% or more. Please explain the reasons for the difference.
+    li b) the actuals include losses that you did not state on your application form. Please explain the reasons for the losses and how your business is financially viable.
+
+= render "file_upload_details"
 
 .js-upload-wrapper data-max-attachments=1
   ul.js-uploaded-list.no-bullets.list-group.list-add class=("govuk-!-display-none" unless figures_form.commercial_figures_file.present?)
