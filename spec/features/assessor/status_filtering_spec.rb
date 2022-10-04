@@ -10,12 +10,12 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
     @forms = []
     @forms << create(
       :form_answer,
-      :development,
+      :trade,
       state: "not_submitted",
       document: { sic_code: "1623" })
 
-    @forms << create(:form_answer, :trade, state: "application_in_progress")
-    @forms << create(:form_answer, :development, state: "not_eligible")
+    @forms << create(:form_answer, :development, state: "application_in_progress")
+    @forms << create(:form_answer, :trade, state: "not_eligible")
     @forms << create(:form_answer, :mobility, state: "assessment_in_progress")
     @forms << create(:form_answer, :innovation, state: "assessment_in_progress")
 
@@ -33,16 +33,16 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
     # if assessor assigned to many categories sees the applications grouped by
     # these categories, not applicable for the admin
 
-    let!(:assessor) { create(:assessor, :lead_for_development_mobility) }
+    let!(:assessor) { create(:assessor, :lead_for_trade, :lead_for_innovation) }
     before do
       login_as(assessor, scope: :assessor)
       visit assessor_form_answers_path
     end
 
-    context "mobility tab" do
+    context "innovation tab" do
       before do
         within ".nav-subnav" do
-          find(".cat-promoting-opportunity").click
+          find(".cat-innovation").click
         end
       end
       it "filters by status" do
@@ -53,9 +53,9 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
       end
     end
 
-    context "development tab" do
+    context "trade tab" do
       before do
-        @forms << create(:form_answer, :development, state: "assessment_in_progress")
+        @forms << create(:form_answer, :trade, state: "assessment_in_progress")
 
         @forms.last(1).map do |form|
           form.document["sic_code"] = nil
@@ -63,10 +63,10 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
         end
 
         within ".nav-subnav" do
-          find(".cat-sustainable-development").click
+          find(".cat-international-trade").click
           expect(page).to have_selector("a", count: 2)
         end
-        @development_forms = @forms.select(&:development?)
+        @trade_forms = @forms.select(&:trade?)
       end
 
       it "filters by status" do
@@ -78,7 +78,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
 
       describe "filtering by substatus" do
         before do
-          FormAnswer.where(award_type: "development").each do |form|
+          FormAnswer.where(award_type: "trade").each do |form|
             form.update_column(:state, "assessment_in_progress")
           end
           visit assessor_form_answers_path
@@ -88,7 +88,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
           assert_results_number(3)
           click_status_option("Missing SIC code")
           wait_for_ajax
-          @development_forms.slice!(0)
+          @trade_forms.slice!(0)
           assert_results_number(2)
           click_status_option("Missing additional financials")
           wait_for_ajax
@@ -96,7 +96,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
           click_status_option("Missing additional financials")
           wait_for_ajax
           assert_results_number(2)
-          assign_dummy_audit_certificate(@development_forms.slice!(0))
+          assign_dummy_audit_certificate(@trade_forms.slice!(0))
           click_status_option("Missing additional financials")
           wait_for_ajax
           assert_results_number(1)
@@ -106,9 +106,9 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
   end
 
   context "single tab" do
-    let!(:assessor) { create(:assessor, :lead_for_innovation) }
+    let!(:assessor) { create(:assessor, :lead_for_mobility) }
     before do
-      create(:form_answer, :innovation, state: "assessment_in_progress")
+      create(:form_answer, :mobility, state: "assessment_in_progress")
 
       login_as(assessor, scope: :assessor)
       visit assessor_form_answers_path
