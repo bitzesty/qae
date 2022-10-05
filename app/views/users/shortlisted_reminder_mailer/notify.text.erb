@@ -4,21 +4,22 @@ We are emailing to remind you that you have until
 
 #<%= @deadline_time %> on <%= @deadline %>
 
-to provide actual figures & VAT returns by following the link below:
+to provide the latest financial statements & VAT returns and, if applicable, an explanation of the variance between the estimates and the actuals by following the link below:
 
-<%= users_form_answer_audit_certificate_url(@form_answer) %>
+<%= users_form_answer_figures_and_vat_returns_url(@form_answer) %>
 
 #We cannot extend this deadline.
 
-If you do not submit your actual figures & VAT returns before the deadline, we will not have sufficient information to assess your application, and it will be withdrawn.
+If you do not submit the required latest financial information before the deadline, we will not have sufficient information to assess your application, and it will be withdrawn.
 
-Below is a reminder of the steps you need to take:
+#Below is a reminder of the steps you need to take:
 
-  1. If you do not have your filled-in application form handy, download it by logging into your Queen's Award account dashboard via the link:
-     <%= users_form_answer_audit_certificate_url(@form_answer) %>
-  2. Download the filled-in application form in the shortlisted entries in the table on the dashboard page to see questions <%= @question_refs %>.
-  3. Create your own document with updated answers to questions <%= @question_refs %>. You can do so in any popular document format, including Word, Excel and PDF.
-  4. Login again and upload the document with actual figures and the latest year’s VAT returns one by one by following the “Upload actual figures and VAT returns” link.
+  1.  Login into your Queens Awards for Enterprise dashboard and follow the steps to upload any latest financial statements and VAT returns by following the “Provide the latest financial information” link.
+     <%= users_form_answer_figures_and_vat_returns_url(@form_answer) %>
+  2. Check how the estimated figures you provided in section C of your application form compare with the actuals. (If you do not have your filled-in application form handy, you can download it from the Queen's Award for Enterprise account dashboard).
+  3. You will have to submit a separate variance explanation document if:
+    a) any of the actual figures are worse by 10% or more. Please explain the reasons for the difference.
+    b) the actuals include losses that you did not state on your application form. Please explain the reasons for the losses and how your business is financially viable.
 
 Yours sincerely,
 

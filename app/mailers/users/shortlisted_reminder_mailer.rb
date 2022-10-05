@@ -10,9 +10,7 @@ class Users::ShortlistedReminderMailer < ApplicationMailer
     @deadline_time = "midnight" if midnight?
     @deadline_time = "midday" if midday?
 
-    @question_refs = "C4.1, C4.2 and C4.3"
-
-    @subject = "Queen's Awards for Enterprise: Reminder to provide actual figures & VAT returns"
+    @subject = "Queen's Awards for Enterprise: Reminder to provide latest financial statements & VAT returns"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @recipient.email, subject: subject_with_env_prefix(@subject)
   end
 

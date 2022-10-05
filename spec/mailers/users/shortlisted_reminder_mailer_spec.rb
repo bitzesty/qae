@@ -14,7 +14,7 @@ describe Users::ShortlistedReminderMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) do
-    "Queen's Awards for Enterprise: Reminder to provide actual figures & VAT returns"
+    "Queen's Awards for Enterprise: Reminder to provide latest financial statements & VAT returns"
   end
 
   before do
