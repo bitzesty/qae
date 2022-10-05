@@ -1,6 +1,4 @@
 class Users::FiguresAndVatReturnsController < Users::BaseController
-  before_action :check_if_figures_already_exist!, only: [:create]
-
   def show
     @figures_form = form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
     @figures_form.save! if !@figures_form.persisted?
