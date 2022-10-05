@@ -106,7 +106,15 @@ Rails.application.routes.draw do
         end
       end
 
+      # shortlisted docs block
       resource :audit_certificate, only: [:show, :create, :destroy]
+      resource :figures_and_vat_returns, only: [:show] do
+        patch :submit, on: :member
+      end
+
+      resources :actual_figures, only: [:new, :show, :create, :destroy]
+      resources :vat_returns, only: [:new, :show, :create, :destroy]
+
       resource :support_letter_attachments, only: :create
       resources :supporters, only: [:create, :destroy]
       resources :support_letters, only: [:create, :show, :destroy]
@@ -159,6 +167,7 @@ Rails.application.routes.draw do
     end
 
     resources :review_audit_certificates, only: [:create]
+    resources :review_commercial_figures, only: [:create]
 
     resources :form_answers do
       resources :form_answer_state_transitions, only: [:create]
@@ -166,6 +175,9 @@ Rails.application.routes.draw do
       resources :form_answer_attachments, only: [:create, :show, :destroy]
       resources :support_letters, only: [:show]
       resources :audit_certificates, only: [:show, :create]
+      resources :commercial_figures_files, only: [:show]
+      resources :vat_returns_files, only: [:show]
+
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit
@@ -244,6 +256,7 @@ Rails.application.routes.draw do
       get :import_csv_into_ms_excel_guide_pdf, on: :collection
     end
     resources :review_audit_certificates, only: [:create]
+    resources :review_commercial_figures, only: [:create]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
     resources :palace_invites, only: [] do
       member do
@@ -269,6 +282,9 @@ Rails.application.routes.draw do
       resources :audit_certificates, only: [:show, :create] do
         get :download_initial_pdf, on: :collection
       end
+      resources :commercial_figures_files, only: [:show]
+      resources :vat_returns_files, only: [:show]
+
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit

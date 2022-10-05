@@ -59,15 +59,43 @@ describe FormAnswerStateMachine do
 
   describe "#trigger_audit_deadlines" do
     context "deadline expired" do
-      let!(:settings) {create(:settings, :expired_audit_submission_deadline, :expired_submission_deadlines)}
-      context "applications in progress" do
-        before {form_answer.update(state: "assessment_in_progress")}
+      let!(:mobility_fa) { create(:form_answer, :mobility, state: "assessment_in_progress") }
+      let!(:settings) { create(:settings, :expired_audit_submission_deadline, :expired_submission_deadlines) }
+
+      context "VoCF forms" do
+        before do
+          sdw = create(:shortlisted_documents_wrapper, form_answer: mobility_fa)
+          create(:vat_returns_file, shortlisted_documents_wrapper: sdw)
+          sdw.submit
+
+          form_answer.update(state: "assessment_in_progress")
+        end
+
         it "automatically changes state to `disqualified`" do
           expect {
             FormAnswerStateMachine.trigger_audit_deadlines
           }.to change {
             form_answer.reload.state
           }.from("assessment_in_progress").to("disqualified")
+
+          expect(mobility_fa.reload.state).to eq("assessment_in_progress")
+        end
+      end
+
+      context "non-VoCF forms" do
+        before do
+          form_answer.update(state: "assessment_in_progress")
+          create(:audit_certificate, form_answer: form_answer)
+        end
+
+        it "automatically changes state to `disqualified`" do
+          expect {
+            FormAnswerStateMachine.trigger_audit_deadlines
+          }.to change {
+            mobility_fa.reload.state
+          }.from("assessment_in_progress").to("disqualified")
+
+          expect(form_answer.reload.state).to eq("assessment_in_progress")
         end
       end
     end

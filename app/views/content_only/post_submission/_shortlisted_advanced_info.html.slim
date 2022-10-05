@@ -1,25 +1,70 @@
 p.govuk-body
-  strong
-    ' Verification of Commercial Figures
-  | -  To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry).
+  h3.govuk-heading-m
+    | What to do next?
 
 p.govuk-body
   strong
-    = "Please do so by noon on #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time_short}."
-
-p.govuk-body Please continue with the following steps:
-
-p
-  ol.govuk-list.govuk-list--number
-    li Follow the "Verification of Commercial Figures" link next to your Shortlisted entries below to download the External Accountant's Report form.
-    li We recommend that you send the report to the accountant straight away so that you can agree on the timelines. Let them know if you will be providing revisions to the figures.
-    li If relevant, in the External Accountant's Report, provide actual figures to replace estimates submitted at the time of the application or make any other changes to the figures. If you make any revisions, you have to sign the Applicant's Management's Statement section in the report.
-    li Once you make the revisions (if any), the accountant may perform their own relevant procedures and will return the completed External Accountant's Report.
-    li = "Log back to this online portal and follow the \"Verification of Commercial Figures\" link next to your Shortlisted entries. Please upload the External Accountant's Report provided by the accountant, by <strong>noon on #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_date}</strong>.".html_safe
-
-p.govuk-body Please note, we are unable to accept late reports due to the strict assessment and judging timetable.
+    ' Provide additional documentation
+  br
+  | As stated in the commercial performance section of the online entry, to enable us to proceed with your entry, you are required to submit additional documents via the link next to each shortlisted application in the table on this page.
 
 p.govuk-body
   strong
-    ' Annual Accounts
-  | – If you are required by law to file annual accounts and returns to Companies House, please ensure that you are not in default of these obligations.
+    = "You have to do so by #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(false)}"
+
+p.govuk-body
+  | Please read detailed instructions on how to do that now as it may take time to obtain the required documents. We are unable to accept late documents due to the strict assessment and judging timetable.
+
+br
+
+details.govuk-details data-module="govuk-details"
+  summary.govuk-details__summary
+    span.govuk-details__summary-text
+      | View detailed instructions for Innovation or International Trade Awards
+  .govuk-details__text
+    p.govuk-body
+      | If you are shortlisted for Innovation or International Trade awards, please provide verification of commercial figures you provided in your application from an independent accountant.
+
+    p.govuk-body
+      | Follow the "Download the external accountant’s report form" link next to your shortlisted entries in the table on this page to download the Independent Accountant's Report form.
+
+    p.govuk-body
+      ol
+        li We recommend that you send the report to the accountant straight away so that you can agree on the timelines. Let them know if you will be providing revisions to the figures
+        li If relevant, in the Independent Accountant's Report, provide actual figures to replace estimates submitted at the time of the application or make any other changes to the figures. If you make any revisions, you have to sign the Applicant's Management's Statement section in the report
+        li Once you make the revisions (if any), the accountant may perform their own relevant procedures and will return the completed Independent Accountant's Report
+        li Log back to this online portal and follow the "Provide verification of commercial figures" button next to your Shortlisted entries.
+
+    p.govuk-body
+      ' Please upload the Independent Accountant's Report provided by the accountant, by
+      strong
+        = Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(false)
+
+
+
+details.govuk-details data-module="govuk-details"
+  summary.govuk-details__summary
+    span.govuk-details__summary-text
+      | View detailed instructions for Promoting Opportunity through Social Mobility and Sustainable Development Awards
+  .govuk-details__text
+    p.govuk-body
+      | If you are shortlisted for Promoting Opportunity through Social Mobility or Sustainable Development awards and have provided any estimated figures, to enable us to proceed with your entry, you are required to provide any latest financial statements and VAT returns and, if applicable, an explanation of the variance between the estimates and the actuals.
+    p.govuk-body
+      | Please continue with the following steps:
+      ol.govuk-list.govuk-list--number
+        li
+          | Upload any latest financial statements and VAT returns by following the “Provide the latest financial information” link, which you can find next to each shortlisted application, which is listed below the instructions on this page.
+        li
+          | Check how the estimated figures you provided in section C of your application form compare with the actuals. (If you do not have your filled-in application form handy, you can find it next to the shortlisted application, which is listed below the instructions on this page)
+        li
+          | You will have to create and submit a separate variance explanation document (via the “Provide the latest financial information” link), if:
+          ul.govuk-list.no-bullet
+            li
+              | a) any of the actual figures are worse by 10% or more. Please explain the reasons for the difference.
+            li
+              | b) the actuals include losses that you did not state on your application form. Please explain the reasons for the losses and how your business is financially viable.
+
+    p.govuk-body
+      ' Please complete these steps by
+      strong
+        = Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(false)

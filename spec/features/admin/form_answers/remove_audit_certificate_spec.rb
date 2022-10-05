@@ -8,7 +8,7 @@ So that User can re-upload Verification of Commercial Figures
 } do
 
   let!(:form_answer) do
-    create(:form_answer, :development, :submitted, :with_audit_certificate)
+    create(:form_answer, :submitted, :with_audit_certificate)
   end
 
   describe "Policies" do

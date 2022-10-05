@@ -73,11 +73,11 @@ class FormAnswerStatus::AssessorFilter
     recommendation_disperancy: {
       label: "Recommendation discrepancy"
     },
-    missing_audit_certificate: {
-      label: "Missing Verification of Commercial Figures"
+    missing_additional_finances: {
+      label: "Missing additional financials"
     },
-    audit_certificate_not_reviewed: {
-      label: "Verification of Commercial Figures - not reviewed yet"
+    additional_finances_not_reviewed: {
+      label: "Additional financials - not reviewed yet"
     },
     missing_feedback: {
       label: "Missing Feedback"

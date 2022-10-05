@@ -1,5 +1,5 @@
 class Users::AuditCertificatesController < Users::BaseController
-
+  before_action :check_if_vocf_is_required!
   before_action :check_if_audit_certificate_already_exist!, only: [:create]
 
   expose(:form_answer) do
@@ -109,6 +109,13 @@ class Users::AuditCertificatesController < Users::BaseController
   def check_if_audit_certificate_already_exist!
     if audit_certificate.present? && audit_certificate.persisted?
       head :ok
+      return
+    end
+  end
+
+  def check_if_vocf_is_required!
+    unless form_answer.requires_vocf?
+      redirect_to dashboard_url
       return
     end
   end

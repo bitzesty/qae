@@ -1,0 +1,43 @@
+.govuk-form-group
+  label.govuk-label class="govuk-!-font-size-24 govuk-!-font-weight-bold"
+    | Upload VAT Returns
+
+= render "file_upload_details"
+
+.js-upload-wrapper
+  ul.js-uploaded-list.no-bullets.list-group.list-add class=("govuk-!-display-none" unless figures_form.vat_returns_files.any?)
+    - figures_form.vat_returns_files.each do |vat_returns_file|
+      li.list-group-item.file
+        = render "file", item: vat_returns_file, mount_name: :attachment, url_method: "users_form_answer_vat_return_url"
+    li.list-group-item.file.dummy class="govuk-!-display-none"
+      = render "file", item: nil, mount_name: :attachment, url_method: "users_form_answer_vat_return_url"
+
+  .if-no-js-hide
+    - new_vat_returns_file = figures_form.vat_returns_files.build
+    = simple_form_for new_vat_returns_file,
+                      as: :vat_returns_file,
+                      url: users_form_answer_vat_returns_path(form_answer),
+                      html: {class: "qae-form vat-returns-upload-form", method: :post} do |f|
+      .errors-container
+        .govuk-error-message
+      .clear
+
+      span.govuk-button.govuk-button--secondary role="button"
+        span Upload a file
+        = f.input :attachment,
+                  as: :file,
+                  required: true,
+                  label: false,
+                  input_html: { class: "fileinput-button js-vat-returns-upload button", id: "upload_vat_reutrns_for_#{form_answer.id}", aria: { label: "Upload VAT returns for #{form_answer.id}" } },
+                  wrapper_html: { class: "govuk-!-margin-bottom-0" }
+
+      footer.display-none
+        nav.pagination role="navigation"
+          ul.group
+            li.submit
+              = f.submit "Upload", class: "govuk-button govuk-button--secondary"
+
+  .if-js-hide
+    = link_to "Upload a file", new_users_form_answer_vat_return_url(form_answer), class: "govuk-button govuk-button--secondary"
+    br
+    br

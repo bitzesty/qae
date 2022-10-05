@@ -440,6 +440,40 @@ ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
+-- Name: commercial_figures_files; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.commercial_figures_files (
+    id bigint NOT NULL,
+    attachment character varying,
+    attachment_scan_results character varying,
+    form_answer_id bigint,
+    shortlisted_documents_wrapper_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: commercial_figures_files_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.commercial_figures_files_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: commercial_figures_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.commercial_figures_files_id_seq OWNED BY public.commercial_figures_files.id;
+
+
+--
 -- Name: deadlines; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1103,6 +1137,43 @@ CREATE SEQUENCE public.settings_id_seq
 --
 
 ALTER SEQUENCE public.settings_id_seq OWNED BY public.settings.id;
+
+
+--
+-- Name: shortlisted_documents_wrappers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.shortlisted_documents_wrappers (
+    id bigint NOT NULL,
+    form_answer_id bigint,
+    submitted_at timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    status character varying,
+    reviewable_type character varying,
+    reviewable_id integer,
+    reviewed_at timestamp without time zone,
+    changes_description text
+);
+
+
+--
+-- Name: shortlisted_documents_wrappers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.shortlisted_documents_wrappers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: shortlisted_documents_wrappers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.shortlisted_documents_wrappers_id_seq OWNED BY public.shortlisted_documents_wrappers.id;
 
 
 --
@@ -2563,6 +2634,40 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: vat_returns_files; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.vat_returns_files (
+    id bigint NOT NULL,
+    attachment character varying,
+    attachment_scan_results character varying,
+    form_answer_id bigint,
+    shortlisted_documents_wrapper_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: vat_returns_files_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.vat_returns_files_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: vat_returns_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.vat_returns_files_id_seq OWNED BY public.vat_returns_files.id;
+
+
+--
 -- Name: version_associations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2700,6 +2805,13 @@ ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.com
 
 
 --
+-- Name: commercial_figures_files id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.commercial_figures_files ALTER COLUMN id SET DEFAULT nextval('public.commercial_figures_files_id_seq'::regclass);
+
+
+--
 -- Name: deadlines id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2819,6 +2931,13 @@ ALTER TABLE ONLY public.settings ALTER COLUMN id SET DEFAULT nextval('public.set
 
 
 --
+-- Name: shortlisted_documents_wrappers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shortlisted_documents_wrappers ALTER COLUMN id SET DEFAULT nextval('public.shortlisted_documents_wrappers_id_seq'::regclass);
+
+
+--
 -- Name: site_feedbacks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2851,6 +2970,13 @@ ALTER TABLE ONLY public.supporters ALTER COLUMN id SET DEFAULT nextval('public.s
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: vat_returns_files id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vat_returns_files ALTER COLUMN id SET DEFAULT nextval('public.vat_returns_files_id_seq'::regclass);
 
 
 --
@@ -2953,6 +3079,14 @@ ALTER TABLE ONLY public.case_summary_hard_copy_pdfs
 
 ALTER TABLE ONLY public.comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: commercial_figures_files commercial_figures_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.commercial_figures_files
+    ADD CONSTRAINT commercial_figures_files_pkey PRIMARY KEY (id);
 
 
 --
@@ -3100,6 +3234,14 @@ ALTER TABLE ONLY public.settings
 
 
 --
+-- Name: shortlisted_documents_wrappers shortlisted_documents_wrappers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shortlisted_documents_wrappers
+    ADD CONSTRAINT shortlisted_documents_wrappers_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: site_feedbacks site_feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3140,6 +3282,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: vat_returns_files vat_returns_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vat_returns_files
+    ADD CONSTRAINT vat_returns_files_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: version_associations version_associations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3153,6 +3303,13 @@ ALTER TABLE ONLY public.version_associations
 
 ALTER TABLE ONLY public.versions
     ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: commercial_figures_files_sdw_ibd; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX commercial_figures_files_sdw_ibd ON public.commercial_figures_files USING btree (shortlisted_documents_wrapper_id);
 
 
 --
@@ -3279,6 +3436,13 @@ CREATE INDEX index_comments_on_commentable_id ON public.comments USING btree (co
 --
 
 CREATE INDEX index_comments_on_commentable_type ON public.comments USING btree (commentable_type);
+
+
+--
+-- Name: index_commercial_figures_files_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_commercial_figures_files_on_form_answer_id ON public.commercial_figures_files USING btree (form_answer_id);
 
 
 --
@@ -3450,6 +3614,13 @@ CREATE UNIQUE INDEX index_settings_on_award_year_id ON public.settings USING btr
 
 
 --
+-- Name: index_shortlisted_documents_wrappers_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_shortlisted_documents_wrappers_on_form_answer_id ON public.shortlisted_documents_wrappers USING btree (form_answer_id);
+
+
+--
 -- Name: index_support_letter_attachments_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3545,6 +3716,20 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 --
 
 CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
+
+
+--
+-- Name: index_vat_returns_files_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vat_returns_files_on_form_answer_id ON public.vat_returns_files USING btree (form_answer_id);
+
+
+--
+-- Name: index_vat_returns_files_on_shortlisted_documents_wrapper_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vat_returns_files_on_shortlisted_documents_wrapper_id ON public.vat_returns_files USING btree (shortlisted_documents_wrapper_id);
 
 
 --
@@ -3905,6 +4090,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201023115307'),
 ('20211103110822'),
 ('20220427093339'),
-('20220428081645');
+('20220428081645'),
+('20220906085430'),
+('20220906085443'),
+('20220906085454'),
+('20220927093210');
 
 

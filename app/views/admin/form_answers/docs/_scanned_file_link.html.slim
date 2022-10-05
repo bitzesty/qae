@@ -1,0 +1,9 @@
+- if file.clean?
+  li
+    = link_to file.original_filename, [url_namespace, resource.object, file], target: "_blank"
+- elsif file.attachment_scan_results.blank?
+  li style="color:green"
+    = "Scanning #{file.class.name.underscore.humanize.downcase}. You may need to refresh the page."
+- elsif file.attachment_scan_results == "infected"
+  li
+    = "Failed virus scanner check (#{file.class.name.underscore.humanize.downcase})"
