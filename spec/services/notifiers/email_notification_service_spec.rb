@@ -123,9 +123,14 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "shortlisted_po_sd_reminder" }
     let(:form_answer) { create(:form_answer, :mobility, :submitted, state: "recommended") }
     let(:fa_no_notification) { create(:form_answer, :trade, :submitted, state: "recommended") }
+    let(:fa_with_submitted_docs) { create(:form_answer, :mobility, :submitted, state: "recommended") }
     let(:mailer) { double(deliver_later!: true) }
 
     it "triggers current notification" do
+      sdw = create(:shortlisted_documents_wrapper, form_answer: fa_with_submitted_docs)
+      create(:vat_returns_file, shortlisted_documents_wrapper: sdw)
+      sdw.submit
+
       expect(Users::ShortlistedReminderMailer).to receive(:notify).with(
         form_answer.id,
         user.id

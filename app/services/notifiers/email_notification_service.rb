@@ -119,8 +119,7 @@ class Notifiers::EmailNotificationService
     collaborator_data = []
 
     award_year.form_answers.where(award_type: %w(mobility development)).shortlisted.each do |form_answer|
-      # TODO: add check for figures and VAT returns
-      # next if form_answer.audit_certificate
+      next if form_answer.shortlisted_documents_wrapper.try(:submitted?)
 
       form_answer.collaborators.each do |collaborator|
         collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }
