@@ -130,7 +130,6 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
 
-
     assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
     assigns[:deadline_date] = deadline_str("audit_certificates")
 
@@ -144,8 +143,6 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
-    assigns[:question_refs] = "C4.1, C4.2 and C4.3"
-
 
     assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
     assigns[:deadline_date] = deadline_str("audit_certificates")
