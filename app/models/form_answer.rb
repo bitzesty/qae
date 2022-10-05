@@ -164,6 +164,9 @@ class FormAnswer < ApplicationRecord
     scope :primary_and_secondary_appraisals_are_not_match, -> {
       where("discrepancies_between_primary_and_secondary_appraisals::text <> '{}'::text")
     }
+
+    scope :require_vocf, -> { where(award_type: %w[trade innovation]) }
+    scope :vocf_free, -> { where(award_type: %w[mobility development]) }
   end
 
   begin :callbacks
@@ -393,6 +396,9 @@ class FormAnswer < ApplicationRecord
   end
 
   def requires_vocf?
+    return false if !business?
+    return true if award_year && award_year.before_vocf_switch?
+
     %w(trade innovation).include?(award_type)
   end
 
