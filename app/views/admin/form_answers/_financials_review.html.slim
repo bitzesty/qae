@@ -41,7 +41,7 @@
       = render "admin/form_answers/financial_summary/audit_certificate"
 - else # resource.requires_vocf?
   label.form-label Latest financial information
-  - if resource.shortlisted_documents_wrapper.submitted?
+  - if resource.shortlisted_documents_wrapper&.submitted?
     - review_form = ShortlistedDocumentsReviewForm.new(form_answer_id: resource.id, status: resource.shortlisted_documents_wrapper.status, changes_description: resource.shortlisted_documents_wrapper.changes_description)
 
     - if policy(resource).review_commercial_figures?
