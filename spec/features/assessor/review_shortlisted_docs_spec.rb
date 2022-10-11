@@ -22,7 +22,7 @@ describe "Assessor reviews the shortlisted docs" do
       end
 
       within "#financial-summary" do
-        expect(page).to have_selector("p", text: "No change necessary")
+        expect(page).to have_selector("label", text: "No change necessary")
       end
     end
 

@@ -68,7 +68,7 @@ class FormAnswerStatus::AdminFilter
       states: [:assessment_in_progress]
     },
     disqualified: {
-      label: "Disqualified - No Verification of Commercial Figures",
+      label: "Disqualified - no additional financials",
       states: [:disqualified]
     },
     recommended: {

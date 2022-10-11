@@ -243,7 +243,14 @@ class MailRenderer
     d = deadline(kind)
 
     if d.present?
-      d.strftime(format)
+      deadline_time = d.strftime(format)
+      if deadline_time == "12:00"
+        "noon"
+      elsif deadline_time == "00:00"
+        "midnight"
+      else
+        deadline_time
+      end
     else
       DateTime.new(Date.current.year, 9, 21, 10, 30).strftime(format)
     end
