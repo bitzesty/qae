@@ -1,11 +1,3 @@
-- if policy(resource).download_commercial_figures?
-  ul
-    - docs_wrapper.vat_returns_files.each do |vat_returns_file|
-      - if vat_returns_file.clean?
-        = link_to vat_returns_file.original_filename, [namespace_name, resource.object, vat_returns_file], target: "_blank"
-    - if (cff = docs_wrapper.commercial_figures_file) && cff.clean?
-        = link_to cff.original_filename, [namespace_name, resource.object, cff], target: "_blank"
-
 .form-value
   - if !docs_wrapper.reviewed?
     p.audit-cert-nil-val Not confirmed yet.
