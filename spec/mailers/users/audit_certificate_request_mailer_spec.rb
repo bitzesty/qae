@@ -22,7 +22,7 @@ describe Users::AuditCertificateRequestMailer do
   end
 
   describe "#notify" do
-    let(:mail) { Users::AuditCertificateRequestMailer.notify(form_answer.id, user.id) }
+    let(:mail) { described_class.notify(form_answer.id, user.id) }
 
     it "renders the headers" do
       expect(mail.subject).to eq(subject)

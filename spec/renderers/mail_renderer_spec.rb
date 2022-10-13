@@ -30,9 +30,25 @@ describe MailRenderer do
     end
   end
 
+  describe "#shortlisted_po_sd_reminder" do
+    it "renders e-mail" do
+      rendered = described_class.new.shortlisted_po_sd_reminder
+      expect(rendered).to match("Jane Doe")
+      # placeholder for date if deadlines are not set
+      expect(rendered).to match(deadline_str)
+    end
+  end
+
   describe "#shortlisted_notifier" do
     it "renders e-mail" do
       rendered = described_class.new.shortlisted_notifier
+      expect(rendered).to match("Jon Doe")
+    end
+  end
+
+  describe "#shortlisted_po_sd_notifier" do
+    it "renders e-mail" do
+      rendered = described_class.new.shortlisted_po_sd_notifier
       expect(rendered).to match("Jon Doe")
     end
   end

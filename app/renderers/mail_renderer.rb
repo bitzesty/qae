@@ -106,6 +106,17 @@ class MailRenderer
     render(assigns, "users/audit_certificate_request_mailer/preview/notify")
   end
 
+  def shortlisted_po_sd_reminder
+    assigns = {}
+
+    assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company").decorate
+    assigns[:form_answer] = form_answer
+    assigns[:deadline] = deadline_str("audit_certificates")
+    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+
+    render(assigns, "users/shortlisted_reminder_mailer/preview/notify")
+  end
+
   def not_shortlisted_notifier
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
@@ -119,13 +130,26 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
 
-
     assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
     assigns[:deadline_date] = deadline_str("audit_certificates")
 
     assigns[:award_type_full_name] = "Innovation"
 
     render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify")
+  end
+
+  def shortlisted_po_sd_notifier
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+
+    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_date] = deadline_str("audit_certificates")
+
+    assigns[:award_type_full_name] = "Innovation"
+
+    render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify_po_sd")
   end
 
   def winners_notification
@@ -219,7 +243,14 @@ class MailRenderer
     d = deadline(kind)
 
     if d.present?
-      d.strftime(format)
+      deadline_time = d.strftime(format)
+      if deadline_time == "12:00"
+        "noon"
+      elsif deadline_time == "00:00"
+        "midnight"
+      else
+        deadline_time
+      end
     else
       DateTime.new(Date.current.year, 9, 21, 10, 30).strftime(format)
     end

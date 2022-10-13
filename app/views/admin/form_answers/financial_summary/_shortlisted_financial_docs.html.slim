@@ -1,0 +1,23 @@
+.form-value
+  - if !docs_wrapper.reviewed?
+    p.audit-cert-nil-val Not confirmed yet.
+  - else
+    - if docs_wrapper.no_changes_necessary?
+      p No change necessary
+    - elsif docs_wrapper.confirmed_changes?
+      .audit
+        label.control-label Changes made
+        p
+          = docs_wrapper.changes_description.presence || "-"
+
+.if-js-hide
+  - if !docs_wrapper.reviewed?
+    p.audit-cert-nil-val Not confirmed yet.
+  - else
+    - if docs_wrapper.no_changes_necessary?
+      p No change necessary
+    - elsif docs_wrapper.confirmed_changes?
+      .audit
+        label.control-label Changes made
+        p
+          = docs_wrapper.changes_description.presence || "-"

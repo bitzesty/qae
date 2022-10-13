@@ -6,5 +6,7 @@
   #section-final-stage-email-notifications.section-appraisal-form.section-final-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-email-notifications-heading"
     .panel-body
       = render 'email_notification', kind: 'shortlisted_notifier'
+      = render 'email_notification', kind: 'shortlisted_po_sd_notifier'
       = render 'email_notification', kind: 'shortlisted_audit_certificate_reminder'
+      = render 'email_notification', kind: 'shortlisted_po_sd_reminder'
       = render 'email_notification', kind: 'not_shortlisted_notifier'

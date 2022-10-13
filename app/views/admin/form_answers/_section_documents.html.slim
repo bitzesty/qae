@@ -27,8 +27,9 @@
     - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
       br
       .sidebar-section.no-margin-bottom
-        #audit-certificate-form
-          = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate
+        - if @form_answer.requires_vocf?
+          #audit-certificate-form
+            = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section

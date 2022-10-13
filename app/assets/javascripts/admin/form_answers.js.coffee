@@ -14,6 +14,7 @@ ready = ->
   handleWinnersForm()
   handleReviewAuditCertificate()
   handleRemovingOfAuditCertificate()
+  handleReviewFinancials()
 
   # Move the attach document button
   moveAttachDocumentButton = ->
@@ -444,6 +445,33 @@ handleReviewAuditCertificate = ->
 
   $(".edit-review-audit").on "click", (e) ->
     $(".save-review-audit").show()
+
+handleReviewFinancials = ->
+  $("#new_shortlisted_documents_review_form input[type='radio']").on "change", ->
+    area = $(".review-docs-description")
+    if $(this).val() == "confirmed_changes"
+      area.removeClass("if-js-hide")
+    else
+      area.addClass("if-js-hide")
+
+  $("#new_shortlisted_documents_review_form").on "ajax:success", (e, data, status, xhr) ->
+    $(this).find(".form-group").removeClass("form-edit")
+    $(".save-docs-review").hide()
+    area = $(".review-docs-description textarea")
+    confirmedChanges = $("#radio-docs-review2")
+    unless confirmedChanges.prop("checked")
+      $(this).find(".form-value").html($("<p>No change necessary</p>"))
+    else
+      div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
+      $(this).find(".form-value").html(div)
+
+  $("#new_shortlisted_documents_review_form").on "click", ".save-docs-review", (e) ->
+    e.preventDefault()
+    $("#new_shortlisted_documents_review_form").submit()
+
+  $(".edit-review-financials").on "click", (e) ->
+    $(".save-docs-review").show()
+
 
 handleRemovingOfAuditCertificate = ->
   $(document).on "click", ".js-remove-audit-certificate-link", (e) ->
