@@ -1,5 +1,6 @@
 class Users::VatReturnsController < Users::BaseController
   include CommercialFiguresMixin
+  include FiguresAuthorisationCheck
 
   def new
     @form_answer = form_answer

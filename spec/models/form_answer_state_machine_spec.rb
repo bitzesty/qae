@@ -84,6 +84,10 @@ describe FormAnswerStateMachine do
 
       context "non-VoCF forms" do
         before do
+          mobility_fa.document["product_estimated_figures"] = "yes"
+          mobility_fa.document["product_estimates_use"] = "text"
+          mobility_fa.save!
+
           form_answer.update(state: "assessment_in_progress")
           create(:audit_certificate, form_answer: form_answer)
         end

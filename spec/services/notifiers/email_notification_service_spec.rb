@@ -123,8 +123,22 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "shortlisted_po_sd_reminder" }
     let(:form_answer) { create(:form_answer, :mobility, :submitted, state: "recommended") }
     let(:fa_no_notification) { create(:form_answer, :trade, :submitted, state: "recommended") }
+    let(:fa_actual_figures) { create(:form_answer, :mobility, :submitted, state: "recommended") }
     let(:fa_with_submitted_docs) { create(:form_answer, :mobility, :submitted, state: "recommended") }
     let(:mailer) { double(deliver_later!: true) }
+
+    before do
+      form_answer.document["product_estimated_figures"] = "yes"
+      form_answer.document["product_estimates_use"] = "text"
+      form_answer.save!
+
+      fa_with_submitted_docs.document["product_estimated_figures"] = "yes"
+      fa_with_submitted_docs.document["product_estimates_use"] = "text"
+      fa_with_submitted_docs.save!
+
+      fa_actual_figures.document["product_estimated_figures"] = "no"
+      fa_actual_figures.save!
+    end
 
     it "triggers current notification" do
       sdw = create(:shortlisted_documents_wrapper, form_answer: fa_with_submitted_docs)
