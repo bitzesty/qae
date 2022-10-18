@@ -1,5 +1,7 @@
 class Users::ActualFiguresController < Users::BaseController
   include CommercialFiguresMixin
+  include FiguresAuthorisationCheck
+
   def new
     @form_answer = form_answer
     @actual_figures = figures_wrapper.build_commercial_figures_file
