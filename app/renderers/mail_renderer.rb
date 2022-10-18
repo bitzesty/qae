@@ -147,7 +147,7 @@ class MailRenderer
     assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
     assigns[:deadline_date] = deadline_str("audit_certificates")
 
-    assigns[:award_type_full_name] = "Innovation"
+    assigns[:award_type_full_name] = "Sustainable Development"
 
     render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify_po_sd")
   end
