@@ -56,7 +56,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'], port: 3000 }
-  config.action_mailer.asset_host = "https://#{ENV['ASSET_HOST']}"
+  config.action_mailer.asset_host = "https://#{ENV['COOKIE_DOMAIN']}"
   config.action_mailer.delivery_method = :letter_opener
   # config.action_mailer.delivery_method = :notify
   # config.action_mailer.notify_settings = {
