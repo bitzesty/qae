@@ -25,7 +25,12 @@
 
       .content-right.content-offset-24
         p.govuk-body
-          ' Please review the following actions to complete your shortlisted application.
+          - if award.requires_vocf? || award.provided_estimates?
+            ' Please review the following actions to complete your shortlisted application.
+          - else
+            ' If you have already provided actual figures along with your application, you do not need to do anything further.
+            br
+
           = link_to users_form_answer_path(award, format: :pdf), "target" => "_blank", "aria-label" => "Download application #{award.id} for #{award.award_type_full_name + ' Award'}", class: 'govuk-link' do
             | Download your aplication
 
@@ -54,7 +59,7 @@
                 = link_to "Download the external accountant’s report form", users_form_answer_audit_certificate_url(award, format: :pdf), "aria-label" => "Download the external accountant’s report form for #{award.id} for #{award.award_type_full_name + 'Award'}", class: 'govuk-link'
               li
                 = link_to "Provide verification of commercial figures", users_form_answer_audit_certificate_url(award), class: "govuk-button govuk-!-margin-bottom-0", "aria-label" => "Provide verification of commercial figures for #{award.id} #{award.award_type_full_name + 'Award'}"
-          - else # if award.requires_vocf?
+          - elsif award.provided_estimates? # if award.requires_vocf?
             li
               strong
                 | Latest financial information

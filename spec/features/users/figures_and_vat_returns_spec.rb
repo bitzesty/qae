@@ -7,6 +7,10 @@ describe "User uploads VAT returns and actual figures" do
   let!(:form_answer) { create(:form_answer, :mobility, :recommended, user: user) }
 
   before do
+    form_answer.document["product_estimated_figures"] = "yes"
+    form_answer.document["product_estimates_use"] = "text"
+    form_answer.save!
+
     login_as user
 
     settings.email_notifications.create!(

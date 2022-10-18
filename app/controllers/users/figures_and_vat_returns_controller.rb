@@ -1,4 +1,6 @@
 class Users::FiguresAndVatReturnsController < Users::BaseController
+  include FiguresAuthorisationCheck
+
   def show
     @figures_form = form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
     @figures_form.save! if !@figures_form.persisted?
