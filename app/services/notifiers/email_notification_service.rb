@@ -118,7 +118,7 @@ class Notifiers::EmailNotificationService
   def shortlisted_po_sd_reminder(award_year)
     collaborator_data = []
 
-    award_year.form_answers.where(award_type: %w(mobility development)).shortlisted.each do |form_answer|
+    award_year.form_answers.where(award_type: %w(mobility development)).shortlisted.provided_estimates.each do |form_answer|
       next if form_answer.shortlisted_documents_wrapper.try(:submitted?)
 
       form_answer.collaborators.each do |collaborator|

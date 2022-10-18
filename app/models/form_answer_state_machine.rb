@@ -84,7 +84,7 @@ class FormAnswerStateMachine
         end
       end
 
-      current_year.form_answers.vocf_free.where(state: "assessment_in_progress").find_each do |fa|
+      current_year.form_answers.vocf_free.provided_estimates.where(state: "assessment_in_progress").find_each do |fa|
         if !fa.shortlisted_documents_wrapper || !fa.shortlisted_documents_wrapper.submitted?
           fa.state_machine.perform_transition("disqualified")
         end
