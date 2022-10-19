@@ -211,9 +211,9 @@
   clear: both;
 
   &.award-list {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid $grey-2;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid $grey-2;
   }
 }
 
@@ -290,7 +290,6 @@ $status-green: #3b816f;
     position: relative;
     margin-left: 0;
     padding-left: 0;
-    clear: both;
     font-family: "GDS Transport", arial, sans-serif;
     font-size: 19px;
 
@@ -317,7 +316,7 @@ $status-green: #3b816f;
   .label-status {
     position: absolute;
     top: 2px;
-    right: 200px;
+    right: 180px;
 
     @media (max-width: 1000px) {
       position: static;
@@ -348,4 +347,12 @@ $status-green: #3b816f;
 
 .palace-attendees-info-note p {
   font-weight: normal;
+}
+
+ul.no-bullet {
+  list-style: none;
+
+  li {
+    list-style-type: none;
+  }
 }

@@ -1,0 +1,47 @@
+- title "The latest financial information"
+
+header.page-header.group class=('page-header-wider govuk-!-margin-bottom-0')
+  h1.govuk-heading-xl The latest financial information
+.article-container
+  article.group role="article"
+    .inner
+      - if @figures_form.errors[:base].present?
+        .field-with-errors
+          - @figures_form.errors[:base].each do |error|
+            span.error.govuk-error-message
+              = error
+
+      p.govuk-body Please continue with the following steps:
+      p.govuk-body
+        ol.govuk-list.govuk-list--number
+          li Upload any latest financial statements and VAT returns (in the “Latest financial statements and VAT returns” section on this page).
+          li
+            | Check how the estimated figures you provided in section C of your application form compare with the actuals. (If you do not have your filled-in application form handy, please
+            =< link_to("download your application form", users_form_answer_url(@form_answer, format: :pdf))
+            | .)
+          li
+            | You will have to create and submit a separate variance explanation document (in the “Variance explanation document” section on this page), if:
+            ul.govuk-list.no-bullet
+              li
+                | a) any of the actual figures are worse by 10% or more. Please explain the reasons for the difference.
+              li
+                | b) the actuals include losses that you did not state on your application form. Please explain the reasons for the losses and how your business is financially viable.
+
+      p.govuk-body
+        - deadline = Settings.current_audit_certificates_deadline.decorate
+        ' You can leave and continue later if needed - any uploaded documents have been saved. However, please complete all applicable steps and make sure to confirm submission by
+        = deadline.formatted_trigger_time
+        | .
+
+
+      .vat-returns-wrapper
+        = render "vat_returns", form_answer: @form_answer, figures_form: @figures_form
+      .actual-figures-wrapper
+        = render "actual_figures", form_answer: @form_answer, figures_form: @figures_form
+
+      = simple_form_for @figures_form, url: submit_users_form_answer_figures_and_vat_returns_url(@form_answer, @figures_form) do |f|
+        footer
+          nav.pagination.no-border aria-label="Pagination" role="navigation"
+            .govuk-button-group
+              = link_to "Continue later", dashboard_path, class: "govuk-button govuk-button--secondary"
+              = f.submit "Confirm submission", class: "govuk-button"

@@ -34,6 +34,10 @@ FactoryBot.define do
       innovation_role { "lead" }
     end
 
+    trait :lead_for_mobility do
+      mobility_role { "lead" }
+    end
+
     trait :lead_for_development_mobility do
       development_role { "lead" }
       mobility_role { "lead" }

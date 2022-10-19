@@ -81,8 +81,16 @@ class Notifiers::EmailNotificationService
 
   def shortlisted_notifier(award_year)
     gather_data_and_send_emails!(
-      award_year.form_answers.business.shortlisted,
+      award_year.form_answers.shortlisted.where(award_type: %w(innovation trade)),
       AccountMailers::NotifyShortlistedMailer
+    )
+  end
+
+  def shortlisted_po_sd_notifier(award_year)
+    gather_data_and_send_emails!(
+      award_year.form_answers.shortlisted.where(award_type: %w(mobility development)),
+      AccountMailers::NotifyShortlistedMailer,
+      :notify_po_sd
     )
   end
 
@@ -96,7 +104,7 @@ class Notifiers::EmailNotificationService
   def shortlisted_audit_certificate_reminder(award_year)
     collaborator_data = []
 
-    award_year.form_answers.business.shortlisted.each do |form_answer|
+    award_year.form_answers.where(award_type: %w(innovation trade)).shortlisted.each do |form_answer|
       next if form_answer.audit_certificate
 
       form_answer.collaborators.each do |collaborator|
@@ -105,6 +113,20 @@ class Notifiers::EmailNotificationService
     end
 
     send_emails_to_collaborators!(collaborator_data, Users::AuditCertificateRequestMailer)
+  end
+
+  def shortlisted_po_sd_reminder(award_year)
+    collaborator_data = []
+
+    award_year.form_answers.where(award_type: %w(mobility development)).shortlisted.provided_estimates.each do |form_answer|
+      next if form_answer.shortlisted_documents_wrapper.try(:submitted?)
+
+      form_answer.collaborators.each do |collaborator|
+        collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }
+      end
+    end
+
+    send_emails_to_collaborators!(collaborator_data, Users::ShortlistedReminderMailer)
   end
 
   def unsuccessful_notification(award_year)
@@ -182,14 +204,15 @@ class Notifiers::EmailNotificationService
     collaborator_data
   end
 
-  def gather_data_and_send_emails!(scope, mailer)
+  def gather_data_and_send_emails!(scope, mailer, mailer_method = :notify)
     collaborator_data = formatted_collaborator_data(scope)
-    send_emails_to_collaborators!(collaborator_data, mailer)
+    send_emails_to_collaborators!(collaborator_data, mailer, mailer_method)
   end
 
-  def send_emails_to_collaborators!(data, mailer)
+  def send_emails_to_collaborators!(data, mailer, mailer_method = :notify)
     data.each do |entry|
-      mailer.notify(
+      mailer.public_send(
+        mailer_method,
         entry[:form_answer_id],
         entry[:collaborator_id]
       ).deliver_later!

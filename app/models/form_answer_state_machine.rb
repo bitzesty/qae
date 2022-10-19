@@ -78,8 +78,14 @@ class FormAnswerStateMachine
     if Settings.after_current_audit_certificates_deadline?
       current_year = Settings.current.award_year
 
-      current_year.form_answers.where(state: "assessment_in_progress").find_each do |fa|
+      current_year.form_answers.require_vocf.where(state: "assessment_in_progress").find_each do |fa|
         if !fa.audit_certificate || fa.audit_certificate.attachment.blank?
+          fa.state_machine.perform_transition("disqualified")
+        end
+      end
+
+      current_year.form_answers.vocf_free.provided_estimates.where(state: "assessment_in_progress").find_each do |fa|
+        if !fa.shortlisted_documents_wrapper || !fa.shortlisted_documents_wrapper.submitted?
           fa.state_machine.perform_transition("disqualified")
         end
       end

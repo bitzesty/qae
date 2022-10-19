@@ -98,12 +98,12 @@ FactoryBot.define do
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_development.json"))
+            File.read(Rails.root.join("spec/fixtures/form_answer_trade.json"))
           )
         )
       end
       audit_certificate
-      award_type { "development" }
+      award_type { "trade" }
       state { "submitted" }
       submitted_at { Time.current }
     end

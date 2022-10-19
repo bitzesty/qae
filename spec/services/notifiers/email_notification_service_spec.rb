@@ -103,7 +103,8 @@ describe Notifiers::EmailNotificationService do
 
   context "shortlisted_audit_certificate_reminder" do
     let(:kind) { "shortlisted_audit_certificate_reminder" }
-    let(:form_answer) { create(:form_answer, :trade, :submitted) }
+    let(:form_answer) { create(:form_answer, :trade, :submitted, state: "recommended") }
+    let(:fa_no_notification) { create(:form_answer, :mobility, :submitted, state: "recommended") }
     let(:mailer) { double(deliver_later!: true) }
 
     it "triggers current notification" do
@@ -112,7 +113,42 @@ describe Notifiers::EmailNotificationService do
         user.id
       ) { mailer }
 
-      expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "shortlisted_po_sd_reminder" do
+    let(:kind) { "shortlisted_po_sd_reminder" }
+    let(:form_answer) { create(:form_answer, :mobility, :submitted, state: "recommended") }
+    let(:fa_no_notification) { create(:form_answer, :trade, :submitted, state: "recommended") }
+    let(:fa_actual_figures) { create(:form_answer, :mobility, :submitted, state: "recommended") }
+    let(:fa_with_submitted_docs) { create(:form_answer, :mobility, :submitted, state: "recommended") }
+    let(:mailer) { double(deliver_later!: true) }
+
+    before do
+      form_answer.document["product_estimated_figures"] = "yes"
+      form_answer.document["product_estimates_use"] = "text"
+      form_answer.save!
+
+      fa_with_submitted_docs.document["product_estimated_figures"] = "yes"
+      fa_with_submitted_docs.document["product_estimates_use"] = "text"
+      fa_with_submitted_docs.save!
+
+      fa_actual_figures.document["product_estimated_figures"] = "no"
+      fa_actual_figures.save!
+    end
+
+    it "triggers current notification" do
+      sdw = create(:shortlisted_documents_wrapper, form_answer: fa_with_submitted_docs)
+      create(:vat_returns_file, shortlisted_documents_wrapper: sdw)
+      sdw.submit
+
+      expect(Users::ShortlistedReminderMailer).to receive(:notify).with(
+        form_answer.id,
+        user.id
+      ) { mailer }
 
       described_class.run
 
@@ -139,11 +175,30 @@ describe Notifiers::EmailNotificationService do
 
   context "shortlisted_notifier" do
     let(:kind) { "shortlisted_notifier" }
-    let(:form_answer) { create(:form_answer, state: "recommended") }
+    let(:form_answer) { create(:form_answer, :trade, state: "recommended") }
+    let(:fa_not_notified) { create(:form_answer, :mobility, state: "recommended") }
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
       expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify).with(
+        form_answer.id,
+        user.id
+      ) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "shortlisted_po_sd_notifier" do
+    let(:kind) { "shortlisted_po_sd_notifier" }
+    let(:form_answer) { create(:form_answer, :mobility, state: "recommended") }
+    let(:fa_not_notified) { create(:form_answer, :trade, state: "recommended") }
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd).with(
         form_answer.id,
         user.id
       ) { mailer }
