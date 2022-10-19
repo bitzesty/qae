@@ -79,6 +79,6 @@
               = link_to "Save", "#", class: "btn btn-primary save-docs-review pull-right", style: "display: none"
 
           .clear
-  - else
+  - elsif resource.provided_estimates?
     p.govuk-body
       | Latest financial documents have not been submitted yet
