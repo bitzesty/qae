@@ -16,7 +16,13 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
 
     @forms << create(:form_answer, :development, state: "application_in_progress")
     @forms << create(:form_answer, :trade, state: "not_eligible")
-    @forms << create(:form_answer, :mobility, state: "assessment_in_progress")
+
+    mob = create(:form_answer, :mobility, state: "assessment_in_progress")
+    mob.document["product_estimated_figures"] = "yes"
+    mob.document["product_estimates_use"] = "text"
+    mob.save!
+    @forms << mob
+
     @forms << create(:form_answer, :innovation, state: "assessment_in_progress")
 
     # 0111 - is default sic_code, came from spec/fixtures/*.json

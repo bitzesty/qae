@@ -87,7 +87,7 @@ class FormAnswerSearch < Search
           "LEFT OUTER JOIN award_years awd_yrs ON awd_yrs.id = form_answers.award_year_id"
         ).where("(awd_yrs.year >= 2023 AND (
                    (form_answers.award_type IN ('trade', 'innovation') AND audit_certificates.id IS NULL)
-                   OR (form_answers.award_type IN ('development', 'mobility') AND shortlisted_documents_wrappers.submitted_at IS NULL)
+                   OR (form_answers.award_type IN ('development', 'mobility') AND form_answers.document #>> '{product_estimated_figures}' = 'yes' AND shortlisted_documents_wrappers.submitted_at IS NULL)
                  )
                  OR (awd_yrs.year < 2023 AND audit_certificates.id IS NULL))")
       when "additional_finances_not_reviewed"
@@ -99,7 +99,7 @@ class FormAnswerSearch < Search
           "LEFT OUTER JOIN award_years awd_yrs ON awd_yrs.id = form_answers.award_year_id"
         ).where("(awd_yrs.year >= 2023 AND (
                    (form_answers.award_type IN ('trade', 'innovation') AND audit_certificates.reviewed_at IS NULL)
-                   OR (form_answers.award_type IN ('development', 'mobility') AND shortlisted_documents_wrappers.reviewed_at IS NULL)
+                   OR (form_answers.award_type IN ('development', 'mobility') AND form_answers.document #>> '{product_estimated_figures}' = 'yes' AND shortlisted_documents_wrappers.reviewed_at IS NULL)
                  )
                  OR (awd_yrs.year < 2023 AND audit_certificates.reviewed_at IS NULL))")
       when "missing_feedback"
