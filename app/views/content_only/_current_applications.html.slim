@@ -4,8 +4,7 @@
       .govuk-summary-list__row
         dt.govuk-summary-list__key
           h3.govuk-heading-s
-            - app_name = award.decorate.application_name
-            = app_name == "Promoting Opportunity" ? "Social Mobility" : app_name
+            = award.decorate.application_name
           br
           span.govuk-body-s
             = award.award_type_full_name
