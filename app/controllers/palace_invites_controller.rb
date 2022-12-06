@@ -1,6 +1,7 @@
 class PalaceInvitesController < ApplicationController
   before_action :load_invite
   before_action :require_palace_invite_to_be_not_submitted_and_proper_stage!
+  before_action :check_reception_attendee_information_deadline!
 
   def update
     if palace_invite_attributes.present? &&
@@ -57,6 +58,15 @@ class PalaceInvitesController < ApplicationController
 
       return
     end
+  end
+
+  def check_reception_attendee_information_deadline!
+    return if @invite.submitted?
+    return unless @invite.form_answer.award_year.fetch_deadline("buckingham_palace_reception_attendee_information_due_by")&.trigger_at&.past?
+
+    redirect_to palace_invite_expired_url(id: @invite.token)
+
+    return
   end
 
   def action_type
