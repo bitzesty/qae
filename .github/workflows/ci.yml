@@ -6,7 +6,7 @@ jobs:
     services:
       db:
         image: postgres:12-alpine
-        ports: ["5432:5432"]
+        ports: ['5432:5432']
         env:
           POSTGRES_DB: qae_test
           POSTGRES_USER: postgres
@@ -18,7 +18,7 @@ jobs:
           --health-retries 5
       redis:
         image: redis
-        ports: ["6379:6379"]
+        ports: ['6379:6379']
         options: --entrypoint redis-server
 
     steps:
@@ -42,10 +42,10 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 2.7.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: "16"
+          node-version: '16'
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
       - name: Build and run tests
@@ -81,10 +81,10 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 2.7.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: "16"
+          node-version: '16'
       - name: "Deploy dev"
         env:
           name: dev
@@ -122,10 +122,10 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 2.7.6
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: "16"
+          node-version: '16'
       - name: "Deploy staging"
         env:
           name: staging
