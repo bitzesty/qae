@@ -23,6 +23,14 @@ class Reports::CasesStatusReport
       method: :sic_code_description
     },
     {
+      label: "Employees",
+      method: :employees
+    },
+    {
+      label: "ProductService",
+      method: :product_service
+    },
+    {
       label: "FirstAssessor",
       method: :first_assessor
     },
