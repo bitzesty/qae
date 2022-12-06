@@ -1,4 +1,6 @@
-## ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) Queen's Awards for Enterprise
+
+![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) Queen's Awards for Enterprise
+---------------------------
 
 "QAE" is the application which powers the application process for The Queen's Awards for Enterprise.
 
@@ -6,12 +8,12 @@
 
 ## Pre-requisites
 
-- Ruby 2.7.7
-- `gem install bundler -v 2.3.4`
-- Rails 6.1
-- Postgresql 9.5+
-- Redis 2.8
-- Cloudfountry Client
+* Ruby 2.7.6
+* `gem install bundler -v 2.3.4`
+* Rails 6.1
+* Postgresql 9.5+
+* Redis 2.8
+* Cloudfountry Client
 
 ### Running application
 
@@ -60,7 +62,8 @@ qae is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
 software, and may be redistributed under the terms specified in the
 [LICENSE] file.
 
-[license]: https://github.com/bitzesty/qae/blob/master/LICENSE
+[LICENSE]: https://github.com/bitzesty/qae/blob/master/LICENSE
+
 
 # About Bit Zesty
 
