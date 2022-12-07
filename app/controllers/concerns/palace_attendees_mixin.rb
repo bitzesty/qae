@@ -43,7 +43,7 @@ module PalaceAttendeesMixin
   def render_attendee_form(palace_attendee, invite)
     respond_to do |format|
       format.html do
-        if request.xhr?
+        if request.xhr? || request.format.js?
           render(
             partial: "admin/form_answers/winners_components/palace_attendee",
             locals: {
