@@ -146,6 +146,14 @@ class FormAnswer < ApplicationRecord
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
 
+    scope :by_registration_numbers, ->(*numbers) {
+      query = numbers.join("|")
+
+      where(
+        %Q{#{table_name}.document::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'}
+      )
+    }
+
     scope :past, -> {
       where(award_year_id: AwardYear.past.pluck(:id)).order("award_type")
     }
@@ -409,6 +417,19 @@ class FormAnswer < ApplicationRecord
 
   def shortlisted_documents_submitted?
     shortlisted_documents_wrapper&.submitted?
+  end
+
+  def other_applications_from_same_entity
+    content = self.document.dig("registration_number")
+    extracted_numbers = ::CompanyRegistrationNumber.extract_from(content)
+
+    return [] if extracted_numbers.empty?
+
+    self.class.submitted
+              .where.not(id: self.id)
+              .by_registration_numbers(*extracted_numbers)
+              .joins(:award_year)
+              .order("award_years.year DESC")
   end
 
   private

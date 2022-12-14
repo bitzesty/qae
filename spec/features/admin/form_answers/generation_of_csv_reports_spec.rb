@@ -27,7 +27,7 @@ describe "Admin generates the CSV reports" do
     let(:id) { "cases-status" }
     it "produces proper output" do
       expect(output.size).to eq(2)
-      expect(output[1][7]).to eq("No")
+      expect(output[1][9]).to eq("No")
       expect(output[1][-1]).to eq("Outstanding growth in the last 3 years")
     end
   end

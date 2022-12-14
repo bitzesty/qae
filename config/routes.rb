@@ -128,7 +128,9 @@ Rails.application.routes.draw do
     resources :form_answer_feedbacks, only: [:show]
   end
 
-  resource :palace_invite, only: [:edit, :update]
+  resource :palace_invite, only: [:edit, :update] do
+    resource :expired_palace_invite, only: [:show], as: "expired", path: "expired", on: :member
+  end
 
   # NON JS implementation - begin
   namespace :form do
