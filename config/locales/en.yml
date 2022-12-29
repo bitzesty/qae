@@ -179,7 +179,7 @@ en:
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
     winners_notification: "WINNERS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
-    winners_reminder_to_submit:" WINNERS : Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
+    winners_reminder_to_submit:" WINNERS: Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_head_of_organisation_notification: "WINNERS : Success email to the 'Head of Organisation' of the Business categories Winner."
     buckingham_palace_invite: "WINNERS : Buckingham Palace Invite - to heads of winning organisations only."
     unsuccessful_notification: "UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder."
@@ -210,6 +210,10 @@ en:
       years_question_additional_context: "If you have selected 'Outstanding Commercial Performance: innovation has improved commercial performance over two years' in C1, you will only need to provide information for the last two years."
     trade:
       years_question_additional_context: "If you have selected “Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips” in C1, you will only need to provide information for the last three years."
+      queen_awards_question_additional_context: |
+        If you won the award in the last year you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
+
+        If you won the award in the previous 4 years, you can only apply for the Outstanding Achievement Award (3 years).
     development:
       years_question_additional_context: "If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years."
 

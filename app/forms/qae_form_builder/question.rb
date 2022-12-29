@@ -384,8 +384,14 @@ class QAEFormBuilder
       @q.pdf_context_with_header_blocks = text
     end
 
-    def additional_pdf_context text
-      @q.additional_pdf_context = text
+    def additional_pdf_context text, **options
+      condition = options[:if]
+
+      if condition && condition.respond_to?(:call)
+        @q.additional_pdf_context = text if condition.call()
+      else
+        @q.additional_pdf_context = text
+      end
     end
 
     def classes text
@@ -508,7 +514,8 @@ class QAEFormBuilder
                   :drop_block_condition,
                   :section_info,
                   :excluded_header_questions,
-                  :sub_section
+                  :sub_section,
+                  :form_answer
 
     def initialize step, key, title, opts={}
       @step = step
