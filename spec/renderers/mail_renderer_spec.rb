@@ -53,6 +53,13 @@ describe MailRenderer do
     end
   end
 
+  describe "#shortlisted_po_sd_with_actual_figures_notifier" do
+    it "renders e-mail" do
+      rendered = described_class.new.shortlisted_po_sd_with_actual_figures_notifier
+      expect(rendered).to match("Jon Doe")
+    end
+  end
+
   describe "#not_shortlisted_notifier" do
     it "renders e-mail" do
       rendered = described_class.new.not_shortlisted_notifier

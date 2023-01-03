@@ -193,12 +193,44 @@ describe Notifiers::EmailNotificationService do
 
   context "shortlisted_po_sd_notifier" do
     let(:kind) { "shortlisted_po_sd_notifier" }
-    let(:form_answer) { create(:form_answer, :mobility, state: "recommended") }
-    let(:fa_not_notified) { create(:form_answer, :trade, state: "recommended") }
+    let(:form_answer1) { create(:form_answer, :mobility, state: "recommended") }
+    let(:form_answer2) { create(:form_answer, :mobility, state: "recommended") }
 
     it "triggers current notification" do
+      form_answer1.document["product_estimated_figures"] = "yes"
+      form_answer1.save
+
+      form_answer2.document["product_estimated_figures"] = "no"
+      form_answer2.save
+
       mailer = double(deliver_later!: true)
+
+      expect(AccountMailers::NotifyShortlistedMailer).not_to receive(:notify_po_sd).with(
+        form_answer1.id,
+        form_answer1.user.id
+      ) { mailer }
+
       expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd).with(
+        form_answer2.id,
+        form_answer2.user.id
+      ) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "shortlisted_po_sd_with_actual_figures_notifier" do
+    let(:kind) { "shortlisted_po_sd_with_actual_figures_notifier" }
+    let(:form_answer) { create(:form_answer, :mobility, state: "recommended") }
+
+    it "triggers current notification" do
+      form_answer.document["product_estimated_figures"] = "yes"
+      form_answer.save
+
+      mailer = double(deliver_later!: true)
+      expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd_with_actual_figures).with(
         form_answer.id,
         user.id
       ) { mailer }
