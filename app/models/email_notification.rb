@@ -15,6 +15,7 @@ class EmailNotification < ApplicationRecord
                          :unsuccessful_ep_notification,
                          :shortlisted_notifier,
                          :shortlisted_po_sd_notifier,
+                         :shortlisted_po_sd_with_actual_figures_notifier,
                          :shortlisted_audit_certificate_reminder,
                          :shortlisted_po_sd_reminder,
                          :not_shortlisted_notifier,

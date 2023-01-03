@@ -146,7 +146,11 @@ class FormAnswer < ApplicationRecord
     scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
-
+    scope :with_product_figures, ->(condition) {
+      where(%Q{(#{FormAnswer.table_name}.document::JSONB->>'product_estimated_figures')::boolean is #{condition}})
+    }
+    scope :with_estimated_figures_provided, -> { with_product_figures(false) }
+    scope :with_actual_figures_provided, -> { with_product_figures(true) }
     scope :by_registration_numbers, ->(*numbers) {
       query = numbers.join("|")
 
