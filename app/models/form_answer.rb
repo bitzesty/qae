@@ -405,6 +405,18 @@ class FormAnswer < ApplicationRecord
     end
   end
 
+  def won_international_trade_award_last_year?
+    condition = document
+      .fetch("applied_for_queen_awards_details", [])
+      .detect do |a|
+        a["category"] == "international_trade" &&
+        a["outcome"] == "won" &&
+        a["year"].to_i >= (AwardYear.current.year - 1)
+      end
+
+    !!condition
+  end
+
   def agree_sharing_of_details_with_lieutenancies?
     user.agree_sharing_of_details_with_lieutenancies ? "Yes" : "No"
   end

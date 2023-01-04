@@ -1,8 +1,12 @@
 class Users::FormAnswersController < Users::BaseController
   expose(:form_answer) do
-    current_user.account
-                .form_answers
-                .find(params[:id])
+    form_answer = current_user.account
+                              .form_answers
+                              .find(params[:id])
+
+    Current.form_answer = form_answer
+
+    form_answer
   end
 
   expose(:pdf_blank_mode) do
