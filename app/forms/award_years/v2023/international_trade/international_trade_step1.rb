@@ -248,7 +248,7 @@ class AwardYears::V2023::QAEForms
           children_options_depends_on :category
           dependable_values [:international_trade]
 
-          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context"), if: -> () { Current.form_answer&.won_international_trade_award_last_year? }
+          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context")
         end
 
         options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do

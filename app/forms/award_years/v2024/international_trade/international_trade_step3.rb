@@ -70,6 +70,8 @@ class AwardYears::V2024::QAEForms
               As you currently hold a Queen's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 
+          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context")
+
           financial_date_selector({
             "3 to 5" => "3",
             "6 plus" => "6"
