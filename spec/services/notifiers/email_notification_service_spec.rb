@@ -191,8 +191,8 @@ describe Notifiers::EmailNotificationService do
     end
   end
 
-  context "shortlisted_po_sd_notifier" do
-    let(:kind) { "shortlisted_po_sd_notifier" }
+  context "shortlisted_po_sd_with_actual_figures_notifier" do
+    let(:kind) { "shortlisted_po_sd_with_actual_figures_notifier" }
     let(:form_answer1) { create(:form_answer, :mobility, state: "recommended") }
     let(:form_answer2) { create(:form_answer, :mobility, state: "recommended") }
 
@@ -205,12 +205,12 @@ describe Notifiers::EmailNotificationService do
 
       mailer = double(deliver_later!: true)
 
-      expect(AccountMailers::NotifyShortlistedMailer).not_to receive(:notify_po_sd).with(
+      expect(AccountMailers::NotifyShortlistedMailer).not_to receive(:notify_po_sd_with_actual_figures).with(
         form_answer1.id,
         form_answer1.user.id
       ) { mailer }
 
-      expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd).with(
+      expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd_with_actual_figures).with(
         form_answer2.id,
         form_answer2.user.id
       ) { mailer }
@@ -221,8 +221,8 @@ describe Notifiers::EmailNotificationService do
     end
   end
 
-  context "shortlisted_po_sd_with_actual_figures_notifier" do
-    let(:kind) { "shortlisted_po_sd_with_actual_figures_notifier" }
+  context "shortlisted_po_sd_notifier" do
+    let(:kind) { "shortlisted_po_sd_notifier" }
     let(:form_answer) { create(:form_answer, :mobility, state: "recommended") }
 
     it "triggers current notification" do
@@ -230,7 +230,7 @@ describe Notifiers::EmailNotificationService do
       form_answer.save
 
       mailer = double(deliver_later!: true)
-      expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd_with_actual_figures).with(
+      expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd).with(
         form_answer.id,
         user.id
       ) { mailer }

@@ -456,10 +456,6 @@ class QaePdfForms::General::QuestionPointer
           end
         end
       end
-
-      if form_answer.won_international_trade_award_last_year?
-        form_pdf.render_text I18n.t("pdf_texts.trade.queen_awards_question_additional_context"), color: FormPdf::DEFAULT_ANSWER_COLOR
-      end
     end
   end
 
