@@ -6,7 +6,7 @@ window.WonInternationalTradeAwardQuestion = init: ->
 
     displayHelp = false
 
-    rows = container.find("[data-container~=#{identifier}--row]")
+    rows = container.find("li")
 
     $.each rows, (_idx, row) ->
       validations = $.map ["category", "year", "outcome"], (type) ->
@@ -25,4 +25,7 @@ window.WonInternationalTradeAwardQuestion = init: ->
         helpBlock.hide()
 
   $(document).on "change", "[data-container~=#{identifier}] select", ->
+    maybeDisplayAwardHelp()
+
+  $(document).on "click", "[data-container~=#{identifier}] a.js-remove-link", ->
     maybeDisplayAwardHelp()
