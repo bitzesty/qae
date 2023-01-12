@@ -88,9 +88,17 @@ class Notifiers::EmailNotificationService
 
   def shortlisted_po_sd_notifier(award_year)
     gather_data_and_send_emails!(
-      award_year.form_answers.shortlisted.where(award_type: %w(mobility development)),
+      award_year.form_answers.shortlisted.with_estimated_figures_provided.where(award_type: %w(mobility development)),
       AccountMailers::NotifyShortlistedMailer,
       :notify_po_sd
+    )
+  end
+
+  def shortlisted_po_sd_with_actual_figures_notifier(award_year)
+    gather_data_and_send_emails!(
+      award_year.form_answers.shortlisted.with_actual_figures_provided.where(award_type: %w(mobility development)),
+      AccountMailers::NotifyShortlistedMailer,
+      :notify_po_sd_with_actual_figures
     )
   end
 
