@@ -29,4 +29,4 @@ window.WonInternationalTradeAwardQuestion = init: ->
 
   $(document).on "click", "[data-container~=#{identifier}] a.js-remove-link", ->
     maybeDisplayAwardHelp()
-    $(".js-options-with-dependent-child-select").trigger("change")
+    window.OptionsWithPreselectedConditionsQuestion.init()
