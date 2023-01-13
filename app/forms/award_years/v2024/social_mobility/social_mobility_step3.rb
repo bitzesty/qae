@@ -141,13 +141,13 @@ class AwardYears::V2024::QAEForms
         header :financials, "Financials" do
           ref "C 4"
           context %(
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Group entries</h3>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Group entries</h3>
             <p class="govuk-body">A parent organisation making a group entry should include figures of all UK members of the group.</p>
 
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Estimated figures</h3>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Estimated figures</h3>
             <p class="govuk-body">If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.</p>
 
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Figures - format</h3>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Figures - format</h3>
             <p class="govuk-body">You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.</p>
           )
           pdf_context_with_header_blocks [

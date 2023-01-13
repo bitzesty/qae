@@ -141,12 +141,12 @@ class AwardYears::V2024::QAEForms
           ref "C 4"
 
           context %(
-            <h3 class='govuk-heading-m govuk-!-margin-bottom-1'>Group entries</h3>
+            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Group entries</h3>
             <p class='govuk-body'>
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
 
-            <h3 class='govuk-heading-m govuk-!-margin-bottom-1'>Figures - format</h3>
+            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Figures - format</h3>
             <p class='govuk-body'>
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
             </p>
@@ -386,7 +386,7 @@ class AwardYears::V2024::QAEForms
               Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation.
             </p>
 
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Figures - format</h3>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Figures - format</h3>
             <p class="govuk-body">
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
             </p>
