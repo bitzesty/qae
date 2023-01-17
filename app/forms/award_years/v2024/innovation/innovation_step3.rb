@@ -381,7 +381,7 @@ class AwardYears::V2024::QAEForms
           ref "C 6"
 
           context %(
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-1">About C6 questions</h3>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">About C6 questions</h3>
             <p class="govuk-body">
               Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation.
             </p>
