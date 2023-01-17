@@ -11,7 +11,10 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
       dependable_children_div_block.find("h2 [data-preselected-condition='default']").removeClass "display-none"
       dependable_controls.removeClass "display-none"
     else
-      $(".js-options-with-dependent-child-select").trigger("change")
+      setTimeout (->
+        $(".js-options-with-dependent-child-select").trigger("change")
+        return
+      ), 10
 
     # otherwise it's always true on page load
     # when user triggers this method manually
