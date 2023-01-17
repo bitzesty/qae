@@ -43,7 +43,7 @@ class Eligibility::Promotion < Eligibility
             boolean: true,
             label: "Does your nominee hold any personal honours?",
             accept: :not_nil,
-            hint: "'Personal honours' refers to personal honours awarded by The Queen e.g. MBE, OBE, Knighthood"
+            hint: "'Personal honours' refers to personal honours awarded by The Queen, for example MBE, OBE, Knighthood"
 
   property :honour_was_ep,
             boolean: true,
@@ -55,7 +55,7 @@ class Eligibility::Promotion < Eligibility
             boolean: true,
             label: "Is your nominee being put forward for personal honours this year?",
             accept: :not_nil,
-            hint: "'Personal honours' refers to personal honours awarded by The Queen e.g. MBE, OBE, Knighthood",
+            hint: "'Personal honours' refers to personal honours awarded by The Queen, for example MBE, OBE, Knighthood",
             if: proc { nominee_has_honours.nil? || !nominee_has_honours? }
 
   property :nomination_for_honours_based_on_their_contribution_to_ep,
@@ -68,5 +68,5 @@ class Eligibility::Promotion < Eligibility
             boolean: true,
             label: "Will you be able to source at least two letters of support for this nomination?",
             accept: :true,
-            hint: "Letters of support should be from those (not the nominator) with first-hand knowledge of the nominee's contribution to enterprise promotion, and the impact their work has had on others. One should be from a large organisation e.g. employer, non-profit, local authority."
+            hint: "Letters of support should be from those (not the nominator) with first-hand knowledge of the nominee's contribution to enterprise promotion, and the impact their work has had on others. One should be from a large organisation, for example employer, non-profit, local authority."
 end
