@@ -26,7 +26,7 @@ class AwardYears::V2024::QAEForms
           excluded_header_questions
           required
           form_hint %(
-            e.g. CEO, Managing Director, Founder
+            For exmaple CEO, Managing Director, Founder
           )
         end
 
