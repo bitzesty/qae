@@ -28,6 +28,7 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
     dependable_controls = dependable_children_div_block.find(".selectable")
     applied = $(".queen-award-holder input:checked").val() == "yes"
 
+    trade_award_and_highest_year = false
     trade_award_and_above_threshold_year = false
     trade_award_and_above_application_threshold_year = false
 
@@ -54,13 +55,15 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
       won = $(this).closest("li").find("[data-dependable-option-siffix='outcome']").val() == "won"
 
       if award_category == "international_trade" && applied && won
-        if award_year > application_threshold_year
+        if award_year == highest_year
+          trade_award_and_highest_year = true
+        else if award_year > application_threshold_year
           trade_award_and_above_application_threshold_year = true
         else if award_year > threshold_year
           trade_award_and_above_threshold_year = true
 
     # Show C1 question based on this condition
-    if trade_award_and_above_application_threshold_year
+    if trade_award_and_highest_year || trade_award_and_above_application_threshold_year
       # Do not give opportunity to apply if won last year
       dependable_children_div_block.find("h2 [data-preselected-condition='year_3_years_application']").addClass "display-none"
       dependable_children_div_block.find("h2 [data-preselected-condition='default']").addClass "display-none"
