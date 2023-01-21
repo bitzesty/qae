@@ -2,7 +2,7 @@ class QAEFormBuilder
   class MatrixQuestionValidator < QuestionValidator
     def errors
       result = super
-
+      
       if question.required?
         question.y_headings.each do |y_heading|
           question.x_headings.each do |x_heading|
@@ -90,6 +90,10 @@ class QAEFormBuilder
     def column_widths widths
       @q.column_widths = widths
     end
+
+    def required_rows question_key
+      @q.required_rows = question_key
+    end
   end
 
   class MatrixQuestion < Question
@@ -99,13 +103,15 @@ class QAEFormBuilder
                   :x_headings,
                   :y_headings,
                   :values,
-                  :column_widths
+                  :column_widths,
+                  :required_rows
 
     def after_create
       @x_headings = []
       @y_headings = []
       @values = []
       @column_widths = nil
+      @required_rows = nil
     end
 
     def classes
