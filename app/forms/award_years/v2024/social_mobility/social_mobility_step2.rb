@@ -232,7 +232,7 @@ class AwardYears::V2024::QAEForms
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
             ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
-            ["other", "<strong>Other activity types</strong>"]
+            ["other_activity_types", "<strong>Other activity types</strong>"]
           ]
           conditional :application_category, "initiative"
         end
@@ -265,7 +265,7 @@ class AwardYears::V2024::QAEForms
           corner_label "Activity type"
           totals_label "Total number of discrete participants supported each year"
 
-          x_headings [2017, 2018, 2019, 2020, 2021]
+          x_headings [2018, 2019, 2020, 2021, 2022]
 
           y_headings [
             ["careers_advice", "Careers advice"],
@@ -279,6 +279,7 @@ class AwardYears::V2024::QAEForms
             [ "other_activity_types", "Other activity types"]
           ]
           conditional :application_category, "initiative"
+          required_rows :initiative_activities
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
@@ -429,7 +430,7 @@ class AwardYears::V2024::QAEForms
           corner_label "Disadvantaged group type"
           totals_label "Total number of discrete participants supported each year"
 
-          x_headings [2017, 2018, 2019, 2020, 2021]
+          x_headings [2018, 2019, 2020, 2021, 2022]
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
