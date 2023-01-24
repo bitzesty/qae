@@ -8,7 +8,7 @@ class QAEFormBuilder
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
 
-            if !question.input_value(suffix: suffix).present? && question.row_array.include?(y_heading.key)
+            if !question.input_value(suffix: suffix).present? && question.required_rows.include?(y_heading.key)
               result[question.hash_key(suffix: suffix)] ||= ""
               result[question.hash_key(suffix: suffix)] << "Required"
             end
@@ -27,8 +27,8 @@ class QAEFormBuilder
     def required?
       errors = super
 
-      if delegate_obj.required_rows
-        step.form[delegate_obj.required_rows].input_value&.each {|a| delegate_obj.row_array << a["type"] }
+      if delegate_obj.required_row_parent
+        step.form[delegate_obj.required_row_parent].input_value&.each {|a| delegate_obj.required_rows << a["type"] }
       end
 
       errors
@@ -101,7 +101,7 @@ class QAEFormBuilder
     end
 
     def required_rows question_key
-      @q.required_rows = question_key
+      @q.required_row_parent = question_key
     end
   end
 
@@ -113,16 +113,16 @@ class QAEFormBuilder
                   :y_headings,
                   :values,
                   :column_widths,
-                  :required_rows,
-                  :row_array
+                  :required_row_parent,
+                  :required_rows
 
     def after_create
       @x_headings = []
       @y_headings = []
       @values = []
       @column_widths = nil
-      @required_rows = nil
-      @row_array = []
+      @required_row_parent = nil
+      @required_rows = []
     end
 
     def classes
