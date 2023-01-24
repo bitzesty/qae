@@ -2,13 +2,13 @@ class QAEFormBuilder
   class MatrixQuestionValidator < QuestionValidator
     def errors
       result = super
-      
+
       if question.required?
         question.y_headings.each do |y_heading|
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
 
-            if !question.input_value(suffix: suffix).present?
+            if !question.input_value(suffix: suffix).present? && question.row_array.include?(y_heading.key)
               result[question.hash_key(suffix: suffix)] ||= ""
               result[question.hash_key(suffix: suffix)] << "Required"
             end
@@ -24,6 +24,15 @@ class QAEFormBuilder
   end
 
   class MatrixQuestionDecorator < QuestionDecorator
+    def required?
+      errors = super
+
+      if delegate_obj.required_rows
+        step.form[delegate_obj.required_rows].input_value&.each {|a| delegate_obj.row_array << a["type"] }
+      end
+
+      errors
+    end
   end
 
   class MatrixValue
@@ -104,7 +113,8 @@ class QAEFormBuilder
                   :y_headings,
                   :values,
                   :column_widths,
-                  :required_rows
+                  :required_rows,
+                  :row_array
 
     def after_create
       @x_headings = []
@@ -112,6 +122,7 @@ class QAEFormBuilder
       @values = []
       @column_widths = nil
       @required_rows = nil
+      @row_array = []
     end
 
     def classes
