@@ -692,3 +692,17 @@ window.FormValidation =
     for question in stepContainer.find(".question-block")
       question = $(question)
       @validateIndividualQuestion(question)
+
+# to toggle matrix error messages on click
+$(document).on 'click', "input[type=checkbox]", ->
+  checkedValue = $(this).val()
+  questions = $(".question-block.question-matrix")
+  for question in questions
+    question = $(question)
+    subquestions = question.find('input')
+    for subquestion in subquestions
+      subq = $(subquestion)
+      if subq.attr("id").includes(checkedValue) && subq.attr("data-required-row-parent")
+        question.find(".govuk-error-message").empty()
+        question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
+        window.FormValidation.validateMatrix(question)
