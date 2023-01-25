@@ -353,9 +353,21 @@ window.FormValidation =
       qParent = subq.closest("td")
       val = subq.val().trim()
 
+      # finds required row question gets checked answers
+      requiredRowParent = subq.attr('data-required-row-parent')
+      requiredRows = []
+      requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
+
       if not val
-        @appendMessage(qParent, "Required")
-        @addErrorClass(qParent)
+        if !subq.attr('data-required-row-parent')
+          @appendMessage(qParent, "Required")
+          @addErrorClass(qParent)
+        # only adds 'required' error when y_heading matches checked answer
+        else
+          for yHeading in requiredRows
+            if subq.attr('id').includes(yHeading)
+              @appendMessage(qParent, "Required")
+              @addErrorClass(qParent)
       else if isNaN(val)
         @appendMessage(qParent, "Only numbers")
         @addErrorClass(qParent)
