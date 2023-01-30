@@ -13,7 +13,7 @@ describe AccountMailers::NotifyShortlistedMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) do
-    "Queen's Awards for Enterprise: Congratulations, you've been shortlisted."
+    "King's Awards for Enterprise: Congratulations, you've been shortlisted."
   end
 
   describe "#notify" do

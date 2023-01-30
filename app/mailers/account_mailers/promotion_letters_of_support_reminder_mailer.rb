@@ -8,7 +8,7 @@ class AccountMailers::PromotionLettersOfSupportReminderMailer < AccountMailers::
     @user = @form_answer.user
     collaborator = User.find(collaborator_id)
 
-    subject = "Queen's Award for Enterprise Promotion: Continue your nomination"
+    subject = "King's Award for Enterprise Promotion: Continue your nomination"
 
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
   end

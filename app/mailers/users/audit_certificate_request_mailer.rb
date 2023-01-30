@@ -10,7 +10,7 @@ class Users::AuditCertificateRequestMailer < ApplicationMailer
     @deadline_time = "midnight" if midnight?
     @deadline_time = "midday" if midday?
 
-    @subject = "Queen's Awards for Enterprise: Reminder to provide verification of commercial figures"
+    @subject = "King's Awards for Enterprise: Reminder to provide verification of commercial figures"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @recipient.email, subject: subject_with_env_prefix(@subject)
   end
 
