@@ -10,7 +10,7 @@ en:
         online: Online
         local_trade_body: From a local trade body
         national_trade_body: From a national trade body
-        mail_from_qae: "Mail from The Queen's Awards Office"
+        mail_from_qae: "Mail from The King's Awards Office"
         word_of_mouth: Word of mouth
         other: Other
     custom_email_form:
@@ -171,10 +171,10 @@ en:
 
   email_notification_headers:
     award_year_open_notifier: "Notify users that the applications for the new Award year are open"
-    innovation_submission_started_notification: "Notify users that the applications for Queen’s Awards for Innovation are now open"
-    trade_submission_started_notification: "Notify users that the applications for Queen’s Awards for International Trade are now open"
-    development_submission_started_notification: "Notify users that the applications for Queen’s Awards for Sustainable Development are now open"
-    mobility_submission_started_notification: "Notify users that the applications for Queen’s Awards for Promoting Opportunity are now open"
+    innovation_submission_started_notification: "Notify users that the applications for King’s Awards for Innovation are now open"
+    trade_submission_started_notification: "Notify users that the applications for King’s Awards for International Trade are now open"
+    development_submission_started_notification: "Notify users that the applications for King’s Awards for Sustainable Development are now open"
+    mobility_submission_started_notification: "Notify users that the applications for King’s Awards for Promoting Opportunity are now open"
     submission_started_notification: "Notify users that applications for the new Award year are open"
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."

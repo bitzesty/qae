@@ -51,7 +51,7 @@ class Eligibility::Trade < Eligibility
            if: proc {!skipped?}
 
   property :current_holder_of_qae_for_trade,
-           label: "Are you a current holder of a Queen's Award for International Trade?",
+           label: "Are you a current holder of a King's Award for International Trade?",
            boolean: true,
            accept: :all,
            if: proc {current_holder_of_an_award?}

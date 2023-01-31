@@ -1,4 +1,4 @@
-title = content_for?(:title) ? yield(:title)  + " - Queen's Awards for Enterprise" : "Queen's Awards for Enterprise"
+title = content_for?(:title) ? yield(:title)  + " - King's Awards for Enterprise" : "King's Awards for Enterprise"
 
 - content_for :head do
   = stylesheet_link_tag "application.css"
@@ -106,7 +106,7 @@ title = content_for?(:title) ? yield(:title)  + " - Queen's Awards for Enterpris
       = link_to "Accessibility Statement", accessibility_statement_path, class: 'govuk-footer__link'
     li.govuk-footer__inline-list-item
       ' Built by
-      = link_to "The Queen's Awards Office", "http://blogs.bis.gov.uk/queensawards/", class: 'govuk-footer__link'
+      = link_to "The King's Awards Office", "http://blogs.bis.gov.uk/queensawards/", class: 'govuk-footer__link'
 
 - content_for :body_end do
   - if should_enable_js?
