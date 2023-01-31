@@ -1,5 +1,5 @@
 class CurrentQueensAward
-  # This class used for handling saving / removing of Current Queens Awards
+  # This class used for handling saving / removing of Current King's Awards
   # when JS is disabled
 
   include ActiveModel::Model
