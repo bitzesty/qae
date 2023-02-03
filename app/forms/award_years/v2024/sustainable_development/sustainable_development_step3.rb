@@ -136,10 +136,23 @@ class AwardYears::V2024::QAEForms
           ref "C 1"
         end
 
+        textarea :one_line_description_of_interventions, "Provide a one-line description of your sustainable development interventions." do
+          classes "sub-question word-max-strict"
+          ref "C 1.1"
+          required
+          context %(
+            <p>
+              If your application is successful, this description will appear in the London Gazette.
+            </p>
+          )
+          rows 2
+          words_max 15
+        end
+
         textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
           required
           classes "sub-question"
-          sub_ref "C 1.1"
+          sub_ref "C 1.2"
           context %{
             <p>
               Where relevant, please include:
@@ -201,19 +214,6 @@ class AwardYears::V2024::QAEForms
 
           rows 10
           words_max 1000
-        end
-
-        textarea :one_line_description_of_interventions, "Provide a one-line description of your sustainable development interventions." do
-          classes "sub-question word-max-strict"
-          ref "C 1.2"
-          required
-          context %(
-            <p>
-              If your application is successful, this description will appear in the London Gazette.
-            </p>
-          )
-          rows 2
-          words_max 15
         end
 
         textarea :briefly_describe_your_core_business, "Your core business" do
