@@ -134,11 +134,6 @@ class AwardYears::V2024::QAEForms
 
         header :sustainable_development_interventions_header, "Summary of your Sustainable Development Interventions" do
           ref "C 1"
-          context %(
-            <p class='govuk-body'>
-              In questions C1.1 and C1.2 you need to summarise your actions or interventions to sustainable development and demonstrate a sustainable strategy across the business. This is to help us understand the size and scale of your actions or interventions. This summary might be used in publicity material if your application is successful.
-            </p>
-          )
         end
 
         textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
