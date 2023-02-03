@@ -30,11 +30,15 @@ RSpec.describe Eligibility::Development, type: :model do
       eligibility.can_provide_financial_figures = "yes"
       eligibility.has_two_employees = "yes"
       eligibility.sustainable_development = 'yes'
+      eligibility.can_demonstrate_is_sustainable = "yes"
       expect(eligibility).to be_eligible
     end
 
     it 'is not eligible when not all answers are correct' do
-      eligibility.sustainable_development = 'no'
+      eligibility.can_provide_financial_figures = "yes"
+      eligibility.has_two_employees = "yes"
+      eligibility.sustainable_development = 'yes'
+      eligibility.can_demonstrate_is_sustainable = "no"
 
       expect(eligibility).not_to be_eligible
     end

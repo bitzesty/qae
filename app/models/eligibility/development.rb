@@ -16,10 +16,14 @@ class Eligibility::Development < Eligibility
             accept: :true,
             hint: "You can calculate the number of full-time employees at the year-end, or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs)."
 
-
   property :sustainable_development,
-            values: %w[yes no skip],
-            acts_like_boolean: true,
-            label: "Have you had a substantial sustainable development action or intervention for at least the last two years?",
+            boolean: true,
+            label: "Can you demonstrate outstanding achievement in sustainable development for at least the last two years?",
             accept: :true
+
+  property :can_demonstrate_is_sustainable,
+            boolean: true,
+            label: "Can you demonstrate that the company as a whole is sustainable?",
+            accept: :true,
+            hint: "Please note, we are assessing the whole company, not just particular interventions. At a minimum, we expect all winning organisations to have good practices around climate change."
 end

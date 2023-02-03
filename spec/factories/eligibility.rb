@@ -48,7 +48,8 @@ FactoryBot.define do
       answers {{
         can_provide_financial_figures: "yes",
         has_two_employees: "yes",
-        sustainable_development: "yes"
+        sustainable_development: "yes",
+        can_demonstrate_is_sustainable: "yes"
       }}
     end
 
