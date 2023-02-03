@@ -141,10 +141,23 @@ class AwardYears::V2024::QAEForms
           ref "C 1.1"
           required
           context %(
-            <p>
-              If your application is successful, this description will appear in the London Gazette.
-            </p>
+            <p>If your application is successful, this description will appear in the London Gazette.</p>
+            <p>Some good examples from previously shortlisted organisations:</p>
+            <ul>
+              <li>Supplying repurposed redundant oilfield tubulars as steel foundation piling to reduce CO2 emissions.</li>
+              <li>Manufacturer of environmentally friendly cleaning products since 2007. Loved by professionals, approved by the planet.</li>
+              <li>Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.</li>
+            </ul>
           )
+          pdf_context %{
+            <p>If your application is successful, this description will appear in the London Gazette.</p>
+            <p>Some good examples from previously shortlisted organisations:</p>
+            <p>
+              \u2022 Supplying repurposed redundant oilfield tubulars as steel foundation piling to reduce CO2 emissions.
+              \u2022 Manufacturer of environmentally friendly cleaning products since 2007. Loved by professionals, approved by the planet.
+              \u2022 Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.
+            </p>
+          }
           rows 2
           words_max 15
         end
