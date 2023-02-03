@@ -204,6 +204,14 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :how_have_you_embedded_sustainability_objectives, "How have you embedded sustainability objectives or purpose in your organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.4"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
           ref "C 3"
