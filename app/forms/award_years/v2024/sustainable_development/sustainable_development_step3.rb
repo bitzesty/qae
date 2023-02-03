@@ -188,6 +188,14 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :describe_previous_situation_before_sustainability, "What was the situation before your organisation adopted a sustainability purpose, objectives and intervention?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.2"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
           ref "C 3"
