@@ -180,35 +180,12 @@ class AwardYears::V2024::QAEForms
           }
         end
 
-        textarea :briefly_describe_your_core_business, "Your core business" do
-          classes "word-max-strict"
-          ref "C 2"
+        textarea :briefly_describe_your_core_business, "A brief summary of your organisation." do
+          classes "word-max-strict sub-question"
+          ref "C 2.1"
           required
-          question_sub_title %{
-            Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
-          }
-          context %{
-            <p>
-              Please include:
-            </p>
-            <p>
-              a) A brief summary of your organisation.
-            </p>
-            <p>
-              b) What was the situation before your organisation adopted a sustainability purpose, objective, intervention or action?
-            </p>
-            <p>
-              c) Why did you choose these particular actions or interventions, and how do they align with the core aims and values of your organisation?
-            </p>
-            <p>
-              d) How have you embedded sustainability objectives or purpose in your organisation?
-            </p>
-            <p>
-              e) If your application is focussed on a sustainable product, service or approach, please explain how your business also operates sustainably.
-            </p>
-          }
-          rows 5
-          words_max 600
+          rows 2
+          words_max 200
         end
 
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
