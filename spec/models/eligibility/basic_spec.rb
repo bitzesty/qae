@@ -39,7 +39,6 @@ RSpec.describe Eligibility::Basic, type: :model do
       eligibility.based_in_uk = true
       eligibility.do_you_file_company_tax_returns = true
       eligibility.self_contained_enterprise = true
-      eligibility.has_management_and_two_employees = true
 
       expect(eligibility).to be_eligible
     end
@@ -47,8 +46,7 @@ RSpec.describe Eligibility::Basic, type: :model do
     it 'is not eligible when not all answers are correct' do
       eligibility.organization_kind = 'charity'
       eligibility.based_in_uk = true
-      eligibility.self_contained_enterprise = true
-      eligibility.has_management_and_two_employees = false
+      eligibility.self_contained_enterprise = false
 
       expect(eligibility).not_to be_eligible
     end
@@ -61,7 +59,6 @@ RSpec.describe Eligibility::Basic, type: :model do
       expect(eligibility.questions).to eq([
         :based_in_uk,
         :do_you_file_company_tax_returns,
-        :has_management_and_two_employees,
         :organization_kind,
         :industry,
         :self_contained_enterprise,

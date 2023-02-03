@@ -13,12 +13,6 @@ class Eligibility::Basic < Eligibility
             hint: "All companies and partnerships have to select Yes or No. However, if you are a charity or if you are based in the Channel Islands or the Isle of Man and do not pay tax to the HMRC, please select N/A.",
             accept: :not_no
 
-  property :has_management_and_two_employees,
-            boolean: true,
-            label: "Did your organisation have two or more full-time UK employees in each of the years of your proposed entry?",
-            accept: :true,
-            hint: "Part-time staff should be counted in full-time equivalents (FTE)."
-
   property :organization_kind,
             values: %w[business charity],
             label: "What kind of organisation is it?",
