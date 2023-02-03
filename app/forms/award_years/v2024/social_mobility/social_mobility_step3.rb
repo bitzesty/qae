@@ -94,6 +94,7 @@ class AwardYears::V2024::QAEForms
           )
           type :date
           label ->(y) { "Financial year #{y}" }
+          conditional :financial_year_date_changed, :yes
         end
 
         upload :supporting_financials, "To support your figures, please upload your financial statements for the years entered in question C2.2." do

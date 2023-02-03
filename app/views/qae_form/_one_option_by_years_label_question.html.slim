@@ -1,5 +1,5 @@
 .js-financial-year-changed-dates role="group" id="q_#{question.key}"
-  .js-fy-entry-container.show-question
+  .js-fy-entry-container
     .if-js-hide
       label.govuk-label
         strong
@@ -11,7 +11,7 @@
             label.js-year-default.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5"
               = question.format_label(y)
               - if y == 3
-                '  (last)
+                '  (current)
           br
           span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
           .govuk-date-input
