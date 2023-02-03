@@ -6,7 +6,7 @@ class AwardYears::V2024::QAEForms
         header :development_c_section_header, "" do
           section_info
           context %(
-            <h3 class='govuk-heading-m'>About this section</h3>
+            <h3 class='govuk-heading-m'>About section C</h3>
             <p class='govuk-body'>
               Read this section before planning the answers.
               Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
@@ -16,7 +16,7 @@ class AwardYears::V2024::QAEForms
 
             <h3 class='govuk-heading-m'>Small organisations</h3>
             <p class='govuk-body'>
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
             </p>
 
             <h3 class='govuk-heading-m'>COVID-19 impact</h3>
@@ -24,12 +24,12 @@ class AwardYears::V2024::QAEForms
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             </p>
 
-            <h3 class='govuk-heading-m'>Sustainable Development Goals (SDGs)</h3>
+            <h3 class='govuk-heading-m'>United Nations Sustainable Development Goals (UN SDGs)</h3>
             <p class='govuk-body'>
-              You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
+              You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
             </p>
             <p class='govuk-body'>
-              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
             </p>
 
             <p class='govuk-body'>
@@ -58,7 +58,7 @@ class AwardYears::V2024::QAEForms
           )
 
           pdf_context_with_header_blocks [
-            [:bold, "About this section"],
+            [:bold, "About section C"],
             [:normal, %(
               Read this section before planning the answers.
               Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
@@ -66,17 +66,17 @@ class AwardYears::V2024::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
-            [:bold, "Sustainable Development Goals (SDGs)"],
+            [:bold, "United Nations Sustainable Development Goals (UN SDGs)"],
             [:normal, %(
-              You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
+              You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
 
-              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
 
               \u2022 GOAL 1: No Poverty
               https://www.un.org/development/desa/disabilities/envision2030-goal1.html
