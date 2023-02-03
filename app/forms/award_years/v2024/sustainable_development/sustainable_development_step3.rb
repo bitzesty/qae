@@ -196,6 +196,14 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :why_these_particular_interventions, "Why did you choose these particular interventions, and how do they align with the core aims and values of your organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.3"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
           ref "C 3"
