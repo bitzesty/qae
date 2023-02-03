@@ -173,6 +173,13 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        header :sustainable_development_core_business_header, "Core business and your approach to sustainability" do
+          ref "C 2"
+          context %{
+            <p class='govuk-hint'>In questions C2.1 to C2.7 describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.</p>
+          }
+        end
+
         textarea :briefly_describe_your_core_business, "Your core business" do
           classes "word-max-strict"
           ref "C 2"
