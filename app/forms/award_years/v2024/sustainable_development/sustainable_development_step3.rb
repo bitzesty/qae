@@ -132,7 +132,7 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
-        header :sustainable_development_interventions_header, "Your sustainable development interventions" do
+        header :sustainable_development_interventions_header, "Summary of your Sustainable Development Interventions" do
           ref "C 1"
           context %(
             <p class='govuk-body'>
