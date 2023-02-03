@@ -162,73 +162,6 @@ class AwardYears::V2024::QAEForms
           words_max 15
         end
 
-        textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
-          required
-          classes "sub-question"
-          sub_ref "C 1.2"
-          context %{
-            <p>
-              Where relevant, please include:
-            </p>
-            <p>
-              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
-            </p>
-            <p>
-              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
-            </p>
-            <p>
-              c) The proportion of these interventions compared to your whole organisation’s size.
-            </p>
-            <p>
-              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
-            </p>
-            <ul>
-              <li>
-                An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
-              </li>
-              <li>
-                Developing unique or innovative ways, products or services to be sustainable.
-              </li>
-              <li>
-                Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
-              </li>
-              <li>
-                Leading the way in your company, sector or market by doing something that has never been done before.
-              </li>
-            </ul>
-          }
-
-          pdf_context %{
-            <p>
-              Where relevant, please include:
-            </p>
-            <p>
-              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
-            </p>
-            <p>
-              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
-            </p>
-            <p>
-              c) The proportion of these interventions compared to your whole organisation’s size.
-            </p>
-            <p>
-              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
-            </p>
-            <p>
-              \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
-
-              \u2022 Developing unique or innovative ways, products or services to be sustainable.
-
-              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
-
-              \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
-            </p>
-          }
-
-          rows 10
-          words_max 1000
-        end
-
         textarea :briefly_describe_your_core_business, "Your core business" do
           classes "word-max-strict"
           ref "C 2"
@@ -369,6 +302,73 @@ class AwardYears::V2024::QAEForms
               f) What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?
             </p>
           }
+          rows 10
+          words_max 1000
+        end
+
+        textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
+          required
+          classes "sub-question"
+          sub_ref "C 5.2"
+          context %{
+            <p>
+              Where relevant, please include:
+            </p>
+            <p>
+              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
+            </p>
+            <p>
+              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
+            </p>
+            <p>
+              c) The proportion of these interventions compared to your whole organisation’s size.
+            </p>
+            <p>
+              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
+            </p>
+            <ul>
+              <li>
+                An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+              </li>
+              <li>
+                Developing unique or innovative ways, products or services to be sustainable.
+              </li>
+              <li>
+                Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+              </li>
+              <li>
+                Leading the way in your company, sector or market by doing something that has never been done before.
+              </li>
+            </ul>
+          }
+
+          pdf_context %{
+            <p>
+              Where relevant, please include:
+            </p>
+            <p>
+              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
+            </p>
+            <p>
+              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
+            </p>
+            <p>
+              c) The proportion of these interventions compared to your whole organisation’s size.
+            </p>
+            <p>
+              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
+            </p>
+            <p>
+              \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+
+              \u2022 Developing unique or innovative ways, products or services to be sustainable.
+
+              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+
+              \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
+            </p>
+          }
+
           rows 10
           words_max 1000
         end
