@@ -212,6 +212,22 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :explain_how_the_business_operates_sustainably, "If your application is focussed on particular sustainable development interventions, explain how your whole business also operates sustainably, especially in terms of climate change." do
+          classes "word-max-strict sub-question"
+          ref "C 2.5"
+          required
+          context %{
+            <p>As a minimum, we expect all winning organisations to have good practices around climate change. Therefore, if your sustainable development interventions are not climate focused, describe:</p>
+            <p>a) your strategy and approach related to climate change.</p>
+            <p>b) your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero”.</p>
+            <p>c) how you have measured your emissions.</p>
+            <p>Please note, if your application is focused on climate change, do not repeat climate change related information in your answer to C2.5, just state that it's covered in other answers.</p>
+            <p>However, you may highlight other areas that show your organisation operates sustainability that are not covered in your other answers such as being part of the circular economy, or reductions in use of plastics.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
           ref "C 3"
