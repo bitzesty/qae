@@ -162,6 +162,17 @@ class AwardYears::V2024::QAEForms
           words_max 15
         end
 
+        textarea :briefly_describe_your_interventions, "Briefly describe your sustainable development interventions." do
+          classes "sub-question word-max-strict"
+          ref "B 1.2"
+          required
+          context %(
+            <p>This is to provide more context for the questions that follow. You will have the opportunity to elaborate on it in C5 questions.</p>
+          )
+          rows 2
+          words_max 200
+        end
+
         textarea :briefly_describe_your_core_business, "Your core business" do
           classes "word-max-strict"
           ref "C 2"
