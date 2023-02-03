@@ -1,5 +1,0 @@
-.question-body
-  - collection = @eligibility.class.sustainable_development.options
-  - collection.reject! { |opts| opts.last == 'skip' } if controller_name == 'form_award_eligibilities'
-  = f.input :sustainable_development, as: :radio_buttons, label_html: { class: 'visuallyhidden' }, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, collection: collection
-span.clear
