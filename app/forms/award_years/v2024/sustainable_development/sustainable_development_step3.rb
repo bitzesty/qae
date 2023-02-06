@@ -369,6 +369,17 @@ class AwardYears::V2024::QAEForms
           }
         end
 
+        textarea :aims_of_the_interventions, "The aims of the interventions" do
+          classes "word-max-strict sub-question"
+          ref "C 5.1"
+          required
+          context %{
+            For example, this could be to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community.
+          }
+          rows 2
+          words_max 200
+        end
+
         textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
           required
           classes "sub-question"
