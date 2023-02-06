@@ -25,8 +25,8 @@ class AwardYears::V2024::QAEForms
              "Commercial Performance",
              &AwardYears::V2024::QAEForms.development_step4
 
-        step "Add Website Address/Documents",
-             "Add Website Address/Documents",
+        step "Supplementary Materials & Confirmation",
+             "Supplementary Materials & Confirmation",
              { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.development_step5
 
