@@ -334,6 +334,14 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :how_do_you_increase_positive_perception_of_sustainability, "How do you increase positive perceptions of your organisation’s sustainability among customers, stakeholders, or the media?" do
+          classes "word-max-strict sub-question"
+          ref "C 4.2"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
           required
           classes "sub-question"
