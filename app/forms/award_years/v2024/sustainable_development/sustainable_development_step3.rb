@@ -273,6 +273,14 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :describe_the_senior_decision_makers_commitment_to_sustainability, "What is the senior decision makers' commitment to the future sustainable growth of the organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.3"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
           classes "word-max-strict"
           ref "C 5"
