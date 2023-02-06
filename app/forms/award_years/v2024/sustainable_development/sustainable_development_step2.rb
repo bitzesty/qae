@@ -53,8 +53,18 @@ class AwardYears::V2024::QAEForms
           required
           ref "B 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - for example, award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses. Please note, if successful, we will use this name on any award materials - for example, award certificates.</p>
           )
+        end
+
+        text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
+          classes "sub-question"
+          sub_ref "B 2.1"
+          required
+          context %{
+            <p>This may be the same as your organisation's full legal name. However, you may choose the name you are trading as or your brand name.</p>
+            <p>If you ask us to use an alternative name for these purposes, the evidence provided in the form must be clearly linked to it.</p>
+          }
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
