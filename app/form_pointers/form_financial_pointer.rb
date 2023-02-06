@@ -37,7 +37,11 @@ class FormFinancialPointer
     @form_answer_award_year = form_answer.award_year.year
 
     @steps = award_form.steps
-    @financial_step = steps.third
+    if form_answer.award_type == "development"
+      @financial_step = steps.fourth
+    else
+      @financial_step = steps.third
+    end
 
     @all_questions = steps.map(&:questions).flatten
     @filled_answers = fetch_filled_answers

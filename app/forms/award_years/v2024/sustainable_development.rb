@@ -8,9 +8,9 @@ class AwardYears::V2024::QAEForms
   class << self
     def development
       @development ||= QAEFormBuilder.build "Sustainable Development Award Application" do
-     #    step "Consent & Due Diligence",
-     #         "Consent & Due Diligence",
-     #         &AwardYears::V2024::QAEForms.development_step1
+        step "Consent & Due Diligence",
+             "Consent & Due Diligence",
+             &AwardYears::V2024::QAEForms.development_step1
 
         step "Company Information",
              "Company Information",
