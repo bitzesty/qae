@@ -3,7 +3,6 @@ require "award_years/v2024/sustainable_development/sustainable_development_step2
 require "award_years/v2024/sustainable_development/sustainable_development_step3"
 require "award_years/v2024/sustainable_development/sustainable_development_step4"
 require "award_years/v2024/sustainable_development/sustainable_development_step5"
-require "award_years/v2024/sustainable_development/sustainable_development_step6"
 
 class AwardYears::V2024::QAEForms
   class << self
@@ -29,10 +28,6 @@ class AwardYears::V2024::QAEForms
              "Supplementary Materials & Confirmation",
              { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.development_step5
-
-        step "Authorise & Submit",
-             "Authorise & Submit",
-             &AwardYears::V2024::QAEForms.development_step6
       end
     end
   end

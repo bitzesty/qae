@@ -66,6 +66,17 @@ class AwardYears::V2024::QAEForms
             I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
           )
         end
+
+        submit "Submit application" do
+          notice %(
+            <p>
+              If you have answered all the questions, you can submit your application now. You will be able to edit it any time before [SUBMISSION_ENDS_TIME].
+            </p>
+            <p>
+              If you are not ready to submit yet, you can save your application and come back later.
+            </p>
+          )
+        end
       end
     end
   end
