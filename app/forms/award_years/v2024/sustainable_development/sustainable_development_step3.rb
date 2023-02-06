@@ -281,6 +281,17 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :how_does_your_organisation_inspire_others, "How does your organisation inspire other organisations to be more sustainable?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.4"
+          required
+          context %{
+            <p>For example, businesses in your supply chain, stakeholders, customers or local communities.</p>
+          }
+          rows 4
+          words_max 400
+        end
+
         textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
           classes "word-max-strict"
           ref "C 5"
