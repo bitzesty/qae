@@ -453,7 +453,7 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :impact_of_your_sustainable_development, "The impact of your sustainable objectives." do
-          classes "word-max-strict"
+          classes "word-max-strict sub-question"
           ref "C 6.3"
           required
           context %{
@@ -465,7 +465,7 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :how_does_the_scale_of_intervention_compare_to_others, "How does the scale of your intervention compare with other organisations in your sector?" do
-          classes "word-max-strict"
+          classes "word-max-strict sub-question"
           ref "C 6.4"
           required
           context %{
@@ -477,8 +477,16 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :what_longer_term_outcomes_do_you_expect, "What longer-term outcomes do you expect as a result of your sustainable development efforts?" do
-          classes "word-max-strict"
+          classes "word-max-strict sub-question"
           ref "C 6.5"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :which_accreditations_have_been_achieved, "State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation." do
+          classes "word-max-strict sub-question"
+          ref "C 6.6"
           required
           rows 2
           words_max 200
