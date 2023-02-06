@@ -300,6 +300,17 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :describe_your_organisation_diversity, "Describe your organisation's diversity and inclusion strategy, including how your organisation attracts, recruits, promotes and retains a diverse workforce." do
+          classes "word-max-strict sub-question"
+          ref "C 3.6"
+          required
+          context %{
+            <p>Explain your policies and provide evidence that these are effective.</p>
+          }
+          rows 5
+          words_max 500
+        end
+
         textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
           classes "word-max-strict"
           ref "C 5"
