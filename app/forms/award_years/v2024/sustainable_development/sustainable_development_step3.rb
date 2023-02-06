@@ -444,6 +444,14 @@ class AwardYears::V2024::QAEForms
           words_max 300
         end
 
+        textarea :what_qualitive_measures_were_used_to_measure_success, "State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance." do
+          ref "C 6.2"
+          classes "word-max-strict sub-question"
+          required
+          rows 3
+          words_max 300
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
           ref "C 6.3"
