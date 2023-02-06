@@ -311,6 +311,14 @@ class AwardYears::V2024::QAEForms
           words_max 500
         end
 
+        textarea :describe_how_employee_relations_improved_their_motivation, "How has your employee relations improved their motivation, well-being and satisfaction?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.7"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
           classes "word-max-strict"
           ref "C 5"
