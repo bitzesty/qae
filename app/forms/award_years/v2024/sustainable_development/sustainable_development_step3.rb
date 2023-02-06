@@ -501,15 +501,6 @@ class AwardYears::V2024::QAEForms
           rows 2
           words_max 200
         end
-
-        header :additional_materials_notes, "" do
-          classes "application-notice help-notice"
-          context %(
-            <p class="govuk-body">
-              If there is additional material you feel would help us to assess your entry, you can add up to three files of website addresses in section D of this form. However, please include any vital information in your answers in the questions above as we cannot guarantee the additional material will be reviewed in full.
-            </p>
-          )
-        end
       end
     end
   end
