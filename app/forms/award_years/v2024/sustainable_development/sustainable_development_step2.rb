@@ -336,9 +336,13 @@ class AwardYears::V2024::QAEForms
           }
         end
 
-        sic_code_dropdown :sic_code, "SIC code" do
+        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
           required
           ref "B 13"
+          context %{
+            <p>The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/</p>
+            <p>Select the first four digits of the SIC code that best represents the current activities of your business.</p>
+          }
         end
 
         options :parent_or_a_holding_company, "Do you have a parent or a holding company?" do
