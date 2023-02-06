@@ -374,7 +374,7 @@ class AwardYears::V2024::QAEForms
           ref "C 5.1"
           required
           context %{
-            For example, this could be to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community.
+            <p>For example, this could be to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community.</p>
           }
           rows 2
           words_max 200
@@ -395,6 +395,32 @@ class AwardYears::V2024::QAEForms
           classes "word-max-strict sub-question"
           ref "C 5.3"
           required
+          rows 2
+          words_max 200
+        end
+
+        textarea :evidence_of_exemplary_interventions, "Provide evidence of what makes your interventions exemplary." do
+          classes "word-max-strict sub-question"
+          ref "C 5.4"
+          required
+          context %{
+            <p> For example, it may be exemplary as a result of:</p>
+            <ul>
+              <li>An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.</li>
+              <li>Developing unique or innovative ways to be sustainable.</li>
+              <li>Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.</li>
+              <li>Leading the way in your company, sector or market by doing something that has never been done before.</li>
+            </ul>
+          }
+          pdf_context %(
+            <p> For example, it may be exemplary as a result of:</p>
+            <p>
+              \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+              \u2022 Developing unique or innovative ways to be sustainable.
+              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+              \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
+            </p>
+          )
           rows 2
           words_max 200
         end
