@@ -255,9 +255,20 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :describe_the_driving_force_of_your_organisation, "Leadership and management" do
-          classes "word-max-strict"
+          classes "word-max-strict sub-question"
           ref "C 3.1"
           required
+          rows 2
+          words_max 200
+        end
+
+        textarea :who_is_responsible_for_day_to_day_management, "Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.2"
+          required
+          context %{
+            <p>You may include flow charts to make it easier for assessors to understand how your programme is managed in section E of this form.</p>
+          }
           rows 2
           words_max 200
         end
