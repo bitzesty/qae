@@ -433,62 +433,20 @@ class AwardYears::V2024::QAEForms
           }
         end
 
-        textarea :governance, "Governance" do
+        textarea :how_do_you_measure_the_success_of_interventions, "How do you measure the success of your sustainability intervention?" do
           ref "C 6.1"
+          classes "word-max-strict sub-question"
           required
           context %(
-            <p>
-              If you are a large organisation, you may wish to describe:
-            </p>
-            <ul>
-              <li>How you uphold ethical standards within your core business.</li>
-              <li>How you ensure diversity of representation, including at very senior levels.</li>
-              <li>How you engage stakeholders in your governance.</li>
-              <li>Your company's policies on pay and shareholder rights.</li>
-              <li>Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.</li>
-            </ul>
-            <p>
-              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
-            </p>
-            <ul>
-              <li>Involvement of Non-Executive Directors on the board.</li>
-              <li>How the board ensures that ethical standards are considered and adhered to.</li>
-              <li>How the board ensures that statutory obligations are met.</li>
-            </ul>
+            <p>For example, are key performance indicators (KPIs) or targets used? If so, how are they set and monitored? Are the KPIs or targets being met, and what happens if they are not?</p>
           )
-          pdf_context %(
-            <p>
-              You may wish to describe:
-            </p>
-            <p>
-              \u2022 How you uphold ethical standards within your core business.
-
-              \u2022 How you ensure diversity of representation, including at very senior levels.
-
-              \u2022 How you engage stakeholders in your governance.
-
-              \u2022 Your company's policies on pay and shareholder rights.
-
-              \u2022 Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.
-            </p>
-            <p>
-              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
-            </p>
-            <p>
-              \u2022 Involvement of Non-Executive Directors on the board.
-
-              \u2022 How the board ensures that ethical standards are considered and adhered to.
-
-              \u2022 How the board ensures that statutory obligations are met.
-            </p>
-          )
-          rows 2
-          words_max 200
+          rows 3
+          words_max 300
         end
 
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
-          ref "C 6.2"
+          ref "C 6.3"
           required
           question_sub_title %{
             Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
