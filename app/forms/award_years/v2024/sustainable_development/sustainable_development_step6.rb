@@ -44,13 +44,6 @@ class AwardYears::V2024::QAEForms
           text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
         end
 
-        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
-          ref "F 3"
-          text %(
-            I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
-          )
-        end
-
         confirm :agree_being_contacted_by_department_of_business, "" do
           sub_ref "F 3.1"
           show_ref_always true
