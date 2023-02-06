@@ -7,6 +7,12 @@ class AwardYears::V2024::QAEForms
           ref "F 1"
         end
 
+        confirm :confirmation_of_consent, "Consent to apply by head of organisation" do
+          ref "A 1.1"
+          required
+          text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
+        end
+
         text :head_of_bussines_title, "Title" do
           required
           classes "sub-question"
@@ -38,14 +44,6 @@ class AwardYears::V2024::QAEForms
           required
           type "email"
         end
-
-        confirm :confirmation_of_consent, "Confirmation of consent" do
-          ref "F 2"
-          required
-          text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
-        end
-
-
 
         confirm :due_diligence, "" do
           ref "F 4.1"
