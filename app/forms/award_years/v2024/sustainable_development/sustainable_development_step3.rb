@@ -334,10 +334,22 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :how_do_you_increase_positive_perception_of_sustainability, "How do you increase positive perceptions of your organisation’s sustainability among customers, stakeholders, or the media?" do
+        textarea :how_do_you_increase_positive_perception_of_sustainability, "How do you increase positive perceptions of your organisation's sustainability among customers, stakeholders, or the media?" do
           classes "word-max-strict sub-question"
           ref "C 4.2"
           required
+          rows 2
+          words_max 200
+        end
+
+        textarea :how_do_you_communicate_the_impact_of_sustainability, "How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?" do
+          classes "word-max-strict sub-question"
+          ref "C 4.3"
+          required
+          context %{
+            <p>Please include links to relevant pages on your company's website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.</p>
+            <p>If applicable, include in your answer or attach in section E of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.</p>
+          }
           rows 2
           words_max 200
         end
