@@ -319,6 +319,13 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        header :culture_and_values, "Culture and values regarding sustainability" do
+          ref "C 4"
+          context %{
+            <p class="govuk-hint">In questions C4.1 to C4.4 Please describe how your organisation's culture fosters and supports sustainability.</p>
+          }
+        end
+
         textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
           classes "word-max-strict"
           ref "C 5"
