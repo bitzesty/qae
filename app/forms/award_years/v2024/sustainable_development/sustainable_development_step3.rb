@@ -326,42 +326,12 @@ class AwardYears::V2024::QAEForms
           }
         end
 
-        textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
-          classes "word-max-strict"
-          ref "C 5"
+        textarea :culture_and_values_regarding_sustainability, "How is sustainability embedded in your organisation's culture and values?" do
+          classes "word-max-strict sub-question"
+          ref "C 4.1"
           required
-          question_sub_title %{
-            Describe how your organisation’s culture fosters and supports sustainability.
-          }
-          context %{
-            <p>
-              Please include:
-            </p>
-            <p>
-              a) How is sustainability embedded in your organisation’s culture and values?
-            </p>
-            <p>
-              b) How sustainability interventions benefit the overall business strategy?
-            </p>
-            <p>
-              c) How do you increase positive perceptions of your organisation’s sustainability among customers, stakeholders, or the media?
-            </p>
-            <p>
-              d) How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?<br />
-              Please include links to relevant pages on your company’s website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.
-            </p>
-            <p>
-              If applicable, include in your answer or attach in section D of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.
-            </p>
-            <p>
-              e) Explain your strategy in developing sustainably for the future. For example, how are you changing your business model, approach, products or services to respond to future sustainability challenges in your business or sector?
-            </p>
-            <p>
-              f) What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?
-            </p>
-          }
-          rows 10
-          words_max 1000
+          rows 2
+          words_max 200
         end
 
         textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
