@@ -328,6 +328,14 @@ class AwardYears::V2024::QAEForms
           form_hint "Please provide full website address, for example, www.yourcompanyname.com"
         end
 
+        textarea :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram." do
+          classes "sub-question"
+          sub_ref "B 12.1"
+          context %{
+            <p>Please note, when evaluating your application, the assessors may check your organisation's online presence.</p>
+          }
+        end
+
         sic_code_dropdown :sic_code, "SIC code" do
           required
           ref "B 13"
