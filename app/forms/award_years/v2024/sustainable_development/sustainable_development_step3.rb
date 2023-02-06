@@ -228,6 +228,14 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :how_sustainability_interventions_benefit_business_strategy, "How sustainability interventions benefit the overall business strategy?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.6"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
           ref "C 3"
