@@ -391,7 +391,7 @@ class AwardYears::V2024::QAEForms
         upload :org_chart, "Upload an organisational chart (optional)" do
           ref "B 15"
           context %(
-            <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
+            <p>You can submit a file in most formats if it is less than five megabytes.</p>
           )
           hint "What are the allowed file formats?", %(
             <p>
