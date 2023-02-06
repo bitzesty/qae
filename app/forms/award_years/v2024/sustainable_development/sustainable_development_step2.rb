@@ -201,7 +201,7 @@ class AwardYears::V2024::QAEForms
           yes_no
         end
 
-        textarea :other_awards_desc, "Please describe them." do
+        textarea :other_awards_desc, "Describe the awards you have won in the past." do
           classes "sub-question"
           sub_ref "B 7.1"
           required
