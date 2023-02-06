@@ -247,9 +247,16 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        header :leadership_and_management, "Leadership and management" do
+          ref "C 3"
+          context %{
+            <p class="govuk-hint">In questions C3.1 to C3.8 Please describe the driving force of your organisation's sustainability.</p>
+          }
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
-          ref "C 3"
+          ref "C 3.1"
           required
           question_sub_title %{
             Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
