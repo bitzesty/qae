@@ -135,7 +135,7 @@ class AwardYears::V2024::QAEForms
           context -> do
             %(
               <p>
-                Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+                Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award.
               </p>
             )
           end
