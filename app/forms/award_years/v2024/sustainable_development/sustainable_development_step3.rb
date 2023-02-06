@@ -492,6 +492,16 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :governance, "Additional information about your environmental, social, and corporate governance (ESG). (optional)" do
+          classes "word-max-strict sub-question"
+          ref "C 6.7"
+          context %{
+            <p>Please highlight your responsible business conduct and its impact within your organisation, supply chain and the wider community, if not already covered.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
         header :additional_materials_notes, "" do
           classes "application-notice help-notice"
           context %(
