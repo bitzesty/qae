@@ -236,6 +236,17 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :explain_your_strategy_in_developing_sustainably, "Explain your strategy in developing sustainably for the future." do
+          classes "word-max-strict sub-question"
+          ref "C 2.7"
+          required
+          context %{
+            <p>For example, how are you changing your business to respond to future sustainability challenges in your business or sector?</p>
+          }
+          rows 2
+          words_max 200
+        end
+
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
           ref "C 3"
