@@ -464,6 +464,18 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :how_does_the_scale_of_intervention_compare_to_others, "How does the scale of your intervention compare with other organisations in your sector?" do
+          classes "word-max-strict"
+          ref "C 6.4"
+          required
+          context %{
+            <p>Explain and, if possible, provide evidence or research on how you have compared your organisation to others in your sector, including a web link if available.</p>
+            <p>Explain how you know that your sustainability performance is exemplary compared with the sector in general.</p>
+          }
+          rows 3
+          words_max 300
+        end
+
         header :additional_materials_notes, "" do
           classes "application-notice help-notice"
           context %(
