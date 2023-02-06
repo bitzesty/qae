@@ -254,44 +254,12 @@ class AwardYears::V2024::QAEForms
           }
         end
 
-
-
         textarea :describe_the_driving_force_of_your_organisation, "Leadership and management" do
           classes "word-max-strict"
-          ref "C 4"
+          ref "C 3.1"
           required
-          question_sub_title %{
-            Please describe the driving force of your organisation’s sustainability.
-          }
-          context %{
-            <p>
-              a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?
-            </p>
-            <p>
-              b) Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?<br />
-              You may include flow charts to make it easier for assessors to understand how your programme is managed in section D of this form.
-            </p>
-            <p>
-              c) What is the senior decision makers’ commitment to the future sustainable growth of the organisation?
-            </p>
-            <p>
-              d) If possible, provide details on how the scale of this programme compares with similar organisations in your sector or industry.
-            </p>
-            <p>
-              e) How does your organisation inspire other organisations to be more sustainable? For example, businesses in your supply chain, stakeholders, customers or local communities.
-            </p>
-            <p>
-              f) If relevant, provide details on how you collaborate with partners and others to develop best practice.
-            </p>
-            <p>
-              g) Describe your organisation’s strategy to attract, recruit, promote and retain a diverse workforce.
-            </p>
-            <p>
-              h) How has your employee relations improved motivation, well-being and satisfaction?
-            </p>
-          }
-          rows 10
-          words_max 1000
+          rows 2
+          words_max 200
         end
 
         textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
