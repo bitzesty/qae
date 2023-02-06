@@ -292,6 +292,14 @@ class AwardYears::V2024::QAEForms
           words_max 400
         end
 
+        textarea :how_do_you_collaborate_with_partners, "How do you collaborate with partners and others to develop best practice?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.5"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
           classes "word-max-strict"
           ref "C 5"
