@@ -391,6 +391,14 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :proportion_of_interventions_compared_to_organisation_size, "The proportion of these interventions compared to your whole organisation's size." do
+          classes "word-max-strict sub-question"
+          ref "C 5.3"
+          required
+          rows 2
+          words_max 200
+        end
+
         textarea :governance, "Governance" do
           ref "C 6"
           required
