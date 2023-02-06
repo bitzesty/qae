@@ -132,7 +132,7 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
-        header :sustainable_development_interventions_header, "Summary of your Sustainable Development Interventions" do
+        header :sustainable_development_interventions_summary_header, "Summary of your Sustainable Development Interventions" do
           ref "C 1"
         end
 
@@ -164,7 +164,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :briefly_describe_your_interventions, "Briefly describe your sustainable development interventions." do
           classes "sub-question word-max-strict"
-          ref "B 1.2"
+          ref "C 1.2"
           required
           context %(
             <p>This is to provide more context for the questions that follow. You will have the opportunity to elaborate on it in C5 questions.</p>
@@ -250,7 +250,7 @@ class AwardYears::V2024::QAEForms
         header :leadership_and_management, "Leadership and management" do
           ref "C 3"
           context %{
-            <p class="govuk-hint">In questions C3.1 to C3.8 Please describe the driving force of your organisation's sustainability.</p>
+            <p class="govuk-hint">In questions C3.1 to C3.8 describe the driving force of your organisation's sustainability.</p>
           }
         end
 
@@ -322,7 +322,7 @@ class AwardYears::V2024::QAEForms
         header :culture_and_values, "Culture and values regarding sustainability" do
           ref "C 4"
           context %{
-            <p class="govuk-hint">In questions C4.1 to C4.4 Please describe how your organisation's culture fosters and supports sustainability.</p>
+            <p class="govuk-hint">In questions C4.1 to C4.4 describe how your organisation's culture fosters and supports sustainability.</p>
           }
         end
 
@@ -360,6 +360,13 @@ class AwardYears::V2024::QAEForms
           required
           rows 2
           words_max 200
+        end
+
+        header :sustainable_development_interventions_header, "Your sustainable development interventions" do
+          ref "C 5"
+          context %{
+            <p class="govuk-hint">In questions C5.1 to C5.4 describe your interventions, using the UN SDGs to structure your answer where relevant. You need to summarise your actions or interventions to sustainable development and demonstrate a sustainable strategy across the business.</p>
+          }
         end
 
         textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
