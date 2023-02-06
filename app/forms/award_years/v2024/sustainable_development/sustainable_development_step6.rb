@@ -44,13 +44,7 @@ class AwardYears::V2024::QAEForms
           text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
         end
 
-        confirm :agree_being_contacted_by_department_of_business, "" do
-          sub_ref "F 3.1"
-          show_ref_always true
-          text %(
-            I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
-          )
-        end
+        
 
         confirm :due_diligence, "" do
           ref "F 4.1"
