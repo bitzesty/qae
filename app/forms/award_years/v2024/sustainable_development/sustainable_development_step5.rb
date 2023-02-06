@@ -2,15 +2,35 @@ class AwardYears::V2024::QAEForms
   class << self
     def development_step5
       @development_step5 ||= proc do
-        upload :innovation_materials, "If there is additional material you feel would help us to assess your entry, then you can add up to 3 files or website addresses here." do
+        upload :innovation_materials, "Supplementary materials" do
           ref "E 1"
           context %(
+            <p>If there is additional material you feel would help us to assess your entry, then you can add up to 3 files or website addresses here.</p>
+            <h4 class="govuk-heading-s">What can and cannot be included:</h3>
+            <ul>
+              <li>You can include links to promotional videos, websites, other media, or documents you feel are relevant and help illustrate your application.</li>
+              <li>We will not consider business plans, annual accounts or company policy documents.</li>
+            </ul>
+            <h4 class="govuk-heading-s">Please note:</h3>
+            <ul>
+              <li>For assessors to review the supporting material, you must reference them by their names in your answers. Please do so to ensure they are reviewed.</li>
+              <li>Do not use the supporting material as a substitute for providing narrative answers to the questions.</li>
+              <li>Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.</li>
+            </ul>
+          )
+          pdf_context %(
+            <p>If there is additional material you feel would help us to assess your entry, then you can add up to 3 files or website addresses here.</p>
+            <h4 class="govuk-heading-s">What can and cannot be included:</h3>
             <p>
-              Please include any vital information in the form as we can't guarantee the additional material will be reviewed. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
+              \u2022 You can include links to promotional videos, websites, other media, or documents you feel are relevant and help illustrate your application.
+              \u2022 We will not consider business plans, annual accounts or company policy documents.
             </p>
-            <p>You can upload files in all common formats, as long as they're less than 5mb each.</p>
-            <p>You may link to videos, websites or other media you feel relevant.</p>
-            <p>We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.</p>
+            <h4 class="govuk-heading-s">Please note:</h3>
+            <p>
+              \u2022 For assessors to review the supporting material, you must reference them by their names in your answers. Please do so to ensure they are reviewed.
+              \u2022 Do not use the supporting material as a substitute for providing narrative answers to the questions.
+              \u2022 Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+            </p>
           )
           hint "What are the allowed file formats?", %(
             <p>
