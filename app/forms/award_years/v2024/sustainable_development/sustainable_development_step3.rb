@@ -476,6 +476,14 @@ class AwardYears::V2024::QAEForms
           words_max 300
         end
 
+        textarea :what_longer_term_outcomes_do_you_expect, "What longer-term outcomes do you expect as a result of your sustainable development efforts?" do
+          classes "word-max-strict"
+          ref "C 6.5"
+          required
+          rows 2
+          words_max 200
+        end
+
         header :additional_materials_notes, "" do
           classes "application-notice help-notice"
           context %(
