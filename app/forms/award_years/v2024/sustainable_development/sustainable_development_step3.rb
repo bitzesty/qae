@@ -425,8 +425,16 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :governance, "Governance" do
+        header :sustainable_development_impact_header, "Impact of your sustainable development " do
           ref "C 6"
+          context %{
+            <p class="govuk-hint">In questions C6.1 to C6.6 describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.</p>
+            <p class="govuk-hint">Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.</p>
+          }
+        end
+
+        textarea :governance, "Governance" do
+          ref "C 6.1"
           required
           context %(
             <p>
@@ -480,7 +488,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
           classes "word-max-strict"
-          ref "C 6"
+          ref "C 6.2"
           required
           question_sub_title %{
             Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
