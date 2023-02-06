@@ -215,7 +215,7 @@ class AwardYears::V2024::QAEForms
           words_max 250
         end
 
-        options :part_of_joint_entry, "Is this application part of a joint entry with any contributing organisation(s)?" do
+        options :part_of_joint_entry, "Is this application part of a joint entry with any contributing organisation?" do
           ref "B 8"
           required
           context %(
