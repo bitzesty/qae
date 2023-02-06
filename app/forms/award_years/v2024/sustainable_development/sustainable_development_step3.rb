@@ -452,41 +452,16 @@ class AwardYears::V2024::QAEForms
           words_max 300
         end
 
-        textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
+        textarea :impact_of_your_sustainable_development, "The impact of your sustainable objectives." do
           classes "word-max-strict"
           ref "C 6.3"
           required
-          question_sub_title %{
-            Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-          }
           context %{
-            <p>
-              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
-            </p>
-            <p>
-              Where possible, please include:
-            </p>
-            <p>
-              a) How you measure the success of your sustainability intervention? For example, are key performance indicators (KPIs) or targets used? If so, how are they set and monitored? Are the KPIs or targets being met, and what happens if they are not?
-            </p>
-            <p>
-              b) State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance.
-            </p>
-            <p>
-              c) The impact of your sustainable objectives. For example, impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.
-            </p>
-            <p>
-              d) How the impact compares to the sector. Please state what sector research or other evidence you have used to benchmark this. Include a web link to any research, if available.
-            </p>
-            <p>
-              e) What longer-term outcomes do you expect as a result of your sustainable development efforts?
-            </p>
-            <p>
-              f) State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation.
-            </p>
+            <p>Describe the impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.</p>
+            <p>Describe how you are part of the circular economy.</p>
           }
-          rows 10
-          words_max 1000
+          rows 2
+          words_max 200
         end
 
         header :additional_materials_notes, "" do
