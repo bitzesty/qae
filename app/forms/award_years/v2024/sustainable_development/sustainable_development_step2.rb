@@ -109,7 +109,7 @@ class AwardYears::V2024::QAEForms
           conditional :organisation_type, :other
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+        text :registration_number, "Provide your company or charity registration number or, if not registered, explain why." do
           classes "sub-question"
           required
           ref "B 4.1"
