@@ -204,12 +204,23 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        confirm :due_diligence, "" do
-          ref "F 4.1"
+        confirm :due_diligence, "Agree to the outcome of the due diligence checks" do
+          ref "A 2.3"
+          classes "sub-question"
           required
           show_ref_always true
           text %(
-            I understand and agree the outcome of the due diligence checks which The Queen's Awards for Enterprise Office undertakes with Government Departments and Agencies is final and cannot be overturned.
+            I understand and agree that the outcome of the due diligence checks which The King's Awards for Enterprise Office undertakes with Government Departments and Agencies is final and cannot be overturned.
+          )
+        end
+
+        confirm :commercial_performance, "Commercial performance" do
+          ref "A 3"
+          classes "sub-question"
+          required
+          show_ref_always true
+          text %(
+            I understand that I have to provide financial information and related financial statements for the last three years to demonstrate that the organisation is financially viable.
           )
         end
 
