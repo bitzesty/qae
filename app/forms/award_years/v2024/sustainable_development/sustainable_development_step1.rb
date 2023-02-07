@@ -25,6 +25,10 @@ class AwardYears::V2024::QAEForms
           text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
         end
 
+        header :head_of_business_header, "Details of the head of the organisation" do
+          ref "A 1.2"
+        end
+
         text :head_of_bussines_title, "Title" do
           required
           classes "sub-question"
@@ -138,7 +142,7 @@ class AwardYears::V2024::QAEForms
               \u2022 Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
 
               Government Departments and Agencies we undertake due diligence checks with:
-              
+
               \u2022 Biotechnology & Biological Sciences Research Council
               \u2022 Charity Commission
               \u2022 Companies House
