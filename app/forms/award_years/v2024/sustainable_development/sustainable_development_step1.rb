@@ -223,15 +223,6 @@ class AwardYears::V2024::QAEForms
             I understand that I have to provide financial information and related financial statements for the last three years to demonstrate that the organisation is financially viable.
           )
         end
-
-        confirm :shortlisted_case_confirmation, "" do
-          ref "F 4.2"
-          required
-          show_ref_always true
-          text %(
-            I agree that if the application is shortlisted, if asked, I will supply actual commercial figures and the latest year's VAT returns by October/November.
-          )
-        end
       end
     end
   end
