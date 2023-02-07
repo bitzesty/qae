@@ -184,6 +184,16 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
+        confirm :organisation_worthiness, "Organisation worthiness" do
+          ref "A 2.1"
+          classes "sub-question"
+          required
+          show_ref_always true
+          text %(
+            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a King's Award for Enterprise.
+          )
+        end
+
         confirm :due_diligence, "" do
           ref "F 4.1"
           required
