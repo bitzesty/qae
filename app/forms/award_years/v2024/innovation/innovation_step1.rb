@@ -222,32 +222,6 @@ class AwardYears::V2024::QAEForms
             I agree that if the application is shortlisted, I will supply commercial figures verified by an external accountant before the specified November deadline (the exact date will be provided in the shortlisting email). I understand that this may incur additional costs from outside organisations such as accountants if used. I understand, that if verified figures are not provided by the specified deadline at the shortlist stage, the entry will be rejected.
           )
         end
-
-        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
-          ref "F 3"
-          text %(
-            I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
-          )
-        end
-
-        confirm :entry_confirmation, "Confirmation of entry." do
-          ref "F 4"
-          required
-          text -> do
-            %(
-              By submitting this entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
-            )
-          end
-        end
-
-        confirm :shortlisted_case_confirmation, "" do
-          ref "F 4.3"
-          required
-          show_ref_always true
-          text %(
-            I agree that if the application is shortlisted, I will supply commercial figures verified by an external accountant before the specified November deadline. I understand that if verified figures are not provided by the specified deadline at shortlist stage, the entry will be rejected.
-          )
-        end
       end
     end
   end
