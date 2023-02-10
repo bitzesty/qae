@@ -205,6 +205,15 @@ class AwardYears::V2024::QAEForms
           )
         end
 
+        confirm :due_diligence, "Agree to the outcome of the due diligence checks" do
+          ref "A 2.3"
+          required
+          show_ref_always true
+          text %(
+            I understand and agree that the outcome of the due diligence checks which The King's Awards for Enterprise Office undertakes with Government Departments and Agencies is final and cannot be overturned.
+          )
+        end
+
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
           ref "F 3"
           text %(
@@ -220,15 +229,6 @@ class AwardYears::V2024::QAEForms
               By submitting this entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
             )
           end
-        end
-
-        confirm :due_diligence, "" do
-          ref "F 4.2"
-          required
-          show_ref_always true
-          text %(
-            I understand and agree the outcome of the due diligence checks which The Queen's Awards for Enterprise Office undertakes with Government Departments and Agencies is final and cannot be overturned.
-          )
         end
 
         confirm :shortlisted_case_confirmation, "" do
