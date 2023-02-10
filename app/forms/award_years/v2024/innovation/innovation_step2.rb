@@ -33,13 +33,13 @@ class AwardYears::V2024::QAEForms
         end
 
         options :applying_for, "Are you applying on behalf of your:" do
-          ref "A 1"
+          ref "B 1"
           required
           option "organisation", "Whole organisation (with ultimate control)"
           option "division branch subsidiary", "A division, branch or subsidiary"
           pdf_context %(
             <p>
-              If you have selected 'A division, branch or subsidiary', where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary.
+              If you select 'A division, branch or subsidiary', where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary.
             </p>
           )
         end
