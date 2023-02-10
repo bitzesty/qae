@@ -188,6 +188,15 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
+        confirm :shortlisted_case_confirmation_i_am_not_aware_of_any_matter, "Organisation worthiness" do
+          ref "A 2.1"
+          required
+          show_ref_always true
+          text %(
+            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a King's Award for Enterprise.
+          )
+        end
+
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
           ref "F 3"
           text %(
@@ -211,19 +220,6 @@ class AwardYears::V2024::QAEForms
               By submitting this entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
             )
           end
-        end
-
-        confirm :shortlisted_case_confirmation_i_am_not_aware_of_any_matter, "" do
-          ref "F 4.1"
-          required
-          show_ref_always true
-          text %(
-            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
-          )
-
-          pdf_text %(
-            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
-          )
         end
 
         confirm :due_diligence, "" do
