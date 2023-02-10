@@ -22,8 +22,8 @@ class AwardYears::V2024::QAEForms
           text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
         end
 
-        header :head_of_bussines_header, "Head of your organisation." do
-          ref "F 1"
+        header :head_of_business_header, "Details of the head of your organisation" do
+          ref "A 1.2"
         end
 
         text :head_of_business_title, "Title" do
