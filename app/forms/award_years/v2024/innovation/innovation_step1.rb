@@ -16,6 +16,12 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
+        confirm :confirmation_of_consent, "Consent to apply by the head of organisation" do
+          ref "A 1.1"
+          required
+          text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
+        end
+
         header :head_of_bussines_header, "Head of your organisation." do
           ref "F 1"
         end
@@ -50,13 +56,6 @@ class AwardYears::V2024::QAEForms
           style "large"
           required
           type "email"
-        end
-
-        # TODO Pull in info for A13
-        confirm :confirmation_of_consent, "Confirmation of consent." do
-          ref "F 2"
-          required
-          text "I confirm that I have the consent of the head of my organisation (as identified in question F1) to submit this entry form."
         end
 
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
