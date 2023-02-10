@@ -57,13 +57,13 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
+        text :brand_name, "If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number." do
           classes "sub-question"
           sub_ref "B 2.1"
           required
           context %{
-            <p>This may be the same as your organisation's full legal name. However, you may choose the name you are trading as or your brand name.</p>
-            <p>If you ask us to use an alternative name for these purposes, the evidence provided in the form must be clearly linked to it.</p>
+            <p>Usually, this is the same name as your organisation's full legal name. </p>
+            <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
           }
         end
 
