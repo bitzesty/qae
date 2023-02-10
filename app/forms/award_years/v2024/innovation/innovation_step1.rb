@@ -214,6 +214,15 @@ class AwardYears::V2024::QAEForms
           )
         end
 
+        confirm :commercial_performance_verification, "Commercial performance verification" do
+          ref "A 3"
+          required
+          show_ref_always true
+          text %(
+            I agree that if the application is shortlisted, I will supply commercial figures verified by an external accountant before the specified November deadline (the exact date will be provided in the shortlisting email). I understand that this may incur additional costs from outside organisations such as accountants if used. I understand, that if verified figures are not provided by the specified deadline at the shortlist stage, the entry will be rejected.
+          )
+        end
+
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
           ref "F 3"
           text %(
