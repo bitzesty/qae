@@ -197,18 +197,18 @@ class AwardYears::V2024::QAEForms
           )
         end
 
+        confirm :agree_being_contacted_by_department_of_business, "Consent to enquiries by The King's Awards Office" do
+          sub_ref "A 2.2"
+          show_ref_always true
+          text %(
+            I consent to all necessary enquiries being made by The King's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a King's Award to ensure the highest standards of propriety.
+          )
+        end
+
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
           ref "F 3"
           text %(
             I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
-          )
-        end
-
-        confirm :agree_being_contacted_by_department_of_business, "" do
-          sub_ref "F 3.1"
-          show_ref_always true
-          text %(
-            I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
           )
         end
 
