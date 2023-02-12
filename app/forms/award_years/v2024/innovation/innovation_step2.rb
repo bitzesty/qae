@@ -339,7 +339,7 @@ class AwardYears::V2024::QAEForms
 
         text :previous_business_name, "Name used previously." do
           classes "regular-question"
-          sub_ref "A 13.3"
+          sub_ref "B 13.3"
           required
           conditional :business_name_changed, :yes
           conditional :applied_for_queen_awards, :yes
