@@ -116,7 +116,7 @@ class AwardYears::V2024::QAEForms
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
           classes "sub-question"
           required
-          ref "A 4.1"
+          ref "B 4.1"
           context %(
             <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
