@@ -84,7 +84,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit and the arrangements made." do
           classes "sub-question"
-          sub_ref "A 3.1"
+          sub_ref "B 3.1"
           required
           conditional :principal_business, :no
           words_max 100
