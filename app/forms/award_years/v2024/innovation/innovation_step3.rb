@@ -3,45 +3,50 @@ class AwardYears::V2024::QAEForms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do
-        header :innovation_b_section_header, "" do
+        header :your_innovation_header, "" do
           context %(
-            <h3 class='govuk-heading-m'>About section B</h3>
+            <h3 class='govuk-heading-m'>About section C</h3>
             <p class='govuk-body'>
-              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the Assessing Team to understand the role innovation plays within your overall business and how this impacts on the performance of your business.
+              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.
             </p>
 
             <h3 class='govuk-heading-s'>Word limits</h3>
             <p class='govuk-body'>
-              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for. Do not feel that you have to aim for the maximum number of words allowed.
+              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for.
             </p>
 
             <h3 class="govuk-heading-s">Technical language</h3>
             <p class="govuk-body">
-              Please also avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
+              Please avoid using technical language - we need to understand your innovation without having any specific knowledge of your industry. If you use acronyms, please define them when using them for the first time.
             </p>
 
-            <h3 class="govuk-heading-s">Supporting information</h3>
+            <h3 class="govuk-heading-s">Supplementary materials</h3>
             <p class="govuk-body">
-              If you feel there is additional information that might support your application, you can attach documents in Section E. You should make sure that you reference any supporting documents, videos or websites in your answers below. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
+            </p>
+            <p class="govuk-body">
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
             </p>
           )
 
           pdf_context_with_header_blocks [
-            [:bold, "About section B"],
+            [:bold, "About section C"],
             [:normal, %(
-              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the Assessing Team to understand the role innovation plays within your overall business and how this impacts on the performance of your business.
+              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.
             )],
             [:bold, "Word limits"],
             [:normal, %(
-              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for. Do not feel that you have to aim for the maximum number of words allowed.
+              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for.
             )],
             [:bold, "Technical language"],
             [:normal, %(
-              Please also avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
+              Please avoid using technical language - we need to understand your innovation without having any specific knowledge of your industry. If you use acronyms, please define them when using them for the first time.
             )],
-            [:bold, "Supporting information"],
+            [:bold, "Supplementary materials"],
             [:normal, %(
-              If you feel there is additional information that might support your application, you can attach documents in Section E. You should make sure that you reference any supporting documents, videos or websites in your answers below. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
+
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
             )]
           ]
         end
