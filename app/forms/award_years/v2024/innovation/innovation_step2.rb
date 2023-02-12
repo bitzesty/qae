@@ -297,9 +297,9 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
-        options :applied_for_queen_awards, "In the last ten years, have you applied for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards, "In the last ten years, have you applied for a King's Awards for Enterprise award in any category?" do
           required
-          ref "A 13"
+          ref "B 13"
           yes_no
           context %(
             <p>
