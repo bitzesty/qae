@@ -351,9 +351,9 @@ class AwardYears::V2024::QAEForms
           yes_no
         end
 
-        textarea :other_awards_desc, "Please describe the awards." do
+        textarea :other_awards_desc, "Describe the awards you have won in the past." do
           classes "sub-question"
-          sub_ref "A 14.1"
+          sub_ref "B 14.1"
           required
           context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
           conditional :other_awards_won, :yes
