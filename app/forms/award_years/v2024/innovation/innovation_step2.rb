@@ -346,7 +346,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :other_awards_won, "Have you won any other awards in the past?" do
-          ref "A 14"
+          ref "B 14"
           required
           yes_no
         end
