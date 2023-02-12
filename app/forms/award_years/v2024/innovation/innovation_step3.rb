@@ -52,7 +52,7 @@ class AwardYears::V2024::QAEForms
         end
 
         header :innovation_background_header, "Innovation background" do
-          ref "B 1"
+          ref "C 1"
           linkable true
         end
 
