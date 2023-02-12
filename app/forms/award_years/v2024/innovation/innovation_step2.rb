@@ -227,7 +227,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :has_parent_company, "Do you have a parent or a holding company?" do
-          ref "A 10"
+          ref "B 10"
           yes_no
           required
         end
