@@ -54,11 +54,20 @@ class AwardYears::V2024::QAEForms
           conditional :applying_for, "division branch subsidiary"
         end
 
-        text :company_name, "Full legal name of your organisation" do
+        text :company_name, "Full legal name of your organisation." do
           required
           ref "B 2"
           context %(
             <p>If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number.</p>
+          )
+        end
+
+        text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
+          classes "sub-question"
+          ref "B 2.1"
+          context %(
+            <p>Usually, this is the same name as your organisation's full legal name.</p>
+            <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
           )
         end
 
