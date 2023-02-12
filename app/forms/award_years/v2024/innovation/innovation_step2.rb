@@ -196,9 +196,9 @@ class AwardYears::V2024::QAEForms
         end
 
         text :website_url, "Website address." do
-          ref "A 8"
+          ref "B 8"
           style "large"
-          form_hint "Please provide full website address, for example, www.yourcompanyname.com"
+          form_hint "Provide the full website address, for example, www.yourcompanyname.com"
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do
