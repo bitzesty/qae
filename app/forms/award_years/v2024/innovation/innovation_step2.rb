@@ -177,7 +177,7 @@ class AwardYears::V2024::QAEForms
         end
 
         press_contact_details :press_contact_details, "Contact details for press enquiries." do
-          ref "A 7"
+          ref "B 7"
           context %(
             <p class='govuk-hint'><em>
               If your application is successful, you may get contacted by the press.
