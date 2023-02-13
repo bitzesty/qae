@@ -26,7 +26,7 @@ class AwardYears::V2024::QAEForms
               <li>Socio-economic status is a person's current social and economic circumstances.</li>
             </ul>
 
-            <h3 class="govuk-heading-m">Disadvantaged groups that Queen's Awards for Enterprise focuses on</h3>
+            <h3 class="govuk-heading-m">Disadvantaged groups that King's Awards for Enterprise focuses on</h3>
             <p class="govuk-body">
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
             </p>
@@ -68,7 +68,7 @@ class AwardYears::V2024::QAEForms
             <h3 class="govuk-heading-m">Small organisations</h3>
 
             <p class="govuk-body">
-              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              The King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
 
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
@@ -101,7 +101,7 @@ class AwardYears::V2024::QAEForms
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
               \u2022 Socio-economic status is a person's current social and economic circumstances.)],
-            [:bold, "Disadvantaged groups that Queen's Awards for Enterprise focuses on"],
+            [:bold, "Disadvantaged groups that King's Awards for Enterprise focuses on"],
             [:normal, %(
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
 
@@ -153,7 +153,7 @@ class AwardYears::V2024::QAEForms
 
             [:bold, "Small organisations"],
             [:normal, %(
-              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              The King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
 
             [:bold, "COVID-19 impact"],
