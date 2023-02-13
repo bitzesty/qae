@@ -274,8 +274,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
           sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "B 1.8.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.8.1"
           required
           conditional :innovation_under_license, :yes
           rows 2
