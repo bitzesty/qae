@@ -223,10 +223,10 @@ class AwardYears::V2024::QAEForms
           yes_no
         end
 
-        textarea :innovation_external_contributors, "Name any external organisations or individuals that contributed to your innovation, and explain their contributions." do
+        textarea :innovation_external_contributors, "Name any external organisations or individuals that contributed to your innovation and explain their contributions." do
           sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "B 1.7.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.7.1"
           required
           conditional :innovation_any_contributors, :yes
           rows 3
