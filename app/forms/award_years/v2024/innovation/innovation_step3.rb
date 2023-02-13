@@ -54,27 +54,22 @@ class AwardYears::V2024::QAEForms
         header :innovation_background_header, "Innovation background" do
           ref "C 1"
           linkable true
-        end
-
-        header :innovation_background_section_header, "" do
-          section_info
           context %(
             <p class="govuk-body">
               The questions in subsection C1 help the assessors understand the context of your innovation.
             </p>
           )
-
-          pdf_context %(
-            <p>
+          pdf_context_with_header_blocks [
+            [:normal, %(
               The questions in subsection C1 help the assessors understand the context of your innovation.
-            </p>
-          )
+            )]
+          ]
         end
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.1"
+          sub_ref "C 1.1"
           required
           context %(
             <p>
