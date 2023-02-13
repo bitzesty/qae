@@ -424,8 +424,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_overcomes_issues, "Describe any challenges you encountered in developing your innovation and how you overcame them." do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.6"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.6"
           required
           context %(
             <p>
