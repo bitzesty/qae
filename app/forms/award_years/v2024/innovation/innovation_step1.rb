@@ -197,7 +197,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        confirm :agree_being_contacted_by_department_of_business, "Consent to enquiries by The King's Awards Office" do
+        confirm :agree_being_contacted_by_kao, "Consent to enquiries by The King's Awards Office" do
           sub_ref "A 2.2"
           show_ref_always true
           text %(

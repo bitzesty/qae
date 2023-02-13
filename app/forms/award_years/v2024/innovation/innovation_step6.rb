@@ -71,12 +71,11 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        confirm :shortlisted_case_confirmation, "" do
-          ref "F 4.3"
-          required
+        confirm :agree_being_contacted_by_department_of_business, "Consent to enquiries by The King's Awards Office" do
+          sub_ref "F 3.1"
           show_ref_always true
           text %(
-            I agree that if the application is shortlisted, I will supply commercial figures verified by an external accountant before the specified November deadline. I understand that if verified figures are not provided by the specified deadline at shortlist stage, the entry will be rejected.
+            I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
           )
         end
 
