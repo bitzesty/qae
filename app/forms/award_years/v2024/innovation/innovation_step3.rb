@@ -332,12 +332,12 @@ class AwardYears::V2024::QAEForms
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "B 2.2"
+          sub_ref "C 2.2"
           required
           context -> do
             %(
               <p>
-                Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (if you are applying for the two-year award) or after #{AwardYear.start_trading_since(5)} (if you are applying for the five-year award).
+                Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)}.
               </p>
             )
           end
