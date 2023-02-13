@@ -361,8 +361,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_desc_long, "Describe your innovation and why it is innovative." do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.4"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.4"
           required
           context %(
             <ol>
