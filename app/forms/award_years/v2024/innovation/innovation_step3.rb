@@ -236,7 +236,7 @@ class AwardYears::V2024::QAEForms
         options :innovation_contributors_aware, "Are they aware that you are applying for this award?" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.7.2"
+          sub_ref "C 1.7.2"
           required
           conditional :innovation_any_contributors, :yes
           option :yes, "Yes, they are all aware"
