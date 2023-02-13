@@ -155,8 +155,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_hold_existing_patent_details, "Provide a link to your published patent document. If you do not have a patent, please explain the reasons why not." do
           sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "B 1.4.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.4.1"
           required
           context %(
             <p>
