@@ -285,7 +285,7 @@ class AwardYears::V2024::QAEForms
         options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as innovation loan, in relation to your innovation?" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.9"
+          sub_ref "C 1.9"
           required
           yes_no
           context %(
