@@ -148,7 +148,7 @@ class AwardYears::V2024::QAEForms
         options :innovation_hold_existing_patent, "Do you hold the existing patent for this innovation?" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.4"
+          sub_ref "C 1.4"
           required
           yes_no
         end
