@@ -466,8 +466,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.9"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.9"
           required
           context %(
             <p>
