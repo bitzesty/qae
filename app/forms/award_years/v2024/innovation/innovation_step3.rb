@@ -60,13 +60,13 @@ class AwardYears::V2024::QAEForms
           section_info
           context %(
             <p class="govuk-body">
-              The questions in subsection B1 help the assessors understand the context of your innovation.
+              The questions in subsection C1 help the assessors understand the context of your innovation.
             </p>
           )
 
           pdf_context %(
             <p>
-              The questions in subsection B1 help the assessors understand the context of your innovation.
+              The questions in subsection C1 help the assessors understand the context of your innovation.
             </p>
           )
         end
