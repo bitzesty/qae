@@ -518,8 +518,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_befits_details_business, "How has the innovation added value to your business?" do
           sub_section :innovation_value_add_header
-          classes "sub-question"
-          sub_ref "B 3.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 3.1"
           required
           context %(
             <p>
@@ -531,7 +531,7 @@ class AwardYears::V2024::QAEForms
             <ul>
               <li>Resulted in design, production, marketing, distribution and after-sales support improvements.</li>
               <li>Developed people's skills, knowledge, and expertise.</li>
-              <li>Recruited new people into new roles or changed structure of the business that will benefit the business in the future.</li>
+              <li>Recruited new people into new roles or changed the structure of the business that will benefit the business in the future.</li>
               <li>Made your organisation more sustainable.</li>
               <li>Turned around business decline or increased the rate of growth.</li>
               <li>Increased efficiency, quality, reliability.</li>
@@ -553,7 +553,7 @@ class AwardYears::V2024::QAEForms
 
               \u2022 Developed people's skills, knowledge, and expertise.
 
-              \u2022 Recruited new people into new roles or changed structure of the business that will benefit the business in the future.
+              \u2022 Recruited new people into new roles or changed the structure of the business that will benefit the business in the future.
 
               \u2022 Made your organisation more sustainable.
 
@@ -564,7 +564,7 @@ class AwardYears::V2024::QAEForms
               \u2022 Reduced costs, reduced downtime.
             </p>
             <p>
-              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section C of the form (Commercial Performance).
+              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section D of the form (Commercial Performance).
             </p>
           )
           rows 4
