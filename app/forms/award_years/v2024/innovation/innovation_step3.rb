@@ -180,8 +180,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_other_countries_it_was_developed, "Describe in what other countries and, if applicable, by what parties it was developed." do
           sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "B 1.5.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.5.1"
           required
           conditional :innovation_conceived_and_developed, :no
           context %(
