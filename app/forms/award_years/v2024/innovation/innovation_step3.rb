@@ -323,7 +323,7 @@ class AwardYears::V2024::QAEForms
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "B 2.1"
+          sub_ref "c 2.1"
           required
           min 2000
           max 2020
