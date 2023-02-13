@@ -480,8 +480,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_additional_comments, "Additional comments. (optional)" do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.10"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.10"
           context %(
             <p>
               Use this box to explain if your innovation was launched by someone else or any other unusual circumstances surrounding your innovation.
