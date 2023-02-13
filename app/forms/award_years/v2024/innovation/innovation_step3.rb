@@ -130,7 +130,7 @@ class AwardYears::V2024::QAEForms
         options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation." do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.3"
+          sub_ref "C 1.3"
           required
           context %(
             <p>
