@@ -492,35 +492,28 @@ class AwardYears::V2024::QAEForms
         end
 
         header :innovation_value_add_header, "Innovation value-add" do
-          ref "B 3"
+          ref "C 3"
           linkable true
-        end
-
-        header :innovation_value_add_section_header, "" do
-          section_info
-          context %(
-            <p class='govuk-body'>
-              The questions in subsection B3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
+          context %{
+            <p class="govuk-body">
+              The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
             </p>
-            <p class='govuk-body'>
+            <p class="govuk-body">
               Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
             </p>
-            <p class='govuk-body'>
+            <p class="govuk-body">
               You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section E - if you do so, please reference it in your answer.
             </p>
-          )
+          }
+          pdf_context_with_header_blocks [
+            [:normal, %(
+              The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
 
-          pdf_context %(
-            <p>
-              The questions in subsection B3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
-            </p>
-            <p>
               Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
-            </p>
-            <p>
+
               You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section E - if you do so, please reference it in your answer.
-            </p>
-          )
+            )]
+          ]
         end
 
         textarea :innovation_befits_details_business, "How has the innovation added value to your business?" do
