@@ -125,6 +125,7 @@ class AwardYears::V2024::QAEForms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           conditional :trade_commercial_success, :true
+          conditional :financial_year_date_changed, "yes"
         end
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do

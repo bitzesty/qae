@@ -117,6 +117,7 @@ class AwardYears::V2024::QAEForms
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :yes
         end
 
         by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do

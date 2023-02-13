@@ -91,7 +91,7 @@ class AwardYears::V2024::QAEForms
         end
 
         one_option_by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
-          classes "sub-question one-option-by-years"
+          classes "sub-question"
           sub_ref "C 2.2"
 
           context %(
@@ -106,6 +106,7 @@ class AwardYears::V2024::QAEForms
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+          conditional :financial_year_date_changed, :yes
         end
 
         upload :supporting_financials, "To support your figures, please upload your financial statements for the years entered in question C2.2." do

@@ -457,16 +457,10 @@ window.FormValidation =
       else
         complexDateString = day + "/" + month + "/" + year
         date = @toDate(complexDateString)
-        currentDate = new Date()
 
         if not date.isValid()
           @logThis(question, "validateDateByYears", "Not a valid date")
           @appendMessage(qParent, "Not a valid date")
-          @addErrorClass(question)
-        # temporary condition
-        else if parseInt(year) > 2022 || parseInt(year) < 2014
-          @logThis(question, "validateDateByYears", "the year must be from 2014 to 2022")
-          @appendMessage(qParent, "the year must be from 2014 to 2022")
           @addErrorClass(question)
 
   validateInnovationFinancialDate: (question) ->
@@ -613,7 +607,7 @@ window.FormValidation =
       @validateMoneyByYears(question)
 
     if question.hasClass("question-date-by-years") &&
-       (question.hasClass("one-option-by-years") || question.find(".show-question").length == (question.find(".js-conditional-question").length - 1))
+       question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
       @validateDateByYears(question)
 
     if question.find(".match").length
