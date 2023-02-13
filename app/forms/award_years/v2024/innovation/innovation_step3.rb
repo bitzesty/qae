@@ -438,8 +438,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_strategies, "Explain the market opportunities and what strategies you used to penetrate the market." do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.7"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.7"
           required
           context %(
             <p>
