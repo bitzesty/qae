@@ -410,8 +410,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_selection_details, "How did you select this innovation as the one to satisfy the gap in the market?" do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.5"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.5"
           required
           context %(
             <p>
