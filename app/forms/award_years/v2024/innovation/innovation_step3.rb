@@ -268,7 +268,7 @@ class AwardYears::V2024::QAEForms
         options :innovation_under_license, "Is your innovation under licence from another organisation?" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.8"
+          sub_ref "C 1.8"
           yes_no
         end
 
