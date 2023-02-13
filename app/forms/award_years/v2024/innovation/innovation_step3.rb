@@ -87,7 +87,7 @@ class AwardYears::V2024::QAEForms
         textarea :innovation_desc_short, "Briefly describe your innovative product, service, business model or process." do
           sub_section :innovation_background_header
           classes "sub-question word-max-strict"
-          sub_ref "B 1.2"
+          sub_ref "C 1.2"
           required
           context %(
             <p>
@@ -98,16 +98,13 @@ class AwardYears::V2024::QAEForms
             </p>
             <ul>
               <li>
-                Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+                Innovative electro-mechanical downhole power delivery system to avoid the use of explosives or dangerous goods.
               </li>
               <li>
-                Innovative software testing tool to improve the efficiency and quality of software.
+                Integrating digital and personal contact to improve health and safety, and detect changing customer needs.
               </li>
               <li>
-                Innovative person-centred, non-medical home care for the elderly.
-              </li>
-              <li>
-                Leadership in the design and project management of biomethane gas-to-grid connections.
+                High performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
               </li>
             </ul>
           )
@@ -119,13 +116,11 @@ class AwardYears::V2024::QAEForms
               For example:
             </p>
             <p>
-              \u2022 Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+              \u2022 Innovative electro-mechanical downhole power delivery system to avoid the use of explosives or dangerous goods.
 
-              \u2022 Innovative software testing tool to improve the efficiency and quality of software.
+              \u2022 Integrating digital and personal contact to improve health and safety, and detect changing customer needs.
 
-              \u2022 Innovative person-centred, non-medical home care for the elderly.
-
-              \u2022 Leadership in the design and project management of biomethane gas-to-grid connections.
+              \u2022 High performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
             </p>
           )
           rows 1
