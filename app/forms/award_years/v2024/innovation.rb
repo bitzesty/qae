@@ -30,8 +30,8 @@ class AwardYears::V2024::QAEForms
              { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.innovation_step5
 
-        step "Supplementary materials",
-             "Supplementary materials",
+        step "Supplementary materials & confirmation",
+             "Supplementary materials & confirmation",
              { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.innovation_step6
       end
