@@ -307,23 +307,17 @@ class AwardYears::V2024::QAEForms
 
 
         header :innovation_timeline_header, "Innovation development" do
-          ref "B 2"
+          ref "C 2"
           linkable true
-        end
-
-        header :innovation_timeline_section_header, "" do
-          section_info
-          context %(
+          context %{
             <p class="govuk-body">
-              The questions in subsection B2 help the assessors understand the development of your innovation.
-            </p>
-          )
-
-          pdf_context %(
-            <p>
-              The questions in subsection B2 help the assessors understand the development of your innovation.
-            </p>
-          )
+              The questions in subsection C2 help the assessors understand the development of your innovation.
+          }
+          pdf_context_with_header_blocks [
+            [:normal, %(
+              The questions in subsection C2 help the assessors understand the development of your innovation.
+            )]
+          ]
         end
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
