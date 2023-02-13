@@ -297,8 +297,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_grant_funding_sources, "Please give details of dates, sources and levels of funding." do
           sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "B 1.9.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.9.1"
           required
           conditional :innovations_grant_funding, :yes
           rows 3
