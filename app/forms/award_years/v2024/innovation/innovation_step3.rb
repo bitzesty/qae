@@ -218,7 +218,7 @@ class AwardYears::V2024::QAEForms
         options :innovation_any_contributors, "Did any external organisations or individuals contribute to your innovation?" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.7"
+          sub_ref "C 1.7"
           required
           yes_no
         end
