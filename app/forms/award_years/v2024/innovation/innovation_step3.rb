@@ -256,8 +256,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "B 1.7.3"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.7.3"
           required
           conditional :innovation_any_contributors, :yes
           conditional :innovation_contributors_aware, :no
