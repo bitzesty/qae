@@ -573,7 +573,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_befits_details_customers, "Does the innovation benefit your customers, and if so, how?" do
           sub_section :innovation_value_add_header
-          classes "sub-question"
+          classes "sub-question word-max-strict"
           sub_ref "C 3.2"
           required
           context %(
@@ -619,8 +619,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation benefit others, and if so, how and to whom?" do
           sub_section :innovation_value_add_header
-          classes "sub-question"
-          sub_ref "B 3.3"
+          classes "sub-question word-max-strict"
+          sub_ref "C 3.3"
           required
           context %(
             <p>
