@@ -347,8 +347,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.3"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.3"
           required
           context %(
             <p>
