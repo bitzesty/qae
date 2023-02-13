@@ -452,8 +452,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_competitors, "Who offers products, services or business models that compete with yours?" do
           sub_section :innovation_timeline_header
-          classes "sub-question"
-          sub_ref "B 2.8"
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.8"
           required
           context %(
             <p>
