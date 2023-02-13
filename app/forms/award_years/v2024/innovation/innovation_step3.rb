@@ -247,7 +247,7 @@ class AwardYears::V2024::QAEForms
           classes "application-notice help-notice"
           context %(
             <p class="govuk-body">
-              We recommend that you notify all the contributors to your innovation of this entry.
+              Notifying all contributors can avoid disputes due to the contributors feeling that their contribution was not acknowledged. We, therefore, recommend that you inform all organisations who have contributed to your innovation.
             </p>
           )
           conditional :innovation_any_contributors, :yes
