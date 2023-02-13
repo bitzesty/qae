@@ -173,7 +173,7 @@ class AwardYears::V2024::QAEForms
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.5"
+          sub_ref "C 1.5"
           required
           yes_no
         end
