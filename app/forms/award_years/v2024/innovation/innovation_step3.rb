@@ -196,7 +196,7 @@ class AwardYears::V2024::QAEForms
         options :innovation_joint_contributors, "Is this application part of a joint entry with any contributing organisations?" do
           sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "B 1.6"
+          sub_ref "C 1.6"
           required
           context %(
             <p>
