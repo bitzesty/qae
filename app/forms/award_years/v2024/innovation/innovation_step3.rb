@@ -208,8 +208,8 @@ class AwardYears::V2024::QAEForms
 
         textarea :innovation_contributors, "Please enter their names." do
           sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "B 1.6.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.6.1"
           conditional :innovation_joint_contributors, :yes
           rows 2
           words_max 100
