@@ -20,8 +20,8 @@ h1.govuk-heading-xl
 
             = render "form_contact_settings", f: f
 
-
-            h3.govuk-heading-m = f.label :qae_info_source, label: "How did you hear about The King's Awards?"
+            
+            h3.govuk-heading-m = f.label :qae_info_source, label: "How did you hear about The Queen's Awards?"
             = f.input :qae_info_source, as: :select, label: false, input_html: { class: 'govuk-select small' }
 
             span.clear

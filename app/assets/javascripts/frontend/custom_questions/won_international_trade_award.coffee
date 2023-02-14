@@ -4,7 +4,7 @@ window.WonInternationalTradeAwardQuestion = init: ->
   do maybeDisplayAwardHelp = ->
     container = $("[data-container~=#{identifier}]")
 
-    conditionFulfilled = false
+    displayHelp = false
 
     rows = container.find("li")
 
@@ -13,13 +13,13 @@ window.WonInternationalTradeAwardQuestion = init: ->
         input = $(row).find("select[data-input-value~=#{type}]")
         input.val() == container.data("#{type}-value").toString()
       if (validations.every(Boolean))
-        conditionFulfilled = true
+        displayHelp = true
         return false
 
     helpBlock = container.closest("fieldset").find(".question-block")
 
     if helpBlock
-      if conditionFulfilled
+      if displayHelp
         helpBlock.show()
       else
         helpBlock.hide()
@@ -29,4 +29,3 @@ window.WonInternationalTradeAwardQuestion = init: ->
 
   $(document).on "click", "[data-container~=#{identifier}] a.js-remove-link", ->
     maybeDisplayAwardHelp()
-    window.OptionsWithPreselectedConditionsQuestion.init()

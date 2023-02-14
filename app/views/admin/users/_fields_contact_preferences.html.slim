@@ -15,14 +15,14 @@
 
   = f.input :notification_when_submission_deadline_is_coming, label: "I would like to receive email reminders of submission deadlines - these are sent at regular intervals closer to the deadline.", wrapper_class: "selectable"
 
-  = f.input :subscribed_to_emails, checkbox: true, label: "I am happy to be contacted about King's Awards for Enterprise issues not related to my application (case study, newsletters so on).", wrapper_class: "selectable"
+  = f.input :subscribed_to_emails, checkbox: true, label: "I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (case study, newsletters so on).", wrapper_class: "selectable"
 
   = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.", wrapper_class: "selectable"
 
   = f.input :agree_sharing_of_details_with_lieutenancies, label: "I am happy for my and my organisation's name, contact details and application status to be shared with Lieutenancies so that they can contact us to assist as appropriate.", wrapper_class: "selectable"
 
 .question-group
-  h3 = f.label :qae_info_source, label: "How did the #{controller_name == "users" ? "applicant" : controller_name.singularize} hear about The King's Awards?"
+  h3 = f.label :qae_info_source, label: "How did the #{controller_name == "users" ? "applicant" : controller_name.singularize} hear about The Queen's Awards?"
   .row
     .col-md-4.col-sm-5
       = f.input :qae_info_source,

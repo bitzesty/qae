@@ -48,7 +48,7 @@ describe "expired reception attendee information deadline" do
 
     expect(page).to have_content(%Q{
       On #{award_date} there will be a Royal reception held at Buckingham Palace for organisations
-      who have won King's Awards. Winning organisations can send one attendee per award won.
+      who have won Queen's Awards. Winning organisations can send one attendee per award won.
     }.squish)
 
     expect(page).to have_selector("form", id: "new_palace_invite")

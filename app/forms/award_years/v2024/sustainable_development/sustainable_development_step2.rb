@@ -1,425 +1,430 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 class AwardYears::V2024::QAEForms
   class << self
     def development_step2
       @development_step2 ||= proc do
-        header :company_information_header, "" do
+        header :development_b_section_header, "" do
           section_info
           context %(
-            <h3 class='govuk-heading-m'>About section B</h3>
+            <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
-              The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details provided are accurate as they cannot be changed after the submission deadline.
+              Read this section before planning the answers.
+              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
+              <br />
+              Avoid using technical jargon.
+            </p>
+
+            <h3 class='govuk-heading-m'>Small organisations</h3>
+            <p class='govuk-body'>
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+            </p>
+
+            <h3 class='govuk-heading-m'>COVID-19 impact</h3>
+            <p class='govuk-body'>
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+            </p>
+
+            <h3 class='govuk-heading-m'>Sustainable Development Goals (SDGs)</h3>
+            <p class='govuk-body'>
+              You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
             </p>
             <p class='govuk-body'>
-              This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
             </p>
-            <h3 class="govuk-heading-m">Small organisations</h3>
-            <p class="govuk-body">
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
+
+            <p class='govuk-body'>
+              You can find more information about each goal on the United Nations (UN) website by clicking on the links below:
+            </p>
+
+            <p class='govuk-body'>
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal1.html">GOAL 1: No Poverty</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal2.html">GOAL 2: Zero Hunger</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal3.html">GOAL 3: Good Health and Well-being</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal4.html">GOAL 4: Quality Education</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal5.html">GOAL 5: Gender Equality</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal6.html">GOAL 6: Clean Water and Sanitation</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal7.html">GOAL 7: Affordable and Clean Energy</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal8.html">GOAL 8: Decent Work and Economic Growth</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal9.html">GOAL 9: Industry, Innovation and Infrastructure</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal10.html">GOAL 10: Reduced Inequality</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal11.html">GOAL 11: Sustainable Cities and Communities</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal12.html">GOAL 12: Responsible Consumption and Production</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal13.html">GOAL 13: Climate Action</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal14.html">GOAL 14: Life Below Water</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal15.html">GOAL 15: Life on Land</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal16.html">GOAL 16: Peace and Justice Strong Institutions</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal17.html">GOAL 17: Partnerships to achieve the Goal</a>
             </p>
           )
-          pdf_context_with_header_blocks [
-            [:bold, "About section B"],
-            [:normal, %(
-              The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details provided are accurate as they cannot be changed after the submission deadline.
 
-              This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+              Read this section before planning the answers.
+              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
+              Avoid using technical jargon.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+            )],
+            [:bold, "COVID-19 impact"],
+            [:normal, %(
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+            )],
+            [:bold, "Sustainable Development Goals (SDGs)"],
+            [:normal, %(
+              You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
+
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
+
+              \u2022 GOAL 1: No Poverty
+              https://www.un.org/development/desa/disabilities/envision2030-goal1.html
+
+              \u2022 GOAL 2: Zero Hunger
+              https://www.un.org/development/desa/disabilities/envision2030-goal2.html
+
+              \u2022 GOAL 3: Good Health and Well-being
+              https://www.un.org/development/desa/disabilities/envision2030-goal3.html
+
+              \u2022 GOAL 4: Quality Education
+              https://www.un.org/development/desa/disabilities/envision2030-goal4.html
+
+              \u2022 GOAL 5: Gender Equality
+              https://www.un.org/development/desa/disabilities/envision2030-goal5.html
+
+              \u2022 GOAL 6: Clean Water and Sanitation
+              https://www.un.org/development/desa/disabilities/envision2030-goal6.html
+
+              \u2022 GOAL 7: Affordable and Clean Energy
+              https://www.un.org/development/desa/disabilities/envision2030-goal7.html
+
+              \u2022 GOAL 8: Decent Work and Economic Growth
+              https://www.un.org/development/desa/disabilities/envision2030-goal8.html
+
+              \u2022 GOAL 9: Industry, Innovation and Infrastructure
+              https://www.un.org/development/desa/disabilities/envision2030-goal9.html
+
+              \u2022 GOAL 10: Reduced Inequality
+              https://www.un.org/development/desa/disabilities/envision2030-goal10.html
+
+              \u2022 GOAL 11: Sustainable Cities and Communities
+              https://www.un.org/development/desa/disabilities/envision2030-goal11.html
+
+              \u2022 GOAL 12: Responsible Consumption and Production
+              https://www.un.org/development/desa/disabilities/envision2030-goal12.html
+
+              \u2022 GOAL 13: Climate Action
+              https://www.un.org/development/desa/disabilities/envision2030-goal13.html
+
+              \u2022 GOAL 14: Life Below Water
+              https://www.un.org/development/desa/disabilities/envision2030-goal14.html
+
+              \u2022 GOAL 15: Life on Land
+              https://www.un.org/development/desa/disabilities/envision2030-goal15.html
+
+              \u2022 GOAL 16: Peace and Justice Strong Institutions
+              https://www.un.org/development/desa/disabilities/envision2030-goal16.html
+
+              \u2022 GOAL 17: Partnerships to achieve the Goal
+              https://www.un.org/development/desa/disabilities/envision2030-goal17.html
             )]
           ]
         end
 
-        options :applying_for, "Are you applying on behalf of your:" do
+        header :sustainable_development_interventions_header, "Your sustainable development interventions" do
           ref "B 1"
-          required
-          option "organisation", "Whole organisation (with ultimate control)"
-          option "division branch subsidiary", "A division, branch or subsidiary"
-        end
-
-        header :business_division_header, "" do
-          classes "application-notice help-notice"
           context %(
-            <p class="govuk-body">
-              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
+            <p class='govuk-body'>
+              In questions B1.1 and B1.2 you need to summarise your actions or interventions to sustainable development and demonstrate a sustainable strategy across the business. This is to help us understand the size and scale of your actions or interventions. This summary might be used in publicity material if your application is successful.
             </p>
           )
-          conditional :applying_for, "division branch subsidiary"
         end
 
-        text :company_name, "Full legal name of your organisation" do
+        textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
           required
-          ref "B 2"
-          context %(
-            <p>If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number.</p>
-          )
-        end
-
-        text :brand_name, "If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number." do
           classes "sub-question"
-          sub_ref "B 2.1"
-          required
+          sub_ref "B 1.1"
           context %{
-            <p>Usually, this is the same name as your organisation's full legal name. </p>
-            <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
-          }
-        end
-
-        options :principal_business, "Does your organisation operate as a principal?" do
-          required
-          ref "B 3"
-          context %(
             <p>
-              We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
+              Where relevant, please include:
             </p>
-          )
-          yes_no
-        end
-
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
-          classes "sub-question"
-          sub_ref "B 3.1"
-          required
-          conditional :principal_business, :no
-          words_max 100
-          rows 5
-        end
-
-        options :organisation_type, "What type of legal entity is your organisation?" do
-          required
-          ref "B 4"
-          option "sole_trader", "Sole Trader"
-          option "partnership", "Partnership"
-          option "ltd", "Limited Company (Ltd)"
-          option "plc", "Public Limited Company (Plc)"
-          option "cic", "Community Interest Company (CIC)"
-          option "charity", "Charity"
-          option "other", "Other"
-        end
-
-        text :other_organisation_type, "" do
-          context %{
-            <p class="govuk-body">Please specify</p>
+            <p>
+              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
+            </p>
+            <p>
+              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
+            </p>
+            <p>
+              c) The proportion of these interventions compared to your whole organisation’s size.
+            </p>
+            <p>
+              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
+            </p>
+            <ul>
+              <li>
+                An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+              </li>
+              <li>
+                Developing unique or innovative ways, products or services to be sustainable.
+              </li>
+              <li>
+                Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+              </li>
+              <li>
+                Leading the way in your company, sector or market by doing something that has never been done before.
+              </li>
+            </ul>
           }
+
           pdf_context %{
-            <p class="govuk-body">Please specify if selected Other</p>
+            <p>
+              Where relevant, please include:
+            </p>
+            <p>
+              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
+            </p>
+            <p>
+              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
+            </p>
+            <p>
+              c) The proportion of these interventions compared to your whole organisation’s size.
+            </p>
+            <p>
+              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
+            </p>
+            <p>
+              \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+
+              \u2022 Developing unique or innovative ways, products or services to be sustainable.
+
+              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+
+              \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
+            </p>
           }
-          conditional :organisation_type, :other
+
+          rows 10
+          words_max 1000
         end
 
-        text :registration_number, "Provide your company or charity registration number or, if not registered, explain why." do
-          classes "sub-question"
-          required
-          ref "B 4.1"
-          context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-          )
-          style "small"
-        end
-
-        text :vat_registration_number, "Provide your VAT registration number or, if not registered, explain why." do
-          classes "sub-question"
-          required
-          ref "B 4.2"
-          context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's VAT number.</p>
-          )
-          style "small"
-        end
-
-        date :started_trading, "Date started trading" do
-          required
-          ref "B 5"
-          context -> do
-            %(
-              <p>
-                Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award.
-              </p>
-            )
-          end
-
-          date_max AwardYear.start_trading_since(2)
-        end
-
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a King's/Queen's Awards for Enterprise award in any category?" do
-          required
-          ref "B 6"
-          yes_no
-          classes "queen-award-holder"
-        end
-
-        queen_award_applications :applied_for_queen_awards_details, "List the King's/Queen's awards you have applied for in the last 10 years." do
-          classes "sub-question question-current-awards"
-          sub_ref "B 6.1"
-
-          conditional :applied_for_queen_awards, :yes
-
-          category :innovation, "Innovation"
-          category :international_trade, "International Trade"
-          category :sustainable_development, "Sustainable Development"
-          category :social_mobility, "Promoting Opportunity"
-
-          ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
-            year y
-          end
-
-          outcome "won", "Won"
-          outcome "did_not_win", "Did not win"
-        end
-
-        options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
-          classes "sub-question"
-          sub_ref "B 6.2"
-          required
-          conditional :applied_for_queen_awards, :yes
-          yes_no
-        end
-
-        text :previous_business_name, "Name used previously" do
-          classes "sub-question"
-          sub_ref "B 6.3"
-          required
-          conditional :business_name_changed, :yes
-          conditional :applied_for_queen_awards, :yes
-        end
-
-        textarea :previous_business_ref_num, "Reference number(s) used previously" do
-          classes "sub-question"
-          sub_ref "B 6.4"
-          required
-          conditional :business_name_changed, :yes
-          conditional :applied_for_queen_awards, :yes
-          rows 5
-          words_max 100
-        end
-
-        options :other_awards_won, "Have you won any other awards in the past?" do
-          ref "B 7"
-          required
-          yes_no
-        end
-
-        textarea :other_awards_desc, "Describe the awards you have won in the past." do
-          classes "sub-question"
-          sub_ref "B 7.1"
+        textarea :one_line_description_of_interventions, "Provide a one-line description of your sustainable development interventions." do
+          classes "sub-question word-max-strict"
+          ref "B 1.2"
           required
           context %(
             <p>
-              If you can't fit all of your awards below, then choose those you're most proud of.
-            </p>
-                    )
-          conditional :other_awards_won, :yes
-          rows 5
-          words_max 250
-        end
-
-        options :part_of_joint_entry, "Is this application part of a joint entry with any contributing organisation?" do
-          ref "B 8"
-          required
-          context %(
-            <p>
-              If two or more organisations made a significant contribution to the product, service or management approach, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If your application is successful, this description will appear in the London Gazette.
             </p>
           )
-          yes_no
-        end
-
-        textarea :part_of_joint_entry_names, "Please enter their name(s)." do
-          classes "sub-question"
-          sub_ref "B 8.1"
-          required
-          conditional :part_of_joint_entry, "yes"
-          words_max 100
           rows 2
+          words_max 15
         end
 
-        options :external_contribute_to_sustainable_product,
-                "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
-          ref "B 9"
+        textarea :briefly_describe_your_core_business, "Your core business" do
+          classes "word-max-strict"
+          ref "B 2"
+          required
+          question_sub_title %{
+            Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
+          }
+          context %{
+            <p>
+              Please include:
+            </p>
+            <p>
+              a) A brief summary of your organisation.
+            </p>
+            <p>
+              b) What was the situation before your organisation adopted a sustainability purpose, objective, intervention or action?
+            </p>
+            <p>
+              c) Why did you choose these particular actions or interventions, and how do they align with the core aims and values of your organisation?
+            </p>
+            <p>
+              d) How have you embedded sustainability objectives or purpose in your organisation?
+            </p>
+            <p>
+              e) If your application is focussed on a sustainable product, service or approach, please explain how your business also operates sustainably.
+            </p>
+          }
+          rows 5
+          words_max 600
+        end
+
+        textarea :impact_of_your_sustainable_development, "Impact of your sustainable development" do
+          classes "word-max-strict"
+          ref "B 3"
+          required
+          question_sub_title %{
+            Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
+          }
+          context %{
+            <p>
+              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
+            </p>
+            <p>
+              Where possible, please include:
+            </p>
+            <p>
+              a) How you measure the success of your sustainability intervention? For example, are key performance indicators (KPIs) or targets used? If so, how are they set and monitored? Are the KPIs or targets being met, and what happens if they are not?
+            </p>
+            <p>
+              b) State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance.
+            </p>
+            <p>
+              c) The impact of your sustainable objectives. For example, impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.
+            </p>
+            <p>
+              d) How the impact compares to the sector. Please state what sector research or other evidence you have used to benchmark this. Include a web link to any research, if available.
+            </p>
+            <p>
+              e) What longer-term outcomes do you expect as a result of your sustainable development efforts?
+            </p>
+            <p>
+              f) State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation.
+            </p>
+          }
+          rows 10
+          words_max 1000
+        end
+
+        textarea :describe_the_driving_force_of_your_organisation, "Leadership and management" do
+          classes "word-max-strict"
+          ref "B 4"
+          required
+          question_sub_title %{
+            Please describe the driving force of your organisation’s sustainability.
+          }
+          context %{
+            <p>
+              a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?
+            </p>
+            <p>
+              b) Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?<br />
+              You may include flow charts to make it easier for assessors to understand how your programme is managed in section D of this form.
+            </p>
+            <p>
+              c) What is the senior decision makers’ commitment to the future sustainable growth of the organisation?
+            </p>
+            <p>
+              d) If possible, provide details on how the scale of this programme compares with similar organisations in your sector or industry.
+            </p>
+            <p>
+              e) How does your organisation inspire other organisations to be more sustainable? For example, businesses in your supply chain, stakeholders, customers or local communities.
+            </p>
+            <p>
+              f) If relevant, provide details on how you collaborate with partners and others to develop best practice.
+            </p>
+            <p>
+              g) Describe your organisation’s strategy to attract, recruit, promote and retain a diverse workforce.
+            </p>
+            <p>
+              h) How has your employee relations improved motivation, well-being and satisfaction?
+            </p>
+          }
+          rows 10
+          words_max 1000
+        end
+
+        textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
+          classes "word-max-strict"
+          ref "B 5"
+          required
+          question_sub_title %{
+            Describe how your organisation’s culture fosters and supports sustainability.
+          }
+          context %{
+            <p>
+              Please include:
+            </p>
+            <p>
+              a) How is sustainability embedded in your organisation’s culture and values?
+            </p>
+            <p>
+              b) How sustainability interventions benefit the overall business strategy?
+            </p>
+            <p>
+              c) How do you increase positive perceptions of your organisation’s sustainability among customers, stakeholders, or the media?
+            </p>
+            <p>
+              d) How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?<br />
+              Please include links to relevant pages on your company’s website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.
+            </p>
+            <p>
+              If applicable, include in your answer or attach in section D of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.
+            </p>
+            <p>
+              e) Explain your strategy in developing sustainably for the future. For example, how are you changing your business model, approach, products or services to respond to future sustainability challenges in your business or sector?
+            </p>
+            <p>
+              f) What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?
+            </p>
+          }
+          rows 10
+          words_max 1000
+        end
+
+        textarea :governance, "Governance" do
+          ref "B 6"
           required
           context %(
             <p>
-              <strong>Excluding</strong> paid suppliers and consultants.
+              If you are a large organisation, you may wish to describe:
             </p>
-                    )
-          yes_no
+            <ul>
+              <li>How you uphold ethical standards within your core business.</li>
+              <li>How you ensure diversity of representation, including at very senior levels.</li>
+              <li>How you engage stakeholders in your governance.</li>
+              <li>Your company's policies on pay and shareholder rights.</li>
+              <li>Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.</li>
+            </ul>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <ul>
+              <li>Involvement of Non-Executive Directors on the board.</li>
+              <li>How the board ensures that ethical standards are considered and adhered to.</li>
+              <li>How the board ensures that statutory obligations are met.</li>
+            </ul>
+          )
+          pdf_context %(
+            <p>
+              You may wish to describe:
+            </p>
+            <p>
+              \u2022 How you uphold ethical standards within your core business.
+
+              \u2022 How you ensure diversity of representation, including at very senior levels.
+
+              \u2022 How you engage stakeholders in your governance.
+
+              \u2022 Your company's policies on pay and shareholder rights.
+
+              \u2022 Any other notable policies or practices, for example, relating to transparency, compliance, accounting, tax, risk, controls or audit.
+            </p>
+            <p>
+              If you are a small organisation, some of the previous points may be less relevant, therefore you may wish to describe:
+            </p>
+            <p>
+              \u2022 Involvement of Non-Executive Directors on the board.
+
+              \u2022 How the board ensures that ethical standards are considered and adhered to.
+
+              \u2022 How the board ensures that statutory obligations are met.
+            </p>
+          )
+          rows 2
+          words_max 200
         end
 
-        options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
-          classes "sub-question"
-          sub_ref "B 9.1"
-          required
-          option "yes", "Yes, they are all aware"
-          option "no", "No, they are not all aware"
-          conditional :external_contribute_to_sustainable_product, "yes"
-        end
-
-        header :external_organization_or_individual_info_header_no, "" do
+        header :additional_materials_notes, "" do
           classes "application-notice help-notice"
           context %(
             <p class="govuk-body">
-              We recommend that you notify all the contributors to your product/service/management approach of this entry.
+              If there is additional material you feel would help us to assess your entry, you can add up to three files of website addresses in section D of this form. However, please include any vital information in your answers in the questions above as we cannot guarantee the additional material will be reviewed in full.
             </p>
           )
-          conditional :external_contribute_to_sustainable_product, "yes"
-          conditional :external_are_aware_about_award, "no"
-        end
-
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
-          classes "sub-question"
-          sub_ref "B 9.2"
-          required
-          words_max 200
-          conditional :external_contribute_to_sustainable_product, "yes"
-          conditional :external_are_aware_about_award, "no"
-          rows 3
-        end
-
-        address :organization_address, "Trading address of your organisation" do
-          required
-          ref "B 10"
-          pdf_context_with_header_blocks [
-            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
-          ]
-          county_context %(
-            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council</p>
-          )
-          sub_fields([
-            { building: "Building" },
-            { street: "Street" },
-            { city: "Town or city" },
-            { county: "County" },
-            { postcode: "Postcode" }
-          ])
-        end
-
-        text :org_telephone, "Main telephone number" do
-          required
-          ref "B 10.1"
-          type "tel"
-          style "small"
-        end
-
-        press_contact_details :press_contact_details, "Contact details for press enquiries" do
-          ref "B 11"
-          context %(
-            <p class='govuk-hint'><em>
-              If your application is successful, you may get contacted by the press.
-            </em></p>
-            <p class='govuk-hint'>
-              Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
-            </p>
-          )
-          sub_fields([
-            { title: "Title" },
-            { first_name: "First name" },
-            { last_name: "Last name" },
-            { telephone: "Telephone" },
-            { email: "Email address" }
-          ])
-        end
-
-        text :website_url, "Website address" do
-          ref "B 12"
-          style "large"
-          context %(
-            <p>Please provide full website address, for example, www.yourcompanyname.com</p>
-          )
-        end
-
-        textarea :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram." do
-          classes "sub-question"
-          sub_ref "B 12.1"
-          context %{
-            <p>Please note, when evaluating your application, the assessors may check your organisation's online presence.</p>
-          }
-        end
-
-        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
-          required
-          ref "B 13"
-          context %{
-            <p>The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/</p>
-            <p>Select the first four digits of the SIC code that best represents the current activities of your business.</p>
-          }
-        end
-
-        options :parent_or_a_holding_company, "Do you have a parent or a holding company?" do
-          required
-          ref "B 14"
-          yes_no
-        end
-
-        text :parent_company, "Name of the immediate parent company" do
-          required
-          classes "sub-question"
-          sub_ref "B 14.1"
-          conditional :parent_or_a_holding_company, :yes
-        end
-
-        country :parent_company_country, "Country of the immediate parent company" do
-          classes "sub-question"
-          required
-          sub_ref "B 14.2"
-          conditional :parent_or_a_holding_company, :yes
-        end
-
-        options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
-          required
-          classes "sub-question"
-          sub_ref "B 14.3"
-          yes_no
-          conditional :parent_or_a_holding_company, :yes
-        end
-
-        text :ultimate_control_company, "Name of organisation with ultimate control" do
-          required
-          classes "sub-question"
-          sub_ref "B 14.4"
-          conditional :parent_ultimate_control, :no
-          conditional :parent_or_a_holding_company, :yes
-        end
-
-        country :ultimate_control_company_country, "Country of organisation with ultimate control" do
-          classes "sub-question"
-          sub_ref "B 14.5"
-          conditional :parent_ultimate_control, :no
-          conditional :parent_or_a_holding_company, :yes
-        end
-
-        upload :org_chart, "Upload an organisational chart (optional)" do
-          ref "B 15"
-          context %(
-            <p>You can submit a file in most formats if it is less than five megabytes.</p>
-          )
-          hint "What are the allowed file formats?", %(
-            <p>
-              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
-            </p>
-          )
-          max_attachments 1
-        end
-
-        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the King's Awards for Enterprise award this year?" do
-          ref "B 16"
-          required
-          context %(
-            <p>Select all that apply.</p>
-          )
-          check_options [
-            ["qa_website", "King's Awards website"],
-            ["qa_twitter", "King's Awards Twitter"],
-            ["social_media", "Other social media"],
-            ["another_website", "Another website"],
-            ["qa_event", "King's Awards event"],
-            ["another_event", "A third party exhibition or event"],
-            ["publication", "A newspaper/publication"],
-            ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
-          ]
         end
       end
     end
