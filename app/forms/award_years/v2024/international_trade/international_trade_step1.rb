@@ -181,6 +181,15 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
+        confirm :shortlisted_case_confirmation_i_am_not_aware_of_any_matter, "Organisation worthiness" do
+          ref "A 2.1"
+          required
+          show_ref_always true
+          text %(
+            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a King's Award for Enterprise.
+          )
+        end
+
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 3"
           text %(
@@ -204,72 +213,6 @@ class AwardYears::V2024::QAEForms
               By submitting this entry for consideration for The King's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The King's Awards Office of any changes to the information I have provided in this entry form.
             )
           end
-        end
-
-        confirm :shortlisted_case_confirmation_i_am_not_aware_of_any_matter, "" do
-          ref "F 4.1"
-          required
-          show_ref_always true
-          text %(
-            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a King's Award for Enterprise. I consent to all necessary enquiries being made by The King's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a King's Award to ensure the highest standards of propriety.
-
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  View Government Departments and Agencies we undertake due diligence checks with
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                <ul class='js-authorize-and-submit-step-view-gov-departments-and-agencies hidden'>
-                  <li>Biotechnology & Biological Sciences Research Council</li>
-                  <li>Charity Commission</li>
-                  <li>Companies House</li>
-                  <li>Competition and Markets Authority</li>
-                  <li>Crown Commercial Service</li>
-                  <li>Department for Business, Energy and Industrial Strategy</li>
-                  <li>Department for Communities and Local Government</li>
-                  <li>Department for Culture Media & Sport</li>
-                  <li>Department for Education</li>
-                  <li>Department for Environment, Food & Rural Affairs</li>
-                  <li>Department for International Trade</li>
-                  <li>Department for Transport</li>
-                  <li>Department of Economic Development, Isle of Man</li>
-                  <li>Department for the Economy NI</li>
-                  <li>Department of Health</li>
-                  <li>Environment Agency</li>
-                  <li>Financial Conduct Authority</li>
-                  <li>Food Standards Agency</li>
-                  <li>Forestry Commission</li>
-                  <li>Guernsey Government</li>
-                  <li>Health and Safety Executive</li>
-                  <li>HM Courts & Tribunals Service</li>
-                  <li>HM Revenue & Customs</li>
-                  <li>Home Office</li>
-                  <li>Insolvency Service</li>
-                  <li>Intellectual Property Office</li>
-                  <li>Invest NI</li>
-                  <li>Jersey Government</li>
-                  <li>Ministry of Defence</li>
-                  <li>Ministry of Justice</li>
-                  <li>Medical Research Council Technology</li>
-                  <li>National Measurement Office</li>
-                  <li>Natural England</li>
-                  <li>Natural Environment Research Council</li>
-                  <li>Office of the Scottish Charity Regulator</li>
-                  <li>Scottish Government</li>
-                  <li>Scottish Environment Protection Agency</li>
-                  <li>Scottish Funding Council</li>
-                  <li>Serious Fraud Office</li>
-                  <li>UK Export Finance</li>
-                  <li>Wales Government</li>
-                </ul>
-              </div>
-            </details>
-          )
-
-          pdf_text %(
-            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a King's Award for Enterprise. I consent to all necessary enquiries being made by The King's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a King's Award to ensure the highest standards of propriety.
-          )
         end
 
         confirm :due_diligence, "" do
