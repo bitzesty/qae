@@ -299,7 +299,7 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
-        options :applied_for_queen_awards, "In the last ten years, have you applied for a King's Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards, "In the last ten years, have you applied for a King's/Queen's Awards for Enterprise award in any category?" do
           required
           ref "B 13"
           yes_no
@@ -311,7 +311,7 @@ class AwardYears::V2024::QAEForms
           classes "queen-award-holder"
         end
 
-        queen_award_applications :applied_for_queen_awards_details, "List the King's awards you have applied for in the last 10 years." do
+        queen_award_applications :applied_for_queen_awards_details, "List the King's/Queen's awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "B 13.1"
 
