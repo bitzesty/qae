@@ -325,7 +325,9 @@ class AwardYears::V2024::QAEForms
         text :website_url, "Website address" do
           ref "B 12"
           style "large"
-          form_hint "Please provide full website address, for example, www.yourcompanyname.com"
+          context %(
+            <p>Please provide full website address, for example, www.yourcompanyname.com</p>
+          )
         end
 
         textarea :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram." do
