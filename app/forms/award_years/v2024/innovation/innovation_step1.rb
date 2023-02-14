@@ -188,8 +188,8 @@ class AwardYears::V2024::QAEForms
           ]
         end
 
-        confirm :shortlisted_case_confirmation_i_am_not_aware_of_any_matter, "Organisation worthiness" do
-          ref "A 2.1"
+        confirm :declaration_of_corporate_responsibility, "Organisation worthiness" do
+          sub_ref "A 2.1"
           required
           show_ref_always true
           text %(
