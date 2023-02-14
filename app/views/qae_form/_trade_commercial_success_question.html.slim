@@ -12,10 +12,10 @@
     - question.options.each do |answer|
       - c = question.preselected_condition_by_option(answer)
 
-      .govuk-radios__item class=("display-none" if condition.present?)
+      .govuk-radios__item.selectable class=("display-none" if condition.present?)
         - if c.present?
           input.govuk-radios__input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value data-preselected-condition="#{c.question_suffix}_#{c.parent_question_answer_key}" checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) *possible_read_only_ops
         - else
           input.govuk-radios__input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) *possible_read_only_ops
-        label.govuk-label.govuk-radios__label for="#{question.input_name}_#{answer.value.to_s.parameterize}" 
+        label.govuk-label.govuk-radios__label for="#{question.input_name}_#{answer.value.to_s.parameterize}"
           = answer.text

@@ -59,7 +59,7 @@ class Reports::ReceptionBuckinghamPalaceReport
       method: :product_description
     },
     {
-      label: "Additional Information e.g. Wheelchair user",
+      label: "Additional Information, for example, Wheelchair user",
       method: :additional_info
     },
     {

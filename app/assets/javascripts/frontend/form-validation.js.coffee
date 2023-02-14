@@ -353,9 +353,21 @@ window.FormValidation =
       qParent = subq.closest("td")
       val = subq.val().trim()
 
+      # finds required row question gets checked answers
+      requiredRowParent = subq.attr('data-required-row-parent')
+      requiredRows = []
+      requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
+
       if not val
-        @appendMessage(qParent, "Required")
-        @addErrorClass(qParent)
+        if !subq.attr('data-required-row-parent')
+          @appendMessage(qParent, "Required")
+          @addErrorClass(qParent)
+        # only adds 'required' error when y_heading matches checked answer
+        else
+          for yHeading in requiredRows
+            if subq.attr('id').includes(yHeading)
+              @appendMessage(qParent, "Required")
+              @addErrorClass(qParent)
       else if isNaN(val)
         @appendMessage(qParent, "Only numbers")
         @addErrorClass(qParent)
@@ -518,7 +530,7 @@ window.FormValidation =
     if drop
       errorMessage = "Sorry, you are not eligible. \
       You must have constant growth in overseas sales for the entire entry period to be eligible \
-      for a Queen's Award for Enterprise: International Trade."
+      for a King's Award for Enterprise: International Trade."
       @logThis(question, "validateDropBlockCondition", errorMessage)
       @addErrorMessage(question, errorMessage)
       return
@@ -680,3 +692,17 @@ window.FormValidation =
     for question in stepContainer.find(".question-block")
       question = $(question)
       @validateIndividualQuestion(question)
+
+# to toggle matrix error messages on click
+$(document).on 'click', "input[type=checkbox]", ->
+  checkedValue = $(this).val()
+  questions = $(".question-block.question-matrix")
+  for question in questions
+    question = $(question)
+    subquestions = question.find('input')
+    for subquestion in subquestions
+      subq = $(subquestion)
+      if subq.attr("id").includes(checkedValue) && subq.attr("data-required-row-parent")
+        question.find(".govuk-error-message").empty()
+        question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
+        window.FormValidation.validateMatrix(question)

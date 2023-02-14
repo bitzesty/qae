@@ -1,5 +1,5 @@
 .question-body
   p.govuk-hint
-    ' e.g. as a limited company, a CIC, limited partnership, charity.
+    ' For example, as a limited company, a CIC, limited partnership, charity.
   = f.input :registered, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
   span.clear

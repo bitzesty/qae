@@ -12,7 +12,7 @@ class AwardYears::V2024::QAEForms
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
             <h3 class="govuk-heading-m">Volatile markets & last financial year</h3>
             <p class="govuk-body">
@@ -33,7 +33,7 @@ class AwardYears::V2024::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
             [:bold, "Volatile markets & last financial year"],
             [:normal, %(
@@ -59,7 +59,7 @@ class AwardYears::V2024::QAEForms
                                             question_value: "3 to 5",
                                             parent_question_answer_key: "3_years_application",
                                             placeholder_text: %(
-              As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
+              As you currently hold a King's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
             )
 
           placeholder_preselected_condition :applied_for_queen_awards_details,
@@ -67,7 +67,7 @@ class AwardYears::V2024::QAEForms
                                             question_value: "",
                                             parent_question_answer_key: "application_disabled",
                                             placeholder_text: %(
-              As you currently hold a Queen's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
+              As you currently hold a King's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 
           additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context")
@@ -156,17 +156,17 @@ class AwardYears::V2024::QAEForms
         header :company_financials, "Company Financials" do
           ref "C 4"
           context %(
-            <h3 class='govuk-heading-m govuk-!-margin-bottom-1'>Group entries</h3>
+            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Group entries</h3>
             <p class='govuk-body'>
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
 
-            <h3 class='govuk-heading-m govuk-!-margin-bottom-1'>Estimated figures</h3>
+            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Estimated figures</h3>
             <p class='govuk-body'>
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
             </p>
 
-            <h3 class='govuk-heading-m govuk-!-margin-bottom-1'>Figures - format</h3>
+            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Figures - format</h3>
             <p class='govuk-body'>
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
             </p>
