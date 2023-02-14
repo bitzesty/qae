@@ -17,8 +17,8 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        header :head_of_bussines_header, "Head of your organisation" do
-          ref "F 1"
+        header :head_of_bussines_header, "Details of the head of  your organisation" do
+          ref "A 1.2"
         end
 
         text :head_of_bussines_title, "Title" do
@@ -36,7 +36,7 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        text :head_job_title, "Job title / role in the organisation" do
+        text :head_job_title, "Job title or role in the organisation" do
           classes "sub-question"
           excluded_header_questions
           required
