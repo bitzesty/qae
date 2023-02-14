@@ -1,244 +1,471 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 class AwardYears::V2024::QAEForms
   class << self
     def trade_step2
       @trade_step2 ||= proc do
-        header :your_internation_trade_header, "" do
+        header :company_information_header, "" do
           section_info
           context %(
             <h3 class='govuk-heading-m'>About this section</h3>
             <p class='govuk-body'>
-              The purpose of this section is to enable the Assessing Team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts on the overall performance of your business.
+              The purpose of this section is to collect all vital information about your company. For example, your company's registration number and address. It is important for the details provided to be accurate as it cannot be changed later. This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
             </p>
             <p class='govuk-body'>
-              Please avoid using technical language in this section.
+              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
             </p>
+            <p class='govuk-body'>
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The King's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+            </p>
+            <p class='govuk-body'>
+              Some examples of issues that may prevent your organisation from receiving clearance for The King's Awards for Enterprise Award:
+            </p>
+            <ul class='govuk-list govuk-list--bullet'>
+              <li>A failure to pay staff the minimum wage;</li>
+              <li>An accident within the workplace, which has resulted in harm being caused to the environment or employees;</li>
+              <li>A failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.</li>
+            </ul>
+            <details class='govuk-details' data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  View Government Departments and Agencies we undertake due diligence checks with
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <ul>
+                  <li>Biotechnology & Biological Sciences Research Council</li>
+                  <li>Charity Commission</li>
+                  <li>Companies House</li>
+                  <li>Competition and Markets Authority</li>
+                  <li>Crown Commercial Service</li>
+                  <li>Department for Business, Energy and Industrial Strategy</li>
+                  <li>Department for Communities and Local Government</li>
+                  <li>Department for Culture Media & Sport</li>
+                  <li>Department for Education</li>
+                  <li>Department for Environment, Food & Rural Affairs</li>
+                  <li>Department for International Trade</li>
+                  <li>Department for Transport</li>
+                  <li>Department of Economic Development, Isle of Man</li>
+                  <li>Department for the Economy NI</li>
+                  <li>Department of Health</li>
+                  <li>Environment Agency</li>
+                  <li>Financial Conduct Authority</li>
+                  <li>Food Standards Agency</li>
+                  <li>Forestry Commission</li>
+                  <li>Guernsey Government</li>
+                  <li>Health and Safety Executive</li>
+                  <li>HM Courts & Tribunals Service</li>
+                  <li>HM Revenue & Customs</li>
+                  <li>Home Office</li>
+                  <li>Insolvency Service</li>
+                  <li>Intellectual Property Office</li>
+                  <li>Invest NI</li>
+                  <li>Jersey Government</li>
+                  <li>Ministry of Defence</li>
+                  <li>Ministry of Justice</li>
+                  <li>Medical Research Council Technology</li>
+                  <li>National Measurement Office</li>
+                  <li>Natural England</li>
+                  <li>Natural Environment Research Council</li>
+                  <li>Office of the Scottish Charity Regulator</li>
+                  <li>Scottish Government</li>
+                  <li>Scottish Environment Protection Agency</li>
+                  <li>Scottish Funding Council</li>
+                  <li>Serious Fraud Office</li>
+                  <li>UK Export Finance</li>
+                  <li>Wales Government</li>
+                </ul>
+              </div>
+            </details>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-            </p>
-            <h3 class="govuk-heading-m">COVID-19 impact</h3>
-            <p class="govuk-body">
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
           )
-
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              The purpose of this section is to enable the Assessing Team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts on the overall performance of your business.
+              The purpose of this section is to collect all vital information about your company. For example, your company's registration number and address. It is important for the details provided to be accurate as it cannot be changed later. This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
 
-              Please avoid using technical language in this section.
+              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
+
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The King's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+
+              Some examples of issues that may prevent your organisation from receiving clearance for The King's Awards for Enterprise Award:
+
+              \u2022 A failure to pay staff the minimum wage;
+              \u2022 An accident within the workplace, which has resulted in harm being caused to the environment or employees;
+              \u2022 A failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
             )],
+            [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
+            [:normal, %(
+                \u2022 Biotechnology & Biological Sciences Research Council
+                \u2022 Charity Commission
+                \u2022 Companies House
+                \u2022 Competition and Markets Authority
+                \u2022 Crown Commercial Service
+                \u2022 Department for Business, Energy and Industrial Strategy
+                \u2022 Department for Communities and Local Government
+                \u2022 Department for Culture Media & Sport
+                \u2022 Department for Education
+                \u2022 Department for Environment, Food & Rural Affairs
+                \u2022 Department for International Trade
+                \u2022 Department for Transport
+                \u2022 Department of Economic Development, Isle of Man
+                \u2022 Department for the Economy NI
+                \u2022 Department of Health
+                \u2022 Environment Agency
+                \u2022 Financial Conduct Authority
+                \u2022 Food Standards Agency
+                \u2022 Forestry Commission
+                \u2022 Guernsey Government
+                \u2022 Health and Safety Executive
+                \u2022 HM Courts & Tribunals Service
+                \u2022 HM Revenue & Customs
+                \u2022 Home Office
+                \u2022 Insolvency Service
+                \u2022 Intellectual Property Office
+                \u2022 Invest NI
+                \u2022 Jersey Government
+                \u2022 Ministry of Defence
+                \u2022 Ministry of Justice
+                \u2022 Medical Research Council Technology
+                \u2022 National Measurement Office
+                \u2022 Natural England
+                \u2022 Natural Environment Research Council
+                \u2022 Office of the Scottish Charity Regulator
+                \u2022 Scottish Government
+                \u2022 Scottish Environment Protection Agency
+                \u2022 Scottish Funding Council
+                \u2022 Serious Fraud Office
+                \u2022 UK Export Finance
+                \u2022 Wales Government
+              )
+            ],
             [:bold, "Small organisations"],
             [:normal, %(
-              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-            )],
-            [:bold, "COVID-19 impact"],
-            [:normal, %(
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            )]
+                King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              )
+            ]
           ]
         end
 
-        textarea :trade_business_as_a_whole, "Describe your business as a whole." do
-          sub_ref "B 1"
+        options :applying_for, "Are you applying on behalf of your:" do
+          ref "A 1"
           required
-          rows 5
-          words_max 500
+          option "organisation", "Whole organisation (with ultimate control)"
+          option "division branch subsidiary", "A division, branch or subsidiary"
         end
 
-        textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction." do
-          classes "sub-question"
-          sub_ref "B 1.1"
-          required
-          rows 5
-          words_max 500
-        end
-
-        textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
-          classes "sub-question"
-          sub_ref "B 1.2"
-          required
-          rows 5
-          words_max 500
-        end
-
-        textarea :trade_goods_briefly, "Briefly describe all products or services that you sell internationally." do
-          classes "sub-question"
-          sub_ref "B 1.3"
-          required
-          context %(
-            <p>
-              This summary will be used in publicity material if your application is successful.
-            </p>
-            <p>
-              For example:
-            </p>
-            <p>
-              “Design and manufacture of contract fabrics for commercial interiors. Design and manufacture of mass passenger transport fabrics.”
-            </p>
-            <p>
-              “Musical heritage tours and events, exploring popular music history by theme, genre or artist.”
-            </p>
-          )
-          rows 2
-          words_max 15
-        end
-
-        checkbox_seria :application_relate_to_header, "This entry relates to:" do
-          ref "B 2"
-          required
-          context %(
-            <p>Select all that apply.</p>
-          )
-          check_options [
-            ["products", "Products"],
-            ["services", "Services"]
-          ]
-          application_type_question true
-        end
-
-        dropdown :trade_goods_amount, "How many types of products/services make up your international trade?" do
-          classes "sub-question"
-          ref "B 2.1"
-          required
-          context %(
-            <p>
-              If you have more than 5, group them into fewer types of products/services.
-            </p>
-          )
-          option "", "Select"
-          option "1", "1"
-          option "2", "2"
-          option "3", "3"
-          option "4", "4"
-          option "5", "5"
-          default_option "1"
-        end
-
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
-          classes "sub-question word-max-strict"
-          sub_ref "B 2.2"
-          required
-          context %(
-            <p>
-              If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
-            </p>
-          )
-          additional_pdf_context %(
-            You will need to complete this information for each product or service depending on your answer to question B2.1
-          )
-          rows 2
-          words_max 15
-          min 0
-          max 100
-          conditional :trade_goods_amount, :true
-        end
-
-        textarea :trade_plans_desc, "Describe your overall growth plans and the links and importance between your international and domestic trading strategies (plans), your vision and objectives for the future, your method of implementation, and how your actual performance compared to the plans set out." do
-          ref "B 3"
-          required
-          context %(
-            <p>
-              For example, you may include: your overseas market structure, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice, activities to sustain/grow markets, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.
-            </p>
-          )
-          rows 5
-          words_max 800
-        end
-
-        header :overseas_markets_header, "Overseas Markets" do
-          ref "B 4"
+        header :business_division_header, "" do
+          classes "application-notice help-notice"
           context %(
             <p class="govuk-body">
-              If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?
+              Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
             </p>
           )
+          conditional :applying_for, "division branch subsidiary"
         end
 
-        textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
+        text :company_name, "Full/legal name of your organisation" do
           required
-          sub_ref "B 4.1"
-          classes "sub-question"
-          context %(
-            <p>
-              Include evidence of how you segment and manage geographical regions to demonstrate your company’s focus. Please supply market share information.
-            </p>
-          )
-          rows 5
-          words_max 500
+          ref "A 2"
+          form_hint "If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - for example, award certificates."
         end
 
-        textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
-          classes "sub-question"
-          sub_ref "B 4.2"
+        options :principal_business, "Does your organisation operate as a principal?" do
           required
-          rows 5
+          ref "A 3"
+          form_hint "We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments."
+          yes_no
+        end
+
+        textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
+          classes "sub-question"
+          sub_ref "A 3.1"
+          required
+          conditional :principal_business, :no
           words_max 100
+          rows 5
         end
 
-        textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry and their contribution to total overseas sales." do
-          classes "sub-question"
-          sub_ref "B 4.3"
+        options :organisation_type, "Are you a company or charity?" do
           required
+          ref "A 4"
+          option "company", "Company"
+          option "charity", "Charity"
+        end
+
+        text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
+          required
+          classes "sub-question"
+          ref "A 4.1"
+          form_hint "If you're an unregistered subsidiary, enter your parent company's number."
+          style "small"
+        end
+
+        text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
+          required
+          classes "sub-question"
+          ref "A 4.2"
+          context %(
+            <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's number.</p>
+          )
+          style "small"
+        end
+
+        date :started_trading, "Date started trading" do
+          required
+          ref "A 5"
+          form_hint "Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award)."
+          date_max AwardYear.start_trading_since(3)
+        end
+
+        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a King’s Awards for Enterprise award in any category?" do
+          required
+          ref "A 6"
+          yes_no
+          classes "queen-award-holder"
+        end
+
+        queen_award_applications :applied_for_queen_awards_details, "List the King’s awards you have applied for in the last 10 years." do
+          classes "sub-question question-current-awards"
+          sub_ref "A 6.1"
+
+          conditional :applied_for_queen_awards, :yes
+
+          category :innovation, "Innovation"
+          category :international_trade, "International Trade"
+          category :sustainable_development, "Sustainable Development"
+          category :social_mobility, "Promoting Opportunity"
+
+          ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
+            year y
+          end
+
+          outcome "won", "Won"
+          outcome "did_not_win", "Did not win"
+
+          children_options_depends_on :category
+          dependable_values [:international_trade]
+
+          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context")
+        end
+
+        options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
+          classes "sub-question"
+          sub_ref "A 6.2"
+
+          option "yes", "Yes"
+          option "no", "No"
+          conditional :applied_for_queen_awards, :yes
+        end
+
+        text :previous_business_name, "Name used previously" do
+          classes "sub-question"
+          sub_ref "A 6.3"
+          required
+          conditional :applied_for_queen_awards, :yes
+          conditional :business_name_changed, :yes
+        end
+
+        options :other_awards_won, "Have you won any other awards in the past?" do
+          ref "A 7"
+          required
+          yes_no
+        end
+
+        textarea :other_awards_desc, "Please describe them." do
+          classes "sub-question"
+          sub_ref "A 7.1"
+          required
+          form_hint "If you can't fit all of your awards below, then choose those you're most proud of."
+          conditional :other_awards_won, :yes
           rows 5
           words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade, especially due to COVID-19, and how you overcame them." do
-          ref "B 5"
+        address :organization_address, "Trading address of your organisation" do
           required
-          context %(
-            <p>
-              1. Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?
-            </p>
-            <p>
-              2. Describe any other challenges affecting your trade, and how you overcame them.
-            </p>
-          )
-          rows 5
-          words_max 200
-        end
-
-        checkbox_seria :operate_overseas, "How do you run your overseas operations?" do
-          ref "B 6"
-          required
-          context %(
-            <p>Select all that apply.</p>
-          )
-          check_options [
-            ["franchise", "As a franchise"],
-            ["other", "Other business model(s)"]
+          ref "A 8"
+          pdf_context_with_header_blocks [
+            [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
           ]
+          county_context %(
+            <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+
+            <p class='govuk-hint'>
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
+                See the full list of London districts on Wikipedia
+              </a>
+            </p>
+          )
+          sub_fields([
+            { building: "Building" },
+            { street: "Street" },
+            { city: "Town or city" },
+            { county: "County" },
+            { postcode: "Postcode" }
+          ])
         end
 
-        textarea :operate_model_benefits, "Explain your franchise or other business models and rationale for this. Describe the benefits this brings to the UK." do
-          classes "sub-question"
-          sub_ref "B 6.1"
+        text :org_telephone, "Main telephone number" do
           required
-          rows 5
-          words_max 300
+          ref "A 8.1"
+          type "tel"
+          style "small"
         end
 
-        options :received_grant, "Did you receive any grant funding to support this product/service?" do
-          ref "B 7"
+        press_contact_details :press_contact_details, "Contact details for press enquiries" do
+          ref "A 9"
+          context %(
+            <p class='govuk-hint'><em>
+              If your application is successful, you may get contacted by the press.
+            </em></p>
+            <p class='govuk-hint'>
+              Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
+            </p>
+          )
+          sub_fields([
+            { title: "Title" },
+            { first_name: "First name" },
+            { last_name: "Last name" },
+            { telephone: "Telephone" },
+            { email: "Email address" }
+          ])
+        end
+
+        text :website_url, "Website address" do
+          ref "A 10"
+          style "large"
+          form_hint "Please provide full website address, for example, www.yourcompanyname.com"
+        end
+
+        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
+          required
+          ref "A 11"
+          form_hint "The Standard Industrial Classification (SIC) is a system for classifying industries. If you are a registered company, this is the same code you would have provided Companies House."
+        end
+
+        options :parent_group_entry, "Are you a parent company making a group entry?" do
+          ref "A 12"
+          form_hint "A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control."
+          yes_no
+        end
+
+        options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
+          classes "sub-question"
+          sub_ref "A 12.1"
+          conditional :parent_group_entry, "yes"
+          yes_no
+        end
+
+        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
+          classes "sub-question"
+          sub_ref "A 12.2"
+          rows 5
+          words_max 100
+          conditional :parent_group_entry, "yes"
+          conditional :pareent_group_excluding, "yes"
+        end
+
+        options :has_parent_company, "Do you have a parent or a holding company?" do
+          ref "A 13"
+          yes_no
+        end
+
+        text :parent_company, "Name of immediate parent company" do
+          classes "sub-question"
+          sub_ref "A 13.1"
+          conditional :has_parent_company, "yes"
+        end
+
+        country :parent_company_country, "Country of immediate parent company" do
+          classes "sub-question"
+          sub_ref "A 13.2"
+          conditional :has_parent_company, "yes"
+        end
+
+        options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
+          classes "sub-question"
+          sub_ref "A 13.3"
+          conditional :has_parent_company, "yes"
+          yes_no
+        end
+
+        text :ultimate_control_company, "Name of organisation with ultimate control" do
+          classes "regular-question"
+          sub_ref "A 13.4"
+          conditional :has_parent_company, "yes"
+          conditional :parent_ultimate_control, :no
+        end
+
+        country :ultimate_control_company_country, "Country of organisation with ultimate control" do
+          classes "regular-question"
+          sub_ref "A 13.5"
+          conditional :has_parent_company, "yes"
+          conditional :parent_ultimate_control, :no
+        end
+
+        options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
+          ref "A 14"
           required
           yes_no
-          context %(
-            <p>
-              We ask this to help us carry out due diligence if your application is shortlisted.
-            </p>
+        end
+
+        subsidiaries_associates_plants :trading_figures_add, "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
+          required
+          classes "sub-question"
+          sub_ref "A 14.1"
+          pdf_title "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them."
+          conditional :trading_figures, :yes
+          details_words_max 100
+        end
+
+        options :export_agent, "Are you an export agent/merchant/wholesaler?" do
+          ref "A 15"
+          required
+          yes_no
+          form_hint "An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process)."
+        end
+
+        options :export_unit, "Are you an export unit?" do
+          ref "A 16"
+          required
+          yes_no
+          help "What is an export unit?", %(
+            <p class='govuk-hint'>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities.</p>
           )
         end
 
-        textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do
-          classes "sub-question"
-          sub_ref "B 7.1"
+        upload :org_chart, "Upload an organisational chart." do
+          ref "A 17"
+          context %(
+            <p class='govuk-hint'>You can submit a file in any common format, as long as it is less than 5mb.</p>
+          )
+          hint "What are the allowed file formats?", %(
+            <p class='govuk-hint'>
+              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
+            </p>
+          )
+          max_attachments 1
+        end
+
+        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the King’s Awards for Enterprise award this year?" do
+          ref "A 18"
           required
-          rows 5
-          words_max 200
-          conditional :received_grant, "yes"
+          form_hint "Select all that apply."
+          check_options [
+            ["qa_website", "King's Awards website"],
+            ["qa_twitter", "King's Awards Twitter"],
+            ["social_media", "Other social media"],
+            ["another_website", "Another website"],
+            ["qa_event", "King's Awards event"],
+            ["another_event", "A third party exhibition or event"],
+            ["publication", "A newspaper/publication"],
+            ["word_of_mouth", "Word of mouth"],
+            ["other", "Other"]
+          ]
         end
       end
     end
