@@ -59,11 +59,9 @@ class AwardYears::V2024::QAEForms
               The questions in subsection C1 help the assessors understand the context of your innovation.
             </p>
           )
-          pdf_context_with_header_blocks [
-            [:normal, %(
-              The questions in subsection C1 help the assessors understand the context of your innovation.
-            )]
-          ]
+          pdf_context %(
+            The questions in subsection C1 help the assessors understand the context of your innovation.
+          )
         end
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
