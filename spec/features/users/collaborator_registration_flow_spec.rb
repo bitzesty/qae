@@ -45,6 +45,6 @@ describe "Collaborator registration flow" do
     # collaborator page
     click_button("Save and continue")
 
-    expect(page).to have_content("Applying for a King's Award for your organisation")
+    expect(page).to have_content("Applying for a Queen's Award for your organisation")
   end
 end

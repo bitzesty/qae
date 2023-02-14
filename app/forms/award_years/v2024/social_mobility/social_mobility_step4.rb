@@ -8,7 +8,7 @@ class AwardYears::V2024::QAEForms
           context %(
             <h3 class="govuk-heading-m">About section D</h3>
             <p class="govuk-body">
-              The Declaration of Corporate Social Responsibility is an opportunity for you to highlight your responsible business conduct and its social, economic and environmental impact within your organisation, supply chain and wider community. We expect all applicants for a King's Award for Enterprise to adhere to commonly accepted standards for corporate responsibility. Provide examples for each heading, relative to the size and scale of your business. For this section, you may wish to consider the following points: How do you invest in employees, or select suppliers with the same high standards? Do you provide opportunities such as mentoring, coaching or work experience placements? How have you reduced your carbon footprint? Applicants who are not able to demonstrate corporate social responsibility will not be successful.
+              The Declaration of Corporate Social Responsibility is an opportunity for you to highlight your responsible business conduct and its social, economic and environmental impact within your organisation, supply chain and wider community. We expect all applicants for a Queen's Award for Enterprise to adhere to commonly accepted standards for corporate responsibility. Provide examples for each heading, relative to the size and scale of your business. For this section, you may wish to consider the following points: How do you invest in employees, or select suppliers with the same high standards? Do you provide opportunities such as mentoring, coaching or work experience placements? How have you reduced your carbon footprint? Applicants who are not able to demonstrate corporate social responsibility will not be successful.
             </p>
             <h3 class="govuk-heading-m">Answering questions</h3>
             <p class="govuk-body">
@@ -25,14 +25,14 @@ class AwardYears::V2024::QAEForms
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
           )
 
           pdf_context_with_header_blocks [
             [:bold, "About section D"],
             [:normal, %(
-              The Declaration of Corporate Social Responsibility is an opportunity for you to highlight your responsible business conduct and its social, economic and environmental impact within your organisation, supply chain and wider community. We expect all applicants for a King's Award for Enterprise to adhere to commonly accepted standards for corporate responsibility. Provide examples for each heading, relative to the size and scale of your business. For this section, you may wish to consider the following points: How do you invest in employees, or select suppliers with the same high standards? Do you provide opportunities such as mentoring, coaching or work experience placements? How have you reduced your carbon footprint? Applicants who are not able to demonstrate corporate social responsibility will not be successful.
+              The Declaration of Corporate Social Responsibility is an opportunity for you to highlight your responsible business conduct and its social, economic and environmental impact within your organisation, supply chain and wider community. We expect all applicants for a Queen's Award for Enterprise to adhere to commonly accepted standards for corporate responsibility. Provide examples for each heading, relative to the size and scale of your business. For this section, you may wish to consider the following points: How do you invest in employees, or select suppliers with the same high standards? Do you provide opportunities such as mentoring, coaching or work experience placements? How have you reduced your carbon footprint? Applicants who are not able to demonstrate corporate social responsibility will not be successful.
             )],
             [:bold, "Answering questions"],
             [:normal, %(
@@ -46,7 +46,7 @@ class AwardYears::V2024::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )]
           ]
         end
@@ -236,7 +236,7 @@ class AwardYears::V2024::QAEForms
           sub_ref "D 6"
           required
           show_ref_always true
-          text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a King's Award for Enterprise."
+          text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise."
         end
       end
     end

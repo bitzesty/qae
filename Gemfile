@@ -45,7 +45,7 @@ gem 'hashie', '~> 3.5'
 gem 'responders', '~> 3.0'
 
 # Rails 4 sanitizer
-gem 'rails-html-sanitizer', '~> 1.4.4'
+gem 'rails-html-sanitizer', '~> 1.4.3'
 
 # JSON
 gem 'json', '2.3.0'
@@ -95,8 +95,8 @@ gem 'vigilion-rails', '~> 2.1.0'
 # Background jobs
 gem "sidekiq", "~> 6.4"
 gem "sidekiq-cron", "~> 1.1"
-gem 'sinatra', '3.0.5', require: nil
-gem 'rack-protection', '3.0.5'
+gem 'sinatra', '2.2.0', require: nil
+gem 'rack-protection', '2.2.0'
 
 # CORS configuration
 gem 'rack-cors', '~> 1.0'

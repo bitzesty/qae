@@ -13,9 +13,9 @@ h1.govuk-heading-xl Confirmation of submission
       .govuk-panel.govuk-panel--confirmation
         h1.govuk-panel__title
           - if @form_answer.promotion?
-            ' Nomination for The King's Award for Enterprise Promotion Award
+            ' Nomination for The Queen's Award for Enterprise Promotion Award
           - else
-            ' Application for The King's Award for #{@form_answer.award_type_full_name}
+            ' Application for The Queen's Award for #{@form_answer.award_type_full_name}
           ' was submitted.
         br
         p.govuk-panel__body
@@ -42,7 +42,7 @@ h1.govuk-heading-xl Confirmation of submission
       - if @form_answer.promotion?
         h3.govuk-heading-m October/November
 
-        p.govuk-body Independent assessment of all nominations received and a shortlist is drawn up. The King's Awards Office undertakes due diligence checks of the shortlisted candidates.
+        p.govuk-body Independent assessment of all nominations received and a shortlist is drawn up. The Queen's Awards Office undertakes due diligence checks of the shortlisted candidates.
 
         h3.govuk-heading-m January
 
@@ -50,7 +50,7 @@ h1.govuk-heading-xl Confirmation of submission
 
         h3.govuk-heading-m March
 
-        p.govuk-body The final shortlist is reviewed by the Prime Minister, and approved by HM The King.
+        p.govuk-body The final shortlist is reviewed by the Prime Minister, and approved by HM The Queen.
         p.govuk-body Successful nominees are notified.
 
         - if notification_date
@@ -61,7 +61,7 @@ h1.govuk-heading-xl Confirmation of submission
           p.govuk-body #{notification_date} – winners are announced publicly.
 
         h3.govuk-heading-m July
-        p.govuk-body All winning individuals and their nominators attend Buckingham Palace reception hosted by His Majesty The King.
+        p.govuk-body All winning individuals and their nominators attend Buckingham Palace reception hosted by Her Majesty The Queen.
 
       - else
 
@@ -81,7 +81,7 @@ h1.govuk-heading-xl Confirmation of submission
         /   p #{notification_date} – winners are announced publicly.
 
         / h3 July
-        / p Two representatives of the winning organisations attend Buckingham Palace reception hosted by His Majesty The King.
+        / p Two representatives of the winning organisations attend Buckingham Palace reception hosted by Her Majesty The Queen.
 
         / V2: version since july 30 2019
         h3.govuk-heading-m November

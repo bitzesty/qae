@@ -13,12 +13,12 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_certificate_info
-    title = "The King's Awards for Enterprise #{form_answer.award_year.year}: External Accountant’s Report"
+    title = "The Queen's Awards for Enterprise #{form_answer.award_year.year}: External Accountant’s Report"
     render_text_line(title, 5, default_text_header_ops.merge(align: :left))
   end
 
   def render_recipients_info
-    render_text_line("<b>To</b>: The Kings Award’s Office, The Department for Business, Energy & Industrial Strategy", 1, inline_format: true)
+    render_text_line("<b>To</b>: The Queens Award’s Office, The Department for Business, Energy & Industrial Strategy", 1, inline_format: true)
   end
 
   def render_company_info
@@ -30,10 +30,10 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_base_paragraph
-    p1 = %{We have performed the work agreed with #{form_answer.company_name} in line with the requirements set out in the document “King’s Awards for Enterprise: #{form_answer.award_type_full_name} #{form_answer.award_year.year}” which constitutes the application form for the award.}
+    p1 = %{We have performed the work agreed with #{form_answer.company_name} in line with the requirements set out in the document “Queen’s Awards for Enterprise: #{form_answer.award_type_full_name} #{form_answer.award_year.year}” which constitutes the application form for the award.}
     render_text_line(p1, 2, { leading: 2 })
 
-    p2 = "Our work was carried out solely to assist your process for considering #{form_answer.company_name} for a King’s Awards for Enterprise. We have reviewed the figures provided by #{form_answer.company_name} in section C of the application form.  We have used the guidance in section C of the application form of the as our own guidance in terms of the information that #{form_answer.company_name} should have provided. "
+    p2 = "Our work was carried out solely to assist your process for considering #{form_answer.company_name} for a Queen’s Awards for Enterprise. We have reviewed the figures provided by #{form_answer.company_name} in section C of the application form.  We have used the guidance in section C of the application form of the as our own guidance in terms of the information that #{form_answer.company_name} should have provided. "
     render_text_line(p2, 2, { leading: 2 })
   end
 
@@ -228,7 +228,7 @@ module PdfAuditCertificates::General::SharedElements
     move_down 6.mm
     render_text_line("APPLICANT’S MANAGEMENT’S STATEMENT (Only if providing revised figures)", 3, style: :bold)
 
-    line = "We confirm we have updated the figures originally submitted in our application to The King’s Award for Enterprise. The revised figures should be used as the basis of our application."
+    line = "We confirm we have updated the figures originally submitted in our application to The Queen’s Award for Enterprise. The revised figures should be used as the basis of our application."
     render_text_line(line, 2, default_text_ops)
 
     b1 = %{Signed ................................................................................................................}
@@ -307,7 +307,7 @@ module PdfAuditCertificates::General::SharedElements
 
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
-    render_text_line("We are committed to improving experiences for everyone who is involved in The King’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
+    render_text_line("We are committed to improving experiences for everyone who is involved in The Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
 
     render_text_line("Yes       No", 10, style: :bold)
 
@@ -321,7 +321,7 @@ module PdfAuditCertificates::General::SharedElements
 
     ps = []
 
-    ps << "The figures in the forms are provided by the applicant during their application for The King’s Awards for Enterprise. The King’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
+    ps << "The figures in the forms are provided by the applicant during their application for The Queen’s Awards for Enterprise. The Queen’s Awards for Enterprise requests that applicants engage an external accountant to check the submitted figures. For the avoidance of doubt, this should not be an assurance engagement, but an agreed upon procedures engagement."
 
     ps << "Accountants should exercise their professional judgement when agreeing appropriate procedures, and this appendix provides illustrative procedures that may be appropriate."
 
@@ -362,7 +362,7 @@ module PdfAuditCertificates::General::SharedElements
     ]
     render_list_with_header(header, list)
 
-    render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, The King’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, The King’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
+    render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, The Queen’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, The Queen’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
   end
 
   def render_list_with_header(header, list)
@@ -377,7 +377,7 @@ module PdfAuditCertificates::General::SharedElements
 
 
   def render_footer_note
-    title = %{Note for applicants/auditors: This submission to the King's Awards Office (KAO) provides authority for the KAO to verify the information contained in it with the above-named auditor.}
+    title = %{Note for applicants/auditors: This submission to the Queen's Awards Office (QAO) provides authority for the QAO to verify the information contained in it with the above-named auditor.}
     text_box title, default_text_ops.merge({
       at: [0.mm, 10.mm]
     })

@@ -9,7 +9,7 @@ describe "Form answer list sorting", js: true do
       create :form_answer,
              :trade,
              document: { company_name: "#{i}" },
-             urn: "KAO-#{i}"
+             urn: "QAO-#{i}"
     end
 
     login_as(subject, scope: :admin)

@@ -9,7 +9,7 @@ describe "Form answer list sorting", js: true do
       create :form_answer,
              :trade,
              document: { company_name: "#{i}" },
-             urn: "KAO-#{i}",
+             urn: "QAO-#{i}",
              state: 'assessment_in_progress'
     end
 
