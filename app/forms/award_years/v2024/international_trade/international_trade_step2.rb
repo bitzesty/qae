@@ -215,8 +215,12 @@ class AwardYears::V2024::QAEForms
 
         date :started_trading, "Date started trading" do
           required
-          ref "A 5"
-          form_hint "Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award)."
+          ref "B 5"
+          context %(
+            <p class="govuk-hint">
+              Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award.
+            </p>
+          )
           date_max AwardYear.start_trading_since(3)
         end
 

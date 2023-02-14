@@ -34,6 +34,42 @@ class AwardYears::V2024::QAEForms
           links
           description
         end
+
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
+          ref "F 3"
+          text %(
+            I am happy to be contacted about King's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
+          )
+        end
+
+        confirm :agree_being_contacted_by_department_of_business, "" do
+          sub_ref "F 3.1"
+          text %(
+            I am happy to be contacted by the Department for Business, Energy & Industrial Strategy.
+          )
+          show_ref_always true
+        end
+
+        confirm :entry_confirmation, "Confirmation of entry" do
+          ref "F 4"
+          required
+          text -> do
+            %(
+              By submitting this entry for consideration for The King's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The King's Awards Office of any changes to the information I have provided in this entry form.
+            )
+          end
+        end
+
+        submit "Submit application" do
+          notice %(
+            <p>
+              If you've answered all the questions, you can submit your application now. You will be able to edit it any time before [SUBMISSION_ENDS_TIME].
+            </p>
+            <p>
+              If you are not ready to submit yet, you can save your application and come back later.
+            </p>
+          )
+        end
       end
     end
   end
