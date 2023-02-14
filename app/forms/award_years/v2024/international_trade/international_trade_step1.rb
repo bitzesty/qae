@@ -9,6 +9,14 @@ class AwardYears::V2024::QAEForms
           )
         end
 
+        confirm :confirmation_of_consent, "Consent to apply by the head of organisation" do
+          ref "A 1.1"
+          required
+          text %(
+            I confirm that I have the consent of the head of my organisation to fill in and submit this entry form.
+          )
+        end
+
         header :head_of_bussines_header, "Head of your organisation" do
           ref "F 1"
         end
@@ -45,10 +53,11 @@ class AwardYears::V2024::QAEForms
           type "email"
         end
 
-        confirm :confirmation_of_consent, "Confirmation of consent" do
-          ref "F 2"
-          required
-          text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
+        header :due_diligence_header, "" do
+          ref "A 2"
+          context %{
+            <p>Please be aware that due diligence checks inform the decision to grant an award.</p>
+          }
         end
 
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
