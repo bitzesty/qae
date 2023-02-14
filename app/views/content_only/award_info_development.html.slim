@@ -11,7 +11,7 @@ h1.govuk-heading-xl
         .article-container
           article.group role="article"
             div
-              h2.govuk-heading-l Useful application info before you begin
+              h2.govuk-heading-l Useful information before you begin
 
               p.govuk-body You are eligible to begin your application for a Sustainable Development Award.
 
@@ -20,13 +20,11 @@ h1.govuk-heading-xl
               h3.govuk-heading-m Collaborators
 
               p.govuk-body
-                | We recommend that you&nbsp;
-                = link_to "add collaborators", account_collaborators_path(form_id: @form_answer.id), class: 'govuk-link'
-                | &nbsp; to help you fill out the application, but be aware that&nbsp;
-                strong
-                  | they are able to see and edit all of your applications.
+                | You need to
+                =<> link_to "add one or more collaborators", account_collaborators_path(form_id: @form_answer.id), class: 'govuk-link'
+                | before you can continue. Your named collaborators will be able to help you work on the form. They are able to see and edit all your forms if you are applying for more than one award.
               p.govuk-body
-                | Adding collaborators also means that more people are on our contact list and any correspondence is less likely to be overlooked or not addressed in time.
+                | Adding collaborators also means that important correspondence we send regarding your application is not overlooked if one applicant is not available.
 
               - if @collaborators.any?
                 br
@@ -48,11 +46,29 @@ h1.govuk-heading-xl
                   ' .
                 li Your information is only shared with those involved in the assessment process.
                 li Try to take full advantage of the word limits. However, the quality of your answer is more important than its length.
+                li Plan enough time to prepare your responses, allowing time for refinement to ensure high-calibre submission before the deadline. Most previous applicants reported taking around 20 hours to complete the form. However, some applicants take up to 50 hours spread over several weeks.
                 li All questions are mandatory unless specified otherwise, but if the question is not applicable to your organisation, you can state so.
-                li The majority of previous applicants reported taking around 20 hours to complete the form. However, others took up to 50 hours, so please take time to prepare your responses to ensure submission before the deadline.
-                li You can skip questions and return to them later.
-                li Question numbers aren't always consecutive, as we show and hide different questions depending on your answers.
+                li Question numbers in the online version of the form aren't always consecutive, as we show and hide different questions depending on your previous answers.
+                li You can skip questions and return to them at a later date.
                 li Your answers are saved automatically as you go.
+
+              h3.govuk-heading-m The Sustainable Development Award application structure:
+              ul.govuk-list.govuk-list--bullet
+                li Section A: Consent & due diligence
+                li Section B: Company information
+                li Section C: Your sustainable development
+                ul.govuk-list.govuk-list--bullet
+                  li Description and background
+                  li Targets
+                  li Achieved impact
+                li Section D: Commercial Performance
+                li Section E: Supplementary materials and confirmation
+
+              p.govuk-body
+                | Please review all the questions by downloading a
+                =< link_to "blank sustainable development application form (PDF).", users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true), class: "govuk-link"
+
+              p.govuk-body We recommend that you read through all the questions carefully before beginning your application. Sections C, D and E, require longer text responses, so planning these first will help you to avoid repetition and submit in the shortest possible time.
 
               h3.govuk-heading-m Need help?
 
@@ -64,18 +80,8 @@ h1.govuk-heading-xl
                 strong
                   | 020 7215 6880
                 br
-                | Or emailing&nbsp;
-                = link_to "kingsawards@beis.gov.uk", "mailto: kingsawards@beis.gov.uk", class: 'govuk-link'
-
-              h3.govuk-heading-m What you will need:
-              h4.govuk-heading-s Section A: Company Info
-              p.govuk-body Basic information about your organisation and its structure.
-
-              h4.govuk-heading-s Section B: Your Sustainable Development
-              p.govuk-body Detailed knowledge of your sustainable product/service/management approach.
-
-              h4.govuk-heading-s Section C: Commercial Performance
-              p.govuk-body Detailed financial information.
+                | Or emailing
+                =< link_to "kingsawards@beis.gov.uk", "mailto: kingsawards@beis.gov.uk", class: 'govuk-link'
 
               br
               p#get-started.get-started.group.govuk-body
