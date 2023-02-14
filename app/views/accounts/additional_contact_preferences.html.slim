@@ -5,7 +5,7 @@
     article.group role="article"
       p.govuk-body Are you happy for your and your organisation's name, contact details and application status to be shared with Lieutenancies so that they can contact you to assist as appropriate?
 
-      p.govuk-hint The Queen's Awards Office works closely with Lord-Lieutenants. They are Her Majesty’s representatives in each lieutenancy area of the United Kingdom. The Lord-Lieutenants present the Awards, promote them locally and offer support to companies and organisations.
+      p.govuk-hint The King's Awards Office works closely with Lord-Lieutenants. They are His Majesty’s representatives in each lieutenancy area of the United Kingdom. The Lord-Lieutenants present the Awards, promote them locally and offer support to companies and organisations.
 
       = simple_form_for current_user, url: update_additional_contact_preferences_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form", autocomplete: "off" } do |f|
         = f.input :agree_sharing_of_details_with_lieutenancies, as: :radio_buttons, label: false

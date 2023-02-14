@@ -2,7 +2,7 @@ module SharedPdfHelpers::DrawElements
   DEFAULT_OFFSET = 50.mm
   IMAGES_PATH = "#{Rails.root}/app/assets/images/"
   LOGO_ICON = "logo-pdf.png"
-  AWARD_GENERAL_INFO_PREFIX = "The Queen's Awards for Enterprise"
+  AWARD_GENERAL_INFO_PREFIX = "The King's Awards for Enterprise"
 
   def render_official_sensitive(x_coord, y_coord)
     pdf_doc.text_box "OFFICIAL - SENSITIVE",
