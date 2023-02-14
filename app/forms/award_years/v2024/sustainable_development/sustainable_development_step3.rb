@@ -3,313 +3,504 @@ class AwardYears::V2024::QAEForms
   class << self
     def development_step3
       @development_step3 ||= proc do
-        header :commercial_success_info_block, "" do
+        header :development_c_section_header, "" do
           section_info
           context %(
-            <h3 class="govuk-heading-m">About this section</h3>
-            <p class="govuk-body">
-              All applicants must demonstrate their viability and you will need to upload your accounts to provide evidence of this.
+            <h3 class='govuk-heading-m'>About section C</h3>
+            <p class='govuk-body'>
+              Read this section before planning the answers.
+              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
+              <br />
+              Avoid using technical jargon.
             </p>
 
-            <h3 class="govuk-heading-m">Small organisations</h3>
-            <p class="govuk-body">
-              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+            <h3 class='govuk-heading-m'>Small organisations</h3>
+            <p class='govuk-body'>
+              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
             </p>
 
-            <h3 class="govuk-heading-m">Volatile markets & last financial year</h3>
-            <p class="govuk-body">
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
+            <h3 class='govuk-heading-m'>COVID-19 impact</h3>
+            <p class='govuk-body'>
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             </p>
-            <p class="govuk-body">
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+
+            <h3 class='govuk-heading-m'>United Nations Sustainable Development Goals (UN SDGs)</h3>
+            <p class='govuk-body'>
+              You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
             </p>
-            <h3 class="govuk-heading-m">Estimated figures</h3>
-            <p class="govuk-body">
-              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
+            <p class='govuk-body'>
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
+            </p>
+
+            <p class='govuk-body'>
+              You can find more information about each goal on the United Nations (UN) website by clicking on the links below:
+            </p>
+
+            <p class='govuk-body'>
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal1.html">GOAL 1: No Poverty</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal2.html">GOAL 2: Zero Hunger</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal3.html">GOAL 3: Good Health and Well-being</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal4.html">GOAL 4: Quality Education</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal5.html">GOAL 5: Gender Equality</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal6.html">GOAL 6: Clean Water and Sanitation</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal7.html">GOAL 7: Affordable and Clean Energy</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal8.html">GOAL 8: Decent Work and Economic Growth</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal9.html">GOAL 9: Industry, Innovation and Infrastructure</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal10.html">GOAL 10: Reduced Inequality</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal11.html">GOAL 11: Sustainable Cities and Communities</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal12.html">GOAL 12: Responsible Consumption and Production</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal13.html">GOAL 13: Climate Action</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal14.html">GOAL 14: Life Below Water</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal15.html">GOAL 15: Life on Land</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal16.html">GOAL 16: Peace and Justice Strong Institutions</a><br />
+              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal17.html">GOAL 17: Partnerships to achieve the Goal</a>
             </p>
           )
+
           pdf_context_with_header_blocks [
-            [:bold, "About this section"],
+            [:bold, "About section C"],
             [:normal, %(
-              All applicants must demonstrate their viability and you will need to upload your accounts to provide evidence of this.
+              Read this section before planning the answers.
+              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
+              Avoid using technical jargon.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
             )],
-            [:bold, "Volatile markets & last financial year"],
+            [:bold, "COVID-19 impact"],
             [:normal, %(
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
+              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+            )],
+            [:bold, "United Nations Sustainable Development Goals (UN SDGs)"],
+            [:normal, %(
+              You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
 
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline).However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            )],
-            [:bold, "Estimated figures"],
-            [:normal, %(
-              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
+
+              \u2022 GOAL 1: No Poverty
+              https://www.un.org/development/desa/disabilities/envision2030-goal1.html
+
+              \u2022 GOAL 2: Zero Hunger
+              https://www.un.org/development/desa/disabilities/envision2030-goal2.html
+
+              \u2022 GOAL 3: Good Health and Well-being
+              https://www.un.org/development/desa/disabilities/envision2030-goal3.html
+
+              \u2022 GOAL 4: Quality Education
+              https://www.un.org/development/desa/disabilities/envision2030-goal4.html
+
+              \u2022 GOAL 5: Gender Equality
+              https://www.un.org/development/desa/disabilities/envision2030-goal5.html
+
+              \u2022 GOAL 6: Clean Water and Sanitation
+              https://www.un.org/development/desa/disabilities/envision2030-goal6.html
+
+              \u2022 GOAL 7: Affordable and Clean Energy
+              https://www.un.org/development/desa/disabilities/envision2030-goal7.html
+
+              \u2022 GOAL 8: Decent Work and Economic Growth
+              https://www.un.org/development/desa/disabilities/envision2030-goal8.html
+
+              \u2022 GOAL 9: Industry, Innovation and Infrastructure
+              https://www.un.org/development/desa/disabilities/envision2030-goal9.html
+
+              \u2022 GOAL 10: Reduced Inequality
+              https://www.un.org/development/desa/disabilities/envision2030-goal10.html
+
+              \u2022 GOAL 11: Sustainable Cities and Communities
+              https://www.un.org/development/desa/disabilities/envision2030-goal11.html
+
+              \u2022 GOAL 12: Responsible Consumption and Production
+              https://www.un.org/development/desa/disabilities/envision2030-goal12.html
+
+              \u2022 GOAL 13: Climate Action
+              https://www.un.org/development/desa/disabilities/envision2030-goal13.html
+
+              \u2022 GOAL 14: Life Below Water
+              https://www.un.org/development/desa/disabilities/envision2030-goal14.html
+
+              \u2022 GOAL 15: Life on Land
+              https://www.un.org/development/desa/disabilities/envision2030-goal15.html
+
+              \u2022 GOAL 16: Peace and Justice Strong Institutions
+              https://www.un.org/development/desa/disabilities/envision2030-goal16.html
+
+              \u2022 GOAL 17: Partnerships to achieve the Goal
+              https://www.un.org/development/desa/disabilities/envision2030-goal17.html
             )]
           ]
         end
 
-        textarea :explain_why_your_organisation_is_financially_viable, "Explain why your organisation is financially viable." do
+        header :sustainable_development_interventions_summary_header, "Summary of your Sustainable Development Interventions" do
           ref "C 1"
-          required
-          context %(
-            <p>
-              For example, you could briefly explain your financial model, income or profit growth, how you are funded, your cash flow position and investments secured. Some of these may not apply to your organisation, in that case, explain by what other means your organisation ensures financial viability.
-            </p>
-          )
-          rows 5
-          words_max 250
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        textarea :one_line_description_of_interventions, "Provide a one-line description of your sustainable development interventions." do
+          classes "sub-question word-max-strict"
+          ref "C 1.1"
+          required
+          context %(
+            <p>If your application is successful, this description will appear in the London Gazette.</p>
+            <p>Some good examples from previously shortlisted organisations:</p>
+            <ul>
+              <li>Supplying repurposed redundant oilfield tubulars as steel foundation piling to reduce CO2 emissions.</li>
+              <li>Manufacturer of environmentally friendly cleaning products since 2007. Loved by professionals, approved by the planet.</li>
+              <li>Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.</li>
+            </ul>
+          )
+          pdf_context %{
+            <p>If your application is successful, this description will appear in the London Gazette.</p>
+            <p>Some good examples from previously shortlisted organisations:</p>
+            <p>
+              \u2022 Supplying repurposed redundant oilfield tubulars as steel foundation piling to reduce CO2 emissions.
+              \u2022 Manufacturer of environmentally friendly cleaning products since 2007. Loved by professionals, approved by the planet.
+              \u2022 Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.
+            </p>
+          }
+          rows 2
+          words_max 15
+        end
+
+        textarea :briefly_describe_your_interventions, "Briefly describe your sustainable development interventions." do
+          classes "sub-question word-max-strict"
+          ref "C 1.2"
+          required
+          context %(
+            <p>This is to provide more context for the questions that follow. You will have the opportunity to elaborate on it in C5 questions.</p>
+          )
+          rows 2
+          words_max 200
+        end
+
+        header :sustainable_development_core_business_header, "Core business and your approach to sustainability" do
           ref "C 2"
-          required
-          financial_date_pointer
+          context %{
+            <p class='govuk-hint'>In questions C2.1 to C2.7 describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.</p>
+          }
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>3</span> year entry period?" do
-          classes "sub-question js-financial-year-change"
-          sub_ref "C 2.1"
-          required
-          yes_no
-          context %(
-            <p>
-              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3</span> full 12-month periods.
-            </p>
-          )
-          default_option "no"
-        end
-
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
-          classes "sub-question"
-          sub_ref "C 2.1.1"
+        textarea :briefly_describe_your_core_business, "A brief summary of your organisation." do
+          classes "word-max-strict sub-question"
+          ref "C 2.1"
           required
           rows 2
-          words_max 100
-          conditional :financial_year_date_changed, :yes
-        end
-
-        one_option_by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
-          classes "sub-question one-option-by-years"
-          sub_ref "C 2.2"
-
-          context %(
-            <p>
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            </p>
-            <p>
-              If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            </p>
-          )
-
-          required
-          type :date
-          label ->(y) { "Financial year #{y}" }
-        end
-
-        upload :supporting_financials, "To support your figures, please upload your financial statements for the years entered in question C2.2." do
-          classes "sub-question"
-          sub_ref "C 2.3"
-          context %(
-            <p>
-              If you are a company, upload relevant accounts as submitted to the Companies House. In addition, upload the full accounts prepared by your company and your corporation tax returns as submitted to HMRC.
-            </p>
-            <p>
-              If you are a Charity, upload relevant returns as submitted to the Charity Commission.
-            </p>
-            <p>
-              If you are a sole trader or unincorporated partnership, upload relevant accounts and your tax returns as submitted to HMRC.
-            </p>
-            <p>
-              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            </p>
-            <p>
-              You can upload files in most common formats, if they are less than five megabytes.
-            </p>
-          )
-          hint "What are the accepted file formats?", %(
-            <p>
-              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
-            </p>
-          )
-          max_attachments 15
-        end
-
-        one_option_by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
-          classes "question-employee-min"
-          ref "C 3"
-          required
-          context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-          )
-          type :number
-          label ->(y) { "Financial year #{y}" }
-
-          conditional :financial_year_date_changed, :true
-
-          employees_question
-        end
-
-        header :company_financials, "Company Financials" do
-          ref "C 4"
-          context %(
-            <p class="govuk-body">
-              A parent company making a group entry should include the trading figures of all UK members of the group.
-            </p>
-            <p class="govuk-body">
-              You must enter actual financial figures in £ sterling (ignoring pennies).
-            </p>
-            <p class="govuk-body">
-              Please do not separate your figures with commas.
-            </p>
-          )
-        end
-
-        one_option_by_years :total_turnover, "Total turnover" do
-          ref "C 4.1"
-          required
-          classes "sub-question"
-
-          type :money
-          label ->(y) { "Financial year #{y}" }
-
-          conditional :financial_year_date_changed, :true
-        end
-
-        one_option_by_years :exports, "Of which exports" do
-          classes "sub-question"
-          sub_ref "C 4.2"
-          required
-          context %(<p>Please enter '0' if you had none.</p>)
-
-          type :money
-          label ->(y) { "Financial year #{y}" }
-
-          conditional :financial_year_date_changed, :true
-        end
-
-        # UK sales = turnover - exports
-        turnover_exports_calculation :uk_sales, "Of which UK sales" do
-          classes "sub-question"
-          sub_ref "C 4.3"
-          label ->(y) { "Financial year #{y}" }
-
-          conditional :financial_year_date_changed, :true
-          turnover :total_turnover
-          exports :exports
-          one_option_financial_data_mode true
-
-          context %(
-            <p>
-              This number is automatically calculated using your total turnover and export figures.
-            </p>
-          )
-        end
-
-        one_option_by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
-          classes "sub-question"
-          sub_ref "C 4.4"
-          required
-
-          type :money
-          label ->(y) { "Financial year #{y}" }
-
-          context %(
-            <p>
-              Use a minus symbol to record any losses.
-            </p>
-          )
-
-          conditional :financial_year_date_changed, :true
-        end
-
-        one_option_by_years :total_net_assets, "Total net assets" do
-          classes "sub-question total-net-assets"
-          sub_ref "C 4.5"
-          required
-          context %(
-            <p>
-              As per your balance sheet. Total assets (fixed and current) minus liabilities (current and long-term).
-            </p>
-          )
-          type :money
-          label ->(y) { "As at the end of year #{y}" }
-
-          conditional :financial_year_date_changed, :true
-        end
-
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
-          classes "sub-question"
-          sub_ref "C 4.6"
-          required
-          rows 5
           words_max 200
-
-          context %(
-            <p>
-              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
-            </p>
-          )
         end
 
-        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
-          ref "C 5"
+        textarea :describe_previous_situation_before_sustainability, "What was the situation before your organisation adopted a sustainability purpose, objectives and intervention?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.2"
           required
-          context %(
-            <p>
-              Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
-            </p>
-          )
-          rows 5
-          words_max 250
+          rows 2
+          words_max 200
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
-          ref "C 6"
+        textarea :why_these_particular_interventions, "Why did you choose these particular interventions, and how do they align with the core aims and values of your organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.3"
           required
-          context %(
-            <p>
-              Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
-            </p>
-          )
-          rows 5
+          rows 2
+          words_max 200
+        end
+
+        textarea :how_have_you_embedded_sustainability_objectives, "How have you embedded sustainability objectives or purpose in your organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.4"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :explain_how_the_business_operates_sustainably, "If your application is focussed on particular sustainable development interventions, explain how your whole business also operates sustainably, especially in terms of climate change." do
+          classes "word-max-strict sub-question"
+          ref "C 2.5"
+          required
+          context %{
+            <p>As a minimum, we expect all winning organisations to have good practices around climate change. Therefore, if your sustainable development interventions are not climate focused, describe:</p>
+            <p>a) your strategy and approach related to climate change.</p>
+            <p>b) your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero”.</p>
+            <p>c) how you have measured your emissions.</p>
+            <p>Please note, if your application is focused on climate change, do not repeat climate change related information in your answer to C2.5, just state that it's covered in other answers.</p>
+            <p>However, you may highlight other areas that show your organisation operates sustainability that are not covered in your other answers such as being part of the circular economy, or reductions in use of plastics.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        textarea :how_sustainability_interventions_benefit_business_strategy, "How sustainability interventions benefit the overall business strategy?" do
+          classes "word-max-strict sub-question"
+          ref "C 2.6"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :explain_your_strategy_in_developing_sustainably, "Explain your strategy in developing sustainably for the future." do
+          classes "word-max-strict sub-question"
+          ref "C 2.7"
+          required
+          context %{
+            <p>For example, how are you changing your business to respond to future sustainability challenges in your business or sector?</p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        header :leadership_and_management, "Leadership and management" do
+          ref "C 3"
+          context %{
+            <p class="govuk-hint">In questions C3.1 to C3.8 describe the driving force of your organisation's sustainability.</p>
+          }
+        end
+
+        textarea :describe_the_driving_force_of_your_organisation, "Leadership and management" do
+          classes "word-max-strict sub-question"
+          ref "C 3.1"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :who_is_responsible_for_day_to_day_management, "Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.2"
+          required
+          context %{
+            <p>You may include flow charts to make it easier for assessors to understand how your programme is managed in section E of this form.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        textarea :describe_the_senior_decision_makers_commitment_to_sustainability, "What is the senior decision makers' commitment to the future sustainable growth of the organisation?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.3"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :how_does_your_organisation_inspire_others, "How does your organisation inspire other organisations to be more sustainable?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.4"
+          required
+          context %{
+            <p>For example, businesses in your supply chain, stakeholders, customers or local communities.</p>
+          }
+          rows 4
           words_max 400
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
-          ref "C 7"
+        textarea :how_do_you_collaborate_with_partners, "How do you collaborate with partners and others to develop best practice?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.5"
           required
-          context %(
-            <p>
-              How have you adapted to or mitigated the impacts of recent volatile markets due to factors such as Covid, and with what results? How are you planning to respond in the year ahead? This could include opportunities you have identified as well as any contextual information or challenges you would like the assessors to consider.
-            </p>
-          )
-          rows 4
-          words_max 350
+          rows 2
+          words_max 200
         end
 
-        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "C 8"
+        textarea :describe_your_organisation_diversity, "Describe your organisation's diversity and inclusion strategy, including how your organisation attracts, recruits, promotes and retains a diverse workforce." do
+          classes "word-max-strict sub-question"
+          ref "C 3.6"
           required
-          yes_no
-          context %(
-            <p>
-              If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            </p>
-          )
-          conditional :financial_year_date_changed, :true
-        end
-
-        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
-          sub_ref "C 8.1"
-          required
+          context %{
+            <p>Explain your policies and provide evidence that these are effective.</p>
+          }
           rows 5
-          words_max 250
-          conditional :product_estimated_figures, :yes
+          words_max 500
         end
 
+        textarea :describe_how_employee_relations_improved_their_motivation, "How has your employee relations improved their motivation, well-being and satisfaction?" do
+          classes "word-max-strict sub-question"
+          ref "C 3.7"
+          required
+          rows 2
+          words_max 200
+        end
+
+        header :culture_and_values, "Culture and values regarding sustainability" do
+          ref "C 4"
+          context %{
+            <p class="govuk-hint">In questions C4.1 to C4.4 describe how your organisation's culture fosters and supports sustainability.</p>
+          }
+        end
+
+        textarea :culture_and_values_regarding_sustainability, "How is sustainability embedded in your organisation's culture and values?" do
+          classes "word-max-strict sub-question"
+          ref "C 4.1"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :how_do_you_increase_positive_perception_of_sustainability, "How do you increase positive perceptions of your organisation's sustainability among customers, stakeholders, or the media?" do
+          classes "word-max-strict sub-question"
+          ref "C 4.2"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :how_do_you_communicate_the_impact_of_sustainability, "How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?" do
+          classes "word-max-strict sub-question"
+          ref "C 4.3"
+          required
+          context %{
+            <p>Please include links to relevant pages on your company's website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.</p>
+            <p>If applicable, include in your answer or attach in section E of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        textarea :what_are_your_long_term_plans_for_sustainability, "What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?" do
+          classes "word-max-strict sub-question"
+          ref "C 4.4"
+          required
+          rows 2
+          words_max 200
+        end
+
+        header :sustainable_development_interventions_header, "Your sustainable development interventions" do
+          ref "C 5"
+          context %{
+            <p class="govuk-hint">In questions C5.1 to C5.4 describe your interventions, using the UN SDGs to structure your answer where relevant. You need to summarise your actions or interventions to sustainable development and demonstrate a sustainable strategy across the business.</p>
+          }
+        end
+
+        textarea :aims_of_the_interventions, "The aims of the interventions" do
+          classes "word-max-strict sub-question"
+          ref "C 5.1"
+          required
+          context %{
+            <p>For example, this could be to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        textarea :describe_your_interventions_using_un, "Which UN SDGs are your efforts targeted towards?" do
+          required
+          classes "word-max-strict sub-question"
+          sub_ref "C 5.2"
+          context %{
+            <p>Please note, you do not need to address each UN SDG, only the ones that are most applicable to your sustainable development interventions.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        textarea :proportion_of_interventions_compared_to_organisation_size, "The proportion of these interventions compared to your whole organisation's size." do
+          classes "word-max-strict sub-question"
+          ref "C 5.3"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :evidence_of_exemplary_interventions, "Provide evidence of what makes your interventions exemplary." do
+          classes "word-max-strict sub-question"
+          ref "C 5.4"
+          required
+          context %{
+            <p> For example, it may be exemplary as a result of:</p>
+            <ul>
+              <li>An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.</li>
+              <li>Developing unique or innovative ways to be sustainable.</li>
+              <li>Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.</li>
+              <li>Leading the way in your company, sector or market by doing something that has never been done before.</li>
+            </ul>
+          }
+          pdf_context %(
+            <p> For example, it may be exemplary as a result of:</p>
+            <p>
+              \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+              \u2022 Developing unique or innovative ways to be sustainable.
+              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+              \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
+            </p>
+          )
+          rows 2
+          words_max 200
+        end
+
+        header :sustainable_development_impact_header, "Impact of your sustainable development " do
+          ref "C 6"
+          context %{
+            <p class="govuk-hint">In questions C6.1 to C6.6 describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.</p>
+            <p class="govuk-hint">Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.</p>
+          }
+        end
+
+        textarea :how_do_you_measure_the_success_of_interventions, "How do you measure the success of your sustainability intervention?" do
+          ref "C 6.1"
+          classes "word-max-strict sub-question"
+          required
+          context %(
+            <p>For example, are key performance indicators (KPIs) or targets used? If so, how are they set and monitored? Are the KPIs or targets being met, and what happens if they are not?</p>
+          )
+          rows 3
+          words_max 300
+        end
+
+        textarea :what_qualitive_measures_were_used_to_measure_success, "State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance." do
+          ref "C 6.2"
+          classes "word-max-strict sub-question"
+          required
+          rows 3
+          words_max 300
+        end
+
+        textarea :impact_of_your_sustainable_development, "The impact of your sustainable objectives." do
+          classes "word-max-strict sub-question"
+          ref "C 6.3"
+          required
+          context %{
+            <p>Describe the impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.</p>
+            <p>Describe how you are part of the circular economy.</p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        textarea :how_does_the_scale_of_intervention_compare_to_others, "How does the scale of your intervention compare with other organisations in your sector?" do
+          classes "word-max-strict sub-question"
+          ref "C 6.4"
+          required
+          context %{
+            <p>Explain and, if possible, provide evidence or research on how you have compared your organisation to others in your sector, including a web link if available.</p>
+            <p>Explain how you know that your sustainability performance is exemplary compared with the sector in general.</p>
+          }
+          rows 3
+          words_max 300
+        end
+
+        textarea :what_longer_term_outcomes_do_you_expect, "What longer-term outcomes do you expect as a result of your sustainable development efforts?" do
+          classes "word-max-strict sub-question"
+          ref "C 6.5"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :which_accreditations_have_been_achieved, "State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation." do
+          classes "word-max-strict sub-question"
+          ref "C 6.6"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :governance, "Additional information about your environmental, social, and corporate governance (ESG). (optional)" do
+          classes "word-max-strict sub-question"
+          ref "C 6.7"
+          context %{
+            <p>Please highlight your responsible business conduct and its impact within your organisation, supply chain and the wider community, if not already covered.</p>
+          }
+          rows 2
+          words_max 200
+        end
       end
     end
   end

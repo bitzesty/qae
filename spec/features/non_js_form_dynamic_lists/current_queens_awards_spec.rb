@@ -1,9 +1,9 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-describe "Non JS | Dynamic Lists | Current Queen's Awards", %q{
+describe "Non JS | Dynamic Lists | Current King's Awards", %q{
 As a User
-I want to be able to add Current Queen's Awards I hold
+I want to be able to add Current King's Awards I hold
 So that I can fill form completelly even if Javascript is turned off
 } do
 
@@ -49,7 +49,7 @@ So that I can fill form completelly even if Javascript is turned off
     login_as user
   end
 
-  describe "Current Queen's Awards interactions" do
+  describe "Current King's Awards interactions" do
     let(:new_award_category) { "sustainable_development" }
     let(:new_award_category_name) { "Sustainable Development" }
     let(:new_award_category_year) { (AwardYear.current.year - 1).to_s }

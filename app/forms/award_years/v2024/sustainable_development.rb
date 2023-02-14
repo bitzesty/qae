@@ -8,25 +8,25 @@ class AwardYears::V2024::QAEForms
   class << self
     def development
       @development ||= QAEFormBuilder.build "Sustainable Development Award Application" do
-        step "Company information",
-             "Company information",
+        step "Consent & Due Diligence",
+             "Consent & Due Diligence",
              &AwardYears::V2024::QAEForms.development_step1
+
+        step "Company Information",
+             "Company Information",
+             &AwardYears::V2024::QAEForms.development_step2
 
         step "Your Sustainable Development",
              "Your Sustainable Development",
-             &AwardYears::V2024::QAEForms.development_step2
+             &AwardYears::V2024::QAEForms.development_step3
 
         step "Commercial Performance",
              "Commercial Performance",
-             &AwardYears::V2024::QAEForms.development_step3
-
-        step "Add Website Address/Documents",
-             "Add Website Address/Documents",
-             { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.development_step4
 
-        step "Authorise & Submit",
-             "Authorise & Submit",
+        step "Supplementary Materials & Confirmation",
+             "Supplementary Materials & Confirmation",
+             { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.development_step5
       end
     end
