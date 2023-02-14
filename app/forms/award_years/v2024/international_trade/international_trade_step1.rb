@@ -2,6 +2,13 @@ class AwardYears::V2024::QAEForms
   class << self
     def trade_step1
       @trade_step1 ||= proc do
+        header :consent_due_diligence_header, "" do
+          section_info
+          context %(
+            <p class='govuk-body'>This section is to confirm that you have the authorisation to apply, that your organisation is worthy and that you understand what will happen after you apply in terms of due diligence and verification of commercial figures. We recommend you carefully answer section A questions before proceeding with the rest of the application.</p>
+          )
+        end
+
         header :head_of_bussines_header, "Head of your organisation" do
           ref "F 1"
         end
