@@ -37,7 +37,7 @@ class Eligibility::Basic < Eligibility
 
   property :current_holder,
            values: %w[yes no i_dont_know],
-           label: "Are you a current Queen's Award holder in any category?",
+           label: "Are you a current King's Award holder in any category?",
            accept: :not_nil
 
   def eligible?

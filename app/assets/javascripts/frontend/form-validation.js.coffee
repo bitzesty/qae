@@ -530,7 +530,7 @@ window.FormValidation =
     if drop
       errorMessage = "Sorry, you are not eligible. \
       You must have constant growth in overseas sales for the entire entry period to be eligible \
-      for a Queen's Award for Enterprise: International Trade."
+      for a King's Award for Enterprise: International Trade."
       @logThis(question, "validateDropBlockCondition", errorMessage)
       @addErrorMessage(question, errorMessage)
       return
