@@ -82,12 +82,12 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
-          classes "sub-question"
-          sub_ref "A 3.1"
+          classes "sub-question word-max-strict"
+          sub_ref "B 3.1"
           required
           conditional :principal_business, :no
           words_max 100
-          rows 5
+          rows 1
         end
 
         options :organisation_type, "Are you a company or charity?" do
