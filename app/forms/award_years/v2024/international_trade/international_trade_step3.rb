@@ -116,7 +116,7 @@ class AwardYears::V2024::QAEForms
         end
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
-          ref "B 2"
+          ref "C 2"
           required
           context %(
             <p>Select all that apply.</p>
