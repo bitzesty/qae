@@ -187,7 +187,7 @@ class AwardYears::V2024::QAEForms
 
         text :previous_business_name, "Name used previously" do
           classes "sub-question"
-          sub_ref "A 6.3"
+          sub_ref "B 6.3"
           required
           conditional :applied_for_queen_awards, :yes
           conditional :business_name_changed, :yes
