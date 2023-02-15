@@ -200,8 +200,8 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :other_awards_desc, "Please describe them." do
-          classes "sub-question"
-          sub_ref "A 7.1"
+          classes "sub-question word-max-strict"
+          sub_ref "B 7.1"
           required
           form_hint "If you can't fit all of your awards below, then choose those you're most proud of."
           conditional :other_awards_won, :yes
