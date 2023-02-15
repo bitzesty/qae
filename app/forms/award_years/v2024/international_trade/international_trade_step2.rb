@@ -295,7 +295,7 @@ class AwardYears::V2024::QAEForms
 
         options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
           classes "sub-question"
-          sub_ref "A 12.1"
+          sub_ref "B 12.1"
           conditional :parent_group_entry, "yes"
           yes_no
         end
