@@ -287,7 +287,7 @@ class AwardYears::V2024::QAEForms
         end
 
         checkbox_seria :operate_overseas, "How do you run your overseas operations?" do
-          ref "B 6"
+          ref "C 6"
           required
           context %(
             <p>Select all that apply.</p>
