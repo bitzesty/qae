@@ -317,11 +317,11 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do
-          classes "sub-question"
-          sub_ref "B 7.1"
+        textarea :funding_details, "Please provide date(s), source(s) and level(s) of funding." do
+          classes "sub-question word-max-strict"
+          sub_ref "C 7.1"
           required
-          rows 5
+          rows 2
           words_max 200
           conditional :received_grant, "yes"
         end
