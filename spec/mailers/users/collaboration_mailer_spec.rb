@@ -37,7 +37,7 @@ describe Users::CollaborationMailer do
       it "renders the headers" do
         expect(mail.subject).to eq("[King's Awards for Enterprise] #{subject}")
         expect(mail.to).to eq([new_account_admin.email])
-        expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
+        expect(mail.from).to eq(["no-reply@kings-awards-enterprise.service.gov.uk"])
       end
 
       it "renders the body" do
@@ -71,7 +71,7 @@ describe Users::CollaborationMailer do
       it "renders the headers" do
         expect(mail.subject).to eq("[King's Awards for Enterprise] #{subject}")
         expect(mail.to).to eq([new_account_admin.email])
-        expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
+        expect(mail.from).to eq(["no-reply@kings-awards-enterprise.service.gov.uk"])
       end
 
       it "renders the body" do
