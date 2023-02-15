@@ -72,8 +72,12 @@ class AwardYears::V2024::QAEForms
 
         options :principal_business, "Does your organisation operate as a principal?" do
           required
-          ref "A 3"
-          form_hint "We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments."
+          ref "B 3"
+          context %(
+            <p class="govuk-hint">
+              We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
+            </p>
+          )
           yes_no
         end
 
