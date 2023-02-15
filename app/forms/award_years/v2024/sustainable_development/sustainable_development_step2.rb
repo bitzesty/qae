@@ -11,7 +11,7 @@ class AwardYears::V2024::QAEForms
               The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details provided are accurate as they cannot be changed after the submission deadline.
             </p>
             <p class='govuk-body'>
-              This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
+              This information will also be used to enable The King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
@@ -23,7 +23,7 @@ class AwardYears::V2024::QAEForms
             [:normal, %(
               The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details provided are accurate as they cannot be changed after the submission deadline.
 
-              This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
+              This information will also be used to enable The King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
