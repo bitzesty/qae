@@ -127,7 +127,7 @@ class AwardYears::V2024::QAEForms
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
           required
           classes "sub-question"
-          ref "A 4.2"
+          ref "B 4.2"
           context %(
             <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
