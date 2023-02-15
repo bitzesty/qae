@@ -374,7 +374,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :export_unit, "Are you an export unit?" do
-          ref "A 16"
+          ref "B 16"
           required
           yes_no
           help "What is an export unit?", %(
