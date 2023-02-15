@@ -328,7 +328,7 @@ class AwardYears::V2024::QAEForms
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
           classes "sub-question"
-          sub_ref "A 13.3"
+          sub_ref "B 13.3"
           conditional :has_parent_company, "yes"
           yes_no
         end
