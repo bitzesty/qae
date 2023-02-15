@@ -363,10 +363,14 @@ class AwardYears::V2024::QAEForms
         end
 
         options :export_agent, "Are you an export agent/merchant/wholesaler?" do
-          ref "A 15"
+          ref "B 15"
           required
           yes_no
-          form_hint "An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process)."
+          context %(
+            <p class="govuk-hint">
+              An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
+            </p>
+          )
         end
 
         options :export_unit, "Are you an export unit?" do
