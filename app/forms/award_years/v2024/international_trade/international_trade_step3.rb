@@ -245,18 +245,24 @@ class AwardYears::V2024::QAEForms
           words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade, especially due to COVID-19, and how you overcame them." do
-          ref "B 5"
+        textarea :trade_factors, "Describe any special challenges affecting your trade due to COVID-19, and how you overcame them." do
+          ref "C 5"
+          classes "word-max-strict"
           required
           context %(
+            <ul>
+              <li>Describe the impact COVID-19 has had on your business and its performance.</li>
+              <li>How have you adapted or mitigated it, and with what results?</li>
+            </ul>
+          )
+          pdf_context %(
             <p>
-              1. Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?
-            </p>
-            <p>
-              2. Describe any other challenges affecting your trade, and how you overcame them.
+              \u2022 Describe the impact COVID-19 has had on your business and its performance.
+
+              \u2022 How have you adapted or mitigated it, and with what results?
             </p>
           )
-          rows 5
+          rows 2
           words_max 200
         end
 
