@@ -307,7 +307,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :received_grant, "Did you receive any grant funding to support this product/service?" do
-          ref "B 7"
+          ref "C 7"
           required
           yes_no
           context %(
