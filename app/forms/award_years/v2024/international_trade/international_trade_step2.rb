@@ -115,8 +115,12 @@ class AwardYears::V2024::QAEForms
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
           required
           classes "sub-question"
-          ref "A 4.1"
-          form_hint "If you're an unregistered subsidiary, enter your parent company's number."
+          ref "B 4.1"
+          context %(
+            <p class="govuk-hint">
+              If you're an unregistered subsidiary, enter your parent company's number.
+            </p>
+          )
           style "small"
         end
 
