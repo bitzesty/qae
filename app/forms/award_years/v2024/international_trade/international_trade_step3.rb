@@ -266,6 +266,26 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
+        textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years (due to factors other than Covid-19)." do
+          sub_ref "C 5.1"
+          classes "sub-question word-max-strict"
+          required
+          context %(
+            <ul>
+              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
+              <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
+            <ul>
+          )
+          pdf_context %(
+            <p>
+              \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+              \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
+              \u2022 Provide any contextual information or challenges you would like the assessors to consider.
+            </p>
+          )
+        end
+
         checkbox_seria :operate_overseas, "How do you run your overseas operations?" do
           ref "B 6"
           required
