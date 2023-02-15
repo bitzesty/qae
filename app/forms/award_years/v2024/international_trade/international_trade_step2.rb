@@ -383,7 +383,7 @@ class AwardYears::V2024::QAEForms
         end
 
         upload :org_chart, "Upload an organisational chart." do
-          ref "A 17"
+          ref "B 17"
           context %(
             <p class='govuk-hint'>You can submit a file in any common format, as long as it is less than 5mb.</p>
           )
