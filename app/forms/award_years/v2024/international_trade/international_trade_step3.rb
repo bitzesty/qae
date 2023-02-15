@@ -82,8 +82,8 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :trade_goods_briefly, "Briefly describe all products or services that you sell internationally." do
-          classes "sub-question"
-          sub_ref "B 1.3"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.3"
           required
           context %(
             <p>
@@ -92,11 +92,23 @@ class AwardYears::V2024::QAEForms
             <p>
               For example:
             </p>
+            <ul>
+              <li>The leading source of agricultural market intelligence, supporting the advancement of the global food chain</li>
+              <li>Cross-border eCommerce retail and technology group enabling merchants of all sizes to access China</li>
+              <li>World-leading marine equipment for the deployment of subsea infrastructure across traditional and renewable energy sectors.</li>
+            </ul>
+          )
+          pdf_context %(
             <p>
-              “Design and manufacture of contract fabrics for commercial interiors. Design and manufacture of mass passenger transport fabrics.”
-            </p>
-            <p>
-              “Musical heritage tours and events, exploring popular music history by theme, genre or artist.”
+              This summary will be used in publicity material if your application is successful.
+
+              For example:
+
+              \u2022 The leading source of agricultural market intelligence, supporting the advancement of the global food chain
+
+              \u2022 Cross-border eCommerce retail and technology group enabling merchants of all sizes to access China
+
+              \u2022 World-leading marine equipment for the deployment of subsea infrastructure across traditional and renewable energy sectors.
             </p>
           )
           rows 2
