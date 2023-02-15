@@ -199,6 +199,14 @@ class AwardYears::V2024::QAEForms
           words_max 800
         end
 
+        textarea :actual_planned_performance_comparison, "Please explain how your actual performance compared to your planned performance as outlined in question C3." do
+          sub_ref "C 3.1"
+          classes "sub-question word-max-strict"
+          required
+          rows 3
+          words_max 250
+        end
+
         header :overseas_markets_header, "Overseas Markets" do
           ref "B 4"
           context %(
