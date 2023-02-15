@@ -128,31 +128,71 @@ class AwardYears::V2024::QAEForms
           application_type_question true
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
-          classes "sub-question word-max-strict"
-          sub_ref "B 2.2"
+        # dropdown :trade_goods_amount, "How many types of products/services make up your international trade?" do
+        #   classes "sub-question"
+        #   ref "B 2.1"
+        #   required
+        #   context %(
+        #     <p>
+        #       If you have more than 5, group them into fewer types of products/services.
+        #     </p>
+        #   )
+        #   option "", "Select"
+        #   option "1", "1"
+        #   option "2", "2"
+        #   option "3", "3"
+        #   option "4", "4"
+        #   option "5", "5"
+        #   default_option "1"
+        # end
+
+        # by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
+        #   classes "sub-question word-max-strict"
+        #   sub_ref "B 2.2"
+        #   required
+        #   context %(
+        #     <p>
+        #       If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
+        #     </p>
+        #   )
+        #   additional_pdf_context %(
+        #     You will need to complete this information for each product or service depending on your answer to question B2.1
+        #   )
+        #   rows 2
+        #   words_max 15
+        #   min 0
+        #   max 100
+        #   conditional :trade_goods_amount, :true
+        # end
+
+        textarea :trade_plans_desc, "Describe your international trade strategy." do
+          ref "C 3"
+          classes "word-max-strict"
           required
           context %(
             <p>
-              If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
+              Make sure your answer includes:
+            </p>
+            <ul>
+              <li>your vision and objectives for the future;</li>
+              <li>your overall growth plans and the links and importance between your international and domestic trading strategies (plans);</li>
+              <li>your method of implementation of your international strategy.
+            </ul>
+            <p>
+              Areas you may want to mention in your answer: your overseas market structure, treatment of different markets, market research, market development, routes to market, after-sales and technical advice, activities to sustain/grow markets, export practices, overseas distributors, inward and outward trade missions and market visits.
             </p>
           )
-          additional_pdf_context %(
-            You will need to complete this information for each product or service depending on your answer to question B2.1
-          )
-          rows 2
-          words_max 15
-          min 0
-          max 100
-          conditional :trade_goods_amount, :true
-        end
-
-        textarea :trade_plans_desc, "Describe your overall growth plans and the links and importance between your international and domestic trading strategies (plans), your vision and objectives for the future, your method of implementation, and how your actual performance compared to the plans set out." do
-          ref "B 3"
-          required
-          context %(
+          pdf_context %(
             <p>
-              For example, you may include: your overseas market structure, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice, activities to sustain/grow markets, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.
+              Make sure your answer includes:
+
+              \u2022 your vision and objectives for the future;
+
+              \u2022 your overall growth plans and the links and importance between your international and domestic trading strategies (plans);
+
+              \u2022 your method of implementation of your international strategy.
+
+              Areas you may want to mention in your answer: your overseas market structure, treatment of different markets, market research, market development, routes to market, after-sales and technical advice, activities to sustain/grow markets, export practices, overseas distributors, inward and outward trade missions and market visits.
             </p>
           )
           rows 5
