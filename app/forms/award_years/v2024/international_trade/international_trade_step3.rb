@@ -299,10 +299,10 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :operate_model_benefits, "Explain your franchise or other business models and rationale for this. Describe the benefits this brings to the UK." do
-          classes "sub-question"
-          sub_ref "B 6.1"
+          classes "sub-question word-max-strict"
+          sub_ref "C 6.1"
           required
-          rows 5
+          rows 3
           words_max 300
         end
 
