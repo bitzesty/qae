@@ -320,9 +320,9 @@ class AwardYears::V2024::QAEForms
           conditional :has_parent_company, "yes"
         end
 
-        country :parent_company_country, "Country of immediate parent company" do
+        country :parent_company_country, "Country of the immediate parent company" do
           classes "sub-question"
-          sub_ref "A 13.2"
+          sub_ref "B 13.2"
           conditional :has_parent_company, "yes"
         end
 
