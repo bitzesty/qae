@@ -238,10 +238,10 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry and their contribution to total overseas sales." do
-          classes "sub-question"
-          sub_ref "B 4.3"
+          classes "sub-question word-max-strict"
+          sub_ref "C 4.3"
           required
-          rows 5
+          rows 3
           words_max 250
         end
 
