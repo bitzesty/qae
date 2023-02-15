@@ -58,7 +58,8 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :trade_business_as_a_whole, "Describe your business as a whole." do
-          sub_ref "B 1"
+          classes "word-max-strict"
+          sub_ref "C 1"
           required
           rows 5
           words_max 500
