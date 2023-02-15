@@ -284,8 +284,12 @@ class AwardYears::V2024::QAEForms
         end
 
         options :parent_group_entry, "Are you a parent company making a group entry?" do
-          ref "A 12"
-          form_hint "A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control."
+          ref "B 12"
+          context %(
+            <p class="govuk-hint">
+              A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.
+            </p>
+          )
           yes_no
         end
 
