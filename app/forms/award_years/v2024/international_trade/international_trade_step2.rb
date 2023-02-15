@@ -229,7 +229,7 @@ class AwardYears::V2024::QAEForms
 
         text :org_telephone, "Main telephone number" do
           required
-          ref "A 8.1"
+          ref "B 8.1"
           type "tel"
           style "small"
         end
