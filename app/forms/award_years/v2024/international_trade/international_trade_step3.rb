@@ -74,8 +74,8 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
-          classes "sub-question"
-          sub_ref "B 1.2"
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.2"
           required
           rows 5
           words_max 500
