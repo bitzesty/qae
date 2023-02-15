@@ -19,7 +19,7 @@ describe Users::SubmissionMailer do
     let(:mail) { Users::SubmissionMailer.success(user.id, form_answer.id) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("[Queen's Awards for Enterprise] #{subject}")
+      expect(mail.subject).to eq("[King's Awards for Enterprise] #{subject}")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
     end
