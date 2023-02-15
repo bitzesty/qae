@@ -218,15 +218,15 @@ class AwardYears::V2024::QAEForms
 
         textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
           required
-          sub_ref "B 4.1"
-          classes "sub-question"
+          sub_ref "C 4.1"
+          classes "sub-question word-max-strict"
           context %(
             <p>
-              Include evidence of how you segment and manage geographical regions to demonstrate your company’s focus. Please supply market share information.
+              Include evidence of how you segment and manage geographical regions to demonstrate your company's focus. Please supply market share information.
             </p>
           )
-          rows 5
-          words_max 500
+          rows 3
+          words_max 300
         end
 
         textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
