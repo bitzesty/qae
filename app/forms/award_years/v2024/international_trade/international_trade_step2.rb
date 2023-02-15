@@ -301,8 +301,8 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
-          classes "sub-question"
-          sub_ref "A 12.2"
+          classes "sub-question word-max-strict"
+          sub_ref "B 12.2"
           rows 5
           words_max 100
           conditional :parent_group_entry, "yes"
