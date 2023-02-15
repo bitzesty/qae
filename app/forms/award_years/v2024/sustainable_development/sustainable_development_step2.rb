@@ -285,7 +285,9 @@ class AwardYears::V2024::QAEForms
             [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
           ]
           county_context %(
-            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council</p>
+            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
+              <a class="govuk-link" target="_blank" href="https://www.gov.uk/find-local-council">https://www.gov.uk/find-local-council</a>
+            </p>
           )
           sub_fields([
             { building: "Building" },
@@ -341,10 +343,19 @@ class AwardYears::V2024::QAEForms
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
           required
           ref "B 13"
-          context %{
-            <p>The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/</p>
-            <p>Select the first four digits of the SIC code that best represents the current activities of your business.</p>
-          }
+          context %(
+            <p class="govuk-hint">
+              The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC on
+              <a class="govuk-link" target="_blank" href="https://resources.companieshouse.gov.uk/sic/">https://resources.companieshouse.gov.uk/sic/</a>.
+            </p>
+            <p class="govuk-hint">
+              Select the first four digits of the SIC code that best represents the current activities of your business.
+            </p>
+          )
+          pdf_context_with_header_blocks [
+            [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC on https://resources.companieshouse.gov.uk/sic/."],
+            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."]
+          ]
         end
 
         options :parent_or_a_holding_company, "Do you have a parent or a holding company?" do
