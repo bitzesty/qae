@@ -46,10 +46,14 @@ class AwardYears::V2024::QAEForms
           conditional :applying_for, "division branch subsidiary"
         end
 
-        text :company_name, "Full/legal name of your organisation" do
+        text :company_name, "Full legal name of your organisation." do
           required
-          ref "A 2"
-          form_hint "If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - for example, award certificates."
+          ref "B 2"
+          context %(
+            <p class="govuk-hint">
+              If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number.
+            </p>
+          )
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
