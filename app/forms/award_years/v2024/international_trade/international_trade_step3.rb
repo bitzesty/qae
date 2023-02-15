@@ -230,10 +230,10 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
-          classes "sub-question"
-          sub_ref "B 4.2"
+          classes "sub-question word-max-strict"
+          sub_ref "C 4.2"
           required
-          rows 5
+          rows 1
           words_max 100
         end
 
