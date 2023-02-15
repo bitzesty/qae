@@ -6,7 +6,7 @@ class Users::CollaborationMailer < ApplicationMailer
     @generated_password = generated_password
     @devise_confirmation_token = devise_confirmation_token
 
-    @subject = "[Queen's Awards for Enterprise] #{@user_who_added.full_name} added you to collaborators!"
+    @subject = "[King's Awards for Enterprise] #{@user_who_added.full_name} added you to collaborators!"
 
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @collaborator.email, subject: subject_with_env_prefix(@subject)
   end
