@@ -335,7 +335,7 @@ class AwardYears::V2024::QAEForms
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           classes "regular-question"
-          sub_ref "A 13.4"
+          sub_ref "B 13.4"
           conditional :has_parent_company, "yes"
           conditional :parent_ultimate_control, :no
         end
