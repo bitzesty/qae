@@ -57,7 +57,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        text :brand_name, "If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number." do
+        text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
           classes "sub-question"
           sub_ref "B 2.1"
           required
