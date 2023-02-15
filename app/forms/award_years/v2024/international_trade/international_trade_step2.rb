@@ -310,7 +310,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :has_parent_company, "Do you have a parent or a holding company?" do
-          ref "A 13"
+          ref "B 13"
           yes_no
         end
 
