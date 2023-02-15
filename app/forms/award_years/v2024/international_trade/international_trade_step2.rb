@@ -145,9 +145,9 @@ class AwardYears::V2024::QAEForms
           date_max AwardYear.start_trading_since(3)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a King’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a King's/Queen's Awards for Enterprise award in any category?" do
           required
-          ref "A 6"
+          ref "B 6"
           yes_no
           classes "queen-award-holder"
         end
