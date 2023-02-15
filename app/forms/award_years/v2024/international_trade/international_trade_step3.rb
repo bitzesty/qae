@@ -6,37 +6,53 @@ class AwardYears::V2024::QAEForms
         header :your_internation_trade_header, "" do
           section_info
           context %(
-            <h3 class='govuk-heading-m'>About this section</h3>
+            <h3 class='govuk-heading-m'>About section C</h3>
             <p class='govuk-body'>
-              The purpose of this section is to enable the Assessing Team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts on the overall performance of your business.
-            </p>
-            <p class='govuk-body'>
-              Please avoid using technical language in this section.
+              The purpose of this section is to enable the assessing team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts the overall performance of your business.
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
+            </p>
+            <h3 class="govuk-heading-m">Technical language</h3>
+            <p class="govuk-body">
+              Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time.
             </p>
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
             <p class="govuk-body">
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+              If your application includes years when Covid-19 might have affected your organisation's growth, this will be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges.
+            </p>
+            <h3 class="govuk-heading-m">Supplementary materials</h3>
+            <p class="govuk-body">
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
+            </p>
+            <p class="govuk-body">
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
             </p>
           )
 
           pdf_context_with_header_blocks [
-            [:bold, "About this section"],
+            [:bold, "About section C"],
             [:normal, %(
-              The purpose of this section is to enable the Assessing Team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts on the overall performance of your business.
-
-              Please avoid using technical language in this section.
+              The purpose of this section is to enable the assessing team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts the overall performance of your business.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
+            )],
+            [:bold, "Technical language"],
+            [:normal, %(
+              Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time.
             )],
             [:bold, "COVID-19 impact"],
             [:normal, %(
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+              If your application includes years when Covid-19 might have affected your organisation's growth, this will be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges.
+            )],
+            [:bold, "Supplementary materials"],
+            [:normal, %(
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
+
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
             )]
           ]
         end
