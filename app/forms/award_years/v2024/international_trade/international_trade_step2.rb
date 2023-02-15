@@ -356,7 +356,7 @@ class AwardYears::V2024::QAEForms
         subsidiaries_associates_plants :trading_figures_add, "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
           required
           classes "sub-question"
-          sub_ref "A 14.1"
+          sub_ref "B 14.1"
           pdf_title "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them."
           conditional :trading_figures, :yes
           details_words_max 100
