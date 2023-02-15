@@ -254,9 +254,13 @@ class AwardYears::V2024::QAEForms
         end
 
         text :website_url, "Website address" do
-          ref "A 10"
+          ref "B 10"
           style "large"
-          form_hint "Please provide full website address, for example, www.yourcompanyname.com"
+          context %(
+            <p class="govuk-hint">
+              Please provide full website address, for example, www.yourcompanyname.com
+            </p>
+          )
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
