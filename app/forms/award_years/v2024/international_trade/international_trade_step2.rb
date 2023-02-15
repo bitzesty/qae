@@ -348,7 +348,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
-          ref "A 14"
+          ref "B 14"
           required
           yes_no
         end
