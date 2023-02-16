@@ -1,550 +1,632 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 class AwardYears::V2024::QAEForms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do
-        header :commercial_success_info_block, "" do
-          section_info
+        header :your_innovation_header, "" do
           context %(
-            <h3 class="govuk-heading-m">About section C</h3>
-            <p class="govuk-body">
-              All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate as you will need to verify them if shortlisted.
+            <h3 class='govuk-heading-m'>About section C</h3>
+            <p class='govuk-body'>
+              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.
             </p>
-            <h3 class="govuk-heading-m">Volatile markets & last financial year</h3>
+
+            <h3 class='govuk-heading-s'>Word limits</h3>
+            <p class='govuk-body'>
+              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for.
+            </p>
+
+            <h3 class="govuk-heading-s">Technical language</h3>
             <p class="govuk-body">
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
+              Please avoid using technical language - we need to understand your innovation without having any specific knowledge of your industry. If you use acronyms, please define them when using them for the first time.
+            </p>
+
+            <h3 class="govuk-heading-s">Supplementary materials</h3>
+            <p class="govuk-body">
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
             </p>
             <p class="govuk-body">
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            </p>
-            <h3 class="govuk-heading-m">Estimated figures</h3>
-            <p class="govuk-body">
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
             </p>
           )
+
           pdf_context_with_header_blocks [
             [:bold, "About section C"],
             [:normal, %(
-              All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate as you will need to verify them if shortlisted.
+              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.
             )],
-            [:bold, "Volatile markets & last financial year"],
+            [:bold, "Word limits"],
             [:normal, %(
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.,
+              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for.
+            )],
+            [:bold, "Technical language"],
+            [:normal, %(
+              Please avoid using technical language - we need to understand your innovation without having any specific knowledge of your industry. If you use acronyms, please define them when using them for the first time.
+            )],
+            [:bold, "Supplementary materials"],
+            [:normal, %(
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
 
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            )],
-            [:bold, "Estimated figures"],
-            [:normal, %(
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
             )]
           ]
         end
 
-        options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance?" do
-          classes "js-entry-period"
+        header :innovation_background_header, "Innovation background" do
           ref "C 1"
-          required
+          linkable true
           context %(
-            <p>
-              Your answer will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).
-            </p>
-            <p>
-              <strong>Outstanding commercial performance</strong> over two years would typically show a level of growth of more than 20% year on year. Please note, this is not a fixed number - there may be exceptions.
-            </p>
-            <p>
-              <strong>Continuous commercial performance</strong> over five years would typically show a consistent level of growth of more than 10% year on year. Please note, this is not a fixed number - there may be exceptions.
-            </p>
-            <p>
-              Please note, the above percentages are indicative, we will consider your specific circumstances. For example, if a business has been in a declining market and the innovation opens new market opportunities. In this instance, sales growth may not be significant, but the turnaround of business potential and safeguarding of jobs may be.
+            <p class="govuk-body">
+              The questions in subsection C1 help the assessors understand the context of your innovation.
             </p>
           )
-          option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over two years"
-          option "5 plus", "Continuous Commercial Performance: innovation has improved commercial performance over five years"
-          financial_date_selector({
-            "2 to 4" => "2",
-            "5 plus" => "5"
-          })
-          default_option "5 plus"
-          sub_category_question
-        end
-
-        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
-          ref "C 2"
-          required
-          financial_date_pointer
-        end
-
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
-          classes "sub-question js-financial-year-change"
-          sub_ref "C 2.1"
-          required
-          yes_no
-          context %(
-            <p>
-              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers two or five full 12-month periods.
-            </p>
+          pdf_context %(
+            The questions in subsection C1 help the assessors understand the context of your innovation.
           )
-          default_option "no"
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        checkbox_seria :application_relate_to_header, "This entry relates to:" do
+          sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "C 2.1.1"
+          sub_ref "C 1.1"
           required
-          rows 1
-          words_max 100
-          conditional :financial_year_date_changed, :yes
-        end
-
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question"
-          sub_ref "C 2.2"
-          required
-          type :date
-          label ->(y) { "Financial year #{y}" }
-
           context %(
             <p>
-              Typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-              </p>
-            <p>
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
+              Select all that apply.
             </p>
           )
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-          conditional :innovation_performance_years, :true
-        end
-
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
-          classes "question-employee-min"
-          ref "C 3"
-          required
-          context %(
-            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents.</p>
-          )
-          type :number
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-
-          employees_question
-        end
-
-        header :company_financials, "Company Financials" do
-          ref "C 4"
-
-          context %(
-            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Group entries</h3>
-            <p class='govuk-body'>
-              A parent company making a group entry should include the trading figures of all UK members of the group.
-            </p>
-
-            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Figures - format</h3>
-            <p class='govuk-body'>
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "Group entries"],
-            [:normal, %(
-              A parent company making a group entry should include the trading figures of all UK members of the group.
-            )],
-            [:bold, "Figures - format"],
-            [:normal, %(
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            )]
+          check_options [
+            ["product", "A product"],
+            ["service", "A service"],
+            ["business_model", "A business model or process"]
           ]
-
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
+          application_type_question true
         end
 
-        by_years :total_turnover, "Total turnover." do
-          ref "C 4.1"
-          required
-          classes "sub-question"
-
-          type :money
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-        end
-
-        by_years :exports, "Of which exports." do
-          classes "sub-question"
-          sub_ref "C 4.2"
-          required
-          context %(<p>Enter '0' if you had none.</p>)
-
-          type :money
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-        end
-
-        # UK sales = turnover - exports
-        turnover_exports_calculation :uk_sales, "Of which UK sales." do
-          classes "sub-question"
-          sub_ref "C 4.3"
-          context %(<p>This number is automatically calculated using your total turnover and export figures.</p>)
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          turnover :total_turnover
-          exports :exports
-        end
-
-        by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)." do
-          classes "sub-question"
-          sub_ref "C 4.4"
-          required
-
-          type :money
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-          context %(
-            <p>
-              Use a minus symbol to record any losses.
-            </p>
-          )
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-        end
-
-        by_years :total_net_assets, "Total net assets." do
-          classes "sub-question total-net-assets"
-          sub_ref "C 4.5"
+        textarea :innovation_desc_short, "Briefly describe your innovative product, service, business model or process." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.2"
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current) minus liabilities (current and long-term).
-            </p>
-          )
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-
-          type :money
-          label ->(y) { "As at the end of year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-        end
-
-        textarea :drops_in_turnover, "Explain any drops in the total turnover, export sales, total net assets or net profit and any losses made." do
-          classes "sub-question"
-          sub_ref "C 4.6"
-          required
-          rows 3
-          words_max 300
-          context %(
-            <p>
-              Sustained or unexplained drops or losses may lead to the entry being rejected.
+              This 15 word summary will be used in publicity material if your application is successful.
             </p>
             <p>
-              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
-            </p>
-          )
-        end
-
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow, cash generated, and investment received." do
-          classes "sub-question"
-          sub_ref "C 4.7"
-          required
-          context %(
-            <p>
-              We recognise that some innovations have high initial development costs, leading to low or negative profitability in the short term. If this is true for your innovation, please explain your investment strategy, expected outcomes, and expected timescales.
-            </p>
-            <p>
-              If you are an established business and showing low or negative profitability, please explain why and how the business is sustainable and specifically what impact your innovation has on this position.
-            </p>
-          )
-          rows 3
-          words_max 300
-        end
-
-        textarea :investments_details, "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the years in which they were made." do
-          classes "sub-question"
-          sub_ref "C 4.8"
-          required
-          rows 3
-          words_max 250
-          context %(
-            <p>
-              This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non-cash resources. If relevant, you could also include R&D investment, innovation loans, or Innovate UK grants.
-            </p>
-          )
-        end
-
-        textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investments outlined in question C4.8. How long did it take or will it take to recover the investments?" do
-          classes "sub-question"
-          sub_ref "C 4.9"
-          required
-          rows 3
-          words_max 250
-          context %(
-            <p>
-              If your innovation is expected to recover its full costs in the future, explain how and when this will happen.
-            </p>
-          )
-        end
-
-        options :innovation_part_of, "How would the innovation that forms the basis of this application fit within the overall business?" do
-          ref "C 5"
-          required
-          option "it's integral to the whole business", "It's integral to the whole business"
-          option :single_product_or_service, "It affects a single product/service"
-          context %(
-            <p>
-              It is essential that we understand the value of your innovation in the context of your overall commercial performance. Choose from the following two options.
-            </p>
-          )
-          context_for_option "it's integral to the whole business", %(
-            <p>
-              Select this option only if your innovation affects all aspects of your business. Examples of where this would be the case are:
+              For example:
             </p>
             <ul>
-              <li>A software company that has developed and sells a single application.</li>
-              <li>A business that has developed a customer management platform that adds value to every customer interaction.</li>
-            </ul>
-          )
-          context_for_option :single_product_or_service, %(
-            <p>
-              Select this option if your innovation is embodied within a service or product (or range of products) that forms a part of a broader offering to your customers. If you select this option, you will be asked to enter unit sales and financial data specific to the innovation. This enables assessors to quantify the contribution to overall commercial performance made by the innovation.
-            </p>
-          )
-          pdf_context_for_option "it's integral to the whole business", %(
-            Select this option only if your innovation affects all aspects of your business. Examples of where this would be the case are:
-
-            \u2022 A software company that has developed and sells a single application.
-            \u2022 A business that has developed a customer management platform that adds value to every customer interaction.
-          )
-          pdf_context_for_option :single_product_or_service, %(
-            Select this option if your innovation is embodied within a service or product (or range of products) that forms a part of a broader offering to your customers. If you select this option, you will be asked to enter unit sales and financial data specific to the innovation. This enables assessors to quantify the contribution to overall commercial performance made by the innovation.
-          )
-          default_option "it's integral to the whole business"
-        end
-
-        textarea :innovation_impact_integral_description, "Explain how, and by how much, your innovation has impacted your commercial performance." do
-          classes "sub-question"
-          sub_ref "C 5.1"
-          required
-          conditional :innovation_part_of, "it's integral to the whole business"
-          context %(
-            <p>
-              A couple of examples that may help you answer this question:
-            </p>
-            <ul>
-              <li>Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…</li>
-              <li>Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...</li>
+              <li>
+                Innovative electro-mechanical downhole power delivery system to avoid the use of explosives or dangerous goods.
+              </li>
+              <li>
+                Integrating digital and personal contact to improve health and safety, and detect changing customer needs.
+              </li>
+              <li>
+                High performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
+              </li>
             </ul>
           )
           pdf_context %(
             <p>
-              A couple of examples that may help you answer this question:
+              This 15 word summary will be used in publicity material if your application is successful.
             </p>
             <p>
-              \u2022 Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…
-
-              \u2022 Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...
+              For example:
             </p>
-          )
-          rows 2
-          words_max 200
-        end
-
-        header :product_financials, "Innovation financials" do
-          ref "C 6"
-
-          context %(
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">About C6 questions</h3>
-            <p class="govuk-body">
-              Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation.
-            </p>
-
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Figures - format</h3>
-            <p class="govuk-body">
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "About C6 questions"],
-            [:normal, %(
-              Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation.
-            )],
-            [:bold, "Figures - format"],
-            [:normal, %(
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            )]
-          ]
-        end
-
-        by_years :units_sold, "Number of innovative units or contracts sold (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.1"
-          type :number
-          label ->(y) { "Financial year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-        end
-
-        by_years :sales, "Sales of your innovative product/service (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.2"
-          type :money
-          label ->(y) { "Financial year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-        end
-
-        by_years :sales_exports, "Of which exports (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.3"
-          context %(<p>Enter '0' if you had none.</p>)
-          type :money
-          label ->(y) { "Financial year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-        end
-
-        by_years :sales_royalties, "Of which royalties or licences (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.4"
-          context %(<p>Enter '0' if you had none.</p>)
-          type :money
-          label ->(y) { "Financial year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-        end
-
-        textarea :drops_in_sales, "Explain any drop in sales or the number of units sold (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.5"
-          rows 2
-          words_max 200
-        end
-
-        by_years :avg_unit_price, "Average unit selling price or contract value (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.6"
-          context %(
             <p>
-              If your innovation is a product, you must provide the unit price.
+              \u2022 Innovative electro-mechanical downhole power delivery system to avoid the use of explosives or dangerous goods.
+
+              \u2022 Integrating digital and personal contact to improve health and safety, and detect changing customer needs.
+
+              \u2022 High performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
             </p>
           )
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          type :money
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
+          rows 1
+          words_max 15
         end
 
-        textarea :avg_unit_price_desc, "Explain your unit selling prices or contract values, highlighting any changes over the above periods (if applicable)." do
+        options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation." do
+          sub_section :innovation_background_header
           classes "sub-question"
-          sub_ref "C 6.7"
-          rows 2
-          words_max 200
-        end
-
-        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit or contract (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.8"
-          context %(
-            <p>If you haven't reached your latest year-end, use estimates to complete this question.</p>
-          )
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-          type :money
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_performance_years, "2 to 4", 2
-          by_year_condition :innovation_performance_years, "5 plus", 5
-        end
-
-        textarea :costs_change_desc, "Explain your direct unit or contract costs, highlighting any changes over the above periods (if applicable)." do
-          classes "sub-question"
-          sub_ref "C 6.9"
-          rows 2
-          words_max 200
-        end
-
-        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business." do
-          ref "C 7"
+          sub_ref "C 1.3"
           required
           context %(
             <p>
-              If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered. For example, new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+              Please note, both types are equally eligible for the award. Your answer will assist assessors in understanding the nature of the type of innovation.
             </p>
           )
+          option "disruptive_innovation", %(
+            Disruptive innovation: A new or creative-in-thought innovation that does not seem to have been done before. While having a financial return, it may not yet have secured substantial market impact and did not displace many other firms and products.
+          )
+          option "continuous_innovation", %(
+            Continuous innovation: Innovation that adds new function or benefit to the existing product, service or business model.
+          )
+        end
+
+        options :innovation_hold_existing_patent, "Do you hold the existing patent for this innovation?" do
+          sub_section :innovation_background_header
+          classes "sub-question"
+          sub_ref "C 1.4"
+          required
+          yes_no
+        end
+
+        textarea :innovation_hold_existing_patent_details, "Provide a link to your published patent document. If you do not have a patent, please explain the reasons why not." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.4.1"
+          required
+          context %(
+            <p>
+              This link should be from organisations such as EPO, Google Patents, the US patent office, or the British patent office.
+            </p>
+            <p>
+              If you do not have a patent, please explain how you might protect the market position that you have created. Explain if and why your innovation is hard to copy, for example, market position, trade secrets or design rights.
+            </p>
+          )
+          rows 2
+          words_max 100
+        end
+
+        options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
+          sub_section :innovation_background_header
+          classes "sub-question"
+          sub_ref "C 1.5"
+          required
+          yes_no
+        end
+
+        textarea :innovation_other_countries_it_was_developed, "Describe in what other countries and, if applicable, by what parties it was developed." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.5.1"
+          required
+          conditional :innovation_conceived_and_developed, :no
+          context %(
+            <p>
+              Also, if applicable, include an estimate of what proportion of the innovation was developed there.
+            </p>
+          )
+          rows 3
+          words_max 200
+        end
+
+        options :innovation_joint_contributors, "Is this application part of a joint entry with any contributing organisations?" do
+          sub_section :innovation_background_header
+          classes "sub-question"
+          sub_ref "C 1.6"
+          required
+          context %(
+            <p>
+              If two or more organisations made a significant contribution to the product, service, business model or process, you should make a joint entry. Each organisation should submit separate, cross-referenced entry forms.
+            </p>
+          )
+          yes_no
+        end
+
+        textarea :innovation_contributors, "Please enter their names." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.6.1"
+          conditional :innovation_joint_contributors, :yes
+          rows 2
+          words_max 100
+        end
+
+        options :innovation_any_contributors, "Did any external organisations or individuals contribute to your innovation?" do
+          sub_section :innovation_background_header
+          classes "sub-question"
+          sub_ref "C 1.7"
+          required
+          yes_no
+        end
+
+        textarea :innovation_external_contributors, "Name any external organisations or individuals that contributed to your innovation and explain their contributions." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.7.1"
+          required
+          conditional :innovation_any_contributors, :yes
+          rows 3
+          words_max 200
+        end
+
+        options :innovation_contributors_aware, "Are they aware that you are applying for this award?" do
+          sub_section :innovation_background_header
+          classes "sub-question"
+          sub_ref "C 1.7.2"
+          required
+          conditional :innovation_any_contributors, :yes
+          option :yes, "Yes, they are all aware"
+          option :no, "No, they are not all aware"
+        end
+
+        header :innovation_contributors_aware_header_no, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p class="govuk-body">
+              Notifying all contributors can avoid disputes due to the contributors feeling that their contribution was not acknowledged. We, therefore, recommend that you inform all organisations who have contributed to your innovation.
+            </p>
+          )
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_contributors_aware, :no
+        end
+
+        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.7.3"
+          required
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_contributors_aware, :no
+          rows 3
+          words_max 200
+        end
+
+        options :innovation_under_license, "Is your innovation under licence from another organisation?" do
+          sub_section :innovation_background_header
+          classes "sub-question"
+          sub_ref "C 1.8"
+          yes_no
+        end
+
+        textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.8.1"
+          required
+          conditional :innovation_under_license, :yes
+          rows 2
+          words_max 100
+        end
+
+        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as innovation loan, in relation to your innovation?" do
+          sub_section :innovation_background_header
+          classes "sub-question"
+          sub_ref "C 1.9"
+          required
+          yes_no
+          context %(
+            <p>
+              To receive grant funding or other government support, usually the company must go through a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance and the assessors appreciate that as well.
+            </p>
+          )
+        end
+
+        textarea :innovation_grant_funding_sources, "Please give details of dates, sources and levels of funding." do
+          sub_section :innovation_background_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 1.9.1"
+          required
+          conditional :innovations_grant_funding, :yes
           rows 3
           words_max 250
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
-          ref "C 8"
+
+        header :innovation_timeline_header, "Innovation development" do
+          ref "C 2"
+          linkable true
+          context %{
+            <p class="govuk-body">
+              The questions in subsection C2 help the assessors understand the development of your innovation.
+          }
+          pdf_context_with_header_blocks [
+            [:normal, %(
+              The questions in subsection C2 help the assessors understand the development of your innovation.
+            )]
+          ]
+        end
+
+        year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
+          sub_section :innovation_timeline_header
+          classes "sub-question"
+          sub_ref "c 2.1"
+          required
+          min 2000
+          max 2020
+        end
+
+        date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
+          sub_section :innovation_timeline_header
+          classes "sub-question"
+          sub_ref "C 2.2"
+          required
+          context -> do
+            %(
+              <p>
+                Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)}.
+              </p>
+            )
+          end
+
+          date_max AwardYear.start_trading_since(2)
+        end
+
+        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.3"
           required
           context %(
             <p>
-              How have you adapted to or mitigated the impacts of recent volatile markets due to factors such as Covid, and with what results? How are you planning to respond in the year ahead? This could include opportunities you have identified as well as any contextual information or challenges you would like the assessors to consider.
+              What was the need or opportunity that prompted you to initiate your innovation project? What research did you do? How did you decide it was an opportunity worth working on? Did the innovation happen by chance? Was it consumer-led, or did it arise out of research and development?
+            </p>
+          )
+          rows 4
+          words_max 400
+        end
+
+        textarea :innovation_desc_long, "Describe your innovation and why it is innovative." do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.4"
+          required
+          context %(
+            <ol>
+              <li>
+                Describe what it is, how it works, what it does.
+              </li>
+              <li>
+                <p>
+                  Explain how your innovation differs from what came before and how it is an improvement.
+                </p>
+                <p>
+                  If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
+                </p>
+                <p>
+                  If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
+                </p>
+                <p>
+                  Explain any aspects that you think are innovative and why you think they are innovative.
+                </p>
+                <p>
+                  If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
+                </p>
+              </li>
+            </ol>
+          )
+          pdf_context %(
+            <p>
+              1. Describe what it is, how it works, what it does.
+            </p>
+            <p>
+              2. Explain how your innovation differs from what came before and how it is an improvement.
+
+                 If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
+
+                 If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
+
+                 Explain any aspects that you think are innovative and why you think they are innovative.
+
+                 If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
+            </p>
+          )
+          rows 5
+          words_max 800
+        end
+
+        textarea :innovation_selection_details, "How did you select this innovation as the one to satisfy the gap in the market?" do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.5"
+          required
+          context %(
+            <p>
+              For example, explain if you conducted any consumer research, held focus groups, or did technical testing, for example, to see if it is faster, stronger, safer, or conducted cost or price benefit analyses. Summarise any quantitative and qualitative data that underpinned your decision making.
             </p>
           )
           rows 4
           words_max 350
         end
 
-        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "C 9"
-          yes_no
-
+        textarea :innovation_overcomes_issues, "Describe any challenges you encountered in developing your innovation and how you overcame them." do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.6"
+          required
           context %(
             <p>
-              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
+              What challenges did you overcome, for example, technical, materials or capacity issues? How did you overcome the challenges? Did you create or identify solutions to challenges internally? Or did you seek external help, for example, from a university, business support organisation, or collaborative company? Did you identify technology or existing approaches that helped you overcome challenges? How did you establish which solution was the correct one?
             </p>
           )
-
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
+          rows 5
+          words_max 500
         end
 
-        textarea :product_estimates_use, "Explain your use of estimates and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
-          sub_ref "C 9.1"
+        textarea :innovation_strategies, "Explain the market opportunities and what strategies you used to penetrate the market." do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.7"
+          required
+          context %(
+            <p>
+              Who are your target customers? How did you communicate your innovation to them? Were they existing customers? Is this a new market sector? What did you have to do differently to market the innovation? What is the size of the market that you can potentially reach?
+            </p>
+          )
+          rows 4
+          words_max 350
+        end
+
+        textarea :innovation_competitors, "Who offers products, services or business models that compete with yours?" do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.8"
+          required
+          context %(
+            <p>
+              Define your competitors. Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions. We ask this to assess how outstanding your innovation is, compared to others in your field.
+            </p>
+          )
+          rows 3
+          words_max 250
+        end
+
+        textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.9"
+          required
+          context %(
+            <p>
+              Explain if and why your innovation is hard to copy, for example, patents held, market position, trade secrets or design rights.
+            </p>
+          )
           rows 2
           words_max 200
-          conditional :product_estimated_figures, :yes
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
+        end
+
+        textarea :innovation_additional_comments, "Additional comments. (optional)" do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.10"
+          context %(
+            <p>
+              Use this box to explain if your innovation was launched by someone else or any other unusual circumstances surrounding your innovation.
+            </p>
+          )
+          rows 2
+          words_max 200
+        end
+
+        header :innovation_value_add_header, "Innovation value-add" do
+          ref "C 3"
+          linkable true
+          context %{
+            <p class="govuk-body">
+              The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
+            </p>
+            <p class="govuk-body">
+              Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
+            </p>
+            <p class="govuk-body">
+              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section E - if you do so, please reference it in your answer.
+            </p>
+          }
+          pdf_context_with_header_blocks [
+            [:normal, %(
+              The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
+
+              Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
+
+              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
+            )]
+          ]
+        end
+
+        textarea :innovation_befits_details_business, "How has the innovation added value to your business?" do
+          sub_section :innovation_value_add_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 3.1"
+          required
+          context %(
+            <p>
+              When answering this question, please focus on softer, not directly financial benefits.
+            </p>
+            <p>
+              For example, depending on what is applicable, you could mention that the innovation:
+            </p>
+            <ul>
+              <li>Resulted in design, production, marketing, distribution and after-sales support improvements.</li>
+              <li>Developed people's skills, knowledge, and expertise.</li>
+              <li>Recruited new people into new roles or changed the structure of the business that will benefit the business in the future.</li>
+              <li>Made your organisation more sustainable.</li>
+              <li>Turned around business decline or increased the rate of growth.</li>
+              <li>Increased efficiency, quality, reliability.</li>
+              <li>Reduced costs, reduced downtime.</li>
+            </ul>
+            <p>
+              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section C of the form (Commercial Performance).
+            </p>
+          )
+          pdf_context %(
+            <p>
+              When answering this question, please focus on softer, not directly financial benefits.
+            </p>
+            <p>
+              For example, depending on what is applicable, you could mention that the innovation:
+            </p>
+            <p>
+              \u2022 Resulted in design, production, marketing, distribution and after-sales support improvements.
+
+              \u2022 Developed people's skills, knowledge, and expertise.
+
+              \u2022 Recruited new people into new roles or changed the structure of the business that will benefit the business in the future.
+
+              \u2022 Made your organisation more sustainable.
+
+              \u2022 Turned around business decline or increased the rate of growth.
+
+              \u2022 Increased efficiency, quality, reliability.
+
+              \u2022 Reduced costs, reduced downtime.
+            </p>
+            <p>
+              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section D of the form (Commercial Performance).
+            </p>
+          )
+          rows 4
+          words_max 400
+        end
+
+        textarea :innovation_befits_details_customers, "Does the innovation benefit your customers, and if so, how?" do
+          sub_section :innovation_value_add_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 3.2"
+          required
+          context %(
+            <p>
+              For example:
+            </p>
+            <ul>
+              <li>Increased efficiency</li>
+              <li>Reduced costs</li>
+              <li>Design, production, marketing, distribution or after-sales support improvements</li>
+              <li>Better after-sales support</li>
+              <li>Reduced downtime</li>
+              <li>Increased reliability</li>
+            </ul>
+            <p>
+              Please quantify if possible. For example, how much does it save your customers on average? You can use testimonials if you have them.
+            </p>
+          )
+          pdf_context %(
+            <p>
+              For example:
+            </p>
+            <p>
+              \u2022 Increased efficiency
+
+              \u2022 Reduced costs
+
+              \u2022 Design, production, marketing, distribution or after-sales support improvements
+
+              \u2022 Better after-sales support
+
+              \u2022 Reduced downtime
+
+              \u2022 Increased reliability
+            </p>
+            <p>
+              Please quantify if possible. For example, how much does it save your customers on average? You can use testimonials if you have them.
+            </p>
+          )
+          rows 4
+          words_max 400
+        end
+
+        textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation benefit others, and if so, how and to whom?" do
+          sub_section :innovation_value_add_header
+          classes "sub-question word-max-strict"
+          sub_ref "C 3.3"
+          required
+          context %(
+            <p>
+              Are there any wider benefits that your innovation delivers? For example, are there benefits to society,  specific groups of people, or the environment? Please provide evidence to support this if possible.
+            </p>
+          )
+          rows 4
+          words_max 400
         end
       end
     end

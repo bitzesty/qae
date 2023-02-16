@@ -5,8 +5,13 @@ describe "QaePdfForms::Awards2016::Innovation::Base" do
 
   let(:step1_question_answers) {
     {
-      company_name: "Bitzesty",
-      registration_number: '123'
+      head_of_bussines_title: "Mr",
+    }
+  }
+
+  let(:step2_question_answers) {
+    {
+      company_name: "BitZesty"
     }
   }
 

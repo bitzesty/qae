@@ -14,7 +14,7 @@ feature "Admin view application", js: true do
     application_window = window_opened_by { click_link("View application") }
     within_window application_window do
       expect(page).to have_current_path edit_form_path(application)
-      expect(find_field("form[company_name]", disabled: true).value).to eq("Bitzesty")
+      expect(find_field("form[head_of_business_first_name]", disabled: true).value).to eq("David")
     end
   end
 
@@ -32,7 +32,7 @@ feature "Admin view application", js: true do
     application_window = window_opened_by { click_link("Edit application") }
     within_window application_window do
       expect(page).to have_current_path edit_form_path(application)
-      expect(find_field("form[company_name]").value).to eq("Bitzesty")
+      expect(find_field("form[head_of_business_first_name]").value).to eq("David")
     end
   end
 
@@ -51,7 +51,7 @@ feature "Admin view application", js: true do
     application_window = window_opened_by { click_link("Edit application") }
     within_window application_window do
       expect(page).to have_current_path edit_form_path(application)
-      expect(find_field("form[company_name]").value).to eq("Bitzesty")
+      expect(find_field("form[head_of_business_first_name]").value).to eq("David")
     end
   end
 end
@@ -61,7 +61,7 @@ def create_application
   form_answer = create :form_answer, :innovation,
                                      user: user,
                                      urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+                                     document: { head_of_business_first_name: "David" }
   create :basic_eligibility, form_answer: form_answer, account: user.account
   create :innovation_eligibility, form_answer: form_answer, account: user.account
   form_answer
