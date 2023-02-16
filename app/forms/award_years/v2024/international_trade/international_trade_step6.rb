@@ -52,10 +52,10 @@ class AwardYears::V2024::QAEForms
           end
         end
 
-        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Contact consent" do
           ref "F 3"
           text %(
-            I am happy to be contacted about King's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
+            I am happy to be contacted about King's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, and other information).
           )
         end
 
