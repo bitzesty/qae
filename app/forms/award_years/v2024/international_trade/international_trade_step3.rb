@@ -128,42 +128,42 @@ class AwardYears::V2024::QAEForms
           application_type_question true
         end
 
-        # dropdown :trade_goods_amount, "How many types of products/services make up your international trade?" do
-        #   classes "sub-question"
-        #   ref "B 2.1"
-        #   required
-        #   context %(
-        #     <p>
-        #       If you have more than 5, group them into fewer types of products/services.
-        #     </p>
-        #   )
-        #   option "", "Select"
-        #   option "1", "1"
-        #   option "2", "2"
-        #   option "3", "3"
-        #   option "4", "4"
-        #   option "5", "5"
-        #   default_option "1"
-        # end
+        dropdown :trade_goods_amount, "How many types of products/services make up your international trade?" do
+          classes "sub-question"
+          ref "C 2.1"
+          required
+          context %(
+            <p>
+              If you have more than 5, group them into fewer types of products/services.
+            </p>
+          )
+          option "", "Select"
+          option "1", "1"
+          option "2", "2"
+          option "3", "3"
+          option "4", "4"
+          option "5", "5"
+          default_option "1"
+        end
 
-        # by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
-        #   classes "sub-question word-max-strict"
-        #   sub_ref "B 2.2"
-        #   required
-        #   context %(
-        #     <p>
-        #       If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
-        #     </p>
-        #   )
-        #   additional_pdf_context %(
-        #     You will need to complete this information for each product or service depending on your answer to question B2.1
-        #   )
-        #   rows 2
-        #   words_max 15
-        #   min 0
-        #   max 100
-        #   conditional :trade_goods_amount, :true
-        # end
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
+          classes "sub-question word-max-strict"
+          sub_ref "C 2.2"
+          required
+          context %(
+            <p>
+              If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
+            </p>
+          )
+          additional_pdf_context %(
+            You will need to complete this information for each product or service depending on your answer to question B2.1
+          )
+          rows 2
+          words_max 15
+          min 0
+          max 100
+          conditional :trade_goods_amount, :true
+        end
 
         textarea :trade_plans_desc, "Describe your international trade strategy." do
           ref "C 3"
