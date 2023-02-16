@@ -11,7 +11,7 @@ class AwardYears::V2024::QAEForms
               The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details provided are accurate as they cannot be changed after the submission deadline.
             </p>
             <p class='govuk-body'>
-              This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
+              This information will also be used to enable The King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
             </p>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
@@ -23,7 +23,7 @@ class AwardYears::V2024::QAEForms
             [:normal, %(
               The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details provided are accurate as they cannot be changed after the submission deadline.
 
-              This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
+              This information will also be used to enable The King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
@@ -57,7 +57,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        text :brand_name, "If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number." do
+        text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
           classes "sub-question"
           sub_ref "B 2.1"
           required
@@ -119,12 +119,12 @@ class AwardYears::V2024::QAEForms
           style "small"
         end
 
-        text :vat_registration_number, "Provide your VAT registration number or, if not registered, explain why." do
+        text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
           classes "sub-question"
           required
           ref "B 4.2"
           context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's VAT number.</p>
+            <p>If you're an unregistered subsidiary, enter your parent company's VAT number.</p>
           )
           style "small"
         end

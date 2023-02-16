@@ -254,7 +254,7 @@ class AwardYears::V2024::QAEForms
           }
         end
 
-        textarea :describe_the_driving_force_of_your_organisation, "Leadership and management" do
+        textarea :describe_the_driving_force_of_your_organisation, "Who is ultimately responsible for the organisation's sustainability interventions and their success?" do
           classes "word-max-strict sub-question"
           ref "C 3.1"
           required

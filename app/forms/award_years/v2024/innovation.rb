@@ -9,29 +9,30 @@ class AwardYears::V2024::QAEForms
   class << self
     def innovation
       @innovation ||= QAEFormBuilder.build "Innovation Award Application" do
+        step "Consent & due diligence",
+             "Consent & due diligence",
+             &AwardYears::V2024::QAEForms.innovation_step1
+
         step "Company information",
              "Company information",
-             &AwardYears::V2024::QAEForms.innovation_step1
+             &AwardYears::V2024::QAEForms.innovation_step2
 
         step "Your innovation",
              "Your innovation",
-             &AwardYears::V2024::QAEForms.innovation_step2
+             &AwardYears::V2024::QAEForms.innovation_step3
 
         step "Commercial performance",
              "Commercial performance",
-             &AwardYears::V2024::QAEForms.innovation_step3
+             &AwardYears::V2024::QAEForms.innovation_step4
 
         step "Corporate Social Responsibility (CSR)",
              "Corporate Social Responsibility (CSR)",
-             &AwardYears::V2024::QAEForms.innovation_step4
-
-        step "Supplementary materials",
-             "Supplementary materials",
              { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.innovation_step5
 
-        step "Authorise and submit",
-             "Authorise and submit",
+        step "Supplementary materials & confirmation",
+             "Supplementary materials & confirmation",
+             { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.innovation_step6
       end
     end
