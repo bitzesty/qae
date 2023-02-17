@@ -21,12 +21,6 @@ class AwardYears::V2024::QAEForms
           description
         end
 
-        confirm :confirmation_of_consent, "Confirmation of consent" do
-          ref "F 2"
-          required
-          text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
-        end
-
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 3"
           text %(
