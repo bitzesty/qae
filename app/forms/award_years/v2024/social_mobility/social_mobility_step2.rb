@@ -278,18 +278,13 @@ class AwardYears::V2024::QAEForms
 
         address :organization_address, "Trading address of your organisation" do
           required
-          ref "A 10"
+          ref "B 10"
           pdf_context_with_header_blocks [
-            [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
-            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
           ]
           county_context %(
-            <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
-
-            <p class='govuk-hint'>
-              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link govuk-link">
-                See the full list of London districts on Wikipedia
-              </a>
+            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
+              <a class="govuk-link" target="_blank" href="https://www.gov.uk/find-local-council">https://www.gov.uk/find-local-council</a>
             </p>
           )
           sub_fields([
