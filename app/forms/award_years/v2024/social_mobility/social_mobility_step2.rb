@@ -203,11 +203,11 @@ class AwardYears::V2024::QAEForms
 
         options :part_of_joint_entry,
                 "Is this application part of a joint entry with any contributing organisation(s)?" do
-          ref "A 8"
+          ref "B 8"
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the social mobility programme, then you should make a joint entry.
+              If two or more organisations made a significant contribution to the social mobility initiative, then you should make a joint entry.
             </p>
             <p>
               Each organisation should submit separate, cross-referenced, entry forms.
