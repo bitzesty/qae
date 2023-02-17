@@ -2,6 +2,20 @@ class AwardYears::V2024::QAEForms
   class << self
     def mobility_step1
       @mobility_step1 ||= proc do
+        header :consent_due_diligence_header, "" do
+          section_info
+          context %(
+            <h3 class="govuk-heading-m">About section A</h3>
+            <p class="govuk-body">This section is to confirm that you have the authorisation to apply, that your organisation is financially stable, worthy, and that you understand what will happen after you apply in terms of due diligence. We recommend you carefully answer section A questions before proceeding with the rest of the application.</p>
+          )
+          pdf_context_with_header_blocks [
+            [:bold, "About section A"],
+            [:normal, %(
+              This section is to confirm that you have the authorisation to apply, that your organisation is financially stable, worthy, and that you understand what will happen after you apply in terms of due diligence. We recommend you carefully answer section A questions before proceeding with the rest of the application.
+            )]
+          ]
+        end
+
         header :head_of_bussines_header, "Head of your organisation" do
           ref "F 1"
         end
