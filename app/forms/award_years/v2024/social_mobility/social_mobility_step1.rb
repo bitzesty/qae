@@ -212,6 +212,15 @@ class AwardYears::V2024::QAEForms
           )
         end
 
+        confirm :shortlisted_case_confirmation, "Commercial performance" do
+          ref "A 3"
+          required
+          show_ref_always true
+          text %(
+            I understand that I have to provide financial information and related financial statements for the last three years to demonstrate that the organisation is financially viable.
+          )
+        end
+
         confirm :entry_confirmation, "Confirmation of entry" do
           ref "F 4"
           required
@@ -222,14 +231,7 @@ class AwardYears::V2024::QAEForms
           end
         end
 
-        confirm :shortlisted_case_confirmation, "" do
-          ref "F 4.3"
-          required
-          show_ref_always true
-          text %(
-            I agree that if the application is shortlisted, if asked, I will supply actual commercial figures and the latest year's VAT returns by October/November.
-          )
-        end
+
       end
     end
   end
