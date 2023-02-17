@@ -107,9 +107,9 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :registration_number, "Provide your company or charity registration number or, if not registered, explain why." do
-          classes "sub-question"
+          classes "sub-question word-max-strict"
           required
-          ref "A 4.1"
+          ref "B 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
           )
