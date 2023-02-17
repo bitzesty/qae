@@ -237,11 +237,11 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :external_specify_organisations_contributions, "Specify the organisations that have contributed as well as what they contributed, including how and when." do
-          sub_ref "A 9.1"
+          sub_ref "B 9.1"
           required
-          classes "sub-question"
+          classes "sub-question word-max-strict"
           words_max 100
-          rows 5
+          rows 1
           conditional :external_contribute_to_sustainable_product, "yes"
         end
 
