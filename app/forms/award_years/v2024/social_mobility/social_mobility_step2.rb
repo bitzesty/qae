@@ -34,7 +34,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :applying_for, "Are you applying on behalf of your:" do
-          ref "A 1"
+          ref "B 1"
           required
           option "organisation", "Whole organisation (with ultimate control)"
           option "division branch subsidiary", "A division, branch or subsidiary"
