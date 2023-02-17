@@ -363,10 +363,10 @@ class AwardYears::V2024::QAEForms
           yes_no
         end
 
-        text :parent_company, "Name of immediate parent company" do
+        text :parent_company, "Name of the immediate parent company" do
           required
           classes "sub-question"
-          sub_ref "A 14.1"
+          sub_ref "B 14.1"
           conditional :parent_or_a_holding_company, :yes
         end
 
