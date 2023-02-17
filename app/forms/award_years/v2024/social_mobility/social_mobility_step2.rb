@@ -217,8 +217,8 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :part_of_joint_entry_names, "Please enter their name(s)." do
-          classes "sub-question"
-          sub_ref "A 8.1"
+          classes "sub-question word-max-strict"
+          sub_ref "B 8.1"
           required
           conditional :part_of_joint_entry, "yes"
           words_max 100
