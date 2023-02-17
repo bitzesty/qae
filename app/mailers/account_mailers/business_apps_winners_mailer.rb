@@ -17,7 +17,7 @@ class AccountMailers::BusinessAppsWinnersMailer < AccountMailers::BaseMailer
     @book_notes_deadline = deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
     @book_notes_deadline = @book_notes_deadline.try :strftime, "%A %d %B %Y"
 
-    subject = "Important information about your Queen’s Award"
+    subject = "Important information about your Kings's Award"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
   end
 end

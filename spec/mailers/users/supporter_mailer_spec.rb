@@ -17,7 +17,7 @@ describe Users::SupporterMailer do
   end
 
   it "renders the headers" do
-    expect(mail.subject).to eq("[Queen's Awards for Enterprise] Support Letter Request")
+    expect(mail.subject).to eq("[King's Awards for Enterprise] Support Letter Request")
     expect(mail.to).to eq([supporter.email])
     expect(mail.from).to eq(["no-reply@kings-awards-enterprise.service.gov.uk"])
   end
