@@ -413,8 +413,8 @@ class AwardYears::V2024::QAEForms
           max_attachments 1
         end
 
-        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the King’s Awards for Enterprise award this year?" do
-          ref "A 16"
+        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the King's Awards for Enterprise award this year?" do
+          ref "B 16"
           required
           context %(
             <p>Select all that apply.</p>
