@@ -225,8 +225,8 @@ class AwardYears::V2024::QAEForms
           rows 2
         end
 
-        options :external_contribute_to_sustainable_product, "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
-          ref "A 9"
+        options :external_contribute_to_sustainable_product, "Did any external organisation(s) or individual(s) contribute to your social mobility initiative?" do
+          ref "B 9"
           required
           context %(
             <p>
