@@ -194,6 +194,15 @@ class AwardYears::V2024::QAEForms
           )
         end
 
+        confirm :agree_being_contacted_by_kao, "Consent to enquiries by The King's Awards Office" do
+          ref "A 2.2"
+          required
+          show_ref_always true
+          text %(
+            I consent to all necessary enquiries being made by The King's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a King's Award to ensure the highest standards of propriety.
+          )
+        end
+
         confirm :entry_confirmation, "Confirmation of entry" do
           ref "F 4"
           required
