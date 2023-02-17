@@ -45,8 +45,8 @@ class AwardYears::V2024::QAEForms
           classes "sub-question"
           excluded_header_questions
           required
-          form_hint %(
-            For example, CEO, Managing Director, Founder
+          context %(
+            <p class="govuk-hint">For example, CEO, Managing Director, Founder</p>
           )
         end
 
