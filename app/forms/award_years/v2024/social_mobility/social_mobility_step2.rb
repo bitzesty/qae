@@ -128,7 +128,7 @@ class AwardYears::V2024::QAEForms
 
         date :started_trading, "Date started trading" do
           required
-          ref "A 5"
+          ref "B 5"
           context -> do
             %(
               <p>
