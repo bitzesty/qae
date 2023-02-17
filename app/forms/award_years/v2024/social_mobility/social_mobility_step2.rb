@@ -259,7 +259,7 @@ class AwardYears::V2024::QAEForms
           classes "application-notice help-notice"
           context %(
             <p class="govuk-body">
-              We recommend that you notify all the contributors to your social mobility programme relating to this entry.
+              Notifying all contributors can avoid disputes due to the contributors feeling that their contribution was not acknowledged. We, therefore, recommend that you inform all organisations who have contributed to your social mobility initiative.
             </p>
           )
           conditional :external_contribute_to_sustainable_product, "yes"
