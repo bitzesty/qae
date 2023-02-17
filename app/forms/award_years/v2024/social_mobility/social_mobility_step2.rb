@@ -70,7 +70,7 @@ class AwardYears::V2024::QAEForms
 
         options :principal_business, "Does your organisation operate as a principal?" do
           required
-          ref "A 3"
+          ref "B 3"
           context %(
             <p>
               We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
