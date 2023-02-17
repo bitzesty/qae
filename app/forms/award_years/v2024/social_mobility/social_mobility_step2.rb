@@ -380,7 +380,7 @@ class AwardYears::V2024::QAEForms
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
           required
           classes "sub-question"
-          sub_ref "A 14.3"
+          sub_ref "B 14.3"
           yes_no
           conditional :parent_or_a_holding_company, :yes
         end
