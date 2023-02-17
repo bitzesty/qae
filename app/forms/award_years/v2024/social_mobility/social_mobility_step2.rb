@@ -267,8 +267,8 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
-          classes "sub-question"
-          sub_ref "A 9.3"
+          classes "sub-question word-max-strict"
+          sub_ref "B 9.3"
           required
           words_max 200
           conditional :external_contribute_to_sustainable_product, "yes"
