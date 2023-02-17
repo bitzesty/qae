@@ -187,9 +187,9 @@ class AwardYears::V2024::QAEForms
           yes_no
         end
 
-        textarea :other_awards_desc, "Please describe them." do
-          classes "sub-question"
-          sub_ref "A 7.1"
+        textarea :other_awards_desc, "Please describe the awards you have won in the past." do
+          classes "sub-question word-max-strict"
+          sub_ref "B 7.1"
           required
           context %(
             <p>
@@ -197,7 +197,7 @@ class AwardYears::V2024::QAEForms
             </p>
           )
           conditional :other_awards_won, :yes
-          rows 5
+          rows 3
           words_max 250
         end
 
