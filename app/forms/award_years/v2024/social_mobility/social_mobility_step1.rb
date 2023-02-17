@@ -220,18 +220,6 @@ class AwardYears::V2024::QAEForms
             I understand that I have to provide financial information and related financial statements for the last three years to demonstrate that the organisation is financially viable.
           )
         end
-
-        confirm :entry_confirmation, "Confirmation of entry" do
-          ref "F 4"
-          required
-          text -> do
-            %(
-              By submitting this entry for consideration for The King's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The King's Awards Office of any changes to the information I have provided in this entry form.
-            )
-          end
-        end
-
-
       end
     end
   end
