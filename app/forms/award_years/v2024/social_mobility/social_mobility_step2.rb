@@ -395,7 +395,7 @@ class AwardYears::V2024::QAEForms
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "sub-question"
-          sub_ref "A 14.5"
+          sub_ref "B 14.5"
           conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes
         end
