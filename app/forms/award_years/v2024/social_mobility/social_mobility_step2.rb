@@ -330,6 +330,15 @@ class AwardYears::V2024::QAEForms
           )
         end
 
+        text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram." do
+          sub_ref "B 12.1"
+          classes "sub-question"
+          style "large"
+          context %(
+            Please note, when evaluating your application, the assessors may check your organisation's online presence.
+          )
+        end
+
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
           required
           ref "A 13"
