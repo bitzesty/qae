@@ -7,7 +7,7 @@ class AccountMailers::UnsuccessfulFeedbackMailer < AccountMailers::BaseMailer
     @year = AwardYear.closed.year
     @name = "#{@user.title} #{@user.last_name}"
 
-    subject = "Important information about your Queen's Award entry"
+    subject = "Important information about your King's Award entry"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
   end
 
@@ -19,7 +19,7 @@ class AccountMailers::UnsuccessfulFeedbackMailer < AccountMailers::BaseMailer
     @nominee_name = @form_answer.nominee_full_name
     @year = AwardYear.closed.year
 
-    subject = "Important information about your Queen's Award nomination"
+    subject = "Important information about your King's Award nomination"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
   end
 end
