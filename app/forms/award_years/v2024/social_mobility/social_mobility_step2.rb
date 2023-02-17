@@ -401,7 +401,7 @@ class AwardYears::V2024::QAEForms
         end
 
         upload :org_chart, "Upload an organisational chart (optional)." do
-          ref "A 15"
+          ref "B 15"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
           )
