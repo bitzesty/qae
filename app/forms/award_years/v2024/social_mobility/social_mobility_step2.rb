@@ -167,7 +167,7 @@ class AwardYears::V2024::QAEForms
 
         options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
-          sub_ref "A 6.2"
+          sub_ref "B 6.2"
           required
           conditional :applied_for_queen_awards, :yes
           yes_no
