@@ -247,7 +247,7 @@ class AwardYears::V2024::QAEForms
 
         options :external_are_aware_about_award,
                 "Are they aware that you're applying for this award?" do
-          sub_ref "A 9.2"
+          sub_ref "B 9.2"
           classes "sub-question"
           required
           option "yes", "Yes, they are all aware"
