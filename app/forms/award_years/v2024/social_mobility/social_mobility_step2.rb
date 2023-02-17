@@ -88,9 +88,9 @@ class AwardYears::V2024::QAEForms
           rows 1
         end
 
-        options :organisation_type, "What is the legal form of your organisation?" do
+        options :organisation_type, "What type of legal entity is your organisation?" do
           required
-          ref "A 4"
+          ref "B 4"
           option "sole_trader", "Sole Trader"
           option "partnership", "Partnership"
           option "limited_company", "Limited Company (Ltd)"
