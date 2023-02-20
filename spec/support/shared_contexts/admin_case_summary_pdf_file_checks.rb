@@ -42,7 +42,7 @@ shared_context "admin case summary pdf file checks" do
   end
 
   let(:urn) do
-    "QA Ref: #{form_answer.urn}"
+    "KA Ref: #{form_answer.urn}"
   end
 
   let(:applicant) do
