@@ -26,7 +26,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_urn
-    render_text_line("<b>QA ref</b>: #{form_answer.urn}", 1, inline_format: true)
+    render_text_line("<b>KA ref</b>: #{form_answer.urn}", 1, inline_format: true)
   end
 
   def render_base_paragraph

@@ -198,12 +198,12 @@ RSpec.describe FormAnswer, type: :model do
     let(:award_year) {AwardYear.current.year.to_s[2..-1]}
 
     it "creates form with URN" do
-      expect(form_answer.urn).to eq("QA0001/#{award_year}T")
+      expect(form_answer.urn).to eq("KA0001/#{award_year}T")
     end
 
     it "increments URN" do
       other_form_answer = create(:form_answer, :trade, :submitted)
-      expect(other_form_answer.urn).to eq("QA0002/#{award_year}T")
+      expect(other_form_answer.urn).to eq("KA0002/#{award_year}T")
     end
 
     it "increments global counter, shared for all categories" do
@@ -212,10 +212,10 @@ RSpec.describe FormAnswer, type: :model do
       form3 = create(:form_answer, :promotion, submitted_at: Time.current)
       form4 = create(:form_answer, :development, submitted_at: Time.current)
 
-      expect(form1.urn).to eq("QA0002/#{award_year}T")
-      expect(form2.urn).to eq("QA0003/#{award_year}I")
-      expect(form3.urn).to eq("QA0001/18EP")
-      expect(form4.urn).to eq("QA0004/#{award_year}S")
+      expect(form1.urn).to eq("KA0002/#{award_year}T")
+      expect(form2.urn).to eq("KA0003/#{award_year}I")
+      expect(form3.urn).to eq("KA0001/18EP")
+      expect(form4.urn).to eq("KA0004/#{award_year}S")
     end
   end
 
