@@ -91,7 +91,7 @@ class Reports::PressBookList
       method: :assessor_agreed_press_note
     },
     {
-      label: "QAOAgreedPressNote",
+      label: "KAOAgreedPressNote",
       method: :qao_agreed_press_note
     },
     {

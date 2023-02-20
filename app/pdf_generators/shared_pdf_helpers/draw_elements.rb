@@ -16,7 +16,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_urn(x_coord, y_coord)
-    pdf_doc.text_box "QA Ref: #{form_answer.urn}",
+    pdf_doc.text_box "KA Ref: #{form_answer.urn}",
                      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 

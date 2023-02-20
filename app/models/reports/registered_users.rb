@@ -91,15 +91,15 @@ class Reports::RegisteredUsers
       method: :employees
     },
     {
-      label: "QAOPermission",
+      label: "KAOPermission",
       method: :qao_permission
     },
     {
-      label: "HowDidYouHearAboutQA",
+      label: "HowDidYouHearAboutKA",
       method: :qae_info_source
     },
     {
-      label: "HowDidYouHearAboutQAOther",
+      label: "HowDidYouHearAboutKAOther",
       method: :qae_info_source_other
     }
   ]
