@@ -199,7 +199,7 @@ class AwardYears::V2024::QAEForms
           ref "B 8"
           style "large"
           context %(
-            <p>Provide the full website address, for example, www.yourcompanyname.com"</p>
+            <p>Provide the full website address, for example, www.yourcompanyname.com</p>
           )
         end
 
