@@ -321,7 +321,7 @@ class AwardYears::V2024::QAEForms
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
           sub_section :innovation_timeline_header
           classes "sub-question"
-          sub_ref "c 2.1"
+          sub_ref "C 2.1"
           required
           min 2000
           max 2020
@@ -476,7 +476,7 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :innovation_additional_comments, "Additional comments. (optional)" do
+        textarea :innovation_additional_comments, "Additional comments (optional)" do
           sub_section :innovation_timeline_header
           classes "sub-question word-max-strict"
           sub_ref "C 2.10"
@@ -500,7 +500,7 @@ class AwardYears::V2024::QAEForms
               Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
             </p>
             <p class="govuk-body">
-              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section E - if you do so, please reference it in your answer.
+              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
             </p>
           }
           pdf_context_with_header_blocks [
@@ -536,7 +536,7 @@ class AwardYears::V2024::QAEForms
               <li>Reduced costs, reduced downtime.</li>
             </ul>
             <p>
-              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section C of the form (Commercial Performance).
+              Answer this question in narrative format rather than providing detailed financial figures - you will have an opportunity to add financials in section D of the form (Commercial Performance).
             </p>
           )
           pdf_context %(
