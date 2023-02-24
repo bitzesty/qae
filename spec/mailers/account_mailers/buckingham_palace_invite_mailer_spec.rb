@@ -55,7 +55,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
   describe "#notify" do
     # it "renders the headers" do
     #   expect(mail.to).to eq([form_answer.decorate.head_email])
-    #   expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
+    #   expect(mail.from).to eq(["no-reply@kings-awards-enterprise.service.gov.uk"])
     # end
 
     it "renders the body" do

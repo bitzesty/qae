@@ -7,7 +7,7 @@ class ServerEnvironment
     end
 
     def live_server?
-      mailer_host_equal_to?("https://www.queens-awards-enterprise.service.gov.uk")
+      mailer_host_equal_to?("https://www.kings-awards-enterprise.service.gov.uk")
     end
 
     def staging_server?
