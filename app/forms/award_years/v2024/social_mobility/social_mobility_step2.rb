@@ -101,6 +101,7 @@ class AwardYears::V2024::QAEForms
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
               \u2022 Socio-economic status is a person's current social and economic circumstances.)],
+              
             [:bold, "Disadvantaged groups that King's Awards for Enterprise focuses on"],
             [:normal, %(
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
