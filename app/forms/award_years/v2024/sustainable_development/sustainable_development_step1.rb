@@ -13,10 +13,10 @@ class AwardYears::V2024::QAEForms
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
             </p>
             <p class='govuk-body'>
-              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The Queen's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The King's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
             </p>
             <p class='govuk-body'>
-              Some examples of issues that may prevent your organisation from receiving clearance for The Queen's Awards for Enterprise Award:
+              Some examples of issues that may prevent your organisation from receiving clearance for The King's Awards for Enterprise Award:
             </p>
             <ul class='govuk-list govuk-list--bullet'>
               <li>A failure to pay staff the minimum wage;</li>
@@ -77,7 +77,7 @@ class AwardYears::V2024::QAEForms
             </details>
             <h3 class="govuk-heading-m">Small organisations</h3>
             <p class="govuk-body">
-              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
           )
           pdf_context_with_header_blocks [
@@ -87,9 +87,9 @@ class AwardYears::V2024::QAEForms
 
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
 
-              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The Queen's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
+              Please check with your accountant and legal representatives if there are any outstanding or recent issues, as The King's Awards for Enterprise Office are unable to perform due diligence again once it has been completed.
 
-              Some examples of issues that may prevent your organisation from receiving clearance for The Queen's Awards for Enterprise Award:
+              Some examples of issues that may prevent your organisation from receiving clearance for The King's Awards for Enterprise Award:
 
               \u2022 A failure to pay staff the minimum wage;
               \u2022 An accident within the workplace, which has resulted in harm being caused to the environment or employees;
@@ -141,7 +141,7 @@ class AwardYears::V2024::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )]
           ]
         end
@@ -232,14 +232,14 @@ class AwardYears::V2024::QAEForms
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a King’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
           classes "queen-award-holder"
         end
 
-        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years." do
+        queen_award_applications :applied_for_queen_awards_details, "List the King’s awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
@@ -485,18 +485,18 @@ class AwardYears::V2024::QAEForms
           max_attachments 1
         end
 
-        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the Queen’s Awards for Enterprise award this year?" do
+        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the King’s Awards for Enterprise award this year?" do
           ref "A 16"
           required
           context %(
             <p>Select all that apply.</p>
           )
           check_options [
-            ["qa_website", "Queen's Awards website"],
-            ["qa_twitter", "Queen's Awards Twitter"],
+            ["qa_website", "King's Awards website"],
+            ["qa_twitter", "King's Awards Twitter"],
             ["social_media", "Other social media"],
             ["another_website", "Another website"],
-            ["qa_event", "Queen's Awards event"],
+            ["qa_event", "King's Awards event"],
             ["another_event", "A third party exhibition or event"],
             ["publication", "A newspaper/publication"],
             ["word_of_mouth", "Word of mouth"],

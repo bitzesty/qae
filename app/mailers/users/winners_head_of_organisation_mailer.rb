@@ -24,7 +24,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @media_deadline = deadlines.where(kind: "buckingham_palace_media_information").first
     @media_deadline = @media_deadline.try(:strftime, "%A %d %B %Y")
 
-    @subject = "Important information about your Queen's Award Entry!"
+    @subject = "Important information about your King's Award Entry!"
 
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @head_email, subject: subject_with_env_prefix(@subject)
   end

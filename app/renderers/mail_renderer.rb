@@ -5,7 +5,7 @@ class MailRenderer
     include Rails.application.routes.url_helpers
 
     def default_url_options
-      { host: "www.queens-awards-enterprise.service.gov.uk" }
+      { host: "www.kings-awards-enterprise.service.gov.uk" }
     end
 
     def compiled_method_container
@@ -150,6 +150,20 @@ class MailRenderer
     assigns[:award_type_full_name] = "Sustainable Development"
 
     render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify_po_sd")
+  end
+
+  def shortlisted_po_sd_with_actual_figures_notifier
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+
+    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_date] = deadline_str("audit_certificates")
+
+    assigns[:award_type_full_name] = "Sustainable Development"
+
+    render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify_po_sd_with_actual_figures")
   end
 
   def winners_notification

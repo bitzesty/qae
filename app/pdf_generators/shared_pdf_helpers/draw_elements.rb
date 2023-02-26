@@ -2,7 +2,7 @@ module SharedPdfHelpers::DrawElements
   DEFAULT_OFFSET = 50.mm
   IMAGES_PATH = "#{Rails.root}/app/assets/images/"
   LOGO_ICON = "logo-pdf.png"
-  AWARD_GENERAL_INFO_PREFIX = "The Queen's Awards for Enterprise"
+  AWARD_GENERAL_INFO_PREFIX = "The King's Awards for Enterprise"
 
   def render_official_sensitive(x_coord, y_coord)
     pdf_doc.text_box "OFFICIAL - SENSITIVE",
@@ -16,7 +16,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_urn(x_coord, y_coord)
-    pdf_doc.text_box "QA Ref: #{form_answer.urn}",
+    pdf_doc.text_box "KA Ref: #{form_answer.urn}",
                      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 

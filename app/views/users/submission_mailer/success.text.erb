@@ -2,19 +2,19 @@
 
 <%= "Dear #{@recipient.full_name}," %>
 
-Thank you for submitting your <%= app_alias %> for <%= @form_answer.promotion? ? "The Queen's Award for Enterprise Promotion" : "The Queen's Awards for Enterprise" %> <%= AwardYear.current.year %>.
+Thank you for submitting your <%= app_alias %> for <%= @form_answer.promotion? ? "The King's Award for Enterprise Promotion" : "The King's Awards for Enterprise" %> <%= AwardYear.current.year %>.
 
-Your Unique Reference Number (URN) is 
+Your Unique Reference Number (URN) is
 #<%= @form_answer.urn %>
 
-You can view and download your submissions (and edit up until <%= remove_html_tags(application_deadline(:submission_end)) %>) by logging into your account:  
+You can view and download your submissions (and edit up until <%= remove_html_tags(application_deadline(:submission_end)) %>) by logging into your account:
 <%= dashboard_url %>
 
-To find out more on what happens next visit please review The Queen’s Awards for Enterprise timeline information page:
+To find out more on what happens next visit please review The King's Awards for Enterprise timeline information page:
 <%= timeline_url %>
 
-If you have any further queries about the <%= app_alias %> process you can call us on 020 7215 6880 or email us queensawards@beis.gov.uk.
+If you have any further queries about the <%= app_alias %> process you can call us on 020 7215 6880 or email us kingsawards@beis.gov.uk.
 
 Kind regards,
 
-The Queen's Awards Office
+The King's Awards Office

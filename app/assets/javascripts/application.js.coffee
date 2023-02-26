@@ -1014,6 +1014,7 @@ jQuery ->
     $(this).closest("span").toggleClass("open")
 
   OptionsWithPreselectedConditionsQuestion.init()
+  WonInternationalTradeAwardQuestion.init()
   ongoingDateDuration()
   SupportLetters.init()
   AuditCertificatesUpload.init()

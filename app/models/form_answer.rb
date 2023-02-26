@@ -146,7 +146,11 @@ class FormAnswer < ApplicationRecord
     scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
-
+    scope :without_product_figures, ->(condition) {
+      where(%Q{(#{FormAnswer.table_name}.document::JSONB->>'product_estimated_figures')::boolean is #{condition}})
+    }
+    scope :with_estimated_figures_provided, -> { without_product_figures(true) }
+    scope :with_actual_figures_provided, -> { without_product_figures(false) }
     scope :by_registration_numbers, ->(*numbers) {
       query = numbers.join("|")
 
@@ -399,6 +403,18 @@ class FormAnswer < ApplicationRecord
     else
       []
     end
+  end
+
+  def won_international_trade_award_last_year?
+    condition = document
+      .fetch("applied_for_queen_awards_details", [])
+      .detect do |a|
+        a["category"] == "international_trade" &&
+        a["outcome"] == "won" &&
+        a["year"].to_i >= (AwardYear.current.year - 1)
+      end
+
+    !!condition
   end
 
   def agree_sharing_of_details_with_lieutenancies?

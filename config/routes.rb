@@ -31,12 +31,12 @@ Rails.application.routes.draw do
   devise_for :assessors
   devise_for :judges
 
-  get "/awards_for_organisations"                       => redirect("https://www.gov.uk/queens-awards-for-enterprise/business-awards")
-  get "/enterprise_promotion_awards"                    => redirect("https://www.gov.uk/queens-awards-for-enterprise/enterprise-promotion-award")
-  get "/how_to_apply"                                   => redirect("https://www.gov.uk/queens-awards-for-enterprise/how-to-apply")
-  get "/timeline"                                       => redirect("https://www.gov.uk/queens-awards-for-enterprise/timeline")
-  get "/additional_information_and_contact"             => redirect("https://www.gov.uk/queens-awards-for-enterprise/how-to-apply")
-  get "/apply-for-queens-award-for-enterprise"          => redirect("https://www.gov.uk/apply-queens-award-enterprise")
+  get "/awards_for_organisations"                       => redirect("https://www.gov.uk/kings-awards-for-enterprise/business-awards")
+  get "/enterprise_promotion_awards"                    => redirect("https://www.gov.uk/kings-awards-for-enterprise/enterprise-promotion-award")
+  get "/how_to_apply"                                   => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
+  get "/timeline"                                       => redirect("https://www.gov.uk/kings-awards-for-enterprise/timeline")
+  get "/additional_information_and_contact"             => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
+  get "/apply-for-kings-award-for-enterprise"          => redirect("https://www.gov.uk/apply-kings-award-enterprise")
 
   get "/sign_up_complete"                               => "content_only#sign_up_complete",                               as: "sign_up_complete"
   get "/privacy"                                        => "content_only#privacy",                                        as: "privacy"
@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
 
-  root to: QAE.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise") : "content_only#dashboard"
+  root to: QAE.production? ? redirect("https://www.gov.uk/apply-kings-award-enterprise") : "content_only#dashboard"
 
   resource :account, only: :show do
     collection do

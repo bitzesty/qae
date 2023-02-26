@@ -14,7 +14,7 @@ describe Users::ShortlistedReminderMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) do
-    "Queen's Awards for Enterprise: Reminder to provide latest financial statements & VAT returns"
+    "King's Awards for Enterprise: Reminder to provide latest financial statements & VAT returns"
   end
 
   before do
@@ -27,7 +27,7 @@ describe Users::ShortlistedReminderMailer do
     it "renders the headers" do
       expect(mail.subject).to eq(subject)
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
+      expect(mail.from).to eq(["no-reply@kings-awards-enterprise.service.gov.uk"])
     end
 
     it "renders the body" do

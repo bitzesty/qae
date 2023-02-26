@@ -14,7 +14,7 @@ describe Users::AuditCertificateRequestMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) {
-    "Queen's Awards for Enterprise: Reminder to provide verification of commercial figures"
+    "King's Awards for Enterprise: Reminder to provide verification of commercial figures"
   }
 
   before do
@@ -27,7 +27,7 @@ describe Users::AuditCertificateRequestMailer do
     it "renders the headers" do
       expect(mail.subject).to eq(subject)
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
+      expect(mail.from).to eq(["no-reply@kings-awards-enterprise.service.gov.uk"])
     end
 
     it "renders the body" do
