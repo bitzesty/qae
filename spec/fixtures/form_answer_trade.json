@@ -63,7 +63,7 @@
 "overseas_sales_4of6": "",
 "overseas_sales_5of6": "",
 "overseas_sales_6of6": "",
-"organisation_type": "company",
+"organisation_type": "ltd",
 "registration_number": "123",
 "vat_registration_number": "N/A",
 "started_trading_day": "2",
@@ -165,4 +165,8 @@
 "press_contact_details_email": "test@example.com",
 "shortlisted_case_confirmation_i_am_not_aware_of_any_matter": "on",
 "agree_being_contacted_about_issues_not_related_to_application": "on",
-"how_did_you_hear_about_award": [{"type":"other"}, {"type": "another_website"}]}
+"how_did_you_hear_about_award": [{"type":"other"}, {"type": "another_website"}],
+"agree_being_contacted_by_kao": "on",
+"brand_name": "test",
+"actual_planned_performance_comparison": "test",
+"economic_uncertainty_response": "test"}
