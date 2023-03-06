@@ -5,7 +5,7 @@ module QAE
     end
 
     def production?
-      env == 'www.queens-awards-enterprise.service.gov.uk'
+      env == 'www.kings-awards-enterprise.service.gov.uk'
     end
 
     def hide_pdf_links?

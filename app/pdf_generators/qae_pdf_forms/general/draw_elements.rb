@@ -152,9 +152,9 @@ module QaePdfForms::General::DrawElements
             width: 22.5.mm
 
       intro_text = %(
-        To apply for this award, <b>you must complete the online form</b>.
+        This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>.
 
-        This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>. <b>Do not send this PDF version of the form</b> to apply for this award.
+        To apply for this award, <b>you must complete the online form</b>. <b>Do not send this PDF version of the form</b> to apply for this award.
       )
 
       text_box intro_text,

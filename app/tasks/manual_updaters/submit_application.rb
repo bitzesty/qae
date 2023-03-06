@@ -45,7 +45,7 @@ module ManualUpdaters
         HardCopyPdfGenerators::FormDataWorker.perform_async(form_answer.id, true)
 
         p ""
-        p "[MANUAL SUBMISSION | SUCCESS] DONE! Check it at https://www.queens-awards-enterprise.service.gov.uk/admin/form_answers/#{form_answer.id}"
+        p "[MANUAL SUBMISSION | SUCCESS] DONE! Check it at https://www.kings-awards-enterprise.service.gov.uk/admin/form_answers/#{form_answer.id}"
         p ""
       else
         p ""

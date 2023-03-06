@@ -91,7 +91,7 @@ class Reports::CasesStatusReport
       method: :case_withdrawn
     },
     {
-      label: "QAEOPermission",
+      label: "KAOPermission",
       method: :qao_permission
     },
     {
