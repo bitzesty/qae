@@ -16,7 +16,7 @@ class Reports::AdminReport
     when "cases-status"
       Reports::CasesStatusReport.new(year).build
     when "entries-report"
-      Reports::AllEntries.new(year).build
+      Reports::AllEntries.new(year).stream
     when "discrepancies_between_primary_and_secondary_appraisals"
       Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals.new(year, params[:category]).build
     when "reception-buckingham-palace"

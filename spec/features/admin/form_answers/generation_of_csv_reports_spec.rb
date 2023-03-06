@@ -10,8 +10,13 @@ describe "Admin generates the CSV reports" do
   let!(:mobility) { create(:form_answer, :mobility, user: user) }
 
   let(:output) do
-    csv = Reports::AdminReport.new(id, AwardYear.current).as_csv
-    CSV.parse(csv)
+    data = Reports::AdminReport.new(id, AwardYear.current).as_csv
+
+    if data.is_a?(Enumerator)
+      data.entries.map { |row| CSV.parse(row) }.flatten(1)
+    else
+      CSV.parse(data)
+    end
   end
 
   describe "Registered users entry" do
