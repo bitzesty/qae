@@ -212,7 +212,7 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :explain_how_the_business_operates_sustainably, "If your application is focussed on particular sustainable development interventions, explain how your whole business also operates sustainably, especially in terms of climate change." do
+        textarea :explain_how_the_business_operates_sustainably, "If your application is focused on particular sustainable development interventions, explain how your whole business also operates sustainably, especially in terms of climate change." do
           classes "word-max-strict sub-question"
           ref "C 2.5"
           required
