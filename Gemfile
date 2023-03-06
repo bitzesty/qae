@@ -158,6 +158,8 @@ group :development do
 
   # Fixes https://github.com/rails/rails/issues/26658#issuecomment-255590071
   gem 'rb-readline'
+  # Generates entity relationship diagrams
+  gem 'rails-erd', group: :development
 end
 
 group :development, :test do
