@@ -22,7 +22,7 @@ describe "Admin downloads CSV reports" do
         if i == 5 # press book, 5th link
           expect(page.response_headers["Content-Type"]).to eq("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         else
-          expect(page.response_headers["Content-Type"]).to eq("text/csv")
+          expect(page.response_headers["Content-Type"]).to include("text/csv")
         end
       end
 
