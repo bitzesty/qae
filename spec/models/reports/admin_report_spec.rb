@@ -13,7 +13,8 @@ describe Reports::AdminReport do
       let(:id) { "registered-users" }
 
       it "generates the CSV" do
-        expect(subject.as_csv).to include("East Midlands")
+        data = normalize_output(subject)
+        expect(data).to include("East Midlands")
       end
     end
 
@@ -26,7 +27,8 @@ describe Reports::AdminReport do
 
       let(:id) { "press-book-list" }
       it "generates the CSV" do
-        expect(subject.as_csv).to include(press_summary.body)
+        data = normalize_output(subject)
+        expect(data).to include(press_summary.body)
       end
     end
 
@@ -35,7 +37,8 @@ describe Reports::AdminReport do
       before { create_test_forms }
 
       it "generates the CSV" do
-        expect(subject.as_csv).to include(form_answer.urn)
+        data = normalize_output(subject)
+        expect(data).to include(form_answer.urn)
       end
     end
 
@@ -44,7 +47,8 @@ describe Reports::AdminReport do
       before { create_test_forms }
 
       it "generates the CSV" do
-        expect(subject.as_csv).to include(form_answer.urn)
+        data = normalize_output(subject)
+        expect(data).to include(form_answer.urn)
       end
     end
   end
@@ -55,4 +59,14 @@ def create_test_forms
   create(:form_answer, :innovation, :submitted)
   create(:form_answer, :promotion, :submitted)
   create(:form_answer, :mobility, :submitted)
+end
+
+def normalize_output(data)
+  output = data.as_csv
+
+  if output.is_a?(Enumerator)
+    output.entries.join
+  else
+    output
+  end
 end

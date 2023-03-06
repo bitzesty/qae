@@ -12,7 +12,7 @@ class Admin::ReportsController < Admin::BaseController
       format.html
 
       format.csv do
-        send_data resource.as_csv, type: "text/csv", disposition: 'attachment'
+        stream_csv
       end
 
       format.xlsx do
@@ -45,6 +45,23 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   private
+
+  def stream_csv
+    headers["Content-Type"] = "text/csv; charset=utf-8" # In Rails 5 it's set to HTML??
+    headers["Content-Disposition"] = %{attachment; filename="#{csv_filename}"}
+
+    headers["X-Accel-Buffering"] = "no"
+    headers["Cache-Control"] = "no-cache"
+    headers["Last-Modified"] = Time.current.httpdate
+
+    self.response_body = resource.as_csv
+
+    response.status = 200
+  end
+
+  def csv_filename
+    "#{params[:id] || "report"}.csv"
+  end
 
   def resource
     @report ||= Reports::AdminReport.new(params[:id], @award_year, params)

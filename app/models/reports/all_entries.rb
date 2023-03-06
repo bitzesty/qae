@@ -211,6 +211,23 @@ class Reports::AllEntries
     as_csv(rows)
   end
 
+  def stream
+    @_csv_enumerator ||= Enumerator.new do |yielder|
+      yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
+
+      @year.form_answers.preload(:award_year, :user).find_each do |fa|
+        f = Reports::FormAnswer.new(fa, true)
+
+        row = mapping.map do |m|
+          raw = f.call_method(m[:method])
+          Utils::String.sanitize(raw)
+        end
+
+        yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
+      end
+    end
+  end
+
   private
 
   def mapping
