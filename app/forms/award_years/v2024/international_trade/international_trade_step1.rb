@@ -76,6 +76,7 @@ class AwardYears::V2024::QAEForms
               <div class="govuk-details__text">
                 <ul>
                   <li>Biotechnology & Biological Sciences Research Council</li>
+                  <li>Cabinet Office</li>
                   <li>Charity Commission</li>
                   <li>Companies House</li>
                   <li>Competition and Markets Authority</li>
@@ -135,8 +136,11 @@ class AwardYears::V2024::QAEForms
               \u2022 Failure to pay staff the minimum wage;
               \u2022 Accident within the workplace, which has resulted in harm being caused to the environment or employees;
               \u2022 Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
+
               Government Departments and Agencies we undertake due diligence checks with:
+
               \u2022 Biotechnology & Biological Sciences Research Council
+              \u2022 Cabinet Office
               \u2022 Charity Commission
               \u2022 Companies House
               \u2022 Competition and Markets Authority
