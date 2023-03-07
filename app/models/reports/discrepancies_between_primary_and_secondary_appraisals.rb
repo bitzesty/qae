@@ -37,26 +37,41 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
   ]
 
   def initialize(year, award_type, current_subject=nil)
+    @year = year
     @award_type = award_type
 
-    if current_subject.is_a?(Assessor) && 
+    if current_subject.is_a?(Assessor) &&
       !current_subject.lead_roles.include?(@award_type)
 
       raise "Access Denied!"
     end
+  end
 
-    @scope = year.form_answers
-                 .order(:id)
-                 .joins(
-      "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id"
-    ).joins(
-      "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
-    ).where(
-      "primary_assignments.position = ? AND primary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:primary]
-    ).where(
-      "secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:secondary]
-    ).primary_and_secondary_appraisals_are_not_match
-     .where("form_answers.award_type = ?", @award_type)
+  def stream
+    @_csv_enumerator ||= Enumerator.new do |yielder|
+      yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
+
+      @year.form_answers.order(:id)
+                        .joins(%Q{
+                          JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id = form_answers.id
+                          JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id = form_answers.id
+                        })
+                        .where(primary_assignments: { position: AssessorAssignment.positions[:primary] })
+                        .where.not(primary_assignments: { position: nil })
+                        .where(secondary_assignments: { position: AssessorAssignment.positions[:secondary] })
+                        .where.not(secondary_assignments: { position: nil })
+                        .primary_and_secondary_appraisals_are_not_match
+                        .where(award_type: @award_type).find_each do |fa|
+        f = Reports::FormAnswer.new(fa)
+
+        row = mapping.map do |m|
+          raw = f.call_method(m[:method])
+          Utils::String.sanitize(raw)
+        end
+
+        yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
+      end
+    end
   end
 
   private
