@@ -10,7 +10,7 @@ class Reports::AdminReport
   def as_csv
     case id
     when "registered-users"
-      Reports::RegisteredUsers.new(year).build
+      Reports::RegisteredUsers.new(year).stream
     when "press-book-list"
       Reports::PressBookList.new(year).build
     when "cases-status"
