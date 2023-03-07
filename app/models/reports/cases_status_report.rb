@@ -154,6 +154,30 @@ class Reports::CasesStatusReport
     as_csv(rows)
   end
 
+  def stream
+    @_csv_enumerator ||= Enumerator.new do |yielder|
+      yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
+
+      @year.form_answers.submitted
+                        .order(:id)
+                        .preload(:user,
+                                 :assessor_assignments,
+                                 :audit_certificate,
+                                 :feedback,
+                                 :primary_assessor,
+                                 :secondary_assessor).find_each do |fa|
+        f = Reports::FormAnswer.new(fa)
+
+        row = mapping.map do |m|
+          raw = f.call_method(m[:method])
+          Utils::String.sanitize(raw)
+        end
+
+        yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
+      end
+    end
+  end
+
   private
 
   def mapping
