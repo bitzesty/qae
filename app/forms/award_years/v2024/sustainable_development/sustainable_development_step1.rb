@@ -83,6 +83,7 @@ class AwardYears::V2024::QAEForms
               <div class="govuk-details__text">
                 <ul>
                   <li>Biotechnology & Biological Sciences Research Council</li>
+                  <li>Cabinet Office</li>
                   <li>Charity Commission</li>
                   <li>Companies House</li>
                   <li>Competition and Markets Authority</li>
@@ -144,6 +145,7 @@ class AwardYears::V2024::QAEForms
               Government Departments and Agencies we undertake due diligence checks with:
 
               \u2022 Biotechnology & Biological Sciences Research Council
+              \u2022 Cabinet Office
               \u2022 Charity Commission
               \u2022 Companies House
               \u2022 Competition and Markets Authority
