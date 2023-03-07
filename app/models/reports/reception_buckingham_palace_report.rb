@@ -96,6 +96,26 @@ class Reports::ReceptionBuckinghamPalaceReport
     as_csv(rows)
   end
 
+  def stream
+    @_csv_enumerator ||= Enumerator.new do |yielder|
+      yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
+
+      PalaceAttendee.includes(palace_invite: :form_answer)
+                    .where(form_answers: { award_year_id: @year.id })
+                    .where(palace_invites: { submitted: true })
+                    .order("palace_invites.form_answer_id ASC, palace_attendees.id ASC").find_each do |attendee|
+        attendee_pointer = Reports::PalaceAttendeePointer.new(attendee)
+
+        row = mapping.map do |m|
+          raw = attendee_pointer.call_method(m[:method])
+          Utils::String.sanitize(raw)
+        end
+
+        yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
+      end
+    end
+  end
+
   private
 
   def mapping

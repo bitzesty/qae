@@ -20,7 +20,7 @@ class Reports::AdminReport
     when "discrepancies_between_primary_and_secondary_appraisals"
       Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals.new(year, params[:category]).stream
     when "reception-buckingham-palace"
-      Reports::ReceptionBuckinghamPalaceReport.new(year).build
+      Reports::ReceptionBuckinghamPalaceReport.new(year).stream
     when /assessors-progress/
       if FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
         Reports::AssessorsProgressReport.new(year, params[:category]).build
