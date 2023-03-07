@@ -14,7 +14,7 @@ class Reports::AdminReport
     when "press-book-list"
       Reports::PressBookList.new(year).stream
     when "cases-status"
-      Reports::CasesStatusReport.new(year).build
+      Reports::CasesStatusReport.new(year).stream
     when "entries-report"
       Reports::AllEntries.new(year).stream
     when "discrepancies_between_primary_and_secondary_appraisals"
