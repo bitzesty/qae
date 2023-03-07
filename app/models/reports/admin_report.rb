@@ -12,7 +12,7 @@ class Reports::AdminReport
     when "registered-users"
       Reports::RegisteredUsers.new(year).stream
     when "press-book-list"
-      Reports::PressBookList.new(year).build
+      Reports::PressBookList.new(year).stream
     when "cases-status"
       Reports::CasesStatusReport.new(year).build
     when "entries-report"
