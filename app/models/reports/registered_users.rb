@@ -133,24 +133,13 @@ class Reports::RegisteredUsers
   end
 
   def stream
-    @_csv_enumerator ||= Enumerator.new do |yielder|
-      yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
+    scoped = @year.form_answers.preload(:user,
+                                        :assessor_assignments,
+                                        :primary_assessor,
+                                        :secondary_assessor,
+                                        :form_answer_progress)
 
-      @year.form_answers.preload(:user,
-                                 :assessor_assignments,
-                                 :primary_assessor,
-                                 :secondary_assessor,
-                                 :form_answer_progress).find_each do |fa|
-        f = Reports::FormAnswer.new(fa)
-
-        row = mapping.map do |m|
-          raw = f.call_method(m[:method])
-          Utils::String.sanitize(raw)
-        end
-
-        yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
-      end
-    end
+    prepare_stream(scoped)
   end
 
   private
