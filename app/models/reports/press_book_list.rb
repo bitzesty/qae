@@ -105,22 +105,11 @@ class Reports::PressBookList
   end
 
   def stream
-    @_csv_enumerator ||= Enumerator.new do |yielder|
-      yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
+    scoped = @year.form_answers.where(state: ["awarded", "recommended"])
+                               .order(:id)
+                               .preload(:user, :palace_invite)
 
-      @year.form_answers.where(state: ["awarded", "recommended"])
-                        .order(:id)
-                        .preload(:user, :palace_invite).find_each do |fa|
-        f = Reports::FormAnswer.new(fa)
-
-        row = mapping.map do |m|
-          raw = f.call_method(m[:method])
-          Utils::String.sanitize(raw)
-        end
-
-        yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
-      end
-    end
+    prepare_stream(scoped)
   end
 
   private
