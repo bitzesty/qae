@@ -17,6 +17,25 @@ module Reports::CSVHelper
     end
   end
 
+  def prepare_response(scope, limited_access = false, builder = nil)
+    CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|
+      csv << headers
+
+      scope.find_each do |fa|
+        f = if builder.nil?
+          Reports::FormAnswer.new(fa, limited_access)
+        else
+          builder.new(fa)
+        end
+
+        csv << mapping.map do |m|
+          raw = f.call_method(m[:method])
+          Utils::String.sanitize(raw)
+        end
+      end
+    end
+  end
+
   def prepare_stream(scope, limited_access = false)
     @_csv_enumerator ||= Enumerator.new do |yielder|
       yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
@@ -30,20 +49,6 @@ module Reports::CSVHelper
         end
 
         yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
-      end
-    end
-  end
-
-  def as_csv(rows)
-    CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|
-      csv << headers
-
-      rows.each do |row|
-        sanitized_array = row.map do |item|
-          sanitize_string(item)
-        end
-
-        csv << sanitized_array
       end
     end
   end

@@ -109,40 +109,22 @@ class Reports::RegisteredUsers
   end
 
   def build
-    rows = []
-
-    scope = @year.form_answers.order(:id)
-    scope.find_in_batches do |batch|
-      form_answers = FormAnswer.where(id: batch.map(&:id))
-                     .order(:id)
-                     .includes(:user,
-                               :assessor_assignments,
-                               :primary_assessor,
-                               :secondary_assessor,
-                               :form_answer_progress
-                              )
-      form_answers.each do |fa|
-        f = Reports::FormAnswer.new(fa)
-        rows << mapping.map do |m|
-          f.call_method(m[:method])
-        end
-      end
-    end
-
-    as_csv(rows)
+    prepare_response(scoped_collection)
   end
 
   def stream
-    scoped = @year.form_answers.preload(:user,
-                                        :assessor_assignments,
-                                        :primary_assessor,
-                                        :secondary_assessor,
-                                        :form_answer_progress)
-
-    prepare_stream(scoped)
+    prepare_stream(scoped_collection)
   end
 
   private
+
+  def scoped_collection
+    @year.form_answers.preload(:user,
+                               :assessor_assignments,
+                               :primary_assessor,
+                               :secondary_assessor,
+                               :form_answer_progress)
+  end
 
   def mapping
     MAPPING

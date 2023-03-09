@@ -66,8 +66,9 @@ RSpec.describe Assessor, type: :model do
     it 'CasesStatusReport should return csv' do
       year = create(:award_year)
       assessor =  create(:assessor, :regular_for_trade)
-      allow_any_instance_of(Reports::CasesStatusReport).to receive(:as_csv) {"csv string"}
-      expect(Reports::CasesStatusReport.new(year).build_for_lead(assessor)).to eq "csv string"
+      report = Reports::CasesStatusReport.new(year).build_for_lead(assessor)
+
+      expect(report).to_not be_empty
     end
 
     it 'AssessorsProgressReport should return csv' do
