@@ -77,7 +77,7 @@ module FormAnswerFilteringTestHelper
 
   def assign_dummy_press_summary(form_answers, approved = true)
     Array(form_answers).each do |fa|
-      press_summary = fa.build_press_summary(approved: approved)
+      press_summary = fa.build_press_summary(submitted: approved)
       press_summary.save(validate: false)
     end
   end
