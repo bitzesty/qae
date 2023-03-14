@@ -147,4 +147,14 @@ module ApplicationHelper
       str
     ).text.strip
   end
+
+  def display_banner?
+    subdomain_from_request.present? && subdomain_from_request.in?(["dev", "staging"])
+  end
+
+  def subdomain_from_request
+    subdomain = request.subdomain.downcase
+    parts = subdomain.split(".").reject { |part| part == "www" }
+    parts.first
+  end
 end
