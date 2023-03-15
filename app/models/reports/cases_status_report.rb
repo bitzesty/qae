@@ -105,56 +105,31 @@ class Reports::CasesStatusReport
   end
 
   def build
-    rows = []
-
-    scope = @year.form_answers.submitted.order(:id)
-    scope.find_in_batches do |batch|
-      form_answers = FormAnswer.where(id: batch.map(&:id))
-                     .order(:id)
-                     .includes(:user,
-                               :assessor_assignments,
-                               :audit_certificate,
-                               :feedback,
-                               :primary_assessor,
-                               :secondary_assessor
-                               )
-      form_answers.each do |fa|
-        f = Reports::FormAnswer.new(fa)
-        rows << mapping.map do |m|
-          f.call_method(m[:method])
-        end
-      end
-    end
-
-    as_csv(rows)
+    prepare_response(scoped_collection)
   end
 
   def build_for_lead(current_subject)
-    rows = []
+    scoped = scoped_collection.where(award_type: current_subject.categories_as_lead)
 
-    scope = @year.form_answers.submitted.where(award_type: current_subject.categories_as_lead).order(:id)
-    scope.find_in_batches do |batch|
-      form_answers = FormAnswer.where(id: batch.map(&:id))
-                     .order(:id)
-                     .includes(:user,
+    prepare_response(scoped)
+  end
+
+  def stream
+    prepare_stream(scoped_collection)
+  end
+
+  private
+
+  def scoped_collection
+    @year.form_answers.submitted
+                      .order(:id)
+                      .preload(:user,
                                :assessor_assignments,
                                :audit_certificate,
                                :feedback,
                                :primary_assessor,
-                               :secondary_assessor
-                               )
-      form_answers.each do |fa|
-        f = Reports::FormAnswer.new(fa)
-        rows << mapping.map do |m|
-          f.call_method(m[:method])
-        end
-      end
-    end
-
-    as_csv(rows)
+                               :secondary_assessor)
   end
-
-  private
 
   def mapping
     MAPPING
