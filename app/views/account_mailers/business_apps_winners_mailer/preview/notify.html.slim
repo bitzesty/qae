@@ -1,7 +1,7 @@
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | Congratulations on winning a King's Award for Enterprise:
-  => @form_answer.award_type_full_name
-  => "#{@form_answer.award_year.year}"
+  | Congratulations! You have achieved a King's Award for Enterprise:
+  =<> @form_answer.award_type_full_name
+  = @form_answer.award_year.year
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@name},"
@@ -106,4 +106,6 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   strong
     | Annex A: Link to the press release announcing change of name to The King's Awards on GOV.UK website
-    =< link_to  "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards", "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards", target: '_blank', rel: 'noreferrer nofollow', title: 'opens in a new window'
+  =< link_to  "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards",
+    "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards",
+    target: '_blank', rel: 'noreferrer nofollow', title: 'opens in a new window'
