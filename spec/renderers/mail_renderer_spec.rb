@@ -113,7 +113,7 @@ describe MailRenderer do
   describe "#winners_head_of_organisation_notification" do
     it "renders e-mail" do
       rendered = described_class.new.winners_head_of_organisation_notification
-      expect(rendered).to match("Congratulations on winning a King's Award")
+      expect(rendered).to match("Congratulations! You have achieved a King's Award for Enterprise:")
     end
   end
 
