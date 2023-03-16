@@ -48,8 +48,8 @@ body {
   }
 }
 
+.dev-banner,
 .staging-banner {
-  background: #ff5346;
   padding: 0.5em;
   text-transform: uppercase;
   text-align: center;
@@ -57,6 +57,14 @@ body {
   color: #fff;
   position: relative;
   top: -40px;
+}
+
+.dev-banner {
+  background: #1d70b8;
+}
+
+.staging-banner {
+  background: #ff5346;
 }
 
 .admin-assessor-js-status-banner {
