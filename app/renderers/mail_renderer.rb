@@ -1,11 +1,13 @@
 class MailRenderer
+  include MailerHelper
+
   class View < ActionView::Base
     extend ApplicationHelper
     include ActionView::Helpers
     include Rails.application.routes.url_helpers
 
     def default_url_options
-      { host: "www.kings-awards-enterprise.service.gov.uk" }
+      {host: "www.kings-awards-enterprise.service.gov.uk"}
     end
 
     def compiled_method_container
@@ -90,7 +92,7 @@ class MailRenderer
 
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
-    assigns[:deadline] = deadline_str("submission_end", "%l%P on %A %d %B %Y")
+    assigns[:deadline] = deadline_str("submission_end", "%I%P on %A %d %B %Y")
 
     render(assigns, "account_mailers/reminder_to_submit_mailer/preview/notify")
   end
@@ -101,7 +103,7 @@ class MailRenderer
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:deadline] = deadline_str("audit_certificates")
-    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_time] = deadline_time("audit_certificates")
 
     render(assigns, "users/audit_certificate_request_mailer/preview/notify")
   end
@@ -112,7 +114,7 @@ class MailRenderer
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company").decorate
     assigns[:form_answer] = form_answer
     assigns[:deadline] = deadline_str("audit_certificates")
-    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_time] = deadline_time("audit_certificates")
 
     render(assigns, "users/shortlisted_reminder_mailer/preview/notify")
   end
@@ -130,7 +132,7 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
 
-    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_time] = deadline_time("audit_certificates")
     assigns[:deadline_date] = deadline_str("audit_certificates")
 
     assigns[:award_type_full_name] = "Innovation"
@@ -144,7 +146,7 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
 
-    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_time] = deadline_time("audit_certificates")
     assigns[:deadline_date] = deadline_str("audit_certificates")
 
     assigns[:award_type_full_name] = "Sustainable Development"
@@ -158,7 +160,7 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
 
-    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_time] = deadline_time("audit_certificates")
     assigns[:deadline_date] = deadline_str("audit_certificates")
 
     assigns[:award_type_full_name] = "Sustainable Development"
@@ -171,7 +173,18 @@ class MailRenderer
 
     assigns[:form_answer] = form_answer
     assigns[:name] = "Mr Smith"
-    assigns[:deadline] = deadline("buckingham_palace_attendees_details")
+
+    assigns[:end_of_embargo] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "%-d %B %Y"
+    )
+
+    end_of_embargo_time = deadline_str("buckingham_palace_attendees_details", "%I:%M%P")
+    assigns[:end_of_embargo_with_time] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "#{end_of_embargo_time} on %-d %B %Y"
+    )
+
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",
       "%A %d %B %Y"
@@ -179,6 +192,11 @@ class MailRenderer
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
       "%A %d %B %Y"
+    )
+    book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
+    assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
+      "buckingham_palace_confirm_press_book_notes",
+      "#{book_notes_deadline_time} on %A %-d %B %Y"
     )
 
     render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
@@ -226,7 +244,7 @@ class MailRenderer
     palace_attendees_due = DateTime.new(Date.current.year, 5, 6, 00, 00) if palace_attendees_due.blank?
 
     assigns[:palace_attendees_due] = palace_attendees_due.strftime(
-      "%H:%M on %A, #{palace_attendees_due.day.ordinalize} %B %Y"
+      "%l:%M%P on %A, #{palace_attendees_due.day.ordinalize} %B %Y"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/preview/invite")
@@ -244,36 +262,31 @@ class MailRenderer
   end
 
   def form_answer
-    @form_answer ||= FormAnswer.new(
-      id: 0,
-      urn: "QA0128/16I",
-      award_type: "innovation",
-      award_year: AwardYear.current,
-      award_type_full_name: "Innovation"
-    ).decorate
+    @form_answer ||= FormAnswer
+      .new(
+        id: 0,
+        urn: "QA0128/16I",
+        award_type: "innovation",
+        award_year: AwardYear.current,
+        award_type_full_name: "Innovation"
+      )
+      .decorate
   end
 
   def deadline_str(kind, format = "%d/%m/%Y")
-    d = deadline(kind)
+    trigger = deadline(kind).trigger_at
+    trigger ? trigger.strftime(format) : DateTime.new(Date.current.year, 9, 21, 10, 30).strftime(format)
+  end
 
-    if d.present?
-      deadline_time = d.strftime(format)
-      if deadline_time == "12:00"
-        "noon"
-      elsif deadline_time == "00:00"
-        "midnight"
-      else
-        deadline_time
-      end
-    else
-      DateTime.new(Date.current.year, 9, 21, 10, 30).strftime(format)
-    end
+  def deadline_time(kind)
+    deadline = deadline(kind)
+    deadline ? formatted_deadline_time(deadline) : "11:58pm"
   end
 
   def deadline(kind)
     Settings.current.deadlines.find_by(
       kind: kind
-    ).try :trigger_at
+    )
   end
 
   def year_open_award_type_specific_notification(award_type)
