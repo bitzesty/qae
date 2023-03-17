@@ -34,6 +34,12 @@ class ApplicationMailer < Mail::Notify::Mailer
     @press_summary_deadline_time = formatted_deadline_time(@press_summary_deadline)
   end
 
+  def set_reception_deadlines
+    @reception_deadline = deadlines.where(kind: "buckingham_palace_reception_attendee_information_due_by").first
+    @reception_deadline_time = formatted_deadline_time(@reception_deadline)
+    @reception_date = deadlines.where(kind: "buckingham_palace_attendees_invite").first
+  end
+
   def deadlines
     @_deadlines ||= Settings.current.deadlines
   end

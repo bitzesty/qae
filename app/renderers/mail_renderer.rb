@@ -249,18 +249,15 @@ class MailRenderer
     assigns[:name] = "John Smith"
     assigns[:token] = "securetoken"
 
-    reception_date = AwardYear.buckingham_palace_reception_date
-    reception_date = DateTime.new(Date.current.year, 7, 11, 18, 00) if reception_date.blank?
-
-    assigns[:reception_date] = reception_date.strftime(
-      "%A #{reception_date.day.ordinalize} %B %Y"
+    assigns[:reception_date] = deadline_str(
+      "buckingham_palace_attendees_invite",
+      "%A %-d %B %Y"
     )
 
-    palace_attendees_due = AwardYear.buckingham_palace_reception_attendee_information_due_by
-    palace_attendees_due = DateTime.new(Date.current.year, 5, 6, 00, 00) if palace_attendees_due.blank?
-
-    assigns[:palace_attendees_due] = palace_attendees_due.strftime(
-      "%l:%M%P on %A, #{palace_attendees_due.day.ordinalize} %B %Y"
+    reception_deadline_time = deadline_time("buckingham_palace_reception_attendee_information_due_by")
+    assigns[:reception_deadline_with_time] = deadline_str(
+      "buckingham_palace_reception_attendee_information_due_by",
+      "#{reception_deadline_time} on %-d %B %Y"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/preview/invite")
