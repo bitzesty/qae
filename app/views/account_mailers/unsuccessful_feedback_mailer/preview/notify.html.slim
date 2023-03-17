@@ -9,21 +9,27 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Thank you for your entry to The King's Awards for Enterprise #{@year}. I am sorry to inform you that your organisation was not among those recommended to His Majesty The King for an Award this year.
+  ' Thank you for your entry to The Queen's Awards for Enterprise, which are now known as The King's Awards for Enterprise (see Annex A at the end of this email for further details).
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' I know that this news is disappointing but I hope that you will find the comprehensive feedback useful. It often takes more than one attempt to achieve an Award and previously unsuccessful applicants report that they have found the assessors' feedback tremendously insightful. If, when you submitted your application, you agreed to share your contact details with your local Lord-Lieutenant, they may be in touch with you to discuss your application and feedback. Even if you did not agree to share your contact details with your local Lord-Lieutenant, may I encourage you to contact them or discuss your feedback with another independent person as those who reflect and act upon the feedback, often achieve future success.
+  ' I am sorry to inform you that your organisation was not among those recommended to His Majesty The King for an Award this year.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' I know that this news will be disappointing, but I hope that you will find the comprehensive feedback provided useful. It often takes more than one attempt to achieve an Award and previously unsuccessful applicants report that they have found the assessors' feedback useful and insightful.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' If, when you submitted your application, you agreed to share your contact details with your local Lord-Lieutenant, they may be in touch with you to discuss your application and feedback. Even if you did not agree to share your contact details with your local Lord-Lieutenant, may I encourage you to contact them or discuss your feedback with another independent person as those who reflect and act upon the feedback, often achieve future success.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | You can view your application feedback via the link below:
+  | You can view your application feedback by logging in to your King's Awards for Enterprise account:
   br
   = link_to users_form_answer_feedback_url(@form_answer, format: "pdf"), users_form_answer_feedback_url(@form_answer, format: "pdf")
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' To help you identify the range of business support, advice and opportunities available, please find some useful contacts, both within government and externally at Annex A.
+  ' To help you identify the range of business support, advice and opportunities available, please find some useful contacts, both within government and externally at Annex B at the end of this email.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Thank you once again for taking the time to enter The King's Awards for Enterprise and I wish you every success in the future.
+  ' Thank you once again for taking the time to enter The King's Awards for Enterprise and may I wish you every success in the future.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Yours sincerely,
@@ -33,11 +39,18 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   br
   | The Secretary
   br
-  | The King's Awards Office
+  | The King's Awards for Enterprise Office
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    ' Annex A: Useful contacts
+    ' Annex A: Link to the press release announcing change of name to The King's Awards on GOV.UK website
+  = link_to "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards",
+    "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards",
+    target: '_blank', rel: 'noreferrer nofollow', title: 'opens in a new window'
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong
+    ' Annex B: Useful contacts
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
@@ -71,36 +84,34 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    ' Advice and support for businesses
+    ' Access advice and support to continue your business' success:
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Access advice and support to continue your business' success:
-
   ul
     li
       =<> "Help to Grow: Management"
       = link_to "https://smallbusinesscharter.org/help-to-grow-management", "https://smallbusinesscharter.org/help-to-grow-management"
       =<> "- an intensive training programme that looks to improve SME leadership and management skills and address firm-level productivity challenges."
     li
-     =<> "Help to Grow: Digital"
-     = link_to "https://www.learn-to-grow-your-business.service.gov.uk", "https://www.learn-to-grow-your-business.service.gov.uk"
-     =<> "– to help SMEs choose, buy and adopt digital technologies that will help them grow their business and boost productivity."
-    li
      =<> "Made Smarter"
      = link_to "https://www.madesmarter.uk", "https://www.madesmarter.uk"
-     =<> "– to support UK manufacturers adopt industrial digital technologies to improve the competitiveness, increase exports and productivity."
+     =<> "- to support UK manufacturers adopt industrial digital technologies to improve the competitiveness, increase exports and productivity."
     li
       =<> "The UK has left the EU"
       = link_to "https://www.gov.uk/transition", "https://www.gov.uk/transition"
     li
-      =<> "Agriculture, food and Drink Open Doors Campaign"
+      =<> "Grow your business through exports"
       = link_to "https://exports.campaign.gov.uk", "https://exports.campaign.gov.uk"
     li
       =<> "Government Business Support Pages"
       = link_to "https://www.gov.uk/browse/business", "https://www.gov.uk/browse/business"
     li
-      =<> "Growth Hubs"
-      = link_to "https://www.lepnetwork.net/growth-hubs", "https://www.lepnetwork.net/growth-hubs"
+      =<> "Business Support Helpline"
+      = link_to "https://www.gov.uk/business-support-helpline", "https://www.gov.uk/business-support-helpline"
+      =<> " - as business support is devolved, page includes sources of advice for Northern Ireland, Scotland and Wales"
+    li
+      =<> "Enterprise Nation"
+      = link_to "https://www.enterprisenation.com/", "https://www.enterprisenation.com/"
     li
       =<> "Be The Business"
       = link_to "https://www.bethebusiness.com", "https://www.bethebusiness.com"
@@ -109,19 +120,12 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
       = link_to "https://www.smallbusinesscommissioner.gov.uk", "https://www.smallbusinesscommissioner.gov.uk"
       =<> " - for help with late payments"
     li
-      =<> "Export advice"
-      = link_to "https://www.great.gov.uk/advice", "https://www.great.gov.uk/advice"
-    li
-      =<> "Business Support Helpline"
-      = link_to "https://www.gov.uk/business-support-helpline", "https://www.gov.uk/business-support-helpline"
-      =<> " - as business support is devolved, page includes sources of advice for Northern Ireland, Scotland and Wales"
-    li
       =<> "Innovate UK EDGE"
       = link_to "https://www.innovateukedge.ukri.org", "https://www.innovateukedge.ukri.org"
       =<> " - Innovate UK EDGE is a key part of the UK innovation agency's investment in the innovative businesses that drive economic growth. It helps businesses to exploit innovation, enter new markets and source funding."
     li
       =<> "KTN"
-      = link_to "https://ktn-uk.org", "https://ktn-uk.org"
+      = link_to "https://iuk.ktn-uk.org", "https://iuk.ktn-uk.org"
       =<> " - which helps connect ideas, people and communities to respond to global challenges and drive positive change through innovation."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
