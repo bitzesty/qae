@@ -179,7 +179,7 @@ class MailRenderer
       "%-d %B %Y"
     )
 
-    end_of_embargo_time = deadline_str("buckingham_palace_attendees_details", "%I:%M%P")
+    end_of_embargo_time = deadline_time("buckingham_palace_attendees_details")
     assigns[:end_of_embargo_with_time] = deadline_str(
       "buckingham_palace_attendees_details",
       "#{end_of_embargo_time} on %-d %B %Y"
@@ -214,9 +214,25 @@ class MailRenderer
     assigns[:head_email] = "john@example.com"
     assigns[:head_of_business_full_name] = "Jon Doe"
 
-    assigns[:end_of_embargo_day] = deadline_str("buckingham_palace_attendees_details", "%A %-d %B %Y")
-    assigns[:end_of_embargo_date] = deadline_str("buckingham_palace_attendees_details", "%-d %B %Y")
-    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%d %B %Y")
+    assigns[:end_of_embargo] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "%-d %B %Y"
+    )
+    end_of_embargo_time = deadline_time("buckingham_palace_attendees_details")
+    assigns[:end_of_embargo_with_time] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "#{end_of_embargo_time} on %-d %B %Y"
+    )
+
+    assigns[:book_notes_deadline] = deadline_str(
+      "buckingham_palace_confirm_press_book_notes",
+      "%A %d %B %Y"
+    )
+    book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
+    assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
+      "buckingham_palace_confirm_press_book_notes",
+      "#{book_notes_deadline_time} on %A %-d %B %Y"
+    )
 
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",

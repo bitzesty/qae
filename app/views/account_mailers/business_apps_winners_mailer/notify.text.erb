@@ -1,4 +1,4 @@
-#Congratulations on winning a King's Award for Enterprise: <%= @form_answer.award_type_full_name %> <%= @form_answer.award_year.year %>
+#Congratulations! You have achieved a King's Award for Enterprise: <%= @form_answer.award_type_full_name %> <%= @form_answer.award_year.year %>
 
 Dear <%= @name %>,
 
@@ -30,7 +30,7 @@ Log in to your King's Awards for Enterpise account <%= dashboard_url %> to acces
 * check the other details for your organisation are correct, and
 * check the details of your contact for press enquiries.
 
-#Then click the "Submit" button by <%= @book_notes_deadline.try :strftime, "#{@book_notes_deadline_time} on %A %-d %B %Y" %>. If you do not respond by the deadline, we will use the proposed text together with the contact details that we already hold.
+#Then click the "Submit" button by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A %-d %B %Y" %>. If you do not respond by the deadline, we will use the proposed text together with the contact details that we already hold.
 
 #3. The King's Awards Media Pack
 
