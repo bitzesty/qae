@@ -16,9 +16,7 @@ Please read this email carefully as it contains important information about acti
 
 I understand that this is a very exciting time for you personally and for your employees, supply chain and clients. However, please note:
 
-#There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
-
-You must not make any announcement about your Award, either to your employees or those outside your organisation before this date.
+#There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>. You must not make any announcement about your Award, either to your employees or those outside your organisation before this date.
 
 The Recipients will be announced on <%= @end_of_embargo.try :strftime, "%-d %B %Y" %>, The Late Queen Elizabeth II's birthday. We encourage you to make arrangements now for your publicity to go live from <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
@@ -34,9 +32,11 @@ Your online account holder has received an email today with a link to the Recipi
 
 Your account holder needs to complete the above actions by
 #<%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A %-d %B %Y" %>.
+
 Otherwise, we will use the proposed text together with your press contact's details that we already hold.
 
 Under the terms of the embargo, we will provide the press book summaries and your press contact's details to the press and media in advance of the announcement. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will still be under the strict embargo terms. You are also permitted to approach your own press contacts such as local media, trade press and online publishers to pre-arrange coverage on your Award.
+
 #Please make it clear to anyone you approach in the media that they cannot publish anything until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
 The list of King's Awards Recipients will be published in the supplement to the London Gazette.
