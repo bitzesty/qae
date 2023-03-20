@@ -20,7 +20,7 @@ module FormAnswerMixin
       end
 
       format.html do
-        if request.xhr?
+        if request.xhr? || request.format.js?
           render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false
         else
           redirect_to [namespace_name, resource]
@@ -34,7 +34,7 @@ module FormAnswerMixin
     @form_answer.financial_data = financial_data_ops
     @form_answer.save
 
-    if request.xhr?
+    if request.xhr? || request.format.js?
       head :ok, content_type: "text/html"
 
       return

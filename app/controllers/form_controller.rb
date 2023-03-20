@@ -320,7 +320,7 @@ class FormController < ApplicationController
 
   def check_if_deadline_ended!
     if current_form_submission_ended?
-      if request.xhr?
+      if request.xhr? || request.format.js?
         render json: { error: "ERROR: Form can't be updated as submission ended!" }
       else
         redirect_to dashboard_path,

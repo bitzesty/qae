@@ -80,7 +80,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
     respond_to do |format|
       format.html do
-        if request.xhr?
+        if request.xhr? || request.format.js?
           head :ok
         else
           redirect_to form_form_answer_form_attachments_url(@form_answer)

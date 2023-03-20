@@ -19,7 +19,7 @@ class Admin::CommentsController < Admin::BaseController
 
     respond_to do |format|
       format.html do
-        if request.xhr?
+        if request.xhr? || request.format.js?
           if @comment.persisted?
             render partial: "admin/form_answers/comment",
                    locals: { comment: @comment, resource: form_answer }
