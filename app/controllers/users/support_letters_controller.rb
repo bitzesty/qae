@@ -38,7 +38,7 @@ class Users::SupportLettersController < Users::BaseController
     @support_letter = form_answer.support_letters.find(params[:id])
     @support_letter.destroy
 
-    if request.xhr?
+    if request.xhr? || request.format.js?
       head :ok
     else
       flash[:notice] = "Support letter have been successfully destroyed"
