@@ -1,59 +1,69 @@
-#Congratulations on winning a King's Award for Enterprise: <%= @award_category_title %> <%= @award_year %> [<%= @urn %>]
+#Congratulations! You have achieved a King's Award for Enterprise: <%= @award_category_title %> <%= @award_year %> [<%= @urn %>]
 
 <%= "Dear #{@name}," %>
 
-I am delighted to inform you that His Majesty The King has approved the Prime Minister's recommendation that your company should receive a King's Award for Enterprise in the <%= @award_category_title %> category this year.
+Thank you for your application to The Queen's Awards for Enterprise, now known as The King's Awards for Enterprise (see Annex A at the end of this email for further details).
 
-The Award is the most prestigious for UK businesses and this is a tremendous achievement. Your business now joins over 7,000 UK enterprises which have received this Royal recognition since the Awards were established in 1965.
+I am delighted to inform you that His Majesty The King has approved the Prime Minister's recommendation that your company receive a King's Award for Enterprise in the <%= @award_category_title %> category this year.
 
-It has been an exceptionally hard few years for businesses and this achievement is testament to the resilience you and your staff have shown through these unprecedented times.
+The Award is the most prestigious for UK businesses and this is a tremendous achievement. Your business now joins over 7,000 UK enterprises which have received this Royal recognition since the Awards were first created in 1965 as The Queen's Award to Industry.
 
-#Official Announcement and Embargo Terms
+The last few years have been challenging for businesses and this achievement is particularly testament to the resilience you and your employees have shown throughout the recent years of disruption.
+
+Please read this email carefully as it contains important information about actions you need to take now.
+
+#1. Official Announcement and Embargo Terms
 
 I understand that this is a very exciting time for you personally and for your employees, supply chain and clients. However, please note:
 
-#There is a strict embargo preventing public announcement or publication of any Awards information until 01:00 hours on <%= @end_of_embargo_date %>. You must not make any announcement about your Award, either to your employees or those outside your organisation, before this date.
+#There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>. You must not make any announcement about your Award, either to your employees or those outside your organisation before this date.
 
-The Award winners will be announced announced on 21 April 2023, The Late Queen Elizabeth II’s birthday, and we encourage you to make arrangements now for publicity from <%= @end_of_embargo_date %>.
+The Recipients will be announced on <%= @end_of_embargo.try :strftime, "%-d %B %Y" %>, The Late Queen Elizabeth II's birthday. We encourage you to make arrangements now for your publicity to go live from <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
-#The Winners’ Manual (located on the Winners’ Dashboard) provides more detail and suggestions on how you can maximise this opportunity (see below for more information).
+#The King's Award's Media Pack (located on the Recipients' Dashboard) provides more information and suggestions on how you can maximise this opportunity (see below for more information).
 
-#Actions to take now
+#2. Key actions to take now
 
-Your online account holder has received an email today with a link to the Winners' Dashboard. They will need to:
+Your online account holder has received an email today with a link to the Recipients' Dashboard. They will need to:
 
-* check the Press Book entry (which is a factual summary of why your organisation has won the Award);
+* check the Press Book entry (which is a factual summary of why your organisation has achieved an Award);
 * check the other details for your organisation are correct; and,
 * check the contact details for press enquiries.
 
 Your account holder needs to complete the above actions by
-#12 noon on <%= @press_book_entry_datetime %>.
+#<%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A %-d %B %Y" %>.
 
-Otherwise, we will use the proposed text together with your press contact’s details that we already hold.
+Otherwise, we will use the proposed text together with your press contact's details that we already hold.
 
-Under the terms of the embargo, we will provide the press book summaries and your press contact’s details to the press and media in advance of the announcement. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will still be under the strict embargo terms. You are also permitted to approach your own press contacts such as local media, trade press and online publishers to pre-arrange coverage on your Award.
+Under the terms of the embargo, we will provide the press book summaries and your press contact's details to the press and media in advance of the announcement. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will still be under the strict embargo terms. You are also permitted to approach your own press contacts such as local media, trade press and online publishers to pre-arrange coverage on your Award.
 
-#Please make it clear to anyone you approach in the media that they cannot publish anything until 01:00 hours on <%= @end_of_embargo_date %>.
+#Please make it clear to anyone you approach in the media that they cannot publish anything until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
-The list of winners will be published in the supplement to the London Gazette.
+The list of King's Awards Recipients will be published in the supplement to the London Gazette.
 
-#Winners’ Manual and King's Awards for Enterprise Emblems
+#3. King's Awards for Enterprise Emblems and King's Awards Media Pack
 
-A link to The King's Awards Emblems and Winners' Manual is located on your account holders online account. The Manual provides information on:
+A link to The King's Awards Emblems and Media Pack is located on your account holder's online account. The Media Pack provides information on:
 
-* how to maximise publicity of your King’s Award, including a social media guide and press release template;
+* how to maximise publicity of your King's Award, including a social media guide and press release template;
 * the terms of using your Award and displaying the Royal Emblem which you agree to by accepting the Award;
-* the presentation by His Majesty’s Lord-Lieutenant, Grant of Appointment and Trophy.
+* the presentation by His Majesty's Lord-Lieutenant, the Grant of Appointment and Trophy.
 
-#Reception at Buckingham Palace
+#4. Reception at Buckingham Palace
 
-This year, one representative from each winning organisation will be invited to attend a Reception at Buckingham Palace hosted by HRH The Prince of Wales. We will contact you next month with details of the Reception which will be held on 12 July. 
+This year, one employed representative from each successful organisation will be invited to attend a Reception at Buckingham Palace hosted by His Majesty The King. Unfortunately, this number cannot be increased.
 
-I appreciate your patience at this time and I will keep you informed of any developments.
-Congratulations once again on your King’s Award for Enterprise.
+We will contact you on Friday 31 March with further details of the Reception, once a date has been agreed.
+
+I appreciate your patience at this time and I will keep you informed of any developments.
+
+Congratulations once again on your King's Award for Enterprise.
 
 Yours sincerely,
 
 Nichola Bruno
 The Secretary
 The King's Awards Office
+
+#Annex A: Link to the press release announcing change of name to The King's Awards on GOV.UK website
+https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards

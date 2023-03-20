@@ -193,7 +193,7 @@ class Reports::CompiledPressBook
     worksheet = workbook.worksheets[0]
     worksheet.sheet_name = "Stats"
 
-    main_header = "Number of winners by region and award category"
+    main_header = "Number of recipients by region and award category"
 
     table_headers = [
       "Region",

@@ -137,7 +137,7 @@ en:
     mobility_submission_start: Promoting Opportunity submission period starts on
     submission_end: Submission period closes on
     buckingham_palace_attendees_details: HM The Queen's Birthday (end of embargo)
-    buckingham_palace_media_information: KAO provides information to the media of the winners on
+    buckingham_palace_media_information: KAO provides information to the media of the recipients on
     buckingham_palace_confirm_press_book_notes: Press Book Entry confirmation due by
     buckingham_palace_reception_attendee_information_due_by: Buckingham Palace reception attendee information due by
     buckingham_palace_attendees_invite: Buckingham Palace Reception on
@@ -151,10 +151,10 @@ en:
     development_submission_start: "This date is when the applications for the Sustainable Development award of the current award year become available."
     mobility_submission_start: "This date is when the applications for the Promoting Opportunity award of the current award year become available."
     submission_end: "Applicants will no longer be able to edit or submit their applications after this date. This date will be pulled into the Reminder to submit the applications email."
-    buckingham_palace_attendees_details: "This date marks the end of the the embargo preventing winners publicly announcing their success. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
+    buckingham_palace_attendees_details: "This date marks the end of the the embargo preventing recipients publicly announcing their success. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
     buckingham_palace_media_information: "KAO will provide the press book information to the media on this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
-    buckingham_palace_confirm_press_book_notes: "Winners will not be able to make comments or changes to their press release after this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
-    buckingham_palace_reception_attendee_information_due_by: "Winners will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only."
+    buckingham_palace_confirm_press_book_notes: "Recipients will not be able to make comments or changes to their press release after this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
+    buckingham_palace_reception_attendee_information_due_by: "Recipients will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only."
     buckingham_palace_attendees_invite: "This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email."
     audit_certificates: "Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email."
 
@@ -165,7 +165,7 @@ en:
     development_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Sustainable Development award in account's 'Contact Preferences' section."
     mobility_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Promoting Opportunity award in account's 'Contact Preferences' section."
     shortlisted_notifier: "Shortlisted stage start (shortlisted/unsuccessful applications are displayed on the homepage)"
-    winners_notification: "Winners stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
+    winners_notification: "Recipients stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
     unsuccessful_notification: "Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)"
     buckingham_palace_invite: "Palace invites stage start (allows users to add their Palace invite details on the homepage)"
 
@@ -178,10 +178,10 @@ en:
     submission_started_notification: "Notify users that applications for the new Award year are open"
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
-    winners_notification: "WINNERS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
-    winners_reminder_to_submit:" WINNERS: Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
-    winners_head_of_organisation_notification: "WINNERS : Success email to the 'Head of Organisation' of the Business categories Winner."
-    buckingham_palace_invite: "WINNERS : Buckingham Palace Invite - to heads of winning organisations only."
+    winners_notification: "RECIPIENTS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
+    winners_reminder_to_submit: "RECIPIENTS: Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
+    winners_head_of_organisation_notification: "RECIPIENTS : Success email to the 'Head of Organisation' of the Business categories Recipient."
+    buckingham_palace_invite: "RECIPIENTS : Buckingham Palace Invite - to heads of winning organisations only."
     unsuccessful_notification: "UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder."
     unsuccessful_ep_notification: "UNSUCCESSFUL: Email notification of unsuccessful QAEP nominations."
     shortlisted_notifier: "SHORTLISTED - INNOVATION & IT: Email notifying shortlisted applicants of their success, including Verification of Commercial Figures (External Accountant's Report) instructions."

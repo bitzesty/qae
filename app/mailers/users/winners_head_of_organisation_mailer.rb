@@ -1,6 +1,9 @@
 # To 'Head of Organisation' of the Successful Business categories winners
 
 class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
+  before_action :set_end_of_embargo_deadline
+  before_action :set_press_summary_deadline
+
   def notify(form_answer_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
 
@@ -12,20 +15,8 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @last_name = @form_answer.document["head_of_business_last_name"]
     @name = "#{@title} #{@last_name}"
 
-    deadlines = Settings.current.deadlines
-
-    @end_of_embargo_day =
-      deadlines.end_of_embargo.strftime("%A %-d %B %Y")
-    @end_of_embargo_date =
-      deadlines.end_of_embargo.strftime("%-d %B %Y")
-    @press_book_entry_datetime =
-      deadlines.buckingham_palace_confirm_press_book_notes.strftime("%d %B %Y")
-
-    @media_deadline = deadlines.where(kind: "buckingham_palace_media_information").first
-    @media_deadline = @media_deadline.try(:strftime, "%A %d %B %Y")
-
     @subject = "Important information about your King's Award Entry!"
 
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @head_email, subject: subject_with_env_prefix(@subject)
+    send_mail_if_not_bounces(ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], to: @head_email, subject: subject_with_env_prefix(@subject))
   end
 end
