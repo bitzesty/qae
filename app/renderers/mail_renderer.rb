@@ -255,9 +255,9 @@ class MailRenderer
     )
 
     reception_deadline_time = deadline_time("buckingham_palace_reception_attendee_information_due_by")
-    assigns[:reception_deadline_with_time] = deadline_str(
+    assigns[:reception_deadline_with_day_and_time] = deadline_str(
       "buckingham_palace_reception_attendee_information_due_by",
-      "#{reception_deadline_time} on %-d %B %Y"
+      "#{reception_deadline_time} on %A %-d %B %Y"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/preview/invite")
