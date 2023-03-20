@@ -10,7 +10,7 @@ module FormAnswerStateTransitionsMixin
 
     respond_to do |format|
       format.html do
-        if request.xhr?
+        if request.xhr? || request.format.js?
           render partial: "admin/form_answers/states_list",
                  locals: { collection: @form_answer_state_transition.collection, policy: policy(@form_answer_state_transition).view_dropdown? }
         else
