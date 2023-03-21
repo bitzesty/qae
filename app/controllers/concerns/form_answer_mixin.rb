@@ -20,11 +20,11 @@ module FormAnswerMixin
       end
 
       format.html do
-        if request.xhr? || request.format.js?
-          render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false
-        else
-          redirect_to [namespace_name, resource]
-        end
+        redirect_to [namespace_name, resource]
+      end
+
+      format.js do
+        render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false
       end
     end
   end
