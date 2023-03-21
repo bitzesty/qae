@@ -9,6 +9,19 @@ module FormAnswerMixin
 
     resource.save
 
+    ex = StandardError.new
+    Appsignal.send_error(ex) do |transaction|
+      transaction.set_action("xhr_request")
+      transaction.params = {
+        headers: headers,
+        env: request.env,
+        is_xhr: request.xhr?,
+        is_js: request.format.js?,
+        is_xhr_from_headers: request.get_header("HTTP_X_REQUESTED_WITH"),
+        is_xhr_from_env: request.env["HTTP_X_REQUESTED_WITH"]
+      }
+    end
+
     respond_to do |format|
       format.json do
         render json: {
@@ -20,11 +33,11 @@ module FormAnswerMixin
       end
 
       format.html do
-        redirect_to [namespace_name, resource]
-      end
-
-      format.js do
-        render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false
+        if request.xhr? || request.format.js?
+          render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false
+        else
+          redirect_to [namespace_name, resource]
+        end
       end
     end
   end
