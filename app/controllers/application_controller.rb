@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :disable_browser_caching!
 
   self.responder = AppResponder
-  respond_to :js, :json, :html
+  respond_to :html
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
