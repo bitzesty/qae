@@ -78,25 +78,34 @@ class Reports::ReceptionBuckinghamPalaceReport
   end
 
   def build
-    rows = []
+    prepare_response(scoped_collection, false, Reports::PalaceAttendeePointer)
+  end
 
-    scope = PalaceAttendee.includes(palace_invite: :form_answer)
-                          .where("form_answers.award_year_id = ?", @year.id)
-                          .where("palace_invites.submitted = ?", true)
-                          .order("palace_invites.form_answer_id ASC, palace_attendees.id ASC")
+  def stream
+    @_csv_enumerator ||= Enumerator.new do |yielder|
+      yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
 
-    scope.each do |attendee|
-      attendee_pointer = Reports::PalaceAttendeePointer.new(attendee)
+      scoped_collection.find_each do |attendee|
+        attendee_pointer = Reports::PalaceAttendeePointer.new(attendee)
 
-      rows << mapping.map do |m|
-        attendee_pointer.call_method(m[:method])
+        row = mapping.map do |m|
+          raw = attendee_pointer.call_method(m[:method])
+          Utils::String.sanitize(raw)
+        end
+
+        yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
       end
     end
-
-    as_csv(rows)
   end
 
   private
+
+  def scoped_collection
+    PalaceAttendee.includes(palace_invite: :form_answer)
+                  .where("form_answers.award_year_id = ?", @year.id)
+                  .where("palace_invites.submitted = ?", true)
+                  .order("palace_invites.form_answer_id ASC, palace_attendees.id ASC")
+  end
 
   def mapping
     MAPPING

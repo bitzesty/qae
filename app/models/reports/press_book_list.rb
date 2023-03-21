@@ -101,7 +101,15 @@ class Reports::PressBookList
   ]
 
   def initialize(year)
-    @scope = year.form_answers.where(state: ["awarded", "recommended"]).order(:id).includes(:user, :palace_invite)
+    @year = year
+  end
+
+  def stream
+    scoped = @year.form_answers.where(state: ["awarded", "recommended"])
+                               .order(:id)
+                               .preload(:user, :palace_invite)
+
+    prepare_stream(scoped)
   end
 
   private

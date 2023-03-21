@@ -190,25 +190,15 @@ class Reports::AllEntries
   end
 
   def build
-    rows = []
-    f_ids = @year.form_answers.order(:id).pluck(:id)
+    scoped = @year.form_answers.includes(:award_year, :user)
 
-    f_ids.in_groups_of(1000, false) do |batch_of_ids|
-      form_answers = ::FormAnswer.where(id: batch_of_ids)
-                                 .order(:id)
-                                 .includes(:award_year,
-                                           :user)
+    prepare_response(scoped, true)
+  end
 
-      form_answers.each do |fa|
-        f = Reports::FormAnswer.new(fa, true)
+  def stream
+    scoped = @year.form_answers.preload(:award_year, :user)
 
-        rows << mapping.map do |m|
-          f.call_method(m[:method])
-        end
-      end
-    end
-
-    as_csv(rows)
+    prepare_stream(scoped, true)
   end
 
   private
