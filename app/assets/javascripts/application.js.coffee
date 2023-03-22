@@ -1,6 +1,6 @@
 #= require govuk-frontend-3.13.0.min
 #= require jquery
-#= require rails-ujs
+#= require jquery_ujs
 #= require vendor/file_upload/jquery.ui.widget
 #= require vendor/file_upload/jquery.iframe-transport
 #= require vendor/file_upload/jquery.fileupload

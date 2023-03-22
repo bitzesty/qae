@@ -1,5 +1,5 @@
 #= require jquery
-#= require rails-ujs
+#= require jquery_ujs
 #= require bootstrap-sprockets
 #= require vendor/file_upload/jquery.ui.widget
 #= require vendor/file_upload/jquery.iframe-transport
