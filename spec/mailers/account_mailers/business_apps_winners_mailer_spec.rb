@@ -9,12 +9,6 @@ describe AccountMailers::BusinessAppsWinnersMailer do
   let(:account_holder) { form_answer.user }
   let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
 
-  let!(:deadline) do
-    deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
-    deadline.update(trigger_at: Date.current)
-    deadline.trigger_at.strftime("%d/%m/%Y")
-  end
-
   let(:mail) {
     AccountMailers::BusinessAppsWinnersMailer.notify(
       form_answer.id,

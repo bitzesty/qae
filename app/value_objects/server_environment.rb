@@ -11,11 +11,11 @@ class ServerEnvironment
     end
 
     def staging_server?
-      mailer_host_equal_to?("staging.queens-awards-enterprise.service.gov.uk")
+      mailer_host_equal_to?("staging.kings-awards-enterprise.service.gov.uk")
     end
 
     def dev_server?
-      mailer_host_equal_to?("dev.queens-awards-enterprise.service.gov.uk")
+      mailer_host_equal_to?("dev.kings-awards-enterprise.service.gov.uk")
     end
 
     def env_prefix_in_mailers

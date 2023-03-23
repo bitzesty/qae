@@ -35,13 +35,21 @@ details + details {
   margin-top: 20px;
 }
 
+.dev-banner,
 .staging-banner {
-  background: #ff5346;
   padding: 0.5em;
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
   color: #fff;
+}
+
+.dev-banner {
+  background: #1d70b8;
+}
+
+.staging-banner {
+  background: #ff5346;
 }
 
 // Fix the smart answers previous answers link text
@@ -82,8 +90,8 @@ details + details {
   &.page-header-wider div,
   &.page-header-wider-minor div {
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 
   &.page-header-wider div {
@@ -218,7 +226,8 @@ header.page-header div {
 }
 
 // Grid classes to better layout the form
-@media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
+@media only screen and (min-width: 801px),
+  only screen and (min-device-height: 768px) and (max-device-height: 1024px) and (orientation: portrait) {
   .row {
     display: block;
     margin-right: -15px;
@@ -252,8 +261,8 @@ header.page-header div {
     padding-right: 15px;
     padding-left: 15px;
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
   .span-12 {
     width: 100%;
@@ -556,7 +565,7 @@ header.page-header aside .inner {
     text-align: left;
 
     &,
-    a:not(#sidenav-download-link){
+    a:not(#sidenav-download-link) {
       color: $grey-1;
       text-decoration: none;
     }
@@ -885,7 +894,7 @@ details {
   }
 
   .arrow {
-    margin-right: .35em;
+    margin-right: 0.35em;
     font-style: normal;
   }
 
@@ -902,19 +911,23 @@ details {
   border-left-style: solid;
   border-color: #bfc1c3;
   padding: 0.78947em;
-  margin-bottom: 0.78947em; }
-  .panel :first-child {
-    margin-top: 0; }
-  .panel :only-child,
-  .panel :last-child {
-    margin-bottom: 0; }
+  margin-bottom: 0.78947em;
+}
+.panel :first-child {
+  margin-top: 0;
+}
+.panel :only-child,
+.panel :last-child {
+  margin-bottom: 0;
+}
 
 .panel-border-wide {
-  border-left-width: 10px; }
+  border-left-width: 10px;
+}
 
 .panel-border-narrow {
-  border-left-width: 5px; }
-
+  border-left-width: 5px;
+}
 
 .external-link:after {
   display: inline-block;
@@ -922,12 +935,10 @@ details {
   background-size: 12px auto !important;
 }
 
-
-
 .glyphicon-remove {
   display: inline-block;
   margin-right: 3px;
-  position:relative;
+  position: relative;
   top: 1px;
   background-repeat: no-repeat;
   background-position: center center;
