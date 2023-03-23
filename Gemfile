@@ -95,8 +95,8 @@ gem 'vigilion-rails', '~> 2.1.0'
 # Background jobs
 gem "sidekiq", "~> 6.4"
 gem "sidekiq-cron", "~> 1.1"
-gem 'sinatra', '3.0.5', require: nil
-gem 'rack-protection', '3.0.5'
+gem 'sinatra', '2.2.4', require: false
+gem 'rack-protection', '2.2.4'
 
 # CORS configuration
 gem 'rack-cors', '~> 1.0'
