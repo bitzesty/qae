@@ -11,6 +11,6 @@ p.govuk-body
 
 =< link_to users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true), class: "download-pdf-link govuk-link" do
   = render "download_icon"
-  | Download a blank
-  =<> @form_answer.award_type_full_name.downcase
+  | Download the blank
+  =<> @form_answer.award_type_full_name
   | application form (PDF)
