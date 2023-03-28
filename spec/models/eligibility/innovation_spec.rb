@@ -30,6 +30,8 @@ RSpec.describe Eligibility::Innovation, type: :model do
     end
 
     it 'is eligible when all questions are answered correctly' do
+      eligibility.able_to_provide_financial_figures = 'yes'
+      eligibility.has_two_full_time_employees = 'yes'
       eligibility.innovative_product = 'yes'
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
@@ -54,8 +56,8 @@ RSpec.describe Eligibility::Innovation, type: :model do
 
     it 'returns all questions for new eligibility' do
       expect(eligibility.questions).to eq([
-                                           :has_two_full_time_employees,
                                            :able_to_provide_financial_figures,
+                                           :has_two_full_time_employees,
                                            :innovative_product,
                                            :number_of_innovative_products,
                                            :was_on_market_for_two_years,

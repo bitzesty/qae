@@ -18,7 +18,7 @@ class Eligibility::Innovation < Eligibility
   property :innovative_product,
             values: %w[yes no skip],
             acts_like_boolean: true,
-            label: "Do you have one or more innovative products, services, business models or processes?",
+            label: "Do you have an innovative product, service, business model or process?",
             accept: :true,
             hint: "A product, service, business model or process is innovative if it has not been done before and provides a benefit or solves prior problems for its users."
 
@@ -44,7 +44,7 @@ class Eligibility::Innovation < Eligibility
 
   property :have_you_recovered_all_investments,
             boolean: true,
-            label: "Have you recovered all the investments made in your innovation or can you demonstrate that the innovation will recover its full costs in the future?",
+            label: "Have you recovered all the investments made in your innovation, or can you demonstrate that the innovation will recover its full costs in the future?",
             accept: :true,
             if: proc { !skipped? }
 end

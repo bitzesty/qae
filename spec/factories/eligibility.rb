@@ -36,6 +36,8 @@ FactoryBot.define do
     trait :innovation do
       type { "Eligibility::Innovation" }
       answers {{
+        able_to_provide_financial_figures: "yes",
+        has_two_full_time_employees: "yes",
         innovative_product: "yes",
         was_on_market_for_two_years: true,
         number_of_innovative_products: 1,
