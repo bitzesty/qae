@@ -14,11 +14,11 @@ FactoryBot.define do
         kind: "application",
         based_in_uk: true,
         do_you_file_company_tax_returns: true,
-        has_management_and_two_employees: true,
         organization_kind: "business",
         industry: "product_business",
         self_contained_enterprise: true,
-        current_holder: "no"
+        current_holder: "no",
+        adherence_to_esg_principles: true
       }}
     end
 

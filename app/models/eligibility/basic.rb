@@ -10,14 +10,8 @@ class Eligibility::Basic < Eligibility
   property :do_you_file_company_tax_returns,
             values: %w[true false na],
             label: "Do you have a good compliance record with HM Revenue and Customs (HMRC)?",
-            hint: "All companies and partnerships have to select Yes or No. However, if you are a charity or if you are based in the Channel Islands or the Isle of Man and do not pay tax to the HMRC, please select N/A.",
+            hint: "All companies and partnerships must select either 'Yes' or 'No'. However, if you are a charity or if you are based in the Channel Islands or the Isle of Man and do not pay tax to the HMRC, please select N/A.",
             accept: :not_no
-
-  property :has_management_and_two_employees,
-            boolean: true,
-            label: "Did your organisation have two or more full-time UK employees in each of the years of your proposed entry?",
-            accept: :true,
-            hint: "Part-time staff should be counted in full-time equivalents (FTE)."
 
   property :organization_kind,
             values: %w[business charity],
@@ -37,8 +31,16 @@ class Eligibility::Basic < Eligibility
 
   property :current_holder,
            values: %w[yes no i_dont_know],
-           label: "Are you a current King's Award holder in any category?",
+           label: "Are you a current Queen's/King's Award holder in any category?",
            accept: :not_nil
+
+  property :adherence_to_esg_principles,
+            boolean: true,
+            label: "Can you demonstrate that you adhere to environmental, social, and corporate governance (ESG) practices?",
+            accept: :true,
+            hint: "Even if you don't have formal ESG policies, you must be able to show responsible business conduct concerning the environment, wider society, workforce, customers and suppliers."
+
+
 
   def eligible?
     current_step_index = questions.index(current_step) || questions.size - 1
