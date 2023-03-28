@@ -54,6 +54,7 @@ RSpec.describe Eligibility::Innovation, type: :model do
 
     it 'returns all questions for new eligibility' do
       expect(eligibility.questions).to eq([
+                                           :able_to_provide_financial_figures,
                                            :innovative_product,
                                            :number_of_innovative_products,
                                            :was_on_market_for_two_years,
