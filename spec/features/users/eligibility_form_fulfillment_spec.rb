@@ -21,11 +21,11 @@ describe "Eligibility forms" do
       form_choice([
         "Yes",
         "Yes",
-        "Yes",
         /Business/,
         /Product/,
         "Yes",
         "No",
+        "Yes",
         "Yes",
         "No",
         "Yes"
@@ -42,7 +42,7 @@ describe "Eligibility forms" do
       new_application("Innovation Award")
       # fill_in("nickname", with: "innovation nick")
       click_button("Save and start eligibility questionnaire")
-      form_choice(["Yes", "Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes"])
+      form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes", "Yes"])
 
       fill_in("How many innovative products, services, business models or processes would you like to enter for the award?", with: 2)
       click_button "Continue"
@@ -64,11 +64,11 @@ describe "Eligibility forms" do
       form_choice([
         "Yes",
         "Yes",
-        "Yes",
         /Business/,
         /Product/,
         "Yes",
         "No",
+        "Yes",
         "Yes"
       ])
       expect(page).to have_content("You are eligible to begin your application")
