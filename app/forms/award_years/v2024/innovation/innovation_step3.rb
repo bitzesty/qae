@@ -3,52 +3,8 @@ class AwardYears::V2024::QAEForms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do
-        header :your_innovation_header, "" do
-          context %(
-            <h3 class='govuk-heading-m'>About section C</h3>
-            <p class='govuk-body'>
-              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.
-            </p>
-
-            <h3 class='govuk-heading-s'>Word limits</h3>
-            <p class='govuk-body'>
-              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for.
-            </p>
-
-            <h3 class="govuk-heading-s">Technical language</h3>
-            <p class="govuk-body">
-              Please avoid using technical language - we need to understand your innovation without having any specific knowledge of your industry. If you use acronyms, please define them when using them for the first time.
-            </p>
-
-            <h3 class="govuk-heading-s">Supplementary materials</h3>
-            <p class="govuk-body">
-              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
-            </p>
-            <p class="govuk-body">
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
-            </p>
-          )
-
-          pdf_context_with_header_blocks [
-            [:bold, "About section C"],
-            [:normal, %(
-              This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.
-            )],
-            [:bold, "Word limits"],
-            [:normal, %(
-              What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for.
-            )],
-            [:bold, "Technical language"],
-            [:normal, %(
-              Please avoid using technical language - we need to understand your innovation without having any specific knowledge of your industry. If you use acronyms, please define them when using them for the first time.
-            )],
-            [:bold, "Supplementary materials"],
-            [:normal, %(
-              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
-
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
-            )]
-          ]
+        about_section :your_innovation_header, "" do
+          section "C-innovation"
         end
 
         header :innovation_background_header, "Innovation background" do
@@ -58,9 +14,6 @@ class AwardYears::V2024::QAEForms
             <p class="govuk-body">
               The questions in subsection C1 help the assessors understand the context of your innovation.
             </p>
-          )
-          pdf_context %(
-            The questions in subsection C1 help the assessors understand the context of your innovation.
           )
         end
 
@@ -82,14 +35,14 @@ class AwardYears::V2024::QAEForms
           application_type_question true
         end
 
-        textarea :innovation_desc_short, "Briefly describe your innovative product, service, business model or process." do
+        textarea :innovation_desc_short, "Provide a one-line description of your innovative product, service, business model or process." do
           sub_section :innovation_background_header
           classes "sub-question word-max-strict"
           sub_ref "C 1.2"
           required
           context %(
             <p>
-              This 15 word summary will be used in publicity material if your application is successful.
+              This 15-word summary will be used in publicity material if your application is successful.
             </p>
             <p>
               For example:
@@ -99,16 +52,16 @@ class AwardYears::V2024::QAEForms
                 Innovative electro-mechanical downhole power delivery system to avoid the use of explosives or dangerous goods.
               </li>
               <li>
-                Integrating digital and personal contact to improve health and safety, and detect changing customer needs.
+                Integrating digital and personal contact to improve health and safety and detect changing customer needs.
               </li>
               <li>
-                High performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
+                High-performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
               </li>
             </ul>
           )
           pdf_context %(
             <p>
-              This 15 word summary will be used in publicity material if your application is successful.
+              This 15-word summary will be used in publicity material if your application is successful.
             </p>
             <p>
               For example:
@@ -116,9 +69,9 @@ class AwardYears::V2024::QAEForms
             <p>
               \u2022 Innovative electro-mechanical downhole power delivery system to avoid the use of explosives or dangerous goods.
 
-              \u2022 Integrating digital and personal contact to improve health and safety, and detect changing customer needs.
+              \u2022 Integrating digital and personal contact to improve health and safety and detect changing customer needs.
 
-              \u2022 High performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
+              \u2022 High-performance parachute fabric successfully delivering NASA's Perseverance Rover onto the surface of Mars.
             </p>
           )
           rows 1
@@ -139,7 +92,7 @@ class AwardYears::V2024::QAEForms
             Disruptive innovation: A new or creative-in-thought innovation that does not seem to have been done before. While having a financial return, it may not yet have secured substantial market impact and did not displace many other firms and products.
           )
           option "continuous_innovation", %(
-            Continuous innovation: Innovation that adds new function or benefit to the existing product, service or business model.
+            Continuous innovation: Innovation that adds a new function or benefit to the existing product, service or business model.
           )
         end
 
@@ -213,12 +166,17 @@ class AwardYears::V2024::QAEForms
           words_max 100
         end
 
-        options :innovation_any_contributors, "Did any external organisations or individuals contribute to your innovation?" do
+        options :innovation_any_contributors, "Did any external organisations or individuals significantly contribute to your innovation?" do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "C 1.7"
           required
           yes_no
+          context %(
+            <p>
+              Exclude paid suppliers and consultants. Only include organisations that were equal or significant partners.
+            </p>
+          )
         end
 
         textarea :innovation_external_contributors, "Name any external organisations or individuals that contributed to your innovation and explain their contributions." do
@@ -280,7 +238,7 @@ class AwardYears::V2024::QAEForms
           words_max 100
         end
 
-        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as innovation loan, in relation to your innovation?" do
+        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as an innovation loan, in relation to your innovation?" do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "C 1.9"
@@ -311,11 +269,6 @@ class AwardYears::V2024::QAEForms
             <p class="govuk-body">
               The questions in subsection C2 help the assessors understand the development of your innovation.
           }
-          pdf_context_with_header_blocks [
-            [:normal, %(
-              The questions in subsection C2 help the assessors understand the development of your innovation.
-            )]
-          ]
         end
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
@@ -371,20 +324,20 @@ class AwardYears::V2024::QAEForms
                 <p>
                   Explain how your innovation differs from what came before and how it is an improvement.
                 </p>
-                <p>
-                  If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
-                </p>
-                <p>
-                  If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
-                </p>
-                <p>
-                  Explain any aspects that you think are innovative and why you think they are innovative.
-                </p>
-                <p>
-                  If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
-                </p>
               </li>
             </ol>
+            <p>
+              If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
+            </p>
+            <p>
+              If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
+            </p>
+            <p>
+              Explain any aspects that you think are innovative and why you think they are innovative.
+            </p>
+            <p>
+              If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
+            </p>
           )
           pdf_context %(
             <p>
@@ -392,14 +345,18 @@ class AwardYears::V2024::QAEForms
             </p>
             <p>
               2. Explain how your innovation differs from what came before and how it is an improvement.
-
-                 If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
-
-                 If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
-
-                 Explain any aspects that you think are innovative and why you think they are innovative.
-
-                 If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
+            </p>
+            <p>
+              If your innovation is continuous, explain how it differs from and builds on what came before, even if its precursor is still on the market. Explain what adaptations you made to make it fit your business.
+            </p>
+            <p>
+              If your innovation is disruptive, explain what is being replaced or substituted and how it is an improvement.
+            </p>
+            <p>
+              Explain any aspects that you think are innovative and why you think they are innovative.
+            </p>
+            <p>
+              If the innovation was conceived more than ten years ago, explain why it is still considered innovative.
             </p>
           )
           rows 5

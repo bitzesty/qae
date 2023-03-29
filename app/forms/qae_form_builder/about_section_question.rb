@@ -48,6 +48,29 @@ class QAEFormBuilder
             "The King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.",
           ]
         )]
+      when "C-innovation"
+        [OpenStruct.new(
+          :header => "About section C",
+          :context => [
+            "This section is structured to enable you to tell your success story of the innovation's development, implementation and impact, enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business."
+          ]
+        ), OpenStruct.new(
+          :header => "Word limits",
+          :context => [
+            "What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for."
+          ]
+        ), OpenStruct.new(
+          :header => "Technical language",
+          :context => [
+            "Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time."
+          ]
+        ), OpenStruct.new(
+          :header => "Supplementary materials",
+          :context => [
+            "To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.",
+            "Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
+          ]
+        )]
       end
     end
   end
