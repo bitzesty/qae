@@ -2,18 +2,8 @@ class AwardYears::V2024::QAEForms
   class << self
     def innovation_step1
       @innovation_step1 ||= proc do
-        header :due_diligence_and_consent_header, "" do
-          section_info
-          context %(
-            <h3 class="govuk-heading-m">About section A</h3>
-            <p class="govuk-body">This section is to confirm that you have the authorisation to apply, that your organisation's past and present conduct would not cause reputational damage to the Awards, and what will happen after you apply in terms of due diligence and verification of commercial figures. We recommend you carefully answer section A questions before proceeding with the rest of the application.</p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "About section A"],
-            [:normal, %(
-              This section is to confirm that you have the authorisation to apply, that your organisation's past and present conduct would not cause reputational damage to the Awards, and what will happen after you apply in terms of due diligence and verification of commercial figures. We recommend you carefully answer section A questions before proceeding with the rest of the application.
-            )]
-          ]
+        about_section :due_diligence_and_consent_header, "" do
+          section "A"
         end
 
         confirm :confirmation_of_consent, "Consent to apply granted by the head of the organisation" do
@@ -195,7 +185,7 @@ class AwardYears::V2024::QAEForms
           sub_ref "A 2.1"
           required
           show_ref_always true
-          text %(
+          context %(
             The King's Awards for Enterprise recognises leaders in their field who adopt exemplary working practices and inspire other businesses. The King's Awards for Enterprise recipients' past and present conduct should not cause reputational damage to the Awards. On this basis, are you satisfied that your company would merit a Royal Award?
           )
           yes_no

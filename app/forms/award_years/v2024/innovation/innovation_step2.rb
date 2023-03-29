@@ -3,33 +3,8 @@ class AwardYears::V2024::QAEForms
   class << self
     def innovation_step2
       @innovation_step2 ||= proc do
-        header :company_information_header, "" do
-          section_info
-          context %(
-            <h3 class='govuk-heading-m'>About section B</h3>
-            <p class='govuk-body'>
-              The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details are accurate as they cannot be changed after the submission deadline.
-            </p>
-            <p class='govuk-body'>
-              This information will also be used to enable the King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted.
-            </p>
-            <h3 class='govuk-heading-s'>Small organisations</h3>
-            <p class="govuk-body">
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "About section B"],
-            [:normal, %(
-              The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details are accurate as they cannot be changed after the submission deadline.
-
-              This information will also be used to enable the King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted.
-              )],
-            [:bold, "Small organisations"],
-            [:normal, %(
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
-            )]
-          ]
+        about_section :company_information_header, "" do
+          section "B"
         end
 
         options :applying_for, "Are you applying on behalf of your:" do
