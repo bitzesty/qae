@@ -3,7 +3,7 @@ class AwardYears::V2024::QAEForms
     def innovation_step1
       @innovation_step1 ||= proc do
         about_section :due_diligence_and_consent_header, "" do
-          section "A"
+          section "due_diligence"
         end
 
         confirm :confirmation_of_consent, "Consent to apply granted by the head of the organisation" do

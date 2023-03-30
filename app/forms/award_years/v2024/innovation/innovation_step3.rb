@@ -4,7 +4,7 @@ class AwardYears::V2024::QAEForms
     def innovation_step3
       @innovation_step3 ||= proc do
         about_section :your_innovation_header, "" do
-          section "C-innovation"
+          section "your_innovation"
         end
 
         header :innovation_background_header, "Innovation background" do
@@ -321,9 +321,7 @@ class AwardYears::V2024::QAEForms
                 Describe what it is, how it works, what it does.
               </li>
               <li>
-                <p>
-                  Explain how your innovation differs from what came before and how it is an improvement.
-                </p>
+                Explain how your innovation differs from what came before and how it is an improvement.
               </li>
             </ol>
             <p>

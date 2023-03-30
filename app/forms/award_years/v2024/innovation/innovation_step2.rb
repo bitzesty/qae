@@ -4,7 +4,7 @@ class AwardYears::V2024::QAEForms
     def innovation_step2
       @innovation_step2 ||= proc do
         about_section :company_information_header, "" do
-          section "B"
+          section "company_information"
         end
 
         options :applying_for, "Are you applying on behalf of your:" do
