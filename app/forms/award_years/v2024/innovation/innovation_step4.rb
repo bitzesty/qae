@@ -3,41 +3,8 @@ class AwardYears::V2024::QAEForms
   class << self
     def innovation_step4
       @innovation_step4 ||= proc do
-        header :commercial_success_info_block, "" do
-          section_info
-          context %(
-            <h3 class="govuk-heading-m">About section C</h3>
-            <p class="govuk-body">
-              All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate as you will need to verify them if shortlisted.
-            </p>
-            <h3 class="govuk-heading-m">Volatile markets & last financial year</h3>
-            <p class="govuk-body">
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
-            </p>
-            <p class="govuk-body">
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            </p>
-            <h3 class="govuk-heading-m">Estimated figures</h3>
-            <p class="govuk-body">
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "About section C"],
-            [:normal, %(
-              All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate as you will need to verify them if shortlisted.
-            )],
-            [:bold, "Volatile markets & last financial year"],
-            [:normal, %(
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.,
-
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            )],
-            [:bold, "Estimated figures"],
-            [:normal, %(
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
-            )]
-          ]
+        about_section :commercial_success_info_block, "" do
+          section "innovation_commercial_performance"
         end
 
         options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance?" do
@@ -69,36 +36,27 @@ class AwardYears::V2024::QAEForms
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
-          ref "C 2"
+          ref "D 1"
           required
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>two or five</span> year entry period?" do
           classes "sub-question js-financial-year-change"
-          sub_ref "C 2.1"
+          sub_ref "D 2.1"
           required
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers two or five full 12-month periods.
+              If you started trading within the last five years, answer if your year-end date has changed since you started trading.
             </p>
           )
           default_option "no"
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
-          classes "sub-question"
-          sub_ref "C 2.1.1"
-          required
-          rows 1
-          words_max 100
-          conditional :financial_year_date_changed, :yes
-        end
-
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
-          sub_ref "C 2.2"
+          sub_ref "D 2.2"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -106,7 +64,7 @@ class AwardYears::V2024::QAEForms
           context %(
             <p>
               Typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-              </p>
+            </p>
             <p>
               If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
             </p>
@@ -116,15 +74,41 @@ class AwardYears::V2024::QAEForms
 
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :yes
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        textarea :adjustments_explanation, "Explain adjustments to figures." do
+          conditional :financial_year_date_changed, :yes
+          classes "sub-question"
+          sub_ref "D 2.3"
+          required
+          rows 2
+          words_max 200
+          context %(
+            <p>
+              If your financial year-end has changed, you will need to agree with your accountants on how to allocate your figures so that they equal 12-month periods. This allows for a comparison between years.
+            </p>
+            <p>
+              Please explain what approach you will take to adjust the figures.
+            </p>
+          )
+        end
+
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+          classes "sub-question"
+          sub_ref "D 2.4"
+          required
+          rows 1
+          words_max 100
+          conditional :financial_year_date_changed, :yes
+        end
+
+        by_years :employees, "Enter the number of people employed by your organisation in the UK." do
           classes "question-employee-min"
-          ref "C 3"
+          ref "D 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents.</p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -137,37 +121,16 @@ class AwardYears::V2024::QAEForms
           employees_question
         end
 
-        header :company_financials, "Company Financials" do
-          ref "C 4"
-
-          context %(
-            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Group entries</h3>
-            <p class='govuk-body'>
-              A parent company making a group entry should include the trading figures of all UK members of the group.
-            </p>
-
-            <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Figures - format</h3>
-            <p class='govuk-body'>
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "Group entries"],
-            [:normal, %(
-              A parent company making a group entry should include the trading figures of all UK members of the group.
-            )],
-            [:bold, "Figures - format"],
-            [:normal, %(
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            )]
-          ]
+        about_section :company_financials, "Company Financials" do
+          ref "D 4"
+          section "company_financials"
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
 
         by_years :total_turnover, "Total turnover." do
-          ref "C 4.1"
+          ref "D 4.1"
           required
           classes "sub-question"
 
@@ -183,7 +146,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :exports, "Of which exports." do
           classes "sub-question"
-          sub_ref "C 4.2"
+          sub_ref "D 4.2"
           required
           context %(<p>Enter '0' if you had none.</p>)
 
@@ -200,7 +163,7 @@ class AwardYears::V2024::QAEForms
         # UK sales = turnover - exports
         turnover_exports_calculation :uk_sales, "Of which UK sales." do
           classes "sub-question"
-          sub_ref "C 4.3"
+          sub_ref "D 4.3"
           context %(<p>This number is automatically calculated using your total turnover and export figures.</p>)
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -215,7 +178,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)." do
           classes "sub-question"
-          sub_ref "C 4.4"
+          sub_ref "D 4.4"
           required
 
           type :money
@@ -236,7 +199,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :total_net_assets, "Total net assets." do
           classes "sub-question total-net-assets"
-          sub_ref "C 4.5"
+          sub_ref "D 4.5"
           required
           context %(
             <p>
@@ -255,9 +218,9 @@ class AwardYears::V2024::QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :drops_in_turnover, "Explain any drops in the total turnover, export sales, total net assets or net profit and any losses made." do
+        textarea :drops_in_turnover, "Explain any losses, drops in the total turnover, export sales, total net assets or reductions in net profit." do
           classes "sub-question"
-          sub_ref "C 4.6"
+          sub_ref "D 4.6"
           required
           rows 3
           words_max 300
@@ -266,21 +229,21 @@ class AwardYears::V2024::QAEForms
               Sustained or unexplained drops or losses may lead to the entry being rejected.
             </p>
             <p>
-              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+              If you didn't have any losses, drops in the total turnover, export sales, total net assets or reductions in net profit, please state so.
             </p>
           )
         end
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow, cash generated, and investment received." do
           classes "sub-question"
-          sub_ref "C 4.7"
+          sub_ref "D 4.7"
           required
           context %(
             <p>
               We recognise that some innovations have high initial development costs, leading to low or negative profitability in the short term. If this is true for your innovation, please explain your investment strategy, expected outcomes, and expected timescales.
             </p>
             <p>
-              If you are an established business and showing low or negative profitability, please explain why and how the business is sustainable and specifically what impact your innovation has on this position.
+              If you are an established business and showing low or negative profitability, please explain why and how the business is sustainable and, specifically, what impact your innovation has on this position.
             </p>
           )
           rows 3
@@ -289,20 +252,20 @@ class AwardYears::V2024::QAEForms
 
         textarea :investments_details, "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the years in which they were made." do
           classes "sub-question"
-          sub_ref "C 4.8"
+          sub_ref "D 4.8"
           required
           rows 3
           words_max 250
           context %(
             <p>
-              This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non-cash resources. If relevant, you could also include R&D investment, innovation loans, or Innovate UK grants.
+              This should include both capital purchases, and investments, grants, and loans received, as well as the cost of workforce time and other non-cash resources. If relevant, you could also include R&D investment, innovation loans, or Innovate UK grants.
             </p>
           )
         end
 
-        textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investments outlined in question C4.8. How long did it take or will it take to recover the investments?" do
+        textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investments outlined in question D4.8. How long did it take or will it take to recover the investments?" do
           classes "sub-question"
-          sub_ref "C 4.9"
+          sub_ref "D 4.9"
           required
           rows 3
           words_max 250
@@ -314,7 +277,7 @@ class AwardYears::V2024::QAEForms
         end
 
         options :innovation_part_of, "How would the innovation that forms the basis of this application fit within the overall business?" do
-          ref "C 5"
+          ref "D 5"
           required
           option "it's integral to the whole business", "It's integral to the whole business"
           option :single_product_or_service, "It affects a single product/service"
@@ -349,63 +312,14 @@ class AwardYears::V2024::QAEForms
           default_option "it's integral to the whole business"
         end
 
-        textarea :innovation_impact_integral_description, "Explain how, and by how much, your innovation has impacted your commercial performance." do
-          classes "sub-question"
-          sub_ref "C 5.1"
-          required
-          conditional :innovation_part_of, "it's integral to the whole business"
-          context %(
-            <p>
-              A couple of examples that may help you answer this question:
-            </p>
-            <ul>
-              <li>Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…</li>
-              <li>Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...</li>
-            </ul>
-          )
-          pdf_context %(
-            <p>
-              A couple of examples that may help you answer this question:
-            </p>
-            <p>
-              \u2022 Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…
-
-              \u2022 Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...
-            </p>
-          )
-          rows 2
-          words_max 200
-        end
-
-        header :product_financials, "Innovation financials" do
-          ref "C 6"
-
-          context %(
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">About C6 questions</h3>
-            <p class="govuk-body">
-              Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation.
-            </p>
-
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Figures - format</h3>
-            <p class="govuk-body">
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "About C6 questions"],
-            [:normal, %(
-              Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation.
-            )],
-            [:bold, "Figures - format"],
-            [:normal, %(
-              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound, do not enter pennies. Do not separate your figures with commas.
-            )]
-          ]
+        about_section :product_financials, "Innovation financials" do
+          section "innovation_financials"
+          ref "D 6"
         end
 
         by_years :units_sold, "Number of innovative units or contracts sold (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.1"
+          sub_ref "D 6.1"
           type :number
           label ->(y) { "Financial year #{y}" }
 
@@ -416,7 +330,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :sales, "Sales of your innovative product/service (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.2"
+          sub_ref "D 6.2"
           type :money
           label ->(y) { "Financial year #{y}" }
 
@@ -427,7 +341,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :sales_exports, "Of which exports (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.3"
+          sub_ref "D 6.3"
           context %(<p>Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -439,7 +353,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :sales_royalties, "Of which royalties or licences (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.4"
+          sub_ref "D 6.4"
           context %(<p>Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -451,14 +365,14 @@ class AwardYears::V2024::QAEForms
 
         textarea :drops_in_sales, "Explain any drop in sales or the number of units sold (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.5"
+          sub_ref "D 6.5"
           rows 2
           words_max 200
         end
 
         by_years :avg_unit_price, "Average unit selling price or contract value (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.6"
+          sub_ref "D 6.6"
           context %(
             <p>
               If your innovation is a product, you must provide the unit price.
@@ -474,14 +388,14 @@ class AwardYears::V2024::QAEForms
 
         textarea :avg_unit_price_desc, "Explain your unit selling prices or contract values, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.7"
+          sub_ref "D 6.7"
           rows 2
           words_max 200
         end
 
         by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit or contract (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.8"
+          sub_ref "D 6.8"
           context %(
             <p>If you haven't reached your latest year-end, use estimates to complete this question.</p>
           )
@@ -494,52 +408,88 @@ class AwardYears::V2024::QAEForms
 
         textarea :costs_change_desc, "Explain your direct unit or contract costs, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
-          sub_ref "C 6.9"
+          sub_ref "D 6.9"
           rows 2
           words_max 200
         end
 
         textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business." do
-          ref "C 7"
+          ref "D 7"
           required
           context %(
             <p>
-              If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered. For example, new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+              This may include new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
             </p>
+            <p>
+              A couple of examples that may help you answer this question:
+              <ul>
+                <li>Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…</li>
+                <li>Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...</li>
+              </ul>
+            </p>
+            <p>
+              If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered.
+            </p>
+          )
+          pdf_context %(
+            This may include new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+
+            A couple of examples that may help you answer this question:
+
+            \u2022 Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…
+            \u2022 Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...
+
+            If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered.
           )
           rows 3
           words_max 250
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
-          ref "C 8"
+        textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
+          ref "D 8"
           required
           context %(
-            <p>
-              How have you adapted to or mitigated the impacts of recent volatile markets due to factors such as Covid, and with what results? How are you planning to respond in the year ahead? This could include opportunities you have identified as well as any contextual information or challenges you would like the assessors to consider.
-            </p>
+            <ul>
+              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
+              <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
+            </ul>
+          )
+          pdf_context %(
+            \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+            \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
+            \u2022 Provide any contextual information or challenges you would like the assessors to consider.
           )
           rows 4
           words_max 350
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "C 9"
+          ref "D 9"
           yes_no
-
           context %(
             <p>
-              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
+              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures.
             </p>
           )
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
 
+        confirm :agree_to_provide_actual_figures, "Agreement to provide actual figures" do
+          classes "sub-question"
+          sub_ref "D 9.1"
+          required
+          text " I understand that if this application is shortlisted, I will have to provide actual figures that have been verified by an external accountant before the specified November deadline (the exact date will be provided in the shortlisting email)."
+          conditional :product_estimated_figures, :yes
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
 
         textarea :product_estimates_use, "Explain your use of estimates and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "C 9.1"
+          sub_ref "D 9.2"
+          required
           rows 2
           words_max 200
           conditional :product_estimated_figures, :yes

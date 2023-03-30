@@ -6,6 +6,7 @@ require "qae_form_builder/multi_question_decorator"
 require "qae_form_builder/multi_question_validator"
 
 require "qae_form_builder/header_question"
+require "qae_form_builder/about_section_question"
 require "qae_form_builder/comment_question"
 require "qae_form_builder/text_question"
 require "qae_form_builder/number_question"

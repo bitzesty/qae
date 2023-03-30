@@ -515,7 +515,8 @@ class QAEFormBuilder
                   :section_info,
                   :excluded_header_questions,
                   :sub_section,
-                  :form_answer
+                  :form_answer,
+                  :about_section
 
     def initialize step, key, title, opts={}
       @step = step
