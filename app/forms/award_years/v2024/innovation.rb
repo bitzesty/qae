@@ -25,9 +25,8 @@ class AwardYears::V2024::QAEForms
              "Commercial performance",
              &AwardYears::V2024::QAEForms.innovation_step4
 
-        step "Corporate Social Responsibility (CSR)",
-             "Corporate Social Responsibility (CSR)",
-             { id: :add_website_address_documents_step },
+        step "Environmental, social, & corporate governance (ESG)",
+             "Environmental, social, & corporate governance (ESG)",
              &AwardYears::V2024::QAEForms.innovation_step5
 
         step "Supplementary materials & confirmation",
