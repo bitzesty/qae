@@ -3,7 +3,7 @@
     = question.header
   - if question.header_context
     == question.header_context
-- elsif question.section_info?
+- if question.section_info?
   .govuk-form-group
     == question.context
 - elsif question.label_as_legend?
