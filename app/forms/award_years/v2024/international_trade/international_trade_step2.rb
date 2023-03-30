@@ -3,30 +3,8 @@ class AwardYears::V2024::QAEForms
   class << self
     def trade_step2
       @trade_step2 ||= proc do
-        header :company_information_header, "" do
-          section_info
-          context %(
-            <h3 class='govuk-heading-m'>About section B</h3>
-            <p class='govuk-body'>
-              The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details are accurate as they cannot be changed later. This information will also be used to enable The King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted.
-            </p>
-            <h3 class="govuk-heading-m">Small organisations</h3>
-            <p class="govuk-body">
-              King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "About section B"],
-            [:normal, %(
-              The purpose of this section is to collect specific information that identifies your organisation, for example, your registration number and address. It is important that the details are accurate as they cannot be changed later. This information will also be used to enable The King's Awards Office to undertake due diligence checks with other government departments and agencies if your application is shortlisted.
-              )
-            ],
-            [:bold, "Small organisations"],
-            [:normal, %(
-                King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-              )
-            ]
-          ]
+        about_section :company_information_header, "" do
+          section "company_information"
         end
 
         options :applying_for, "Are you applying on behalf of your:" do
@@ -40,39 +18,15 @@ class AwardYears::V2024::QAEForms
           classes "application-notice help-notice"
           context %(
             <p class="govuk-body">
-              Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
+              Where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
         end
 
-        text :company_name, "Full legal name of your organisation." do
-          required
-          ref "B 2"
-          context %(
-            <p class="govuk-hint">
-              If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number.
-            </p>
-          )
-        end
-
-        text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
-          classes "sub-question"
-          sub_ref "B 2.1"
-          required
-          context %(
-            <p class="govuk-hint">
-              Usually, this is the same name as your organisation's full legal name.
-            </p>
-            <p class="govuk-hint">
-              However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.
-            </p>
-          )
-        end
-
         options :principal_business, "Does your organisation operate as a principal?" do
           required
-          ref "B 3"
+          ref "B 2"
           context %(
             <p class="govuk-hint">
               We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
@@ -83,7 +37,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question word-max-strict"
-          sub_ref "B 3.1"
+          sub_ref "B 2.1"
           required
           conditional :principal_business, :no
           words_max 100
@@ -92,7 +46,12 @@ class AwardYears::V2024::QAEForms
 
         options :organisation_type, "What type of legal entity is your organisation?" do
           required
-          ref "B 4"
+          ref "B 3"
+          context %(
+            <p class="govuk-hint">
+              All types of organisations are eligible to apply for The King's Award for Enterprise.
+            </p>
+          )
           option "sole_trader", "Sole Trader"
           option "partnership", "Partnership"
           option "ltd", "Limited Company (Ltd)"
@@ -115,7 +74,7 @@ class AwardYears::V2024::QAEForms
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
           required
           classes "sub-question"
-          ref "B 4.1"
+          ref "B 3.1"
           context %(
             <p class="govuk-hint">
               If you're an unregistered subsidiary, enter your parent company's number.
@@ -127,11 +86,35 @@ class AwardYears::V2024::QAEForms
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
           required
           classes "sub-question"
-          ref "B 4.2"
+          ref "B 3.2"
           context %(
-            <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's number.</p>
+            <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's VAT number.</p>
           )
           style "small"
+        end
+
+        text :company_name, "Full legal name of your organisation." do
+          required
+          ref "B 4"
+          context %(
+            <p class="govuk-hint">
+              If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number.
+            </p>
+          )
+        end
+
+        text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
+          classes "sub-question"
+          sub_ref "B 4.1"
+          required
+          context %(
+            <p class="govuk-hint">
+              Usually, this is the same name as your organisation's full legal name.
+            </p>
+            <p class="govuk-hint">
+              However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.
+            </p>
+          )
         end
 
         date :started_trading, "Date started trading" do
@@ -144,6 +127,63 @@ class AwardYears::V2024::QAEForms
           )
           date_max AwardYear.start_trading_since(3)
         end
+
+        address :organization_address, "Trading address of your organisation" do
+          required
+          ref "B 6"
+          pdf_context_with_header_blocks [
+            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+          ]
+          county_context %(
+            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
+              <a class="govuk-link" target="_blank" href="https://www.gov.uk/find-local-council">https://www.gov.uk/find-local-council</a>
+            </p>
+          )
+          sub_fields([
+            { building: "Building" },
+            { street: "Street" },
+            { city: "Town or city" },
+            { county: "County" },
+            { postcode: "Postcode" }
+          ])
+        end
+
+        text :org_telephone, "Main telephone number" do
+          required
+          ref "B 6.1"
+          type "tel"
+          style "small"
+        end
+
+        press_contact_details :press_contact_details, "Contact details for press enquiries" do
+          ref "B 7"
+          context %(
+            <p class='govuk-hint'><em>
+              If your application is successful, you may get contacted by the press.
+            </em></p>
+            <p class='govuk-hint'>
+              Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
+            </p>
+          )
+          sub_fields([
+            { title: "Title" },
+            { first_name: "First name" },
+            { last_name: "Last name" },
+            { telephone: "Telephone" },
+            { email: "Email address" }
+          ])
+        end
+
+        text :website_url, "Website address" do
+          ref "B 8"
+          style "large"
+          context %(
+            <p class="govuk-hint">
+              Please provide the full website address, for example, www.yourcompanyname.com
+            </p>
+          )
+        end
+
 
         options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a King's/Queen's Awards for Enterprise award in any category?" do
           required
@@ -207,62 +247,6 @@ class AwardYears::V2024::QAEForms
           conditional :other_awards_won, :yes
           rows 3
           words_max 250
-        end
-
-        address :organization_address, "Trading address of your organisation" do
-          required
-          ref "B 8"
-          pdf_context_with_header_blocks [
-            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
-          ]
-          county_context %(
-            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
-              <a class="govuk-link" target="_blank" href="https://www.gov.uk/find-local-council">https://www.gov.uk/find-local-council</a>
-            </p>
-          )
-          sub_fields([
-            { building: "Building" },
-            { street: "Street" },
-            { city: "Town or city" },
-            { county: "County" },
-            { postcode: "Postcode" }
-          ])
-        end
-
-        text :org_telephone, "Main telephone number" do
-          required
-          ref "B 8.1"
-          type "tel"
-          style "small"
-        end
-
-        press_contact_details :press_contact_details, "Contact details for press enquiries" do
-          ref "B 9"
-          context %(
-            <p class='govuk-hint'><em>
-              If your application is successful, you may get contacted by the press.
-            </em></p>
-            <p class='govuk-hint'>
-              Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
-            </p>
-          )
-          sub_fields([
-            { title: "Title" },
-            { first_name: "First name" },
-            { last_name: "Last name" },
-            { telephone: "Telephone" },
-            { email: "Email address" }
-          ])
-        end
-
-        text :website_url, "Website address" do
-          ref "B 10"
-          style "large"
-          context %(
-            <p class="govuk-hint">
-              Please provide full website address, for example, www.yourcompanyname.com
-            </p>
-          )
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
