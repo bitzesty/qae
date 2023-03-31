@@ -27,6 +27,7 @@ describe "Eligibility forms" do
         "No",
         "Yes",
         "Yes",
+        "Yes",
         "No",
         "Yes"
       ])

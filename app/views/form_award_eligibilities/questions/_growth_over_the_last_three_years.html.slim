@@ -1,14 +1,5 @@
 .question-body
   p.govuk-hint
     == @eligibility.class.hint(step)
-  p.govuk-hint
-    ' You can choose to be assessed for outstanding growth (over three years) or continuous growth (over six years), depending if your international trade has resulted in:
-  ul.govuk-hint
-    li Outstanding year on year growth in the last 3 years with no dips
-    li Continuous year on year growth in the last 6 years with no dips
-  p.govuk-hint
-    ' Typically, you would have to submit financial data for 3 or 6 years, with the last financial year that falls before
-    =<> @form_answer.award_year.settings.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')
-    ' (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
   = f.input :growth_over_the_last_three_years, as: :radio_buttons, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, label_html: { class: 'visuallyhidden' }
 span.clear

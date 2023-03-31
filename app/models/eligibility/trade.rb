@@ -18,40 +18,45 @@ class Eligibility::Trade < Eligibility
                   current_holder_of_qae_for_trade?
             }, on: :update
 
-  property :sales_above_100_000_pounds,
-           values: %w[yes no skip],
-           label: "Have you made a minimum of £100,000 in overseas sales in each year of your entry (either 3 or 6 year period)?",
-           accept: :true,
-           acts_like_boolean: true,
-           hint: %(
+  property :growth_over_the_last_three_years,
+            label: "Have you had significant growth in overseas sales over the period of your entry (either a 3 or 6-year period)?",
+            accept: :true,
+            boolean: true,
+            hint: %(
               <p class='govuk-hint'>
-                You can choose to be assessed for outstanding growth (over three years) or continuous growth (over six years).
+                You can choose to be assessed for outstanding growth (over three years - 36 consecutive months) or continuous growth (over six years - 72 consecutive months). Both options enable you to use the King's Awards emblem for five years.
               </p>
               <ul class='govuk-hint'>
-                <li>Outstanding Short Term Growth: a steep year on year growth over three years</li>
-                <li>Outstanding Continued Growth: a substantial year on year growth over six years</li>
+                <li>Outstanding Short Term Growth: a steep year-on-year growth over the three most recent financial years</li>
+                <li>Outstanding Continued Growth: a substantial year-on-year growth over the six most recent financial years</li>
               </ul>
               <p class='govuk-hint'>
-                Typically, you would have to submit financial data for 3 or 6 years, with the last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
               </p>
-           )
+            )
+
+  property :sales_above_100_000_pounds,
+           boolean: true,
+           label: "Have you made a minimum of £100,000 in overseas sales in each year of your entry (either 3 or 6-year period)?",
+           accept: :true
 
   property :any_dips_over_the_last_three_years,
-           label: "Have you had any dips in your overseas sales over the period of your entry (either 3 or 6 year period)?",
+           label: "Have you had any dips in your overseas sales over the period of your entry (either 3 or 6-year period)?",
            accept: :false,
-           boolean: true,
-           hint: "For this question a 'dip' is any annual drop in overseas sales.",
-           if: proc {!skipped?}
+           boolean: true
 
-  property :growth_over_the_last_three_years,
-           label: "Have you had significant growth in overseas earnings over the period of your entry (either 3 or 6 year period)?",
-           accept: :true,
-           boolean: true,
-           hint: "Significant growth should be relative to your business size and sector.",
-           if: proc {!skipped?}
+  property :has_management_and_two_employees,
+            label: "Did your organisation have two or more full-time UK employees or full-time equivalent employees (FTEs) in every year covering the period of your entry (either a 3 or 6-year period).",
+            accept: :true,
+            boolean: true,
+            hint: %(
+              <p class='govuk-hint'>
+                You can calculate the number of full-time employees at the year-end, or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
+              </p>
+            )
 
   property :current_holder_of_qae_for_trade,
-           label: "Are you a current holder of a King's Award for International Trade?",
+           label: "Are you a current holder of a Queen's/King's Award for International Trade?",
            boolean: true,
            accept: :all,
            if: proc {current_holder_of_an_award?}
