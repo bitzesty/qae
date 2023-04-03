@@ -5,7 +5,7 @@ class AwardYears::V2024::QAEForms
         upload :innovation_materials, "Supplementary materials" do
           ref "F 1"
           context %(
-            <p>If there are additional materials you feel would help us to assess your entry, then you can add up to three files or online links in this section.</p>
+            <p>If there are additional materials you feel would help us to assess your entry, you can add up to three files or online links in this section.</p>
             <h4 class="govuk-heading-s">What can and cannot be included:</h3>
             <ul>
               <li>You <strong>can</strong> include links to promotional videos, websites, other media, or documents you feel are relevant and help illustrate your application.</li>
@@ -19,7 +19,7 @@ class AwardYears::V2024::QAEForms
             </ul>
           )
           pdf_context %(
-            <p>If there are additional materials you feel would help us to assess your entry, then you can add up to three files or online links in this section.</p>
+            <p>If there are additional materials you feel would help us to assess your entry, you can add up to three files or online links in this section.</p>
             <h4 class="govuk-heading-s">What can and cannot be included:</h3>
             <p>
               \u2022 You can include links to promotional videos, websites, other media, or documents you feel are relevant and help illustrate your application.
@@ -42,7 +42,7 @@ class AwardYears::V2024::QAEForms
           description
         end
 
-        confirm :entry_confirmation, "Confirmation of entry" do
+        confirm :entry_confirmation, "Confirmation of entry." do
           ref "F 2"
           required
           text -> do
@@ -52,17 +52,17 @@ class AwardYears::V2024::QAEForms
           end
         end
 
-        confirm :agree_being_contacted_about_issues_not_related_to_application, "Contact consent" do
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
           ref "F 3"
           text %(
-            I am happy to be contacted about King's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, and other information).
+            I am happy to be contacted about The King's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, and other information).
           )
         end
 
         confirm :agree_being_contacted_by_department_of_business, "" do
           sub_ref "F 3.1"
           text %(
-            I am happy to be contacted by the Department for Business, Energy & Industrial Strategy.
+            I am happy to be contacted by the Department for Business and Trade.
           )
           show_ref_always true
         end
