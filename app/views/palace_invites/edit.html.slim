@@ -10,8 +10,8 @@ div
       .inner
         p.govuk-body
           ' On
-          = AwardYear.buckingham_palace_reception_deadline.decorate.formatted_trigger_time
-          '  there will be a Royal reception held at Buckingham Palace for organisations who have won King's Awards. Winning organisations can send one attendee per award won.
+          =< AwardYear.buckingham_palace_reception_deadline.decorate.formatted_trigger_date("with_year")
+          ' , in the early evening at a time to be confirmed, a Royal reception at Buckingham Palace will be held for organisations who have received this year's King's Award/s. Successful organisations can send one attendee per award won.
 
         br
 
