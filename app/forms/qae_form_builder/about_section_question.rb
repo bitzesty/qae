@@ -13,9 +13,12 @@ class QAEFormBuilder
 
     private
     def form_context(data)
+      @link = data.link
       %(
         <h3 class="govuk-heading-m">#{data.header}</h3>
-        #{data.context.map { |c| "<p class='govuk-body'>#{c}</p>" }.join}
+        #{data.context.map { |c|
+          "<p class='govuk-body'>#{c}</p>"}.join
+        }
       )
     end
 
@@ -50,6 +53,8 @@ class QAEFormBuilder
         [group_entries, required_figures_trade, figures_format]
       when "trade_ESG"
         [about_section_E, answering_questions_trade, small_organisations]
+      when "your_sustainable_development"
+        [about_section_C_sustainable_development, small_organisations, covid_impact_development, un_sdgs, supplementary_materials_development]
       end
     end
 
@@ -102,11 +107,30 @@ class QAEFormBuilder
       )
     end
 
+    def about_section_C_sustainable_development
+      OpenStruct.new(
+        :header => "About section C",
+        :context => [
+          "Read this section before planning the answers. Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.",
+          "Avoid using technical jargon."
+        ]
+      )
+    end
+
     def covid_impact
       OpenStruct.new(
         :header => "COVID-19 impact",
         :context => [
           "If your growth was affected by COVID-19, this would be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges."
+        ]
+      )
+    end
+
+    def covid_impact_development
+      OpenStruct.new(
+        :header => "COVID-19 impact",
+        :context => [
+          "We recognise that COVID-19 might have affected your growth plans and will take this into consideration during the assessment process."
         ]
       )
     end
@@ -136,6 +160,27 @@ class QAEFormBuilder
           "To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.",
           "Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
         ]
+      )
+    end
+
+    def supplementary_materials_development
+      OpenStruct.new(
+        :header => "Supplementary materials",
+        :context => [
+          "To support your answers in this section, you can add up to three materials (documents or online links) in Section E. For assessors to review them, you must reference them by their names in your answers.",
+          "Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
+        ]
+      )
+    end
+
+    def un_sdgs
+      OpenStruct.new(
+        :header => "United Nations Sustainable Development Goals (UN SDGs)",
+        :context => [
+          "You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.",
+          "You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.",
+          "You can find more <a class='govuk-link' target='_blank' href='https://www.un.org/sustainabledevelopment/sustainable-development-goals/.'>information about each goal on the United Nations (UN) website.</a>"
+        ],
       )
     end
 
