@@ -42,6 +42,8 @@ class QAEFormBuilder
         [about_D6, required_figures_innovation, figures_format]
       when "innovation_ESG"
         [about_section_E, answering_questions_innovation, small_organisations]
+      when "your_international_trade"
+        [about_section_C_international_trade, small_organisations, covid_impact, word_limits, technical_language, supplementary_materials]
       end
     end
 
@@ -81,6 +83,24 @@ class QAEFormBuilder
         :header => "About section C",
         :context => [
           "This section is structured to enable you to tell your success story of the innovation's development, implementation and impact, enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business."
+        ]
+      )
+    end
+
+    def about_section_C_international_trade
+      OpenStruct.new(
+        :header => "About section C",
+        :context => [
+          "The purpose of this section is to enable the assessing team to understand your company, its product, services, and the role exporting plays within your overall business. We need to understand how this impacts the overall performance of your business."
+        ]
+      )
+    end
+
+    def covid_impact
+      OpenStruct.new(
+        :header => "COVID-19 impact",
+        :context => [
+          "If your growth was affected by COVID-19, this would be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges."
         ]
       )
     end

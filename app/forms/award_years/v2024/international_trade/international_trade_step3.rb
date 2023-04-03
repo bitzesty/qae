@@ -3,58 +3,8 @@ class AwardYears::V2024::QAEForms
   class << self
     def trade_step3
       @trade_step3 ||= proc do
-        header :your_internation_trade_header, "" do
-          section_info
-          context %(
-            <h3 class='govuk-heading-m'>About section C</h3>
-            <p class='govuk-body'>
-              The purpose of this section is to enable the assessing team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts the overall performance of your business.
-            </p>
-            <h3 class="govuk-heading-m">Small organisations</h3>
-            <p class="govuk-body">
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
-            </p>
-            <h3 class="govuk-heading-m">Technical language</h3>
-            <p class="govuk-body">
-              Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time.
-            </p>
-            <h3 class="govuk-heading-m">COVID-19 impact</h3>
-            <p class="govuk-body">
-              If your application includes years when Covid-19 might have affected your organisation's growth, this will be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges.
-            </p>
-            <h3 class="govuk-heading-m">Supplementary materials</h3>
-            <p class="govuk-body">
-              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
-            </p>
-            <p class="govuk-body">
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
-            </p>
-          )
-
-          pdf_context_with_header_blocks [
-            [:bold, "About section C"],
-            [:normal, %(
-              The purpose of this section is to enable the assessing team to understand your company, its product, services and the role exporting plays within your overall business. We need to understand how this impacts the overall performance of your business.
-            )],
-            [:bold, "Small organisations"],
-            [:normal, %(
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
-            )],
-            [:bold, "Technical language"],
-            [:normal, %(
-              Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time.
-            )],
-            [:bold, "COVID-19 impact"],
-            [:normal, %(
-              If your application includes years when Covid-19 might have affected your organisation's growth, this will be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges.
-            )],
-            [:bold, "Supplementary materials"],
-            [:normal, %(
-              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
-
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.
-            )]
-          ]
+        about_section :your_internation_trade_header, "" do
+          section "your_international_trade"
         end
 
         textarea :trade_business_as_a_whole, "Describe your business as a whole." do
@@ -75,48 +25,22 @@ class AwardYears::V2024::QAEForms
 
         textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
           classes "sub-question word-max-strict"
-          sub_ref "C 1.2"
+          ref "C 2"
           required
           rows 5
           words_max 500
         end
 
-        textarea :trade_goods_briefly, "Briefly describe all products or services that you sell internationally." do
+        textarea :trade_description_short, "Provide a one-line description of your international trade." do
           classes "sub-question word-max-strict"
-          sub_ref "C 1.3"
+          sub_ref "C 2.1"
           required
-          context %(
-            <p>
-              This summary will be used in publicity material if your application is successful.
-            </p>
-            <p>
-              For example:
-            </p>
-            <ul>
-              <li>The leading source of agricultural market intelligence, supporting the advancement of the global food chain</li>
-              <li>Cross-border eCommerce retail and technology group enabling merchants of all sizes to access China</li>
-              <li>World-leading marine equipment for the deployment of subsea infrastructure across traditional and renewable energy sectors.</li>
-            </ul>
-          )
-          pdf_context %(
-            <p>
-              This summary will be used in publicity material if your application is successful.
-
-              For example:
-
-              \u2022 The leading source of agricultural market intelligence, supporting the advancement of the global food chain
-
-              \u2022 Cross-border eCommerce retail and technology group enabling merchants of all sizes to access China
-
-              \u2022 World-leading marine equipment for the deployment of subsea infrastructure across traditional and renewable energy sectors.
-            </p>
-          )
-          rows 2
+          rows 1
           words_max 15
         end
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
-          ref "C 2"
+          sub_ref "C 2.2"
           required
           context %(
             <p>Select all that apply.</p>
@@ -146,9 +70,9 @@ class AwardYears::V2024::QAEForms
           default_option "1"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or service you export." do
           classes "sub-question word-max-strict"
-          sub_ref "C 2.2"
+          sub_ref "C 2.3"
           required
           context %(
             <p>
@@ -162,7 +86,6 @@ class AwardYears::V2024::QAEForms
           words_max 15
           min 0
           max 100
-          conditional :trade_goods_amount, :true
         end
 
         textarea :trade_plans_desc, "Describe your international trade strategy." do
@@ -174,9 +97,9 @@ class AwardYears::V2024::QAEForms
               Make sure your answer includes:
             </p>
             <ul>
-              <li>your vision and objectives for the future;</li>
-              <li>your overall growth plans and the links and importance between your international and domestic trading strategies (plans);</li>
-              <li>your method of implementation of your international strategy.
+              <li>Your vision and objectives for the future.</li>
+              <li>Your overall growth plans and the links and importance between your international and domestic trading strategies (plans).</li>
+              <li>Your method of implementation of your international strategy.
             </ul>
             <p>
               Areas you may want to mention in your answer: your overseas market structure, treatment of different markets, market research, market development, routes to market, after-sales and technical advice, activities to sustain/grow markets, export practices, overseas distributors, inward and outward trade missions and market visits.
@@ -186,11 +109,11 @@ class AwardYears::V2024::QAEForms
             <p>
               Make sure your answer includes:
 
-              \u2022 your vision and objectives for the future;
+              \u2022 Your vision and objectives for the future.
 
-              \u2022 your overall growth plans and the links and importance between your international and domestic trading strategies (plans);
+              \u2022 Your overall growth plans and the links and importance between your international and domestic trading strategies (plans).
 
-              \u2022 your method of implementation of your international strategy.
+              \u2022 Your method of implementation of your international strategy.
 
               Areas you may want to mention in your answer: your overseas market structure, treatment of different markets, market research, market development, routes to market, after-sales and technical advice, activities to sustain/grow markets, export practices, overseas distributors, inward and outward trade missions and market visits.
             </p>
@@ -245,8 +168,28 @@ class AwardYears::V2024::QAEForms
           words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade due to COVID-19, and how you overcame them." do
+        checkbox_seria :operate_overseas, "How do you run your overseas operations?" do
           ref "C 5"
+          required
+          context %(
+            <p>Select all that apply.</p>
+          )
+          check_options [
+            ["franchise", "As a franchise"],
+            ["other", "Other business models"]
+          ]
+        end
+
+        textarea :operate_model_benefits, "Explain your franchise or other business models and the rationale for this. Describe the benefits this brings to the UK." do
+          classes "sub-question word-max-strict"
+          sub_ref "C 5.1"
+          required
+          rows 3
+          words_max 300
+        end
+
+        textarea :trade_factors, "Describe any special challenges affecting your trade due to COVID-19, and how you overcame them." do
+          ref "C 6"
           classes "word-max-strict"
           required
           context %(
@@ -267,7 +210,7 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years (due to factors other than Covid-19)." do
-          sub_ref "C 5.1"
+          sub_ref "C 6.1"
           classes "sub-question word-max-strict"
           required
           context %(
@@ -284,29 +227,10 @@ class AwardYears::V2024::QAEForms
               \u2022 Provide any contextual information or challenges you would like the assessors to consider.
             </p>
           )
+          words_max 350
         end
 
-        checkbox_seria :operate_overseas, "How do you run your overseas operations?" do
-          ref "C 6"
-          required
-          context %(
-            <p>Select all that apply.</p>
-          )
-          check_options [
-            ["franchise", "As a franchise"],
-            ["other", "Other business model(s)"]
-          ]
-        end
-
-        textarea :operate_model_benefits, "Explain your franchise or other business models and rationale for this. Describe the benefits this brings to the UK." do
-          classes "sub-question word-max-strict"
-          sub_ref "C 6.1"
-          required
-          rows 3
-          words_max 300
-        end
-
-        options :received_grant, "Did you receive any grant funding to support this product/service?" do
+        options :received_grant, "Did you receive any grant funding to support your export products/services?" do
           ref "C 7"
           required
           yes_no
@@ -317,7 +241,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        textarea :funding_details, "Please provide date(s), source(s) and level(s) of funding." do
+        textarea :funding_details, "Please provide dates, sources and levels of funding." do
           classes "sub-question word-max-strict"
           sub_ref "C 7.1"
           required
