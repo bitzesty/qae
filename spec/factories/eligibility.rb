@@ -48,7 +48,10 @@ FactoryBot.define do
     trait :development do
       type { "Eligibility::Development" }
       answers {{
-        sustainable_development: "yes"
+        able_to_provide_actual_figures: "yes",
+        has_management_and_two_employees: "yes",
+        sustainable_development: "yes",
+        adheres_to_sustainable_principles: "yes"
       }}
     end
 

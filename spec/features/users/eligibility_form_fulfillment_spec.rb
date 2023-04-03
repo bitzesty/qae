@@ -70,6 +70,9 @@ describe "Eligibility forms" do
         "Yes",
         "No",
         "Yes",
+        "Yes",
+        "Yes",
+        "Yes",
         "Yes"
       ])
       expect(page).to have_content("You are eligible to begin your application")
