@@ -939,13 +939,13 @@ jQuery ->
     new_text = ""
     switch $(".js-entry-period input:checked").val()
       when "2 to 4"
-        new_text = 2
+        new_text = "two"
       when "5 plus"
-        new_text = 5
+        new_text = "five"
       when "3 to 5"
-        new_text = 3
+        new_text = "three"
       when "6 plus"
-        new_text = 6
+        new_text = "six"
     $(".js-entry-period-subtext").each () ->
       $(this).text(new_text)
   if $(".js-entry-period input:checked").length > 0

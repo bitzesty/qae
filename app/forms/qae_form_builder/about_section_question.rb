@@ -34,8 +34,8 @@ class QAEFormBuilder
         [about_section_B, small_organisations]
       when "your_innovation"
         [about_section_C_innovation, word_limits, technical_language, supplementary_materials]
-        when "innovation_commercial_performance"
-        [about_section_D, financial_periods, estimated_figures]
+      when "innovation_commercial_performance"
+        [about_section_D_innovation, financial_periods, estimated_figures]
       when "company_financials"
         [group_entries, required_figures_innovation, figures_format]
       when "innovation_financials"
@@ -44,6 +44,10 @@ class QAEFormBuilder
         [about_section_E, answering_questions_innovation, small_organisations]
       when "your_international_trade"
         [about_section_C_international_trade, small_organisations, covid_impact, word_limits, technical_language, supplementary_materials]
+      when "trade_commercial_performance"
+        [about_section_D_trade, financial_periods_trade, estimated_figures]
+      when "company_financials_trade"
+        [group_entries, required_figures_trade, figures_format]
       end
     end
 
@@ -134,11 +138,21 @@ class QAEFormBuilder
     end
 
     # Section D
-    def about_section_D
+    def about_section_D_innovation
       OpenStruct.new(
         :header => "About section D",
         :context => [
           "All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate, as you will need to verify them if shortlisted.",
+          "We recommend you get your accountant to assist you with this section."
+        ]
+      )
+    end
+
+    def about_section_D_trade
+      OpenStruct.new(
+        :header => "About section D",
+        :context => [
+          "All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate, as you will need to verify them if shortlisted.",
           "We recommend you get your accountant to assist you with this section."
         ]
       )
@@ -149,10 +163,22 @@ class QAEFormBuilder
         :header => "Periods the figures are required for",
         :context => [
           "We ask you to provide figures for your five most recent financial years. If you started trading within the last five years, you only need to provide figures for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide figures for at least your two most recent financial years, covering the full 24 months.",
-          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} – the application submission deadline."
+          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline."
         ]
       )
     end
+
+    def financial_periods_trade
+      OpenStruct.new(
+        :header => "Periods the figures are required for",
+        :context => [
+          "Depending on which award you are applying for, you must be able to provide financial figures for your three most recent financial years, covering exactly 36 consecutive months; or if you are applying for a 6-year award (see question D1), you must provide figures for the last six financial years, covering exactly 72 consecutive months.",
+          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.",
+          "If you have changed your year-end during the period of your application, see D2.3 for an explanation of how this must be dealt with."
+        ]
+      )
+    end
+
 
     def estimated_figures
       OpenStruct.new(
@@ -178,6 +204,16 @@ class QAEFormBuilder
         :header => "Required figures",
         :context => [
           "We ask you to provide figures for your five most recent financial years. If you started trading within the last five years, you only need to provide figures for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide figures for at least your two most recent financial years, covering the full 24 months.",
+          "If you haven't reached your latest year-end, please use estimates to complete these questions."
+        ]
+      )
+    end
+
+    def required_figures_trade
+      OpenStruct.new(
+        :header => "Required figures",
+        :context => [
+          "If you have selected “Outstanding Short-Term Growth” in D1, you will only need to provide information for the last three years.",
           "If you haven't reached your latest year-end, please use estimates to complete these questions."
         ]
       )
