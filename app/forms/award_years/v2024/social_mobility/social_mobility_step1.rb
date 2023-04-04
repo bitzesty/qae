@@ -45,9 +45,6 @@ class AwardYears::V2024::QAEForms
           classes "sub-question"
           excluded_header_questions
           required
-          context %(
-            <p class="govuk-hint">For example, CEO, Managing Director, Founder</p>
-          )
         end
 
         text :head_email, "Email address" do

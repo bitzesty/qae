@@ -25,12 +25,12 @@ class AwardYears::V2024::QAEForms
              "Commercial Performance",
              &AwardYears::V2024::QAEForms.trade_step4
 
-        step "Environmental, Social, and Corporate Governance (ESG)",
-             "Environmental, Social, and Corporate Governance (ESG)",
+        step "Environmental, Social & Corporate Governance (ESG)",
+             "Environmental, Social & Corporate Governance (ESG)",
              &AwardYears::V2024::QAEForms.trade_step5
 
-        step "Supplementary materials and confirmation",
-             "Supplementary materials and confirmation",
+        step "Supplementary materials & confirmation",
+             "Supplementary materials & confirmation",
              { id: :add_website_address_documents_step },
              &AwardYears::V2024::QAEForms.trade_step6
 

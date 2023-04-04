@@ -117,7 +117,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        date :started_trading, "Date started trading" do
+        date :started_trading, "Date started trading." do
           required
           ref "B 5"
           context %(
@@ -128,7 +128,7 @@ class AwardYears::V2024::QAEForms
           date_max AwardYear.start_trading_since(3)
         end
 
-        address :organization_address, "Trading address of your organisation" do
+        address :organization_address, "Trading address of your organisation." do
           required
           ref "B 6"
           pdf_context_with_header_blocks [
@@ -148,14 +148,14 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        text :org_telephone, "Main telephone number" do
+        text :org_telephone, "Main telephone number." do
           required
           ref "B 6.1"
           type "tel"
           style "small"
         end
 
-        press_contact_details :press_contact_details, "Contact details for press enquiries" do
+        press_contact_details :press_contact_details, "Contact details for press enquiries." do
           ref "B 7"
           context %(
             <p class='govuk-hint'><em>
@@ -174,7 +174,7 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        text :website_url, "Website address" do
+        text :website_url, "Website address." do
           ref "B 8"
           style "large"
           context %(
@@ -194,12 +194,12 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
+        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do
           required
           ref "B 9"
           context %(
             <p class="govuk-hint">
-              The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC on
+              The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at
               <a class="govuk-link" target="_blank" href="https://resources.companieshouse.gov.uk/sic/">https://resources.companieshouse.gov.uk/sic/</a>.
             </p>
             <p class="govuk-hint">
@@ -207,7 +207,7 @@ class AwardYears::V2024::QAEForms
             </p>
           )
           pdf_context_with_header_blocks [
-            [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC on https://resources.companieshouse.gov.uk/sic/."],
+            [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/."],
             [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."]
           ]
         end

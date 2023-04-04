@@ -24,7 +24,7 @@ h1.govuk-heading-xl
                 =<> link_to "add one or more collaborators", account_collaborators_path(form_id: @form_answer.id), class: 'govuk-link'
                 | before you can continue. Your named collaborators will be able to help you work on the form. They are able to see and edit all your forms if you are applying for more than one award.
               p.govuk-body
-                | Adding collaborators also means that more people are on our contact list and any correspondence is less likely to be overlooked or not addressed in time.
+                | Adding collaborators also means that important correspondence we send regarding your application is not overlooked if one applicant is not available.
 
               - if @collaborators.any?
                 br
@@ -73,7 +73,7 @@ h1.govuk-heading-xl
               p.govuk-body
                 | Please review all the questions by downloading the
                 =< link_to "blank international trade application form (PDF).", users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true), class: "govuk-link"
-                
+
               ul.govuk-list.govuk-list--bullet
                 li Read through all the questions carefully before beginning your application.
                 li You may need to get your accountant to help with section D - allow sufficient time for that.
