@@ -116,9 +116,9 @@ class AwardYears::V2024::QAEForms
 
             \u2022 How do you encourage your suppliers to meet ethical standards?
 
-            \u2022 To what extent you are sourcing or encouraging your supply chain to source UK goods and services?
+            \u2022 To what extent are you sourcing or encouraging your supply chain to source UK goods and services?
 
-            \u2022 By what criteria you select clients and ensure they are appropriate for your services?
+            \u2022 By what criteria do you select clients and ensure they are appropriate for your services?
 
             \u2022 How you measure customer satisfaction - and what the results have been.
           )
