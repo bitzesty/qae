@@ -5,8 +5,12 @@ class QAEFormBuilder
   class HeadOfBusinessQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
+        {title: "Title"},
         {first_name: "First name"},
-        {last_name: "Last name"}
+        {last_name: "Last name"},
+        {honours: "Personal Honours (optional)"},
+        {job_title: "Job title or role in the organisation"},
+        {email: "Email address"},
       ]
     end
   end

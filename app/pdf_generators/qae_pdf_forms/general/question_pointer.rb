@@ -530,9 +530,6 @@ class QaePdfForms::General::QuestionPointer
 
   def complex_question
     render_question_title_with_ref_or_not
-    if question.delegate_obj.class.to_s == "QAEFormBuilder::HeadOfBusinessQuestion"
-      form_pdf.move_up 5.mm
-    end
 
     if question.delegate_obj.class.to_s == "QAEFormBuilder::AddressQuestion"
       render_context_and_answer_blocks
