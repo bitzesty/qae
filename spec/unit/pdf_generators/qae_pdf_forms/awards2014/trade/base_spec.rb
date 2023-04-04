@@ -5,7 +5,7 @@ describe "QaePdfForms::Awards2016::Trade::Base" do
 
   let(:step1_question_answers) {
     {
-      head_of_bussines_title: "Mr",
+      head_of_business: "BitZesty",
     }
   }
 

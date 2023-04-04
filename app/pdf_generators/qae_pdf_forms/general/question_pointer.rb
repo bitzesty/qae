@@ -12,7 +12,7 @@ class QaePdfForms::General::QuestionPointer
   NOT_CURRENCY_QUESTION_KEYS = %w(employees).freeze
   QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add).freeze
   SKIP_HEADER_HINT_KEYS = %w(head_of_business_header).freeze
-  RENDER_INLINE_KEYS = %w(head_of_bussines_title).freeze
+  RENDER_INLINE_KEYS = %w(head_of_business_title).freeze
 
   attr_reader :form_pdf,
               :form_answer,
@@ -530,9 +530,6 @@ class QaePdfForms::General::QuestionPointer
 
   def complex_question
     render_question_title_with_ref_or_not
-    if question.delegate_obj.class.to_s == "QAEFormBuilder::HeadOfBusinessQuestion"
-      form_pdf.move_up 5.mm
-    end
 
     if question.delegate_obj.class.to_s == "QAEFormBuilder::AddressQuestion"
       render_context_and_answer_blocks

@@ -1,4 +1,4 @@
-{"head_email": "walter@example.com",
+{"head_of_business_email": "walter@example.com",
 "sales_1of2": "",
 "sales_1of5": "",
 "sales_2of2": "",
@@ -29,7 +29,7 @@
 "employees_3of5": "",
 "employees_4of5": "",
 "employees_5of5": "",
-"head_job_title": "Chief",
+"head_of_business_job_title": "Chief",
 "sic_code": "0111",
 "net_profit_1of2": "100000",
 "net_profit_1of5": "",
@@ -107,7 +107,7 @@
 "total_net_assets_4of5": "",
 "total_net_assets_5of5": "",
 "development_desc_short": "1",
-"head_of_bussines_title": "prof",
+"head_of_business_title": "prof",
 "parent_company_country": "GB",
 "previous_business_name": "",
 "organization_address_city": "1",
@@ -148,7 +148,7 @@
 "applied_for_queen_awards_details": "[\"{\\\"category\\\":\\\"\\\",\\\"year\\\":\\\"\\\",\\\"outcome\\\":\\\"\\\"}\"]",
 "financial_year_date_changed": "no",
 "head_of_business_first_name": "Walter",
-"head_of_bussines_title_other": "",
+"head_of_business_title_other": "",
 "development_additional_comments": "1",
 "development_excluded_explanation": "1",
 "ultimate_control_company_country": "GB",
@@ -220,6 +220,10 @@
 "organisation_worthiness": "yes",
 "enquiries_consent": "on",
 "commercial_performance": "on",
+"head_of_bussines_title": "test",
+"head_job_title": "test",
+"head_email": "test"}
 "external_contributors": "test",
 "financial_adjustments_explanation": "test",
 "agree_to_provide_actual_figures": "on"}
+

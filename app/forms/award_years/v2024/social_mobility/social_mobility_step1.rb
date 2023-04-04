@@ -22,37 +22,17 @@ class AwardYears::V2024::QAEForms
           text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
         end
 
-        header :head_of_bussines_header, "Details of the head of the organisation" do
-          ref "A 1.2"
-        end
-
-        text :head_of_bussines_title, "Title" do
-          required
+        head_of_business :head_of_business, "Details of the head of your organisation" do
+          sub_ref "A 1.2"
           classes "sub-question"
-          excluded_header_questions
-          style "tiny"
-        end
-
-        head_of_business :head_of_business, "" do
           sub_fields([
+            { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
-            { honours: "Personal Honours (optional)" }
+            { honours: "Personal Honours (optional)" },
+            { job_title: "Job title or role in the organisation" },
+            { email: "Email address" }
           ])
-        end
-
-        text :head_job_title, "Job title / role in the organisation" do
-          classes "sub-question"
-          excluded_header_questions
-          required
-        end
-
-        text :head_email, "Email address" do
-          classes "sub-question"
-          excluded_header_questions
-          style "large"
-          required
-          type "email"
         end
 
         header :due_diligence_header, "Organisation worthiness & due diligence checks" do

@@ -8,10 +8,10 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @form_answer = FormAnswer.find(form_answer_id).decorate
 
     @urn = @form_answer.urn
-    @head_email = @form_answer.head_email
+    @head_email = @form_answer.head_of_business_email
     @award_year = @form_answer.award_year.year
     @award_category_title = @form_answer.award_type_full_name
-    @title = @form_answer.head_of_bussines_title
+    @title = @form_answer.head_of_business_title
     @last_name = @form_answer.document["head_of_business_last_name"]
     @name = "#{@title} #{@last_name}"
 

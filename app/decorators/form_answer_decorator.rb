@@ -339,8 +339,8 @@ class FormAnswerDecorator < ApplicationDecorator
     document["website_url"]
   end
 
-  def head_of_bussines_title
-    document["head_of_bussines_title"]
+  def head_of_business_title
+    document["head_of_business_title"] || document["head__of_bussines_title"]
   end
 
   def head_of_business_full_name
@@ -351,12 +351,12 @@ class FormAnswerDecorator < ApplicationDecorator
     document["head_of_business_honours"]
   end
 
-  def head_job_title
-    document["head_job_title"]
+  def head_of_business_job_title
+    document["head_of_business_job_title"] || document["head_job_title"]
   end
 
-  def head_email
-    document["head_email"]
+  def head_of_business_email
+    document["head_of_business_email"] || document["head_email"]
   end
 
   def press_contact_details_email

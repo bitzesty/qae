@@ -1,12 +1,12 @@
 p
   strong Head of organisation
   br
-  - if award.head_of_bussines_title.present?
-    = award.head_of_bussines_title
+  - if award.head_of_business_title.present?
+    = award.head_of_business_title
     '
   = award.head_of_business_full_name
   - if award.head_of_business_honours.present?
     '
     = award.head_of_business_honours
   br
-  = award.head_job_title
+  = award.head_of_business_job_title

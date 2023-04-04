@@ -1,4 +1,9 @@
 .govuk-form-group.question-block.question-required
+  label.govuk-label for=question.input_name(suffix:'title')
+    ' Title
+  span.govuk-error-message
+  input.js-trigger-autosave.govuk-input.govuk-input--width-2 type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'title')
+.govuk-form-group.question-block.question-required
   label.govuk-label for=question.input_name(suffix:'first_name')
     ' First name
   span.govuk-error-message
@@ -15,3 +20,13 @@
   span.govuk-hint
     ' For example, Lieutenant (LVO), Member of the Most Excellent Order of the British Empire (MBE), Air Force Cross (AFC). Please do not include qualifications such as a master's degree or doctorate.
   input.js-trigger-autosave.govuk-input.govuk-input--width-10.js-ignore-substitution type="text" name=question.input_name(suffix: 'honours') value=question.input_value(suffix: 'honours') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'honours')
+.govuk-form-group.question-block.question-required
+  label.govuk-label for=question.input_name(suffix:'job_title')
+    ' Job title or role in the organisation
+  span.govuk-error-message
+  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'job_title') value=question.input_value(suffix: 'job_title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'job_title')
+.govuk-form-group.question-block.question-required
+  label.govuk-label for=question.input_name(suffix:'email')
+    ' Email
+  span.govuk-error-message
+  input.js-trigger-autosave.govuk-input.govuk-input--width-20 type="text" name=question.input_name(suffix: 'email') value=question.input_value(suffix: 'email') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'email')

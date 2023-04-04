@@ -1,7 +1,7 @@
 # coding: utf-8
 class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
   before_action :set_reception_deadlines
-  
+
   def invite(form_answer_id, notify_to_press_contact=false)
     form_answer = FormAnswer.find(form_answer_id).decorate
     invite = form_answer.palace_invite
@@ -11,7 +11,7 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
       @email = form_answer.press_contact_details_email
       @name = form_answer.press_contact_details_full_name
     else
-      @email = form_answer.head_email
+      @email = form_answer.head_of_business_email
       @name = form_answer.head_of_business_full_name
     end
 
