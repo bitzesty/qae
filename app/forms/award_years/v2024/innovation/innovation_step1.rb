@@ -45,7 +45,7 @@ class AwardYears::V2024::QAEForms
           type "email"
         end
 
-        header :due_diligence_header, "Organisation worthiness & due diligence checks" do
+        header :due_diligence_header, "Organisation's conduct & due diligence checks" do
           ref "A 2"
           context %{
             <p class="govuk-body">Please be aware that due diligence checks inform the decision to grant an award.</p>
@@ -195,7 +195,7 @@ class AwardYears::V2024::QAEForms
           sub_ref "A 2.2"
           show_ref_always true
           text %(
-            I consent to all necessary enquiries being made by The King's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a King's Award to ensure the highest standards of propriety.
+            I consent to all necessary enquiries being made by The King's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging their responsibilities to vet any business unit which might be granted a King's Award to ensure the highest standards of propriety.
           )
         end
 
