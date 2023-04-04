@@ -29,7 +29,7 @@ class AwardYears::V2024::QAEForms
           sub_fields([
             { first_name: "First name" },
             { last_name: "Last name" },
-            { honours: "Personal Honours" }
+            { honours: "Personal Honours (optional)" }
           ])
         end
 
