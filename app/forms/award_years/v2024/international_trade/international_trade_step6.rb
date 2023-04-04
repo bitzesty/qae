@@ -20,6 +20,7 @@ class AwardYears::V2024::QAEForms
           )
           pdf_context %(
             <p>If there are additional materials you feel would help us to assess your entry, you can add up to three files or online links in this section.</p>
+            
             <h4 class="govuk-heading-s">What can and cannot be included:</h3>
             <p>
               \u2022 You can include links to promotional videos, websites, other media, or documents you feel are relevant and help illustrate your application.
@@ -33,6 +34,9 @@ class AwardYears::V2024::QAEForms
             </p>
           )
           hint "What are the allowed file formats?", %(
+            <p>
+              You can submit files in most formats if it is less than 5 megabytes each.
+            </p>
             <p>
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
