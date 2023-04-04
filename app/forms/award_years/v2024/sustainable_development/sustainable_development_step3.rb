@@ -3,136 +3,11 @@ class AwardYears::V2024::QAEForms
   class << self
     def development_step3
       @development_step3 ||= proc do
-        header :development_c_section_header, "" do
-          section_info
-          context %(
-            <h3 class='govuk-heading-m'>About section C</h3>
-            <p class='govuk-body'>
-              Read this section before planning the answers.
-              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
-              <br />
-              Avoid using technical jargon.
-            </p>
-
-            <h3 class='govuk-heading-m'>Small organisations</h3>
-            <p class='govuk-body'>
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
-            </p>
-
-            <h3 class='govuk-heading-m'>COVID-19 impact</h3>
-            <p class='govuk-body'>
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            </p>
-
-            <h3 class='govuk-heading-m'>United Nations Sustainable Development Goals (UN SDGs)</h3>
-            <p class='govuk-body'>
-              You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
-            </p>
-            <p class='govuk-body'>
-              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
-            </p>
-
-            <p class='govuk-body'>
-              You can find more information about each goal on the United Nations (UN) website by clicking on the links below:
-            </p>
-
-            <p class='govuk-body'>
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal1.html">GOAL 1: No Poverty</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal2.html">GOAL 2: Zero Hunger</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal3.html">GOAL 3: Good Health and Well-being</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal4.html">GOAL 4: Quality Education</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal5.html">GOAL 5: Gender Equality</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal6.html">GOAL 6: Clean Water and Sanitation</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal7.html">GOAL 7: Affordable and Clean Energy</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal8.html">GOAL 8: Decent Work and Economic Growth</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal9.html">GOAL 9: Industry, Innovation and Infrastructure</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal10.html">GOAL 10: Reduced Inequality</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal11.html">GOAL 11: Sustainable Cities and Communities</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal12.html">GOAL 12: Responsible Consumption and Production</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal13.html">GOAL 13: Climate Action</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal14.html">GOAL 14: Life Below Water</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal15.html">GOAL 15: Life on Land</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal16.html">GOAL 16: Peace and Justice Strong Institutions</a><br />
-              <a class="govuk-link social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal17.html">GOAL 17: Partnerships to achieve the Goal</a>
-            </p>
-          )
-
-          pdf_context_with_header_blocks [
-            [:bold, "About section C"],
-            [:normal, %(
-              Read this section before planning the answers.
-              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
-              Avoid using technical jargon.
-            )],
-            [:bold, "Small organisations"],
-            [:normal, %(
-              King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.
-            )],
-            [:bold, "COVID-19 impact"],
-            [:normal, %(
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            )],
-            [:bold, "United Nations Sustainable Development Goals (UN SDGs)"],
-            [:normal, %(
-              You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
-
-              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
-
-              \u2022 GOAL 1: No Poverty
-              https://www.un.org/development/desa/disabilities/envision2030-goal1.html
-
-              \u2022 GOAL 2: Zero Hunger
-              https://www.un.org/development/desa/disabilities/envision2030-goal2.html
-
-              \u2022 GOAL 3: Good Health and Well-being
-              https://www.un.org/development/desa/disabilities/envision2030-goal3.html
-
-              \u2022 GOAL 4: Quality Education
-              https://www.un.org/development/desa/disabilities/envision2030-goal4.html
-
-              \u2022 GOAL 5: Gender Equality
-              https://www.un.org/development/desa/disabilities/envision2030-goal5.html
-
-              \u2022 GOAL 6: Clean Water and Sanitation
-              https://www.un.org/development/desa/disabilities/envision2030-goal6.html
-
-              \u2022 GOAL 7: Affordable and Clean Energy
-              https://www.un.org/development/desa/disabilities/envision2030-goal7.html
-
-              \u2022 GOAL 8: Decent Work and Economic Growth
-              https://www.un.org/development/desa/disabilities/envision2030-goal8.html
-
-              \u2022 GOAL 9: Industry, Innovation and Infrastructure
-              https://www.un.org/development/desa/disabilities/envision2030-goal9.html
-
-              \u2022 GOAL 10: Reduced Inequality
-              https://www.un.org/development/desa/disabilities/envision2030-goal10.html
-
-              \u2022 GOAL 11: Sustainable Cities and Communities
-              https://www.un.org/development/desa/disabilities/envision2030-goal11.html
-
-              \u2022 GOAL 12: Responsible Consumption and Production
-              https://www.un.org/development/desa/disabilities/envision2030-goal12.html
-
-              \u2022 GOAL 13: Climate Action
-              https://www.un.org/development/desa/disabilities/envision2030-goal13.html
-
-              \u2022 GOAL 14: Life Below Water
-              https://www.un.org/development/desa/disabilities/envision2030-goal14.html
-
-              \u2022 GOAL 15: Life on Land
-              https://www.un.org/development/desa/disabilities/envision2030-goal15.html
-
-              \u2022 GOAL 16: Peace and Justice Strong Institutions
-              https://www.un.org/development/desa/disabilities/envision2030-goal16.html
-
-              \u2022 GOAL 17: Partnerships to achieve the Goal
-              https://www.un.org/development/desa/disabilities/envision2030-goal17.html
-            )]
-          ]
+        about_section :development_c_section_header, "" do
+          section "your_sustainable_development"
         end
 
-        header :sustainable_development_interventions_summary_header, "Summary of your Sustainable Development Interventions" do
+        header :sustainable_development_interventions_summary_header, "Summary of your sustainable development interventions" do
           ref "C 1"
         end
 
@@ -176,19 +51,26 @@ class AwardYears::V2024::QAEForms
         header :sustainable_development_core_business_header, "Core business and your approach to sustainability" do
           ref "C 2"
           context %{
-            <p class='govuk-hint'>In questions C2.1 to C2.7 describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.</p>
+            <p class='govuk-hint'>
+              In questions C2.1 to C2.7, describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
+            </p>
           }
         end
 
         textarea :briefly_describe_your_core_business, "A brief summary of your organisation." do
           classes "word-max-strict sub-question"
           ref "C 2.1"
+          context %(
+            <p>
+              Please describe what your business does.
+            </p>
+          )
           required
           rows 2
           words_max 200
         end
 
-        textarea :describe_previous_situation_before_sustainability, "What was the situation before your organisation adopted a sustainability purpose, objectives and intervention?" do
+        textarea :describe_previous_situation_before_sustainability, "What was the situation before your organisation adopted a sustainability purpose, objectives and interventions?" do
           classes "word-max-strict sub-question"
           ref "C 2.2"
           required
@@ -200,8 +82,8 @@ class AwardYears::V2024::QAEForms
           classes "word-max-strict sub-question"
           ref "C 2.3"
           required
-          rows 2
-          words_max 200
+          rows 3
+          words_max 300
         end
 
         textarea :how_have_you_embedded_sustainability_objectives, "How have you embedded sustainability objectives or purpose in your organisation?" do
@@ -217,18 +99,33 @@ class AwardYears::V2024::QAEForms
           ref "C 2.5"
           required
           context %{
-            <p>As a minimum, we expect all winning organisations to have good practices around climate change. Therefore, if your sustainable development interventions are not climate focused, describe:</p>
-            <p>a) your strategy and approach related to climate change.</p>
-            <p>b) your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero”.</p>
-            <p>c) how you have measured your emissions.</p>
-            <p>Please note, if your application is focused on climate change, do not repeat climate change related information in your answer to C2.5, just state that it's covered in other answers.</p>
-            <p>However, you may highlight other areas that show your organisation operates sustainability that are not covered in your other answers such as being part of the circular economy, or reductions in use of plastics.</p>
+            <p>
+              At a minimum, we expect all winning organisations to have good practices around climate change. Therefore, if your sustainable development interventions are not climate focused, describe:
+            </p>
+            <ul>
+              <li>Your strategy and approach related to climate change.</li>
+              <li>Your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero” or beyond.</p>
+              <li>How you have measured your emissions.</li>
+              <li>Other areas that show your organisation operates sustainably, such as being part of the circular economy, or reductions in hazardous waste and plastics (if relevant).</li>
+            <p>
+              Please note, if your application is focused on climate change, do not repeat climate change related information in your answer to C2.5, just state that it's covered in other answers.
+            </p>
           }
+          pdf_context %(
+            At a minimum, we expect all winning organisations to have good practices around climate change. Therefore, if your sustainable development interventions are not climate focused, describe:
+
+            /u2022 Your strategy and approach related to climate change.
+            /u2022 Your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero” or beyond.
+            /u2022 How you have measured your emissions.
+            /u2022 Other areas that show your organisation operates sustainably, such as being part of the circular economy, or reductions in hazardous waste and plastics (if relevant).
+
+            Please note, if your application is focused on climate change, do not repeat climate change related information in your answer to C2.5, just state that it's covered in other answers.
+          )
           rows 2
-          words_max 200
+          words_max 300
         end
 
-        textarea :how_sustainability_interventions_benefit_business_strategy, "How sustainability interventions benefit the overall business strategy?" do
+        textarea :how_sustainability_interventions_benefit_business_strategy, "How do sustainability interventions benefit the overall business strategy?" do
           classes "word-max-strict sub-question"
           ref "C 2.6"
           required
@@ -241,7 +138,9 @@ class AwardYears::V2024::QAEForms
           ref "C 2.7"
           required
           context %{
-            <p>For example, how are you changing your business to respond to future sustainability challenges in your business or sector?</p>
+            <p>
+              For example, how are you changing your business to respond to future sustainability challenges in your business or sector?
+            </p>
           }
           rows 2
           words_max 200
@@ -250,7 +149,9 @@ class AwardYears::V2024::QAEForms
         header :leadership_and_management, "Leadership and management" do
           ref "C 3"
           context %{
-            <p class="govuk-hint">In questions C3.1 to C3.8 describe the driving force of your organisation's sustainability.</p>
+            <p class="govuk-hint">
+              In questions C3.1 to C3.8, describe the driving force of your organisation's sustainability.
+            </p>
           }
         end
 
@@ -286,7 +187,9 @@ class AwardYears::V2024::QAEForms
           ref "C 3.4"
           required
           context %{
-            <p>For example, businesses in your supply chain, stakeholders, customers or local communities.</p>
+            <p>
+              For example, businesses in your supply chain, stakeholders, customers, local communities or even competitors.
+            </p>
           }
           rows 4
           words_max 400
@@ -300,18 +203,20 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :describe_your_organisation_diversity, "Describe your organisation's diversity and inclusion strategy, including how your organisation attracts, recruits, promotes and retains a diverse workforce." do
+        textarea :describe_your_organisation_diversity, "How does your organisation attract, recruit, promote and retain a diverse workforce?" do
           classes "word-max-strict sub-question"
           ref "C 3.6"
           required
           context %{
-            <p>Explain your policies and provide evidence that these are effective.</p>
+            <p>
+              Describe your organisation's diversity and inclusion strategy and any policies. Provide evidence that these are effective.
+            </p>
           }
           rows 5
           words_max 500
         end
 
-        textarea :describe_how_employee_relations_improved_their_motivation, "How has your employee relations improved their motivation, well-being and satisfaction?" do
+        textarea :describe_how_employee_relations_improved_their_motivation, "How do you ensure workforce motivation, well-being and satisfaction?" do
           classes "word-max-strict sub-question"
           ref "C 3.7"
           required
@@ -322,7 +227,9 @@ class AwardYears::V2024::QAEForms
         header :culture_and_values, "Culture and values regarding sustainability" do
           ref "C 4"
           context %{
-            <p class="govuk-hint">In questions C4.1 to C4.4 describe how your organisation's culture fosters and supports sustainability.</p>
+            <p class="govuk-hint">
+              In questions C4.1 to C4.4, describe how your organisation's culture fosters and supports sustainability.
+            </p>
           }
         end
 
@@ -334,29 +241,28 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :how_do_you_increase_positive_perception_of_sustainability, "How do you increase positive perceptions of your organisation's sustainability among customers, stakeholders, or the media?" do
+        textarea :how_do_you_increase_positive_perception_of_sustainability, "How do you increase positive perceptions of your organisation's sustainability among stakeholders, such as your workforce, supply chain, customers, communities, and media?" do
           classes "word-max-strict sub-question"
           ref "C 4.2"
+          context %(
+            <p>
+              Please state how you communicate the impact of your sustainability interventions to the various stakeholders.
+            </p>
+            <p>
+              Include links to relevant pages on your company's website, social media or alternative channels where you demonstrate your leadership in sustainable development.
+            </p>
+            <p>
+              If applicable, include in your answer or attach in section E of this form: newsletters, quotes or similar materials to bring to life how you communicate the value you place on sustainability.
+            </p>
+          )
           required
-          rows 2
-          words_max 200
+          rows 4
+          words_max 400
         end
 
-        textarea :how_do_you_communicate_the_impact_of_sustainability, "How do you communicate the impact of your sustainability interventions to employees, stakeholders, your supply chain, communities or similar?" do
+        textarea :what_are_your_long_term_plans_for_sustainability, "What are your long-term plans for ensuring your organisation provides the leadership, innovation or interventions to enable greater sustainable development?" do
           classes "word-max-strict sub-question"
           ref "C 4.3"
-          required
-          context %{
-            <p>Please include links to relevant pages on your company's website, social media or alternative channels where you demonstrate your leadership in Sustainable Development.</p>
-            <p>If applicable, include in your answer or attach in section E of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability.</p>
-          }
-          rows 2
-          words_max 200
-        end
-
-        textarea :what_are_your_long_term_plans_for_sustainability, "What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?" do
-          classes "word-max-strict sub-question"
-          ref "C 4.4"
           required
           rows 2
           words_max 200
@@ -365,27 +271,36 @@ class AwardYears::V2024::QAEForms
         header :sustainable_development_interventions_header, "Your sustainable development interventions" do
           ref "C 5"
           context %{
-            <p class="govuk-hint">In questions C5.1 to C5.4 describe your interventions, using the UN SDGs to structure your answer where relevant. You need to summarise your actions or interventions to sustainable development and demonstrate a sustainable strategy across the business.</p>
+            <p class="govuk-hint">
+              In questions C5.1 to C5.4, describe your interventions using the UN SDGs to structure your answer to each section, but only where relevant.
+            </p>
+            <p class="govuk-hint">
+              You need to summarise your interventions for sustainable development and demonstrate a sustainable strategy across the business.
+            </p>
           }
-        end
-
-        textarea :aims_of_the_interventions, "The aims of the interventions" do
-          classes "word-max-strict sub-question"
-          ref "C 5.1"
-          required
-          context %{
-            <p>For example, this could be to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community.</p>
-          }
-          rows 2
-          words_max 200
         end
 
         textarea :describe_your_interventions_using_un, "Which UN SDGs are your efforts targeted towards?" do
           required
           classes "word-max-strict sub-question"
-          sub_ref "C 5.2"
+          sub_ref "C 5.1"
           context %{
-            <p>Please note, you do not need to address each UN SDG, only the ones that are most applicable to your sustainable development interventions.</p>
+            <p>
+              Please note, you do not need to address each UN SDG, only the ones that are most applicable to your sustainable development interventions.
+            </p>
+          }
+          rows 2
+          words_max 200
+        end
+
+        textarea :aims_of_the_interventions, "The aims of the interventions." do
+          classes "word-max-strict sub-question"
+          ref "C 5.2"
+          required
+          context %{
+            <p>
+              For example, this could be, to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community and society in general.
+            </p>
           }
           rows 2
           words_max 200
@@ -395,6 +310,11 @@ class AwardYears::V2024::QAEForms
           classes "word-max-strict sub-question"
           ref "C 5.3"
           required
+          context %(
+            <p>
+              For instance, does your sustainable development activity relate to the whole organisation or just part of it?
+            </p>
+          )
           rows 2
           words_max 200
         end
@@ -404,22 +324,28 @@ class AwardYears::V2024::QAEForms
           ref "C 5.4"
           required
           context %{
-            <p> For example, it may be exemplary as a result of:</p>
+            <p>
+              For example, they may be exemplary as a result of:
+            </p>
             <ul>
               <li>An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.</li>
               <li>Developing unique or innovative ways to be sustainable.</li>
               <li>Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.</li>
               <li>Leading the way in your company, sector or market by doing something that has never been done before.</li>
             </ul>
+            <p>
+              If you have any external documents or other media to support your answer, please add these in Section E and reference them by their names in your answers.
+            </p>
           }
           pdf_context %(
-            <p> For example, it may be exemplary as a result of:</p>
-            <p>
-              \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
-              \u2022 Developing unique or innovative ways to be sustainable.
-              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
-              \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
-            </p>
+            For example, it may be exemplary as a result of:
+
+            \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+            \u2022 Developing unique or innovative ways to be sustainable.
+            \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+            \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
+
+            If you have any external documents or other media to support your answer, please add these in Section E and reference them by their names in your answers.
           )
           rows 2
           words_max 200
@@ -428,8 +354,12 @@ class AwardYears::V2024::QAEForms
         header :sustainable_development_impact_header, "Impact of your sustainable development " do
           ref "C 6"
           context %{
-            <p class="govuk-hint">In questions C6.1 to C6.6 describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.</p>
-            <p class="govuk-hint">Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.</p>
+            <p class="govuk-hint">
+              In questions C6.1 to C6.6, describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
+            </p>
+            <p class="govuk-hint">
+              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
+            </p>
           }
         end
 
@@ -444,7 +374,7 @@ class AwardYears::V2024::QAEForms
           words_max 300
         end
 
-        textarea :what_qualitive_measures_were_used_to_measure_success, "State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance." do
+        textarea :what_qualitive_measures_were_used_to_measure_success, "State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, workforce or others in meeting objectives for performance." do
           ref "C 6.2"
           classes "word-max-strict sub-question"
           required
@@ -457,20 +387,25 @@ class AwardYears::V2024::QAEForms
           ref "C 6.3"
           required
           context %{
-            <p>Describe the impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.</p>
-            <p>Describe how you are part of the circular economy.</p>
+            <p>
+              Describe the impact on your organisation, workforce, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets and how you are part of the circular economy.
+            </p>
           }
-          rows 2
-          words_max 200
+          rows 3
+          words_max 300
         end
 
-        textarea :how_does_the_scale_of_intervention_compare_to_others, "How does the scale of your intervention compare with other organisations in your sector?" do
+        textarea :how_does_the_scale_of_intervention_compare_to_others, "How does the scale of your interventions compare with other organisations in your sector?" do
           classes "word-max-strict sub-question"
           ref "C 6.4"
           required
           context %{
-            <p>Explain and, if possible, provide evidence or research on how you have compared your organisation to others in your sector, including a web link if available.</p>
-            <p>Explain how you know that your sustainability performance is exemplary compared with the sector in general.</p>
+            <p>
+              Explain and, if possible, provide evidence or research on how you have compared your organisation to others in your sector, including a web link if available.
+            </p>
+            <p>
+              Explain how you know that your sustainability performance is exemplary compared with the sector in general.
+            </p>
           }
           rows 3
           words_max 300
@@ -484,19 +419,26 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :which_accreditations_have_been_achieved, "State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation." do
+        textarea :which_accreditations_have_been_achieved, "If your organisation has achieved recognised standards or accreditations, please list them." do
           classes "word-max-strict sub-question"
           ref "C 6.6"
           required
+          context %(
+            <p>
+              For example, ISO 14000 group of standards or B-Corp accreditation. If you haven't achieved such standards or accreditations, use this space to explain what processes you have in place to maintain standards.
+            </p>
+          )
           rows 2
           words_max 200
         end
 
-        textarea :governance, "Additional information about your environmental, social, and corporate governance (ESG). (optional)" do
+        textarea :governance, "Additional information about your Environmental, Social, and Corporate Governance (ESG). (optional)" do
           classes "word-max-strict sub-question"
           ref "C 6.7"
           context %{
-            <p>Please highlight your responsible business conduct and its impact within your organisation, supply chain and the wider community, if not already covered.</p>
+            <p>
+              Please highlight your responsible business conduct and its impact within your organisation, supply chain and the wider community, if not already covered.
+            </p>
           }
           rows 2
           words_max 200
