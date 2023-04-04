@@ -18,7 +18,7 @@ class AwardYears::V2024::QAEForms
           classes "application-notice help-notice"
           context %(
             <p class="govuk-body">
-              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
+              Where we refer to 'your organisation' in the form, enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -77,7 +77,7 @@ class AwardYears::V2024::QAEForms
           ref "B 3.1"
           context %(
             <p>
-              If you're an unregistered subsidiary, enter your parent company's VAT number.
+              If you're an unregistered subsidiary, enter your parent company's number.
             </p>
           )
           style "small"
@@ -95,7 +95,7 @@ class AwardYears::V2024::QAEForms
           style "small"
         end
 
-        text :company_name, "Full legal name of your organisation" do
+        text :company_name, "Full legal name of your organisation." do
           required
           ref "B 4"
           context %(
@@ -176,7 +176,7 @@ class AwardYears::V2024::QAEForms
           ref "B 8"
           style "large"
           context %(
-            <p>Please provide full website address, for example, www.yourcompanyname.com</p>
+            <p>Please provide the full website address, for example, www.yourcompanyname.com</p>
           )
         end
 
@@ -188,12 +188,12 @@ class AwardYears::V2024::QAEForms
           }
         end
 
-        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
+        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do
           required
           ref "B 9"
           context %(
             <p class="govuk-hint">
-              The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC on
+              The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at
               <a class="govuk-link" target="_blank" href="https://resources.companieshouse.gov.uk/sic/">https://resources.companieshouse.gov.uk/sic/</a>.
             </p>
             <p class="govuk-hint">
@@ -201,7 +201,7 @@ class AwardYears::V2024::QAEForms
             </p>
           )
           pdf_context_with_header_blocks [
-            [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC on https://resources.companieshouse.gov.uk/sic/."],
+            [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/."],
             [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."]
           ]
         end
@@ -212,14 +212,14 @@ class AwardYears::V2024::QAEForms
           yes_no
         end
 
-        text :parent_company, "Name of the immediate parent company" do
+        text :parent_company, "Name of the immediate parent company." do
           required
           classes "sub-question"
           sub_ref "B 10.1"
           conditional :parent_or_a_holding_company, :yes
         end
 
-        country :parent_company_country, "Country of the immediate parent company" do
+        country :parent_company_country, "Country of the immediate parent company." do
           classes "sub-question"
           required
           sub_ref "B 10.2"
@@ -332,7 +332,7 @@ class AwardYears::V2024::QAEForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen's/King's Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards, "In the last ten years, have you applied for a Queen's/King's Awards for Enterprise in any category?" do
           required
           ref "B 14"
           yes_no

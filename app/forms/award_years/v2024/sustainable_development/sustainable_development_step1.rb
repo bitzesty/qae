@@ -61,7 +61,7 @@ class AwardYears::V2024::QAEForms
               <li>Non-compliance with regulations;</li>
               <li>Failure to pay your workforce the minimum wage;</li>
               <li>Accident within the workplace, which has resulted in harm being caused to the environment or workforce;</li>
-              <li>Failure to fully comply with administrative filing requirements as stipulated by any government department or agency.</li>
+              <li>Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.</li>
             </ul>
             <details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details">
               <summary class="govuk-details__summary">
@@ -133,7 +133,7 @@ class AwardYears::V2024::QAEForms
               \u2022 Non-compliance with regulations;
               \u2022 Failure to pay your workforce the minimum wage;
               \u2022 Accident within the workplace, which has resulted in harm being caused to the environment or workforce;
-              \u2022 Failure to fully comply with administrative filing requirements as stipulated by any government department or agency.
+              \u2022 Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
 
               Government Departments and Agencies we undertake due diligence checks with:
 

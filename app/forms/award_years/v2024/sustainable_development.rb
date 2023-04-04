@@ -12,8 +12,8 @@ class AwardYears::V2024::QAEForms
              "Consent & Due Diligence",
              &AwardYears::V2024::QAEForms.development_step1
 
-        step "Company Information",
-             "Company Information",
+        step "Company information",
+             "Company information",
              &AwardYears::V2024::QAEForms.development_step2
 
         step "Your Sustainable Development",
