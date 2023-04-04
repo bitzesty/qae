@@ -273,7 +273,7 @@ describe Notifiers::EmailNotificationService do
       }.by(1)
 
       last_invite = PalaceInvite.last
-      expect(last_invite.email).to be_eql form_answer.decorate.head_email
+      expect(last_invite.email).to be_eql form_answer.decorate.head_of_business_email
       expect(last_invite.form_answer_id).to be_eql form_answer.id
 
       expect(current_notification.reload).to be_sent
@@ -282,7 +282,7 @@ describe Notifiers::EmailNotificationService do
     context "for an application with submitted attendees details" do
       it "does not send an invite" do
         create(:palace_invite,
-               email: form_answer.decorate.head_email,
+               email: form_answer.decorate.head_of_business_email,
                form_answer: form_answer,
                submitted: true)
 

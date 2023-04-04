@@ -173,7 +173,7 @@ class Notifiers::EmailNotificationService
     award_year.form_answers.business.winners.each do |form_answer|
 
       invite = PalaceInvite.where(
-        email: form_answer.decorate.head_email,
+        email: form_answer.decorate.head_of_business_email,
         form_answer_id: form_answer.id
       ).first_or_create
 

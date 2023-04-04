@@ -34,13 +34,13 @@ module Reports::DataPickers::FormDocumentPicker
 
   def head_position
     if business_form?
-      doc("head_job_title")
+      doc("head_of_business_job_title") || doc("head_job_title")
     end
   end
 
   def head_full_name
     if business_form?
-      "#{doc('head_of_bussines_title')} #{doc('head_of_business_first_name')} #{doc('head_of_business_last_name')} #{doc('head_of_business_honours')}"
+      "#{doc('head_of_business_title') || doc('head_of_bussines_title')} #{doc('head_of_business_first_name')} #{doc('head_of_business_last_name')} #{doc('head_of_business_honours')}"
     end
   end
 
@@ -62,14 +62,14 @@ module Reports::DataPickers::FormDocumentPicker
     doc "nominee_email"
   end
 
-  def head_email
+  def head_of_business_email
     if business_form?
-      doc "head_email"
+      doc("head_of_business_email") || doc("head_email")
     end
   end
 
   def head_title
-    doc("head_of_bussines_title")
+    doc("head_of_business_title")
   end
 
   def innovation_type

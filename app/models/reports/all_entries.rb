@@ -33,7 +33,7 @@ class Reports::AllEntries
     },
     {
       label: "HeadOfUnitEmail",
-      method: :head_email
+      method: :head_of_business_email
     },
     {
       label: "CompanyName",

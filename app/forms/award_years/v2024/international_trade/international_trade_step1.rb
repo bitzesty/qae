@@ -14,40 +14,17 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        header :head_of_bussines_header, "Details of the head of  your organisation" do
-          ref "A 1.2"
-        end
-
-        text :head_of_bussines_title, "Title" do
-          required
+        head_of_business :head_of_business, "Details of the head of your organisation" do
+          sub_ref "A 1.2"
           classes "sub-question"
-          excluded_header_questions
-          style "tiny"
-        end
-
-        head_of_business :head_of_business, "" do
           sub_fields([
+            { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
-            { honours: "Personal Honours" }
+            { honours: "Personal Honours (optional)" },
+            { job_title: "Job title or role in the organisation" },
+            { email: "Email address" }
           ])
-        end
-
-        text :head_job_title, "Job title or role in the organisation" do
-          classes "sub-question"
-          excluded_header_questions
-          required
-          form_hint %(
-            For exmaple CEO, Managing Director, Founder
-          )
-        end
-
-        text :head_email, "Email address" do
-          classes "sub-question"
-          excluded_header_questions
-          style "large"
-          required
-          type "email"
         end
 
         header :due_diligence_header, "Organisation's conduct & due diligence checks" do
