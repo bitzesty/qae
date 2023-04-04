@@ -34,6 +34,28 @@ class AwardYears::V2024::QAEForms
         textarea :trade_description_short, "Provide a one-line description of your international trade." do
           classes "sub-question word-max-strict"
           sub_ref "C 2.1"
+          context %(
+            <p>
+              This summary will be used in publicity material if your application is successful.
+            </p>
+            <p>
+              For example:
+            </p>
+            <ul>
+              <li>The leading source of agricultural market intelligence, supporting the advancement of the global food chain.</li>
+              <li>Cross-border eCommerce retail and technology group enabling merchants of all sizes to access China.</li>
+              <li>World-leading marine equipment for the deployment of subsea infrastructure across traditional and renewable energy sectors.</li>
+            </ul>
+          )
+          pdf_context %(
+            This summary will be used in publicity material if your application is successful.
+
+            For example:
+
+            \u2022 The leading source of agricultural market intelligence, supporting the advancement of the global food chain.
+            \u2022 Cross-border eCommerce retail and technology group enabling merchants of all sizes to access China.
+            \u2022 World-leading marine equipment for the deployment of subsea infrastructure across traditional and renewable energy sectors.
+          )
           required
           rows 1
           words_max 15
@@ -75,6 +97,9 @@ class AwardYears::V2024::QAEForms
           sub_ref "C 2.3"
           required
           context %(
+            <p>
+              If you have more than five products or services, group them, so that they don't exceed five.
+            </p>
             <p>
               If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
             </p>
@@ -209,7 +234,7 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years (due to factors other than Covid-19)." do
+        textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years (due to factors other than COVID-19)." do
           sub_ref "C 6.1"
           classes "sub-question word-max-strict"
           required

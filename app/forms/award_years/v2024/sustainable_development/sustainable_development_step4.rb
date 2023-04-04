@@ -3,145 +3,111 @@ class AwardYears::V2024::QAEForms
   class << self
     def development_step4
       @development_step4 ||= proc do
-        header :commercial_success_info_block, "" do
-          section_info
-          context %(
-            <h3 class="govuk-heading-m">About this section</h3>
-            <p class="govuk-body">
-              All applicants must demonstrate their viability and you will need to upload your accounts to provide evidence of this.
-            </p>
-
-            <h3 class="govuk-heading-m">Small organisations</h3>
-            <p class="govuk-body">
-              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-            </p>
-
-            <h3 class="govuk-heading-m">Volatile markets & last financial year</h3>
-            <p class="govuk-body">
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
-            </p>
-            <p class="govuk-body">
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            </p>
-            <h3 class="govuk-heading-m">Estimated figures</h3>
-            <p class="govuk-body">
-              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            </p>
-          )
-          pdf_context_with_header_blocks [
-            [:bold, "About this section"],
-            [:normal, %(
-              All applicants must demonstrate their viability and you will need to upload your accounts to provide evidence of this.
-            )],
-            [:bold, "Small organisations"],
-            [:normal, %(
-              The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-            )],
-            [:bold, "Volatile markets & last financial year"],
-            [:normal, %(
-              We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
-
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline).However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            )],
-            [:bold, "Estimated figures"],
-            [:normal, %(
-              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            )]
-          ]
+        about_section :commercial_success_info_block, "" do
+          section "development_commercial_performance"
         end
 
-        textarea :explain_why_your_organisation_is_financially_viable, "Explain why your organisation is financially viable." do
+        textarea :explain_why_your_organisation_is_financially_viable, "Explain how your organisation is financially viable." do
           ref "D 1"
           required
           context %(
             <p>
-              For example, you could briefly explain your financial model, income or profit growth, how you are funded, your cash flow position and investments secured. Some of these may not apply to your organisation, in that case, explain by what other means your organisation ensures financial viability.
+              To be eligible for a King's Award for Enterprise, your organisation must be on a financially viable footing.
             </p>
+            <p>
+              Please explain:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Your financial model;</li>
+              <li>Your cash flow position;</li>
+              <li>How you are funded: Have you received any form of investment or grant funding? If so, please specify the amounts;</li>
+              <li>How you plan to sustain your organisation in future: Income or profit growth plans;</li>
+              <li>Your investment or funding strategy.</li>
+            </ul>
+            <p>
+              Some of these may not apply to your organisation, in that case, explain by what other means your organisation ensures financial viability.
+            </p>
+          )
+          pdf_context %(
+            To be eligible for a King's Award for Enterprise, your organisation must be on a financially viable footing.
+
+            Please explain:
+
+              \u2022 Your financial model;
+              \u2022 Your cash flow position;
+              \u2022 How you are funded: Have you received any form of investment or grant funding? If so, please specify the amounts;
+              \u2022 How you plan to sustain your organisation in future: Income or profit growth plans;
+              \u2022 Your investment or funding strategy.
+
+            Some of these may not apply to your organisation, in that case, explain by what other means your organisation ensures financial viability.
           )
           rows 5
           words_max 250
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        innovation_financial_year_date :financial_year_date, "Enter your financial year end date." do
           ref "D 2"
           required
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>3</span> year entry period?" do
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three</span> most recent financial years?" do
           classes "sub-question js-financial-year-change"
           sub_ref "D 2.1"
           required
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3</span> full 12-month periods.
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
             </p>
           )
           default_option "no"
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+          classes "sub-question one-option-by-years"
+          sub_ref "D 2.2"
+          context %(
+            <p>
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
+            </p>
+          )
+          required
+          type :date
+          label ->(y) { "Financial year #{y}" }
+        end
+
+        textarea :financial_adjustments_explanation, "Explain adjustments to figures." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 2.3"
+          context %(
+            <p>
+              If your financial year-end has changed, you will need to agree with your accountants on how to allocate your figures in all section D questions so that they show three 12-month periods (36 months). This allows for a comparison between years. Please explain what approach you will take to adjust the figures.
+            </p>
+          )
+          required
+          rows 2
+          words_max 200
+          conditional :financial_year_date_changed, :yes
+        end
+
+        textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
           classes "sub-question"
-          sub_ref "D 2.1.1"
+          sub_ref "D 2.4"
           required
           rows 2
           words_max 100
           conditional :financial_year_date_changed, :yes
         end
 
-        one_option_by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
-          classes "sub-question one-option-by-years"
-          sub_ref "D 2.2"
-
-          context %(
-            <p>
-              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
-            </p>
-            <p>
-              If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            </p>
-          )
-
-          required
-          type :date
-          label ->(y) { "Financial year #{y}" }
-        end
-
-        upload :supporting_financials, "To support your figures, please upload your financial statements for the years entered in question D2.2." do
-          classes "sub-question"
-          sub_ref "D 2.3"
-          context %(
-            <p>
-              If you are a company, upload relevant accounts as submitted to the Companies House. In addition, upload the full accounts prepared by your company and your corporation tax returns as submitted to HMRC.
-            </p>
-            <p>
-              If you are a Charity, upload relevant returns as submitted to the Charity Commission.
-            </p>
-            <p>
-              If you are a sole trader or unincorporated partnership, upload relevant accounts and your tax returns as submitted to HMRC.
-            </p>
-            <p>
-              Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            </p>
-            <p>
-              You can upload files in most common formats, if they are less than five megabytes.
-            </p>
-          )
-          hint "What are the accepted file formats?", %(
-            <p>
-              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
-            </p>
-          )
-          max_attachments 15
-        end
-
-        one_option_by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        one_option_by_years :employees, "Enter the number of people employed by your organisation in the UK in each of your three most recent financial years." do
           classes "question-employee-min"
           ref "D 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
+            <p>
+              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
+            </p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -151,22 +117,12 @@ class AwardYears::V2024::QAEForms
           employees_question
         end
 
-        header :company_financials, "Company Financials" do
+        about_section :company_financials, "Company Financials" do
           ref "D 4"
-          context %(
-            <p class="govuk-body">
-              A parent company making a group entry should include the trading figures of all UK members of the group.
-            </p>
-            <p class="govuk-body">
-              You must enter actual financial figures in £ sterling (ignoring pennies).
-            </p>
-            <p class="govuk-body">
-              Please do not separate your figures with commas.
-            </p>
-          )
+          section "company_financials_development"
         end
 
-        one_option_by_years :total_turnover, "Total turnover" do
+        one_option_by_years :total_turnover, "Total income or turnover" do
           ref "D 4.1"
           required
           classes "sub-question"
@@ -181,11 +137,13 @@ class AwardYears::V2024::QAEForms
           classes "sub-question"
           sub_ref "D 4.2"
           required
-          context %(<p>Please enter '0' if you had none.</p>)
-
+          context %(
+            <p>
+              Please enter '0' if you had none. If you don't have exact export figures, you can provide approximate ones.
+            </p>
+          )
           type :money
           label ->(y) { "Financial year #{y}" }
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -207,20 +165,12 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        one_option_by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
+        one_option_by_years :net_profit, "Net income or net profit after tax but before dividends" do
           classes "sub-question"
           sub_ref "D 4.4"
           required
-
           type :money
           label ->(y) { "Financial year #{y}" }
-
-          context %(
-            <p>
-              Use a minus symbol to record any losses.
-            </p>
-          )
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -230,7 +180,7 @@ class AwardYears::V2024::QAEForms
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current) minus liabilities (current and long-term).
+              As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).
             </p>
           )
           type :money
@@ -239,34 +189,24 @@ class AwardYears::V2024::QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
+        textarea :drops_in_turnover, "If you have had any losses, drops in turnover (or income), or reductions in net profit, please explain them." do
           classes "sub-question"
           sub_ref "D 4.6"
           required
           rows 5
           words_max 200
-
           context %(
             <p>
-              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+              Please note, when applicable, failure to answer this question may result in assessors not being able to fully assess your financial viability, and therefore, your application may be rejected.
             </p>
-          )
-        end
-
-        textarea :development_performance, "What cost-savings have you or your customers' businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
-          ref "D 5"
-          required
-          context %(
             <p>
-              Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
+              If you didn't have any losses, drops in turnover, or reductions in net profit, please state so.
             </p>
           )
-          rows 5
-          words_max 250
         end
 
         textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
-          ref "D 6"
+          ref "D 5"
           required
           context %(
             <p>
@@ -277,39 +217,80 @@ class AwardYears::V2024::QAEForms
           words_max 400
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to volatile markets in recent years." do
-          ref "D 7"
+        textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
+          ref "D 6"
           required
           context %(
-            <p>
-              How have you adapted to or mitigated the impacts of recent volatile markets due to factors such as Covid, and with what results? How are you planning to respond in the year ahead? This could include opportunities you have identified as well as any contextual information or challenges you would like the assessors to consider.
-            </p>
+            <ul>
+              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
+              <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
+            </ul>
+          )
+          pdf_context %(
+            \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+            \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
+            \u2022 Provide any contextual information or challenges you would like the assessors to consider.
           )
           rows 4
           words_max 350
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "D 8"
+          ref "D 7"
           required
           yes_no
           context %(
             <p>
-              If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
+              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures.
             </p>
           )
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
+        confirm :agree_to_provide_actual_figures, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 8.1"
+          sub_ref "D 7.1"
+          required
+          text %(
+            I understand that if this application is shortlisted, I will have to provide actual figures and related VAT returns before the specified November deadline (the exact date will be provided in the shortlisting email).
+          )
+          conditional :product_estimated_figures, :yes
+        end
+
+        textarea :product_estimates_use, "Explain the use of estimates and how much of these are actual receipts or firm orders." do
+          classes "sub-question"
+          sub_ref "D 7.2"
           required
           rows 5
           words_max 250
           conditional :product_estimated_figures, :yes
         end
 
+        upload :supporting_financials, "To support your figures, please upload your financial statements for the years covered in previous questions in section D." do
+          classes "sub-question"
+          sub_ref "D 8"
+          context %(
+            <p>
+              If you are a company, upload relevant accounts as submitted to the Companies House. In addition, upload the full accounts prepared by your company and your corporation tax returns as submitted to HMRC.
+            </p>
+            <p>
+              If you are a Charity, upload relevant returns as submitted to the Charity Commission.
+            </p>
+            <p>
+              If you are a sole trader or unincorporated partnership, upload relevant accounts and your tax returns as submitted to HMRC.
+            </p>
+          )
+          hint "What are the accepted file formats?", %(
+            <p>
+              You can upload files in most common formats if they are less than five megabytes.
+            </p>
+            <p>
+              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
+            </p>
+          )
+          max_attachments 15
+        end
       end
     end
   end

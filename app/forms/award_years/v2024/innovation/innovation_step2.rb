@@ -50,6 +50,11 @@ class AwardYears::V2024::QAEForms
         end
 
         options :organisation_type, "What type of legal entity is your organisation?" do
+          context %(
+            <p>
+              All types of organisations are eligible to apply for The King's Award for Enterprise.
+            </p>
+          )
           required
           ref "B 3"
           option "sole_trader", "Sole Trader"
@@ -255,13 +260,13 @@ class AwardYears::V2024::QAEForms
           max_attachments 1
         end
 
-        options :applied_for_queen_awards, "In the last ten years, have you applied for a Queen's/King's Awards for Enterprise in any category?" do
+        options :applied_for_queen_awards, "In the last ten years, have you applied for The Queen's/King's Awards for Enterprise in any category?" do
           required
           ref "B 12"
           yes_no
           context %(
             <p>
-            Please answer yes, even if you have not won any of the Queen's/King's Awards you have applied for.
+              Please answer yes, even if you have not won any of the Queen's/King's Awards you have applied for.
             </p>
           )
           classes "queen-award-holder"
@@ -319,7 +324,7 @@ class AwardYears::V2024::QAEForms
           words_max 150
         end
 
-        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the King's Awards for Enterprise award this year?" do
+        checkbox_seria :how_did_you_hear_about_award, "How did you hear about the King's Awards for Enterprise this year?" do
           ref "B 14"
           required
           context %(

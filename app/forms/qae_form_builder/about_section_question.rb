@@ -13,9 +13,12 @@ class QAEFormBuilder
 
     private
     def form_context(data)
+      @link = data.link
       %(
         <h3 class="govuk-heading-m">#{data.header}</h3>
-        #{data.context.map { |c| "<p class='govuk-body'>#{c}</p>" }.join}
+        #{data.context.map { |c|
+          "<p class='govuk-body'>#{c}</p>"}.join
+        }
       )
     end
 
@@ -34,26 +37,32 @@ class QAEFormBuilder
         [about_section_B, small_organisations]
       when "your_innovation"
         [about_section_C_innovation, word_limits, technical_language, supplementary_materials]
+      when "your_international_trade"
+        [about_section_C_international_trade, small_organisations, covid_impact, word_limits, technical_language, supplementary_materials]
+      when "your_sustainable_development"
+        [about_section_C_sustainable_development, small_organisations, covid_impact_development, un_sdgs, supplementary_materials_development]
       when "innovation_commercial_performance"
-        [about_section_D_innovation, financial_periods, estimated_figures]
+        [about_section_D_innovation, financial_periods_innovation, estimated_figures]
+      when "trade_commercial_performance"
+        [about_section_D_trade, financial_periods_trade, estimated_figures]
+      when "development_commercial_performance"
+        [about_section_D, financial_periods_development, estimated_figures_development]
       when "company_financials"
         [group_entries, required_figures_innovation, figures_format]
+      when "company_financials_trade"
+        [group_entries, required_figures_trade, figures_format]
+      when "company_financials_development"
+        [group_entries, estimated_figures_development, figures_format]
       when "innovation_financials"
         [about_D6, required_figures_innovation, figures_format]
       when "innovation_ESG"
         [about_section_E, answering_questions_innovation, small_organisations]
-      when "your_international_trade"
-        [about_section_C_international_trade, small_organisations, covid_impact, word_limits, technical_language, supplementary_materials]
-      when "trade_commercial_performance"
-        [about_section_D_trade, financial_periods_trade, estimated_figures]
-      when "company_financials_trade"
-        [group_entries, required_figures_trade, figures_format]
       when "trade_ESG"
         [about_section_E, answering_questions_trade, small_organisations]
       end
     end
 
-    # Section A
+    ######## Section A ########
     def about_section_A
       OpenStruct.new(
         :header => "About section A",
@@ -62,8 +71,9 @@ class QAEFormBuilder
         ]
       )
     end
+    ######## Section A ########
 
-    # Section B
+    ######## Section B ########
     def about_section_B
       OpenStruct.new(
         :header => "About section B",
@@ -83,7 +93,11 @@ class QAEFormBuilder
       )
     end
 
-    # Section C
+    ######## Section B ########
+
+    ######## Section C ########
+
+    # About Section C
     def about_section_C_innovation
       OpenStruct.new(
         :header => "About section C",
@@ -102,6 +116,17 @@ class QAEFormBuilder
       )
     end
 
+    def about_section_C_sustainable_development
+      OpenStruct.new(
+        :header => "About section C",
+        :context => [
+          "Read this section before planning the answers. Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.",
+          "Avoid using technical jargon."
+        ]
+      )
+    end
+
+    # Covid impact
     def covid_impact
       OpenStruct.new(
         :header => "COVID-19 impact",
@@ -111,6 +136,16 @@ class QAEFormBuilder
       )
     end
 
+    def covid_impact_development
+      OpenStruct.new(
+        :header => "COVID-19 impact",
+        :context => [
+          "We recognise that COVID-19 might have affected your growth plans and will take this into consideration during the assessment process."
+        ]
+      )
+    end
+
+    # Word limits
     def word_limits
       OpenStruct.new(
         :header => "Word limits",
@@ -120,6 +155,7 @@ class QAEFormBuilder
       )
     end
 
+    # Technical language
     def technical_language
       OpenStruct.new(
         :header => "Technical language",
@@ -129,6 +165,7 @@ class QAEFormBuilder
       )
     end
 
+    # Supplementary materials
     def supplementary_materials
       OpenStruct.new(
         :header => "Supplementary materials",
@@ -139,7 +176,33 @@ class QAEFormBuilder
       )
     end
 
-    # Section D
+    def supplementary_materials_development
+      OpenStruct.new(
+        :header => "Supplementary materials",
+        :context => [
+          "To support your answers in this section, you can add up to three materials (documents or online links) in Section E. For assessors to review them, you must reference them by their names in your answers.",
+          "Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
+        ]
+      )
+    end
+
+    # UN SDGs
+    def un_sdgs
+      OpenStruct.new(
+        :header => "United Nations Sustainable Development Goals (UN SDGs)",
+        :context => [
+          "You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.",
+          "You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.",
+          "You can find more <a class='govuk-link' target='_blank' href='https://www.un.org/sustainabledevelopment/sustainable-development-goals/.'>information about each goal on the United Nations (UN) website.</a>"
+        ],
+      )
+    end
+
+    ######## Section C ########
+
+    ######## Section D ########
+
+    # About Section D
     def about_section_D_innovation
       OpenStruct.new(
         :header => "About section D",
@@ -160,7 +223,18 @@ class QAEFormBuilder
       )
     end
 
-    def financial_periods
+    def about_section_D
+      OpenStruct.new(
+        :header => "About section D",
+        :context => [
+          "You must demonstrate that your organisation is financially viable. You will also need to upload your financial statements to provide evidence of this.",
+          "We recommend you get your accountant to assist you with this section."
+        ]
+      )
+    end
+
+    # Financial periods
+    def financial_periods_innovation
       OpenStruct.new(
         :header => "Periods the figures are required for",
         :context => [
@@ -181,7 +255,18 @@ class QAEFormBuilder
       )
     end
 
+    def financial_periods_development
+      OpenStruct.new(
+        :header => "Periods the figures are required for",
+        :context => [
+          "You must provide financial figures for your three most recent financial years, covering 36 months.",
+          "If you have changed your year-end during the period of your application, see D2.3 for an explanation of how this must be dealt with.",
+          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline."
+        ]
+      )
+    end
 
+    # Estimated figures
     def estimated_figures
       OpenStruct.new(
         :header => "Estimated figures",
@@ -192,6 +277,17 @@ class QAEFormBuilder
       )
     end
 
+    def estimated_figures_development
+      OpenStruct.new(
+        :header => "Estimated figures",
+        :context => [
+          "If you haven't reached or finalised accounts for your most recent financial year, you can provide estimated figures for now.",
+          "If you are shortlisted, you will have to provide the actual figures and the related VAT returns before the specified November deadline (the exact date will be provided in the shortlisting email)."
+        ]
+      )
+    end
+
+    # Group entries
     def group_entries
       OpenStruct.new(
         :header => "Group entries",
@@ -201,6 +297,7 @@ class QAEFormBuilder
       )
     end
 
+    # Required figures
     def required_figures_innovation
       OpenStruct.new(
         :header => "Required figures",
@@ -221,6 +318,7 @@ class QAEFormBuilder
       )
     end
 
+    # Figures format
     def figures_format
       OpenStruct.new(
         :header => "Figures - format",
@@ -234,6 +332,7 @@ class QAEFormBuilder
       )
     end
 
+    # D6
     def about_D6
       OpenStruct.new(
         :header => "About D6 questions",
@@ -242,8 +341,10 @@ class QAEFormBuilder
         ]
       )
     end
+    ######## Section D ########
 
-    # Section E
+    ######## Section E ########
+
     def about_section_E
       OpenStruct.new(
         :header => "About section E",
@@ -254,6 +355,7 @@ class QAEFormBuilder
       )
     end
 
+    # Answering questions
     def answering_questions_innovation
       OpenStruct.new(
         :header => "Answering questions",
@@ -280,6 +382,8 @@ class QAEFormBuilder
       )
     end
   end
+
+  ######## Section E ########
 
   class AboutSectionQuestion < HeaderQuestion
   end

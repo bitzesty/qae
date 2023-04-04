@@ -11,7 +11,7 @@ class QaePdfForms::General::QuestionPointer
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees).freeze
   QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add).freeze
-  SKIP_HEADER_HINT_KEYS = %w(head_of_bussines_header).freeze
+  SKIP_HEADER_HINT_KEYS = %w(head_of_business_header).freeze
   RENDER_INLINE_KEYS = %w(head_of_business_title).freeze
 
   attr_reader :form_pdf,

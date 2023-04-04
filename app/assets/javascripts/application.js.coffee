@@ -766,12 +766,12 @@ jQuery ->
   trade_eligibility_not_eligible_message = (year_where_can_be_eligible) ->
     year_where_can_be_awarded = year_where_can_be_eligible + 1
 
-    "<p>Unfortunately you cannot apply for International Trade award this year.</p>
-     <p>If your international trade continues to result in outstanding year on year growth, you can apply again in " +
+    "<p>Unfortunately, you cannot apply for the International Trade Award this year.</p>
+     <p>If your international trade continues to result in outstanding year-on-year growth, you can apply again in " +
      year_where_can_be_eligible +
      " for an award to be given in " +
      year_where_can_be_awarded +
-     " (on outstanding short term growth over 3 years basis).</p>"
+     " (on Outstanding Short-Term Growth over a 3 years basis); providing you include two new years of trading results in your application.</p>"
 
   # Show trade awarded info if it isn't 2010 (lowest year)
   if $(".trade-awarded-input").length > 0
@@ -799,7 +799,7 @@ jQuery ->
 
         lyInfo.removeClass("visuallyhidden")
         taInfo.addClass("visuallyhidden")
-      else if $(this).val().length > 1 && value_int > (last_year - 4) && value_int < last_year_int
+      else if $(this).val().length > 1 && value_int > (last_year - 5) && value_int < last_year_int
         taInfo.removeClass("visuallyhidden")
         lyInfo.addClass("visuallyhidden")
       else

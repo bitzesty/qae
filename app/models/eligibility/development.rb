@@ -30,7 +30,7 @@ class Eligibility::Development < Eligibility
             accept: :true,
             hint: %(
               <p class='govuk-hint'>
-                You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs).
+                You may find it helpful to familiarise yourself with the <a class='govuk-link' target='_blank' href='https://www.un.org/sustainabledevelopment/sustainable-development-goals/.'>United Nations 17 Sustainable Development Goals (UN SDGs).</a>
               </p>
               <p class='govuk-hint'>
                 You will not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
