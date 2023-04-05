@@ -19,18 +19,18 @@ class AwardYears::V2024::QAEForms
             </ul>
           )
           pdf_context %(
-            <p>If there are additional materials you feel would help us to assess your entry, you can add up to three files or online links in this section.</p>
-            <h4 class="govuk-heading-s">What can and cannot be included:</h3>
-            <p>
-              \u2022 You can include links to promotional videos, websites, other media, or documents you feel are relevant and help illustrate your application.
-              \u2022 We will not consider business plans, annual accounts or company policy documents.
-            </p>
-            <h4 class="govuk-heading-s">Please note:</h3>
-            <p>
-              \u2022 For assessors to review the supporting material, you must reference them by their names in your answers. Please do so to ensure they are reviewed.
-              \u2022 Do not use the supporting material as a substitute for providing narrative answers to the questions.
-              \u2022 Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
-            </p>
+            If there are additional materials you feel would help us to assess your entry, you can add up to three files or online links in this section.
+
+            What can and cannot be included:
+
+            \u2022 You can include links to promotional videos, websites, other media, or documents you feel are relevant and help illustrate your application.
+            \u2022 We will not consider business plans, annual accounts or company policy documents.
+
+            Please note:
+
+            \u2022 For assessors to review the supporting material, you must reference them by their names in your answers. Please do so to ensure they are reviewed.
+            \u2022 Do not use the supporting material as a substitute for providing narrative answers to the questions.
+            \u2022 Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
           )
           hint "What are the allowed file formats?", %(
             <p>

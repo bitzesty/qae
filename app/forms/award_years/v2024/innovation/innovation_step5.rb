@@ -106,8 +106,8 @@ class AwardYears::V2024::QAEForms
             </p>
             <ul>
               <li>How do you encourage your suppliers to meet ethical standards?</li>
-              <li>To what extent you are sourcing or encouraging your supply chain to source UK goods and services?</li>
-              <li>By what criteria you select clients and ensure they are appropriate for your services?</li>
+              <li>To what extent are you sourcing or encouraging your supply chain to source UK goods and services?</li>
+              <li>By what criteria do you select clients and ensure they are appropriate for your services?</li>
               <li>How you measure customer satisfaction - and what the results have been.</li>
             </ul>
           )
