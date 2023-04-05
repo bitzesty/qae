@@ -268,7 +268,7 @@ class AwardYears::V2024::QAEForms
           words_max 200
         end
 
-        header :sustainable_development_interventions_header, "Your sustainable development interventions" do
+        header :sustainable_development_interventions_header, "Your sustainable development interventions in detail" do
           ref "C 5"
           context %{
             <p class="govuk-hint">

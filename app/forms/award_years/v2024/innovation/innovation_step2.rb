@@ -134,10 +134,8 @@ class AwardYears::V2024::QAEForms
             [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
           ]
           county_context %(
-            <p class='govuk-hint'>Please double-check the county using the
-              <a href="https://www.gov.uk/find-local-council" target="_blank" class="external-link govuk-link">
-                GOV.UK tool
-              </a>
+            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
+              <a class="govuk-link" target="_blank" href="https://www.gov.uk/find-local-council">https://www.gov.uk/find-local-council</a>
             </p>
           )
           sub_fields([
