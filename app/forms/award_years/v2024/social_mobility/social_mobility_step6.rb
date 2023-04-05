@@ -35,7 +35,10 @@ class AwardYears::V2024::QAEForms
               \u2022 Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             </p>
           )
-          hint "What are the allowed file formats?", %(
+          hint "What are the accepted file formats?", %(
+            <p>
+              You can submit files in most formats if it is less than 5 megabytes each.
+            </p>
             <p>
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
@@ -45,7 +48,7 @@ class AwardYears::V2024::QAEForms
           description
         end
 
-        confirm :entry_confirmation, "Confirmation of entry" do
+        confirm :entry_confirmation, "Confirmation of entry." do
           ref "F 2"
           required
           text -> do
@@ -55,10 +58,10 @@ class AwardYears::V2024::QAEForms
           end
         end
 
-        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do
           ref "F 3"
           text %(
-            I am happy to be contacted about King's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, and other information).
+            I am happy to be contacted about The King's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, and other information).
           )
         end
 
@@ -66,7 +69,7 @@ class AwardYears::V2024::QAEForms
           sub_ref "F 3.1"
           show_ref_always true
           text %(
-            I am happy to be contacted by the Department for Business, Energy & Industrial Strategy.
+            I am happy to be contacted by the Department for Business and Trade.
           )
         end
 
