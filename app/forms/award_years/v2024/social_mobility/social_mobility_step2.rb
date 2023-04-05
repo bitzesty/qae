@@ -67,8 +67,8 @@ class AwardYears::V2024::QAEForms
           conditional :organisation_type, "other"
         end
 
-        textarea :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
-          classes "sub-question word-max-strict"
+        text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
+          classes "sub-question"
           required
           ref "B 3.1"
           context %(
@@ -76,7 +76,7 @@ class AwardYears::V2024::QAEForms
               If you're an unregistered subsidiary, enter your parent company's VAT number.
             </p>
           )
-          words_max 50
+          style "small"
         end
 
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
@@ -215,14 +215,14 @@ class AwardYears::V2024::QAEForms
           yes_no
         end
 
-        text :parent_company, "Name of the immediate parent company" do
+        text :parent_company, "Name of the immediate parent company." do
           required
           classes "sub-question"
           sub_ref "B 10.1"
           conditional :parent_or_a_holding_company, :yes
         end
 
-        country :parent_company_country, "Country of the immediate parent company" do
+        country :parent_company_country, "Country of the immediate parent company." do
           required
           classes "sub-question"
           sub_ref "B 10.2"

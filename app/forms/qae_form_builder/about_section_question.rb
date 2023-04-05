@@ -46,12 +46,16 @@ class QAEFormBuilder
       when "trade_commercial_performance"
         [about_section_D_trade, financial_periods_trade, estimated_figures]
       when "development_commercial_performance"
-        [about_section_D, financial_periods_development, estimated_figures_development]
+        [about_section_D, financial_periods, estimated_figures_development]
+      when "mobility_commercial_performance"
+        [about_section_D, financial_periods, estimated_figures_development]
       when "company_financials"
         [group_entries, required_figures_innovation, figures_format]
       when "company_financials_trade"
         [group_entries, required_figures_trade, figures_format]
       when "company_financials_development"
+        [group_entries, estimated_figures_development, figures_format]
+      when "company_financials_mobility"
         [group_entries, estimated_figures_development, figures_format]
       when "innovation_financials"
         [about_D6, required_figures_innovation, figures_format]
@@ -255,7 +259,7 @@ class QAEFormBuilder
       )
     end
 
-    def financial_periods_development
+    def financial_periods
       OpenStruct.new(
         :header => "Periods the figures are required for",
         :context => [
