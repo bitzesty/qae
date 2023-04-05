@@ -46,19 +46,25 @@ class QAEFormBuilder
       when "trade_commercial_performance"
         [about_section_D_trade, financial_periods_trade, estimated_figures]
       when "development_commercial_performance"
-        [about_section_D, financial_periods_development, estimated_figures_development]
+        [about_section_D, financial_periods, estimated_figures_development]
+      when "mobility_commercial_performance"
+        [about_section_D, financial_periods, estimated_figures_development]
       when "company_financials"
         [group_entries, required_figures_innovation, figures_format]
       when "company_financials_trade"
         [group_entries, required_figures_trade, figures_format]
       when "company_financials_development"
         [group_entries, estimated_figures_development, figures_format]
+      when "company_financials_mobility"
+        [group_entries, estimated_figures_development, figures_format]
       when "innovation_financials"
         [about_D6, required_figures_innovation, figures_format]
       when "innovation_ESG"
-        [about_section_E, answering_questions_innovation, small_organisations]
+        [about_section_E, answering_questions, small_organisations]
       when "trade_ESG"
-        [about_section_E, answering_questions_trade, small_organisations]
+        [about_section_E, answering_questions, small_organisations]
+      when "mobility_ESG"
+        [about_section_E, answering_questions, small_organisations]
       end
     end
 
@@ -255,7 +261,7 @@ class QAEFormBuilder
       )
     end
 
-    def financial_periods_development
+    def financial_periods
       OpenStruct.new(
         :header => "Periods the figures are required for",
         :context => [
@@ -356,20 +362,7 @@ class QAEFormBuilder
     end
 
     # Answering questions
-    def answering_questions_innovation
-      OpenStruct.new(
-        :header => "Answering questions",
-        :context => [
-          "Provide examples for each question relative to the size and scale of your business.",
-          "The word limits are a guide. You do not need to maximise the word limit if there is no reason to - we suggest you focus on your strongest examples in each case.",
-          "Furthermore, you may have already answered some of the questions in this section in other parts of the form. If you believe this is the case, you do not need to repeat the information but make it clear by referencing the questions in other parts of the form.",
-          "The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes, and describe any relevant policies or procedures that you have in place.",
-          "Finally, there is no need to provide information on how you are adhering to statutory laws or regulations - such as 'we pay minimum wage'. We're more interested in how you are going above and beyond."
-        ]
-      )
-    end
-
-    def answering_questions_trade
+    def answering_questions
       OpenStruct.new(
         :header => "Answering questions",
         :context => [
