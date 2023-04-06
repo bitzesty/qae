@@ -340,6 +340,11 @@ class AwardYears::V2024::QAEForms
           ref "B 14"
           yes_no
           classes "queen-award-holder"
+          context %(
+            <p>
+              Please answer yes, even if you have not won any of the Queen's/King's Awards you have applied for.
+            </p>
+          )
         end
 
         queen_award_applications :applied_for_queen_awards_details, "List the Queen's/King's awards you have applied for in the last 10 years." do
@@ -409,7 +414,7 @@ class AwardYears::V2024::QAEForms
             ["social_media", "Other social media"],
             ["another_website", "Another website"],
             ["qa_event", "The King's Awards event"],
-            ["another_event", "A third party exhibition or event"],
+            ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper/publication"],
             ["word_of_mouth", "Word of mouth"],
             ["other", "Other"]

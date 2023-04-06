@@ -25,7 +25,7 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        header :due_diligence_header, "Organisation worthiness & due diligence checks" do
+        header :due_diligence_header, "Organisation's conduct & due diligence checks" do
           ref "A 2"
           context %{
             <p class="govuk-body">Please be aware that due diligence checks inform the decision to grant an award.</p>

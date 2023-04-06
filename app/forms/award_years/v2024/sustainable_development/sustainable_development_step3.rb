@@ -347,8 +347,8 @@ class AwardYears::V2024::QAEForms
 
             If you have any external documents or other media to support your answer, please add these in Section E and reference them by their names in your answers.
           )
-          rows 2
-          words_max 200
+          rows 4
+          words_max 400
         end
 
         header :sustainable_development_impact_header, "Impact of your sustainable development " do

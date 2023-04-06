@@ -256,7 +256,7 @@ class AwardYears::V2024::QAEForms
               You can submit a file in most formats if it is less than five megabytes.
             </p>
           )
-          hint "What are the allowed file formats?", %(
+          hint "What are the accepted file formats?", %(
             <p>
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
@@ -396,7 +396,7 @@ class AwardYears::V2024::QAEForms
                     )
           conditional :other_awards_won, :yes
           rows 5
-          words_max 250
+          words_max 150
         end
 
         checkbox_seria :how_did_you_hear_about_award, "How did you hear about The King's Awards for Enterprise this year?" do
