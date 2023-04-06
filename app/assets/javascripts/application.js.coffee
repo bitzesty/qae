@@ -827,6 +827,35 @@ jQuery ->
       $("#form_eligibility_show").addClass("visuallyhidden")
       $("#form_eligibility_questions").removeClass("visuallyhidden")
 
+  # Updates labels and ids on trade product fields
+  resetTradeProductIndexes = (question) ->
+    list_count = question.find("li").length
+    question.find("li").each (index) ->
+      idx = index + 1
+      id = "form[trade_goods_and_services_explanations"
+      name = "form[trade_goods_and_services_explanations]"
+      products = $(this).find(".trade-good-product")
+      percentages = $(this).find(".trade-good-percentage")
+      word_limit = products.find("textarea").attr("data-word-max")
+      remove_link = $(this).find(".js-remove-link")
+
+      products.find("label").get(0).innerText = "Product/Service " + idx + " (word limit: #{word_limit}):"
+      products.find("label").attr("for", id + "_desc_short_#{idx}]" )
+      products.find("textarea").attr({
+        "id": id + "_desc_short_#{idx}]",
+        "name": name + "[#{idx}][desc_short]"
+      })
+      percentages.find("label").attr("for", id + "_total_overseas_trade_#{idx}]")
+      percentages.find("input").attr({
+        "id": id + "_total_overseas_trade_#{idx}]",
+        "name": name + "[#{idx}][total_overseas_trade]"
+      })
+      remove_link.attr("aria-label", "Remove " + ordinal(idx) + " product")
+      if list_count <= 1
+        remove_link.addClass("visuallyhidden")
+      else
+        remove_link.removeClass("visuallyhidden")
+
   # Clicking `+ Add` on certain questions add fields
   $(document).on "click", ".question-block .js-button-add", (e) ->
     e.preventDefault()
@@ -851,16 +880,20 @@ jQuery ->
             can_add = false
 
           if li_size + 1 >= add_limit_attr
-            question.find(".js-button-add").addClass("govuk-!-display-none")
+            question.find(".js-button-add").addClass("visuallyhidden")
+
 
         if can_add
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size}]")
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\{index\})\]/g, "$1#{li_size}]")
 
-          question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
+          question.find(".list-add").append("<li class='js-add-example if-no-js-hide js-list-item'>#{add_eg}</li>")
           question.find(".list-add").find("li:last-child input").prop("disabled", false)
 
           idx = question.find(".list-add").find("> li").length
+
+          # update labels and aria-labels on new product fields
+          resetTradeProductIndexes(question.find(".list-add"))
 
           question.find(".list-add").find("li:last-child .remove-link").attr("aria-label", "Remove " + ordinal(idx) + " " + entity)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
@@ -889,7 +922,9 @@ jQuery ->
   # Removing these added fields
   $(document).on "click", ".govuk-form-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
+
     if !$(this).hasClass("read-only")
+      parent = $(this).closest(".list-add")
       parent_ul = $(this).closest("ul")
       $(this).closest(".govuk-form-group")
              .find(".js-button-add")
@@ -907,6 +942,8 @@ jQuery ->
         $("input.remove", $(this).closest("li")).val("1")
       else
         $(this).closest("li").remove()
+
+      resetTradeProductIndexes(parent)
 
       questionAddDefaultReached(parent_ul)
       window.FormValidation.validateStep()

@@ -126,14 +126,9 @@ window.FormValidation =
     # if it's a conditional question, but condition was not satisfied
     conditional = true
 
-    if question.find(".js-by-trade-goods-and-services-amount").length > 0
-      # If it's the trade B1 question which has multiple siblings that have js-conditional-question
-      if question.find(".js-conditional-question.show-question .js-by-trade-goods-and-services-amount .js-conditional-question.show-question").length == 0
+    question.find(".js-conditional-question").each ->
+      if !$(this).hasClass("show-question")
         conditional = false
-    else
-      question.find(".js-conditional-question").each ->
-        if !$(this).hasClass("show-question")
-          conditional = false
 
     if !conditional
       return
@@ -142,7 +137,7 @@ window.FormValidation =
     # like name and address
     if question.find(".js-by-trade-goods-and-services-amount").length > 0
       # If it's the trade B1 question which has multiple siblings that have js-conditional-question
-      subquestions = question.find(".js-by-trade-goods-and-services-amount .js-conditional-question.show-question .govuk-form-group")
+      subquestions = question.find(".js-by-trade-goods-and-services-amount .govuk-form-group")
     else
       subquestions = question.find(".govuk-form-group .govuk-form-group")
 
@@ -543,7 +538,7 @@ window.FormValidation =
       @addErrorClass(question)
 
   validateGoodsServicesPercentage: (question) ->
-    totalOverseasTradeInputs = question.find(".js-by-trade-goods-and-services-amount .show-question input[type='number']")
+    totalOverseasTradeInputs = question.find(".js-by-trade-goods-and-services-amount input[type='number']")
     totalOverseasTradePercentage = 0
     missingOverseasTradeValue = false
     totalOverseasTradeInputs.each ->
@@ -551,11 +546,10 @@ window.FormValidation =
         totalOverseasTradePercentage += parseFloat($(this).val())
       else
         missingOverseasTradeValue = true
-    if !missingOverseasTradeValue
-      if totalOverseasTradePercentage != 100
-        @logThis(question, "validateGoodsServicesPercentage", "% of your total overseas trade should add up to 100")
-        @appendMessage(question, "% of your total overseas trade should add up to 100")
-        @addErrorClass(question)
+    if totalOverseasTradePercentage != 100
+      @logThis(question, "validateGoodsServicesPercentage", "% of your total overseas trade should add up to 100")
+      @appendMessage(question, "% of your total overseas trade should add up to 100")
+      @addErrorClass(question)
 
   validateSelectionLimit: (question) ->
     selection_limit = question.data("selection-limit")

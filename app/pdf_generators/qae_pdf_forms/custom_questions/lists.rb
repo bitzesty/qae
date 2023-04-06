@@ -185,7 +185,7 @@ module QaePdfForms::CustomQuestions::Lists
   end
 
   def render_goods_and_services
-    trade_goods_amount = filled_answers["trade_goods_amount"]
+    trade_goods_amount = filled_answers["trade_goods_and_services_explanations"].length
 
     if trade_goods_amount.present?
       humanized_answer[0..(trade_goods_amount.to_i - 1)].map do |item|

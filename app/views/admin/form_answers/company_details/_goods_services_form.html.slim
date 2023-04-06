@@ -8,7 +8,7 @@
         - elsif @form_answer.document["trade_goods_and_services_explanations"].present?
           ul.list-unstyled.good-services-list
             - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
-              - if index < @form_answer.document["trade_goods_amount"].to_i
+              - if index < @form_answer.document["trade_goods_and_services_explanations"].length
                 li
                   label.label-small
                     = "Goods/services #{index + 1}"
@@ -24,7 +24,7 @@
               - elsif @form_answer.document["trade_goods_and_services_explanations"].present?
                 ul.list-unstyled.good-services-list
                   - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
-                    - if index < @form_answer.document["trade_goods_amount"].to_i
+                    - if index < @form_answer.document["trade_goods_and_services_explanations"].length
                       li.well
                         label
                           = "Goods/services #{index + 1}"
