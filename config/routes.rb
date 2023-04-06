@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
+  Healthcheck.routes(self)
   # Content Security Policy report_uri (http://content-security-policy.com/)
   post "/csp_report_uri", to: "csp_report_uri#report"
 

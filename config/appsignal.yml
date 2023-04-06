@@ -19,6 +19,7 @@ default: &defaults
 
   # Ignore these actions, used by our Loadbalancer. Optional
   ignore_actions:
+    - Healthcheck::HealthchecksController#check
 
   # Enable allocation tracking for memory metrics. Default: true
   enable_allocation_tracking: true
