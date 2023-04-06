@@ -7,7 +7,7 @@ class AwardYears::V2024::QAEForms
           section "due_diligence"
         end
 
-        confirm :confirmation_of_consent, "Consent to apply by head of organisation" do
+        confirm :confirmation_of_consent, "Consent to apply granted by the head of the organisation" do
           ref "A 1.1"
           required
           text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
@@ -26,7 +26,7 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        header :due_diligence_checks, "Organisation worthiness & due diligence checks" do
+        header :due_diligence_checks, "Organisation's conduct & due diligence checks" do
           ref "A 2"
           context %{
             <p class="govuk-body">Please be aware that due diligence checks inform the decision to grant an award.</p>

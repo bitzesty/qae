@@ -37,7 +37,7 @@ class AwardYears::V2024::QAEForms
 
             You can submit files in most formats if it is less than 5 megabytes each.
           )
-          hint "What are the allowed file formats?", %(
+          hint "What are the accepted file formats?", %(
             <p>
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
