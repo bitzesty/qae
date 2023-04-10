@@ -142,6 +142,8 @@ gem 'browser', '2.4.0'
 # Simple colored logging
 gem 'shog'
 
+gem 'rails-healthcheck'
+
 # Used to convert HTML to text, with the exception of whitelisted attributes.
 # This makes it easier for us to display HTML content within PDF documents.
 gem 'sanitize'
