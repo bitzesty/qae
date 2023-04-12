@@ -882,7 +882,8 @@ DEPENDENCIES
   rack-ssl-enforcer
   rails (= 6.1.6.1)
   rails-controller-testing
-  rails-html-sanitizer (~> 1.4.4)
+  rails-healthcheck
+  rails-html-sanitizer (~> 1.4.3)
   rails_12factor (~> 0.0.3)
   rails_autolink
   rb-readline
