@@ -66,7 +66,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
       @form_answer.document = add_org_chart_result_doc
       @form_answer.save
 
-      redirect_to edit_form_url(id: @form_answer.id, step: "company-information")
+      redirect_to edit_form_url(id: @form_answer.id, step: "company-information", anchor: anchor)
     else
       render :new
     end
@@ -89,7 +89,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
         if request.xhr? || request.format.js?
           head :ok
         else
-          redirect_to edit_form_url(id: @form_answer.id, step: "company-information")
+          redirect_to edit_form_url(id: @form_answer.id, step: "company-information", anchor: anchor)
         end
       end
     end

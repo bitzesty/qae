@@ -24,7 +24,7 @@ header.page-header.group.page-header-over-sidebar
             nav.pagination.no-border aria-label="Pagination" role="navigation"
               ul.group
                 li.previous.previous-alternate
-                  = link_to edit_form_url(id: params[:form_answer_id], step: "company-information"), rel: "prev", title: "Back to company information", role: "button" do
+                  = link_to edit_form_url(id: params[:form_answer_id], step: "company-information", anchor: anchor), rel: "prev", title: "Back to company information", role: "button" do
                     span.pagination-label Back
 
     = render "qae_form/steps_progress_bar", current_step: "company-information"

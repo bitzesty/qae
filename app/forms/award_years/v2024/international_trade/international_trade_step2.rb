@@ -260,14 +260,12 @@ class AwardYears::V2024::QAEForms
         text :ultimate_control_company, "The name of the organisation with ultimate control." do
           classes "regular-question"
           sub_ref "B 11.4"
-          conditional :has_parent_company, "yes"
           conditional :parent_ultimate_control, :no
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control." do
           classes "regular-question"
           sub_ref "B 11.5"
-          conditional :has_parent_company, "yes"
           conditional :parent_ultimate_control, :no
         end
 

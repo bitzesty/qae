@@ -26,11 +26,20 @@
                                                                     remote: true,
                                                                     method: :delete})
 
+                  // path not working for non-JS remove button
+                  = button_to "Remove me", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
+                      method: :delete,
+                      class: "non-js-remove-link", form_class: "non-js-button-to"
+
+                  = form_for @form_answer, url: form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i), method: :delete, remote: true, html: {class: "non-js-remove-link"} do |f|
+                    = f.submit "Remove me", class: "govuk-button govuk-button--warning float-right display-inline mt--5"
+
+
             - elsif el['link'].present?
               .govuk-form-group
                 label.govuk-label class="govuk-!-margin-bottom-2 display-inline" for=question.input_name(suffix: 'link', index: idx)
                   ' Website address
-                = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
+                = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['link'].to_i),
                                       possible_read_only_ops.merge({class: "remove-link govuk-button govuk-button--warning remove-website display-inline mt-0",
                                                                     remote: true,
                                                                     method: :delete})
@@ -64,3 +73,14 @@
                             class: "govuk-button govuk-button--secondary button-add",
                             "aria-label" => "Upload",
                             "data-entity" => "organisational chart"
+  - elsif question.key == :innovation_materials && @form_answer.document["innovation_materials"].count < question.max_attachments
+    .if-js-hide.govuk-button-group
+      = link_to "Upload a file", new_form_form_answer_form_attachment_url(@form_answer.id),
+                            class: "govuk-button govuk-button--secondary button-add",
+                            "aria-label" => "Upload a file",
+                            "data-entity" => "file"
+
+      = link_to "Add website address", new_form_form_answer_form_links_url(@form_answer.id),
+                            class: "govuk-button govuk-button--secondary button-add",
+                            "aria-label" => "Upload a website address",
+                            "data-entity" => "website address"
