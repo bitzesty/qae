@@ -75,6 +75,7 @@ class AwardYears::V2024::QAEForms
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+          conditional :financial_year_date_changed, :yes
         end
 
         textarea :financial_adjustments_explanation, "Explain adjustments to figures." do

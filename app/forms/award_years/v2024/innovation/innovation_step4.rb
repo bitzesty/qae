@@ -52,6 +52,7 @@ class AwardYears::V2024::QAEForms
             </p>
           )
           default_option "no"
+          conditional :financial_year_date_changed, :yes
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
