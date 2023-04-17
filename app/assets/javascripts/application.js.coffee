@@ -148,11 +148,11 @@ jQuery ->
 
   # Get the latest financial year date from input
   updateYearEndInput = () ->
-    fy_latest_changed_input = $(".js-financial-year-changed-dates .fy-latest .date-input")
+    fy_latest_changed_input = $(".js-financial-year-changed-dates .fy-latest .govuk-date-input")
     fy_latest_changed_input.find("input").removeAttr("disabled")
 
-    fy_day = $('.js-financial-year-latest .js-fy-day select').val()
-    fy_month = $('.js-financial-year-latest .js-fy-month select').val()
+    fy_day = $('.js-financial-year-latest input.js-fy-day').val()
+    fy_month = $('.js-financial-year-latest input.js-fy-month').val()
 
     if gon?
       fy_year = gon.base_year || new Date().getFullYear()
@@ -169,19 +169,18 @@ jQuery ->
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
 
-    # disabled for 2021
     # Auto fill the year for previous years
-    # $(".js-financial-year-changed-dates .js-fy-entries").each ->
-    #  if $(this).find("input.js-fy-year").val() == ""
-    #    parent_fy = $(this).parent().find(".js-fy-entries")
-    #    this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
-    #    $(this).find("input.js-fy-year").val(this_year)
+    $(".js-financial-year-changed-dates .js-fy-entries").each ->
+     if $(this).find("input.js-fy-year").val() == ""
+       parent_fy = $(this).parent().find(".js-fy-entries")
+       this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
+       $(this).find("input.js-fy-year").val(this_year)
 
-    # fy_latest_changed_input.find("input").attr("disabled", "disabled")
-    # $(".js-financial-year-changed-dates").attr("data-year", fy_year)
+    fy_latest_changed_input.find("input").attr("disabled", "disabled")
+    $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
     # We should change the last year date regardless if it's present or not
-    # fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
+    fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
 
     updateYearEnd()
 
@@ -190,11 +189,17 @@ jQuery ->
     $(".js-financial-conditional .js-year-end").removeClass("show-default")
 
     if $(".js-financial-year-change input:checked").val() == "no"
+      # If the financial year haven't changed, clear manually entered dates
+      $(".js-financial-year-changed-dates .js-fy-entries").each ->
+        $(this).find("input.js-fy-day").removeAttr("disabled").val("")
+        $(this).find("input.js-fy-month").removeAttr("disabled").val("")
+        
       # Year end hasn't changed, auto select the year
       fy_latest_changed_input = $(".js-financial-year")
-      fy_latest_day = fy_latest_changed_input.find(".js-fy-day select").val()
-      fy_latest_month = fy_latest_changed_input.find(".js-fy-month select").val()
+      fy_latest_day = fy_latest_changed_input.find("input.js-fy-day").val()
+      fy_latest_month = fy_latest_changed_input.find("input.js-fy-month").val()
       fy_latest_year = $(".js-financial-year-changed-dates").attr("data-year")
+      console.log('js-financial-year-change input:checked', fy_latest_day, fy_latest_month, fy_latest_year)
 
       if !fy_latest_day || !fy_latest_month || !fy_latest_year
         $(".js-year-end").addClass("show-default")
@@ -210,7 +215,7 @@ jQuery ->
       $(".js-financial-conditional > .by-years-wrapper").each ->
         all_years_value = true
         $(this).find(".js-year-end").each ->
-          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
+          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".govuk-date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
           fy_year = fy_input.find(".js-fy-year").val()
@@ -221,7 +226,7 @@ jQuery ->
           $(this).find(".js-year-end").addClass("show-default")
         else
           $(this).find(".js-year-end").each ->
-            fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
+            fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".govuk-date-input")
             fy_day = fy_input.find(".js-fy-day").val()
             fy_month = fy_input.find(".js-fy-month").val()
             fy_year = fy_input.find(".js-fy-year").val()
@@ -231,9 +236,11 @@ jQuery ->
             $(this).find(".js-year-text").text("#{pre_text} #{fy_day}/#{fy_month}/#{fy_year}")
 
   updateYearEndInput()
-  $(".js-financial-year select").change () ->
+  $(".js-financial-year input").change () ->
+    console.log("updateYearEndInput")
     updateYearEndInput()
   $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
+    console.log("updateYearEnd")
     updateYearEnd()
 
   $('.question-required').find('input,select,textarea').each ->
@@ -427,6 +434,10 @@ jQuery ->
 
         # Resize textareas that were previously hidden
         resetResizeTextarea()
+
+  $(document).on "change", ".js-financial-year-change input", (e) ->
+    if $(".js-financial-year-change input:checked").val() == "yes"
+      updateYearEndInput()
 
   $(document).on "click", ".save-quit-link a", (e) ->
     if window.changesUnsaved
@@ -978,7 +989,7 @@ jQuery ->
   #    new_input.val(new_input_text)
 
   # only accept numbers(48-47), backspace(8), tab(9), cursor keys left(37) and right(39) and enter for submitting
-  $(".date-input input").on 'keypress keydown keyup', (e) ->
+  $(".govuk-date-input input").on 'keypress keydown keyup', (e) ->
     if !((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105) || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 13)
       e.preventDefault()
       return false
