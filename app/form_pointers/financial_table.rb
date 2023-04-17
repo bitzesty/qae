@@ -7,23 +7,11 @@ module FinancialTable
     res.present? ? res[key.to_sym] : financial_empty_values
   end
 
-  # pre COVID logic
-  # def financial_table_headers
-  #   if financial_year_changed_dates?
-  #     financial_table_changed_dates_headers
-  #   elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
-  #     financial_table_pointer_headers
-  #   else
-  #     financial_table_default_headers
-  #   end
-  # end
-
-  # COVID period logic:
-  # If all the dates are present just render them
-  # Instead of making any changes to years
   def financial_table_headers
-    if financial_year_dates_filled_in?
+    if financial_year_changed_dates?
       financial_table_changed_dates_headers
+    elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
+      financial_table_pointer_headers
     else
       financial_table_default_headers
     end
@@ -39,18 +27,6 @@ module FinancialTable
       correct_date_headers(res)
     else
       [''] * res.size
-    end
-  end
-
-  def financial_year_dates_filled_in?
-    res = financial_data(
-      :financial_year_changed_dates,
-      get_audit_data(:financial_year_changed_dates)
-    )
-
-    res.any? && res.all? do |entry|
-      date_array = entry.to_s.split("/")
-      date_array.any? && date_array.all?(&:present?)
     end
   end
 
