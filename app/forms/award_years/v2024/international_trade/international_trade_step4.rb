@@ -53,9 +53,24 @@ class AwardYears::V2024::QAEForms
           financial_date_pointer
         end
 
+        trade_most_recent_financial_year_options :most_recent_financial_year, "Which year would you like to be your most recent financial year that you will submit figures for?" do
+          ref "D 2.1"
+          required
+          option (AwardYear.current.year - 2).to_s, (AwardYear.current.year - 2).to_s
+          option (AwardYear.current.year - 1).to_s, (AwardYear.current.year - 1).to_s
+          default_option (AwardYear.current.year - 1).to_s
+
+          classes "js-most-recent-financial-year"
+          context %(
+            <p>
+              Answer this question if your dates in question D2 range between #{Settings.current_award_year_switch_date.decorate.formatted_trigger_date} to #{Settings.current.deadlines.submission_end.first.decorate.formatted_trigger_date}.
+            </p>
+          )
+        end
+
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period?" do
           classes "sub-question js-financial-year-change"
-          sub_ref "D 2.1"
+          sub_ref "D 3"
           required
           yes_no
           default_option "no"
@@ -63,7 +78,7 @@ class AwardYears::V2024::QAEForms
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
-          sub_ref "D 2.2"
+          sub_ref "D 3.1"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -84,7 +99,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :financial_figures_adjustment_explanation, "Explain adjustments to figures." do
           classes "sub-question word-max-strict"
-          sub_ref "D 2.3"
+          sub_ref "D 3.2"
           required
           context %(
             <p>
@@ -104,7 +119,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
           classes "sub-question word-max-strict"
-          sub_ref "D 2.4"
+          sub_ref "D 3.3"
           required
           rows 5
           words_max 100
@@ -113,7 +128,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
           classes "question-employee-min"
-          ref "D 3"
+          ref "D 4"
           required
           context %(
             <p>
@@ -131,12 +146,12 @@ class AwardYears::V2024::QAEForms
         end
 
         about_section :company_financials, "Company Financials" do
-          ref "D 4"
+          ref "D 5"
           section "company_financials_trade"
         end
 
         by_years :overseas_sales, "Total overseas sales" do
-          ref "D 4.1"
+          ref "D 5.1"
           classes "sub-question"
           required
           context %(
@@ -206,7 +221,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :total_turnover, "Total turnover (UK and overseas)" do
           classes "sub-question"
-          sub_ref "D 4.2"
+          sub_ref "D 5.2"
           type :money
           required
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -221,7 +236,7 @@ class AwardYears::V2024::QAEForms
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
           classes "sub-question"
-          sub_ref "D 4.3"
+          sub_ref "D 5.3"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -231,7 +246,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :drops_in_turnover, "If you have had any losses, drops in turnover, or reductions in net profit, please explain them." do
           classes "sub-question"
-          sub_ref "D 4.4"
+          sub_ref "D 5.4"
           required
           context %(
             <p>
@@ -247,7 +262,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow and cash generated." do
           classes "sub-question"
-          sub_ref "D 4.5"
+          sub_ref "D 5.5"
           required
           rows 5
           words_max 300
@@ -255,14 +270,14 @@ class AwardYears::V2024::QAEForms
 
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
-          sub_ref "D 4.6"
+          sub_ref "D 5.6"
           required
           rows 5
           words_max 300
         end
 
         options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
-          ref "D 5"
+          ref "D 6"
           required
           context %(
             <p>
@@ -274,7 +289,7 @@ class AwardYears::V2024::QAEForms
 
         confirm :agree_to_provide_actuals, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 5.1"
+          sub_ref "D 6.1"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes
           text %(
@@ -284,7 +299,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question word-max-strict"
-          sub_ref "D 5.2"
+          sub_ref "D 6.2"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes
           rows 5
