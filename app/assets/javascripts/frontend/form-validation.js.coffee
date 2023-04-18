@@ -535,6 +535,20 @@ window.FormValidation =
       @addErrorMessage(question, errorMessage)
       return
 
+  validateReasonSelect: (question) ->
+    ineligibleValue = question.find('.govuk-radios').data('ineligible');
+    console.log('ineligibleValue', ineligibleValue);
+
+    if $('input[name="form[mobility_in_relation_to_organisation]"]:checked').val() == ineligibleValue
+      errorMessage = "You are not eligible. \
+      Organisations whose core activity is to improve social mobility \
+      (including all education and training providers) are not eligible \
+      if applying based on business-as-usual activities. As an enterprise award, \
+      it is focused on recognising social mobility initiatives that are discretionary \
+      or that are in partnership with businesses for whom it is discretionary."
+      @logThis(question, "validateReasonSelect", errorMessage)
+      @addErrorMessage(question, errorMessage)
+
   validateSupportLetters: (question) ->
     lettersReceived = $(".js-support-letter-received").length
     if lettersReceived < 2
@@ -667,6 +681,9 @@ window.FormValidation =
 
     if question.find(".js-financial-year-latest").length
       @validateInnovationFinancialDate(question)
+
+    if question.hasClass("conditional-select-statement")
+      @validateReasonSelect(question)
 
   validate: ->
     @clearAllErrors()
