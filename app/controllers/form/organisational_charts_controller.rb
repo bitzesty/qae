@@ -50,6 +50,10 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     )
   end
 
+  expose(:anchor) do
+    "header_org_chart"
+  end
+
   def new
   end
 
