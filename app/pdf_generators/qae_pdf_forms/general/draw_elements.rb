@@ -99,10 +99,9 @@ module QaePdfForms::General::DrawElements
       move_down 6.mm
       render_intro_text
       move_down 2.mm
+      render_guidance_block
+      move_down 2.mm
     end
-
-    render_submission_deadline_block
-
     move_down 7.mm
   end
 
@@ -114,6 +113,53 @@ module QaePdfForms::General::DrawElements
         render_text(title, style: :bold)
       end
     end
+  end
+
+  def render_guidance_block
+    render_text("Before you begin:", size: 16, style: :bold)
+
+    render_text("The application process:", size: 14, style: :bold)
+
+    bullet = "\u2000\u2000\u2000\u2022"
+    deadline = Settings.current_submission_deadline.trigger_at
+    deadline = deadline.try(:strftime, "%d %b %Y at %H:%M%P") || "-"
+
+    block_1 = %(1. Complete the online eligibility questionnaire before you start preparing the answers
+      #{bullet} This is to ensure that your organisation meets the key eligibility criteria for an award.
+      #{bullet} It will take about 10 minutes to complete.
+    2. Complete the online form
+      #{bullet} You can use the PDF version of the application form for planning purposes only.
+      #{bullet} You <b>must</b> complete the <b>online form</b>.
+      #{bullet} The online form can be completed over a number of days.
+      #{bullet} You can save and return to the online form at any point.
+    3. Submit your application
+      #{bullet} The deadline for submissions is <b>#{deadline}</b>.
+      #{bullet}  You can still edit submitted applications up to this date.)
+
+    render_text(block_1)
+
+    render_text("Guidance on answering questions:", size: 14, style: :bold)
+
+    section = form_answer.development? ? "Section C requires" : "Sections C and E require"
+
+    block_2 = %(#{bullet} Read through all the questions carefully before starting to answer so that you can plan your responses and avoid repetition.
+      #{bullet} Plan enough time to prepare your responses, allowing time for refinement to ensure high-calibre submission before the deadline. Previous applicants reported taking at least 20 hours to complete the form, and some took 50 hours or more.
+      #{bullet} #{section} longer text responses - start planning these as soon as you can.
+      #{bullet} You may want to spread your application over several weeks to allow time for collecting external evidence.
+      #{bullet} You may need to get your accountant to help with section D – allow sufficient time for that.
+      #{bullet} All questions are mandatory unless specified otherwise, but if the question is not applicable to your organisation, you can state so, explaining why it is not applicable.
+      #{bullet} Question numbers in the online version of the form aren't always consecutive, as we show and hide different questions depending on your previous answers.
+      #{bullet} Your information is only shared with those involved in the assessment process.)
+
+    render_text(block_2)
+
+    render_text("Need help?", size: 14, style: :bold)
+
+    block_3 = %(If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with us:
+      By calling 020 7215 6880
+      Or emailing <b>Kingsawards@beis.gov.uk</b>)
+
+    render_text(block_3)
   end
 
   def render_logo
