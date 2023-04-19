@@ -22,18 +22,11 @@
                                                                     method: :delete})
                 - else
                   = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
-                                      possible_read_only_ops.merge({class: "govuk-link remove-link govuk-button govuk-button--warning float-right display-inline mt--5",
+                                      possible_read_only_ops.merge({class: "govuk-link remove-link govuk-button govuk-button--warning float-right display-inline mt--5 if-no-js-hide",
                                                                     remote: true,
                                                                     method: :delete})
-
-                  // path not working for non-JS remove button
-                  = button_to "Remove me", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
-                      method: :delete,
-                      class: "non-js-remove-link", form_class: "non-js-button-to"
-
-                  = form_for @form_answer, url: form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i), method: :delete, remote: true, html: {class: "non-js-remove-link"} do |f|
-                    = f.submit "Remove me", class: "govuk-button govuk-button--warning float-right display-inline mt--5"
-
+                  = link_to "Remove", form_form_answer_form_attachment_confirm_deletion_url(@form_answer.id, el['file'].to_i),
+                                      possible_read_only_ops.merge({class: "govuk-link remove-link govuk-button govuk-button--warning float-right display-inline mt--5 if-js-hide"})
 
             - elsif el['link'].present?
               .govuk-form-group

@@ -136,7 +136,9 @@ Rails.application.routes.draw do
     resources :form_answers do
       resources :supporters, only: [:new, :create, :index, :destroy]
       resources :support_letters, only: [:new, :create, :destroy]
-      resources :form_attachments, only: [:index, :new, :create, :destroy]
+      resources :form_attachments, only: [:index, :new, :create, :destroy] do
+        get :confirm_deletion
+      end
       resource :form_links, only: [:new, :create, :destroy]
       resources :organisational_charts, only: [:new, :create, :destroy] do
         get :confirm_deletion
