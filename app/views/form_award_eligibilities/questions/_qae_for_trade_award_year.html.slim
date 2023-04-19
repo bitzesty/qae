@@ -1,6 +1,14 @@
 .question-body
   = f.input :qae_for_trade_award_year, as: :select, include_blank: true, label: false, input_html: { class: 'trade-awarded-input', autocomplete: "off" }
 
+  #trade-awarded-info.if-js-hide
+    br
+    .application-notice.help-notice
+      p
+        | If you won the award in the previous 4 years you can only apply for an International Trade Award on an Outstanding Short-Term Growth basis, and you need to be able to demonstrate that your international trade has resulted in outstanding year-on-year growth in the last 3 years with no dips.
+      p
+        | If you won the award in the last year, unfortunately, you cannot apply for the International Trade Award this year. If your international trade continues to result in outstanding year-on-year growth, you can apply again in #{AwardYear.current.year} for an award to be given in #{AwardYear.current.year + 1} (on Outstanding Short-Term Growth over a 3 years basis); providing you include two new years of trading results in your application.
+
   #trade-awarded-info.visuallyhidden
     br
     .application-notice.help-notice
