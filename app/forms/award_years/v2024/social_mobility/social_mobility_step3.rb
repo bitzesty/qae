@@ -524,10 +524,11 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           ref "C 5.1"
           required
-          no_total_row true
           context %(
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
+          totals_column true
+
           corner_label "Participants"
           totals_label "Total number of discrete participants supported (the system will calculate this)"
           proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
@@ -536,9 +537,7 @@ class AwardYears::V2024::QAEForms
 
           y_headings [
             ["total_disadvantaged", "Total number of disadvantaged participants supported"],
-            ["non_disadvantaged", "Others receiving support from you who are not disadvantaged"],
-            ["total_participants", "Total number of participants supported (the system will calculate this)"],
-            ["proportion_disadvantaged", "The proportion of disadvantaged participants supported from the total (the system will calculate this)"],
+            ["non_disadvantaged", "Others receiving support from you who are not disadvantaged"]
           ]
           column_widths({ 1 => 13, 2 => 13, 3 => 13, 4 => 13, 5 => 13, 6 => 13 })
         end

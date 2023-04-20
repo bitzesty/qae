@@ -454,6 +454,10 @@ class QAEFormBuilder
       @q.no_total_row = no_total_row
     end
 
+    def totals_column totals_column
+      @q.totals_column = totals_column
+    end
+
     #
     # Use of drop_conditional:
     #
@@ -521,7 +525,8 @@ class QAEFormBuilder
                   :sub_section,
                   :form_answer,
                   :about_section,
-                  :no_total_row
+                  :no_total_row,
+                  :totals_column
 
     def initialize step, key, title, opts={}
       @step = step

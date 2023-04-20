@@ -275,6 +275,25 @@ jQuery ->
 
   replaceCommasInFinancialData()
 
+  updateRowTotalsCalculation = ->
+    inputFields = document.querySelectorAll('.include-totals-column input[type="number"]')
+
+    for inputField in inputFields
+      inputField.addEventListener('input', ->
+        row = this.closest('tr')
+        inputFieldsInRow = row.querySelectorAll('td:not(:last-child) input[type="number"]');
+
+        sum = 0
+        for inputFieldInRow in inputFieldsInRow
+          sum += parseInt(inputFieldInRow.value) or 0
+
+        lastCell = row.cells[row.cells.length - 1];
+        inputField = lastCell.querySelector('input[type="number"]');
+        inputField.value = sum;
+      )
+
+  updateRowTotalsCalculation()
+
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $("body").removeClass("show-error-page")

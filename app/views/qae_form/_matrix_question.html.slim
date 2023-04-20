@@ -1,4 +1,4 @@
-table.matrix-question-table.govuk-table
+table.matrix-question-table.govuk-table class="#{'include-totals-column' if question.totals_column}"
   thead.govuk-table__head
     tr.govuk-table__row
       th.govuk-table__header scope="col"
@@ -17,6 +17,17 @@ table.matrix-question-table.govuk-table
               label.visuallyhidden-on-desktop.govuk-label for=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}")
                 = "#{y_heading.label} numbers for #{x_heading.label}"
               input.js-trigger-autosave.matrix-question-input.govuk-input type="number" data-required-row-parent=question.required_row_parent min="0" step="1" name=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}") value=question.input_value(suffix: "#{x_heading.key}_#{y_heading.key}") id=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}") autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
+              span.govuk-error-message aria-live="polite"
+    - if question.subtotals_label
+      tr.govuk-table__row
+        th.govuk-table__header.row-heading scope="row"
+          = question.subtotals_label
+        - question.x_headings.each do |x_heading|
+          td.govuk-form-group.govuk-table__cell
+            div
+              label.visuallyhidden-on-desktop.govuk-label for=question.input_name(suffix: "#{x_heading.key}_subtotal")
+                = "Subtotals for #{x_heading.label}"
+              input.js-trigger-autosave.matrix-question-input.govuk-input type="number" min="0" step="1" name=question.input_name(suffix: "#{x_heading.key}_subtotal") value=question.input_value(suffix: "#{x_heading.key}_subtotal") id=question.input_name(suffix: "#{x_heading.key}_subtotal") autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
               span.govuk-error-message aria-live="polite"
     - unless question.no_total_row
       tr.govuk-table__row
