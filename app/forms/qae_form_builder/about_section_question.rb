@@ -49,8 +49,8 @@ class QAEFormBuilder
         [about_section_D, financial_periods, estimated_figures_development]
       when "mobility_commercial_performance"
         [about_section_D, financial_periods, estimated_figures_development]
-      when "company_financials"
-        [group_entries, required_figures_innovation, figures_format]
+      when "company_financials_innovation"
+        [group_entries, required_figures_company, figures_format]
       when "company_financials_trade"
         [group_entries, required_figures_trade, figures_format]
       when "company_financials_development"
@@ -304,11 +304,21 @@ class QAEFormBuilder
     end
 
     # Required figures
-    def required_figures_innovation
+    def required_figures_company
       OpenStruct.new(
         :header => "Required figures",
         :context => [
           "We ask you to provide figures for your five most recent financial years. If you started trading within the last five years, you only need to provide figures for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide figures for at least your two most recent financial years, covering the full 24 months.",
+          "If you haven't reached your latest year-end, please use estimates to complete these questions."
+        ]
+      )
+    end
+
+    def required_figures_innovation
+      OpenStruct.new(
+        :header => "Required figures",
+        :context => [
+          "We ask you to provide figures for your five most recent financial years. If the innovation has been in the market for less than five years, you only need to provide figures for the years it was in the market. However, to meet minimum eligibility requirements, you must be able to provide figures for at least your two most recent financial years, covering the full 24 months.",
           "If you haven't reached your latest year-end, please use estimates to complete these questions."
         ]
       )
