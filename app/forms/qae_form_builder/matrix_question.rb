@@ -60,8 +60,16 @@ class QAEFormBuilder
       @q.label = label
     end
 
+    def subtotals_label label
+      @q.subtotals_label = label
+    end
+
     def totals_label label
       @q.totals_label = label
+    end
+
+    def proportion_label label
+      @q.proportion_label = label
     end
 
     def corner_label label
@@ -107,7 +115,9 @@ class QAEFormBuilder
 
   class MatrixQuestion < Question
     attr_accessor :label,
+                  :subtotals_label,
                   :totals_label,
+                  :proportion_label,
                   :corner_label,
                   :x_headings,
                   :y_headings,

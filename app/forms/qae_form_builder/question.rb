@@ -450,6 +450,10 @@ class QAEFormBuilder
       @q.conditions << QuestionCondition.new(@q.key, key, value)
     end
 
+    def no_total_row no_total_row
+      @q.no_total_row = no_total_row
+    end
+
     #
     # Use of drop_conditional:
     #
@@ -516,7 +520,8 @@ class QAEFormBuilder
                   :excluded_header_questions,
                   :sub_section,
                   :form_answer,
-                  :about_section
+                  :about_section,
+                  :no_total_row
 
     def initialize step, key, title, opts={}
       @step = step

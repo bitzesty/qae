@@ -524,10 +524,13 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           ref "C 5.1"
           required
+          no_total_row true
           context %(
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
           corner_label "Participants"
+          totals_label "Total number of discrete participants supported (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
           x_headings [2018, 2019, 2020, 2021, 2022, "Total (system calculated)"]
 
@@ -544,11 +547,11 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           ref "C 5.2"
           required
+          no_total_row true
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )
           corner_label "Activity type"
-          totals_label "Total number of discrete participants supported each year"
 
           x_headings [2018, 2019, 2020, 2021, 2022]
 
@@ -570,6 +573,7 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.3"
           required
+          no_total_row true
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )
@@ -622,7 +626,9 @@ class AwardYears::V2024::QAEForms
             [:italic, "When answering this question, please refer to the guidance under C5."]
           ]
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discrete participants supported"
+          subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          totals_label "Total number of discrete participants (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
           x_headings ["Jobs secured during the support or within a year after support ending", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
@@ -669,7 +675,9 @@ class AwardYears::V2024::QAEForms
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discrete participants supported"
+          subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          totals_label "Total number of discrete participants supported (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
@@ -709,7 +717,9 @@ class AwardYears::V2024::QAEForms
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discrete participants supported"
+          subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          totals_label "Total number of discrete participants supported (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 

@@ -13,7 +13,9 @@ module QaePdfForms::CustomQuestions::Matrix
       columns
     end
 
+    subtotal_row = ["#{question.subtotals_label}"]
     total_row = ["#{question.totals_label}"]
+    proportion_row = ["#{question.proportions_label}"]
     question.x_headings.each do |x_heading|
       total_row << form_pdf.filled_answers[question.key.to_s + "_#{x_heading.key}_total"]
     end
