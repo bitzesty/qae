@@ -80,11 +80,14 @@ class AwardYears::V2024::QAEForms
           required
           context %(
             <p>
-              If you have more than five products or services, group them, so that they don't exceed five.
+              If you have more than five products or services, group them, so that they don’t exceed five.
             </p>
             <p>
               If relevant, give details of material used or end use, for example: 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
             </p>
+          )
+          additional_pdf_context %(
+            You will need to complete this information for each product or service.
           )
           rows 2
           product_limit 5
