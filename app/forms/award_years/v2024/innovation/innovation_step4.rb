@@ -94,7 +94,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
           classes "sub-question"
           sub_ref "D 2.4"
           required
@@ -108,7 +108,15 @@ class AwardYears::V2024::QAEForms
           ref "D 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+            <p>
+              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
+            </p>
+            <p>
+              If you started trading within the last five years, you only need to provide numbers for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide employee numbers for at least your two most recent financial years, covering the full 24 months.
+            </p>
+            <p>
+              Enter '0' if you had none.
+            </p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -123,7 +131,7 @@ class AwardYears::V2024::QAEForms
 
         about_section :company_financials, "Company Financials" do
           ref "D 4"
-          section "company_financials"
+          section "company_financials_innovation"
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
