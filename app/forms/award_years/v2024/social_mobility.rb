@@ -25,8 +25,8 @@ class AwardYears::V2024::QAEForms
              "Commercial Performance",
              &AwardYears::V2024::QAEForms.mobility_step4
 
-        step "Environmental, Social, & Corporate Governance (ESG)",
-             "Environmental, Social, & Corporate Governance (ESG)",
+        step "Environmental, Social & Corporate Governance (ESG)",
+             "Environmental, Social & Corporate Governance (ESG)",
              &AwardYears::V2024::QAEForms.mobility_step5
 
         step "Supplementary materials & confirmation",
