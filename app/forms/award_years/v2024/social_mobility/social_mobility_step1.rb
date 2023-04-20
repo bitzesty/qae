@@ -55,7 +55,7 @@ class AwardYears::V2024::QAEForms
                   <li>Crown Commercial Service</li>
                   <li>Department for Business and Trade</li>
                   <li>Department for Communities and Local Government</li>
-                  <li>Department for Digital, Culture, Media & Sport</li>
+                  <li>Department for Culture, Media & Sport</li>
                   <li>Department for Education</li>
                   <li>Department for Energy, Security and Net Zero</li>
                   <li>Department for Environment, Food & Rural Affairs</li>
@@ -121,7 +121,7 @@ class AwardYears::V2024::QAEForms
               \u2022 Crown Commercial Service
               \u2022 Department for Business and Trade
               \u2022 Department for Communities and Local Government
-              \u2022 Department for Digital, Culture, Media & Sport
+              \u2022 Department for Culture, Media & Sport
               \u2022 Department for Education
               \u2022 Department for Energy, Security and Net Zero
               \u2022 Department for Environment, Food & Rural Affairs
