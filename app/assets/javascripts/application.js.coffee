@@ -320,8 +320,10 @@ jQuery ->
   updateColumnSubtotalsCalculation = (table, rowsToExclude) ->
     inputFields = table.querySelectorAll('input[type="number"]')
     colCount = table.rows[0].cells.length
-    subtotalsRow = table.querySelector('.auto-subtotals-row')
+    subtotalsRow = table.querySelector('.auto-subtotals-row').cells
     othersRow = table.querySelector('.others-not-disadvantaged-row').cells
+    totalsRow = table.querySelector('.auto-totals-row').cells
+    proportionRow = table.querySelector('.auto-proportion-row').cells
 
     for inputField in inputFields
       inputField.addEventListener('input', ->
@@ -337,15 +339,21 @@ jQuery ->
               if !isNaN(cellValue)
                 colSums[columnIndex] += cellValue
 
-        for cell in subtotalsRow.cells
+        for cell in subtotalsRow
           subtotalInput = cell.querySelector('input')
           subtotalInput?.value = colSums[cell.cellIndex]
 
-        for cell in table.querySelector('.auto-totals-row').cells
+        for cell in totalsRow
           totalInput = cell.querySelector('input')
           inputElement = othersRow[cell.cellIndex].querySelector('input')
           othersCellValue = parseFloat(inputElement?.value) or 0
           totalInput?.value = colSums[cell.cellIndex] + othersCellValue
+
+        for cell in proportionRow
+          proportionInput = cell.querySelector('input')
+          othersCell = othersRow[cell.cellIndex].querySelector('input')
+          othersCellValue = parseFloat(othersCell?.value) or 0
+          proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + othersCellValue) * 100).toFixed(2)
       )
 
   loopOverTables = ->
