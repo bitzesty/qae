@@ -629,6 +629,7 @@ class AwardYears::V2024::QAEForms
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged who benefited"
           totals_label "Total number of discrete participants (the system will calculate this)"
           proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
@@ -654,7 +655,6 @@ class AwardYears::V2024::QAEForms
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
             ["other_disadvantaged_group", "Other disadvantaged group"],
-            ["other_non_disadvantaged_group", "Others receiving support from you who are not disadvantaged who benefited"]
           ]
           column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
         end
@@ -679,6 +679,7 @@ class AwardYears::V2024::QAEForms
           )
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged who benefited"
           totals_label "Total number of discrete participants supported (the system will calculate this)"
           proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
@@ -704,7 +705,6 @@ class AwardYears::V2024::QAEForms
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
             ["other_disadvantaged_group", "Other disadvantaged group"],
-            ["other_non_disadvantaged_group", "Others receiving support from you who are not disadvantaged who benefited"]
           ]
           column_widths({ 1 => 20, 2 => 25, 3 => 20, 4 => 23, 5 => 23 })
         end
@@ -722,6 +722,7 @@ class AwardYears::V2024::QAEForms
           )
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged who benefited"
           totals_label "Total number of discrete participants supported (the system will calculate this)"
           proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
@@ -746,7 +747,6 @@ class AwardYears::V2024::QAEForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["other_disadvantaged_group", "Other disadvantaged group"],
-            ["other_non_disadvantaged_group", "Others receiving support from you who are not disadvantaged who benefited"]
           ]
           column_widths({ 1 => 25, 2 => 20, 3 => 23, 4 => 20, 5 => 15 })
         end

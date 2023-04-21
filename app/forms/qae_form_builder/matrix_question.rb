@@ -60,6 +60,10 @@ class QAEFormBuilder
       @q.label = label
     end
 
+    def others_label label
+      @q.others_label = label
+    end
+
     def subtotals_label label
       @q.subtotals_label = label
     end
@@ -135,6 +139,7 @@ class QAEFormBuilder
 
   class MatrixQuestion < Question
     attr_accessor :label,
+                  :others_label,
                   :subtotals_label,
                   :totals_label,
                   :proportion_label,

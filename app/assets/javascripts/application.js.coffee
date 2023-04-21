@@ -319,9 +319,9 @@ jQuery ->
       )
 
   updateColumnSubtotalsCalculation = (table) ->
-    console.log('updateColumnSubtotalsCalculation')
     inputFields = table.querySelectorAll('input[type="number"]')
     colCount = table.rows[0].cells.length
+    othersRow = table.querySelector('.others-not-disadvantaged-row').cells
 
     for inputField in inputFields
       inputField.addEventListener('input', ->
@@ -331,16 +331,22 @@ jQuery ->
           colSums[i] = 0
 
           for row in table.rows
-            # exclude first and final 2 rows
-            if row.rowIndex > 0 && row.rowIndex < table.rows.length - 2
+            # exclude first and final 4 rows
+            if row.rowIndex > 0 && row.rowIndex < table.rows.length - 4
               inputElement = row.cells[columnIndex].querySelector('input')
               cellValue = parseFloat(inputElement?.value) or 0
               if !isNaN(cellValue)
                 colSums[columnIndex] += cellValue
 
         for cell in table.querySelector('.auto-subtotals-row').cells
+          subTotalInput = cell.querySelector('input')
+          subTotalInput?.value = colSums[cell.cellIndex]
+
+        for cell in table.querySelector('.auto-totals-row').cells
           totalInput = cell.querySelector('input')
-          totalInput?.value = colSums[cell.cellIndex]
+          inputElement = othersRow[cell.cellIndex].querySelector('input')
+          othersCellValue = parseFloat(inputElement?.value) or 0
+          totalInput?.value = colSums[cell.cellIndex] + othersCellValue
       )
 
   loopOverTables = ->
