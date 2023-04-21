@@ -58,13 +58,12 @@ class QAEFormBuilder
   end
 
   class OneOptionByYearsCondition
-    attr_accessor :question_key, :question_value, :years, :span_class
-    def initialize question_key, question_value, years, options = {}
+    attr_accessor :question_key, :question_value, :years
+    def initialize question_key, question_value, years, **options
       @question_key = question_key
       @question_value = question_value
       @years = years
       @options = options
-      @span_class = options[:span_class]
     end
   end
 

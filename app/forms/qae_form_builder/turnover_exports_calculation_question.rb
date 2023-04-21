@@ -56,12 +56,11 @@ class QAEFormBuilder
                   :question_value,
                   :years,
                   :span_class
-    def initialize question_key, question_value, years, options = {}
+    def initialize question_key, question_value, years, **options
       @question_key = question_key
       @question_value = question_value
       @years = years
       @options = options
-      @span_class = options[:span_class]
     end
   end
 
@@ -71,7 +70,7 @@ class QAEFormBuilder
                   :turnover_question,
                   :exports_question,
                   :one_option_financial_data_mode
-                  
+
     def after_create
       @by_year_conditions = []
     end
