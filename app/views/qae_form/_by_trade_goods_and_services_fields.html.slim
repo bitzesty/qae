@@ -16,4 +16,4 @@ li.js-add-example.js-list-item data-value=placement data-type="in_clause_collect
     span.govuk-error-message
     input.js-trigger-autosave.govuk-input.govuk-input--width-5 type="number" pattern="[0-9]*" min=question.min max=question.max name="#{question.input_name}[#{index}][total_overseas_trade]" value=(item.present? ? item['total_overseas_trade'] : '') autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
 
-  = link_to "Remove", "#", class: "remove-link js-remove-link #{'visuallyhidden' if !item.present?} #{'read_only' if admin_in_read_only_mode?}"
+  = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'visuallyhidden' if (count == 1)} #{'read_only' if admin_in_read_only_mode?}"
