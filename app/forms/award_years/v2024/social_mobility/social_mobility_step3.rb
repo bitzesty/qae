@@ -620,9 +620,7 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.4"
           required
-          auto_subtotals_row true
-          auto_totals_row true
-          auto_proportion_row true
+          auto_subtotals_totals_proportions_row true
           context %(
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
@@ -672,9 +670,7 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.5"
           required
-          auto_subtotals_row true
-          auto_totals_row true
-          auto_proportion_row true
+          auto_subtotals_totals_proportions_row  true
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
@@ -717,9 +713,7 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.6"
           required
-          auto_subtotals_row true
-          auto_totals_row true
-          auto_proportion_row true
+          auto_subtotals_totals_proportions_row true
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]

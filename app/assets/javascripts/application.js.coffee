@@ -318,10 +318,39 @@ jQuery ->
           totalInput?.value = colSums[cell.cellIndex]
       )
 
+  updateColumnSubtotalsCalculation = (table) ->
+    console.log('updateColumnSubtotalsCalculation')
+    inputFields = table.querySelectorAll('input[type="number"]')
+    colCount = table.rows[0].cells.length
+
+    for inputField in inputFields
+      inputField.addEventListener('input', ->
+        colSums = {}
+        for i in [0...colCount]
+          columnIndex = i
+          colSums[i] = 0
+
+          for row in table.rows
+            # exclude first and final 2 rows
+            if row.rowIndex > 0 && row.rowIndex < table.rows.length - 2
+              inputElement = row.cells[columnIndex].querySelector('input')
+              cellValue = parseFloat(inputElement?.value) or 0
+              if !isNaN(cellValue)
+                colSums[columnIndex] += cellValue
+
+        for cell in table.querySelector('.auto-subtotals-row').cells
+          totalInput = cell.querySelector('input')
+          totalInput?.value = colSums[cell.cellIndex]
+      )
+
   loopOverTables = ->
-    tables = document.querySelectorAll('.auto-totals-row-table')
-    for table in tables
+    autoTotalColTables = document.querySelectorAll('.auto-totals-row-table')
+    for table in autoTotalColTables
       updateColumnTotalsCalculation(table)
+
+    autoSubTotalTables = document.querySelectorAll('.auto-subtotals-totals-proportion-row-table')
+    for table in autoSubTotalTables
+      updateColumnSubtotalsCalculation(table)
 
   loopOverTables()
 

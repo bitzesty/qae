@@ -84,16 +84,16 @@ class QAEFormBuilder
       @q.auto_totals_column = auto_totals_column
     end
 
-    def auto_subtotals_row auto_subtotals_row
-      @q.auto_subtotals_row = auto_subtotals_row
-    end
-
     def auto_totals_row auto_totals_row
       @q.auto_totals_row = auto_totals_row
     end
 
     def auto_proportion_row auto_proportion_row
       @q.auto_proportion_row = auto_proportion_row
+    end
+
+    def auto_subtotals_totals_proportions_row auto_subtotals_totals_proportions_row
+      @q.auto_subtotals_totals_proportions_row = auto_subtotals_totals_proportions_row
     end
 
     def x_heading key, label
@@ -147,9 +147,9 @@ class QAEFormBuilder
                   :required_rows,
                   :no_total_row,
                   :auto_totals_column,
-                  :auto_subtotals_row,
                   :auto_totals_row,
-                  :auto_proportion_row
+                  :auto_proportion_row,
+                  :auto_subtotals_totals_proportions_row
 
     def after_create
       @x_headings = []
