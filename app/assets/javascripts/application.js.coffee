@@ -294,7 +294,7 @@ jQuery ->
 
   updateRowTotalsCalculation()
 
-  updateColumnTotalsCalculation = (table) ->
+  updateColumnTotalsCalculation = (table, rowsToExclude) ->
     inputFields = table.querySelectorAll('input[type="number"]')
     colCount = table.rows[0].cells.length
 
@@ -306,8 +306,7 @@ jQuery ->
           colSums[i] = 0
 
           for row in table.rows
-            # exclude first and final 2 rows
-            if row.rowIndex > 0 && row.rowIndex < table.rows.length - 2
+            if row.rowIndex > 0 && row.rowIndex < table.rows.length - rowsToExclude
               inputElement = row.cells[columnIndex].querySelector('input')
               cellValue = parseFloat(inputElement?.value) or 0
               if !isNaN(cellValue)
@@ -318,9 +317,10 @@ jQuery ->
           totalInput?.value = colSums[cell.cellIndex]
       )
 
-  updateColumnSubtotalsCalculation = (table) ->
+  updateColumnSubtotalsCalculation = (table, rowsToExclude) ->
     inputFields = table.querySelectorAll('input[type="number"]')
     colCount = table.rows[0].cells.length
+    subtotalsRow = table.querySelector('.auto-subtotals-row')
     othersRow = table.querySelector('.others-not-disadvantaged-row').cells
 
     for inputField in inputFields
@@ -331,16 +331,15 @@ jQuery ->
           colSums[i] = 0
 
           for row in table.rows
-            # exclude first and final 4 rows
-            if row.rowIndex > 0 && row.rowIndex < table.rows.length - 4
+            if row.rowIndex > 0 && row.rowIndex < table.rows.length - rowsToExclude
               inputElement = row.cells[columnIndex].querySelector('input')
               cellValue = parseFloat(inputElement?.value) or 0
               if !isNaN(cellValue)
                 colSums[columnIndex] += cellValue
 
-        for cell in table.querySelector('.auto-subtotals-row').cells
-          subTotalInput = cell.querySelector('input')
-          subTotalInput?.value = colSums[cell.cellIndex]
+        for cell in subtotalsRow.cells
+          subtotalInput = cell.querySelector('input')
+          subtotalInput?.value = colSums[cell.cellIndex]
 
         for cell in table.querySelector('.auto-totals-row').cells
           totalInput = cell.querySelector('input')
@@ -352,11 +351,11 @@ jQuery ->
   loopOverTables = ->
     autoTotalColTables = document.querySelectorAll('.auto-totals-row-table')
     for table in autoTotalColTables
-      updateColumnTotalsCalculation(table)
+      updateColumnTotalsCalculation(table, 2)
 
     autoSubTotalTables = document.querySelectorAll('.auto-subtotals-totals-proportion-row-table')
     for table in autoSubTotalTables
-      updateColumnSubtotalsCalculation(table)
+      updateColumnSubtotalsCalculation(table, 4)
 
   loopOverTables()
 
