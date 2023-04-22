@@ -303,13 +303,19 @@ jQuery ->
     else if type == 'others'
       proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + referenceValue) * 100).toFixed(2)
 
-  updateColumnTotalsCalculation = (table, rowsToExclude) ->
+  updateColumnTotalsCalculation = (table) ->
+    inputFields = table.querySelectorAll('input[type="number"]')
+    colCount = table.rows[0].cells.length
     totalsRow = table.querySelector('.auto-totals-row').cells
+    subtotalsRowSelector = table.querySelector('.auto-subtotals-row')
+    if subtotalsRowSelector 
+      subtotalsRow = subtotalsRowSelector.cells
+      rowsToExclude = 4
+    else
+      rowsToExclude = 2
     othersRow = table.querySelector('.others-not-disadvantaged-row').cells
     disadvantagedRow = table.querySelector('tbody').querySelector('tr:nth-child(1)').cells
     proportionRow = table.querySelector('.auto-proportion-row').cells
-    inputFields = table.querySelectorAll('input[type="number"]')
-    colCount = table.rows[0].cells.length
 
     for inputField in inputFields
       inputField.addEventListener('input', ->
@@ -325,46 +331,23 @@ jQuery ->
               if !isNaN(cellValue)
                 colSums[columnIndex] += cellValue
 
-        for cell in totalsRow
-          updateTotalValue(cell, colSums)
+        if subtotalsRowSelector 
+          for cell in subtotalsRow
+            updateTotalValue(cell, colSums)
+          for cell in totalsRow
+            totalInput = cell.querySelector('input')
+            inputElement = othersRow[cell.cellIndex].querySelector('input')
+            othersCellValue = parseFloat(inputElement?.value) or 0
+            totalInput?.value = colSums[cell.cellIndex] + othersCellValue
+        else
+          for cell in totalsRow
+            updateTotalValue(cell, colSums)
 
         for cell in proportionRow
-          updateProportionValue(cell, disadvantagedRow, 'disadvantaged', colSums)
-      )
-
-  updateColumnSubtotalsCalculation = (table, rowsToExclude) ->
-    inputFields = table.querySelectorAll('input[type="number"]')
-    colCount = table.rows[0].cells.length
-    subtotalsRow = table.querySelector('.auto-subtotals-row').cells
-    othersRow = table.querySelector('.others-not-disadvantaged-row').cells
-    totalsRow = table.querySelector('.auto-totals-row').cells
-    proportionRow = table.querySelector('.auto-proportion-row').cells
-
-    for inputField in inputFields
-      inputField.addEventListener('input', ->
-        colSums = {}
-        for i in [0...colCount]
-          columnIndex = i
-          colSums[i] = 0
-
-          for row in table.rows
-            if row.rowIndex > 0 && row.rowIndex < table.rows.length - rowsToExclude
-              inputElement = row.cells[columnIndex].querySelector('input')
-              cellValue = parseFloat(inputElement?.value) or 0
-              if !isNaN(cellValue)
-                colSums[columnIndex] += cellValue
-
-        for cell in subtotalsRow
-          updateTotalValue(cell, colSums)
-
-        for cell in totalsRow
-          totalInput = cell.querySelector('input')
-          inputElement = othersRow[cell.cellIndex].querySelector('input')
-          othersCellValue = parseFloat(inputElement?.value) or 0
-          totalInput?.value = colSums[cell.cellIndex] + othersCellValue
-
-        for cell in proportionRow
-          updateProportionValue(cell, othersRow, 'others', colSums)
+          if subtotalsRowSelector
+            updateProportionValue(cell, othersRow, 'others', colSums)
+          else
+            updateProportionValue(cell, disadvantagedRow, 'disadvantaged', colSums)
       )
 
   loopOverTables = ->
@@ -372,11 +355,7 @@ jQuery ->
 
     autoTotalColTables = document.querySelectorAll('.auto-totals-row-table')
     for table in autoTotalColTables
-      updateColumnTotalsCalculation(table, 2)
-
-    autoSubTotalTables = document.querySelectorAll('.auto-subtotals-totals-proportion-row-table')
-    for table in autoSubTotalTables
-      updateColumnSubtotalsCalculation(table, 4)
+      updateColumnTotalsCalculation(table)
 
   loopOverTables()
 
