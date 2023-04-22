@@ -294,15 +294,19 @@ jQuery ->
     input = cell.querySelector('input')
     input?.value = colSums[cell.cellIndex]
 
-  updateProportionValue = (cell, colSums) ->
+  updateProportionValue = (cell, referenceRow, type, colSums) ->
     proportionInput = cell.querySelector('input')
-    othersCell = othersRow[cell.cellIndex].querySelector('input')
-    othersCellValue = parseFloat(othersCell?.value) or 0
-    proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + othersCellValue) * 100).toFixed(2)
+    referenceCell = referenceRow[cell.cellIndex].querySelector('input')
+    referenceValue = parseFloat(referenceCell?.value) or 0
+    if type == 'disadvantaged'
+      proportionInput?.value = ((referenceValue / colSums[cell.cellIndex]) * 100).toFixed(2)
+    else if type == 'others'
+      proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + referenceValue) * 100).toFixed(2)
 
   updateColumnTotalsCalculation = (table, rowsToExclude) ->
     totalsRow = table.querySelector('.auto-totals-row').cells
     othersRow = table.querySelector('.others-not-disadvantaged-row').cells
+    disadvantagedRow = table.querySelector('tbody').querySelector('tr:nth-child(1)').cells
     proportionRow = table.querySelector('.auto-proportion-row').cells
     inputFields = table.querySelectorAll('input[type="number"]')
     colCount = table.rows[0].cells.length
@@ -325,10 +329,7 @@ jQuery ->
           updateTotalValue(cell, colSums)
 
         for cell in proportionRow
-          proportionInput = cell.querySelector('input')
-          othersCell = othersRow[cell.cellIndex].querySelector('input')
-          othersCellValue = parseFloat(othersCell?.value) or 0
-          proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + othersCellValue) * 100).toFixed(2)
+          updateProportionValue(cell, disadvantagedRow, 'disadvantaged', colSums)
       )
 
   updateColumnSubtotalsCalculation = (table, rowsToExclude) ->
@@ -363,7 +364,7 @@ jQuery ->
           totalInput?.value = colSums[cell.cellIndex] + othersCellValue
 
         for cell in proportionRow
-          updateProportionValue(cell, colSums, othersRow)
+          updateProportionValue(cell, othersRow, 'others', colSums)
       )
 
   loopOverTables = ->
