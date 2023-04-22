@@ -378,9 +378,6 @@ class AwardYears::V2024::QAEForms
           conditional :initiative_activities, "other_activity_types"
           words_max 50
           rows 2
-          context %(
-            <p>Answer this question if you selected 'Other activity types' in question C2.</p>
-          )
         end
 
         header :initiative_header_c3, "Summary of your promoting opportunity through social mobility initiative." do
@@ -444,7 +441,7 @@ class AwardYears::V2024::QAEForms
           words_max 500
         end
 
-        textarea :initiative_evidence_exemplary, "Provide evidence of what makes your initiative exemplary" do
+        textarea :initiative_evidence_exemplary, "Provide evidence of what makes your initiative exemplary." do
           sub_ref "C 3.5"
           required
           classes "sub-question"
@@ -533,13 +530,13 @@ class AwardYears::V2024::QAEForms
 
           corner_label "Participants"
           totals_label "Total number of discrete participants supported (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged"
           proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
-          x_headings [2018, 2019, 2020, 2021, 2022, "Total (system calculated)"]
+          x_headings [2019, 2020, 2021, 2022, 2023, "Total (system calculated)"]
 
           y_headings [
             ["total_disadvantaged", "Total number of disadvantaged participants supported"],
-            ["non_disadvantaged", "Others receiving support from you who are not disadvantaged"]
           ]
           column_widths({ 1 => 13, 2 => 13, 3 => 13, 4 => 13, 5 => 13, 6 => 13 })
         end
@@ -554,7 +551,7 @@ class AwardYears::V2024::QAEForms
           )
           corner_label "Activity type"
 
-          x_headings [2018, 2019, 2020, 2021, 2022]
+          x_headings [2019, 2020, 2021, 2022, 2023]
 
           y_headings [
             ["careers_advice", "Careers advice"],
@@ -580,7 +577,7 @@ class AwardYears::V2024::QAEForms
           )
           corner_label "Disadvantaged group type"
 
-          x_headings [2018, 2019, 2020, 2021, 2022]
+          x_headings [2019, 2020, 2021, 2022, 2023]
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
@@ -607,12 +604,10 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :disadvantaged_group_not_in_list, "If you are putting forward a group that is not on this list, please provide details and explain why you believe the group you support should be considered disadvantaged." do
-          classes "sub-question"
+          classes "sub-question js-conditional-question-checkbox"
           sub_ref "C 5.3.1"
           required
-          context %(
-            <p>Answer this question if you provided numbers for ‘<strong>Other disadvantaged group</strong>’ in question C5.3.</p>
-          )
+          conditional :disadvantaged_participants_in_group_year, :others
           words_max 300
         end
 
@@ -832,7 +827,7 @@ class AwardYears::V2024::QAEForms
 
         textarea :initiative_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do?" do
           classes "sub-question"
-          sub_ref "B 6.3"
+          sub_ref "C 6.3"
           required
           words_max 200
         end

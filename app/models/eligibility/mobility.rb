@@ -11,13 +11,29 @@ class Eligibility::Mobility < Eligibility
 
   property :can_provide_financial_figures,
             boolean: true,
-            label: "Are you able to provide financial figures for the last three years for your organisation?",
+            label: "Will you be able to provide financial figures for your three most recent financial years, covering 36 months?",
             accept: :true,
-            hint: proc { "<p class='govuk-hint'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>" }
+            hint: %(
+              <p class='govuk-hint'>
+                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+              </p>
+              <p class='govuk-hint'>
+                If you haven't reached your most recent year-end, you can provide estimated figures in the interim.
+              </p>
+            )
+  property :full_time_employees,
+            boolean: true,
+            label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your three most recent financial years?",
+            accept: :true,
+            hint: %(
+              <p class='govuk-hint'>
+               You can calculate the number of full-time employees at the year-end or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
+              </p>
+            )
 
   property :promoting_social_mobility,
             boolean: true,
-            label: "Have you been promoting opportunity through social mobility helping disadvantaged groups as listed below?",
+            label: "Have you been promoting opportunity (through social mobility) to help disadvantaged groups",
             accept: :true,
             hint_partial: "form_award_eligibilities/questions/hints/promoting_social_mobility"
 
@@ -39,7 +55,7 @@ class Eligibility::Mobility < Eligibility
 
   property :evidence_of_impact,
             boolean: true,
-            label: "Are you able to provide evidence of the impact of your promoting opportunity through social mobility activities?",
+            label: "Are you able to provide evidence of the impact of your promoting opportunity (through social mobility) activities?",
             accept: :true,
             hint: %(
               <div class='govuk-hint'>

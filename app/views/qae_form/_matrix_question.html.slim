@@ -1,4 +1,4 @@
-table.matrix-question-table.govuk-table class="#{'auto-totals-column' if question.auto_totals_column} #{'auto-totals-row-table' if question.auto_totals_row} #{'auto-subtotals-totals-proportion-row-table' if question.auto_subtotals_totals_proportions_row}"
+table.matrix-question-table.govuk-table class="#{'auto-totals-column' if question.auto_totals_column} #{'auto-totals-row-table' if question.auto_totals_row || question.auto_subtotals_totals_proportions_row}"
   thead.govuk-table__head
     tr.govuk-table__row
       th.govuk-table__header scope="col"
@@ -20,8 +20,10 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
               span.govuk-error-message aria-live="polite"
 
     - if question.auto_subtotals_totals_proportions_row
-      = render(partial: "qae_form/custom_matrix_row", locals: { question: question, row_class: "auto-subtotals-row", type: "total", disabled: true, label: question.subtotals_label})
-      = render(partial: "qae_form/custom_matrix_row", locals: { question: question, row_class: "others-not-disadvantaged-row", type: "others_receiving_support", disabled: true, label: question.others_label})
+      = render(partial: "qae_form/custom_matrix_row", locals: { question: question, row_class: "auto-subtotals-row", type: "subtotal", disabled: true, label: question.subtotals_label})
+
+    - if question.auto_totals_row || question.auto_subtotals_totals_proportions_row
+      = render(partial: "qae_form/custom_matrix_row", locals: { question: question, row_class: "others-not-disadvantaged-row", type: "others_receiving_support", disabled: false, label: question.others_label})
 
     - unless question.no_total_row
       = render(partial: "qae_form/custom_matrix_row", locals: { question: question, row_class: "#{'auto-totals-row' if question.auto_subtotals_totals_proportions_row || question.auto_totals_row}", type: "total", disabled: false, label: question.totals_label})
