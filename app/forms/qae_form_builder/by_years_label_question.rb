@@ -35,9 +35,25 @@ class QAEFormBuilder
     end
 
     def active_by_year_condition
-      delegate_obj.by_year_conditions.find {|c|
-        form[c.question_key].input_value == c.question_value
-      }
+      delegate_obj.by_year_conditions.find do |c|
+        if c.question_value.respond_to?(:call)
+          q = form[c.question_key]
+          if q.is_a?(QAEFormBuilder::DateQuestion)
+            date = []
+            q.required_sub_fields.each do |sub|
+              date << q.input_value(suffix: sub.keys[0])
+            end
+
+            date = Date.parse(date.join("/")) rescue nil
+
+            c.question_value.(date)
+          else
+            c.question_value.(form[c.question_key].input_value)
+          end
+        else
+          form[c.question_key].input_value == c.question_value
+        end
+      end
     end
   end
 
@@ -56,7 +72,7 @@ class QAEFormBuilder
   end
 
   class ByYearsCondition
-    attr_accessor :question_key, :question_value, :years
+    attr_accessor :question_key, :question_value, :years, :options
     def initialize question_key, question_value, years, **options
       @question_key = question_key
       @question_value = question_value

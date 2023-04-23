@@ -62,6 +62,10 @@ class Settings < ApplicationRecord
       end
     end
 
+    def current_date_of_submission_deadline
+      current_submission_deadline.trigger_at&.to_date
+    end
+
     def after_current_submission_deadline_start?
       current_submission_start_deadlines.any?(&:passed?)
     end

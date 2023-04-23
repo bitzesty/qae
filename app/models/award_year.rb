@@ -282,5 +282,27 @@ class AwardYear < ApplicationRecord
         Date.new(AwardYear.current.year - 1 - years_number, month, day).strftime("%d/%m/%Y")
       end
     end
+
+    def start_trading_between(from = 0, to = 1, **opts)
+      day = DEFAULT_FINANCIAL_DEADLINE_DAY
+      month = DEFAULT_FINANCIAL_DEADLINE_MONTH
+
+      if (deadline = Settings.current_submission_deadline) && deadline.trigger_at
+        day = deadline.trigger_at.day
+        month = deadline.trigger_at.month
+      end
+
+      day = day - 1 if opts[:exclude]
+
+      start_date = Date.new(AwardYear.current.year - 1 - to, month, opts[:include_end_date] == true ? day : (day + 1))
+      end_date = Date.new(AwardYear.current.year - 1 - from, month, day)
+
+      if opts[:minmax] == true
+        return (start_date..end_date).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
+        (start_date..end_date).minmax
+      else
+        start_date..end_date
+      end
+    end
   end
 end
