@@ -22,6 +22,13 @@
 #= require_tree ./frontend
 #= require offline
 
+safeParse = (str) ->
+  try
+    return JSON.parse(str)
+  catch _err
+    return str
+  return
+
 ordinal = (n) ->
   nHundreds = n % 100
   nDecimal = n % 10
@@ -117,6 +124,42 @@ jQuery ->
     setTimeout((() =>
       simpleConditionalQuestion($(this), true)
     ), 50)
+  # Range conditional using a is within range
+  rangeConditionalQuestion = (input) ->
+    fieldset = input.closest(".js-conditional-answer")
+    answer = fieldset.attr("data-answer")
+    question = $(".conditional-question[data-question='#{answer}'][data-type='range']")
+
+    d_input = fieldset.find(".govuk-date-input")
+
+    d_day = d_input.find(".js-date-input-day").val()
+    d_month = d_input.find(".js-date-input-month").val()
+    d_year = d_input.find(".js-date-input-year").val()
+
+    if (d_day && d_month && d_year)
+      question.each () ->
+        range = safeParse($(this).attr('data-value'))
+
+        if Array.isArray(range)
+          from = range.at(0).split('/')
+          to = range.at(-1).split('/')
+
+          d_from = new Date(from[2], parseInt(from[1]) - 1, from[0])
+          d_to = new Date(to[2], parseInt(to[1]) - 1, to[0]);
+          d_input = new Date(d_year, parseInt(d_month) - 1, d_day);
+
+          if (d_input >= d_from && d_input <= d_to)
+            $(this).addClass("show-question")
+          else
+            $(this).removeClass("show-question")
+
+  $(".js-conditional-answer .govuk-date-input input").each () ->
+    rangeConditionalQuestion($(this))
+  $(".js-conditional-answer .govuk-date-input input").change () ->
+    setTimeout((() =>
+      rangeConditionalQuestion($(this))
+    ), 50)
+
   # Numerical conditional that checks that trend doesn't ever drop
   dropConditionalQuestion = (input) ->
     drop_question_ids = input.closest(".js-conditional-drop-answer").attr('data-drop-question')
@@ -193,7 +236,7 @@ jQuery ->
       $(".js-financial-year-changed-dates .js-fy-entries").each ->
         $(this).find("input.js-fy-day").removeAttr("disabled").val("")
         $(this).find("input.js-fy-month").removeAttr("disabled").val("")
-        
+
       # Year end hasn't changed, auto select the year
       fy_latest_changed_input = $(".js-financial-year")
       fy_latest_day = fy_latest_changed_input.find("input.js-fy-day").val()
