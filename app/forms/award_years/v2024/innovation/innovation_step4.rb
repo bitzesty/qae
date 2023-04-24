@@ -23,7 +23,7 @@ class AwardYears::V2024::QAEForms
           classes "js-most-recent-financial-year"
           context %(
             <p>
-              Answer this question if your dates in question D2 range between #{Settings.current_award_year_switch_date.decorate.formatted_trigger_date} to #{Settings.current.deadlines.submission_end.first.decorate.formatted_trigger_date}.
+              Answer this question if your dates in question D1 range between #{Settings.current_award_year_switch_date.decorate.formatted_trigger_date} to #{Settings.current.deadlines.submission_end.first.decorate.formatted_trigger_date}.
             </p>
           )
         end
