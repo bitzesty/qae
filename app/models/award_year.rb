@@ -292,9 +292,22 @@ class AwardYear < ApplicationRecord
         month = deadline.trigger_at.month
       end
 
-      day = day - 1 if opts[:exclude]
+      if opts[:exclude]
+        if day > 1
+          day -= 1
+        else
+          month -= 1 # assuming we never have a submission deadline on january
+          day = Date.new(AwardYear.current.year - 1 - to, month, day).end_of_month.day
+        end
+      end
 
-      start_date = Date.new(AwardYear.current.year - 1 - to, month, opts[:include_end_date] == true ? day : (day + 1))
+      start_date =
+        begin
+          Date.new(AwardYear.current.year - 1 - to, month, opts[:include_end_date] == true ? day : (day + 1))
+        rescue Date::Error # avoiding 32th day of the month error
+          Date.new(AwardYear.current.year - 1 - to, month + 1, 1)
+        end
+
       end_date = Date.new(AwardYear.current.year - 1 - from, month, day)
 
       if opts[:minmax] == true
