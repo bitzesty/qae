@@ -275,6 +275,90 @@ jQuery ->
 
   replaceCommasInFinancialData()
 
+  updateRowTotalsCalculation = (inputFields) ->
+    for inputField in inputFields
+      inputField.addEventListener('input', ->
+        row = this.closest('tr')
+        inputFieldsInRow = row.querySelectorAll('td:not(:last-child) input[type="number"]');
+
+        sum = 0
+        for inputFieldInRow in inputFieldsInRow
+          sum += parseInt(inputFieldInRow.value) or 0
+
+        lastCell = row.cells[row.cells.length - 1];
+        inputField = lastCell.querySelector('input[type="number"]');
+        inputField.value = sum;
+      )
+
+  updateTotalValue = (cell, colSums) ->
+    input = cell.querySelector('input')
+    input?.value = colSums[cell.cellIndex]
+
+  updateProportionValue = (cell, referenceRow, type, colSums) ->
+    proportionInput = cell.querySelector('input')
+    referenceCell = referenceRow[cell.cellIndex].querySelector('input')
+    referenceValue = parseFloat(referenceCell?.value) or 0
+    if type == 'disadvantaged'
+      proportionInput?.value = ((referenceValue / colSums[cell.cellIndex]) * 100).toFixed(2)
+    else if type == 'others'
+      proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + referenceValue) * 100).toFixed(2)
+
+  updateColumnTotalsCalculation = (table) ->
+    inputFields = table.querySelectorAll('input[type="number"]')
+    colCount = table.rows[0].cells.length
+    totalsRow = table.querySelector('.auto-totals-row').cells
+    subtotalsRowSelector = table.querySelector('.auto-subtotals-row')
+    if subtotalsRowSelector 
+      subtotalsRow = subtotalsRowSelector.cells
+      rowsToExclude = 4
+    else
+      rowsToExclude = 2
+    othersRow = table.querySelector('.others-not-disadvantaged-row').cells
+    disadvantagedRow = table.querySelector('tbody').querySelector('tr:nth-child(1)').cells
+    proportionRow = table.querySelector('.auto-proportion-row').cells
+
+    for inputField in inputFields
+      inputField.addEventListener('input', ->
+        colSums = {}
+        for i in [0...colCount]
+          columnIndex = i
+          colSums[i] = 0
+
+          for row in table.rows
+            if row.rowIndex > 0 && row.rowIndex < table.rows.length - rowsToExclude
+              inputElement = row.cells[columnIndex].querySelector('input')
+              cellValue = parseFloat(inputElement?.value) or 0
+              if !isNaN(cellValue)
+                colSums[columnIndex] += cellValue
+
+        if subtotalsRowSelector 
+          for cell in subtotalsRow
+            updateTotalValue(cell, colSums)
+          for cell in totalsRow
+            totalInput = cell.querySelector('input')
+            inputElement = othersRow[cell.cellIndex].querySelector('input')
+            othersCellValue = parseFloat(inputElement?.value) or 0
+            totalInput?.value = colSums[cell.cellIndex] + othersCellValue
+        else
+          for cell in totalsRow
+            updateTotalValue(cell, colSums)
+
+        for cell in proportionRow
+          if subtotalsRowSelector
+            updateProportionValue(cell, othersRow, 'others', colSums)
+          else
+            updateProportionValue(cell, disadvantagedRow, 'disadvantaged', colSums)
+      )
+
+  loopOverTables = ->
+    updateRowTotalsCalculation(document.querySelectorAll('.auto-totals-column input[type="number"]'))
+
+    autoTotalColTables = document.querySelectorAll('.auto-totals-row-table')
+    for table in autoTotalColTables
+      updateColumnTotalsCalculation(table)
+
+  loopOverTables()
+
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $("body").removeClass("show-error-page")

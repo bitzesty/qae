@@ -34,6 +34,10 @@ class QAEFormBuilder
     def pdf_context_for_option(option_value, context)
       @q.pdf_context_for_options[option_value] = context
     end
+
+    def ineligible_option ineligible_option
+      @q.ineligible_option = ineligible_option
+    end
   end
 
   class OptionsQuestion < Question
@@ -44,7 +48,8 @@ class QAEFormBuilder
                   :ops_values,
                   :default_option,
                   :context_for_options,
-                  :pdf_context_for_options
+                  :pdf_context_for_options,
+                  :ineligible_option
 
     def after_create
       @options = []

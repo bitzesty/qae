@@ -3,18 +3,34 @@ class AwardYears::V2024::QAEForms
   class << self
     def mobility_step3
       @mobility_step3 ||= proc do
-        header :mobility_b_section_header, "" do
+        header :mobility_c_section_header, "" do
           section_info
           context %(
-            <h3 class='govuk-heading-m'>About this section</h3>
+            <h3 class='govuk-heading-m'>About section C</h3>
             <p class='govuk-body'>
-              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility, for at least two years. It is to recognise those organisations engaged in enterprise whose core activity is <u>not</u> social mobility but have a programme that supports it.
+              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility for at least two years (a minimum of 24 months).
+            </p>
+            <h3 class='govuk-heading-m'>This award is aimed at:</h3>
+            <p class='govuk-body'>
+              This award aims to recognise those organisations engaged in an enterprise whose core activity is not social mobility but have initiatives that support it.
             </p>
             <p class='govuk-body'>
-              Not-for-profits, social enterprises and charities are welcome to apply.
+              Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
             </p>
             <p class='govuk-body'>
-              Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society. Explain the reasons why you implemented a programme or policy and the outcomes it has achieved.
+            The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+            </p>
+            <p class='govuk-body'>
+              Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
+            </p>
+            <p class='govuk-body'>
+              An initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy, or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiative.
+            </p>
+            <p class='govuk-body'>
+              Your answers will provide us with evidence of how this benefits the participants, your organisation and wider society. Explain the reasons why you implemented the initiative and the outcomes it has achieved.
+            </p>
+            <p class='govuk-body'>
+              If you have more than one initiative, you can include some or all of them in your answers as long as you are consistent throughout.
             </p>
 
             <h3 class="govuk-heading-m">Social mobility definition</h3>
@@ -26,9 +42,9 @@ class AwardYears::V2024::QAEForms
               <li>Socio-economic status is a person's current social and economic circumstances.</li>
             </ul>
 
-            <h3 class="govuk-heading-m">Disadvantaged groups that King's Awards for Enterprise focuses on</h3>
+            <h3 class="govuk-heading-m">Disadvantaged groups include</h3>
             <p class="govuk-body">
-              For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
+              For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the following disadvantaged backgrounds:
             </p>
             <ul class="govuk-list govuk-list--bullet">
               <li>Black, Asian and minority ethnic people, including Gypsy and Traveller people;</li>
@@ -41,8 +57,8 @@ class AwardYears::V2024::QAEForms
               <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
               <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
               <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
-              <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
-              <li>People whose parents' or guardians' highest level of qualifications by the time the person was 18 was secondary school;</li>
+              <li>People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment;</li>
+              <li>People whose parents' or guardians' highest level of qualifications by the time the person was 18 was a secondary school;</li>
               <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
               <li>People recovering or who have recovered from addiction;</li>
               <li>Survivors of domestic violence;</li>
@@ -52,7 +68,11 @@ class AwardYears::V2024::QAEForms
             </ul>
 
             <p class="govuk-body">
-              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              This is not an exhaustive list. However, if you are putting forward a group that is not on this list, you will have to explain why you believe the group you support should be considered disadvantaged.
+            </p>
+
+            <p class="govuk-body">
+              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
             </p>
 
             <h3 class="govuk-heading-m">Evidence</h3>
@@ -62,36 +82,63 @@ class AwardYears::V2024::QAEForms
             </p>
 
             <p class="govuk-body">
-              The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+              The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+            </p>
+
+            <h3 class="govuk-heading-m">Supporting materials </h3>
+
+            <p class="govuk-body">
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
+            </p>
+
+            <p class="govuk-body">
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             </p>
 
             <h3 class="govuk-heading-m">Small organisations</h3>
 
             <p class="govuk-body">
-              The King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              The King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             </p>
 
-            <h3 class="govuk-heading-m">COVID-19 impact</h3>
+            <h3 class="govuk-heading-m">Small initiatives</h3>
 
             <p class="govuk-body">
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
             </p>
 
-            <h3 class="govuk-heading-m">Answering questions</h3>
+            <p class="govuk-body">
+              If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals.
+            </p>
+
+            <h3 class="govuk-heading-m">Technical language</h3>
 
             <p class="govuk-body">
-              Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.
+              Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time.
             </p>
           )
 
           pdf_context_with_header_blocks [
-            [:bold, "About this section"],
+            [:bold, "About section C"],
             [:normal, %(
-              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility, for at least two years. It is to recognise those organisations engaged in enterprise whose core activity is not social mobility but have a programme that supports it.
+              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility for at least two years (a minimum of 24 months).
+            )],
 
-              Not-for-profits, social enterprises and charities are welcome to apply.
+            [:bold, "This award is aimed at:"],
+            [:normal, %(
+              This award aims to recognise those organisations engaged in an enterprise whose core activity is not social mobility but have initiatives that support it.
 
-              Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society. Explain the reasons why you implemented a programme or policy and the outcomes it has achieved.
+              Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
+
+              The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+
+              Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
+
+              An initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy, or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiative.
+
+              Your answers will provide us with evidence of how this benefits the participants, your organisation and wider society. Explain the reasons why you implemented the initiative and the outcomes it has achieved.
+
+              If you have more than one initiative, you can include some or all of them in your answers as long as you are consistent throughout.
             )],
 
             [:bold, "Social mobility definition"],
@@ -101,9 +148,9 @@ class AwardYears::V2024::QAEForms
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
               \u2022 Socio-economic status is a person's current social and economic circumstances.)],
-            [:bold, "Disadvantaged groups that King's Awards for Enterprise focuses on"],
+            [:bold, "Disadvantaged groups include"],
             [:normal, %(
-              For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
+              For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the following disadvantaged backgrounds:
 
               \u2022 Black, Asian and minority ethnic people, including Gypsy and Traveller people;
 
@@ -125,9 +172,9 @@ class AwardYears::V2024::QAEForms
 
               \u2022 Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;
 
-              \u2022 People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;
+              \u2022 People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment;
 
-              \u2022 People whose parents' or guardians' highest level of qualifications by the time the person was 18 was secondary school;
+              \u2022 People whose parents' or guardians' highest level of qualifications by the time the person was 18 was a secondary school;
 
               \u2022 People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;
 
@@ -141,85 +188,173 @@ class AwardYears::V2024::QAEForms
 
               \u2022 Families of prisoners.
 
-              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              This is not an exhaustive list. However, if you are putting forward a group that is not on this list, you will have to explain why you believe the group you support should be considered disadvantaged.
+
+              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
             )],
 
             [:bold, "Evidence"],
             [:normal, %(
               Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
 
-              The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+              The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+            )],
+
+            [:bold, "Supporting materials"],
+            [:normal, %(
+              To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
+
+              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             )],
 
             [:bold, "Small organisations"],
             [:normal, %(
-              The King's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+              The King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
 
-            [:bold, "COVID-19 impact"],
+            [:bold, "Small initiatives"],
             [:normal, %(
-              We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
+              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
+
+              If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals.
             )],
 
-            [:bold, "Answering questions"],
+            [:bold, "Technical language"],
             [:normal, %(
-              Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.
-            )]
+              Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time.
+            )],
           ]
         end
 
-        mobility_application_category_options :application_category, "Application category" do
-          required
-          ref "B 1"
+        header :initiative_header_c1, "Your social mobility in relation to your whole organisation" do
+          ref "C 1"
           context %(
-            <p>
-              Select whether your application is for:
-            </p>
+            <p class="govuk-body">Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                Socio-economic background is a set of social and economic circumstances from which a person has come.
+              </li>
+              <li>
+                Socio-economic status is a person's current social and economic circumstances.
+              </li>
+            </ul>
+            <p class="govuk-body">This award is for organisations that are choosing to support social mobility as a discretionary activity (rather than those for whom it is their core activity). Commercial organisations, not-for-profits, social enterprises and charities are welcome to apply.</p>
+            <p class="govuk-body">Where an enterprise has established a subsidiary, the principal activity of which is to promote social mobility, such subsidiaries are eligible.</p>
+
+            <details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                See examples of eligible organisations and circumstances:
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <p class="govuk-body">An organisation that supports social mobility as a discretionary activity (social mobility is not its core activity)</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>An apprenticeship scheme by an SME or charity with a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends.</li>
+                <li>A recruitment initiative by a large corporation that aims to have a certain number of recruits from disadvantaged backgrounds.</li>
+                <li>A construction company that provides members of its workforce from disadvantaged backgrounds opportunities to improve their skills and advance their careers through academic and other exercises such as mentoring or work placements.</li>
+                <li>A charity helping its own employees from less-advantaged backgrounds to secure managerial roles.</li>
+              </ul>
+
+              <p class="govuk-body">A subsidiary with the principal activity of promoting social mobility. However, social mobility is not their parent organisation’s core activity.</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>A subsidiary of a large retail chain where the subsidiary was created to run a retailer’s apprenticeship scheme with priority given to people from disadvantaged backgrounds and with disabilities.</li>
+              </ul>
+
+              <p class="govuk-body">An organisation whose core activity is to improve social mobility and who: i\) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii\) have a social mobility initiative for our own workforce.</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>A school, college, university, or private training provider that provides skills training, education for its own employees from disadvantaged groups</li>
+                <li>A charity that supports its own workforce from disadvantaged backgrounds through mentorship, work placements and campaigning.</li>
+                <li>A school, college, university or private training provider who is submitting a joint application with a business about a programme or intervention it has created or implemented in partnership.</li>
+              </ul>
+            </div>
+            </details>
+            <details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  See examples of ineligible organisations and circumstances:
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">
+                  Organisations whose core activity is to improve social mobility and who are applying for this award on the basis of their core activity are <strong>not eligible</strong>. For example:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>A school, college, university, or private training provider that provides skills training or education and are applying on the basis of the training that they provide for people from disadvantaged groups.</li>
+                  <li>A charity that supports people from disadvantaged backgrounds through mentorship, work placements and campaigning and is applying on the basis of that work.</li>
+                </ul>
+              </div>
+            </details>
           )
-          option "initiative", "a) <strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds."
-          option "organisation", "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
 
-          context_for_option "initiative", "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.<br/><br/>
-            For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.<br/><br/>
-            If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim. <br/><br/>
-            If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
+          pdf_context_with_header_blocks [
+            [:normal, %(
+              Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
 
+              \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
-          context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
+              \u2022 Socio-economic status is a person's current social and economic circumstances.
 
-          pdf_context_for_option "initiative", [
-            [:normal, "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.\n"],
+              This award is for organisations that are choosing to support social mobility as a discretionary activity (rather than those for whom it is their core activity). Commercial organisations, not-for-profits, social enterprises and charities are welcome to apply.
 
-            [:normal, "For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.\n"],
-            [:normal, "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
-            [:normal, "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
+              Where an enterprise has established a subsidiary, the principal activity of which is to promote social mobility, such subsidiaries are eligible.
 
-            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"]
+              See examples of eligible organisations and circumstances:
+
+              An organisation that supports social mobility as a discretionary activity (social mobility is not its core activity)
+
+              \u2022 An apprenticeship scheme by an SME or charity with a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends.
+
+              \u2022 A recruitment initiative by a large corporation that aims to have a certain number of recruits from disadvantaged backgrounds.
+
+              \u2022 A construction company that provides members of its workforce from disadvantaged backgrounds opportunities to improve their skills and advance their careers through academic and other exercises such as mentoring or work placements.
+
+              \u2022 A charity helping its own employees from less-advantaged backgrounds to secure managerial roles.
+
+              A subsidiary with the principal activity of promoting social mobility. However, social mobility is not their parent organisation’s core activity.
+
+              \u2022 A subsidiary of a large retail chain where the subsidiary was created to run a retailer’s apprenticeship scheme with priority given to people from disadvantaged backgrounds and with disabilities.
+
+              An organisation whose core activity is to improve social mobility and who: i\) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii\) have a social mobility initiative for our own workforce.
+
+              \u2022 A school, college, university, or private training provider that provides skills training, education for its own employees from disadvantaged groups
+
+              \u2022 A charity that supports its own workforce from disadvantaged backgrounds through mentorship, work placements and campaigning.
+
+              \u2022 A school, college, university or private training provider who is submitting a joint application with a business about a programme or intervention it has created or implemented in partnership.
+
+              See examples of ineligible organisations and circumstances:
+
+              Organisations whose core activity is to improve social mobility and who are applying for this award on the basis of their core activity are <strong>not eligible</strong>. For example:
+
+              \u2022 A school, college, university, or private training provider that provides skills training or education and are applying on the basis of the training that they provide for people from disadvantaged groups.
+
+              \u2022 A charity that supports people from disadvantaged backgrounds through mentorship, work placements and campaigning and is applying on the basis of that work.
+            )],
           ]
-
-          pdf_context_for_option "organisation", [
-
-            [:normal, "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
-            [:bold, "If you selected option b, you cannot proceed. As per our eligibility questionnaire, we are no longer accepting applications for organisations whose sole purpose is promoting opportunity through Social Mobility.\n"],
-            [:bold, "However, if your organisation’s core purpose is not social mobility, but improving social mobility is a big part of your mission, please apply on the basis of having the initiative - please select the option “a) An initiative” in question B1."]
-          ]
-
-          default_option "initiative"
         end
 
-        # INITIATIVE QUESTIONS START HERE
+        options :mobility_in_relation_to_organisation, "Select a statement that best describes your social mobility in relation to your whole organisation:" do
+          required
+          ref "C 1.1"
+          classes "conditional-select-statement"
 
-        comment :initiative_question_guidance, "" do
+          option "discretionary_activity", "a) We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity)."
+          option "principle_activity", "b) We are a subsidiary with the principal activity of promoting social mobility. However, social mobility is not our parent organisation’s core activity."
+          option "joint_application_or_workforce_initiative", "c) We are an organisation whose core activity is to improve social mobility, and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii) have a social mobility initiative for our own workforce."
+          option "core_activity", "d) We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+
+          ineligible_option "core_activity"
+
           pdf_context_with_header_blocks [
-            [:italic, "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."]
+            [:italic, "If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are discretionary or that are in partnership with businesses for whom it is discretionary."]
           ]
         end
 
         checkbox_seria :initiative_activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
-          ref "B 2a"
+          ref "C 2"
           required
           classes "question-limited-selections"
-          selection_limit 3
           context %(
             <p>If necessary, you can select more than one activity.</p>
           )
@@ -229,298 +364,319 @@ class AwardYears::V2024::QAEForms
             ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
             ["work_placements", "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
             ["early_careers", "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
-            ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
-            ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
-            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
-            ["other_activity_types", "<strong>Other activity types</strong>"]
+            ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds who are leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
+            ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and tracking the progress of employees from non-graduate routes."],
+            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility by encouraging supply chains to take action on social mobility."],
+            ["other_activity_types", "<strong>Other activity types - list the activities in C2.1</strong>"]
           ]
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_activities_other_specify, "Please list other activity types" do
           required
           classes "sub-question js-conditional-question-checkbox"
-          sub_ref "B 2.1a"
-          conditional :initiative_activities, "other"
+          sub_ref "C 2.1"
+          conditional :initiative_activities, "other_activity_types"
           words_max 50
           rows 2
         end
 
-        matrix :initiative_participants_activity_type, "Provide the number of participants in each activity type that your initiative supports each year." do
-          classes "sub-question question-matrix"
-          ref "B 2.2a"
-          required
-          pdf_context_with_header_blocks [
-            [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
-            [:normal, "A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Where none, enter zeros."]
-          ]
-          context %(
-            <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
-
-            <p>A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-
-            <p>Where none, enter zeros.</p>
-          )
-          corner_label "Activity type"
-          totals_label "Total number of discrete participants supported each year"
-
-          x_headings [2018, 2019, 2020, 2021, 2022]
-
-          y_headings [
-            ["careers_advice", "Careers advice"],
-            [ "fairer_recruitment", "Fairer recruitment"],
-            [ "skills_development", "Skills development"],
-            [ "work_placements", "Work placements"],
-            [ "early_careers", "Early careers"],
-            [ "job_opportunities", "Job opportunities"],
-            [ "advancement", "Advancement"],
-            [ "advocacy_and_leadership", "Advocacy and leadership"],
-            [ "other_activity_types", "Other activity types"]
-          ]
-          conditional :application_category, "initiative"
-          required_rows :initiative_activities
-          column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
-        end
-
-        header :initiative_header_b3a, "Summary of your promoting opportunity through social mobility initiative." do
-          ref "B 3a"
-          conditional :application_category, "initiative"
+        header :initiative_header_c3, "Summary of your promoting opportunity through social mobility initiative." do
+          ref "C 3"
         end
 
         textarea :initiative_desc_short, "Provide a one-line description of your initiative." do
           classes "sub-question"
-          sub_ref "B 3.1a"
+          sub_ref "C 3.1"
           required
           context %(
             <p>This description will be used in publicity material if your application is successful.</p>
+            <p>Some good examples from previously shortlisted organisations:</p>
+            <ul>
+              <li>X unleashes potential through direct employment - removing barriers to work, developing people and strengthening communities.</li>
+              <li>As a physical and social regeneration business, promoting opportunity is central to X’s activities.</li>
+              <li>X programme helps people into meaningful work after prison, homelessness or other significant personal challenges.</li>
+            </ul>
           )
           words_max 15
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_desc_medium, "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
           classes "sub-question"
-          sub_ref "B 3.2a"
+          sub_ref "C 3.2"
           required
           words_max 300
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_motivations, "Outline the factors or issues that motivated your organisation to provide the initiative." do
           classes "sub-question"
-          sub_ref "B 3.3a"
+          sub_ref "C 3.3"
           required
           context %(
             <p>Please include details on:</p>
 
-            <p>1. When was the initiative started?</p>
-
-            <p>2. What was the situation before the inception of this initiative? Please include details on what the issues or needs of the potential participants were.</p>
-
-            <p>3. Why did you choose this particular initiative?</p>
-
-            <p>4. How does this initiative align with the core aims and values of your organisation?</p>
+            <ul>
+              <li>When was the initiative started?</li>
+              <li>What was the situation before the inception of this initiative?</li>
+              <li>What were the issues or needs of the potential participants?</li>
+              <li>Why did you choose this particular initiative?</li>
+              <li>How does this initiative align with the core aims and values of your organisation?</li>
+            </ul>
           )
           words_max 500
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_exemplary_evidence, "Describe what makes your initiative exemplary." do
           classes "sub-question"
-          sub_ref "B 3.4a"
+          sub_ref "C 3.4"
           required
-          pdf_context_with_header_blocks [
-            [:normal, "Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups."],
-            [:normal, "For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this."],
-            [:normal, "Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this."],
-            [:normal, "Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation."]
-          ]
           context %(
             <p>Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups.</p>
 
-            <p>For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this.</p>
+            <p>For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence of what you did and how you did this.</p>
 
-            <p>Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this.</p>
+            <p>Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people, or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence of how you did this.</p>
 
             <p>Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation.</p>
           )
           words_max 500
-          conditional :application_category, "initiative"
         end
 
-        textarea :initiative_evidence_exemplary, "Please provide evidence of what makes your initiative exemplary" do
-          sub_ref "B 3.5a"
+        textarea :initiative_evidence_exemplary, "Provide evidence of what makes your initiative exemplary." do
+          sub_ref "C 3.5"
           required
           classes "sub-question"
           words_max 200
           context %(
-            <p>Provide third-party evidence of what makes your initiative exemplary compared to other similar initiatives and how you are going 'above and beyond' compared to your sector. For example, provide links to independent evaluation reports, details of awards won, client feedback ratings and how that compares with other similar organisations.</p>
+            <p>To support your answer in C3.4, provide <strong>third-party evidence</strong> of what makes your initiative exemplary compared to other similar initiatives and how you are going 'above and beyond' compared to your sector. For example, provide links to independent evaluation reports, details of awards won, client feedback ratings and how that compares with other similar organisations.</p>
           )
-          conditional :application_category, "initiative"
         end
 
-        header :initiative_header_b4a, "Measuring success" do
-          ref "B 4a"
-          context %(
-            <p class="govuk-body">The questions in B4 are not about the actual output or outcomes, but rather the targets you set and how you go about measuring outputs and outcomes against them.</p>
-          )
-          conditional :application_category, "initiative"
-        end
-
-        textarea :initiative_day_to_day_running, "Who is responsible for, and who runs the initiative day-to-day?" do
+        textarea :initiative_day_to_day_running, "Who is responsible for and who runs the initiative day-to-day?" do
           classes "sub-question"
-          sub_ref "B 4.1a"
+          sub_ref "C 3.6"
           required
           words_max 200
-          conditional :application_category, "initiative"
+          context %(
+            <p>Provide their title and describe their overall role in the organisation as well as involvement with the initiative.</p>
+          )
         end
 
-        textarea :initiative_measuring_targets, "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your initiative." do
-          classes "sub-question"
-          sub_ref "B 4.2a"
+        textarea :goals_targets_monitor, "Describe what goals or targets you set and how you monitor them in the context of your initiative." do
+          classes "question"
+          ref "C 4"
           required
+          words_max 500
           context %(
+            <p><em>Your goals or targets should be aligned with the types of activities you listed in C2 as well as the impact you will demonstrate in C5 questions.</em></p>
             <ul>
-              <li>Provide information on what targets you set for your initiative.</li>
-              <li>Explain how you monitor performance against the target.</li>
-              <li>Explain what evidence you gather to show short and longer-term outcomes - this may include but is not limited to - internal records, third party evidence, survey responses, interviews, ad-hoc feedback.</li>
+              <li>Provide information on what goals or targets you set for your initiative and how these are determined.</li>
+              <li>Explain how you monitor performance against the goals or targets.</li>
+              <li>Explain what evidence you gather to show short and longer-term outcomes against these goals or targets – this may include but is not limited to internal records, third-party evidence, survey responses, interviews, ad-hoc feedback.</li>
             </ul>
           )
-          pdf_context %(
-            \u2022 Provide information on what targets you set for your initiative.
 
-            \u2022 Explain how you monitor performance against the target.
+          pdf_context_with_header_blocks [
+            [:italic, "Your goals or targets should be aligned with the types of activities you listed in C2 as well as the impact you will demonstrate in C5 questions."],
+            [:normal, %(
+              \u2022 Provide information on what goals or targets you set for your initiative and how these are determined.
 
-            \u2022 Explain what evidence you gather to show short and longer-term outcomes - this may include but is not limited to - internal records, third party evidence, survey responses, interviews, ad-hoc feedback.
-          )
-          words_max 500
-          conditional :application_category, "initiative"
+              \u2022 Explain how you monitor performance against the goals or targets.
+
+              \u2022 Explain what evidence you gather to show short and longer-term outcomes against these goals or targets – this may include but is not limited to internal records, third-party evidence, survey responses, interviews, ad-hoc feedback.)],
+          ]
         end
 
-        textarea :initiative_targets_not_met, "Explain what happens if your initiative doesn't meet the KPIs or alternative performance targets?" do
+        textarea :goals_targets_compare, "Describe how the goals or targets you set compare to the outcomes." do
           classes "sub-question"
-          sub_ref "B 4.3a"
+          sub_ref "C 4.1"
           required
           words_max 200
-          conditional :application_category, "initiative"
-        end
-
-        header :initiative_header_b5a, "The impact on participants." do
-          ref "B 5a"
-          conditional :application_category, "initiative"
-        end
-
-        matrix :initiative_disadvantaged_groups_year, "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
-          classes "sub-question question-matrix"
-          sub_ref "B 5.1a"
-          required
-          pdf_context_with_header_blocks [
-            [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Where none, enter zeros."]
-          ]
           context %(
-            <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
-
-            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-
-            <p>Where none, enter zeros.</p>
+            <p>It is important that you demonstrate how the goals or targets you set compare to the outcomes you provide in C5 questions. Do you meet them, exceed them, or are there some shortfalls?</p>
           )
-          corner_label "Disadvantaged group type"
-          totals_label "Total number of discrete participants supported each year"
+        end
 
-          x_headings [2018, 2019, 2020, 2021, 2022]
+        textarea :addressing_shortfalls, "Explain any shortfalls and if you do anything to address them." do
+          classes "sub-question"
+          sub_ref "C 4.2"
+          required
+          words_max 200
+          context %(
+            <p>Explain reasons why shortfalls occur. Are you able to address these? If so, what do you do to address them?</p>
+          )
+        end
+
+        header :disadvantaged_participants_header, "The impact on participants." do
+          ref "C 5"
+          context %(
+            <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups at the start of this section.</p>
+            <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
+            <p class="govuk-body">Your answer should consider the goals or targets that you have outlined in question C4.</p>
+            <p class="govuk-body">Please note, to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative.</p>
+            <p class="govuk-body">Provide totals for at least the last two years (full 24 months) and no more than the last five years. Please cover the same number of years in all your answers to ensure consistency across all of them.</p>
+          )
+        end
+
+        matrix :disadvantaged_participants_numbers, "Number of participants that are supported by your organisation" do
+          classes "sub-question question-matrix"
+          ref "C 5.1"
+          required
+          context %(
+            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
+          )
+          auto_totals_column true
+          auto_totals_row true
+          auto_proportion_row true
+
+          corner_label "Participants"
+          totals_label "Total number of discrete participants supported (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
+
+          x_headings [2019, 2020, 2021, 2022, 2023, "Total (system calculated)"]
 
           y_headings [
-            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
-            ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
-            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
-            ["domestic_violence", "Survivors of domestic violence"],
-            ["military_veterans", "Military veterans"],
-            ["ex_offenders", "Ex-offenders"],
-            ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["total_disadvantaged", "Total number of disadvantaged participants supported"],
           ]
-          conditional :application_category, "initiative"
+          column_widths({ 1 => 13, 2 => 13, 3 => 13, 4 => 13, 5 => 13, 6 => 13 })
+        end
+
+        matrix :disadvantaged_participants_activity_type, "Provide the number of disadvantaged participants in each activity type that your initiative supports each year." do
+          classes "sub-question question-matrix"
+          ref "C 5.2"
+          required
+          no_total_row true
+          context %(
+            <p>When answering this question, please refer to the guidance under C5.</p>
+          )
+          corner_label "Activity type"
+
+          x_headings [2019, 2020, 2021, 2022, 2023]
+
+          y_headings [
+            ["careers_advice", "Careers advice"],
+            ["fairer_recruitment", "Fairer recruitment"],
+            ["skills_development", "Skills development"],
+            ["work_placements", "Work placements"],
+            ["early_careers", "Early careers"],
+            ["job_opportunities", "Job opportunities"],
+            ["advancement", "Advancement"],
+            ["advocacy_and_leadership", "Advocacy and leadership"],
+            ["other_activity_types", "Other activity types (as listed in C2.1)"]
+          ]
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
-        matrix :initiative_disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of employment opportunities." do
+        matrix :disadvantaged_participants_in_group_year, "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
           classes "sub-question question-matrix"
-          sub_ref "B 5.2a"
+          sub_ref "C 5.3"
           required
-          pdf_context_with_header_blocks [
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
-          ]
+          no_total_row true
           context %(
-            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-
-            <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
-
-            <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
+            <p>When answering this question, please refer to the guidance under C5.</p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discrete participants supported"
 
-          x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
+          x_headings [2019, 2020, 2021, 2022, 2023]
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Other disadvantaged group"]
           ]
-          conditional :application_category, "initiative"
+          column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
+        end
+
+        textarea :disadvantaged_group_not_in_list, "If you are putting forward a group that is not on this list, please provide details and explain why you believe the group you support should be considered disadvantaged." do
+          classes "sub-question js-conditional-question-checkbox"
+          sub_ref "C 5.3.1"
+          required
+          conditional :disadvantaged_participants_in_group_year, :others
+          words_max 300
+        end
+
+        matrix :disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative has resulted in employment opportunities for them." do
+          classes "sub-question question-matrix"
+          sub_ref "C 5.4"
+          required
+          auto_subtotals_totals_proportions_row true
+          context %(
+            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
+          )
+          pdf_context_with_header_blocks [
+            [:italic, "When answering this question, please refer to the guidance under C5."]
+          ]
+          corner_label "Disadvantaged group type"
+          subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged who benefited"
+          totals_label "Total number of discrete participants (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
+
+          x_headings ["Jobs secured during the support or within a year after support ending", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
+
+          y_headings [
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
+            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered", "People recovering or who have recovered from addiction "],
+            ["domestic_violence", "Survivors of domestic violence"],
+            ["military_veterans", "Military veterans"],
+            ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
+            ["other_disadvantaged_group", "Other disadvantaged group"],
+          ]
           column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
         end
 
-        matrix :initiative_disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your initiative resulted in terms of education opportunities." do
-          classes "sub-question question-matrix"
-          sub_ref "B 5.3a"
+        textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.4.1, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
+          classes "sub-question"
+          sub_ref "C 5.4.1"
           required
+          words_max 150
+        end
+
+        matrix :disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your initiative resulted in educational opportunities for them." do
+          classes "sub-question question-matrix"
+          sub_ref "C 5.5"
+          required
+          auto_subtotals_totals_proportions_row  true
           pdf_context_with_header_blocks [
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
           context %(
-            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-
-            <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
-
-            <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
+            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discrete participants supported"
+          subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged who benefited"
+          totals_label "Total number of discrete participants supported (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
@@ -535,38 +691,35 @@ class AwardYears::V2024::QAEForms
             [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
             [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
             [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
+            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
             ["recovered","People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["other_disadvantaged_group", "Other disadvantaged group"],
           ]
-          conditional :application_category, "initiative"
           column_widths({ 1 => 20, 2 => 25, 3 => 20, 4 => 23, 5 => 23 })
         end
 
-        matrix :initiative_disadvantaged_groups_impact_other, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of other opportunities." do
+        matrix :disadvantaged_groups_opportunities_numbers, "Provide the number of participants in each disadvantaged group that your initiative resulted in other opportunities for them." do
           classes "sub-question question-matrix"
-          sub_ref "B 5.4a"
+          sub_ref "C 5.6"
           required
+          auto_subtotals_totals_proportions_row true
           pdf_context_with_header_blocks [
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
           context %(
-            <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-
-            <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
-
-            <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
+            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
           corner_label "Disadvantaged group type"
-          totals_label "Total number of discrete participants supported"
+          subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged who benefited"
+          totals_label "Total number of discrete participants supported (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
@@ -581,42 +734,39 @@ class AwardYears::V2024::QAEForms
             [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
             [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
             [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
+            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
             ["recovered","People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
-            ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["other_disadvantaged_group", "Other disadvantaged group"],
           ]
-          conditional :application_category, "initiative"
           column_widths({ 1 => 25, 2 => 20, 3 => 23, 4 => 20, 5 => 15 })
         end
 
-        textarea :initiative_explain_number_collection, "Explain how you collected the impact numbers." do
+        textarea :disadvantaged_groups_numbers_explained, "Explain how you collected the impact numbers." do
           classes "sub-question"
-          sub_ref "B 5.5a"
+          sub_ref "C 5.7"
           required
-          words_max 150
-          conditional :application_category, "initiative"
-          context %(
-            <p>This may include, but is not limited to - internal records, third party evidence, survey responses.</p>
+          context  %(
+            <p>This may include but is not limited to internal records, third-party evidence, survey responses.</p>
           )
+          words_max 150
         end
 
-        textarea :initiative_qualitative_evidence, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
+        textarea :initiative_qualitative_impact, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
           classes "sub-question"
-          sub_ref "B 5.6a"
+          sub_ref "C 5.8"
           required
           context %(
-            <p>Provide <strong>qualitative data</strong> (for example, people’s stories as well as comments, feedback from participants and key stakeholders) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
+            <p>Provide qualitative data (for example, people’s stories as well as comments, feedback from participants and key stakeholders) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
             <ul>
               <li>Include stories of impact on participants’ lives. If possible, provide a range of examples.</li>
               <li>Include feedback, such as quotes, that you have gathered from participants to understand how they have benefited.</li>
               <li>If applicable, include feedback that you have gathered from third-party stakeholders to understand how the participants have benefited. </li>
-              <li>Explain where the information comes from - this may include, but is not limited to - surveys, interviews or ad-hoc feedback.</li>
+              <li>Explain where the qualitative evidence comes from - this may include but is not limited to third-party independent evaluation reports, surveys, interviews or ad-hoc feedback.</li>
             </ul>
           )
           pdf_context %(
@@ -628,106 +778,95 @@ class AwardYears::V2024::QAEForms
 
             \u2022 If applicable, include feedback that you have gathered from third-party stakeholders to understand how the participants have benefited.
 
-            \u2022 Explain where the information comes from - this may include, but is not limited to - surveys, interviews or ad-hoc feedback.
+            \u2022 Explain where the qualitative evidence comes from - this may include but is not limited to third-party independent evaluation reports, surveys, interviews or ad-hoc feedback.
           )
           words_max 750
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_feedback, "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
           classes "sub-question"
-          sub_ref "B 5.7a"
+          sub_ref "C 5.9"
           required
           context %(
             <ul>
               <li>Explain how you sought feedback.</li>
-              <li>Include a summary of the feedback gathered such as participant or third-party stakeholder quotes as well as quantitative data, for example, scores on how likely they are to recommend the organisation to their peers or similar ratings.</li>
-              <li>Explain what, if any, of the suggested improvements have you implemented.</li>
+              <li>Include a summary of the feedback gathered, such as participant or third-party stakeholder quotes as well as quantitative data, for example, scores on how likely they are to recommend the organisation to their peers or similar ratings.</li>
+              <li>Explain what, if any, of the suggested improvements you have implemented.</li>
             </ul>
           )
           pdf_context %(
             \u2022 Explain how you sought feedback.
 
-            \u2022 Include a summary of the feedback gathered such as participant or third-party stakeholder quotes as well as quantitative data, for example, scores on how likely they are to recommend the organisation to their peers or similar ratings.
+            \u2022 Include a summary of the feedback gathered, such as participant or third-party stakeholder quotes as well as quantitative data, for example, scores on how likely they are to recommend the organisation to their peers or similar ratings.
 
-            \u2022 Explain what, if any, of the suggested improvements have you implemented.
+            \u2022 Explain what, if any, of the suggested improvements you have implemented.
           )
           words_max 250
-          conditional :application_category, "initiative"
         end
 
-        header :initiative_header_b6a, "Impact on your organisation." do
-          ref "B 6a"
-          conditional :application_category, "initiative"
+        header :initiative_header_c6, "Impact on your organisation." do
+          ref "C 6"
         end
 
-        textarea :initiative_impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation?" do
+        textarea :initiative_impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation." do
           classes "sub-question"
-          sub_ref "B 6.1a"
+          sub_ref "C 6.1"
           required
           context %(
             <p>Please outline what mechanisms are in place to communicate the benefits of the initiative.</p>
           )
           words_max 200
-          conditional :application_category, "initiative"
         end
 
-        textarea :initiative_member_engagement, "Explain if and how you engage the organisation’s members or employees in the design and implementation of your initiative." do
+        textarea :initiative_member_engagement, "Explain if and how you engage the organisation’s members or workforce in the design and implementation of your initiative." do
           classes "sub-question"
-          sub_ref "B 6.2a"
+          sub_ref "C 6.2"
           required
           words_max 200
-          conditional :application_category, "initiative"
         end
 
-        textarea :initiative_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do." do
+        textarea :initiative_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do?" do
           classes "sub-question"
-          sub_ref "B 6.3a"
+          sub_ref "C 6.3"
           required
           words_max 200
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_organisation_benefits, "Are there any other benefits of the initiative to your organisation that you haven't yet outlined in the previous responses?" do
           classes "sub-question"
-          sub_ref "B 6.4a"
+          sub_ref "C 6.4"
           required
           context %(
             <p>This may include:</p>
 
-            <p>Employee relations - improvements in employee motivation, well-being or satisfaction.</p>
+            <p>Workforce relations - improvements in workforce motivation, well-being or satisfaction.</p>
 
             <p>Diversity - increased the ability to access and attract a wider talent pool.</p>
 
             <p>Reputation - increased positive perceptions of the organisation among key stakeholders - for example, customers and the media.</p>
 
-            <p>Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.</p>
+            <p>Collaboration - best practices and learnings fed back into other departments; increased cross-departmental collaboration.</p>
           )
           words_max 300
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_community_society_impact, "Impact on community and society." do
-          sub_ref "B 7a"
+          sub_ref "C 7"
           required
-          question_sub_title %{
-            What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?
-          }
           context %(
-            <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
+            <p>What is the impact of your initiative on the local community and at a regional and national level, and how is this exemplary?</p>
+            <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as a valid employment route? Has it led to higher employment outcomes regionally?</p>
           )
           words_max 300
-          conditional :application_category, "initiative"
         end
 
         textarea :initiative_investments, "Investments in the initiative" do
-          sub_ref "B 8a"
+          sub_ref "C 8"
           required
           question_sub_title %{
-            List all investments and reinvestments (capital and operating costs) in your promoting opportunity through social mobility initiative. Include the year(s) in which they were made.
+            List all investments and reinvestments (capital and operating costs) in your promoting opportunity through social mobility initiative. Include the years in which they were made.
           }
           words_max 400
-          conditional :application_category, "initiative"
         end
       end
     end

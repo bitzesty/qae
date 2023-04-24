@@ -30,6 +30,7 @@ RSpec.describe Eligibility::Mobility, type: :model do
     it 'is eligible when all questions are answered correctly' do
       eligibility.promoting_opportunity_involvement = 'Our main activity is focused on something else, but we have activities or initiatives that are positively supporting social mobility'
       eligibility.can_provide_financial_figures = 'yes'
+      eligibility.full_time_employees = 'yes'
       eligibility.promoting_social_mobility = 'yes'
       eligibility.participants_based_in_uk = 'yes'
       eligibility.social_mobility_activities = 'yes'

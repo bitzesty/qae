@@ -60,12 +60,44 @@ class QAEFormBuilder
       @q.label = label
     end
 
+    def others_label label
+      @q.others_label = label
+    end
+
+    def subtotals_label label
+      @q.subtotals_label = label
+    end
+
     def totals_label label
       @q.totals_label = label
     end
 
+    def proportion_label label
+      @q.proportion_label = label
+    end
+
     def corner_label label
       @q.corner_label = label
+    end
+
+    def no_total_row no_total_row
+      @q.no_total_row = no_total_row
+    end
+
+    def auto_totals_column auto_totals_column
+      @q.auto_totals_column = auto_totals_column
+    end
+
+    def auto_totals_row auto_totals_row
+      @q.auto_totals_row = auto_totals_row
+    end
+
+    def auto_proportion_row auto_proportion_row
+      @q.auto_proportion_row = auto_proportion_row
+    end
+
+    def auto_subtotals_totals_proportions_row auto_subtotals_totals_proportions_row
+      @q.auto_subtotals_totals_proportions_row = auto_subtotals_totals_proportions_row
     end
 
     def x_heading key, label
@@ -107,14 +139,22 @@ class QAEFormBuilder
 
   class MatrixQuestion < Question
     attr_accessor :label,
+                  :others_label,
+                  :subtotals_label,
                   :totals_label,
+                  :proportion_label,
                   :corner_label,
                   :x_headings,
                   :y_headings,
                   :values,
                   :column_widths,
                   :required_row_parent,
-                  :required_rows
+                  :required_rows,
+                  :no_total_row,
+                  :auto_totals_column,
+                  :auto_totals_row,
+                  :auto_proportion_row,
+                  :auto_subtotals_totals_proportions_row
 
     def after_create
       @x_headings = []
