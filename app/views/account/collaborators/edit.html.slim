@@ -19,7 +19,10 @@ h1.govuk-heading-xl
         - else
           = link_to "Remove collaborator", account_collaborator_path(collaborator, form_id: form_id),
                     method: :delete,
-                    class: "collaborator-remove-link govuk-link"
+                    class: "collaborator-remove-link govuk-link if-no-js-hide",
+                    id: "js-remove-collaborator-link"
+          = link_to "Remove collaborator", confirm_deletion_account_collaborator_path(collaborator, form_id: form_id),
+                    class: "collaborator-remove-link govuk-link if-js-hide"
 
     .article-container
       article.group role="article"
