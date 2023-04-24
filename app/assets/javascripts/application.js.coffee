@@ -229,7 +229,7 @@ jQuery ->
 
   # Update the financial year labels
   updateYearEnd = () ->
-    $(".js-financial-conditional .js-year-end").removeClass("show-default")
+    $(".js-financial-conditional .js-year-end").removeClass("show-both").removeClass("show-default")
 
     if $(".js-financial-year-change input:checked").val() == "no"
       # If the financial year haven't changed, clear manually entered dates
@@ -242,16 +242,17 @@ jQuery ->
       fy_latest_day = fy_latest_changed_input.find("input.js-fy-day").val()
       fy_latest_month = fy_latest_changed_input.find("input.js-fy-month").val()
       fy_latest_year = $(".js-financial-year-changed-dates").attr("data-year")
-      console.log('js-financial-year-change input:checked', fy_latest_day, fy_latest_month, fy_latest_year)
 
       if !fy_latest_day || !fy_latest_month || !fy_latest_year
         $(".js-year-end").addClass("show-default")
       else
         $(".js-year-end").each ->
           year = parseInt(fy_latest_year) + parseInt($(this).attr("data-year").substr(0, 1)) - parseInt($(this).attr("data-year").substr(-1, 1))
-          pre_text = "Year ending in"
+          pre_text = "Year ended"
           if $(this).closest(".question-block").hasClass("total-net-assets")
             pre_text = "As at"
+          else
+            $(this).addClass("show-both")
           $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
     else
       # Year has changed, use what they've inputted
@@ -273,17 +274,25 @@ jQuery ->
             fy_day = fy_input.find(".js-fy-day").val()
             fy_month = fy_input.find(".js-fy-month").val()
             fy_year = fy_input.find(".js-fy-year").val()
-            pre_text = "Year ending in"
+            pre_text = "Year ended"
             if $(this).closest(".question-block").hasClass("total-net-assets")
               pre_text = "As at"
+            else
+              $(this).addClass("show-both")
             $(this).find(".js-year-text").text("#{pre_text} #{fy_day}/#{fy_month}/#{fy_year}")
 
   updateYearEndInput()
-  $(".js-financial-year input").change () ->
-    console.log("updateYearEndInput")
+
+  fy_inputs = $(".js-financial-year input")
+  fy_inputs.each () ->
     updateYearEndInput()
-  $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
-    console.log("updateYearEnd")
+  fy_inputs.change () ->
+    updateYearEndInput()
+
+  fy_last_inputs = $(".js-financial-year-latest").closest(".question-block").next().find("input")
+  fy_last_inputs.each () ->
+    updateYearEnd()
+  fy_last_inputs.change () ->
     updateYearEnd()
 
   $('.question-required').find('input,select,textarea').each ->

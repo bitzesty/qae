@@ -1,7 +1,8 @@
 module QaePdfForms::CustomQuestions::ByYear
+  EMPTY_STRING = "".freeze
   YEAR_LABELS = %w(day month year).freeze
   FINANCIAL_YEAR_PREFIX = "Financial year".freeze
-  YEAR_ENDING_IN_PREFIX = "Year ending in".freeze
+  YEAR_ENDING_IN_PREFIX = "Year ended".freeze
   AS_AT_DATE_PREFIX = "As at".freeze
   AS_AT_DATE_PREFIX_QUESTION_KEYS = [
     :total_net_assets
@@ -43,7 +44,7 @@ module QaePdfForms::CustomQuestions::ByYear
     else
       active_fields.map do |field|
         entry = year_entry(field).to_s.delete(",")
-        entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : ""
+        entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : EMPTY_STRING
       end
     end
 
@@ -76,7 +77,7 @@ module QaePdfForms::CustomQuestions::ByYear
     prefix = if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
       AS_AT_DATE_PREFIX
     else
-      financial_year_changed_dates? ? YEAR_ENDING_IN_PREFIX : ""
+      YEAR_ENDING_IN_PREFIX
     end
 
     if form_pdf.pdf_blank_mode.present? # BLANK FOR MODE
