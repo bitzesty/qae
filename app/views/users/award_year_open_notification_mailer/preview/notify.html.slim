@@ -2,12 +2,12 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@user.decorate.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | We're emailing to remind you that applications for the Awards round for the King's Awards for Enterprise
+  | Thank you for your interest in The King's Awards for Enterprise. We're delighted to confirm that the
   =<> AwardYear.current.year
-  | are now open.
+  | round is now open for applications.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | If you would like to enter, please log in to your King’s Awards account to start an application via the link below:
+  | If you would like to enter, please log in to your King's Awards account to start an application via the link below:
   br
   = link_to new_user_session_url, new_user_session_url
 
@@ -15,4 +15,4 @@ p style=" font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Kind regards,
   br
   br
-  ' The King’s Awards Office
+  ' The King's Awards Office
