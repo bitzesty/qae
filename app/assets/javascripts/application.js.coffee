@@ -229,7 +229,9 @@ jQuery ->
 
   # Update the financial year labels
   updateYearEnd = () ->
-    $(".js-financial-conditional .js-year-end").removeClass("show-both").removeClass("show-default")
+    base = $(".js-financial-conditional .js-year-end")
+    base.removeClass("show-both")
+    base.removeClass("show-default")
 
     if $(".js-financial-year-change input:checked").val() == "no"
       # If the financial year haven't changed, clear manually entered dates
@@ -259,7 +261,7 @@ jQuery ->
       $(".js-financial-conditional > .by-years-wrapper").each ->
         all_years_value = true
         $(this).find(".js-year-end").each ->
-          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".govuk-date-input")
+          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year=#{$(this).attr("data-year")}]").closest(".js-fy-entries").find(".govuk-date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
           fy_year = fy_input.find(".js-fy-year").val()
@@ -294,6 +296,11 @@ jQuery ->
     updateYearEnd()
   fy_last_inputs.change () ->
     updateYearEnd()
+
+  $(".js-financial-year-changed-dates .govuk-date-input input").change ->
+    setTimeout((() =>
+      updateYearEnd()
+    ), 50)
 
   $('.question-required').find('input,select,textarea').each ->
     $(this).prop('required', true)
@@ -490,6 +497,7 @@ jQuery ->
   $(document).on "change", ".js-financial-year-change input", (e) ->
     if $(".js-financial-year-change input:checked").val() == "yes"
       updateYearEndInput()
+    updateYearEnd()
 
   $(document).on "click", ".save-quit-link a", (e) ->
     if window.changesUnsaved
