@@ -139,7 +139,6 @@ Rails.application.routes.draw do
       resources :form_attachments, only: [:index, :new, :create, :destroy] do
         get :confirm_deletion
       end
-      resource :form_links, only: [:new, :create, :destroy]
       resources :organisational_charts, only: [:new, :create, :destroy] do
         get :confirm_deletion
       end
@@ -150,7 +149,8 @@ Rails.application.routes.draw do
       [
         :current_queens_awards,
         :awards,
-        :subsidiaries
+        :subsidiaries,
+        :form_links
       ].each do |resource_name|
         resource resource_name, only: [:new, :create, :edit, :update, :destroy] do
           get :confirm_deletion
