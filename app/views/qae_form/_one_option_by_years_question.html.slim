@@ -14,7 +14,7 @@
                 = y
                 - if y == 3
                   '  (most recent)
-              span.js-year-text
+              span.js-year-text.hide-if-empty
           span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
           span class="#{'govuk-input__wrapper' if question.type == :money}"
             - if question.type == :money

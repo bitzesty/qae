@@ -144,6 +144,12 @@ ul.subsections {
   }
 }
 
+.hide-if-empty {
+  &:empty {
+    display: none;
+  }
+}
+
 // PDF dowload link style/position
 .page-header .download-article {
   position: relative;
