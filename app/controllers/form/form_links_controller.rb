@@ -45,17 +45,29 @@ class Form::FormLinksController < Form::MaterialsBaseController
       @form_answer.document = add_link_result_doc
       @form_answer.save
 
-      redirect_to form_form_answer_form_attachments_url(@form_answer)
+      redirect_to edit_form_url(id: @form_answer.id, step: "supplementary-materials-confirmation")
     else
       render :new
     end
+  end
+
+  def confirm_deletion
+    self.form_link = FormLink.new(link_params)
   end
 
   def destroy
     @form_answer.document = remove_link_result_doc
     @form_answer.save
 
-    redirect_to form_form_answer_form_attachments_url(@form_answer)
+    respond_to do |format|
+      format.html do
+        if request.xhr? || request.format.js?
+          head :ok
+        else
+          redirect_to edit_form_url(id: @form_answer.id, step: "supplementary-materials-confirmation")
+        end
+      end
+    end
   end
 
   private

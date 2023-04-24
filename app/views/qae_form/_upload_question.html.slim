@@ -32,11 +32,11 @@
               .govuk-form-group
                 label.govuk-label class="govuk-!-margin-bottom-2 display-inline" for=question.input_name(suffix: 'link', index: idx)
                   ' Website address
-                = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['link'].to_i),
-                                      possible_read_only_ops.merge({class: "remove-link govuk-button govuk-button--warning remove-website display-inline mt-0",
-                                                                    remote: true,
-                                                                    method: :delete})
+                = link_to "Remove", "#", class: "remove-link govuk-button govuk-button--warning if-no-js-hide remove-website display-inline mt-0"
+                = link_to "Remove", confirm_deletion_form_form_answer_form_links_path(@form_answer.id, form_link: {link: el['link'], description: el['description']}),
+                                    possible_read_only_ops.merge({class: "govuk-link remove-link govuk-button govuk-button--warning float-right display-inline mt--5 if-js-hide"})
                 input.govuk-input.js-trigger-autosave type="text" id=question.input_name(suffix: 'link', index: idx) name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)  *possible_read_only_ops
+
 
           - if question.description
             .govuk-form-group

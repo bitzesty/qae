@@ -839,7 +839,7 @@ jQuery ->
       word_limit = products.find("textarea").attr("data-word-max")
       remove_link = $(this).find(".js-remove-link")
 
-      products.find("label").get(0).innerText = "Product/Service " + idx + " (word limit: #{word_limit}):"
+      products.find("label").get(0).innerText = "Product or service description " + idx + " (word limit: #{word_limit}):"
       products.find("label").attr("for", id + "_desc_short_#{idx}]" )
       products.find("textarea").attr({
         "id": id + "_desc_short_#{idx}]",
