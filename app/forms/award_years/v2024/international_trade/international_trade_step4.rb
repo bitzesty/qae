@@ -63,9 +63,11 @@ class AwardYears::V2024::QAEForms
           classes "js-most-recent-financial-year"
           context %(
             <p>
-              Answer this question if your dates in question D2 range between #{Settings.current_award_year_switch_date.decorate.formatted_trigger_date} to #{Settings.current.deadlines.submission_end.first.decorate.formatted_trigger_date}.
+              Answer this question if your dates in question D2 range between #{Settings.current_award_year_switch_date.decorate.formatted_trigger_date} to #{Settings.current_submission_deadline.decorate.formatted_trigger_date}.
             </p>
           )
+
+          conditional :financial_year_date, :true
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period?" do
