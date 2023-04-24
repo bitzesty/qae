@@ -303,6 +303,13 @@ jQuery ->
     else if type == 'others'
       proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + referenceValue) * 100).toFixed(2)
 
+  calculateRowsToExcludeFromBottom = (table, className) ->
+    rows = table.querySelectorAll('tr');
+    for i in [rows.length - 1..0] by -1
+      if rows[i].classList.contains(className)
+        row_count_from_bottom = rows.length - i
+        return row_count_from_bottom
+
   updateColumnTotalsCalculation = (table) ->
     inputFields = table.querySelectorAll('input[type="number"]')
     colCount = table.rows[0].cells.length
@@ -310,9 +317,9 @@ jQuery ->
     subtotalsRowSelector = table.querySelector('.auto-subtotals-row')
     if subtotalsRowSelector 
       subtotalsRow = subtotalsRowSelector.cells
-      rowsToExclude = 4
+      rowsToExclude = calculateRowsToExcludeFromBottom(table, 'auto-subtotals-row')
     else
-      rowsToExclude = 2
+      rowsToExclude = calculateRowsToExcludeFromBottom(table, 'auto-totals-row')
     othersRow = table.querySelector('.others-not-disadvantaged-row').cells
     disadvantagedRow = table.querySelector('tbody').querySelector('tr:nth-child(1)').cells
     proportionRow = table.querySelector('.auto-proportion-row').cells
