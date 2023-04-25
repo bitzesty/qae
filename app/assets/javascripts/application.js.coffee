@@ -208,6 +208,11 @@ jQuery ->
     if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 13) || parseInt(fy_month, 10) > 9
       fy_year = parseInt(fy_year, 10) - 1
 
+    # overriding financial year with the selected radio button value
+    # also check if the question is visible
+    if $(".js-most-recent-financial-year input:checked").val() && $(".js-most-recent-financial-year .js-conditional-question").hasClass("show-question")
+      fy_year = parseInt($(".js-most-recent-financial-year input:checked").val())
+
     # Updates the latest changed financial year input
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
@@ -217,6 +222,7 @@ jQuery ->
      if $(this).find("input.js-fy-year").val() == ""
        parent_fy = $(this).parent().find(".js-fy-entries")
        this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
+
        $(this).find("input.js-fy-year").val(this_year)
 
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
@@ -300,6 +306,11 @@ jQuery ->
   $(".js-financial-year-changed-dates .govuk-date-input input").change ->
     setTimeout((() =>
       updateYearEnd()
+    ), 50)
+
+   $(".js-most-recent-financial-year input").change ->
+    setTimeout((() =>
+      updateYearEndInput()
     ), 50)
 
   $('.question-required').find('input,select,textarea').each ->
