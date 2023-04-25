@@ -33,7 +33,7 @@ class Eligibility::Mobility < Eligibility
 
   property :promoting_social_mobility,
             boolean: true,
-            label: "Have you been promoting opportunity (through social mobility) to help disadvantaged groups",
+            label: "Have you been promoting opportunity (through social mobility) to help disadvantaged groups?",
             accept: :true,
             hint_partial: "form_award_eligibilities/questions/hints/promoting_social_mobility"
 
@@ -44,13 +44,13 @@ class Eligibility::Mobility < Eligibility
 
   property :social_mobility_activities,
             boolean: true,
-            label: "Have your promoting opportunity through social mobility efforts been through one of the qualifying activities as listed below?",
+            label: "Have your promoting opportunity (through social mobility) efforts been through one of the qualifying activities?",
             accept: :true,
             hint_partial: "form_award_eligibilities/questions/hints/social_mobility_activities"
 
   property :active_for_atleast_two_years,
             boolean: true,
-            label: "Have you had these activities for at least two years?",
+            label: "Have you had these activities for at least two years (a minimum of 24 months)?",
             accept: :true
 
   property :evidence_of_impact,
@@ -59,8 +59,12 @@ class Eligibility::Mobility < Eligibility
             accept: :true,
             hint: %(
               <div class='govuk-hint'>
-                <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
-                <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
+                <p>
+                  Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
+                </p>
+                <p>
+                  The evidence could include but is not limited to internal records, third-party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+                </p>
               </div>
             )
 
