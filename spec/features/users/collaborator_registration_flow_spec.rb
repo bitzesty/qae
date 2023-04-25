@@ -28,7 +28,7 @@ describe "Collaborator registration flow" do
     collab.confirmed_at = Time.now
     collab.save!
 
-    click_link "Sign out"
+    click_button "Sign out"
 
     login_as(collab.reload, scope: :user)
     visit root_path

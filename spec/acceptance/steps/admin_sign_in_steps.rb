@@ -10,7 +10,7 @@ step "I sign in as admin" do
 end
 
 step "I should see sign out link" do
-  expect(page).to have_link('Sign out')
+  expect(page).to have_selector(:link_or_button, 'Sign out')
 end
 
 step "I am admin user" do

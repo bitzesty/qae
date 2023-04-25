@@ -209,7 +209,7 @@ So that they can collaborate form answers
           end
 
           expect {
-            click_link "Remove collaborator"
+            click_link 'js-remove-collaborator-link'
           }.to change {
             account.reload.users.count
           }.by(-1)
