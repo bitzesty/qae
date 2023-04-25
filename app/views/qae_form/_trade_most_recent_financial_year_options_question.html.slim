@@ -1,5 +1,5 @@
-- from = Settings.current_award_year_switch_date.trigger_at
-- to = Settings.current_submission_deadline.trigger_at
+- from = Settings.current_award_year_switch_date_or_default_trigger_at
+- to = Settings.current_submission_deadline_or_default_trigger_at
 
 .js-most-recent-financial-year-options data-question=question.step.form[:financial_year_date].parameterized_title data-type="range" data-value=((from.to_date..to.to_date).minmax.map { |d| d.strftime("%d/%m/1900") })
   .govuk-radios

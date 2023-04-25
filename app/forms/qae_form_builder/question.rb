@@ -232,8 +232,8 @@ class QAEFormBuilder
             year = AwardYear.current.year - 1
             date = Date.new(year, month, day)
 
-            from = Settings.current_award_year_switch_date.try(:trigger_at)|| Date.new(year, DEFAULT_FINANCIAL_SWITCH_MONTH, DEFAULT_FINANCIAL_SWITCH_DAY)
-            to = Settings.current_submission_deadline.try(:trigger_at) || Date.new(year, DEFAULT_FINANCIAL_DEADLINE_MONTH, DEFAULT_FINANCIAL_DEADLINE_DAY)
+            from = Settings.current_award_year_switch_date.try(:trigger_at)|| Date.new(year, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
+            to = Settings.current_submission_deadline.try(:trigger_at) || Date.new(year, AwardYear::DEFAULT_FINANCIAL_DEADLINE_MONTH, AwardYear::DEFAULT_FINANCIAL_DEADLINE_DAY)
 
             date.between?(from, to)
           else
