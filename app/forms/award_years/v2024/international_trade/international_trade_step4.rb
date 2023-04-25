@@ -68,6 +68,7 @@ class AwardYears::V2024::QAEForms
           )
 
           conditional :financial_year_date, :true
+          # conditional :financial_year_date, :optional_financial_year
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period?" do

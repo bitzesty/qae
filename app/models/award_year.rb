@@ -21,6 +21,9 @@ class AwardYear < ApplicationRecord
   DEFAULT_FINANCIAL_DEADLINE_DAY = 17
   DEFAULT_FINANCIAL_DEADLINE_MONTH = 9
 
+  DEFAULT_FINANCIAL_SWITCH_DAY = 20
+  DEFAULT_FINANCIAL_SWITCH_MONTH = 4
+
   scope :past, -> {
     where(year: past_years)
   }
