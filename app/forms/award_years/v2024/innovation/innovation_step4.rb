@@ -125,7 +125,6 @@ class AwardYears::V2024::QAEForms
           ref "D 4"
           section "company_financials_innovation"
 
-          conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
 
