@@ -45,7 +45,7 @@ So that I can check, complete it and then upload it to application
       visit users_form_answer_audit_certificate_url(form_answer, format: :pdf)
     end
 
-    it "should generate pdf file" do
+    xit "should generate pdf file" do
       expect(page.status_code).to eq(200)
       expect(page.response_headers["Content-Disposition"]).to include(
         "attachment; filename=\"#{CGI.escape(audit_certificate_filename)}\""

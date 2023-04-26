@@ -7,23 +7,11 @@ module FinancialTable
     res.present? ? res[key.to_sym] : financial_empty_values
   end
 
-  # pre COVID logic
-  # def financial_table_headers
-  #   if financial_year_changed_dates?
-  #     financial_table_changed_dates_headers
-  #   elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
-  #     financial_table_pointer_headers
-  #   else
-  #     financial_table_default_headers
-  #   end
-  # end
-
-  # COVID period logic:
-  # If all the dates are present just render them
-  # Instead of making any changes to years
   def financial_table_headers
-    if financial_year_dates_filled_in?
+    if financial_year_changed_dates?
       financial_table_changed_dates_headers
+    elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
+      financial_table_pointer_headers
     else
       financial_table_default_headers
     end
@@ -39,18 +27,6 @@ module FinancialTable
       correct_date_headers(res)
     else
       [''] * res.size
-    end
-  end
-
-  def financial_year_dates_filled_in?
-    res = financial_data(
-      :financial_year_changed_dates,
-      get_audit_data(:financial_year_changed_dates)
-    )
-
-    res.any? && res.all? do |entry|
-      date_array = entry.to_s.split("/")
-      date_array.any? && date_array.all?(&:present?)
     end
   end
 
@@ -124,6 +100,8 @@ module FinancialTable
   def financial_date_selector_value
     if one_option_question_or_development?
       "3"
+    elsif form_answer.innovation?
+      innovation_years_number
     else
       filled_answers[financial_date_selector.key.to_s]
     end
@@ -151,18 +129,23 @@ module FinancialTable
   end
 
   def financial_years_number
-    if financial_date_selector_value.present?
-      if one_option_question_or_development?
-        "3"
-      else
-        financial_date_selector.ops_values[financial_date_selector_value]
+    @financial_years_number ||=
+      begin
+        if financial_date_selector_value.present?
+          if one_option_question_or_development?
+            "3"
+          elsif form_answer.innovation?
+            innovation_years_number
+          else
+            financial_date_selector.ops_values[financial_date_selector_value]
+          end
+        elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
+          financial_pointer.period_length
+        else
+          # If not selected yet, render last option as default
+          financial_date_selector.ops_values.values.last
+        end
       end
-    elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
-      financial_pointer.period_length
-    else
-      # If not selected yet, render last option as default
-      financial_date_selector.ops_values.values.last
-    end
   end
 
   def one_option_question_or_development?
@@ -174,5 +157,24 @@ module FinancialTable
       question.is_a?(QAEFormBuilder::OneOptionByYearsQuestionDecorator) ||
       question.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) ||
       question.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
+  end
+
+  def innovation_years_number
+    doc = form_answer.document
+    started_trading = Date.parse("#{doc["started_trading_year"]}-#{doc["started_trading_month"]}-#{doc["started_trading_day"]}") rescue nil
+
+    if started_trading
+      if Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(2, 3))
+        "2"
+      elsif Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(3, 4))
+        "3"
+      elsif Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(4, 5))
+        "4"
+      else # Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(5, 200+)) or the date is somehow invalid
+        "5"
+      end
+    else
+      "5"
+    end
   end
 end

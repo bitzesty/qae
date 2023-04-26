@@ -1,0 +1,12 @@
+- from = Settings.current_award_year_switch_date_or_default_trigger_at
+- to = Settings.current_submission_deadline_or_default_trigger_at
+
+.js-most-recent-financial-year-options data-question=question.step.form[:financial_year_date].parameterized_title data-type="range" data-value=((from.to_date..to.to_date).minmax.map { |d| d.strftime("%d/%m/1900") })
+  .govuk-radios
+    - for answer in question.options do
+      .govuk-radios__item
+        input.js-trigger-autosave.govuk-radios__input type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) aria-describedby="#{question.input_name}_#{answer.value.to_s.parameterize}_hint" *possible_read_only_ops
+        label.govuk-label.govuk-radios__label for="#{question.input_name}_#{answer.value.to_s.parameterize}"
+          = answer.text.html_safe
+        span.question-context id="#{question.input_name}_#{answer.value.to_s.parameterize}_hint"
+          p = question.context_for_options[answer.value].try(:html_safe)

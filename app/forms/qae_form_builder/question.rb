@@ -110,6 +110,7 @@ class QAEFormBuilder
         "turnover_exports_calculation_question",
         "options_question",
         "options_business_name_changed_question",
+        "trade_most_recent_financial_year_options",
         "regions_question",
         "trade_commercial_success_question",
         "checkbox_seria_question",
@@ -205,25 +206,44 @@ class QAEFormBuilder
 
     def visible?(fetched_answers=nil)
       dc = delegate_obj.drop_condition_parent
-      delegate_obj.conditions.
-        all? do |condition|
-          question_value = condition.question_value
+      delegate_obj.conditions.all? do |condition|
+        question_value = condition.question_value
 
-          parent_question_answer = if fetched_answers.present?
-            # Used in Reports::AllEntries, as passing json of answers
-            # allows to make it faster
-            fetched_answers[condition.question_key]
-          else
-            step.form[condition.question_key].input_value
-          end
+        parent_question_answer = if fetched_answers.present?
+                                   # Used in Reports::AllEntries, as passing json of answers
+                                   # allows to make it faster
+                                   fetched_answers[condition.question_key]
+                                 else
+                                   step.form[condition.question_key].input_value
+                                 end
 
-          if question_value == :true
-            parent_question_answer.present?
+        if question_value == :true
+          parent_question_answer.present?
+        elsif question_value == :optional_financial_year
+          day, month =
+               if fetched_answers.present?
+                 [fetched_answers["#{condition.question_key}_day"], fetched_answers["#{condition.question_key}_day"]]
+               else
+                 [step.form["#{condition.question_key}_day"].input_value, step.form["#{condition.question_key}_month"].input_value]
+
+               end
+
+          if day.present? && month.present?
+            year = AwardYear.current.year - 1
+            date = Date.new(year, month, day)
+
+            from = Settings.current_award_year_switch_date.try(:trigger_at)|| Date.new(year, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
+            to = Settings.current_submission_deadline.try(:trigger_at) || Date.new(year, AwardYear::DEFAULT_FINANCIAL_DEADLINE_MONTH, AwardYear::DEFAULT_FINANCIAL_DEADLINE_DAY)
+
+            date.between?(from, to)
           else
-            parent_question_answer == question_value.to_s
+            false
           end
-        end &&
-      (!dc || (dc.present? && has_drops?))
+        else
+          parent_question_answer == question_value.to_s
+        end
+      end &&
+        (!dc || (dc.present? && has_drops?))
     end
 
     def required_visible?

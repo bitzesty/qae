@@ -22,7 +22,12 @@
     background-size: 16px 16px;
 
     // Retina
-    @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+      not all,
+      not all,
+      not all,
+      only screen and (min-resolution: 192dpi),
+      only screen and (min-resolution: 2dppx) {
       background-image: image-url("icon-important-sm-red-2x.png");
     }
 
@@ -41,7 +46,12 @@
     background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.75em;
     background-size: 16px 16px;
 
-    @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+      not all,
+      not all,
+      not all,
+      only screen and (min-resolution: 192dpi),
+      only screen and (min-resolution: 2dppx) {
       background-image: image-url("icon-important-sm-red-2x.png");
     }
 
@@ -83,7 +93,12 @@ ul.subsections {
     color: $error-colour;
 
     // Retina
-    @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+      not all,
+      not all,
+      not all,
+      only screen and (min-resolution: 192dpi),
+      only screen and (min-resolution: 2dppx) {
       background-image: image-url("icon-important-red-2x.png");
       background-size: 34px 34px;
     }
@@ -130,6 +145,14 @@ ul.subsections {
     display: none;
   }
 }
+.show-both {
+  display: grid;
+
+  .js-year-default,
+  .js-year-text {
+    display: inline;
+  }
+}
 
 // Show substituted text
 .js-sub-text {
@@ -141,6 +164,12 @@ ul.subsections {
   }
   .js-sub-text {
     display: inline;
+  }
+}
+
+.hide-if-empty {
+  &:empty {
+    display: none;
   }
 }
 
@@ -219,12 +248,13 @@ label > .visible-read-only,
   }
 }
 
-input.read-only, textarea.read-only {
+input.read-only,
+textarea.read-only {
   color: #000000;
 }
 
 select.read-only {
-  color: #2B2B27;
+  color: #2b2b27;
 }
 
 .view-value {
@@ -266,7 +296,8 @@ select.read-only {
   }
 }
 
-@media only screen and (max-width : 800px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
+@media only screen and (max-width: 800px),
+  only screen and (min-device-height: 768px) and (max-device-height: 1024px) and (orientation: portrait) {
   .nominee-end-date-row {
     &.row {
       display: block;
@@ -292,9 +323,9 @@ select.read-only {
       padding-right: 15px;
       padding-left: 15px;
       float: left;
-         -moz-box-sizing: border-box;
+      -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
-              box-sizing: border-box;
+      box-sizing: border-box;
 
       &.date-ongoing {
         width: 40%;
