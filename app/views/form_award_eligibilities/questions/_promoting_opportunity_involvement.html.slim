@@ -28,7 +28,7 @@ p.govuk-body
         li A subsidiary of a large retail chain where the subsidiary was created to run a retailer's apprenticeship scheme with priority given to people from disadvantaged backgrounds and with disabilities.
 
       p.govuk-body
-        | An organisation whose core activity is to improve social mobility and who: i\) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii\) have a social mobility initiative for our own workforce.
+        | An organisation whose core activity is to improve social mobility and who: i) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii) have a social mobility initiative for our own workforce.
       ul.govuk-list.govuk-list--bullet
         li A school, college, university, or private training provider that provides skills training, education for its own employees from disadvantaged groups.
         li A charity that supports its own workforce from disadvantaged backgrounds through mentorship, work placements and campaigning.
@@ -47,10 +47,10 @@ p.govuk-body
 
 = f.input question,
   as: :radio_buttons,
+  label: "Select a statement that best describes your social mobility in relation to your whole organisation:",
   collection: @eligibility.options_for_question(step),
   input_html: { class: 'promoting_opportunity_involvement_input'},
-  wrapper_html: { role: "radiogroup", "id" => "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" },
-  label_html: { class: 'visuallyhidden' }
+  wrapper_html: { role: "radiogroup", "id" => "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }
 
 #promoting_opportunity_involvement_warning.visuallyhidden.if-no-js-hide
   span.govuk-warning-text__icon aria-hidden="true"
