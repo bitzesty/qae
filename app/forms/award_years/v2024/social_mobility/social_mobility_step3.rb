@@ -604,10 +604,7 @@ class AwardYears::V2024::QAEForms
         end
 
         textarea :disadvantaged_group_not_in_list, "If you are putting forward a group that is not on this list, please provide details and explain why you believe the group you support should be considered disadvantaged." do
-          classes "sub-question js-conditional-question-checkbox"
           sub_ref "C 5.3.1"
-          required
-          conditional :disadvantaged_participants_in_group_year, :others
           words_max 300
         end
 
