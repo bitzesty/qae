@@ -69,6 +69,7 @@ FactoryBot.define do
         active_for_atleast_two_years: "yes",
         evidence_of_impact: "yes"
       }}
+    end
 
     trait :promotion do
       type { "Eligibility::Promotion" }

@@ -52,16 +52,22 @@ p.govuk-body
   wrapper_html: { role: "radiogroup", "id" => "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" },
   label_html: { class: 'visuallyhidden' }
 
-#promoting_opportunity_involvement_warning.visuallyhidden
-  .govuk-warning-text
-    span.govuk-warning-text__icon aria-hidden="true"
-      | !
-    strong.govuk-warning-text__text
-      span.govuk-warning-text__assistive
-        | Warning
-      | You are not eligible
+#promoting_opportunity_involvement_warning.visuallyhidden.if-no-js-hide
+  span.govuk-warning-text__icon aria-hidden="true"
+    | !
+  strong.govuk-warning-text__text
+    span.govuk-warning-text__assistive
+      | Warning
+    | You are not eligible
+  br
   p.govuk-body
     | Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are
     strong class="govuk-!-font-weight-bold"
       |  discretionary or that are in partnership with businesses for whom it is discretionary.
+
+p.govuk-body.if-js-hide
+  | If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are
+  strong class="govuk-!-font-weight-bold"
+    |  discretionary or that are in partnership with businesses for whom it is discretionary.
+
 span.clear
