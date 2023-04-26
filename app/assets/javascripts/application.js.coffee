@@ -308,7 +308,7 @@ jQuery ->
     colCount = table.rows[0].cells.length
     totalsRow = table.querySelector('.auto-totals-row').cells
     subtotalsRowSelector = table.querySelector('.auto-subtotals-row')
-    if subtotalsRowSelector 
+    if subtotalsRowSelector
       subtotalsRow = subtotalsRowSelector.cells
       rowsToExclude = 4
     else
@@ -331,7 +331,7 @@ jQuery ->
               if !isNaN(cellValue)
                 colSums[columnIndex] += cellValue
 
-        if subtotalsRowSelector 
+        if subtotalsRowSelector
           for cell in subtotalsRow
             updateTotalValue(cell, colSums)
           for cell in totalsRow
@@ -828,14 +828,13 @@ jQuery ->
         $("#innovative-amount-info").removeClass("visuallyhidden")
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
-
-  # Show text about submitting multiple applications when the number of eligible initiatives is greater than 1
-  if $(".number_of_eligible_initiatives_input").length > 0
-    $(".number_of_eligible_initiatives_input").bind "propertychange change click keyup input paste", ->
-      if $(this).val() > 1
-        $("#number-of-eligible-initiatives-info").removeClass("visuallyhidden")
+  # show ineligible message when option D is selected on PO eligibility
+  if $(".promoting_opportunity_involvement_input").length > 0
+    $(".promoting_opportunity_involvement_input").bind "propertychange change click keyup input paste", ->
+      if $(this).val() == "D. We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+        $("#promoting_opportunity_involvement_warning").removeClass("visuallyhidden")
       else
-        $("#number-of-eligible-initiatives-info").addClass("visuallyhidden")
+        $("#promoting_opportunity_involvement_warning").addClass("visuallyhidden")
 
   # Show trade org fulfilled info when checked yes
   trade_org_q = ".question-organisation-fulfill-above-exceptions"

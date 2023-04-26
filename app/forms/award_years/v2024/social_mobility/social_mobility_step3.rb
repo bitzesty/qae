@@ -529,9 +529,9 @@ class AwardYears::V2024::QAEForms
           auto_proportion_row true
 
           corner_label "Participants"
-          totals_label "Total number of discrete participants supported (the system will calculate this)"
+          totals_label "Total number of participants supported (the system will calculate this)"
           others_label "Others receiving support from you who are not disadvantaged"
-          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants supported from the total (the system will calculate this)"
 
           x_headings [2019, 2020, 2021, 2022, 2023, "Total (system calculated)"]
 
@@ -651,7 +651,7 @@ class AwardYears::V2024::QAEForms
           column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
         end
 
-        textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.4.1, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
+        textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.4, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
           classes "sub-question"
           sub_ref "C 5.4.1"
           required
@@ -738,6 +738,7 @@ class AwardYears::V2024::QAEForms
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
             ["other_disadvantaged_group", "Other disadvantaged group"],
           ]
           column_widths({ 1 => 25, 2 => 20, 3 => 23, 4 => 20, 5 => 15 })

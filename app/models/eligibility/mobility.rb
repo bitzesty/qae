@@ -1,14 +1,6 @@
 class Eligibility::Mobility < Eligibility
   AWARD_NAME = 'Social Mobility'
 
-  property :promoting_opportunity_involvement,
-            values: [
-              "Our main activity is focused on something else, but we have activities or initiatives that are positively supporting social mobility",
-              "Our organisation's core purpose is to improve social mobility"
-            ],
-            label: "Which of the below best describes your involvement with promoting opportunity through social mobility:",
-            accept: "other_focus"
-
   property :can_provide_financial_figures,
             boolean: true,
             label: "Will you be able to provide financial figures for your three most recent financial years, covering 36 months?",
@@ -31,9 +23,19 @@ class Eligibility::Mobility < Eligibility
               </p>
             )
 
+  property :promoting_opportunity_involvement,
+            values: [
+              "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity).",
+              "B. We are a subsidiary with the principal activity of promoting social mobility. However, social mobility is not our parent organisation's core activity.",
+              "C. We are an organisation whose core activity is to improve social mobility, and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii) have a social mobility initiative for our own workforce.",
+              "D. We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+            ],
+            label: "Your social mobility in relation to your whole organisation.",
+            accept: "promoting_opportunity_involvement"
+
   property :promoting_social_mobility,
             boolean: true,
-            label: "Have you been promoting opportunity (through social mobility) to help disadvantaged groups",
+            label: "Have you been promoting opportunity (through social mobility) to help disadvantaged groups?",
             accept: :true,
             hint_partial: "form_award_eligibilities/questions/hints/promoting_social_mobility"
 
@@ -44,13 +46,13 @@ class Eligibility::Mobility < Eligibility
 
   property :social_mobility_activities,
             boolean: true,
-            label: "Have your promoting opportunity through social mobility efforts been through one of the qualifying activities as listed below?",
+            label: "Have your promoting opportunity (through social mobility) efforts been through one of the qualifying activities?",
             accept: :true,
             hint_partial: "form_award_eligibilities/questions/hints/social_mobility_activities"
 
   property :active_for_atleast_two_years,
             boolean: true,
-            label: "Have you had these activities for at least two years?",
+            label: "Have you had these activities for at least two years (a minimum of 24 months)?",
             accept: :true
 
   property :evidence_of_impact,
@@ -59,13 +61,12 @@ class Eligibility::Mobility < Eligibility
             accept: :true,
             hint: %(
               <div class='govuk-hint'>
-                <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
-                <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
+                <p>
+                  Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
+                </p>
+                <p>
+                  The evidence could include but is not limited to internal records, third-party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+                </p>
               </div>
             )
-
-  property :number_of_eligible_initiatives,
-            positive_integer: true,
-            label: "How many initiatives do you have that meets the criteria for the award?",
-            accept: :all
 end
