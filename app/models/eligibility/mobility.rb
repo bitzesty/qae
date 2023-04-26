@@ -1,14 +1,6 @@
 class Eligibility::Mobility < Eligibility
   AWARD_NAME = 'Social Mobility'
 
-  property :promoting_opportunity_involvement,
-            values: [
-              "Our main activity is focused on something else, but we have activities or initiatives that are positively supporting social mobility",
-              "Our organisation's core purpose is to improve social mobility"
-            ],
-            label: "Which of the below best describes your involvement with promoting opportunity through social mobility:",
-            accept: "other_focus"
-
   property :can_provide_financial_figures,
             boolean: true,
             label: "Will you be able to provide financial figures for your three most recent financial years, covering 36 months?",
@@ -30,6 +22,16 @@ class Eligibility::Mobility < Eligibility
                You can calculate the number of full-time employees at the year-end or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
               </p>
             )
+
+  property :promoting_opportunity_involvement,
+            values: [
+              "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity).",
+              "B. We are a subsidiary with the principal activity of promoting social mobility. However, social mobility is not our parent organisation's core activity.",
+              "C. We are an organisation whose core activity is to improve social mobility, and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii) have a social mobility initiative for our own workforce.",
+              "D. We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+            ],
+            label: "Your social mobility in relation to your whole organisation.",
+            accept: "promoting_opportunity_involvement"
 
   property :promoting_social_mobility,
             boolean: true,

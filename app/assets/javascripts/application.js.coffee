@@ -828,6 +828,13 @@ jQuery ->
         $("#innovative-amount-info").removeClass("visuallyhidden")
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
+  # show ineligible message when option D is selected on PO eligibility
+  if $(".promoting_opportunity_involvement_input").length > 0
+    $(".promoting_opportunity_involvement_input").bind "propertychange change click keyup input paste", ->
+      if $(this).val() == "D. We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+        $("#promoting_opportunity_involvement_warning").removeClass("visuallyhidden")
+      else
+        $("#promoting_opportunity_involvement_warning").addClass("visuallyhidden")
 
   # Show trade org fulfilled info when checked yes
   trade_org_q = ".question-organisation-fulfill-above-exceptions"

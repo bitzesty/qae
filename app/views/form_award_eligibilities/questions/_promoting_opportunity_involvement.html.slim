@@ -1,0 +1,67 @@
+.question-body
+  p.govuk-body
+    | Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
+  ul.govuk-list.govuk-list--bullet
+    li Socio-economic background is a set of social and economic circumstances from which a person has come.
+    li Socio-economic status is a person's current social and economic circumstances.
+p.govuk-body
+  | This award is for organisations that are choosing to support social mobility as a discretionary activity (rather than those for whom it is their core activity). Commercial organisations, not-for-profits, social enterprises and charities are welcome to apply.
+p.govuk-body
+  | Where an enterprise has established a subsidiary, the principal activity of which is to promote social mobility, such subsidiaries are eligible.
+
+  details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details"
+    summary.govuk-details__summary
+      span.govuk-details__summary-text
+        | See examples of eligible organisations and circumstances:
+    .govuk-details__text
+      p.govuk-body
+        | An organisation that supports social mobility as a discretionary activity (social mobility is not its core activity)
+      ul.govuk-list.govuk-list--bullet
+        li An apprenticeship scheme by an SME or charity with a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends.
+        li A recruitment initiative by a large corporation that aims to have a certain number of recruits from disadvantaged backgrounds.
+        li A construction company that provides members of its workforce from disadvantaged backgrounds opportunities to improve their skills and advance their careers through academic and other exercises such as mentoring or work placements.
+        li A charity helping its own employees from less-advantaged backgrounds to secure managerial roles.</li>
+
+      p.govuk-body
+        | A subsidiary with the principal activity of promoting social mobility. However, social mobility is not their parent organisation's core activity.
+      ul.govuk-list.govuk-list--bullet
+        li A subsidiary of a large retail chain where the subsidiary was created to run a retailer's apprenticeship scheme with priority given to people from disadvantaged backgrounds and with disabilities.
+
+      p.govuk-body
+        | An organisation whose core activity is to improve social mobility and who: i\) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii\) have a social mobility initiative for our own workforce.
+      ul.govuk-list.govuk-list--bullet
+        li A school, college, university, or private training provider that provides skills training, education for its own employees from disadvantaged groups.
+        li A charity that supports its own workforce from disadvantaged backgrounds through mentorship, work placements and campaigning.
+        li A school, college, university or private training provider who is submitting a joint application with a business about a programme or intervention it has created or implemented in partnership.
+
+  details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details"
+    summary.govuk-details__summary
+      span.govuk-details__summary-text
+        | See examples of ineligible organisations and circumstances:
+    .govuk-details__text
+      p.govuk-body
+        | Organisations whose core activity is to improve social mobility and who are applying for this award on the basis of their core activity are <strong>not eligible</strong>. For example:
+      ul.govuk-list.govuk-list--bullet
+        li A school, college, university, or private training provider that provides skills training or education and are applying on the basis of the training that they provide for people from disadvantaged groups.
+        li A charity that supports people from disadvantaged backgrounds through mentorship, work placements and campaigning and is applying on the basis of that work.
+
+= f.input question,
+  as: :radio_buttons,
+  collection: @eligibility.options_for_question(step),
+  input_html: { class: 'promoting_opportunity_involvement_input'},
+  wrapper_html: { role: "radiogroup", "id" => "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" },
+  label_html: { class: 'visuallyhidden' }
+
+#promoting_opportunity_involvement_warning.visuallyhidden
+  .govuk-warning-text
+    span.govuk-warning-text__icon aria-hidden="true"
+      | !
+    strong.govuk-warning-text__text
+      span.govuk-warning-text__assistive
+        | Warning
+      | You are not eligible
+  p.govuk-body
+    | Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are
+    strong class="govuk-!-font-weight-bold"
+      |  discretionary or that are in partnership with businesses for whom it is discretionary.
+span.clear
