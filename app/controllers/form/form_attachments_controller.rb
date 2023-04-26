@@ -64,10 +64,14 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
       @form_answer.document = add_attachment_result_doc
       @form_answer.save
 
-      redirect_to form_form_answer_form_attachments_url(@form_answer)
+      redirect_to edit_form_url(id: @form_answer.id, step: "supplementary-materials-confirmation")
     else
       render :new
     end
+  end
+
+  def confirm_deletion
+    self.form_answer_attachment = self.form_answer_attachments.find(params[:form_attachment_id])
   end
 
   def destroy
@@ -83,7 +87,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
         if request.xhr? || request.format.js?
           head :ok
         else
-          redirect_to form_form_answer_form_attachments_url(@form_answer)
+          redirect_to edit_form_url(id: @form_answer.id, step: "supplementary-materials-confirmation")
         end
       end
     end

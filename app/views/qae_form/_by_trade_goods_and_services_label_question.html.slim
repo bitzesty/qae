@@ -1,23 +1,24 @@
 .js-by-trade-goods-and-services-amount role="group" id="q_#{question.key}"
   input name="#{question.input_name}[array]" value="true" type="hidden" *possible_read_only_ops
 
-  - (1..5).each_with_index do |placement, index|
-    - item = question.trade_goods_and_services[index]
+  ol.list-add data-add-limit="#{question.product_limit}" data-need-to-clear-example=true data-default="1"
+    - question.trade_goods_and_services.each_with_index do |product, index|
+      - placement = index + 1
+      - item = question.trade_goods_and_services[index]
+      = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: question.trade_goods_and_services.count
 
-    .js-conditional-question data-question=question.step.form[:trade_goods_amount].parameterized_title data-value=placement data-type="in_clause_collection"
-      .govuk-form-group
-        label.govuk-label for=question.input_name(suffix: "desc_short_#{placement}")
-          = "Product/Service #{placement} (word limit: #{question.words_max}):"
-        - errors = @form_answer.validator_errors
-        - if errors && errors[question.key] && errors[question.key][index]
-          span.govuk-error-message
-            = errors[question.key][index]
-        span.govuk-error-message
-        textarea.govuk-textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name="#{question.input_name}[#{index}][desc_short]" id=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops
-          = item.present? ? item['desc_short'] : ''
+    - if question.trade_goods_and_services.count < 1
+      - index = 0, placement = 1, item = {}
+      = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: 1
 
-      .govuk-form-group
-        label.govuk-label for=question.input_name(suffix: "total_overseas_trade_#{placement}")
-          ' % of your total overseas trade:
-        span.govuk-error-message
-        input.js-trigger-autosave.govuk-input.govuk-input--width-5 type="number" pattern="[0-9]*" min=question.min max=question.max name="#{question.input_name}[#{index}][total_overseas_trade]" value=(item.present? ? item['total_overseas_trade'] : '') autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
+    noscript
+      .list-add
+        - if question.trade_goods_and_services.count < question.product_limit
+          - (question.trade_goods_and_services.count+1..question.product_limit).each do |index|
+            - placement = index
+            - item = {}
+            = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: 5
+
+  .if-no-js-hide.govuk-button-group
+    a.govuk-button.govuk-button--secondary.button-add.js-button-add class=("visuallyhidden" if question.trade_goods_and_services.count >= question.product_limit) href="#" aria-label="Add another product or service" data-entity="product" *possible_read_only_ops
+        | Add another product or service

@@ -136,8 +136,9 @@ Rails.application.routes.draw do
     resources :form_answers do
       resources :supporters, only: [:new, :create, :index, :destroy]
       resources :support_letters, only: [:new, :create, :destroy]
-      resources :form_attachments, only: [:index, :new, :create, :destroy]
-      resource :form_links, only: [:new, :create, :destroy]
+      resources :form_attachments, only: [:index, :new, :create, :destroy] do
+        get :confirm_deletion
+      end
       resources :organisational_charts, only: [:new, :create, :destroy] do
         get :confirm_deletion
       end
@@ -148,7 +149,8 @@ Rails.application.routes.draw do
       [
         :current_queens_awards,
         :awards,
-        :subsidiaries
+        :subsidiaries,
+        :form_links
       ].each do |resource_name|
         resource resource_name, only: [:new, :create, :edit, :update, :destroy] do
           get :confirm_deletion

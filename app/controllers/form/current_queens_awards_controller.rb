@@ -73,6 +73,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
       redirect_to edit_form_url(
         id: @form_answer.id,
+        step: step.title.parameterize,
         anchor: anchor
       )
     else
@@ -93,6 +94,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
     redirect_to edit_form_url(
       id: @form_answer.id,
+      step: step.title.parameterize,
       anchor: anchor
     )
   end
@@ -116,6 +118,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
       redirect_to edit_form_url(
         id: @form_answer.id,
+        step: step.title.parameterize,
         anchor: anchor
       )
     else

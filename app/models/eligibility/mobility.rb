@@ -1,23 +1,41 @@
 class Eligibility::Mobility < Eligibility
   AWARD_NAME = 'Social Mobility'
 
-  property :promoting_opportunity_involvement,
-            values: [
-              "Our main activity is focused on something else, but we have activities or initiatives that are positively supporting social mobility",
-              "Our organisation's core purpose is to improve social mobility"
-            ],
-            label: "Which of the below best describes your involvement with promoting opportunity through social mobility:",
-            accept: "other_focus"
-
   property :can_provide_financial_figures,
             boolean: true,
-            label: "Are you able to provide financial figures for the last three years for your organisation?",
+            label: "Will you be able to provide financial figures for your three most recent financial years, covering 36 months?",
             accept: :true,
-            hint: proc { "<p class='govuk-hint'>You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures.</p>" }
+            hint: %(
+              <p class='govuk-hint'>
+                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+              </p>
+              <p class='govuk-hint'>
+                If you haven't reached your most recent year-end, you can provide estimated figures in the interim.
+              </p>
+            )
+  property :full_time_employees,
+            boolean: true,
+            label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your three most recent financial years?",
+            accept: :true,
+            hint: %(
+              <p class='govuk-hint'>
+               You can calculate the number of full-time employees at the year-end or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
+              </p>
+            )
+
+  property :promoting_opportunity_involvement,
+            values: [
+              "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity).",
+              "B. We are a subsidiary with the principal activity of promoting social mobility. However, social mobility is not our parent organisation's core activity.",
+              "C. We are an organisation whose core activity is to improve social mobility, and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii) have a social mobility initiative for our own workforce.",
+              "D. We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+            ],
+            label: "Your social mobility in relation to your whole organisation.",
+            accept: "promoting_opportunity_involvement"
 
   property :promoting_social_mobility,
             boolean: true,
-            label: "Have you been promoting opportunity through social mobility helping disadvantaged groups as listed below?",
+            label: "Have you been promoting opportunity (through social mobility) to help disadvantaged groups?",
             accept: :true,
             hint_partial: "form_award_eligibilities/questions/hints/promoting_social_mobility"
 
@@ -28,28 +46,27 @@ class Eligibility::Mobility < Eligibility
 
   property :social_mobility_activities,
             boolean: true,
-            label: "Have your promoting opportunity through social mobility efforts been through one of the qualifying activities as listed below?",
+            label: "Have your promoting opportunity (through social mobility) efforts been through one of the qualifying activities?",
             accept: :true,
             hint_partial: "form_award_eligibilities/questions/hints/social_mobility_activities"
 
   property :active_for_atleast_two_years,
             boolean: true,
-            label: "Have you had these activities for at least two years?",
+            label: "Have you had these activities for at least two years (a minimum of 24 months)?",
             accept: :true
 
   property :evidence_of_impact,
             boolean: true,
-            label: "Are you able to provide evidence of the impact of your promoting opportunity through social mobility activities?",
+            label: "Are you able to provide evidence of the impact of your promoting opportunity (through social mobility) activities?",
             accept: :true,
             hint: %(
               <div class='govuk-hint'>
-                <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
-                <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
+                <p>
+                  Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
+                </p>
+                <p>
+                  The evidence could include but is not limited to internal records, third-party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+                </p>
               </div>
             )
-
-  property :number_of_eligible_initiatives,
-            positive_integer: true,
-            label: "How many initiatives do you have that meets the criteria for the award?",
-            accept: :all
 end

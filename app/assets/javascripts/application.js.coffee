@@ -352,6 +352,90 @@ jQuery ->
 
   replaceCommasInFinancialData()
 
+  updateRowTotalsCalculation = (inputFields) ->
+    for inputField in inputFields
+      inputField.addEventListener('input', ->
+        row = this.closest('tr')
+        inputFieldsInRow = row.querySelectorAll('td:not(:last-child) input[type="number"]');
+
+        sum = 0
+        for inputFieldInRow in inputFieldsInRow
+          sum += parseInt(inputFieldInRow.value) or 0
+
+        lastCell = row.cells[row.cells.length - 1];
+        inputField = lastCell.querySelector('input[type="number"]');
+        inputField.value = sum;
+      )
+
+  updateTotalValue = (cell, colSums) ->
+    input = cell.querySelector('input')
+    input?.value = colSums[cell.cellIndex]
+
+  updateProportionValue = (cell, referenceRow, type, colSums) ->
+    proportionInput = cell.querySelector('input')
+    referenceCell = referenceRow[cell.cellIndex].querySelector('input')
+    referenceValue = parseFloat(referenceCell?.value) or 0
+    if type == 'disadvantaged'
+      proportionInput?.value = ((referenceValue / colSums[cell.cellIndex]) * 100).toFixed(2)
+    else if type == 'others'
+      proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + referenceValue) * 100).toFixed(2)
+
+  updateColumnTotalsCalculation = (table) ->
+    inputFields = table.querySelectorAll('input[type="number"]')
+    colCount = table.rows[0].cells.length
+    totalsRow = table.querySelector('.auto-totals-row').cells
+    subtotalsRowSelector = table.querySelector('.auto-subtotals-row')
+    if subtotalsRowSelector
+      subtotalsRow = subtotalsRowSelector.cells
+      rowsToExclude = 4
+    else
+      rowsToExclude = 2
+    othersRow = table.querySelector('.others-not-disadvantaged-row').cells
+    disadvantagedRow = table.querySelector('tbody').querySelector('tr:nth-child(1)').cells
+    proportionRow = table.querySelector('.auto-proportion-row').cells
+
+    for inputField in inputFields
+      inputField.addEventListener('input', ->
+        colSums = {}
+        for i in [0...colCount]
+          columnIndex = i
+          colSums[i] = 0
+
+          for row in table.rows
+            if row.rowIndex > 0 && row.rowIndex < table.rows.length - rowsToExclude
+              inputElement = row.cells[columnIndex].querySelector('input')
+              cellValue = parseFloat(inputElement?.value) or 0
+              if !isNaN(cellValue)
+                colSums[columnIndex] += cellValue
+
+        if subtotalsRowSelector
+          for cell in subtotalsRow
+            updateTotalValue(cell, colSums)
+          for cell in totalsRow
+            totalInput = cell.querySelector('input')
+            inputElement = othersRow[cell.cellIndex].querySelector('input')
+            othersCellValue = parseFloat(inputElement?.value) or 0
+            totalInput?.value = colSums[cell.cellIndex] + othersCellValue
+        else
+          for cell in totalsRow
+            updateTotalValue(cell, colSums)
+
+        for cell in proportionRow
+          if subtotalsRowSelector
+            updateProportionValue(cell, othersRow, 'others', colSums)
+          else
+            updateProportionValue(cell, disadvantagedRow, 'disadvantaged', colSums)
+      )
+
+  loopOverTables = ->
+    updateRowTotalsCalculation(document.querySelectorAll('.auto-totals-column input[type="number"]'))
+
+    autoTotalColTables = document.querySelectorAll('.auto-totals-row-table')
+    for table in autoTotalColTables
+      updateColumnTotalsCalculation(table)
+
+  loopOverTables()
+
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $("body").removeClass("show-error-page")
@@ -826,14 +910,13 @@ jQuery ->
         $("#innovative-amount-info").removeClass("visuallyhidden")
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
-
-  # Show text about submitting multiple applications when the number of eligible initiatives is greater than 1
-  if $(".number_of_eligible_initiatives_input").length > 0
-    $(".number_of_eligible_initiatives_input").bind "propertychange change click keyup input paste", ->
-      if $(this).val() > 1
-        $("#number-of-eligible-initiatives-info").removeClass("visuallyhidden")
+  # show ineligible message when option D is selected on PO eligibility
+  if $(".promoting_opportunity_involvement_input").length > 0
+    $(".promoting_opportunity_involvement_input").bind "propertychange change click keyup input paste", ->
+      if $(this).val() == "D. We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+        $("#promoting_opportunity_involvement_warning").removeClass("visuallyhidden")
       else
-        $("#number-of-eligible-initiatives-info").addClass("visuallyhidden")
+        $("#promoting_opportunity_involvement_warning").addClass("visuallyhidden")
 
   # Show trade org fulfilled info when checked yes
   trade_org_q = ".question-organisation-fulfill-above-exceptions"
@@ -909,6 +992,35 @@ jQuery ->
       $("#form_eligibility_show").addClass("visuallyhidden")
       $("#form_eligibility_questions").removeClass("visuallyhidden")
 
+  # Updates labels and ids on trade product fields
+  resetTradeProductIndexes = (question) ->
+    list_count = question.find("li").length
+    question.find("li").each (index) ->
+      idx = index + 1
+      id = "form[trade_goods_and_services_explanations"
+      name = "form[trade_goods_and_services_explanations]"
+      products = $(this).find(".trade-good-product")
+      percentages = $(this).find(".trade-good-percentage")
+      word_limit = products.find("textarea").attr("data-word-max")
+      remove_link = $(this).find(".js-remove-link")
+
+      products.find("label").get(0).innerText = "Product or service description " + idx + " (word limit: #{word_limit}):"
+      products.find("label").attr("for", id + "_desc_short_#{idx}]" )
+      products.find("textarea").attr({
+        "id": id + "_desc_short_#{idx}]",
+        "name": name + "[#{idx}][desc_short]"
+      })
+      percentages.find("label").attr("for", id + "_total_overseas_trade_#{idx}]")
+      percentages.find("input").attr({
+        "id": id + "_total_overseas_trade_#{idx}]",
+        "name": name + "[#{idx}][total_overseas_trade]"
+      })
+      remove_link.attr("aria-label", "Remove " + ordinal(idx) + " product")
+      if list_count <= 1
+        remove_link.addClass("visuallyhidden")
+      else
+        remove_link.removeClass("visuallyhidden")
+
   # Clicking `+ Add` on certain questions add fields
   $(document).on "click", ".question-block .js-button-add", (e) ->
     e.preventDefault()
@@ -933,16 +1045,20 @@ jQuery ->
             can_add = false
 
           if li_size + 1 >= add_limit_attr
-            question.find(".js-button-add").addClass("govuk-!-display-none")
+            question.find(".js-button-add").addClass("visuallyhidden")
+
 
         if can_add
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size}]")
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\{index\})\]/g, "$1#{li_size}]")
 
-          question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
+          question.find(".list-add").append("<li class='js-add-example if-no-js-hide js-list-item'>#{add_eg}</li>")
           question.find(".list-add").find("li:last-child input").prop("disabled", false)
 
           idx = question.find(".list-add").find("> li").length
+
+          # update labels and aria-labels on new product fields
+          resetTradeProductIndexes(question.find(".list-add"))
 
           question.find(".list-add").find("li:last-child .remove-link").attr("aria-label", "Remove " + ordinal(idx) + " " + entity)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
@@ -971,7 +1087,9 @@ jQuery ->
   # Removing these added fields
   $(document).on "click", ".govuk-form-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
+
     if !$(this).hasClass("read-only")
+      parent = $(this).closest(".list-add")
       parent_ul = $(this).closest("ul")
       $(this).closest(".govuk-form-group")
              .find(".js-button-add")
@@ -989,6 +1107,8 @@ jQuery ->
         $("input.remove", $(this).closest("li")).val("1")
       else
         $(this).closest("li").remove()
+
+      resetTradeProductIndexes(parent)
 
       questionAddDefaultReached(parent_ul)
       window.FormValidation.validateStep()

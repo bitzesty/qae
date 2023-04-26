@@ -222,7 +222,7 @@ class AwardYears::V2024::QAEForms
           drop_block_conditional
         end
 
-        by_years :total_turnover, "Total turnover (UK and overseas)" do
+        by_years :total_turnover, "Total turnover (the UK and overseas)" do
           classes "sub-question"
           sub_ref "D 5.2"
           type :money

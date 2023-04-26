@@ -35,7 +35,7 @@ RSpec.describe Form::FormAttachmentsController do
     it "should create a resource" do
       allow_any_instance_of(FormAnswerAttachment).to receive(:save) {true}
       post :create, params: { form_answer_id: form_answer.id, form_answer_attachment: { description: 'title' } }
-      expect(response).to redirect_to form_form_answer_form_attachments_url(form_answer)
+      expect(response).to redirect_to redirect_to edit_form_url(form_answer, step: "supplementary-materials-confirmation")
       expect(form_answer.reload.document.present?).to be_truthy
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe Form::FormAttachmentsController do
   describe "Delete destroy" do
     it "should destroy a resource" do
       delete :destroy, params: { id: form_answer_attachment.id, form_answer_id: form_answer.id }
-      expect(response).to redirect_to form_form_answer_form_attachments_url(form_answer)
+      expect(response).to redirect_to redirect_to edit_form_url(form_answer, step: "supplementary-materials-confirmation")
       expect(form_answer.reload.document.present?).to be_truthy
     end
   end

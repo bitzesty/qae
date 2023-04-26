@@ -35,7 +35,7 @@ title = content_for?(:title) ? yield(:title)  + " - King's Awards for Enterprise
             = link_to "Account details", correspondent_details_account_path, class: 'govuk-header__link'
         - if current_user.present?
           li.govuk-header__navigation-item
-            = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'govuk-header__link'
+            = button_to  "Sign out", destroy_user_session_path, method: :delete, class: 'govuk-header__link nav-link--sign-out'
 
 - content_for :inside_header do
   - if landing_page?

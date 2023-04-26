@@ -212,9 +212,9 @@ en:
     trade:
       years_question_additional_context: "If you have selected “Outstanding Short-Term Growth” in D1, you will only need to provide information for the last three years."
       queen_awards_question_additional_context: |
-        If you won the award in the last year you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
+        If you won the award in the previous 4 years you can only apply for an International Trade Award on an Outstanding Short-Term Growth basis, and you need to be able to demonstrate that your international trade has resulted in outstanding year-on-year growth in the last 3 years with no dips.
 
-        If you won the award in the previous 4 years, you can only apply for the Outstanding Achievement Award (3 years).
+        If you won the award in the last year, unfortunately, you cannot apply for the International Trade Award this year. If your international trade continues to result in outstanding year-on-year growth, you can apply again in 2024 for an award to be given in 2025 (on Outstanding Short-Term Growth over a 3 years basis); providing you include two new years of trading results in your application.
     development:
       years_question_additional_context: "If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years."
 

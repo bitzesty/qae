@@ -1015,3 +1015,14 @@ ul.no-bullets {
 form.audit-certificate-upload-form span.button-add {
   margin-bottom: 20px;
 }
+
+// Navigation link
+.nav-link--sign-out {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  padding: 0;
+}

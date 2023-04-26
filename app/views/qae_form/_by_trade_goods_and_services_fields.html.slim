@@ -1,0 +1,19 @@
+li.js-add-example.js-list-item data-value=placement data-type="in_clause_collection"
+  .govuk-form-group.trade-good-product.question-required
+    label.govuk-label for=question.input_name(suffix: "desc_short_#{placement}")
+      = "Product or service description #{placement} (word limit: #{question.words_max}):"
+    - errors = @form_answer.validator_errors
+    - if errors && errors[question.key] && errors[question.key][index]
+      span.govuk-error-message
+        = errors[question.key][index]
+    span.govuk-error-message
+    textarea.govuk-textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name="#{question.input_name}[#{index}][desc_short]" id=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops
+      = item.present? ? item['desc_short'] : ''
+
+  .govuk-form-group.trade-good-percentage.question-required
+    label.govuk-label for=question.input_name(suffix: "total_overseas_trade_#{placement}")
+      ' % of your total overseas trade the product/service represents:
+    span.govuk-error-message
+    input.js-trigger-autosave.govuk-input.govuk-input--width-5 type="number" pattern="[0-9]*" min=question.min max=question.max name="#{question.input_name}[#{index}][total_overseas_trade]" value=(item.present? ? item['total_overseas_trade'] : '') autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
+
+  = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'visuallyhidden' if (count == 1)} #{'read_only' if admin_in_read_only_mode?}"

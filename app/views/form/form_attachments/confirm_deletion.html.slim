@@ -1,0 +1,42 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li = @form.title
+
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      = @form.title
+
+.steps-progress-container
+  .steps-progress-content
+    = render 'qae_form/form_header', form: @form, current_step: "supplementary-materials-confirmation"
+
+    .article-container.article-container-wider.step-article.step-current
+      article.group role="article"
+        .inner
+          fieldset.question-block
+            h2 Deletion of supplementary materials.
+
+            ul.list-add
+              li
+                div
+                  p
+                    | Are you sure?
+                  br
+                  = simple_form_for form_answer_attachment,
+                                    url: form_form_answer_form_attachment_url(@form_answer.id, form_answer_attachment.id),
+                                    html: { class: 'qae-form', method: :delete } do |f|
+                    .row
+                      .span-12
+                        = f.submit "Delete", class: "button button-alt"
+                    .clear
+
+
+          footer
+            nav.pagination.no-border aria-label="Pagination" role="navigation"
+              ul.group
+                li.previous.previous-alternate
+                  = link_to edit_form_url(id: params[:form_answer_id], step: "supplementary-materials-confirmation"), rel: "prev", title: "Back to company information", role: "button" do
+                    span.pagination-label Back
+
+    = render "qae_form/steps_progress_bar", current_step: "supplementary-materials-confirmation"

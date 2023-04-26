@@ -8,7 +8,7 @@ class QAEFormBuilder
       result = super
 
       question.trade_goods_and_services.each_with_index do |entity, index|
-        if index + 1 <= question.answers["trade_goods_amount"].to_i
+        if index + 1 <= question.answers["trade_goods_and_services_explanations"].length.to_i
           question.required_sub_fields_list.each do |attr|
             if !entity[attr].present?
               result[question.key] ||= {}
@@ -18,7 +18,6 @@ class QAEFormBuilder
           end
         end
       end
-
       result
     end
 
@@ -38,7 +37,7 @@ class QAEFormBuilder
   end
 
   class ByTradeGoodsAndServicesLabelQuestionBuilder < QuestionBuilder
-    def rows num
+    def rows num=3
       @q.rows = num
     end
 
@@ -53,6 +52,10 @@ class QAEFormBuilder
     def max num
       @q.max = num
     end
+
+    def product_limit num
+      @q.product_limit = num
+    end
   end
 
   class ByAmountCondition
@@ -63,6 +66,6 @@ class QAEFormBuilder
   end
 
   class ByTradeGoodsAndServicesLabelQuestion < Question
-    attr_accessor :rows, :words_max, :min, :max
+    attr_accessor :rows, :words_max, :min, :max, :product_limit
   end
 end

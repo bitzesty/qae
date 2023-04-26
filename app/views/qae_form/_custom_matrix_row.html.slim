@@ -1,0 +1,10 @@
+tr.govuk-table__row class=row_class
+  th.govuk-table__header.row-heading scope="row"
+    = label
+  - question.x_headings.each do |x_heading|
+    td.govuk-form-group.govuk-table__cell
+      div
+        label.visuallyhidden-on-desktop.govuk-label for=question.input_name(suffix: "#{x_heading.key}_#{type}")
+          = "#{type} for #{x_heading.label}"
+        input.js-trigger-autosave.matrix-question-input.govuk-input disabled=disabled type="number" min="0" step="1" name=question.input_name(suffix: "#{x_heading.key}_#{type}") value=question.input_value(suffix: "#{x_heading.key}_#{type}") id=question.input_name(suffix: "#{x_heading.key}_#{type}") autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
+        span.govuk-error-message aria-live="polite"

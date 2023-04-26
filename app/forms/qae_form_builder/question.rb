@@ -330,7 +330,7 @@ class QAEFormBuilder
       pdf_hints = refs_and_values.map do |parent_ref, parent_val|
         if parent_ref.present?
           if parent_val.to_s != "true"
-            "if you selected '#{parent_val.capitalize}' in question #{parent_ref}"
+            "if you selected '#{parent_val.to_s.split('_').join(' ').capitalize}' in question #{parent_ref}"
           end
         else
           "if you selected '#{parent_val.capitalize}' in previous question"

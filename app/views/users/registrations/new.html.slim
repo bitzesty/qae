@@ -8,6 +8,8 @@
       h1.govuk-heading-xl Create an account
       .application-notice.info-notice
         p.govuk-body
+          ' Applications for the #{AwardYear.current.year - 1} awards are closed. You can create an account now to receive notifications when the Awards open and close.
+        p.govuk-body
           ' If you are a marketing company applying on behalf of a client, your client should create an account first, then add you as a collaborator.
         p.govuk-body
           = I18n.t(:custom_login_messages)[:already_have_account]

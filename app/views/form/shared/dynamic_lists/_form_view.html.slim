@@ -9,6 +9,7 @@ header.page-header.group.page-header-over-sidebar
 
 .steps-progress-container
   .steps-progress-content
+    = step.title
     = render 'qae_form/form_header', form: @form, current_step: step.title.parameterize
 
     .article-container.article-container-wider.step-article.step-current

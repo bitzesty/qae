@@ -1,4 +1,4 @@
-.govuk-radios
+.govuk-radios data-ineligible=question.ineligible_option
   - for answer in question.options do
     .govuk-radios__item
       input.js-trigger-autosave.govuk-radios__input type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) aria-describedby="#{question.input_name}_#{answer.value.to_s.parameterize}_hint" *possible_read_only_ops
