@@ -116,7 +116,7 @@ class AwardYears::V2024::QAEForms
           employees_question
         end
 
-        about_section :financials, "Financials" do
+        about_section :financials, "Company Financials" do
           ref "D 4"
           section "company_financials_mobility"
         end
@@ -182,6 +182,11 @@ class AwardYears::V2024::QAEForms
               <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
               <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
             </ul>
+          )
+          pdf_context %(
+            \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+            \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
+            \u2022 Provide any contextual information or challenges you would like the assessors to consider.
           )
           rows 4
           words_max 350
