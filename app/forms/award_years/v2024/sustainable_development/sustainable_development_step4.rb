@@ -51,7 +51,7 @@ class AwardYears::V2024::QAEForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three</span> most recent financial years?" do
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three</span> most recent financial years that you will be providing figures for?" do
           classes "sub-question js-financial-year-change"
           sub_ref "D 2.1"
           required
