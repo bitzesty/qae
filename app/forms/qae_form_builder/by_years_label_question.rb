@@ -38,7 +38,8 @@ class QAEFormBuilder
       delegate_obj.by_year_conditions.find do |c|
         if c.question_value.respond_to?(:call)
           q = form[c.question_key]
-          if q.is_a?(QAEFormBuilder::DateQuestion)
+          if q.is_a?(QAEFormBuilder::DateQuestion) || q.is_a?(QAEFormBuilder::DateQuestionDecorator)
+
             date = []
             q.required_sub_fields.each do |sub|
               date << q.input_value(suffix: sub.keys[0])
@@ -46,9 +47,9 @@ class QAEFormBuilder
 
             date = Date.parse(date.join("/")) rescue nil
 
-            c.question_value.(date)
+            c.question_value.call(date)
           else
-            c.question_value.(form[c.question_key].input_value)
+            c.question_value.call(form[c.question_key].input_value)
           end
         else
           form[c.question_key].input_value == c.question_value
