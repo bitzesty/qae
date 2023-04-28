@@ -173,7 +173,7 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        text :website_url, "Website address." do
+        text :website_url, "Website address (optional)." do
           ref "B 8"
           style "large"
           context %(
@@ -181,7 +181,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram." do
+        text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
           classes "sub-question"
           ref "B 8.1"
           style "large"

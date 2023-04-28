@@ -46,7 +46,7 @@ class Eligibility::Trade < Eligibility
            boolean: true
 
   property :has_management_and_two_employees,
-            label: "Did your organisation have two or more full-time UK employees or full-time equivalent employees (FTEs) in every year covering the period of your entry (either a 3 or 6-year period).",
+            label: "Did your organisation have two or more full-time UK employees or full-time equivalent employees (FTEs) in every year covering the period of your entry (either a 3 or 6-year period)?",
             accept: :true,
             boolean: true,
             hint: %(
