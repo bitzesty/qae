@@ -4,6 +4,7 @@ include Warden::Test::Helpers
 describe "User uploads VAT returns and actual figures" do
   let(:user) { create(:user, :completed_profile) }
   let!(:settings) { create(:settings, :expired_submission_deadlines, award_year_id: AwardYear.current.id) }
+  let!(:settings) {create(:settings, :current_award_year_switch_date, award_year_id: AwardYear.current.id) }
   let!(:form_answer) { create(:form_answer, :mobility, :recommended, user: user) }
 
   before do

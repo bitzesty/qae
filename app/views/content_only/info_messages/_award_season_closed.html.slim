@@ -11,13 +11,12 @@ article.group role="article"
           | for further details.
 
     .application-notice.info-notice
-      p.govuk-body
+      p.govuk-body.font-22
         = render "content_only/info_messages/new_users_message"
-
-        ' The entry period for the
+        '  The 
+        = AwardYear.current.year 
+        '  Awards open for applications on 
+        = Settings.current_award_year_switch_date.trigger_at.strftime("%-d %B %Y")
+        ' . We will send you an email notification when the 
         = AwardYear.current.year
-        '  Awards season has now closed. We will email you when the Awards open.
-        br
-        ' Award recipients will be announced on
-        =< application_deadline_for_year(AwardYear.current, :buckingham_palace_attendees_details, "with_year")
-        ' .
+        '  Awards open.
