@@ -52,6 +52,9 @@ class AwardYears::V2024::QAEForms
 
           context %(
             <p>
+              We recommend that you answer question B5 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
+            </p>
+            <p>
               For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current_submission_deadline.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
             </p>
           )
@@ -94,6 +97,9 @@ class AwardYears::V2024::QAEForms
           ref "D 3"
           required
           context %(
+            <p>
+              We recommend that you answer question B5 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
+            </p>
             <p>
               You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
             </p>
@@ -310,6 +316,11 @@ class AwardYears::V2024::QAEForms
         by_years :units_sold, "Number of innovative units or contracts sold (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.1"
+          context %(
+            <p>
+              We recommend that you answer question C2.2 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
+            </p>
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
 
