@@ -18,7 +18,7 @@ module ApplicationHelper
       index_step_text = name
     end
 
-    
+
     if opts[:index] && opts[:active]
       if opts[:index] == opts[:active]
         step_status  = "current"
@@ -52,9 +52,13 @@ module ApplicationHelper
 
     current = inner
     for condition in question.conditions
+      # skip date_in_award_period condition
+      # because it's handeled by a different mechanism
+      additional_class = "skip-simple-conditions" if condition.question_value == :date_in_award_period
+
       dep = question.form[condition.question_key]
       raise "Can't find parent question for conditional #{question.key} -> #{condition.question_key}" unless dep
-      current = content_tag(:div, current, class: "js-conditional-question", data: {question: dep.parameterized_title, value: condition.question_value})
+      current = content_tag(:div, current, class: "js-conditional-question #{additional_class}", data: {question: dep.parameterized_title, value: condition.question_value})
     end
 
     current

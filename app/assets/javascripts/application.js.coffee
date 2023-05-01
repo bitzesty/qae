@@ -103,7 +103,9 @@ jQuery ->
   # Simple conditional using a == b
   simpleConditionalQuestion = (input, clicked) ->
     answer = input.closest(".js-conditional-answer").attr("data-answer")
+
     question = $(".conditional-question[data-question='#{answer}']")
+
     isCheckbox = input.attr('type') == 'checkbox'
     checkboxVal = input.val()
     answerVal = if isCheckbox then input.is(':checked').toString() else input.val()
@@ -111,6 +113,10 @@ jQuery ->
     values = input.closest(".govuk-form-group").find("input[type='checkbox']").filter(":checked").map(() -> $(@).val()).toArray()
 
     question.each () ->
+      if $(this).hasClass("skip-simple-conditions")
+        $(this).addClass("show-question")
+        return
+
       nonBooleanCheckboxMeetsCriteria = isCheckbox && $(this).attr('data-value') in values
       if $(this).attr('data-value') == answerVal || nonBooleanCheckboxMeetsCriteria || ($(this).attr('data-value') == "true" && (answerVal != 'false' && answerVal != false)) || ($(this).attr('data-type') == "in_clause_collection" && $(this).attr('data-value') <= answerVal)
         if clicked || (!clicked && input.attr('type') == 'radio' && input.is(':checked')) || (!clicked && input.attr('type') != 'radio')
@@ -126,17 +132,17 @@ jQuery ->
     ), 50)
   # Range conditional using a is within range
   rangeConditionalQuestion = (input) ->
+
     fieldset = input.closest(".js-conditional-answer")
     answer = fieldset.attr("data-answer")
-    question = $(".conditional-question[data-question='#{answer}'][data-type='range']")
-
+    question = $(".conditional-question[data-question='#{answer}'] div[data-type='range']")
+    question.closest(".js-conditional-question").addClass("conditional-question")
     d_input = fieldset.find(".govuk-date-input")
 
-    d_day = d_input.find(".js-date-input-day").val()
-    d_month = d_input.find(".js-date-input-month").val()
-    d_year = d_input.find(".js-date-input-year").val()
+    d_day = d_input.find("input.js-fy-day").val()
+    d_month = d_input.find("input.js-fy-month").val()
 
-    if (d_day && d_month && d_year)
+    if (d_day && d_month)
       question.each () ->
         range = safeParse($(this).attr('data-value'))
 
@@ -144,17 +150,21 @@ jQuery ->
           from = range.at(0).split('/')
           to = range.at(-1).split('/')
 
+          d_year = parseInt(from[2])
           d_from = new Date(from[2], parseInt(from[1]) - 1, from[0])
           d_to = new Date(to[2], parseInt(to[1]) - 1, to[0]);
           d_input = new Date(d_year, parseInt(d_month) - 1, d_day);
 
           if (d_input >= d_from && d_input <= d_to)
-            $(this).addClass("show-question")
+            $(this).closest(".js-conditional-question").addClass("show-question")
           else
-            $(this).removeClass("show-question")
+            $(this).closest(".js-conditional-question").removeClass("show-question")
+    else
+      $(question).closest(".js-conditional-question").removeClass("show-question")
 
   $(".js-conditional-answer .govuk-date-input input").each () ->
-    rangeConditionalQuestion($(this))
+   rangeConditionalQuestion($(this))
+
   $(".js-conditional-answer .govuk-date-input input").change () ->
     setTimeout((() =>
       rangeConditionalQuestion($(this))

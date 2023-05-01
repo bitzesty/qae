@@ -219,13 +219,15 @@ class QAEFormBuilder
 
         if question_value == :true
           parent_question_answer.present?
-        elsif question_value == :optional_financial_year
+        elsif question_value == :date_in_award_period
           day, month =
                if fetched_answers.present?
                  [fetched_answers["#{condition.question_key}_day"], fetched_answers["#{condition.question_key}_day"]]
                else
-                 [step.form["#{condition.question_key}_day"].input_value, step.form["#{condition.question_key}_month"].input_value]
-
+                 q = step.form[condition.question_key]
+                 q.required_sub_fields.map do |sub_field|
+                   q.input_value(suffix: sub_field.keys[0])
+                 end
                end
 
           if day.present? && month.present?
