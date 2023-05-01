@@ -132,38 +132,69 @@ jQuery ->
     ), 50)
   # Range conditional using a is within range
   rangeConditionalQuestion = (input) ->
-
     fieldset = input.closest(".js-conditional-answer")
     answer = fieldset.attr("data-answer")
-    question = $(".conditional-question[data-question='#{answer}'] div[data-type='range']")
-    question.closest(".js-conditional-question").addClass("conditional-question")
-    d_input = fieldset.find(".govuk-date-input")
+    if $(".conditional-question[data-question='#{answer}'] div[data-type='range']").length > 0
+      question = $(".conditional-question[data-question='#{answer}'] div[data-type='range']")
+      question.closest(".js-conditional-question").addClass("conditional-question")
 
-    d_day = d_input.find("input.js-fy-day").val()
-    d_month = d_input.find("input.js-fy-month").val()
+      d_input = fieldset.find(".govuk-date-input")
 
-    if (d_day && d_month)
-      question.each () ->
-        range = safeParse($(this).attr('data-value'))
+      d_day = d_input.find("input.js-fy-day").val()
+      d_month = d_input.find("input.js-fy-month").val()
 
-        if Array.isArray(range)
-          from = range.at(0).split('/')
-          to = range.at(-1).split('/')
+      if (d_day && d_month)
+        question.each () ->
+          range = safeParse($(this).attr('data-value'))
 
-          d_year = parseInt(from[2])
-          d_from = new Date(from[2], parseInt(from[1]) - 1, from[0])
-          d_to = new Date(to[2], parseInt(to[1]) - 1, to[0]);
-          d_input = new Date(d_year, parseInt(d_month) - 1, d_day);
+          if Array.isArray(range)
+            from = range.at(0).split('/')
+            to = range.at(-1).split('/')
 
-          if (d_input >= d_from && d_input <= d_to)
-            $(this).closest(".js-conditional-question").addClass("show-question")
-          else
-            $(this).closest(".js-conditional-question").removeClass("show-question")
+            d_year = parseInt(from[2])
+            d_from = new Date(from[2], parseInt(from[1]) - 1, from[0])
+            d_to = new Date(to[2], parseInt(to[1]) - 1, to[0]);
+            d_input = new Date(d_year, parseInt(d_month) - 1, d_day);
+
+            if (d_input >= d_from && d_input <= d_to)
+              $(this).closest(".js-conditional-question").addClass("show-question")
+            else
+              $(this).closest(".js-conditional-question").removeClass("show-question")
+      else
+        $(question).closest(".js-conditional-question").removeClass("show-question")
     else
-      $(question).closest(".js-conditional-question").removeClass("show-question")
+      fieldset = input.closest(".js-conditional-answer")
+      answer = fieldset.attr("data-answer")
+      question = $(".conditional-question[data-question='#{answer}'][data-type='range']")
+
+      d_input = fieldset.find(".govuk-date-input")
+
+      d_day = d_input.find(".js-date-input-day").val()
+      d_month = d_input.find(".js-date-input-month").val()
+      d_year = d_input.find(".js-date-input-year").val()
+
+      if (d_day && d_month && d_year)
+        question.each () ->
+          range = safeParse($(this).attr('data-value'))
+
+          if Array.isArray(range)
+            from = range.at(0).split('/')
+            to = range.at(-1).split('/')
+
+            d_from = new Date(from[2], parseInt(from[1]) - 1, from[0])
+            d_to = new Date(to[2], parseInt(to[1]) - 1, to[0]);
+            d_input = new Date(d_year, parseInt(d_month) - 1, d_day);
+
+            if (d_input >= d_from && d_input <= d_to)
+              $(this).addClass("show-question")
+            else
+              $(this).removeClass("show-question")
+      else
+        $(question).addClass("show-question")
+
 
   $(".js-conditional-answer .govuk-date-input input").each () ->
-   rangeConditionalQuestion($(this))
+    rangeConditionalQuestion($(this))
 
   $(".js-conditional-answer .govuk-date-input input").change () ->
     setTimeout((() =>
