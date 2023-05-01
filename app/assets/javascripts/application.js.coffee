@@ -228,12 +228,13 @@ jQuery ->
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
 
     # Auto fill the year for previous years
-    $(".js-financial-year-changed-dates .js-fy-entries").each ->
-     if $(this).find("input.js-fy-year").val() == ""
-       parent_fy = $(this).parent().find(".js-fy-entries")
-       this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
+    # disabled for 2023
+    # $(".js-financial-year-changed-dates .js-fy-entries").each ->
+    # if $(this).find("input.js-fy-year").val() == ""
+    #   parent_fy = $(this).parent().find(".js-fy-entries")
+    #   this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
 
-       $(this).find("input.js-fy-year").val(this_year)
+    #   $(this).find("input.js-fy-year").val(this_year)
 
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
