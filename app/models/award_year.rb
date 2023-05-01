@@ -320,5 +320,22 @@ class AwardYear < ApplicationRecord
         start_date..end_date
       end
     end
+
+    def fy_date_range_threshold(**opts)
+      year = current.year - 1
+
+      from = Settings.current_award_year_switch_date&.trigger_at
+      from ||= Date.new(year, DEFAULT_FINANCIAL_SWITCH_MONTH, DEFAULT_FINANCIAL_SWITCH_DAY)
+
+      to = Settings.current_submission_deadline&.trigger_at
+      to ||= Date.new(year, DEFAULT_FINANCIAL_DEADLINE_MONTH, DEFAULT_FINANCIAL_DEADLINE_DAY)
+
+      if opts[:minmax] == true
+        return (from..to).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
+        (from..to).minmax
+      else
+        from..to
+      end
+    end
   end
 end

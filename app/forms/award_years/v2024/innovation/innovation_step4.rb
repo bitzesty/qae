@@ -27,7 +27,7 @@ class AwardYears::V2024::QAEForms
             </p>
           )
 
-          conditional :financial_year_date, :true
+          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true)
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>five</span> most recent financial years that you will be providing figures for?" do

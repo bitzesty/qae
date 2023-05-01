@@ -219,22 +219,20 @@ class QAEFormBuilder
 
         if question_value == :true
           parent_question_answer.present?
-        elsif question_value == :optional_financial_year
-          day, month =
-               if fetched_answers.present?
-                 [fetched_answers["#{condition.question_key}_day"], fetched_answers["#{condition.question_key}_day"]]
-               else
-                 [step.form["#{condition.question_key}_day"].input_value, step.form["#{condition.question_key}_month"].input_value]
-
-               end
+        elsif question_value == :day_month_range
+          day, month = if fetched_answers.present?
+                         [
+                           fetched_answers["#{condition.question_key}_day"],
+                           fetched_answers["#{condition.question_key}_month"]
+                         ]
+                       else
+                         q = step.form[condition.question_key]
+                         q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
+                       end
 
           if day.present? && month.present?
-            year = AwardYear.current.year - 1
-            date = Date.new(year, month, day)
-
-            from = Settings.current_award_year_switch_date.try(:trigger_at)|| Date.new(year, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
-            to = Settings.current_submission_deadline.try(:trigger_at) || Date.new(year, AwardYear::DEFAULT_FINANCIAL_DEADLINE_MONTH, AwardYear::DEFAULT_FINANCIAL_DEADLINE_DAY)
-
+            date = Date.new(AwardYear.current.year - 1, month.to_i, day.to_i)
+            from, to = condition.options.dig(:range)
             date.between?(from, to)
           else
             false
@@ -466,8 +464,8 @@ class QAEFormBuilder
       @q.form_hint = text
     end
 
-    def conditional key, value
-      @q.conditions << QuestionCondition.new(@q.key, key, value)
+    def conditional key, value, **opts
+      @q.conditions << QuestionCondition.new(@q.key, key, value, **opts)
     end
 
     #
@@ -502,7 +500,7 @@ class QAEFormBuilder
     end
   end
 
-  QuestionCondition = Struct.new(:parent_question_key, :question_key, :question_value)
+  QuestionCondition = Struct.new(:parent_question_key, :question_key, :question_value, :options)
 
   QuestionHelp = Struct.new(:title, :text)
 
