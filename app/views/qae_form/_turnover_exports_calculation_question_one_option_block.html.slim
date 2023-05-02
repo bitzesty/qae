@@ -1,4 +1,6 @@
-.js-conditional-question.conditional-question.show-question data-question="development_performance_years-how-would-you-describe-the-impact-of-your-sustainable-development-on-your-organisation-s-financial-performance" data-value=("3 to 5")
+- question_key = "development_performance_years-how-would-you-describe-the-impact-of-your-sustainable-development-on-your-organisation-s-financial-performance"
+
+.js-conditional-question.conditional-question.show-question  data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question_key) : {question: question_key, value: "3 to 5"})
   .row
     - (1..3).each do |y|
       div class="span-financial span-4"
