@@ -174,7 +174,7 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        text :website_url, "Website address." do
+        text :website_url, "Website address (optional)." do
           ref "B 8"
           style "large"
           context %(
@@ -184,7 +184,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram." do
+        text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
           ref "B 8.1"
           style "large"
           context %(
@@ -215,6 +215,7 @@ class AwardYears::V2024::QAEForms
         options :parent_group_entry, "Are you a parent company making a group entry?" do
           ref "B 10"
           yes_no
+          required
         end
 
         options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
@@ -235,6 +236,7 @@ class AwardYears::V2024::QAEForms
 
         options :has_parent_company, "Do you have a parent or a holding company?" do
           ref "B 11"
+          required
           yes_no
         end
 
@@ -247,6 +249,7 @@ class AwardYears::V2024::QAEForms
         country :parent_company_country, "Country of the immediate parent company." do
           classes "sub-question"
           sub_ref "B 11.2"
+          required
           conditional :has_parent_company, "yes"
         end
 
@@ -260,6 +263,7 @@ class AwardYears::V2024::QAEForms
         text :ultimate_control_company, "The name of the organisation with ultimate control." do
           classes "regular-question"
           sub_ref "B 11.4"
+          required
           conditional :parent_ultimate_control, :no
         end
 
@@ -299,7 +303,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        upload :org_chart, "Upload an organisational chart." do
+        upload :org_chart, "Upload an organisational chart (optional)." do
           ref "B 15"
           context %(
             <p class='govuk-hint'>You can submit a file in most formats if it is less than five megabytes.</p>

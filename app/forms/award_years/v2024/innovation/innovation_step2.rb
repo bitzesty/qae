@@ -173,7 +173,7 @@ class AwardYears::V2024::QAEForms
           ])
         end
 
-        text :website_url, "Website address." do
+        text :website_url, "Website address (optional)." do
           ref "B 8"
           style "large"
           context %(
@@ -181,7 +181,7 @@ class AwardYears::V2024::QAEForms
           )
         end
 
-        text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram." do
+        text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
           classes "sub-question"
           ref "B 8.1"
           style "large"
@@ -215,6 +215,7 @@ class AwardYears::V2024::QAEForms
         text :parent_company, "Name of the immediate parent company." do
           sub_ref "B 10.1"
           classes "sub-question"
+          required
           conditional :has_parent_company, "yes"
         end
 
@@ -227,6 +228,7 @@ class AwardYears::V2024::QAEForms
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control of your organisation?" do
           sub_ref "B 10.3"
           classes "sub-question"
+          required
           conditional :has_parent_company, "yes"
           yes_no
         end
@@ -234,6 +236,7 @@ class AwardYears::V2024::QAEForms
         text :ultimate_control_company, "The name of the organisation with ultimate control." do
           classes "sub-question"
           sub_ref "B 10.4"
+          required
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
         end
@@ -292,7 +295,7 @@ class AwardYears::V2024::QAEForms
         options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
           sub_ref "B 12.2"
-
+          required
           conditional :applied_for_queen_awards, :yes
 
           yes_no
