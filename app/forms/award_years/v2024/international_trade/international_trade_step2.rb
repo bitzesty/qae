@@ -249,6 +249,7 @@ class AwardYears::V2024::QAEForms
         country :parent_company_country, "Country of the immediate parent company." do
           classes "sub-question"
           sub_ref "B 11.2"
+          required
           conditional :has_parent_company, "yes"
         end
 
@@ -262,6 +263,7 @@ class AwardYears::V2024::QAEForms
         text :ultimate_control_company, "The name of the organisation with ultimate control." do
           classes "regular-question"
           sub_ref "B 11.4"
+          required
           conditional :parent_ultimate_control, :no
         end
 

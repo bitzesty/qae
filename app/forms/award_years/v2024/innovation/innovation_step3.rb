@@ -161,6 +161,7 @@ class AwardYears::V2024::QAEForms
           sub_section :innovation_background_header
           classes "sub-question word-max-strict"
           sub_ref "C 1.6.1"
+          required
           conditional :innovation_joint_contributors, :yes
           rows 2
           words_max 100
@@ -225,6 +226,7 @@ class AwardYears::V2024::QAEForms
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "C 1.8"
+          required
           yes_no
         end
 
