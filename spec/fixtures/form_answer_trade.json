@@ -16,7 +16,7 @@
 "employees_5of6": "",
 "employees_6of6": "",
 "head_of_business_job_title": "CEO",
-"parent_company": "",
+"has_parent_company": "yes",
 "received_grant": "no",
 "sic_code": "0111",
 "funding_details": "",
