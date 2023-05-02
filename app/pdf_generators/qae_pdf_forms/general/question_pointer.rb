@@ -361,7 +361,9 @@ class QaePdfForms::General::QuestionPointer
         if q_visible? && humanized_answer.present?
           chosen_option = question.options.detect{ |option| option.value.to_s == humanized_answer.to_s }
           form_pdf.render_standart_answer_block(question_option_title)
-          render_context_for_option(question, chosen_option)
+          if chosen_option
+            render_context_for_option(question, chosen_option)
+          end
         else
           form_pdf.indent 7.mm do
             question.options.each do |answer|
