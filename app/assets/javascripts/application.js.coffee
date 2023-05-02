@@ -126,15 +126,29 @@ jQuery ->
     ), 50)
   # Range conditional using a is within range
   rangeConditionalQuestion = (input) ->
-    fieldset = input.closest(".js-conditional-answer")
-    answer = fieldset.attr("data-answer")
+    block = input.closest(".js-conditional-answer")
+    answer = block.attr("data-answer")
     question = $(".conditional-question[data-question='#{answer}'][data-type='range']")
 
-    d_input = fieldset.find(".govuk-date-input")
+    d_input = block.find(".govuk-date-input")
 
-    d_day = d_input.find(".js-date-input-day").val()
-    d_month = d_input.find(".js-date-input-month").val()
-    d_year = d_input.find(".js-date-input-year").val()
+    d_day_input = d_input.find("input.js-date-input-day")
+    d_month_input = d_input.find("input.js-date-input-month")
+    d_year_input = d_input.find("input.js-date-input-year")
+
+    fy_day_input = d_input.find("input.js-fy-day")
+    fy_month_input = d_input.find("input.js-fy-month")
+
+    isFyRange = (fy_day_input && fy_month_input)
+
+    if (fy_day_input.length && fy_month_input.length)
+      d_day = fy_day_input.val()
+      d_month = fy_month_input.val()
+      d_year = 2000
+    else
+      d_day = d_day_input.val()
+      d_month = d_month_input.val()
+      d_year = d_year_input.val()
 
     if (d_day && d_month && d_year)
       question.each () ->
@@ -218,12 +232,13 @@ jQuery ->
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
 
     # Auto fill the year for previous years
-    $(".js-financial-year-changed-dates .js-fy-entries").each ->
-     if $(this).find("input.js-fy-year").val() == ""
-       parent_fy = $(this).parent().find(".js-fy-entries")
-       this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
-
-       $(this).find("input.js-fy-year").val(this_year)
+    # Disabled for year 2023
+    # $(".js-financial-year-changed-dates .js-fy-entries").each ->
+    #  if $(this).find("input.js-fy-year").val() == ""
+    #    parent_fy = $(this).parent().find(".js-fy-entries")
+    #    this_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
+    #
+    #    $(this).find("input.js-fy-year").val(this_year)
 
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)

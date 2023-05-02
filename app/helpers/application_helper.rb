@@ -18,7 +18,7 @@ module ApplicationHelper
       index_step_text = name
     end
 
-    
+
     if opts[:index] && opts[:active]
       if opts[:index] == opts[:active]
         step_status  = "current"
@@ -54,7 +54,11 @@ module ApplicationHelper
     for condition in question.conditions
       dep = question.form[condition.question_key]
       raise "Can't find parent question for conditional #{question.key} -> #{condition.question_key}" unless dep
-      current = content_tag(:div, current, class: "js-conditional-question", data: {question: dep.parameterized_title, value: condition.question_value})
+
+      data_attrs = {question: dep.parameterized_title, value: condition.question_value}
+      data_attrs = data_attrs.merge((condition.options || {}).fetch(:data, {})) if condition.options
+
+      current = content_tag(:div, current, class: "js-conditional-question", data: data_attrs)
     end
 
     current
