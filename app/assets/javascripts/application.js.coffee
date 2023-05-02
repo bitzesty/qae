@@ -206,7 +206,7 @@ jQuery ->
   # Get the latest financial year date from input
   updateYearEndInput = () ->
     fy_latest_changed_input = $(".js-financial-year-changed-dates .fy-latest .govuk-date-input")
-    fy_latest_changed_input.find("input").removeAttr("disabled")
+    fy_latest_changed_input.find("input").removeAttr("readonly")
 
     fy_day = $('.js-financial-year-latest input.js-fy-day').val()
     fy_month = $('.js-financial-year-latest input.js-fy-month').val()
@@ -240,7 +240,7 @@ jQuery ->
     #
     #    $(this).find("input.js-fy-year").val(this_year)
 
-    fy_latest_changed_input.find("input").attr("disabled", "disabled")
+    fy_latest_changed_input.find("input").attr("readonly", "readonly")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
     # We should change the last year date regardless if it's present or not
@@ -257,8 +257,8 @@ jQuery ->
     if $(".js-financial-year-change input:checked").val() == "no"
       # If the financial year haven't changed, clear manually entered dates
       $(".js-financial-year-changed-dates .js-fy-entries").each ->
-        $(this).find("input.js-fy-day").removeAttr("disabled").val("")
-        $(this).find("input.js-fy-month").removeAttr("disabled").val("")
+        $(this).find("input.js-fy-day").removeAttr("readonly").val("")
+        $(this).find("input.js-fy-month").removeAttr("readonly").val("")
 
       # Year end hasn't changed, auto select the year
       fy_latest_changed_input = $(".js-financial-year")
