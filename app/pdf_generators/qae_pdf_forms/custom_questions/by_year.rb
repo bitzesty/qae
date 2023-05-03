@@ -65,10 +65,7 @@ module QaePdfForms::CustomQuestions::ByYear
           frmt ||= FORMATTED_AS_AT_DATE
           res << format(frmt, date: item)
         else
-          parts = item.split("/")
-
-          # After splitting by `/` date should always have 3 parts and none of them should be blank.
-          if parts.any?(&:blank?) || parts.size < 3
+          unless ::Utils::Date.valid?(item)
             frmt = FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
           end
 
@@ -77,7 +74,7 @@ module QaePdfForms::CustomQuestions::ByYear
           temp = format(frmt, date: item, index: idx.to_i)
           temp = "#{temp} (most recent)" if size == (idx.to_i + 1)
           res << temp
-       end
+        end
       end
 
       res
