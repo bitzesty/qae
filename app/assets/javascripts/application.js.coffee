@@ -29,6 +29,16 @@ safeParse = (str) ->
     return str
   return
 
+diffFromSequence = (str, separator = "of") ->
+  try
+    parts = str.split(separator).map (value) ->
+      parseInt(value)
+
+    return parts[1] - parts[0]
+  catch _err
+    return undefined
+  return
+
 ordinal = (n) ->
   nHundreds = n % 100
   nDecimal = n % 10
@@ -297,7 +307,24 @@ jQuery ->
           if !fy_day || !fy_month || !fy_year
             all_years_value = false
         if !all_years_value
-          $(this).find(".js-year-end").addClass("show-default")
+          $(this).find(".js-year-end").each ->
+            diff = diffFromSequence($(this).attr("data-year"))
+            fy_input = $(".js-financial-year-changed-dates .by-years-wrapper.show-question .js-year-end[data-year-diff='#{diff}']").closest(".js-fy-entries").find(".govuk-date-input")
+            fy_day = fy_input.find(".js-fy-day").val()
+            fy_month = fy_input.find(".js-fy-month").val()
+            fy_year = fy_input.find(".js-fy-year").val()
+
+            if !fy_day || !fy_month || !fy_year
+              $(this).addClass("show-both")
+              if !$(this).closest(".question-block").hasClass("total-net-assets")
+                $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
+            else
+              pre_text = "Year ended"
+              if $(this).closest(".question-block").hasClass("total-net-assets")
+                pre_text = "As at"
+              else
+                $(this).addClass("show-both")
+              $(this).find(".js-year-text").text("#{pre_text} #{fy_day}/#{fy_month}/#{fy_year}")
         else
           $(this).find(".js-year-end").each ->
             fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".govuk-date-input")
