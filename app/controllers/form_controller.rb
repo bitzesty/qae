@@ -239,7 +239,7 @@ class FormController < ApplicationController
   end
 
   def prepare_doc
-    allowed_params = updating_step.allowed_questions_params_list(params[:form])
+    allowed_params = updating_step.allowed_questions_params_list(params[:form], @form_answer.document)
     @form_answer.document.merge(prepare_doc_structures(allowed_params))
   end
 
