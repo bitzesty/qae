@@ -283,17 +283,38 @@ jQuery ->
       fy_latest_month = fy_latest_changed_input.find("input.js-fy-month").val()
       fy_latest_year = $(".js-financial-year-changed-dates").attr("data-year")
 
+      start_input = $(".js-started-trading")
+      start_day = start_input.find("input.js-date-input-day").val()
+      start_month = start_input.find("input.js-date-input-month").val()
+      start_year = start_input.find("input.js-date-input-year").val()
+
       if !fy_latest_day || !fy_latest_month || !fy_latest_year
         $(".js-year-end").addClass("show-default")
       else
         $(".js-year-end").each ->
           year = parseInt(fy_latest_year) + parseInt($(this).attr("data-year").substr(0, 1)) - parseInt($(this).attr("data-year").substr(-1, 1))
-          pre_text = "Year ended"
-          if $(this).closest(".question-block").hasClass("total-net-assets")
-            pre_text = "As at"
+
+          if !start_year || !start_month || !start_month
+            pre_text = "Year ended"
+            if $(this).closest(".question-block").hasClass("total-net-assets")
+              pre_text = "As at"
+            else
+              $(this).addClass("show-both")
+            $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
           else
-            $(this).addClass("show-both")
-          $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
+            d_min = new Date(start_year, parseInt(start_month) - 1, parseInt(start_day))
+            d_actual = new Date(year, parseInt(fy_latest_month) - 1, parseInt(fy_latest_day))
+            if (d_actual >= d_min)
+              pre_text = "Year ended"
+              if $(this).closest(".question-block").hasClass("total-net-assets")
+                pre_text = "As at"
+              else
+                $(this).addClass("show-both")
+              $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
+            else
+              $(this).addClass("show-both")
+              if !$(this).closest(".question-block").hasClass("total-net-assets")
+                $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
     else
       # Year has changed, use what they've inputted
       $(".js-financial-conditional > .by-years-wrapper").each ->
