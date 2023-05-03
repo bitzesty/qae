@@ -161,20 +161,28 @@ module FinancialTable
 
   def innovation_years_number
     doc = form_answer.document
-    started_trading = Date.parse("#{doc["started_trading_year"]}-#{doc["started_trading_month"]}-#{doc["started_trading_day"]}") rescue nil
+    form = question.form
+    years = 5
 
-    if started_trading
-      if Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(2, 3))
-        "2"
-      elsif Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(3, 4))
-        "3"
-      elsif Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(4, 5))
-        "4"
-      else # Utils::Date.within_range?(started_trading, AwardYear.start_trading_between(5, 200+)) or the date is somehow invalid
-        "5"
+    begin
+      result = question.by_year_conditions.find do |c|
+        date = []
+        q = form[c.question_key]
+
+        q.required_sub_fields.each do |sub|
+          date << doc.dig("#{q.key}_#{sub.keys[0]}")
+        end
+
+        date = Date.parse(date.join("/"))
+
+        c.question_value.call(date)
       end
-    else
-      "5"
+
+      years = result.years if result.present?
+    rescue
+      nil
+    ensure
+      years.to_s
     end
   end
 end

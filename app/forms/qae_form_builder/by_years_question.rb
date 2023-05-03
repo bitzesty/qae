@@ -29,6 +29,7 @@ class QAEFormBuilder
 
     def active_fields
       c = active_by_year_condition
+      c ||= default_by_year_condition
       return [] unless c
 
       (1..c.years).map{|y| "#{y}of#{c.years}"}
@@ -53,6 +54,13 @@ class QAEFormBuilder
         else
           form[c.question_key].input_value == c.question_value
         end
+      end
+    end
+
+    def default_by_year_condition
+      delegate_obj.by_year_conditions.find do |c|
+        return false unless c.question_value.respond_to?(:call)
+        (c.options || {}).dig(:default) == true
       end
     end
   end

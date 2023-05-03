@@ -614,8 +614,7 @@ window.FormValidation =
       # console.log "validateMoneyByYears"
       @validateMoneyByYears(question)
 
-    if question.hasClass("question-date-by-years") &&
-       question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
+    if question.hasClass("question-date-by-years") && question.find(".show-question").length
       @validateDateByYears(question)
 
     if question.find(".match").length
