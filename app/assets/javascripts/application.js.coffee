@@ -166,6 +166,12 @@ jQuery ->
             $(this).addClass("show-question")
           else
             $(this).removeClass("show-question")
+    else
+      question.each () ->
+        if $(this).is('[data-default]')
+          $(this).addClass("show-question")
+        else
+          $(this).removeClass("show-question")
 
   $(".js-conditional-answer .govuk-date-input input").each () ->
     rangeConditionalQuestion($(this))
