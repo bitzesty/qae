@@ -231,7 +231,7 @@ class QAEFormBuilder
                        end
 
           if day.present? && month.present?
-            date = Date.new(AwardYear.current.year - 1, month.to_i, day.to_i)
+            date = Date.new(2000, month.to_i, day.to_i)
             from, to = condition.options.dig(:range)
             date.between?(from, to)
           else
