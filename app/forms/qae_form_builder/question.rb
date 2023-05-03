@@ -238,7 +238,11 @@ class QAEFormBuilder
             false
           end
         else
-          parent_question_answer == question_value.to_s
+          if parent_question_answer.is_a?(Array)
+            parent_question_answer.find { |a| a["type"].to_s == question_value.to_s }.present?
+          else
+            parent_question_answer == question_value.to_s
+          end
         end
       end &&
         (!dc || (dc.present? && has_drops?))
