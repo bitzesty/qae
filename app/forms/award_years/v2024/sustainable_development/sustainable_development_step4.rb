@@ -42,7 +42,7 @@ class AwardYears::V2024::QAEForms
             Some of these may not apply to your organisation, in that case, explain by what other means your organisation ensures financial viability.
           )
           rows 5
-          words_max 250
+          words_max 300
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year end date." do
