@@ -58,7 +58,9 @@ module QaePdfForms::CustomQuestions::ByYear
       size = financial_table_headers.size
 
       financial_table_headers.each.with_index(1) do |item, idx|
-        frmt = unless ::Utils::Date.valid?(item)
+        frmt = if !::Utils::Date.valid?(item)
+                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
+               elsif force_format_without_date?(item)
                  FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
                else
                  opts.dig(:format)
@@ -80,11 +82,11 @@ module QaePdfForms::CustomQuestions::ByYear
     month = form_pdf.filled_answers["financial_year_date_month"].to_s
 
     # Conditional latest year
-    # If from 3rd of September to December -> then previous year
-    # If from January to 2nd of September -> then current year
+    # If from 7rd of September to December -> then previous year
+    # If from January to 6th of September -> then current year
     #
 
-    (month.to_i == 9 && day.to_i >= 3) || month.to_i > 9
+    (month.to_i == 9 && day.to_i >= 7) || month.to_i > 9
   end
 
   def active_fields
@@ -115,5 +117,19 @@ module QaePdfForms::CustomQuestions::ByYear
     month = "0" + month if month.size == 1
 
     [day, month, year]
+  end
+
+  def force_format_without_date?(value)
+    doc = form_pdf.filled_answers
+
+    date = [:day, :month, :year].each_with_object([]) do |part, memo|
+      memo << doc.dig("#{:started_trading}_#{part}")
+    end.join("/")
+
+    if ::Utils::Date.valid?(date) && ::Utils::Date.valid?(value)
+      Date.parse(value).before?(Date.parse(date))
+    else
+      true
+    end
   end
 end
