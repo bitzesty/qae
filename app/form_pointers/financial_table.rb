@@ -39,26 +39,18 @@ module FinancialTable
   end
 
   def correct_date_headers(res)
-    corrected_result = []
-    last_year = res.last.split("/")[2].to_i
-
-    res.each_with_index do |entry, index|
-      # Trade form has locked year cells and
-      # also they are no saving in db (as we do not save disabled fields via autosave)
-      # so data can be: "13/02/"
-      corrected_result << if entry.size == 6 && (index + 1) != res.size
-        year = last_year - (res.size - (index + 1))
-        entry += year.to_s
-        entry
+    # Trade form has locked year cells and
+    # also they are no saving in db (as we do not save disabled fields via autosave)
+    # so data can be: "13/02/"
+    # Probably better just to check if date is valid and only then push as correct one
+    # Should help to avoid all that weirdness when trying to display invalid dates
+    #
+    corrected_result = res.each_with_object([]) do |entry, memo|
+      memo << if ::Utils::Date.valid?(entry)
+        Date.parse(entry).strftime("%d/%m/%Y")
       else
-        entry
+        ""
       end
-    end
-
-    begin
-      corrected_result.map { |string_date| Date.parse(string_date).strftime("%d/%m/%Y") }
-    rescue Exception => e
-      corrected_result
     end
   end
 
