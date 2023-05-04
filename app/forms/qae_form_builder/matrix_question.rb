@@ -47,11 +47,12 @@ class QAEFormBuilder
   end
 
   class MatrixHeading
-    attr_reader :key, :label
+    attr_reader :key, :label, :options
 
-    def initialize(key:, label:)
+    def initialize(key:, label:, options: {})
       @key = key
       @label = label
+      @options = options
     end
   end
 
@@ -80,32 +81,16 @@ class QAEFormBuilder
       @q.corner_label = label
     end
 
-    def no_total_row no_total_row
-      @q.no_total_row = no_total_row
-    end
-
     def auto_totals_column auto_totals_column
       @q.auto_totals_column = auto_totals_column
-    end
-
-    def auto_totals_row auto_totals_row
-      @q.auto_totals_row = auto_totals_row
-    end
-
-    def auto_proportion_row auto_proportion_row
-      @q.auto_proportion_row = auto_proportion_row
-    end
-
-    def auto_subtotals_totals_proportions_row auto_subtotals_totals_proportions_row
-      @q.auto_subtotals_totals_proportions_row = auto_subtotals_totals_proportions_row
     end
 
     def x_heading key, label
       @q.x_headings << MatrixHeading.new(key: key, label: label)
     end
 
-    def y_heading key, label
-      @q.y_headings << MatrixHeading.new(key: key, label: label)
+    def y_heading key, label, options = {}
+      @q.y_headings << MatrixHeading.new(key: key, label: label, options: options)
     end
 
     def x_headings headings
@@ -125,6 +110,18 @@ class QAEFormBuilder
         else
           y_heading heading.to_s.parameterize.underscore, heading
         end
+      end
+      if @q.subtotals_label
+        y_heading "calculated_sub_total", @q.subtotals_label, {"row_class": "auto-subtotals-row"}
+      end
+      if @q.others_label
+        y_heading "others", @q.others_label, {"row_class": "others-not-disadvantaged-row"}
+      end
+      if @q.totals_label
+        y_heading "calulated_total", @q.totals_label, {"row_class": "auto-totals-row"}
+      end
+      if @q.proportion_label
+        y_heading "calculated_proportion", @q.proportion_label, {"row_class": "auto-proportion-row"}
       end
     end
 
@@ -150,11 +147,7 @@ class QAEFormBuilder
                   :column_widths,
                   :required_row_parent,
                   :required_rows,
-                  :no_total_row,
-                  :auto_totals_column,
-                  :auto_totals_row,
-                  :auto_proportion_row,
-                  :auto_subtotals_totals_proportions_row
+                  :auto_totals_column
 
     def after_create
       @x_headings = []
