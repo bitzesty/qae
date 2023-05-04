@@ -129,7 +129,7 @@ module QaePdfForms::CustomQuestions::ByYear
     if ::Utils::Date.valid?(date) && ::Utils::Date.valid?(value)
       Date.parse(value).before?(Date.parse(date))
     else
-      true
+      !::Utils::Date.valid?(value)
     end
   end
 end
