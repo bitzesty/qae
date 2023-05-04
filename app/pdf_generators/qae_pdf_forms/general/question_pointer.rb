@@ -47,6 +47,7 @@ class QaePdfForms::General::QuestionPointer
     QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion,
     QAEFormBuilder::UploadQuestion,
     QAEFormBuilder::ByYearsLabelQuestion,
+    QAEFormBuilder::TradeMostRecentFinancialYearOptionsQuestion,
     QAEFormBuilder::ByYearsQuestion,
     QAEFormBuilder::MatrixQuestion,
     QAEFormBuilder::OneOptionByYearsLabelQuestion,
