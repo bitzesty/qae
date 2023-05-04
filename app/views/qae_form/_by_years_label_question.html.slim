@@ -9,7 +9,7 @@ div role="group" id="q_#{question.key}"
         .govuk-grid-row
           - (1..c.years).each do |y|
             .govuk-grid-column-one-half.js-fy-entries class="#{'fy-latest' if y == c.years}" role="group"
-              span.js-year-end.show-default data-year="#{y}of#{c.years}"
+              span.js-year-end.show-default data-year="#{y}of#{c.years}" data-year-diff="#{::Utils::Diff.calc(c.years, y)}"
                 span.js-year-default class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-0 govuk-!-margin-top-5"
                   = question.format_label(y)
                   - if y == c.years

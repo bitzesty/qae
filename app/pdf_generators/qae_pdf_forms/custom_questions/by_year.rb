@@ -1,10 +1,8 @@
 module QaePdfForms::CustomQuestions::ByYear
   EMPTY_STRING = "".freeze
   YEAR_LABELS = %w(day month year).freeze
-  FORMATTED_FINANCIAL_YEAR_WITH_DATE = "Financial year %<index>d ended %<date>s".freeze
+  FORMATTED_FINANCIAL_YEAR_WITH_DATE = "Financial year ended [%<date>s]".freeze
   FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE = "Financial year %<index>d".freeze
-  FORMATTED_AS_AT_DATE = "As at %<date>s".freeze
-  AS_AT_DATE_PREFIX_QUESTION_KEYS = [:total_net_assets].freeze
   ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze
   ANSWER_FONT_END = "</color>".freeze
   CALCULATED_FINANCIAL_DATA = [:uk_sales].freeze
@@ -52,32 +50,27 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def financial_dates_year_headers(**opts)
     if form_pdf.pdf_blank_mode.present? # BLANK FOR MODE
-      financial_table_default_headers.map.with_index do |item, index|
-        financial_table_default_headers.size == (index + 1) ? "#{item} (most recent)" : item
+      financial_table_default_headers.map.with_index(1) do |item, index|
+        financial_table_default_headers.size == index ? "#{item} (most recent)" : item
       end
     else
-      frmt = opts.dig(:format)
       res = []
       size = financial_table_headers.size
 
-      financial_table_headers.each_with_index do |item, idx|
-        if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
-          frmt ||= FORMATTED_AS_AT_DATE
-          res << format(frmt, date: item)
-        else
-          parts = item.split("/")
+      financial_table_headers.each.with_index(1) do |item, idx|
+        frmt = if !::Utils::Date.valid?(item)
+                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
+               elsif force_format_without_date?(item)
+                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
+               else
+                 opts.dig(:format)
+               end
 
-          # After splitting by `/` date should always have 3 parts and none of them should be blank.
-          if parts.any?(&:blank?) || parts.size < 3
-            frmt = FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
-          end
+        frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
 
-          frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
-
-          temp = format(frmt, date: item, index: idx.to_i)
-          temp = "#{temp} (most recent)" if size == (idx.to_i + 1)
-          res << temp
-       end
+        temp = format(frmt, date: item, index: idx)
+        temp = "#{temp} (most recent)" if size == idx
+        res << temp
       end
 
       res
@@ -89,11 +82,11 @@ module QaePdfForms::CustomQuestions::ByYear
     month = form_pdf.filled_answers["financial_year_date_month"].to_s
 
     # Conditional latest year
-    # If from 3rd of September to December -> then previous year
-    # If from January to 2nd of September -> then current year
+    # If from 7rd of September to December -> then previous year
+    # If from January to 6th of September -> then current year
     #
 
-    (month.to_i == 9 && day.to_i >= 3) || month.to_i > 9
+    (month.to_i == 9 && day.to_i >= 7) || month.to_i > 9
   end
 
   def active_fields
@@ -124,5 +117,19 @@ module QaePdfForms::CustomQuestions::ByYear
     month = "0" + month if month.size == 1
 
     [day, month, year]
+  end
+
+  def force_format_without_date?(value)
+    doc = form_pdf.filled_answers
+
+    date = [:day, :month, :year].each_with_object([]) do |part, memo|
+      memo << doc.dig("#{:started_trading}_#{part}")
+    end.join("/")
+
+    if ::Utils::Date.valid?(date) && ::Utils::Date.valid?(value)
+      Date.parse(value).before?(Date.parse(date))
+    else
+      true
+    end
   end
 end

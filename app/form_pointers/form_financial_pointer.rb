@@ -203,7 +203,7 @@ class FormFinancialPointer
       res = []
       last_year = dates_by_years.last.split("/")[-1][-1].to_i
 
-      dates_by_years.each_with_index do |date, index|
+      dates_by_years.each do |date|
         res << date.join('/')
       end
 

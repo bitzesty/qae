@@ -231,7 +231,7 @@ class QAEFormBuilder
                        end
 
           if day.present? && month.present?
-            date = Date.new(AwardYear.current.year - 1, month.to_i, day.to_i)
+            date = Date.new(2000, month.to_i, day.to_i)
             from, to = condition.options.dig(:range)
             date.between?(from, to)
           else
@@ -320,7 +320,9 @@ class QAEFormBuilder
     end
 
     def pdf_conditional_hints(questions_with_references)
-      refs_and_values = conditions.map do |condition|
+      refs_and_values = conditions.reject do |condition|
+        condition.options.present? && condition.options.dig(:disable_pdf_conditional_hints) == true
+      end.map do |condition|
         parent_q = questions_with_references.detect do |q|
           q.key == condition.question_key
         end

@@ -18,39 +18,39 @@ module FinancialTable
   end
 
   def financial_table_changed_dates_headers
-    res = financial_data(
-      :financial_year_changed_dates,
-      get_audit_data(:financial_year_changed_dates)
-    )
+    res = financial_data(:financial_year_changed_dates, get_audit_data(:financial_year_changed_dates))
 
-    if res.any? { |el| el.present? }
+    # Get the no. of fields ~> `res.size`
+    # Check if there is difference between current amount (`res.size`) and calculated amount (`innovation_years_number`)
+    # If there should be more, push the empty string to the front
+    # If there should be less, take it from the front
+    #
+    if form_answer.innovation?
+      diff = ::Utils::Diff.calc(innovation_years_number, res.size, abs: false) || 0
+      diff.times { res.unshift("") } if diff.positive?
+      res.shift(diff.abs) if diff.negative?
+    end
+
+    if res.any?(&:present?)
       correct_date_headers(res)
     else
-      [''] * res.size
+      [""] * res.size
     end
   end
 
   def correct_date_headers(res)
-    corrected_result = []
-    last_year = res.last.split("/")[2].to_i
-
-    res.each_with_index do |entry, index|
-      # Trade form has locked year cells and
-      # also they are no saving in db (as we do not save disabled fields via autosave)
-      # so data can be: "13/02/"
-      corrected_result << if entry.size == 6 && (index + 1) != res.size
-        year = last_year - (res.size - (index + 1))
-        entry += year.to_s
-        entry
+    # Trade form has locked year cells and
+    # also they are no saving in db (as we do not save disabled fields via autosave)
+    # so data can be: "13/02/"
+    # Probably better just to check if date is valid and only then push as correct one
+    # Should help to avoid all that weirdness when trying to display invalid dates
+    #
+    corrected_result = res.each_with_object([]) do |entry, memo|
+      memo << if ::Utils::Date.valid?(entry)
+        Date.parse(entry).strftime("%d/%m/%Y")
       else
-        entry
+        ""
       end
-    end
-
-    begin
-      corrected_result.map { |string_date| Date.parse(string_date).strftime("%d/%m/%Y") }
-    rescue Exception => e
-      corrected_result
     end
   end
 

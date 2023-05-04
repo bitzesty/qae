@@ -357,7 +357,7 @@ class QaePdfForms::General::QuestionPointer
           form_pdf.default_bottom_margin
           form_pdf.text "Select #{question.title}"
         end
-      when QAEFormBuilder::OptionsQuestion
+      when QAEFormBuilder::TradeMostRecentFinancialYearOptionsQuestion, QAEFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
           chosen_option = question.options.detect{ |option| option.value.to_s == humanized_answer.to_s }
           form_pdf.render_standart_answer_block(question_option_title)
