@@ -316,7 +316,8 @@ class QAEFormBuilder
     end
 
     def can_have_parent_conditional_hints?
-      !delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
+      !delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) &&
+      !delegate_obj.is_a?(QAEFormBuilder::TradeMostRecentFinancialYearOptionsQuestion)
     end
 
     def pdf_conditional_hints(questions_with_references)

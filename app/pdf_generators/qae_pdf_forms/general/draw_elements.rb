@@ -143,7 +143,7 @@ module QaePdfForms::General::DrawElements
     section = form_answer.development? ? "Section C requires" : "Sections C and E require"
 
     block_2 = %(#{bullet} Read through all the questions carefully before starting to answer so that you can plan your responses and avoid repetition.
-      #{bullet} Plan enough time to prepare your responses, allowing time for refinement to ensure high-calibre submission before the deadline. Previous applicants reported taking at least 20 hours to complete the form, and some took 50 hours or more.
+      #{bullet} Plan enough time to prepare your responses, allowing time for refinement to ensure high-calibre submission before the deadline. Previous applicants reported taking at least 20 hours to complete the form, and a very few said they needed up to 50 hours.
       #{bullet} #{section} longer text responses - start planning these as soon as you can.
       #{bullet} You may want to spread your application over several weeks to allow time for collecting external evidence.
       #{bullet} You may need to get your accountant to help with section D – allow sufficient time for that.
