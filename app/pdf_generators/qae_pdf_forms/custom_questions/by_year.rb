@@ -54,14 +54,15 @@ module QaePdfForms::CustomQuestions::ByYear
         financial_table_default_headers.size == index ? "#{item} (most recent)" : item
       end
     else
-      frmt = opts.dig(:format)
       res = []
       size = financial_table_headers.size
 
       financial_table_headers.each.with_index(1) do |item, idx|
-        unless ::Utils::Date.valid?(item)
-          frmt = FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
-        end
+        frmt = unless ::Utils::Date.valid?(item)
+                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
+               else
+                 opts.dig(:format)
+               end
 
         frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
 
