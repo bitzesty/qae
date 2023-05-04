@@ -15,5 +15,22 @@ module Utils
     rescue
       false
     end
+
+    def self.valid?(date, separator: "/")
+      case date
+      when ::Date, ::DateTime
+        true
+      when ::String
+        parts = date.split(separator).map(&:to_i)
+        ::Date.valid_date?(*parts) || ::Date.valid_date?(*parts.reverse)
+      when ::Array
+        parts = date.map(&:to_i)
+        ::Date.valid_date?(*parts) || ::Date.valid_date?(*parts.reverse)
+      else
+        false
+      end
+    rescue
+      false
+    end
   end
 end

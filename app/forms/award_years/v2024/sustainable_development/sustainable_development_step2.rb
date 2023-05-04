@@ -116,6 +116,7 @@ class AwardYears::V2024::QAEForms
         end
 
         date :started_trading, "Date started trading." do
+          classes "js-started-trading"
           required
           ref "B 5"
           context %(

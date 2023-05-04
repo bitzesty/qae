@@ -4,7 +4,7 @@
       - (1..c.years).each do |y|
         div class="span-financial span-4"
           label for=question.input_name(suffix: "#{y}of#{c.years}")
-            span.js-year-end.show-default data-year="#{y}of#{c.years}"
+            span.js-year-end.show-default data-year="#{y}of#{c.years}" data-year-diff="#{::Utils::Diff.calc(c.years, y)}"
               span.js-year-default.govuk-label
                 ' Financial year
                 = y

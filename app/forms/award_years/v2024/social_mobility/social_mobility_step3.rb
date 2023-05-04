@@ -524,10 +524,8 @@ class AwardYears::V2024::QAEForms
           context %(
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
-          auto_totals_column true
-          auto_totals_row true
-          auto_proportion_row true
 
+          auto_totals_column true
           corner_label "Participants"
           totals_label "Total number of participants supported (the system will calculate this)"
           others_label "Others receiving support from you who are not disadvantaged"
@@ -545,7 +543,6 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           ref "C 5.2"
           required
-          no_total_row true
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )
@@ -571,7 +568,6 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.3"
           required
-          no_total_row true
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )
@@ -617,7 +613,6 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.4"
           required
-          auto_subtotals_totals_proportions_row true
           context %(
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
@@ -667,7 +662,6 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.5"
           required
-          auto_subtotals_totals_proportions_row  true
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
@@ -710,7 +704,6 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           sub_ref "C 5.6"
           required
-          auto_subtotals_totals_proportions_row true
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]

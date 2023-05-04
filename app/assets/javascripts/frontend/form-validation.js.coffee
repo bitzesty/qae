@@ -436,6 +436,19 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateDateByYears: (question) ->
+    # if it's a conditional question
+    conditional = true
+
+    question.find(".js-conditional-question").each ->
+      # checking only for not by-years-wrapper questions
+      # as it's a parent question and has to be shown
+      if !$(this).hasClass("by-years-wrapper") && !$(this).hasClass("show-question")
+        conditional = false
+
+    if !conditional
+      return
+    # end of conditional validation
+
     for subquestionBlock in question.find(".show-question .govuk-date-input")
       subq = $(subquestionBlock)
       qParent = subq.closest(".js-fy-entries")
@@ -447,6 +460,7 @@ window.FormValidation =
 
       if (not day or not month or not year)
         if question.hasClass("question-required") && errorsContainer.length < 1
+          @logThis(question, "validateDateByYears", "This field is required")
           @appendMessage(qParent, "This field is required")
           @addErrorClass(question)
       else
@@ -526,7 +540,6 @@ window.FormValidation =
 
   validateReasonSelect: (question) ->
     ineligibleValue = question.find('.govuk-radios').data('ineligible');
-    console.log('ineligibleValue', ineligibleValue);
 
     if $('input[name="form[mobility_in_relation_to_organisation]"]:checked').val() == ineligibleValue
       errorMessage = "You are not eligible. \
@@ -614,8 +627,7 @@ window.FormValidation =
       # console.log "validateMoneyByYears"
       @validateMoneyByYears(question)
 
-    if question.hasClass("question-date-by-years") &&
-       question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
+    if question.hasClass("question-date-by-years") && question.find(".show-question").length
       @validateDateByYears(question)
 
     if question.find(".match").length

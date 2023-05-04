@@ -38,7 +38,7 @@ class QAEFormBuilder
       count_questions :required_visible?
     end
 
-    def allowed_questions_params_list(form_data)
+    def allowed_questions_params_list(form_data, document)
       allowed_params = {}
       form_data = form_data.dup.permit!
       questions.each do |question|
@@ -64,7 +64,9 @@ class QAEFormBuilder
       end
 
       allowed_params = allowed_params.select do |k, v|
-        v.present? || QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
+        v.present? ||
+        document[k.to_s].present? ||
+        QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
       end
 
       allowed_params

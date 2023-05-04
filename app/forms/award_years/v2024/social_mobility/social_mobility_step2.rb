@@ -116,6 +116,7 @@ class AwardYears::V2024::QAEForms
         end
 
         date :started_trading, "Date started trading." do
+          classes "js-started-trading"
           required
           ref "B 5"
           context %(
@@ -148,7 +149,7 @@ class AwardYears::V2024::QAEForms
 
         text :org_telephone, "Main telephone number." do
           required
-          ref "A 6.1"
+          ref "B 6.1"
           type "tel"
           style "small"
         end

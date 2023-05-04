@@ -118,6 +118,7 @@ class AwardYears::V2024::QAEForms
         end
 
         date :started_trading, "Date started trading." do
+          classes "js-started-trading"
           required
           ref "B 5"
           context %(
@@ -223,6 +224,7 @@ class AwardYears::V2024::QAEForms
           sub_ref "B 10.1"
           conditional :parent_group_entry, "yes"
           yes_no
+          required
         end
 
         textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
@@ -232,6 +234,7 @@ class AwardYears::V2024::QAEForms
           words_max 100
           conditional :parent_group_entry, "yes"
           conditional :pareent_group_excluding, "yes"
+          required
         end
 
         options :has_parent_company, "Do you have a parent or a holding company?" do
@@ -244,6 +247,7 @@ class AwardYears::V2024::QAEForms
           classes "sub-question"
           sub_ref "B 11.1"
           conditional :has_parent_company, "yes"
+          required
         end
 
         country :parent_company_country, "Country of the immediate parent company." do
@@ -258,6 +262,7 @@ class AwardYears::V2024::QAEForms
           sub_ref "B 11.3"
           conditional :has_parent_company, "yes"
           yes_no
+          required
         end
 
         text :ultimate_control_company, "The name of the organisation with ultimate control." do
@@ -271,6 +276,7 @@ class AwardYears::V2024::QAEForms
           classes "regular-question"
           sub_ref "B 11.5"
           conditional :parent_ultimate_control, :no
+          required
         end
 
         options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do

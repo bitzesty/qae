@@ -231,14 +231,18 @@ class QAEFormBuilder
                        end
 
           if day.present? && month.present?
-            date = Date.new(AwardYear.current.year - 1, month.to_i, day.to_i)
+            date = Date.new(2000, month.to_i, day.to_i)
             from, to = condition.options.dig(:range)
             date.between?(from, to)
           else
             false
           end
         else
-          parent_question_answer == question_value.to_s
+          if parent_question_answer.is_a?(Array)
+            parent_question_answer.find { |a| a["type"].to_s == question_value.to_s }.present?
+          else
+            parent_question_answer == question_value.to_s
+          end
         end
       end &&
         (!dc || (dc.present? && has_drops?))
@@ -316,7 +320,9 @@ class QAEFormBuilder
     end
 
     def pdf_conditional_hints(questions_with_references)
-      refs_and_values = conditions.map do |condition|
+      refs_and_values = conditions.reject do |condition|
+        condition.options.present? && condition.options.dig(:disable_pdf_conditional_hints) == true
+      end.map do |condition|
         parent_q = questions_with_references.detect do |q|
           q.key == condition.question_key
         end

@@ -7,7 +7,7 @@
     .govuk-grid-row
       - (1..3).each do |y|
         .govuk-grid-column-one-half.js-fy-entries class="#{'fy-latest' if y == 3} govuk-!-margin-bottom-4"
-          span.js-year-end.show-default data-year="#{y}of3"
+          span.js-year-end.show-default data-year="#{y}of3" data-year-diff="#{::Utils::Diff.calc(3, y)}"
             label.js-year-default.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5"
               = question.format_label(y)
               - if y == 3

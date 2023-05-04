@@ -29,6 +29,40 @@ safeParse = (str) ->
     return str
   return
 
+diffFromSequence = (str, separator = "of") ->
+  try
+    parts = str.split(separator).map (value) ->
+      parseInt(value)
+
+    return parts[1] - parts[0]
+  catch _err
+    return undefined
+  return
+
+# Conditional latest year
+# If from 6th of September to December -> then previous year
+# If from January to 6th of September -> then current year
+#
+getLatestFinancialYearParts = () ->
+  fy_day = $('.js-financial-year-latest input.js-fy-day').val()
+  fy_month = $('.js-financial-year-latest input.js-fy-month').val()
+
+  if gon?
+    fy_year = gon.base_year || new Date().getFullYear()
+  else
+    fy_year = new Date().getFullYear()
+
+  # Conditional latest year
+  # If from 6th of September to December -> then previous year
+  # If from January to 6th of September -> then current year
+  if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 7) || parseInt(fy_month, 10) > 9
+    fy_year = parseInt(fy_year, 10) - 1
+
+  if $(".js-most-recent-financial-year input:checked").val() && $(".js-most-recent-financial-year .js-conditional-question").hasClass("show-question")
+    fy_year = parseInt($(".js-most-recent-financial-year input:checked").val())
+
+  return [fy_day, fy_month, fy_year]
+
 ordinal = (n) ->
   nHundreds = n % 100
   nDecimal = n % 10
@@ -166,6 +200,12 @@ jQuery ->
             $(this).addClass("show-question")
           else
             $(this).removeClass("show-question")
+    else
+      question.each () ->
+        if $(this).is('[data-default]')
+          $(this).addClass("show-question")
+        else
+          $(this).removeClass("show-question")
 
   $(".js-conditional-answer .govuk-date-input input").each () ->
     rangeConditionalQuestion($(this))
@@ -206,21 +246,9 @@ jQuery ->
   # Get the latest financial year date from input
   updateYearEndInput = () ->
     fy_latest_changed_input = $(".js-financial-year-changed-dates .fy-latest .govuk-date-input")
-    fy_latest_changed_input.find("input").removeAttr("disabled")
+    fy_latest_changed_input.find("input").removeAttr("readonly")
 
-    fy_day = $('.js-financial-year-latest input.js-fy-day').val()
-    fy_month = $('.js-financial-year-latest input.js-fy-month').val()
-
-    if gon?
-      fy_year = gon.base_year || new Date().getFullYear()
-    else
-      fy_year = new Date().getFullYear()
-
-    # Conditional latest year
-    # If from 12th of September to December -> then previous year
-    # If from January to 12th of September -> then current year
-    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 13) || parseInt(fy_month, 10) > 9
-      fy_year = parseInt(fy_year, 10) - 1
+    [fy_day, fy_month, fy_year] = getLatestFinancialYearParts()
 
     # overriding financial year with the selected radio button value
     # also check if the question is visible
@@ -240,7 +268,8 @@ jQuery ->
     #
     #    $(this).find("input.js-fy-year").val(this_year)
 
-    fy_latest_changed_input.find("input").attr("disabled", "disabled")
+    fy_latest_changed_input.find("input").trigger("change")
+    fy_latest_changed_input.find("input").attr("readonly", "readonly")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
     # We should change the last year date regardless if it's present or not
@@ -257,26 +286,34 @@ jQuery ->
     if $(".js-financial-year-change input:checked").val() == "no"
       # If the financial year haven't changed, clear manually entered dates
       $(".js-financial-year-changed-dates .js-fy-entries").each ->
-        $(this).find("input.js-fy-day").removeAttr("disabled").val("")
-        $(this).find("input.js-fy-month").removeAttr("disabled").val("")
+        $(this).find("input.js-fy-day").removeAttr("readonly").val("")
+        $(this).find("input.js-fy-month").removeAttr("readonly").val("")
 
-      # Year end hasn't changed, auto select the year
-      fy_latest_changed_input = $(".js-financial-year")
-      fy_latest_day = fy_latest_changed_input.find("input.js-fy-day").val()
-      fy_latest_month = fy_latest_changed_input.find("input.js-fy-month").val()
-      fy_latest_year = $(".js-financial-year-changed-dates").attr("data-year")
+      [fy_latest_day, fy_latest_month, fy_latest_year] = getLatestFinancialYearParts()
+
+      start_input = $(".js-started-trading")
+      start_day = start_input.find("input.js-date-input-day").val()
+      start_month = start_input.find("input.js-date-input-month").val()
+      start_year = start_input.find("input.js-date-input-year").val()
 
       if !fy_latest_day || !fy_latest_month || !fy_latest_year
         $(".js-year-end").addClass("show-default")
       else
         $(".js-year-end").each ->
           year = parseInt(fy_latest_year) + parseInt($(this).attr("data-year").substr(0, 1)) - parseInt($(this).attr("data-year").substr(-1, 1))
-          pre_text = "Year ended"
-          if $(this).closest(".question-block").hasClass("total-net-assets")
-            pre_text = "As at"
+
+          $(this).addClass("show-both")
+
+          if !start_year || !start_month || !start_month
+            $(this).find(".js-year-text").text("Year ended #{fy_latest_day}/#{fy_latest_month}/#{year}")
           else
-            $(this).addClass("show-both")
-          $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
+            d_min = new Date(start_year, parseInt(start_month) - 1, parseInt(start_day))
+            d_actual = new Date(year, parseInt(fy_latest_month) - 1, parseInt(fy_latest_day))
+
+            if (d_actual >= d_min)
+              $(this).find(".js-year-text").text("Year ended #{fy_latest_day}/#{fy_latest_month}/#{year}")
+            else
+              $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
     else
       # Year has changed, use what they've inputted
       $(".js-financial-conditional > .by-years-wrapper").each ->
@@ -290,19 +327,27 @@ jQuery ->
           if !fy_day || !fy_month || !fy_year
             all_years_value = false
         if !all_years_value
-          $(this).find(".js-year-end").addClass("show-default")
+          $(this).find(".js-year-end").each ->
+            diff = diffFromSequence($(this).attr("data-year"))
+            fy_input = $(".js-financial-year-changed-dates .by-years-wrapper.show-question .js-year-end[data-year-diff='#{diff}']").closest(".js-fy-entries").find(".govuk-date-input")
+            fy_day = fy_input.find(".js-fy-day").val()
+            fy_month = fy_input.find(".js-fy-month").val()
+            fy_year = fy_input.find(".js-fy-year").val()
+
+            $(this).addClass("show-both")
+
+            if !fy_day || !fy_month || !fy_year
+              $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
+            else
+              $(this).find(".js-year-text").text("Year ended #{fy_day}/#{fy_month}/#{fy_year}")
         else
           $(this).find(".js-year-end").each ->
             fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".govuk-date-input")
             fy_day = fy_input.find(".js-fy-day").val()
             fy_month = fy_input.find(".js-fy-month").val()
             fy_year = fy_input.find(".js-fy-year").val()
-            pre_text = "Year ended"
-            if $(this).closest(".question-block").hasClass("total-net-assets")
-              pre_text = "As at"
-            else
-              $(this).addClass("show-both")
-            $(this).find(".js-year-text").text("#{pre_text} #{fy_day}/#{fy_month}/#{fy_year}")
+            $(this).addClass("show-both")
+            $(this).find(".js-year-text").text("Year ended #{fy_day}/#{fy_month}/#{fy_year}")
 
   updateYearEndInput()
 
@@ -1016,32 +1061,33 @@ jQuery ->
 
   # Updates labels and ids on trade product fields
   resetTradeProductIndexes = (question) ->
-    list_count = question.find("li").length
-    question.find("li").each (index) ->
-      idx = index + 1
-      id = "form[trade_goods_and_services_explanations"
-      name = "form[trade_goods_and_services_explanations]"
-      products = $(this).find(".trade-good-product")
-      percentages = $(this).find(".trade-good-percentage")
-      word_limit = products.find("textarea").attr("data-word-max")
-      remove_link = $(this).find(".js-remove-link")
+    if question.hasClass("js-by-trade-goods-and-services-amount")
+      list_count = question.find("li").length
+      question.find("li").each (index) ->
+        idx = index + 1
+        id = "form[trade_goods_and_services_explanations"
+        name = "form[trade_goods_and_services_explanations]"
+        products = $(this).find(".trade-good-product")
+        percentages = $(this).find(".trade-good-percentage")
+        word_limit = products.find("textarea").attr("data-word-max")
+        remove_link = $(this).find(".js-remove-link")
 
-      products.find("label").get(0).innerText = "Product or service description " + idx + " (word limit: #{word_limit}):"
-      products.find("label").attr("for", id + "_desc_short_#{idx}]" )
-      products.find("textarea").attr({
-        "id": id + "_desc_short_#{idx}]",
-        "name": name + "[#{idx}][desc_short]"
-      })
-      percentages.find("label").attr("for", id + "_total_overseas_trade_#{idx}]")
-      percentages.find("input").attr({
-        "id": id + "_total_overseas_trade_#{idx}]",
-        "name": name + "[#{idx}][total_overseas_trade]"
-      })
-      remove_link.attr("aria-label", "Remove " + ordinal(idx) + " product")
-      if list_count <= 1
-        remove_link.addClass("visuallyhidden")
-      else
-        remove_link.removeClass("visuallyhidden")
+        products.find("label").get(0).innerText = "Product or service description " + idx + " (word limit: #{word_limit}):"
+        products.find("label").attr("for", id + "_desc_short_#{idx}]" )
+        products.find("textarea").attr({
+          "id": id + "_desc_short_#{idx}]",
+          "name": name + "[#{idx}][desc_short]"
+        })
+        percentages.find("label").attr("for", id + "_total_overseas_trade_#{idx}]")
+        percentages.find("input").attr({
+          "id": id + "_total_overseas_trade_#{idx}]",
+          "name": name + "[#{idx}][total_overseas_trade]"
+        })
+        remove_link.attr("aria-label", "Remove " + ordinal(idx) + " product")
+        if list_count <= 1
+          remove_link.addClass("visuallyhidden")
+        else
+          remove_link.removeClass("visuallyhidden")
 
   # Clicking `+ Add` on certain questions add fields
   $(document).on "click", ".question-block .js-button-add", (e) ->

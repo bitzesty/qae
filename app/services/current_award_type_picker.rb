@@ -32,7 +32,7 @@ class CurrentAwardTypePicker
       categories -= ["promotion"]
     end
 
-    categories.uniq.each_with_index.map do |category, index|
+    categories.uniq.map.with_index do |category, index|
       AwardCategory.new(slug: category, first_element: index == 0)
     end
   end
