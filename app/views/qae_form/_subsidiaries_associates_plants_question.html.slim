@@ -76,17 +76,17 @@ div role="group" id="q_#{question.key}"
 
         - unless admin_in_read_only_mode?
           - aria_title = ordinal(index + 1) + " subsidiary"
-          
+
           - if !subsidiary["name"].blank?
             - aria_title = subsidiary["name"] + " subsidiary"
 
-          = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, subsidiary: { name: subsidiary['name'], location: subsidiary['location'] }), class: "govuk-link remove-link", "aria-label" => "Remove " + aria_title
-
+          = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, subsidiary: { name: subsidiary['name'], location: subsidiary['location'] }), class: "govuk-link remove-link if-js-hide govuk-button govuk-button--warning", "aria-label" => "Remove " + aria_title
+          = link_to "Remove", "#", class: "js-remove-link if-no-js-hide govuk-button govuk-button--warning", "aria-label" => "Remove " + aria_title
           = link_to "Edit", edit_form_form_answer_subsidiaries_path(@form_answer, subsidiary: subsidiary), class: "govuk-link remove-link non-js-edit-link if-js-hide", "aria-label" => "Edit " + aria_title
     - if question.subsidiaries.none?
       li.js-add-example.if-no-js-hide
         - unless admin_in_read_only_mode?
-          = link_to "Remove", "#", class: "remove-link js-remove-link"
+          = link_to "Remove", "#", class: "remove-link js-remove-link govuk-button govuk-button--warning"
         .clear
 
         .govuk-grid-row
@@ -112,6 +112,6 @@ div role="group" id="q_#{question.key}"
               ' Specify the reason why you are including it.
             textarea.govuk-textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[0][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
 
-        
+
 
 = link_to "+ Add subsidiary, associate or plant", new_form_form_answer_subsidiaries_url(@form_answer.id), class: "govuk-button govuk-button--secondary button-add js-button-add", "aria-label" => "Add subsidiary, associate or plant", "data-entity" => "subsidiary"
