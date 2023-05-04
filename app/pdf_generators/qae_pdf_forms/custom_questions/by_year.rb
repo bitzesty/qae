@@ -1,7 +1,7 @@
 module QaePdfForms::CustomQuestions::ByYear
   EMPTY_STRING = "".freeze
   YEAR_LABELS = %w(day month year).freeze
-  FORMATTED_FINANCIAL_YEAR_WITH_DATE = "Financial year %<index>d ended %<date>s".freeze
+  FORMATTED_FINANCIAL_YEAR_WITH_DATE = "Financial year ended [%<date>s]".freeze
   FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE = "Financial year %<index>d".freeze
   ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze
   ANSWER_FONT_END = "</color>".freeze
