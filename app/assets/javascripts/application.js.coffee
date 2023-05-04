@@ -39,6 +39,30 @@ diffFromSequence = (str, separator = "of") ->
     return undefined
   return
 
+# Conditional latest year
+# If from 6th of September to December -> then previous year
+# If from January to 6th of September -> then current year
+#
+getLatestFinancialYearParts = () ->
+  fy_day = $('.js-financial-year-latest input.js-fy-day').val()
+  fy_month = $('.js-financial-year-latest input.js-fy-month').val()
+
+  if gon?
+    fy_year = gon.base_year || new Date().getFullYear()
+  else
+    fy_year = new Date().getFullYear()
+
+  # Conditional latest year
+  # If from 6th of September to December -> then previous year
+  # If from January to 6th of September -> then current year
+  if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 7) || parseInt(fy_month, 10) > 9
+    fy_year = parseInt(fy_year, 10) - 1
+
+  if $(".js-most-recent-financial-year input:checked").val() && $(".js-most-recent-financial-year .js-conditional-question").hasClass("show-question")
+    fy_year = parseInt($(".js-most-recent-financial-year input:checked").val())
+
+  return [fy_day, fy_month, fy_year]
+
 ordinal = (n) ->
   nHundreds = n % 100
   nDecimal = n % 10
@@ -224,19 +248,7 @@ jQuery ->
     fy_latest_changed_input = $(".js-financial-year-changed-dates .fy-latest .govuk-date-input")
     fy_latest_changed_input.find("input").removeAttr("readonly")
 
-    fy_day = $('.js-financial-year-latest input.js-fy-day').val()
-    fy_month = $('.js-financial-year-latest input.js-fy-month').val()
-
-    if gon?
-      fy_year = gon.base_year || new Date().getFullYear()
-    else
-      fy_year = new Date().getFullYear()
-
-    # Conditional latest year
-    # If from 12th of September to December -> then previous year
-    # If from January to 12th of September -> then current year
-    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 13) || parseInt(fy_month, 10) > 9
-      fy_year = parseInt(fy_year, 10) - 1
+    [fy_day, fy_month, fy_year] = getLatestFinancialYearParts()
 
     # overriding financial year with the selected radio button value
     # also check if the question is visible
@@ -277,11 +289,7 @@ jQuery ->
         $(this).find("input.js-fy-day").removeAttr("readonly").val("")
         $(this).find("input.js-fy-month").removeAttr("readonly").val("")
 
-      # Year end hasn't changed, auto select the year
-      fy_latest_changed_input = $(".js-financial-year")
-      fy_latest_day = fy_latest_changed_input.find("input.js-fy-day").val()
-      fy_latest_month = fy_latest_changed_input.find("input.js-fy-month").val()
-      fy_latest_year = $(".js-financial-year-changed-dates").attr("data-year")
+      [fy_latest_day, fy_latest_month, fy_latest_year] = getLatestFinancialYearParts()
 
       start_input = $(".js-started-trading")
       start_day = start_input.find("input.js-date-input-day").val()
