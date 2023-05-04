@@ -1061,32 +1061,33 @@ jQuery ->
 
   # Updates labels and ids on trade product fields
   resetTradeProductIndexes = (question) ->
-    list_count = question.find("li").length
-    question.find("li").each (index) ->
-      idx = index + 1
-      id = "form[trade_goods_and_services_explanations"
-      name = "form[trade_goods_and_services_explanations]"
-      products = $(this).find(".trade-good-product")
-      percentages = $(this).find(".trade-good-percentage")
-      word_limit = products.find("textarea").attr("data-word-max")
-      remove_link = $(this).find(".js-remove-link")
+    if question.hasClass("js-by-trade-goods-and-services-amount")
+      list_count = question.find("li").length
+      question.find("li").each (index) ->
+        idx = index + 1
+        id = "form[trade_goods_and_services_explanations"
+        name = "form[trade_goods_and_services_explanations]"
+        products = $(this).find(".trade-good-product")
+        percentages = $(this).find(".trade-good-percentage")
+        word_limit = products.find("textarea").attr("data-word-max")
+        remove_link = $(this).find(".js-remove-link")
 
-      products.find("label").get(0).innerText = "Product or service description " + idx + " (word limit: #{word_limit}):"
-      products.find("label").attr("for", id + "_desc_short_#{idx}]" )
-      products.find("textarea").attr({
-        "id": id + "_desc_short_#{idx}]",
-        "name": name + "[#{idx}][desc_short]"
-      })
-      percentages.find("label").attr("for", id + "_total_overseas_trade_#{idx}]")
-      percentages.find("input").attr({
-        "id": id + "_total_overseas_trade_#{idx}]",
-        "name": name + "[#{idx}][total_overseas_trade]"
-      })
-      remove_link.attr("aria-label", "Remove " + ordinal(idx) + " product")
-      if list_count <= 1
-        remove_link.addClass("visuallyhidden")
-      else
-        remove_link.removeClass("visuallyhidden")
+        products.find("label").get(0).innerText = "Product or service description " + idx + " (word limit: #{word_limit}):"
+        products.find("label").attr("for", id + "_desc_short_#{idx}]" )
+        products.find("textarea").attr({
+          "id": id + "_desc_short_#{idx}]",
+          "name": name + "[#{idx}][desc_short]"
+        })
+        percentages.find("label").attr("for", id + "_total_overseas_trade_#{idx}]")
+        percentages.find("input").attr({
+          "id": id + "_total_overseas_trade_#{idx}]",
+          "name": name + "[#{idx}][total_overseas_trade]"
+        })
+        remove_link.attr("aria-label", "Remove " + ordinal(idx) + " product")
+        if list_count <= 1
+          remove_link.addClass("visuallyhidden")
+        else
+          remove_link.removeClass("visuallyhidden")
 
   # Clicking `+ Add` on certain questions add fields
   $(document).on "click", ".question-block .js-button-add", (e) ->
