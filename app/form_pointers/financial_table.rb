@@ -18,15 +18,23 @@ module FinancialTable
   end
 
   def financial_table_changed_dates_headers
-    res = financial_data(
-      :financial_year_changed_dates,
-      get_audit_data(:financial_year_changed_dates)
-    )
+    res = financial_data(:financial_year_changed_dates, get_audit_data(:financial_year_changed_dates))
+
+    # Get the no. of fields ~> `res.size`
+    # Check if there is difference between current amount (`res.size`) and calculated amount (`innovation_years_number`)
+    # If there should be more, push the empty string to the front
+    # If there should be less, take it from the front
+    #
+    if form_answer.innovation?
+      diff = ::Utils::Diff.calc(innovation_years_number, res.size, abs: false) || 0
+      diff.times { res.unshift("") } if diff.positive?
+      res.shift(diff.abs) if diff.negative?
+    end
 
     if res.any?(&:present?)
       correct_date_headers(res)
     else
-      [''] * res.size
+      [""] * res.size
     end
   end
 
