@@ -52,15 +52,15 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def financial_dates_year_headers(**opts)
     if form_pdf.pdf_blank_mode.present? # BLANK FOR MODE
-      financial_table_default_headers.map.with_index do |item, index|
-        financial_table_default_headers.size == (index + 1) ? "#{item} (most recent)" : item
+      financial_table_default_headers.map.with_index(1) do |item, index|
+        financial_table_default_headers.size == index ? "#{item} (most recent)" : item
       end
     else
       frmt = opts.dig(:format)
       res = []
       size = financial_table_headers.size
 
-      financial_table_headers.each_with_index do |item, idx|
+      financial_table_headers.each.with_index(1) do |item, idx|
         if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
           frmt ||= FORMATTED_AS_AT_DATE
           res << format(frmt, date: item)
@@ -71,8 +71,8 @@ module QaePdfForms::CustomQuestions::ByYear
 
           frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
 
-          temp = format(frmt, date: item, index: idx.to_i)
-          temp = "#{temp} (most recent)" if size == (idx.to_i + 1)
+          temp = format(frmt, date: item, index: idx)
+          temp = "#{temp} (most recent)" if size == idx
           res << temp
         end
       end
