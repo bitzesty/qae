@@ -185,7 +185,7 @@ class AwardYears::V2024::QAEForms
             </p>
           )
           type :money
-          label ->(y) { "As at the end of year #{y}" }
+          label ->(y) { "Financial year #{y}" }
 
           conditional :financial_year_date_changed, :true
         end

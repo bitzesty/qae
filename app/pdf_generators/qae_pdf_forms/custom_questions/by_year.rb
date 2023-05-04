@@ -3,8 +3,6 @@ module QaePdfForms::CustomQuestions::ByYear
   YEAR_LABELS = %w(day month year).freeze
   FORMATTED_FINANCIAL_YEAR_WITH_DATE = "Financial year %<index>d ended %<date>s".freeze
   FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE = "Financial year %<index>d".freeze
-  FORMATTED_AS_AT_DATE = "As at %<date>s".freeze
-  AS_AT_DATE_PREFIX_QUESTION_KEYS = [:total_net_assets].freeze
   ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze
   ANSWER_FONT_END = "</color>".freeze
   CALCULATED_FINANCIAL_DATA = [:uk_sales].freeze
@@ -61,20 +59,15 @@ module QaePdfForms::CustomQuestions::ByYear
       size = financial_table_headers.size
 
       financial_table_headers.each.with_index(1) do |item, idx|
-        if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
-          frmt ||= FORMATTED_AS_AT_DATE
-          res << format(frmt, date: item)
-        else
-          unless ::Utils::Date.valid?(item)
-            frmt = FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
-          end
-
-          frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
-
-          temp = format(frmt, date: item, index: idx)
-          temp = "#{temp} (most recent)" if size == idx
-          res << temp
+        unless ::Utils::Date.valid?(item)
+          frmt = FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
         end
+
+        frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
+
+        temp = format(frmt, date: item, index: idx)
+        temp = "#{temp} (most recent)" if size == idx
+        res << temp
       end
 
       res

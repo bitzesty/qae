@@ -153,8 +153,7 @@ class AwardYears::V2024::QAEForms
           required
           context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
           type :money
-          label ->(y) { "As at the end of year #{y}" }
-
+          label ->(y) { "Financial year #{y}" }
         end
 
         textarea :drops_in_turnover, "If you have had any losses, drops in turnover (or income), or reductions in net profit, please explain them." do
