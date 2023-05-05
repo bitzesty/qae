@@ -182,7 +182,7 @@ module FinancialTable
     rescue
       nil
     ensure
-      years.to_s
+      return years.to_s
     end
   end
 end

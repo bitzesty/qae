@@ -449,7 +449,7 @@ window.FormValidation =
       return
     # end of conditional validation
 
-    for subquestionBlock in question.find(".show-question .govuk-date-input")
+    for subquestionBlock in question.find(".by-years-wrapper.show-question .govuk-date-input")
       subq = $(subquestionBlock)
       qParent = subq.closest(".js-fy-entries")
       errorsContainer = qParent.find(".govuk-error-message").html()
@@ -484,6 +484,43 @@ window.FormValidation =
       @logThis(question, "validateMaxDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
+
+  validateDiffBetweenDates: (question) ->
+    list = []
+
+    for block in question.find(".js-financial-year-changed-dates .show-question .govuk-date-input")
+      container = $(block)
+      errorsContainer = question.find(".govuk-error-message").html()
+
+      day = container.find("input.js-fy-day").val()
+      month = container.find("input.js-fy-month").val()
+      year = container.find("input.js-fy-year").val()
+
+      if (not day or not month or not year)
+        list.push(null)
+      else
+        complexDateString = day + "/" + month + "/" + year
+        date = @toDate(complexDateString)
+
+        if not date.isValid()
+          list.push(null)
+        else
+          list.push(date)
+
+    err = false
+
+    eachCons list, 2, (list) ->
+      if list.every(Boolean)
+        [from, to] = list
+        diff = to.diff(from, 'months', true)
+
+        if diff > 18.0
+          err = true
+
+    if err
+      @logThis(question, "validateDiffBetweenDates", "There is an error because financial year cannot be longer than 18 months, please double check your year end dates")
+      @appendMessage(question, "There is an error because financial year cannot be longer than 18 months, please double check your year end dates")
+      @addErrorClass(question)
 
   validateDateStartEnd: (question) ->
     if question.find(".validate-date-start-end").length > 0
@@ -685,6 +722,9 @@ window.FormValidation =
     if question.hasClass("conditional-select-statement")
       @validateReasonSelect(question)
 
+    if question.find(".js-financial-year-changed-dates").length && question.find(".show-question").length
+      @validateDiffBetweenDates(question)
+
   validate: ->
     @clearAllErrors()
 
@@ -723,3 +763,14 @@ $(document).on 'click', "input[type=checkbox]", ->
         question.find(".govuk-error-message").empty()
         question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
         window.FormValidation.validateMatrix(question)
+
+eachCons = (list, n, callback) ->
+  return [] if n == 0
+  start = 0
+
+  loop
+    data = list[start...start + n]
+    break if data.length < n
+
+    callback.call(this, data)
+    start += 1
