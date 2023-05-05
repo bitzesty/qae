@@ -832,7 +832,7 @@ GEM
     zxcvbn (0.1.9)
 
 PLATFORMS
-  x86_64-darwin-21
+  ruby
 
 DEPENDENCIES
   active_hash
