@@ -518,6 +518,7 @@ window.FormValidation =
           err = true
 
     if err
+      @logThis(question, "validateDiffBetweenDates", "There is an error because financial year cannot be longer than 18 months, please double check your year end dates")
       @appendMessage(question, "There is an error because financial year cannot be longer than 18 months, please double check your year end dates")
       @addErrorClass(question)
 
