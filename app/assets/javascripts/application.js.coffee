@@ -268,7 +268,6 @@ jQuery ->
     #
     #    $(this).find("input.js-fy-year").val(this_year)
 
-    fy_latest_changed_input.find("input").trigger("change")
     fy_latest_changed_input.find("input").attr("readonly", "readonly")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
