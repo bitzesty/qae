@@ -1,5 +1,42 @@
 class QAEFormBuilder
   class ByYearsLabelQuestionValidator < QuestionValidator
+    REQUIRED_SUB_FIELDS = %i[day month year].freeze
+
+    def errors
+      result = super
+
+      return result unless question.visible?
+
+      dates = question.active_fields.each_with_object([]) do |field, outer|
+                date = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
+                  key = "#{question.key}_#{field}#{sub}"
+                  inner << answers[key]
+                end.join("/")
+
+                date = ::Utils::Date.valid?(date) ? Date.parse(date) : nil
+
+                outer << date
+              end
+
+      validatable = dates.each_cons(2).reject do |values|
+                      values.any?(&:nil?)
+                    end
+
+      return result if validatable.blank?
+
+      msg = "There is an error because financial year cannot be longer than 18 months, please double check your year end dates"
+
+      validatable.each do |d1, d2|
+        check = d2.months_ago(18) <= d1
+
+        unless check
+          result[question.key] = msg
+          break
+        end
+      end
+
+      result
+    end
   end
 
   class ByYearsLabelQuestionDecorator < QuestionDecorator
