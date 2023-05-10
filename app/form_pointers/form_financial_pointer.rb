@@ -59,27 +59,56 @@ class FormFinancialPointer
         fetched += [UkSalesCalculator.new(fetched).data] if uk_sales_data.present?
       end
 
-      fetched
+      fill_missing_fields(fetched)
     end
   end
 
   def period_length
     @period_length ||= begin
-      get_length(data.first)
+      data_minmax(data).dig(:max)
     end
   end
 
-  def get_length(obj)
-    if obj.present?
-      case obj
-      when Hash
-        obj.values.flatten(1).length
-      when Array
-        obj.length
+  def fill_missing_fields(input)
+    minmax = data_minmax(input)
+    return input if minmax[:min] == minmax[:max]
+    
+    dd = input.deep_dup
+
+    result = dd.each_with_object([]) do |h, memo|
+      key, values = h.keys[0], h.values[0]
+
+      if values.length == minmax[:max]
+        memo << h
+        next
       end
-    else
-      0
+      
+      cloned = case values[0]
+               when Hash
+                 values[0].transform_values { |_v| nil }
+               when Array
+                 []
+               else
+                 nil
+               end
+
+      diff = ::Utils::Diff.calc(minmax[:min], minmax[:max])
+      diff.times { values.unshift(cloned) }
+
+      memo << Hash[key, values]
     end
+    
+    result
+  end
+
+  def data_minmax(h)
+    h.each_with_object(Hash[:min, nil, :max, nil]) do |field, memo|
+      length = field.values[0].length
+      memo[:min] = length if memo[:min].nil? || length < memo[:min]
+      memo[:max] = length if memo[:max].nil? || length > memo[:max]
+    end
+  rescue
+    Hash[:min, 0, :max, 0]
   end
 
   def growth_overseas_earnings(year)
