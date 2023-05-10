@@ -54,6 +54,22 @@ class FormAnswer < ApplicationRecord
     k == "promotion"
   end
 
+  FINANCIAL_STEPS = {
+    ..2023 => {
+      "trade" => 3,
+      "innovation" => 3,
+      "development" => 3,
+      "mobility" => 3,
+      "promotion" => 3,
+    },
+    2024.. => {
+      "trade" => 4,
+      "innovation" => 4,
+      "development" => 4,
+      "mobility" => 4,
+    }
+  }
+
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 
   mount_uploader :pdf_version, FormAnswerPdfVersionUploader
@@ -327,6 +343,11 @@ class FormAnswer < ApplicationRecord
 
   def business?
     BUSINESS_AWARD_TYPES.include?(award_type)
+  end
+
+  def financial_step
+    h = FINANCIAL_STEPS.select { |y| y === self.award_year.year }
+    h.values[0][self.award_type] - 1
   end
 
   #
