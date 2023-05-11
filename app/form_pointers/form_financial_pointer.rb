@@ -106,7 +106,7 @@ class FormFinancialPointer
       length = field.values[0].length
       memo[:min] = length if memo[:min].nil? || length < memo[:min]
       memo[:max] = length if memo[:max].nil? || length > memo[:max]
-    end
+    end.transform_values { |v| v.nil? ? 0 : v }
   rescue
     Hash[:min, 0, :max, 0]
   end
