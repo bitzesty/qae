@@ -7,14 +7,9 @@
     colgroup
       col width="300"
 
-    thead
-      tr
-        th &nbsp;
-
-        - financial_pointer.period_length.times do |i|
-          th = "Year #{i + 1}"
-
     tbody
+      = render "admin/form_answers/financial_summary/years_row", financial_pointer: financial_pointer, first_cell_as_th: true
+
       - if @form_answer.trade?
         tr.exports-growth
           th
