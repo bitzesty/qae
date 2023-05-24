@@ -56,10 +56,10 @@ class FormFinancialPointer
 
       unless UK_SALES_EXCLUDED_FORM_TYPES.include?(form_answer.object.award_type.to_sym)
         uk_sales_data = UkSalesCalculator.new(fetched).data
-        fetched += [UkSalesCalculator.new(fetched).data] if uk_sales_data.present?
+        fetched += [uk_sales_data] if uk_sales_data.present?
       end
 
-      fill_missing_fields(fetched)
+      fetched
     end
   end
 
@@ -67,38 +67,6 @@ class FormFinancialPointer
     @period_length ||= begin
       data_minmax(data).dig(:max)
     end
-  end
-
-  def fill_missing_fields(input)
-    minmax = data_minmax(input)
-    return input if minmax[:min] == minmax[:max]
-    
-    dd = input.deep_dup
-
-    result = dd.each_with_object([]) do |h, memo|
-      key, values = h.keys[0], h.values[0]
-
-      if values.length == minmax[:max]
-        memo << h
-        next
-      end
-      
-      cloned = case values[0]
-               when Hash
-                 values[0].transform_values { |_v| nil }
-               when Array
-                 []
-               else
-                 nil
-               end
-
-      diff = ::Utils::Diff.calc(minmax[:min], minmax[:max])
-      diff.times { values.unshift(cloned) }
-
-      memo << Hash[key, values]
-    end
-    
-    result
   end
 
   def data_minmax(h)
@@ -226,7 +194,7 @@ class FormFinancialPointer
   end
 
   def financial_year_changed_dates
-    dates_by_years = data.first[:financial_year_changed_dates]
+    dates_by_years = data_values(:financial_year_changed_dates)
 
     if dates_by_years.present?
       res = []

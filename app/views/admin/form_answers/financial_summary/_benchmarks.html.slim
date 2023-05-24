@@ -8,7 +8,7 @@
       col width="300"
 
     tbody
-      = render "admin/form_answers/financial_summary/years_row", financial_pointer: financial_pointer, first_cell_as_th: true
+      = render "admin/form_answers/financial_summary/years_row", financial_pointer: financial_pointer
 
       - if @form_answer.trade?
         tr.exports-growth

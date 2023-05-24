@@ -1,8 +1,6 @@
 tr
-  - if local_assigns[:first_cell_as_th] == true
-    th = t('.financial_year_changed_dates')
-  -else
-    td = t('.financial_year_changed_dates')
+  th = t('.financial_year_changed_dates')
+
   - if financial_pointer.data.first[:financial_year_changed_dates].present?
 
     - financial_pointer.financial_year_changed_dates.each do |date|
