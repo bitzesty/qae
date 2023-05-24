@@ -64,8 +64,25 @@ class FormFinancialPointer
   end
 
   def period_length
-    @period_length ||= begin
+    @_period_length ||= begin
       data_minmax(data).dig(:max)
+    end
+  end
+
+  def raw_period_length
+    @_raw_period_length ||= begin
+      get_length(data.first)
+    end
+  end
+
+  def get_length(obj)
+    case obj
+    when Hash
+      obj.values.flatten(1).length
+    when Array
+      obj.length
+    else
+      0
     end
   end
 
@@ -181,7 +198,7 @@ class FormFinancialPointer
     period_length.times do |i|
       day = form_answer.document['financial_year_date_day'].to_s
       month = form_answer.document['financial_year_date_month'].to_s
-      year = calculate_last_year(form_answer, day, month) - period_length + i + 1
+      year = calculate_last_year(form_answer, day, month) - raw_period_length + i + 1
 
       res << [
         day.rjust(2, '0'),
@@ -213,7 +230,7 @@ class FormFinancialPointer
   def growth_overseas_earnings_list
     res = []
 
-    period_length.times do |i|
+    raw_period_length.times do |i|
       res << growth_overseas_earnings(i)
     end
 
@@ -223,7 +240,7 @@ class FormFinancialPointer
   def sales_exported_list
     res = []
 
-    period_length.times do |i|
+    raw_period_length.times do |i|
       res << sales_exported(i)
     end
 
@@ -233,7 +250,7 @@ class FormFinancialPointer
   def average_growth_for_list
     res = []
 
-    period_length.times do |i|
+    raw_period_length.times do |i|
       res << average_growth_for(form_answer, i + 1)
     end
 
@@ -243,7 +260,7 @@ class FormFinancialPointer
   def growth_in_total_turnover_list
     res = []
 
-    period_length.times do |i|
+    raw_period_length.times do |i|
       res << growth_in_total_turnover(i)
     end
 

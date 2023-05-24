@@ -5,11 +5,15 @@ class FinancialSummaryPointer < FormFinancialPointer
 
   def summary_data
     @_financial_summary_data ||= begin
-      return data unless partitioned_hash.keys.size > 1
-
-      result = fill_missing_dates
-      fill_missing_fields(result)
+      with_dates_filled = fill_missing_dates
+      puts with_dates_filled
+      fill_missing_fields(with_dates_filled)
     end
+  end
+
+  def financial_years
+    values = summary_data.detect { |d| d[:dates] }
+    values && values[:dates]
   end
 
   private
@@ -56,13 +60,16 @@ class FinancialSummaryPointer < FormFinancialPointer
 
     input.values.each_with_object([]) do |x, acc|
       max = data_minmax(x).dig(:max)
-      diff = ::Utils::Diff.calc(dates.size, max)
+      diff = ::Utils::Diff.calc(dates.size, max, abs: false)
       d = dates.dup
-      d.shift(diff)
 
       if dates_changed
+        d.shift(diff) if diff && diff.positive?
+
         idx = x.index { |h| h.keys[0] == :financial_year_changed_dates }
-        x.delete_at(idx)
+        x.delete_at(idx) if idx
+      else
+        d.shift(diff)
       end
 
       x.unshift(Hash[:dates, d])
@@ -79,12 +86,14 @@ class FinancialSummaryPointer < FormFinancialPointer
   private
 
   def fetch_financial_year_dates
-    dates, changed = if data_values(:financial_year_changed_dates).present?
-                       [financial_year_changed_dates, true]
-                     else
-                       [financial_year_dates, false]
-                     end
+    @_financial_year_dates ||= begin
+      dates, changed = if data_values(:financial_year_changed_dates).present?
+                         [financial_year_changed_dates, true]
+                       else
+                         [financial_year_dates, false]
+                       end
 
-    [dates, changed]
+      [dates, changed]
+    end
   end
 end
