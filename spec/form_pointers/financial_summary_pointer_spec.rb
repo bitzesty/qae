@@ -10,10 +10,6 @@ describe FinancialSummaryPointer do
 
   let(:form_answer) { create :form_answer, :trade, :submitted }
 
-  let(:financial_years) do
-    ["02/01/2020", "02/01/2021", "02/01/2022", "02/01/2023"]
-  end
-
   describe "#summary_data" do
     context "financial years have changed and product introduction date > company incorporation date" do
       let(:data) do
@@ -145,7 +141,7 @@ describe FinancialSummaryPointer do
 
         allow(pointer).to receive(:data) { data }
         allow(pointer).to receive(:partitioned_hash) { partitioned_hash }
-        allow(pointer).to receive(:fetch_financial_year_dates) { [financial_years, false] }
+        allow(pointer).to receive(:fetch_financial_year_dates) { [["02/01/2022", "02/01/2023"], false] }
 
         expect(pointer.summary_data).to eq(
           [
@@ -192,7 +188,7 @@ describe FinancialSummaryPointer do
 
         allow(pointer).to receive(:data) { data }
         allow(pointer).to receive(:partitioned_hash) { partitioned_hash }
-        allow(pointer).to receive(:fetch_financial_year_dates) { [financial_years, false] }
+        allow(pointer).to receive(:fetch_financial_year_dates) { [["02/01/2020", "02/01/2021", "02/01/2022", "02/01/2023"], false] }
 
         expect(pointer.summary_data).to eq(
           [
