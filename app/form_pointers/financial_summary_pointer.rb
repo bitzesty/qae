@@ -59,23 +59,14 @@ class FinancialSummaryPointer < FormFinancialPointer
 
     input.values.each_with_object([]) do |x, acc|
       d = dates.dup
+      length = x.detect(&:first).values.flatten.size
+      diff = ::Utils::Diff.calc(dates.size, length, abs: false)
+
+      d.shift(diff) if diff && diff.positive?
 
       if dates_changed
-        max = data_minmax(x).dig(:max)
-        diff = ::Utils::Diff.calc(dates.size, max, abs: false)
-
-        d.shift(diff) if diff && diff.positive?
-
         idx = x.index { |h| h.keys[0] == :financial_year_changed_dates }
         x.delete_at(idx) if idx
-      else
-        min = data_minmax(x).dig(:min)
-        diff = [
-          ::Utils::Diff.calc(dates.size, period_length),
-          ::Utils::Diff.calc(dates.size, min)
-        ].max
-
-        d.shift(diff) if diff && diff.positive?
       end
 
       x.unshift(Hash[:dates, d])
