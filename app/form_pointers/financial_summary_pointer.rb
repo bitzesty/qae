@@ -62,25 +62,17 @@ class FinancialSummaryPointer < FormFinancialPointer
       max = data_minmax(x).dig(:max)
       diff = ::Utils::Diff.calc(dates.size, max, abs: false)
       d = dates.dup
+      d.shift(diff) if diff && diff.positive?
 
       if dates_changed
-        d.shift(diff) if diff && diff.positive?
-
         idx = x.index { |h| h.keys[0] == :financial_year_changed_dates }
         x.delete_at(idx) if idx
-      else
-        d.shift(diff)
       end
 
       x.unshift(Hash[:dates, d])
 
       acc << x
     end.flatten
-  end
-
-  def partitioned_hash
-    target_financial_questions.group_by(&:section)
-                              .transform_values { |values| values.map(&:key) }
   end
 
   private

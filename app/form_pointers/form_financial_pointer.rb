@@ -41,7 +41,6 @@ class FormFinancialPointer
 
     @all_questions = steps.map(&:questions).flatten
     @filled_answers = fetch_filled_answers
-
     @target_financial_questions = fetch_financial_questions
   end
 
@@ -63,26 +62,11 @@ class FormFinancialPointer
     end
   end
 
-  def period_length
-    @_period_length ||= begin
-      data_minmax(data).dig(:max)
-    end
-  end
-
-  def raw_period_length
-    @_raw_period_length ||= begin
-      get_length(data.first)
-    end
-  end
-
-  def get_length(obj)
-    case obj
-    when Hash
-      obj.values.flatten(1).length
-    when Array
-      obj.length
+  def period_length(exclude_innovation_years = true)
+    if exclude_innovation_years
+      reduced_period_length
     else
-      0
+      full_period_length
     end
   end
 
@@ -182,10 +166,10 @@ class FormFinancialPointer
     end
   end
 
-  def years_list
+  def years_list(exclude_innovation_years = false)
     res = []
 
-    period_length.times do |i|
+    period_length(exclude_innovation_years).times do |i|
       res << "Year #{i + 1}"
     end
 
@@ -198,7 +182,7 @@ class FormFinancialPointer
     period_length.times do |i|
       day = form_answer.document['financial_year_date_day'].to_s
       month = form_answer.document['financial_year_date_month'].to_s
-      year = calculate_last_year(form_answer, day, month) - raw_period_length + i + 1
+      year = calculate_last_year(form_answer, day, month) - period_length + i + 1
 
       res << [
         day.rjust(2, '0'),
@@ -230,7 +214,7 @@ class FormFinancialPointer
   def growth_overseas_earnings_list
     res = []
 
-    raw_period_length.times do |i|
+    period_length.times do |i|
       res << growth_overseas_earnings(i)
     end
 
@@ -240,7 +224,7 @@ class FormFinancialPointer
   def sales_exported_list
     res = []
 
-    raw_period_length.times do |i|
+    period_length.times do |i|
       res << sales_exported(i)
     end
 
@@ -250,7 +234,7 @@ class FormFinancialPointer
   def average_growth_for_list
     res = []
 
-    raw_period_length.times do |i|
+    period_length.times do |i|
       res << average_growth_for(form_answer, i + 1)
     end
 
@@ -260,7 +244,7 @@ class FormFinancialPointer
   def growth_in_total_turnover_list
     res = []
 
-    raw_period_length.times do |i|
+    period_length.times do |i|
       res << growth_in_total_turnover(i)
     end
 
@@ -272,7 +256,27 @@ class FormFinancialPointer
     growth || "-"
   end
 
+  def partitioned_hash
+    target_financial_questions.group_by(&:section)
+                              .transform_values { |values| values.map(&:key) }
+  end
+
   private
+
+  def reduced_period_length
+    @_reduced_period_length ||= begin
+      excluded_keys = partitioned_hash.fetch(:innovation_financials, [])
+      reduced = data.reject { |h| h.keys[0].in?(excluded_keys) }
+
+      data_minmax(reduced).dig(:max)
+    end
+  end
+
+  def full_period_length
+    @_full_period_length ||= begin
+      data_minmax(data).dig(:max)
+    end
+  end
 
   def data_values(key)
     values = data.detect { |d| d[key] }
