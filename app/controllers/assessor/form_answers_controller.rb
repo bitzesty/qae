@@ -4,7 +4,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
   before_action :load_resource, only: [:update_financials]
 
   expose(:financial_pointer) do
-    FormFinancialPointer.new(@form_answer, {
+    FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
       financial_summary_view: true
     })

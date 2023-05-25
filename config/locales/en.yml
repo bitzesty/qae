@@ -97,8 +97,10 @@ en:
   admin:
     form_answers:
       financial_summary:
-        years_row:
+        dates_row: &dates
           financial_year_changed_dates: Year-end/Period-end date
+        years_row:
+          <<: *dates
         row:
           employees: Number of UK employees
           exports: Of which exports (£)
