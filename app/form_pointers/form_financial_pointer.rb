@@ -41,7 +41,6 @@ class FormFinancialPointer
 
     @all_questions = steps.map(&:questions).flatten
     @filled_answers = fetch_filled_answers
-
     @target_financial_questions = fetch_financial_questions
   end
 
@@ -56,30 +55,29 @@ class FormFinancialPointer
 
       unless UK_SALES_EXCLUDED_FORM_TYPES.include?(form_answer.object.award_type.to_sym)
         uk_sales_data = UkSalesCalculator.new(fetched).data
-        fetched += [UkSalesCalculator.new(fetched).data] if uk_sales_data.present?
+        fetched += [uk_sales_data] if uk_sales_data.present?
       end
 
       fetched
     end
   end
 
-  def period_length
-    @period_length ||= begin
-      get_length(data.first)
+  def period_length(exclude_innovation_years = true)
+    if exclude_innovation_years
+      reduced_period_length
+    else
+      full_period_length
     end
   end
 
-  def get_length(obj)
-    if obj.present?
-      case obj
-      when Hash
-        obj.values.flatten(1).length
-      when Array
-        obj.length
-      end
-    else
-      0
-    end
+  def data_minmax(h)
+    h.each_with_object(Hash[:min, nil, :max, nil]) do |field, memo|
+      length = field.values[0].length
+      memo[:min] = length if memo[:min].nil? || length < memo[:min]
+      memo[:max] = length if memo[:max].nil? || length > memo[:max]
+    end.transform_values { |v| v.nil? ? 0 : v }
+  rescue
+    Hash[:min, 0, :max, 0]
   end
 
   def growth_overseas_earnings(year)
@@ -168,10 +166,10 @@ class FormFinancialPointer
     end
   end
 
-  def years_list
+  def years_list(exclude_innovation_years = false)
     res = []
 
-    period_length.times do |i|
+    period_length(exclude_innovation_years).times do |i|
       res << "Year #{i + 1}"
     end
 
@@ -197,7 +195,7 @@ class FormFinancialPointer
   end
 
   def financial_year_changed_dates
-    dates_by_years = data.first[:financial_year_changed_dates]
+    dates_by_years = data_values(:financial_year_changed_dates)
 
     if dates_by_years.present?
       res = []
@@ -258,7 +256,27 @@ class FormFinancialPointer
     growth || "-"
   end
 
+  def partitioned_hash
+    target_financial_questions.group_by(&:section)
+                              .transform_values { |values| values.map(&:key) }
+  end
+
   private
+
+  def reduced_period_length
+    @_reduced_period_length ||= begin
+      excluded_keys = partitioned_hash.fetch(:innovation_financials, [])
+      reduced = data.reject { |h| h.keys[0].in?(excluded_keys) }
+
+      data_minmax(reduced).dig(:max)
+    end
+  end
+
+  def full_period_length
+    @_full_period_length ||= begin
+      data_minmax(data).dig(:max)
+    end
+  end
 
   def data_values(key)
     values = data.detect { |d| d[key] }

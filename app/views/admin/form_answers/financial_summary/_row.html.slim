@@ -5,5 +5,5 @@ tr class=(row.keys.first == 'overseas_sales' ? 'exports' : row.keys.first)
     td.value
       span.form-value class="#{'form-value-show' unless policy(resource).update_financials?}"
         = number_with_delimiter(field[:value])
-      - if policy(resource).update_financials?
+      - if field[:name].present? && policy(resource).update_financials?
         = text_field_tag "financial_data[#{field[:name]}]", field[:value], class: 'form-control'
