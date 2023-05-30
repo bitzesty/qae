@@ -431,6 +431,10 @@ class QAEFormBuilder
       @q.sub_ref = id
     end
 
+    def section id
+      @q.section = id
+    end
+
     def question_sub_title str
       @q.question_sub_title = str
     end
@@ -541,7 +545,8 @@ class QAEFormBuilder
                   :excluded_header_questions,
                   :sub_section,
                   :form_answer,
-                  :about_section
+                  :about_section,
+                  :section
 
     def initialize step, key, title, opts={}
       @step = step

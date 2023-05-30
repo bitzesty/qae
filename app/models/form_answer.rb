@@ -449,6 +449,15 @@ class FormAnswer < ApplicationRecord
     %w(trade innovation).include?(award_type)
   end
 
+  def financial_year_changeable?
+    key = :most_recent_financial_year
+    selected = %i[most_recent_financial_year financial_year_date_day financial_year_date_month]
+    self.award_form
+        .questions_by_key[key]
+        &.decorate(answers: HashWithIndifferentAccess.new(document || {}).slice(*selected))
+        &.year_changeable?
+  end
+
   def provided_estimates?
     document["product_estimated_figures"] == "yes"
   end

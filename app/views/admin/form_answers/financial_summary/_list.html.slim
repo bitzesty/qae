@@ -7,20 +7,12 @@
         colgroup
           col width="300"
 
-        thead
-          tr
-            th &nbsp;
-
-            - financial_pointer.years_list.each do |year|
-              th = year
         tbody
-          = render "admin/form_answers/financial_summary/years_row", f: f, financial_pointer: financial_pointer
-
-          - financial_pointer.data.each_with_index do |row, index|
-            - next if row[:financial_year_changed_dates]
-
+          - financial_pointer.summary_data.each do |row|
             - if row[:uk_sales]
               = render "admin/form_answers/financial_summary/uk_sales_row", f: f, row: row
+            - elsif row[:dates]
+              = render "admin/form_answers/financial_summary/dates_row", row: row
             - else
               = render "admin/form_answers/financial_summary/row", f: f, row: row
 
