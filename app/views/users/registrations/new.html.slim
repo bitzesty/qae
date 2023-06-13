@@ -13,6 +13,8 @@
         p.govuk-body
           ' If you are a marketing company applying on behalf of a client, your client should create an account first, then add you as a collaborator.
         p.govuk-body
+          ' If somebody in your organisation already has an account, please ask them to sign in and add you as a collaborator, rather than creating an account below.
+        p.govuk-body
           = I18n.t(:custom_login_messages)[:already_have_account]
           =< link_to "sign in page", new_user_session_path
           '.
