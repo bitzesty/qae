@@ -11,8 +11,8 @@ class AwardYears::V2024::QAEForms
           classes "js-entry-period"
           ref "D 1"
           required
-          option "3 to 5", "Outstanding Short-Term Growth: a steep year-on-year growth over the three most recent financial years"
-          option "6 plus", "Outstanding Continued Growth: a substantial year-on-year growth over the six most recent financial years"
+          option "3 to 5", "Outstanding Short-Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years"
+          option "6 plus", "Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years"
           placeholder_preselected_condition :applied_for_queen_awards_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
