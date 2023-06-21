@@ -76,11 +76,19 @@ class Reports::FormAnswer
   end
 
   def ac_received
-    bool obj.audit_certificate.present?
+    if po_sd_provided_actual_figures?
+      "N/A - provided actual figures"
+    else
+      bool obj.audit_certificate.present?
+    end
   end
 
   def ac_checked
-    bool obj.audit_certificate.try(:reviewed?)
+    if po_sd_provided_actual_figures?
+      "N/A"
+    else
+      bool obj.audit_certificate.try(:reviewed?)
+    end
   end
 
   def case_assigned
@@ -222,5 +230,9 @@ class Reports::FormAnswer
 
   def overall_status
     obj.state.humanize
+  end
+
+  def po_sd_provided_actual_figures?
+    %w[mobility development].include?(obj.award_type) && obj.document["product_estimated_figures"] == "no"
   end
 end
