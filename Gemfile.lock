@@ -482,6 +482,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.2)
     minitest (5.18.0)
     money (6.16.0)
       i18n (>= 0.6.4, <= 2)
@@ -503,6 +504,9 @@ GEM
       activerecord (>= 4.0.0)
       activesupport (>= 4.0.0)
     nio4r (2.5.9)
+    nokogiri (1.14.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.14.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.3-x86_64-linux)
@@ -834,6 +838,7 @@ GEM
     zxcvbn (0.1.9)
 
 PLATFORMS
+  ruby
   x86_64-darwin-21
   x86_64-linux
 
