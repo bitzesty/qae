@@ -15,6 +15,7 @@ gem 'pg'
 
 # Track Changes
 gem 'paper_trail', '~> 10.3'
+gem 'paper_trail-association_tracking'
 
 # Assets & Templates
 gem 'sprockets', '~> 3.7.2'
