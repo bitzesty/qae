@@ -35,7 +35,8 @@ require 'selenium-webdriver'
 
 Dotenv.overload('.env.test')
 
-WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true, net_http_connect_on_start: true)
+WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
+WebMock.allow_net_connect!(net_http_connect_on_start: true)
 
 # Require all support files.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
