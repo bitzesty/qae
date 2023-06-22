@@ -180,7 +180,7 @@ end
 
 group :test do
   gem 'factory_bot_rails'
-  gem 'capybara', '3.33'
+  gem 'capybara', '3.39.2'
   gem 'poltergeist'
   gem 'database_cleaner-active_record'
   gem 'launchy'
