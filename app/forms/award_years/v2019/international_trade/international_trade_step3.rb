@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class AwardYears::V2019::QAEForms
+class AwardYears::V2019::QaeForms
   class << self
     def trade_step3
       @trade_step3 ||= proc do

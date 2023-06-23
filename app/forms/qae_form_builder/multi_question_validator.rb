@@ -1,4 +1,4 @@
-class QAEFormBuilder::MultiQuestionValidator < QAEFormBuilder::QuestionValidator
+class QaeFormBuilder::MultiQuestionValidator < QaeFormBuilder::QuestionValidator
   def errors
     result = super
 

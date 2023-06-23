@@ -3,8 +3,8 @@ class Eligibility < ApplicationRecord
 
   AWARD_NAME = ""
 
-  belongs_to :account
-  belongs_to :form_answer
+  belongs_to :account, optional: true
+  belongs_to :form_answer, optional: true
 
   attr_accessor :current_step,
                 :force_validate_now

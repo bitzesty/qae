@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class AwardYears::V2023::QAEForms
+class AwardYears::V2023::QaeForms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do

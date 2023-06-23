@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class NumberQuestionValidator < QuestionValidator
   end
 

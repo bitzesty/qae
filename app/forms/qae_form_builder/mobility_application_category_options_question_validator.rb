@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class MobilityApplicationCategoryOptionsQuestionValidator < OptionsQuestionValidator
     def errors
       result = super
@@ -9,11 +9,5 @@ class QAEFormBuilder
 
       result
     end
-  end
-
-  class MobilityApplicationCategoryOptionsQuestionBuilder < OptionsQuestionBuilder
-  end
-
-  class MobilityApplicationCategoryOptionsQuestion < OptionsQuestion
   end
 end

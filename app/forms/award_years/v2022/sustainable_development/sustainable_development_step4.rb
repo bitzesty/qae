@@ -1,4 +1,4 @@
-class AwardYears::V2022::QAEForms
+class AwardYears::V2022::QaeForms
   class << self
     def development_step4
       @development_step4 ||= proc do

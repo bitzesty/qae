@@ -18,7 +18,7 @@ class FormPdf < Prawn::Document
     development_was_launched_since
   )
   JUST_NOTES = [
-    "QAEFormBuilder::HeaderQuestion"
+    "QaeFormBuilder::HeaderQuestion"
   ]
   DEFAULT_ANSWER_COLOR = "5B5656"
 
@@ -49,9 +49,9 @@ class FormPdf < Prawn::Document
       a.clean?
     end
     @filled_answers = fetch_filled_answers
-    
+
     @financial_pointer = FormFinancialPointer.new(@form_answer.decorate)
-    
+
     generate!
   end
 

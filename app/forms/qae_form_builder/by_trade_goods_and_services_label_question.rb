@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class ByTradeGoodsAndServicesLabelQuestionValidator < QuestionValidator
     HUMANIZED_ATTRS = {
       "desc_short" => "Description"

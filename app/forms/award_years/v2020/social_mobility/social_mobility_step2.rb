@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-class AwardYears::V2020::QAEForms
+class AwardYears::V2020::QaeForms
   class << self
     def mobility_step2
       @mobility_step2 ||= proc do
         header :mobility_b_section_header, "" do
           context %(
-            <h3>About this section</h3> 
+            <h3>About this section</h3>
 
             <p>This section enables you to present the details of your social mobility programme and to give us the evidence on how your programme benefits your staff and your organisation.</p>
 
@@ -35,7 +35,7 @@ class AwardYears::V2020::QAEForms
               <li>A programme which makes career opportunities more accessible by offering non-graduate routes such as well-structured traineeships, apprenticeships or internships, or by reforming recruitment practices and offering clear paths for progression.</li>
               <li>A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers and champions a culture of inclusiveness at every level.</li>
             </ul>
- 
+
             <p>Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.</p>
 
             <h3>Types of activities</h3>
@@ -64,7 +64,7 @@ class AwardYears::V2020::QAEForms
             <h3>Answering questions</h3>
 
             <p>
-              If you have more than one social mobility programme, please provide details. 
+              If you have more than one social mobility programme, please provide details.
               <br />
               Please try to avoid using technical jargon in this section.
             </p>
@@ -84,13 +84,13 @@ class AwardYears::V2020::QAEForms
               We classify people as being from a lower or higher socio-economic background based on these variables:
 
               \u2022 The National Statistics Socio-economic classification (NS-SEC) of parent's occupation.
-              
+
               \u2022 This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.
-              
+
               \u2022 Whether they were receiving free school meals.
-              
+
               \u2022 The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.
-              
+
               \u2022 The type of school the person attended.
             )],
             [:bold, "Qualifying programmes"],
@@ -98,9 +98,9 @@ class AwardYears::V2020::QAEForms
               You should demonstrate positive impacts in at least one of the following:
 
               \u2022 A programme which provides careers advice, skills development or mentoring that prepare young people from disadvantaged or lower socio-economic backgrounds for the world of work or accessible, structured work experience.
-              
+
               \u2022 A programme which makes career opportunities more accessible by offering non-graduate routes such as well-structured traineeships, apprenticeships or internships, or by reforming recruitment practices and offering clear paths for progression.
-              
+
               \u2022 A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers and champions a culture of inclusiveness at every level.
 
               Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.
@@ -110,17 +110,17 @@ class AwardYears::V2020::QAEForms
               When considering positive impacts, the following may help in clarifying what we are looking for in your application:
 
               \u2022 Accessible routes - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.
-              
+
               \u2022 Careers advice – provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.
-              
+
               \u2022 Work placements - preparing people for the world of work through inspiring work experiences and internships.
-              
+
               \u2022 Fairer recruitment - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic. For example, by removing applicants’ names or school names from CVs, providing unconscious bias training for recruitment assessors.
-              
+
               \u2022 Early careers - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers.
-              
+
               \u2022 Advancement - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.
-              
+
               \u2022 Advocacy and leadership - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.
             )],
             [:bold, "Overarching criteria"],
@@ -180,23 +180,23 @@ class AwardYears::V2020::QAEForms
             </p>
             <p>
               Please include:
-   
+
               a) The aims of the programme.
 
               b) Which disadvantaged group(s) is your programme targeted towards?
 
               c) the proportion of those on the programme which come from disadvantaged backgrounds. If you are offering work placements or work experience, include statistics on what percentage of those people then go on into full-time employment, either within your company or the sector.
-              
+
               d) What does your programme provide to your target group(s)?
-              
+
               e) Provide evidence of what makes your social mobility programme exemplary. For example, the programme may be exemplary as a result of:
 
               \u2022 An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people;
-              
+
               \u2022 Developing a unique or innovative social mobility programme;
-              
+
               \u2022 Forming effective partnerships with charities, schools or Jobcentres or Local Enterprise Partnerships;
-              
+
               \u2022 Leading the way in your company by doing something that has never been done before.
             </p>
           }
@@ -242,7 +242,7 @@ class AwardYears::V2020::QAEForms
               Briefly describe your core business and what factors or issues motivated your organisation to provide the programme.
 
               Please include details on:
-   
+
               a) What was the situation before the inception of this programme?
 
               b) Why did you choose this particular programme and how does it align with the core aims and values of your organisation?
@@ -259,7 +259,7 @@ class AwardYears::V2020::QAEForms
           required
           context %{
             <p>
-              Please describe the impact of your programme. 
+              Please describe the impact of your programme.
 
               Where possible please include:
             </p>
@@ -294,21 +294,21 @@ class AwardYears::V2020::QAEForms
           pdf_context %{
             <p>
               Please describe the impact of your programme.
-     
+
               Where possible please include:
 
               a) How you measure the success of your programme? For example, are key performance indicators (KPIs) used? If so, how are they set and monitored? Are the KPIs being met and what happens if they are not?
 
               b) State what quantifiable measures were used to evaluate the success of the programme to your organisation, employees or others in meeting objectives for performance. Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence to support your application. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-              
+
               c) What has the programme achieved for your targeted group(s)?
-              
+
               d) How does your programme benefit your usual day to day operations?
-              
+
               e) How does the scale of this programme compare with wider talent management activities?
-              
+
               f) Who is ultimately responsible for the programme’s success?
-              
+
               g) Who is responsible for the day-to-day management of the programme?
 
               You may include chart(s) to make it easier for assessors to understand how your programme is managed in section E.
@@ -342,9 +342,9 @@ class AwardYears::V2020::QAEForms
               Please provide evidence on how your organisation improved the employability of the people who engaged in your programme and how it has raised their career aspirations and confidence. Improvements in employability could be as a result of teaching skills such as leadership, communication, team-work, resilience.
 
               If possible, use a balance of quantitative (for example, numbers, figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence.
- 
+
               Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-  
+
               Include the impact of the programme on the local community and at a regional and national level.
             </p>
           }

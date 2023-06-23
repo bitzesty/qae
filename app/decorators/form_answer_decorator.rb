@@ -154,7 +154,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def average_growth_for(year)
     if object.sic_code.present?
-      sic = SICCode.find_by(code: object.sic_code)
+      sic = SicCode.find_by(code: object.sic_code)
       sic.by_year(year) if sic
     end
   end
@@ -168,7 +168,7 @@ class FormAnswerDecorator < ApplicationDecorator
   def sic_code_name
     sic = object.sic_code
     if sic.present?
-      SICCode.find_by(code: sic).name
+      SicCode.find_by(code: sic).name
     end
   end
 
@@ -180,7 +180,7 @@ class FormAnswerDecorator < ApplicationDecorator
     object.award_form.steps.detect do |step|
       step.short_title == "Declaration of Corporate Responsibility"
     end.questions.select do |q|
-      q.is_a?(QAEFormBuilder::TextareaQuestion) && q.required
+      q.is_a?(QaeFormBuilder::TextareaQuestion) && q.required
     end.map(&:key)
        .map(&:to_s)
   end
@@ -198,7 +198,7 @@ class FormAnswerDecorator < ApplicationDecorator
   def average_growth_legend(years = [1, 2, 3])
     growths = years.map { |y| average_growth_for(y) }.uniq
     growths.map do |g|
-      note = SICCode::NOTES[g]
+      note = SicCode::NOTES[g]
       "#{g} - #{note}" if note
     end.compact.join("\n")
   end

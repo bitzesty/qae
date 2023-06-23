@@ -4,30 +4,30 @@ require "award_years/v2022/sustainable_development/sustainable_development_step3
 require "award_years/v2022/sustainable_development/sustainable_development_step4"
 require "award_years/v2022/sustainable_development/sustainable_development_step5"
 
-class AwardYears::V2022::QAEForms
+class AwardYears::V2022::QaeForms
   class << self
     def development
-      @development ||= QAEFormBuilder.build "Sustainable Development Award Application" do
+      @development ||= QaeFormBuilder.build "Sustainable Development Award Application" do
         step "Company Information",
              "Company Information",
-             &AwardYears::V2022::QAEForms.development_step1
+             &AwardYears::V2022::QaeForms.development_step1
 
         step "Your Sustainable Development",
              "Your Sustainable Development",
-             &AwardYears::V2022::QAEForms.development_step2
+             &AwardYears::V2022::QaeForms.development_step2
 
         step "Commercial Performance",
              "Commercial Performance",
-             &AwardYears::V2022::QAEForms.development_step3
+             &AwardYears::V2022::QaeForms.development_step3
 
         step "Add Website Address/Documents",
              "Add Website Address/Documents",
              { id: :add_website_address_documents_step },
-             &AwardYears::V2022::QAEForms.development_step4
+             &AwardYears::V2022::QaeForms.development_step4
 
         step "Authorise & Submit",
              "Authorise & Submit",
-             &AwardYears::V2022::QAEForms.development_step5
+             &AwardYears::V2022::QaeForms.development_step5
       end
     end
   end

@@ -15,7 +15,7 @@ RSpec.describe CompanyRegistrationNumberValidator do
     end
   end
 
-  before(:each) do
+  before(:suite) do
     ActiveRecord::Base.connection.create_table :company_registration_number_validator_test do |t|
       t.string :registration_number
     end

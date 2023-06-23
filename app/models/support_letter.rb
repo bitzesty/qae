@@ -1,8 +1,8 @@
 class SupportLetter < ApplicationRecord
   begin :associations
-    belongs_to :supporter
-    belongs_to :form_answer
-    belongs_to :user
+    belongs_to :supporter, optional: true
+    belongs_to :form_answer, optional: true
+    belongs_to :user, optional: true
 
     has_one :support_letter_attachment, autosave: true, dependent: :destroy
   end

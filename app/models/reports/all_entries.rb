@@ -1,5 +1,5 @@
 class Reports::AllEntries
-  include Reports::CSVHelper
+  include Reports::CsvHelper
 
   MAPPING = [
     {

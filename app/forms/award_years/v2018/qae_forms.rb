@@ -1,8 +1,8 @@
-require 'award_years/v2018/innovation'
-require 'award_years/v2018/international_trade'
-require 'award_years/v2018/sustainable_development'
-require 'award_years/v2018/social_mobility'
-require 'award_years/v2018/enterprise_promotion'
+require_relative 'innovation'
+require_relative 'international_trade'
+require_relative 'sustainable_development'
+require_relative 'social_mobility'
+require_relative 'enterprise_promotion'
 
-class AwardYears::V2018::QAEForms
+class AwardYears::V2018::QaeForms
 end

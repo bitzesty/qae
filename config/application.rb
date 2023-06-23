@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 
 module Qae
   class Application < Rails::Application
+    config.load_defaults 6.1
+
     #initializer :regenerate_require_cache, before: :load_environment_config do
     #  Bootscale.regenerate
     #end

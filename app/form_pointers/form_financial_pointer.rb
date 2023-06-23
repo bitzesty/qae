@@ -13,10 +13,10 @@ class FormFinancialPointer
               :options
 
   TARGET_FINANCIAL_DATA_QUESTION_TYPES = [
-    QAEFormBuilder::ByYearsLabelQuestion,
-    QAEFormBuilder::ByYearsQuestion,
-    QAEFormBuilder::OneOptionByYearsLabelQuestion,
-    QAEFormBuilder::OneOptionByYearsQuestion
+    QaeFormBuilder::ByYearsLabelQuestion,
+    QaeFormBuilder::ByYearsQuestion,
+    QaeFormBuilder::OneOptionByYearsLabelQuestion,
+    QaeFormBuilder::OneOptionByYearsQuestion
   ]
   YEAR_LABELS = %w(day month year)
   IN_PROGRESS = "-"

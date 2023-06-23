@@ -1,6 +1,6 @@
 require "csv"
 
-module Reports::CSVHelper
+module Reports::CsvHelper
   def build
     CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|
       csv << headers
