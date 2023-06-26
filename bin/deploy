@@ -10,7 +10,7 @@ curl -X POST \
 $SLACK_WEBHOOK
 
 # Pin ruby buildpack
-export CF_BUILDPACK="https://github.com/cloudfoundry/ruby-buildpack.git#v1.9.4"
+export CF_BUILDPACK="https://github.com/cloudfoundry/ruby-buildpack.git#v1.10.2"
 
 cf create-app-manifest "$CF_APP"-worker
 cf push -f "$CF_APP"-worker_manifest.yml -b $CF_BUILDPACK
