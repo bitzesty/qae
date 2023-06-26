@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 git_source(:github) { |name| "https://github.com/#{name}.git" }
 
-ruby '~> 2.7.7'
+ruby '~> 3.2.2'
 
-gem 'rails', '6.1.7.3'
+gem 'rails', '7.0.5'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -14,7 +14,7 @@ gem 'rack-ssl-enforcer'
 gem 'pg'
 
 # Track Changes
-gem 'paper_trail', '~> 10.3'
+gem 'paper_trail', '~> 12.2.0'
 gem 'paper_trail-association_tracking'
 
 # Assets & Templates
@@ -30,7 +30,7 @@ gem 'govuk-components'
 gem 'uglifier', '>= 2.7.2'
 gem 'js_cookie_rails', '2.1.4'
 gem 'ckeditor'
-gem 'webpacker', '6.0.0.beta.7'
+gem 'webpacker', '6.0.0.rc.6'
 
 # Autolinking in admin mass user mailer
 gem 'rails_autolink'
@@ -38,7 +38,6 @@ gem 'rails_autolink'
 # Decorators & Exposing named methods
 gem 'draper', '~> 4.0'
 gem 'decent_exposure'
-gem 'decent_decoration'
 
 gem 'hashie', '~> 3.5'
 
@@ -49,7 +48,7 @@ gem 'responders', '~> 3.0'
 gem 'rails-html-sanitizer', '~> 1.4.4'
 
 # JSON
-gem 'json', '2.3.0'
+gem 'json'
 gem 'jbuilder', '~> 2.10.1'
 gem 'gon', '>= 6.4.0'
 
