@@ -232,6 +232,10 @@ class Reports::FormAnswer
     obj.state.humanize
   end
 
+  def empty_column
+    ""
+  end
+
   def po_sd_provided_actual_figures?
     %w[mobility development].include?(obj.award_type) && obj.document["product_estimated_figures"] == "no"
   end

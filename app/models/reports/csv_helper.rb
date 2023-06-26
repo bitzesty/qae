@@ -55,11 +55,11 @@ module Reports::CSVHelper
 
   private
 
-    def headers
-      mapping.map { |m| m[:label] }
-    end
+  def headers
+    mapping.map { |m| m[:label] }
+  end
 
-    def sanitize_string(string)
-      string.present? ? string.to_s.tr("\n","").squish : ""
-    end
+  def sanitize_string(string)
+    string.present? ? string.to_s.tr("\n","").squish : ""
+  end
 end
