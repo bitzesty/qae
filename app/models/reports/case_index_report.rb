@@ -44,18 +44,14 @@ class Reports::CaseIndexReport
     }
   ]
 
-  def initialize(year)
+  def initialize(year, options = {})
     @year = year
+    @category = options[:category]
+    @years_mode = options[:years_mode]
   end
 
   def build
     prepare_response(scoped_collection)
-  end
-
-  def build_for_lead(current_subject)
-    scoped = scoped_collection.where(award_type: current_subject.categories_as_lead)
-
-    prepare_response(scoped)
   end
 
   def stream
@@ -65,8 +61,18 @@ class Reports::CaseIndexReport
   private
 
   def scoped_collection
-    @year.form_answers.submitted
-                      .order(:sic_code)
+    scope = @year.form_answers
+      .shortlisted
+      .where(award_type: @category)
+      .order(:sic_code)
+
+    if @category == "trade"
+      years_mode_query = @years_mode.to_s == '3' ? '3 to 5' : '6 plus'
+
+      scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode_query}'")
+    end
+
+    scope
   end
 
   def mapping
