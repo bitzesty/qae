@@ -1,5 +1,5 @@
 class Reports::CaseIndexReport
-  include Reports::CSVHelper
+  include Reports::CsvHelper
 
   MAPPING = [
     {

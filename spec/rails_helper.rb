@@ -6,14 +6,11 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require "shoulda/matchers"
-# require "webmock/rspec"
+require 'webmock/rspec'
 require "simplecov"
 require "codeclimate-test-reporter"
-#
-# WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
-# WebMock.allow_net_connect!(net_http_connect_on_start: true)
-#
 
+WebMock.disable_net_connect!(allow: Capybara.server_host, allow_localhost: true)
 
 SimpleCov.add_filter "vendor"
 
@@ -88,18 +85,6 @@ RSpec.configure do |config|
   FactoryBot.use_parent_strategy = false
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
-
-  # config.before :each do
-  #   # SENDGRID RELATED STUBS - BEGIN
-  #   stub_request(:get, "https://sendgrid.com/api/spamreports.get.json?api_key=test_smtp_password&api_user=test_smtp_username&email=test@example.com").
-  #     to_return(status: 200, body: "", headers: {})
-  #
-  #   stub_sendgrid_bounced_emails_check_request("test@irrelevant.com")
-  #   stub_sendgrid_bounced_emails_check_request("test@example.com")
-  #   # SENDGRID RELATED STUBS - END
-  #
-  #   AwardYear.current
-  # end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

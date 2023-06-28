@@ -189,6 +189,6 @@ group :test do
   gem 'codeclimate_circle_ci_coverage'
   gem 'rspec_junit_formatter', '0.2.3'
   gem 'timecop'
-  gem 'webmock', '3.5.0'
+  gem 'webmock', '3.18.1'
   gem 'rspec-sidekiq'
 end
