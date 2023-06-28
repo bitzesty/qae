@@ -51,6 +51,16 @@ describe Reports::AdminReport do
         expect(data).to include(form_answer.urn)
       end
     end
+
+    describe "case index report" do
+      let(:id) { "case-index" }
+      before { create_test_forms }
+
+      it "generates the CSV" do
+        data = normalize_output(subject)
+        expect(data).to include(form_answer.urn)
+      end
+    end
   end
 end
 

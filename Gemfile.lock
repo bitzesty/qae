@@ -489,6 +489,7 @@ GEM
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     minitest (5.18.1)
+    mini_portile2 (2.8.2)
     money (6.16.0)
       i18n (>= 0.6.4, <= 2)
     multi_json (1.15.0)
@@ -844,6 +845,7 @@ GEM
     zxcvbn (0.1.9)
 
 PLATFORMS
+  ruby
   arm64-darwin-21
   x86_64-darwin-21
   x86_64-linux

@@ -15,6 +15,8 @@ class Reports::AdminReport
       Reports::PressBookList.new(year).stream
     when "cases-status"
       Reports::CasesStatusReport.new(year).stream
+    when "case-index"
+      Reports::CaseIndexReport.new(year).stream
     when "entries-report"
       Reports::AllEntries.new(year).stream
     when "discrepancies_between_primary_and_secondary_appraisals"
@@ -27,6 +29,22 @@ class Reports::AdminReport
       else
         raise ArgumentError, "Invalid category"
       end
+    end
+  end
+
+  def csv_filename
+    sub_type = ""
+    if category == "trade" &&
+       id == "case-index" &&
+       year.year != 2016
+       # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+      sub_type = "_#{params[:years_mode]}"
+    end
+
+    case id
+    when "case-index"
+      time = Time.zone.now.strftime("%e_%b_%Y_at_%-l:%M%P")
+      "#{::FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award#{sub_type}_#{id}_#{time}.csv"
     end
   end
 
