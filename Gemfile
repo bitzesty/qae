@@ -126,7 +126,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '~> 4.3.12'
+gem 'puma', '~> 6.3.0'
 
 # Performance & Error reporting
 gem 'appsignal'
@@ -179,7 +179,7 @@ end
 
 group :test do
   gem 'factory_bot_rails'
-  gem 'capybara', '3.39.2'
+  gem 'capybara', '~> 3.39.0'
   gem 'poltergeist'
   gem 'database_cleaner-active_record'
   gem 'launchy'

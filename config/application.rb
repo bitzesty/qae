@@ -46,7 +46,8 @@ module Qae
     # config.enable_dependency_loading = true
 
     # config.add_autoload_paths_to_load_path=false
-    # config.eager_load = false
+    config.eager_load = false
+
     config.autoload_once_paths << "#{root}/lib"
     config.autoload_paths << "#{root}/lib"
     config.eager_load_paths << "#{root}/lib"
