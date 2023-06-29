@@ -16,7 +16,7 @@ class Reports::AdminReport
     when "cases-status"
       Reports::CasesStatusReport.new(year).stream
     when "case-index"
-      Reports::CaseIndexReport.new(year).stream
+      Reports::CaseIndexReport.new(year, category: category, years_mode: params[:years_mode]).stream
     when "entries-report"
       Reports::AllEntries.new(year).stream
     when "discrepancies_between_primary_and_secondary_appraisals"
