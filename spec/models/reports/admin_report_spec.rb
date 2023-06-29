@@ -53,8 +53,10 @@ describe Reports::AdminReport do
     end
 
     describe "case index report" do
+      subject { described_class.new(id, AwardYear.current, category: "mobility") }
+
       let(:id) { "case-index" }
-      before { create_test_forms }
+      before { create(:form_answer, :mobility, :recommended) }
 
       it "generates the CSV" do
         data = normalize_output(subject)
