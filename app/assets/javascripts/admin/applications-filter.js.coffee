@@ -5,6 +5,13 @@ ready = ->
   $(document).on "keydown", (e) ->
     return unless $(".dropdown.open").length > 0
 
+    if e.keyCode == 40 || e.keyCode == 38
+      e.preventDefault()
+      e.stopPropagation()
+
+  $(document).on "keyup", (e) ->
+    return unless $(".dropdown.open").length > 0
+
     select = $(".dropdown.open").first()
 
     if e.keyCode == 40
@@ -16,6 +23,10 @@ ready = ->
       else
         element = $(".dropdown-menu li.checkbox input:focus", select).closest("li")
         next_element = element.next()
+
+        if next_element.hasClass("divider")
+          next_element = next_element.next()
+
         $("input", next_element).focus()
 
     if e.keyCode == 38
@@ -27,6 +38,10 @@ ready = ->
       else
         element = $(".dropdown-menu li.checkbox input:focus", select).closest("li")
         prev_element = element.prev()
+
+        if prev_element.hasClass("divider")
+          prev_element = prev_element.prev()
+
         $("input", prev_element).focus()
 
 filterApplicationsDropdowns = () ->
