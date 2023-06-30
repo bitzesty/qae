@@ -1,0 +1,11 @@
+h3
+  ' Case Indexes
+ul.download-list
+  - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
+    - next if key.to_s == "promotion" && hide_promotion?
+
+    - if key == "trade" && @award_year.year != 2016
+      = render 'admin/dashboard/downloads/case_index_link', key: key, value: value, years_mode: 3
+      = render 'admin/dashboard/downloads/case_index_link', key: key, value: value, years_mode: 6
+    - else
+      = render 'admin/dashboard/downloads/case_index_link', key: key, value: value
