@@ -106,6 +106,9 @@
 
     &.email-example {
       max-width: none;
+      a {
+        text-decoration: underline;
+      }
     }
 
     h3 {
