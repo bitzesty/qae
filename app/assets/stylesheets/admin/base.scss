@@ -341,6 +341,16 @@ table .ellipsis {
   clear: both;
 }
 
+.question-group h2 {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
+
+  label {
+    font-weight: bold;
+  }
+}
+
 .question-group h3 {
   font-size: 18px;
   font-weight: bold;
