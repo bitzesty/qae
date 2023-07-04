@@ -4,7 +4,7 @@
 .well.question-group.notification-new-form
   h3 Schedule new email
   = simple_form_for notification, url: admin_settings_email_notifications_path(year: params[:year]), remote: true, authenticity_token: true, html: { id: "new_email_notification_#{kind}" }  do |f|
-    = f.input :kind, as: :hidden
+    = f.input :kind, as: :hidden, input_html: { id: "email_notification_kind_#{kind}" }
     .control-date
       .form-group
         label.control-label Send at
