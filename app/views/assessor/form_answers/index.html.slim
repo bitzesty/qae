@@ -6,10 +6,8 @@ h1.admin-page-heading
   .row
     .col-md-4.col-sm-5.col-xs-12
       .form-group.search-input
-        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden", aria: { label: "Search applications" }
-        label for="award_type" class="visuallyhidden"
-          ' Award type
-        = text_field_tag :award_type, params[:award_type], class: "visuallyhidden"
+        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden", aria: { hidden: true }, id: "award_year", tabindex: "-1"
+        = text_field_tag :award_type, params[:award_type], class: "visuallyhidden", aria: { hidden: true }, tabindex: "-1"
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search", aria: {label: 'Search applications'} }
         = submit_tag :submit, class: 'search-submit'
 
@@ -32,7 +30,7 @@ h1.admin-page-heading
 - # this bulk assignment form breaks the flow of the sorting + filtering forms, as the form needs to do a update somewhere else than the forms above and below. So you'll see some duplication of fields. Commented on them so no one removes them by accident
 = render("assessor/form_answers/bulk_assignment")
 
-= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
+= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form', id: 'application_table_search_form' } do |f|
   = hidden_field_tag :award_type, category_picker.current_award_type
   label for="year" class="visuallyhidden"
     ' Award year
