@@ -30,4 +30,6 @@ $(document).ready(() ->
   ($ ".timepicker").timePicker()
   ($ ".datepicker").datepicker({dateFormat: "dd/mm/yy"})
   ($ "select.select2").select2({width: "style"})
+  $("#assessor_assignment_collection_primary_assessor_id").next("span").find("span.select2-selection--single").attr("title", "Select a primary assessor")
+  $("#assessor_assignment_collection_secondary_assessor_id").next("span").find("span.select2-selection--single").attr("title", "Select a secondary assessor")
 )
