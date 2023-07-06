@@ -1,11 +1,12 @@
 .dashboard-table__wrapper.dashboard-report
+  a.btn.btn-primary.btn--load.update-report href=url aria-label="Load #{title} data"
+    | Load data
+  button.btn.btn-primary.btn--loading.updating-data.hidden aria-label="Updating #{title} data"
+    | Updating data
+
   table.dashboard-table.dashboard-table--small width="1000"
     caption
       = title
-      a.btn.btn-primary.btn--load.update-report href=url aria-label="Load #{title} data"
-        | Load data
-      button.btn.btn-primary.btn--loading.updating-data.hidden aria-label="Updating #{title} data"
-        | Updating data
     = render "admin/dashboard/totals_#{kind}/table_head"
 
     tbody
