@@ -693,6 +693,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 }
 
+.btn-danger {
+  background-color: $red !important;
+}
+
 // Icons
 .icon-comment,
 .icon-flagged,
