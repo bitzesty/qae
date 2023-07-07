@@ -641,28 +641,6 @@
     margin-left: 10px;
   }
 
-  .form-group {
-    position: relative;
-    padding-left: 26em;
-
-    @include screen-sm-max {
-      padding-left: 0;
-    }
-  }
-
-  .control-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 26em;
-
-    @include screen-sm-max {
-      position: relative;
-      width: auto;
-      float: none;
-    }
-  }
-
   .select2-container {
     width: 100% !important;
   }
