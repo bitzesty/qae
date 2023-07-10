@@ -3,7 +3,7 @@
             authenticity_token: true,
             class: "submit-assessment")
 
-    = hidden_field_tag :assessment_id, assessment.id
+    = hidden_field_tag :assessment_id, assessment.id, id: "#{assessment.position}_assessment_id_submit_appraisal_form_hidden_field"
 
     .feedback-holder
 
@@ -18,7 +18,7 @@
     - unlock_url = namespace_name == :admin ? unlock_admin_assessment_submission_url(assessment) : unlock_assessor_assessment_submission_url(assessment)
 
     = form_tag unlock_url, method: :patch do
-      = hidden_field_tag :assessment_id, assessment.id
+      = hidden_field_tag :assessment_id, assessment.id, id: "#{assessment.position}_assessment_id_unlock_appraisal_form_hidden_field"
       .feedback-holder.alert.alert-success
         ' Assessment submitted
 
