@@ -2,7 +2,7 @@
   label
     ' Add a comment
   = f.hidden_field :section
-  = f.text_area :body, class: 'form-control', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.section}-new-comment"
+  = f.text_area :body, id: "#{f.object.section}_comment_body", class: 'form-control', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.section}-new-comment"
   .comment-actions
     = f.check_box :flagged
     = link_to "#flag-comment", class: "link-flag-comment js-link-flag-comment"
