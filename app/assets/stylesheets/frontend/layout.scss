@@ -628,6 +628,7 @@ header.page-header aside .inner {
     &.sidebar-helpline {
       a {
         text-decoration: underline;
+        overflow-wrap: break-word;
       }
     }
   }
