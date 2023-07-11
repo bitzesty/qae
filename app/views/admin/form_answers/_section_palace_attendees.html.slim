@@ -1,11 +1,11 @@
 - if @form_answer.palace_invite.present?
   - palace_invite = @form_answer.palace_invite
   .panel.panel-default
-    .panel-heading#palace-attendees-heading role="tab"
+    .panel-heading#palace-attendees-heading
       h4.panel-title
         a data-toggle="collapse" data-parent="#panel-winners" href="#section-palace-attendees" aria-expanded="true" aria-controls="section-palace-attendees"
           ' Palace Attendees
-    #section-palace-attendees.section-palace-attendees.panel-collapse.collapse role="tabpanel" aria-labelledby="palace-attendees-heading"
+    #section-palace-attendees.section-palace-attendees.panel-collapse.collapse aria-labelledby="palace-attendees-heading"
       .panel-body.if-no-js-hide
         - palace_invite.palace_attendees.build if palace_invite.palace_attendees.blank?
         - palace_invite.palace_attendees.each_with_index do |pa, index|

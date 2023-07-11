@@ -1,26 +1,26 @@
 - title "Admin: Application #{@form_answer.urn.presence}"
 
-.panel-group#submitted-application-parent-parent role="tablist" aria-multiselectable="true"
+.panel-group#submitted-application-parent-parent
   .panel.panel-default.panel-parent
-    .panel-heading#application-info-heading role="tab"
+    .panel-heading#application-info-heading
       h4.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-application-info" aria-expanded="true" aria-controls="section-application-info"
           ' Application info
-    #section-application-info.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-info-heading"
+    #section-application-info.section-application-info.panel-collapse.collapse.in aria-labelledby="application-info-heading"
       .panel-body
-        .panel-group#panel-application-info-parent role="tablist" aria-multiselectable="true"
+        .panel-group#panel-application-info-parent
           = render "section_admin_comments"
           = render "section_company_details"
           = render "section_financial_summary"
 
   .panel.panel-default.panel-parent
-    .panel-heading#assessment-heading role="tab"
+    .panel-heading#assessment-heading
       h4.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-assessment" aria-expanded="true" aria-controls="section-assessment"
           ' Assessment
-    #section-assessment.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="assessment-heading"
+    #section-assessment.section-application-info.panel-collapse.collapse.in aria-labelledby="assessment-heading"
       .panel-body
-        .panel-group#panel-assessment-parent role="tablist" aria-multiselectable="true"
+        .panel-group#panel-assessment-parent
           = render "section_critical_comments"
           = render "section_draft_notes"
           = render "admin/form_answers/section_appraisal_form_primary"
@@ -32,7 +32,7 @@
 
   - if show_feedback_section?
     .panel.panel-default.panel-parent
-      .panel-heading#feedback-heading role="tab"
+      .panel-heading#feedback-heading
         h4.panel-title
           a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
             ' Feedback (for not recommended applications only)
@@ -43,30 +43,30 @@
             - if @form_answer.feedback_updated_by
               small
                 = @form_answer.feedback_updated_by
-      #section-feedback.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="feedback-heading"
+      #section-feedback.section-application-info.panel-collapse.collapse aria-labelledby="feedback-heading"
         .panel-body
           = render "admin/feedbacks/section", form_answer: @form_answer
 
   - if show_winners_section?
     .panel.panel-default.panel-parent
-      .panel-heading#winners-heading role="tab"
+      .panel-heading#winners-heading
         h4.panel-title
           a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-winners" aria-expanded="true" aria-controls="section-winners"
             ' Recipients
-      #section-winners.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="winners-heading"
+      #section-winners.section-application-info.panel-collapse.collapse.in aria-labelledby="winners-heading"
         .panel-body
-          .panel-group#panel-winners-parent role="tablist" aria-multiselectable="true"
+          .panel-group#panel-winners-parent
             - if show_press_summary_subsection?
               = render "section_press_summary"
             - if show_palace_attendees_subsection?
               = render "section_palace_attendees"
 
   .panel.panel-default.panel-parent
-    .panel-heading#logs-heading role="tab"
+    .panel-heading#logs-heading
       h4.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-logs" aria-expanded="true" aria-controls="section-logs"
           ' Application Audit Log
-    #section-logs.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="logs-heading"
+    #section-logs.section-application-info.panel-collapse.collapse aria-labelledby="logs-heading"
       .panel-body
         - @audit_events.reverse.each do |log|
           p = log.to_s

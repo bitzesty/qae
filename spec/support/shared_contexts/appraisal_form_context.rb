@@ -30,9 +30,9 @@ shared_context "successful appraisal form edition" do
 
     context "multiple descriptions change" do
       it "updates the form in separation" do
-        assert_multiple_description_change(primary, primary_header)
-        assert_multiple_description_change(secondary, secondary_header)
-        assert_multiple_description_change(moderated, moderated_header)
+        assert_multiple_description_change(primary, primary_header, "primary")
+        assert_multiple_description_change(secondary, secondary_header, "secondary")
+        assert_multiple_description_change(moderated, moderated_header, "moderated")
       end
     end
   end
@@ -106,7 +106,7 @@ def assert_description_change(section_id, header_id)
   within section_id do
     within ".#{selector}" do
       expect(page).to have_selector("textarea", count: 1)
-      fill_in(selector, with: text)
+      find("textarea").fill_in(with: text)
     end
     within parent_selector do
       find(".form-save-link").click
@@ -127,18 +127,14 @@ def assert_description_change(section_id, header_id)
   visit show_path
 end
 
-def assert_multiple_description_change(section_id, header_id)
+def assert_multiple_description_change(section_id, header_id, prefix)
   text = "should NOT be saved"
   text2 = "should be saved"
   find("#{header_id} .panel-title a").click
   take_a_nap
 
   within section_id do
-    unless section_id == moderated
-      fill_in("assessor_assignment_level_of_innovation_desc", with: text)
-    end
-
-    fill_in("assessor_assignment_verdict_desc", with: text2)
+    fill_in("#{prefix}_verdict", with: text2)
     all(".form-save-link").last.click
     wait_for_ajax
   end
@@ -152,7 +148,7 @@ def assert_multiple_description_change(section_id, header_id)
 
     all(".form-edit-link").last.click
 
-    expect(page.find("#assessor_assignment_verdict_desc").text).to eq  text2
+    expect(page.find("##{prefix}_verdict").text).to eq  text2
   end
 end
 

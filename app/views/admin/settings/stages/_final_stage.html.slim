@@ -1,10 +1,10 @@
 .panel.panel-default.panel-parent
-  .panel-heading role="tab" id="final-stage-header"
+  .panel-heading id="final-stage-header"
     h2.panel-title
       a.collapsed data-toggle="collapse" data-parent="#admin-settings" href="#final-stage" aria-expanded="false" aria-controls="final-stage"
         ' Final Stage
-  #final-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-header"
+  #final-stage.panel-collapse.collapse.in aria-labelledby="final-stage-header"
     .panel-body
-      .panel-group#panel-final-stage-parent role="tablist" aria-multiselectable="true"
+      .panel-group#panel-final-stage-parent
         = render "admin/settings/deadlines/final_stage_deadlines"
         = render "admin/settings/deadlines/final_stage_email_notifications"

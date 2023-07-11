@@ -1,9 +1,9 @@
 .panel.panel-default
-  .panel-heading#application-submission-stage-deadlines-heading role="tab"
+  .panel-heading#application-submission-stage-deadlines-heading
     h3.panel-title
       a data-toggle="collapse" data-parent="#panel-application-submission-stage" href="#section-application-submission-stage-deadlines" aria-expanded="true" aria-controls="section-application-submission-stage-deadlines"
         ' Deadlines
-  #section-application-submission-stage-deadlines.section-appraisal-form.section-application-submission-stage-deadlines.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-submission-stage-deadlines-heading"
+  #section-application-submission-stage-deadlines.section-appraisal-form.section-application-submission-stage-deadlines.panel-collapse.collapse.in aria-labelledby="application-submission-stage-deadlines-heading"
     .panel-body
       ul
         li = render 'deadline_form', kind: 'innovation_submission_start'
