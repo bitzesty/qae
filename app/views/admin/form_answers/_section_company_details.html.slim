@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading#company-details-heading role="tab"
+  .panel-heading#company-details-heading
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details"
         = @form_answer.promotion? ? "Nominee Details" : "Company Details"
@@ -8,7 +8,7 @@
             = "Updated by: #{resource.company_details_editable.decorate.full_name} - #{format_date(resource.company_details_updated_at)}"
 
 
-  #section-company-details.section-company-details.panel-collapse.collapse role="tabpanel" aria-labelledby="company-details-heading"
+  #section-company-details.section-company-details.panel-collapse.collapse aria-labelledby="company-details-heading"
     .panel-body.company-details-forms
       = render "admin/form_answers/company_details/company_name_form"
       = render "admin/form_answers/company_details/organisation_type_form"

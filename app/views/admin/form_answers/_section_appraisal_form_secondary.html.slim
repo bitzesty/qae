@@ -1,12 +1,12 @@
 .panel.panel-default
-  .panel-heading#appraisal-form-secondary-heading role="tab"
+  .panel-heading#appraisal-form-secondary-heading
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-secondary" aria-expanded="true" aria-controls="section-appraisal-form-secondary"
         ' Appraisal Form (Secondary)
         - if secondary_assessment.last_editor_info.present?
           small
             = secondary_assessment.last_editor_info
-  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse role="tabpanel" aria-labelledby="appraisal-form-secondary-heading"
+  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse aria-labelledby="appraisal-form-secondary-heading"
     .panel-body
 
       = simple_form_for([namespace_name, secondary_assessment],
