@@ -1,11 +1,11 @@
 .panel.panel-default
-  .panel-heading#press-summary-heading role="tab"
+  .panel-heading#press-summary-heading
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-winners" href="#section-press-summary" aria-expanded="true" aria-controls="section-press-summary"
         ' Press Book Notes
         small.updated-by
           - if @form_answer.press_summary_updated_by
             = @form_answer.press_summary_updated_by
-  #section-press-summary.section-press-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="press-summary-heading"
+  #section-press-summary.section-press-summary.panel-collapse.collapse aria-labelledby="press-summary-heading"
     .panel-body
       = render "admin/press_summaries/section", form_answer: @form_answer
