@@ -1,9 +1,9 @@
 .panel.panel-default
-  .panel-heading#registration-stage-deadlines-heading role="tab"
+  .panel-heading#registration-stage-deadlines-heading
     h3.panel-title
       a data-toggle="collapse" data-parent="#panel-registration-stage" href="#section-registration-stage-deadlines" aria-expanded="true" aria-controls="section-registration-stage-deadlines"
         ' Deadlines
-  #section-registration-stage-deadlines.section-appraisal-form.section-registration-stage-deadlines.panel-collapse.collapse.in role="tabpanel" aria-labelledby="registration-stage-deadlines-heading"
+  #section-registration-stage-deadlines.section-appraisal-form.section-registration-stage-deadlines.panel-collapse.collapse.in aria-labelledby="registration-stage-deadlines-heading"
     .panel-body
       ul
         li = render 'deadline_form', kind: 'award_year_switch'
