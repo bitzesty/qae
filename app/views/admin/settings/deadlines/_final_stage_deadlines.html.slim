@@ -1,9 +1,9 @@
 .panel.panel-default
-  .panel-heading#shortlisted-stage-deadlines-heading role="tab"
+  .panel-heading#shortlisted-stage-deadlines-heading
     h3.panel-title
       a data-toggle="collapse" data-parent="#panel-shortlisted-stage" href="#section-shortlisted-stage-deadlines" aria-expanded="true" aria-controls="section-shortlisted-stage-deadlines"
         ' Deadlines
-  #section-shortlisted-stage-deadlines.section-appraisal-form.section-shortlisted-stage-deadlines.panel-collapse.collapse.in role="tabpanel" aria-labelledby="shortlisted-stage-deadlines-heading"
+  #section-shortlisted-stage-deadlines.section-appraisal-form.section-shortlisted-stage-deadlines.panel-collapse.collapse.in aria-labelledby="shortlisted-stage-deadlines-heading"
     .panel-body
       ul
         li = render 'deadline_form', kind: 'buckingham_palace_attendees_details'
