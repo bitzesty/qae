@@ -6,9 +6,10 @@
     .form-group.sic-code class="#{'form-edit' if @form_answer.sic_code.blank?}"
       = simple_form_for [namespace_name, @form_answer],
                         remote: true,
-                        authenticity_token: true do |f|
+                        authenticity_token: true,
+                        html: { "data-type" => "html", id: "sic_code_form_admin_appraisal" } do |f|
 
-        = hidden_field_tag :section, "sic_code"
+        = hidden_field_tag :section, "sic_code", id: "section_sic_code_hidden_field"
 
         .form-container
           label.form-label SIC code
