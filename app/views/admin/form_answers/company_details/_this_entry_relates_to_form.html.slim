@@ -5,8 +5,8 @@
     .form-group class="#{'form-edit' if @form_answer.this_entry_relates_to.blank?}"
       = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true, html: { "data-type" => "html" } do |f|
-        = hidden_field_tag :section, "this_entry_relates_to"
+                        authenticity_token: true, html: { "data-type" => "html", id: "this_entry_relates_to_form_admin_apprraisal" } do |f|
+        = hidden_field_tag :section, "this_entry_relates_to", id: "section_this_entry_relates_to_hidden_field"
 
         .form-container
           label.form-label = title

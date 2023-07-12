@@ -2,7 +2,7 @@
   = simple_form_for [namespace_name, resource],
                     remote: true,
                     authenticity_token: true, html: { "data-type" => "html" } do |f|
-    = hidden_field_tag :section, "parent_company"
+    = hidden_field_tag :section, "parent_company", id: "section_parent_company_hidden_field"
 
     .form-container
       = render "admin/form_answers/company_details/parent_company/show"
