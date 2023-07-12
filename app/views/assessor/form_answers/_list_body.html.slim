@@ -2,7 +2,7 @@ tbody
   - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
     tr
       - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
-        td = check_box_tag :check, obj.id, false, class: "form-answer-check", aria: { label: "Select nomination #{obj.id} for bulk action" }
+        td = check_box_tag :check, obj.id, false, class: "form-answer-check", id: "check_nominiation_#{obj.id}", aria: { label: "Select nomination #{obj.id} for bulk action" }
 
       td.td-title
         - unless obj.company_or_nominee_name.nil?
