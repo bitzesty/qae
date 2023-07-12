@@ -2,7 +2,7 @@
   - visible_case_summaries(current_subject, resource).each do |assessment_obj|
     - assessment = assessment_obj.assessment
     .panel.panel-parent
-      .panel-heading role="tab" id="case-summary-heading-#{assessment.position}"
+      .panel-heading id="case-summary-heading-#{assessment.position}"
         h4.panel-title
           a data-toggle="collapse" href="#section-case-summary-#{assessment.position}" aria-expanded="true" aria-controls="section-case-summary-#{assessment.position}"
             ' Case Summary (for recommended or reserved applications only)
@@ -11,7 +11,7 @@
             - if assessment.editable.present?
               small
                 = "Updated by #{message_author_name(assessment.editable)} - #{format_date(assessment.updated_at)}"
-      .panel-collapse.collapse role="tabpanel" aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}"
+      .panel-collapse.collapse aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}"
 
         .panel-body
           /.alert.alert-glyphicon.alert-info
@@ -27,7 +27,7 @@
             = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
               locals: { f: f}
             = render_section(resource, f)
-            = hidden_field_tag :updated_section
+            = hidden_field_tag :updated_section, nil, id: "updated_section_#{assessment.position}"
             = f.submit "Save changes", class: "if-js-hide btn btn-primary"
 
           .clear

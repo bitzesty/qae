@@ -1,9 +1,9 @@
 = simple_form_for [namespace_name, @form_answer],
                   remote: true,
                   authenticity_token: true,
-                  html: { "data-type" => "html" } do |f|
+                  html: { "data-type" => "html", id: "previous_wins_form" } do |f|
 
-  = hidden_field_tag :section, "previous_wins"
+  = hidden_field_tag :section, "previous_wins", id: "previous_wins_section_hidden_field"
   .form-container
     = render "admin/form_answers/company_details/previous_wins/show"
 

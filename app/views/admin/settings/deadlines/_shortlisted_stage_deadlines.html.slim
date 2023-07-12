@@ -1,9 +1,9 @@
 .panel.panel-default
-  .panel-heading#final-stage-deadlines-heading role="tab"
+  .panel-heading#final-stage-deadlines-heading
     h3.panel-title
       a data-toggle="collapse" data-parent="#panel-final-stage" href="#section-final-stage-deadlines" aria-expanded="true" aria-controls="section-final-stage-deadlines"
         ' Deadlines
-  #section-final-stage-deadlines.section-appraisal-form.section-final-stage-deadlines.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-deadlines-heading"
+  #section-final-stage-deadlines.section-appraisal-form.section-final-stage-deadlines.panel-collapse.collapse.in aria-labelledby="final-stage-deadlines-heading"
     .panel-body
       ul
         li = render 'deadline_form', kind: 'audit_certificates'

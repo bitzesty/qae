@@ -1,13 +1,13 @@
 - @form_answer.draft_note || @form_answer.build_draft_note
 
 .panel.panel-default
-  .panel-heading#draft-notes-heading role="tab"
+  .panel-heading#draft-notes-heading
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-draft-notes" aria-expanded="true" aria-controls="section-draft-notes"
         ' Draft Notes
         - if @form_answer.draft_note.decorate.try(:last_updated_by).present?
           small= @form_answer.draft_note.decorate.try(:last_updated_by)
-  #section-draft-notes.section-draft-notes.panel-collapse.collapse role="tabpanel" aria-labelledby="draft-notes-heading"
+  #section-draft-notes.section-draft-notes.panel-collapse.collapse aria-labelledby="draft-notes-heading"
     .panel-body
       = simple_form_for([namespace_name, @form_answer, @form_answer.draft_note],
                         remote: true,

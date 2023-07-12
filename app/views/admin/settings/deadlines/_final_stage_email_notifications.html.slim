@@ -1,9 +1,9 @@
 .panel.panel-default
-  .panel-heading#final-stage-email-notifications-heading role="tab"
+  .panel-heading#final-stage-email-notifications-heading
     h3.panel-title
       a data-toggle="collapse" data-parent="#panel-final-stage" href="#section-final-stage-email-notifications" aria-expanded="true" aria-controls="section-final-stage-email-notifications"
         ' Email notification
-  #section-final-stage-email-notifications.section-appraisal-form.section-final-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-email-notifications-heading"
+  #section-final-stage-email-notifications.section-appraisal-form.section-final-stage-email-notifications.panel-collapse.collapse.in aria-labelledby="final-stage-email-notifications-heading"
     .panel-body
       = render 'email_notification', kind: 'winners_notification'
       = render 'email_notification', kind: 'winners_head_of_organisation_notification'
