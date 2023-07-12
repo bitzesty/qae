@@ -2,6 +2,7 @@
 
 // Basic
 a {
+  color: $blue-link-colour;
   &:active,
   &:focus {
     outline: none !important;
@@ -568,7 +569,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   display: block;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: $hint;
+  color: $grey-dark;
   font-size: 14px;
 }
 
@@ -691,6 +692,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
       text-align: left;
     }
   }
+}
+
+.btn-danger {
+  background-color: $red !important;
 }
 
 // Icons
@@ -1129,7 +1134,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   small {
     display: block;
     margin-top: 0.25em;
-    color: #777777;
+    color: $grey-dark;
     font-size: 14px;
     text-transform: none;
   }
@@ -1207,7 +1212,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .comment-action {
   display: block;
   margin-top: 10px;
-  color: $grey;
+  color: $grey-dark;
   font-size: 14px;
 
   .divider {
@@ -1230,7 +1235,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   &,
   &:hover,
   &:focus {
-    color: $grey;
+    color: $grey-dark;
   }
 
   .flagged-visible {

@@ -1,10 +1,10 @@
 .panel.panel-default.panel-parent
-  .panel-heading role="tab" id="shortlisted-stage-header"
+  .panel-heading id="shortlisted-stage-header"
     h2.panel-title
       a.collapsed data-toggle="collapse" data-parent="#admin-settings" href="#shortlisted-stage" aria-expanded="false" aria-controls="shortlisted-stage"
         ' Shortlisted Stage
-  #shortlisted-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="shortlisted-stage-header"
+  #shortlisted-stage.panel-collapse.collapse.in aria-labelledby="shortlisted-stage-header"
     .panel-body
-      .panel-group#panel-shortlisted-stage-parent role="tablist" aria-multiselectable="true"
+      .panel-group#panel-shortlisted-stage-parent
         = render "admin/settings/deadlines/shortlisted_stage_deadlines"
         = render "admin/settings/deadlines/shortlisted_stage_email_notifications"

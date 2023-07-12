@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading#appraisal-form-moderated-heading role="tab"
+  .panel-heading#appraisal-form-moderated-heading
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-moderated" aria-expanded="true" aria-controls="section-appraisal-form-moderated"
         ' Appraisal Form (Moderated)
@@ -7,7 +7,7 @@
           small
             = moderated_assessment.last_editor_info
 
-  #section-appraisal-form-moderated.section-appraisal-form.section-appraisal-form-moderated.panel-collapse.collapse role="tabpanel" aria-labelledby="appraisal-form-moderated-heading"
+  #section-appraisal-form-moderated.section-appraisal-form.section-appraisal-form-moderated.panel-collapse.collapse aria-labelledby="appraisal-form-moderated-heading"
     .panel-body
       = simple_form_for([namespace_name, moderated_assessment],
                         remote: true,

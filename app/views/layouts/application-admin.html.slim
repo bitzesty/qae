@@ -50,9 +50,8 @@ html.no-js
                   span.icon-bar
                   span.icon-bar
 
-                = link_to "King's Awards for Enterprise - Admin",
-                          admin_root_path,
-                          class: 'navbar-brand'
+                = link_to admin_root_path, class:'navbar-brand' do
+                  = image_tag 'logo-admin.png', alt: "King's Awards for Enterprise - Admin"
 
               .navbar-collapse.collapse#nav-main-collapse.clearfix
                 ul.nav.navbar-nav

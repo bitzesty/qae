@@ -18,14 +18,14 @@ I want to be able to view, create and destroy the comments per application.
 
   it "adds the comment" do
     within admin_comments do
-      populate_comment_form
+      populate_comment_form("admin")
       expect { click_button "Comment" }.to change { Comment.count }.by(1)
     end
   end
 
   it "deletes the comment" do
     within admin_comments do
-      populate_comment_form
+      populate_comment_form("admin")
       click_button "Comment"
     end
 
@@ -36,7 +36,7 @@ I want to be able to view, create and destroy the comments per application.
 
   it "displays the comments" do
     within admin_comments do
-      populate_comment_form
+      populate_comment_form("admin")
       click_button "Comment"
       visit admin_form_answer_path(form_answer)
     end
@@ -49,7 +49,7 @@ I want to be able to view, create and destroy the comments per application.
         first("#admin-comments-heading a").click
 
         within admin_comments do
-          populate_comment_form
+          populate_comment_form("admin")
           find(".js-link-flag-comment").click
           click_button "Comment"
           expect(page).to have_selector(".comment-flagged", count: 1)
@@ -70,7 +70,7 @@ I want to be able to view, create and destroy the comments per application.
         first("#critical-comments-heading a").click
 
         within critical_comments do
-          populate_comment_form
+          populate_comment_form("critical")
           find(".js-link-flag-comment").click
           click_button "Comment"
 
@@ -84,8 +84,8 @@ I want to be able to view, create and destroy the comments per application.
 
   private
 
-  def populate_comment_form
-    fill_in("comment_body", with: "body")
+  def populate_comment_form(prefix)
+    fill_in("#{prefix}_comment_body", with: "body")
   end
 end
 # TODO: can be added as shared example per assessor

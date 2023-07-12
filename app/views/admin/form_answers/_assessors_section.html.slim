@@ -31,7 +31,8 @@
           .form-fields
             = form.select :assessor_id,
                           available_assessors_for_select,
-                          { include_blank: true }
+                          { include_blank: true },
+                          id: 'assessor_assignment_primary_assessor_id'
 
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
@@ -61,7 +62,10 @@
                    authenticity_token: true do |form|
 
           .form-fields
-            = form.select :assessor_id, available_assessors_for_select, { include_blank: true }
+            = form.select :assessor_id,
+                          available_assessors_for_select,
+                          { include_blank: true },
+                          id: 'assessor_assignment_secondary_assessor_id'
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit

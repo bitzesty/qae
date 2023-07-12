@@ -8,7 +8,7 @@
               as: :select,
               label: false,
               collection: form.options,
-              input_html: { class: "if-js-hide", "data-updated-section" => section.rate }
+              input_html: { class: "if-js-hide", "data-updated-section" => section.rate, id: "#{f.object.position}_#{section.desc}_select" }
 
     label.form-label.form-label-rag
       span.rag_section_label
@@ -36,8 +36,8 @@
       .clear
 
     = f.input section.desc,
-              wrapper_html: { class: 'form-group' },
-              input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200), "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}" },
+              wrapper_html: { class: 'form-group'},
+              input_html: {id: "#{f.object.position}_#{section.desc}_comment", class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200), "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}" },
               as: :text,
               label: false
 

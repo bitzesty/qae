@@ -48,9 +48,8 @@ html.no-js
                   span.icon-bar
                   span.icon-bar
 
-                = link_to "King's Awards for Enterprise - Assessor",
-                          assessor_root_path,
-                          class: 'navbar-brand'
+                = link_to assessor_root_path, class:'navbar-brand' do
+                  = image_tag 'logo-admin.png', alt: "King's Awards for Enterprise - Assessor"
 
               .navbar-collapse.collapse#nav-main-collapse
                 ul.nav.navbar-nav role="tablist"
