@@ -32,23 +32,25 @@ h1.admin-page-heading
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form', id: 'application_table_search_form' } do |f|
   = hidden_field_tag :award_type, category_picker.current_award_type, id: "award_type_application_table_search_form"
-  label for="year" class="visuallyhidden"
+  label for="year" class="visuallyhidden" aria-hidden="true"
     ' Award year
-  = text_field_tag :year, @award_year.year, class: "visuallyhidden"
+  = text_field_tag :year, @award_year.year, class: "visuallyhidden", aria: { hidden: true }
 
   - # status filters need to be here because the filtering is done in the other form above, so in order not to break filtering, we need to duplicate it here
   = f.simple_fields_for [:filters, @search.filters] do |h|
-    = h.label :status, class: "visuallyhidden", for: "status_application_table_search_form"
+    = h.label :status, class: "visuallyhidden", for: "status_application_table_search_form", aria: { hidden: true }
     = h.input :status,
               collection: FormAnswerStatus::AssessorFilter.options,
               label: false,
-              input_html: { multiple: true, class: 'visuallyhidden', id: 'status_application_table_search_form' }
+              input_html: { multiple: true, class: 'visuallyhidden', id: 'status_application_table_search_form' },
+              aria: { hidden: true }
 
-    = h.label :sub_status, class: "visuallyhidden", for: "sub_status_application_table_search_form"
+    = h.label :sub_status, class: "visuallyhidden", for: "sub_status_application_table_search_form", aria: { hidden: true }
     = h.input :sub_status,
               collection: FormAnswerStatus::AssessorFilter.sub_options(current_assessor),
               label: false,
-              input_html: { multiple: true, class: 'visuallyhidden', id: 'sub_status_application_table_search_form'}
+              input_html: { multiple: true, class: 'visuallyhidden', id: 'sub_status_application_table_search_form'},
+              aria: { hidden: true }
 
   .row
     .col-xs-12
