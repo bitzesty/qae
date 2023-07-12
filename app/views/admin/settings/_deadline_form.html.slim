@@ -18,11 +18,11 @@
                     input_html: { id: '' }
 
           .control-action
-            = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide"
+            = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button"
             input type="button" value="Save" class="btn btn-primary btn-submit" aria-label="Save #{I18n.t("deadline_buttons.#{kind}")}"
         .clear
 
-    = link_to "Edit", "#", class: "edit-deadline if-no-js-hide", aria: {label: "Edit #{I18n.t("deadline_buttons.#{kind}")}"}
+    = link_to "Edit", "#", class: "edit-deadline if-no-js-hide", role: "button", aria: {label: "Edit #{I18n.t("deadline_buttons.#{kind}")}"}
 
     span.deadline-help
       - if deadline.help_message.present?

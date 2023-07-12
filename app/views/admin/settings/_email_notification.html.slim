@@ -12,12 +12,12 @@
             = help_message
 
   p
-    = link_to "View email example", "#", class: "link-email-example if-no-js-hide", aria: {label: "View #{I18n.t("email_buttons.#{kind}")} example"}
+    = link_to "View email example", "#", class: "link-email-example if-no-js-hide", role: "button", aria: {label: "View #{I18n.t("email_buttons.#{kind}")} example"}
 
   .email-example.well
     = MailRenderer.new.public_send(kind)
 
-  = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule if-no-js-hide", aria: {label: "Schedule #{I18n.t("email_buttons.#{kind}")}"}
+  = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule if-no-js-hide", role: "button", aria: {label: "Schedule #{I18n.t("email_buttons.#{kind}")}"}
 
   .notification-form
     = render "schedule_new", notification: @settings.email_notifications.build(kind: kind), kind: kind
