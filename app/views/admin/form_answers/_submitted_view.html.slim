@@ -3,7 +3,7 @@
 .panel-group#submitted-application-parent-parent
   .panel.panel-default.panel-parent
     .panel-heading#application-info-heading
-      h4.panel-title
+      h2.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-application-info" aria-expanded="true" aria-controls="section-application-info"
           ' Application info
     #section-application-info.section-application-info.panel-collapse.collapse.in aria-labelledby="application-info-heading"
@@ -15,7 +15,7 @@
 
   .panel.panel-default.panel-parent
     .panel-heading#assessment-heading
-      h4.panel-title
+      h2.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-assessment" aria-expanded="true" aria-controls="section-assessment"
           ' Assessment
     #section-assessment.section-application-info.panel-collapse.collapse.in aria-labelledby="assessment-heading"
@@ -33,7 +33,7 @@
   - if show_feedback_section?
     .panel.panel-default.panel-parent
       .panel-heading#feedback-heading
-        h4.panel-title
+        h2.panel-title
           a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
             ' Feedback (for not recommended applications only)
             small.panel-subtitle-small
@@ -50,7 +50,7 @@
   - if show_winners_section?
     .panel.panel-default.panel-parent
       .panel-heading#winners-heading
-        h4.panel-title
+        h2.panel-title
           a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-winners" aria-expanded="true" aria-controls="section-winners"
             ' Recipients
       #section-winners.section-application-info.panel-collapse.collapse.in aria-labelledby="winners-heading"
@@ -63,7 +63,7 @@
 
   .panel.panel-default.panel-parent
     .panel-heading#logs-heading
-      h4.panel-title
+      h2.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-logs" aria-expanded="true" aria-controls="section-logs"
           ' Application Audit Log
     #section-logs.section-application-info.panel-collapse.collapse aria-labelledby="logs-heading"

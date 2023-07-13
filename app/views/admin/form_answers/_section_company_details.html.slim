@@ -1,6 +1,6 @@
 .panel.panel-default
   .panel-heading#company-details-heading
-    h4.panel-title
+    h3.panel-title
       a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details"
         = @form_answer.promotion? ? "Nominee Details" : "Company Details"
         - if resource.company_details_updated_at && resource.company_details_editable
