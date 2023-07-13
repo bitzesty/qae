@@ -3,8 +3,8 @@
     .form-group
       = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true, html: { "data-type" => "html" } do |f|
-        = hidden_field_tag :section, "date_trading"
+                        authenticity_token: true, html: { "data-type" => "html", id: "date_trading_form_admin_appraisal" } do |f|
+        = hidden_field_tag :section, "date_trading", id: "section_date_trading_hidden_field"
 
         .form-container
           label.form-label Date started trading

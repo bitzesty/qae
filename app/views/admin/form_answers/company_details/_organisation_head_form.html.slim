@@ -3,8 +3,8 @@
     .form-group
       = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true, html: { "data-type" => "html" } do |f|
-        = hidden_field_tag :section, "organisation_head"
+                        authenticity_token: true, html: { "data-type" => "html", id: "organisation_head_form_admin_appraisal" } do |f|
+        = hidden_field_tag :section, "organisation_head", id: "section_organisation_head_hidden_field"
 
         .form-container
           label.form-label Head of organisation
