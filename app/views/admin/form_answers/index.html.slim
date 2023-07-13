@@ -2,13 +2,15 @@
 
 h1.admin-page-heading
   | Applications
-= simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
+= simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form' } do |f|
   .row
     .col-md-4.col-sm-5.col-xs-12
-      .form-group.search-input
-        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden", aria: { label: "Search applications" }
-        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search", aria: {label: 'Search applications'} }
-        = submit_tag :submit, class: 'search-submit'
+      .applications-filter
+        = f.label :query, "Search", class: "search-input__label"
+        .form-group.search-input
+          = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden", aria: { hidden: true }
+          = f.input :query, label: false, input_html: { class: "form-control", type: "search", aria: { label: 'Search applications' }}
+          = submit_tag :submit, class: 'search-submit'
 
   = render "shared/form_answers/top_statuses_filters", f: f,
                                                        options: FormAnswerStatus::AdminFilter.options,
