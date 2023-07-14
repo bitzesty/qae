@@ -180,6 +180,7 @@ Rails.application.routes.draw do
       resources :audit_certificates, only: [:show, :create]
       resources :commercial_figures_files, only: [:show]
       resources :vat_returns_files, only: [:show]
+      resources :shortlisted_documents_submissions, only: [:create]
 
       resources :feedbacks, only: [:create, :update] do
         member do
@@ -287,6 +288,7 @@ Rails.application.routes.draw do
       end
       resources :commercial_figures_files, only: [:show]
       resources :vat_returns_files, only: [:show]
+      resources :shortlisted_documents_submissions, only: [:create]
 
       resources :feedbacks, only: [:create, :update] do
         member do
