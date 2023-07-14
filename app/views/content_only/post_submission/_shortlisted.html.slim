@@ -65,14 +65,13 @@
                 | Latest financial information
 
               span.award-info.govuk-body
-                - unless award.shortlisted_documents_submitted?
-                  span.pull-right
-                    ' Due by
-                    = application_deadline_short(:audit_certificates)
                 - if award.shortlisted_documents_submitted?
                   span.label-status.label-status-green
                     ' Completed
                 - else
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:audit_certificates)
                   = link_to users_form_answer_figures_and_vat_returns_url(award)
                     span.label-status.label-status-red
                       ' Incomplete
