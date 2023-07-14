@@ -53,7 +53,7 @@ class Admin::FormAnswersController < Admin::BaseController
   def remove_audit_certificate
     authorize @form_answer, :remove_audit_certificate?
 
-    @form_answer.audit_certificate.destroy
+    log_event if @form_answer.audit_certificate.destroy
 
     respond_to do |format|
       format.html do
@@ -88,8 +88,18 @@ class Admin::FormAnswersController < Admin::BaseController
   def resource
     @form_answer ||= load_resource
   end
+  alias_method :form_answer, :resource
 
   def load_versions
     @versions = FormAnswerVersionsDispatcher.new(@form_answer).versions
+  end
+
+  def action_type
+    case action_name
+    when "remove_audit_certificate"
+      "audit_certificate_destroyed"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
+    end
   end
 end
