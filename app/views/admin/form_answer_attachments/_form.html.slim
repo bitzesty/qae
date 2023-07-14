@@ -10,8 +10,6 @@
     - if form.object.errors.any?
       .errors = form.object.errors.full_messages.join(", ")
 
-    ul.list-unstyled
-    p
     .attachment-link.if-js-hide
       = form.file_field :file
 
@@ -24,7 +22,6 @@
             = form.check_box :restricted_to_admin
 
             ' Only admin can view this document
-
 
     .form-actions.text-right
       = link_to "Cancel", "#", class: "btn btn-default btn-cancel"

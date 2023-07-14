@@ -10,8 +10,6 @@
     - if form.object.errors.any?
       .errors = form.object.errors.full_messages.join(", ")
 
-    ul.list-unstyled
-    p
     .attachment-link.if-js-hide
       = form.file_field :attachment
 
