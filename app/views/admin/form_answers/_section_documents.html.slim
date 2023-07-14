@@ -25,15 +25,18 @@
   .sidebar-section
     h2
       ' Post Shortlisting Docs
-    .document-list
-      = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
 
-    - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
-      br
-      .sidebar-section.no-margin-bottom
-        - if @form_answer.requires_vocf?
-          #audit-certificate-form
-            = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate
+    - if @form_answer.requires_vocf?
+      .document-list.space-y-2
+        = render(partial: "admin/form_answers/docs/status", locals: { form_answer: @form_answer })
+        = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
+
+      - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
+        .sidebar-section.no-margin-bottom.space-y-3
+          - if @form_answer.requires_vocf?
+            #audit-certificate-form
+              - audit_certificate = @form_answer.build_audit_certificate
+              = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: audit_certificate 
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section
