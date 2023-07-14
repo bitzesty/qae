@@ -815,7 +815,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   background-size: 18px 16px;
   text-align: left;
   text-indent: -9999px;
-  opacity: 0.3;
+  opacity: 0.8;
   display: inline-block;
 
   @include is-retina {
@@ -1179,6 +1179,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    .btn-default {
+      border-color: #5C5C5C;
     }
   }
 }

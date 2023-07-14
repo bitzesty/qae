@@ -11,3 +11,13 @@
 .has-royal-family-connections-wrapper {
   padding-left: 20px;
 }
+
+input.form-control, select.form-control,
+.input-group-addon, textarea,
+.btn-default, .select2-selection {
+  border-color: #5C5C5C !important;
+}
+
+.input-group-addon {
+  height: 2.42em !important;
+}
