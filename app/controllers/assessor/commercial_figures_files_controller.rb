@@ -1,7 +1,11 @@
 class Assessor::CommercialFiguresFilesController < Assessor::BaseController
   include AdminShortlistedDocsContext
 
-  def file_model_name
-    "commercial_figures_files"
+  def relationship_name
+    :commercial_figures_file
+  end
+
+  def resource_class
+    CommercialFiguresFile
   end
 end
