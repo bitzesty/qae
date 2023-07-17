@@ -7,7 +7,6 @@
 #= require vendor/file_upload/jquery.fileupload
 #= require vendor/file_upload/jquery.fileupload-process
 #= require vendor/file_upload/jquery.fileupload-validate
-#= require select2.full.min
 #= require Countable
 
 # crypt.io: secures browser storage with the SJCL crypto library
@@ -30,7 +29,4 @@ $(document).ready(() ->
   $("html").removeClass("no-js").addClass("js")
   ($ ".timepicker").timePicker()
   ($ ".datepicker").datepicker({dateFormat: "dd/mm/yy"})
-  ($ "select.select2").select2({width: "style"})
-  $("#assessor_assignment_collection_primary_assessor_id").next("span").find("span.select2-selection--single").attr("title", "Select a primary assessor")
-  $("#assessor_assignment_collection_secondary_assessor_id").next("span").find("span.select2-selection--single").attr("title", "Select a secondary assessor")
 )
