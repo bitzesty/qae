@@ -5,7 +5,7 @@ a {
   color: $blue-link-colour;
   text-decoration: underline;
   &:active,
-  &:focus:not(.btn-default) {
+  &:focus:not(.btn-default, [role=tab]) {
     outline: none !important;
     text-decoration: none !important;
     border-bottom-color: $black !important;
