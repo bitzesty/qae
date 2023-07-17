@@ -1,3 +1,6 @@
+FOCUSABLE_ELEMENTS = 'input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href], [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)'
+FOCUSABLE_FORM_ELEMENTS = 'input:not([disabled]), select:not([disabled]), textarea:not([disabled])'
+
 ready = ->
   htmlDecode = (value) ->
     $("<div/>").html(value).text()
@@ -314,9 +317,15 @@ ready = ->
     if $('.form_answer_attachment').length == 0
       sidebarSection.find(".document-list .p-empty").removeClass("visuallyhidden")
 
-  $(document).on "click", ".form-edit-link", (e) ->
+  $(document).on 'click', '.form-edit-link', (e) ->
     e.preventDefault()
-    $(this).closest(".form-group").addClass("form-edit")
+    element = this.closest('.form-group') || this.closest('form')
+
+    if (element)
+      element.classList.add('form-edit')
+      console.log(element, FOCUSABLE_FORM_ELEMENTS)
+      focus(element, FOCUSABLE_FORM_ELEMENTS)
+
   $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
     errors = data.responseJSON
     $(this).addClass("field-with-errors")
@@ -607,3 +616,23 @@ handleRemovingOfAuditCertificate = ->
     return false
 
 $(document).ready(ready)
+
+visible = (el) ->
+  !el.hidden and (!el.type or el.type != 'hidden') and (el.offsetWidth > 0 or el.offsetHeight > 0)
+
+focusable = (el) ->
+  el.tabIndex >= 0 and !el.disabled and visible(el)
+
+focus = (el, elements = FOCUSABLE_ELEMENTS) ->
+  autofocusElement = Array.from(el.querySelectorAll(elements)).filter(focusable)[0]
+  if autofocusElement
+    autofocusElement.focus()
+  return
+
+autofocus = (el) ->
+  autofocusElement = Array.from(el.querySelectorAll('[autofocus]')).filter(focusable)[0]
+  if !autofocusElement
+    autofocusElement = el
+    el.setAttribute('tabindex', '-1')
+  autofocusElement.focus()
+  return
