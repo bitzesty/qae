@@ -17,7 +17,7 @@
         span.glyphicon.glyphicon-file
         = attachment.original_filename
 
-    - elsif attachment.file_scan_results.to_s == "infected"
+    - elsif attachment.attachment_scan_results.to_s == "infected"
       span.glyphicon.glyphicon-file
       = "Failed virus scanner check (#{attachment.original_filename})"
 
