@@ -42,6 +42,11 @@ module PartialsVisibilityHelper
     attachment.uploaded_not_by_user? && policy(attachment).destroy?
   end
 
+  def show_shortlisted_document?(attachment)
+    document = attachment&.shortlisted_documents_wrapper
+    attachment.present? && policy(document).destroy?
+  end
+
   private
 
   def admin_lead_or_primary?

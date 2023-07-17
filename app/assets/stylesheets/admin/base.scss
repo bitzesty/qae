@@ -2119,3 +2119,27 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
   }
 }
+
+.space-x-1 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0.5rem;
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 1rem;
+}
+
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 1.5rem;
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.5rem;
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem;
+}
+
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.5rem;
+}

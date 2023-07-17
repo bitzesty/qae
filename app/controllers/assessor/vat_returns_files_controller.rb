@@ -1,7 +1,11 @@
 class Assessor::VatReturnsFilesController < Assessor::BaseController
   include AdminShortlistedDocsContext
 
-  def file_model_name
-    "vat_returns_files"
+  def relationship_name
+    :vat_returns_files
+  end
+
+  def resource_class
+    VatReturnsFile
   end
 end
