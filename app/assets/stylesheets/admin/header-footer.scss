@@ -254,9 +254,8 @@
 
   // moving down here seems to make it work
   .navbar-brand {
-    padding-top: 14px;
-    padding-bottom: 0;
-    text-align: left;
+    padding: 14px;
+    height: 100%;
     img {
       width: 28px;
       height: 33px;

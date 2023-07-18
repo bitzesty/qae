@@ -14,12 +14,23 @@ a {
   }
 }
 
-.btn, a {
-  &:focus {
+.btn, button, a, [role=menuitem] {
+  &:focus, &:focus-within {
     background-color: $govuk-highlight-yellow !important;
     border-color: $govuk-highlight-yellow;
     color: $black !important;
     outline: none !important;
+  }
+}
+
+.search-submit, input[type=search],
+input[type=text], input[type=tel],
+input[type=email], input[type=password],
+input[type=checkbox], select {
+  &:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 2px;
   }
 }
 
@@ -1451,6 +1462,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
     &:focus {
       border-bottom: none !important;
+
+      small {
+        color: $black !important;
+      }
     }
 
     @include is-retina {

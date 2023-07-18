@@ -1,7 +1,7 @@
 - if visible_case_summaries(current_subject, resource)
   - visible_case_summaries(current_subject, resource).each do |assessment_obj|
     - assessment = assessment_obj.assessment
-    .panel.panel-parent
+    .panel.panel-parent.panel-default
       .panel-heading id="case-summary-heading-#{assessment.position}"
         h3.panel-title
           a data-toggle="collapse" href="#section-case-summary-#{assessment.position}" aria-expanded="true" aria-controls="section-case-summary-#{assessment.position}"
