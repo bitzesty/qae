@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class RegionsQuestionValidator < DropdownQuestionValidator
     def errors
       result = super
@@ -20,7 +20,7 @@ class QAEFormBuilder
 
   class RegionsQuestionDecorator < QuestionDecorator
     def regions
-      ::QAEFormBuilder::AddressQuestionDecorator::REGIONS.sort
+      ::QaeFormBuilder::AddressQuestionDecorator::REGIONS.sort
     end
 
     def entities

@@ -1,6 +1,6 @@
-class QAEFormBuilder
+class QaeFormBuilder
 
-  class QAEDecorator
+  class QaeDecorator
     attr_reader :delegate_obj
 
     def initialize obj, decorator_options = {}
@@ -31,4 +31,4 @@ class QAEFormBuilder
 
   end
 
-end 
+end

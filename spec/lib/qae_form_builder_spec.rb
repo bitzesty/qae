@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe QAEFormBuilder do
+describe QaeFormBuilder do
   subject do
     described_class.build 'Dummy Award' do
       step 'Step1', 'step1', &DummyForm.step1

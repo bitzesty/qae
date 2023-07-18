@@ -1,6 +1,6 @@
 require "csv"
 
-class SICCode < ActiveYaml::Base
+class SicCode < ActiveYaml::Base
   REGEX = /\A\d{4}(\/\d{1})?\z/ # based on the sic codes spreadsheet
 
   set_root_path "#{Rails.root}/db/fixtures"
@@ -52,6 +52,6 @@ class SICCode < ActiveYaml::Base
   end
 
   def self.collection
-    SICCode.all.sort_by(&:code).map { |sic| [sic.name, sic.code] }
+    SicCode.all.sort_by(&:code).map { |sic| [sic.name, sic.code] }
   end
 end

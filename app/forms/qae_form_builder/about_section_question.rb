@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class AboutSectionQuestionValidator < HeaderQuestionValidator
   end
 

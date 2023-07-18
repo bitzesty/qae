@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
-class AwardYears::V2020::QAEForms
+class AwardYears::V2020::QaeForms
   class << self
     def trade_step2
       @trade_step2 ||= proc do
         header :your_internation_trade_header, "" do
           context %(
-            <h3>About this section</h3>  
+            <h3>About this section</h3>
             <p>
-              This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.         
+              This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.
             </p>
             <p>
               Please avoid using technical language in this section.
             </p>
             <h3>Small organisations</h3>
             <p>
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can. 
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
           )
 
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.         
+              This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.
               Please avoid using technical language in this section.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can. 
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )]
           ]
         end

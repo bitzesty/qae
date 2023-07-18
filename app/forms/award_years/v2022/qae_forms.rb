@@ -1,7 +1,7 @@
-require 'award_years/v2022/innovation'
-require 'award_years/v2022/international_trade'
-require 'award_years/v2022/sustainable_development'
-require 'award_years/v2022/social_mobility'
+require_relative 'innovation'
+require_relative 'international_trade'
+require_relative 'sustainable_development'
+require_relative 'social_mobility'
 
-class AwardYears::V2022::QAEForms
+class AwardYears::V2022::QaeForms
 end

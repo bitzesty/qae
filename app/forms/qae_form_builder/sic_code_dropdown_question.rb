@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class SicCodeDropdownQuestionValidator < QuestionValidator
   end
 
@@ -9,7 +9,7 @@ class QAEFormBuilder
     def options
       return @options if @options.any?
 
-      @options = SICCode.collection.map do |text, value|
+      @options = SicCode.collection.map do |text, value|
         QuestionAnswerOption.new(value, text)
       end
     end

@@ -19,7 +19,9 @@ require "qae_form_builder/date_question"
 require "qae_form_builder/year_question"
 require "qae_form_builder/upload_question"
 require "qae_form_builder/options_business_name_changed_question"
-require "qae_form_builder/mobility_application_category_options"
+require "qae_form_builder/mobility_application_category_options_question"
+require "qae_form_builder/mobility_application_category_options_question_validator"
+require "qae_form_builder/mobility_application_category_options_question_builder"
 
 require "qae_form_builder/subsidiaries_associates_plants_question"
 require "qae_form_builder/award_holder_question"
@@ -52,11 +54,11 @@ require "qae_form_builder/turnover_exports_calculation_question"
 
 require "qae_form_builder/matrix_question"
 
-class QAEFormBuilder
+class QaeFormBuilder
   class << self
 
     def build title, &block
-      form = QAEForm.new title
+      form = QaeForm.new title
       form.instance_eval &block if block_given?
       form
     end

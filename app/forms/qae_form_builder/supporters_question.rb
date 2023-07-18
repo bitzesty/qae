@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class SupportersQuestionValidator < QuestionValidator
     MIN_LIMIT = 2
 

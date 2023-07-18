@@ -25,7 +25,7 @@ class EmailNotification < ApplicationRecord
 
   date_time_for :trigger_at
 
-  belongs_to :settings
+  belongs_to :settings, optional: true
 
   enumerize :kind, in: NOTIFICATION_KINDS
 

@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class ByYearsLabelQuestionValidator < QuestionValidator
     REQUIRED_SUB_FIELDS = %i[day month year].freeze
 
@@ -76,7 +76,7 @@ class QAEFormBuilder
       delegate_obj.by_year_conditions.find do |c|
         if c.question_value.respond_to?(:call)
           q = form[c.question_key]
-          if q.is_a?(QAEFormBuilder::DateQuestion) || q.is_a?(QAEFormBuilder::DateQuestionDecorator)
+          if q.is_a?(QaeFormBuilder::DateQuestion) || q.is_a?(QaeFormBuilder::DateQuestionDecorator)
 
             date = []
             q.required_sub_fields.each do |sub|
@@ -113,7 +113,7 @@ class QAEFormBuilder
     end
 
     def by_year_condition k, v, num, options = {}
-      @q.by_year_conditions << ByYearsCondition.new(k, v, num, options)
+      @q.by_year_conditions << ByYearsCondition.new(k, v, num, **options)
     end
   end
 

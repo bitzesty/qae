@@ -33,7 +33,7 @@
                   span.todo
                     = ref.to_s
 
-        - if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
+        - if question.delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion)
           - if question.ref || question.sub_ref
               span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
                 = "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions."
@@ -103,7 +103,7 @@
                   span.todo
                     = ref.to_s
 
-        - if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
+        - if question.delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion)
           - if question.ref || question.sub_ref
               span.question-context.question-debug.govuk-hint id="hint_for_#{question.key}"
                 = "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions."

@@ -21,13 +21,13 @@ class FinancialYearPointer
 
   def fetch_data
     case question.delegate_obj
-    when QAEFormBuilder::ByYearsLabelQuestion
+    when QaeFormBuilder::ByYearsLabelQuestion
       fetch_year_labels
-    when QAEFormBuilder::ByYearsQuestion
+    when QaeFormBuilder::ByYearsQuestion
       fetch_years
-    when QAEFormBuilder::OneOptionByYearsLabelQuestion
+    when QaeFormBuilder::OneOptionByYearsLabelQuestion
       fetch_one_option_year_labels
-    when QAEFormBuilder::OneOptionByYearsQuestion
+    when QaeFormBuilder::OneOptionByYearsQuestion
       fetch_one_option_years
     end
   end

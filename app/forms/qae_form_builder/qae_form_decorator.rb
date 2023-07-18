@@ -1,6 +1,6 @@
-class QAEFormBuilder
+class QaeFormBuilder
 
-  class QAEFormDecorator < QAEDecorator
+  class QaeFormDecorator < QaeDecorator
 
     def form_name
       @decorator_options[:form_name] || 'form'

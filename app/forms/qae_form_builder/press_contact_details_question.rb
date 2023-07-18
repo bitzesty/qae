@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class QAEFormBuilder
+class QaeFormBuilder
   class PressContactDetailsQuestionValidator < QuestionValidator
   end
 

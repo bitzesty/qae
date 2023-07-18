@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class MatrixQuestionValidator < QuestionValidator
     def errors
       result = super

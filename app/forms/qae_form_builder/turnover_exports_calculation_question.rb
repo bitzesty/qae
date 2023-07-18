@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class TurnoverExportsCalculationQuestionValidator < QuestionValidator
   end
 
@@ -35,7 +35,7 @@ class QAEFormBuilder
     end
 
     def by_year_condition k, v, num, options = {}
-      @q.by_year_conditions << ByYearsCondition.new(k, v, num, options)
+      @q.by_year_conditions << ByYearsCondition.new(k, v, num, **options)
     end
 
     def turnover key

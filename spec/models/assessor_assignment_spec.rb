@@ -13,7 +13,7 @@ describe AssessorAssignment do
         attributes.each do |meth|
           obj = build_assignment_with(:trade, meth)
           expect(obj).to_not be_valid
-          expect(obj.errors.keys).to include(form.desc(meth).to_sym)
+          expect(obj.errors.attribute_names).to include(form.desc(meth).to_sym)
         end
       end
     end
@@ -47,7 +47,7 @@ describe AssessorAssignment do
         attributes.each do |meth|
           obj = build_assignment_with(:development, meth)
           expect(obj).to_not be_valid
-          expect(obj.errors.keys).to include(form.desc(meth).to_sym)
+          expect(obj.errors.attribute_names).to include(form.desc(meth).to_sym)
         end
       end
     end
@@ -63,7 +63,7 @@ describe AssessorAssignment do
         end
         it "is invalid" do
           expect(subject).to_not be_valid
-          expect(subject.errors.keys).to include(:commercial_success_rate)
+          expect(subject.errors.attribute_names).to include(:commercial_success_rate)
         end
       end
     end
@@ -158,7 +158,7 @@ describe AssessorAssignment do
     it "can not have assigned assessor" do
       subject.assessor_id = 1
       expect(subject).to_not be_valid
-      expect(subject.errors.values.join).to match("cannot be present for this")
+      expect(subject.errors.map { |error| error.message }.join(', ')).to match("cannot be present for this")
     end
   end
 

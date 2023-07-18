@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class CheckboxSeriaQuestionValidator < QuestionValidator
     def errors
       result = super

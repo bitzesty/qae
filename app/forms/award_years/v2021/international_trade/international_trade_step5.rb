@@ -1,4 +1,4 @@
-class AwardYears::V2021::QAEForms
+class AwardYears::V2021::QaeForms
   class << self
     def trade_step5
       @trade_step5 ||= proc do

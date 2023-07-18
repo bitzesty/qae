@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class DateQuestionValidator < QuestionValidator
     def errors
       result = super

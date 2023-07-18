@@ -1,6 +1,6 @@
-class QAEFormBuilder
+class QaeFormBuilder
 
-  class QAEForm
+  class QaeForm
     attr_reader :title, :opts, :steps, :questions_by_key
 
     def initialize title, opts={}
@@ -16,7 +16,7 @@ class QAEFormBuilder
     end
 
     def decorate options = {}
-      QAEFormDecorator.new self, options
+      QaeFormDecorator.new self, options
     end
 
     def step title, short_title, options = {}, &block

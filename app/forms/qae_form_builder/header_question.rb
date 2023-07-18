@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class HeaderQuestionValidator < QuestionValidator
     def errors
       {}

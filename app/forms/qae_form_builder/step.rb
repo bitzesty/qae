@@ -1,8 +1,8 @@
 require 'active_support/inflector'
 
-class QAEFormBuilder
+class QaeFormBuilder
 
-  class StepDecorator < QAEDecorator
+  class StepDecorator < QaeDecorator
 
     QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w(
       innovation_materials
@@ -45,7 +45,7 @@ class QAEFormBuilder
         allowed_params[question.key] = hashify_params(form_data[question.key])
 
         question_possible_sub_keys(question).each do |sub_question_key|
-          allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
+          allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QaeFormBuilder::ByYearsQuestion) || question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
             # Sometimes users can input commas, we are stripping them
             form_data[sub_question_key].to_s.delete(",")
           else
@@ -53,7 +53,7 @@ class QAEFormBuilder
           end
         end
 
-        if question.delegate_obj.is_a?(QAEFormBuilder::UploadQuestion) &&
+        if question.delegate_obj.is_a?(QaeFormBuilder::UploadQuestion) &&
             hashify_params(form_data[question.key]).nil?
           # This code handles case when user removes all attachments / links
           # from Form: Add Website Address/Documents section
@@ -94,7 +94,7 @@ class QAEFormBuilder
       if by_year_conditions.present?
         sub_question_keys += question.by_year_conditions.map do |c|
           (1..c.years).map do |y|
-            if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsLabelQuestion)
+            if question.delegate_obj.is_a?(QaeFormBuilder::ByYearsLabelQuestion)
               [:day, :month, :year].map do |i|
                 "#{y}of#{c.years}#{i}"
               end
@@ -105,7 +105,7 @@ class QAEFormBuilder
         end.flatten
       end
 
-      if question.delegate_obj.is_a?(QAEFormBuilder::MatrixQuestion)
+      if question.delegate_obj.is_a?(QaeFormBuilder::MatrixQuestion)
         sub_question_keys += question.x_headings.map do |x_heading|
           question.y_headings.map do |y_heading|
             "#{x_heading.key}_#{y_heading.key}"
@@ -116,9 +116,9 @@ class QAEFormBuilder
         end.flatten
       end
 
-      if question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
+      if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
         sub_question_keys += (1..3).map do |y|
-          if question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion)
+          if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion)
             [:day, :month, :year].map do |i|
               "#{y}of3#{i}"
             end
@@ -158,8 +158,8 @@ class QAEFormBuilder
     end
 
     def method_missing(meth, *args, &block)
-      klass_builder = QAEFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder") rescue nil
-      klass = QAEFormBuilder.const_get("#{meth.to_s.camelize}Question") rescue nil
+      klass_builder = QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder") rescue nil
+      klass = QaeFormBuilder.const_get("#{meth.to_s.camelize}Question") rescue nil
 
       if klass_builder && klass && args.length >= 2 && args.length <= 3
         id, title, opts = args
