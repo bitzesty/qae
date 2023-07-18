@@ -108,20 +108,39 @@
       opacity: 0.7;
     }
 
-    &.btn--load:before {
-      background-image: image-url("icon_load.svg");
+    &.btn--load {
+
+      &:before {
+        background-image: image-url("icon_load.svg");
+      }
+
+      &:focus:before {
+        background-image: image-url("icon_load_black.svg");
+      }
     }
 
-    &.btn--reload:before {
-      background-image: image-url("icon_update.svg");
+    &.btn--reload {
+      &:before {
+        background-image: image-url("icon_update.svg");
+      }
+
+      &:focus:before {
+        background-image: image-url("icon_update_black.svg");
+      }
     }
 
-    &.btn--loading:before {
-      background-image: image-url("icon_loading.svg");
-      background-size: 1.15em auto;
-      width: 1.2em;
-      height: 1.5em;
-      top: 7px;
+    &.btn--loading {
+      &:before {
+        background-image: image-url("icon_loading.svg");
+        background-size: 1.15em auto;
+        width: 1.2em;
+        height: 1.5em;
+        top: 7px;
+      }
+
+      &:focus:before {
+        background-image: image-url("icon_loading_black.svg");
+      }
     }
   }
 }
