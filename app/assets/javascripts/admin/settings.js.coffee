@@ -95,6 +95,8 @@ jQuery ->
       ($ ".deadline-form", wrapper).removeClass("hidden")
       ($ e.currentTarget).addClass("hidden")
 
+      window.focusElement(wrapper[0], window.FOCUSABLE_FORM_ELEMENTS)
+
     settingsWrapper.on "click", ".edit-notification", (e) ->
       e.preventDefault()
 
@@ -104,10 +106,14 @@ jQuery ->
       ($ ".notification-edit-form", wrapper).removeClass("hidden")
       ($ ".actions", wrapper).addClass("hidden")
 
+      window.focusElement(wrapper[0], window.FOCUSABLE_FORM_ELEMENTS)
+
     settingsWrapper.on "click", ".btn-add-schedule", (e) ->
       e.preventDefault()
       wrapper = ($ e.currentTarget).closest('.panel-section')
       ($ ".notification-form", wrapper).toggleClass("hidden")
+      
+      window.focusElement(wrapper[0], window.FOCUSABLE_FORM_ELEMENTS)
 
     settingsWrapper.on "click", ".link-email-example", (e) ->
       e.preventDefault()
