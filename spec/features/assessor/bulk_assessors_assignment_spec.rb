@@ -41,7 +41,7 @@ describe "Assessor assigns assessors", %(
 
       open_primary_select
 
-      all(".select2-results__options li")[3].click
+      all(".autocomplete__menu li")[3].click
 
       within ".bulk-assign-assessors-form" do
         click_button "Assign"
@@ -62,9 +62,9 @@ describe "Assessor assigns assessors", %(
       find(".btn", text: "Bulk Assign Assessors").click
 
       open_primary_select
-      all(".select2-results__options li")[2].click
+      all(".autocomplete__menu li")[2].click
       open_secondary_select
-      all(".select2-results__options li")[3].click
+      all(".autocomplete__menu li")[3].click
 
       within ".bulk-assign-assessors-form" do
         click_button "Assign"
@@ -80,9 +80,9 @@ describe "Assessor assigns assessors", %(
 end
 
 def open_primary_select
-  page.execute_script("$('#assessor_assignment_collection_primary_assessor_id').select2('open');")
+  page.execute_script("$('#assessor_assignment_collection_primary_assessor_id').click();")
 end
 
 def open_secondary_select
-  page.execute_script("$('#assessor_assignment_collection_secondary_assessor_id').select2('open');")
+  page.execute_script("$('#assessor_assignment_collection_secondary_assessor_id').click();")
 end
