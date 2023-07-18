@@ -13,7 +13,7 @@
       .clear
 
     li.form-group.primary-assessor-assignment
-      label
+      label[for='assessor_assignment_primary_assessor_id']
         ' Primary:
       .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.primary.present?
@@ -31,8 +31,9 @@
           .form-fields
             = form.select :assessor_id,
                           available_assessors_for_select,
-                          { include_blank: true },
-                          id: 'assessor_assignment_primary_assessor_id'
+                          { include_blank: 'Select primary assessor…' },
+                          id: 'assessor_assignment_primary_assessor_id',
+                          class: 'form-control custom-select'
 
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
@@ -46,7 +47,7 @@
       .clear
 
     li.form-group.secondary-assessor-assignment
-      label
+      label[for='assessor_assignment_secondary_assessor_id']
         span.assessor-label Secondary:
       .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.secondary.present?
@@ -64,8 +65,10 @@
           .form-fields
             = form.select :assessor_id,
                           available_assessors_for_select,
-                          { include_blank: true },
-                          id: 'assessor_assignment_secondary_assessor_id'
+                          { include_blank: 'Select secondary assessor…' },
+                          id: 'assessor_assignment_secondary_assessor_id',
+                          class: 'form-control custom-select'
+
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit

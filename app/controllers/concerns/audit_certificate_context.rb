@@ -10,6 +10,8 @@ module AuditCertificateContext
     audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
     if saved = audit_certificate.save
+      log_event
+
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       end
@@ -45,6 +47,15 @@ module AuditCertificateContext
   end
 
   private
+
+  def action_type
+    case action_name
+    when "create"
+      "audit_certificate_uploaded"
+    else
+      raise "Attempted to log an unsupported action (#{action_name})"
+    end
+  end
 
   def resource
     @audit_certificate ||= form_answer.audit_certificate

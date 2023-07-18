@@ -25,12 +25,34 @@ ready = ->
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
     $(".attachment-link", wrapper).prependTo("#new_form_answer_attachment")
 
+    wrapper = $("#vat-returns-section")
+    $(".attachment-link", wrapper).removeClass("if-js-hide")
+    $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
+    $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
+    $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
+    $(".attachment-link", wrapper).prependTo("#new_vat_returns_file")
+
+    wrapper = $("#commercial-figures-section")
+    $(".attachment-link", wrapper).removeClass("if-js-hide")
+    $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
+    $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
+    $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
+    $(".attachment-link", wrapper).prependTo("#new_commercial_figures_file")
+
+    toggleCommercialFiguresButtonVisibility()
+
     wrapper = $("#audit-certificate-form")
     $(".attachment-link", wrapper).removeClass("if-js-hide")
     $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
     $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach External Accountant's Report</span>")
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
     $(".attachment-link", wrapper).prependTo("#new_audit_certificate")
+
+  toggleCommercialFiguresButtonVisibility = ->
+    if ($('.commercial-figures-file').length == 0)
+      $('#commercial-figures-attachment-form').removeClass('visuallyhidden')
+    else
+      $('#commercial-figures-attachment-form').addClass('visuallyhidden')
 
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
@@ -64,9 +86,16 @@ ready = ->
       stateToggle = $(".section-applicant-status .dropdown-toggle")
       stateToggle.replaceWith("<p class='p-lg'>"+stateToggle.text()+"</p>")
 
-  $(".section-applicant-users .edit_assessor_assignment select").select2()
-  $("#new_assessor_assignment_collection select").select2()
-  $(".bulk-assign-assessors-form select").select2()
+  $('.custom-select').each ->
+    field = $(this)[0]
+    if $(this).is(':disabled') or $(this).is('[readonly]')
+      return
+    accessibleAutocomplete.enhanceSelectElement
+      selectElement: field
+      showAllValues: true
+      dropdownArrow: ->
+        '<span class=\'autocomplete__arrow\'></span>'
+    return
 
   $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
     form = $(this)
@@ -95,6 +124,105 @@ ready = ->
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
       "audit_certificate[attachment]": $("#audit_certificate_attachment").val()
+
+  if $("html").hasClass("lte-ie7")
+    $(".attachment-link", $("#commercial-figures-section")).removeClass("if-js-hide")
+  else
+    do initializeFileUpload = ->
+      selector = $("#commercial-figures-attachment-form form")
+      selector.fileupload
+        autoUpload: true
+        dataType: "html"
+        forceIframeTransport: true
+        success: (result, textStatus, jqXHR) ->
+          result = $($.parseHTML(result))
+          $("#commercial-figures-buffer").append(result.text())
+
+          if $("#commercial-figures-file-valid", $("#commercial-figures-buffer")).length
+            $("#commercial-figures-section").html(result.text())
+            moveAttachDocumentButton()
+          else
+            form = $("#commercial-figures-attachment-form form")
+            section = form.closest("#commercial-figures-section")
+            section.find(".document-list .p-empty").addClass("visuallyhidden")
+            section.find(".document-list ul").append(result.text())
+
+          toggleCommercialFiguresButtonVisibility()
+          $("#commercial-figures-buffer").empty()
+
+  $("#commercial-figures-attachment-form form").on "fileuploadsubmit", (e, data) ->
+    data.formData =
+      authenticity_token: $("meta[name='csrf-token']").attr("content")
+      format: "js"
+      "commercial_figures_file[attachment]": $("#commercial_figures_file_attachment").val()
+
+  $(document).on 'click', ".commercial-figures-file-destroyer a", (e) ->
+    e.preventDefault()
+    form = $(this).parents('.commercial-figures-file-destroyer')
+    section = form.closest("#commercial-figures-section")
+    $.ajax
+      url: form.attr('action'),
+      type: 'DELETE'
+    form.parents('.commercial-figures-file').remove()
+    if $('.commercial-figures-file').length == 0
+      section.find(".document-list .p-empty").removeClass("visuallyhidden")
+      $('#commercial-figures-attachment-form').toggleClass('visuallyhidden', $('.commercial-figures-file').length != 0)
+      initializeFileUpload()
+    
+    toggleCommercialFiguresButtonVisibility()
+
+  if $("html").hasClass("lte-ie7")
+    $(".attachment-link", $("#vat-returns-section")).removeClass("if-js-hide")
+  else
+    do initializeFileUpload = ->
+      selector = $("#vat-returns-attachment-form form")
+      selector.fileupload
+        autoUpload: true
+        dataType: "html"
+        forceIframeTransport: true
+        success: (result, textStatus, jqXHR) ->
+          result = $($.parseHTML(result))
+          $("#vat-returns-buffer").append(result.text())
+
+          if $("#vat-returns-file-valid", $("#vat-returns-buffer")).length
+            $("#application-attachment-form").html(result.text())
+            moveAttachDocumentButton()
+            initializeFileUpload()
+          else
+            form = $("#vat-returns-attachment-form form")
+            section = form.closest("#vat-returns-section")
+            section.find(".document-list .p-empty").addClass("visuallyhidden")
+            section.find(".document-list ul").append(result.text())
+
+          $("#vat-returns-buffer").empty()
+
+  $("#vat-returns-attachment-form form").on "fileuploadsubmit", (e, data) ->
+    data.formData =
+      authenticity_token: $("meta[name='csrf-token']").attr("content")
+      format: "js"
+      "vat_returns_file[attachment]": $("#vat_returns_file_attachment").val()
+
+  $(document).on 'click', ".vat-returns-file-destroyer a", (e) ->
+    e.preventDefault()
+    form = $(this).parents('.vat-returns-file-destroyer')
+    section = form.closest("#vat-returns-section")
+    $.ajax
+      url: form.attr('action'),
+      type: 'DELETE'
+    form.parents('.vat-returns-file').remove()
+    if $('.vat-returns-file').length == 0
+      section.find(".document-list .p-empty").removeClass("visuallyhidden")
+      $('#shortlisted-documents-status').attr('data-status-reversible', 'false')
+    else 
+      $('#shortlisted-documents-status').attr('data-status-reversible', 'true')
+
+  $(document).on 'click', "#shortlisted-documents-status a", (e) ->
+    e.preventDefault()
+    form = $(this).closest('form')
+    $.ajax
+      url: form.attr('action'),
+      dataType: 'script',
+      type: 'POST'
 
   if $("html").hasClass("lte-ie7")
     $(".attachment-link", $("#application-attachment-form")).removeClass("if-js-hide")

@@ -1,0 +1,13 @@
+label
+  | Variance explanation document
+
+.document-list.space-y-3
+  p.p-empty class="#{'visuallyhidden' if figures_form.commercial_figures_file.present?}"
+    ' No document has been attached.
+  ul.list-unstyled.list-actions
+    - if figures_form.commercial_figures_file.present?
+      = render(partial: "admin/figures_and_vat_returns/file", collection: Array.wrap(figures_form.commercial_figures_file), as: :attachment)
+  .clear
+
+#commercial-figures-attachment-form
+  = render("admin/figures_and_vat_returns/form", form_answer: form_answer, attachment: figures_form.commercial_figures_file || figures_form.build_commercial_figures_file)

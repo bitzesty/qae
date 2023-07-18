@@ -1,7 +1,7 @@
 /*
  *= require_self
+ *= require accessible-autocomplete
  *= require jquery-ui
- *= require select2.min
  */
 
 // Bootstrap
@@ -13,6 +13,7 @@ $error-colour: #df3034;
 $yellow: #ffbf47;
 $button-colour: #00823b;
 @import "frontend/password_guidance";
+@import "frontend/status";
 
 @import "admin/variables";
 @import "admin/toggle";
@@ -58,6 +59,5 @@ $todo-black: #333;
     &:focus {
       top: 20px;
       left: 20px;
-      color: white !important;
     }
 }
