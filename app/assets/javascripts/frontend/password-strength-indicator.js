@@ -138,6 +138,7 @@ $(function() {
 
         if (someProblem) {
           $('#password-guidance').removeClass("govuk-!-display-none");
+          $('#password-result-span').addClass("visuallyhidden")
         } else {
           $('#password-guidance').addClass("govuk-!-display-none");
         }
@@ -147,8 +148,10 @@ $(function() {
 
         if ($passwordField.val().length == 0) {
           $passwordField.attr('aria-invalid', "true");
+          $('#password-result-span').addClass("visuallyhidden")
         } else if ($.inArray('good-password', guidance) >= 0) {
           $passwordField.attr('aria-invalid', "false");
+          $('#password-result-span').removeClass("visuallyhidden")
         } else {
           $passwordField.attr('aria-invalid', "true");
         }
@@ -160,13 +163,16 @@ $(function() {
 
         if ($passwordConfirmationField.val().length == 0) {
           $passwordConfirmationField.attr('aria-invalid', "true");
+          $('#password-confirmation-result-span').addClass("visuallyhidden")
         } else if ($.inArray('confirmation-not-matching', guidance) >= 0) {
           $passwordConfirmationField.attr('aria-invalid', "true");
           indicator.parent().removeClass('confirmation-matching');
+          $('#password-confirmation-result-span').addClass("visuallyhidden")
         } else if ($.inArray('confirmation-matching', guidance) >= 0) {
           $passwordConfirmationField.attr('aria-invalid', "false");
           if($.inArray('good-password', guidance) >= 0) {
             indicator.parent().addClass('confirmation-matching');
+            $('#password-confirmation-result-span').removeClass("visuallyhidden")
           }
         }
       }
