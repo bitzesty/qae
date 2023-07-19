@@ -1,5 +1,5 @@
 - unless @form_answer.promotion?
-  .form-group
+  .form-group[data-controller="element-focus"]
     .form-container
       label.form-label Description of goods/services
       .form-value
@@ -30,10 +30,10 @@
                           = "Goods/services #{index + 1}"
                         input.form-control.js-chart-count type="text" name="form_answer[data_attributes][trade_goods_and_services_explanations][#{index}][desc_short]" value="#{service["desc_short"]}" rows= 3 data-word-max = 15
             .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = f.submit "Save", class: "btn btn-primary pull-right"
           .clear
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear
