@@ -102,6 +102,7 @@ jobs:
           npm install -g yarn
           curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
           sudo dpkg -i cf-cli_amd64.deb
+          bundle config build.ovirt-engine-sdk --with-cflags=-Drb_cData=rb_cObject
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
@@ -142,6 +143,7 @@ jobs:
         run: |
           curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
           sudo dpkg -i cf-cli_amd64.deb
+          bundle config build.ovirt-engine-sdk --with-cflags=-Drb_cData=rb_cObject
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
