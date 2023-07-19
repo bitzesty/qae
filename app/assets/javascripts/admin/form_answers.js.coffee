@@ -316,11 +316,9 @@ ready = ->
 
   $(document).on 'click', '.form-edit-link', (e) ->
     e.preventDefault()
-    element = this.closest('.form-group') || this.closest('form')
-
+    element = this.closest('.form-group')
     if (element)
       element.classList.add('form-edit')
-      window.focusElement(element, window.FOCUSABLE_FORM_ELEMENTS)
 
   $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
     errors = data.responseJSON

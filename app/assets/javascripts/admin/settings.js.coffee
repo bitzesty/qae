@@ -95,8 +95,6 @@ jQuery ->
       ($ ".deadline-form", wrapper).removeClass("hidden")
       ($ e.currentTarget).addClass("hidden")
 
-      window.focusElement(wrapper[0], window.FOCUSABLE_FORM_ELEMENTS)
-
     settingsWrapper.on "click", ".edit-notification", (e) ->
       e.preventDefault()
 
@@ -106,14 +104,10 @@ jQuery ->
       ($ ".notification-edit-form", wrapper).removeClass("hidden")
       ($ ".actions", wrapper).addClass("hidden")
 
-      window.focusElement(wrapper[0], window.FOCUSABLE_FORM_ELEMENTS)
-
     settingsWrapper.on "click", ".btn-add-schedule", (e) ->
       e.preventDefault()
       wrapper = ($ e.currentTarget).closest('.panel-section')
       ($ ".notification-form", wrapper).toggleClass("hidden")
-      
-      window.focusElement(wrapper[0], window.FOCUSABLE_FORM_ELEMENTS)
 
     settingsWrapper.on "click", ".link-email-example", (e) ->
       e.preventDefault()
@@ -123,20 +117,20 @@ jQuery ->
     settingsWrapper.on "click", ".btn-cancel", (e) ->
       e.preventDefault()
 
-      form_well = ($ e.currentTarget).closest('.well')
+      well = ($ e.currentTarget).closest('.well')
 
-      if form_well.hasClass("deadline-form")
+      if well.hasClass("deadline-form")
         wrapper = ($ e.currentTarget).closest('.deadline')
         ($ ".form-value", wrapper).removeClass("hidden")
         ($ ".deadline-form", wrapper).addClass("hidden")
         ($ ".edit-deadline", wrapper).removeClass("hidden")
 
-      else if form_well.hasClass("notification-edit-form")
+      else if well.hasClass("notification-edit-form")
         wrapper = ($ e.currentTarget).closest('li')
         ($ ".form-value", wrapper).removeClass("hidden")
         ($ ".notification-edit-form", wrapper).addClass("hidden")
         ($ ".actions", wrapper).removeClass("hidden")
 
-      else if form_well.hasClass("notification-new-form")
+      else if well.hasClass("notification-new-form")
         wrapper = ($ e.currentTarget).closest('.panel-section')
         ($ ".notification-form", wrapper).addClass("hidden")
