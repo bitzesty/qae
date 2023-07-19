@@ -1,12 +1,11 @@
-.panel.panel-default
+.panel.panel-default[data-controller="element-focus"]
   .panel-heading#company-details-heading
     h3.panel-title
-      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details"
+      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details" data-element-focus-target="reveal"
         = @form_answer.promotion? ? "Nominee Details" : "Company Details"
         - if resource.company_details_updated_at && resource.company_details_editable
           small
             = "Updated by: #{resource.company_details_editable.decorate.full_name} - #{format_date(resource.company_details_updated_at)}"
-
 
   #section-company-details.section-company-details.panel-collapse.collapse aria-labelledby="company-details-heading"
     .panel-body.company-details-forms
