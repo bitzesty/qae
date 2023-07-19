@@ -1,9 +1,9 @@
 - @form_answer.draft_note || @form_answer.build_draft_note
 
-.panel.panel-default
+.panel.panel-default[data-controller="element-focus"]
   .panel-heading#draft-notes-heading
     h3.panel-title
-      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-draft-notes" aria-expanded="true" aria-controls="section-draft-notes"
+      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-draft-notes" aria-expanded="true" aria-controls="section-draft-notes" data-element-focus-target="reveal"
         ' Draft Notes
         - if @form_answer.draft_note.decorate.try(:last_updated_by).present?
           small= @form_answer.draft_note.decorate.try(:last_updated_by)
