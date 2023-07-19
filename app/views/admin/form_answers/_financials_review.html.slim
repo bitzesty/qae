@@ -10,7 +10,7 @@
 
         = f.input :form_answer_id, as: :hidden
 
-        .form-group
+        .form-group[data-controller="element-focus"]
           = render "admin/form_answers/financial_summary/audit_certificate"
           .input.form-group.form-fields
             .radio
@@ -27,12 +27,12 @@
             .input.form-group.form-fields.form-block
               = f.input :changes_description, as: :text, input_html: { rows: 5, class: "form-control" }, label: "Changes made"
               .clear
-          = link_to "#", class: "form-edit-link pull-right edit-review-audit"
+          = link_to "#", class: "form-edit-link pull-right edit-review-audit", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .form-actions.text-left
             .form-fields
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right", style: "display: none"
 
           .clear
@@ -53,7 +53,7 @@
 
         = f.input :form_answer_id, as: :hidden
 
-        .form-group
+        .form-group[data-controller="element-focus"]
           = render "admin/form_answers/financial_summary/shortlisted_financial_docs", docs_wrapper: resource.shortlisted_documents_wrapper
           .input.form-group.form-fields
             .radio

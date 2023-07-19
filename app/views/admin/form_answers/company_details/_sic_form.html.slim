@@ -3,7 +3,7 @@
   - sic = @form_answer.sic_code_name
 
   - if user_can_edit(@form_answer, :sic_code)
-    .form-group.sic-code class="#{'form-edit' if @form_answer.sic_code.blank?}"
+    .form-group.sic-code[class="#{'form-edit' if @form_answer.sic_code.blank?}" data-controller="element-focus"]
       = simple_form_for [namespace_name, @form_answer],
                         remote: true,
                         authenticity_token: true,
@@ -29,10 +29,10 @@
                       include_blank: false,
                       label: false
           .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
             = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
 
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear

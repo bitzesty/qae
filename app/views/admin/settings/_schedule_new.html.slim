@@ -13,6 +13,6 @@
                   input_html: { id: "" }
 
     .control-action
-      = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button"
+      = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button", data: { element_focus_target: "dismiss" }
       = f.submit "Save", class: "btn btn-primary btn-submit"
     .clear

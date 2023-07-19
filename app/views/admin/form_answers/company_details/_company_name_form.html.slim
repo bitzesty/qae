@@ -1,6 +1,6 @@
 - account_name = @form_answer.promotion? ? "Nominee name" : "Company name"
 - if user_can_edit_company(@form_answer)
-  .form-group
+  .form-group[data-controller="element-focus"]
     = simple_form_for [namespace_name, @form_answer],
                       remote: true,
                       authenticity_token: true,
@@ -30,10 +30,10 @@
                         input_html: { class: "form-control" }
 
           .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
             = f.submit "Save", class: "btn btn-primary pull-right"
         .clear
-        = link_to "#", class: "form-edit-link pull-right"
+        = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
           span.glyphicon.glyphicon-pencil
           ' Edit
         .clear
