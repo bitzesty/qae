@@ -59,8 +59,6 @@ jobs:
           sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
           gem install bundler
           gem update --system && gem update bundler
-          bundle config path vendor/bundle
-          bundle config build.ovirt-engine-sdk --with-cflags=-Drb_cData=rb_cObject
           yarn install
           bundle install --jobs 4 --retry 3
           RAILS_ENV=test bundle exec rake db:create db:migrate
@@ -102,7 +100,6 @@ jobs:
           npm install -g yarn
           curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
           sudo dpkg -i cf-cli_amd64.deb
-          bundle config build.ovirt-engine-sdk --with-cflags=-Drb_cData=rb_cObject
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
@@ -143,7 +140,6 @@ jobs:
         run: |
           curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
           sudo dpkg -i cf-cli_amd64.deb
-          bundle config build.ovirt-engine-sdk --with-cflags=-Drb_cData=rb_cObject
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f

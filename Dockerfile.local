@@ -18,7 +18,6 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle config set --local path 'vendor/bundle'
 RUN bundle config set --local without 'development test'
-RUN bundle config build.ovirt-engine-sdk --with-cflags=-Drb_cData=rb_cObject
 RUN gem install bundler:2.4.8 && bundle install --jobs 4 --retry 3
 
 COPY . /app

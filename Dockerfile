@@ -18,5 +18,4 @@ ENV CURL_CONNECT_TIMEOUT=0 CURL_TIMEOUT=0 GEM_PATH="$HOME/vendor/bundle/ruby/${R
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 COPY . /app
-RUN bundle config build.ovirt-engine-sdk --with-cflags=-Drb_cData=rb_cObject
 RUN bundle install --without development test --jobs 4 && RAILS_ENV=production bundle exec rake assets:precompile
