@@ -729,6 +729,7 @@ DEPENDENCIES
   listen
   lograge
   mail-notify (~> 1.0)
+  matrix
   nilify_blanks
   nokogiri
   paper_trail (~> 12.2.0)

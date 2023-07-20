@@ -143,6 +143,8 @@ gem 'shog'
 
 gem 'rails-healthcheck'
 
+gem 'matrix'
+
 # Used to convert HTML to text, with the exception of whitelisted attributes.
 # This makes it easier for us to display HTML content within PDF documents.
 gem 'sanitize'
