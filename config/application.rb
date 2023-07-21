@@ -49,6 +49,7 @@ module Qae
     config.eager_load = false
 
     config.autoload_once_paths << "#{root}/lib"
+    config.autoload_once_paths << "#{root}/forms"
     config.autoload_paths << "#{root}/lib"
     config.eager_load_paths << "#{root}/lib"
 
