@@ -12,7 +12,7 @@
       = simple_form_for([namespace_name, secondary_assessment],
                         remote: true,
                         authenticity_token: true,
-                        html: { "data-type" => "json", id: "secondary_appraisal_form"}) do |f|
+                        html: { data: { type: "json", controller: "form-flash" }, id: "secondary_appraisal_form"}) do |f|
 
         = hidden_field_tag :updated_section, nil, id: "secondary_updated_section_hidden_field"
         = render_section(resource, f)

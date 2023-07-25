@@ -8,7 +8,7 @@
       span.trigger-at
         = deadline.formatted_trigger_time
     .deadline-form.well
-      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true do |f|
+      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true, html: { data: { controller: "form-flash" } } do |f|
         .control-date
           label.control-label Set date and time
         .clear

@@ -12,7 +12,7 @@
       = simple_form_for([namespace_name, @form_answer, @form_answer.draft_note],
                         remote: true,
                         authenticity_token: true,
-                        html: { "data-type" => "json" }) do |f|
+                        html: { data: { type: "json",  controller: "form-flash" } }) do |f|
 
         .form-group[class="#{'form-edit' if f.object.content.blank?}" data-controller="element-focus"]
           .form-container

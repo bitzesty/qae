@@ -19,7 +19,7 @@
     .panel-body
       .comments-container data-comment-form=new_admin_form_answer_comment_path(@form_answer)
         - if !(defined? read_only)
-          = form_for([:admin, @form_answer, @form_answer.comments.new(section: "admin")], html: { id: "admin_comment_form" }) do |f|
+          = form_for([:admin, @form_answer, @form_answer.comments.new(section: "admin")], html: { id: "admin_comment_form", data: { controller: "form-flash" } }) do |f|
             = render('admin/comments/form', f: f)
           .comment-insert
         - if !(defined? read_only)
