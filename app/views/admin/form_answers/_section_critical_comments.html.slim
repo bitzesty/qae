@@ -18,7 +18,7 @@
   #section-critical-comments.section-critical-comments.panel-collapse.collapse aria-labelledby="critical-comments-heading"
     .panel-body
       .comments-container.comment-assessor
-        = form_for([namespace_name, @form_answer, @form_answer.comments.new(section: "critical")]) do |f|
+        = form_for([namespace_name, @form_answer, @form_answer.comments.new(section: "critical")], html: { data: { controller: "form-flash" } }) do |f|
           = render("admin/comments/form", f: f)
         .comment-insert
         = render(collection: @form_answer.comments.critical, partial: "admin/form_answers/comment")

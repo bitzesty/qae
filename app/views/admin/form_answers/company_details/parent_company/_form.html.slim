@@ -1,7 +1,7 @@
 .form-group.form-group-multiple[class="#{'form-edit' if @form_answer.parent_company.blank?}" data-controller="element-focus"]
   = simple_form_for [namespace_name, resource],
                     remote: true,
-                    authenticity_token: true, html: { "data-type" => "html" } do |f|
+                    authenticity_token: true, html: { data: { type: "html", controller: "form-flash" } } do |f|
     = hidden_field_tag :section, "parent_company", id: "section_parent_company_hidden_field"
 
     .form-container
