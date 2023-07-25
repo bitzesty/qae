@@ -6,13 +6,12 @@ jQuery ->
     overallBenchmarksTable = ($ "#overall-financial-benchmarks")
     financialTable = ($ "#financial-table")
 
-    ($ "input", form).on "change keyup keydown paste", ->
-      timer ||= setTimeout(saveFinancials, 500 )
+    $("input", form).on "change keyup keydown paste", ->
+      timer ||= setTimeout(saveFinancials, 500)
 
     ($ "button", form).on "click", (event) ->
       do event.preventDefault
       $(this).closest(".form-group").removeClass("form-edit")
-
 
     updateExportsGrowth = (exports) ->
       exportsGrowth = ($ 'tr.exports-growth td.value', benchmarksTable)
@@ -91,13 +90,13 @@ jQuery ->
       url = form.attr('action')
       formData = form.serialize()
       updateBenchmarks()
-
-      jqXHR = $.ajax({
+      $.ajax
         url: url
         data: formData
         type: 'POST'
-        dataType: 'js'
-      })
+        dataType: 'script'
+        success: (_data) ->
+          window.fire(form[0], 'ajax:x:success', null)
 
       ($ 'td.value', financialTable).each (i, td) ->
         input = ($ 'input', ($ td))
