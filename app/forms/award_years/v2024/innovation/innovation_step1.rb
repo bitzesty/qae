@@ -12,7 +12,8 @@ class AwardYears::V2024::QAEForms
           text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
         end
 
-        head_of_business :head_of_business, "Details of the head of your organisation" do
+        sub_fields :head_of_business, "Details of the head of your organisation" do
+          required
           sub_ref "A 1.2"
           classes "sub-question"
           sub_fields([

@@ -115,7 +115,7 @@ class AwardYears::V2024::QAEForms
         end
 
         date :started_trading, "Date started trading." do
-          classes "js-started-trading"
+          classes "js-started-trading date-DDMMYYYY"
           required
           ref "B 5"
           context -> do
@@ -156,7 +156,8 @@ class AwardYears::V2024::QAEForms
           style "small"
         end
 
-        press_contact_details :press_contact_details, "Contact details for press enquiries." do
+        sub_fields :press_contact_details, "Contact details for press enquiries." do
+          required
           ref "B 7"
           context %(
             <p class='govuk-hint'><em>
