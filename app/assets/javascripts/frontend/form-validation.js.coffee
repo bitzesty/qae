@@ -389,6 +389,30 @@ window.FormValidation =
       if errors
         @addErrorClass(question)
 
+  validateNumberByYears: (question) ->
+    inputCellsCounter = 0
+
+    for subquestion in question.find("input")
+      subq = $(subquestion)
+      qParent = subq.closest(".js-fy-entries")
+      errContainer = subq.closest(".span-financial")
+
+      shownQuestion = true
+      for conditional in $(subquestion).parents('.js-conditional-question')
+        if !$(conditional).hasClass('show-question')
+          shownQuestion = false
+
+      if shownQuestion
+        inputCellsCounter += 1
+
+        if not subq.val() and question.hasClass("question-required")
+          @logThis(question, "validateNumberByYears", "This field is required")
+          @appendMessage(errContainer, "This field is required")
+          @addErrorClass(question)
+          continue
+        else if not subq.val()
+          continue
+
   validateMoneyByYears: (question) ->
     inputCellsCounter = 0
 
@@ -659,6 +683,10 @@ window.FormValidation =
 
     if question.hasClass("question-matrix")
       @validateMatrix(question, triggeringElement)
+
+    if question.hasClass("question-number-by-years")
+      # console.log "validateNumberByYears"
+      @validateNumberByYears(question)
 
     if question.hasClass("question-money-by-years")
       # console.log "validateMoneyByYears"
