@@ -1,17 +1,23 @@
 export default class extends ApplicationController {
+  static targets = ['form', 'link'];
+
   static values = {
     error: String,
     success: String,
   };
 
   connect() {
-    this.element.addEventListener('ajax:x:success', this.onSuccess);
-    this.element.addEventListener('ajax:x:error', this.onError);
+    this.formTargets.forEach((el) => {
+      el.addEventListener('ajax:x:success', this.onSuccess);
+      el.addEventListener('ajax:x:error', this.onError);
+    });
   }
 
   disconnect() {
-    this.element.removeEventListener('ajax:x:success', this.onSuccess);
-    this.element.removeEventListener('ajax:x:error', this.onError);
+    this.formTargets.forEach((el) => {
+      el.removeEventListener('ajax:x:success', this.onSuccess);
+      el.removeEventListener('ajax:x:error', this.onError);
+    });
   }
 
   success(event) {
@@ -26,14 +32,14 @@ export default class extends ApplicationController {
     const msg = this.hasSuccessValue ? this.successValue : 'Success!';
     const [alert, identifier] = this.createAlert('success', msg);
 
-    setTimeout(() => this.showAlert(alert, identifier), 50);
+    setTimeout(() => this.showAlert(alert, identifier), 1);
   };
 
   onError = (event) => {
     const msg = this.hasErrorValue ? this.errorValue : 'An unknown error has occurred, please try again.';
     const [alert, identifier] = this.createAlert('danger', msg);
 
-    setTimeout(() => this.showAlert(alert, identifier), 50);
+    setTimeout(() => this.showAlert(alert, identifier), 1);
   };
 
   createAlert = (type, message) => {
@@ -51,14 +57,11 @@ export default class extends ApplicationController {
   };
 
   showAlert = (alert, identifier) => {
-    const form = document.getElementById(this.element.id);
-    const container = form.parentNode;
-    const element =
-      container && (container.classList.contains('form-container') || container.classList.contains('form-group'))
-        ? container
-        : form;
-    element.insertAdjacentHTML('afterbegin', alert);
-    console.log('element', element);
+    const existing = this.element.querySelector('[id*=alert__]')
+    if (existing) existing.remove()
+
+    this.element.insertAdjacentHTML('afterbegin', alert);
+
     setTimeout(() => {
       const inserted = document.getElementById(identifier);
       if (inserted) inserted.remove();
