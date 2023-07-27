@@ -96,4 +96,5 @@ html.no-js
 
     - if should_enable_js?
       = javascript_include_tag 'application-admin'
+      = javascript_pack_tag 'application-admin'
       = javascript_tag "$(function() { AdminAssessorAutomatedPollingOfSession.init('assessor'); });"

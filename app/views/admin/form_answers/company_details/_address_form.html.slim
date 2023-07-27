@@ -1,6 +1,6 @@
 .form-group-multiple-parent
   - if @form_answer.promotion?
-    .form-group.form-group-multiple.company-address-personal-form
+    .form-group.form-group-multiple.company-address-personal-form[data-controller="element-focus"]
       .form-container
         label.form-label Nominee Address
 
@@ -88,17 +88,17 @@
                               collection: regions
 
               .form-actions.text-right
-                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
                 = f.submit "Save", class: "btn btn-primary pull-right"
 
             .clear
 
-            = link_to "#", class: "form-edit-link pull-right"
+            = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
               span.glyphicon.glyphicon-pencil
               ' Edit
         .clear
 
-  .form-group.form-group-multiple.company-address-form
+  .form-group.form-group-multiple.company-address-form[data-controller="element-focus"]
     .form-container
       label.form-label
         = @form_answer.promotion? ? "Organisation Address" : "Address"
@@ -218,18 +218,18 @@
                               input_html: { class: "form-control" }
 
             .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = f.submit "Save", class: "btn btn-primary pull-right"
 
           .clear
 
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
       .clear
 
   - if @form_answer.promotion?
-    .form-group.form-group-multiple.company-address-nominator-form
+    .form-group.form-group-multiple.company-address-nominator-form[data-controller="element-focus"]
       .form-container
         label.form-label Nominator Address
 
@@ -321,12 +321,12 @@
                               input_html: { class: "form-control" }
 
               .form-actions.text-right
-                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
                 = f.submit "Save", class: "btn btn-primary pull-right"
 
             .clear
 
-            = link_to "#", class: "form-edit-link pull-right"
+            = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
               span.glyphicon.glyphicon-pencil
               ' Edit
         .clear

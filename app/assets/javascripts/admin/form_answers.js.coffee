@@ -314,9 +314,12 @@ ready = ->
     if $('.form_answer_attachment').length == 0
       sidebarSection.find(".document-list .p-empty").removeClass("visuallyhidden")
 
-  $(document).on "click", ".form-edit-link", (e) ->
+  $(document).on 'click', '.form-edit-link', (e) ->
     e.preventDefault()
-    $(this).closest(".form-group").addClass("form-edit")
+    element = this.closest('.form-group')
+    if (element)
+      element.classList.add('form-edit')
+
   $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
     errors = data.responseJSON
     $(this).addClass("field-with-errors")

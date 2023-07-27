@@ -4,7 +4,7 @@
 = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
   = f.input :body_update, as: :hidden, input_html: {value: true}
 
-  .form-group.press-summary-body-block
+  .form-group.press-summary-body-block[data-controller="element-focus"]
     label.form-label Body
     .js-hint-visible-on-edit
        | Please type, rather than copy from a word processor.
@@ -20,11 +20,11 @@
     .clear
 
     - if policy(press_summary).update?
-      = link_to "#", class: "form-edit-link pull-right" do
+      = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" } do
         span.glyphicon.glyphicon-pencil
         ' Edit
       .form-actions.text-right
-        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
         = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
       .clear
 
@@ -32,7 +32,7 @@
   = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
     = f.input :contact_details_update, as: :hidden, input_html: {value: true}
 
-    .form-group
+    .form-group[data-controller="element-focus"]
       label.form-label Contact details for press enquiries
       
       - if form_answer.award_year.year >= 2020

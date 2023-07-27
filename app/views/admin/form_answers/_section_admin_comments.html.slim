@@ -1,7 +1,7 @@
-.panel.panel-default
+.panel.panel-default[data-controller="element-focus"]
   .panel-heading#admin-comments-heading
     h3.panel-title
-      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-admin-comments" aria-expanded="true" aria-controls="section-admin-comments"
+      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-admin-comments" aria-expanded="true" aria-controls="section-admin-comments" data-element-focus-target="reveal"
         ' Admin Comments
         span.comments-number
           - if @form_answer.comments.admin.any?

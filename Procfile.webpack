@@ -1,0 +1,3 @@
+web: bundle exec rake cf:run_migrations db:migrate && bin/rails server -p $PORT
+worker: bundle exec sidekiq -L ./log/worker.log -C ./config/sidekiq.yml
+webpack: bin/webpack-dev-server
