@@ -14,7 +14,7 @@ class QAEFormBuilder
 
       if !date && question.required?
         result[question.hash_key] ||= ""
-        result[question.hash_key] << " Invalid date."
+        result[question.hash_key] << "#{question.ref || question.sub_ref} is incomplete. Year-end is required. Use the format MM/YYYY"
       end
 
       result

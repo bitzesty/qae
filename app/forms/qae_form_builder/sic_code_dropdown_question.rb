@@ -1,5 +1,17 @@
 class QAEFormBuilder
   class SicCodeDropdownQuestionValidator < QuestionValidator
+    def errors
+      result = super
+
+      if question.required?
+        if !question.input_value.present?
+          result[question.hash_key] ||= ""
+          result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and and an option must be selected from the following dropdown list."
+        end
+      end
+
+      result
+    end
   end
 
   class SicCodeDropdownQuestionBuilder < DropdownQuestionBuilder

@@ -9,7 +9,6 @@ class AwardYears::V2024::QAEForms
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
           ref "D 1"
-          classes "date-MMYYYY"
           required
           financial_date_pointer
         end

@@ -279,6 +279,7 @@ class AwardYears::V2024::QAEForms
         queen_award_applications :applied_for_queen_awards_details, " List the Queen's/King's awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "B 12.1"
+          required
 
           conditional :applied_for_queen_awards, :yes
 

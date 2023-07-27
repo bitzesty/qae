@@ -33,7 +33,7 @@ class QAEFormBuilder
 
       if question.required?
         if !question.input_value.present?
-          result[question.hash_key] = "Can't be blank."
+          result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and and must be filled in."
         end
       end
 
