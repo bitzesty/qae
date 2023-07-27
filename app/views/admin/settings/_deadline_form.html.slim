@@ -2,13 +2,13 @@
 - deadline = deadline.decorate if deadline.present?
 
 - if deadline.present?
-  .deadline[id="deadline-#{deadline.id}" data-controller="element-focus"]
+  .deadline[id="deadline-#{deadline.id}" data-controller="element-focus inline-flash"]
     span.date-time-text
       => deadline.message
       span.trigger-at
         = deadline.formatted_trigger_time
     .deadline-form.well
-      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true, html: { data: { controller: "form-flash" } } do |f|
+      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } } do |f|
         .control-date
           label.control-label Set date and time
         .clear

@@ -19,9 +19,10 @@
 
   = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule if-no-js-hide", role: "button", aria: {label: "Schedule #{I18n.t("email_buttons.#{kind}")}"}, data: { element_focus_target: "reveal" }
 
-  .notification-form
-    = render "schedule_new", notification: @settings.email_notifications.build(kind: kind), kind: kind
+  div[data-controller="inline-flash"]
+    .notification-form
+      = render "schedule_new", notification: @settings.email_notifications.build(kind: kind), kind: kind
 
-  ul.notifications
-    - notifications.each do |notification|
-      = render 'notification', notification: notification.decorate
+    ul.notifications
+      - notifications.each do |notification|
+        = render "notification", notification: notification.decorate

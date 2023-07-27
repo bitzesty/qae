@@ -7,7 +7,7 @@
       = simple_form_for [namespace_name, @form_answer],
                         remote: true,
                         authenticity_token: true,
-                        html: { data: { type: "html", controller: "form-flash" }, id: "sic_code_form_admin_appraisal" } do |f|
+                        html: { data: { type: "html", inline_flash_target: "form" }, id: "sic_code_form_admin_appraisal" } do |f|
 
         = hidden_field_tag :section, "sic_code", id: "section_sic_code_hidden_field"
 

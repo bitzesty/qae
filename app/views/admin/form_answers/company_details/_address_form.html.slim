@@ -32,7 +32,7 @@
 
           = simple_form_for([namespace_name, resource],
                             remote: true,
-                            authenticity_token: true, html: { data: { type: "html", controller: "form-flash" }, id: "address_form_admin_appraisal" }) do |f|
+                            authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
 
             = hidden_field_tag :section, "address"
             .input.form-group.form-fields.form-block
@@ -145,7 +145,7 @@
       - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
         = simple_form_for([namespace_name, resource],
                           remote: true,
-                          authenticity_token: true, html: { data: { type: "html", controller: "form-flash" }, id: "address_form_admin_appraisal" }) do |f|
+                          authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
 
           = hidden_field_tag :section, "address", id: "section_address_hidden_field"
           .input.form-group.form-fields.form-block
@@ -262,7 +262,7 @@
         - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
           = simple_form_for([namespace_name, resource],
                             remote: true,
-                            authenticity_token: true, html: { data: { type: "html", controller: "form-flash" }, id: "address_form_admin_appraisal" }) do |f|
+                            authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
             = hidden_field_tag :section, "address"
             .input.form-group.form-fields.form-block
               = f.simple_fields_for(:data) do |f|

@@ -1,4 +1,4 @@
-= simple_form_for [:admin, resource], html: { class: "qae-form", data: { type: "json",  controller: "form-flash" } } do |f|
+= simple_form_for [:admin, resource], html: { class: "qae-form", data: { type: "json",  controller: "inline-flash", inline_flash_target: "form" } } do |f|
   .panel-group#user-form-panel-parent
     .panel.panel-default[data-controller="element-focus"]
       .panel-heading#user-details-heading

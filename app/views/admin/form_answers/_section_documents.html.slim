@@ -34,7 +34,7 @@
       - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
         .sidebar-section.no-margin-bottom.space-y-3
           - if @form_answer.requires_vocf?
-            #audit-certificate-form
+            #audit-certificate-form[data-controller="inline-flash"]
               - audit_certificate = @form_answer.build_audit_certificate
               = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: audit_certificate 
 
@@ -43,9 +43,9 @@
 
       = render(partial: "admin/figures_and_vat_returns/status", locals: { form_answer: @form_answer, figures_form: figures_form })
 
-      #vat-returns-section
+      #vat-returns-section[data-controller="inline-flash"]
         = render(partial: "admin/figures_and_vat_returns/vat_returns", locals: { form_answer: @form_answer, figures_form: figures_form })
-      #commercial-figures-section
+      #commercial-figures-section[data-controller="inline-flash"]
         = render(partial: "admin/figures_and_vat_returns/actual_figures", locals: { form_answer: @form_answer, figures_form: figures_form })
 
   / TODO Only appears for EP but for now we need to think more on it
