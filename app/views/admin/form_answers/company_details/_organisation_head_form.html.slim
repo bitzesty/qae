@@ -3,7 +3,7 @@
     .form-group[data-controller="element-focus"]
       = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true, html: { "data-type" => "html", id: "organisation_head_form_admin_appraisal" } do |f|
+                        authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "organisation_head_form_admin_appraisal" } do |f|
         = hidden_field_tag :section, "organisation_head", id: "section_organisation_head_hidden_field"
 
         .form-container

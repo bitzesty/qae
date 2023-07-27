@@ -6,7 +6,8 @@
     - if policy(review_audit_certificate).create?
       = simple_form_for([namespace_name, review_audit_certificate],
                         remote: true,
-                        authenticity_token: true) do |f|
+                        authenticity_token: true,
+                        html: { controller: "inline-flash", inline_flash_target: "form" }) do |f|
 
         = f.input :form_answer_id, as: :hidden
 
@@ -49,7 +50,8 @@
                         remote: true,
                         url: [namespace_name, :review_commercial_figures],
                         method: :post,
-                        authenticity_token: true) do |f|
+                        authenticity_token: true,
+                        html: { controller: "inline-flash", inline_flash_target: "form" }) do |f|
 
         = f.input :form_answer_id, as: :hidden
 

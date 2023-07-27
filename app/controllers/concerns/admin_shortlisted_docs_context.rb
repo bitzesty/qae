@@ -18,6 +18,7 @@ module AdminShortlistedDocsContext
 
       respond_to do |format|
         format.html do
+          render_flash_message_for(attachment)
           redirect_to [namespace_name, form_answer]
         end
 
@@ -30,7 +31,8 @@ module AdminShortlistedDocsContext
     else
       respond_to do |format|
         format.html do
-          redirect_to [namespace_name, form_answer], alert: attachment.errors.full_messages.join(", ")
+          render_flash_message_for(attachment)
+          redirect_to [namespace_name, form_answer]
         end
 
         format.js do
@@ -55,6 +57,7 @@ module AdminShortlistedDocsContext
         if request.xhr? || request.format.js?
           head :ok
         else
+          render_flash_message_for(resource)
           redirect_to [namespace_name, form_answer]
         end
       end

@@ -1,5 +1,5 @@
 ready = ->
-  $('body').on 'submit', '.new_comment', (e) ->
+  $(document).on 'submit', '.new_comment', (e) ->
     that = $(this)
     e.preventDefault()
     $.ajax
@@ -30,8 +30,9 @@ ready = ->
         else
           signatureWrapper.html("")
 
+        window.fire(that[0], 'ajax:x:success', data)
 
-  $('body').on 'submit', '.destroy-comment', (e) ->
+  $(document).on 'submit', '.destroy-comment', (e) ->
     e.preventDefault()
     $.ajax
       url: $(this).attr('action')

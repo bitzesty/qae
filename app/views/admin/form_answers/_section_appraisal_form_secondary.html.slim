@@ -7,12 +7,11 @@
           small
             = secondary_assessment.last_editor_info
   #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse aria-labelledby="appraisal-form-secondary-heading"
-    .panel-body
-
+    .panel-body[data-controller="inline-flash"]
       = simple_form_for([namespace_name, secondary_assessment],
                         remote: true,
                         authenticity_token: true,
-                        html: { "data-type" => "json", id: "secondary_appraisal_form"}) do |f|
+                        html: { data: { type: "json", inline_flash_target: "form" }, id: "secondary_appraisal_form"}) do |f|
 
         = hidden_field_tag :updated_section, nil, id: "secondary_updated_section_hidden_field"
         = render_section(resource, f)

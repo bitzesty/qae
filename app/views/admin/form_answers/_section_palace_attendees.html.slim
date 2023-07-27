@@ -14,5 +14,5 @@
         - palace_invite.prebuild_if_necessary.palace_attendees.each_with_index do |pa, index|
           = render(partial: "admin/form_answers/winners_components/palace_attendee", locals: { index: index, pa: pa, palace_invite: palace_invite })
 
-      #palace-invite-submit-form
+      #palace-invite-submit-form[data-controller="inline-flash"]
         = render "admin/form_answers/winners_components/palace_invite_submit_form", palace_invite: palace_invite

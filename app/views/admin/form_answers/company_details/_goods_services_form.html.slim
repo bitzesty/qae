@@ -15,7 +15,7 @@
                   p
                     = service["desc_short"]
       - if user_can_edit(@form_answer, :goods_services)
-        = simple_form_for [namespace_name, resource], remote: true, authenticity_token: true, html: { "data-type" => "html", id: "goods_services_form_admin_appraisal" } do |f|
+        = simple_form_for [namespace_name, resource], remote: true, authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "goods_services_form_admin_appraisal" } do |f|
           = hidden_field_tag :section, "goods_services", id: "section_goods_services_hidden_field"
           .form-fields.form-block
             = f.simple_fields_for(:data) do |f|

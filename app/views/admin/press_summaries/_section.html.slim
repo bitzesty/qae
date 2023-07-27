@@ -1,7 +1,7 @@
 - press_summary = form_answer.press_summary || form_answer.build_press_summary
 - url = press_summary.persisted? ? polymorphic_url([namespace_name, form_answer, press_summary]) : polymorphic_url([namespace_name, form_answer, :press_summaries])
 
-= simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
+= simple_form_for press_summary, url: url, remote: true, authenticity_token: true, html: { data: { controller: "inline-flash", inline_flash_target: "form" } } do |f|
   = f.input :body_update, as: :hidden, input_html: {value: true}
 
   .form-group.press-summary-body-block[data-controller="element-focus"]
@@ -29,7 +29,7 @@
       .clear
 
 - if policy(press_summary).update?
-  = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
+  = simple_form_for press_summary, url: url, remote: true, authenticity_token: true, html: { data: { controller: "inline-flash", inline_flash_target: "form" } } do |f|
     = f.input :contact_details_update, as: :hidden, input_html: {value: true}
 
     .form-group[data-controller="element-focus"]
