@@ -44,7 +44,7 @@
               small
                 = @form_answer.feedback_updated_by
       #section-feedback.section-application-info.panel-collapse.collapse aria-labelledby="feedback-heading"
-        .panel-body
+        .panel-body[data-controller="inline-flash"]
           = render "admin/feedbacks/section", form_answer: @form_answer
 
   - if show_winners_section?

@@ -7,12 +7,11 @@
           small
             = primary_assessment.last_editor_info
   #section-appraisal-form-primary.section-appraisal-form.section-appraisal-form-primary.panel-collapse.collapse aria-labelledby="appraisal-form-primary-heading"
-    .panel-body
-
+    .panel-body[data-controller="inline-flash"]
       = simple_form_for([namespace_name, primary_assessment],
                         remote: true,
                         authenticity_token: true,
-                        html: { data: { type: "json", controller: "form-flash" }, id: "primary_appraisal_form" }) do |f|
+                        html: { data: { type: "json", inline_flash_target: "form" }, id: "primary_appraisal_form" }) do |f|
 
         = hidden_field_tag :updated_section, nil, id: "primary_updated_section_hidden_field"
         = render_section(resource, f)

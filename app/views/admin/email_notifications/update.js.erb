@@ -7,6 +7,8 @@ wrapper = $("#notification-" + "<%= @email_notification.id %>");
   $(".notification-edit-form input.datepicker", wrapper).val("<%= @email_notification.formatted_trigger_at_date %>");
   $(".notification-edit-form input.timepicker", wrapper).val("<%= @email_notification.formatted_trigger_at_time %>");
   $(".trigger-at", wrapper).html("<%= @email_notification.decorate.formatted_trigger_time %>");
+  window.fire($(".edit_email_notification", wrapper)[0], 'ajax:x:success', null)
 <% else %>
   $(".notification-edit-form input", wrapper).closest(".input").addClass("field-with-errors");
+  window.fire($(".edit_email_notification", wrapper)[0], 'ajax:x:error', null)
 <% end %>

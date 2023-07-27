@@ -1,7 +1,7 @@
 - url = pundit_user.is_a?(Admin) ? update_financials_admin_form_answer_path(@form_answer) : update_financials_assessor_form_answer_path(@form_answer)
 
 .form-group[data-controller="element-focus"]
-  = form_for @form_answer, url: url, html: { data: { controller: "form-flash" }, id: "form-admin-financial-summary" } do |f|
+  = form_for @form_answer, url: url, html: { data: { controller: "inline-flash", inline_flash_target: "form" }, id: "form-admin-financial-summary" } do |f|
     .table-overflow-container
       table.table.table-striped#financial-table
         colgroup

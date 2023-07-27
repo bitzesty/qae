@@ -16,7 +16,7 @@ li id="notification-#{notification.id}"
           '  |
         = button_to "Delete", admin_settings_email_notification_path(notification), { onclick: "return confirm('Are you sure?')", method: :delete, remote: true }
     .notification-edit-form.well
-      = simple_form_for notification, url: admin_settings_email_notification_path(notification, year: params[:year]), remote: true, authenticity_token: true do |f|
+      = simple_form_for notification, url: admin_settings_email_notification_path(notification, year: params[:year]), remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } } do |f|
         .control-date
           label.control-label Edit schedule
           = f.input :trigger_at,
