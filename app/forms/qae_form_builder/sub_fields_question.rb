@@ -9,7 +9,7 @@ class QAEFormBuilder
           suffix = sub_field.keys[0]
           if !question.input_value(suffix: suffix).present? && NO_VALIDATION_SUB_FIELDS.exclude?(suffix)
             result[question.hash_key(suffix: suffix)] ||= ""
-            result[question.hash_key(suffix: suffix)] << " Can't be blank."
+            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. #{suffix.to_s.humanize} is required and and must be filled in."
           end
         end
       end
