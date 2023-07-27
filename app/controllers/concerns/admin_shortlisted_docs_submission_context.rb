@@ -6,6 +6,8 @@ module AdminShortlistedDocsSubmissionContext
 
     respond_to do |format|
       format.html do
+        render_flash_message_for(resource)
+
         redirect_to [namespace_name, form_answer], alert: render_errors
       end
 
