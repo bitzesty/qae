@@ -322,7 +322,8 @@ class AwardYears::V2024::QAEForms
             <p>
               We recommend that you answer question C2.2 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
             </p>
-          )
+            <p>Enter '0' if you had none.</p>
+          ).squish
           type :number
           label ->(y) { "Financial year #{y}" }
 
@@ -337,6 +338,7 @@ class AwardYears::V2024::QAEForms
           sub_ref "D 6.2"
           required
           section :innovation_financials
+          context %(<p>Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
 
@@ -393,7 +395,8 @@ class AwardYears::V2024::QAEForms
             <p>
               If your innovation is a product, you must provide the unit price.
             </p>
-          )
+            <p>Enter '0' if you had none.</p>
+          ).squish
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -418,7 +421,8 @@ class AwardYears::V2024::QAEForms
           section :innovation_financials
           context %(
             <p>If you haven't reached your latest year-end, use estimates to complete this question.</p>
-          )
+            <p>Enter '0' if you had none.</p>
+          ).squish
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
