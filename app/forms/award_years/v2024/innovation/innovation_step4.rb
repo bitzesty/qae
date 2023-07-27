@@ -316,6 +316,7 @@ class AwardYears::V2024::QAEForms
         by_years :units_sold, "Number of innovative units or contracts sold (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.1"
+          required
           section :innovation_financials
           context %(
             <p>
@@ -334,6 +335,7 @@ class AwardYears::V2024::QAEForms
         by_years :sales, "Sales of your innovative product/service (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.2"
+          required
           section :innovation_financials
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -347,6 +349,7 @@ class AwardYears::V2024::QAEForms
         by_years :sales_exports, "Of which exports (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.3"
+          required
           section :innovation_financials
           context %(<p>Enter '0' if you had none.</p>)
           type :money
@@ -361,6 +364,7 @@ class AwardYears::V2024::QAEForms
         by_years :sales_royalties, "Of which royalties or licences (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.4"
+          required
           section :innovation_financials
           context %(<p>Enter '0' if you had none.</p>)
           type :money
@@ -383,6 +387,7 @@ class AwardYears::V2024::QAEForms
         by_years :avg_unit_price, "Average unit selling price or contract value (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.6"
+          required
           section :innovation_financials
           context %(
             <p>
@@ -409,6 +414,7 @@ class AwardYears::V2024::QAEForms
         by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit or contract (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.8"
+          required
           section :innovation_financials
           context %(
             <p>If you haven't reached your latest year-end, use estimates to complete this question.</p>
