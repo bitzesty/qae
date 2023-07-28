@@ -102,8 +102,11 @@ ready = ->
     form.find(".errors-holder").text("")
     form.closest(".form-group").removeClass("form-edit")
     formValueBox = form.closest(".form-group").find(".edit-value")
-    formValue = form.find("select :selected").text()
-    formValueBox.text(formValue)
+    selected = form.find("select :selected")
+    if (selected.val() == "")
+      formValueBox.html("<span class='p-empty'>Not assigned</span>")
+    else
+      formValueBox.text(selected.text())
   $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
     form = $(this)
     errors = ""
