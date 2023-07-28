@@ -28,7 +28,7 @@ class QAEFormBuilder
 
     def rendering_sub_fields
       required_sub_fields.map do |f|
-        [f.keys.first, f.values.first]
+        {key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint)}
       end
     end
   end
