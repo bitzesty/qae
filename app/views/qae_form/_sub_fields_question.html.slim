@@ -14,7 +14,14 @@ div role="group" id="#{question.key}"
       span.govuk-error-message
       .clear
 
-      - klass = "#{sub_field_title.parameterize == 'postcode' ? 'govuk-input--width-10' : 'govuk-input--width-20'}"
+      - case sub_field_key
+      - when :email
+        - klass = 'large'
+      - when :title
+        - klass = 'tiny'
+      - else
+        - klass = 'govuk-input--width-10'
+
       - klass <<(QAEFormBuilder::SubFieldsQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
       input.govuk-input.js-trigger-autosave[
         class=klass
