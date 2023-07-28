@@ -8,7 +8,11 @@
     h3 Attach document
 
     - if form.object.errors.any?
-      .errors = form.object.errors.full_messages.join(", ")
+      .errors
+        .alert.alert-danger[data-controller="element-removal" role="alert"']
+          = form.object.errors.full_messages.join(", ")
+          button[type="button" class="close" data-action="click->element-removal#remove" aria-label="Close" style="font-size: 18px;"]        
+            span[aria-hidden="true"] &times;
 
     .attachment-link.if-js-hide
       = form.file_field :attachment
