@@ -144,12 +144,11 @@ window.FormValidation =
     if subquestions.length
       for subquestion in subquestions
         if not @validateSingleQuestion($(subquestion))
-          # @logThis(question, "validateRequiredQuestion", "This field is required")
-          # console.log(subquestion.find("select").val())
+          @logThis(question, "validateRequiredQuestion", "This field is required")
           @addSubfieldError(question, subquestion)
     else
       if not @validateSingleQuestion(question)
-        # @logThis(question, "validateRequiredQuestion", "This field is required")
+        @logThis(question, "validateRequiredQuestion", "This field is required")
         @addQuestionError(question)
 
   addSubfieldError: (question, subquestion) ->
@@ -195,7 +194,7 @@ window.FormValidation =
     matchName = q.data("match")
 
     if q.val() isnt $("input[name='#{matchName}']").val()
-      # @logThis(question, "validateMatchQuestion", "Emails don't match")
+      @logThis(question, "validateMatchQuestion", "Emails don't match")
       @addErrorMessage(question, "Emails don't match")
 
   validateMaxDate: (question) ->
@@ -214,12 +213,12 @@ window.FormValidation =
     diff = @compareDateInDays(questionDate, expDate)
 
     if not @toDate(questionDate).isValid()
-      # @logThis(question, "validateMaxDate", "Not a valid date")
+      @logThis(question, "validateMaxDate", "Not a valid date")
       @addErrorMessage(question, "Question #{questionRef} is incomplete. The date entered is not valid. Use the format DD/MM/YYYY.")
       return
 
     if diff > 0
-      # @logThis(question, "validateMaxDate", "Date cannot be after #{expDate}")
+      @logThis(question, "validateMaxDate", "Date cannot be after #{expDate}")
       @addErrorMessage(question, "Date cannot be after #{expDate}")
 
   validateDynamicMaxDate: (question) ->
@@ -248,12 +247,12 @@ window.FormValidation =
     diff = @compareDateInDays(questionDate, expDate)
 
     if not @toDate(questionDate).isValid()
-      # @logThis(question, "validateMaxDate", "Not a valid date")
+      @logThis(question, "validateMaxDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diff > 0
-      # @logThis(question, "validateMaxDate", "Date cannot be after #{expDate}")
+      @logThis(question, "validateMaxDate", "Date cannot be after #{expDate}")
       @addErrorMessage(question, "Date cannot be after #{expDate}")
 
   validateMinDate: (question) ->
@@ -271,12 +270,12 @@ window.FormValidation =
     diff = @compareDateInDays(questionDate, expDate)
 
     if not @toDate(questionDate).isValid()
-      # @logThis(question, "validateMinDate", "Not a valid date")
+      @logThis(question, "validateMinDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diff > 0
-      # @logThis(question, "validateMinDate", "Date cannot be before #{expDate}")
+      @logThis(question, "validateMinDate", "Date cannot be before #{expDate}")
       @addErrorMessage(question, "Date cannot be before #{expDate}")
 
   validateBetweenDate: (question) ->

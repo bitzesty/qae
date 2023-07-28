@@ -118,7 +118,7 @@ class AwardYears::V2024::QAEForms
         end
 
         date :started_trading, "Date started trading." do
-          classes "js-started-trading"
+          classes "js-started-trading date-DDMMYYYY"
           required
           ref "B 5"
           context %(
@@ -156,8 +156,9 @@ class AwardYears::V2024::QAEForms
           style "small"
         end
 
-        press_contact_details :press_contact_details, "Contact details for press enquiries." do
+        sub_fields :press_contact_details, "Contact details for press enquiries." do
           ref "B 7"
+          required
           context %(
             <p class='govuk-hint'><em>
               If your application is successful, you may get contacted by the press.
