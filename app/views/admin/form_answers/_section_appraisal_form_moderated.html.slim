@@ -12,7 +12,7 @@
       = simple_form_for([namespace_name, moderated_assessment],
                         remote: true,
                         authenticity_token: true,
-                        html: { data: { type: "json", inline_flash_target: "form" } }) do |f|
+                        html: { data: { type: "json", inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["textarea"] } }) do |f|
 
         = render_section(resource, f)
         = hidden_field_tag :updated_section

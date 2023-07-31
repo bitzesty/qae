@@ -26,7 +26,8 @@
                       wrapper_html: { class: "form-group" },
                       input_html: { class: "form-control", rows: 10, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-new-content" },
                       as: :text,
-                      label: false
+                      label: false,
+                      required: true
 
             = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
               span.glyphicon.glyphicon-pencil
