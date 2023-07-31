@@ -1,15 +1,7 @@
 class QAEFormBuilder
   class CheckboxSeriaQuestionValidator < QuestionValidator
     def errors
-      result = {}
-
-      return {} if skip_base_validation?
-
-      if question.required?
-        if !question.input_value.present?
-          result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and at least one option must be chosen from the following list."
-        end
-      end
+      result = super
 
       if question.input_value && question.selection_limit
         if question.input_value.size > question.selection_limit

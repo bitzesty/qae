@@ -1,11 +1,1 @@
-input[
-  class="govuk-input js-trigger-autosave
-  #{question.style.present? ? question.style : 'govuk-input--width-10'}"
-  type="#{question.type.present? ? question.type.to_s : 'text'}"
-  pattern="#{'[0-9]*' if question.type == 'tel' || question.type == 'number'}"
-  name=question.input_name
-  value=question.input_value
-  autocomplete="off"
-  id="q_#{question.key}"*possible_read_only_ops
-  aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
-]
+input class="govuk-input js-trigger-autosave #{question.style.present? ? question.style : 'govuk-input--width-10'}" type="#{question.type.present? ? question.type.to_s : 'text'}" pattern="#{'[0-9]*' if question.type == 'tel' || question.type == 'number'}" name=question.input_name value=question.input_value autocomplete="off" id="q_#{question.key}" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )

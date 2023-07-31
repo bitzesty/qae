@@ -1,5 +1,3 @@
-- ref = question.ref ? question.ref : question.sub_ref
-
 - if question.header
   h2.govuk-heading-l
     = question.header
@@ -9,9 +7,10 @@
   .govuk-form-group
     == question.context
 - elsif question.label_as_legend?
-  fieldset class=question.fieldset_classes data=question.fieldset_data_hash data-question_ref="#{ref}"
+  fieldset class=question.fieldset_classes data=question.fieldset_data_hash
     = condition_divs question do
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
+        - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
           legend.govuk-fieldset__legend aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
             - if question.ref || question.sub_ref
@@ -74,9 +73,10 @@
           = render "qae_form/conditional_hints/list", question: question
 
 - else
-  div class=question.fieldset_classes data=question.fieldset_data_hash data-question_ref="#{ref}"
+  div class=question.fieldset_classes data=question.fieldset_data_hash
     = condition_divs question do
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
+        - ref = question.ref ? question.ref : question.sub_ref
         - if question.title != "" || question.show_ref_always.present?
           label.govuk-label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}" aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
             - if question.ref || question.sub_ref
