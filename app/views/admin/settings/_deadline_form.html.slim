@@ -8,18 +8,19 @@
       span.trigger-at
         = deadline.formatted_trigger_time
     .deadline-form.well
-      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } } do |f|
+      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["input"] } } do |f|
         .control-date
           label.control-label Set date and time
         .clear
         .deadline-form-wrapper
           = f.input :trigger_at,
                     as: :separated_date_time,
-                    input_html: { id: '' }
+                    input_html: { id: '' },
+                    required: true
 
           .control-action
-            = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button", data: { element_focus_target: "dismiss" }
-            input[type="button" value="Save" class="btn btn-primary btn-submit" aria-label="Save #{I18n.t("deadline_buttons.#{kind}")}"]
+            = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button", data: { element_focus_target: "dismiss", action: "click->html5-form-validation#discard" }
+            input[type="button" value="Save" class="btn btn-primary btn-submit" aria-label="Save #{I18n.t("deadline_buttons.#{kind}")}" data-action="click->html5-form-validation#validate"]
         .clear
 
     = link_to "Edit", "#", class: "edit-deadline if-no-js-hide", role: "button", aria: {label: "Edit #{I18n.t("deadline_buttons.#{kind}")}"}, data: { element_focus_target: "reveal" }
