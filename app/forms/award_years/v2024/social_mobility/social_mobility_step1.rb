@@ -12,15 +12,14 @@ class AwardYears::V2024::QAEForms
           text "I confirm that I have the consent of the head of my organisation to fill in and submit this entry form."
         end
 
-        sub_fields :head_of_business, "Details of the head of your organisation" do
+        head_of_business :head_of_business, "Details of the head of your organisation" do
           sub_ref "A 1.2"
-          required
           classes "sub-question"
           sub_fields([
             { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
-            { honours: "Personal Honours (optional)", hint: "For example, Lieutenant (LVO), Member of the Most Excellent Order of the British Empire (MBE), Air Force Cross (AFC). Please do not include qualifications such as a master's degree or doctorate." },
+            { honours: "Personal Honours (optional)" },
             { job_title: "Job title or role in the organisation" },
             { email: "Email address" }
           ])

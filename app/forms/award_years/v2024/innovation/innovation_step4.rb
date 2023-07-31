@@ -481,7 +481,6 @@ class AwardYears::V2024::QAEForms
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          required
           ref "D 9"
           yes_no
           context %(

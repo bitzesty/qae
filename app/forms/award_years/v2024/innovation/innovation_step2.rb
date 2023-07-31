@@ -115,7 +115,7 @@ class AwardYears::V2024::QAEForms
         end
 
         date :started_trading, "Date started trading." do
-          classes "js-started-trading date-DDMMYYYY"
+          classes "js-started-trading"
           required
           ref "B 5"
           context -> do
@@ -156,8 +156,7 @@ class AwardYears::V2024::QAEForms
           style "small"
         end
 
-        sub_fields :press_contact_details, "Contact details for press enquiries." do
-          required
+        press_contact_details :press_contact_details, "Contact details for press enquiries." do
           ref "B 7"
           context %(
             <p class='govuk-hint'><em>
@@ -279,7 +278,6 @@ class AwardYears::V2024::QAEForms
         queen_award_applications :applied_for_queen_awards_details, " List the Queen's/King's awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "B 12.1"
-          required
 
           conditional :applied_for_queen_awards, :yes
 
