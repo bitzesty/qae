@@ -1,7 +1,7 @@
-.panel.panel-default
+.panel.panel-default[data-controller="element-focus"]
   .panel-heading#admin-comments-heading
     h3.panel-title
-      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-admin-comments" aria-expanded="true" aria-controls="section-admin-comments"
+      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-admin-comments" aria-expanded="true" aria-controls="section-admin-comments" data-element-focus-target="reveal"
         ' Admin Comments
         span.comments-number
           - if @form_answer.comments.admin.any?
@@ -17,9 +17,9 @@
 
   #section-admin-comments.section-admin-comments.panel-collapse.collapse aria-labelledby="admin-comments-heading"
     .panel-body
-      .comments-container data-comment-form=new_admin_form_answer_comment_path(@form_answer)
+      .comments-container[data-comment-form=new_admin_form_answer_comment_path(@form_answer) data-controller="inline-flash"]
         - if !(defined? read_only)
-          = form_for([:admin, @form_answer, @form_answer.comments.new(section: "admin")], html: { id: "admin_comment_form" }) do |f|
+          = form_for([:admin, @form_answer, @form_answer.comments.new(section: "admin")], html: { id: "admin_comment_form", data: { inline_flash_target: "form" } }) do |f|
             = render('admin/comments/form', f: f)
           .comment-insert
         - if !(defined? read_only)

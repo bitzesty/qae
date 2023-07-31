@@ -1,25 +1,27 @@
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'title')
-    ' Title
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.tiny type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'title')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'first_name')
-    ' First name
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'first_name')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'last_name')
-    ' Last name
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'last_name')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'telephone')
-    ' Telephone
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="tel" pattern="[0-9]*" name=question.input_name(suffix: 'telephone') value=question.input_value(suffix: 'telephone') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'telephone')
-.govuk-form-group.question-block.question-required
-  label.govuk-label for=question.input_name(suffix:'email')
-    ' Email address
-  span.govuk-error-message
-  input.js-trigger-autosave.govuk-input.large type="email" name=question.input_name(suffix: 'email') value=question.input_value(suffix: 'email') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'email')
+.govuk-form-group
+  div role="group" id="#{question.key}"
+    .question-block.question-required
+      label.govuk-label for=question.input_name(suffix:'title')
+        ' Title
+      span.govuk-error-message
+      input.js-trigger-autosave.govuk-input.tiny type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'title')
+    .question-block.question-required
+      label.govuk-label for=question.input_name(suffix:'first_name')
+        ' First name
+      span.govuk-error-message
+      input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'first_name')
+    .question-block.question-required
+      label.govuk-label for=question.input_name(suffix:'last_name')
+        ' Last name
+      span.govuk-error-message
+      input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'last_name')
+    .question-block.question-required
+      label.govuk-label for=question.input_name(suffix:'telephone')
+        ' Telephone
+      span.govuk-error-message
+      input.js-trigger-autosave.govuk-input.govuk-input--width-10 type="tel" pattern="[0-9]*" name=question.input_name(suffix: 'telephone') value=question.input_value(suffix: 'telephone') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'telephone')
+    .question-block.question-required
+      label.govuk-label for=question.input_name(suffix:'email')
+        ' Email address
+      span.govuk-error-message
+      input.js-trigger-autosave.govuk-input.large type="email" name=question.input_name(suffix: 'email') value=question.input_value(suffix: 'email') autocomplete="off" *possible_read_only_ops id=question.input_name(suffix: 'email')

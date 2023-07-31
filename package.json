@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "@rails/webpacker": "^6.0.0-rc.6",
     "css-loader": "^5.2.6",
     "css-minimizer-webpack-plugin": "^3.0.2",

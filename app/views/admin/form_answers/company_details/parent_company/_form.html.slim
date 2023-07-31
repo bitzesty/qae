@@ -1,7 +1,7 @@
-.form-group.form-group-multiple class="#{'form-edit' if @form_answer.parent_company.blank?}"
+.form-group.form-group-multiple[class="#{'form-edit' if @form_answer.parent_company.blank?}" data-controller="element-focus"]
   = simple_form_for [namespace_name, resource],
                     remote: true,
-                    authenticity_token: true, html: { "data-type" => "html" } do |f|
+                    authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" } } do |f|
     = hidden_field_tag :section, "parent_company", id: "section_parent_company_hidden_field"
 
     .form-container
@@ -29,11 +29,11 @@
                       collection: country_collection
 
         .form-actions.text-right
-          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
           = f.submit "Save", class: "btn btn-primary pull-right"
       .clear
 
-      = link_to "#", class: "form-edit-link pull-right"
+      = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
         span.glyphicon.glyphicon-pencil
         ' Edit
       .clear

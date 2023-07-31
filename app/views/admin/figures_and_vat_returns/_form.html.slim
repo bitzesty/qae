@@ -3,7 +3,7 @@
 / whether file was saved or not
 .span
   = hidden_field_tag "valid", "false", id: "#{attachment.model_name.param_key}-valid"
-= form_for [namespace_name, form_answer, attachment], html: { multipart: true } do |form|
+= form_for [namespace_name, form_answer, attachment], html: { multipart: true, data: { inline_flash_target: "form" } } do |form|
   .well.js-attachment-form
     h3 Attach document
 

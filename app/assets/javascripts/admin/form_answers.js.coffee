@@ -314,9 +314,12 @@ ready = ->
     if $('.form_answer_attachment').length == 0
       sidebarSection.find(".document-list .p-empty").removeClass("visuallyhidden")
 
-  $(document).on "click", ".form-edit-link", (e) ->
+  $(document).on 'click', '.form-edit-link', (e) ->
     e.preventDefault()
-    $(this).closest(".form-group").addClass("form-edit")
+    element = this.closest('.form-group')
+    if (element)
+      element.classList.add('form-edit')
+
   $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
     errors = data.responseJSON
     $(this).addClass("field-with-errors")
@@ -431,8 +434,8 @@ editFormAnswerAutoUpdate = ->
   $(".sic-code .form-save-link").on "click", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    that = $("#form_answer_sic_code")
-    form = $(".edit_form_answer")
+    input = $("#form_answer_sic_code")
+    form = $(e.target).closest('form')
     $.ajax
       action: form.attr("action")
       data: form.serialize()
@@ -440,15 +443,19 @@ editFormAnswerAutoUpdate = ->
       dataType: "json"
 
       success: (result) ->
-        formGroup = that.parents(".form-group")
+        formGroup = input.parents(".form-group")
         formGroup.removeClass("form-edit")
-        formGroup.find(".form-value p").text(that.find("option:selected").text())
+        console.log(formGroup, input)
+        formGroup.find(".form-value p").text(input.val())
         sicCodes = result["form_answer"]["sic_codes"]
         counter = 1
         for row in $(".sector-average-growth td")
           $(row).text(sicCodes[counter.toString()])
           counter += 1
         $(".avg-growth-legend").text(result["form_answer"]["legend"])
+
+        window.fire(form[0], 'ajax:x:success', null)
+
 bindRags =(klass) ->
   $(document).on "click", "#{klass} .btn-rag .dropdown-menu a", (e) ->
     e.preventDefault()

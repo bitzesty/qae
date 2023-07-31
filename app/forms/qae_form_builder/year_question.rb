@@ -3,6 +3,13 @@ class QAEFormBuilder
     def errors
       result = super
 
+      if question.required?
+        if !question.input_value.present?
+          result[question.hash_key] ||= ""
+          result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and and must be filled in. Use the format YYYY."
+        end
+      end
+
       year = question.input_value.to_i
 
       if year < question.min || year > question.max
