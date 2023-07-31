@@ -1,4 +1,4 @@
-= simple_form_for [:admin, resource], html: { class: "qae-form", data: { type: "json",  controller: "inline-flash", inline_flash_target: "form" } } do |f|
+= simple_form_for [:admin, resource], html: { class: "qae-form", data: { type: "json",  controller: "inline-flash element-scroll", inline_flash_target: "form" } } do |f|
   .panel-group#user-form-panel-parent
     .panel.panel-default[data-controller="element-focus"]
       .panel-heading#user-details-heading
@@ -6,7 +6,7 @@
           a data-toggle="collapse" data-parent="#user-form-panel" href="#user-details" aria-expanded="true" aria-controls="user-details" data-element-focus-target="reveal"
             = controller_name == "users" ? "Applicant" : controller_name.singularize.titleize
             '  Details
-      #user-details.section-user-details.panel-collapse.collapse.in aria-labelledby="user-details-heading"
+      #user-details.section-user-details.panel-collapse.collapse.in[aria-labelledby="user-details-heading" data-element-scroll-target="accordion"]
         .panel-body
           = render "fields_user_details", f: f
 
@@ -15,7 +15,7 @@
         h2.panel-title
           a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#organisation-details" aria-expanded="false" aria-controls="organisation-details" data-element-focus-target="reveal"
             ' Organisation Details
-      #organisation-details.section-organisation-details.panel-collapse.collapse aria-labelledby="organisation-details-header"
+      #organisation-details.section-organisation-details.panel-collapse.collapse[aria-labelledby="organisation-details-header" data-element-scroll-target="accordion"]
         .panel-body
           = render "fields_organisation_details", f: f
 
@@ -24,7 +24,7 @@
         h2.panel-title
           a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#contact-preferences" aria-expanded="false" aria-controls="contact-preferences" data-element-focus-target="reveal"
             ' Contact Preferences
-      #contact-preferences.section-contact-preferences.panel-collapse.collapse aria-labelledby="contact-preferences-header"
+      #contact-preferences.section-contact-preferences.panel-collapse.collapse[aria-labelledby="contact-preferences-header" data-element-scroll-target="accordion"]
         .panel-body
           = render "fields_contact_preferences", f: f
 
@@ -34,7 +34,7 @@
           h2.panel-title
             a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-collaborators" aria-expanded="false" aria-controls="section-collaborators" data-element-focus-target="reveal"
               ' Collaborators
-        #section-collaborators.section-collaborators.panel-collapse.collapse aria-labelledby="section-collaborators-header"
+        #section-collaborators.section-collaborators.panel-collapse.collapse[aria-labelledby="section-collaborators-header" data-element-scroll-target="accordion"]
           .panel-body
             = render "fields_collaborators", f: f, resource: resource
 
@@ -43,7 +43,7 @@
         h2.panel-title
           a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-password" aria-expanded="false" aria-controls="section-password" data-element-focus-target="reveal"
             ' Password
-      #section-password.section-password.panel-collapse.collapse aria-labelledby="section-password-header"
+      #section-password.section-password.panel-collapse.collapse[aria-labelledby="section-password-header" data-element-scroll-target="accordion"]
         .panel-body
           = render "fields_password", f: f
 
