@@ -16,11 +16,14 @@ class FormAnswerValidator
 
     award_form.steps.each do |step|
       # if form was submitted before
+      # or it's a non-js form
       # we should validate current step
       # else if form was submitted just now
       # we should validate entire form
 
-      if step.title.parameterize == current_step || (form_answer.submitted_at_changed? && form_answer.submitted_at_was.nil?)
+      non_js_save = step.title.parameterize == form_answer.current_non_js_step && form_answer.submitted_at.nil?
+
+      if step.title.parameterize == current_step || non_js_save || (form_answer.submitted_at_changed? && form_answer.submitted_at_was.nil?)
         step.questions.each do |q|
           if (errors = q.validate).any?
             @errors.merge!(errors)
