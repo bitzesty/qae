@@ -36,7 +36,7 @@ module AssessmentSubmissionMixin
 
   def json_response
     json = @service.as_json
-    resp = { json: json }
+    resp = { json: @service.errors }
     resp[:status] = :unprocessable_entity if json.present?
     resp
   end
