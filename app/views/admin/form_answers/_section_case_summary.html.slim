@@ -23,7 +23,7 @@
           / For Primary Assessor
           / It becomes read-only for primary assessor after submission
 
-          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } }) do |f|
+          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["textarea"] } }) do |f|
             = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
               locals: { f: f}
             = render_section(resource, f)
