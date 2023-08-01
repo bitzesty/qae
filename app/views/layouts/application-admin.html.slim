@@ -79,8 +79,25 @@ html.no-js
                     = link_to "Data Export Log", admin_audit_logs_path
 
                 ul.nav.navbar-nav.navbar-right
-                  li.dropdown
-                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                  li
+                    details.if-js-hide
+                      summary My Account
+                      ul.dropdown-menu
+                        li
+                          span
+                            strong = current_subject.decorate.full_name
+                            br
+                            small = current_subject.email
+                        li.divider
+                        - unless current_admin.authy_enabled
+                          li
+                            = link_to "Enable 2FA", admin_enable_authy_path
+                        li
+                          = link_to "Sign out",
+                              destroy_admin_session_path,
+                              method: :delete
+
+                    a.dropdown-toggle.if-no-js-hide href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account
                       span.caret
                     ul.dropdown-menu

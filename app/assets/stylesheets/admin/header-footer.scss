@@ -99,7 +99,8 @@
       }
     }
 
-    .navbar-nav > li > a {
+    .navbar-nav > li > a,
+    .navbar-nav > li > details {
       padding-top: 24px;
       padding-bottom: 23px;
       color: $white-true;
@@ -114,6 +115,11 @@
 
       @include screen-sm-max {
         padding: 20px 15px;
+      }
+
+      > .dropdown-menu {
+        display: block;
+        text-transform: none;
       }
     }
   }
@@ -151,7 +157,7 @@
       margin-right: 0;
     }
 
-    > a {
+    > a, > details {
       .lte-ie8 & {
         display: block !important;
         padding-top: 26px !important;
@@ -167,6 +173,7 @@
       &:hover,
       &:focus {
         background-color: $header-hover;
+        cursor: pointer;
 
         @include is-ios {
           background-color: transparent;
@@ -176,6 +183,23 @@
       &:focus {
         @include screen-sm-max {
           background-color: transparent;
+        }
+      }
+    }
+
+    > details {
+      padding: 0 10px;
+
+      &:focus-within {
+        background-color: $govuk-highlight-yellow !important;
+        color: $black !important;
+        outline: none !important;
+        border-bottom-color: $black !important;
+        border-bottom-width: 2px !important;
+        border-bottom-style: solid !important;
+
+        summary {
+          outline: none !important;
         }
       }
     }
