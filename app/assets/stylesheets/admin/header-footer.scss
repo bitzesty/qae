@@ -240,16 +240,21 @@
       line-height: 1.42857143;
       color: #333333;
       white-space: nowrap;
+
+      @include screen-sm-max {
+        padding: 0;
+      }
     }
 
     > li > a,
     > li > span,
-    > li > .button_to {
+    > li > .button_to > input[type="submit"] {
       @include screen-sm-max {
         padding: 15px;
         padding-left: 35px;
         color: $white-true;
         text-transform: uppercase;
+        text-align: left;
       }
 
       .lte-ie8 & {
@@ -291,8 +296,6 @@
         background-color: $grey-lightest;
       }
     }
-
-
   }
 
   .open .dropdown-toggle {

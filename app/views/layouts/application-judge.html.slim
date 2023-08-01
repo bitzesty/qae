@@ -57,8 +57,23 @@ html.no-js
                     = link_to "Downloads", judge_case_summaries_path
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
-                  li.dropdown
-                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                  li
+                    details.if-js-hide
+                      summary My Account
+                      ul.dropdown-menu
+                        li
+                          span
+                            strong = current_subject.decorate.full_name
+                            br
+                            small = current_subject.email
+                        li.divider
+                        li
+                          = button_to "Sign out",
+                              destroy_judge_session_path,
+                              method: :delete,
+                              class: "btn as-link"
+
+                    a.dropdown-toggle.if-no-js-hide href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account
                       span.caret
                     ul.dropdown-menu
