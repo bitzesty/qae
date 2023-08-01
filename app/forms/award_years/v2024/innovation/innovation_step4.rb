@@ -316,12 +316,14 @@ class AwardYears::V2024::QAEForms
         by_years :units_sold, "Number of innovative units or contracts sold (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.1"
+          required
           section :innovation_financials
           context %(
             <p>
               We recommend that you answer question C2.2 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
             </p>
-          )
+            <p>Enter '0' if you had none.</p>
+          ).squish
           type :number
           label ->(y) { "Financial year #{y}" }
 
@@ -334,7 +336,9 @@ class AwardYears::V2024::QAEForms
         by_years :sales, "Sales of your innovative product/service (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.2"
+          required
           section :innovation_financials
+          context %(<p>Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
 
@@ -347,6 +351,7 @@ class AwardYears::V2024::QAEForms
         by_years :sales_exports, "Of which exports (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.3"
+          required
           section :innovation_financials
           context %(<p>Enter '0' if you had none.</p>)
           type :money
@@ -361,6 +366,7 @@ class AwardYears::V2024::QAEForms
         by_years :sales_royalties, "Of which royalties or licences (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.4"
+          required
           section :innovation_financials
           context %(<p>Enter '0' if you had none.</p>)
           type :money
@@ -383,12 +389,14 @@ class AwardYears::V2024::QAEForms
         by_years :avg_unit_price, "Average unit selling price or contract value (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.6"
+          required
           section :innovation_financials
           context %(
             <p>
               If your innovation is a product, you must provide the unit price.
             </p>
-          )
+            <p>Enter '0' if you had none.</p>
+          ).squish
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -409,10 +417,12 @@ class AwardYears::V2024::QAEForms
         by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit or contract (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.8"
+          required
           section :innovation_financials
           context %(
             <p>If you haven't reached your latest year-end, use estimates to complete this question.</p>
-          )
+            <p>Enter '0' if you had none.</p>
+          ).squish
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
