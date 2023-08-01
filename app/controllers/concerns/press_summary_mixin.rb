@@ -4,6 +4,7 @@ module PressSummaryMixin
   def self.included(base)
     base.before_action :load_form_answer
     base.before_action :load_press_summary, except: :create
+    base.after_action :log_event, only: [:create, :update, :submit, :signoff]
   end
 
   def create
