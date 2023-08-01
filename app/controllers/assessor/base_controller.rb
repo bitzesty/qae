@@ -19,6 +19,14 @@ class Assessor::BaseController < ApplicationController
     current_assessor
   end
 
+  def render_flash_message_for(resource, message: nil)
+    if resource.errors.any?
+      flash[:error] = message || "An unknown error has occurred, please try again."
+    else
+      flash[:notice] = message || "Success!"
+    end
+  end
+
   private
 
   helper_method :namespace_name, :current_subject
