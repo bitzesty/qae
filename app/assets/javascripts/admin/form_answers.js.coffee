@@ -341,7 +341,7 @@ ready = ->
       message = "Case summary submitted"
 
     removeExistingErrorMessages(panel)
-    container.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
+    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
 
     $(this).find('input:submit').remove()
 

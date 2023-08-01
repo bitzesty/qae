@@ -8,7 +8,7 @@ module AssessmentSubmissionMixin
     respond_to do |format|
       format.json { render(json_response) }
       format.html do
-        render_flash_message_for(resource, message: resource.errors.none? ? nil : resource.errors.full_messages.join(", "))
+        render_flash_message_for(resource, message: flash_message)
         redirect_to [namespace_name, resource.form_answer]
       end
     end
@@ -33,6 +33,11 @@ module AssessmentSubmissionMixin
   end
 
   private
+
+  def flash_message
+    return nil if resource.errors.none?
+    resource.errors.full_messages.join(", ")
+  end
 
   def json_response
     json = @service.as_json
