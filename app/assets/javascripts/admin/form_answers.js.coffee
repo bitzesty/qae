@@ -439,10 +439,12 @@ showErrorForInvalidField = (field, values) ->
   if container
     values.forEach (message) ->
       if (!container.querySelector('.alert'))
-        container.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'danger'))
+        id = "alert__#{String(Math.random()).slice(2, -1)}"
+        field.setAttribute('aria-errormessage', id)
+        container.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'danger', id))
 
-buildBannerHtml = (message, type) ->
-  id = "alert__#{String(Math.random()).slice(2, -1)}"
+buildBannerHtml = (message, type, identifier = null) ->
+  id = identifier || "alert__#{String(Math.random()).slice(2, -1)}"
   
   "<div id='#{id}' class='alert alert-#{type}' data-controller='element-removal' role='alert' style='padding-top: 6px; padding-bottom: 6px; margin-bottom: 8px;'>
     #{message}
@@ -452,8 +454,11 @@ buildBannerHtml = (message, type) ->
   </div>"
 
 removeExistingErrorMessages = (element) ->
-  element.querySelectorAll('.field-with-errors').forEach (banner) ->
-    banner.classList.remove('field-with-errors')
+  element.querySelectorAll('.field-with-errors').forEach (el) ->
+    el.classList.remove('field-with-errors')
+
+  element.querySelectorAll('[aria-errormessage]').forEach (el) ->
+    el.removeAttribute('aria-errormessage')
 
   element.querySelectorAll('.alert').forEach (banner) ->
     banner.remove()
