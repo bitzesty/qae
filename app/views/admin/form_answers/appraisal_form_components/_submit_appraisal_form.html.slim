@@ -3,7 +3,7 @@
             authenticity_token: true,
             remote: true,
             class: "submit-assessment",
-            "data-type" => "json")
+            data: { type: "json" })
 
     = hidden_field_tag :assessment_id, assessment.id, id: "#{assessment.position}_assessment_id_submit_appraisal_form_hidden_field"
 
