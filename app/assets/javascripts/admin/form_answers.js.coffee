@@ -98,22 +98,35 @@ ready = ->
     return
 
   $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
-    form = $(this)
-    form.find(".errors-holder").text("")
-    form.closest(".form-group").removeClass("form-edit")
-    formValueBox = form.closest(".form-group").find(".edit-value")
-    selected = form.find("select :selected")
+    panel = this.closest(".form-group")
+
+    removeExistingErrorMessages(panel)
+
+    $(this).closest(".form-group").removeClass("form-edit")
+    formValueBox = $(this).closest(".form-group").find(".edit-value")
+    selected = $(this).find("select :selected")
+
+
     if (selected.val() == "")
       formValueBox.html("<span class='p-empty'>Not assigned</span>")
+      message = "Assessor has been unassigned"
     else
-      formValueBox.text(selected.text())
-  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
-    form = $(this)
-    errors = ""
-    for k, error of data.responseJSON["errors"]
-      errors += error
+      assessor = selected.text()
+      formValueBox.text(assessor)
+      message = "#{assessor} has been assigned"
 
-    form.find(".errors-holder").text(errors)
+    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
+
+  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
+    errors = data.responseJSON['errors']
+    panel = this.closest('.form-group')
+
+    removeExistingErrorMessages(panel)
+
+    Object.entries(errors).forEach ([key, values]) ->
+      field = panel.querySelector("[id$=#{key}]")
+      if field and shouldValidateField(field)
+        showErrorForInvalidField(field, values, '.form-group')
 
   $("#new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
     data.formData =
@@ -429,12 +442,12 @@ shouldValidateField = (field) ->
     'button'
   ].includes(field.type)
 
-showErrorForInvalidField = (field, values) ->
+showErrorForInvalidField = (field, values, containerSelector = '.form-container') ->
   group = field.closest('.govuk-form-group')
   if (group)
     group.classList.add('field-with-errors')
 
-  container = field.closest('.form-container')
+  container = field.closest(containerSelector)
 
   if container
     values.forEach (message) ->
