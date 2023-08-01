@@ -93,9 +93,10 @@ html.no-js
                           li
                             = link_to "Enable 2FA", admin_enable_authy_path
                         li
-                          = link_to "Sign out",
+                          = button_to "Sign out",
                               destroy_admin_session_path,
-                              method: :delete
+                              method: :delete,
+                              class: "btn btn-link as-link"
 
                     a.dropdown-toggle.if-no-js-hide href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account

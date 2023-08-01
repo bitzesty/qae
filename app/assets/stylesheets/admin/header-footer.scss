@@ -231,7 +231,8 @@
       z-index: 999999 !important;
     }
 
-    > li > span {
+    > li > span,
+    > li > .button_to {
       display: block;
       padding: 3px 20px;
       clear: both;
@@ -242,7 +243,8 @@
     }
 
     > li > a,
-    > li > span {
+    > li > span,
+    > li > .button_to {
       @include screen-sm-max {
         padding: 15px;
         padding-left: 35px;
@@ -256,7 +258,8 @@
       }
     }
 
-    > li > a {
+    > li > a,
+    > li > .button_to {
       &:hover,
       &:focus {
         @include screen-sm-max {
@@ -268,6 +271,28 @@
         }
       }
     }
+
+    .button_to {
+      display: inline;
+
+      input[type="submit"] {
+        background: none;
+        padding: 0;
+        border: none;
+        color: black;
+        text-decoration: underline;
+
+        .lte-ie7 & {
+          font-size: 16px;
+        }
+      }
+
+      &:hover {
+        background-color: $grey-lightest;
+      }
+    }
+
+
   }
 
   .open .dropdown-toggle {
