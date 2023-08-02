@@ -1,0 +1,26 @@
+.page-header
+  h1
+    = I18n.t('authy_register_title', scope: 'devise')
+
+= enable_authy_form do
+  .panel-group
+    .panel
+      .panel-body
+        .form-inputs-group
+          .form-inputs
+            .question-group
+              h2
+                label.form-label for="authy-countries"
+                  = I18n.t('devise.country')
+              .row
+                .col-lg-2.col-md-3.col-sm-4
+                  = text_field_tag :country_code, '', :autocomplete => :off, :id => "authy-countries", wrapper_html: { class: "form-group" }, input_html: { class: "form-control"}
+            .question-group
+              h2
+                label.form-label for="authy-cellphone"
+                  = I18n.t('devise.cellphone')
+              .row
+                .col-lg-2.col-md-3.col-sm-4
+                  = text_field_tag :cellphone, '', :autocomplete => :off, :id => "authy-cellphone", wrapper_html: { class: "form-group" }, input_html: { class: "form-control"}
+        .form-actions
+          = submit_tag I18n.t('enable_authy', scope: 'devise'), class: 'btn btn-primary btn-md'

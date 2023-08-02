@@ -29,12 +29,14 @@ html.no-js
 
     = yield(:head) if content_for?(:head)
 
-  body#admin-layout class="admin-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class}"
+  body#admin-layout data-autosave-token="#{current_admin.try(:autosave_token)}" class="admin-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
     #site-wrapper
       #site-wrapper-margin
-        #site-header
+        a href="#main-container" class="btn btn-lg skip-main-content" onclick="document.getElementById('main-container').focus()" role="button"
+          | Skip to main content
+        #site-header.clearfix
           .navbar.clearfix role="navigation"
-            .container
+            .container.clearfix
               .navbar-header
                 button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#nav-main-collapse"
                   span.sr-only Toggle navigation
@@ -45,7 +47,10 @@ html.no-js
                 = link_to admin_root_path, class:'navbar-brand' do
                   = image_tag 'logo-admin.png', alt: "King's Awards for Enterprise - Admin"
 
-              .navbar-collapse.collapse#nav-main-collapse
+              .navbar-collapse.collapse#nav-main-collapse.clearfix
+                ul.nav.navbar-nav
+                  li class=('active' if controller_name == 'dashboard')
+                    = link_to "Dashboard", admin_dashboard_index_path
 
                 ul.nav.navbar-nav.navbar-right
                   li.dropdown
@@ -57,7 +62,8 @@ html.no-js
                         = link_to "Sign out",
                                   destroy_admin_session_path,
                                   method: :delete
-
+          = render "shared/dev_or_staging_banner"
+          = render "shared/non_js_banner"
 
         #main-container role="main"
           .container
