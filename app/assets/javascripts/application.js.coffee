@@ -290,29 +290,13 @@ jQuery ->
 
       [fy_latest_day, fy_latest_month, fy_latest_year] = getLatestFinancialYearParts()
 
-      start_input = $(".js-started-trading")
-      start_day = start_input.find("input.js-date-input-day").val()
-      start_month = start_input.find("input.js-date-input-month").val()
-      start_year = start_input.find("input.js-date-input-year").val()
-
       if !fy_latest_day || !fy_latest_month || !fy_latest_year
         $(".js-year-end").addClass("show-default")
       else
         $(".js-year-end").each ->
           year = parseInt(fy_latest_year) + parseInt($(this).attr("data-year").substr(0, 1)) - parseInt($(this).attr("data-year").substr(-1, 1))
-
           $(this).addClass("show-both")
-
-          if !start_year || !start_month || !start_month
-            $(this).find(".js-year-text").text("Year ended #{fy_latest_day}/#{fy_latest_month}/#{year}")
-          else
-            d_min = new Date(start_year, parseInt(start_month) - 1, parseInt(start_day))
-            d_actual = new Date(year, parseInt(fy_latest_month) - 1, parseInt(fy_latest_day))
-
-            if (d_actual >= d_min)
-              $(this).find(".js-year-text").text("Year ended #{fy_latest_day}/#{fy_latest_month}/#{year}")
-            else
-              $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
+          $(this).find(".js-year-text").text("Year ended #{fy_latest_day}/#{fy_latest_month}/#{year}")
     else
       # Year has changed, use what they've inputted
       $(".js-financial-conditional > .by-years-wrapper").each ->
@@ -328,6 +312,7 @@ jQuery ->
         if !all_years_value
           $(this).find(".js-year-end").each ->
             diff = diffFromSequence($(this).attr("data-year"))
+            fy_count = $(".js-financial-year-changed-dates .by-years-wrapper.show-question .js-year-end").length
             fy_input = $(".js-financial-year-changed-dates .by-years-wrapper.show-question .js-year-end[data-year-diff='#{diff}']").closest(".js-fy-entries").find(".govuk-date-input")
             fy_day = fy_input.find(".js-fy-day").val()
             fy_month = fy_input.find(".js-fy-month").val()
@@ -335,8 +320,29 @@ jQuery ->
 
             $(this).addClass("show-both")
 
-            if !fy_day || !fy_month || !fy_year
+            if fy_input.length > 0 && (!fy_day || !fy_month || !fy_year)
               $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
+            else if fy_input.length == 0
+              # how many years to deduct from first FY if it's filled
+              # current diff is always equeal or higher than no. of years
+              surplus = parseInt(diff) + 1 - fy_count
+
+              # the input from where we should start counting down ~> first FY after company started trading
+              # this is just to get selector for the values
+              diff = fy_count - 1
+
+              fy_input = $(".js-financial-year-changed-dates .by-years-wrapper.show-question .js-year-end[data-year-diff='#{diff}']").closest(".js-fy-entries").find(".govuk-date-input")
+
+              fy_day = fy_input.find(".js-fy-day").val()
+              fy_month = fy_input.find(".js-fy-month").val()
+              fy_year = fy_input.find(".js-fy-year").val()
+
+              if !fy_day || !fy_month || !fy_year
+                $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
+              else
+                year = parseInt(fy_year) - surplus
+
+                $(this).find(".js-year-text").text("Year ended #{fy_day}/#{fy_month}/#{year}")
             else
               $(this).find(".js-year-text").text("Year ended #{fy_day}/#{fy_month}/#{fy_year}")
         else
