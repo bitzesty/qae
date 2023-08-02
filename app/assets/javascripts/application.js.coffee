@@ -39,6 +39,25 @@ diffFromSequence = (str, separator = "of") ->
     return undefined
   return
 
+# Added for subtracting years from date
+# Handles also leap years
+yearsFromDate = (input, years, format = false) ->
+  months = (years * 12) - 1
+
+  date = new Date(
+    input.getFullYear(), 
+    input.getMonth() + months, 
+    Math.min(
+      input.getDate(), 
+      new Date(input.getFullYear(), input.getMonth() + months + 1, 0).getDate()
+    )
+  )
+
+  if format
+    date.toLocaleDateString('en-GB') 
+  else
+    date
+
 # Conditional latest year
 # If from 6th of September to December -> then previous year
 # If from January to 6th of September -> then current year
@@ -340,9 +359,7 @@ jQuery ->
               if !fy_day || !fy_month || !fy_year
                 $(this).find(".js-year-text").html("<br style='visibility:hidden'>")
               else
-                year = parseInt(fy_year) - surplus
-
-                $(this).find(".js-year-text").text("Year ended #{fy_day}/#{fy_month}/#{year}")
+                $(this).find(".js-year-text").text("Year ended #{yearsFromDate(new Date(fy_year, fy_month, fy_day), -(surplus), true)}")
             else
               $(this).find(".js-year-text").text("Year ended #{fy_day}/#{fy_month}/#{fy_year}")
         else
