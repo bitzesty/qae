@@ -48,6 +48,8 @@ jobs:
           node-version: "16"
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
+        with:
+            chromedriver-version: '114.0.5735.90'
       - name: Build and run tests
         env:
           DISPLAY_SOCIAL_MOBILITY_AWARD: true
