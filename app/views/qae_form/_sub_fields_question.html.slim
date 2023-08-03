@@ -1,0 +1,39 @@
+div role="group" id="#{question.key}"
+  - question.rendering_sub_fields.each do |sub_field_block|
+    - sub_field_key = sub_field_block[:key]
+    - sub_field_title = sub_field_block[:title]
+    - sub_field_hint = sub_field_block[:hint]
+
+    .govuk-form-group.question-required
+      label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
+        = sub_field_title
+      - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
+        span.govuk-error-message
+          span.govuk-visually-hidden
+            | Error:
+          =< @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+      span.govuk-error-message
+      - if sub_field_hint
+        span.govuk-hint
+          = sub_field_hint
+      .clear
+
+      - case sub_field_key
+      - when :email
+        - klass = 'large'
+      - when :title
+        - klass = 'tiny'
+      - else
+        - klass = 'govuk-input--width-10'
+
+      - klass <<(QAEFormBuilder::SubFieldsQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
+ 
+      input.govuk-input.js-trigger-autosave[
+        class=klass
+        type="text"
+        id=question.input_name(suffix: sub_field_key)
+        value=question.input_value(suffix: sub_field_key)
+        name=question.input_name(suffix: sub_field_key)
+        autocomplete="off" *possible_read_only_ops
+        aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{sub_field_key}" : nil )
+      ]
