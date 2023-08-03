@@ -2,15 +2,18 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@user.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Your Press Book piece has been written by an assessor, and is ready for you to check over.
+  ' Your Press Book entry for application #{@form_answer.urn} has been written by an assessor, and is ready for you to check.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Although you will not be able to edit the piece yourself, you can make comments that we will try to take into account.
+  ' Although you will not be able to edit the entry yourself, you can make comments in the dedicated space below the entry which we will try to take into account.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' The deadline for doing so is
   = @deadline
   ' .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Please use the link below to access the text.
 
   = link_to "Check your Press book piece.", users_form_answer_press_summary_url(@form_answer, token: @token)
 
