@@ -2,12 +2,12 @@
 
 <%= "Dear #{@recipient.full_name}," %>
 
-Thank you for submitting your <%= app_alias %> for <%= @form_answer.promotion? ? "The King's Award for Enterprise Promotion" : "The King's Awards for Enterprise" %> <%= AwardYear.current.year %>.
+Thank you for submitting your <%= app_alias %> for <%= @form_answer.promotion? ? "The King's Award for Enterprise Promotion" : "The King's Awards for Enterprise" %> <%= AwardYear.current.year %> - <%= @form_answer.award_type_full_name %>.
 
 Your Unique Reference Number (URN) is
 #<%= @form_answer.urn %>
 
-You can view and download your submissions (and edit up until <%= remove_html_tags(application_deadline(:submission_end)) %>) by logging into your account:
+You can view and download your submission/s at any time by logging into your account:
 <%= dashboard_url %>
 
 After the deadline, however, submissions cannot be edited or altered.
