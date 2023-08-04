@@ -9,7 +9,7 @@ describe Users::SubmissionMailer do
   end
 
   let(:urn) { form_answer.urn }
-  let(:subject) { "submission successfully created!" }
+  let(:subject) { "Thank you for submitting your King’s Award Application! - Application ref #{form_answer.urn}" }
 
   before do
     form_answer
