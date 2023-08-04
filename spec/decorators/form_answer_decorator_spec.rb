@@ -46,7 +46,7 @@ describe FormAnswerDecorator do
     let(:year) { 1 }
 
     context "sic code present" do
-      let(:sic_code) { SICCode.first }
+      let(:sic_code) { SicCode.first }
       it "returns average growth for specific year" do
         expect(subject.average_growth_for(year)).to eq(sic_code.by_year(year))
       end

@@ -1,5 +1,5 @@
 class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
-  include Reports::CSVHelper
+  include Reports::CsvHelper
 
   MAPPING = [
     {

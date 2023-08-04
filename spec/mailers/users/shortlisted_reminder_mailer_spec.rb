@@ -14,7 +14,7 @@ describe Users::ShortlistedReminderMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) do
-    "King's Awards for Enterprise: Reminder to provide latest financial statements & VAT returns"
+    "King's Awards for Enterprise: Reminder to provide latest financial statements & VAT returns - Application ref #{form_answer.urn}"
   end
 
   before do

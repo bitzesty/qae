@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-describe QAEFormBuilder do
+describe QaeFormBuilder do
 
-  it 'should build QAEFormBuilder::Form instances' do
-    empty = QAEFormBuilder.build 'test'
+  it 'should build QaeFormBuilder::Form instances' do
+    empty = QaeFormBuilder.build 'test'
     expect(empty.title).to eq('test')
-    expect(empty).to be_instance_of(QAEFormBuilder::QAEForm)
+    expect(empty).to be_instance_of(QaeFormBuilder::QaeForm)
   end
 
   it 'should build 0 steps for empty block' do
-    empty = QAEFormBuilder.build 'test'
+    empty = QaeFormBuilder.build 'test'
     expect(empty.steps).to eq([])
   end
 
   it 'should build form steps' do
-    sample = QAEFormBuilder.build 'test' do
+    sample = QaeFormBuilder.build 'test' do
       step 'Eligibility', 'El'
       step 'Company Info', 'CI'
       step 'Goods or Services', 'Goods', custom_option: :foo
@@ -27,7 +27,7 @@ describe QAEFormBuilder do
   end
 
   it 'should build questions inside steps' do
-    sample = QAEFormBuilder.build 'test' do
+    sample = QaeFormBuilder.build 'test' do
       step 'Eligibility', 'El' do
         text :org_kind, 'What kind of organisation are you?'
         text :org_uk, 'Is your business based in UK?' do
@@ -48,7 +48,7 @@ describe QAEFormBuilder do
   end
 
   it 'should navigate between steps with decorator' do
-    sample = QAEFormBuilder.build 'test' do
+    sample = QaeFormBuilder.build 'test' do
       step 'A', 'A'
       step 'B', 'B'
     end
@@ -67,7 +67,7 @@ describe QAEFormBuilder do
   end
 
   it 'should report visible? depending on conditionals' do
-    sample = QAEFormBuilder.build 'test' do
+    sample = QaeFormBuilder.build 'test' do
       step 'test_step', 'test step' do
         options :parent, 'Parent' do
           yes_no
@@ -87,7 +87,7 @@ describe QAEFormBuilder do
 
   describe "Drop conditions" do
     let(:sample) do
-      QAEFormBuilder.build 'test' do
+      QaeFormBuilder.build 'test' do
         step 'test_step', 'test step' do
           options :grandparent, 'Grand' do
             option '2 years', '2'

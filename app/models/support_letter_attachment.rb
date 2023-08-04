@@ -6,9 +6,9 @@ class SupportLetterAttachment < ApplicationRecord
   clean_after_scan :attachment
 
   begin :associations
-    belongs_to :user
-    belongs_to :form_answer
-    belongs_to :support_letter
+    belongs_to :user, optional: true
+    belongs_to :form_answer, optional: true
+    belongs_to :support_letter, optional: true
   end
 
   begin :validations

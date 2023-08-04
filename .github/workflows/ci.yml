@@ -42,12 +42,14 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: "16"
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
+        with:
+            chromedriver-version: '114.0.5735.90'
       - name: Build and run tests
         env:
           DISPLAY_SOCIAL_MOBILITY_AWARD: true
@@ -59,7 +61,6 @@ jobs:
           sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
           gem install bundler
           gem update --system && gem update bundler
-          bundle config path vendor/bundle
           yarn install
           bundle install --jobs 4 --retry 3
           RAILS_ENV=test bundle exec rake db:create db:migrate
@@ -81,7 +82,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: "16"
@@ -122,7 +123,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: "16"

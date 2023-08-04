@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe "QaePdfForms::Awards2016::Innovation::Base" do
+  let!(:award_year) { AwardYear.current }
   include_context "pdf file checks"
 
   let(:step1_question_answers) {

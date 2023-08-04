@@ -1,5 +1,5 @@
 class Reports::AssessorsProgressReport
-  include Reports::CSVHelper
+  include Reports::CsvHelper
 
   CSV_HEADERS = [
     "Assessor ID",

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe SICCode do
+describe SicCode do
   describe "regex" do
     let(:regex) { described_class::REGEX }
 
@@ -20,7 +20,7 @@ describe SICCode do
   end
 
   describe "#by_year" do
-    subject { SICCode.first }
+    subject { SicCode.first }
 
     it "gets average growth by year" do
       expect(subject.by_year(1)).to eq(subject.year1)

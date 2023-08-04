@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 
 module Qae
   class Application < Rails::Application
+    config.load_defaults 7.0
+
     #initializer :regenerate_require_cache, before: :load_environment_config do
     #  Bootscale.regenerate
     #end
@@ -41,8 +43,15 @@ module Qae
     #NOTE: This works like Rails 4. For Rails 5, we can use
     # `config.eager_load_paths << Rails.root.join('lib')` but still it is not recommended for Threadsafty.
     # Need to take look in to it.
-    config.enable_dependency_loading = true
-    config.autoload_paths << Rails.root.join('lib')
+    # config.enable_dependency_loading = true
+
+    # config.add_autoload_paths_to_load_path=false
+    config.eager_load = false
+
+    config.autoload_once_paths << "#{root}/lib"
+    config.autoload_once_paths << "#{root}/forms"
+    config.autoload_paths << "#{root}/lib"
+    config.eager_load_paths << "#{root}/lib"
 
     config.generators do |g|
       g.test_framework :rspec

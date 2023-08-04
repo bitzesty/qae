@@ -1,9 +1,9 @@
 module QaePdfForms::CustomQuestions::Lists
   LIST_TYPES = [
-    QAEFormBuilder::AwardHolderQuestion,
-    QAEFormBuilder::QueenAwardApplicationsQuestion,
-    QAEFormBuilder::PositionDetailsQuestion,
-    QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+    QaeFormBuilder::AwardHolderQuestion,
+    QaeFormBuilder::QueenAwardApplicationsQuestion,
+    QaeFormBuilder::PositionDetailsQuestion,
+    QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/personal honour title",
@@ -41,7 +41,7 @@ module QaePdfForms::CustomQuestions::Lists
         render_word_limit
       end
     else
-      if question.delegate_obj.is_a?(QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
+      if question.delegate_obj.is_a?(QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
         render_by_trade_goods_question
       else
         render_word_limit
@@ -68,17 +68,17 @@ module QaePdfForms::CustomQuestions::Lists
 
   def list_headers
     case question.delegate_obj
-    when QAEFormBuilder::AwardHolderQuestion
+    when QaeFormBuilder::AwardHolderQuestion
       if question.award_years_present
         AWARD_HOLDER_LIST_HEADERS
       else
         NOMINATION_AWARD_LIST_HEADERS
       end
-    when QAEFormBuilder::QueenAwardApplicationsQuestion
+    when QaeFormBuilder::QueenAwardApplicationsQuestion
       AWARD_APPLICATIONS_LIST_HEADERS
-    when QAEFormBuilder::PositionDetailsQuestion
+    when QaeFormBuilder::PositionDetailsQuestion
       POSITION_LIST_HEADERS
-    when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+    when QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion
       TRADE_GOODS_AND_SERVICES_HEADERS
     else
       raise "[#{self.class.name}] Unrecognized list type!"
@@ -163,20 +163,20 @@ module QaePdfForms::CustomQuestions::Lists
 
   def list_rows
     if humanized_answer.present?
-      if question.delegate_obj.is_a? QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+      if question.delegate_obj.is_a? QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion
         render_goods_and_services
       else
         humanized_answer.map do |item|
           case question.delegate_obj
-          when QAEFormBuilder::AwardHolderQuestion
+          when QaeFormBuilder::AwardHolderQuestion
             award_holder_query_conditions(item)
-          when QAEFormBuilder::QueenAwardApplicationsQuestion
+          when QaeFormBuilder::QueenAwardApplicationsQuestion
             award_applications_query_conditions(item)
-          when QAEFormBuilder::QueenAwardHolderQuestion
+          when QaeFormBuilder::QueenAwardHolderQuestion
             queen_award_holder_query_conditions(item)
-          when QAEFormBuilder::PositionDetailsQuestion
+          when QaeFormBuilder::PositionDetailsQuestion
             position_details_query_conditions(item)
-          when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+          when QaeFormBuilder::SubsidiariesAssociatesPlantsQuestion
             subsidiaries_associates_plants_query_conditions(item)
           end
         end.compact
