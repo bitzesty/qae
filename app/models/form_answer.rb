@@ -16,7 +16,7 @@ class FormAnswer < ApplicationRecord
 
   has_paper_trail
 
-  attr_accessor :current_step, :validator_errors, :steps_with_errors
+  attr_accessor :current_step, :validator_errors, :steps_with_errors, :current_non_js_step
 
   pg_search_scope :basic_search,
                   against: [
@@ -550,7 +550,8 @@ class FormAnswer < ApplicationRecord
   end
 
   def validate_answers
-    if submitted? && (current_step || (submitted_at_changed? && submitted_at_was.nil?))
+    if current_non_js_step.present? || (submitted? && (current_step || (submitted_at_changed? && submitted_at_was.nil?)))
+
       validator = FormAnswerValidator.new(self)
 
       unless validator.valid?

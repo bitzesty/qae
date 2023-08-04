@@ -13,7 +13,7 @@
                 = "Updated by #{message_author_name(assessment.editable)} - #{format_date(assessment.updated_at)}"
       .panel-collapse.collapse aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}"
 
-        .panel-body
+        .panel-body[data-controller="inline-flash"]
           /.alert.alert-glyphicon.alert-info
             span.glyphicon.glyphicon-info-sign
             p.todo-placeholder
@@ -23,7 +23,7 @@
           / For Primary Assessor
           / It becomes read-only for primary assessor after submission
 
-          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true) do |f|
+          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } }) do |f|
             = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
               locals: { f: f}
             = render_section(resource, f)

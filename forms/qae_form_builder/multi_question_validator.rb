@@ -7,7 +7,7 @@ class QaeFormBuilder::MultiQuestionValidator < QaeFormBuilder::QuestionValidator
         if !entity[attr].present?
           result[question.key] ||= {}
           result[question.key][index] ||= ""
-          result[question.key][index] << " #{attr.humanize.capitalize} can't be blank."
+          result[question.key][index] << "Question #{question.ref || question.sub_ref} is incomplete. #{attr.humanize} can't be blank."
         end
       end
     end

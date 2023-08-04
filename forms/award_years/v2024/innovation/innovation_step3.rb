@@ -284,7 +284,7 @@ class AwardYears::V2024::QaeForms
 
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
           sub_section :innovation_timeline_header
-          classes "sub-question"
+          classes "sub-question date-DDMMYYYY"
           sub_ref "C 2.2"
           required
           context -> do

@@ -599,6 +599,12 @@
     left: 0;
   }
 
+  &:hover {
+    color: #fff;
+    background-color: $govuk-light-blue;
+    border-color: #204d74
+  }
+
   .show-bulk-assign & {
     .js & {
       display: none;

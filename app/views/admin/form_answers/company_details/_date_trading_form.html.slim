@@ -1,9 +1,9 @@
 - unless @form_answer.promotion?
   - if user_can_edit(@form_answer, :date_trading)
-    .form-group
+    .form-group[data-controller="element-focus"]
       = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true, html: { "data-type" => "html", id: "date_trading_form_admin_appraisal" } do |f|
+                        authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "date_trading_form_admin_appraisal" } do |f|
         = hidden_field_tag :section, "date_trading", id: "section_date_trading_hidden_field"
 
         .form-container
@@ -27,11 +27,11 @@
               input.string.optional.form-control id="date_started_trading_1i" type='text' name="form_answer[data_attributes][started_trading_year]" value="#{@form_answer.document["started_trading_year"]}"
             .clear
             .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = f.submit "Save", class: "btn btn-primary pull-right"
           .clear
 
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear

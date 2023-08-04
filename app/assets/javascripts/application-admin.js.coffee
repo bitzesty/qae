@@ -26,7 +26,18 @@
 #= require clean-paste
 
 $(document).ready(() ->
-  $("html").removeClass("no-js").addClass("js")
-  ($ ".timepicker").timePicker()
-  ($ ".datepicker").datepicker({dateFormat: "dd/mm/yy"})
+  $('html').removeClass('no-js').addClass('js')
+  ($ '.timepicker').timePicker()
+  ($ '.datepicker').datepicker({dateFormat: 'dd/mm/yy'})
 )
+
+$(document).on 'ajax:success', 'form', (event, data, _status, _xhr) ->
+  fire(this, 'ajax:x:success', data)
+
+$(document).on 'ajax:error', 'form', (event, data, _status, _xhr) ->
+  fire(this, 'ajax:x:error', data)
+
+window.fire = (obj, name, data) ->
+  event = new CustomEvent(name, detail: data, bubbles: true, cancelable: true)
+  obj.dispatchEvent(event)
+  !event.defaultPrevented

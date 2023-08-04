@@ -16,17 +16,17 @@ class QaeFormBuilder
       if !date
         if question.required?
           result[question.hash_key] ||= ""
-          result[question.hash_key] << " Invalid date."
+          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. It requires a date in the format DD/MM/YYYY."
         end
       else
         if date_min && date < date_min
           result[question.hash_key] ||= ""
-          result[question.hash_key] << " Date should be greater than #{date_min.strftime('%d/%m/%Y')}."
+          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be after #{date_min.strftime('%d/%m/%Y')}."
         end
 
         if date_max && date > date_max
           result[question.hash_key] ||= ""
-          result[question.hash_key] << " Date should be less than #{date_max.strftime('%d/%m/%Y')}."
+          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be before #{date_max.strftime('%d/%m/%Y')}."
         end
       end
 

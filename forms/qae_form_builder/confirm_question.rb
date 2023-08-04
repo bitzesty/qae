@@ -1,5 +1,18 @@
 class QaeFormBuilder
   class ConfirmQuestionValidator < QuestionValidator
+    def errors
+      result = {}
+
+      return {} if skip_base_validation?
+
+      if question.required?
+        if !question.input_value.present?
+          result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and confirmation must be given by ticking the checkbox."
+        end
+      end
+
+      result
+    end
   end
 
   class ConfirmQuestionBuilder < QuestionBuilder

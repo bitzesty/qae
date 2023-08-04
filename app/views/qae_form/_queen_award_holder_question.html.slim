@@ -38,7 +38,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
               label.govuk-form-label for="form[queen_award_holder_details][#{index}][category]"
                 | Category
               div.if-no-js-hide
-                select.inline.govuk-select.js-trigger-autosave name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                select.inline.custom-select.govuk-select.js-trigger-autosave name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
                   option value=""
                     ' Category
                   - question.categories.each do |category|
@@ -52,7 +52,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
               label.govuk-form-label name="form[queen_award_holder_details][#{index}][year]"
                 | Year Awarded
               span.if-no-js-hide
-                select.govuk-select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+                select.govuk-select.custom-select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
                   option value=""
                     ' Year Awarded
                   - question.years.each do |year|
@@ -72,7 +72,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
             .govuk-form-group
               label for="form[queen_award_holder_details][0][category]"
                 | Category
-              select.govuk-select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+              select.govuk-select.custom-select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
                 option value=""
                   ' Category
                 - question.categories.each do |category|
@@ -83,7 +83,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
             .govuk-form-group
               label for="form[queen_award_holder_details][0][year]"
                 | Year Awarded
-              select.govuk-select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+              select.govuk-select.custom-select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
                 option value=""
                   ' Year Awarded
                 - question.years.each do |year|

@@ -2,13 +2,13 @@
 - deadline = deadline.decorate if deadline.present?
 
 - if deadline.present?
-  .deadline id="deadline-#{deadline.id}"
+  .deadline[id="deadline-#{deadline.id}" data-controller="element-focus inline-flash"]
     span.date-time-text
       => deadline.message
       span.trigger-at
         = deadline.formatted_trigger_time
     .deadline-form.well
-      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true do |f|
+      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } } do |f|
         .control-date
           label.control-label Set date and time
         .clear
@@ -18,11 +18,11 @@
                     input_html: { id: '' }
 
           .control-action
-            = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button"
-            input type="button" value="Save" class="btn btn-primary btn-submit" aria-label="Save #{I18n.t("deadline_buttons.#{kind}")}"
+            = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button", data: { element_focus_target: "dismiss" }
+            input[type="button" value="Save" class="btn btn-primary btn-submit" aria-label="Save #{I18n.t("deadline_buttons.#{kind}")}"]
         .clear
 
-    = link_to "Edit", "#", class: "edit-deadline if-no-js-hide", role: "button", aria: {label: "Edit #{I18n.t("deadline_buttons.#{kind}")}"}
+    = link_to "Edit", "#", class: "edit-deadline if-no-js-hide", role: "button", aria: {label: "Edit #{I18n.t("deadline_buttons.#{kind}")}"}, data: { element_focus_target: "reveal" }
 
     span.deadline-help
       - if deadline.help_message.present?

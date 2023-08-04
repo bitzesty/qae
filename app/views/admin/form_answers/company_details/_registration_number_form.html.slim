@@ -1,10 +1,10 @@
 - unless @form_answer.promotion?
   - if user_can_edit(@form_answer, :registration_number)
-    .form-group class="#{'form-edit' if @form_answer.registration_number.blank?}"
+    .form-group[class="#{'form-edit' if @form_answer.registration_number.blank?}" data-controller="element-focus"]
       = simple_form_for [namespace_name, resource],
                         remote: true,
                         authenticity_token: true,
-                        html: { "data-type" => "html", class: "registration-number-form", id: "registration_number_form_admin_appraisal" } do |f|
+                        html: { data: { type: "html", inline_flash_target: "form" }, class: "registration-number-form", id: "registration_number_form_admin_appraisal" } do |f|
         = hidden_field_tag :section, "registration_number", id: "section_registration_number_hidden_field"
         .form-container
           label.form-label Company/charity registration number
@@ -22,11 +22,11 @@
                         label: false,
                         input_html: { class: "form-control" }
             .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = f.submit "Save", class: "btn btn-primary pull-right"
           .clear
 
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear

@@ -3,7 +3,7 @@
 
 .well.question-group.notification-new-form
   h3 Schedule new email
-  = simple_form_for notification, url: admin_settings_email_notifications_path(year: params[:year]), remote: true, authenticity_token: true, html: { id: "new_email_notification_#{kind}" }  do |f|
+  = simple_form_for notification, url: admin_settings_email_notifications_path(year: params[:year]), remote: true, authenticity_token: true, html: { id: "new_email_notification_#{kind}", data: { inline_flash_target: "form" } }  do |f|
     = f.input :kind, as: :hidden, input_html: { id: "email_notification_kind_#{kind}" }
     .control-date
       .form-group
@@ -13,6 +13,6 @@
                   input_html: { id: "" }
 
     .control-action
-      = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button"
+      = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide", role: "button", data: { element_focus_target: "dismiss" }
       = f.submit "Save", class: "btn btn-primary btn-submit"
     .clear

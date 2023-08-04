@@ -1,25 +1,36 @@
-.panel.panel-default
+.panel.panel-default[data-controller="element-focus"]
   .panel-heading#company-details-heading
     h3.panel-title
-      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details"
+      a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details" data-element-focus-target="reveal"
         = @form_answer.promotion? ? "Nominee Details" : "Company Details"
         - if resource.company_details_updated_at && resource.company_details_editable
           small
             = "Updated by: #{resource.company_details_editable.decorate.full_name} - #{format_date(resource.company_details_updated_at)}"
 
-
   #section-company-details.section-company-details.panel-collapse.collapse aria-labelledby="company-details-heading"
-    .panel-body.company-details-forms
-      = render "admin/form_answers/company_details/company_name_form"
-      = render "admin/form_answers/company_details/organisation_type_form"
-      = render "admin/form_answers/company_details/address_form"
-      = render "admin/form_answers/company_details/previous_wins_form"
-      = render "admin/form_answers/company_details/sic_form"
-      = render "admin/form_answers/company_details/this_entry_relates_to_form"
-      = render "admin/form_answers/company_details/goods_services_form"
-      = render "admin/form_answers/company_details/registration_number_form"
-      = render "admin/form_answers/company_details/date_trading_form"
-      = render "admin/form_answers/company_details/website_form"
-      = render "admin/form_answers/company_details/organisation_head_form"
-      = render "admin/form_answers/company_details/parent_company_form"
+    .panel-body.company-details-forms.space-y-3
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/company_name_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/organisation_type_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/address_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/previous_wins_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/sic_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/this_entry_relates_to_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/goods_services_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/registration_number_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/date_trading_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/website_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/organisation_head_form"
+      div[data-controller="inline-flash"]
+        = render "admin/form_answers/company_details/parent_company_form"
       = render "admin/form_answers/company_details/user_accounts"

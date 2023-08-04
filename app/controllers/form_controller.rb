@@ -110,7 +110,11 @@ class FormController < ApplicationController
   end
 
   def save
-    @form_answer.document = prepare_doc if params[:form].present?
+    if params[:form].present?
+      @form_answer.document = prepare_doc
+      @form_answer.current_non_js_step = params[:form][:current_non_js_step].presence
+    end
+
     @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
 
     redirected = params[:next_action] == "redirect"
