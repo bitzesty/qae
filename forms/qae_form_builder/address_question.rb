@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class AddressQuestionValidator < SubFieldsQuestionValidator
     NO_VALIDATION_SUB_FIELDS = [:street, :county]
   end

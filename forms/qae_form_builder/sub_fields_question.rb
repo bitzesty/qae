@@ -1,4 +1,4 @@
-class QAEFormBuilder
+class QaeFormBuilder
   class SubFieldsQuestionValidator < QuestionValidator
     NO_VALIDATION_SUB_FIELDS = [:honours]
     def errors

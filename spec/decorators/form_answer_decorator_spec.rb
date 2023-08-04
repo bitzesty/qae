@@ -91,7 +91,7 @@ describe FormAnswerDecorator do
 
   describe "#dashboard_status" do
     it "returns fill progress when application is not submitted" do
-     form_answer = create(:form_answer, :trade, state: "application_in_progress", document: { sic_code:  SICCode.first.code })
+     form_answer = create(:form_answer, :trade, state: "application_in_progress", document: { sic_code:  SicCode.first.code })
       expect(described_class.new(form_answer).dashboard_status).to eq("Application in progress...8%")
     end
 
