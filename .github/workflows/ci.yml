@@ -54,7 +54,7 @@ jobs:
         env:
           DISPLAY_SOCIAL_MOBILITY_AWARD: true
           DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/qae_test"
-          BUNDLER_VERSION: 2.4.8
+          BUNDLER_VERSION: 2.4.16
           DOCKER_TLS_CERTDIR: ""
         run: |
           sudo apt update
