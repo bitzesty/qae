@@ -433,6 +433,7 @@ window.FormValidation =
 
   validateNumberByYears: (question) ->
     inputCellsCounter = 0
+    questionRef = question.attr("data-question_ref")
 
     for subquestion in question.find("input")
       subq = $(subquestion)
@@ -446,10 +447,11 @@ window.FormValidation =
 
       if shownQuestion
         inputCellsCounter += 1
+        label = $("label[for='#{subq.attr('id')}']").text()
 
         if not subq.val() and question.hasClass("question-required")
           @logThis(question, "validateNumberByYears", "This field is required")
-          @appendMessage(errContainer, "This field is required")
+          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
           @addErrorClass(question)
           continue
         else if not subq.val()
