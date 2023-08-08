@@ -64,7 +64,7 @@ So that I can fill form completelly even if Javascript is turned off
     end
 
     it "should allow to add another" do
-      within("fieldset[data-answer='trading_figures_add-for-each-of-the-uk-subsidiaries-included-in-this-application-enter-1-name-2-location-3-number-of-uk-employees-fte-full-time-equivalent-4-the-reason-why-you-are-including-them']") do
+      within("div[data-answer='trading_figures_add-for-each-of-the-uk-subsidiaries-included-in-this-application-enter-1-name-2-location-3-number-of-uk-employees-fte-full-time-equivalent-4-the-reason-why-you-are-including-them']") do
         first(".button-add").click
       end
       expect_to_see "Add subsidiary, associate or plant"
