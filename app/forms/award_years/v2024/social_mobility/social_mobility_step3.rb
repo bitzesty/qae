@@ -543,6 +543,7 @@ class AwardYears::V2024::QAEForms
           classes "sub-question question-matrix"
           ref "C 5.2"
           required
+          required_rows :initiative_activities
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )

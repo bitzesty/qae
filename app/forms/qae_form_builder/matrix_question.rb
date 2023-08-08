@@ -8,7 +8,7 @@ class QAEFormBuilder
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
 
-            if !question.input_value(suffix: suffix).present? && question.required_rows.include?(y_heading.key)
+            if !question.input_value(suffix: suffix).present?
               result[question.hash_key(suffix: suffix)] ||= ""
               result[question.hash_key(suffix: suffix)] << "Required"
             end
