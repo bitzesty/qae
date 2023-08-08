@@ -1,4 +1,4 @@
-div role="group" id="q_#{question.key}"
+  div role="group" id="q_#{question.key}"
   .js-financial-year-changed-dates
     - for c in question.by_year_conditions
       .js-conditional-question.by-years-wrapper data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
