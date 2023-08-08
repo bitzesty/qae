@@ -60,8 +60,6 @@ module QaePdfForms::CustomQuestions::ByYear
       financial_table_headers.each.with_index(1) do |item, idx|
         frmt = if !::Utils::Date.valid?(item)
                  FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
-               elsif force_format_without_date?(item)
-                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
                else
                  opts.dig(:format)
                end
@@ -117,19 +115,5 @@ module QaePdfForms::CustomQuestions::ByYear
     month = "0" + month if month.size == 1
 
     [day, month, year]
-  end
-
-  def force_format_without_date?(value)
-    doc = form_pdf.filled_answers
-
-    date = [:day, :month, :year].each_with_object([]) do |part, memo|
-      memo << doc.dig("#{:started_trading}_#{part}")
-    end.join("/")
-
-    if ::Utils::Date.valid?(date) && ::Utils::Date.valid?(value)
-      Date.parse(value).before?(Date.parse(date))
-    else
-      !::Utils::Date.valid?(value)
-    end
   end
 end
