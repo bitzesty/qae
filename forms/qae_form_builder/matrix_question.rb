@@ -2,15 +2,16 @@ class QaeFormBuilder
   class MatrixQuestionValidator < QuestionValidator
     def errors
       result = super
-
       if question.required?
         question.y_headings.each do |y_heading|
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
 
-            if !question.input_value(suffix: suffix).present? && question.required_rows.include?(y_heading.key)
-              result[question.hash_key(suffix: suffix)] ||= ""
-              result[question.hash_key(suffix: suffix)] << "Required"
+            if !question.input_value(suffix: suffix).present?
+              if (question.required_row_parent && question.required_rows.include?(y_heading.key)) || !question.required_row_parent
+                result[question.hash_key(suffix: suffix)] ||= ""
+                result[question.hash_key(suffix: suffix)] << "Required"
+              end
             end
           end
         end
