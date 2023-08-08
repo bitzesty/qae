@@ -493,6 +493,7 @@ class AwardYears::V2024::QAEForms
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
           ref "D 9"
           yes_no
+          required
           context %(
             <p>
               If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures.
