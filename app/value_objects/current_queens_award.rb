@@ -6,7 +6,9 @@ class CurrentQueensAward
 
   attr_reader :categories, :years, :category, :year, :outcome, :outcomes
 
-  validates :category, :year, :outcome, presence: true
+  validates :category, presence: { message: "Category is required and an option must be selected from the following list" }
+  validates :year, presence: { message: "Year is required and an option must be selected from the following list" }
+  validates :outcome, presence: { message: "Outcome is required and an option must be selected from the following list"}
 
   validates :category, length: { maximum: 100 },
                        inclusion: {
