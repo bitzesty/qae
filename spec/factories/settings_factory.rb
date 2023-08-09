@@ -4,7 +4,11 @@ FactoryBot.define do
 
     initialize_with do
       begin
-        Settings.where(attributes).first_or_create
+        if attributes.present?
+          Settings.where(attributes).first_or_create
+        else
+          Settings.first_or_create
+        end
       rescue ActiveRecord::RecordNotUnique
         retry
       end

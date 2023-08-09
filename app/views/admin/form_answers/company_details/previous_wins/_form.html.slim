@@ -1,10 +1,10 @@
 = simple_form_for [namespace_name, @form_answer],
                   remote: true,
                   authenticity_token: true,
-                  html: { "data-type" => "html" } do |f|
+                  html: { data: { type: "html", inline_flash_target: "form" }, id: "previous_wins_form" } do |f|
 
-  = hidden_field_tag :section, "previous_wins"
-  .form-container
+  = hidden_field_tag :section, "previous_wins", id: "previous_wins_section_hidden_field"
+  .form-container[data-controller="element-focus"]
     = render "admin/form_answers/company_details/previous_wins/show"
 
     .input.form-group.form-fields.form-block
@@ -34,11 +34,11 @@
 
       = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide add-previous-winning"
       .form-actions.text-right
-        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
         = f.submit "Save", class: "btn btn-primary pull-right"
 
 
-    = link_to "#", class: "form-edit-link pull-right"
+    = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
       span.glyphicon.glyphicon-pencil
       ' Edit
     .clear

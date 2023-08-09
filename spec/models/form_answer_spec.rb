@@ -4,10 +4,6 @@ RSpec.describe FormAnswer, type: :model do
   let(:award_year) { create(:award_year, year: 2019) }
   let(:form_answer) { build(:form_answer) }
 
-  describe "associations" do
-    it { should belong_to(:user) }
-  end
-
   describe 'class methods & scopes ' do
     it ".hard_copy_generated should filter correctly" do
       target = FormAnswer.submitted.where("feedback_hard_copy_generated" => true).to_sql

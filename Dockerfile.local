@@ -1,6 +1,6 @@
-ARG RUBY_VERSION=2.7.7
+ARG RUBY_VERSION=3.2.2
 
-FROM ruby:2.7.7
+FROM ruby:3.2.2
 
 ENV HOME=/app
 WORKDIR /app
@@ -18,7 +18,7 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle config set --local path 'vendor/bundle'
 RUN bundle config set --local without 'development test'
-RUN gem install bundler:2.4.8 && bundle install --jobs 4 --retry 3
+RUN gem install bundler:2.4.16 && bundle install --jobs 4 --retry 3
 
 COPY . /app
 RUN yarn install

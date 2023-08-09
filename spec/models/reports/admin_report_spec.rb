@@ -51,6 +51,18 @@ describe Reports::AdminReport do
         expect(data).to include(form_answer.urn)
       end
     end
+
+    describe "case index report" do
+      subject { described_class.new(id, AwardYear.current, category: "mobility") }
+
+      let(:id) { "case-index" }
+      before { create(:form_answer, :mobility, :recommended) }
+
+      it "generates the CSV" do
+        data = normalize_output(subject)
+        expect(data).to include(form_answer.urn)
+      end
+    end
   end
 end
 

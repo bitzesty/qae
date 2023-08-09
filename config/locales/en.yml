@@ -60,8 +60,10 @@ en:
 
   activerecord:
     errors:
+      full_messages:
+        format: "{{message}}"
       messages:
-        blank: This field cannot be blank
+        blank: "%{attribute} is empty - it is a required field and must be filled in"
         accepted: Must be accepted
         taken: "This %{attribute} has already been taken"
         too_long: "%{attribute} is too long (maximum is %{count} characters)"
@@ -71,6 +73,10 @@ en:
       models:
         user:
           attributes:
+            email:
+              invalid: "Email is invalid - enter a valid email address"
+            role:
+              blank: "Account type is empty - it is a required field and an option should be selected from the following list"
             password:
               weak_password: Your new password must be more complex.
         admin:
@@ -81,6 +87,10 @@ en:
           attributes:
             password:
               weak_password: Your new password must be more complex.
+        assessor_assignment:
+          attributes:
+            position:
+              blank: "is empty - it is a required field and an option should be selected from the following list"
 
   time:
     formats:
@@ -144,6 +154,38 @@ en:
     buckingham_palace_reception_attendee_information_due_by: Buckingham Palace reception attendee information due by
     buckingham_palace_attendees_invite: Buckingham Palace Reception on
     audit_certificates: Additional Financials documents due by
+
+  deadline_buttons:
+    award_year_switch: "award year opening date"
+    innovation_submission_start: "Innovation submission period start date"
+    trade_submission_start: "International Trade submission period start date"
+    development_submission_start: "Sustainable Development submission period start date"
+    mobility_submission_start: "Promoting Opportunity submission period start date"
+    submission_end: "submission period end date"
+    audit_certificates: "additional financial documents due by date"
+    buckingham_palace_attendees_details: "end of embargo date"
+    buckingham_palace_media_information: "media information presentation date"
+    buckingham_palace_confirm_press_book_notes: "deadline for recipients to finalise the press release"
+    buckingham_palace_reception_attendee_information_due_by: "deadline for recipients to finalise palace attendees"
+    buckingham_palace_attendees_invite: "palace reception date"
+
+  email_buttons:
+    award_year_open_notifier: "new award year open notification"
+    innovation_submission_started_notification: "Innovation applications open notification"
+    trade_submission_started_notification: "International Trade applications open notification"
+    development_submission_started_notification: "Sustainable Development applications open notification"
+    mobility_submission_started_notification: "Promoting Opportunites applications open notification"
+    reminder_to_submit: "reminder to submit applications notification"
+    shortlisted_notifier: "shortlisted notification for Innovation and International Trade applications"
+    shortlisted_po_sd_notifier: "shortlisted notification for Sustainable Development and Promoting Opportunities applications with estimated figures"
+    shortlisted_po_sd_with_actual_figures_notifier: "shortlisted notification for sustainable development and promoting opportunities applications with actual figures"
+    shortlisted_audit_certificate_reminder: "reminder notification for Innovation and International Trade applications to supply Verification of Commercial Figures"
+    shortlisted_po_sd_reminder: "reminder notification for Sustainable Development and Promoting Opportunities applications to supply financial statements"
+    not_shortlisted_notifier: "notification to unsuccessful applicants"
+    winners_notification: "notification to successful applicants"
+    winners_head_of_organisation_notification: "notification to head of successful applications"
+    buckingham_palace_invite: "palace invite notification"
+    unsuccessful_notification: "notification to unsuccessful applicants"
 
   deadline_help_messages:
     award_year_switch: "This date marks the start of the new award year, and will update the website accordingly. Users will not yet be able to start any applications"
@@ -257,7 +299,9 @@ en:
       audit_certificate_destroyed: "removed External Accountant's Report form"
       actual_figures_file_uploaded: "uploaded actual figures"
       actual_figures_file_destroyed: "removed actual figures"
-      vat_returns_file_uploaded: "upload VAT returns"
+      commercial_figures_file_uploaded: "uploaded Variance explanation document"
+      commercial_figures_file_destroyed: "removed Variance explanation document"
+      vat_returns_file_uploaded: "uploaded VAT returns"
       vat_returns_file_destroyed: "removed VAT returns"
       palace_attendee_update: "updated Buckingham Palace attendee details"
       palace_attendee_submit: "confirmed Buckingham Palace attendee details"

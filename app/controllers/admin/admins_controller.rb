@@ -19,6 +19,9 @@ class Admin::AdminsController < Admin::UsersController
     authorize @resource, :create?
 
     @resource.save
+
+    render_flash_message_for(@resource)
+
     location = @resource.persisted? ? admin_admins_path : nil
     respond_with :admin, @resource, location: location
   end
@@ -32,6 +35,8 @@ class Admin::AdminsController < Admin::UsersController
       @resource.update_without_password(resource_params)
     end
 
+    render_flash_message_for(@resource)
+    
     respond_with :admin, @resource, location: admin_admins_path
   end
 
@@ -39,6 +44,8 @@ class Admin::AdminsController < Admin::UsersController
     authorize @resource, :destroy?
     @resource.soft_delete!
 
+    render_flash_message_for(@resource)
+    
     respond_with :admin, @resource, location: admin_admins_path
   end
 

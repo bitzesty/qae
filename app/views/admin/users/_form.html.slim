@@ -1,49 +1,49 @@
-= simple_form_for [:admin, resource], html: { class: "qae-form" } do |f|
-  .panel-group#user-form-panel-parent role="tablist" aria-multiselectable="true"
-    .panel.panel-default
-      .panel-heading#user-details-heading role="tab"
+= simple_form_for [:admin, resource], html: { class: "qae-form", data: { type: "json",  controller: "inline-flash", inline_flash_target: "form" } } do |f|
+  .panel-group#user-form-panel-parent
+    .panel.panel-default[data-controller="element-focus"]
+      .panel-heading#user-details-heading
         h2.panel-title
-          a data-toggle="collapse" data-parent="#user-form-panel" href="#user-details" aria-expanded="true" aria-controls="user-details"
+          a data-toggle="collapse" data-parent="#user-form-panel" href="#user-details" aria-expanded="true" aria-controls="user-details" data-element-focus-target="reveal"
             = controller_name == "users" ? "Applicant" : controller_name.singularize.titleize
             '  Details
-      #user-details.section-user-details.panel-collapse.collapse.in role="tabpanel" aria-labelledby="user-details-heading"
+      #user-details.section-user-details.panel-collapse.collapse.in aria-labelledby="user-details-heading"
         .panel-body
           = render "fields_user_details", f: f
 
-    .panel.panel-default
-      .panel-heading role="tab" id="organisation-details-header"
+    .panel.panel-default[data-controller="element-focus"]
+      .panel-heading id="organisation-details-header"
         h2.panel-title
-          a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#organisation-details" aria-expanded="false" aria-controls="organisation-details"
+          a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#organisation-details" aria-expanded="false" aria-controls="organisation-details" data-element-focus-target="reveal"
             ' Organisation Details
-      #organisation-details.section-organisation-details.panel-collapse.collapse role="tabpanel" aria-labelledby="organisation-details-header"
+      #organisation-details.section-organisation-details.panel-collapse.collapse aria-labelledby="organisation-details-header"
         .panel-body
           = render "fields_organisation_details", f: f
 
-    .panel.panel-default
-      .panel-heading role="tab" id="contact-preferences-header"
+    .panel.panel-default[data-controller="element-focus"]
+      .panel-heading id="contact-preferences-header"
         h2.panel-title
-          a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#contact-preferences" aria-expanded="false" aria-controls="contact-preferences"
+          a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#contact-preferences" aria-expanded="false" aria-controls="contact-preferences" data-element-focus-target="reveal"
             ' Contact Preferences
-      #contact-preferences.section-contact-preferences.panel-collapse.collapse role="tabpanel" aria-labelledby="contact-preferences-header"
+      #contact-preferences.section-contact-preferences.panel-collapse.collapse aria-labelledby="contact-preferences-header"
         .panel-body
           = render "fields_contact_preferences", f: f
 
     - unless action_name == "new"
-      .panel.panel-default
-        .panel-heading role="tab" id="section-collaborators-header"
+      .panel.panel-default[data-controller="element-focus"]
+        .panel-heading id="section-collaborators-header"
           h2.panel-title
-            a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-collaborators" aria-expanded="false" aria-controls="section-collaborators"
+            a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-collaborators" aria-expanded="false" aria-controls="section-collaborators" data-element-focus-target="reveal"
               ' Collaborators
-        #section-collaborators.section-collaborators.panel-collapse.collapse role="tabpanel" aria-labelledby="section-collaborators-header"
+        #section-collaborators.section-collaborators.panel-collapse.collapse aria-labelledby="section-collaborators-header"
           .panel-body
             = render "fields_collaborators", f: f, resource: resource
 
-    .panel.panel-default
-      .panel-heading role="tab" id="section-password-header"
+    .panel.panel-default[data-controller="element-focus"]
+      .panel-heading id="section-password-header"
         h2.panel-title
-          a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-password" aria-expanded="false" aria-controls="section-password"
+          a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-password" aria-expanded="false" aria-controls="section-password" data-element-focus-target="reveal"
             ' Password
-      #section-password.section-password.panel-collapse.collapse role="tabpanel" aria-labelledby="section-password-header"
+      #section-password.section-password.panel-collapse.collapse aria-labelledby="section-password-header"
         .panel-body
           = render "fields_password", f: f
 

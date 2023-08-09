@@ -67,11 +67,11 @@ class Reports::CasesStatusReport
       method: :overall_status
     },
     {
-      label: "ACReceived",
+      label: "Additional Financials Received",
       method: :ac_received
     },
     {
-      label: "ACChecked",
+      label: "Additional Financials Checked",
       method: :ac_checked
     },
     {

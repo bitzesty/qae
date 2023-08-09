@@ -1,4 +1,4 @@
-.form-group.palace-attendee-container class=("form-edit" if pa.errors.present? || defined?(@enable_edition))
+.form-group.palace-attendee-container[class=("form-edit" if pa.errors.present? || defined?(@enable_edition)) data-controller="element-focus"]
   .form-value
     .empty-message class="#{'visuallyhidden' if palace_invite.palace_attendees.exists?}"
       p.p-empty No attendees confirmed.
@@ -10,7 +10,7 @@
     - if palace_invite.palace_attendees.exists?
       ul.list-unstyled
         li.well
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
 
@@ -43,7 +43,6 @@
                 = pa.additional_info
               - else
                 ' -
-
 
   .input.form-group.form-fields.form-block.attendees-forms data-attendees-limit=palace_invite.attendees_limit
     / ### Business Award winner

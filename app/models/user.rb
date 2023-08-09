@@ -44,7 +44,7 @@ class User < ApplicationRecord
                          source: :feedback
     has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
-    belongs_to :account
+    belongs_to :account, optional: true
     has_many :form_answer_attachments, as: :attachable
     has_many :support_letter_attachments, dependent: :destroy
     has_many :supporters, dependent: :destroy

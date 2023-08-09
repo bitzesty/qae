@@ -14,7 +14,7 @@ describe Users::AuditCertificateRequestMailer do
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) {
-    "King's Awards for Enterprise: Reminder to provide verification of commercial figures"
+    "King's Awards for Enterprise: Reminder to provide verification of commercial figures - Application ref #{form_answer.urn}"
   }
 
   before do

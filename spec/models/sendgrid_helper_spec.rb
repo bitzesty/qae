@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe SendgridHelper do
+  before do
+    # SENDGRID RELATED STUBS - BEGIN
+    stub_request(:get, "https://sendgrid.com/api/spamreports.get.json?api_key=test_smtp_password&api_user=test_smtp_username&email=test@example.com").
+      to_return(status: 200, body: "", headers: {})
+
+    stub_sendgrid_bounced_emails_check_request("test@irrelevant.com")
+    stub_sendgrid_bounced_emails_check_request("test@example.com")
+    # SENDGRID RELATED STUBS - END
+
+    AwardYear.current
+  end
+
   context 'with sendgrid configured' do
     around do |example|
       smtp_settings = Rails.configuration.action_mailer.smtp_settings

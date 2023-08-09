@@ -1,8 +1,15 @@
-const { webpackConfig, merge } = require('@rails/webpacker')
-const customConfig = {
-  resolve: {
-    extensions: ['.css', '.scss']
-  }
-}
+const webpack = require('webpack');
+const { merge, webpackConfig } = require('@rails/webpacker');
 
-module.exports = merge(webpackConfig, customConfig)
+const customConfig = {
+  plugins: [
+    new webpack.ProvidePlugin({
+      ApplicationController: ['application_controller', 'default'],
+    }),
+  ],
+  resolve: {
+    extensions: ['.css', '.scss'],
+  },
+};
+
+module.exports = merge(webpackConfig, customConfig);

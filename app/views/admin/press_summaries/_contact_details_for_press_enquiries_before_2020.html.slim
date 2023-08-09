@@ -22,10 +22,10 @@
               input_html: { class: 'form-control' }
   .clear
 
-  = link_to "#", class: "form-edit-link pull-right" do
+  = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" } do
     span.glyphicon.glyphicon-pencil
     ' Edit
   .form-actions.text-right
-    = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+    = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
     = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
   .clear

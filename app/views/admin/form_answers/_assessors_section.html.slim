@@ -12,8 +12,8 @@
         = resource.lead_assessors
       .clear
 
-    li.form-group.primary-assessor-assignment
-      label
+    li.form-group.primary-assessor-assignment[data-controller="element-focus inline-flash"]
+      label[for='assessor_assignment_primary_assessor_id']
         ' Primary:
       .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.primary.present?
@@ -25,27 +25,29 @@
       - if policy(resource).assign_assessor?
         = form_for [namespace_name, resource.assessor_assignments.primary],
                    remote: true,
-                   html: { "data-type" => "json"},
+                   html: { data: { type: "json", inline_flash_target: "form" } },
                    authenticity_token: true do |form|
 
           .form-fields
             = form.select :assessor_id,
                           available_assessors_for_select,
-                          { include_blank: true }
+                          { include_blank: 'Select primary assessor…' },
+                          id: 'assessor_assignment_primary_assessor_id',
+                          class: 'form-control custom-select'
 
-          = link_to "#", class: "form-edit-link"
+          = link_to "#", class: "form-edit-link", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear
           .form-actions.text-right
             span.if-no-js-hide
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link", data: { element_focus_target: "dismiss" }
             = form.submit "Save", class: "btn btn-primary form-save-button"
           .errors-holder
       .clear
 
-    li.form-group.secondary-assessor-assignment
-      label
+    li.form-group.secondary-assessor-assignment[data-controller="element-focus inline-flash"]
+      label[for='assessor_assignment_secondary_assessor_id']
         span.assessor-label Secondary:
       .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.secondary.present?
@@ -57,18 +59,23 @@
       - if policy(resource).assign_assessor?
         = form_for [namespace_name, resource.assessor_assignments.secondary],
                    remote: true,
-                   html: { "data-type" => "json" },
+                   html: { data: { type: "json", inline_flash_target: "form" } },
                    authenticity_token: true do |form|
 
           .form-fields
-            = form.select :assessor_id, available_assessors_for_select, { include_blank: true }
-          = link_to "#", class: "form-edit-link"
+            = form.select :assessor_id,
+                          available_assessors_for_select,
+                          { include_blank: 'Select secondary assessor…' },
+                          id: 'assessor_assignment_secondary_assessor_id',
+                          class: 'form-control custom-select'
+
+          = link_to "#", class: "form-edit-link", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear
           .form-actions.text-right
             span.if-no-js-hide
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link", data: { element_focus_target: "dismiss" }
             = form.submit "Save", class: "btn btn-primary form-save-button"
           .errors-holder
       .clear

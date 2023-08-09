@@ -3,21 +3,19 @@
 / whether file was saved or not
 .span
   = hidden_field_tag "valid", "false", id: "form-audit_certificate-valid"
-= form_for [namespace_name, form_answer, audit_certificate], html: { multipart: true } do |form|
+= form_for [namespace_name, form_answer, audit_certificate], html: { multipart: true, data: { inline_flash_target: "form" } } do |form|
   .well.js-attachment-form
     h3 Attach document
 
     - if form.object.errors.any?
       .errors = form.object.errors.full_messages.join(", ")
 
-    ul.list-unstyled
-    p
     .attachment-link.if-js-hide
       = form.file_field :attachment
 
     .form-group
       label.form-label Document title
-      = form.text_field :attachment, class: "form-control attachment-title"
+      = form.text_field :attachment, class: "form-control attachment-title", id: "audit_certificate_attachment_input"
 
     .form-actions.text-right
       = link_to "Cancel", "#", class: "btn btn-default btn-cancel"

@@ -1,10 +1,10 @@
 - if show_bulk_assignment?
-  .if-no-js-hide
-    .btn.bulk-assign-assessors-link Bulk Assign Assessors
+  .if-no-js-hide[data-controller="element-focus"]
+    .btn.bulk-assign-assessors-link[data-element-focus-target="reveal"] Bulk Assign Assessors
 
     .bulk-assign-assessors-form
       .well
-        h3 Bulk Assign Assessors
+        h2 Bulk Assign Assessors
 
         p Please make sure that the correct applications are selected in the list before assigning assessors.
         br
@@ -16,19 +16,19 @@
               = f.label :primary_assessor_id, "Assign Primary Assessor to these applications", class: "control-label"
               = f.select :primary_assessor_id,
                          assessors_collection_for_bulk,
-                         { include_blank: true },
-                         class: "form-control"
+                         { include_blank: 'Select primary assessor…' },
+                         class: "form-control custom-select"
 
             .input.select.form-group.secondary-assessor-group
               = f.label :secondary_assessor_id, "Assign Secondary Assessor to these applications", class: "control-label"
               = f.select :secondary_assessor_id,
                          assessors_collection_for_bulk,
-                         { include_blank: true },
-                         class: "form-control"
+                         { include_blank: 'Select secondary assessor…' },
+                         class: "form-control custom-select"
             = f.label :form_answer_ids, class: "if-js-hide visuallyhidden"
             = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
 
             .pull-right
-              = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
+              = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link", data: { element_focus_target: "dismiss" }
               = f.submit "Assign", class: "btn btn-primary"
             .clear
