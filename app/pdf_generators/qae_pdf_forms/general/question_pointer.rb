@@ -39,22 +39,22 @@ class QaePdfForms::General::QuestionPointer
   ANSWER_FONT_END = "</color>".freeze
 
   BLOCK_QUESTIONS = [
-    QAEFormBuilder::AwardHolderQuestion,
-    QAEFormBuilder::QueenAwardHolderQuestion,
-    QAEFormBuilder::QueenAwardApplicationsQuestion,
-    QAEFormBuilder::PositionDetailsQuestion,
-    QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion,
-    QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion,
-    QAEFormBuilder::UploadQuestion,
-    QAEFormBuilder::ByYearsLabelQuestion,
-    QAEFormBuilder::TradeMostRecentFinancialYearOptionsQuestion,
-    QAEFormBuilder::ByYearsQuestion,
-    QAEFormBuilder::MatrixQuestion,
-    QAEFormBuilder::OneOptionByYearsLabelQuestion,
-    QAEFormBuilder::OneOptionByYearsQuestion,
-    QAEFormBuilder::SupportersQuestion,
-    QAEFormBuilder::TextareaQuestion,
-    QAEFormBuilder::TextQuestion
+    QaeFormBuilder::AwardHolderQuestion,
+    QaeFormBuilder::QueenAwardHolderQuestion,
+    QaeFormBuilder::QueenAwardApplicationsQuestion,
+    QaeFormBuilder::PositionDetailsQuestion,
+    QaeFormBuilder::SubsidiariesAssociatesPlantsQuestion,
+    QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion,
+    QaeFormBuilder::UploadQuestion,
+    QaeFormBuilder::ByYearsLabelQuestion,
+    QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion,
+    QaeFormBuilder::ByYearsQuestion,
+    QaeFormBuilder::MatrixQuestion,
+    QaeFormBuilder::OneOptionByYearsLabelQuestion,
+    QaeFormBuilder::OneOptionByYearsQuestion,
+    QaeFormBuilder::SupportersQuestion,
+    QaeFormBuilder::TextareaQuestion,
+    QaeFormBuilder::TextQuestion
   ]
 
   def initialize(ops = {})
@@ -84,7 +84,7 @@ class QaePdfForms::General::QuestionPointer
 
   def set_non_header_questions
     @non_header_questions = form_pdf.all_questions.select do |q|
-      !q.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
+      !q.delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion)
     end
   end
 
@@ -103,7 +103,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_bottom_space
-    if question.delegate_obj.class.to_s != "QAEFormBuilder::HeaderQuestion" ||
+    if question.delegate_obj.class.to_s != "QaeFormBuilder::HeaderQuestion" ||
        question.classes != "regular-question" ||
        question.classes == "application-notice help-notice"
 
@@ -153,7 +153,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_header_hint
-    if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) &&
+    if question.delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion) &&
       (question.ref.present? || question.sub_ref.present?) &&
       SKIP_HEADER_HINT_KEYS.exclude?(question.key.to_s)
 
@@ -347,18 +347,18 @@ class QaePdfForms::General::QuestionPointer
   def question_answer(question)
     unless FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
       case question.delegate_obj
-      when QAEFormBuilder::UploadQuestion
+      when QaeFormBuilder::UploadQuestion
         form_pdf.indent 7.mm do
           render_attachments
         end
-      when QAEFormBuilder::SicCodeDropdownQuestion
+      when QaeFormBuilder::SicCodeDropdownQuestion
         if q_visible? && humanized_answer.present?
           form_pdf.render_standart_answer_block(question_option_title)
         else
           form_pdf.default_bottom_margin
           form_pdf.text "Select #{question.title}"
         end
-      when QAEFormBuilder::TradeMostRecentFinancialYearOptionsQuestion, QAEFormBuilder::OptionsQuestion
+      when QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion, QaeFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
           chosen_option = question.options.detect{ |option| option.value.to_s == humanized_answer.to_s }
           form_pdf.render_standart_answer_block(question_option_title)
@@ -375,7 +375,7 @@ class QaePdfForms::General::QuestionPointer
             end
           end
         end
-      when QAEFormBuilder::ConfirmQuestion
+      when QaeFormBuilder::ConfirmQuestion
         if q_visible? && humanized_answer.present?
           question_text = interpolate_deadlines(question_checked_value_title)
 
@@ -383,35 +383,35 @@ class QaePdfForms::General::QuestionPointer
         else
           question_option_box interpolate_deadlines(question.pdf_text || question.text)
         end
-      when QAEFormBuilder::MatrixQuestion
+      when QaeFormBuilder::MatrixQuestion
         render_matrix
-      when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::OneOptionByYearsLabelQuestion
+      when QaeFormBuilder::ByYearsLabelQuestion, QaeFormBuilder::OneOptionByYearsLabelQuestion
         form_pdf.indent 7.mm do
           render_years_labels_table
         end
-      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion, QAEFormBuilder::OneOptionByYearsQuestion
+      when QaeFormBuilder::ByYearsQuestion, QaeFormBuilder::TurnoverExportsCalculationQuestion, QaeFormBuilder::OneOptionByYearsQuestion
         render_years_table
-      when QAEFormBuilder::QueenAwardHolderQuestion
+      when QaeFormBuilder::QueenAwardHolderQuestion
         if humanized_answer.present?
           render_queen_award_holder
         else
           render_queen_award_holder_header
         end
-      when QAEFormBuilder::QueenAwardApplicationsQuestion
+      when QaeFormBuilder::QueenAwardApplicationsQuestion
         if humanized_answer.present?
           render_queen_award_applications
         else
           render_queen_award_applications_header
         end
-      when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+      when QaeFormBuilder::SubsidiariesAssociatesPlantsQuestion
         if humanized_answer.present?
           render_subsidiaries_plants
         end
-      when QAEFormBuilder::SupportersQuestion
+      when QaeFormBuilder::SupportersQuestion
         form_pdf.indent 7.mm do
           render_supporters
         end
-      when QAEFormBuilder::TextareaQuestion
+      when QaeFormBuilder::TextareaQuestion
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
 
         form_pdf.default_bottom_margin
@@ -421,7 +421,7 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.indent 7.mm do
           render_list
         end
-      when QAEFormBuilder::CheckboxSeriaQuestion
+      when QaeFormBuilder::CheckboxSeriaQuestion
         render_checkbox_selected_values
       else
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
@@ -534,11 +534,11 @@ class QaePdfForms::General::QuestionPointer
   def complex_question
     render_question_title_with_ref_or_not
 
-    if question.delegate_obj.class.to_s == "QAEFormBuilder::AddressQuestion"
+    if question.delegate_obj.class.to_s == "QaeFormBuilder::AddressQuestion"
       render_context_and_answer_blocks
     end
 
-    if question.delegate_obj.class.to_s == "QAEFormBuilder::PressContactDetailsQuestion"
+    if question.delegate_obj.class.to_s == "QaeFormBuilder::PressContactDetailsQuestion"
       render_context_and_answer_blocks
     end
 

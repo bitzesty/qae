@@ -1,4 +1,4 @@
-- unless QAE.hide_pdf_links?
+- unless Qae.hide_pdf_links?
   .download-pdf-link
     = link_to users_form_answer_path(@form_answer, format: :pdf), class: 'govuk-link', target: '_blank'
       = render "content_only/download_icon"

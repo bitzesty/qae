@@ -85,7 +85,7 @@ div role="group" id="q_#{question.key}"
         .clear
 
         - klass = "#{sub_field_title.parameterize == 'postcode' ? 'govuk-input--width-10' : 'govuk-input--width-20'}"
-        - klass <<(QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
+        - klass <<(QaeFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
         input.govuk-input.js-trigger-autosave[
           class=klass
           type="text"
