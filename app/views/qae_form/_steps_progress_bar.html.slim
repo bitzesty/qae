@@ -44,7 +44,7 @@
                            = sub_header.title
 
 
-    - unless Qae.hide_pdf_links?
+    - unless QAE.hide_pdf_links?
       li.divider
       li.step-past.step-download.govuk-body
         = link_to users_form_answer_path(@form_answer, format: :pdf), id: "sidenav-download-link"
