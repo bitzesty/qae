@@ -5,9 +5,9 @@ class AwardYears::V2020::QaeForms
       @development_step2 ||= proc do
         header :development_b_section_header, "" do
           context %(
-            <h3>About this section</h3>  
+            <h3>About this section</h3>
             <p>
-              Read this section before planning the answers. 
+              Read this section before planning the answers.
               Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
               <br />
               Avoid using technical jargon.
@@ -50,7 +50,7 @@ class AwardYears::V2020::QaeForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              Read this section before planning the answers. 
+              Read this section before planning the answers.
               Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
               Avoid using technical jargon.
             )],
@@ -61,58 +61,58 @@ class AwardYears::V2020::QaeForms
             [:bold, "Sustainable Development Goals (SDGs)"],
             [:normal, %(
               You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
- 
+
               You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
-  
-              \u2022 GOAL 1: No Poverty 
+
+              \u2022 GOAL 1: No Poverty
               https://www.un.org/development/desa/disabilities/envision2030-goal1.html
 
-              \u2022 GOAL 2: Zero Hunger 
+              \u2022 GOAL 2: Zero Hunger
               https://www.un.org/development/desa/disabilities/envision2030-goal2.html
 
-              \u2022 GOAL 3: Good Health and Well-being 
+              \u2022 GOAL 3: Good Health and Well-being
               https://www.un.org/development/desa/disabilities/envision2030-goal3.html
 
-              \u2022 GOAL 4: Quality Education 
+              \u2022 GOAL 4: Quality Education
               https://www.un.org/development/desa/disabilities/envision2030-goal4.html
-              
-              \u2022 GOAL 5: Gender Equality 
+
+              \u2022 GOAL 5: Gender Equality
               https://www.un.org/development/desa/disabilities/envision2030-goal5.html
-              
-              \u2022 GOAL 6: Clean Water and Sanitation 
+
+              \u2022 GOAL 6: Clean Water and Sanitation
               https://www.un.org/development/desa/disabilities/envision2030-goal6.html
-              
-              \u2022 GOAL 7: Affordable and Clean Energy 
+
+              \u2022 GOAL 7: Affordable and Clean Energy
               https://www.un.org/development/desa/disabilities/envision2030-goal7.html
-              
-              \u2022 GOAL 8: Decent Work and Economic Growth 
+
+              \u2022 GOAL 8: Decent Work and Economic Growth
               https://www.un.org/development/desa/disabilities/envision2030-goal8.html
-              
-              \u2022 GOAL 9: Industry, Innovation and Infrastructure 
+
+              \u2022 GOAL 9: Industry, Innovation and Infrastructure
               https://www.un.org/development/desa/disabilities/envision2030-goal9.html
-              
-              \u2022 GOAL 10: Reduced Inequality 
+
+              \u2022 GOAL 10: Reduced Inequality
               https://www.un.org/development/desa/disabilities/envision2030-goal10.html
-              
-              \u2022 GOAL 11: Sustainable Cities and Communities 
+
+              \u2022 GOAL 11: Sustainable Cities and Communities
               https://www.un.org/development/desa/disabilities/envision2030-goal11.html
-              
-              \u2022 GOAL 12: Responsible Consumption and Production 
+
+              \u2022 GOAL 12: Responsible Consumption and Production
               https://www.un.org/development/desa/disabilities/envision2030-goal12.html
-              
-              \u2022 GOAL 13: Climate Action 
+
+              \u2022 GOAL 13: Climate Action
               https://www.un.org/development/desa/disabilities/envision2030-goal13.html
-              
-              \u2022 GOAL 14: Life Below Water 
+
+              \u2022 GOAL 14: Life Below Water
               https://www.un.org/development/desa/disabilities/envision2030-goal14.html
-              
-              \u2022 GOAL 15: Life on Land 
+
+              \u2022 GOAL 15: Life on Land
               https://www.un.org/development/desa/disabilities/envision2030-goal15.html
-              
-              \u2022 GOAL 16: Peace and Justice Strong Institutions 
+
+              \u2022 GOAL 16: Peace and Justice Strong Institutions
               https://www.un.org/development/desa/disabilities/envision2030-goal16.html
-              
-              \u2022 GOAL 17: Partnerships to achieve the Goal 
+
+              \u2022 GOAL 17: Partnerships to achieve the Goal
               https://www.un.org/development/desa/disabilities/envision2030-goal17.html
             )]
           ]
@@ -155,10 +155,10 @@ class AwardYears::V2020::QaeForms
                 Developing unique or innovative ways, products or services to be sustainable.
               </li>
               <li>
-                Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools. 
+                Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
               </li>
               <li>
-                Leading the way in your company, sector or market by doing something that has never been done before. 
+                Leading the way in your company, sector or market by doing something that has never been done before.
               </li>
             </ul>
           }
@@ -181,12 +181,12 @@ class AwardYears::V2020::QaeForms
             </p>
             <p>
               \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
-   
+
               \u2022 Developing unique or innovative ways, products or services to be sustainable.
-     
-              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools. 
-  
-              \u2022 Leading the way in your company, sector or market by doing something that has never been done before. 
+
+              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools.
+
+              \u2022 Leading the way in your company, sector or market by doing something that has never been done before.
             </p>
           }
 
@@ -200,7 +200,7 @@ class AwardYears::V2020::QaeForms
           required
           context %(
             <p>
-              If your application is successful, this description will appear in the London Gazette. 
+              If your application is successful, this description will appear in the London Gazette.
             </p>
           )
           rows 2
@@ -241,19 +241,19 @@ class AwardYears::V2020::QaeForms
           required
           context %{
             <p>
-              Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.  
+              Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
             </p>
             <p>
-              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application. 
+              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
             </p>
             <p>
-              Where possible, please include:  
+              Where possible, please include:
             </p>
             <p>
-              a) How you measure the success of your sustainability intervention? For example, are key performance indicators (KPIs) or targets used? If so, how are they set and monitored? Are the KPIs or targets being met, and what happens if they are not? 
+              a) How you measure the success of your sustainability intervention? For example, are key performance indicators (KPIs) or targets used? If so, how are they set and monitored? Are the KPIs or targets being met, and what happens if they are not?
             </p>
             <p>
-              b) State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance. 
+              b) State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, employees or others in meeting objectives for performance.
             </p>
             <p>
               c) The impact of your sustainable objectives. For example, impact on your organisation, employees, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets.
@@ -275,11 +275,11 @@ class AwardYears::V2020::QaeForms
           }
           context %{
             <p>
-              a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?  
+              a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?
             </p>
             <p>
               b) Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?<br />
-              You may include flow charts to make it easier for assessors to understand how your programme is managed in section D of this form. 
+              You may include flow charts to make it easier for assessors to understand how your programme is managed in section D of this form.
             </p>
             <p>
               c) What is the senior decision makers’ commitment to the future sustainable growth of the organisation?
@@ -313,7 +313,7 @@ class AwardYears::V2020::QaeForms
           }
           context %{
             <p>
-              Please include:  
+              Please include:
             </p>
             <p>
               a) How is sustainability embedded in your organisation’s culture and values?

@@ -27,7 +27,7 @@ div role="group" id="#{question.key}"
         - klass = 'govuk-input--width-10'
 
       - klass <<(QaeFormBuilder::SubFieldsQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
- 
+
       input.govuk-input.js-trigger-autosave[
         class=klass
         type="text"
