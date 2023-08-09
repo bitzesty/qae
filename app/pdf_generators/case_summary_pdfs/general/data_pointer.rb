@@ -16,7 +16,7 @@ module CaseSummaryPdfs::General::DataPointer
 
   def current_awards_question
     all_questions.detect do |q|
-      q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardHolderQuestion)
+      q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardHolderQuestion)
     end
   end
 
@@ -26,7 +26,7 @@ module CaseSummaryPdfs::General::DataPointer
 
   def application_type_question
     all_questions.detect do |q|
-      q.delegate_obj.is_a?(QAEFormBuilder::CheckboxSeriaQuestion) &&
+      q.delegate_obj.is_a?(QaeFormBuilder::CheckboxSeriaQuestion) &&
       q.application_type_question.present?
     end
   end
@@ -49,8 +49,8 @@ module CaseSummaryPdfs::General::DataPointer
 
   def current_awards_question
     all_questions.detect do |q|
-      q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardHolderQuestion) ||
-        q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardApplicationsQuestion)
+      q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardHolderQuestion) ||
+        q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardApplicationsQuestion)
     end
   end
 

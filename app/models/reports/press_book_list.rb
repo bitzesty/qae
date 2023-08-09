@@ -1,5 +1,5 @@
 class Reports::PressBookList
-  include Reports::CSVHelper
+  include Reports::CsvHelper
 
   MAPPING = [
     {

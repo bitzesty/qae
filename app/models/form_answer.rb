@@ -1,10 +1,10 @@
-require 'award_years/v2018/qae_forms'
-require 'award_years/v2019/qae_forms'
-require 'award_years/v2020/qae_forms'
-require 'award_years/v2021/qae_forms'
-require 'award_years/v2022/qae_forms'
-require 'award_years/v2023/qae_forms'
-require 'award_years/v2024/qae_forms'
+require_relative '../../forms/award_years/v2018/qae_forms'
+require_relative '../../forms/award_years/v2019/qae_forms'
+require_relative '../../forms/award_years/v2020/qae_forms'
+require_relative '../../forms/award_years/v2021/qae_forms'
+require_relative '../../forms/award_years/v2022/qae_forms'
+require_relative '../../forms/award_years/v2023/qae_forms'
+require_relative '../../forms/award_years/v2024/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -144,7 +144,7 @@ class FormAnswer < ApplicationRecord
                              in: POSSIBLE_AWARDS
                            }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
-    validates :sic_code, format: { with: SICCode::REGEX }, allow_nil: true, allow_blank: true
+    validates :sic_code, format: { with: SicCode::REGEX }, allow_nil: true, allow_blank: true
     validate :validate_answers
   end
 
@@ -570,7 +570,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def award_form_class_name(year)
-    "::AwardYears::V#{year}::QAEForms"
+    "::AwardYears::V#{year}::QaeForms"
   end
 
   def self.transition_class

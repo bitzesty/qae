@@ -1,5 +1,5 @@
 class Reports::AllEntries
-  include Reports::CSVHelper
+  include Reports::CsvHelper
 
   MAPPING = [
     {
@@ -88,7 +88,7 @@ class Reports::AllEntries
       method: :overall_status
     },
     {
-      label: "SICCode",
+      label: "SicCode",
       method: :sic_code
     },
     {

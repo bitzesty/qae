@@ -1,5 +1,5 @@
 class Reports::ReceptionBuckinghamPalaceReport
-  include Reports::CSVHelper
+  include Reports::CsvHelper
 
   MAPPING = [
     {
