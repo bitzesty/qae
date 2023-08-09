@@ -12,12 +12,15 @@ class QaeFormBuilder
         product_number = index + 1
 
         if product_number <= question.answers["trade_goods_and_services_explanations"].length.to_i
-          question.required_sub_fields_list.each do |attr|
-            if !entity[attr].present?
-              result[question.key] ||= {}
-              result[question.key][product_number] ||= {}
-              result[question.key][product_number][attr] ||= ""
-              result[question.key][product_number][attr] << "#{humanize(attr)} is required and must be filled in."
+          # only validate the first product or at least one field is filled in
+          if product_number == 1 || !entity.values.all?(&:blank?)
+            question.required_sub_fields_list.each do |attr|
+              if !entity[attr].present?
+                result[question.key] ||= {}
+                result[question.key][product_number] ||= {}
+                result[question.key][product_number][attr] ||= ""
+                result[question.key][product_number][attr] << "#{humanize(attr)} is required and must be filled in."
+              end
             end
           end
         end
