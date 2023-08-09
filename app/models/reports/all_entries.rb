@@ -88,7 +88,7 @@ class Reports::AllEntries
       method: :overall_status
     },
     {
-      label: "SicCode",
+      label: "SICCode",
       method: :sic_code
     },
     {
