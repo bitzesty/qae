@@ -7,7 +7,7 @@
 .applications-filter {
   margin-bottom: 20px;
 
-  .applications-filter__label {
+  .applications-filter__label, .search-input__label {
     display: block;
     text-transform: uppercase;
     padding-right: 10px;
@@ -57,6 +57,8 @@
 
     .dropdown-menu {
       min-width: 250px;
+      border-color: #666666;
+
       li.checkbox,
       li.apply {
         padding: 0 10px;
@@ -532,10 +534,6 @@
     }
   }
 
-  .select2-container {
-    width: 100% !important;
-  }
-
   .form-edit-link {
     position: absolute;
     top: 0;
@@ -601,6 +599,12 @@
     left: 0;
   }
 
+  &:hover {
+    color: #fff;
+    background-color: $govuk-light-blue;
+    border-color: #204d74
+  }
+
   .show-bulk-assign & {
     .js & {
       display: none;
@@ -623,6 +627,12 @@
     }
   }
 
+  h2 {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
   h3 {
     margin-top: 0;
   }
@@ -633,32 +643,6 @@
 
   .btn {
     margin-left: 10px;
-  }
-
-  .form-group {
-    position: relative;
-    padding-left: 26em;
-
-    @include screen-sm-max {
-      padding-left: 0;
-    }
-  }
-
-  .control-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 26em;
-
-    @include screen-sm-max {
-      position: relative;
-      width: auto;
-      float: none;
-    }
-  }
-
-  .select2-container {
-    width: 100% !important;
   }
 
   .well {

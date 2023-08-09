@@ -1,11 +1,14 @@
 .dashboard-table__wrapper.dashboard-report
+  button.btn.btn-primary.btn--load.update-report href=account_registrations_admin_dashboard_reports_path(kind: "by_month") aria-label="Load data for new account registrations table"
+    | Load data
+  = link_to "Download data", account_registrations_admin_dashboard_reports_path(kind: "by_month", format: :csv),
+    class: "btn btn-primary btn--load update-report if-js-hide", aria: { label: "Download registration totals by month" }
+  button.btn.btn-primary.btn--loading.updating-data.hidden
+    | Updating data
+
   table.dashboard-table.dashboard-table--small width="1000"
     caption
       | New account registrations
-      a.btn.btn-primary.btn--load.update-report href=account_registrations_admin_dashboard_reports_path(kind: "by_month")
-        | Load data
-      button.btn.btn-primary.btn--loading.updating-data.hidden
-        | Updating data
 
     thead
       tr

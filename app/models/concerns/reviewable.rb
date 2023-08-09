@@ -2,7 +2,7 @@ module Reviewable
   extend ActiveSupport::Concern
 
   included do
-    belongs_to :reviewable, polymorphic: true
+    belongs_to :reviewable, polymorphic: true, optional: true
 
     validates :reviewable_type,
               :reviewable_id,

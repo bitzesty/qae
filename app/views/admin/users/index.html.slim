@@ -8,9 +8,11 @@
 
     .row
       .col-md-4.col-sm-5.col-xs-12
-        .form-group.search-input
-          = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search", aria: { label: "Search users" } }
-          = submit_tag :submit, class: 'search-submit'
+        .applications-filter
+          = f.label :query, "Search", class: "search-input__label"
+          .form-group.search-input
+            = f.input :query, label: false, input_html: { class: "form-control", type: "search", aria: { label: "Search users" } }
+            = submit_tag :submit, class: 'search-submit'
 
       .col-md-3.col-sm-4.col-xs-12.pull-right.text-right
         = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-secondary btn-md' do

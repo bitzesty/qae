@@ -1,0 +1,26 @@
+- if show_shortlisted_document?(attachment)
+  li[class="#{attachment.model_name.param_key.dasherize}"]
+    - if show_shortlisted_document?(attachment)
+      small.pull-right
+        = form_for([namespace_name, attachment.form_answer, attachment],
+                    html: { class: "#{attachment.model_name.param_key.dasherize}-destroyer", method: :delete, style: "display:inline-block;" }) do |f|
+
+          = f.submit 'Remove', class: 'if-js-hide'
+
+          = link_to "#", class: "text-danger if-no-js-hide", data: {confirm: "Are you sure?"}
+            span.glyphicon.glyphicon-remove
+            span.visible-lg.visible-md
+              ' Remove
+
+    - if Rails.env.test? || attachment.clean?
+      = link_to [namespace_name, attachment.form_answer, attachment], target: "_blank", class: "action-title"
+        span.glyphicon.glyphicon-file
+        = attachment.original_filename
+
+    - elsif attachment.attachment_scan_results.to_s == "infected"
+      span.glyphicon.glyphicon-file
+      = "Failed virus scanner check (#{attachment.original_filename})"
+
+    - else
+      span.glyphicon.glyphicon-file
+      = "Scanning '#{attachment.original_filename}' file"

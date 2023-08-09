@@ -84,7 +84,7 @@
     border: none;
     border-radius: 0;
     background: $black-header;
-    
+
     .lte-ie7 & {
       height: 81px !important;
       z-index: 100001 !important;
@@ -105,6 +105,7 @@
       color: $white-true;
       text-transform: uppercase;
       background: transparent;
+      text-decoration: none;
 
       @include screen-md-max {
         padding-right: 8px;
@@ -250,39 +251,14 @@
       background-color: $header-hover !important;
     }
   }
-  
+
   // moving down here seems to make it work
   .navbar-brand {
-    width: 58px;
-    height: 67px;
-    padding-top: 0;
-    padding-bottom: 0;
-    text-align: left;
-    text-indent: -9999px;
-    background-image: image-url("logo-admin.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 28px 37px;
-    color: $govuk-light-blue;
-
-    @include is-retina {
-      background-image: image-url("logo-admin@2.png");
-    }
-
-    @include screen-md-max {
-      width: 50px;
-      background-size: 20px 26px;
-    }
-
-    .lte-ie8 & {
-      width: 58px !important;
-      height: 67px !important;
-      margin-top: 3px !important;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-      text-indent: -9999px !important;
-      background: image-url("logo-admin.png") no-repeat center center !important;
-      background-size: 28px 37px !important;
+    padding: 14px;
+    height: 100%;
+    img {
+      width: 28px;
+      height: 33px;
     }
   }
 }

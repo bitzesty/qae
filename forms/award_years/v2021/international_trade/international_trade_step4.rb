@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
+<<<<<<<< HEAD:forms/award_years/v2021/international_trade/international_trade_step4.rb
 class AwardYears::V2021::QaeForms
+========
+class AwardYears::V2020::QaeForms
+>>>>>>>> origin/main:forms/award_years/v2020/international_trade/international_trade_step4.rb
   class << self
     def trade_step4
       @trade_step4 ||= proc do

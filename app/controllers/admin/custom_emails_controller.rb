@@ -14,9 +14,11 @@ class Admin::CustomEmailsController < Admin::BaseController
 
     @form = CustomEmailForm.new(custom_email_form_attributes)
     if @form.valid?
-      CustomEmailWorker.perform_async(custom_email_form_attributes)
+      CustomEmailForm.new(custom_email_form_attributes.permit!.to_h.with_indifferent_access).send!
+      render_flash_message_for(@form)
       redirect_to admin_custom_email_path, notice: "Email was successfully scheduled"
     else
+      render_flash_message_for(@form)
       render :show
     end
   end

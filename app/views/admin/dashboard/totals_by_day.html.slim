@@ -9,15 +9,25 @@
     p.dashboard__subheading
       | Running totals compared to previous years
 
-  .dashboard__section
+  .dashboard__section.if-no-js-hide
     = render "admin/dashboard/applications_report", url: all_applications_admin_dashboard_reports_path(kind: "by_day"), title: "All applications", kind: "by_day"
-  .dashboard__section
+  .dashboard__section.if-js-hide
+    = render "admin/dashboard/applications_report", url: all_applications_admin_dashboard_reports_path(kind: "by_day", format: :csv), title: "All applications", kind: "by_day"
+  .dashboard__section.if-no-js-hide
     = render "admin/dashboard/applications_report", url: international_trade_admin_dashboard_reports_path(kind: "by_day"), title: "International trade", kind: "by_day"
-  .dashboard__section
+  .dashboard__section.if-js-hide
+    = render "admin/dashboard/applications_report", url: international_trade_admin_dashboard_reports_path(kind: "by_day", format: :csv), title: "International trade", kind: "by_day"
+  .dashboard__section.if-no-js-hide
     = render "admin/dashboard/applications_report", url: innovation_admin_dashboard_reports_path(kind: "by_day"), title: "Innovation", kind: "by_day"
-  .dashboard__section
+  .dashboard__section.if-js-hide
+    = render "admin/dashboard/applications_report", url: innovation_admin_dashboard_reports_path(kind: "by_day", format: :csv), title: "Innovation", kind: "by_day"
+  .dashboard__section.if-no-js-hide
     = render "admin/dashboard/applications_report", url: social_mobility_admin_dashboard_reports_path(kind: "by_day"), title: "Social mobility", kind: "by_day"
-  .dashboard__section
+  .dashboard__section.if-js-hide
+    = render "admin/dashboard/applications_report", url: social_mobility_admin_dashboard_reports_path(kind: "by_day", format: :csv), title: "Social mobility", kind: "by_day"
+  .dashboard__section.if-no-js-hide
     = render "admin/dashboard/applications_report", url: sustainable_development_admin_dashboard_reports_path(kind: "by_day"), title: "Sustainable development", kind: "by_day"
+  .dashboard__section.if-js-hide
+    = render "admin/dashboard/applications_report", url: sustainable_development_admin_dashboard_reports_path(kind: "by_day", format: :csv), title: "Sustainable development", kind: "by_day"
   .dashboard__section
     = render "admin/dashboard/totals_by_day/registrations"
