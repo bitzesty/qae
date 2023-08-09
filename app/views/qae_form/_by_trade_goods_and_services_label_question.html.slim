@@ -7,15 +7,18 @@
       - item = question.trade_goods_and_services[index]
       = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: question.trade_goods_and_services.count
 
+    / if no products saved render one empty product as default
     - if question.trade_goods_and_services.count < 1
       - index = 0, placement = 1, item = {}
       = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: 1
 
+    / if no javascript render remaining empty products up to the product limit
     noscript
       .list-add
-        - if question.trade_goods_and_services.count < question.product_limit
-          - (question.trade_goods_and_services.count+1..question.product_limit).each do |index|
-            - placement = index
+        - product_count = question.trade_goods_and_services.count == 0 ? 1 : question.trade_goods_and_services.count
+        - if product_count < question.product_limit
+          - (product_count...question.product_limit).each do |index|
+            - placement = question.trade_goods_and_services.count + index + 1
             - item = {}
             = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: 5
 
