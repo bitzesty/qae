@@ -701,7 +701,7 @@ window.FormValidation =
   logThis: (question, validator, message) ->
     stepData = question.closest(".js-step-condition").data("step")
     stepTitle = $.trim($("a.js-step-link[data-step='#{stepData}']").text())
-    qRef = $.trim(question.find("h2 span.visuallyhidden").text())
+    qRef = question.attr("data-question_ref")
     qTitle = $.trim(question.find("h2").first().text())
 
     if typeof console != "undefined"
