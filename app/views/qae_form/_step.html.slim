@@ -7,7 +7,7 @@
       = step.title
     - if step.context
       == step.context
-    input type="hidden" name="form[current_non_js_step]" value="#{step.title.parameterize}" id="non_js_step_title"
+
     = render partial: "qae_form/question", collection: step.questions, locals: { answers: answers, attachments: attachments }
     - if step.submit
       = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'

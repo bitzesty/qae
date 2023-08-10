@@ -60,8 +60,10 @@ en:
 
   activerecord:
     errors:
+      full_messages:
+        format: "{{message}}"
       messages:
-        blank: This field cannot be blank
+        blank: "%{attribute} is empty - it is a required field and must be filled in"
         accepted: Must be accepted
         taken: "This %{attribute} has already been taken"
         too_long: "%{attribute} is too long (maximum is %{count} characters)"
@@ -71,6 +73,10 @@ en:
       models:
         user:
           attributes:
+            email:
+              invalid: "Email is invalid - enter a valid email address"
+            role:
+              blank: "Account type is empty - it is a required field and an option should be selected from the following list"
             password:
               weak_password: Your new password must be more complex.
         admin:
@@ -81,6 +87,10 @@ en:
           attributes:
             password:
               weak_password: Your new password must be more complex.
+        assessor_assignment:
+          attributes:
+            position:
+              blank: "is empty - it is a required field and an option should be selected from the following list"
 
   time:
     formats:

@@ -1,6 +1,7 @@
 .dashboard-table__wrapper.dashboard-report
-  button.btn.btn-primary.btn--load.update-report href=url aria-label="Load #{title} data"
+  button.btn.btn-primary.btn--load.update-report.if-no-js-hide href=url aria-label="Load #{title} data"
     | Load data
+  = link_to "Download data", url, class: "btn btn-primary btn--load update-report if-js-hide", aria: { label: "Download #{title} data" }
   button.btn.btn-primary.btn--loading.updating-data.hidden aria-label="Updating #{title} data"
     | Updating data
 
