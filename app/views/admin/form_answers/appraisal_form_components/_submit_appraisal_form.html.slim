@@ -1,7 +1,9 @@
 - if policy(assessment).can_be_submitted? || policy(assessment).can_be_re_submitted?
   = form_tag(url_for([namespace_name, :assessment_submissions]),
             authenticity_token: true,
-            class: "submit-assessment")
+            remote: true,
+            class: "submit-assessment",
+            data: { type: "json" })
 
     = hidden_field_tag :assessment_id, assessment.id, id: "#{assessment.position}_assessment_id_submit_appraisal_form_hidden_field"
 

@@ -108,7 +108,11 @@ def assert_description_change(section_id, header_id)
       expect(page).to have_selector("textarea", count: 1)
       find("textarea").fill_in(with: text)
     end
+
+    all(".form-cancel-link").each(&:click)
+
     within parent_selector do
+      find(".form-edit-link").click
       find(".form-save-link").click
       wait_for_ajax
     end
@@ -135,6 +139,8 @@ def assert_multiple_description_change(section_id, header_id, prefix)
 
   within section_id do
     fill_in("#{prefix}_verdict", with: text2)
+    all(".form-cancel-link").each(&:click)
+    all(".form-edit-link").last.click
     all(".form-save-link").last.click
     wait_for_ajax
   end

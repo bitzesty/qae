@@ -98,19 +98,35 @@ ready = ->
     return
 
   $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
-    form = $(this)
-    form.find(".errors-holder").text("")
-    form.closest(".form-group").removeClass("form-edit")
-    formValueBox = form.closest(".form-group").find(".edit-value")
-    formValue = form.find("select :selected").text()
-    formValueBox.text(formValue)
-  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
-    form = $(this)
-    errors = ""
-    for k, error of data.responseJSON["errors"]
-      errors += error
+    panel = this.closest(".form-group")
 
-    form.find(".errors-holder").text(errors)
+    removeExistingErrorMessages(panel)
+
+    $(this).closest(".form-group").removeClass("form-edit")
+    formValueBox = $(this).closest(".form-group").find(".edit-value")
+    selected = $(this).find("select :selected")
+
+
+    if (selected.val() == "")
+      formValueBox.html("<span class='p-empty'>Not assigned</span>")
+      message = "Assessor has been unassigned"
+    else
+      assessor = selected.text()
+      formValueBox.text(assessor)
+      message = "#{assessor} has been assigned"
+
+    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
+
+  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
+    errors = data.responseJSON['errors']
+    panel = this.closest('.form-group')
+
+    removeExistingErrorMessages(panel)
+
+    Object.entries(errors).forEach ([key, values]) ->
+      field = panel.querySelector("[id$=#{key}]")
+      if field and shouldValidateField(field)
+        showErrorForInvalidField(field, values, '.form-group')
 
   $("#new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
     data.formData =
@@ -320,23 +336,27 @@ ready = ->
     if (element)
       element.classList.add('form-edit')
 
-  $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
+  $('.submit-assessment').on 'ajax:error', (e, data, status, xhr) ->
+    panel = this.closest('.panel-body')
     errors = data.responseJSON
-    $(this).addClass("field-with-errors")
-    $(this).closest(".panel-body").find("textarea").each ->
-      unless $(this).val().length
-        $(this).closest(".input").addClass("field-with-errors")
-    $(this).find(".feedback-holder").addClass("error")
-    $(this).find(".feedback-holder").html(errors.error.join("<br>"))
-  $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
-    $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
-    $(this).find(".feedback-holder").removeClass("error").addClass("alert alert-success")
 
-    successMessage = "Assessment submitted"
-    if $(this).closest(".panel-collapse").hasClass("section-case-summary")
-      successMessage = "Case summary submitted"
-    $(this).find(".feedback-holder").html(successMessage)
-    $(this).find("input:submit").remove()
+    removeExistingErrorMessages(panel)
+
+    Object.entries(errors).forEach ([key, values]) ->
+      field = panel.querySelector("[name*='[#{key}]']")
+      if field and shouldValidateField(field)
+        showErrorForInvalidField(field, values)
+
+  $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
+    panel = this.closest('.panel-body')
+    message = "Assessment submitted"
+    if panel.closest(".panel-collapse").classList.contains('section-case-summary')
+      message = "Case summary submitted"
+
+    removeExistingErrorMessages(panel)
+    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
+
+    $(this).find('input:submit').remove()
 
   $(document).on "click", ".form-save-link", (e) ->
     link = $(this)
@@ -413,6 +433,48 @@ ready = ->
   $(".bulk-assign-assessors-cancel-link").on "click", (e) ->
     e.preventDefault()
     $(".bulk-assign-assessors-form").closest(".container").removeClass("show-bulk-assign")
+
+shouldValidateField = (field) ->
+  !field.disabled and field.type != undefined and ![
+    'file'
+    'reset'
+    'submit'
+    'button'
+  ].includes(field.type)
+
+showErrorForInvalidField = (field, values, containerSelector = '.form-container') ->
+  group = field.closest('.govuk-form-group')
+  if (group)
+    group.classList.add('field-with-errors')
+
+  container = field.closest(containerSelector)
+
+  if container
+    values.forEach (message) ->
+      if (!container.querySelector('.alert'))
+        id = "alert__#{String(Math.random()).slice(2, -1)}"
+        field.setAttribute('aria-errormessage', id)
+        container.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'danger', id))
+
+buildBannerHtml = (message, type, identifier = null) ->
+  id = identifier || "alert__#{String(Math.random()).slice(2, -1)}"
+  
+  "<div id='#{id}' class='alert alert-#{type}' data-controller='element-removal' role='alert' style='padding-top: 6px; padding-bottom: 6px; margin-bottom: 8px;'>
+    #{message}
+    <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close' style='font-size: 18px;'>
+      <span aria-hidden='true'>&times;</span>
+    </button>
+  </div>"
+
+removeExistingErrorMessages = (element) ->
+  element.querySelectorAll('.field-with-errors').forEach (el) ->
+    el.classList.remove('field-with-errors')
+
+  element.querySelectorAll('[aria-errormessage]').forEach (el) ->
+    el.removeAttribute('aria-errormessage')
+
+  element.querySelectorAll('.alert').forEach (banner) ->
+    banner.remove()
 
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
