@@ -87,7 +87,7 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :radio_buttons, item_wrapper_class: 'govuk-radios__item', item_label_class: 'govuk-label govuk-radios__label', class: 'govuk-form-group', error_class: "govuk-form-group--error" do |b|
-    b.wrapper tag: :fieldset, class: 'govuk-fieldset' do |bb|
+    b.wrapper tag: :div, class: 'govuk-fieldset' do |bb|
       bb.use :html5
       bb.optional :readonly
 

@@ -15,7 +15,7 @@
                   = y
                   - if y == c.years
                     '  (most recent)
-                span.js-year-text.hide-if-empty
+            span.js-year-text.hide-if-empty.govuk-label
             span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
             span class="#{'govuk-input__wrapper' if question.type == :money}"
               - if question.type == :money

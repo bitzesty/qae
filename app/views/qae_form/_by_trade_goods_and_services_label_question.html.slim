@@ -1,23 +1,30 @@
 .js-by-trade-goods-and-services-amount role="group" id="q_#{question.key}"
+  - if total_percentage_error = @form_answer.validator_errors&.dig(question.key, :total_trade_percentage)
+    span.govuk-error-message
+      = total_percentage_error
   input name="#{question.input_name}[array]" value="true" type="hidden" *possible_read_only_ops
 
   ol.list-add.js-by-trade-goods-and-services-amount data-add-limit="#{question.product_limit}" data-need-to-clear-example=true data-default="1"
+    / render saved products
     - question.trade_goods_and_services.each_with_index do |product, index|
       - placement = index + 1
       - item = question.trade_goods_and_services[index]
       = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: question.trade_goods_and_services.count
 
+    / if no products saved render one empty product as default
     - if question.trade_goods_and_services.count < 1
       - index = 0, placement = 1, item = {}
       = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: 1
 
+    / if no javascript render empty products up to the product limit
     noscript
       .list-add
-        - if question.trade_goods_and_services.count < question.product_limit
-          - (question.trade_goods_and_services.count+1..question.product_limit).each do |index|
-            - placement = index
+        - default_product_count = question.trade_goods_and_services.count < 1 ? 1 : question.trade_goods_and_services.count
+        - if default_product_count < question.product_limit
+          - (default_product_count...question.product_limit).each do |index|
+            - placement = default_product_count + index
             - item = {}
-            = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: 5
+            = render "qae_form/by_trade_goods_and_services_fields", placement: placement, item: item, index: index, question: question, count: question.product_limit
 
   .if-no-js-hide.govuk-button-group
     a.govuk-button.govuk-button--secondary.button-add.js-button-add class=("visuallyhidden" if question.trade_goods_and_services.count >= question.product_limit) href="#" aria-label="Add another product or service" data-entity="product" *possible_read_only_ops

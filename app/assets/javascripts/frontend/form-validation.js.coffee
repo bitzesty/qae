@@ -212,6 +212,10 @@ window.FormValidation =
     expDate = question.data("date-max")
     diff = @compareDateInDays(questionDate, expDate)
 
+    if not questionYear or not questionMonth or not questionDay
+      @logThis(question, "validateMaxDate", "This field is required")
+      @addErrorMessage(question, "Question #{questionRef} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY.")
+      return
     if not @toDate(questionDate).isValid()
       @logThis(question, "validateMaxDate", "Not a valid date")
       @addErrorMessage(question, "Question #{questionRef} is incomplete. The date entered is not valid. Use the format DD/MM/YYYY.")
@@ -342,7 +346,8 @@ window.FormValidation =
         label = $("label[for='#{subq.attr('id')}']").text()
         if not subq.val() and question.hasClass("question-required")
           @logThis(question, "validateEmployeeMin", "This field is required")
-          @appendMessage(subq.closest(".span-financial"), "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
+          # his error is duplicated on employee question.
+          # @appendMessage(subq.closest(".span-financial"), "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
           @addErrorClass(question)
           continue
         else if not subq.val()
@@ -433,6 +438,7 @@ window.FormValidation =
 
   validateNumberByYears: (question) ->
     inputCellsCounter = 0
+    questionRef = question.attr("data-question_ref")
 
     for subquestion in question.find("input")
       subq = $(subquestion)
@@ -446,10 +452,11 @@ window.FormValidation =
 
       if shownQuestion
         inputCellsCounter += 1
+        label = $("label[for='#{subq.attr('id')}']").text()
 
         if not subq.val() and question.hasClass("question-required")
           @logThis(question, "validateNumberByYears", "This field is required")
-          @appendMessage(errContainer, "This field is required")
+          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
           @addErrorClass(question)
           continue
         else if not subq.val()
@@ -529,23 +536,17 @@ window.FormValidation =
       year = subq.find("input.js-fy-year").val()
 
       if question.hasClass("question-required") && errorsContainer.length < 1
-        if (not day and not month and not year)
+        if !(day and month and year)
           @logThis(question, "validateDateByYears", "This field is required")
           @appendMessage(qParent, "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Use the format DD/MM/YYYY.")
           @addErrorClass(question)
-        else if (not day)
-          @appendMessage(qParent, "Question #{questionRef} is incomplete. #{label} day is required and must be filled in. Use the format DD.")
-        else if (not month)
-          @appendMessage(qParent, "Question #{questionRef} is incomplete. #{label} month is required and must be filled in. Use the format MM.")
-        else if (not year)
-          @appendMessage(qParent, "Question #{questionRef} is incomplete. #{label} year is required and must be filled in. Use the format YYYY.")
         else
           complexDateString = day + "/" + month + "/" + year
           date = @toDate(complexDateString)
 
           if not date.isValid()
             @logThis(question, "validateDateByYears", "Not a valid date")
-            @appendMessage(qParent, "Not a valid date")
+            @appendMessage(qParent, "The date entered for question #{questionRef} #{label} is not valid. Use the format DD/MM/YYYY.")
             @addErrorClass(question)
 
   validateInnovationFinancialDate: (question) ->
@@ -555,15 +556,11 @@ window.FormValidation =
     questionMonth = parseInt(question.find(".innovation-month").val())
     questionDate = "#{questionDay}/#{questionMonth}/#{moment().format('Y')}"
 
-    if (not questionDay and not questionMonth)
+    if not (questionDay and questionMonth)
       @addErrorMessage(question, "Question #{questionRef} is incomplete. Year-end is required and must be filled in. Use the format DD/MM.")
-    else if not questionDay
-      @addErrorMessage(question, "Question #{questionRef} is incomplete. Day is required and must be filled in. Use the format DD/MM.")
-    else if not questionMonth
-      @addErrorMessage(question, "Question #{questionRef} is incomplete. Month is required and must be filled in. Use the format DD/MM.")
     else if not @toDate(questionDate).isValid()
       @logThis(question, "validateMaxDate", "Not a valid date")
-      @addErrorMessage(question, "Question #{questionRef} is incomplete. It is required and must be filled in. Use the format DD/MM.")
+      @addErrorMessage(question, "The date entered for #{questionRef} is not valid. Use the format DD/MM.")
       return
 
   validateDiffBetweenDates: (question) ->
