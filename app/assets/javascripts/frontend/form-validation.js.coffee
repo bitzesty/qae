@@ -346,7 +346,7 @@ window.FormValidation =
         label = $("label[for='#{subq.attr('id')}']").text()
         if not subq.val() and question.hasClass("question-required")
           @logThis(question, "validateEmployeeMin", "This field is required")
-          # todo - this error is duplicated on employee question.
+          # his error is duplicated on employee question.
           # @appendMessage(subq.closest(".span-financial"), "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
           @addErrorClass(question)
           continue
