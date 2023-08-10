@@ -16,7 +16,7 @@ class QaeFormBuilder
       if !date
         if question.required?
           result[question.hash_key] ||= ""
-          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. It requires a date in the format DD/MM/YYYY."
+          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is invalid. It requires a date in the format DD/MM/YYYY."
         end
       else
         if date_min && date < date_min
