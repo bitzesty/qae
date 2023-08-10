@@ -27,7 +27,7 @@ class QaeFormBuilder
       end
 
       total = 0
-      question.answers["trade_goods_and_services_explanations"].each do |product|
+      question.answers["trade_goods_and_services_explanations"]&.each do |product|
         total += product["total_overseas_trade"].to_i
       end
       if total != 100
