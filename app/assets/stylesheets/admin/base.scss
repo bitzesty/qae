@@ -14,7 +14,7 @@ a {
   }
 }
 
-.btn, button, a, [role=menuitem] {
+.btn, button, a, [role=menuitem], .button_to {
   &:focus, &:focus-within {
     background-color: $govuk-highlight-yellow !important;
     border-color: $govuk-highlight-yellow;
@@ -34,8 +34,8 @@ input[type=checkbox], select {
   }
 }
 
-.btn-primary {
-  &:focus {
+.btn-primary, .button_to {
+  &:focus, &:focus-within {
     border-bottom-color: $black !important;
     border-bottom-width: 2px !important;
     border-bottom-style: solid !important;

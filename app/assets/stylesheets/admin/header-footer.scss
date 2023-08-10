@@ -38,7 +38,6 @@
     }
   }
 
-
   .container {
     .lte-ie8 & {
       width: 90% !important;
@@ -99,7 +98,8 @@
       }
     }
 
-    .navbar-nav > li > a {
+    .navbar-nav > li > a,
+    .navbar-nav > li > details {
       padding-top: 24px;
       padding-bottom: 23px;
       color: $white-true;
@@ -114,6 +114,11 @@
 
       @include screen-sm-max {
         padding: 20px 15px;
+      }
+
+      > .dropdown-menu {
+        display: block;
+        text-transform: none;
       }
     }
   }
@@ -151,7 +156,7 @@
       margin-right: 0;
     }
 
-    > a {
+    > a, > details {
       .lte-ie8 & {
         display: block !important;
         padding-top: 26px !important;
@@ -167,6 +172,7 @@
       &:hover,
       &:focus {
         background-color: $header-hover;
+        cursor: pointer;
 
         @include is-ios {
           background-color: transparent;
@@ -176,6 +182,23 @@
       &:focus {
         @include screen-sm-max {
           background-color: transparent;
+        }
+      }
+    }
+
+    > details {
+      padding: 0 10px;
+
+      &:focus-within {
+        background-color: $govuk-highlight-yellow !important;
+        color: $black !important;
+        outline: none !important;
+        border-bottom-color: $black !important;
+        border-bottom-width: 2px !important;
+        border-bottom-style: solid !important;
+
+        summary {
+          outline: none !important;
         }
       }
     }
@@ -207,7 +230,8 @@
       z-index: 999999 !important;
     }
 
-    > li > span {
+    > li > span,
+    > li > .button_to {
       display: block;
       padding: 3px 20px;
       clear: both;
@@ -215,15 +239,21 @@
       line-height: 1.42857143;
       color: #333333;
       white-space: nowrap;
+
+      @include screen-sm-max {
+        padding: 0;
+      }
     }
 
     > li > a,
-    > li > span {
+    > li > span,
+    > li > .button_to > input[type="submit"] {
       @include screen-sm-max {
         padding: 15px;
         padding-left: 35px;
         color: $white-true;
         text-transform: uppercase;
+        text-align: left;
       }
 
       .lte-ie8 & {
@@ -232,7 +262,8 @@
       }
     }
 
-    > li > a {
+    > li > a,
+    > li > .button_to {
       &:hover,
       &:focus {
         @include screen-sm-max {
@@ -242,6 +273,26 @@
         @include is-ios {
           background-color: transparent;
         }
+      }
+    }
+
+    .button_to {
+      display: inline;
+
+      input[type="submit"] {
+        background: none;
+        padding: 0;
+        border: none;
+        color: black;
+        text-decoration: underline;
+
+        .lte-ie7 & {
+          font-size: 16px;
+        }
+      }
+
+      &:hover {
+        background-color: $grey-lightest;
       }
     }
   }
