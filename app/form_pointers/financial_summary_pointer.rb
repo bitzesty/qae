@@ -59,16 +59,38 @@ class FinancialSummaryPointer < FormFinancialPointer
 
     input.values.each_with_object([]) do |x, acc|
       d = dates.dup
-      length = x.detect(&:first).values.flatten.size
+      length = x.detect(&:first).values.flatten(1).size
       diff = ::Utils::Diff.calc(dates.size, length, abs: false)
 
-      d.shift(diff) if diff && diff.positive?
+      # If the diff between no. of dates & no. of elements (think of cells in the row) is bigger, 
+      # we cut the dates, so we don't go over the amount of cells
+      if diff 
+        d.shift(diff) if diff.positive?
+
+        # this should only happen for innovation applications, when innovation was launched prior 
+        # to company started trading
+        # we then calculate dates as - 1 year from the previous year
+        if diff.negative?
+          diff.abs.times do
+            date_to_calculate_from = d.first
+            if Utils::Date.valid?(date_to_calculate_from)
+              date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
+              d.unshift(date) 
+            else
+              d.unshift(nil)
+            end
+          end
+        end
+      end
 
       if dates_changed
+        # if dates changed, `financial_year_changed_dates` is then the first element
+        # we remove it
         idx = x.index { |h| h.keys[0] == :financial_year_changed_dates }
         x.delete_at(idx) if idx
       end
 
+      # and push `dates` as first element into the hash
       x.unshift(Hash[:dates, d])
 
       acc << x

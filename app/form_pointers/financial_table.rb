@@ -27,8 +27,18 @@ module FinancialTable
     #
     if form_answer.innovation?
       diff = ::Utils::Diff.calc(innovation_years_number, res.size, abs: false) || 0
-      diff.times { res.unshift("") } if diff.positive?
+
       res.shift(diff.abs) if diff.negative?
+
+      diff.times do 
+        date_to_calculate_from = res.first
+        if Utils::Date.valid?(date_to_calculate_from)
+          date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
+          res.unshift(date) 
+        else
+          res.unshift(nil)
+        end
+      end if diff.positive?
     end
 
     if res.any?(&:present?)
