@@ -25,6 +25,17 @@ class QaeFormBuilder
           end
         end
       end
+
+      total = 0
+      question.answers["trade_goods_and_services_explanations"].each do |product|
+        total += product["total_overseas_trade"].to_i
+      end
+      if total != 100
+        result[question.key] ||= {}
+        result[question.key][:total_trade_percentage] ||= ""
+        result[question.key][:total_trade_percentage] << "The total trade percentage does not equal 100%. Check that the totals entered add up to 100."
+      end
+
       result
     end
 
