@@ -1,3 +1,4 @@
+- answers = question.answers
 table.matrix-question-table.govuk-table class="#{'auto-totals-column' if question.auto_totals_column} #{'auto-totals-row-table' if question.totals_label || question.subtotals_label}"
   thead.govuk-table__head
     tr.govuk-table__row
@@ -8,17 +9,35 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
           = heading.label
   tbody
     - question.y_headings.each do |y_heading|
-      - disabled_row_input = y_heading.options[:row_class] == "auto-subtotals-row" || y_heading.options[:row_class] == "auto-totals-row" || y_heading.options[:row_class] == "auto-proportion-row"
+      - disabled_row_input = ["auto-subtotals-row", "auto-totals-row", "auto-proportion-row"].find { |class_name| y_heading.options[:row_class]&.include?(class_name) }
       tr.govuk-table__row class="#{y_heading.options[:row_class] ? y_heading.options[:row_class] : ''}"
         td.govuk-table__header.row-heading scope="row"
           = y_heading.label
+
         - question.x_headings.each do |x_heading|
-          - disabled_col_input = x_heading.label == "Total (system calculated)"
+          - disabled_col_input = x_heading.label == "Total (system calculated)" ? "auto-totals-col" : nil
+          - disabled_input = disabled_row_input || disabled_col_input
+          - if disabled_input
+            - question.decorate.assign_autocalculated_value(question, answers, disabled_input, x_heading, y_heading)
+          - input_value = question.input_value(suffix: "#{x_heading.key}_#{y_heading.key}")
+
           td.govuk-form-group.govuk-table__cell
             div
               label.visuallyhidden-on-desktop.govuk-label for=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}")
                 = "#{y_heading.label} numbers for #{x_heading.label}"
-              input.js-trigger-autosave.matrix-question-input.govuk-input type="number" disabled=(disabled_row_input || disabled_col_input) data-required-row-parent=question.required_row_parent min="0" step="1" name=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}") value=question.input_value(suffix: "#{x_heading.key}_#{y_heading.key}") id=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}") autocomplete="off" *possible_read_only_ops aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
+              input.js-trigger-autosave.matrix-question-input.govuk-input [
+                type="number"
+                disabled=(disabled_row_input || disabled_col_input)
+                data-required-row-parent=question.required_row_parent
+                min="0"
+                step="1"
+                name=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}")
+                value=input_value
+                id=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}")
+                autocomplete="off"
+                *possible_read_only_ops
+                aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
+              ]
               span.govuk-error-message aria-live="polite"
                 - if @form_answer.validator_errors && @form_answer.validator_errors["#{question.hash_key}_#{x_heading.key}_#{y_heading.key}"].present?
                   | Required
