@@ -34,6 +34,29 @@ class QaeFormBuilder
 
       errors
     end
+
+    def calculate_value(question, answers)
+      row_totals = {}
+
+      question.y_headings.each do |y_heading|
+        row_totals[y_heading.key] ||= 0
+        question.x_headings.each do |x_heading|
+          cell_value = answers["#{question.key}_#{x_heading.key}_#{y_heading.key}"]
+          unless x_heading.key == "total_system_calculated"
+            row_totals[y_heading.key] += cell_value.to_i
+          end
+          answers["#{question.key}_total_system_calculated_#{y_heading.key}"] = row_totals[y_heading.key]
+        end
+      end
+
+      return row_totals
+    end
+
+    def assign_autocalculated_value(question, answers, disabled_input, x_heading, y_heading)
+      sums = {}
+
+      calculate_value(question, answers)
+    end
   end
 
   class MatrixValue
