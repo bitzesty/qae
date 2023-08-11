@@ -18,3 +18,6 @@ jQuery ->
     $("tbody", wrapper).load href, ->
       link.removeClass("hidden")
       $(".updating-data", wrapper).addClass("hidden")
+      # $(".dashboard-report .sr-only").empty()
+      srWrapper = wrapper.closest(".dashboard-report .sr-only")
+      srWrapper.text("Data updated")
