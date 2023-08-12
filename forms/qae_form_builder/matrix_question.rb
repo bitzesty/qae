@@ -35,47 +35,54 @@ class QaeFormBuilder
       errors
     end
 
-    def calculate_row_total(question, answers)
+    def calculate_row_total(question_key, x_headings, y_headings, answers)
       row_totals = {}
 
-      question.y_headings.each do |y_heading|
+      y_headings.each do |y_heading|
         row_totals[y_heading.key] ||= 0
-        question.x_headings.each do |x_heading|
-          cell_value = answers["#{question.key}_#{x_heading.key}_#{y_heading.key}"]
+        x_headings.each do |x_heading|
+          cell_value = answers["#{question_key}_#{x_heading.key}_#{y_heading.key}"]
           unless x_heading.key == "total_system_calculated"
             row_totals[y_heading.key] += cell_value.to_i
           end
-          answers["#{question.key}_total_system_calculated_#{y_heading.key}"] = row_totals[y_heading.key]
+          answers["#{question_key}_total_system_calculated_#{y_heading.key}"] = row_totals[y_heading.key]
         end
       end
 
       return row_totals
     end
 
-    def calculate_col_total(question, answers)
+    def calculate_col_total(question_key, x_headings, y_headings, answers)
       col_totals = {}
 
-      question.x_headings.each do |x_heading|
+      x_headings.each do |x_heading|
         col_totals[x_heading.key] ||= 0
-        question.y_headings.each do |y_heading|
-          cell_value = answers["#{question.key}_#{x_heading.key}_#{y_heading.key}"]
+        y_headings.each do |y_heading|
+          cell_value = answers["#{question_key}_#{x_heading.key}_#{y_heading.key}"]
           unless y_heading.key == "calculated_total" || y_heading.key == "calculated_proportion"
             col_totals[x_heading.key] += cell_value.to_i
           end
-          answers["#{question.key}_#{x_heading.key}_calculated_total"] = col_totals[x_heading.key]
+          answers["#{question_key}_#{x_heading.key}_calculated_total"] = col_totals[x_heading.key]
         end
       end
 
       return col_totals
     end
 
-    def assign_autocalculated_value(question, answers, disabled_input, x_heading, y_heading)
-      if disabled_input == "auto-totals-col"
-        calculate_row_total(question, answers)
-      end
+    def calculate_proportion(question_key, answers, x_heading, y_heading)
+      disadvantaged = answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
+      total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
+      proportion = (disadvantaged.to_f / total * 100).round(2)
+      answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion
+    end
 
-      if disabled_input == "auto-totals-row"
-        calculate_col_total(question, answers)
+    def assign_autocalculated_value(question_key, x_headings, y_headings, answers, disabled_input, x_heading, y_heading)
+      if disabled_input == "auto-totals-col"
+        calculate_row_total(question_key, x_headings, y_headings, answers)
+      elsif disabled_input == "auto-totals-row"
+        calculate_col_total(question_key, x_headings, y_headings, answers)
+      elsif disabled_input == "auto-proportion-row"
+        calculate_proportion(question_key, answers, x_heading, y_heading)
       end
     end
   end

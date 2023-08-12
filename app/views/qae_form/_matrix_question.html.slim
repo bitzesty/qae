@@ -18,7 +18,7 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
           - disabled_col_input = x_heading.label == "Total (system calculated)" ? "auto-totals-col" : nil
           - disabled_input = disabled_row_input || disabled_col_input
           - if disabled_input
-            - question.decorate.assign_autocalculated_value(question, answers, disabled_input, x_heading, y_heading)
+            - question.decorate.assign_autocalculated_value(question.key, question.x_headings, question.y_headings, answers, disabled_input, x_heading.key, y_heading.key)
           - input_value = question.input_value(suffix: "#{x_heading.key}_#{y_heading.key}")
 
           td.govuk-form-group.govuk-table__cell
