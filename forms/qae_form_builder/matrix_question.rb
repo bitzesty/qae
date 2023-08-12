@@ -35,7 +35,7 @@ class QaeFormBuilder
       errors
     end
 
-    def calculate_value(question, answers)
+    def calculate_row_total(question, answers)
       row_totals = {}
 
       question.y_headings.each do |y_heading|
@@ -52,10 +52,31 @@ class QaeFormBuilder
       return row_totals
     end
 
-    def assign_autocalculated_value(question, answers, disabled_input, x_heading, y_heading)
-      sums = {}
+    def calculate_col_total(question, answers)
+      col_totals = {}
 
-      calculate_value(question, answers)
+      question.x_headings.each do |x_heading|
+        col_totals[x_heading.key] ||= 0
+        question.y_headings.each do |y_heading|
+          cell_value = answers["#{question.key}_#{x_heading.key}_#{y_heading.key}"]
+          unless y_heading.key == "calculated_total" || y_heading.key == "calculated_proportion"
+            col_totals[x_heading.key] += cell_value.to_i
+          end
+          answers["#{question.key}_#{x_heading.key}_calculated_total"] = col_totals[x_heading.key]
+        end
+      end
+
+      return col_totals
+    end
+
+    def assign_autocalculated_value(question, answers, disabled_input, x_heading, y_heading)
+      if disabled_input == "auto-totals-col"
+        calculate_row_total(question, answers)
+      end
+
+      if disabled_input == "auto-totals-row"
+        calculate_col_total(question, answers)
+      end
     end
   end
 
@@ -142,7 +163,7 @@ class QaeFormBuilder
         y_heading "others", @q.others_label, {"row_class": "others-not-disadvantaged-row"}
       end
       if @q.totals_label
-        y_heading "calulated_total", @q.totals_label, {"row_class": "auto-totals-row"}
+        y_heading "calculated_total", @q.totals_label, {"row_class": "auto-totals-row"}
       end
       if @q.proportion_label
         y_heading "calculated_proportion", @q.proportion_label, {"row_class": "auto-proportion-row"}
