@@ -1,4 +1,5 @@
 class QaeFormBuilder
+  AUTO_CALCULATED_HEADINGS = %w(total_system_calculated calculated_total calculated_proportion calculated_sub_total).freeze
   EXCLUDED_HEADINGS = %w(calculated_sub_total others calculated_total calculated_proportion).freeze
   class MatrixQuestionValidator < QuestionValidator
     def errors
@@ -7,7 +8,7 @@ class QaeFormBuilder
         question.y_headings.each do |y_heading|
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
-            if !question.input_value(suffix: suffix).present? && !EXCLUDED_HEADINGS.any? { |excluded| question.input_name(suffix: suffix).include?(excluded) }
+            if !question.input_value(suffix: suffix).present? && !AUTO_CALCULATED_HEADINGS.any? { |excluded| question.input_name(suffix: suffix).include?(excluded) }
               if (question.required_row_parent && question.required_rows.include?(y_heading.key)) || !question.required_row_parent
                 result[question.hash_key(suffix: suffix)] ||= ""
                 result[question.hash_key(suffix: suffix)] << "Required"
