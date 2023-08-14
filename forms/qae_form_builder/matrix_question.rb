@@ -48,8 +48,6 @@ class QaeFormBuilder
           answers["#{question_key}_total_system_calculated_#{y_heading.key}"] = row_totals[y_heading.key]
         end
       end
-
-      return row_totals
     end
 
     def calculate_col_total(question_key, x_headings, y_headings, answers)
@@ -57,31 +55,58 @@ class QaeFormBuilder
 
       x_headings.each do |x_heading|
         col_totals[x_heading.key] ||= 0
-        y_headings.each do |y_heading|
-          cell_value = answers["#{question_key}_#{x_heading.key}_#{y_heading.key}"]
-          unless y_heading.key == "calculated_total" || y_heading.key == "calculated_proportion"
-            col_totals[x_heading.key] += cell_value.to_i
+        if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
+          subtotal = answers["#{question_key}_#{x_heading.key}_calculated_sub_total"].to_i
+          others = answers["#{question_key}_#{x_heading.key}_others"].to_i
+          total = subtotal + others
+          answers["#{question_key}_#{x_heading.key}_calculated_total"] = total
+        else
+          y_headings.each do |y_heading|
+            cell_value = answers["#{question_key}_#{x_heading.key}_#{y_heading.key}"]
+            unless y_heading.key == "calculated_total" || y_heading.key == "calculated_proportion"
+              col_totals[x_heading.key] += cell_value.to_i
+            end
+            answers["#{question_key}_#{x_heading.key}_calculated_total"] = col_totals[x_heading.key]
           end
-          answers["#{question_key}_#{x_heading.key}_calculated_total"] = col_totals[x_heading.key]
         end
       end
+    end
 
-      return col_totals
+    def calculate_col_subtotal(question_key, x_headings, y_headings, answers)
+      col_subtotals = {}
+
+      x_headings.each do |x_heading|
+        col_subtotals[x_heading.key] ||= 0
+        y_headings.each do |y_heading|
+          cell_value = answers["#{question_key}_#{x_heading.key}_#{y_heading.key}"]
+          unless %w(calculated_sub_total others calculated_total calculated_proportion).include?(y_heading.key)
+            col_subtotals[x_heading.key] += cell_value.to_i
+          end
+          answers["#{question_key}_#{x_heading.key}_calculated_sub_total"] = col_subtotals[x_heading.key]
+        end
+      end
     end
 
     def calculate_proportion(question_key, answers, x_heading, y_heading)
-      disadvantaged = answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
+      if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
+        disadvantaged = answers["#{question_key}_#{x_heading}_calculated_sub_total"].to_f
+      else
+        disadvantaged = answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
+      end
       total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
       proportion = (disadvantaged.to_f / total * 100).round(2)
       answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion
     end
 
     def assign_autocalculated_value(question_key, x_headings, y_headings, answers, disabled_input, x_heading, y_heading)
-      if disabled_input == "auto-totals-col"
+      case disabled_input
+      when "auto-totals-col"
         calculate_row_total(question_key, x_headings, y_headings, answers)
-      elsif disabled_input == "auto-totals-row"
+      when "auto-totals-row"
         calculate_col_total(question_key, x_headings, y_headings, answers)
-      elsif disabled_input == "auto-proportion-row"
+      when "auto-subtotals-row"
+        calculate_col_subtotal(question_key, x_headings, y_headings, answers)
+      when "auto-proportion-row"
         calculate_proportion(question_key, answers, x_heading, y_heading)
       end
     end
