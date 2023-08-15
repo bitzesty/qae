@@ -16,7 +16,7 @@ window.WonInternationalTradeAwardQuestion = init: ->
         conditionFulfilled = true
         return false
 
-    helpBlock = container.closest("fieldset").find(".question-block")
+    helpBlock = $("#help-block")
 
     if helpBlock
       if conditionFulfilled
