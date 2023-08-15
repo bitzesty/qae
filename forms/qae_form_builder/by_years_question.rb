@@ -1,5 +1,21 @@
 class QaeFormBuilder
   class ByYearsQuestionValidator < QuestionValidator
+    def errors
+      result = super
+
+      return result unless question.visible?
+
+      if question.required?
+        question.active_fields.each.with_index(1) do |suffix, idx|
+          if !question.input_value(suffix: suffix).present?
+            result[question.hash_key(suffix: suffix)] ||= ""
+            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. Financial year #{idx} is required and must be filled in."
+          end
+        end
+      end
+
+      result
+    end
   end
 
   class ByYearsQuestionDecorator < QuestionDecorator

@@ -1,4 +1,6 @@
-.js-financial-conditional data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message id="q_#{question.key}" role="group"
+- has_errors = question.by_year_conditions.map { |c| (1..c.years).any? { |y| @form_answer.validator_errors&.dig(question.hash_key(suffix: "#{y}of#{c.years}")).present? } }.flatten.compact_blank.present?
+
+.js-financial-conditional class=(" govuk-form-group--error" if has_errors) data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message id="q_#{question.key}" role="group"
   - for c in question.by_year_conditions
     .js-conditional-question.by-years-wrapper data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
       .if-js-hide
@@ -7,9 +9,10 @@
             = "If you had growth in the last #{c.years} years"
       .govuk-grid-row
         - (1..c.years).each do |y|
+          - suffix = "#{y}of#{c.years}"
           .span-financial.govuk-grid-column-one-third
             label.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5" for=question.input_name(suffix: "#{y}of#{c.years}")
-              span.js-year-end.show-default data-year="#{y}of#{c.years}" data-year-diff="#{::Utils::Diff.calc(c.years, y)}"
+              span.js-year-end.show-default data-year="#{suffix}" data-year-diff="#{::Utils::Diff.calc(c.years, y)}"
                 span.js-year-default
                   ' Financial year
                   = y
@@ -17,11 +20,33 @@
                     '  (most recent)
                 span.js-year-text.hide-if-empty
             span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
+              - if @form_answer.validator_errors&.dig(question.hash_key(suffix: suffix))
+                span.govuk-visually-hidden
+                  | Error:
+                =< @form_answer.validator_errors[question.hash_key(suffix: suffix)]
             span class="#{'govuk-input__wrapper' if question.type == :money}"
               - if question.type == :money
                 .govuk-input__prefix £
-                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data [
+                  type="number"
+                  pattern="[0-9]*"
+                  name=question.input_name(suffix: suffix) 
+                  value=question.input_value(suffix: suffix).to_s.delete(",") 
+                  id=question.input_name(suffix: suffix)
+                  autocomplete="off"
+                  *possible_read_only_ops
+                  aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{suffix}" : nil )
+                ]
               - else
                 - type = "#{question.type || 'text'}"
-                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data type="#{type}" pattern="#{'[0-9]*' if type == 'number'}" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+                input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data [
+                  type="#{type}"
+                  pattern="#{'[0-9]*' if type == 'number'}"
+                  name=question.input_name(suffix: suffix) 
+                  value=question.input_value(suffix: suffix).to_s.delete(",") 
+                  id=question.input_name(suffix: suffix) 
+                  autocomplete="off" 
+                  *possible_read_only_ops
+                  aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{suffix}" : nil )
+                ]
       .clear
