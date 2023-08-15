@@ -9,10 +9,16 @@ class QaeFormBuilder
       end
 
       date << Date.today.year.to_s
+      day = question.input_value(suffix: "day")
+      month = question.input_value(suffix: "month")
 
-      date = Date.parse(date.join("/")) rescue nil
+      if day.blank? || month.blank?
+        date = nil
+      else
+        date = Date.parse(date.join("/")) rescue nil
+      end
 
-      if !date && question.required?
+      if question.required? && !date
         result[question.hash_key] ||= ""
         result[question.hash_key] << "#{question.ref || question.sub_ref} is incomplete. Year-end is required. Use the format MM/YYYY"
       end
