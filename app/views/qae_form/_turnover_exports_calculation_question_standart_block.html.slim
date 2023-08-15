@@ -1,5 +1,8 @@
 - for c in question.by_year_conditions
-  .js-conditional-question data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
+  - question_visible = question.fields_count == c.years
+  = question.fields_count
+
+  .js-conditional-question.turnover-exports-calculation-wrapper class=(class_names("show-question" => question_visible)) data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
     .row
       - (1..c.years).each do |y|
         div class="span-financial span-4"

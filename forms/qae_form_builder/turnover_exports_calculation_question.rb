@@ -12,20 +12,40 @@ class QaeFormBuilder
     end
 
     def active_fields
+      (1..fields_count).map { |y| "#{y}of#{fields_count}" }
+    end
+
+    def fields_count
       if delegate_obj.one_option_financial_data_mode.present?
-        (1..3).map{|y| "#{y}of3"}
+        3
       else
         c = active_by_year_condition
-        return [] unless c
+        return nil unless c
 
-        (1..c.years).map{|y| "#{y}of#{c.years}"}
+        c.years
       end
     end
 
     def active_by_year_condition
-      delegate_obj.by_year_conditions.find {|c|
-        form[c.question_key].input_value == c.question_value
-      }
+      delegate_obj.by_year_conditions.find do |c|
+        if c.question_value.respond_to?(:call)
+          q = form[c.question_key]
+          if q.is_a?(QaeFormBuilder::DateQuestion) || q.is_a?(QaeFormBuilder::DateQuestionDecorator)
+            date = []
+            q.required_sub_fields.each do |sub|
+              date << q.input_value(suffix: sub.keys[0])
+            end
+
+            date = Date.parse(date.join("/")) rescue nil
+
+            c.question_value.(date)
+          else
+            c.question_value.(form[c.question_key].input_value)
+          end
+        else
+          form[c.question_key].input_value == c.question_value
+        end
+      end
     end
   end
 
