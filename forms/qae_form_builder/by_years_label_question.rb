@@ -84,11 +84,16 @@ class QaeFormBuilder
     end
 
     def active_fields
+      return [] unless fields_count
+
+      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+    end
+
+    def fields_count
       c = active_by_year_condition
       c ||= default_by_year_condition
-      return [] unless c
-
-      (1..c.years).map{|y| "#{y}of#{c.years}"}
+      return nil unless c
+      c.years
     end
 
     def active_by_year_condition
