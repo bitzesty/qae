@@ -20,7 +20,7 @@ class QaeFormBuilder
 
       if question.required? && !date
         result[question.hash_key] ||= ""
-        result[question.hash_key] << "#{question.ref || question.sub_ref} is incomplete. Year-end is required. Use the format MM/YYYY"
+        result[question.hash_key] << "#{question.ref || question.sub_ref} is invalid. Financial year-end is required. Use the format DD/MM"
       end
 
       result
