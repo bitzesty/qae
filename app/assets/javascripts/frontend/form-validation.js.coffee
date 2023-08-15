@@ -29,7 +29,11 @@ window.FormValidation =
     @validates = false
 
   appendMessage: (container, message) ->
-    container.find(".govuk-error-message").first().append(message)
+    el = container.find(".govuk-error-message").first()
+    if el.text.length > 0
+      el.append(message)
+    else
+      el.append(" #{message}")
     @validates = false
 
   addAriaDescribedByToInput: (container, message) ->
