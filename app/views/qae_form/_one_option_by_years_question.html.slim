@@ -1,7 +1,7 @@
 - has_errors = (1..3).any? { |y| @form_answer.validator_errors&.dig(question.hash_key(suffix: "#{y}of3")) }.present?
 
 .js-financial-conditional class=(" govuk-form-group--error" if has_errors) data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message role="group" id="q_#{question.key}"
-  .by-years-wrapper
+  .by-years-wrapper.show-question
     .if-js-hide
       label.govuk-label
         strong
