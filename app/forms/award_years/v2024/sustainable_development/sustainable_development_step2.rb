@@ -270,7 +270,7 @@ class AwardYears::V2024::QAEForms
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the social mobility initiative, then you should make a joint entry.
+              If two or more organisations made a significant contribution to the sustainability initiative, then you should make a joint entry.
             </p>
             <p>
               Each organisation should submit separate entry forms and cross-reference them.
