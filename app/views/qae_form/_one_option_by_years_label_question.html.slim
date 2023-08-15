@@ -6,27 +6,32 @@
           = "If you had growth in the last 3 years"
     .govuk-grid-row
       - (1..3).each do |y|
+        - suffix = "#{y}of3"
         .govuk-grid-column-one-half.js-fy-entries.by-years-wrapper.show-question class="#{'fy-latest' if y == 3} govuk-!-margin-bottom-4"
-          span.js-year-end.show-default data-year="#{y}of3" data-year-diff="#{::Utils::Diff.calc(3, y)}"
+          span.js-year-end.show-default data-year="#{suffix}" data-year-diff="#{::Utils::Diff.calc(3, y)}"
             label.js-year-default.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5"
               = question.format_label(y)
               - if y == 3
                 '  (most recent)
           br
           span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
+            - if @form_answer.validator_errors&.dig(question.hash_key(suffix: suffix))
+              span.govuk-visually-hidden
+                | Error:
+              =< @form_answer.validator_errors[question.hash_key(suffix: suffix)]
           .govuk-date-input
             .govuk-date-input__item
               .govuk-form-group
-                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of3day")
+                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{suffix}day")
                   ' Day
-                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-fy-day type="text" name=question.input_name(suffix: "#{y}of3day") value=question.input_value(suffix: "#{y}of3day") id=question.input_name(suffix: "#{y}of3day") maxlength=2 autocomplete="off" *possible_read_only_ops
+                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-fy-day type="text" name=question.input_name(suffix: "#{suffix}day") value=question.input_value(suffix: "#{suffix}day") id=question.input_name(suffix: "#{suffix}day") maxlength=2 autocomplete="off" *possible_read_only_ops
             .govuk-date-input__item
               .govuk-form-group
-                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of3month")
+                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{suffix}month")
                   ' Month
-                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-fy-month type="text" name=question.input_name(suffix: "#{y}of3month") value=question.input_value(suffix: "#{y}of3month") id=question.input_name(suffix: "#{y}of3month") maxlength=2 autocomplete="off" *possible_read_only_ops
+                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-2.js-fy-month type="text" name=question.input_name(suffix: "#{suffix}month") value=question.input_value(suffix: "#{suffix}month") id=question.input_name(suffix: "#{suffix}month") maxlength=2 autocomplete="off" *possible_read_only_ops
             .govuk-date-input__item
               .govuk-form-group
-                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of3year")
+                label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{suffix}year")
                   ' Year
-                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-4.js-fy-year type="text" name=question.input_name(suffix: "#{y}of3year") value=question.input_value(suffix: "#{y}of3year") id=question.input_name(suffix: "#{y}of3year") maxlength=4 autocomplete="off" *possible_read_only_ops
+                input.js-trigger-autosave.govuk-input.govuk-date-input__input.govuk-input--width-4.js-fy-year type="text" name=question.input_name(suffix: "#{suffix}year") value=question.input_value(suffix: "#{suffix}year") id=question.input_name(suffix: "#{suffix}year") maxlength=4 autocomplete="off" *possible_read_only_ops
