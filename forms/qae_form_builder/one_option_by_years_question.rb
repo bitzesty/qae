@@ -1,5 +1,5 @@
 class QaeFormBuilder
-  class OneOptionByYearsQuestionValidator < QuestionValidator
+  class OneOptionByYearsQuestionValidator < ::QaeFormBuilder::ByYearsQuestionValidator
   end
 
   class OneOptionByYearsQuestionDecorator < QuestionDecorator
