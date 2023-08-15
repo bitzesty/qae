@@ -2,7 +2,9 @@
 
 .js-financial-conditional class=(" govuk-form-group--error" if has_errors) data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message id="q_#{question.key}" role="group"
   - for c in question.by_year_conditions
-    .js-conditional-question.by-years-wrapper data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
+    - question_visible = question.fields_count == c.years
+
+    .js-conditional-question.by-years-wrapper class=(class_names("show-question" => question_visible)) data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
       .if-js-hide
         label.govuk-label
           strong
