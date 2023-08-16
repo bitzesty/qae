@@ -2,7 +2,17 @@ module AdminShortlistedDocsSubmissionContext
   def create
     authorize resource, :submit?
 
-    resource.submitted? ? resource.uncomplete : resource.complete
+    if resource.submitted?
+      resource.uncomplete
+    else
+      if resource.complete
+        if form_answer.assessors.primary.present?
+          Assessors::GeneralMailer.vat_returns_submitted(form_answer.id).deliver_later!
+        end
+
+        Users::CommercialFiguresMailer.notify(form_answer.id, form_answer.account.owner_id).deliver_later!
+      end
+    end
 
     respond_to do |format|
       format.html do
@@ -29,7 +39,7 @@ module AdminShortlistedDocsSubmissionContext
     @resource ||= (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
 
     return @resource if @resource.persisted?
-    
+
     @resource.save!
     @resource
   end
