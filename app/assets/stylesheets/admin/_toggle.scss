@@ -1,3 +1,5 @@
+@import "pxToRem";
+
 .hide {
   display: none !important;
 }
@@ -17,12 +19,12 @@
 .rm {
   border: 0;
   clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
+  height: pxToRem(1);
+  margin: pxToRem(1);
   overflow: hidden;
   padding: 0;
   position: absolute;
-  width: 1px;
+  width: pxToRem(1);
   z-index: -1;
 }
 

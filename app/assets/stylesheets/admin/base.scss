@@ -1,4 +1,5 @@
 @import "mixins";
+@import "pxToRem";
 
 // Basic
 a {
@@ -9,7 +10,7 @@ a {
     outline: none !important;
     text-decoration: none !important;
     border-bottom-color: $black !important;
-    border-bottom-width: 2px !important;
+    border-bottom-width: pxToRem(2) !important;
     border-bottom-style: solid !important;
   }
 }
@@ -28,16 +29,16 @@ input[type=text], input[type=tel],
 input[type=email], input[type=password],
 input[type=checkbox], select {
   &:focus {
-    outline: 3px solid #ffdd00 !important;
+    outline: pxToRem(3) solid #ffdd00 !important;
     outline-offset: 0 !important;
-    box-shadow: inset 0 0 0 2px !important;
+    box-shadow: inset 0 0 0 pxToRem(2) !important;
   }
 }
 
 .btn-primary, .button_to {
   &:focus, &:focus-within {
     border-bottom-color: $black !important;
-    border-bottom-width: 2px !important;
+    border-bottom-width: pxToRem(2) !important;
     border-bottom-style: solid !important;
   }
 }
@@ -78,11 +79,11 @@ span {
 
 select,
 select.form-control {
-  padding-right: 20px;
+  padding-right: pxToRem(20);
   background-image: image-url("icon-arrow-select.png");
   background-repeat: no-repeat;
   background-position: right center;
-  background-size: 13px 14px;
+  background-size: pxToRem(13) pxToRem(14);
   -moz-appearance: none;
   -webkit-appearance: none;
 
@@ -127,7 +128,7 @@ h4 {
 }
 
 table .ellipsis {
-  max-width: 175px;
+  max-width: pxToRem(175);
 }
 
 .admin-page-heading {
@@ -162,7 +163,7 @@ table .ellipsis {
   }
 
   .glyphicon:first-child {
-    margin-right: 5px;
+    margin-right: pxToRem(5);
   }
 }
 
@@ -216,28 +217,28 @@ table .ellipsis {
 }
 
 .btn-confirm-submit {
-  font-size: 17px;
+  font-size: pxToRem(17);
 }
 
 .alert {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: pxToRem(10);
+  padding-bottom: pxToRem(10);
   border-radius: 0;
 }
 
 .alert-glyphicon {
   position: relative;
-  padding-left: 40px;
+  padding-left: pxToRem(40);
 
   .glyphicon {
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: pxToRem(15);
+    left: pxToRem(15);
   }
 }
 
 .panel-body .alert {
-  margin-bottom: 30px;
+  margin-bottom: pxToRem(30);
 }
 
 .page-header {
@@ -246,7 +247,7 @@ table .ellipsis {
 
   h1 {
     margin-top: 0;
-    font-size: 30px;
+    font-size: pxToRem(30);
   }
 }
 
@@ -260,7 +261,7 @@ table .ellipsis {
   }
 
   .pull-right a {
-    margin-left: 20px;
+    margin-left: pxToRem(20);
   }
 
   .apps-navigation {
@@ -279,21 +280,21 @@ table .ellipsis {
 
   .table {
     width: 99.5%;
-    margin-left: 1px;
+    margin-left: pxToRem(1);
   }
 
   .not-eligible {
-    border-right: 2px solid $black;
-    width: 75px;
+    border-right: pxToRem(2) solid $black;
+    width: pxToRem(75);
   }
 
   .table-total {
-    width: 80px;
+    width: pxToRem(80);
   }
 
   .apps-in-proggress {
     td {
-      width: 70px;
+      width: pxToRem(70);
     }
   }
 }
@@ -301,7 +302,7 @@ table .ellipsis {
 .table {
   &.table-striped tbody {
     .lte-ie8 & {
-      border: 2px solid $black-true;
+      border: pxToRem(2) solid $black-true;
       border-collapse: initial !important;
     }
   }
@@ -330,7 +331,7 @@ table .ellipsis {
     }
 
     td {
-      padding-top: 10px;
+      padding-top: pxToRem(10);
     }
 
     .td-assessment-submitted {
@@ -352,10 +353,10 @@ table .ellipsis {
   }
 
   .ellipsis {
-    max-width: 350px;
+    max-width: pxToRem(350);
 
     @include screen-md-max {
-      max-width: 250px;
+      max-width: pxToRem(250);
     }
   }
 }
@@ -377,7 +378,7 @@ table .ellipsis {
 }
 
 .question-group h2, h3 {
-  font-size: 18px;
+  font-size: pxToRem(18);
   font-weight: bold;
   line-height: 1.5;
 
@@ -411,7 +412,7 @@ table .ellipsis {
 .field-with-errors {
   .error {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: pxToRem(5);
     color: $error-colour;
 
     @include screen-md-min {
@@ -425,14 +426,14 @@ table .ellipsis {
   }
 
   .feedback-holder {
-    margin-bottom: 15px;
+    margin-bottom: pxToRem(15);
   }
 }
 
 .govuk-form-group--error {
   .govuk-error-message {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: pxToRem(5);
     color: $error-colour;
 
     @include screen-md-min {
@@ -446,7 +447,7 @@ table .ellipsis {
   }
 
   .feedback-holder {
-    margin-bottom: 15px;
+    margin-bottom: pxToRem(15);
   }
 }
 
@@ -454,7 +455,7 @@ table .ellipsis {
   display: block;
 
   .form-group {
-    margin-right: 36px;
+    margin-right: pxToRem(36);
   }
 
   .form-control {
@@ -464,7 +465,7 @@ table .ellipsis {
     &,
     &:first-child,
     &:last-child {
-      border-radius: 4px;
+      border-radius: pxToRem(4);
     }
   }
 
@@ -473,16 +474,16 @@ table .ellipsis {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 40px;
+    width: pxToRem(40);
     height: 2.4em;
-    border-left: 1px solid $grey-light;
+    border-left: pxToRem(1) solid $grey-light;
     line-height: 1.5;
     z-index: 2;
 
     .lte-ie7 & {
-      top: 1px !important;
+      top: pxToRem(1) !important;
       padding: 0 !important;
-      padding-top: 6px !important;
+      padding-top: pxToRem(6) !important;
     }
 
     .glyphicon {
@@ -514,14 +515,14 @@ table .ellipsis {
 }
 
 .form-actions {
-  margin-top: 30px;
+  margin-top: pxToRem(30);
 
   .show-sidebar & {
     margin-top: 0;
   }
 
   .btn {
-    margin-right: 15px;
+    margin-right: pxToRem(15);
 
     &:last-child {
       margin-right: 0;
@@ -536,23 +537,23 @@ table .ellipsis {
 .selectable {
   display: block;
   position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 15px 20px;
+  margin-top: pxToRem(10);
+  margin-bottom: pxToRem(10);
+  padding: pxToRem(15) pxToRem(20);
   float: none;
   clear: left;
-  border: 1px solid $selectable;
-  border-radius: 4px;
+  border: pxToRem(1) solid $selectable;
+  border-radius: pxToRem(4);
   background-color: $white-true;
   cursor: pointer;
 
   .checkbox & {
-    padding-left: 35px;
+    padding-left: pxToRem(35);
   }
 }
 
 label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
-  margin-left: 10px;
+  margin-left: pxToRem(10);
 }
 
 // Fix boolean inputs
@@ -563,12 +564,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   &.control-label {
-    padding-left: 20px;
+    padding-left: pxToRem(20);
   }
 
   input.boolean {
     position: absolute;
-    top: 14px;
+    top: pxToRem(14);
     left: 1em;
   }
 
@@ -579,17 +580,17 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   &.field-with-errors .checkbox {
-    left: 20px;
+    left: pxToRem(20);
   }
 
   &.selectable-group {
     .selectable {
-      padding-left: 40px;
+      padding-left: pxToRem(40);
     }
 
     .checkbox {
-      top: 15px;
-      left: 15px;
+      top: pxToRem(15);
+      left: pxToRem(15);
       margin-top: 0;
     }
   }
@@ -597,16 +598,16 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .hint {
   display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: pxToRem(10);
+  margin-bottom: pxToRem(10);
   color: $grey-dark;
-  font-size: 14px;
+  font-size: pxToRem(14);
 }
 
 .password-meter {
   max-width: none;
-  margin-top: 5px;
-  margin-right: -80px;
+  margin-top: pxToRem(5);
+  margin-right: pxToRem(-80);
 
   @include screen-sm-max {
     margin-right: 0;
@@ -636,11 +637,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   .glyphicon {
-    margin-right: 5px;
+    margin-right: pxToRem(5);
   }
 
   li {
-    margin-bottom: 10px;
+    margin-bottom: pxToRem(10);
     @extend .clearfix;
 
     &:last-child {
@@ -649,13 +650,13 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
     .action-title {
       display: block;
-      margin-right: 110px;
+      margin-right: pxToRem(110);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
       .lte-ie8 & {
-        max-width: 200px;
+        max-width: pxToRem(200);
         margin-right: 0;
         float: left;
       }
@@ -674,7 +675,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   overflow: hidden;
 
   .lte-ie8 & {
-    max-height: 25px;
+    max-height: pxToRem(25);
   }
 
   input[type="file"] {
@@ -685,7 +686,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     left: auto;
     width: 100%;
     cursor: pointer;
-    font-size: 200px;
+    font-size: pxToRem(200);
     opacity: 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
@@ -699,7 +700,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 // Alerts
 .alert-container {
-  margin-bottom: 30px;
+  margin-bottom: pxToRem(30);
   z-index: 10001;
 
   @include screen-sm-min {
@@ -707,18 +708,18 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   @include screen-md-min {
-    max-width: 970px;
+    max-width: pxToRem(970);
   }
 
   @include screen-lg-min {
-    max-width: 1170px;
+    max-width: pxToRem(1170);
   }
 
   .alert {
     margin: 0;
 
     .lte-ie7 & {
-      max-width: 1170px;
+      max-width: pxToRem(1170);
       text-align: left;
     }
   }
@@ -734,8 +735,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .icon-unflagged,
 .icon-check {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: pxToRem(30);
+  height: pxToRem(30);
   text-align: left;
   text-indent: -9999px;
   background-repeat: no-repeat;
@@ -748,12 +749,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .icon-comment {
   position: relative;
-  width: 25px;
-  height: 18px;
-  top: 3px;
+  width: pxToRem(25);
+  height: pxToRem(18);
+  top: pxToRem(3);
   background-image: image-url("icon-comment-sm.png");
   background-position: left top;
-  background-size: 20px 18px;
+  background-size: pxToRem(20) pxToRem(18);
 
   @include is-retina {
     background-image: image-url("icon-comment-sm@2.png");
@@ -761,28 +762,28 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
   .comment-count {
     position: absolute;
-    top: -6px;
-    left: 23px;
+    top: pxToRem(-6);
+    left: pxToRem(23);
     color: $black;
-    font-size: 10px;
+    font-size: pxToRem(10);
     font-weight: bold;
     text-indent: 0;
   }
 }
 
 .icon-comment-wrapper + .icon-flagged {
-  margin-left: 10px;
+  margin-left: pxToRem(10);
   display: inline-block;
 }
 
 .icon-flagged {
   position: relative;
-  width: 25px;
-  height: 18px;
-  top: 3px;
+  width: pxToRem(25);
+  height: pxToRem(18);
+  top: pxToRem(3);
   background-image: image-url("icon-flag-sm.png");
   background-position: left top;
-  background-size: 12px 15px;
+  background-size: pxToRem(12) pxToRem(15);
 
   @include is-retina {
     background-image: image-url("icon-flag-sm@2.png");
@@ -798,10 +799,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
   .flag-count {
     position: absolute;
-    top: -6px;
-    left: 13px;
+    top: pxToRem(-6);
+    left: pxToRem(13);
     color: $black;
-    font-size: 10px;
+    font-size: pxToRem(10);
     font-weight: bold;
     text-indent: 0;
   }
@@ -810,7 +811,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .icon-unflagged {
   background-image: image-url("icon-flag-sm-grey.png");
   background-position: left top;
-  background-size: 12px 15px;
+  background-size: pxToRem(12) pxToRem(15);
 
   @include is-retina {
     background-image: image-url("icon-flag-sm-grey@2.png");
@@ -819,12 +820,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .icon-check {
   position: relative;
-  width: 20px;
-  height: 20px;
-  top: -6px;
+  width: pxToRem(20);
+  height: pxToRem(20);
+  top: pxToRem(-6);
   background-image: image-url("icon-check.png");
   background-position: center center;
-  background-size: 20px 14px;
+  background-size: pxToRem(20) pxToRem(14);
   vertical-align: -webkit-baseline-middle;
 
   @include is-retina {
@@ -837,12 +838,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .icon-view {
-  width: 18px;
-  min-height: 16px;
+  width: pxToRem(18);
+  min-height: pxToRem(16);
   background-image: image-url("icon-computer-sm.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 18px 16px;
+  background-size: pxToRem(18) pxToRem(16);
   text-align: left;
   text-indent: -9999px;
   opacity: 0.8;
@@ -863,12 +864,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
   .btn & {
     position: relative;
-    top: 2px;
-    width: 20px;
-    height: 16px;
-    margin-right: 5px;
+    top: pxToRem(2);
+    width: pxToRem(20);
+    height: pxToRem(16);
+    margin-right: pxToRem(5);
     background-image: image-url("icon-computer-sm.png");
-    background-size: 18px 16px;
+    background-size: pxToRem(18) pxToRem(16);
     opacity: 1;
 
     @include is-retina {
@@ -888,13 +889,13 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   position: relative !important;
 
   .lte-ie8 & {
-    width: 350px;
+    width: pxToRem(350);
     overflow: hidden;
   }
 
   .form_answers-index-page & {
     @include screen-sm-max {
-      margin-top: 15px;
+      margin-top: pxToRem(15);
     }
   }
 
@@ -902,7 +903,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     position: relative;
 
     .lte-ie8 & {
-      width: 350px;
+      width: pxToRem(350);
     }
 
     .lte-ie7 & {
@@ -912,8 +913,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
   [type="search"],
   input.form-control {
-    padding-right: 40px;
-    font-size: 16px;
+    padding-right: pxToRem(40);
+    font-size: pxToRem(16);
     font-style: italic;
     position: relative;
     z-index: 10;
@@ -924,7 +925,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 30px;
+    width: pxToRem(30);
     margin: 0;
     padding: 0;
     border: none;
@@ -932,7 +933,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     background-image: image-url("icon-search.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 15px 21px;
+    background-size: pxToRem(15) pxToRem(21);
     text-align: left !important;
     text-indent: -9999px;
     white-space: nowrap;
@@ -955,10 +956,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 // Sortable Tables
 .sortable {
   a {
-    padding-right: 16px;
+    padding-right: pxToRem(16);
     background-repeat: no-repeat;
     background-position: right center;
-    background-size: 10px 6px;
+    background-size: pxToRem(10) pxToRem(6);
     color: $black;
     background-image: image-url("icon-arrow-sort-down-grey.png");
     text-decoration: none;
@@ -1009,13 +1010,13 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 // Filterable Dropdowns
 .filter {
   .dropdown-toggle {
-    padding: 4px 10px;
+    padding: pxToRem(4) pxToRem(10);
     color: $grey-dark;
     font-size: inherit;
 
     .lte-ie7 & {
       position: relative;
-      border-bottom: 1px solid $grey-light;
+      border-bottom: pxToRem(1) solid $grey-light;
       zoom: 1;
     }
 
@@ -1029,7 +1030,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
 
     .caret {
-      margin-left: 5px;
+      margin-left: pxToRem(5);
     }
   }
 
@@ -1038,11 +1039,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
       margin: 0;
 
       &.divider {
-        margin: 5px 0;
+        margin: pxToRem(5) 0;
 
         .lte-ie7 & {
           width: 100%;
-          height: 1px;
+          height: pxToRem(1);
           background: $grey-light;
         }
       }
@@ -1059,15 +1060,15 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
 
     input {
-      margin-top: 11px;
-      margin-left: 10px;
+      margin-top: pxToRem(11);
+      margin-left: pxToRem(10);
     }
 
     .label-contents {
       display: block;
       position: relative;
-      padding: 7px 10px;
-      padding-left: 30px;
+      padding: pxToRem(7) pxToRem(10);
+      padding-left: pxToRem(30);
       z-index: 1;
     }
 
@@ -1080,8 +1081,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 // Sidebar
 .show-main-content,
 .show-sidebar-container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: pxToRem(15);
+  padding-left: pxToRem(15);
   float: left;
 }
 
@@ -1103,12 +1104,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .show-sidebar {
   position: relative;
-  padding: 15px;
+  padding: pxToRem(15);
   background: $white-true;
   zoom: 1;
 
   @include screen-md-max {
-    margin-bottom: 30px;
+    margin-bottom: pxToRem(30);
   }
 
   h1,
@@ -1119,45 +1120,45 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
 
     .glyphicon {
-      margin-right: 5px;
+      margin-right: pxToRem(5);
     }
   }
 
   h1 {
-    font-size: 32px;
+    font-size: pxToRem(32);
 
     @include screen-md-max {
-      font-size: 24px;
+      font-size: pxToRem(24);
     }
   }
 
   h2 {
-    margin-bottom: 20px;
-    font-size: 16px;
+    margin-bottom: pxToRem(20);
+    font-size: pxToRem(16);
     font-weight: bold;
     text-transform: uppercase;
 
     @include screen-md-max {
-      font-size: 15px;
+      font-size: pxToRem(15);
     }
 
     .pull-right {
       @include screen-md-max {
         display: inline-block;
         width: 100%;
-        margin-top: 10px;
+        margin-top: pxToRem(10);
         float: none !important;
       }
     }
   }
 
   h3 {
-    margin-bottom: 20px;
-    font-size: 16px;
+    margin-bottom: pxToRem(20);
+    font-size: pxToRem(16);
     font-weight: bold;
 
     @include screen-md-max {
-      font-size: 15px;
+      font-size: pxToRem(15);
     }
   }
 
@@ -1165,16 +1166,16 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     display: block;
     margin-top: 0.25em;
     color: $grey-dark;
-    font-size: 14px;
+    font-size: pxToRem(14);
     text-transform: none;
   }
 
   .well {
     margin: 0;
-    padding: 20px 0;
+    padding: pxToRem(20) 0;
     background: transparent;
     border: none;
-    border-bottom: 1px solid $grey;
+    border-bottom: pxToRem(1) solid $grey;
     border-radius: 0;
     box-shadow: none;
 
@@ -1189,8 +1190,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
     .well {
       padding: 19px;
-      border: 1px solid $grey;
-      border-radius: 4px;
+      border: pxToRem(1) solid $grey;
+      border-radius: pxToRem(4);
     }
   }
 
@@ -1200,12 +1201,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
 
     .form-cancel-link:last-child {
-      margin-right: 15px;
+      margin-right: pxToRem(15);
     }
   }
 
   .sidebar-section {
-    margin-bottom: 45px;
+    margin-bottom: pxToRem(45);
 
     &:last-child {
       margin-bottom: 0;
@@ -1224,7 +1225,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .comment {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: pxToRem(15);
 
   &:first-child {
     padding-top: 0;
@@ -1233,11 +1234,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .comment-header {
-  margin-bottom: 5px;
+  margin-bottom: pxToRem(5);
 
   h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: pxToRem(16);
     font-weight: bold;
     line-height: 1.5;
   }
@@ -1245,22 +1246,22 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .comment-action {
   display: block;
-  margin-top: 10px;
+  margin-top: pxToRem(10);
   color: $grey-dark;
-  font-size: 14px;
+  font-size: pxToRem(14);
 
   .divider {
-    margin: 0 8px;
+    margin: 0 pxToRem(8);
   }
 }
 
 .link-flag-comment {
-  margin-left: 3px;
-  padding-left: 17px;
+  margin-left: pxToRem(3);
+  padding-left: pxToRem(17);
   background-image: image-url("icon-flag-sm-grey.png");
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: 12px 15px;
+  background-size: pxToRem(12) pxToRem(15);
 
   @include is-retina {
     background-image: image-url("icon-flag-sm-grey@2.png");
@@ -1310,8 +1311,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .link-delete-comment {
   display: inline-block;
   position: relative;
-  padding-right: 15px;
-  font-size: 14px;
+  padding-right: pxToRem(15);
+  font-size: pxToRem(14);
   font-weight: normal;
 
   .show-delete-comment & {
@@ -1322,13 +1323,13 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     position: absolute;
     top: 50%;
     right: 0;
-    width: 10px;
-    height: 10px;
-    margin-top: -5px;
+    width: pxToRem(10);
+    height: pxToRem(10);
+    margin-top: pxToRem(-5);
     background-image: image-url("icon-close-comment.png");
     background-repeat: no-repeat;
     background-position: right;
-    background-size: 10px 10px;
+    background-size: pxToRem(10) pxToRem(10);
 
     @include is-retina {
       background-image: image-url("icon-close-comment@2.png");
@@ -1364,20 +1365,20 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     width: 100%;
     top: 50%;
     left: 0;
-    margin-top: -36px;
+    margin-top: pxToRem(-36);
   }
 }
 
 .comment-insert {
-  margin-top: 15px;
+  margin-top: pxToRem(15);
 }
 
 .comment-actions {
-  margin-top: 10px;
+  margin-top: pxToRem(10);
 
   .link-flag-comment {
     display: inline-block;
-    margin-top: 5px;
+    margin-top: pxToRem(5);
   }
 
   input[type="checkbox"] {
@@ -1408,10 +1409,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   tbody {
-    border: 2px solid $black;
+    border: pxToRem(2) solid $black;
 
     > tr > th {
-      border-right: 2px solid $black;
+      border-right: pxToRem(2) solid $black;
     }
   }
 
@@ -1437,7 +1438,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   &:focus-within {
     background-color: $govuk-highlight-yellow;
     border-bottom-color: $black !important;
-    border-bottom-width: 2px !important;
+    border-bottom-width: pxToRem(2) !important;
     border-bottom-style: solid !important;
   }
 }
@@ -1445,15 +1446,15 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .panel-title {
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: pxToRem(16);
   line-height: 1.1 !important;
 
   > a {
-    padding-left: 25px;
+    padding-left: pxToRem(25);
     background-image: image-url("icon-arrow-collapse-down.png");
     background-repeat: no-repeat;
     background-position: 0 0.4em;
-    background-size: 12px 8px;
+    background-size: pxToRem(12) pxToRem(8);
     text-decoration: none;
 
     &:focus {
@@ -1484,18 +1485,18 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   small {
     display: inline-block;
     width: 100%;
-    margin-top: 10px;
-    padding-left: 25px;
+    margin-top: pxToRem(10);
+    padding-left: pxToRem(25);
     color: $grey-dark;
-    font-size: 14px;
+    font-size: pxToRem(14);
     font-style: italic;
     text-transform: none;
 
     @include screen-md-max {
       display: inline-block;
       width: 100%;
-      margin-top: 10px;
-      padding-left: 25px;
+      margin-top: pxToRem(10);
+      padding-left: pxToRem(25);
       float: none !important;
     }
 
@@ -1558,8 +1559,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .form-label-rag {
   display: block;
   position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: pxToRem(10);
+  margin-bottom: pxToRem(10);
 
   @include screen-xs-max {
     margin-top: 0;
@@ -1582,7 +1583,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .btn-rag {
   position: absolute;
   right: 0;
-  top: -5px;
+  top: pxToRem(-5);
 
   @include screen-xs-max {
     display: block;
@@ -1606,23 +1607,23 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     position: absolute;
     top: 50%;
     right: 0;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    background-size: 20px 20px;
+    width: pxToRem(20);
+    height: pxToRem(20);
+    margin-top: pxToRem(-10);
+    background-size: pxToRem(20) pxToRem(20);
     text-align: left;
     text-indent: -9999px;
   }
 
   &.rag-editable .icon-rag {
-    right: 15px;
+    right: pxToRem(15);
   }
 
   .caret {
     position: absolute;
     top: 50%;
     right: 0;
-    margin-top: -2px;
+    margin-top: pxToRem(-2);
   }
 
   .dropdown-toggle,
@@ -1632,7 +1633,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   .dropdown-toggle {
-    padding-right: 25px;
+    padding-right: pxToRem(25);
     padding-left: 0;
 
     @include screen-xs-max {
@@ -1653,7 +1654,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   &.rag-editable .dropdown-toggle {
-    padding-right: 40px;
+    padding-right: pxToRem(40);
   }
 
   .dropdown-menu {
@@ -1670,9 +1671,9 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
 
     a {
-      padding-top: 6px;
-      padding-bottom: 6px;
-      padding-left: 37px;
+      padding-top: pxToRem(6);
+      padding-bottom: pxToRem(6);
+      padding-left: pxToRem(37);
 
       @include screen-xs-max {
         white-space: normal;
@@ -1680,7 +1681,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
 
     .icon-rag {
-      left: 12px;
+      left: pxToRem(12);
     }
   }
 
@@ -1796,7 +1797,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
     .form-control {
       @include screen-sm-max {
-        margin-bottom: 10px;
+        margin-bottom: pxToRem(10);
       }
     }
   }
@@ -1806,7 +1807,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
     @include screen-sm-max {
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: pxToRem(10);
     }
   }
 }
@@ -1816,7 +1817,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     background: none;
     border: none;
     display: block;
-    padding: 3px 20px;
+    padding: pxToRem(3) pxToRem(20);
     clear: both;
     font-weight: normal;
     line-height: 1.42857143;
@@ -1835,7 +1836,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .page-header-nav .btn-link.pull-left,
 .search-form h2 .btn-link {
-  margin-right: 30px;
+  margin-right: pxToRem(30);
   padding-right: 0;
   padding-left: 0;
 }
@@ -1859,10 +1860,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-paperclip {
-  width: 16px;
-  height: 16px;
+  width: pxToRem(16);
+  height: pxToRem(16);
   background-image: image-url("icon-attach.png");
-  background-size: 16px 16px;
+  background-size: pxToRem(16) pxToRem(16);
 
   @include is-retina {
     background-image: image-url("icon-attach@2.png");
@@ -1870,10 +1871,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-pencil {
-  width: 15px;
-  height: 13px;
+  width: pxToRem(15);
+  height: pxToRem(13);
   background-image: image-url("icon-edit-black.png");
-  background-size: 15px 13px;
+  background-size: pxToRem(15) pxToRem(13);
 
   @include is-retina {
     background-image: image-url("icon-edit-black@2.png");
@@ -1881,10 +1882,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-file {
-  width: 12px;
-  height: 16px;
+  width: pxToRem(12);
+  height: pxToRem(16);
   background-image: image-url("icon-file.png");
-  background-size: 12px 16px;
+  background-size: pxToRem(12) pxToRem(16);
 
   @include is-retina {
     background-image: image-url("icon-file@2.png");
@@ -1892,10 +1893,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-info-sign {
-  width: 15px;
-  height: 15px;
+  width: pxToRem(15);
+  height: pxToRem(15);
   background-image: image-url("icon-info.png");
-  background-size: 15px 15px;
+  background-size: pxToRem(15) pxToRem(15);
 
   @include is-retina {
     background-image: image-url("icon-info@2.png");
@@ -1903,10 +1904,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-download-alt {
-  width: 15px;
-  height: 16px;
+  width: pxToRem(15);
+  height: pxToRem(16);
   background-image: image-url("icon-download.png");
-  background-size: 15px 16px;
+  background-size: pxToRem(15) pxToRem(16);
 
   &.black {
     background-image: image-url("icon-download-black.png");
@@ -1922,10 +1923,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-user {
-  width: 14px;
-  height: 14px;
+  width: pxToRem(14);
+  height: pxToRem(14);
   background-image: image-url("icon-user.png");
-  background-size: 14px 14px;
+  background-size: pxToRem(14) pxToRem(14);
 
   @include is-retina {
     background-image: image-url("icon-user@2.png");
@@ -1933,10 +1934,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-ok {
-  width: 15px;
-  height: 12px;
+  width: pxToRem(15);
+  height: pxToRem(12);
   background-image: image-url("icon-valid.png");
-  background-size: 15px 12px;
+  background-size: pxToRem(15) pxToRem(12);
 
   @include is-retina {
     background-image: image-url("icon-valid@2.png");
@@ -1961,10 +1962,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .glyphicon-remove {
-  width: 11px;
-  height: 11px;
+  width: pxToRem(11);
+  height: pxToRem(11);
   background-image: image-url("icon-invalid.png");
-  background-size: 11px 11px;
+  background-size: pxToRem(11) pxToRem(11);
 
   @include is-retina {
     background-image: image-url("icon-invalid@2.png");
@@ -1999,8 +2000,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   .award-year-dropdown {
-    max-width: 142px;
-    margin-left: 120px;
+    max-width: pxToRem(142);
+    margin-left: pxToRem(120);
   }
 
   &.award-year--vertical {
@@ -2023,9 +2024,9 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
       right: 0;
       bottom: 0;
       left: auto;
-      padding-right: 10px;
-      padding-left: 10px;
-      border-left: 1px solid $less-black;
+      padding-right: pxToRem(10);
+      padding-left: pxToRem(10);
+      border-left: pxToRem(1) solid $less-black;
       background: $black-header;
 
       .caret {
@@ -2047,8 +2048,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   .btn:active .caret-container {
     outline: 0;
     background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    -webkit-box-shadow: inset 0 pxToRem(3) pxToRem(5) rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 pxToRem(3) pxToRem(5) rgba(0, 0, 0, 0.125);
   }
 
   .dropdown-menu {
@@ -2057,16 +2058,16 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     z-index: 2000;
 
     > li > a {
-      padding-left: 12px;
+      padding-left: pxToRem(12);
     }
   }
 }
 
 .glyphicon-star,
 .glyphicon-star-empty {
-  width: 16px;
-  height: 15px;
-  background-size: 16px 15px;
+  width: pxToRem(16);
+  height: pxToRem(15);
+  background-size: pxToRem(16) pxToRem(15);
 }
 
 .glyphicon-star {
@@ -2093,7 +2094,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .char-space {
   display: inline-block;
-  width: 160px;
+  width: pxToRem(160);
   height: 1em;
 }
 
@@ -2106,13 +2107,13 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .char-text-limit {
-  font-size: 14px;
+  font-size: pxToRem(14);
   margin-top: 0.5em;
   margin-bottom: 0.2em;
   text-align: right;
 }
 .char-text {
-  font-size: 14px;
+  font-size: pxToRem(14);
   margin-top: 0.2em;
   text-align: right;
 
@@ -2122,8 +2123,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .nav-subnav {
-  margin-bottom: 15px;
-  border-bottom: 4px solid $black-header;
+  margin-bottom: pxToRem(15);
+  border-bottom: pxToRem(4) solid $black-header;
 
   ul {
     margin: 0;
@@ -2147,8 +2148,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
   a {
     display: block;
-    padding: 10px 15px;
-    padding-bottom: 15px;
+    padding: pxToRem(10) pxToRem(15);
+    padding-bottom: pxToRem(15);
     float: left;
     color: $black;
     text-align: center;
@@ -2156,8 +2157,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     text-transform: uppercase;
 
     @include screen-md-max {
-      padding: 8px 10px;
-      padding-bottom: 15px;
+      padding: pxToRem(8) pxToRem(10);
+      padding-bottom: pxToRem(15);
     }
 
     @include screen-sm-max {
@@ -2168,7 +2169,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   .active a {
     background: transparent image-url("icon-arrow-admin-subnav.png") no-repeat
       center 110%;
-    background-size: 24px 12px;
+    background-size: pxToRem(24) pxToRem(12);
     color: $blue-link-colour;
 
     @include is-retina {

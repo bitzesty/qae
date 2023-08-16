@@ -1,4 +1,5 @@
 @import "mixins";
+@import "pxToRem";
 
 #site-header {
   -webkit-font-smoothing: antialiased;
@@ -6,35 +7,35 @@
   *z-index: 1000;
 
   @include screen-lg-max {
-    font-size: 14px;
+    font-size: pxToRem(14);
   }
 
   @include screen-md-max {
-    font-size: 13px;
+    font-size: pxToRem(13);
   }
 
   @include screen-sm-max {
-    font-size: 14px;
+    font-size: pxToRem(14);
   }
 
   .lte-ie8 & {
     background: $black-header;
     clear: both;
-    height: 70px;
-    margin-bottom: 40px !important;
+    height: pxToRem(70);
+    margin-bottom: pxToRem(40) !important;
   }
 
   .caret {
-    margin-left: 5px;
-    border-top-width: 7px;
-    border-right-width: 6px;
-    border-left-width: 6px;
+    margin-left: pxToRem(5);
+    border-top-width: pxToRem(7);
+    border-right-width: pxToRem(6);
+    border-left-width: pxToRem(6);
 
     @include screen-md-max {
-      margin-left: 3px;
-      border-top-width: 5px;
-      border-right-width: 4px;
-      border-left-width: 4px;
+      margin-left: pxToRem(3);
+      border-top-width: pxToRem(5);
+      border-right-width: pxToRem(4);
+      border-left-width: pxToRem(4);
     }
   }
 
@@ -52,8 +53,8 @@
   }
 
   .navbar-toggle {
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin-top: pxToRem(16);
+    margin-bottom: pxToRem(16);
 
     .icon-bar {
       background-color: $white-true;
@@ -67,7 +68,7 @@
   .navbar-collapse {
     .lte-ie8 & {
       display: block !important;
-      margin-left: 50px;
+      margin-left: pxToRem(50);
     }
 
     &.collapse {
@@ -79,13 +80,13 @@
   }
 
   .navbar {
-    margin-bottom: 40px;
+    margin-bottom: pxToRem(40);
     border: none;
     border-radius: 0;
     background: $black-header;
 
     .lte-ie7 & {
-      height: 81px !important;
+      height: pxToRem(81) !important;
       z-index: 100001 !important;
     }
 
@@ -100,20 +101,20 @@
 
     .navbar-nav > li > a,
     .navbar-nav > li > details {
-      padding-top: 24px;
-      padding-bottom: 23px;
+      padding-top: pxToRem(24);
+      padding-bottom: pxToRem(23);
       color: $white-true;
       text-transform: uppercase;
       background: transparent;
       text-decoration: none;
 
       @include screen-md-max {
-        padding-right: 8px;
-        padding-left: 8px;
+        padding-right: pxToRem(8);
+        padding-left: pxToRem(8);
       }
 
       @include screen-sm-max {
-        padding: 20px 15px;
+        padding: pxToRem(20) pxToRem(15);
       }
 
       > .dropdown-menu {
@@ -127,7 +128,7 @@
     .lte-ie8 & {
       float: left !important;
       position: relative;
-      top: -10px;
+      top: pxToRem(-10);
     }
 
     &.navbar-right {
@@ -138,7 +139,7 @@
   }
 
   .nav > li {
-    margin: 0 10px;
+    margin: 0 pxToRem(10);
 
     @include screen-lg-max {
       margin: 0;
@@ -159,14 +160,14 @@
     > a, > details {
       .lte-ie8 & {
         display: block !important;
-        padding-top: 26px !important;
-        padding-bottom: 26px !important;
+        padding-top: pxToRem(26) !important;
+        padding-bottom: pxToRem(26) !important;
         color: $white-true !important;
       }
 
       .lte-ie7 & {
-        padding-top: 30px !important;
-        padding-bottom: 30px !important;
+        padding-top: pxToRem(30) !important;
+        padding-bottom: pxToRem(30) !important;
       }
 
       &:hover,
@@ -187,14 +188,14 @@
     }
 
     > details {
-      padding: 0 10px;
+      padding: 0 pxToRem(10);
 
       &:focus-within {
         background-color: $govuk-highlight-yellow !important;
         color: $black !important;
         outline: none !important;
         border-bottom-color: $black !important;
-        border-bottom-width: 2px !important;
+        border-bottom-width: pxToRem(2) !important;
         border-bottom-style: solid !important;
 
         summary {
@@ -205,7 +206,7 @@
 
     &.active > a {
       background: transparent image-url("icon-arrow-admin-nav.png") no-repeat center bottom;
-      background-size: 24px 12px;
+      background-size: pxToRem(24) pxToRem(12);
 
       @include is-retina {
         background-image: image-url("icon-arrow-admin-nav@2.png");
@@ -233,7 +234,7 @@
     > li > span,
     > li > .button_to {
       display: block;
-      padding: 3px 20px;
+      padding: pxToRem(3) pxToRem(20);
       clear: both;
       font-weight: normal;
       line-height: 1.42857143;
@@ -249,15 +250,15 @@
     > li > span,
     > li > .button_to > input[type="submit"] {
       @include screen-sm-max {
-        padding: 15px;
-        padding-left: 35px;
+        padding: pxToRem(15);
+        padding-left: pxToRem(35);
         color: $white-true;
         text-transform: uppercase;
         text-align: left;
       }
 
       .lte-ie8 & {
-        padding: 7px 10px !important;
+        padding: pxToRem(7) pxToRem(10) !important;
         color: $black !important;
       }
     }
@@ -287,7 +288,7 @@
         text-decoration: underline;
 
         .lte-ie7 & {
-          font-size: 16px;
+          font-size: pxToRem(16);
         }
       }
 
@@ -305,11 +306,11 @@
 
   // moving down here seems to make it work
   .navbar-brand {
-    padding: 14px;
+    padding: pxToRem(14);
     height: 100%;
     img {
-      width: 28px;
-      height: 33px;
+      width: pxToRem(28);
+      height: pxToRem(33);
     }
   }
 }

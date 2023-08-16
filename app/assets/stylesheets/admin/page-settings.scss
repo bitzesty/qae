@@ -1,10 +1,12 @@
+@import "pxToRem";
+
 .settings-page {
   .panel-body ul {
     margin: 0;
     padding-left: 1.25em;
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: pxToRem(10);
 
       &:last-child {
         margin-bottom: 0;
@@ -13,8 +15,8 @@
   }
 
   .panel-section {
-    padding: 15px 0;
-    border-bottom: 1px solid $grey;
+    padding: pxToRem(15) 0;
+    border-bottom: pxToRem(1) solid $grey;
 
     &:first-child {
       padding-top: 0;
@@ -33,7 +35,7 @@
     @include screen-sm-max {
       display: inline;
       width: auto;
-      margin-right: 10px;
+      margin-right: pxToRem(10);
     }
   }
 
@@ -42,13 +44,13 @@
   }
 
   .edit-deadline {
-    margin-right: 10px;
+    margin-right: pxToRem(10);
     color: $blue-link-colour;
     text-decoration: underline;
   }
 
   .email-notification-help {
-    margin-left: 10px;
+    margin-left: pxToRem(10);
   }
 
   .deadline-help, .email-notification-help {
@@ -58,10 +60,10 @@
 
     .help-message {
       position: absolute;
-      top: -13px;
+      top: pxToRem(-13);
       left: 0;
-      width: 15px;
-      height: 15px;
+      width: pxToRem(15);
+      height: pxToRem(15);
       display: inline-block;
 
       &:hover .help-message-text {
@@ -71,21 +73,21 @@
       .help-message-text {
         position: absolute;
         z-index: 1;
-        top: -5px;
+        top: pxToRem(-5);
         left: 105%;
         visibility: hidden;
         background-color: #fff;
         text-align: center;
-        padding: 5px;
-        width: 300px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
+        padding: pxToRem(5);
+        width: pxToRem(300);
+        border: pxToRem(1) solid #ccc;
+        border-radius: pxToRem(6);
       }
     }
   }
 
   .btn-add-schedule {
-    margin: 20px 0;
+    margin: pxToRem(20) 0;
   }
 
   .link-email-example {
@@ -95,8 +97,8 @@
 
   .well {
     display: block;
-    max-width: 440px;
-    margin: 20px 0;
+    max-width: pxToRem(440);
+    margin: pxToRem(20) 0;
     background-color: $white-true;
     box-shadow: none;
 
@@ -126,7 +128,7 @@
     }
 
     .control-date {
-      margin-right: 20px;
+      margin-right: pxToRem(20);
 
       @include screen-sm-max {
         margin-right: 0;
@@ -138,7 +140,7 @@
     }
 
     .control-hint {
-      margin-bottom: 10px;
+      margin-bottom: pxToRem(10);
       display: inline-block;
     }
 
@@ -156,7 +158,7 @@
       }
 
       &:first-child {
-        margin-right: 10px;
+        margin-right: pxToRem(10);
 
         @include screen-sm-max {
           margin-right: 0;
@@ -166,14 +168,14 @@
 
     .btn-submit {
       @include screen-sm-max {
-        margin-bottom: 45px;
+        margin-bottom: pxToRem(45);
       }
     }
 
     .btn-cancel {
       @include screen-sm-max {
         position: absolute;
-        top: 45px;
+        top: pxToRem(45);
       }
     }
   }
@@ -204,14 +206,14 @@
         border: none;
 
         .lte-ie7 & {
-          font-size: 16px;
+          font-size: pxToRem(16);
         }
       }
     }
   }
 
   .deadline-form-wrapper {
-    @media (min-width: 768px) {
+    @media (min-width: pxToRem(768)) {
       &:after {
         clear: both;
         content: " ";
