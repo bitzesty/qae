@@ -7,20 +7,39 @@ class QaeFormBuilder
 
       return result unless question.visible?
 
-      dates = question.active_fields.each_with_object([]) do |field, outer|
+      dates = question.active_fields.each_with_object(Hash[]) do |field, outer|
+                suffix = "#{question.key}_#{field}"
                 date = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
-                  key = "#{question.key}_#{field}#{sub}"
+                  key = "#{suffix}#{sub}"
                   inner << answers[key]
                 end.join("/")
 
-                date = ::Utils::Date.valid?(date) ? Date.parse(date) : nil
-
-                outer << date
+                outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : nil
               end
+      
+      if question.required?
+        dates.each.with_index(1) do |(key, date), idx|
+          next if date.present?
+          result[key] ||= ""
+          result[key] << "Question #{question.ref || question.sub_ref} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY."
+        end
+      end
 
-      validatable = dates.each_cons(2).reject do |values|
-                      values.any?(&:nil?)
-                    end
+      dates.each_cons(2) do |values|
+        beginning_key, beginning_date = values[0]
+        end_key, end_date = values[-1]
+
+        next if beginning_date.nil? || end_date.nil?
+
+        if beginning_date > end_date
+          result[beginning_key] ||= ""
+          result[end_key] ||= ""
+          result[beginning_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be before #{end_date.strftime('%d/%m/%Y')}."
+          result[end_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be after #{beginning_date.strftime('%d/%m/%Y')}."
+        end
+      end
+              
+      validatable = dates.values.each_cons(2).reject { |values| values.any?(&:nil?) }
 
       return result if validatable.blank?
 
@@ -65,11 +84,16 @@ class QaeFormBuilder
     end
 
     def active_fields
+      return [] unless fields_count
+
+      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+    end
+
+    def fields_count
       c = active_by_year_condition
       c ||= default_by_year_condition
-      return [] unless c
-
-      (1..c.years).map{|y| "#{y}of#{c.years}"}
+      return nil unless c
+      c.years
     end
 
     def active_by_year_condition

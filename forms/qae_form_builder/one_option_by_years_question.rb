@@ -1,5 +1,5 @@
 class QaeFormBuilder
-  class OneOptionByYearsQuestionValidator < QuestionValidator
+  class OneOptionByYearsQuestionValidator < ::QaeFormBuilder::ByYearsQuestionValidator
   end
 
   class OneOptionByYearsQuestionDecorator < QuestionDecorator
@@ -29,6 +29,10 @@ class QaeFormBuilder
 
     def active_fields
       (1..3).map{|y| "#{y}of3"}
+    end
+
+    def fields_count
+      3
     end
 
     def active_by_year_condition

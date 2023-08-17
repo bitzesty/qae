@@ -1,5 +1,21 @@
 class QaeFormBuilder
   class ByYearsQuestionValidator < QuestionValidator
+    def errors
+      result = super
+
+      return result unless question.visible?
+
+      if question.required?
+        question.active_fields.each.with_index(1) do |suffix, idx|
+          if !question.input_value(suffix: suffix).present?
+            result[question.hash_key(suffix: suffix)] ||= ""
+            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. Financial year #{idx} is required and must be filled in."
+          end
+        end
+      end
+
+      result
+    end
   end
 
   class ByYearsQuestionDecorator < QuestionDecorator
@@ -28,11 +44,16 @@ class QaeFormBuilder
     end
 
     def active_fields
+      return [] unless fields_count
+
+      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+    end
+
+    def fields_count
       c = active_by_year_condition
       c ||= default_by_year_condition
-      return [] unless c
-
-      (1..c.years).map{|y| "#{y}of#{c.years}"}
+      return nil unless c
+      c.years
     end
 
     def active_by_year_condition

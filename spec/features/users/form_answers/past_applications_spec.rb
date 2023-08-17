@@ -2,13 +2,13 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Past Applications", %q{
-As a Applicant
+As an Applicant
 I want to be able to see Past Applications for previous years
 So that I see
 } do
 
   let(:previous_year) do
-    1.year.ago
+    Date.new(2020, 4, 1)
   end
 
   let!(:previous_award_year) do
@@ -71,9 +71,7 @@ So that I see
 
       it "should display past successful applications" do
         # save_and_open_page
-        expect(page).to have_selector(
-                            "div.dashboard-post-submission", count: 1
-                        )
+        expect(page).to have_selector("div.dashboard-post-submission", count: 1)
       end
     end
   end
