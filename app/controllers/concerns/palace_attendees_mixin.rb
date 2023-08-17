@@ -3,13 +3,13 @@ module PalaceAttendeesMixin
     invite = PalaceInvite.find(params[:palace_invite_id])
     @enable_edition = true
     @form_answer = invite.form_answer
-    authorize @form_answer, :update?
+    authorize invite, :update?
     palace_attendee = invite.palace_attendees.build
     render_attendee_form(palace_attendee, invite)
   end
 
   def create
-    authorize form_answer, :update?
+    authorize palace_invite, :update?
     limit = palace_invite.attendees_limit
     if palace_invite.palace_attendees.count < limit
       palace_attendee = palace_invite.palace_attendees.create(create_params)
@@ -21,7 +21,7 @@ module PalaceAttendeesMixin
   end
 
   def update
-    authorize form_answer, :update?
+    authorize palace_invite, :update?
 
     palace_attendee = palace_invite.palace_attendees.find(params[:id])
     log_event if palace_attendee.update(create_params)
@@ -29,7 +29,7 @@ module PalaceAttendeesMixin
   end
 
   def destroy
-    authorize form_answer, :update?
+    authorize palace_invite, :update?
     palace_attendee = palace_invite.palace_attendees.find(params[:id])
     log_event if palace_attendee.destroy
     respond_to do |format|
