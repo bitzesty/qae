@@ -24,12 +24,14 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
   end
 
   let!(:form_answer) do
-    fa = build(:form_answer, :awarded, :innovation, user: user, award_year: year)
+    fa = build(:form_answer, :awarded, :trade, user: user, award_year: year)
+
+    allow(fa).to receive(:valid?).and_return(true)
 
     # this field is no longer used in 2019 awards, but we're using closed award year here
     # can be simplified when 2020 awards kick in
     fa.document.merge!("queen_award_holder" => "no")
-    fa.save
+    fa.save!
 
     fa
   end

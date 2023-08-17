@@ -626,6 +626,17 @@ input[type="file"] {
   display: inline;
 }
 
+.no-js {
+  div.by-years-wrapper,
+  div.turnover-exports-calculation-wrapper {
+    display: none;
+
+    &.show-question {
+      display: block;
+    }
+  }
+}
+
 .smart-answer .inner.step.current {
   margin-right: 0;
 

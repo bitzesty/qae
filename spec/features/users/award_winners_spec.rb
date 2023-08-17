@@ -8,11 +8,11 @@ describe "award winners section" do
   end
 
   let(:old_award_year) do
-    AwardYear.create!(year: 2015)
+    AwardYear.create!(year: 2016)
   end
 
   let(:current_award_year) do
-    AwardYear.create!(year: 2016)
+    AwardYear.create!(year: 2017)
   end
 
   let!(:current_year_mock) do
