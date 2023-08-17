@@ -1,23 +1,41 @@
 class QaeFormBuilder
   class ByTradeGoodsAndServicesLabelQuestionValidator < QuestionValidator
     HUMANIZED_ATTRS = {
-      "desc_short" => "Description"
+      "desc_short" => "Description",
+      "total_overseas_trade" => "Trade percentage"
     }
 
     def errors
       result = super
 
       question.trade_goods_and_services.each_with_index do |entity, index|
-        if index + 1 <= question.answers["trade_goods_and_services_explanations"].length.to_i
-          question.required_sub_fields_list.each do |attr|
-            if !entity[attr].present?
-              result[question.key] ||= {}
-              result[question.key][index] ||= ""
-              result[question.key][index] << " #{humanize(attr)} can't be blank."
+        product_number = index + 1
+
+        if product_number <= question.answers["trade_goods_and_services_explanations"].length.to_i
+          # only validate the first product or at least one field is filled in
+          if product_number == 1 || !entity.values.all?(&:blank?)
+            question.required_sub_fields_list.each do |attr|
+              if !entity[attr].present?
+                result[question.key] ||= {}
+                result[question.key][product_number] ||= {}
+                result[question.key][product_number][attr] ||= ""
+                result[question.key][product_number][attr] << "#{humanize(attr)} is required and must be filled in."
+              end
             end
           end
         end
       end
+
+      total = 0
+      question.answers["trade_goods_and_services_explanations"]&.each do |product|
+        total += product["total_overseas_trade"].to_i
+      end
+      if total != 100
+        result[question.key] ||= {}
+        result[question.key][:total_trade_percentage] ||= ""
+        result[question.key][:total_trade_percentage] << "The total trade percentage does not equal 100%. Check that the totals entered add up to 100."
+      end
+
       result
     end
 

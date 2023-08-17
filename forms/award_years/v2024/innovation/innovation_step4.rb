@@ -63,7 +63,7 @@ class AwardYears::V2024::QaeForms
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 99)) }, 5, data: {value: AwardYear.start_trading_between(5, 99, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
-          conditional :financial_year_date_changed, "yes"
+          conditional :financial_year_date_changed, :yes
         end
 
         textarea :adjustments_explanation, "Explain adjustments to figures." do
@@ -80,7 +80,7 @@ class AwardYears::V2024::QaeForms
               Please explain what approach you will take to adjust the figures.
             </p>
           )
-          conditional :financial_year_date_changed, "yes"
+          conditional :financial_year_date_changed, :yes
         end
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do

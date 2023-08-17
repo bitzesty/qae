@@ -233,9 +233,13 @@ class QaeFormBuilder
                        end
 
           if day.present? && month.present?
-            date = Date.new(2000, month.to_i, day.to_i)
-            from, to = condition.options.dig(:range)
-            date.between?(from, to)
+            date = Date.parse("#{day.to_i}/#{month.to_i}/2000") rescue nil
+            if date
+              from, to = condition.options.dig(:range)
+              date.between?(from, to)
+            else
+              false
+            end
           else
             false
           end
