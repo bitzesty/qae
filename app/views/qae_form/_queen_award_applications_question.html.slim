@@ -136,7 +136,9 @@ a.govuk-button.govuk-button--secondary.js-button-add.if-no-js-hide href="#" aria
                          "data-entity" => "award"
 
 
-.question-block#help-block style="display: none;"
+.question-block.help-block
   .govuk-form-group
-    p class="govuk-body govuk-!-font-weight-bold"
+    p class="govuk-body govuk-!-font-weight-bold hide" id="current-holder"
       | As you currently hold a King's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
+    p class="govuk-body govuk-!-font-weight-bold hide" id="recent-winner"
+      | As you currently hold a King's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
