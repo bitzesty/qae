@@ -148,7 +148,8 @@ class FormController < ApplicationController
         end
 
         if redirected
-          redirect_to dashboard_url
+          @form_answer.save(validate: false)
+          redirect_to(dashboard_url)
         else
           if submitted && saved
             redirect_to submit_confirm_url(@form_answer)

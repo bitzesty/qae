@@ -1,11 +1,9 @@
-- has_errors = question.by_year_conditions.map { |c| (1..c.years).any? { |y| @form_answer.validator_errors&.dig(question.hash_key(suffix: "#{y}of#{c.years}")).present? } }.flatten.compact_blank.present?
-
 div role="group" id="q_#{question.key}"
   .js-financial-year-changed-dates
     - for c in question.by_year_conditions
       - question_visible = question.fields_count == c.years
   
-      .js-conditional-question.by-years-wrapper class=(class_names("govuk-form-group--error" => has_errors, "show-question" => question_visible)) data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
+      .js-conditional-question.by-years-wrapper class=(class_names("show-question" => question_visible)) data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
         .if-js-hide
           label.govuk-label
             strong

@@ -11,7 +11,7 @@
 - elsif question.label_as_legend?
   div class=question.fieldset_classes data=question.fieldset_data_hash data-question_ref="#{ref}"
     = condition_divs question do
-      .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
+      .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && ((question.delegate_obj.respond_to?(:by_year_conditions) && question.delegate_obj.by_year_conditions.map { |c| (1..c.years).any? { |y| @form_answer.validator_errors&.dig(question.hash_key(suffix: "#{y}of#{c.years}")).present? } }.flatten.compact_blank.present?) || @form_answer.validator_errors[question.hash_key]))
         - if question.title != "" || question.show_ref_always.present?
           legend.govuk-fieldset__legend aria-describedby=("hint_for_#{question.key}" if question.context || question.form_hint)
             - if question.ref || question.sub_ref
