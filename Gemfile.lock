@@ -413,7 +413,7 @@ GEM
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
     public_suffix (5.0.3)
-    puma (6.3.0)
+    puma (6.3.1)
       nio4r (~> 2.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
@@ -684,7 +684,6 @@ GEM
     zxcvbn (0.1.9)
 
 PLATFORMS
-  ruby
   arm64-darwin-21
   arm64-darwin-22
   x86_64-darwin-21
@@ -744,7 +743,7 @@ DEPENDENCIES
   prawn
   prawn-table
   pry-byebug
-  puma (~> 6.3.0)
+  puma (~> 6.3.1)
   pundit (~> 0.3)
   pusher (= 0.15.2)
   rack-cors (~> 1.0)
