@@ -36,6 +36,16 @@ window.FormValidation =
       el.append(" #{message}")
     @validates = false
 
+  extractText: (identifier) ->
+    text = $("label[for='#{identifier}'] > span > span").toArray().map((el) ->
+      $(el).text()
+    ).join(' ')
+
+    if (text.length == 0)
+      text = $("label[for='#{identifier}']").text()
+
+    text
+
   addAriaDescribedByToInput: (container, message) ->
     input = container.find('input,textarea,select').filter(':visible')
     input_id = input.attr('id')
@@ -156,7 +166,7 @@ window.FormValidation =
   addSubfieldError: (question, subquestion) ->
     questionRef = question.attr("data-question_ref")
     input = $(subquestion).find('input,textarea,select').filter(':visible')
-    label = $("label[for='#{input.attr('id')}']").text()
+    label = @extractText(input.attr('id'))
     incompleteMessage = "Question #{questionRef} is incomplete. It is required and must be filled in."
 
     if question.hasClass('date-DDMMYYYY')
@@ -369,7 +379,7 @@ window.FormValidation =
 
       if shownQuestion
         subq = $(subquestion)
-        label = $("label[for='#{subq.attr('id')}']").text()
+        label = @extractText(subq.attr('id'))
         if not subq.val() and question.hasClass("question-required")
           @logThis(question, "validateEmployeeMin", "This field is required")
           # his error is duplicated on employee question.
@@ -478,8 +488,7 @@ window.FormValidation =
 
       if shownQuestion
         inputCellsCounter += 1
-        label = $("label[for='#{subq.attr('id')}']").text()
-
+        label = @extractText(subq.attr('id'))
         if not subq.val() and question.hasClass("question-required")
           @logThis(question, "validateNumberByYears", "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
           @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
@@ -512,7 +521,7 @@ window.FormValidation =
         inputCellsCounter += 1
 
         if not subq.val() and question.hasClass("question-required")
-          label = $("label[for='#{subq.attr('id')}']").text()
+          label = @extractText(subq.attr('id'))
           errorMessage = "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none."
           @logThis(question, "validateMoneyByYears", errorMessage)
           @appendMessage(errContainer, errorMessage)
