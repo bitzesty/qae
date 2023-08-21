@@ -11,6 +11,7 @@ class EmailNotification < ApplicationRecord
                          :reminder_to_submit,
                          :ep_reminder_support_letters,
                          :winners_notification,
+                         :winners_press_release_comments_request,
                          :unsuccessful_notification,
                          :unsuccessful_ep_notification,
                          :shortlisted_notifier,

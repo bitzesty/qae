@@ -224,6 +224,7 @@ en:
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
     winners_notification: "RECIPIENTS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
     winners_reminder_to_submit: "RECIPIENTS: Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
+    winners_press_release_comments_request: "WINNERS : Email requesting comments on press release."
     winners_head_of_organisation_notification: "RECIPIENTS : Success email to the 'Head of Organisation' of the Business categories Recipient."
     buckingham_palace_invite: "RECIPIENTS : Buckingham Palace Invite - to heads of winning organisations only."
     unsuccessful_notification: "UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder."

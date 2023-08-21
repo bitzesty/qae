@@ -202,6 +202,16 @@ class MailRenderer
     render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
   end
 
+  def winners_press_release_comments_request
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:token] = "secret"
+    assigns[:form_answer] = form_answer
+    assigns[:deadline] = deadline_str("buckingham_palace_confirm_press_book_notes")
+
+    render(assigns, "users/winners_press_release/notify")
+  end
+
   def winners_head_of_organisation_notification
     assigns = {}
     form = form_answer
