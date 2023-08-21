@@ -544,6 +544,11 @@ handleWinnersForm = ->
   $(document).on "ajax:success", attendeeFormHolder, (e, data, status, xhr) ->
     $(this).closest(attendeeFormHolder).replaceWith(data)
 
+    setTimeout (->
+      replaced = document.querySelector("##{e.target.id}")
+      window.fire(replaced, 'ajax:x:success', null)
+    ), 50
+
   $(document).on "click", ".remove-palace-attendee", (e) ->
     e.preventDefault()
     $(this).closest("form").submit()
@@ -552,6 +557,12 @@ handleWinnersForm = ->
   $(document).on "ajax:success", removeAttendeeForm, (e, data, status, xhr) ->
     $(this).closest(attendeeFormHolder).remove()
     $(".attendees-forms").closest(".form-group").find(".empty-message").removeClass("visuallyhidden")
+
+    setTimeout (->
+      removed = document.querySelector("##{e.target.id}")
+      window.fire(removed, 'ajax:x:success', null)
+    ), 50
+
   $(document).on "click", ".add-another-attendee", (e) ->
     e.preventDefault()
     that = $(this)
