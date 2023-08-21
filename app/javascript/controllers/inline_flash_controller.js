@@ -32,14 +32,14 @@ export default class extends ApplicationController {
     const msg = this.hasSuccessValue ? this.successValue : 'Success!';
     const [alert, identifier] = this.createAlert('success', msg);
 
-    setTimeout(() => this.showAlert(alert, identifier), 1);
+    setTimeout(() => this.showAlert(alert, identifier), 10);
   };
 
   onError = (event) => {
     const msg = this.hasErrorValue ? this.errorValue : 'An unknown error has occurred, please try again.';
     const [alert, identifier] = this.createAlert('danger', msg);
 
-    setTimeout(() => this.showAlert(alert, identifier), 1);
+    setTimeout(() => this.showAlert(alert, identifier), 10);
   };
 
   createAlert = (type, message) => {
@@ -57,8 +57,8 @@ export default class extends ApplicationController {
   };
 
   showAlert = (alert, identifier) => {
-    const existing = this.element.querySelector('[id*=alert__]')
-    if (existing) existing.remove()
+    const existing = this.element.querySelector('[id*=alert__]');
+    if (existing) existing.remove();
 
     this.element.insertAdjacentHTML('afterbegin', alert);
 
