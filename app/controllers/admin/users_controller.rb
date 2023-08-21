@@ -28,7 +28,7 @@ class Admin::UsersController < Admin::BaseController
     @resource.save
     location = @resource.persisted? ? admin_users_path : nil
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.full_messages.join(", "))
+    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.join("<br />"))
 
     respond_with :admin, @resource, location: location
   end
@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::BaseController
       @resource.update_without_password(resource_params)
     end
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.full_messages.join(", "))
+    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.join("<br />"))
 
     respond_with :admin, @resource, location: admin_users_path
   end
