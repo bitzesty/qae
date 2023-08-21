@@ -262,6 +262,12 @@ jQuery ->
   $(".js-conditional-drop-answer input").change () ->
     dropConditionalQuestion($(this))
 
+  $('[name="press_summary[correct]"]').on 'change', ->
+    if ($(this).val() == 'true')
+      $("#press-summary-comment-textarea-container").removeClass("if-js-hide")
+    else
+      $("#press-summary-comment-textarea-container").addClass("if-js-hide")
+
   # Get the latest financial year date from input
   updateYearEndInput = () ->
     fy_latest_changed_input = $(".js-financial-year-changed-dates .fy-latest .govuk-date-input")

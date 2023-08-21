@@ -39,7 +39,7 @@ div
                 span.clear
           br
 
-          .question-block.regular-question.js-press-comment-feeback
+          .question-block.regular-question.js-press-comment-feeback.if-js-hide#press-summary-comment-textarea-container
             .question-group
               = f.input :comment, as: :text, label: "How are the Press Book Notes and/or organisation details factually incorrect", input_html: { class: "js-char-count", rows: "5", data: { word_max: "300" } }
               .clear
