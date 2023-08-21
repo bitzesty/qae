@@ -30,10 +30,13 @@ div
           .question-block.sub-question.js-press-comment-correct
             ul.errors-container
             .clear
-            .question-group
-              = f.input :correct, as: :radio_buttons, label: 'Do you have any comments on the Press Book Notes or organisation details?', item_wrapper_class: 'govuk-radios__item', wrapper_class: 'govuk-radios govuk-radios--inline', label_html: { class: 'govuk-label--s govuk-!-font-weight-regular' }
-              span.clear
-
+            .govuk-form-group.question-group
+              fieldset.govuk-fieldset
+                legend.govuk-fieldset__legend
+                  | Do you have any comments on the Press Book Notes or organisation details?
+                .govuk-error-message
+                = f.input :correct, label: false, as: :radio_buttons, item_wrapper_class: 'govuk-radios__item', wrapper_class: 'govuk-radios govuk-radios--inline', label_html: { class: 'govuk-label--s govuk-!-font-weight-regular' }
+                span.clear
           br
 
           .question-block.regular-question.js-press-comment-feeback
