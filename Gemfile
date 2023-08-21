@@ -20,7 +20,7 @@ gem 'paper_trail-association_tracking'
 # Assets & Templates
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', '>= 2.0.0'
-gem 'sassc-rails', '~> 2.0.0'
+gem 'sassc-rails', '~> 2.1.2'
 gem 'slim-rails', '~> 3.2.0'
 gem 'coffee-rails', '5.0'
 gem 'jquery-rails', '4.4.0'
