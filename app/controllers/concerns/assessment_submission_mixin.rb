@@ -19,6 +19,7 @@ module AssessmentSubmissionMixin
     resource.update_column(:locked_at, nil)
     log_event
 
+    render_flash_message_for(resource, message: flash_message)
     redirect_to [namespace_name, resource.form_answer]
   end
 
