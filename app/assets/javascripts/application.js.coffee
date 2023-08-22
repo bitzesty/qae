@@ -262,11 +262,18 @@ jQuery ->
   $(".js-conditional-drop-answer input").change () ->
     dropConditionalQuestion($(this))
 
-  $('[name="press_summary[correct]"]').on 'change', ->
-    if ($(this).val() == 'true')
+  togglePressSummaryTextarea= () ->
+    if $('[name="press_summary[correct]"]:checked').val() == "true"
       $("#press-summary-comment-textarea-container").removeClass("if-js-hide")
     else
       $("#press-summary-comment-textarea-container").addClass("if-js-hide")
+
+    $('[name="press_summary[correct]"]').on 'change', ->
+      if $(this).val() is 'true'
+        $("#press-summary-comment-textarea-container").removeClass("if-js-hide")
+      else
+        $("#press-summary-comment-textarea-container").addClass("if-js-hide")
+  togglePressSummaryTextarea()
 
   # Get the latest financial year date from input
   updateYearEndInput = () ->
