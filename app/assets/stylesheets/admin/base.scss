@@ -2002,6 +2002,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   .award-year-dropdown {
     max-width: pxToRem(142);
     margin-left: pxToRem(120);
+    margin: 0 !important;
   }
 
   &.award-year--vertical {
@@ -2130,6 +2131,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    @include screen-sm-max {
+      display: block;
+    }
   }
 
   li {

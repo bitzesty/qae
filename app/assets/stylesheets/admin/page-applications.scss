@@ -461,12 +461,11 @@
   }
 
   .state-container {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
 
     h2 {
-      position: absolute;
-      top: 0.4em;
-      left: 0;
+      margin-top: 0.35rem;
 
       @include screen-lg-max {
         position: static;

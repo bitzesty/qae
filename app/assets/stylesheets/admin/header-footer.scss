@@ -139,7 +139,7 @@
   }
 
   .nav > li {
-    margin: 0 pxToRem(10);
+    margin: 0 10px;
 
     @include screen-lg-max {
       margin: 0;

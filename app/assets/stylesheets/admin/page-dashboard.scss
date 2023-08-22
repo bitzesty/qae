@@ -36,10 +36,6 @@
       margin-top: 0;
       font-size: pxToRem(18);
     }
-
-    .award-year-dropdown {
-      margin: 0 !important;
-    }
   }
 
   .download-link {
@@ -144,7 +140,6 @@
 }
 
 .dashboard-table {
-  table-layout: fixed;
   overflow-x: scroll;
   border-collapse: collapse;
 
