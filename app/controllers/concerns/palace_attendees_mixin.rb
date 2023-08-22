@@ -9,6 +9,8 @@ module PalaceAttendeesMixin
   end
 
   def create
+    form_answer
+
     authorize palace_invite, :update?
     limit = palace_invite.attendees_limit
     if palace_invite.palace_attendees.count < limit
@@ -21,6 +23,8 @@ module PalaceAttendeesMixin
   end
 
   def update
+    form_answer
+
     authorize palace_invite, :update?
 
     palace_attendee = palace_invite.palace_attendees.find(params[:id])
