@@ -557,6 +557,10 @@
       display: inline;
     }
   }
+  
+  .alert ~ form > .form-edit-link {
+    top: pxToRem(40);
+  }
 }
 
 .centered {
