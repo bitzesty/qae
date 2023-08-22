@@ -3,12 +3,15 @@
 / whether file was saved or not
 .span
   = hidden_field_tag "valid", "false", id: "form-answer-attachment-valid"
-= form_for [namespace_name, form_answer, form_answer_attachment], html: { multipart: true } do |form|
+= form_for [namespace_name, form_answer, form_answer_attachment], html: { multipart: true, data: { inline_flash_target: "form", action: "ajax:x:success->inline-flash#success ajax:x:error->inline-flash#error" } } do |form|
   .well.js-attachment-form
     h3 Attach document
 
     - if form.object.errors.any?
-      .errors = form.object.errors.full_messages.join(", ")
+      .alert.alert-danger[data-controller="element-removal" role="alert"]
+        = form.object.errors.full_messages.join(", ")
+        button[type="button" class="close" data-action="click->element-removal#remove" aria-label="Close" style="font-size: 18px;"]
+          span[aria-hidden="true"] &times;
 
     .attachment-link.if-js-hide
       = form.file_field :file
