@@ -1,0 +1,25 @@
+.modal.fade.js-session-timeout-warning-popup tabindex="-1" role="dialog" aria-live="polite"
+  .modal-dialog.modal-md-important role="document"
+    .modal-content
+      .modal-body
+        button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true"
+            | &times;
+
+        h4
+          | Session Expiration Warning
+
+        p
+          | In
+          span.time-target
+          = "minutes you will be automatically logged out because of prolonged inactivity (#{distance_of_time_in_words(Time.now, Time.now + current_subject.timeout_in, only: [:minutes, :hours])}), to keep your data safe."
+        br
+        .clearfix
+          button.btn.btn-primary.extend-session.pull-right
+            | Extend Session
+          = link_to "Log Out", destroy_user_session_url, method: :delete, class: "btn btn-primary-outline pull-left"
+
+javascript:
+    window.namespace = "#{namespace_name}";
+    window.timeoutTime = #{current_subject && current_subject.remember_created_at.blank? ? current_subject.timeout_in.to_i * 1000 : 0};
+    window.lastRequestAt = #{Time.zone.now.to_i}

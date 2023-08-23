@@ -214,6 +214,7 @@ Rails.application.routes.draw do
 
     scope format: true, constraints: { format: 'json' } do
       resource :session_checks, only: [:show]
+      post 'session_checks/extend' => 'session_checks#extend'
     end
   end
 
@@ -334,6 +335,7 @@ Rails.application.routes.draw do
 
     scope format: true, constraints: { format: 'json' } do
       resource :session_checks, only: [:show]
+      post 'session_checks/extend' => 'session_checks#extend'
     end
   end
 
@@ -349,6 +351,11 @@ Rails.application.routes.draw do
     root to: "case_summaries#index"
     resources :case_summaries, only: :index do
       get :download, on: :collection
+    end
+
+    scope format: true, constraints: { format: 'json' } do
+      resource :session_checks, only: [:show]
+      post 'session_checks/extend' => 'session_checks#extend'
     end
   end
 end
