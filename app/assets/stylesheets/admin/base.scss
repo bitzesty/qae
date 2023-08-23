@@ -2210,3 +2210,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 .space-y-3 > :not([hidden]) ~ :not([hidden]) {
   margin-top: 1.5rem;
 }
+
+.alert button.close {
+  font-size: pxToRem(18);
+}

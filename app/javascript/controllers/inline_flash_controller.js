@@ -47,7 +47,7 @@ export default class extends ApplicationController {
     const element = `
       <div id='${id}' class='alert alert-${type}' data-controller='element-removal' role='alert' style='padding-top: 6px; padding-bottom: 6px; margin-bottom: 8px;'>
         ${message}
-        <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close' style='font-size: 18px;'>
+        <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close'>
           <span aria-hidden='true'>&times;</span>
         </button>
       </div>
