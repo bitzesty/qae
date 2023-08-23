@@ -28,6 +28,15 @@ body.js-enabled {
   margin: 0 !important;
 }
 
+.govuk-form-group {
+  input[readonly],
+  textarea[readonly] {
+    background-color: rgba(0, 0, 0, 0.03);
+    color: rgb(84, 84, 84);
+    cursor: not-allowed;
+  }
+}
+
 .pagination {
   @supports (flex-wrap: wrap) {
     margin-bottom: 3rem;
