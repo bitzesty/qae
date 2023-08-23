@@ -54,21 +54,6 @@ ready = ->
     else
       $('#commercial-figures-attachment-form').addClass('visuallyhidden')
 
-  $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
-    $(this).find(".form-group").removeClass("form-edit")
-    $(this).find(".form-edit-link").remove()
-    $(".save-review-audit").remove()
-    area = $(".audit-cert-description textarea")
-    unless area.val()
-      $(this).find(".form-value").html($("<p>No change necessary</p>"))
-    else
-      div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
-      $(this).find(".form-value").html(div)
-
-  $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
-    e.preventDefault()
-    $("#new_review_audit_certificate").submit()
-
   $(".edit-review-audit").on "click", (e) ->
     $(".save-review-audit").show()
 
@@ -154,15 +139,17 @@ ready = ->
           result = $($.parseHTML(result))
           $("#commercial-figures-buffer").append(result.text())
 
+          form = document.querySelector('#commercial-figures-attachment-form form')
+
           if $("#commercial-figures-file-valid", $("#commercial-figures-buffer")).length
             $("#commercial-figures-section").html(result.text())
             moveAttachDocumentButton()
           else
-            form = $("#commercial-figures-attachment-form form")
-            section = form.closest("#commercial-figures-section")
+            section = $(form).closest("#commercial-figures-section")
             section.find(".document-list .p-empty").addClass("visuallyhidden")
             section.find(".document-list ul").append(result.text())
 
+          window.fire(form, 'ajax:x:success', null)
           toggleCommercialFiguresButtonVisibility()
           $("#commercial-figures-buffer").empty()
 
@@ -200,16 +187,18 @@ ready = ->
           result = $($.parseHTML(result))
           $("#vat-returns-buffer").append(result.text())
 
+          form = document.querySelector('#vat-returns-attachment-form form')
+
           if $("#vat-returns-file-valid", $("#vat-returns-buffer")).length
             $("#application-attachment-form").html(result.text())
             moveAttachDocumentButton()
             initializeFileUpload()
           else
-            form = $("#vat-returns-attachment-form form")
-            section = form.closest("#vat-returns-section")
+            section = $(form).closest("#vat-returns-section")
             section.find(".document-list .p-empty").addClass("visuallyhidden")
             section.find(".document-list ul").append(result.text())
 
+          window.fire(form, 'ajax:x:success', null)
           $("#vat-returns-buffer").empty()
 
   $("#vat-returns-attachment-form form").on "fileuploadsubmit", (e, data) ->
@@ -260,19 +249,21 @@ ready = ->
           result = $($.parseHTML(result))
           $("#attachment-buffer").append(result.text())
 
+          form = document.querySelector('#new_form_answer_attachment')
+
           if $("#form-answer-attachment-valid", $("#attachment-buffer")).length
             $("#application-attachment-form").html(result.text())
             moveAttachDocumentButton()
             initializeFileUpload()
           else
-            form = $("#new_form_answer_attachment")
-            sidebarSection = form.closest(".sidebar-section")
+            sidebarSection = $(form).closest(".sidebar-section")
             sidebarSection.find(".document-list .p-empty").addClass("visuallyhidden")
             sidebarSection.find(".document-list ul").append(result.text())
             sidebarSection.removeClass("show-attachment-form")
             $("#form_answer_attachment_title").val(null)
             $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
+          window.fire(form, 'ajax:x:success', null)
           $("#attachment-buffer").empty()
 
   if $("html").hasClass("lte-ie7")
@@ -295,16 +286,18 @@ ready = ->
           result = $($.parseHTML(result))
           $("#audit-certificate-buffer").append(result.text())
 
+          form = document.querySelector('#new_audit_certificate')
+
           if $("#form-audit_certificate-valid", $("#audit-certificate-buffer")).length
             $("#audit-certificate-form").html(result.text())
             moveAttachDocumentButton()
             initializeFileUpload()
           else
-            form = $("#new_audit_certificate")
-            sidebarSection = form.closest(".sidebar-section")
+            sidebarSection = $(form).closest(".sidebar-section")
             sidebarSection.find(".document-list").html(result.text())
             sidebarSection.removeClass("show-attachment-form")
 
+          window.fire(form, 'ajax:x:success', null)
           $("#audit-certificate-buffer").empty()
 
     moveAttachDocumentButton()
@@ -326,6 +319,7 @@ ready = ->
     $.ajax
       url: form.attr('action'),
       type: 'DELETE'
+    window.fire(form[0], 'ajax:x:success', null)
     form.parents('.form_answer_attachment').remove()
     if $('.form_answer_attachment').length == 0
       sidebarSection.find(".document-list .p-empty").removeClass("visuallyhidden")
@@ -461,7 +455,7 @@ buildBannerHtml = (message, type, identifier = null) ->
   
   "<div id='#{id}' class='alert alert-#{type}' data-controller='element-removal' role='alert' style='padding-top: 6px; padding-bottom: 6px; margin-bottom: 8px;'>
     #{message}
-    <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close' style='font-size: 18px;'>
+    <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close'>
       <span aria-hidden='true'>&times;</span>
     </button>
   </div>"
@@ -544,6 +538,11 @@ handleWinnersForm = ->
   $(document).on "ajax:success", attendeeFormHolder, (e, data, status, xhr) ->
     $(this).closest(attendeeFormHolder).replaceWith(data)
 
+    setTimeout (->
+      replaced = document.querySelector("##{e.target.id}")
+      window.fire(replaced, 'ajax:x:success', null)
+    ), 50
+
   $(document).on "click", ".remove-palace-attendee", (e) ->
     e.preventDefault()
     $(this).closest("form").submit()
@@ -552,6 +551,12 @@ handleWinnersForm = ->
   $(document).on "ajax:success", removeAttendeeForm, (e, data, status, xhr) ->
     $(this).closest(attendeeFormHolder).remove()
     $(".attendees-forms").closest(".form-group").find(".empty-message").removeClass("visuallyhidden")
+
+    setTimeout (->
+      removed = document.querySelector("##{e.target.id}")
+      window.fire(removed, 'ajax:x:success', null)
+    ), 50
+
   $(document).on "click", ".add-another-attendee", (e) ->
     e.preventDefault()
     that = $(this)
@@ -636,6 +641,8 @@ handleReviewAuditCertificate = ->
     else
       div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
       $(this).find(".form-value").html(div)
+    window.fire(e.target, 'ajax:x:success', null)
+
   $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
     e.preventDefault()
     $("#new_review_audit_certificate").submit()

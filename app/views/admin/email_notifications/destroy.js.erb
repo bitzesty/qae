@@ -1,2 +1,3 @@
 wrapper = $("#notification-" + "<%= @email_notification.id %>");
+window.fire($(".edit_email_notification", wrapper)[0], 'ajax:x:success', null)
 wrapper.remove()
