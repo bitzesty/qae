@@ -6,7 +6,7 @@ jobs:
     services:
       db:
         image: postgres:12-alpine
-        ports: ["5432:5432"]
+        ports: ['5432:5432']
         env:
           POSTGRES_DB: qae_test
           POSTGRES_USER: postgres
@@ -18,7 +18,7 @@ jobs:
           --health-retries 5
       redis:
         image: redis
-        ports: ["6379:6379"]
+        ports: ['6379:6379']
         options: --entrypoint redis-server
 
     steps:
@@ -45,17 +45,17 @@ jobs:
           ruby-version: 2.7.7
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: "16"
+          node-version: '16'
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
         with:
-            chromedriver-version: '114.0.5735.90'
+          chromedriver-version: '116.0.5845.9600'
       - name: Build and run tests
         env:
           DISPLAY_SOCIAL_MOBILITY_AWARD: true
-          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/qae_test"
+          DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/qae_test'
           BUNDLER_VERSION: 2.4.8
-          DOCKER_TLS_CERTDIR: ""
+          DOCKER_TLS_CERTDIR: ''
         run: |
           sudo apt update
           sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
@@ -86,12 +86,12 @@ jobs:
           ruby-version: 2.7.7
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: "16"
-      - name: "Deploy dev"
+          node-version: '16'
+      - name: 'Deploy dev'
         env:
           name: dev
-          url: "https://dev.queens-awards-enterprise.service.gov.uk/"
-          CF_ENDPOINT: "api.london.cloud.service.gov.uk"
+          url: 'https://dev.queens-awards-enterprise.service.gov.uk/'
+          CF_ENDPOINT: 'api.london.cloud.service.gov.uk'
           CF_SPACE: dev
           CF_APP: qae-dev
           CF_USER: ${{ secrets.CF_USER }}
@@ -127,12 +127,12 @@ jobs:
           ruby-version: 2.7.7
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: "16"
-      - name: "Deploy staging"
+          node-version: '16'
+      - name: 'Deploy staging'
         env:
           name: staging
-          url: "https://staging.queens-awards-enterprise.service.gov.uk/"
-          CF_ENDPOINT: "api.london.cloud.service.gov.uk"
+          url: 'https://staging.queens-awards-enterprise.service.gov.uk/'
+          CF_ENDPOINT: 'api.london.cloud.service.gov.uk'
           CF_SPACE: staging
           CF_APP: qae-staging
           CF_USER: ${{ secrets.CF_USER }}
