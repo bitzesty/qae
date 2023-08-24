@@ -1,4 +1,4 @@
-= simple_form_for [:admin, resource], as: :judge, url: resource.persisted? ? admin_judge_path(resource) : admin_judges_path, html: { class: 'qae-form' } do |f|
+= simple_form_for [:admin, resource], as: :judge, url: resource.persisted? ? admin_judge_path(resource) : admin_judges_path, html: { class: 'qae-form', data: { type: "json",  controller: "inline-flash element-scroll", inline_flash_target: "form" } } do |f|
   .row.question-group
     .col-lg-2.col-md-3.col-sm-4
       h3 = f.label :first_name, class: "form-label"
