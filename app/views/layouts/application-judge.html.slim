@@ -102,6 +102,10 @@ html.no-js
               .alert-container
                 .alert.alert-danger
                   == alert
+            - unless flash[:error].blank?
+              .alert-container
+                .alert.alert-danger
+                  == flash[:error]
 
             = yield
 
