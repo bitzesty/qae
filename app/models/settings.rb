@@ -1,6 +1,8 @@
 class Settings < ApplicationRecord
   self.table_name = "settings"
 
+  COMPANIES_HOUSE_REGISTERING_SINCE = 1844
+
   has_many :deadlines, dependent: :destroy
   has_many :email_notifications, dependent: :destroy
 
@@ -164,6 +166,10 @@ class Settings < ApplicationRecord
     def submission_deadline_title
       formatted_datetime = current_submission_deadline.strftime("%d %b %Y at %H:%M%P")
       "Submission deadline: #{formatted_datetime}"
+    end
+
+    def min_started_trading
+      (Date.current.year - (Date.new(COMPANIES_HOUSE_REGISTERING_SINCE).year))
     end
   end
 
