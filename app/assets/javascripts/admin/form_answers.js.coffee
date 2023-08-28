@@ -166,6 +166,11 @@ ready = ->
     $.ajax
       url: form.attr('action'),
       type: 'DELETE'
+      success: (_) ->
+        window.fire(form[0], 'ajax:x:success', null)
+      error: (_) ->
+        window.fire(form[0], 'ajax:x:error', null)
+
     form.parents('.commercial-figures-file').remove()
     if $('.commercial-figures-file').length == 0
       section.find(".document-list .p-empty").removeClass("visuallyhidden")
@@ -214,6 +219,11 @@ ready = ->
     $.ajax
       url: form.attr('action'),
       type: 'DELETE'
+      success: (_) ->
+        window.fire(form[0], 'ajax:x:success', null)
+      error: (_) ->
+        window.fire(form[0], 'ajax:x:error', null)
+
     form.parents('.vat-returns-file').remove()
     if $('.vat-returns-file').length == 0
       section.find(".document-list .p-empty").removeClass("visuallyhidden")
