@@ -16,7 +16,10 @@ $(window).load ->
         type: 'GET'
         success: (data) ->
           remaining = Math.round(window.timeoutTime / 60000 - (data.elapsed))
-          $('.js-session-timeout-warning-popup .time-target').html ' ' + remaining + ' '
+          if remaining == 1
+            $('.js-session-timeout-warning-popup .time-target').html ' ' + remaining + ' minute'
+          else
+            $('.js-session-timeout-warning-popup .time-target').html ' ' + remaining + ' minutes'
           if remaining < 5 and !hasDisplayedWarning
             hasDisplayedWarning = true
             $('.js-session-timeout-warning-popup').modal

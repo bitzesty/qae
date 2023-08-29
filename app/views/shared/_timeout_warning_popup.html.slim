@@ -12,7 +12,7 @@
         p
           | In
           span.time-target
-          = "minutes you will be automatically logged out because of prolonged inactivity (#{distance_of_time_in_words(Time.now, Time.now + current_subject.timeout_in, only: [:minutes, :hours])}), to keep your data safe."
+          =< "you will be automatically logged out because of prolonged inactivity (#{distance_of_time_in_words(Time.now, Time.now + current_subject.timeout_in, only: [:minutes, :hours])}), to keep your data safe."
         br
         .clearfix
           button.btn.btn-primary.extend-session.pull-right
@@ -23,3 +23,4 @@ javascript:
     window.namespace = "#{namespace_name}";
     window.timeoutTime = #{current_subject && current_subject.remember_created_at.blank? ? current_subject.timeout_in.to_i * 1000 : 0};
     window.lastRequestAt = #{Time.zone.now.to_i}
+    window.timeoutTime = 1
