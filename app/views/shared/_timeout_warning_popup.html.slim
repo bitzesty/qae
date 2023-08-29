@@ -23,4 +23,3 @@ javascript:
     window.namespace = "#{namespace_name}";
     window.timeoutTime = #{current_subject && current_subject.remember_created_at.blank? ? current_subject.timeout_in.to_i * 1000 : 0};
     window.lastRequestAt = #{Time.zone.now.to_i}
-    window.timeoutTime = 1
