@@ -389,7 +389,7 @@ class QaeFormBuilder
         # Nothing
       else
         # Normal behavior
-        "If #{option_name}, please answer the questions #{dependencies.to_sentence}"
+        "If you answered #{option_name}, please answer question/s #{dependencies.to_sentence}"
       end
     end
   end
