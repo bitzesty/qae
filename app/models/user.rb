@@ -161,7 +161,7 @@ class User < ApplicationRecord
   end
 
   def timeout_in
-    60.minutes
+    (ENV["SESSION_TIMEOUT"] || 20).to_f.hours
   end
 
   def check_email_on_bounces!
