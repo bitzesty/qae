@@ -174,7 +174,7 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :describe_the_senior_decision_makers_commitment_to_sustainability, "What is the senior decision makers' commitment to the future sustainable growth of the organisation?" do
+        textarea :describe_the_senior_decision_makers_commitment_to_sustainability, "What is the senior decision maker's commitment to the future sustainable growth of the organisation?" do
           classes "word-max-strict sub-question"
           ref "C 3.3"
           required
