@@ -11,19 +11,10 @@
             - if assessment.editable.present?
               small
                 = "Updated by #{message_author_name(assessment.editable)} - #{format_date(assessment.updated_at)}"
-      .panel-collapse.collapse aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}"
+      .panel-collapse.collapse[aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}" data-controller="appraisal-form" data-appraisal-form-success-value="Case summary has been submitted"]
 
         .panel-body[data-controller="inline-flash"]
-          /.alert.alert-glyphicon.alert-info
-            span.glyphicon.glyphicon-info-sign
-            p.todo-placeholder
-              ' Some instructions on how to use this or what this section is about. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
-
-          / Only show if Moderated Appraisal is submitted
-          / For Primary Assessor
-          / It becomes read-only for primary assessor after submission
-
-          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["textarea"] } }) do |f|
+          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } }) do |f|
             = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
               locals: { f: f}
             = render_section(resource, f)
