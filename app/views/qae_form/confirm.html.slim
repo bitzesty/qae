@@ -64,39 +64,35 @@ h1.govuk-heading-xl Confirmation of submission
         p.govuk-body All winning individuals and their nominators attend Buckingham Palace reception hosted by His Majesty The King.
 
       - else
+        h3.govuk-heading-m 12 September #{@year - 1}
 
-        / V1: version before july 30 2019
-        / h3 November
+        p.govuk-body Application period closes
 
-        / p We will contact to let you know if you've been shortlisted.
+        h3.govuk-heading-m October #{@year - 1}
 
-        / p If you are shortlisted you will need to get your commercial figures verified by an independent accountant and supply them to us by 18th of November (please note, audited accounts are not required).
+        p.govuk-body Shortlisted organisations notified
 
-        / h3 March
-        / p Winning organisations are informed.
+        h3.govuk-heading-m November #{@year - 1}
 
-        / - if notification_date
-        /   h3 = month
-        /   p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved).
-        /   p #{notification_date} – winners are announced publicly.
+        p.govuk-body Shortlisted organisations for international trade and innovation categories are asked to provide verified commercial figures (you may be charged for this by your accountant)
 
-        / h3 July
-        / p Two representatives of the winning organisations attend Buckingham Palace reception hosted by His Majesty The King.
+        h3.govuk-heading-m March #{@year}
 
-        / V2: version since july 30 2019
-        h3.govuk-heading-m November
+        p.govuk-body Successful organisations notified
 
-        p.govuk-body We will contact you to let you know if you've been shortlisted.
+        h3.govuk-heading-m March #{@year}
 
-        p.govuk-body If you are shortlisted you will need to get your commercial figures verified by an external accountant and supply them to us by mid-November (please note, audited accounts are not required).
+        p.govuk-body Unsuccessful organisations receive feedback on their applications
 
-        h3.govuk-heading-m March
+        h3.govuk-heading-m May #{@year}
 
-        p.govuk-body Winning organisations are informed.
+        p.govuk-body
+          | Successful organisations officially announced in the
+          =< link_to "London Gazette", "https://www.thegazette.co.uk/all-notices/content/101145", class: 'govuk-link'
 
-        h3.govuk-heading-m June
+        h3.govuk-heading-m Summer #{@year}
 
-        p.govuk-body Representatives of the winning organisations attend a Royal reception.
+        p.govuk-body Royal reception held for award recipients
       br
 
       p.govuk-body

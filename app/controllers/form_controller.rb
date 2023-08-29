@@ -185,6 +185,7 @@ class FormController < ApplicationController
   end
 
   def submit_confirm
+    @year = @form_answer.award_year.year
     render template: "qae_form/confirm"
   end
 
