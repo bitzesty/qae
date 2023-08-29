@@ -1685,6 +1685,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
   }
 
+  .rag-error {
+    background-color: #f2dede;
+    color: #a94442 !important;
+  }
+
   .rag-blank {
     &,
     a,

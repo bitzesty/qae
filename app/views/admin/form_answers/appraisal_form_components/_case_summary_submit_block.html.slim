@@ -1,6 +1,6 @@
 - if policy(assessment).can_be_submitted? || policy(assessment).can_be_re_submitted?
 
-  = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
+  = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", data: { action: "ajax:x:success->appraisal-form#success ajax:x:error->appraisal-form#error", type: "json" })
     = hidden_field_tag :assessment_id, assessment.id
 
     .feedback-holder
@@ -8,6 +8,19 @@
     .pull-right
       = submit_tag submit_case_summary_title(assessment), class: "btn btn-primary btn-confirm-submit"
     .clear
+
+    template[data-role='template']
+      - if policy(assessment).admin_or_lead?
+        - unlock_url = namespace_name == :admin ? unlock_admin_assessment_submission_url(assessment) : unlock_assessor_assessment_submission_url(assessment)
+
+        = form_tag unlock_url, method: :patch do
+          = hidden_field_tag :assessment_id, assessment.id
+          .feedback-holder.alert.alert-success
+            ' Case Summary Submitted
+
+            .pull-right
+              = submit_tag "Unlock", class: "btn btn-primary"
+            .clear
 
 - elsif assessment.submitted?
   - if policy(assessment).can_unlock?

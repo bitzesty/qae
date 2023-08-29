@@ -340,29 +340,7 @@ ready = ->
     if (element)
       element.classList.add('form-edit')
 
-  $('.submit-assessment').on 'ajax:error', (e, data, status, xhr) ->
-    panel = this.closest('.panel-body')
-    errors = data.responseJSON
-
-    removeExistingErrorMessages(panel)
-
-    Object.entries(errors).forEach ([key, values]) ->
-      field = panel.querySelector("[name*='[#{key}]']")
-      if field and shouldValidateField(field)
-        showErrorForInvalidField(field, values)
-
-  $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
-    panel = this.closest('.panel-body')
-    message = "Assessment submitted"
-    if panel.closest(".panel-collapse").classList.contains('section-case-summary')
-      message = "Case summary submitted"
-
-    removeExistingErrorMessages(panel)
-    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
-
-    $(this).find('input:submit').remove()
-
-  $(document).on "click", ".form-save-link", (e) ->
+  $(document).on "click", ".form-save-link:not(.js-form-save-link)", (e) ->
     link = $(this)
     e.preventDefault()
     formGroup = link.closest(".form-group")
@@ -397,11 +375,11 @@ ready = ->
             input.val(updatedSection)
         form.submit()
     else
-       if area.first().val().length
-         formGroup.find(".form-value p:first").html(area.first().val().replace(/\n/g, '<br />'))
-       if area.last().val().length
-         formGroup.find(".form-value p:last").html(area.last().val().replace(/\n/g, '<br />'))
-       form.submit()
+      if area.first().val().length
+        formGroup.find(".form-value p:first").html(area.first().val().replace(/\n/g, '<br />'))
+      if area.last().val().length
+        formGroup.find(".form-value p:last").html(area.last().val().replace(/\n/g, '<br />'))
+      form.submit()
 
   $("#new_review_audit_certificate input[type='radio']").on "change", ->
     area = $(".audit-cert-description")

@@ -7,12 +7,12 @@
           small
             = moderated_assessment.last_editor_info
 
-  #section-appraisal-form-moderated.section-appraisal-form.section-appraisal-form-moderated.panel-collapse.collapse[aria-labelledby="appraisal-form-moderated-heading"]
+  #section-appraisal-form-moderated.section-appraisal-form.section-appraisal-form-moderated.panel-collapse.collapse[aria-labelledby="appraisal-form-moderated-heading" data-controller="appraisal-form" data-appraisal-form-success-value="Appraisal form (moderated) has been submitted"]
     .panel-body[data-controller="inline-flash"]
       = simple_form_for([namespace_name, moderated_assessment],
                         remote: true,
                         authenticity_token: true,
-                        html: { data: { type: "json", inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["textarea"] } }) do |f|
+                        html: { data: { type: "json", inline_flash_target: "form" } }) do |f|
 
         = render_section(resource, f)
         = hidden_field_tag :updated_section
