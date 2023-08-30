@@ -37,7 +37,7 @@ module AssessmentSubmissionMixin
 
   def flash_message
     return nil if resource.errors.none?
-    resource.errors.full_messages.join(", ")
+    resource.errors.full_messages.join("<br />")
   end
 
   def json_response

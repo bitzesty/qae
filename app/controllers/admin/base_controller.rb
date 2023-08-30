@@ -24,7 +24,7 @@ class Admin::BaseController < ApplicationController
     if resource.errors.any?
       flash.now[:error] = message || "An unknown error has occurred, please try again."
     else
-      flash.now[:notice] = message || "Success!"
+      flash[:notice] = message || "Success!"
     end
   end
 

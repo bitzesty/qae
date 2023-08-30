@@ -559,7 +559,10 @@
   }
   
   .alert ~ form > .form-edit-link {
-    top: pxToRem(40);
+    display: flex;
+    float: right;
+    margin-top: pxToRem(-54);
+    position: relative;
   }
 }
 
