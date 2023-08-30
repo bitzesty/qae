@@ -1,3 +1,5 @@
+import { scrollToElement } from '../helpers';
+
 export default class extends ApplicationController {
   static values = {
     success: String,
@@ -39,11 +41,15 @@ export default class extends ApplicationController {
       detail: { responseJSON: errors },
     } = event;
     const panel = target.closest('.panel-body');
+    let form;
 
     this.resetErrors(panel);
 
     Object.entries(errors).forEach(([key, values]) => {
       const field = panel.querySelector(`[name*='[${key}]']`);
+      if (!form) {
+        form = field.closest('form');
+      }
       const container = field.closest('.form-container');
 
       if (field && this.shouldValidateField(field)) {
@@ -60,6 +66,19 @@ export default class extends ApplicationController {
         }
       }
     });
+
+    const firstInvalidField = Array.from(form.elements).find((field) => field.ariaInvalid == 'true');
+
+    if (this.visible(firstInvalidField)) {
+      scrollToElement(firstInvalidField);
+      firstInvalidField.focus();
+    } else {
+      const altTarget = firstInvalidField.closest('.form-container').querySelector('label button');
+      if (altTarget) {
+        scrollToElement(altTarget);
+        altTarget.focus();
+      }
+    }
   };
 
   stash = (event) => {
@@ -90,7 +109,7 @@ export default class extends ApplicationController {
         if (element) el.innerHTML = element.value;
       });
 
-      return form.submit();
+      return $(form).submit();
     } else if (textarea.length === 1) {
       let _textarea = textarea[0];
 
@@ -119,7 +138,7 @@ export default class extends ApplicationController {
           }
         }
 
-        return form.submit();
+        return $(form).submit();
       }
     } else {
       if (textarea[0] && textarea[0].value.length) {
@@ -132,7 +151,7 @@ export default class extends ApplicationController {
         Array.from(wrapper.querySelectorAll('.form-value p'))[-1].innerHTML = value;
       }
 
-      return form.submit();
+      return $(form).submit();
     }
   };
 
@@ -140,6 +159,7 @@ export default class extends ApplicationController {
     element.querySelectorAll('.field-with-errors').forEach((el) => el.classList.remove('field-with-errors'));
     element.querySelectorAll('.rag-error').forEach((el) => el.classList.remove('rag-error'));
     element.querySelectorAll('[aria-errormessage]').forEach((el) => el.removeAttribute('aria-errormessage'));
+    element.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
     element.querySelectorAll('.alert').forEach((el) => el.remove());
   }
 
@@ -163,6 +183,7 @@ export default class extends ApplicationController {
       return errors.forEach((message) => {
         const [alert, identifier] = this.createAlert('danger', message);
         field.setAttribute('aria-errormessage', identifier);
+        field.setAttribute('aria-invalid', true);
         return container.insertAdjacentHTML('afterbegin', alert);
       });
     }
