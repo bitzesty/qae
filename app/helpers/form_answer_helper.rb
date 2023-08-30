@@ -37,7 +37,8 @@ module FormAnswerHelper
 
     if comments_count > 0
       content_tag :span, class: "icon-flagged #{flag_type}" do
-        content_tag :span, class: "flag-count" do
+        "#{current_user_class} flags: ".html_safe +
+        content_tag(:span, class: "flag-count") do
           comments_count.to_s
         end
       end
