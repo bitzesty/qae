@@ -73,7 +73,7 @@ So that I can fill form completelly even if Javascript is turned off
     end
 
     it "should allow to add another" do
-      within("fieldset[data-answer=applied_for_queen_awards_details-list-the-queen-s-king-s-awards-you-have-applied-for-in-the-last-10-years]") do
+      within("div[data-answer=applied_for_queen_awards_details-list-the-queen-s-king-s-awards-you-have-applied-for-in-the-last-10-years]") do
         click_link "+ Add award"
       end
       expect_to_see "Add Award"
@@ -85,7 +85,7 @@ So that I can fill form completelly even if Javascript is turned off
       }
 
       %w(Category Year).each do |field_name|
-        expect_to_see "#{field_name}\ncan't be blank"
+        expect_to_see "#{field_name} is required and an option must be selected from the following list"
       end
 
       select new_award_category_name, from: "Category"

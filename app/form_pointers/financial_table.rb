@@ -163,10 +163,10 @@ module FinancialTable
   end
 
   def one_option_question?
-    question.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestionDecorator) ||
-      question.is_a?(QAEFormBuilder::OneOptionByYearsQuestionDecorator) ||
-      question.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) ||
-      question.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
+    question.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestionDecorator) ||
+      question.is_a?(QaeFormBuilder::OneOptionByYearsQuestionDecorator) ||
+      question.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion) ||
+      question.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
   end
 
   def innovation_years_number

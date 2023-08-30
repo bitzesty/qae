@@ -2,18 +2,22 @@
 
 <%= "Dear #{@recipient.full_name}," %>
 
-Thank you for submitting your <%= app_alias %> for <%= @form_answer.promotion? ? "The King's Award for Enterprise Promotion" : "The King's Awards for Enterprise" %> <%= AwardYear.current.year %>.
+Thank you for submitting your <%= app_alias %> for <%= @form_answer.promotion? ? "The King's Award for Enterprise Promotion" : "The King's Awards for Enterprise" %> <%= AwardYear.current.year %> - <%= @form_answer.award_type_full_name %>.
 
 Your Unique Reference Number (URN) is
 #<%= @form_answer.urn %>
 
-You can view and download your submissions (and edit up until <%= remove_html_tags(application_deadline(:submission_end)) %>) by logging into your account:
+You can view and download your submission/s at any time by logging into your account:
 <%= dashboard_url %>
 
-To find out more on what happens next visit please review The King's Awards for Enterprise timeline information page:
+After the deadline, however, submissions cannot be edited or altered.
+
+To find out what happens next with your application, please see The King's Awards for Enterprise timeline:
 <%= timeline_url %>
 
-If you have any further queries about the <%= app_alias %> process you can call us on 020 7215 6880 or email us kingsawards@beis.gov.uk.
+If you have any further queries about the <%= app_alias %> process you can call us on 020 7215 6880 or email us at kingsawards@beis.gov.uk.
+
+Our email address will be changing nearer the end of September. Please continue to use the current address, and we will send reminders in plenty of time to make sure contact is not lost.
 
 Kind regards,
 

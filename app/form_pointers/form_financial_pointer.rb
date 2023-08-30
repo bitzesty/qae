@@ -13,10 +13,10 @@ class FormFinancialPointer
               :options
 
   TARGET_FINANCIAL_DATA_QUESTION_TYPES = [
-    QAEFormBuilder::ByYearsLabelQuestion,
-    QAEFormBuilder::ByYearsQuestion,
-    QAEFormBuilder::OneOptionByYearsLabelQuestion,
-    QAEFormBuilder::OneOptionByYearsQuestion
+    QaeFormBuilder::ByYearsLabelQuestion,
+    QaeFormBuilder::ByYearsQuestion,
+    QaeFormBuilder::OneOptionByYearsLabelQuestion,
+    QaeFormBuilder::OneOptionByYearsQuestion
   ]
   YEAR_LABELS = %w(day month year)
   IN_PROGRESS = "-"
@@ -131,7 +131,7 @@ class FormFinancialPointer
 
   def overall_growth
     res = overall_growth_values
-    res.last && res.first ? res.last[:value].to_i - res.first[:value].to_i : "-"
+    res && res.last && res.first ? res.last[:value].to_i - res.first[:value].to_i : "-"
   end
 
   def overall_growth_in_percents

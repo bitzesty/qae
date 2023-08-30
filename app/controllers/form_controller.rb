@@ -54,7 +54,7 @@ class FormController < ApplicationController
 
   expose(:questions_with_references) do
     all_form_questions.select do |q|
-      !q.is_a?(QAEFormBuilder::HeaderQuestion) &&
+      !q.is_a?(QaeFormBuilder::HeaderQuestion) &&
       (q.ref.present? || q.sub_ref.present?)
     end
   end
@@ -110,7 +110,11 @@ class FormController < ApplicationController
   end
 
   def save
-    @form_answer.document = prepare_doc if params[:form].present?
+    if params[:form].present?
+      @form_answer.document = prepare_doc
+      @form_answer.current_non_js_step = params[:form][:current_non_js_step].presence
+    end
+
     @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
 
     redirected = params[:next_action] == "redirect"
@@ -144,7 +148,8 @@ class FormController < ApplicationController
         end
 
         if redirected
-          redirect_to dashboard_url
+          @form_answer.save(validate: false)
+          redirect_to(dashboard_url)
         else
           if submitted && saved
             redirect_to submit_confirm_url(@form_answer)
@@ -185,6 +190,7 @@ class FormController < ApplicationController
   end
 
   def submit_confirm
+    @year = @form_answer.award_year.year
     render template: "qae_form/confirm"
   end
 

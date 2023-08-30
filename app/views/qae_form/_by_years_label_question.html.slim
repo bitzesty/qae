@@ -1,34 +1,41 @@
 div role="group" id="q_#{question.key}"
   .js-financial-year-changed-dates
     - for c in question.by_year_conditions
-      .js-conditional-question.by-years-wrapper data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
+      - question_visible = question.fields_count == c.years
+  
+      .js-conditional-question.by-years-wrapper class=(class_names("show-question" => question_visible)) data=(c.question_value.respond_to?(:call) ? c.options.dig(:data).merge(question: question.step.form[c.question_key].parameterized_title) : {question: question.step.form[c.question_key].parameterized_title, value: c.question_value})
         .if-js-hide
           label.govuk-label
             strong
               = "If you had growth in the last #{c.years} years"
         .govuk-grid-row
           - (1..c.years).each do |y|
+            - suffix = "#{y}of#{c.years}"
             .govuk-grid-column-one-half.js-fy-entries class="#{'fy-latest' if y == c.years}" role="group"
-              span.js-year-end.show-default data-year="#{y}of#{c.years}" data-year-diff="#{::Utils::Diff.calc(c.years, y)}"
+              span.js-year-end.show-default data-year="#{suffix}" data-year-diff="#{::Utils::Diff.calc(c.years, y)}"
                 span.js-year-default class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-0 govuk-!-margin-top-5"
                   = question.format_label(y)
                   - if y == c.years
                     '  (most recent)
               span.govuk-error-message class="govuk-!-margin-bottom-0 govuk-!-margin-top-1"
+                - if @form_answer.validator_errors&.dig(question.hash_key(suffix: suffix))
+                  span.govuk-visually-hidden
+                    | Error:
+                  =< @form_answer.validator_errors[question.hash_key(suffix: suffix)]
               .govuk-date-input
                 .govuk-date-input__item
                   .govuk-form-group
-                    label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of#{c.years}day")
+                    label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{suffix}day")
                       ' Day
-                    input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{y}of#{c.years}day") value=question.input_value(suffix: "#{y}of#{c.years}day") id=question.input_name(suffix: "#{y}of#{c.years}day") maxlength=2 autocomplete="off" *possible_read_only_ops
+                    input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-day type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{suffix}day") value=question.input_value(suffix: "#{suffix}day") id=question.input_name(suffix: "#{suffix}day") maxlength=2 autocomplete="off" *possible_read_only_ops
                 .govuk-date-input__item
                   .govuk-form-group
-                    label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of#{c.years}month")
+                    label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{suffix}month")
                       ' Month
-                    input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-month type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{y}of#{c.years}month") value=question.input_value(suffix: "#{y}of#{c.years}month") id=question.input_name(suffix: "#{y}of#{c.years}month") maxlength=2 autocomplete="off" *possible_read_only_ops
+                    input.govuk-input.govuk-date-input__input.govuk-input--width-2.js-trigger-autosave.js-fy-month type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{suffix}month") value=question.input_value(suffix: "#{suffix}month") id=question.input_name(suffix: "#{suffix}month") maxlength=2 autocomplete="off" *possible_read_only_ops
                 .govuk-date-input__item
                   .govuk-form-group
-                    label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{y}of#{c.years}year")
+                    label.govuk-label.govuk-date-input__label for=question.input_name(suffix: "#{suffix}year")
                       ' Year
-                    input.govuk-input.govuk-date-input__input.govuk-input--width-4.js-trigger-autosave.js-fy-year type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{y}of#{c.years}year") value=question.input_value(suffix: "#{y}of#{c.years}year") id=question.input_name(suffix: "#{y}of#{c.years}year") maxlength=4 autocomplete="off" *possible_read_only_ops
+                    input.govuk-input.govuk-date-input__input.govuk-input--width-4.js-trigger-autosave.js-fy-year type="number" pattern="[0-9]*" name=question.input_name(suffix: "#{suffix}year") value=question.input_value(suffix: "#{suffix}year") id=question.input_name(suffix: "#{suffix}year") maxlength=4 autocomplete="off" *possible_read_only_ops
         .clear

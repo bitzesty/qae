@@ -1,10 +1,10 @@
-require 'award_years/v2018/qae_forms'
-require 'award_years/v2019/qae_forms'
-require 'award_years/v2020/qae_forms'
-require 'award_years/v2021/qae_forms'
-require 'award_years/v2022/qae_forms'
-require 'award_years/v2023/qae_forms'
-require 'award_years/v2024/qae_forms'
+require_relative '../../forms/award_years/v2018/qae_forms'
+require_relative '../../forms/award_years/v2019/qae_forms'
+require_relative '../../forms/award_years/v2020/qae_forms'
+require_relative '../../forms/award_years/v2021/qae_forms'
+require_relative '../../forms/award_years/v2022/qae_forms'
+require_relative '../../forms/award_years/v2023/qae_forms'
+require_relative '../../forms/award_years/v2024/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -16,7 +16,7 @@ class FormAnswer < ApplicationRecord
 
   has_paper_trail
 
-  attr_accessor :current_step, :validator_errors, :steps_with_errors
+  attr_accessor :current_step, :validator_errors, :steps_with_errors, :current_non_js_step
 
   pg_search_scope :basic_search,
                   against: [
@@ -144,7 +144,7 @@ class FormAnswer < ApplicationRecord
                              in: POSSIBLE_AWARDS
                            }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
-    validates :sic_code, format: { with: SICCode::REGEX }, allow_nil: true, allow_blank: true
+    validates :sic_code, format: { with: SicCode::REGEX }, allow_nil: true, allow_blank: true
     validate :validate_answers
   end
 
@@ -550,7 +550,8 @@ class FormAnswer < ApplicationRecord
   end
 
   def validate_answers
-    if submitted? && (current_step || (submitted_at_changed? && submitted_at_was.nil?))
+    if current_non_js_step.present? || (submitted? && (current_step || (submitted_at_changed? && submitted_at_was.nil?)))
+
       validator = FormAnswerValidator.new(self)
 
       unless validator.valid?
@@ -569,7 +570,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def award_form_class_name(year)
-    "::AwardYears::V#{year}::QAEForms"
+    "::AwardYears::V#{year}::QaeForms"
   end
 
   def self.transition_class
