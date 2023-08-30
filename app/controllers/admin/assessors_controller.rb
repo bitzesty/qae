@@ -21,7 +21,7 @@ class Admin::AssessorsController < Admin::UsersController
     @resource.save
     location = @resource.persisted? ? admin_assessors_path : nil
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.join("<br />"))
+    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: location
   end
@@ -35,7 +35,7 @@ class Admin::AssessorsController < Admin::UsersController
       @resource.update_without_password(resource_params)
     end
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.join("<br />"))
+    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_assessors_path
   end
@@ -44,7 +44,7 @@ class Admin::AssessorsController < Admin::UsersController
     authorize @resource, :destroy?
     @resource.soft_delete!
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.join("<br />"))
+    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_assessors_path
   end
