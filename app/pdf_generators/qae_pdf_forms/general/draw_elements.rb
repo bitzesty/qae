@@ -121,8 +121,8 @@ module QaePdfForms::General::DrawElements
     render_text("The application process:", size: 14, style: :bold)
 
     bullet = "\u2000\u2000\u2000\u2022"
-    deadline = Settings.current_submission_deadline.trigger_at
-    deadline = deadline.try(:strftime, "%d %b %Y at %H:%M%P") || "-"
+    deadline = Settings.current_submission_deadline
+    deadline = deadline.decorate.formatted_trigger_time
 
     block_1 = %(1. Complete the online eligibility questionnaire before you start preparing the answers
       #{bullet} This is to ensure that your organisation meets the key eligibility criteria for an award.
