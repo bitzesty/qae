@@ -4,7 +4,9 @@ class AccountMailers::ReminderToSubmitMailer < AccountMailers::BaseMailer
     @user = @form_answer.user
 
     submission_deadline = Settings.current_submission_deadline
-    @deadline = submission_deadline.strftime("%l%P on %A %d %B %Y")
+    deadline_time = formatted_deadline_time(submission_deadline)
+    deadline_date = submission_deadline.trigger_at.strftime("%A %d %B %Y")
+    @deadline = "#{deadline_time} on #{deadline_date}"
 
     ordinal = submission_deadline.trigger_at.day.ordinal
     subject_deadline = submission_deadline.strftime("%e#{ordinal} %B")
