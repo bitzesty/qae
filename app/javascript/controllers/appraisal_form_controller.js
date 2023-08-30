@@ -89,7 +89,7 @@ export default class extends ApplicationController {
         if (element) el.innerHTML = element.value;
       });
 
-      return form.submit();
+      return $(form).submit();
     } else if (textarea.length === 1) {
       let _textarea = textarea[0];
 
@@ -118,7 +118,7 @@ export default class extends ApplicationController {
           }
         }
 
-        return form.submit();
+        return $(form).submit();
       }
     } else {
       if (textarea[0] && textarea[0].value.length) {
@@ -131,7 +131,7 @@ export default class extends ApplicationController {
         Array.from(wrapper.querySelectorAll('.form-value p'))[-1].innerHTML = value;
       }
 
-      return form.submit();
+      return $(form).submit();
     }
   };
 
