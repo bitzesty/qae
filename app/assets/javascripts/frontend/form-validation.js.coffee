@@ -16,6 +16,7 @@ window.FormValidation =
       container.closest("td").find(".govuk-error-message").empty()
     else
       container.closest(".question-block").find(".govuk-error-message").empty()
+    container.closest(".question-block").removeClass("govuk-form-group--error")
     container.closest(".govuk-form-group--error").removeClass("govuk-form-group--error")
 
   clearAriaDescribedby: (container) ->
