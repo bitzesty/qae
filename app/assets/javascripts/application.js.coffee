@@ -1184,6 +1184,17 @@ jQuery ->
           if (selectFields = question.find(".list-add > li:last .custom-select")).length
             selectFields.siblings().remove()
 
+            selectFields.each ->
+              field = $(this)[0]
+              if $(this).is(':disabled') or $(this).is('[readonly]')
+                return
+
+              accessibleAutocomplete.enhanceSelectElement
+                selectElement: field
+                showAllValues: true
+                dropdownArrow: ->
+                  '<span class=\'autocomplete__arrow\'></span>'
+
           # remove the default reached class to allow removing again
           questionAddDefaultReached(question.find(".list-add"))
           window.FormValidation.validateStep()
