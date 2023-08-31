@@ -1150,7 +1150,6 @@ jQuery ->
           if li_size + 1 >= add_limit_attr
             question.find(".js-button-add").addClass("visuallyhidden")
 
-
         if can_add
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size}]")
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\{index\})\]/g, "$1#{li_size}]")
@@ -1181,6 +1180,9 @@ jQuery ->
           if (textareas = question.find(".list-add > li:last .js-char-count")).length
             textareas.removeCharcountElements()
             textareas.charcount()
+
+          if (selectFields = question.find(".list-add > li:last .custom-select")).length
+            selectFields.siblings().remove()
 
           # remove the default reached class to allow removing again
           questionAddDefaultReached(question.find(".list-add"))
