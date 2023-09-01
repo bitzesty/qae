@@ -149,7 +149,7 @@
 
           = hidden_field_tag :section, "address", id: "section_address_hidden_field"
           .input.form-group.form-fields.form-block
-            = f.simple_fields_for(:data) do |f|
+            = f.simple_fields_for :data, include_id: false do |f|
               - if @form_answer.promotion?
                 .row
                   .col-md-8
