@@ -37,7 +37,7 @@
              authenticity_token: true) do |f|
 
     label.if-js-hide Flag
-    = f.check_box :flagged, class: "flag-comment-checkbox if-js-hide"
+    = f.check_box :flagged, class: "flag-comment-checkbox if-js-hide", id: "flag-comment-#{comment.id}"
     .comment-action
       = l comment.created_at, format: :date_at_time
       span.divider •
