@@ -1,0 +1,21 @@
+.js-commercial-figures-file
+  = link_to item&.original_filename,
+    item&.attachment&.url,
+    class: "file-url",
+    target: "_blank"
+
+  - if item&.persisted?
+    - delete_url = public_send(url_method, @form_answer, item)
+  - else
+    - delete_url = public_send(url_method, @form_answer, id: "PLACEHOLDER")
+
+  .if-js-hide
+    = button_to "Remove", delete_url,
+                          method: :delete,
+                          class: "govuk-button govuk-button--secondary"
+    .clear
+
+  .if-no-js-hide
+    = link_to "Remove", delete_url,
+                        method: :delete,
+                        class: "govuk-link remove-link", form_class: "non-js-button-to"

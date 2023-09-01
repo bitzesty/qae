@@ -47,7 +47,7 @@ class AssessmentSubmissionService
     end
   end
 
-  delegate :as_json, to: :resource
+  delegate :as_json, :errors, to: :resource
 
   private
 

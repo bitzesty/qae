@@ -1,6 +1,6 @@
 .form-group-multiple-parent
   - if @form_answer.promotion?
-    .form-group.form-group-multiple.company-address-personal-form
+    .form-group.form-group-multiple.company-address-personal-form[data-controller="element-focus"]
       .form-container
         label.form-label Nominee Address
 
@@ -30,10 +30,9 @@
             - if @form_answer.nominee_region.present?
               = @form_answer.nominee_region
 
-        - if user_can_edit(@form_answer, :address)
           = simple_form_for([namespace_name, resource],
                             remote: true,
-                            authenticity_token: true, html: { "data-type" => "html" }) do |f|
+                            authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
 
             = hidden_field_tag :section, "address"
             .input.form-group.form-fields.form-block
@@ -88,17 +87,17 @@
                               collection: regions
 
               .form-actions.text-right
-                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
                 = f.submit "Save", class: "btn btn-primary pull-right"
 
             .clear
 
-            = link_to "#", class: "form-edit-link pull-right"
+            = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
               span.glyphicon.glyphicon-pencil
               ' Edit
         .clear
 
-  .form-group.form-group-multiple.company-address-form
+  .form-group.form-group-multiple.company-address-form[data-controller="element-focus"]
     .form-container
       label.form-label
         = @form_answer.promotion? ? "Organisation Address" : "Address"
@@ -146,9 +145,9 @@
       - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
         = simple_form_for([namespace_name, resource],
                           remote: true,
-                          authenticity_token: true, html: { "data-type" => "html" }) do |f|
+                          authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
 
-          = hidden_field_tag :section, "address"
+          = hidden_field_tag :section, "address", id: "section_address_hidden_field"
           .input.form-group.form-fields.form-block
             = f.simple_fields_for(:data) do |f|
               - if @form_answer.promotion?
@@ -218,18 +217,18 @@
                               input_html: { class: "form-control" }
 
             .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = f.submit "Save", class: "btn btn-primary pull-right"
 
           .clear
 
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
       .clear
 
   - if @form_answer.promotion?
-    .form-group.form-group-multiple.company-address-nominator-form
+    .form-group.form-group-multiple.company-address-nominator-form[data-controller="element-focus"]
       .form-container
         label.form-label Nominator Address
 
@@ -263,7 +262,7 @@
         - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
           = simple_form_for([namespace_name, resource],
                             remote: true,
-                            authenticity_token: true, html: { "data-type" => "html" }) do |f|
+                            authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
             = hidden_field_tag :section, "address"
             .input.form-group.form-fields.form-block
               = f.simple_fields_for(:data) do |f|
@@ -321,12 +320,12 @@
                               input_html: { class: "form-control" }
 
               .form-actions.text-right
-                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
                 = f.submit "Save", class: "btn btn-primary pull-right"
 
             .clear
 
-            = link_to "#", class: "form-edit-link pull-right"
+            = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
               span.glyphicon.glyphicon-pencil
               ' Edit
         .clear

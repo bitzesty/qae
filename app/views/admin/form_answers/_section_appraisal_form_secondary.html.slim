@@ -1,20 +1,19 @@
 .panel.panel-default
-  .panel-heading#appraisal-form-secondary-heading role="tab"
-    h4.panel-title
+  .panel-heading#appraisal-form-secondary-heading
+    h3.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-secondary" aria-expanded="true" aria-controls="section-appraisal-form-secondary"
         ' Appraisal Form (Secondary)
         - if secondary_assessment.last_editor_info.present?
           small
             = secondary_assessment.last_editor_info
-  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse role="tabpanel" aria-labelledby="appraisal-form-secondary-heading"
-    .panel-body
-
+  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse aria-labelledby="appraisal-form-secondary-heading"
+    .panel-body[data-controller="inline-flash"]
       = simple_form_for([namespace_name, secondary_assessment],
                         remote: true,
                         authenticity_token: true,
-                        html: { "data-type" => "json"}) do |f|
+                        html: { data: { type: "json", inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["textarea"] }, id: "secondary_appraisal_form"}) do |f|
 
-        = hidden_field_tag :updated_section
+        = hidden_field_tag :updated_section, nil, id: "secondary_updated_section_hidden_field"
         = render_section(resource, f)
         = f.submit "Save changes", class: "if-js-hide btn btn-primary"
       .clear

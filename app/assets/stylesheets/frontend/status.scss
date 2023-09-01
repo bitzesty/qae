@@ -1,0 +1,42 @@
+$status-red: #9c1111;
+$status-green: #3b816f;
+
+.label-status {
+  padding: 0 3px;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  display: inline-block;
+  font-family: "GDS Transport", arial, sans-serif;
+
+
+  &.label-status-red {
+    border-color: $status-red;
+    color: $status-red;
+  }
+
+  &.label-status-green {
+    border-color: $status-green;
+    color: $status-green;
+  }
+}
+
+[data-status-reversible='true'],
+[data-status-reversible] {
+  .label-status + a,
+  .label-status + button,
+  .label-status + form {
+    display: initial;
+  }
+}
+
+[data-status-reversible='false'] {
+  .label-status + a,
+  .label-status + button,
+  .label-status + form {
+    display: none;
+  }
+}

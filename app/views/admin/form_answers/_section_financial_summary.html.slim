@@ -1,7 +1,7 @@
 - if !financial_pointer.period_length.zero? && @form_answer.submitted?
   .panel.panel-default
-    .panel-heading#financial-summary-heading role="tab"
-      h4.panel-title
+    .panel-heading#financial-summary-heading
+      h3.panel-title
         a data-toggle="collapse" data-parent="#submitted-application" href="#financial-summary" aria-expanded="true" aria-controls="financial-summary"
           ' Financial Summary
           - if @form_answer.financial_summary_updated_by
@@ -11,7 +11,7 @@
               ' -
               = l @form_answer.financial_summary_updated_at.to_datetime, format: :date_at_time
 
-    #financial-summary.section-financial-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="financial-summary-heading"
+    #financial-summary.section-financial-summary.panel-collapse.collapse aria-labelledby="financial-summary-heading"
       .panel-body
         = render "admin/form_answers/financials_review"
         = render "admin/form_answers/financial_summary/list", financial_pointer: financial_pointer

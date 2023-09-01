@@ -1,9 +1,9 @@
 .panel.panel-default
-  .panel-heading#final-stage-email-notifications-heading role="tab"
+  .panel-heading#shortlisted-stage-email-notifications-heading
     h2.panel-title
-      a data-toggle="collapse" data-parent="#panel-final-stage" href="#section-final-stage-email-notifications" aria-expanded="true" aria-controls="section-final-stage-email-notifications"
+      a data-toggle="collapse" data-parent="#panel-shortlisted-stage" href="#section-shortlisted-stage-email-notifications" aria-expanded="true" aria-controls="section-shortlisted-stage-email-notifications"
         ' Email notification
-  #section-final-stage-email-notifications.section-appraisal-form.section-final-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-email-notifications-heading"
+  #section-shortlisted-stage-email-notifications.section-appraisal-form.section-shortlisted-stage-email-notifications.panel-collapse.collapse.in aria-labelledby="shortlisted-stage-email-notifications-heading"
     .panel-body
       = render 'email_notification', kind: 'shortlisted_notifier'
       = render 'email_notification', kind: 'shortlisted_po_sd_notifier'

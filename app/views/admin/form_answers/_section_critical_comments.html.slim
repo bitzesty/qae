@@ -1,7 +1,7 @@
-.panel.panel-default
-  .panel-heading#critical-comments-heading role="tab"
-    h4.panel-title
-      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-critical-comments" aria-expanded="true" aria-controls="section-critical-comments"
+.panel.panel-default[data-controller="element-focus"]
+  .panel-heading#critical-comments-heading
+    h3.panel-title
+      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-critical-comments" aria-expanded="true" aria-controls="section-critical-comments" data-element-focus-target="reveal"
         ' Critical Comments
         span.comments-number
           - if @form_answer.comments.critical.any?
@@ -15,10 +15,10 @@
               - last_comment = @form_answer.comments.critical.first
               = "Updated by #{message_author_name(last_comment.author)} - #{l(last_comment.created_at, format: :date_at_time)}"
 
-  #section-critical-comments.section-critical-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="critical-comments-heading"
-    .panel-body
+  #section-critical-comments.section-critical-comments.panel-collapse.collapse aria-labelledby="critical-comments-heading"
+    .panel-body[data-controller="inline-flash"]
       .comments-container.comment-assessor
-        = form_for([namespace_name, @form_answer, @form_answer.comments.new(section: "critical")]) do |f|
+        = form_for([namespace_name, @form_answer, @form_answer.comments.new(section: "critical")], html: { data: { inline_flash_target: "form" } }) do |f|
           = render("admin/comments/form", f: f)
         .comment-insert
         = render(collection: @form_answer.comments.critical, partial: "admin/form_answers/comment")

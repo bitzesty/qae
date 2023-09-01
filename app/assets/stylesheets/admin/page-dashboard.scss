@@ -80,6 +80,52 @@
 
 }
 
+.dashboard-table__wrapper {
+  .btn {
+    position: relative;
+    padding-left: 2.5em;
+
+    &:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 9px;
+      left: 10px;
+      background-size: 1em auto;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 1em;
+      height: 1em;
+    }
+
+    @media (min-width: 768px) {
+      position: absolute;
+      right: 0;
+      top: 3em;
+    }
+
+    &[disabled] {
+      opacity: 0.7;
+    }
+
+    &.btn--load:before {
+      background-image: image-url("icon_load.svg");
+    }
+
+    &.btn--reload:before {
+      background-image: image-url("icon_update.svg");
+    }
+
+    &.btn--loading:before {
+      background-image: image-url("icon_loading.svg");
+      background-size: 1.15em auto;
+      width: 1.2em;
+      height: 1.5em;
+      top: 7px;
+    }
+  }
+}
+
 .dashboard-table {
   table-layout: fixed;
   overflow-x: scroll;
@@ -122,50 +168,6 @@
         position: absolute;
         left: 0;
         top: -1px;
-      }
-    }
-
-    .btn {
-      position: relative;
-      padding-left: 2.5em;
-
-      &:before {
-        content: " ";
-        display: block;
-        position: absolute;
-        top: 9px;
-        left: 10px;
-        background-size: 1em auto;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 1em;
-        height: 1em;
-      }
-
-      @media (min-width: 768px) {
-        position: absolute;
-        right: 0;
-        top: 3em;
-      }
-
-      &[disabled] {
-        opacity: 0.7;
-      }
-
-      &.btn--load:before {
-        background-image: image-url("icon_load.svg");
-      }
-
-      &.btn--reload:before {
-        background-image: image-url("icon_update.svg");
-      }
-
-      &.btn--loading:before {
-        background-image: image-url("icon_loading.svg");
-        background-size: 1.15em auto;
-        width: 1.2em;
-        height: 1.5em;
-        top: 7px;
       }
     }
   }
@@ -243,6 +245,14 @@
   h3 {
     font-weight: bold;
     color: black;
+  }
+
+  .downloads-page__section {
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: black;
+    }
   }
 
   .download-list {

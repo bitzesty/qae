@@ -2,11 +2,11 @@
 
 - unless @form_answer.promotion?
   - if user_can_edit(@form_answer, :organisation_type)
-    .form-group class="#{'form-edit' if @form_answer.organisation_type.blank?}"
+    .form-group[class="#{'form-edit' if @form_answer.organisation_type.blank?}" data-controller="element-focus"]
       = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true, html: { "data-type" => "html" } do |f|
-        = hidden_field_tag :section, "organisation_type"
+                        authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "organisation_type_form_admin_appraisal" } do |f|
+        = hidden_field_tag :section, "organisation_type", id: "section_organisation_type_hidden_field"
 
         .form-container
           label.form-label = title
@@ -27,11 +27,11 @@
                             input_html: { class: "form-control" },
                             include_blank: false
             .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = f.submit "Save", class: "btn btn-primary pull-right"
           .clear
 
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear

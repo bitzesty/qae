@@ -48,9 +48,8 @@ html.no-js
                   span.icon-bar
                   span.icon-bar
 
-                = link_to "King's Awards for Enterprise - Judge",
-                          judge_root_path,
-                          class: 'navbar-brand'
+                = link_to judge_root_path, class:'navbar-brand' do
+                  = image_tag 'logo-admin.png', alt: "King's Awards for Enterprise - Judge"
 
               .navbar-collapse.collapse#nav-main-collapse
                 ul.nav.navbar-nav role="navigation"
@@ -94,4 +93,5 @@ html.no-js
 
     - if should_enable_js?
       = javascript_include_tag 'application-admin'
+      = javascript_pack_tag 'application-admin'
       = javascript_tag "$(function() { AdminAssessorAutomatedPollingOfSession.init('judge'); });"

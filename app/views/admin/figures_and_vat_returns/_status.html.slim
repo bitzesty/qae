@@ -1,0 +1,22 @@
+#shortlisted-documents-status.space-x-2[data-status-reversible="#{figures_form.submitted? || figures_form.submittable?}"]
+  - if figures_form.submitted?
+
+    span.label-status.label-status-green
+      ' Complete 
+    
+    = form_with url: [namespace_name, form_answer, :shortlisted_documents_submissions], html: { method: :post } do |f|
+      = f.submit "Mark as incomplete", class: "if-js-hide"
+
+      = link_to "#", class: "if-no-js-hide"
+        ' Mark as incomplete
+
+  - else
+    span.label-status.label-status-red
+      ' Incomplete
+
+    - if figures_form.submittable?
+      = form_with url: [namespace_name, form_answer, :shortlisted_documents_submissions], html: { method: :post } do |f|
+        = f.submit "Mark as completed", class: "if-js-hide"
+
+        = link_to "#", class: "if-no-js-hide"
+          ' Mark as completed

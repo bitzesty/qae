@@ -60,7 +60,7 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def csv_filename
-    "#{params[:id] || "report"}.csv"
+    resource.csv_filename.presence || "#{params[:id] || "report"}.csv"
   end
 
   def resource
