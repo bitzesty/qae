@@ -96,7 +96,8 @@ module RegionHelper
     "West Sussex": "South East",
     "West Yorkshire": "Yorkshire & The Humber",
     "Wiltshire": "South West",
-    "Worcestershire": "West Midlands"
+    "Worcestershire": "West Midlands",
+    "Wrexham": "Wales"
   }
 
   def counties
