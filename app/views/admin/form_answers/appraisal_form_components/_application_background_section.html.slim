@@ -1,6 +1,6 @@
 - editable = f.object.editable_for?(current_subject)
 
-.form-group.application-background-section class="#{'form-edit' if f.object.application_background_section_desc.blank? && editable}"
+.form-group.application-background-section[class="#{'form-edit' if f.object.application_background_section_desc.blank? && editable}" data-controller="element-focus"]
   .form-container
     label.form-label Application background
     .form-value
@@ -20,8 +20,8 @@
               label: false
 
     - if editable
-      = link_to "#", class: "form-edit-link pull-right"
+      = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
         span.glyphicon.glyphicon-pencil
         ' Edit
-      = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
+      = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", data: { action: "click->html5-form-validation#validate" }
       .clear

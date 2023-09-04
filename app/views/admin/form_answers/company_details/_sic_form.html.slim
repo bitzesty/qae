@@ -3,12 +3,13 @@
   - sic = @form_answer.sic_code_name
 
   - if user_can_edit(@form_answer, :sic_code)
-    .form-group.sic-code class="#{'form-edit' if @form_answer.sic_code.blank?}"
+    .form-group.sic-code[class="#{'form-edit' if @form_answer.sic_code.blank?}" data-controller="element-focus"]
       = simple_form_for [namespace_name, @form_answer],
                         remote: true,
-                        authenticity_token: true do |f|
+                        authenticity_token: true,
+                        html: { data: { type: "html", inline_flash_target: "form" }, id: "sic_code_form_admin_appraisal" } do |f|
 
-        = hidden_field_tag :section, "sic_code"
+        = hidden_field_tag :section, "sic_code", id: "section_sic_code_hidden_field"
 
         .form-container
           label.form-label SIC code
@@ -22,16 +23,16 @@
           .form-fields.form-block
             = f.input :sic_code,
                       wrapper_html: { class: "form-group" },
-                      input_html: { class: "form-control select2" },
+                      input_html: { class: "form-control custom-select" },
                       as: :select,
                       collection: SicCode.collection,
                       include_blank: false,
                       label: false
           .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
             = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
 
-          = link_to "#", class: "form-edit-link pull-right"
+          = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear

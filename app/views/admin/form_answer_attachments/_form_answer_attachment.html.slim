@@ -4,7 +4,7 @@
     - if show_remove_form_answer_attachment?(form_answer_attachment)
       small.pull-right
         = form_for([namespace_name, form_answer_attachment.form_answer, form_answer_attachment],
-                   html: { method: :delete, style: "display:inline-block;"}) do |f|
+                   html: { data: { inline_flash_target: "form" }, method: :delete, style: "display: inline-block;" }) do |f|
 
           = f.submit 'Remove', class: 'if-js-hide'
 

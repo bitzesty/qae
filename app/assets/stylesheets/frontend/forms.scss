@@ -803,30 +803,6 @@ input[type="file"] {
   }
 }
 
-// Select2 dropdowns
-.select2-container {
-  min-width: 14em;
-  width: auto !important;
-  max-width: 100%;
-
-  .select2-selection__rendered {
-    font-size: 14px;
-    white-space: normal !important;
-    overflow: hidden;
-    height: 28px;
-  }
-
-  .select2-search__field {
-    width: 100%;
-    margin: 0;
-    outline: none;
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
 // Error styling
 .errors-box {
   padding: $gutter-half $gutter-two-thirds;
@@ -1040,7 +1016,7 @@ input[type="file"] {
 
 // Used or NON JS cases - end
 
-select.js-trigger-autosave.select2.sic_code-selector {
+select.js-trigger-autosave.custom-select.sic_code-selector {
   max-width: 650px;
 }
 

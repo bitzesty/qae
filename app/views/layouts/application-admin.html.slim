@@ -38,6 +38,8 @@ html.no-js
   body#admin-layout data-autosave-token="#{current_admin.try(:autosave_token)}" class="admin-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
     #site-wrapper
       #site-wrapper-margin
+        a href="#main-container" class="btn btn-lg skip-main-content" onclick="document.getElementById('main-container').focus()" role="button"
+          | Skip to main content
         #site-header.clearfix
           .navbar.clearfix role="navigation"
             .container.clearfix
@@ -48,9 +50,8 @@ html.no-js
                   span.icon-bar
                   span.icon-bar
 
-                = link_to "King's Awards for Enterprise - Admin",
-                          admin_root_path,
-                          class: 'navbar-brand'
+                = link_to admin_root_path, class:'navbar-brand' do
+                  = image_tag 'logo-admin.png', alt: "King's Awards for Enterprise - Admin"
 
               .navbar-collapse.collapse#nav-main-collapse.clearfix
                 ul.nav.navbar-nav
@@ -121,4 +122,5 @@ html.no-js
 
     - if should_enable_js?
       = javascript_include_tag 'application-admin'
+      = javascript_pack_tag 'application-admin'
       = javascript_tag "$(function() { AdminAssessorAutomatedPollingOfSession.init('admin'); });"

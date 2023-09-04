@@ -4,25 +4,36 @@ window.WonInternationalTradeAwardQuestion = init: ->
   do maybeDisplayAwardHelp = ->
     container = $("[data-container~=#{identifier}]")
 
-    conditionFulfilled = false
+    currentHolder = false
+    recentWinner = false
 
     rows = container.find("li")
 
     $.each rows, (_idx, row) ->
-      validations = $.map ["category", "year", "outcome"], (type) ->
+      validations = $.map ["category", "outcome"], (type) ->
         input = $(row).find("select[data-input-value~=#{type}]")
         input.val() == container.data("#{type}-value").toString()
       if (validations.every(Boolean))
-        conditionFulfilled = true
-        return false
+        yearInput = $(row).find("select[data-input-value~=year]")
+        if yearInput.val() == container.data("year-value").toString()
+          currentHolder = true
+          return false
+        else if yearInput.val() < container.data("year-value").toString() && yearInput.val() > (container.data("year-value")-5).toString()
+          recentWinner = true
+          return false
 
-    helpBlock = container.closest("fieldset").find(".question-block")
+    currentHolderHelpBlock = $(".help-block #current-holder")
+    recentWinnerHelpBlock = $(".help-block #recent-winner")
 
-    if helpBlock
-      if conditionFulfilled
-        helpBlock.show()
-      else
-        helpBlock.hide()
+    if currentHolder
+      currentHolderHelpBlock.removeClass("hide")
+      recentWinnerHelpBlock.addClass("hide")
+    else if recentWinner
+      recentWinnerHelpBlock.removeClass("hide")
+      currentHolderHelpBlock.addClass("hide")
+    else
+      currentHolderHelpBlock.addClass("hide")
+      recentWinnerHelpBlock.addClass("hide")
 
   $(document).on "change", "[data-container~=#{identifier}] select", ->
     maybeDisplayAwardHelp()

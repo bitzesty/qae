@@ -2,13 +2,13 @@
 
 - editable = f.object.editable_for?(current_subject)
 
-.form-group.rag-section class="#{'form-edit' if f.object.public_send(section.desc).blank? && editable} form-#{section.label.parameterize}"
+.form-group.rag-section[class="#{'form-edit' if f.object.public_send(section.desc).blank? && editable} form-#{section.label.parameterize}" data-controller="element-focus"]
   .form-container
     = f.input section.rate,
               as: :select,
               label: false,
               collection: form.options,
-              input_html: { class: "if-js-hide", "data-updated-section" => section.rate }
+              input_html: { class: "if-js-hide", "data-updated-section" => section.rate, id: "#{f.object.position}_#{section.desc}_select" }
 
     label.form-label.form-label-rag
       span.rag_section_label
@@ -36,16 +36,16 @@
       .clear
 
     = f.input section.desc,
-              wrapper_html: { class: 'form-group' },
-              input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200), "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}" },
+              wrapper_html: { class: 'form-group'},
+              input_html: {id: "#{f.object.position}_#{section.desc}_comment", class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200), "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}" },
               as: :text,
               label: false
 
     - if editable
-      = link_to "#", class: "form-edit-link pull-right"
+      = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
         span.glyphicon.glyphicon-pencil
         ' Edit
       .form-actions.text-right
-        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", "data-updated-section" => section.desc
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss", action: "click->html5-form-validation#discard" }
+        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", data: { action: "click->html5-form-validation#validate", updated_section: section.desc }
       .clear

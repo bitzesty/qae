@@ -8,6 +8,7 @@ module AssessmentSubmissionMixin
     respond_to do |format|
       format.json { render(json_response) }
       format.html do
+        render_flash_message_for(resource, message: flash_message)
         redirect_to [namespace_name, resource.form_answer]
       end
     end
@@ -33,9 +34,14 @@ module AssessmentSubmissionMixin
 
   private
 
+  def flash_message
+    return nil if resource.errors.none?
+    resource.errors.full_messages.join(", ")
+  end
+
   def json_response
     json = @service.as_json
-    resp = { json: json }
+    resp = { json: @service.errors }
     resp[:status] = :unprocessable_entity if json.present?
     resp
   end

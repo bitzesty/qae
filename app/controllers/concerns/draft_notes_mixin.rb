@@ -9,6 +9,7 @@ module DraftNotesMixin
 
     respond_to do |format|
       format.html do
+        render_flash_message_for(resource)
         redirect_to [namespace_name, form_answer]
       end
 
@@ -28,6 +29,7 @@ module DraftNotesMixin
 
     respond_to do |format|
       format.html do
+        render_flash_message_for(resource)
         redirect_to [namespace_name, form_answer]
       end
 

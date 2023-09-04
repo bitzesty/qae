@@ -6,6 +6,8 @@ wrapper = $("#email_notification_" + "<%= @email_notification.kind %>");
 
   $(".new_email_notification .timepicker", wrapper).val(null);
   $(".new_email_notification .datepicker", wrapper).val(null);
+  window.fire($(".new_email_notification", wrapper)[0], 'ajax:x:success', null)
 <% else %>
   $(".notification-form input", wrapper).closest(".input").addClass("field-with-errors");
+  window.fire($(".new_email_notification", wrapper)[0], 'ajax:x:error', null)
 <% end %>

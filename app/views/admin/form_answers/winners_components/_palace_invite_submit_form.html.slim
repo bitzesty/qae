@@ -3,7 +3,8 @@
     = simple_form_for([:submit, namespace_name, palace_invite],
       remote: true,
       authenticity_token: true,
-      method: :post) do |f|
+      method: :post,
+      html: { data: { inline_flash_target: "form" } }) do |f|
 
       = f.submit "Submit", class: "btn btn-primary"
       .clear

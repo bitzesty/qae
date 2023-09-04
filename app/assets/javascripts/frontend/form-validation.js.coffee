@@ -16,6 +16,7 @@ window.FormValidation =
       container.closest("td").find(".govuk-error-message").empty()
     else
       container.closest(".question-block").find(".govuk-error-message").empty()
+    container.closest(".question-block").removeClass("govuk-form-group--error")
     container.closest(".govuk-form-group--error").removeClass("govuk-form-group--error")
 
   clearAriaDescribedby: (container) ->
@@ -168,23 +169,24 @@ window.FormValidation =
   addSubfieldError: (question, subquestion) ->
     questionRef = question.attr("data-question_ref")
     input = $(subquestion).find('input,textarea,select').filter(':visible')
-    label = @extractText(input.attr('id'))
-    incompleteMessage = "Question #{questionRef} is incomplete. It is required and must be filled in."
+    if input.length
+      label = @extractText(input.attr('id'))
+      incompleteMessage = "Question #{questionRef} is incomplete. It is required and must be filled in."
 
-    if question.hasClass('date-DDMMYYYY')
-      @addErrorMessage($(subquestion), "#{incompleteMessage} Use the format DD/MM/YYYY.")
-    else if question.hasClass('date-MMYYYY')
-      @addErrorMessage($(subquestion), "#{incompleteMessage} Use the format MM/YYYY.")
-    else if question.hasClass('date-YYYY')
-      @addErrorMessage($(subquestion), "#{incompleteMessage} Use the format YYYY.")
-    else if input.hasClass("autocomplete__input")
-      @addErrorMessage($(subquestion), "Question #{questionRef} is incomplete. #{label} is required and an option must be selected from the following dropdown list.")
-    else
-      if question.find(".js-financial-year-latest").length
-        #avoid duplicate errors for financial year questions
-        return
+      if question.hasClass('date-DDMMYYYY')
+        @addErrorMessage($(subquestion), "#{incompleteMessage} Use the format DD/MM/YYYY.")
+      else if question.hasClass('date-MMYYYY')
+        @addErrorMessage($(subquestion), "#{incompleteMessage} Use the format MM/YYYY.")
+      else if question.hasClass('date-YYYY')
+        @addErrorMessage($(subquestion), "#{incompleteMessage} Use the format YYYY.")
+      else if input.hasClass("autocomplete__input")
+        @addErrorMessage($(subquestion), "Question #{questionRef} is incomplete. #{label} is required and an option must be selected from the following dropdown list.")
       else
-        @addErrorMessage($(subquestion), "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
+        if question.find(".js-financial-year-latest").length
+          #avoid duplicate errors for financial year questions
+          return
+        else
+          @addErrorMessage($(subquestion), "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
 
   addQuestionError: (question) ->
     questionRef = question.attr("data-question_ref")

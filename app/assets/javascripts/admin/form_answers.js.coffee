@@ -25,12 +25,34 @@ ready = ->
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
     $(".attachment-link", wrapper).prependTo("#new_form_answer_attachment")
 
+    wrapper = $("#vat-returns-section")
+    $(".attachment-link", wrapper).removeClass("if-js-hide")
+    $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
+    $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
+    $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
+    $(".attachment-link", wrapper).prependTo("#new_vat_returns_file")
+
+    wrapper = $("#commercial-figures-section")
+    $(".attachment-link", wrapper).removeClass("if-js-hide")
+    $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
+    $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
+    $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
+    $(".attachment-link", wrapper).prependTo("#new_commercial_figures_file")
+
+    toggleCommercialFiguresButtonVisibility()
+
     wrapper = $("#audit-certificate-form")
     $(".attachment-link", wrapper).removeClass("if-js-hide")
     $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
     $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach External Accountant's Report</span>")
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
     $(".attachment-link", wrapper).prependTo("#new_audit_certificate")
+
+  toggleCommercialFiguresButtonVisibility = ->
+    if ($('.commercial-figures-file').length == 0)
+      $('#commercial-figures-attachment-form').removeClass('visuallyhidden')
+    else
+      $('#commercial-figures-attachment-form').addClass('visuallyhidden')
 
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
@@ -64,24 +86,47 @@ ready = ->
       stateToggle = $(".section-applicant-status .dropdown-toggle")
       stateToggle.replaceWith("<p class='p-lg'>"+stateToggle.text()+"</p>")
 
-  $(".section-applicant-users .edit_assessor_assignment select").select2()
-  $("#new_assessor_assignment_collection select").select2()
-  $(".bulk-assign-assessors-form select").select2()
+  $('.custom-select').each ->
+    field = $(this)[0]
+    if $(this).is(':disabled') or $(this).is('[readonly]')
+      return
+    accessibleAutocomplete.enhanceSelectElement
+      selectElement: field
+      showAllValues: true
+      dropdownArrow: ->
+        '<span class=\'autocomplete__arrow\'></span>'
+    return
 
   $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
-    form = $(this)
-    form.find(".errors-holder").text("")
-    form.closest(".form-group").removeClass("form-edit")
-    formValueBox = form.closest(".form-group").find(".edit-value")
-    formValue = form.find("select :selected").text()
-    formValueBox.text(formValue)
-  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
-    form = $(this)
-    errors = ""
-    for k, error of data.responseJSON["errors"]
-      errors += error
+    panel = this.closest(".form-group")
 
-    form.find(".errors-holder").text(errors)
+    removeExistingErrorMessages(panel)
+
+    $(this).closest(".form-group").removeClass("form-edit")
+    formValueBox = $(this).closest(".form-group").find(".edit-value")
+    selected = $(this).find("select :selected")
+
+
+    if (selected.val() == "")
+      formValueBox.html("<span class='p-empty'>Not assigned</span>")
+      message = "Assessor has been unassigned"
+    else
+      assessor = selected.text()
+      formValueBox.text(assessor)
+      message = "#{assessor} has been assigned"
+
+    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
+
+  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
+    errors = data.responseJSON['errors']
+    panel = this.closest('.form-group')
+
+    removeExistingErrorMessages(panel)
+
+    Object.entries(errors).forEach ([key, values]) ->
+      field = panel.querySelector("[id$=#{key}]")
+      if field and shouldValidateField(field)
+        showErrorForInvalidField(field, values, '.form-group')
 
   $("#new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
     data.formData =
@@ -95,6 +140,105 @@ ready = ->
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
       "audit_certificate[attachment]": $("#audit_certificate_attachment").val()
+
+  if $("html").hasClass("lte-ie7")
+    $(".attachment-link", $("#commercial-figures-section")).removeClass("if-js-hide")
+  else
+    do initializeFileUpload = ->
+      selector = $("#commercial-figures-attachment-form form")
+      selector.fileupload
+        autoUpload: true
+        dataType: "html"
+        forceIframeTransport: true
+        success: (result, textStatus, jqXHR) ->
+          result = $($.parseHTML(result))
+          $("#commercial-figures-buffer").append(result.text())
+
+          if $("#commercial-figures-file-valid", $("#commercial-figures-buffer")).length
+            $("#commercial-figures-section").html(result.text())
+            moveAttachDocumentButton()
+          else
+            form = $("#commercial-figures-attachment-form form")
+            section = form.closest("#commercial-figures-section")
+            section.find(".document-list .p-empty").addClass("visuallyhidden")
+            section.find(".document-list ul").append(result.text())
+
+          toggleCommercialFiguresButtonVisibility()
+          $("#commercial-figures-buffer").empty()
+
+  $("#commercial-figures-attachment-form form").on "fileuploadsubmit", (e, data) ->
+    data.formData =
+      authenticity_token: $("meta[name='csrf-token']").attr("content")
+      format: "js"
+      "commercial_figures_file[attachment]": $("#commercial_figures_file_attachment").val()
+
+  $(document).on 'click', ".commercial-figures-file-destroyer a", (e) ->
+    e.preventDefault()
+    form = $(this).parents('.commercial-figures-file-destroyer')
+    section = form.closest("#commercial-figures-section")
+    $.ajax
+      url: form.attr('action'),
+      type: 'DELETE'
+    form.parents('.commercial-figures-file').remove()
+    if $('.commercial-figures-file').length == 0
+      section.find(".document-list .p-empty").removeClass("visuallyhidden")
+      $('#commercial-figures-attachment-form').toggleClass('visuallyhidden', $('.commercial-figures-file').length != 0)
+      initializeFileUpload()
+    
+    toggleCommercialFiguresButtonVisibility()
+
+  if $("html").hasClass("lte-ie7")
+    $(".attachment-link", $("#vat-returns-section")).removeClass("if-js-hide")
+  else
+    do initializeFileUpload = ->
+      selector = $("#vat-returns-attachment-form form")
+      selector.fileupload
+        autoUpload: true
+        dataType: "html"
+        forceIframeTransport: true
+        success: (result, textStatus, jqXHR) ->
+          result = $($.parseHTML(result))
+          $("#vat-returns-buffer").append(result.text())
+
+          if $("#vat-returns-file-valid", $("#vat-returns-buffer")).length
+            $("#application-attachment-form").html(result.text())
+            moveAttachDocumentButton()
+            initializeFileUpload()
+          else
+            form = $("#vat-returns-attachment-form form")
+            section = form.closest("#vat-returns-section")
+            section.find(".document-list .p-empty").addClass("visuallyhidden")
+            section.find(".document-list ul").append(result.text())
+
+          $("#vat-returns-buffer").empty()
+
+  $("#vat-returns-attachment-form form").on "fileuploadsubmit", (e, data) ->
+    data.formData =
+      authenticity_token: $("meta[name='csrf-token']").attr("content")
+      format: "js"
+      "vat_returns_file[attachment]": $("#vat_returns_file_attachment").val()
+
+  $(document).on 'click', ".vat-returns-file-destroyer a", (e) ->
+    e.preventDefault()
+    form = $(this).parents('.vat-returns-file-destroyer')
+    section = form.closest("#vat-returns-section")
+    $.ajax
+      url: form.attr('action'),
+      type: 'DELETE'
+    form.parents('.vat-returns-file').remove()
+    if $('.vat-returns-file').length == 0
+      section.find(".document-list .p-empty").removeClass("visuallyhidden")
+      $('#shortlisted-documents-status').attr('data-status-reversible', 'false')
+    else 
+      $('#shortlisted-documents-status').attr('data-status-reversible', 'true')
+
+  $(document).on 'click', "#shortlisted-documents-status a", (e) ->
+    e.preventDefault()
+    form = $(this).closest('form')
+    $.ajax
+      url: form.attr('action'),
+      dataType: 'script',
+      type: 'POST'
 
   if $("html").hasClass("lte-ie7")
     $(".attachment-link", $("#application-attachment-form")).removeClass("if-js-hide")
@@ -186,26 +330,33 @@ ready = ->
     if $('.form_answer_attachment').length == 0
       sidebarSection.find(".document-list .p-empty").removeClass("visuallyhidden")
 
-  $(document).on "click", ".form-edit-link", (e) ->
+  $(document).on 'click', '.form-edit-link', (e) ->
     e.preventDefault()
-    $(this).closest(".form-group").addClass("form-edit")
-  $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
-    errors = data.responseJSON
-    $(this).addClass("field-with-errors")
-    $(this).closest(".panel-body").find("textarea").each ->
-      unless $(this).val().length
-        $(this).closest(".input").addClass("field-with-errors")
-    $(this).find(".feedback-holder").addClass("error")
-    $(this).find(".feedback-holder").html(errors.error.join("<br>"))
-  $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
-    $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
-    $(this).find(".feedback-holder").removeClass("error").addClass("alert alert-success")
+    element = this.closest('.form-group')
+    if (element)
+      element.classList.add('form-edit')
 
-    successMessage = "Assessment submitted"
-    if $(this).closest(".panel-collapse").hasClass("section-case-summary")
-      successMessage = "Case summary submitted"
-    $(this).find(".feedback-holder").html(successMessage)
-    $(this).find("input:submit").remove()
+  $('.submit-assessment').on 'ajax:error', (e, data, status, xhr) ->
+    panel = this.closest('.panel-body')
+    errors = data.responseJSON
+
+    removeExistingErrorMessages(panel)
+
+    Object.entries(errors).forEach ([key, values]) ->
+      field = panel.querySelector("[name*='[#{key}]']")
+      if field and shouldValidateField(field)
+        showErrorForInvalidField(field, values)
+
+  $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
+    panel = this.closest('.panel-body')
+    message = "Assessment submitted"
+    if panel.closest(".panel-collapse").classList.contains('section-case-summary')
+      message = "Case summary submitted"
+
+    removeExistingErrorMessages(panel)
+    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
+
+    $(this).find('input:submit').remove()
 
   $(document).on "click", ".form-save-link", (e) ->
     link = $(this)
@@ -283,6 +434,48 @@ ready = ->
     e.preventDefault()
     $(".bulk-assign-assessors-form").closest(".container").removeClass("show-bulk-assign")
 
+shouldValidateField = (field) ->
+  !field.disabled and field.type != undefined and ![
+    'file'
+    'reset'
+    'submit'
+    'button'
+  ].includes(field.type)
+
+showErrorForInvalidField = (field, values, containerSelector = '.form-container') ->
+  group = field.closest('.govuk-form-group')
+  if (group)
+    group.classList.add('field-with-errors')
+
+  container = field.closest(containerSelector)
+
+  if container
+    values.forEach (message) ->
+      if (!container.querySelector('.alert'))
+        id = "alert__#{String(Math.random()).slice(2, -1)}"
+        field.setAttribute('aria-errormessage', id)
+        container.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'danger', id))
+
+buildBannerHtml = (message, type, identifier = null) ->
+  id = identifier || "alert__#{String(Math.random()).slice(2, -1)}"
+  
+  "<div id='#{id}' class='alert alert-#{type}' data-controller='element-removal' role='alert' style='padding-top: 6px; padding-bottom: 6px; margin-bottom: 8px;'>
+    #{message}
+    <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close' style='font-size: 18px;'>
+      <span aria-hidden='true'>&times;</span>
+    </button>
+  </div>"
+
+removeExistingErrorMessages = (element) ->
+  element.querySelectorAll('.field-with-errors').forEach (el) ->
+    el.classList.remove('field-with-errors')
+
+  element.querySelectorAll('[aria-errormessage]').forEach (el) ->
+    el.removeAttribute('aria-errormessage')
+
+  element.querySelectorAll('.alert').forEach (banner) ->
+    banner.remove()
+
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
     e.preventDefault()
@@ -303,8 +496,8 @@ editFormAnswerAutoUpdate = ->
   $(".sic-code .form-save-link").on "click", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    that = $("#form_answer_sic_code")
-    form = $(".edit_form_answer")
+    input = $("#form_answer_sic_code")
+    form = $(e.target).closest('form')
     $.ajax
       action: form.attr("action")
       data: form.serialize()
@@ -312,15 +505,19 @@ editFormAnswerAutoUpdate = ->
       dataType: "json"
 
       success: (result) ->
-        formGroup = that.parents(".form-group")
+        formGroup = input.parents(".form-group")
         formGroup.removeClass("form-edit")
-        formGroup.find(".form-value p").text(that.find("option:selected").text())
+        console.log(formGroup, input)
+        formGroup.find(".form-value p").text(input.val())
         sicCodes = result["form_answer"]["sic_codes"]
         counter = 1
         for row in $(".sector-average-growth td")
           $(row).text(sicCodes[counter.toString()])
           counter += 1
         $(".avg-growth-legend").text(result["form_answer"]["legend"])
+
+        window.fire(form[0], 'ajax:x:success', null)
+
 bindRags =(klass) ->
   $(document).on "click", "#{klass} .btn-rag .dropdown-menu a", (e) ->
     e.preventDefault()
