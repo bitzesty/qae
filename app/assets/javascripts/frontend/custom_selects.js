@@ -9,7 +9,7 @@ $(document).ready(function () {
     accessibleAutocomplete.enhanceSelectElement({
       selectElement: field,
       showAllValues: true,
-      dropdownArrow: function() {
+      dropdownArrow: () => {
         return "<span class='autocomplete__arrow'></span>";
       },
     });
