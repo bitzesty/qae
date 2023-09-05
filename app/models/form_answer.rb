@@ -514,11 +514,15 @@ class FormAnswer < ApplicationRecord
       end
     end
 
+    ## questions that don't count are excluded to show 0% progress for applications not started
     progress_hash = HashWithIndifferentAccess.new(document || {}).except(*questions_that_dont_count)
     form = award_form.decorate(answers: progress_hash)
-    self.fill_progress = (form.required_visible_questions_filled - questions_that_dont_count.count).to_f / (form.required_visible_questions_total - questions_that_dont_count.count)
+    self.fill_progress = form.required_visible_questions_filled.to_f / (form.required_visible_questions_total - questions_that_dont_count.count)
 
     unless new_record?
+      ## section progress should include questions that don't count
+      progress_hash = HashWithIndifferentAccess.new(document || {})
+      form = award_form.decorate(answers: progress_hash)
       progress = (form_answer_progress || build_form_answer_progress)
       progress.assign_sections(form)
       progress.save
