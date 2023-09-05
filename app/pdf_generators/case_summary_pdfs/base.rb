@@ -24,10 +24,10 @@ class CaseSummaryPdfs::Base < ReportPdfBase
   end
 
   def all_mode
-    @_form_answers = set_form_answers
+    set_form_answers
 
-    if @_form_answers.present?
-      @_form_answers.each_with_index do |form_answer, index|
+    if form_answers.present?
+      form_answers.each_with_index do |form_answer, index|
         start_new_page if index.to_i != 0
         render_item(form_answer)
       end
@@ -54,11 +54,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
       scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode}'")
     end
 
-    puts "*"*100
-    puts scope.count
-    puts "*"*100
-
-    scope
+    @form_answers = scope
   end
 
   def render_item(form_answer)
