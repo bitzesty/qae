@@ -1,13 +1,12 @@
 class QaeFormBuilder
   class SubFieldsQuestionValidator < QuestionValidator
-    NO_VALIDATION_SUB_FIELDS = [:honours]
     def errors
       result = super
 
       if question.required?
         question.required_sub_fields.each do |sub_field|
           suffix = sub_field.keys[0]
-          if !question.input_value(suffix: suffix).present? && NO_VALIDATION_SUB_FIELDS.exclude?(suffix)
+          if !question.input_value(suffix: suffix).present?
             result[question.hash_key(suffix: suffix)] ||= ""
             result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. #{suffix.to_s.humanize} is required and and must be filled in."
           end
@@ -22,12 +21,16 @@ class QaeFormBuilder
   end
 
   class SubFieldsQuestionDecorator < QuestionDecorator
+    NO_VALIDATION_SUB_FIELDS = [:honours]
+
     def required_sub_fields
-      sub_fields
+      sub_fields.select do |f|
+        NO_VALIDATION_SUB_FIELDS.exclude?(f.keys.first)
+      end
     end
 
     def rendering_sub_fields
-      required_sub_fields.map do |f|
+      sub_fields.map do |f|
         {key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint)}
       end
     end
