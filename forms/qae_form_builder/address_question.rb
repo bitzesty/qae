@@ -1,14 +1,16 @@
 class QaeFormBuilder
   class AddressQuestionValidator < SubFieldsQuestionValidator
-    NO_VALIDATION_SUB_FIELDS = [:street, :county]
   end
 
   class AddressQuestionDecorator < SubFieldsQuestionDecorator
     include RegionHelper
+    NO_VALIDATION_SUB_FIELDS = [:street, :county]
 
     def required_sub_fields
       if sub_fields.present?
-        sub_fields
+        sub_fields.select do |f|
+          NO_VALIDATION_SUB_FIELDS.exclude?(f.keys.first)
+        end
       else
         [
           { building: "Building" },
@@ -24,7 +26,7 @@ class QaeFormBuilder
       # We are rejecting :street, because :building and :street
       # are rendering together in same block
       # and the :building is the first one
-      required_sub_fields.reject do |f|
+      sub_fields.reject do |f|
         f.keys.include?(:street)
       end.map do |f|
         [f.keys.first, f.values.first]
