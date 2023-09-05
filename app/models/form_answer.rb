@@ -507,11 +507,7 @@ class FormAnswer < ApplicationRecord
     if award_type == "promotion"
       questions_that_dont_count = []
     else
-      questions_that_dont_count = if award_year.year <= 2019
-        [:company_name]
-      else
-        [:company_name, :queen_award_holder]
-      end
+      questions_that_dont_count = [:company_name]
     end
 
     ## questions that don't count are excluded to show 0% progress for applications not started
