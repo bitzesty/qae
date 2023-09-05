@@ -247,7 +247,7 @@ module CaseSummaryPdfs::General::DataPointer
     when 2
       first_row_width = 607
     when 3
-      first_row_width = 500
+      first_row_width = 527
     when 5
       first_row_width = 367
     when 6
