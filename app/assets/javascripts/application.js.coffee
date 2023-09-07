@@ -459,11 +459,12 @@ jQuery ->
     referenceValue = parseFloat(referenceCell?.value) or 0
     if type == 'disadvantaged'
       proportionInput?.value = ((referenceValue / colSums[cell.cellIndex]) * 100).toFixed(2)
-      if isNaN(parseFloat(proportionInput?.value))
-        proportionInput?.value = "0"
 
     else if type == 'others'
       proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + referenceValue) * 100).toFixed(2)
+    
+    if isNaN(parseFloat(proportionInput?.value))
+      proportionInput?.value = "0"
 
   calculateRowsToExcludeFromBottom = (table, className) ->
     rows = table.querySelectorAll('tr');
