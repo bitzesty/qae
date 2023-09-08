@@ -10,8 +10,9 @@ module Utils
         when ::Date, ::DateTime then value.to_date
         when ::String then ::Date.parse(value)
       end
+      min, max = range.minmax
 
-      return date.in?(range)
+      return date >= min && date <= max
     rescue
       false
     end
