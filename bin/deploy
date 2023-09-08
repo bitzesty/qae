@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+git_hash=$(git rev-parse --short "$GITHUB_SHA")
+
 # Check CF connectivity
 cf login -a $CF_ENDPOINT -u $CF_USER -p "$CF_PASSWORD" -o $CF_ORG -s $CF_SPACE
 cf a
@@ -13,7 +15,7 @@ $SLACK_WEBHOOK
 export CF_BUILDPACK="https://github.com/cloudfoundry/ruby-buildpack.git#v1.10.3"
 
 cf create-app-manifest "$CF_APP"-worker
-cf set-env "$CF_APP"-worker RELEASE $GITHUB_REF
+cf set-env "$CF_APP"-worker RELEASE $git_hash
 cf push -f "$CF_APP"-worker_manifest.yml -b $CF_BUILDPACK -s cflinuxfs4
 
 cf create-app-manifest $CF_APP
@@ -22,7 +24,7 @@ CF_BUILDPACK=$CF_BUILDPACK ruby -ryaml -e 'm = YAML.load(STDIN); m["applications
   < "$CF_APP"_manifest.yml \
   > "$CF_APP"_patched_manifest.yml
 
-cf set-env $CF_APP RELEASE $GITHUB_REF
+cf set-env $CF_APP RELEASE $git_hash
 cf bgd $CF_APP -f "$CF_APP"_patched_manifest.yml --delete-old-apps
 
 curl -X POST \
