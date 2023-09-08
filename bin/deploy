@@ -13,6 +13,7 @@ $SLACK_WEBHOOK
 export CF_BUILDPACK="https://github.com/cloudfoundry/ruby-buildpack.git#v1.10.3"
 
 cf create-app-manifest "$CF_APP"-worker
+cf set-env "$CF_APP"-worker RELEASE $GITHUB_REF
 cf push -f "$CF_APP"-worker_manifest.yml -b $CF_BUILDPACK -s cflinuxfs4
 
 cf create-app-manifest $CF_APP
@@ -21,6 +22,7 @@ CF_BUILDPACK=$CF_BUILDPACK ruby -ryaml -e 'm = YAML.load(STDIN); m["applications
   < "$CF_APP"_manifest.yml \
   > "$CF_APP"_patched_manifest.yml
 
+cf set-env $CF_APP RELEASE $GITHUB_REF
 cf bgd $CF_APP -f "$CF_APP"_patched_manifest.yml --delete-old-apps
 
 curl -X POST \
