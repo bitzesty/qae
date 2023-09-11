@@ -18,7 +18,7 @@ tbody
 
       td = obj.dashboard_status
       td = obj.sic_code
-      td = obj.applied_before ? "Yes" : ""
+      td = obj.other_applications_from_same_entity.present? ? "Yes" : ""
 
       td.td-primary-name
         = obj.primary_assessor_full_name

@@ -16,7 +16,7 @@
     td = obj.award_type_short_name
     td = obj.dashboard_status(current_admin.class.name)
     td = obj.sic_code
-    td = obj.applied_before ? "Yes" : ""
+    td = obj.other_applications_from_same_entity.present? ? "Yes" : ""
     td
       - app_comments = application_comments(obj.comments_count)
       - if app_comments.present?
