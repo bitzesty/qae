@@ -698,7 +698,7 @@ window.FormValidation =
         totalOverseasTradePercentage += parseFloat($(this).val())
       else
         missingOverseasTradeValue = true
-    if totalOverseasTradePercentage != 100
+    if totalOverseasTradePercentage.toFixed(2) != (100).toFixed(2)
       @logThis(question, "validateGoodsServicesPercentage", "% of your total overseas trade should add up to 100")
       @appendMessage(question, "% of your total overseas trade should add up to 100")
       @addErrorClass(question)
