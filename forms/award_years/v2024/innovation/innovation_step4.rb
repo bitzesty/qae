@@ -119,6 +119,8 @@ class AwardYears::V2024::QaeForms
           conditional :financial_year_date_changed, :true
 
           employees_question
+
+          validatable_years_position [-2..-1] # validate only last 2 years for employee min. threshold
         end
 
         about_section :company_financials, "Company Financials" do
