@@ -64,7 +64,7 @@ h1.govuk-heading-xl Confirmation of submission
         p.govuk-body All winning individuals and their nominators attend Buckingham Palace reception hosted by His Majesty The King.
 
       - else
-        h3.govuk-heading-m 12 September #{@year - 1}
+        h3.govuk-heading-m #{submission_deadline.trigger_at.strftime("%d %B %Y")}
 
         p.govuk-body Application period closes
 
