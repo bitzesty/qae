@@ -8,8 +8,10 @@
           strong
             = "If you had growth in the last #{c.years} years"
       .govuk-grid-row
+        - validatable_years = question.validatable_years_position.present? && (1..c.years).to_a[*question.validatable_years_position]
         - (1..c.years).each do |y|
           - suffix = "#{y}of#{c.years}"
+          - minmax_ops = validatable_years ? { min: (y.in?(validatable_years) ? 2 : 0) } : {}
           .span-financial.govuk-grid-column-one-third
             label.govuk-label class="govuk-!-margin-bottom-0 govuk-!-margin-top-5" for=question.input_name(suffix: "#{y}of#{c.years}")
               span.js-year-end.show-default data-year="#{suffix}" data-year-diff="#{::Utils::Diff.calc(c.years, y)}"
@@ -35,6 +37,7 @@
                   id=question.input_name(suffix: suffix)
                   autocomplete="off"
                   *possible_read_only_ops
+                  *minmax_ops
                   aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{suffix}" : nil )
                 ]
               - else
@@ -47,6 +50,7 @@
                   id=question.input_name(suffix: suffix) 
                   autocomplete="off" 
                   *possible_read_only_ops
+                  *minmax_ops
                   aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{suffix}" : nil )
                 ]
       .clear

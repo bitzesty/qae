@@ -14,6 +14,20 @@ class QaeFormBuilder
         end
       end
 
+      if question.fields_count && question.validatable_years_position.present?
+        validatable_years = (1..question.fields_count).to_a[*question.validatable_years_position]
+
+        question.active_fields.each.with_index(1) do |suffix, idx|
+          value = question.input_value(suffix: suffix)
+          threshold = idx.in?(validatable_years) ? 2 : 0
+
+          if value.present? && value.to_i < threshold
+            result[question.hash_key(suffix: suffix)] ||= ""
+            result[question.hash_key(suffix: suffix)] << result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is invalid. Required minimum is #{threshold} employees."
+          end
+        end
+      end
+
       result
     end
   end
@@ -107,6 +121,10 @@ class QaeFormBuilder
       @q.first_year_min_value = min_value
       @q.first_year_validation_message = validation_message
     end
+
+    def validatable_years_position(values)
+      @q.validatable_years_position = values
+    end
   end
 
   class ByYearsCondition
@@ -125,7 +143,8 @@ class QaeFormBuilder
                   :label,
                   :employees_question,
                   :first_year_min_value,
-                  :first_year_validation_message
+                  :first_year_validation_message,
+                  :validatable_years_position
 
     def after_create
       @by_year_conditions = []
