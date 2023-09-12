@@ -59,6 +59,10 @@ class QaeFormBuilder
       @q.first_year_min_value = min_value
       @q.first_year_validation_message = validation_message
     end
+
+    def validatable_years_position(values)
+      @q.validatable_years_position = values
+    end
   end
 
   class OneOptionByYearsCondition
@@ -76,7 +80,8 @@ class QaeFormBuilder
                   :label,
                   :employees_question,
                   :first_year_min_value,
-                  :first_year_validation_message
+                  :first_year_validation_message,
+                  :validatable_years_position
 
   end
 end
