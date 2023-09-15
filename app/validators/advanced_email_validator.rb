@@ -24,12 +24,12 @@ class AdvancedEmailValidator < ActiveModel::Validator
   end
 
   def set_error(record)
-    record.errors.add(:email, "is not a valid address")
+    record.errors.add(:email, :invalid)
   end
 
   def maybe_set_error(record, message)
     yield.tap do |value|
-      record.errors.add(:email, message) if value
+      record.errors.add(:email, message: message) if value
     end
   end
 

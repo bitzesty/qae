@@ -45,22 +45,22 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
 
       raise "Access Denied!"
     end
-  end
 
-  def stream
-    scoped = @year.form_answers.order(:id)
-                               .joins(%Q{
+    @scope = @year.form_answers.order(:id)
+                  .joins(%Q{
                                  JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id = form_answers.id
                                  JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id = form_answers.id
                                })
-                               .where(primary_assignments: { position: AssessorAssignment.positions[:primary] })
-                               .where.not(primary_assignments: { position: nil })
-                               .where(secondary_assignments: { position: AssessorAssignment.positions[:secondary] })
-                               .where.not(secondary_assignments: { position: nil })
-                               .primary_and_secondary_appraisals_are_not_match
-                               .where(award_type: @award_type)
+                  .where(primary_assignments: { position: AssessorAssignment.positions[:primary] })
+                  .where.not(primary_assignments: { position: nil })
+                  .where(secondary_assignments: { position: AssessorAssignment.positions[:secondary] })
+                  .where.not(secondary_assignments: { position: nil })
+                  .primary_and_secondary_appraisals_are_not_match
+                  .where(award_type: @award_type)
+  end
 
-    prepare_stream(scoped)
+  def stream
+    prepare_stream(@scope)
   end
 
   private

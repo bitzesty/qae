@@ -14,9 +14,9 @@ li id="notification-#{notification.id}"
       - if policy(notification).destroy?
         span.if-no-js-hide
           '  |
-        = button_to "Delete", admin_settings_email_notification_path(notification), { onclick: "return confirm('Are you sure?')", method: :delete, remote: true }
+        = button_to "Delete", admin_settings_email_notification_path(notification), { onclick: "return confirm('Are you sure?')", method: :delete, remote: true, data: { action: "ajax:x:success->inline-flash#success ajax:x:error->inline-flash#error", inline_flash_target: "form" } }
     .notification-edit-form.well
-      = simple_form_for notification, url: admin_settings_email_notification_path(notification, year: params[:year]), remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["input"] } } do |f|
+      = simple_form_for notification, url: admin_settings_email_notification_path(notification, year: params[:year]), remote: true, authenticity_token: true, html: { data: { action: "ajax:x:success->inline-flash#success ajax:x:error->inline-flash#error", inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["input"] } } do |f|
         .control-date
           label.control-label Edit schedule
           = f.input :trigger_at,

@@ -156,11 +156,11 @@ class AssessmentSubmissionService
 
       res = {
         discrepancies: discrepancies,
-        primary_assessor_name: primary_assessor.full_name,
-        primary_assessor_email: primary_assessor.email,
+        primary_assessor_name: primary_assessor&.full_name,
+        primary_assessor_email: primary_assessor&.email,
         primary_assessor_submitted_at: format_date(primary_assessment.submitted_at),
-        secondary_assessor_name: secondary_assessor.full_name,
-        secondary_assessor_email: secondary_assessor.email,
+        secondary_assessor_name: secondary_assessor&.full_name,
+        secondary_assessor_email: secondary_assessor&.email,
         secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at)
       }
 

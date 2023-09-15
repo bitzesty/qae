@@ -1,17 +1,18 @@
 @import "mixins";
+@import "pxToRem";
 
 .panel-subtitle-small {
-  margin-bottom: 5px;
+  margin-bottom: pxToRem(5);
 }
 
 .applications-filter {
-  margin-bottom: 20px;
+  margin-bottom: pxToRem(20);
 
   .applications-filter__label, .search-input__label {
     display: block;
     text-transform: uppercase;
-    padding-right: 10px;
-    padding-top: 7px;
+    padding-right: pxToRem(10);
+    padding-top: pxToRem(7);
 
     @include screen-md-max {
       text-align: left;
@@ -19,14 +20,14 @@
 
     @include screen-sm-max {
       min-width: 0;
-      padding-right: 20px;
+      padding-right: pxToRem(20);
     }
   }
 
   .dropdown {
     position: relative;
     display: inline-block;
-    padding-right: 28px;
+    padding-right: pxToRem(28);
     width: 100%;
     vertical-align: bottom;
 
@@ -35,7 +36,7 @@
       overflow: hidden;
       max-width: 100%;
       text-overflow: ellipsis;
-      line-height: 19px;
+      line-height: pxToRem(19);
     }
 
     .caret-container {
@@ -44,9 +45,9 @@
       right: 0;
       bottom: 0;
       left: auto;
-      padding-right: 10px;
-      padding-left: 10px;
-      border-left: 1px solid #262626;
+      padding-right: pxToRem(10);
+      padding-left: pxToRem(10);
+      border-left: pxToRem(1) solid #262626;
       background: #1c1c1b;
 
       .caret {
@@ -56,26 +57,22 @@
     }
 
     .dropdown-menu {
-      min-width: 250px;
+      min-width: pxToRem(250);
       border-color: #666666;
 
       li.checkbox,
       li.apply {
-        padding: 0 10px;
-
-        .btn:focus {
-          border-color: #5C5C5C;
-        }
+        padding: 0 pxToRem(10);
       }
     }
   }
 }
 
 .search-text {
-  margin-bottom: 30px;
-  padding: 10px 15px;
+  margin-bottom: pxToRem(30);
+  padding: pxToRem(10) pxToRem(15);
   background-color: $grey-lighter;
-  font-size: 18px;
+  font-size: pxToRem(18);
   font-style: italic;
 
   p {
@@ -90,8 +87,8 @@
 .applications-table,
 .admin-table {
   > tbody > tr > td {
-    padding-top: 13px;
-    padding-bottom: 12px;
+    padding-top: pxToRem(13);
+    padding-bottom: pxToRem(12);
     a:not(.link-edit-user) {
       color: $blue-link-colour;
     }
@@ -103,7 +100,7 @@
   }
 
   > tbody > tr:first-child > td {
-    padding-top: 16px;
+    padding-top: pxToRem(16);
   }
 }
 
@@ -128,9 +125,9 @@
 }
 
 .nav-tabs.submitted-tabs {
-  margin-bottom: 20px;
+  margin-bottom: pxToRem(20);
   border-bottom: none;
-  font-size: 11px;
+  font-size: pxToRem(11);
 
   .no-js & {
     display: none;
@@ -139,18 +136,18 @@
   > li {
     > a {
       margin: 0;
-      margin-left: 5px;
+      margin-left: pxToRem(5);
 
       &,
       &:focus {
-        padding: 3px 10px;
-        border: 2px solid $grey-tab;
-        border-radius: 100px;
+        padding: pxToRem(3) pxToRem(10);
+        border: pxToRem(2) solid $grey-tab;
+        border-radius: pxToRem(100);
         color: $grey-tab;
       }
 
       &:hover {
-        border: 2px solid $grey-tab-hover;
+        border: pxToRem(2) solid $grey-tab-hover;
         background: transparent;
         color: $grey-tab-hover;
       }
@@ -161,12 +158,12 @@
       position: absolute;
       bottom: 0;
       left: 50%;
-      width: 8px;
-      height: 4px;
-      margin-bottom: -6px;
-      margin-left: -4px;
+      width: pxToRem(8);
+      height: pxToRem(4);
+      margin-bottom: pxToRem(-6);
+      margin-left: pxToRem(-4);
       background-image: image-url("icon-arrow-tab.png");
-      background-size: 8px 4px;
+      background-size: pxToRem(8) pxToRem(4);
 
       @include is-retina {
         background-image: image-url("icon-arrow-tab@2.png");
@@ -179,7 +176,7 @@
       &,
       &:hover,
       &:focus {
-        border: 2px solid #666;
+        border: pxToRem(2) solid #666;
         color: #666;
       }
     }
@@ -192,7 +189,7 @@
 
 .no-js .tab-content > .tab-pane {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: pxToRem(30);
   visibility: visible;
 
   &:last-child {
@@ -202,7 +199,7 @@
 
 .tab-header {
   display: none;
-  margin-bottom: 15px;
+  margin-bottom: pxToRem(15);
 
   .no-js & {
     display: block;
@@ -211,12 +208,12 @@
 
 .label-small {
   display: block;
-  font-size: 14px;
+  font-size: pxToRem(14);
   text-align: left;
 }
 
 .good-services-list li {
-  margin-bottom: 20px;
+  margin-bottom: pxToRem(20);
 
   &:last-child {
     margin-bottom: 0;
@@ -227,19 +224,19 @@
   display: none;
   color: gray;
   font-style: italic;
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: pxToRem(14);
+  margin-bottom: pxToRem(10);
 }
 
 .inline-form-view {
-  margin-top: 15px;
+  margin-top: pxToRem(15);
 
   .form-control {
-    margin-bottom: 5px;
+    margin-bottom: pxToRem(5);
   }
 
   .form-group .row {
-    margin-bottom: 10px;
+    margin-bottom: pxToRem(10);
   }
 
   .no-js & {
@@ -260,7 +257,7 @@
 
     .control-label {
       display: block;
-      font-size: 14px;
+      font-size: pxToRem(14);
       text-align: left;
     }
 
@@ -268,17 +265,17 @@
     .form-fields,
     .char-count {
       display: none;
-      min-width: 100px;
+      min-width: pxToRem(100);
     }
 
     .form-control-day,
     .form-control-month,
     .form-control-year {
-      margin-right: 10px;
+      margin-right: pxToRem(10);
       float: left;
 
       .form-control {
-        width: 50px;
+        width: pxToRem(50);
         text-align: center;
       }
     }
@@ -286,13 +283,13 @@
     .form-control-day,
     .form-control-month {
       .form-control {
-        min-width: 50px;
+        min-width: pxToRem(50);
       }
     }
 
     .form-control-year {
       .form-control {
-        min-width: 70px;
+        min-width: pxToRem(70);
       }
     }
 
@@ -329,7 +326,7 @@
 }
 
 .form-container {
-  padding: 10px;
+  padding: pxToRem(10);
   background: $grey-lighter;
 
   .char-count.char-max-shift {
@@ -338,7 +335,7 @@
 }
 
 .form-group-multiple-parent {
-  margin-bottom: 15px;
+  margin-bottom: pxToRem(15);
 
   &:last-child {
     margin-bottom: 0;
@@ -366,25 +363,25 @@
 }
 
 .form-edit-link {
-  margin-top: 10px;
+  margin-top: pxToRem(10);
   color: $black;
-  font-size: 16px;
+  font-size: pxToRem(16);
 
   .glyphicon {
-    margin-right: 5px;
-    font-size: 12px;
+    margin-right: pxToRem(5);
+    font-size: pxToRem(12);
   }
 }
 
 .show-sidebar {
   .form-save-button,
   .form-save-link {
-    margin-top: 10px;
+    margin-top: pxToRem(10);
   }
 
   ul.other-applications-list {
     li {
-      margin-bottom: 20px;
+      margin-bottom: pxToRem(20);
     }
   }
 }
@@ -397,22 +394,22 @@
 
   h2 {
     margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 24px;
+    margin-bottom: pxToRem(10);
+    font-size: pxToRem(24);
     font-weight: normal;
     text-transform: none;
   }
 
   p {
-    font-size: 18px;
+    font-size: pxToRem(18);
 
     @include screen-md-max {
-      font-size: 16px;
+      font-size: pxToRem(16);
     }
   }
 
   .btn {
-    margin-top: 20px;
+    margin-top: pxToRem(20);
   }
 }
 
@@ -420,35 +417,35 @@
 
   h2,
   p {
-    margin-bottom: 5px;
+    margin-bottom: pxToRem(5);
   }
 
   p {
-    font-size: 15px;
+    font-size: pxToRem(15);
 
     &.p-lg {
-      font-size: 20px;
+      font-size: pxToRem(20);
     }
   }
 
   .btn-group {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: pxToRem(5);
   }
 
   .dropdown-toggle {
     display: inline-block;
     padding: 0;
-    padding-right: 20px;
+    padding-right: pxToRem(20);
     float: none;
     color: $black;
-    font-size: 20px;
+    font-size: pxToRem(20);
     text-align: left;
     text-decoration: none;
     background-image: image-url("icon-arrow-admin-dropdown-down.png");
     background-repeat: no-repeat;
     background-position: right center;
-    background-size: 12px 9px;
+    background-size: pxToRem(12) pxToRem(9);
 
     @include is-retina {
       background-image: image-url("icon-arrow-admin-dropdown-down@2.png");
@@ -464,12 +461,11 @@
   }
 
   .state-container {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
 
     h2 {
-      position: absolute;
-      top: 0.4em;
-      left: 0;
+      margin-top: 0.35rem;
 
       @include screen-lg-max {
         position: static;
@@ -501,7 +497,7 @@
 
   li {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: pxToRem(20);
     clear: both;
 
     &:last-child {
@@ -511,7 +507,7 @@
 
   label {
     display: block;
-    font-size: 14px;
+    font-size: pxToRem(14);
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -526,7 +522,7 @@
 
     @include screen-md-max {
       width: auto;
-      margin-left: 120px;
+      margin-left: pxToRem(120);
     }
   }
 
@@ -543,15 +539,15 @@
     top: 0;
     right: 0;
     margin-top: 0;
-    font-size: 14px;
+    font-size: pxToRem(14);
 
     .lte-ie7 & {
-      margin-top: -20px;
+      margin-top: pxToRem(-20);
     }
   }
 
   .form-save-button {
-    margin-bottom: 10px;
+    margin-bottom: pxToRem(10);
     float: right;
     clear: both;
   }
@@ -561,10 +557,17 @@
       display: inline;
     }
   }
+  
+  .alert ~ form > .form-edit-link {
+    display: flex;
+    float: right;
+    margin-top: pxToRem(-54);
+    position: relative;
+  }
 }
 
 .centered {
-  padding-left: 25px;
+  padding-left: pxToRem(25);
 }
 
 .audit-cert-no-change-val,
@@ -589,18 +592,24 @@
 }
 
 .form-group .list-attendees li .row {
-  margin-bottom: 20px;
+  margin-bottom: pxToRem(20);
 }
 
 .bulk-assign-assessors-link {
   position: relative;
-  left: -9999px;
-  margin-top: 10px;
+  left: pxToRem(-9999);
+  margin-top: pxToRem(10);
   background-color: $blue-link-colour;
   color: white;
 
   &.show-button {
     left: 0;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: $govuk-light-blue;
+    border-color: #204d74
   }
 
   .show-bulk-assign & {
@@ -611,9 +620,9 @@
 }
 
 .bulk-assign-assessors-form {
-  max-width: 755px;
-  margin-top: 25px;
-  margin-bottom: 10px;
+  max-width: pxToRem(755);
+  margin-top: pxToRem(25);
+  margin-bottom: pxToRem(10);
 
   .js & {
     display: none;
@@ -626,7 +635,7 @@
   }
 
   h2 {
-    font-size: 18px;
+    font-size: pxToRem(18);
     font-weight: bold;
     line-height: 1.5;
   }
@@ -640,7 +649,7 @@
   }
 
   .btn {
-    margin-left: 10px;
+    margin-left: pxToRem(10);
   }
 
   .well {
@@ -670,7 +679,7 @@
   zoom: 1;
 
   .form-group {
-    margin-top: 15px;
+    margin-top: pxToRem(15);
 
     .form-control {
       display: block;
