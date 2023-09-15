@@ -20,7 +20,7 @@
           .form-fields.form-block
             .row
               .col-xs-6.col-md-6
-                = f.simple_fields_for(:data) do |f|
+                = f.simple_fields_for :data, include_id: false do |f|
                   = f.input :organisation_type,
                             collection: AppraisalFormHelper::COMPANY_ORGANISATION_TYPES,
                             label: false,

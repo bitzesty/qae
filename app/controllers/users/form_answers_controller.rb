@@ -71,7 +71,7 @@ class Users::FormAnswersController < Users::BaseController
 
   def render_hard_copy_pdf
     if form_answer.pdf_version.present?
-      redirect_to form_answer.pdf_version.url
+      redirect_to form_answer.pdf_version.url, allow_other_host: true
     else
       if !admin_in_read_only_mode?
         redirect_to dashboard_path,

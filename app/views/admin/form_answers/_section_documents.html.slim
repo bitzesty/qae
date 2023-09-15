@@ -27,16 +27,17 @@
       ' Post Shortlisting Docs
 
     - if @form_answer.requires_vocf?
-      .document-list.space-y-2
-        = render(partial: "admin/form_answers/docs/status", locals: { form_answer: @form_answer })
-        = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
+      div[data-controller="inline-flash"]
+        .document-list.space-y-2
+          = render(partial: "admin/form_answers/docs/status", locals: { form_answer: @form_answer })
+          = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
 
-      - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
-        .sidebar-section.no-margin-bottom.space-y-3
-          - if @form_answer.requires_vocf?
-            #audit-certificate-form[data-controller="inline-flash"]
-              - audit_certificate = @form_answer.build_audit_certificate
-              = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: audit_certificate 
+        - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
+          .sidebar-section.no-margin-bottom.space-y-3
+            - if @form_answer.requires_vocf?
+              #audit-certificate-form[data-controller="inline-flash"]
+                - audit_certificate = @form_answer.build_audit_certificate
+                = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: audit_certificate 
 
     - elsif @form_answer.provided_estimates? 
       - figures_form = @form_answer.shortlisted_documents_wrapper || @form_answer.build_shortlisted_documents_wrapper
@@ -57,16 +58,17 @@
   .sidebar-section
     h2
       ' Other Docs
-    .document-list
-      p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.any?}"
-        ' No documents have been attached.
-      ul.list-unstyled.list-actions
-        - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
-          = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.uploaded_not_by_user.visible_for(current_subject))
-      .clear
-      br
-    #application-attachment-form
-      = render "admin/form_answer_attachments/form", form_answer: @form_answer, form_answer_attachment: @form_answer.form_answer_attachments.build
+    div[data-controller="inline-flash"]
+      .document-list
+        p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.any?}"
+          ' No documents have been attached.
+        ul.list-unstyled.list-actions
+          - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
+            = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.uploaded_not_by_user.visible_for(current_subject))
+        .clear
+        br
+      #application-attachment-form
+        = render "admin/form_answer_attachments/form", form_answer: @form_answer, form_answer_attachment: @form_answer.form_answer_attachments.build
 
 
 #audit-certificate-buffer

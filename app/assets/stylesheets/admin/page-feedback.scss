@@ -1,10 +1,12 @@
+@import "pxToRem";
+
 .feedback-stars {
   white-space: nowrap;
 }
 
 .feedback-description,
 .feedback-table .read-more-container {
-  font-size: 14px;
+  font-size: pxToRem(14);
 }
 
 .read-more-container {

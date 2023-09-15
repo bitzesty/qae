@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AuditCertificate, type: :model do
   describe "associations" do
-    it { should belong_to(:form_answer) }
+    it { should belong_to(:form_answer).optional }
   end
 
   describe "validations" do
@@ -20,7 +20,7 @@ RSpec.describe AuditCertificate, type: :model do
       }
     end
   end
-  
+
   describe 'save' do
     it 'should set changes_description' do
       audit_certificate = create(:audit_certificate, changes_description: "test")

@@ -7,7 +7,7 @@ class VatReturnsFile < ActiveRecord::Base
               maximum: 5.megabytes.to_i
             }
 
-  belongs_to :shortlisted_documents_wrapper
+  belongs_to :shortlisted_documents_wrapper, optional: true
 
   after_destroy :unsubmit_if_needed
 

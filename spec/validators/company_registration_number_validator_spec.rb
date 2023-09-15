@@ -3,24 +3,6 @@
 require "rails_helper"
 
 RSpec.describe CompanyRegistrationNumberValidator do
-  def anonymous_class
-    Class.new(ActiveRecord::Base) do
-      self.table_name = "company_registration_number_validator_test"
-
-      validates :registration_number, company_registration_number: true
-
-      def self.model_name
-        ActiveModel::Name.new(self, nil, "temp")
-      end
-    end
-  end
-
-  before(:each) do
-    ActiveRecord::Base.connection.create_table :company_registration_number_validator_test do |t|
-      t.string :registration_number
-    end
-  end
-
   it "should validate valid registration number" do
     %w[
       123456
@@ -36,8 +18,7 @@ RSpec.describe CompanyRegistrationNumberValidator do
       NC001306
       NL000107
     ].each do |registration_number|
-      model = anonymous_class.new(registration_number: registration_number)
-      expect(model).to be_valid
+      expect(CompanyRegistrationNumberValidator.valid?(registration_number)).to be_truthy
     end
   end
 
@@ -47,8 +28,7 @@ RSpec.describe CompanyRegistrationNumberValidator do
       AB123456
       XXXXXXXX
     ].each do |registration_number|
-      model = anonymous_class.new(registration_number: registration_number)
-      expect(model).to be_invalid
+      expect(CompanyRegistrationNumberValidator.valid?(registration_number)).to be_falsey
     end
   end
 end

@@ -5,7 +5,7 @@
 
 .downloads-page
   .downloads-page__section
-    h3
+    h2
       ' Case Summaries
     ul.download-list
       - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |key, value| current_judge.assigned_award_types.include?(key) }.each do |key, value|

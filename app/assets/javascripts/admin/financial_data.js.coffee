@@ -6,12 +6,14 @@ jQuery ->
     overallBenchmarksTable = ($ "#overall-financial-benchmarks")
     financialTable = ($ "#financial-table")
 
-    $("input", form).on "change keyup keydown paste", ->
-      timer ||= setTimeout(saveFinancials, 500)
-
     ($ "button", form).on "click", (event) ->
       do event.preventDefault
       $(this).closest(".form-group").removeClass("form-edit")
+
+
+    ($ ".form-save-button", form).on "click", (event) ->
+      do event.preventDefault
+      saveFinancials()
 
     updateExportsGrowth = (exports) ->
       exportsGrowth = ($ 'tr.exports-growth td.value', benchmarksTable)

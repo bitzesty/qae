@@ -1,17 +1,17 @@
-.panel.panel-default
+.panel.panel-default[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
   .panel-heading#appraisal-form-secondary-heading
     h3.panel-title
-      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-secondary" aria-expanded="true" aria-controls="section-appraisal-form-secondary"
+      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-secondary" aria-expanded="true" aria-controls="section-appraisal-form-secondary" data-element-focus-target="reveal"
         ' Appraisal Form (Secondary)
         - if secondary_assessment.last_editor_info.present?
           small
             = secondary_assessment.last_editor_info
-  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse aria-labelledby="appraisal-form-secondary-heading"
+  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse[aria-labelledby="appraisal-form-secondary-heading" data-controller="appraisal-form" data-appraisal-form-success-value="Appraisal form (secondary) has been submitted"]
     .panel-body[data-controller="inline-flash"]
       = simple_form_for([namespace_name, secondary_assessment],
                         remote: true,
                         authenticity_token: true,
-                        html: { data: { type: "json", inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["textarea"] }, id: "secondary_appraisal_form"}) do |f|
+                        html: { data: { type: "json", inline_flash_target: "form" }, id: "secondary_appraisal_form"}) do |f|
 
         = hidden_field_tag :updated_section, nil, id: "secondary_updated_section_hidden_field"
         = render_section(resource, f)

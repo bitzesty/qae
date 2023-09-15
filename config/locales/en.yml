@@ -22,8 +22,8 @@ en:
         all_users: All applicants
     eligibility/basic:
       organization_kind:
-        business: "Business (for example, companies, partnerships, social enterprises)"
-        charity: "Not-for-profit (for example, charities, foundations, associations)"
+        business: 'Business (for example, companies, partnerships, social enterprises)'
+        charity: 'Not-for-profit (for example, charities, foundations, associations)'
       kind:
         application: Apply for an organisation award
         nomination: Nominate an individual
@@ -35,13 +35,13 @@ en:
         i_dont_know: "I don't know"
     eligibility/innovation:
       innovative_product:
-        skip: "Skip Innovation eligibility"
+        skip: 'Skip Innovation eligibility'
     eligibility/development:
       sustainable_development:
-        skip: "Skip Sustainable Development eligibility"
+        skip: 'Skip Sustainable Development eligibility'
     eligibility/trade:
       sales_above_100_000_pounds:
-        skip: "Skip International Trade eligibility"
+        skip: 'Skip International Trade eligibility'
       qae_for_trade_award_year:
         before_2010: Prior to 2010
         before_2011: Prior to 2011
@@ -60,39 +60,57 @@ en:
 
   activerecord:
     errors:
+      full_messages:
+        format: '{{message}}'
       messages:
-        blank: This field cannot be blank
+        blank: '%{attribute} is empty - it is a required field and must be filled in'
         accepted: Must be accepted
-        taken: "This %{attribute} has already been taken"
-        too_long: "%{attribute} is too long (maximum is %{count} characters)"
-        too_short: "%{attribute} is too short (minimum is %{count} characters)"
+        taken: 'This %{attribute} has already been taken'
+        too_long: '%{attribute} is too long (maximum is %{count} characters)'
+        too_short: '%{attribute} is too short (minimum is %{count} characters)'
         confirmation: "%{attribute} doesn't match."
-        not_a_number: "Please enter a number."
+        not_a_number: 'Please enter a number.'
       models:
         user:
           attributes:
+            email:
+              invalid: 'Email is invalid - enter a valid email address'
+            role:
+              blank: 'Account type is empty - it is a required field and an option should be selected from the following list'
             password:
               weak_password: Your new password must be more complex.
         admin:
           attributes:
+            email:
+              invalid: 'Email is invalid - enter a valid email address'
             password:
               weak_password: Your new password must be more complex.
         assessor:
           attributes:
+            email:
+              invalid: 'Email is invalid - enter a valid email address'
             password:
               weak_password: Your new password must be more complex.
+        judge:
+          attributes:
+            email:
+              invalid: 'Email is invalid - enter a valid email address'
+        assessor_assignment:
+          attributes:
+            position:
+              blank: 'is empty - it is a required field and an option should be selected from the following list'
 
   time:
     formats:
-      date_at_time: "%d/%m/%Y at %-l:%M%P"
-      govuk_time: "%-I:%M%P"
-      govuk_date_short: "%-I:%M%P, %-e %b %Y"
-      govuk_date: "%-I:%M%P, %-e %B %Y"
+      date_at_time: '%d/%m/%Y at %-l:%M%P'
+      govuk_time: '%-I:%M%P'
+      govuk_date_short: '%-I:%M%P, %-e %b %Y'
+      govuk_date: '%-I:%M%P, %-e %B %Y'
 
   date:
     formats:
-      govuk_date_short: "%-e %b %Y"
-      govuk_date: "%-e %B %Y"
+      govuk_date_short: '%-e %b %Y'
+      govuk_date: '%-e %B %Y'
 
   admin:
     form_answers:
@@ -119,16 +137,16 @@ en:
         uk_sales_row:
           uk_sales: Of which UK sales (£)
         benchmarks:
-          growth_overseas_earnings: "% Growth overseas earnings"
-          sales_exported: "% Sales exported"
-          average_growth_for: "% Sector average growth"
-          growth_in_total_turnover: "% Growth in total turnover"
+          growth_overseas_earnings: '% Growth overseas earnings'
+          sales_exported: '% Sales exported'
+          average_growth_for: '% Sector average growth'
+          growth_in_total_turnover: '% Growth in total turnover'
 
   errors:
     messages:
-      wrong_size: "is the wrong size (should be %{file_size})"
-      size_too_small: "is too small (should be at least %{file_size})"
-      size_too_big: "is too big (should be at most %{file_size})"
+      wrong_size: 'is the wrong size (should be %{file_size})'
+      size_too_small: 'is too small (should be at least %{file_size})'
+      size_too_big: 'is too big (should be at most %{file_size})'
 
   deadline_messages:
     award_year_switch: Award year opens on
@@ -146,51 +164,51 @@ en:
     audit_certificates: Additional Financials documents due by
 
   deadline_buttons:
-    award_year_switch: "award year opening date"
-    innovation_submission_start: "Innovation submission period start date"
-    trade_submission_start: "International Trade submission period start date"
-    development_submission_start: "Sustainable Development submission period start date"
-    mobility_submission_start: "Promoting Opportunity submission period start date"
-    submission_end: "submission period end date"
-    audit_certificates: "additional financial documents due by date"
-    buckingham_palace_attendees_details: "end of embargo date"
-    buckingham_palace_media_information: "media information presentation date"
-    buckingham_palace_confirm_press_book_notes: "deadline for recipients to finalise the press release"
-    buckingham_palace_reception_attendee_information_due_by: "deadline for recipients to finalise palace attendees"
-    buckingham_palace_attendees_invite: "palace reception date"
+    award_year_switch: 'award year opening date'
+    innovation_submission_start: 'Innovation submission period start date'
+    trade_submission_start: 'International Trade submission period start date'
+    development_submission_start: 'Sustainable Development submission period start date'
+    mobility_submission_start: 'Promoting Opportunity submission period start date'
+    submission_end: 'submission period end date'
+    audit_certificates: 'additional financial documents due by date'
+    buckingham_palace_attendees_details: 'end of embargo date'
+    buckingham_palace_media_information: 'media information presentation date'
+    buckingham_palace_confirm_press_book_notes: 'deadline for recipients to finalise the press release'
+    buckingham_palace_reception_attendee_information_due_by: 'deadline for recipients to finalise palace attendees'
+    buckingham_palace_attendees_invite: 'palace reception date'
 
   email_buttons:
-    award_year_open_notifier: "new award year open notification"
-    innovation_submission_started_notification: "Innovation applications open notification"
-    trade_submission_started_notification: "International Trade applications open notification"
-    development_submission_started_notification: "Sustainable Development applications open notification"
-    mobility_submission_started_notification: "Promoting Opportunites applications open notification"
-    reminder_to_submit: "reminder to submit applications notification"
-    shortlisted_notifier: "shortlisted notification for Innovation and International Trade applications"
-    shortlisted_po_sd_notifier: "shortlisted notification for Sustainable Development and Promoting Opportunities applications with estimated figures"
-    shortlisted_po_sd_with_actual_figures_notifier: "shortlisted notification for sustainable development and promoting opportunities applications with actual figures"
-    shortlisted_audit_certificate_reminder: "reminder notification for Innovation and International Trade applications to supply Verification of Commercial Figures"
-    shortlisted_po_sd_reminder: "reminder notification for Sustainable Development and Promoting Opportunities applications to supply financial statements"
-    not_shortlisted_notifier: "notification to unsuccessful applicants"
-    winners_notification: "notification to successful applicants"
-    winners_head_of_organisation_notification: "notification to head of successful applications"
-    buckingham_palace_invite: "palace invite notification"
-    unsuccessful_notification: "notification to unsuccessful applicants"
+    award_year_open_notifier: 'new award year open notification'
+    innovation_submission_started_notification: 'Innovation applications open notification'
+    trade_submission_started_notification: 'International Trade applications open notification'
+    development_submission_started_notification: 'Sustainable Development applications open notification'
+    mobility_submission_started_notification: 'Promoting Opportunites applications open notification'
+    reminder_to_submit: 'reminder to submit applications notification'
+    shortlisted_notifier: 'shortlisted notification for Innovation and International Trade applications'
+    shortlisted_po_sd_notifier: 'shortlisted notification for Sustainable Development and Promoting Opportunities applications with estimated figures'
+    shortlisted_po_sd_with_actual_figures_notifier: 'shortlisted notification for sustainable development and promoting opportunities applications with actual figures'
+    shortlisted_audit_certificate_reminder: 'reminder notification for Innovation and International Trade applications to supply Verification of Commercial Figures'
+    shortlisted_po_sd_reminder: 'reminder notification for Sustainable Development and Promoting Opportunities applications to supply financial statements'
+    not_shortlisted_notifier: 'notification to unsuccessful applicants'
+    winners_notification: 'notification to successful applicants'
+    winners_head_of_organisation_notification: 'notification to head of successful applications'
+    buckingham_palace_invite: 'palace invite notification'
+    unsuccessful_notification: 'notification to unsuccessful applicants'
 
   deadline_help_messages:
-    award_year_switch: "This date marks the start of the new award year, and will update the website accordingly. Users will not yet be able to start any applications"
-    submission_start: "This date is when the applications for the current award year become available."
-    innovation_submission_start: "This date is when the applications for the Innovation award of the current award year become available."
-    trade_submission_start: "This date is when the applications for the International Trade award of the current award year become available."
-    development_submission_start: "This date is when the applications for the Sustainable Development award of the current award year become available."
-    mobility_submission_start: "This date is when the applications for the Promoting Opportunity award of the current award year become available."
-    submission_end: "Applicants will no longer be able to edit or submit their applications after this date. This date will be pulled into the Reminder to submit the applications email."
-    buckingham_palace_attendees_details: "This date marks the end of the the embargo preventing recipients publicly announcing their success. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
-    buckingham_palace_media_information: "KAO will provide the press book information to the media on this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
-    buckingham_palace_confirm_press_book_notes: "Recipients will not be able to make comments or changes to their press release after this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
-    buckingham_palace_reception_attendee_information_due_by: "Recipients will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only."
-    buckingham_palace_attendees_invite: "This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email."
-    audit_certificates: "Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email."
+    award_year_switch: 'This date marks the start of the new award year, and will update the website accordingly. Users will not yet be able to start any applications'
+    submission_start: 'This date is when the applications for the current award year become available.'
+    innovation_submission_start: 'This date is when the applications for the Innovation award of the current award year become available.'
+    trade_submission_start: 'This date is when the applications for the International Trade award of the current award year become available.'
+    development_submission_start: 'This date is when the applications for the Sustainable Development award of the current award year become available.'
+    mobility_submission_start: 'This date is when the applications for the Promoting Opportunity award of the current award year become available.'
+    submission_end: 'Applicants will no longer be able to edit or submit their applications after this date. This date will be pulled into the Reminder to submit the applications email.'
+    buckingham_palace_attendees_details: 'This date marks the end of the the embargo preventing recipients publicly announcing their success. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations.'
+    buckingham_palace_media_information: 'KAO will provide the press book information to the media on this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations.'
+    buckingham_palace_confirm_press_book_notes: 'Recipients will not be able to make comments or changes to their press release after this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations.'
+    buckingham_palace_reception_attendee_information_due_by: 'Recipients will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only.'
+    buckingham_palace_attendees_invite: 'This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email.'
+    audit_certificates: 'Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email.'
 
   email_notification_help_messages:
     award_year_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for at least one award type in account's 'Contact Preferences' section."
@@ -198,32 +216,32 @@ en:
     trade_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for International Trade award in account's 'Contact Preferences' section."
     development_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Sustainable Development award in account's 'Contact Preferences' section."
     mobility_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Promoting Opportunity award in account's 'Contact Preferences' section."
-    shortlisted_notifier: "Shortlisted stage start (shortlisted/unsuccessful applications are displayed on the homepage)"
-    winners_notification: "Recipients stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
-    unsuccessful_notification: "Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)"
-    buckingham_palace_invite: "Palace invites stage start (allows users to add their Palace invite details on the homepage)"
+    shortlisted_notifier: 'Shortlisted stage start (shortlisted/unsuccessful applications are displayed on the homepage)'
+    winners_notification: 'Recipients stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)'
+    unsuccessful_notification: 'Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)'
+    buckingham_palace_invite: 'Palace invites stage start (allows users to add their Palace invite details on the homepage)'
 
   email_notification_headers:
-    award_year_open_notifier: "Notify users that the applications for the new Award year are open"
-    innovation_submission_started_notification: "Notify users that the applications for King’s Awards for Innovation are now open"
-    trade_submission_started_notification: "Notify users that the applications for King’s Awards for International Trade are now open"
-    development_submission_started_notification: "Notify users that the applications for King’s Awards for Sustainable Development are now open"
-    mobility_submission_started_notification: "Notify users that the applications for King’s Awards for Promoting Opportunity are now open"
-    submission_started_notification: "Notify users that applications for the new Award year are open"
+    award_year_open_notifier: 'Notify users that the applications for the new Award year are open'
+    innovation_submission_started_notification: 'Notify users that the applications for King’s Awards for Innovation are now open'
+    trade_submission_started_notification: 'Notify users that the applications for King’s Awards for International Trade are now open'
+    development_submission_started_notification: 'Notify users that the applications for King’s Awards for Sustainable Development are now open'
+    mobility_submission_started_notification: 'Notify users that the applications for King’s Awards for Promoting Opportunity are now open'
+    submission_started_notification: 'Notify users that applications for the new Award year are open'
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
-    ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
-    winners_notification: "RECIPIENTS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
+    ep_reminder_support_letters: 'ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted).'
+    winners_notification: 'RECIPIENTS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry.'
     winners_reminder_to_submit: "RECIPIENTS: Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_head_of_organisation_notification: "RECIPIENTS : Success email to the 'Head of Organisation' of the Business categories Recipient."
-    buckingham_palace_invite: "RECIPIENTS : Buckingham Palace Invite - to heads of winning organisations only."
-    unsuccessful_notification: "UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder."
-    unsuccessful_ep_notification: "UNSUCCESSFUL: Email notification of unsuccessful QAEP nominations."
+    buckingham_palace_invite: 'RECIPIENTS : Buckingham Palace Invite - to heads of winning organisations only.'
+    unsuccessful_notification: 'UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder.'
+    unsuccessful_ep_notification: 'UNSUCCESSFUL: Email notification of unsuccessful QAEP nominations.'
     shortlisted_notifier: "SHORTLISTED - INNOVATION & IT: Email notifying shortlisted applicants of their success, including Verification of Commercial Figures (External Accountant's Report) instructions."
-    shortlisted_po_sd_notifier: "SHORTLISTED - PO & SD: Email notifying shortlisted applicants of their success - to those who provided estimated figures (asking for the latest financial statements & VAT returns submission instructions)."
-    shortlisted_po_sd_with_actual_figures_notifier: "SHORTLISTED - PO & SD: Email notifying shortlisted applicants of their success - to those who provided actual figures."
+    shortlisted_po_sd_notifier: 'SHORTLISTED - PO & SD: Email notifying shortlisted applicants of their success - to those who provided estimated figures (asking for the latest financial statements & VAT returns submission instructions).'
+    shortlisted_po_sd_with_actual_figures_notifier: 'SHORTLISTED - PO & SD: Email notifying shortlisted applicants of their success - to those who provided actual figures.'
     shortlisted_audit_certificate_reminder: "SHORTLISTED REMINDER - INNOVATION & IT: Reminder for to submit Verification of Commercial Figures (External Accountant's Report) for shortlisted applicants who have not yet done so."
-    shortlisted_po_sd_reminder: "SHORTLISTED REMINDER - PO & SD: Reminder to submit the latest financial statements & VAT returns for shortlisted applicants who have not yet done so."
-    not_shortlisted_notifier: "NOT SHORTLISTED : Email notifying unsuccessful applicants."
+    shortlisted_po_sd_reminder: 'SHORTLISTED REMINDER - PO & SD: Reminder to submit the latest financial statements & VAT returns for shortlisted applicants who have not yet done so.'
+    not_shortlisted_notifier: 'NOT SHORTLISTED : Email notifying unsuccessful applicants.'
 
   custom_login_messages:
     we_just_sent_you_confirmation_email: We have just sent you an email asking to confirm your account.
@@ -233,24 +251,24 @@ en:
     have_no_account: "If you don't have an account, please go to"
     forgot_password: "If you've forgotten your password, request"
     not_confirmed: "You haven't confirmed your account"
-    when_you_had_created_account: "When you created your account, we sent you an email asking to confirm it."
+    when_you_had_created_account: 'When you created your account, we sent you an email asking to confirm it.'
     not_received_confirmation_email: "If you haven't received it,"
 
   days:
     one: 1 day
-    other: "%{count} days"
+    other: '%{count} days'
 
   pdf_texts:
     innovation:
       years_question_additional_context: "If you have selected 'Outstanding Commercial Performance: innovation has improved commercial performance over two years' in C1, you will only need to provide information for the last two years."
     trade:
-      years_question_additional_context: "If you have selected “Outstanding Short-Term Growth” in D1, you will only need to provide information for the last three years."
+      years_question_additional_context: 'If you have selected “Outstanding Short-Term Growth” in D1, you will only need to provide information for the last three years.'
       queen_awards_question_additional_context: |
         If you won the award in the previous 4 years you can only apply for an International Trade Award on an Outstanding Short-Term Growth basis, and you need to be able to demonstrate that your international trade has resulted in outstanding year-on-year growth in the last 3 years with no dips.
 
         If you won the award in the last year, unfortunately, you cannot apply for the International Trade Award this year. If your international trade continues to result in outstanding year-on-year growth, you can apply again in 2024 for an award to be given in 2025 (on Outstanding Short-Term Growth over a 3 years basis), providing you include two new years of trading results in your application.
     development:
-      years_question_additional_context: "If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years."
+      years_question_additional_context: 'If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years.'
 
   audit_logs:
     action_types:
@@ -262,47 +280,47 @@ en:
       feedbacks: Feedbacks
       case_summaries: Case summaries
       download_form_answer: Application PDF
-      admin_comment_create: "added an admin comment"
-      admin_comment_destroy: "deleted an admin comment"
-      critical_comment_create: "added a critical comment"
-      critical_comment_destroy: "deleted a critical comment"
-      form_answer_attachment_create: "added an attachment"
-      form_answer_attachment_destroy: "deleted an attachment"
-      primary_appraisal_update: "updated the primary appraisal form"
-      secondary_appraisal_update: "updated the secondary appraisal form"
-      moderated_appraisal_update: "updated the moderated appraisal form"
-      case_summary_update: "updated the case summary"
-      feedback_create: "added feedback"
-      feedback_update: "updated feedback"
-      feedback_submit: "submitted feedback"
-      feedback_unsubmit: "unlocked feedback"
-      primary_appraisal_submit: "submitted primary appraisal"
-      primary_appraisal_unsubmit: "unsubmitted primary appraisal"
-      secondary_appraisal_submit: "submitted secondary appraisal"
-      secondary_appraisal_unsubmit: "unsubmitted secondary appraisal"
-      moderated_appraisal_submit: "submitted moderated appraisal"
-      moderated_appraisal_unsubmit: "unsubmitted moderated appraisal"
-      case_summary_submit: "submitted case summary"
-      case_summary_unsubmit: "unlocked case summary"
+      admin_comment_create: 'added an admin comment'
+      admin_comment_destroy: 'deleted an admin comment'
+      critical_comment_create: 'added a critical comment'
+      critical_comment_destroy: 'deleted a critical comment'
+      form_answer_attachment_create: 'added an attachment'
+      form_answer_attachment_destroy: 'deleted an attachment'
+      primary_appraisal_update: 'updated the primary appraisal form'
+      secondary_appraisal_update: 'updated the secondary appraisal form'
+      moderated_appraisal_update: 'updated the moderated appraisal form'
+      case_summary_update: 'updated the case summary'
+      feedback_create: 'added feedback'
+      feedback_update: 'updated feedback'
+      feedback_submit: 'submitted feedback'
+      feedback_unsubmit: 'unlocked feedback'
+      primary_appraisal_submit: 'submitted primary appraisal'
+      primary_appraisal_unsubmit: 'unsubmitted primary appraisal'
+      secondary_appraisal_submit: 'submitted secondary appraisal'
+      secondary_appraisal_unsubmit: 'unsubmitted secondary appraisal'
+      moderated_appraisal_submit: 'submitted moderated appraisal'
+      moderated_appraisal_unsubmit: 'unsubmitted moderated appraisal'
+      case_summary_submit: 'submitted case summary'
+      case_summary_unsubmit: 'unlocked case summary'
       audit_certificate_downloaded: "downloaded External Accountant's Report form"
       audit_certificate_uploaded: "uploaded External Accountant's Report form"
       audit_certificate_destroyed: "removed External Accountant's Report form"
-      actual_figures_file_uploaded: "uploaded actual figures"
-      actual_figures_file_destroyed: "removed actual figures"
-      commercial_figures_file_uploaded: "uploaded Variance explanation document"
-      commercial_figures_file_destroyed: "removed Variance explanation document"
-      vat_returns_file_uploaded: "uploaded VAT returns"
-      vat_returns_file_destroyed: "removed VAT returns"
-      palace_attendee_update: "updated Buckingham Palace attendee details"
-      palace_attendee_submit: "confirmed Buckingham Palace attendee details"
-      palace_attendee_create: "added a new Buckingham Palace attendee"
-      palace_attendee_destroy: "deleted a Buckingham Palace attendee"
-      press_summary_update: "updated press book notes"
-      press_summary_submit: "submitted press book notes"
-      press_summary_signoff: "signed off press release"
-      press_summary_create: "created the press book notes"
-      application_create: "created the award application"
-      application_update: "updated the award application"
+      actual_figures_file_uploaded: 'uploaded actual figures'
+      actual_figures_file_destroyed: 'removed actual figures'
+      commercial_figures_file_uploaded: 'uploaded Variance explanation document'
+      commercial_figures_file_destroyed: 'removed Variance explanation document'
+      vat_returns_file_uploaded: 'uploaded VAT returns'
+      vat_returns_file_destroyed: 'removed VAT returns'
+      palace_attendee_update: 'updated Buckingham Palace attendee details'
+      palace_attendee_submit: 'confirmed Buckingham Palace attendee details'
+      palace_attendee_create: 'added a new Buckingham Palace attendee'
+      palace_attendee_destroy: 'deleted a Buckingham Palace attendee'
+      press_summary_update: 'updated press book notes'
+      press_summary_submit: 'submitted press book notes'
+      press_summary_signoff: 'signed off press release'
+      press_summary_create: 'created the press book notes'
+      application_create: 'created the award application'
+      application_update: 'updated the award application'
 
   form_answers:
     state:

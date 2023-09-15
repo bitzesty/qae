@@ -1,6 +1,8 @@
 @import "mixins";
-$footer-height: 60px;
-$footer-height-sm: 30px;
+@import "pxToRem";
+
+$footer-height: pxToRem(60);
+$footer-height-sm: pxToRem(30);
 
 html,
 body,
@@ -56,7 +58,7 @@ body {
   font-weight: bold;
   color: #fff;
   position: relative;
-  top: -40px;
+  top: pxToRem(-40);
 }
 
 .dev-banner {
@@ -69,7 +71,7 @@ body {
 
 .admin-assessor-js-status-banner {
   position: relative;
-  top: -40px;
+  top: pxToRem(-40);
   padding: 0.5em;
   text-align: center;
   background-color: #fff2d3;
@@ -78,15 +80,15 @@ body {
 
 .container {
   .lte-ie8 & {
-    max-width: 1170px;
+    max-width: pxToRem(1170);
   }
 }
 
 .row {
   .lte-ie8 & {
     display: block;
-    margin-right: -15px;
-    margin-left: -15px;
+    margin-right: pxToRem(-15);
+    margin-left: pxToRem(-15);
     clear: both;
   }
 
@@ -111,9 +113,9 @@ body {
   .lte-ie8 & {
     float: left;
     position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+    min-height: pxToRem(1);
+    padding-right: pxToRem(15);
+    padding-left: pxToRem(15);
   }
 
   .lte-ie7 & {

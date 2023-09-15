@@ -256,8 +256,8 @@ class AwardYear < ApplicationRecord
       res
     end
 
-    def buckingham_palace_reception_deadline
-      current_year_deadline("buckingham_palace_attendees_invite")
+    def buckingham_palace_reception_deadline(award_year)
+      award_year.settings.deadlines.where(kind: "buckingham_palace_attendees_invite").first
     end
 
     def buckingham_palace_reception_date

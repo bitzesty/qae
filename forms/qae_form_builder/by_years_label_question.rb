@@ -143,7 +143,7 @@ class QaeFormBuilder
     end
 
     def by_year_condition k, v, num, options = {}
-      @q.by_year_conditions << ByYearsCondition.new(k, v, num, options)
+      @q.by_year_conditions << ByYearsCondition.new(k, v, num, **options)
     end
   end
 

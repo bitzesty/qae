@@ -56,8 +56,9 @@ ready = ->
         else
           signatureWrapper.html("")
 
-        $(@).parents('.comment').remove()
+        window.fire(@, 'ajax:x:success', null)
 
+        $(@).parents('.comment').remove()
 
   toggleFlagged()
   deleteCommentAlert()

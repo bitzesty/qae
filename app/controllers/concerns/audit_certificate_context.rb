@@ -1,7 +1,7 @@
 module AuditCertificateContext
   def show
     authorize form_answer, :download_audit_certificate_pdf?
-    redirect_to resource.attachment_url
+    redirect_to resource.attachment_url, allow_other_host: true
   end
 
   def create

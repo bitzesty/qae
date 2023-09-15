@@ -69,4 +69,30 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
       "&nbsp;".html_safe
     end
   end
+
+  def as_csv
+    CSV.generate do |csv|
+      headers = ["Year"]
+      case kind
+      when "by_month"
+        columns = ["By end of April", "By end of May", "By end of June", "By end of July", "By end of August", "Totals on deadline"]
+      when "by_week"
+        columns = ["6 weeks before deadline", "5 weeks before deadline", "4 weeks before deadline", "3 weeks before deadline", "2 weeks before deadline", "1 week before deadline", "Totals on deadline"]
+      when "by_day"
+        columns = ["6 days before deadline", "5 days before deadline", "4 days before deadline", "3 days before deadline", "2 days before deadline", "1 day before deadline", "Totals on deadline"]
+      end
+      csv << (headers + columns).flatten
+      
+      stats.each do |row|
+        content = []
+        content << row.label
+        row.content.each{|c| content << (c == "&nbsp;" ? nil : c)}
+        csv << content
+      end
+    end
+  end
+
+  def csv_filename
+    "account_registrations_#{kind}.csv"
+  end
 end

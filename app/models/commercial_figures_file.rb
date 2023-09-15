@@ -10,5 +10,5 @@ class CommercialFiguresFile < ActiveRecord::Base
   validates :form_answer_id, uniqueness: true,
             presence: true
 
-  belongs_to :shortlisted_documents_wrapper
+  belongs_to :shortlisted_documents_wrapper, optional: true
 end

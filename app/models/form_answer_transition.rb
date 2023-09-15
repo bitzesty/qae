@@ -1,7 +1,7 @@
 class FormAnswerTransition < ApplicationRecord
   include Statesman::Adapters::ActiveRecordTransition
 
-  belongs_to :form_answer, inverse_of: :form_answer_transitions
+  belongs_to :form_answer, optional: true, inverse_of: :form_answer_transitions
 
   def transitable
     t_type = metadata["transitable_type"]

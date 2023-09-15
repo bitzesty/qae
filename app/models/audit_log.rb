@@ -3,8 +3,8 @@ class AuditLog < ApplicationRecord
   validates :subject_id, presence: true
   validates :action_type, presence: true
 
-  belongs_to :subject, polymorphic: true
-  belongs_to :auditable, polymorphic: true
+  belongs_to :subject, polymorphic: true, optional: true
+  belongs_to :auditable, polymorphic: true, optional: true
 
   scope :data_export, -> { where(auditable_type: nil).or(where(action_type: "download_form_answer")) }
   scope :data_update, -> { where(auditable_type: "FormAnswer").where("action_type != 'download_form_answer'") }

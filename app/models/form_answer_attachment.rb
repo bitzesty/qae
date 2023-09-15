@@ -1,6 +1,6 @@
 class FormAnswerAttachment < ApplicationRecord
-  belongs_to :form_answer
-  belongs_to :attachable, polymorphic: true
+  belongs_to :form_answer, optional: true
+  belongs_to :attachable, polymorphic: true, optional: true
 
   mount_uploader :file, FormAnswerAttachmentUploader
   scan_file      :file

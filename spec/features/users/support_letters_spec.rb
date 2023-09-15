@@ -66,7 +66,7 @@ So that I can support my nominator
           SupportLetter.count
         }
 
-        expect_to_see "This field cannot be blank"
+        expect_to_see "First name is empty - it is a required field and must be filled in"
       end
     end
 

@@ -7,7 +7,7 @@
 
     span.email-notification-help
       - if (help_message = t("email_notification_help_messages.#{kind}", default: "")).present?
-        span.glyphicon-info-sign.help-message
+        span.glyphicon-info-sign.help-message role="tooltip" aria-label=help_message
           span.help-message-text
             = help_message
 

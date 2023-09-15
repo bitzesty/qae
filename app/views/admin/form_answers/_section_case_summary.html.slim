@@ -1,29 +1,20 @@
 - if visible_case_summaries(current_subject, resource)
   - visible_case_summaries(current_subject, resource).each do |assessment_obj|
     - assessment = assessment_obj.assessment
-    .panel.panel-parent
+    .panel.panel-parent.panel-default[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
       .panel-heading id="case-summary-heading-#{assessment.position}"
         h3.panel-title
-          a data-toggle="collapse" href="#section-case-summary-#{assessment.position}" aria-expanded="true" aria-controls="section-case-summary-#{assessment.position}"
+          a data-toggle="collapse" href="#section-case-summary-#{assessment.position}" aria-expanded="true" aria-controls="section-case-summary-#{assessment.position}" data-element-focus-target="reveal"
             ' Case Summary (for recommended or reserved applications only)
             small.panel-subtitle-small
               | This will be presented to the panel members and is used when making the final decision
             - if assessment.editable.present?
               small
                 = "Updated by #{message_author_name(assessment.editable)} - #{format_date(assessment.updated_at)}"
-      .panel-collapse.collapse aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}"
+      .panel-collapse.collapse[aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}" data-controller="appraisal-form" data-appraisal-form-success-value="Case summary has been submitted"]
 
         .panel-body[data-controller="inline-flash"]
-          /.alert.alert-glyphicon.alert-info
-            span.glyphicon.glyphicon-info-sign
-            p.todo-placeholder
-              ' Some instructions on how to use this or what this section is about. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
-
-          / Only show if Moderated Appraisal is submitted
-          / For Primary Assessor
-          / It becomes read-only for primary assessor after submission
-
-          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form", controller: "html5-form-validation", html5_form_validation_selectors_value: ["textarea"] } }) do |f|
+          = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true, html: { data: { inline_flash_target: "form" } }) do |f|
             = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
               locals: { f: f}
             = render_section(resource, f)

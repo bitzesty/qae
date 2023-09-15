@@ -3,6 +3,7 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 describe "Collaborator registration flow" do
+  let!(:award_year) { AwardYear.current }
   let!(:acc_admin) { create(:user, role: "account_admin") }
 
   before do

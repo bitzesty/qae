@@ -20,8 +20,8 @@
     <script type="text/javascript">
       (function(){if(window.opera){return;}
        setTimeout(function(){var a=document,g,b={families:(g=
-       ["nta"]),urls:["<%= asset_path "fonts-ie8.css" %>"]},
-       c="<%= asset_path "vendor/goog/webfont-debug.js" %>",d="script",
+       ["nta"]),urls:["<%= asset_path "fonts-ie8.css", skip_pipeline: true %>"]},
+       c="<%= asset_path "vendor/goog/webfont-debug.js", skip_pipeline: true %>",d="script",
        e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
        ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
        .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
@@ -33,14 +33,15 @@
 
     <%= stylesheet_pack_tag 'application' %>
 
-    <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="<%= image_url('favicon.ico') %>]" type="image/x-icon">
-    <link rel="mask-icon" href="<%= image_url('govuk-mask-icon.svg') %>]" color="blue">
-    <link rel="apple-touch-icon" sizes="180x180" href="<%= image_url('govuk-apple-touch-icon-180x180.png') %>]">
-    <link rel="apple-touch-icon" sizes="167x167" href="<%= image_url('govuk-apple-touch-icon-167x167.png') %>]">
-    <link rel="apple-touch-icon" sizes="152x152" href="<%= image_url('govuk-apple-touch-icon-152x152.png') %>]">
-    <link rel="apple-touch-icon" href="<%= image_url('govuk-apple-touch-icon.png') %>]">
+    <!--    TODO: There were wrong links. It looks like we don't use them-->
+    <!--    <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="<%#= image_url('favicon.ico', skip_pipeline: true) %>" type="image/x-icon">-->
+    <!--    <link rel="mask-icon" href="<%#= image_url('govuk-mask-icon.svg', skip_pipeline: true) %>" color="blue">-->
+    <!--    <link rel="apple-touch-icon" sizes="180x180" href="<%#= image_url('govuk-apple-touch-icon-180x180.png', skip_pipeline: true) %>">-->
+    <!--    <link rel="apple-touch-icon" sizes="167x167" href="<%#= image_url('govuk-apple-touch-icon-167x167.png', skip_pipeline: true) %>">-->
+    <!--    <link rel="apple-touch-icon" sizes="152x152" href="<%#= image_url('govuk-apple-touch-icon-152x152.png', skip_pipeline: true) %>">-->
+    <!--    <link rel="apple-touch-icon" href="<%#= image_url('govuk-apple-touch-icon.png', skip_pipeline: true) %>">-->
 
-    <meta property="og:image" content="<%= asset_path "opengraph-image.png" %>">
+    <meta property="og:image" content="<%= asset_path "opengraph-image.png", skip_pipeline: true %>">
 
     <%= yield :head %>
   </head>

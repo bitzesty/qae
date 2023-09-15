@@ -30,6 +30,7 @@ describe FormAnswerSearch do
 
   context "assessment filters" do
     let(:assessor) { create(:assessor, :lead_for_all) }
+    let!(:award_year) { AwardYear.current }
     let(:form_answer) { create(:form_answer, :trade, :submitted) }
 
     before do

@@ -75,10 +75,10 @@ class FormAnswer < ApplicationRecord
   mount_uploader :pdf_version, FormAnswerPdfVersionUploader
 
   begin :associations
-    belongs_to :user
-    belongs_to :account
-    belongs_to :award_year
-    belongs_to :company_details_editable, polymorphic: true
+    belongs_to :user, optional: true
+    belongs_to :account, optional: true
+    belongs_to :award_year, optional: true
+    belongs_to :company_details_editable, polymorphic: true, optional: true
 
     has_one :form_basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
     has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
@@ -99,8 +99,8 @@ class FormAnswer < ApplicationRecord
     has_one :case_summary_hard_copy_pdf, dependent: :destroy
     has_one :feedback_hard_copy_pdf, dependent: :destroy
 
-    belongs_to :primary_assessor, class_name: "Assessor", foreign_key: :primary_assessor_id
-    belongs_to :secondary_assessor, class_name: "Assessor", foreign_key: :secondary_assessor_id
+    belongs_to :primary_assessor, optional: true, class_name: "Assessor", foreign_key: :primary_assessor_id
+    belongs_to :secondary_assessor, optional: true, class_name: "Assessor", foreign_key: :secondary_assessor_id
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
     has_many :commercial_figures_files, dependent: :destroy

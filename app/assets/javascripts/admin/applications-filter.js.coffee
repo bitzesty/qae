@@ -1,6 +1,49 @@
 ready = ->
   filterApplicationsDropdowns()
 
+  # processing arrow keys in admin dropdowns
+  $(document).on "keydown", (e) ->
+    return unless $(".dropdown.open").length > 0
+
+    if e.keyCode == 40 || e.keyCode == 38
+      e.preventDefault()
+      e.stopPropagation()
+
+  $(document).on "keyup", (e) ->
+    return unless $(".dropdown.open").length > 0
+
+    select = $(".dropdown.open").first()
+
+    if e.keyCode == 40
+      e.preventDefault()
+      e.stopPropagation()
+
+      if $(".dropdown-menu li.checkbox input:focus", select).length is 0
+        $(".dropdown-menu li.checkbox input", select)[0].focus()
+      else
+        element = $(".dropdown-menu li.checkbox input:focus", select).closest("li")
+        next_element = element.next()
+
+        if next_element.hasClass("divider")
+          next_element = next_element.next()
+
+        $("input", next_element).focus()
+
+    if e.keyCode == 38
+      e.preventDefault()
+      e.stopPropagation()
+
+      if $(".dropdown-menu li.checkbox input:focus", select).length is 0
+        $(".dropdown-menu li.checkbox input", select).last().focus()
+      else
+        element = $(".dropdown-menu li.checkbox input:focus", select).closest("li")
+        prev_element = element.prev()
+
+        if prev_element.hasClass("divider")
+          prev_element = prev_element.prev()
+
+        $("input", prev_element).focus()
+
 filterApplicationsDropdowns = () ->
   # Change the checked value on dropbox and the filtered text
   $(".applications-filter .dropdown-menu").each () ->
@@ -28,6 +71,7 @@ filterApplicationsDropdowns = () ->
     if all_selected
       $(this).find("label[data-value='select_all'] input").attr('checked', 'checked')
       $(this).closest(".dropdown").find(".text-filter").text("All")
+
 
   $(".applications-filter .dropdown-toggle").on "click", (e) ->
     e.preventDefault()

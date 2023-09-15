@@ -1,5 +1,5 @@
 class PressSummary < ApplicationRecord
-  belongs_to :form_answer
+  belongs_to :form_answer, optional: true
 
   validates :form_answer, :token, presence: true
   validates :body, presence: true, unless: :contact_details_update?
@@ -15,7 +15,7 @@ class PressSummary < ApplicationRecord
 
   before_validation :set_token, on: :create
 
-  belongs_to :authorable, polymorphic: true
+  belongs_to :authorable, optional: true, polymorphic: true
 
   attr_accessor :contact_details_update, :body_update
 

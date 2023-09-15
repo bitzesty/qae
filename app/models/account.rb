@@ -10,7 +10,7 @@ class Account < ApplicationRecord
   has_many :mobility_eligibilities, class_name: 'Eligibility::Mobility'
   has_many :promotion_eligibilities, class_name: 'Eligibility::Promotion'
 
-  belongs_to :owner, class_name: 'User', autosave: false, inverse_of: :owned_account
+  belongs_to :owner, class_name: 'User', autosave: false, inverse_of: :owned_account, optional: true
   validates :owner, presence: true
 
   def basic_eligibility

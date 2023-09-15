@@ -5,8 +5,8 @@ class DraftNote < ApplicationRecord
             :authorable_id,
             presence: true
 
-  belongs_to :notable, polymorphic: true
-  belongs_to :authorable, polymorphic: true
+  belongs_to :notable, polymorphic: true, optional: true
+  belongs_to :authorable, polymorphic: true, optional: true
 
   before_save :update_content_updated_at
 

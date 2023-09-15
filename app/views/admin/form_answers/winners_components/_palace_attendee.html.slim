@@ -1,4 +1,4 @@
-.form-group.palace-attendee-container[class=("form-edit" if pa.errors.present? || defined?(@enable_edition)) data-controller="element-focus"]
+.form-group.palace-attendee-container[class=("form-edit" if pa.errors.present? || defined?(@enable_edition)) data-controller="inline-flash element-focus"]
   .form-value
     .empty-message class="#{'visuallyhidden' if palace_invite.palace_attendees.exists?}"
       p.p-empty No attendees confirmed.

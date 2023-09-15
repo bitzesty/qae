@@ -101,7 +101,7 @@ So that they can collaborate form answers
             end
 
             within(".collaborator_email") do
-              expect_to_see "This field cannot be blank"
+              expect_to_see "Email is empty - it is a required field and must be filled in"
             end
           end
 

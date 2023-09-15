@@ -1,5 +1,5 @@
 class FeedbackHardCopyPdf < ApplicationRecord
-  belongs_to :form_answer
+  belongs_to :form_answer, optional: true
 
   mount_uploader :file, FormAnswerPdfVersionUploader
 

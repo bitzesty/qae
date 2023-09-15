@@ -1,8 +1,8 @@
 .panel-group#submitted-application-parent
-  .panel.panel-default.panel-parent
+  .panel.panel-default.panel-parent[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
     .panel-heading#application-info-heading
       h2.panel-title
-        a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-application-info" aria-expanded="true" aria-controls="section-application-info"
+        a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-application-info" aria-expanded="true" aria-controls="section-application-info" data-element-focus-target="reveal"
           ' Application info
     #section-application-info.section-application-info.panel-collapse.collapse.in aria-labelledby="application-info-heading"
       .panel-body
@@ -11,10 +11,10 @@
           = render "admin/form_answers/section_company_details"
           = render "admin/form_answers/section_financial_summary"
 
-  .panel.panel-default.panel-parent
+  .panel.panel-default.panel-parent[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
     .panel-heading#assessment-heading
       h2.panel-title
-        a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-assessment" aria-expanded="true" aria-controls="section-assessment"
+        a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-assessment" aria-expanded="true" aria-controls="section-assessment" data-element-focus-target="reveal"
           ' Assessment
     #section-assessment.section-application-info.panel-collapse.collapse.in aria-labelledby="assessment-heading"
       .panel-body
@@ -32,10 +32,10 @@
     = render "admin/form_answers/section_case_summary"
 
   - if show_feedback_section?
-    .panel.panel-default.panel-parent
+    .panel.panel-default.panel-parent[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
       .panel-heading#feedback-heading
         h2.panel-title
-          a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
+          a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback" data-element-focus-target="reveal"
             ' Feedback (for not recommended applications only)
             small.panel-subtitle-small
               | This will be sent  to the applicants to help improve their business and/or future award applications
@@ -50,9 +50,9 @@
 
   - if show_winners_section?
     .panel.panel-default.panel-parent
-      .panel-heading#winners-heading
+      .panel-heading#winners-heading[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
         h2.panel-title
-          a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-winners" aria-expanded="true" aria-controls="section-winners"
+          a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-winners" aria-expanded="true" aria-controls="section-winners" data-element-focus-target="reveal"
             ' Recipients
       #section-winners.section-application-info.panel-collapse.collapse.in aria-labelledby="winners-heading"
         .panel-body

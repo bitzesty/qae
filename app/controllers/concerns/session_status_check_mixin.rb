@@ -19,6 +19,10 @@ module SessionStatusCheckMixin
     end
   end
 
+  def extend
+    render json: { elapsed: elapsed }, status: :ok
+  end
+
   private
 
   def skip_timeout
@@ -33,5 +37,20 @@ module SessionStatusCheckMixin
     elsif namespace == JUDGE_NAMESPACE
       judge_signed_in?
     end
+  end
+
+  def now
+    Time.now.in_time_zone("UTC")
+  end
+
+  def elapsed
+    session = if namespace == ADMIN_NAMESPACE
+        admin_session
+      elsif namespace == ASSESSOR_NAMESPACE
+        assessor_session
+      elsif namespace == JUDGE_NAMESPACE
+        judge_session
+    end
+    (now - (session["last_request_at"] || params['__t'].to_i)).to_i / 1.minutes
   end
 end

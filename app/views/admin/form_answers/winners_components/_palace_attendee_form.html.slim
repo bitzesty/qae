@@ -2,12 +2,12 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
   li.well
     .pull-right
       - unless palace_attendee.new_record?
-        = simple_form_for([namespace_name, palace_attendee], remote: true, authenticity_token: true, method: :delete, html: { class: "remove-palace-attendee-form" }) do |f|
+        = simple_form_for([namespace_name, palace_attendee], remote: true, authenticity_token: true, method: :delete, html: { class: "remove-palace-attendee-form", data: { inline_flash_target: "form" } }) do |f|
           = f.input :palace_invite_id, as: :hidden
           = f.submit "Remove", class: "if-js-hide"
           = link_to "Remove", "", class: "remove-palace-attendee if-no-js-hide", data: {confirm: "Are you sure?"}
 
-    = simple_form_for([namespace_name, palace_attendee], remote: true, authenticity_token: true, html: { class: "palace-attendee-form" }) do |f|
+    = simple_form_for([namespace_name, palace_attendee], remote: true, authenticity_token: true, html: { class: "palace-attendee-form", data: { inline_flash_target: "form" } }) do |f|
       = f.input :palace_invite_id, as: :hidden
       .row
         .col-md-2

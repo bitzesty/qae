@@ -6,7 +6,7 @@ class Deadline < ApplicationRecord
 
   date_time_for :trigger_at
 
-  belongs_to :settings
+  belongs_to :settings, optional: true
 
   AVAILABLE_DEADLINES = [
     "award_year_switch",

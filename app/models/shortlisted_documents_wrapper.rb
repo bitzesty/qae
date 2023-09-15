@@ -3,7 +3,7 @@ class ShortlistedDocumentsWrapper < ActiveRecord::Base
 
   has_one :commercial_figures_file
   has_many :vat_returns_files
-  belongs_to :form_answer
+  belongs_to :form_answer, optional: true
 
   validate :valid_for_submission?
 

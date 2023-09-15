@@ -3,6 +3,7 @@ step "an eligible user exists" do
 end
 
 step "settings with submission deadlines exists" do
+  AwardYear.current # init a new instance
   FactoryBot.create(:settings, :submission_deadlines)
 end
 

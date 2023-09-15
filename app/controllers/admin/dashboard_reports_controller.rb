@@ -10,44 +10,56 @@ class Admin::DashboardReportsController < Admin::BaseController
   # that represents the type of the application
 
   def all_applications
-    authorize :dashboard, :reports?
-
-    @report = Reports::Dashboard::ApplicationsReport.new(kind: params[:kind])
-    render partial: "admin/dashboard/totals_#{params[:kind]}/table_body"
+    render_or_download_report nil, params[:kind], params[:format]
   end
 
   def international_trade
-    authorize :dashboard, :reports?
-
-    @report = Reports::Dashboard::ApplicationsReport.new(kind: params[:kind], award_type: :trade)
-    render partial: "admin/dashboard/totals_#{params[:kind]}/table_body"
+    render_or_download_report :trade, params[:kind], params[:format]
   end
 
   def innovation
-    authorize :dashboard, :reports?
-
-    @report = Reports::Dashboard::ApplicationsReport.new(kind: params[:kind], award_type: :innovation)
-    render partial: "admin/dashboard/totals_#{params[:kind]}/table_body"
+    render_or_download_report :innovation, params[:kind], params[:format]
   end
 
   def social_mobility
-    authorize :dashboard, :reports?
-
-    @report = Reports::Dashboard::ApplicationsReport.new(kind: params[:kind], award_type: :mobility)
-    render partial: "admin/dashboard/totals_#{params[:kind]}/table_body"
+    render_or_download_report :mobility, params[:kind], params[:format]
   end
 
   def sustainable_development
-    authorize :dashboard, :reports?
-
-    @report = Reports::Dashboard::ApplicationsReport.new(kind: params[:kind], award_type: :development)
-    render partial: "admin/dashboard/totals_#{params[:kind]}/table_body"
+    render_or_download_report :development, params[:kind], params[:format]
   end
 
   def account_registrations
     authorize :dashboard, :reports?
 
     @report = Reports::Dashboard::UsersReport.new(kind: params[:kind])
-    render partial: "admin/dashboard/totals_#{params[:kind]}/users_table_body"
+
+    respond_to do |format|
+      format.csv do
+        send_data @report.as_csv, filename: @report.csv_filename
+      end
+
+      format.html do
+        render partial: "admin/dashboard/totals_#{params[:kind]}/users_table_body"
+      end
+    end
+  end
+
+  private
+
+  def render_or_download_report award_type, kind, format
+    authorize :dashboard, :reports?
+
+    @report = Reports::Dashboard::ApplicationsReport.new(kind: kind, award_type: award_type)
+
+    respond_to do |format|
+      format.csv do
+        send_data @report.as_csv, filename: @report.csv_filename
+      end
+
+      format.html do
+        render partial: "admin/dashboard/totals_#{kind}/table_body"
+      end
+    end
   end
 end

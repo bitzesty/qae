@@ -1,4 +1,4 @@
-title = content_for?(:title) ? yield(:title)  + " - King's Awards for Enterprise" : "King's Awards for Enterprise"
+title = content_for?(:title) ? "#{'Appraisal view of ' if admin_in_read_only_mode?}" + yield(:title)  + " - King's Awards for Enterprise" : "King's Awards for Enterprise"
 
 - content_for :head do
   = stylesheet_link_tag "application.css"

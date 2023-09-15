@@ -1,3 +1,5 @@
+@import "pxToRem";
+
 .form-collaborator {
   .well {
     display: none;
@@ -34,11 +36,11 @@
 }
 
 .js-admin-search-collaborators-error-box {
-  margin-bottom: 10px;
+  margin-bottom: pxToRem(10);
 }
 
 .js-admin-search-collaborators-results-box {
-  margin-bottom: 20px;
+  margin-bottom: pxToRem(20);
 }
 
 .cant_add_to_collaborators_message {
@@ -46,26 +48,26 @@
 }
 
 .admin-user-debounce-api-check-block {
-  padding-left: 25px;
-  font-size: 14px;
+  padding-left: pxToRem(25);
+  font-size: pxToRem(14);
 
   .heading-message {
-    margin-bottom: 5px; 
+    margin-bottom: pxToRem(5);
     display: inline-block;
   }
 
   img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+    width: pxToRem(20);
+    height: pxToRem(20);
+    margin-right: pxToRem(10);
   }
 
   .next-run-info {
-    margin-top: 7px;
+    margin-top: pxToRem(7);
     display: inline-block;
   }
 
   a {
-    margin-top: 7px;
+    margin-top: pxToRem(7);
   }
 }

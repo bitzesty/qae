@@ -18,7 +18,7 @@ class CompanyRegistrationNumberValidator < ActiveModel::EachValidator
     return if options[:allow_blank] && value.blank?
     return if options[:allow_empty] && value == ""
     unless self.class.valid?(value)
-      record.errors[attribute] << (options[:message] || "is not a valid company registration number")
+      record.errors.add(attribute, message: options[:message] || "is not a valid company registration number")
     end
   end
 end

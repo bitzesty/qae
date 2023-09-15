@@ -23,7 +23,7 @@ describe "expired reception attendee information deadline" do
   }
 
   before do
-    AwardYear.buckingham_palace_reception_deadline.update_column(:trigger_at, Time.current.end_of_year)
+    AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).update_column(:trigger_at, Time.current.end_of_year)
 
     expect(Settings).to receive(:buckingham_palace_invites_stage?)
                           .with(invite.form_answer.award_year.settings)
@@ -41,7 +41,7 @@ describe "expired reception attendee information deadline" do
   end
 
   it "allows user to fill the form within due date" do
-    award_date = AwardYear.buckingham_palace_reception_deadline.decorate.formatted_trigger_date("with_year")
+    award_date = AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).decorate.formatted_trigger_date("with_year")
     deadline.update_column(:trigger_at, Time.current + 1.day)
 
     visit edit_palace_invite_path(id: invite.token)

@@ -8,7 +8,7 @@ module ShortlistedDocument
     include ::InfectedFileCleaner
     clean_after_scan :attachment
 
-    belongs_to :form_answer
+    belongs_to :form_answer, optional: true
   end
 
   def original_filename

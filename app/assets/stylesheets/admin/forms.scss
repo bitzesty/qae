@@ -1,15 +1,27 @@
+@import "pxToRem";
+
 .selectable-group {
   input[type='checkbox'],
   input[type='radio'] {
     margin-left: 0;
-    top: 15px;
-    left: 15px;
+    top: pxToRem(15);
+    left: pxToRem(15);
     z-index: 999;
   }
 }
 
 .has-royal-family-connections-wrapper {
-  padding-left: 20px;
+  padding-left: pxToRem(20);
+}
+
+input.form-control, select.form-control,
+.input-group-addon, textarea,
+.btn-default {
+  border-color: #5C5C5C !important;
+}
+
+.input-group-addon {
+  height: 2.42em !important;
 }
 
 input.form-control, select.form-control,
