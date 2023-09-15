@@ -111,7 +111,7 @@ class AppraisalForm
   CSR_RAG_OPTIONS_2024 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-40)", "positive"]
   ]
 
   STRENGTH_OPTIONS_2016 = [
@@ -541,7 +541,7 @@ class AppraisalForm
     },
     corporate_social_responsibility: {
       type: :rag,
-      label: "Corporate social responsibility (section D):",
+      label: "Environmental, social and corporate governance (section E):",
       position: 3
     },
     verdict: {
@@ -788,7 +788,7 @@ class AppraisalForm
     },
     corporate_social_responsibility: {
       type: :rag,
-      label: "Corporate social responsibility (section D):",
+      label: "Environmental, social and corporate governance (section E):",
       position: 3
     },
     verdict: {
@@ -1620,7 +1620,7 @@ class AppraisalForm
     },
     corporate_social_responsibility: {
       type: :rag,
-      label: "Corporate social responsibility:",
+      label: "Environmental, social and corporate governance (section E):",
       position: 3
     },
     verdict: {
