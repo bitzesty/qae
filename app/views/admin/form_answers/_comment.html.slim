@@ -16,11 +16,11 @@
     h3
       = comment_author(comment)
 
-      span.pull-right.if-no-js-hide
-        - if comment.author?(current_subject)
-          = link_to "#", class: "link-delete-comment"
-            ' Delete
-            span.icon-delete-comment
+    span.pull-right.if-no-js-hide
+      - if comment.author?(current_subject)
+        = link_to "#", class: "link-delete-comment"
+          ' Delete
+          span.icon-delete-comment
       span.pull-right.if-js-hide
 
         - if comment.author?(current_subject)
