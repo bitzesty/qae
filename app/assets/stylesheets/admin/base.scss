@@ -1235,6 +1235,8 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 
 .comment-header {
   margin-bottom: pxToRem(5);
+  display: flex;
+  justify-content: space-between;
 
   h3 {
     margin: 0;
