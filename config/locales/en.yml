@@ -116,7 +116,8 @@ en:
     form_answers:
       financial_summary:
         dates_row: &dates
-          financial_year_changed_dates: Year-end/Period-end date
+          financial_year_changed_dates: &label Year-end/Period-end date
+          label: *label
         years_row:
           <<: *dates
         row:
