@@ -20,12 +20,16 @@
 
             .row
               .col-sm-5
+                label.form-label for="form_answer_data_attributes_applied_for_queen_awards_details_#{index}_category"
+                  ' Category
                 .input.select.required
                   = select_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][category]",
                     options_for_select(PreviousWin::CATEGORIES, win["category"]),
                     { include_blank: "",
                       class: "select required form-control" }
               .col-sm-2
+                label.form-label for="form_answer_data_attributes_applied_for_queen_awards_details_#{index}_year"
+                  ' Year
                 .input.select.required
                   = select_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][year]",
                     options_for_select(PreviousWin.available_years, win["year"]),
