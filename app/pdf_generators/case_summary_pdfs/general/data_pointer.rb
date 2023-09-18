@@ -211,7 +211,6 @@ module CaseSummaryPdfs::General::DataPointer
 
   def render_financial_table
     render_financial_section_header
-    render_financial_table_header
     render_financials
     render_financial_benchmarks
   end
@@ -230,20 +229,26 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_financials
-    rows = [date_rows]
-
-    financial_metrics_by_years.map do |row|
-      rows << row
+    financial_metrics_by_years.each do |row|
+      if row[0] == CaseSummaryPdfs::Pointer::DATE_LABEL
+        pdf_doc.table([row],
+          row_colors: %w(FFFFFF),
+          cell_style: { size: 12, font_style: :bold },
+          column_widths: column_widths
+        )
+      else
+        pdf_doc.table([row],
+          cell_style: { size: 12 },
+          column_widths: column_widths
+        )
+      end
     end
-
-    pdf_doc.table(rows,
-      cell_style: { size: 12 },
-      column_widths: column_widths
-    )
   end
 
   def column_widths
-    first_row_width = case financial_pointer.period_length
+    exclude_innovation_years = !form_answer.innovation?
+    period_length = financial_pointer.period_length(exclude_innovation_years)
+    first_row_width = case period_length
     when 2
       first_row_width = 607
     when 3
@@ -256,7 +261,7 @@ module CaseSummaryPdfs::General::DataPointer
 
     res = { 0 => first_row_width }
 
-    financial_pointer.period_length.times do |i|
+    period_length.times do |i|
       res[i + 1] = 80
     end
 
