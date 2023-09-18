@@ -46,7 +46,11 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
     })
 
     @financial_data = financial_pointer.summary_data
-    @year_rows = financial_pointer.years_list.unshift("")
+
+    dates = @financial_data.find { |row| row.has_key?(:dates) }.fetch(:dates, []).reject(&:nil?)
+    dates = financial_pointer.years_list if dates.blank?
+    @year_rows = dates.unshift(DATE_LABEL)
+
     @financial_metrics_by_years = fetch_financial_metrics_by_years
 
     set_financial_benchmarks
