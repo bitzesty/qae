@@ -44,7 +44,7 @@ class User < ApplicationRecord
                          source: :feedback
     has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
-    belongs_to :account
+    belongs_to :account, optional: true
     has_many :form_answer_attachments, as: :attachable
     has_many :support_letter_attachments, dependent: :destroy
     has_many :supporters, dependent: :destroy
@@ -161,7 +161,7 @@ class User < ApplicationRecord
   end
 
   def timeout_in
-    24.hours
+    ENV.fetch("SESSION_TIMEOUT", 24).to_i.hours
   end
 
   def check_email_on_bounces!

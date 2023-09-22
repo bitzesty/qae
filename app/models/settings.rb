@@ -6,7 +6,7 @@ class Settings < ApplicationRecord
   has_many :deadlines, dependent: :destroy
   has_many :email_notifications, dependent: :destroy
 
-  belongs_to :award_year, inverse_of: :settings
+  belongs_to :award_year, optional: true, inverse_of: :settings
 
   validates :award_year, presence: true
 

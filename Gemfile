@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 git_source(:github) { |name| "https://github.com/#{name}.git" }
 
-ruby '~> 2.7.7'
+ruby '~> 3.2.2'
 
-gem 'rails', '6.1.7.3'
+gem 'rails', '7.0.5.1'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -14,12 +14,13 @@ gem 'rack-ssl-enforcer'
 gem 'pg'
 
 # Track Changes
-gem 'paper_trail', '~> 10.3'
+gem 'paper_trail', '~> 12.2.0'
+gem 'paper_trail-association_tracking'
 
 # Assets & Templates
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', '>= 2.0.0'
-gem 'sassc-rails', '~> 2.0.0'
+gem 'sassc-rails', '~> 2.1.2'
 gem 'slim-rails', '~> 3.2.0'
 gem 'coffee-rails', '5.0'
 gem 'jquery-rails', '4.4.0'
@@ -29,7 +30,7 @@ gem 'govuk-components'
 gem 'uglifier', '>= 2.7.2'
 gem 'js_cookie_rails', '2.1.4'
 gem 'ckeditor'
-gem 'webpacker', '6.0.0.beta.7'
+gem 'webpacker', '6.0.0.rc.6'
 
 # Autolinking in admin mass user mailer
 gem 'rails_autolink'
@@ -37,7 +38,6 @@ gem 'rails_autolink'
 # Decorators & Exposing named methods
 gem 'draper', '~> 4.0'
 gem 'decent_exposure'
-gem 'decent_decoration'
 
 gem 'hashie', '~> 3.5'
 
@@ -48,7 +48,7 @@ gem 'responders', '~> 3.0'
 gem 'rails-html-sanitizer', '~> 1.4.4'
 
 # JSON
-gem 'json', '2.3.0'
+gem 'json'
 gem 'jbuilder', '~> 2.10.1'
 gem 'gon', '>= 6.4.0'
 
@@ -87,7 +87,6 @@ gem 'nokogiri'
 
 # Uploads
 gem 'carrierwave', '~> 1.3'
-gem 'fog', "1.42.1"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails', '~> 2.2.0'
@@ -126,7 +125,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '~> 4.3.12'
+gem 'puma', '~> 6.3.1'
 
 # Performance & Error reporting
 gem 'appsignal'
@@ -143,6 +142,8 @@ gem 'browser', '2.4.0'
 gem 'shog'
 
 gem 'rails-healthcheck'
+
+gem 'matrix'
 
 # Used to convert HTML to text, with the exception of whitelisted attributes.
 # This makes it easier for us to display HTML content within PDF documents.
@@ -179,7 +180,7 @@ end
 
 group :test do
   gem 'factory_bot_rails'
-  gem 'capybara', '3.33'
+  gem 'capybara', '~> 3.39.0'
   gem 'poltergeist'
   gem 'database_cleaner-active_record'
   gem 'launchy'
@@ -189,6 +190,6 @@ group :test do
   gem 'codeclimate_circle_ci_coverage'
   gem 'rspec_junit_formatter', '0.2.3'
   gem 'timecop'
-  gem 'webmock', '3.5.0'
+  gem 'webmock', '3.18.1'
   gem 'rspec-sidekiq'
 end

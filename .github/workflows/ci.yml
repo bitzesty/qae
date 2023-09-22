@@ -42,7 +42,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '16'
@@ -54,14 +54,13 @@ jobs:
         env:
           DISPLAY_SOCIAL_MOBILITY_AWARD: true
           DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/qae_test'
-          BUNDLER_VERSION: 2.4.8
+          BUNDLER_VERSION: 2.4.19
           DOCKER_TLS_CERTDIR: ''
         run: |
           sudo apt update
           sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
           gem install bundler
           gem update --system && gem update bundler
-          bundle config path vendor/bundle
           yarn install
           bundle install --jobs 4 --retry 3
           RAILS_ENV=test bundle exec rake db:create db:migrate
@@ -83,7 +82,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '16'
@@ -124,7 +123,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.7
+          ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '16'

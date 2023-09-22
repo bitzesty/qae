@@ -30,7 +30,7 @@ class Admin::ReportsController < Admin::BaseController
                     type: "application/pdf",
                     disposition: 'attachment'
         else
-          redirect_to pdf.data
+          redirect_to pdf.data, allow_other_host: true
         end
       end
     end

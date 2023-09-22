@@ -3,6 +3,8 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 describe "Account forms" do
+  let!(:award_year) { AwardYear.current }
+
   describe "Fill in first step form" do
     before do
       visit new_user_registration_path

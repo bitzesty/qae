@@ -15,6 +15,7 @@ $button-colour: #00823b;
 @import "frontend/password_guidance";
 @import "frontend/status";
 
+@import "admin/bootstrap-overrides";
 @import "admin/variables";
 @import "admin/toggle";
 @import "admin/layout";
@@ -59,6 +60,5 @@ $todo-black: #333;
     &:focus {
       top: 20px;
       left: 20px;
-      color: white !important;
     }
 }

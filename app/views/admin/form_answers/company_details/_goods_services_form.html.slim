@@ -18,7 +18,7 @@
         = simple_form_for [namespace_name, resource], remote: true, authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "goods_services_form_admin_appraisal" } do |f|
           = hidden_field_tag :section, "goods_services", id: "section_goods_services_hidden_field"
           .form-fields.form-block
-            = f.simple_fields_for(:data) do |f|
+            = f.simple_fields_for :data, include_id: false do |f|
               - if !@form_answer.trade?
                 = f.input @form_answer.goods_and_services_key, as: :text, label: false, input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
               - elsif @form_answer.document["trade_goods_and_services_explanations"].present?

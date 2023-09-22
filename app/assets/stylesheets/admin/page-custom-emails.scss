@@ -1,3 +1,5 @@
+@import "pxToRem";
+
 .email-send-to,
 .email-send-subject {
   h3 {
@@ -6,11 +8,11 @@
 }
 
 .email-send-to {
-  margin-top: 40px;
+  margin-top: pxToRem(40);
 }
 
 .email-send-subject {
-  margin-top: 20px;
+  margin-top: pxToRem(20);
 }
 
 .email-send-to-help {
