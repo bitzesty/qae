@@ -152,13 +152,7 @@ class AssessorAssignment < ApplicationRecord
   def award_specific_attributes
     struct.diff(form_answer, moderated?).each do |att|
       if public_send(att).present?
-        message = if att.ends_with?("_rate")
-          "RAG rating for '#{section_name(att)}' cannot be present for this Award Type"
-        else
-          "An appraisal comment for '#{section_name(att)}' cannot be present for this Award Type"
-        end
-
-        errors.add(att, message: message)
+        errors.add(att, "cannot be present for this Award Type")
       end
     end
   end
@@ -168,13 +162,7 @@ class AssessorAssignment < ApplicationRecord
 
     struct.meths_for_award_type(form_answer, moderated?).each do |meth|
       if public_send(meth).blank?
-        message = if meth.ends_with?("_rate")
-          "RAG rating is required for '#{section_name(meth)}'. Select an option from the dropdown list."
-        else
-          "An appraisal comment is required for '#{section_name(meth)}' and must be filled in."
-        end
-
-        errors.add(meth, message: message)
+        errors.add(meth, "cannot be blank for submitted assessment")
       end
     end
   end
@@ -186,22 +174,13 @@ class AssessorAssignment < ApplicationRecord
       c = "#{rate_type.upcase}_ALLOWED_VALUES"
       if val && !struct.const_get(c).include?(val)
         sect_name = struct.rate(section)
-        message = "#{rate_type} field for '#{section_name(section)}' has not permitted value."
-        errors.add(sect_name, message: message)
+        errors.add(sect_name, "#{rate_type} field has not permitted value")
       end
     end
   end
 
   def section_rate(section)
     public_send(struct.rate(section))
-  end
-
-  def section_name(key)
-    @_sections ||= struct.struct(form_answer).to_h
-    section_key = key.to_s.gsub(/_desc$/, "").gsub(/_rate$/, "")
-    if section = @_sections.dig(section_key.to_sym)
-      section[:label].gsub(/:$/, "")
-    end
   end
 
   def struct
