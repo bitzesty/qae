@@ -44,6 +44,6 @@
         span.glyphicon.glyphicon-pencil
         ' Edit
       .form-actions.text-right
-        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
-        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss", action: "click->html5-form-validation#discard" }
+        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", data: { action: "click->html5-form-validation#validate" }
       .clear
