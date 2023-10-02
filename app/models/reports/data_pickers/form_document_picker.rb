@@ -188,6 +188,7 @@ module Reports::DataPickers::FormDocumentPicker
   def subcategory_suffix(attr_name)
     mobility_2017_change = {}
     development_2020_change = {}
+    innovation_2023_change = {}
 
     if obj.award_year.year > 2017
       mobility_2017_change = {
@@ -198,6 +199,19 @@ module Reports::DataPickers::FormDocumentPicker
     if obj.award_year.year >= 2020
       development_2020_change = {
         "development" => "#{attr_name}_3of3"
+      }
+    end
+
+    if obj.award_year.year >= 2023
+      innovation_2023_change = {
+        "innovation" => {
+          attr_name => {
+            "2 to 3" => "#{attr_name}_2of2",
+            "3 to 4" => "#{attr_name}_3of3",
+            "4 to 5" => "#{attr_name}_4of4",
+            "5 plus" => "#{attr_name}_5of5"
+          }
+        }
       }
     end
 
@@ -226,7 +240,8 @@ module Reports::DataPickers::FormDocumentPicker
         }
       }
     }.merge(mobility_2017_change)
-      .merge(development_2020_change)[obj.award_type]
+     .merge(development_2020_change)
+     .merge(innovation_2023_change)[obj.award_type]
   end
 
   def subcategory_field_name
@@ -309,6 +324,16 @@ module Reports::DataPickers::FormDocumentPicker
         target_key = meth
       elsif obj.award_year.year >= 2020 && development?
         target_key = meth
+      elsif obj.award_year.year >= 2024 && innovation?
+        question = questions[meth.keys.first.to_sym]&.decorate(answers: answers)
+
+        range = if question.respond_to?(:active_by_year_condition)
+                  question.active_by_year_condition&.options&.dig(:data, :identifier)
+                else
+                  doc(meth.keys.first)
+                end
+
+        target_key = meth.values.first[range]
       else
         range = doc(meth.keys.first)
         target_key = meth.values.first[range]
@@ -337,5 +362,13 @@ module Reports::DataPickers::FormDocumentPicker
       country = ISO3166::Country[code]
       country.name
     end
+  end
+
+  def questions
+    @_questions ||= obj.award_form.questions_by_key
+  end
+
+  def answers
+    @_answers ||= HashWithIndifferentAccess.new(obj.document)
   end
 end
