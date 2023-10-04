@@ -1,5 +1,5 @@
 .form-container.comment-new
-  label
+  label for="#{f.object.section}_comment_body"
     ' Add a comment
   = f.hidden_field :section, id: "#{f.object.section}_section_hidden_field"
   = f.text_area :body, id: "#{f.object.section}_comment_body", class: 'form-control', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.section}-new-comment", required: true
