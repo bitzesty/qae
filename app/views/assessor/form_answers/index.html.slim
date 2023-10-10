@@ -61,8 +61,8 @@ h1.admin-page-heading
               = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable width="120"
               = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-            th width="250"
-              | Status
+            th.sortable width="250"
+              = sort_link f, "Status", @search, :state, disabled: @search.query?
             th.sortable width="70"
               = sort_link f, "SIC Code", @search, :sic_code, disabled: @search.query?
             th.sortable width="130"
