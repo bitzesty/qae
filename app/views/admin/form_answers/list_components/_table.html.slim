@@ -6,8 +6,8 @@ table.table.applications-table
       th.sortable width="120"
         = sort_link f, "Reference", @search, :urn, disabled: @search.query?
       = render('admin/form_answers/list_components/award_type_header', f: f)
-      th width="250"
-        | Status
+      th.sortable width="250"
+        = sort_link f, "Status", @search, :state, disabled: @search.query?
       th.sortable width="70"
         = sort_link f, "SIC Code", @search, :sic_code, disabled: @search.query?
       th.sortable width="130"
