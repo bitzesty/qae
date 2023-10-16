@@ -38,6 +38,8 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
                 autocomplete="off"
                 *possible_read_only_ops
                 aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
+                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                pattern=" 0+\.[0-9]*[1-9][0-9]*$"
               ]
               span.govuk-error-message aria-live="polite"
                 - if @form_answer.validator_errors && @form_answer.validator_errors["#{question.hash_key}_#{x_heading.key}_#{y_heading.key}"].present?
