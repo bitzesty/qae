@@ -41,7 +41,7 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
               ]
               span.govuk-error-message aria-live="polite"
                 - if @form_answer.validator_errors && @form_answer.validator_errors["#{question.hash_key}_#{x_heading.key}_#{y_heading.key}"].present?
-                  | Required
+                  = @form_answer.validator_errors["#{question.hash_key}_#{x_heading.key}_#{y_heading.key}"]
                   span.govuk-visually-hidden id="error_for_#{question.key}"
                     | Error:
                   =< @form_answer.validator_errors[question.hash_key]
