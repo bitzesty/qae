@@ -314,8 +314,8 @@ class AwardYear < ApplicationRecord
       end_date = Date.new(AwardYear.current.year - 1 - from, month, day)
 
       if opts[:minmax] == true
-        return (start_date..end_date).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
-        (start_date..end_date).minmax
+        return [start_date, end_date].minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
+        [start_date, end_date]
       else
         start_date..end_date
       end
@@ -333,8 +333,8 @@ class AwardYear < ApplicationRecord
       to = to.change(year: year)
 
       if opts[:minmax] == true
-        return (from..to).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
-        (from..to).minmax
+        return [from, to].minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
+        [from, to]
       else
         from..to
       end
