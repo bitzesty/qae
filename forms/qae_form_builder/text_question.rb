@@ -2,7 +2,33 @@ class QaeFormBuilder
   class TextQuestionValidator < QuestionValidator
   end
 
+  class TextQuestionValidator < QuestionValidator
+    def errors
+      result = super
+
+      length = ActionView::Base.full_sanitizer.sanitize(
+        question.input_value.to_s
+      ).split(" ")
+       .reject do |a|
+        a.blank?
+      end.length
+
+      limit = question.delegate_obj.text_words_max
+
+      if limit && limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
+        result[question.hash_key] ||= ""
+        result[question.hash_key] << " Exceeded #{limit} words limit."
+      end
+
+      result
+    end
+  end
+
   class TextQuestionBuilder < QuestionBuilder
+    def text_words_max(value)
+      @q.text_words_max = value
+    end
+
     def style style
       @q.style = style
     end
@@ -13,7 +39,7 @@ class QaeFormBuilder
   end
 
   class TextQuestion < Question
-    attr_accessor :type, :style
+    attr_accessor :type, :style, :text_words_max
   end
 
 end

@@ -74,6 +74,7 @@ class AwardYears::V2024::QaeForms
             <p class="govuk-body">Please specify if selected Other</p>
           }
           conditional :organisation_type, :other
+          text_words_max 2
         end
 
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do

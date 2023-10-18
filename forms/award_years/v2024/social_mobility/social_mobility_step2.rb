@@ -65,6 +65,7 @@ class AwardYears::V2024::QaeForms
           classes "other-organization-type"
           required
           conditional :organisation_type, "other"
+          text_words_max 2
         end
 
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
