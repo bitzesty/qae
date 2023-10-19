@@ -152,6 +152,7 @@ class AwardYears::V2024::QaeForms
             { county: "County" },
             { postcode: "Postcode" }
           ])
+          sub_fields_words_max 2
         end
 
         text :org_telephone, "Main telephone number." do
@@ -180,6 +181,7 @@ class AwardYears::V2024::QaeForms
             { telephone: "Telephone" },
             { email: "Email address" }
           ])
+          sub_fields_words_max 2
         end
 
         text :website_url, "Website address (optional)." do
@@ -190,6 +192,7 @@ class AwardYears::V2024::QaeForms
               Please provide the full website address, for example, www.yourcompanyname.com
             </p>
           )
+          text_words_max 2
         end
 
         text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
@@ -200,6 +203,7 @@ class AwardYears::V2024::QaeForms
               Please note, when evaluating your application, the assessors may check your organisation's online presence.
             </p>
           )
+          text_words_max 2
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do
@@ -255,6 +259,7 @@ class AwardYears::V2024::QaeForms
           sub_ref "B 11.1"
           conditional :has_parent_company, "yes"
           required
+          text_words_max 2
         end
 
         country :parent_company_country, "Country of the immediate parent company." do
@@ -277,6 +282,7 @@ class AwardYears::V2024::QaeForms
           sub_ref "B 11.4"
           required
           conditional :parent_ultimate_control, :no
+          text_words_max 2
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control." do

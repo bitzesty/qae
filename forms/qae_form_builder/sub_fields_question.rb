@@ -13,6 +13,23 @@ class QaeFormBuilder
         end
       end
 
+      question.sub_fields.each do |sub_field|
+        suffix = sub_field.keys[0]
+        length = ActionView::Base.full_sanitizer.sanitize(
+          question.input_value(suffix: suffix).to_s
+        ).split(" ")
+        .reject do |a|
+          a.blank?
+        end.length
+
+        limit = question.delegate_obj.sub_fields_words_max
+
+        if limit && length && length > limit
+          result[question.hash_key(suffix: suffix)] ||= ""
+          result[question.hash_key(suffix: suffix)] << " Exceeded #{limit} words limit."
+        end
+      end
+
       # need to add govuk-form-group--errors class
       result[question.hash_key] ||= "" if result.any?
 
@@ -40,10 +57,14 @@ class QaeFormBuilder
     def sub_fields fields
       @q.sub_fields = fields
     end
+
+    def sub_fields_words_max(value)
+      @q.sub_fields_words_max = value
+    end
   end
 
   class SubFieldsQuestion < Question
-    attr_accessor :sub_fields
+    attr_accessor :sub_fields, :sub_fields_words_max
   end
 
 end
