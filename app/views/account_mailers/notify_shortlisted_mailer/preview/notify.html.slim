@@ -2,10 +2,10 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@user.decorate.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  = "I would like to inform you that your application by #{@company_name} has been shortlisted for a King's Award for Enterprise: #{@award_type_full_name}."
+  = "I would like to inform you that your application for #{@company_name} has been shortlisted for a King's Award for Enterprise: #{@award_type_full_name}."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application from an external accountant (as stated in the application form).
+  | You are now required to use an external accountant to verify the commercial figures which were submitted in your application.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   strong
@@ -15,14 +15,14 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | Please follow the steps below:
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | 1. Log in now to your King's Award account and download the External Accountant's Report form by following the link below:<br/>
+  | 1. Log into your King's Award account and download the External Accountant's Report form by following the link below:<br/>
   = link_to(users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer))
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | 2. We recommend that you send the report to the accountant straight away so that you can agree on the timelines. Let them know if you will be providing revisions to the figures.
+  | 2. We recommend that you send the report to the accountant straight away, to agree timelines. Let them know if you will be providing revisions to the figures.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | 3. If relevant, in the External Accountant's Report, provide actual figures to replace estimates submitted at the time of the application or make any other changes to the figures. If you make any revisions, you have to sign the Applicant's Management's Statement section in the report.
+  | 3. If relevant, in the External Accountant's Report, provide actual figures to replace or change the estimated figures submitted at the time of the application. If you make any revisions, you must sign the Applicant's Management Statement section in the report.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | 4. Once you make the revisions (if any), the accountant may perform their own relevant procedures and will return the completed External Accountant's Report to the applicant.
@@ -38,13 +38,13 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = "1. The External Accountants Report must be submitted by #{@deadline_time} on #{@deadline_date}. We cannot extend this deadline."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | 2. Failure to provide this return on time will mean we do not have sufficient information to complete the assessment of your application, and it will not be considered at the next stage.
+  | 2. Failure to provide this return on time will mean that your application will not be considered at the next stage.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | 3. Please do not make any public announcement of your shortlisted status now or at any time in the future. The assessment process is ongoing, and reaching this stage is not a guarantee of success.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Furthermore, as stipulated in (Section F4 Confirmation of Entry) on the application, the King's Awards Office will undertake due diligence checks with a range of government departments, agencies and public bodies. If you require further information on this, please contact us.
+  | Furthermore, as stipulated in (Section A2.3 - Agree to the outcome of the due diligence checks) in your application, the King's Awards Office will undertake due diligence checks with a range of government departments, agencies and public bodies. If you require further information on this, please contact us.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   | Yours sincerely,
