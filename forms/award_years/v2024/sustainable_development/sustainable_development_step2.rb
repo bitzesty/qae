@@ -69,7 +69,7 @@ class AwardYears::V2024::QaeForms
             <p class="govuk-body">Please specify if selected Other</p>
           }
           conditional :organisation_type, :other
-          text_words_max 2
+          text_words_max 100
         end
 
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
@@ -82,7 +82,7 @@ class AwardYears::V2024::QaeForms
             </p>
           )
           style "small"
-          text_words_max 2
+          text_words_max 100
         end
 
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
@@ -95,7 +95,7 @@ class AwardYears::V2024::QaeForms
             </p>
           )
           style "small"
-          text_words_max 2
+          text_words_max 100
         end
 
         text :company_name, "Full legal name of your organisation." do
@@ -106,7 +106,7 @@ class AwardYears::V2024::QaeForms
               If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number.
             </p>
           )
-          text_words_max 2
+          text_words_max 100
         end
 
         text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
@@ -117,7 +117,7 @@ class AwardYears::V2024::QaeForms
             <p>Usually, this is the same name as your organisation's full legal name.</p>
             <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
           }
-          text_words_max 2
+          text_words_max 100
         end
 
         date :started_trading, "Date started trading." do
@@ -150,7 +150,7 @@ class AwardYears::V2024::QaeForms
             { county: "County" },
             { postcode: "Postcode" }
           ])
-          sub_fields_words_max 2
+          sub_fields_words_max 100
         end
 
         text :org_telephone, "Main telephone number." do
@@ -158,7 +158,7 @@ class AwardYears::V2024::QaeForms
           ref "B 6.1"
           type "tel"
           style "small"
-          text_words_max 2
+          text_words_max 100
         end
 
         sub_fields :press_contact_details, "Contact details for press enquiries." do
@@ -179,7 +179,7 @@ class AwardYears::V2024::QaeForms
             { telephone: "Telephone" },
             { email: "Email address" }
           ])
-          sub_fields_words_max 2
+          sub_fields_words_max 100
         end
 
         text :website_url, "Website address (optional)." do
@@ -188,7 +188,7 @@ class AwardYears::V2024::QaeForms
           context %(
             <p>Please provide the full website address, for example, www.yourcompanyname.com</p>
           )
-          text_words_max 2
+          text_words_max 100
         end
 
         textarea :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
@@ -228,7 +228,7 @@ class AwardYears::V2024::QaeForms
           classes "sub-question"
           sub_ref "B 10.1"
           conditional :parent_or_a_holding_company, :yes
-          text_words_max 2
+          text_words_max 100
         end
 
         country :parent_company_country, "Country of the immediate parent company." do
@@ -252,7 +252,7 @@ class AwardYears::V2024::QaeForms
           sub_ref "B 10.4"
           conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes
-          text_words_max 2
+          text_words_max 100
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control." do
