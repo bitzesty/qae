@@ -2,6 +2,7 @@ name: 'Staging deployment'
 on: [workflow_dispatch]
 jobs:
   deploy_staging:
+    if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
