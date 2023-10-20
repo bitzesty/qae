@@ -11,6 +11,10 @@ module PdfAuditCertificates::Awards2016::Innovation
       "Innovation Award"
     end
 
+    def award_type_short
+      "Innovation"
+    end
+
     def render_accountant_guidance_section
       render_accountant_guidance_intro
       move_down 3.mm
