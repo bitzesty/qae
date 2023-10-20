@@ -15,7 +15,7 @@ class QaeFormBuilder
 
       limit = question.delegate_obj.text_words_max
 
-      if limit && limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
+      if limit && length && length > limit
         result[question.hash_key] ||= ""
         result[question.hash_key] << " Exceeded #{limit} words limit."
       end
