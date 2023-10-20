@@ -137,6 +137,7 @@ class AwardYears::V2024::QaeForms
         end
 
         address :organization_address, "Trading address of your organisation." do
+          classes "sub-fields-word-max"
           required
           ref "B 6"
           pdf_context_with_header_blocks [
@@ -167,6 +168,7 @@ class AwardYears::V2024::QaeForms
         end
 
         sub_fields :press_contact_details, "Contact details for press enquiries." do
+          classes "sub-fields-word-max"
           ref "B 7"
           required
           context %(

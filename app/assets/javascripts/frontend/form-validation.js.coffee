@@ -144,6 +144,22 @@ window.FormValidation =
       @logThis(question, "validateWordLimit", "Word limit exceeded")
       @addErrorMessage(question, "Exceeded #{wordLimit} word limit.")
 
+  validateSubfieldWordLimit: (question) ->
+    wordLimit = $(question.context).attr("data-word-max")
+    subquestions = question.find(".govuk-form-group .govuk-form-group")
+    for subquestion in subquestions
+      @addSubfieldWordLimitError(question, subquestion, wordLimit)
+
+  addSubfieldWordLimitError: (question, subquestion, wordLimit) ->
+    questionRef = question.attr("data-question_ref")
+    input = $(subquestion).find('input,textarea,select').filter(':visible')
+    inputLength = $(subquestion).find('input').filter(':visible').val().split(" ").length
+    label = @extractText(input.attr('id'))
+    if inputLength > wordLimit
+      errorMessage = "Question #{questionRef} is incomplete. #{label} exceeded #{wordLimit} word limit."
+      @logThis(question, "validateRequiredSubQuestion", errorMessage)
+      @addErrorMessage($(subquestion), errorMessage)
+
   validateRequiredQuestion: (question) ->
     # if it's a conditional question, but condition was not satisfied
     conditional = true
@@ -861,6 +877,9 @@ window.FormValidation =
 
     if question.hasClass("text-words-max")
       @validateWordLimit(question)
+
+    if question.hasClass("sub-fields-word-max")
+      @validateSubfieldWordLimit(question)
 
   validate: ->
     @clearAllErrors()

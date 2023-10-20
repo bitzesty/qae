@@ -15,7 +15,7 @@ class AwardYears::V2024::QaeForms
         sub_fields :head_of_business, "Details of the head of your organisation" do
           sub_ref "A 1.2"
           required
-          classes "sub-question"
+          classes "sub-question sub-fields-word-max"
           sub_fields([
             { title: "Title" },
             { first_name: "First name" },
