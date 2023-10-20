@@ -14,7 +14,7 @@ module PdfAuditCertificates::General::GuidanceElements
   end
 
   def render_applicant_guidance_text
-    p1 = "We would like to inform you that your application has been shortlisted for a King's Award for Enterprise: #{header_full_award_type}. To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application. This verification must be from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry form)."
+    p1 = "We would like to inform you that your application has been shortlisted for a King's Award for Enterprise: #{award_type_short} category. To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application. This verification must be from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry form)."
 
     p2 = "We recommend that you send the report to the accountant straight away so that you can agree on the timelines. Let them know if you will be providing revisions to the figures."
 
@@ -70,7 +70,7 @@ module PdfAuditCertificates::General::GuidanceElements
   end
 
   def render_accountant_guidance_general_notes
-    p1 = "The financial figures should be in pound sterling (£)."
+    p1 = "The financial figures should be in pound sterling (£). Please note that all figures should be in full. NOT rounded to the nearest thousand etc.. Rounded figures will be rejected."
     p2 = "Use a minus symbol to record any losses."
 
     [p1, p2].each do |paragraph|

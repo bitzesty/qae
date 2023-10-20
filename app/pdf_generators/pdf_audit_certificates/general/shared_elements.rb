@@ -317,7 +317,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_appendix
-    render_text_line("Appendix: Illustrative Agreed Upon Procedures", 6, style: :bold)
+    render_text_line("Appendix 1: Illustrative Agreed Upon Procedures", 6, style: :bold)
 
     ps = []
 
