@@ -26,7 +26,7 @@ class QaeFormBuilder
 
         if limit && length && length > limit
           result[question.hash_key(suffix: suffix)] ||= ""
-          result[question.hash_key(suffix: suffix)] << " Exceeded #{limit} words limit."
+          result[question.hash_key(suffix: suffix)] << " Exceeded #{limit} word limit."
         end
       end
 
