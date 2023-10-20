@@ -38,6 +38,7 @@ class AuditCertificatePdf < Prawn::Document
 
   def generate!
     render_content
+    add_page_numbers
   end
 
   def render_content
@@ -68,6 +69,18 @@ class AuditCertificatePdf < Prawn::Document
 
   def financials_i18_prefix
     "admin.form_answers.financial_summary"
+  end
+
+  def add_page_numbers
+    number_pages "<page>", {
+      start_count_at: 1,
+      at: [
+        bounds.right - 50,
+        bounds.bottom + 0
+      ],
+      align: :right,
+      size: 14
+    }
   end
 
   private
