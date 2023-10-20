@@ -62,6 +62,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :other_organisation_type, "" do
+          classes "text-words-max"
           context %{
             <p class="govuk-body">Please specify</p>
           }
@@ -74,7 +75,7 @@ class AwardYears::V2024::QaeForms
 
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
           required
-          classes "sub-question"
+          classes "sub-question text-words-max"
           ref "B 3.1"
           context %(
             <p class="govuk-hint">
@@ -87,7 +88,7 @@ class AwardYears::V2024::QaeForms
 
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
           required
-          classes "sub-question"
+          classes "sub-question text-words-max"
           ref "B 3.2"
           context %(
             <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's VAT number.</p>
@@ -97,6 +98,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :company_name, "Full legal name of your organisation." do
+          classes "text-words-max"
           required
           ref "B 4"
           context %(
@@ -108,7 +110,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 4.1"
           required
           context %(
@@ -156,6 +158,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :org_telephone, "Main telephone number." do
+          classes "text-words-max"
           required
           ref "B 6.1"
           type "tel"
@@ -185,6 +188,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :website_url, "Website address (optional)." do
+          classes "text-words-max"
           ref "B 8"
           style "large"
           context %(
@@ -196,6 +200,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
+          classes "text-words-max"
           ref "B 8.1"
           style "large"
           context %(
@@ -255,7 +260,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :parent_company, "Name of the immediate parent company." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 11.1"
           conditional :has_parent_company, "yes"
           required
@@ -278,7 +283,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :ultimate_control_company, "The name of the organisation with ultimate control." do
-          classes "regular-question"
+          classes "regular-question text-words-max"
           sub_ref "B 11.4"
           required
           conditional :parent_ultimate_control, :no

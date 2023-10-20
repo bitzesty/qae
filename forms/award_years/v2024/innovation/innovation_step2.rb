@@ -67,6 +67,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :other_organisation_type, "" do
+          classes "text-words-max"
           context %{
             <p class="govuk-body">Please specify</p>
           }
@@ -78,7 +79,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           required
           ref "B 3.1"
           context %(
@@ -89,7 +90,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           required
           ref "B 3.2"
           context %(
@@ -100,6 +101,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :company_name, "Full legal name of your organisation." do
+          classes "text-words-max"
           required
           ref "B 4"
           context %(
@@ -109,7 +111,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           ref "B 4.1"
           required
           context %(
@@ -156,6 +158,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :org_telephone, "Main telephone number." do
+          classes "text-words-max"
           required
           ref "B 6.1"
           type "tel"
@@ -185,6 +188,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :website_url, "Website address (optional)." do
+          classes "text-words-max"
           ref "B 8"
           style "large"
           context %(
@@ -194,7 +198,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           ref "B 8.1"
           style "large"
           context %(
@@ -227,7 +231,7 @@ class AwardYears::V2024::QaeForms
 
         text :parent_company, "Name of the immediate parent company." do
           sub_ref "B 10.1"
-          classes "sub-question"
+          classes "sub-question text-words-max"
           required
           conditional :has_parent_company, "yes"
           text_words_max 100
@@ -248,7 +252,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :ultimate_control_company, "The name of the organisation with ultimate control." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 10.4"
           required
           conditional :parent_ultimate_control, :no
@@ -318,7 +322,7 @@ class AwardYears::V2024::QaeForms
         end
 
         text :previous_business_name, "Name used previously." do
-          classes "regular-question"
+          classes "regular-question text-words-max"
           sub_ref "B 12.3"
           required
           conditional :business_name_changed, :yes
