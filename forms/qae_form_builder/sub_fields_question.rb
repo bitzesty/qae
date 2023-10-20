@@ -15,12 +15,8 @@ class QaeFormBuilder
 
       question.sub_fields.each do |sub_field|
         suffix = sub_field.keys[0]
-        length = ActionView::Base.full_sanitizer.sanitize(
-          question.input_value(suffix: suffix).to_s
-        ).split(" ")
-        .reject do |a|
-          a.blank?
-        end.length
+
+        length = question.input_value(suffix: suffix).to_s.split(" ").reject(&:blank?).length
 
         limit = question.delegate_obj.sub_fields_words_max
 

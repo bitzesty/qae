@@ -6,12 +6,7 @@ class QaeFormBuilder
     def errors
       result = super
 
-      length = ActionView::Base.full_sanitizer.sanitize(
-        question.input_value.to_s
-      ).split(" ")
-       .reject do |a|
-        a.blank?
-      end.length
+      length = question.input_value.to_s.split(" ").reject(&:blank?).length
 
       limit = question.delegate_obj.text_words_max
 
