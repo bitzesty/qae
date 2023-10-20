@@ -70,7 +70,7 @@ class AwardYears::V2024::QaeForms
             <p class="govuk-body">Please specify if selected Other</p>
           }
           conditional :organisation_type, :other
-          text_words_max 100
+          text_words_max 50
         end
 
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
@@ -83,7 +83,7 @@ class AwardYears::V2024::QaeForms
             </p>
           )
           style "small"
-          text_words_max 100
+          text_words_max 50
         end
 
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
@@ -94,7 +94,7 @@ class AwardYears::V2024::QaeForms
             <p class="govuk-hint">If you're an unregistered subsidiary, enter your parent company's VAT number.</p>
           )
           style "small"
-          text_words_max 100
+          text_words_max 50
         end
 
         text :company_name, "Full legal name of your organisation." do
@@ -106,7 +106,7 @@ class AwardYears::V2024::QaeForms
               If your organisation is a company or charity, please make sure that the name provided is in line with the company or charity registration number.
             </p>
           )
-          text_words_max 100
+          text_words_max 50
         end
 
         text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
@@ -121,7 +121,7 @@ class AwardYears::V2024::QaeForms
               However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.
             </p>
           )
-          text_words_max 100
+          text_words_max 50
         end
 
         date :started_trading, "Date started trading." do
@@ -155,7 +155,7 @@ class AwardYears::V2024::QaeForms
             { county: "County" },
             { postcode: "Postcode" }
           ])
-          sub_fields_words_max 100
+          sub_fields_words_max 50
         end
 
         text :org_telephone, "Main telephone number." do
@@ -164,7 +164,7 @@ class AwardYears::V2024::QaeForms
           ref "B 6.1"
           type "tel"
           style "small"
-          text_words_max 100
+          text_words_max 50
         end
 
         sub_fields :press_contact_details, "Contact details for press enquiries." do
@@ -186,7 +186,7 @@ class AwardYears::V2024::QaeForms
             { telephone: "Telephone" },
             { email: "Email address" }
           ])
-          sub_fields_words_max 100
+          sub_fields_words_max 50
         end
 
         text :website_url, "Website address (optional)." do
@@ -198,7 +198,7 @@ class AwardYears::V2024::QaeForms
               Please provide the full website address, for example, www.yourcompanyname.com
             </p>
           )
-          text_words_max 100
+          text_words_max 50
         end
 
         text :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
@@ -210,7 +210,7 @@ class AwardYears::V2024::QaeForms
               Please note, when evaluating your application, the assessors may check your organisation's online presence.
             </p>
           )
-          text_words_max 100
+          text_words_max 50
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do
@@ -266,7 +266,7 @@ class AwardYears::V2024::QaeForms
           sub_ref "B 11.1"
           conditional :has_parent_company, "yes"
           required
-          text_words_max 100
+          text_words_max 50
         end
 
         country :parent_company_country, "Country of the immediate parent company." do
@@ -289,7 +289,7 @@ class AwardYears::V2024::QaeForms
           sub_ref "B 11.4"
           required
           conditional :parent_ultimate_control, :no
-          text_words_max 100
+          text_words_max 50
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control." do
