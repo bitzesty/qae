@@ -17,6 +17,7 @@ module AssessmentSubmissionMixin
   def unlock
     authorize resource, :can_unlock?
     resource.update_column(:locked_at, nil)
+    form_answer.state_machine.perform_simple_transition(:assessment_in_progress)
     log_event
 
     render_flash_message_for(resource, message: flash_message)
