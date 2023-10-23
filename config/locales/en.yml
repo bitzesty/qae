@@ -256,6 +256,10 @@ en:
         award_type_short: Innovation
       trade:
         award_type_short: International Trade
+      mobility:
+        award_type_short: Promoting Opportunity
+      development:
+        award_type_short: Sustainable Development
 
   audit_logs:
     action_types:
