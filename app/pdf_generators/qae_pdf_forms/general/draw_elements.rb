@@ -156,8 +156,8 @@ module QaePdfForms::General::DrawElements
     render_text("Need help?", size: 14, style: :bold)
 
     block_3 = %(If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with us:
-      By calling 020 7215 6880
-      Or emailing <b>Kingsawards@beis.gov.uk</b>)
+      By calling 020 4551 0081
+      Or emailing <b>kingsawards@businessandtrade.gov.uk</b>)
 
     render_text(block_3)
   end
