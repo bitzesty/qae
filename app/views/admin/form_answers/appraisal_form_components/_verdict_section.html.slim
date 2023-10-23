@@ -45,5 +45,5 @@
         ' Edit
       .form-actions.text-right
         = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
-        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
+        = link_to "Save", "#", class: "btn btn-primary form-save-link js-form-save-link pull-right if-no-js-hide", data: { updated_section: section.desc, action: "click->appraisal-form#stash" }
       .clear
