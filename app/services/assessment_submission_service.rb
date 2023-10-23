@@ -22,11 +22,7 @@ class AssessmentSubmissionService
         end
       end
 
-      if resource.moderated?
-        form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
-      end
-
-      if resource.case_summary?
+      if resource.moderated? || resource.case_summary?
         perform_state_transition!
       end
     end
@@ -43,6 +39,10 @@ class AssessmentSubmissionService
     if set_submitted_at_as_now!
       if resource.primary?
         populate_feedback
+      end
+
+      if resource.moderated?
+        perform_state_transition!
       end
     end
   end
@@ -142,9 +142,9 @@ class AssessmentSubmissionService
         secondary_grade_label = get_answer_label(labels, secondary_grade)
 
         discrepancies << [
-          rate_key, 
+          rate_key,
           appraisal_title,
-          primary_grade_label, 
+          primary_grade_label,
           secondary_grade_label
         ]
       end
@@ -171,7 +171,7 @@ class AssessmentSubmissionService
   end
 
   def primary_and_secondary_assessments_submitted?
-    primary_assessment.submitted? && 
+    primary_assessment.submitted? &&
     secondary_assessment.submitted?
   end
 
@@ -188,12 +188,12 @@ class AssessmentSubmissionService
   end
 
   def question_answer_labels(key)
-    q_type = if key.to_s == "corporate_social_responsibility" 
+    q_type = if key.to_s == "corporate_social_responsibility"
       "CSR_RAG"
     else
       get_question_type(key)
     end
-    
+
     AppraisalForm.const_get("#{q_type.upcase}_OPTIONS_#{form_answer.award_year.year}")
   end
 
@@ -202,8 +202,8 @@ class AssessmentSubmissionService
   end
 
   def get_answer_label(labels, grade)
-    labels.detect do |el| 
-      el[1] == grade 
+    labels.detect do |el|
+      el[1] == grade
     end[0]
   end
 
