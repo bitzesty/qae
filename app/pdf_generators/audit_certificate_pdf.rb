@@ -83,6 +83,11 @@ class AuditCertificatePdf < Prawn::Document
     }
   end
 
+  def award_type_short
+    award_name = self.class.name.deconstantize.split("::").last
+    I18n.t("pdf_texts.audit_certificates").dig(award_name.to_sym, :award_type_short) || award_name.titleize
+  end
+
   private
 
   def initialize_form_answer(form)
