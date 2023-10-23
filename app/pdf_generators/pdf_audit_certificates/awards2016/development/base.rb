@@ -9,10 +9,6 @@ module PdfAuditCertificates::Awards2016::Development
       "Sustainable Development Award"
     end
 
-    def award_type_short
-      "Sustainable Development"
-    end
-
     def render_accountant_guidance_section
       render_accountant_guidance_intro
       move_down 3.mm

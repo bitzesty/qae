@@ -5,10 +5,6 @@ module PdfAuditCertificates::Awards2016::Trade
       "International Trade Award"
     end
 
-    def award_type_short
-      "International Trade"
-    end
-
     def render_accountant_guidance_section
       render_accountant_guidance_intro
       move_down 3.mm

@@ -6,10 +6,6 @@ module PdfAuditCertificates::Awards2016::Mobility
       "Promoting Opportunity through Social Mobility Award"
     end
 
-    def award_type_short
-      "Promoting Opportunity"
-    end
-
     def render_accountant_guidance_section
       render_accountant_guidance_intro
       move_down 3.mm
