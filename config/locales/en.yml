@@ -270,6 +270,15 @@ en:
         If you won the award in the last year, unfortunately, you cannot apply for the International Trade Award this year. If your international trade continues to result in outstanding year-on-year growth, you can apply again in 2024 for an award to be given in 2025 (on Outstanding Short-Term Growth over a 3 years basis), providing you include two new years of trading results in your application.
     development:
       years_question_additional_context: 'If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years.'
+    audit_certificates:
+      innovation:
+        award_type_short: Innovation
+      trade:
+        award_type_short: International Trade
+      mobility:
+        award_type_short: Promoting Opportunity
+      development:
+        award_type_short: Sustainable Development
 
   audit_logs:
     action_types:
