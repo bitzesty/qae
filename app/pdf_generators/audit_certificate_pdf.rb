@@ -24,7 +24,7 @@ class AuditCertificatePdf < Prawn::Document
     @award_type = form_answer.award_type_full_name.downcase
     @award_type_full_name = "#{@form_answer.award_type_full_name} #{form_answer.award_year.year}"
     @company_name = @form_answer.company_name
-    @financial_pointer = FormFinancialPointer.new(@form_answer, {
+    @financial_pointer = FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
       financial_summary_view: true
     })
