@@ -3,9 +3,34 @@ module PdfAuditCertificates::Awards2016::Innovation
   class Base < PdfAuditCertificates::Base
     # HERE YOU CAN OVERRIDE STANDART METHODS
 
+    def raw_data
+      @_raw_data ||= financial_pointer.data
+    end
 
-    FIRST_TABLE_ROWS = %i[employees total_turnover exports uk_sales net_profit total_net_assets].freeze
-    SECOND_TABLE_ROWS = %i[units_sold sales sales_exports sales_royalties avg_unit_price avg_unit_cost_self].freeze
+    def formatted_data
+      @_formatted_data ||= financial_pointer.summary_data
+    end
+
+    def partitioned_rows
+      indexes = formatted_data.map.with_index { |x, idx| idx if x.keys && x.keys[0] == :dates }.compact_blank
+      return formatted_data unless (indexes.size > 1)
+
+      first = formatted_data[0...(indexes[-1])]
+      last = formatted_data[indexes[-1]..-1]
+
+      [first, last]
+    end
+
+    def financial_rows
+      partitioned_rows&.first
+    end
+
+    def innovation_rows
+      partitioned_rows&.last
+    end
+
+    FIRST_TABLE_ROWS = %i[dates employees total_turnover exports uk_sales net_profit total_net_assets].freeze
+    SECOND_TABLE_ROWS = %i[dates units_sold sales sales_exports sales_royalties avg_unit_price avg_unit_cost_self].freeze
 
     def header_full_award_type
       "Innovation Award"
@@ -45,16 +70,20 @@ module PdfAuditCertificates::Awards2016::Innovation
 
       render_accountant_guidance_general_notes
 
-      data = financial_pointer.data
+      start_at_idx = FIRST_TABLE_ROWS.length + 1
 
-      rows = [financial_pointer.years_list.unshift("")]
+      rows = SECOND_TABLE_ROWS.each_with_object([]).with_index(start_at_idx) do |(field, memo), index|
+        row = innovation_rows.detect { |r| r[field] }
 
-      SECOND_TABLE_ROWS.each_with_index do |field, index|
-        row = data.detect { |r| r[field] }
+        next unless row
 
-        rows << render_financial_row(row, index + FIRST_TABLE_ROWS.length + 2)
+        memo << if field == :dates
+          render_date_row(row, index)
+        else
+          render_financial_row(row, index, key: field)
+        end
 
-        rows << revised_row(row.values.first.length, index + FIRST_TABLE_ROWS.length + 2)
+        memo << revised_row(row.values.first.length, index)
       end
 
       table(rows, table_default_ops(:main_table)) do
@@ -69,27 +98,21 @@ module PdfAuditCertificates::Awards2016::Innovation
     def render_financial_main_table
       render_text_line("The UK Business Financials", 2, style: :bold)
 
-      rows = [
-        financial_pointer.years_list.unshift(""),
-        financial_table_year_and_date_data
-      ]
-
-      rows << revised_row(rows.last.length - 1, 1)
-
-      data = financial_pointer.data
-
-      FIRST_TABLE_ROWS.each_with_index do |field, index|
-        row = data.detect { |r| r[field] }
-
-        rows << if field == :uk_sales
-          render_financial_uk_sales_row(row, index + 2)
+      rows = FIRST_TABLE_ROWS.each_with_object([]).with_index(1) do |(field, memo), index|
+        row = financial_rows.detect { |r| r[field] }
+        
+        next unless row
+        
+        memo << if field == :dates
+          render_date_row(row, index)
+        elsif field == :uk_sales
+          render_financial_uk_sales_row(row, index)
         else
-          render_financial_row(row, index + 2)
+          render_financial_row(row, index, key: field)
         end
 
-        rows << revised_row(row.values.first.length, index + 2)
+        memo << revised_row(row.values.first.length, index)
       end
-
 
       table(rows, table_default_ops(:main_table)) do
         rows.each_with_index do |row, i|
