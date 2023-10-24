@@ -93,9 +93,15 @@ module PdfAuditCertificates::General::SharedElements
     res
   end
 
-  def render_financial_row(row, index)
+  def render_date_row(row, index)
+    res = ["#{index}. " + I18n.t("#{financials_i18_prefix}.years_row.financial_year_changed_dates")]
+    res << row.values
+    res.flatten
+  end
+
+  def render_financial_row(row, index, key: nil)
     award_specific_key = "row"
-    key = row.keys.first
+    key ||= row.keys.first
 
     if form_answer.innovation? && key == :sales
       award_specific_key = "innovation"
@@ -317,7 +323,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_appendix
-    render_text_line("Appendix: Illustrative Agreed Upon Procedures", 6, style: :bold)
+    render_text_line("Appendix 1: Illustrative Agreed Upon Procedures", 6, style: :bold)
 
     ps = []
 

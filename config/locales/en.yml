@@ -157,7 +157,7 @@ en:
     development_submission_start: Sustainable Development submission period starts on
     mobility_submission_start: Promoting Opportunity submission period starts on
     submission_end: Submission period closes on
-    buckingham_palace_attendees_details: HM The Queen's Birthday (end of embargo)
+    buckingham_palace_attendees_details: HMTK coronation anniversary (end of embargo)
     buckingham_palace_media_information: KAO provides information to the media of the recipients on
     buckingham_palace_confirm_press_book_notes: Press Book Entry confirmation due by
     buckingham_palace_reception_attendee_information_due_by: Buckingham Palace reception attendee information due by
@@ -270,6 +270,15 @@ en:
         If you won the award in the last year, unfortunately, you cannot apply for the International Trade Award this year. If your international trade continues to result in outstanding year-on-year growth, you can apply again in 2024 for an award to be given in 2025 (on Outstanding Short-Term Growth over a 3 years basis), providing you include two new years of trading results in your application.
     development:
       years_question_additional_context: 'If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years.'
+    audit_certificates:
+      innovation:
+        award_type_short: Innovation
+      trade:
+        award_type_short: International Trade
+      mobility:
+        award_type_short: Promoting Opportunity
+      development:
+        award_type_short: Sustainable Development
 
   audit_logs:
     action_types:
