@@ -13,7 +13,7 @@ class FormAnswerAuditor
   private
 
   def create_events_from_audit_logs(form_answer)
-    form_answer.audit_logs.data_update.map do |audit_log|
+    form_answer.audit_logs.preload(:subject).data_update.map do |audit_log|
       AuditEvent.new(
         form_answer: form_answer,
         action_type: audit_log.action_type,
