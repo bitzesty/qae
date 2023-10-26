@@ -101,7 +101,6 @@ export default class extends ApplicationController {
     wrapper.classList.remove('form-edit');
 
     if (Array.from(wrapper.querySelectorAll('.form-value p[data-for]')).length > 0) {
-      console.log(1);
       Array.from(wrapper.querySelectorAll('.form-value p[data-for]')).forEach((el) => {
         let identifier = el.dataset.for;
         let element = document.querySelector(`#${identifier}`);
