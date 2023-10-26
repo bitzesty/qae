@@ -10,10 +10,17 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
+-- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
--- *not* creating schema, since initdb creates it
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
 
 
 --
@@ -28,6 +35,154 @@ CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
+
+
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
+--
+-- Name: forbid_ddl_reader(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.forbid_ddl_reader() RETURNS event_trigger
+    LANGUAGE plpgsql
+    SET search_path TO 'public'
+    AS $$
+	begin
+		-- do not execute if member of rds_superuser
+		IF EXISTS (select 1 from pg_catalog.pg_roles where rolname = 'rds_superuser')
+		AND pg_has_role(current_user, 'rds_superuser', 'member') THEN
+			RETURN;
+		END IF;
+
+		-- do not execute if superuser
+		IF EXISTS (SELECT 1 FROM pg_user WHERE usename = current_user and usesuper = true) THEN
+			RETURN;
+		END IF;
+
+		-- do not execute if member of manager role
+		IF pg_has_role(current_user, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_manager', 'member') THEN
+			RETURN;
+		END IF;
+
+		IF pg_has_role(current_user, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_reader', 'member') THEN
+			RAISE EXCEPTION 'executing % is disabled for read only bindings', tg_tag;
+		END IF;
+	end
+$$;
+
+
+--
+-- Name: form_answer_metadata_trigger(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.form_answer_metadata_trigger() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ begin IF (TG_OP = 'INSERT') THEN NEW.metadata := ( SELECT ( (CASE WHEN NEW.metadata IS NULL THEN json_build_object()::jsonb ELSE NEW.metadata END) || json_build_object( 'registration_number', ( CASE WHEN (NEW.document::jsonb -> 'registration_number') IS NOT NULL THEN NEW.document::jsonb ->> 'registration_number' ELSE '' END ), 'product_estimated_figures', ( CASE WHEN (NEW.document::jsonb -> 'product_estimated_figures') IS NOT NULL THEN NEW.document::jsonb ->> 'product_estimated_figures' ELSE NULL END ) )::jsonb ) ); END IF; IF (TG_OP = 'UPDATE') THEN NEW.metadata := ( SELECT ( (CASE WHEN NEW.metadata IS NULL THEN json_build_object()::jsonb ELSE NEW.metadata END) || json_build_object( 'registration_number', ( CASE WHEN (NEW.document::jsonb -> 'registration_number') IS NOT NULL THEN NEW.document::jsonb ->> 'registration_number' ELSE NULL END ), 'product_estimated_figures', ( CASE WHEN (NEW.document::jsonb -> 'product_estimated_figures') IS NOT NULL THEN NEW.document::jsonb ->> 'product_estimated_figures' ELSE NULL END ) )::jsonb ) FROM form_answers WHERE form_answers.id = NEW.id ); END IF; return NEW; end $$;
+
+
+--
+-- Name: make_readable(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.make_readable() RETURNS event_trigger
+    LANGUAGE plpgsql
+    SET search_path TO 'public'
+    AS $$
+	begin
+		IF EXISTS (SELECT 1 FROM pg_event_trigger_ddl_commands() WHERE schema_name NOT LIKE 'pg_temp%') THEN
+			EXECUTE 'select make_readable_generic()';
+			RETURN;
+		END IF;
+	end
+	$$;
+
+
+--
+-- Name: make_readable_generic(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.make_readable_generic() RETURNS void
+    LANGUAGE plpgsql
+    SET search_path TO 'public'
+    AS $$
+	declare
+		r record;
+	begin
+		-- do not execute if member of rds_superuser
+		IF EXISTS (select 1 from pg_catalog.pg_roles where rolname = 'rds_superuser')
+		AND pg_has_role(current_user, 'rds_superuser', 'member') THEN
+			RETURN;
+		END IF;
+
+		-- do not execute if superuser
+		IF EXISTS (SELECT 1 FROM pg_user WHERE usename = current_user and usesuper = true) THEN
+			RETURN;
+		END IF;
+
+		-- do not execute if not member of manager role
+		IF NOT pg_has_role(current_user, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_manager', 'member') THEN
+			RETURN;
+		END IF;
+
+		FOR r in (select schema_name from information_schema.schemata) LOOP
+			BEGIN
+				EXECUTE format('GRANT SELECT ON ALL TABLES IN SCHEMA %I TO %I', r.schema_name, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_reader');
+				EXECUTE format('GRANT SELECT ON ALL SEQUENCES IN SCHEMA %I TO %I', r.schema_name, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_reader');
+				EXECUTE format('GRANT USAGE ON SCHEMA %I TO %I', r.schema_name, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_reader');
+
+				RAISE NOTICE 'GRANTED READ ONLY IN SCHEMA %s', r.schema_name;
+			EXCEPTION WHEN OTHERS THEN
+			  -- brrr
+			END;
+		END LOOP;
+
+		RETURN;
+	end
+$$;
+
+
+--
+-- Name: reassign_owned(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.reassign_owned() RETURNS event_trigger
+    LANGUAGE plpgsql
+    SET search_path TO 'public'
+    AS $$
+	begin
+		-- do not execute if member of rds_superuser
+		IF EXISTS (select 1 from pg_catalog.pg_roles where rolname = 'rds_superuser')
+		AND pg_has_role(current_user, 'rds_superuser', 'member') THEN
+			RETURN;
+		END IF;
+
+		-- do not execute if superuser
+		IF EXISTS (SELECT 1 FROM pg_user WHERE usename = current_user and usesuper = true) THEN
+			RETURN;
+		END IF;
+
+		-- do not execute if not member of manager role
+		IF NOT pg_has_role(current_user, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_manager', 'member') THEN
+			RETURN;
+		END IF;
+
+		EXECUTE format('REASSIGN OWNED BY %I TO %I', current_user, 'rdsbroker_358c26a9_8d50_442c_a5d2_beb23248a790_manager');
+
+		RETURN;
+	end
+$$;
 
 
 SET default_tablespace = '';
@@ -52,7 +207,6 @@ CREATE TABLE public.accounts (
 --
 
 CREATE SEQUENCE public.accounts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -108,7 +262,6 @@ CREATE TABLE public.admins (
 --
 
 CREATE SEQUENCE public.admins_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -145,7 +298,6 @@ CREATE TABLE public.aggregated_award_year_pdfs (
 --
 
 CREATE SEQUENCE public.aggregated_award_year_pdfs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -167,8 +319,8 @@ ALTER SEQUENCE public.aggregated_award_year_pdfs_id_seq OWNED BY public.aggregat
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -198,7 +350,6 @@ CREATE TABLE public.assessor_assignments (
 --
 
 CREATE SEQUENCE public.assessor_assignments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -257,7 +408,6 @@ CREATE TABLE public.assessors (
 --
 
 CREATE SEQUENCE public.assessors_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -296,7 +446,6 @@ CREATE TABLE public.audit_certificates (
 --
 
 CREATE SEQUENCE public.audit_certificates_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -332,7 +481,6 @@ CREATE TABLE public.audit_logs (
 --
 
 CREATE SEQUENCE public.audit_logs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -369,7 +517,6 @@ CREATE TABLE public.award_years (
 --
 
 CREATE SEQUENCE public.award_years_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -403,7 +550,6 @@ CREATE TABLE public.case_summary_hard_copy_pdfs (
 --
 
 CREATE SEQUENCE public.case_summary_hard_copy_pdfs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -441,7 +587,6 @@ CREATE TABLE public.comments (
 --
 
 CREATE SEQUENCE public.comments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -510,7 +655,6 @@ CREATE TABLE public.deadlines (
 --
 
 CREATE SEQUENCE public.deadlines_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -547,7 +691,6 @@ CREATE TABLE public.draft_notes (
 --
 
 CREATE SEQUENCE public.draft_notes_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -583,7 +726,6 @@ CREATE TABLE public.eligibilities (
 --
 
 CREATE SEQUENCE public.eligibilities_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -618,7 +760,6 @@ CREATE TABLE public.email_notifications (
 --
 
 CREATE SEQUENCE public.email_notifications_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -652,7 +793,6 @@ CREATE TABLE public.feedback_hard_copy_pdfs (
 --
 
 CREATE SEQUENCE public.feedback_hard_copy_pdfs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -690,7 +830,6 @@ CREATE TABLE public.feedbacks (
 --
 
 CREATE SEQUENCE public.feedbacks_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -730,7 +869,6 @@ CREATE TABLE public.form_answer_attachments (
 --
 
 CREATE SEQUENCE public.form_answer_attachments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -761,7 +899,6 @@ CREATE TABLE public.form_answer_progresses (
 --
 
 CREATE SEQUENCE public.form_answer_progresses_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -797,7 +934,6 @@ CREATE TABLE public.form_answer_transitions (
 --
 
 CREATE SEQUENCE public.form_answer_transitions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -847,12 +983,13 @@ CREATE TABLE public.form_answers (
     user_email character varying,
     corp_responsibility_reviewed boolean DEFAULT false,
     pdf_version character varying,
-    mobility_eligibility_id integer,
     submitted_at timestamp without time zone,
+    mobility_eligibility_id integer,
     form_data_hard_copy_generated boolean DEFAULT false,
     case_summary_hard_copy_generated boolean DEFAULT false,
     feedback_hard_copy_generated boolean DEFAULT false,
-    discrepancies_between_primary_and_secondary_appraisals json
+    discrepancies_between_primary_and_secondary_appraisals json,
+    metadata jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -861,7 +998,6 @@ CREATE TABLE public.form_answers (
 --
 
 CREATE SEQUENCE public.form_answers_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -962,7 +1098,6 @@ CREATE TABLE public.palace_attendees (
 --
 
 CREATE SEQUENCE public.palace_attendees_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -997,7 +1132,6 @@ CREATE TABLE public.palace_invites (
 --
 
 CREATE SEQUENCE public.palace_invites_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1044,7 +1178,6 @@ CREATE TABLE public.press_summaries (
 --
 
 CREATE SEQUENCE public.press_summaries_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1078,7 +1211,6 @@ CREATE TABLE public.previous_wins (
 --
 
 CREATE SEQUENCE public.previous_wins_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1116,7 +1248,6 @@ CREATE TABLE public.scans (
 --
 
 CREATE SEQUENCE public.scans_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1157,7 +1288,6 @@ CREATE TABLE public.settings (
 --
 
 CREATE SEQUENCE public.settings_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1227,7 +1357,6 @@ CREATE TABLE public.site_feedbacks (
 --
 
 CREATE SEQUENCE public.site_feedbacks_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1264,7 +1393,6 @@ CREATE TABLE public.support_letter_attachments (
 --
 
 CREATE SEQUENCE public.support_letter_attachments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1310,7 +1438,6 @@ CREATE TABLE public.support_letters (
 --
 
 CREATE SEQUENCE public.support_letters_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1348,7 +1475,6 @@ CREATE TABLE public.supporters (
 --
 
 CREATE SEQUENCE public.supporters_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2656,7 +2782,6 @@ CREATE TABLE public.users (
 --
 
 CREATE SEQUENCE public.users_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2722,7 +2847,6 @@ CREATE TABLE public.version_associations (
 --
 
 CREATE SEQUENCE public.version_associations_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2759,7 +2883,6 @@ CREATE TABLE public.versions (
 --
 
 CREATE SEQUENCE public.versions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3258,14 +3381,6 @@ ALTER TABLE ONLY public.scans
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
 -- Name: settings settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3584,6 +3699,13 @@ CREATE INDEX index_form_answers_on_award_year_id ON public.form_answers USING bt
 
 
 --
+-- Name: index_form_answers_on_metadata; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_metadata ON public.form_answers USING gin (metadata);
+
+
+--
 -- Name: index_form_answers_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3801,19 +3923,41 @@ CREATE INDEX index_versions_on_transaction_id ON public.versions USING btree (tr
 
 
 --
--- Name: support_letter_attachments fk_rails_0f5a0025a7; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.support_letter_attachments
-    ADD CONSTRAINT fk_rails_0f5a0025a7 FOREIGN KEY (user_id) REFERENCES public.users(id);
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
 
 
 --
--- Name: supporters fk_rails_20f2c914c7; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: form_answers dog_metadata_update; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER dog_metadata_update BEFORE INSERT OR UPDATE ON public.form_answers FOR EACH ROW EXECUTE FUNCTION public.form_answer_metadata_trigger();
+
+
+--
+-- Name: supporters fk_rails_024ed5f8fb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.supporters
-    ADD CONSTRAINT fk_rails_20f2c914c7 FOREIGN KEY (user_id) REFERENCES public.users(id);
+    ADD CONSTRAINT fk_rails_024ed5f8fb FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: support_letter_attachments fk_rails_0c6f611241; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.support_letter_attachments
+    ADD CONSTRAINT fk_rails_0c6f611241 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: support_letter_attachments fk_rails_2068ce00d8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.support_letter_attachments
+    ADD CONSTRAINT fk_rails_2068ce00d8 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -3825,19 +3969,19 @@ ALTER TABLE ONLY public.palace_invites
 
 
 --
--- Name: support_letter_attachments fk_rails_5e975fee43; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: support_letters fk_rails_52cb7b4db4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.support_letter_attachments
-    ADD CONSTRAINT fk_rails_5e975fee43 FOREIGN KEY (support_letter_id) REFERENCES public.support_letters(id);
+ALTER TABLE ONLY public.support_letters
+    ADD CONSTRAINT fk_rails_52cb7b4db4 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
--- Name: palace_attendees fk_rails_6019307b8c; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: support_letters fk_rails_58c58c5c33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.palace_attendees
-    ADD CONSTRAINT fk_rails_6019307b8c FOREIGN KEY (palace_invite_id) REFERENCES public.palace_invites(id);
+ALTER TABLE ONLY public.support_letters
+    ADD CONSTRAINT fk_rails_58c58c5c33 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
 
 
 --
@@ -3849,19 +3993,19 @@ ALTER TABLE ONLY public.feedbacks
 
 
 --
--- Name: feedbacks fk_rails_85a1d7f049; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: feedbacks fk_rails_862f726672; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.feedbacks
-    ADD CONSTRAINT fk_rails_85a1d7f049 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+    ADD CONSTRAINT fk_rails_862f726672 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
 
 
 --
--- Name: press_summaries fk_rails_9087c6fe61; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: press_summaries fk_rails_876f0259ca; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.press_summaries
-    ADD CONSTRAINT fk_rails_9087c6fe61 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+    ADD CONSTRAINT fk_rails_876f0259ca FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
 
 
 --
@@ -3870,14 +4014,6 @@ ALTER TABLE ONLY public.press_summaries
 
 ALTER TABLE ONLY public.aggregated_award_year_pdfs
     ADD CONSTRAINT fk_rails_a450856684 FOREIGN KEY (award_year_id) REFERENCES public.award_years(id);
-
-
---
--- Name: support_letter_attachments fk_rails_abd43a0510; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.support_letter_attachments
-    ADD CONSTRAINT fk_rails_abd43a0510 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
 
 
 --
@@ -3894,6 +4030,22 @@ ALTER TABLE ONLY public.assessor_assignments
 
 ALTER TABLE ONLY public.case_summary_hard_copy_pdfs
     ADD CONSTRAINT fk_rails_cf4e2cdfc6 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: palace_invites fk_rails_d453d71a1a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.palace_invites
+    ADD CONSTRAINT fk_rails_d453d71a1a FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: palace_attendees fk_rails_d478f28099; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.palace_attendees
+    ADD CONSTRAINT fk_rails_d478f28099 FOREIGN KEY (palace_invite_id) REFERENCES public.palace_invites(id);
 
 
 --
@@ -3918,6 +4070,31 @@ ALTER TABLE ONLY public.feedback_hard_copy_pdfs
 
 ALTER TABLE ONLY public.support_letters
     ADD CONSTRAINT fk_rails_fe9ef772b4 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: forbid_ddl_reader; Type: EVENT TRIGGER; Schema: -; Owner: -
+--
+
+CREATE EVENT TRIGGER forbid_ddl_reader ON ddl_command_start
+   EXECUTE FUNCTION public.forbid_ddl_reader();
+
+
+--
+-- Name: make_readable; Type: EVENT TRIGGER; Schema: -; Owner: -
+--
+
+CREATE EVENT TRIGGER make_readable ON ddl_command_end
+         WHEN TAG IN ('CREATE TABLE', 'CREATE TABLE AS', 'CREATE SCHEMA', 'CREATE VIEW', 'CREATE SEQUENCE')
+   EXECUTE FUNCTION public.make_readable();
+
+
+--
+-- Name: reassign_owned; Type: EVENT TRIGGER; Schema: -; Owner: -
+--
+
+CREATE EVENT TRIGGER reassign_owned ON ddl_command_end
+   EXECUTE FUNCTION public.reassign_owned();
 
 
 --
@@ -4134,6 +4311,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220906085430'),
 ('20220906085443'),
 ('20220906085454'),
-('20220927093210');
+('20220927093210'),
+('20231025022311');
 
 
