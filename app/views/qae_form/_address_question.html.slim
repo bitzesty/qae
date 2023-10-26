@@ -20,6 +20,7 @@ div role="group" id="q_#{question.key}"
           value=question.input_value(suffix: 'building')
           autocomplete="off"
           id="q_#{question.key}_line_1" *possible_read_only_ops
+          data-word-max=question.sub_fields_words_max
           aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_building" : nil )
         ]
 
@@ -38,6 +39,7 @@ div role="group" id="q_#{question.key}"
           value=question.input_value(suffix: 'street')
           autocomplete="off"
           id="q_#{question.key}_line_2" *possible_read_only_ops
+          data-word-max=question.sub_fields_words_max
           aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_street" : nil )
         ]
 
@@ -93,5 +95,6 @@ div role="group" id="q_#{question.key}"
           value=question.input_value(suffix: sub_field_key)
           name=question.input_name(suffix: sub_field_key)
           autocomplete="off" *possible_read_only_ops
+          data-word-max=question.sub_fields_words_max
           aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{sub_field_key}" : nil )
         ]

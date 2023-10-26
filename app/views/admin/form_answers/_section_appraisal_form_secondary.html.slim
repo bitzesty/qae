@@ -1,7 +1,7 @@
-.panel.panel-default
+.panel.panel-default[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
   .panel-heading#appraisal-form-secondary-heading
     h3.panel-title
-      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-secondary" aria-expanded="true" aria-controls="section-appraisal-form-secondary"
+      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-secondary" aria-expanded="true" aria-controls="section-appraisal-form-secondary" data-element-focus-target="reveal"
         ' Appraisal Form (Secondary)
         - if secondary_assessment.last_editor_info.present?
           small

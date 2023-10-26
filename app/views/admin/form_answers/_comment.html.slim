@@ -6,7 +6,7 @@
         p Delete this comment?
         .btn-actions
         = form_for [namespace_name, @form_answer, comment],
-                   html: { method: :delete, class: "destroy-comment"} do |f|
+                   html: { method: :delete, class: "destroy-comment", id: "overlay-destroy-comment-#{comment.id}", data: { inline_flash_target: "form", action: "ajax:x:success->inline-flash#success ajax:x:error->inline-flash#error" } } do |f|
 
             = f.submit 'Yes', class: "btn btn-danger link-delete-comment-confirm"
             ' &nbsp;
@@ -16,16 +16,16 @@
     h3
       = comment_author(comment)
 
-      span.pull-right.if-no-js-hide
-        - if comment.author?(current_subject)
-          = link_to "#", class: "link-delete-comment"
-            ' Delete
-            span.icon-delete-comment
+    span.pull-right.if-no-js-hide
+      - if comment.author?(current_subject)
+        = link_to "#", class: "link-delete-comment"
+          ' Delete
+          span.icon-delete-comment
       span.pull-right.if-js-hide
 
         - if comment.author?(current_subject)
           = form_for [namespace_name, @form_answer, comment],
-                     html: { method: :delete, class: "destroy-comment"} do |f|
+                     html: { method: :delete, class: "destroy-comment", id: "destroy-comment-#{comment.id}", data: { inline_flash_target: "form", action: "ajax:x:success->inline-flash#success ajax:x:error->inline-flash#error" } } do |f|
 
             = f.submit 'Delete', class: "btn btn-danger link-delete-comment-confirm"
 
@@ -37,7 +37,7 @@
              authenticity_token: true) do |f|
 
     label.if-js-hide Flag
-    = f.check_box :flagged, class: "flag-comment-checkbox if-js-hide"
+    = f.check_box :flagged, class: "flag-comment-checkbox if-js-hide", id: "flag-comment-#{comment.id}"
     .comment-action
       = l comment.created_at, format: :date_at_time
       span.divider •

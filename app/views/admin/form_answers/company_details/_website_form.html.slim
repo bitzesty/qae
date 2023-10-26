@@ -7,7 +7,7 @@
         = hidden_field_tag :section, "website", id: "section_website_hidden_field"
 
         .form-container
-          label.form-label Website address
+          label.form-label for="form_answer_data_attributes_website_url" Website address
 
           .form-value
             p
@@ -16,7 +16,7 @@
               - else
                 em.text-muted No website added.
           .form-fields.form-block
-            = f.simple_fields_for(:data) do |f|
+            = f.simple_fields_for :data, include_id: false do |f|
               = f.input :website_url,
                         as: :string,
                         label: false,

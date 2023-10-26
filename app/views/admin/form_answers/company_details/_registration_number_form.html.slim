@@ -16,7 +16,7 @@
               - else
                 em.text-muted No company/charity registration number added yet.
           .form-fields.form-block
-            = f.simple_fields_for(:data) do |f|
+            = f.simple_fields_for :data, include_id: false do |f|
               = f.input :registration_number,
                         as: :string,
                         label: false,

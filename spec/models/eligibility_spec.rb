@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Eligibility do
 
-  it {is_expected.to belong_to(:account)}
-  it {is_expected.to belong_to(:form_answer)}
+  it {is_expected.to belong_to(:account).optional }
+  it {is_expected.to belong_to(:form_answer).optional }
 
   describe 'base validation' do
     it 'should raise error' do

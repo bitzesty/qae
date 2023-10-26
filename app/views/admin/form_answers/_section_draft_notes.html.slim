@@ -16,6 +16,8 @@
 
         .form-group[class="#{'form-edit' if f.object.content.blank?}" data-controller="element-focus"]
           .form-container
+            label for="draft_note_content"
+              ' Draft comments
             .form-value
               p
                 - if f.object.content.present?

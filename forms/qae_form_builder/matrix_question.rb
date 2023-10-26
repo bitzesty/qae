@@ -8,10 +8,17 @@ class QaeFormBuilder
         question.y_headings.each do |y_heading|
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
-            if !question.input_value(suffix: suffix).present? && !AUTO_CALCULATED_HEADINGS.any? { |excluded| question.input_name(suffix: suffix).include?(excluded) }
-              if (question.required_row_parent && question.required_rows.include?(y_heading.key)) || !question.required_row_parent
-                result[question.hash_key(suffix: suffix)] ||= ""
-                result[question.hash_key(suffix: suffix)] << "Required"
+            if !AUTO_CALCULATED_HEADINGS.any? { |excluded| question.input_name(suffix: suffix).include?(excluded) }
+              if !question.input_value(suffix: suffix).present?
+                if (question.required_row_parent && question.required_rows.include?(y_heading.key)) || !question.required_row_parent
+                  result[question.hash_key(suffix: suffix)] ||= ""
+                  result[question.hash_key(suffix: suffix)] << "Required"
+                end
+              else
+                if !/\A\d+\z/.match(question.input_value(suffix: suffix).to_s)
+                  result[question.hash_key(suffix: suffix)] ||= ""
+                  result[question.hash_key(suffix: suffix)] << "Must be a whole number"
+                end
               end
             end
           end

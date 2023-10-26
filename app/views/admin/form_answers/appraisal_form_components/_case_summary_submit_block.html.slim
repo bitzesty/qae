@@ -23,9 +23,7 @@
             .clear
 
 - elsif assessment.submitted?
-
   - if policy(assessment).can_unlock?
-
     - unlock_url = namespace_name == :admin ? unlock_admin_assessment_submission_url(assessment) : unlock_assessor_assessment_submission_url(assessment)
 
     = form_tag unlock_url, method: :patch do
@@ -42,6 +40,5 @@
       ' Case Summary Submitted
 
 - elsif !assessment.submitted?
-
   .feedback-holder.alert.alert-info
     ' Case Summary is not submitted yet!

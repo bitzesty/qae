@@ -1,13 +1,14 @@
 label
   | Latest financial statements and VAT returns
 
-.document-list.space-y-3
-  p.p-empty class="#{'visuallyhidden' if figures_form.vat_returns_files.any?}"
-    ' No documents have been attached.
-  ul.list-unstyled.list-actions
-    - if figures_form.vat_returns_files.any?
-      = render(partial: "admin/figures_and_vat_returns/file", collection: figures_form.vat_returns_files, as: :attachment)
-  .clear
+div[data-controller="inline-flash"]
+  .document-list.space-y-3
+    p.p-empty class="#{'visuallyhidden' if figures_form.vat_returns_files.any?}"
+      ' No documents have been attached.
+    ul.list-unstyled.list-actions
+      - if figures_form.vat_returns_files.any?
+        = render(partial: "admin/figures_and_vat_returns/file", collection: figures_form.vat_returns_files, as: :attachment)
+    .clear
 
-#vat-returns-attachment-form
-  = render("admin/figures_and_vat_returns/form", form_answer: form_answer, attachment: figures_form.vat_returns_files.build)
+  #vat-returns-attachment-form
+    = render("admin/figures_and_vat_returns/form", form_answer: form_answer, attachment: figures_form.vat_returns_files.build)

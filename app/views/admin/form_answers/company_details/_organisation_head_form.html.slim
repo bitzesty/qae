@@ -25,7 +25,7 @@
               - if @form_answer.head_of_business_email.present?
                 = @form_answer.head_of_business_email
           .form-fields.form-block
-            = f.simple_fields_for(:data) do |f|
+            = f.simple_fields_for :data, include_id: false do |f|
               .row
                 .col-md-2
                   = f.input :head_of_business_title,

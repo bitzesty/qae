@@ -1,5 +1,5 @@
 class PalaceInvite < ApplicationRecord
-  belongs_to :form_answer
+  belongs_to :form_answer, optional: true
 
   has_many :palace_attendees, dependent: :destroy, autosave: true
 
