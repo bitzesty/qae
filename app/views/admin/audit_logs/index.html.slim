@@ -32,7 +32,7 @@
                   td
                     = audit_log.created_at.strftime("%d/%m/%Y %-l:%M%P")
                   td
-                    = audit_log.subject.email
+                    = audit_log.subject&.email
                   td
                     - if audit_log.action_type != "download_form_answer"
                       = t("audit_logs.action_types.#{audit_log.action_type.gsub(/-/, '_')}")
