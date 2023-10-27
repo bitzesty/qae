@@ -93,10 +93,6 @@ class Reports::CasesStatusReport
     {
       label: "KAOPermission",
       method: :qao_permission
-    },
-    {
-      label: "SubCategory",
-      method: :sub_category
     }
   ]
 
