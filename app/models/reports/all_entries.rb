@@ -68,10 +68,6 @@ class Reports::AllEntries
       method: :agree_sharing_of_details_with_lieutenancies?
     },
     {
-      label: "SubCategory",
-      method: :sub_category
-    },
-    {
       label: "Innovation Type",
       method: :innovation_type
     },
