@@ -300,7 +300,15 @@ module Reports::DataPickers::FormDocumentPicker
         doc("application_category") == "initiative" ? doc("initiative_desc_short") : doc("organisation_desc_short")
       end
     else
-      doc("trade_goods_briefly")
+      if obj.award_year.year <= 2023
+        doc("trade_goods_briefly")
+      else
+        if doc("trade_goods_and_services_explanations").present?
+          doc("trade_goods_and_services_explanations").map{ |h| h.dig("desc_short") }
+                                                      .reject(&:blank?)
+                                                      .join(", ")
+        end
+      end
     end
 
     ActionView::Base.full_sanitizer.sanitize(service)
