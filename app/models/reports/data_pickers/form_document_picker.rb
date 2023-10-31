@@ -297,18 +297,14 @@ module Reports::DataPickers::FormDocumentPicker
       if obj.award_year.year <= 2020
         doc("mobility_desc_short")
       else
-        doc("application_category") == "initiative" ? doc("initiative_desc_short") : doc("organisation_desc_short")
-      end
-    else
-      if obj.award_year.year <= 2023
-        doc("trade_goods_briefly")
-      else
-        if doc("trade_goods_and_services_explanations").present?
-          doc("trade_goods_and_services_explanations").map{ |h| h.dig("desc_short") }
-                                                      .reject(&:blank?)
-                                                      .join(", ")
+        if obj.award_year.year <= 2023
+          doc("application_category") == "initiative" ? doc("initiative_desc_short") : doc("organisation_desc_short")
+        else
+          doc("initiative_desc_short")
         end
       end
+    else
+      obj.award_year.year <= 2023 ? doc("trade_goods_briefly") : doc("trade_description_short")
     end
 
     ActionView::Base.full_sanitizer.sanitize(service)
