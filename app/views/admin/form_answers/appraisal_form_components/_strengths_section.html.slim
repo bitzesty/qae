@@ -7,7 +7,7 @@
       as: :select,
       label: false,
       collection: form.options,
-      input_html: { class: "if-js-hide", "data-updated-section" => section.rate }
+      input_html: { class: "if-js-hide", "data-updated-section" => section.rate, "data-clarity-unmask" => "true" }
 
     label.form-label.form-label-rag
       = section.label

@@ -37,7 +37,7 @@
 
     = f.input section.desc,
               wrapper_html: { class: 'form-group'},
-              input_html: {id: "#{f.object.position}_#{section.desc}_comment", class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200), "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}" },
+              input_html: {id: "#{f.object.position}_#{section.desc}_comment", class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200), "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}", "data-clarity-unmask" => "true" },
               as: :text,
               label: false
 

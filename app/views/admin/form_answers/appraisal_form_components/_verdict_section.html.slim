@@ -35,7 +35,7 @@
       .clear
     = f.input section.desc,
               wrapper_html: { class: 'form-group' },
-              input_html: {id: "#{f.object.position}_verdict", class: 'form-control js-char-count', rows: 5, "data-word-max" => 1200, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}"},
+              input_html: {id: "#{f.object.position}_verdict", class: 'form-control js-char-count', rows: 5, "data-word-max" => 1200, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-#{section.desc}", "data-clarity-unmask" => "true"},
               as: :text,
               label: false
 
