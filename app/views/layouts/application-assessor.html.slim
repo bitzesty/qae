@@ -34,7 +34,7 @@ html.no-js
       style
         | * { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }
 
-
+    = render "shared/clarity_tracker"
   body#assessor-layout data-autosave-token="#{current_assessor.try(:autosave_token)}" class="assessor-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
     #site-wrapper
       #site-wrapper-margin
