@@ -15,7 +15,8 @@
               input_html: { class: "form-control",
                             rows: 10,
                             value: f.object.application_background_section_desc.presence || resource.application_background,
-                            "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-application_background_section_desc" },
+                            "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-application_background_section_desc",
+                            "data-updated-section" => "application_background_section_desc" },
               as: :text,
               label: false
 
