@@ -13,6 +13,10 @@ FactoryBot.define do
     trait :submitted do
       submitted_at { DateTime.now - 1.minute }
     end
+
+    trait :locked do
+      locked_at { DateTime.now - 1.minute }
+    end
   end
 
   factory :assessor_assignment_moderated, class: AssessorAssignment do
