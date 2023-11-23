@@ -15,8 +15,7 @@
               input_html: { class: "form-control",
                             rows: 10,
                             value: f.object.application_background_section_desc.presence || resource.application_background,
-                            "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-application_background_section_desc",
-                            "data-updated-section" => "application_background_section_desc" },
+                            "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-application_background_section_desc" },
               as: :text,
               label: false
 
@@ -24,5 +23,5 @@
       = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
         span.glyphicon.glyphicon-pencil
         ' Edit
-      = link_to "Save", "#", class: "btn btn-primary form-save-link js-form-save-link pull-right if-no-js-hide", data: { action: "click->appraisal-form#stash" }
+      = link_to "Save", "#", class: "btn btn-primary form-save-link js-form-save-link pull-right if-no-js-hide", data: { updated_section: "application_background_section_desc", action: "click->appraisal-form#stash" }
       .clear
