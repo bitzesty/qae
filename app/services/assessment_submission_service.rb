@@ -9,26 +9,29 @@ class AssessmentSubmissionService
   delegate :form_answer, to: :resource
 
   def perform
-    resource.submission_action = true
+    resource.transaction do
+      resource.lock!
+      resource.submission_action = true
 
-    if resource.submitted?
-      resubmit!
-    else
-      if submit_assessment
-        populate_case_summary
+      if resource.submitted?
+        resubmit!
+      else
+        if submit_assessment
+          populate_case_summary
 
-        if resource.primary?
-          populate_feedback
+          if resource.primary?
+            populate_feedback
+          end
+        end
+
+        if resource.moderated? || resource.case_summary?
+          perform_state_transition!
         end
       end
 
-      if resource.moderated? || resource.case_summary?
-        perform_state_transition!
+      if primary_and_secondary_assessments_submitted?
+        check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
       end
-    end
-
-    if primary_and_secondary_assessments_submitted?
-      check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
     end
   end
 
