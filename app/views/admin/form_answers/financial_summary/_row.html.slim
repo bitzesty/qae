@@ -6,6 +6,4 @@ tr class=(row.keys.first == 'overseas_sales' ? 'exports' : row.keys.first)
       span.form-value class="#{'form-value-show' unless policy(resource).update_financials?}"
         = number_with_delimiter(field[:value])
       - if field[:name].present? && policy(resource).update_financials?
-        label.visuallyhidden.govuk-label for="financial_data_#{field[:name]}"
-          = "financial_data[#{field[:name]}]"
-        = text_field_tag "financial_data[#{field[:name]}]", field[:value], class: 'form-control'
+        = text_field_tag "financial_data[#{field[:name]}]", field[:value], class: 'form-control', "aria-label" => "financial_data[#{field[:name]}]"
