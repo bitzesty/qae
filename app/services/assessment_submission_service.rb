@@ -10,6 +10,10 @@ class AssessmentSubmissionService
 
   def perform
     resource.transaction do
+      if resource.changed?
+        Rails.logger.info "Changes before save: #{resource.changes}"
+        resource.save 
+      end
       resource.lock!
       resource.submission_action = true
 
