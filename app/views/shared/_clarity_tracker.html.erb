@@ -6,8 +6,9 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "<%= ENV["CLARITY_PROJECT_KEY"] %>");
 
-    <% if current_user.present? %>
-      window.clarity("identify", "<%= current_user.email %>");
+    <% resource = public_send(:"current_#{entity}") %>
+    <% if resource.present? %>
+      window.clarity("identify", "<%= resource.email %>");
       window.clarity("set", "controller", "<%= controller_name %>");
     <% end %>
   </script>
