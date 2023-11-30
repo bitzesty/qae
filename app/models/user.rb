@@ -161,7 +161,7 @@ class User < ApplicationRecord
   end
 
   def timeout_in
-    (ENV["SESSION_TIMEOUT"] || 20).to_f.hours
+    ENV.fetch("SESSION_TIMEOUT", 24).to_i.hours
   end
 
   def check_email_on_bounces!
