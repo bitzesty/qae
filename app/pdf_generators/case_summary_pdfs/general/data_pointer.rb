@@ -245,6 +245,9 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
+  # calculating width of columns for financials table
+  # based on the number of years in the financial data
+  # the more years we have - the less space we need for the label
   def column_widths
     exclude_innovation_years = !form_answer.innovation?
     period_length = financial_pointer.period_length(exclude_innovation_years)
@@ -253,6 +256,8 @@ module CaseSummaryPdfs::General::DataPointer
       first_row_width = 607
     when 3
       first_row_width = 527
+    when 4
+      first_row_width = 447
     when 5
       first_row_width = 367
     when 6
@@ -268,6 +273,11 @@ module CaseSummaryPdfs::General::DataPointer
     res
   end
 
+  # We need to calculate column widths for benchmarks table
+  # it depends on period length (in years) of provided financial data
+  # Fewer years we have - more space we need for the label (column 0),
+  # and less space we need for the data (column 1), since it's only one column
+  # for the overall growth table
   def benchmarks_column_widths
     first_row_width = case financial_pointer.period_length
     when 2
@@ -279,6 +289,11 @@ module CaseSummaryPdfs::General::DataPointer
       {
         0 => 527,
         1 => 240
+      }
+    when 4
+      {
+        0 => 447,
+        1 => 320
       }
     when 5
       {
