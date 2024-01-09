@@ -9,7 +9,7 @@ describe "SIC Code selection", "
   let!(:form_answer) { create(:form_answer, :trade, :submitted) }
   let(:selected) { "1623 - Manufacture of other builders' carpentry and joinery" }
   before do
-    Settings.current_submission_deadline.update(trigger_at: DateTime.now - 1.day)
+    update_current_submission_deadline
     login_admin admin
     visit admin_form_answer_path(form_answer)
   end

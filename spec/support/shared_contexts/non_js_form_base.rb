@@ -21,8 +21,7 @@ shared_context "non js form base" do
       start.update_column(:trigger_at, Time.zone.now - 20.days)
     end
 
-    finish = settings.deadlines.where(kind: "submission_end").first
-    finish.update_column(:trigger_at, Time.zone.now + 20.days)
+    update_current_submission_deadline
 
     settings.reload
   end

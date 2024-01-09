@@ -10,7 +10,7 @@ So that I can see original application data was at the deadline moment
   before do
     login_admin(create(:admin))
 
-    Settings.current_submission_deadline.update(trigger_at: Time.zone.now - 1.day)
+    update_current_submission_deadline
     form_answer.generate_pdf_version!
   end
 
