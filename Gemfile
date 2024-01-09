@@ -56,11 +56,11 @@ gem 'gon', '>= 6.4.0'
 gem 'rubyXL', '~> 3.4'
 
 # User authentication & authorization
-gem 'devise', '~> 4.7'
+gem 'devise', '~> 4.9'
 gem 'devise-authy', '>= 1.10.0'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn', '>= 4.4.1'
-gem 'devise-security', github: "devise-security/devise-security", ref: "f83d59c5f9063466ce3948ac35ce587aeb659a0a"
+gem 'devise-security', '~> 0.18.0'
 
 # GOV.UK Notify support (for mailers)
 gem 'mail-notify', '~> 1.0'

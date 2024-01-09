@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/devise-security/devise-security.git
-  revision: f83d59c5f9063466ce3948ac35ce587aeb659a0a
-  ref: f83d59c5f9063466ce3948ac35ce587aeb659a0a
-  specs:
-    devise-security (0.14.3)
-      devise (>= 4.3.0, < 5.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,7 +89,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    bcrypt (3.1.19)
+    bcrypt (3.1.20)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     bootscale (0.7.0)
@@ -168,7 +160,7 @@ GEM
       activesupport (>= 4.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.9.2)
+    devise (4.9.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -177,6 +169,8 @@ GEM
     devise-authy (2.3.1)
       authy (~> 3.0)
       devise (>= 4.0.0)
+    devise-security (0.18.0)
+      devise (>= 4.3.0)
     devise_zxcvbn (6.0.0)
       devise
       zxcvbn (~> 0.1.7)
@@ -316,7 +310,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.21.3)
+    loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -339,8 +333,8 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.4)
-    minitest (5.18.1)
+    mini_portile2 (2.8.5)
+    minitest (5.20.0)
     money (6.16.0)
       i18n (>= 0.6.4, <= 2)
     multi_json (1.15.0)
@@ -361,14 +355,14 @@ GEM
       activerecord (>= 4.0.0)
       activesupport (>= 4.0.0)
     nio4r (2.5.9)
-    nokogiri (1.15.3)
+    nokogiri (1.16.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.15.3-arm64-darwin)
+    nokogiri (1.16.0-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.3-x86_64-darwin)
+    nokogiri (1.16.0-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.3-x86_64-linux)
+    nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
     notifications-ruby-client (5.4.0)
       jwt (>= 1.5, < 3)
@@ -427,8 +421,8 @@ GEM
       pusher-signature (~> 0.1.8)
     pusher-signature (0.1.8)
     raabro (1.4.0)
-    racc (1.7.1)
-    rack (2.2.7)
+    racc (1.7.3)
+    rack (2.2.8)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-mini-profiler (3.1.0)
@@ -458,7 +452,7 @@ GEM
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
       activesupport (>= 5.0.1.rc1)
-    rails-dom-testing (2.1.1)
+    rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
@@ -484,7 +478,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
-    rake (13.0.6)
+    rake (13.1.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -512,7 +506,7 @@ GEM
     regexp_parser (2.8.1)
     request_store (1.5.1)
       rack (>= 1.4)
-    responders (3.1.0)
+    responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
     rest-client (2.1.0)
@@ -631,7 +625,7 @@ GEM
     ssrf_filter (1.0.8)
     statesman (3.5.0)
     temple (0.8.2)
-    thor (1.2.2)
+    thor (1.3.0)
     thread_safe (0.3.6)
     tilt (2.0.11)
     timecop (0.9.6)
@@ -684,7 +678,7 @@ GEM
       railties (>= 3.0.7)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.8)
+    zeitwerk (2.6.12)
     zxcvbn (0.1.9)
 
 PLATFORMS
@@ -712,9 +706,9 @@ DEPENDENCIES
   curb (= 0.9.10)
   database_cleaner-active_record
   decent_exposure
-  devise (~> 4.7)
+  devise (~> 4.9)
   devise-authy (>= 1.10.0)
-  devise-security!
+  devise-security (~> 0.18.0)
   devise_zxcvbn (>= 4.4.1)
   dotenv-rails
   draper (~> 4.0)
