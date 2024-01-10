@@ -7,6 +7,13 @@ class QaeFailureApp < Devise::FailureApp
     end
   end
 
+  def recall
+    controller, action = warden_options[:recall].split("#")
+
+    flash[:alert] = i18n_message(:invalid)
+    redirect_to action: action, controller: controller
+  end
+
   protected
 
   def pdf_redirect
