@@ -4,17 +4,18 @@
 # See the Securing Rails Applications Guide for more information:
 # https://guides.rubyonrails.org/security.html#content-security-policy-header
 
-# Rails.application.configure do
-#   config.content_security_policy do |policy|
-#     policy.default_src :self, :https
-#     policy.font_src    :self, :https, :data
-#     policy.img_src     :self, :https, :data
-#     policy.object_src  :none
-#     policy.script_src  :self, :https
-#     policy.style_src   :self, :https
-#     # Specify URI for violation reports
-#     # policy.report_uri "/csp-violation-report-endpoint"
-#   end
+Rails.application.configure do
+  config.content_security_policy do |policy|
+    policy.default_src :self, :https
+    policy.font_src    :self, :https, :data
+    policy.img_src     :self, :https, :data
+    policy.connect_src :self, :https, "ws://#{ENV["PUSHER_SOCKET_HOST"]}:#{ENV["PUSHER_WS_PORT"]}" if ENV["PUSHER_SOCKET_HOST"].present?
+    policy.object_src  :none
+    policy.script_src  :self, "cdn.ckeditor.com", "www.clarity.ms", :unsafe_inline, :unsafe_eval, :https
+    policy.style_src   :self, "cdn.ckeditor.com", :https, :unsafe_inline
+    # Specify URI for violation reports
+    # policy.report_uri "/csp-violation-report-endpoint"
+  end
 #
 #   # Generate session nonces for permitted importmap and inline scripts
 #   config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
@@ -22,4 +23,4 @@
 #
 #   # Report violations without enforcing the policy.
 #   # config.content_security_policy_report_only = true
-# end
+end
