@@ -16,6 +16,7 @@ class Admin::AdminsController < Admin::UsersController
 
   def create
     @resource = Admin.new(resource_params)
+    @resource.skip_password_validation = true
     authorize @resource, :create?
 
     @resource.save
@@ -32,11 +33,12 @@ class Admin::AdminsController < Admin::UsersController
     if resource_params[:password].present?
       @resource.update(resource_params)
     else
+      @resource.skip_password_validation = true
       @resource.update_without_password(resource_params)
     end
 
     render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
-    
+
     respond_with :admin, @resource, location: admin_admins_path
   end
 
@@ -45,7 +47,7 @@ class Admin::AdminsController < Admin::UsersController
     @resource.soft_delete!
 
     render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
-    
+
     respond_with :admin, @resource, location: admin_admins_path
   end
 
