@@ -4,7 +4,7 @@ class AppraisalForm
   #
   # THIS NEED TO BE UPDATED EACH YEAR
   #
-  SUPPORTED_YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+  SUPPORTED_YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
   RAG_OPTIONS_2016 = [
     %w(Red negative),
@@ -60,6 +60,12 @@ class AppraisalForm
     %w(Green positive)
   ]
 
+  RAG_OPTIONS_2025 = [
+    %w(Red negative),
+    %w(Amber average),
+    %w(Green positive)
+  ]
+
   CSR_RAG_OPTIONS_2016 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
@@ -109,6 +115,12 @@ class AppraisalForm
   ]
 
   CSR_RAG_OPTIONS_2024 = [
+    ["Weak (0-15)", "negative"],
+    ["Satisfactory (16-31)", "average"],
+    ["Exceptional (32-40)", "positive"]
+  ]
+
+  CSR_RAG_OPTIONS_2025 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
     ["Exceptional (32-40)", "positive"]
@@ -177,6 +189,13 @@ class AppraisalForm
     ["Key Strength", "positive"]
   ]
 
+  STRENGTH_OPTIONS_2025 = [
+    ["Insufficient Information Supplied", "neutral"],
+    ["Priority Focus for Development", "negative"],
+    ["Positive - Scope for Ongoing Development", "average"],
+    ["Key Strength", "positive"]
+  ]
+
   VERDICT_OPTIONS_2016 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
@@ -226,6 +245,12 @@ class AppraisalForm
   ]
 
   VERDICT_OPTIONS_2024 = [
+    ["Not Recommended", "negative"],
+    ["Reserved", "average"],
+    ["Recommended", "positive"]
+  ]
+
+  VERDICT_OPTIONS_2025 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
     ["Recommended", "positive"]
@@ -551,6 +576,34 @@ class AppraisalForm
     }
   }
 
+  TRADE_2025 = {
+    overseas_earnings_growth: {
+      type: :rag,
+      label: "Overseas earnings growth:",
+      position: 0
+    },
+    commercial_success: {
+      type: :rag,
+      label: "Commercial success:",
+      position: 1
+    },
+    strategy: {
+      type: :rag,
+      label: "Strategy:",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Environmental, social and corporate governance (section E):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }
+
   INNOVATION_2016 = {
     level_of_innovation: {
       type: :rag,
@@ -771,6 +824,34 @@ class AppraisalForm
   }
 
   INNOVATION_2024 = {
+    level_of_innovation: {
+      type: :rag,
+      label: "Level of innovation:",
+      position: 0
+    },
+    extent_of_value_added: {
+      type: :rag,
+      label: "Extent of value added:",
+      position: 1
+    },
+    impact_of_innovation: {
+      type: :rag,
+      label: "Impact of innovation:",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Environmental, social and corporate governance (section E):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }
+
+  INNOVATION_2025 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
@@ -1019,6 +1100,34 @@ class AppraisalForm
   }
 
   PROMOTION_2024 = {
+    nature_of_activities: {
+      type: :rag,
+      label: "Nature (breadth) of activities:",
+      position: 0
+    },
+    impact_achievement: {
+      type: :rag,
+      label: "Impact/achievement:",
+      position: 1
+    },
+    level_of_support: {
+      type: :rag,
+      label: "Level of support:",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Corporate social responsibility (section D):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }
+
+  PROMOTION_2025 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
@@ -1368,6 +1477,29 @@ class AppraisalForm
     }
   }
 
+  DEVELOPMENT_2025 = {
+    strategy_and_targets: {
+      type: :rag,
+      label: "Strategy and Targets - 25% max:",
+      position: 0
+    },
+    approach: {
+      type: :rag,
+      label: "Approach - 25% max:",
+      position: 1
+    },
+    positive_impacts: {
+      type: :rag,
+      label: "Positive Impacts - 50% max:",
+      position: 2
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 3
+    }
+  }
+
   MOBILITY_2016 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
@@ -1630,6 +1762,34 @@ class AppraisalForm
     }
   }.freeze
 
+  MOBILITY_2025 = {
+    mobility_organisation_aiming_to_achieve: {
+      type: :rag,
+      label: "The Social Mobility programme and its context:",
+      position: 0
+    },
+    mobility_embedding_info: {
+      type: :rag,
+      label: "Embedding the programme & Organisational culture:",
+      position: 1
+    },
+    mobility_impact_of_the_programme: {
+      type: :rag,
+      label: "Impact of the programme:",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Environmental, social and corporate governance (section E):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }.freeze
+
   MODERATED_2016 = {
     verdict: {
       type: :verdict,
@@ -1693,6 +1853,13 @@ class AppraisalForm
     }
   }
 
+  MODERATED_2025 = {
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:"
+    }
+  }
+
   CASE_SUMMARY_METHODS_2016 = [
     :application_background_section_desc
   ]
@@ -1729,6 +1896,10 @@ class AppraisalForm
     :application_background_section_desc
   ]
 
+  CASE_SUMMARY_METHODS_2025 = [
+    :application_background_section_desc
+  ]
+
   ALL_FORMS_2016 = [TRADE_2016, INNOVATION_2016, PROMOTION_2016, DEVELOPMENT_2016, MOBILITY_2016]
   ALL_FORMS_2017 = [TRADE_2017, INNOVATION_2017, PROMOTION_2017, DEVELOPMENT_2017, MOBILITY_2017]
   ALL_FORMS_2018 = [TRADE_2018, INNOVATION_2018, PROMOTION_2018, DEVELOPMENT_2018, MOBILITY_2018]
@@ -1738,6 +1909,7 @@ class AppraisalForm
   ALL_FORMS_2022 = [TRADE_2022, INNOVATION_2022, PROMOTION_2022, DEVELOPMENT_2022, MOBILITY_2022]
   ALL_FORMS_2023 = [TRADE_2023, INNOVATION_2023, PROMOTION_2023, DEVELOPMENT_2023, MOBILITY_2023]
   ALL_FORMS_2024 = [TRADE_2024, INNOVATION_2024, PROMOTION_2024, DEVELOPMENT_2024, MOBILITY_2024]
+  ALL_FORMS_2025 = [TRADE_2025, INNOVATION_2025, PROMOTION_2025, DEVELOPMENT_2025, MOBILITY_2025]
 
   def self.rate(key)
     "#{key}_rate"
