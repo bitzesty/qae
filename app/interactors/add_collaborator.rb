@@ -48,15 +48,6 @@ class AddCollaborator
     user
   end
 
-  def send_collaboration_email!
-    Users::CollaborationMailer.access_granted(
-      current_user,
-      collaborator,
-      new_user,
-      generated_password,
-      devise_confirmation_token).deliver_later!
-  end
-
   def success?
     @success
   end

@@ -38,7 +38,7 @@ feature "Admin view application", js: true do
 
   scenario "As a superadmin I can edit the application even when submission is due date" do
     Settings.current.deadlines.innovation_submission_start.update(trigger_at: 1.day.ago)
-    Settings.current_submission_deadline.update(trigger_at: 1.day.ago)
+    update_current_submission_deadline
 
     application = create_application
     login_admin(create(:admin, superadmin: true))

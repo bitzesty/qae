@@ -7,9 +7,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable, :confirmable,
          :zxcvbnable, :lockable, :timeoutable, :session_limitable
+  include PasswordValidator
 
   attr_accessor :agreed_with_privacy_policy
-  attr_accessor :current_password, :skip_password_validation
+  attr_accessor :current_password
 
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 
@@ -194,10 +195,5 @@ class User < ApplicationRecord
     full_name_changed = first_name_changed? || last_name_changed?
     yield
     form_answers.each { |f| f.update(user_full_name: full_name) } if full_name_changed
-  end
-
-  def password_required?
-    return false if skip_password_validation
-    super
   end
 end

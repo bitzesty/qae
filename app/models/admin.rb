@@ -8,6 +8,7 @@ class Admin < ApplicationRecord
   devise :authy_authenticatable, :database_authenticatable,
          :recoverable, :trackable, :validatable, :confirmable,
          :zxcvbnable, :lockable, :timeoutable, :session_limitable
+  include PasswordValidator
 
   validates :first_name, :last_name, presence: true
 

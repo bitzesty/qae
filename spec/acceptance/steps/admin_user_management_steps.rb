@@ -8,8 +8,6 @@ step "I create new user" do
 
   fill_in 'Email', with: 'user@example.com'
   select "Regular", from: "Account type"
-  fill_in 'Password', with: "my98ssdkjv9823kds=2"
-  fill_in 'Password confirmation', with: "my98ssdkjv9823kds=2"
 
   click_button "Save"
 end
