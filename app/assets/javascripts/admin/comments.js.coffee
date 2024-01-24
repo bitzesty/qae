@@ -36,6 +36,7 @@ ready = ->
     e.preventDefault()
     $.ajax
       url: $(this).attr('action')
+      headers: 'Content-Type': 'application/json'
       type: 'DELETE'
       success: () =>
         numberWrapper = $(@).closest(".panel").find(".panel-heading .comments-number")
