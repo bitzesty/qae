@@ -16,7 +16,7 @@ class AwardYear < ApplicationRecord
 
   after_create :create_settings
 
-  AVAILABLE_YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+  AVAILABLE_YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
   DEFAULT_FINANCIAL_DEADLINE_DAY = 17
   DEFAULT_FINANCIAL_DEADLINE_MONTH = 9
@@ -256,8 +256,8 @@ class AwardYear < ApplicationRecord
       res
     end
 
-    def buckingham_palace_reception_deadline
-      current_year_deadline("buckingham_palace_attendees_invite")
+    def buckingham_palace_reception_deadline(award_year)
+      award_year.settings.deadlines.where(kind: "buckingham_palace_attendees_invite").first
     end
 
     def buckingham_palace_reception_date
@@ -322,15 +322,8 @@ class AwardYear < ApplicationRecord
     end
 
     def fy_date_range_threshold(**opts)
-      year = 2000
-
-      from = Settings.current_award_year_switch_date&.trigger_at
-      from ||= Date.new(year, DEFAULT_FINANCIAL_SWITCH_MONTH, DEFAULT_FINANCIAL_SWITCH_DAY)
-      from = from.change(year: year)
-
-      to = Settings.current_submission_deadline&.trigger_at
-      to ||= Date.new(year, DEFAULT_FINANCIAL_DEADLINE_MONTH, DEFAULT_FINANCIAL_DEADLINE_DAY)
-      to = to.change(year: year)
+      from = Settings.current_award_year_switch_date_or_default_trigger_at.to_date
+      to = Settings.current_submission_deadline_or_default_trigger_at.to_date
 
       if opts[:minmax] == true
         return (from..to).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true

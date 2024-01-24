@@ -1,8 +1,16 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-
+require_relative '../config/environment'
+# Prevent database truncation if the environment is production
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require 'rspec/rails'
+require "shoulda/matchers"
+require 'webmock/rspec'
 require "simplecov"
 require "codeclimate-test-reporter"
+
+WebMock.disable_net_connect!(allow: Capybara.server_host, allow_localhost: true)
 
 SimpleCov.add_filter "vendor"
 
@@ -23,42 +31,7 @@ SimpleCov.start 'rails' do
   end
 end
 
-require File.expand_path('../../config/environment', __FILE__)
-# Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
-require 'rspec/rails'
-require "capybara/rspec"
-require "shoulda/matchers"
-require "webmock/rspec"
-require 'selenium-webdriver'
-
-Dotenv.overload('.env.test')
-
-WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
-
-# Require all support files.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-
-Capybara.server = :puma
-
-Capybara.register_driver(:chrome_headless) do |app|
-  options = ::Selenium::WebDriver::Chrome::Options.new
-
-  options.add_argument('--headless')
-  options.add_argument('--no-sandbox')
-  options.add_argument('--disable-gpu')
-  options.add_argument('--disable-dev-shm-usage')
-  options.add_argument('--window-size=1400,1400')
-
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-end
-
-Capybara.javascript_driver = :chrome_headless
-Capybara.default_max_wait_time = 5
-
 ActiveRecord::Migration.check_pending!
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -73,21 +46,34 @@ ActiveRecord::Migration.check_pending!
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
-#
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-# Checks for pending migration and applies them before tests are run.
-# If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.maintain_test_schema!
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
+# Checks for pending migrations and applies them before tests are run.
+# If you are not using ActiveRecord, you can remove these lines.
+begin
+  ActiveRecord::Migration.maintain_test_schema!
+rescue ActiveRecord::PendingMigrationError => e
+  abort e.to_s.strip
+end
+
 Qae::Application.load_tasks
+
+RSpec::Sidekiq.configure do |config|
+  config.warn_when_jobs_not_processed_by_sidekiq = false
+end
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include UserStepDefinitions, type: :feature
   config.include ExpectationHelper, type: :feature
+  config.include DeadlineHelper, type: :feature
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.raise_error_for_unimplemented_steps = true
+
+  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -98,18 +84,8 @@ RSpec.configure do |config|
   # #build is no longer building an association if this is set to true
   # fixes some specs that use #build instead of #create
   FactoryBot.use_parent_strategy = false
-
-  config.before :each do
-    # SENDGRID RELATED STUBS - BEGIN
-    stub_request(:get, "https://sendgrid.com/api/spamreports.get.json?api_key=test_smtp_password&api_user=test_smtp_username&email=test@example.com").
-      to_return(status: 200, body: "", headers: {})
-
-    stub_sendgrid_bounced_emails_check_request("test@irrelevant.com")
-    stub_sendgrid_bounced_emails_check_request("test@example.com")
-    # SENDGRID RELATED STUBS - END
-
-    AwardYear.current
-  end
+  # You can uncomment this line to turn off ActiveRecord support entirely.
+  # config.use_active_record = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -118,12 +94,12 @@ RSpec.configure do |config|
   # You can disable this behaviour by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
-  #     RSpec.describe UsersController, :type => :controller do
+  #     RSpec.describe UsersController, type: :controller do
   #       # ...
   #     end
   #
   # The different available types are documented in the features, such as in
-  # https://relishapp.com/rspec/rspec-rails/docs
+  # https://rspec.info/features/6-0/rspec-rails
   config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.

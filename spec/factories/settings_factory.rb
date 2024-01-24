@@ -4,7 +4,11 @@ FactoryBot.define do
 
     initialize_with do
       begin
-        Settings.where(attributes).first_or_create
+        if attributes.present?
+          Settings.where(attributes).first_or_create
+        else
+          Settings.first_or_create
+        end
       rescue ActiveRecord::RecordNotUnique
         retry
       end
@@ -17,6 +21,9 @@ FactoryBot.define do
         settings.deadlines.where(kind: "#{award}_submission_start").first.update_column(:trigger_at, Time.zone.now - 20.days)
       end
 
+      award_year_switch = settings.deadlines.where(kind: "award_year_switch").first
+      award_year_switch.update_column(:trigger_at, Time.zone.now - 20.days)
+
       finish = settings.deadlines.where(kind: "submission_end").first
       finish.update_column(:trigger_at, Time.zone.now + 20.days)
 
@@ -28,6 +35,8 @@ FactoryBot.define do
     after(:create) do |settings|
       start = settings.deadlines.where(kind: "submission_start").first
       start.update_column(:trigger_at, Time.zone.now - 25.days)
+      award_year_switch = settings.deadlines.where(kind: "award_year_switch").first
+      award_year_switch.update_column(:trigger_at, Time.zone.now - 25.days)
       finish = settings.deadlines.where(kind: "submission_end").first
       finish.update_column(:trigger_at, Time.zone.now - 20.days)
 

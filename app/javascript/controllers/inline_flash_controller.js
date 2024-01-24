@@ -32,14 +32,14 @@ export default class extends ApplicationController {
     const msg = this.hasSuccessValue ? this.successValue : 'Success!';
     const [alert, identifier] = this.createAlert('success', msg);
 
-    setTimeout(() => this.showAlert(alert, identifier), 1);
+    setTimeout(() => this.showAlert(alert, identifier), 10);
   };
 
   onError = (event) => {
     const msg = this.hasErrorValue ? this.errorValue : 'An unknown error has occurred, please try again.';
     const [alert, identifier] = this.createAlert('danger', msg);
 
-    setTimeout(() => this.showAlert(alert, identifier), 1);
+    setTimeout(() => this.showAlert(alert, identifier), 10);
   };
 
   createAlert = (type, message) => {
@@ -47,7 +47,7 @@ export default class extends ApplicationController {
     const element = `
       <div id='${id}' class='alert alert-${type}' data-controller='element-removal' role='alert' style='padding-top: 6px; padding-bottom: 6px; margin-bottom: 8px;'>
         ${message}
-        <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close' style='font-size: 18px;'>
+        <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close'>
           <span aria-hidden='true'>&times;</span>
         </button>
       </div>
@@ -57,8 +57,8 @@ export default class extends ApplicationController {
   };
 
   showAlert = (alert, identifier) => {
-    const existing = this.element.querySelector('[id*=alert__]')
-    if (existing) existing.remove()
+    const existing = this.element.querySelector('[id*=alert__]');
+    if (existing) existing.remove();
 
     this.element.insertAdjacentHTML('afterbegin', alert);
 

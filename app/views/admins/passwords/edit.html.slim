@@ -3,50 +3,47 @@
 - provide(:page_wrapper_class, "page-devise")
 
 .article-related-positioning-container
-  header.page-header.group
-    div
-      h1 Change your password
-
   .article-container.group
     article.group role="article"
-      .inner
-        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-          /= f.error_notification
-          = f.input :reset_password_token, as: :hidden
-          = f.full_error :reset_password_token
+      h1.govuk-heading-xl
+        = params[:locals] && params[:locals][:password_not_set] ? "Create a password" : "Change your password"
 
-          #password-change-panel data-email-field="#{resource.email}"
-            .form-inputs-group
-              #password-control-group
-                .form-inputs
-                  .question
-                    h2 New Password
-                    .question-body
-                      = f.input :password, required: true, label: false, autofocus: true, input_html: { class: "password-strength-meter js-disable-copy medium" }
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        /= f.error_notification
+        = f.input :reset_password_token, as: :hidden
+        = f.full_error :reset_password_token
 
-              .guidance-panel.if-no-js-hide
-                #password-guidance.application-notice.help-notice
-                  .alert.alert-warning
-                    p.text-underline Please improve your password
-                    p#password-too-short
-                      ' It must be at least 10 characters.
-                    p#parts-of-email It shouldn't include part or all of your email address.
-                    p#password-entropy
-                      ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
+        #password-change-panel data-email-field="#{resource.email}"
+          .form-inputs-group
+            #password-control-group
+              = f.input :password,
+                        required: true,
+                        label: "New Password",
+                        autofocus: true,
+                        input_html: { class: "password-strength-meter js-disable-copy govuk-input--width-10", autocomplete: "off" }
 
-              #password-confirmation-control-group
-                .form-inputs
-                  .question
-                    h2 Confirm your new password
-                    .question-body
-                      = f.input :password_confirmation, label: false, required: true, input_html: { class: "js-disable-copy medium" }
+            .guidance-panel.if-no-js-hide
+              #password-guidance.application-notice.help-notice
+                .alert.alert-warning
+                  p.text-underline Please improve your password
+                  p#password-too-short
+                    ' It must be at least 10 characters.
+                  p#parts-of-email It shouldn't include part or all of your email address.
+                  p#password-entropy
+                    ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
 
-              .if-no-js-hide
-                #password-confirmation-guidance.application-notice.help-notice
-                  .alert.alert-warning
-                    p#password-confirmation-match The confirmation must match the password
+            #password-confirmation-control-group
+              = f.input :password_confirmation,
+                        label: "Confirm your new password",
+                        required: true,
+                        input_html: { class: "js-disable-copy govuk-input--width-10", autocomplete: "off" }
 
-          .form-actions
-            = f.button :submit, "Change my password", class: "button large"
+            .if-no-js-hide
+              #password-confirmation-guidance.application-notice.help-notice
+                .alert.alert-warning
+                  p#password-confirmation-match The confirmation must match the password
 
-        = render "admins/shared/links"
+        .form-actions
+          = f.button :submit, params[:locals] && params[:locals][:password_not_set] ? "Create a password" : "Change your password", class: "button large"
+
+      = render "admins/shared/links"

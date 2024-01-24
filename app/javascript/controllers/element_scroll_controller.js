@@ -5,14 +5,14 @@ export default class extends ApplicationController {
 
   connect() {
     if (this.firstInvalidField) {
-      if (!this.visible(this.firstInvalidField)) {
-        const collapsible = this.accordionTargets.find((target) => {
-          return target.contains(this.firstInvalidField);
-        });
-        if (collapsible) $(collapsible).collapse('show');
-      }
-
       setTimeout(() => {
+        if (!this.visible(this.firstInvalidField)) {
+          const collapsible = this.accordionTargets.find((target) => {
+            return target.contains(this.firstInvalidField);
+          });
+          if (collapsible) $(collapsible).collapse('show');
+        }
+
         this.firstInvalidField.focus();
         scrollToElement(this.firstInvalidField);
       }, 300);

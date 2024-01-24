@@ -1,6 +1,6 @@
 .js-admin-strict-password-form
 
-= simple_form_for [:admin, resource], html: { class: 'qae-form' } do |f|
+= simple_form_for [:admin, resource], html: { class: 'qae-form', data: { type: "json",  controller: "inline-flash element-scroll", inline_flash_target: "form" } } do |f|
   .row.question-group
     .col-lg-2.col-md-3.col-sm-4
       h3 = f.label :first_name, class: "form-label"
@@ -23,49 +23,44 @@
                 input_html: { class: 'form-control' },
                 label: false
 
-  .question-group#password-change-panel
-    #password-control-group
-      h3 = f.label :password, class: "form-label"
-      .row
-        .col-md-4.col-sm-6
-          .input-group
-            = f.input :password,
-                      wrapper_html: { class: 'form-group' },
-                      input_html: { class: 'form-control', "data-min-password-length" => "10" },
-                      label: false
-            span#password-result-span.input-group-addon
-              i#password-result.glyphicon.glyphicon-ok
-      .clear
+  - if current_admin == f.object
+    .question-group#password-change-panel
+      #password-control-group
+        h3 = f.label :password, class: "form-label"
+        .guidance-panel.if-no-js-hide
+          .govuk-form-group--error#password-guidance
+            p.govuk-error-message.text-underline Please improve your password
+            p.govuk-error-message#password-too-short
+              ' It must be at least 10 characters.
+            p.govuk-error-message#parts-of-email It shouldn't include part or all of your email address.
+            p.govuk-error-message#password-entropy
+              ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
+        .row
+          .col-md-4.col-sm-6
+            .input-group
+              = f.input :password,
+                        wrapper_html: { class: 'form-group' },
+                        input_html: { class: 'form-control', "data-min-password-length" => "10" },
+                        label: false
+              span#password-result-span.input-group-addon.hide
+                i#password-result.glyphicon.glyphicon-ok
+        .clear
 
-    .guidance-panel.if-no-js-hide
-      #password-guidance
-        br
-        .alert.alert-warning
-          p.text-underline Please improve your password
-          p#password-too-short
-            ' It must be at least 10 characters.
-          p#parts-of-email It shouldn't include part or all of your email address.
-          p#password-entropy
-            ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
-
-    #password-confirmation-control-group
-      h3 = f.label :password_confirmation, label: "Retype password", class: "form-label"
-      .row
-        .col-md-4.col-sm-6
-          .input-group
-            = f.input :password_confirmation,
-                      wrapper_html: { class: 'form-group' },
-                      input_html: { class: 'form-control' },
-                      label: false
-            span#password-confirmation-result-span.input-group-addon
-              i#password-confirmation-result.glyphicon.glyphicon-ok
-      .clear
-
-    .if-no-js-hide
-      #password-confirmation-guidance
-        br
-        .alert.alert-warning
-          p#password-confirmation-match The confirmation must match the password
+      #password-confirmation-control-group
+        h3 = f.label :password_confirmation, label: "Retype password", class: "form-label"
+        .if-no-js-hide
+          .govuk-form-group--error#password-confirmation-guidance
+            p.govuk-error-message#password-confirmation-match The confirmation must match the password
+        .row
+          .col-md-4.col-sm-6
+            .input-group
+              = f.input :password_confirmation,
+                        wrapper_html: { class: 'form-group' },
+                        input_html: { class: 'form-control' },
+                        label: false
+              span#password-confirmation-result-span.input-group-addon.hide
+                i#password-confirmation-result.glyphicon.glyphicon-ok
+        .clear
 
   br
   .row

@@ -31,10 +31,10 @@ class AssessorAssignment < ApplicationRecord
   end
 
   begin :associations
-    belongs_to :assessor
-    belongs_to :form_answer
-    belongs_to :editable, polymorphic: true
-    belongs_to :award_year
+    belongs_to :assessor, optional: true
+    belongs_to :form_answer, optional: true
+    belongs_to :editable, polymorphic: true, optional: true
+    belongs_to :award_year, optional: true
   end
 
   begin :scopes

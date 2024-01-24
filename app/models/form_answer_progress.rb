@@ -1,5 +1,5 @@
 class FormAnswerProgress < ApplicationRecord
-  belongs_to :form_answer
+  belongs_to :form_answer, optional: true
 
   validates :form_answer_id, presence: true
 

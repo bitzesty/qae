@@ -23,12 +23,13 @@ class Admin::UsersController < Admin::BaseController
   def create
     @resource = User.new(resource_params)
     @resource.agreed_with_privacy_policy = "1"
+    @resource.skip_password_validation = true
     authorize @resource, :create?
 
     @resource.save
     location = @resource.persisted? ? admin_users_path : nil
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.full_messages.join(", "))
+    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: location
   end
@@ -36,13 +37,10 @@ class Admin::UsersController < Admin::BaseController
   def update
     authorize @resource, :update?
 
-    if resource_params[:password].present?
-      @resource.update_with_password(resource_params)
-    else
-      @resource.update_without_password(resource_params)
-    end
+    @resource.skip_password_validation = true
+    @resource.update_without_password(resource_params)
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.full_messages.join(", "))
+    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_users_path
   end
@@ -101,9 +99,6 @@ class Admin::UsersController < Admin::BaseController
       :notification_when_development_award_open,
       :notification_when_mobility_award_open,
       :notification_when_submission_deadline_is_coming,
-      :current_password,
-      :password,
-      :password_confirmation,
       :agree_sharing_of_details_with_lieutenancies
     )
   end

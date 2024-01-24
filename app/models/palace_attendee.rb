@@ -1,5 +1,5 @@
 class PalaceAttendee < ApplicationRecord
-  belongs_to :palace_invite
+  belongs_to :palace_invite, optional: true
 
   validates :palace_invite,
             :title,

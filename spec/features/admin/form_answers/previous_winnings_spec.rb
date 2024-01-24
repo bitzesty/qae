@@ -5,7 +5,7 @@ describe "Admin sets up previous winnings" do
   let!(:admin) { create(:admin) }
 
   before do
-    Settings.current_submission_deadline.update(trigger_at: DateTime.now - 1.day)
+    update_current_submission_deadline
     form_answer.update(submitted_at: Time.current)
 
     login_admin(admin)
@@ -18,7 +18,7 @@ describe "Admin sets up previous winnings" do
     it "adds previous winning" do
       within ".previous-wins-form" do
         first("option[value='innovation']").select_option
-        first("option[value='2014']").select_option
+        first("option[value='2015']").select_option
         find("input[type='submit']").click
       end
       within ".previous-wins-form" do

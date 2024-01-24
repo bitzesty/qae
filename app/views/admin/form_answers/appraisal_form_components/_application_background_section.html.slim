@@ -2,7 +2,7 @@
 
 .form-group.application-background-section[class="#{'form-edit' if f.object.application_background_section_desc.blank? && editable}" data-controller="element-focus"]
   .form-container
-    label.form-label Application background
+    label.form-label for="assessor_assignment_application_background_section_desc" Application background
     .form-value
       p
         - if f.object.application_background_section_desc.present?
@@ -23,5 +23,5 @@
       = link_to "#", class: "form-edit-link pull-right", data: { element_focus_target: "reveal" }
         span.glyphicon.glyphicon-pencil
         ' Edit
-      = link_to "Save", "#", class: "btn btn-primary form-save-link js-form-save-link pull-right if-no-js-hide", data: { action: "click->appraisal-form#stash" }
+      = link_to "Save", "#", class: "btn btn-primary form-save-link js-form-save-link pull-right if-no-js-hide", data: { updated_section: "application_background_section_desc", action: "click->appraisal-form#stash" }
       .clear

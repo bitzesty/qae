@@ -5,6 +5,7 @@ require_relative '../../forms/award_years/v2021/qae_forms'
 require_relative '../../forms/award_years/v2022/qae_forms'
 require_relative '../../forms/award_years/v2023/qae_forms'
 require_relative '../../forms/award_years/v2024/qae_forms'
+require_relative '../../forms/award_years/v2025/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -75,10 +76,10 @@ class FormAnswer < ApplicationRecord
   mount_uploader :pdf_version, FormAnswerPdfVersionUploader
 
   begin :associations
-    belongs_to :user
-    belongs_to :account
-    belongs_to :award_year
-    belongs_to :company_details_editable, polymorphic: true
+    belongs_to :user, optional: true
+    belongs_to :account, optional: true
+    belongs_to :award_year, optional: true
+    belongs_to :company_details_editable, polymorphic: true, optional: true
 
     has_one :form_basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
     has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
@@ -99,8 +100,8 @@ class FormAnswer < ApplicationRecord
     has_one :case_summary_hard_copy_pdf, dependent: :destroy
     has_one :feedback_hard_copy_pdf, dependent: :destroy
 
-    belongs_to :primary_assessor, class_name: "Assessor", foreign_key: :primary_assessor_id
-    belongs_to :secondary_assessor, class_name: "Assessor", foreign_key: :secondary_assessor_id
+    belongs_to :primary_assessor, optional: true, class_name: "Assessor", foreign_key: :primary_assessor_id
+    belongs_to :secondary_assessor, optional: true, class_name: "Assessor", foreign_key: :secondary_assessor_id
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
     has_many :commercial_figures_files, dependent: :destroy
@@ -163,7 +164,7 @@ class FormAnswer < ApplicationRecord
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
     scope :without_product_figures, ->(condition) {
-      where(%Q{(#{FormAnswer.table_name}.document::JSONB->>'product_estimated_figures')::boolean is #{condition}})
+      where(%Q{(#{FormAnswer.table_name}.metadata::JSONB->>'product_estimated_figures')::boolean is #{condition}})
     }
     scope :with_estimated_figures_provided, -> { without_product_figures(true) }
     scope :with_actual_figures_provided, -> { without_product_figures(false) }
@@ -171,7 +172,7 @@ class FormAnswer < ApplicationRecord
       query = numbers.join("|")
 
       where(
-        %Q{#{table_name}.document::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'}
+        %Q{#{table_name}.metadata::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'}
       )
     }
 

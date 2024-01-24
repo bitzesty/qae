@@ -6,9 +6,9 @@
 
 ## Pre-requisites
 
-- Ruby 2.7.7
-- `gem install bundler -v 2.4.8`
-- Rails 6.1
+- Ruby 3.2.2
+- `gem install bundler -v 2.4.22`
+- Rails 7.0.5
 - Postgresql 9.5+
 - Redis 2.8
 - Cloudfountry Client

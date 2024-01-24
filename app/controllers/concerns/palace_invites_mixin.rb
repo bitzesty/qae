@@ -1,7 +1,7 @@
 module PalaceInvitesMixin
   def submit
     @invite = PalaceInvite.find(params[:id])
-    authorize @invite.form_answer, :update?
+    authorize @invite, :update?
 
     @invite.submit!
 

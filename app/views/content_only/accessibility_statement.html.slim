@@ -7,10 +7,10 @@ h1.govuk-heading-xl
   article.group role="article"
     p.govuk-body
       | This accessibility statement applies to
-      =< link_to 'https://www.gov.uk/kings-awards-for-enterprise', 'https://www.gov.uk/kings-awards-for-enterprise', class: 'govuk-link'
+      =< link_to 'https://www.kings-awards-enterprise.service.gov.uk/', 'https://www.kings-awards-enterprise.service.gov.uk/', class: 'govuk-link'
       | .
     p.govuk-body
-      | This website is run by the Department for Business, Energy & Industrial Strategy (BEIS). We want as many people as possible to be able to use this website. For example, that means you should be able to:
+      | This website is run by the Department for Business and Trade (DBT). We want as many people as possible to be able to use this website. For example, that means you should be able to:
     ul.govuk-list.govuk-list--bullet
       li
         | change colours, contrast levels and fonts
@@ -31,64 +31,26 @@ h1.govuk-heading-xl
     h2.govuk-heading-m
       | How accessible this website is
     p.govuk-body
-      | We know some parts of this website are not fully accessible:
-    p.govuk-body
-      | For users applying to the King’s Awards for Enterprise:
-    ul.govuk-list.govuk-list--bullet
-      li
-        | The third party library we are using for the WYSIWYG editor has a built-in word count that is small and might be hard for some users to see.
-      li
-        | If a user is on a browser that does not support Javascript, error messages such as “This field is required”, may not immediately display when submitting an incomplete form. Some of these error messages may appear only on the second attempt to submit the incomplete form.
-    p.govuk-body
-      | For admin or assessor users:
-    ul.govuk-list.govuk-list--bullet
-      li
-        | Some elements may be  difficult to see, due to a lack of colour contrast
-      li
-        | Some pages have interactive elements nested within expandable sections, these elements may be difficult to access for users using screen readers because they will not be announced if the section is closed. For example:
-        ul.govuk-list.govuk-list--bullet
-          li
-            | ‘Edit’ links on the settings page are nested within the ‘Deadlines’ section, and are only announced when the section is expanded, if the section is closed a user may not know it is on the page.
-      li
-        | There are pages where similar sections have similar names, for users navigating the page with screen readers these may be difficult to differentiate between. For example:
-        ul.govuk-list.govuk-list--bullet
-          li
-            | The ‘Edit’ links on the settings page each edit a different date, but the context is not specified when announced by screen readers, they are all announced as ‘Edit’ rather than ‘Edit submission period deadline’.
-          li
-            | The date and time pickers each schedule a different email notification, but the email type is not specified when the input is announced by screen readers.
-          li
-            | The ‘Cancel’ and ‘Save’ button labels do not specify which form they are cancelling or saving.
-          li
-            | The ‘Download’ links on the downloads page do have labels specifying the award type but do not specify the report type. Screen readers will announce ‘Download Innovation’ rather than ‘Download Innovation Case Study’.
-      li
-        | Similarly, for these expandable sections, the keyboard navigation is suboptimal, as when expanding/collapsing, saving/cancelling, the user’s focus should be directed to a relevant element, which would help indicate if the action worked.
-      li
-        | When saving feedbacks, comments or submitting appraisals, there is no success or error message, only a visual change, so users using screen readers might find it difficult to navigate.
-      li
-        | Some pages do not begin with the top-most heading level, or skip some heading levels, meaning the structure of the page may not be clear when using a screen reader.
-      li
-        | Some tables are missing a header, which might make it difficult to understand the context when the table data is announced by screen readers.
-      li
-        | On browsers that do not support Javascript, the dropdown elements on the ‘View application’ page are missing associated labels that describe what the dropdown refers to.
-      li
-        | When uploading files there is no error message if the file fails to upload, so users do not know why the file failed to upload.
+      | This website is fully accessible.
+
     h2.govuk-heading-m
       | Feedback and contact information
     p.govuk-body
       | If you need information on this website in a different format:
-    p.govuk-body
-      | Telephone: 020 4551 0081
-    p.govuk-body
-      | E-mail:
-      =< link_to 'kingsawards@businessandtrade.gov.uk', 'mailto:kingsawards@businessandtrade.gov.uk'
-    br
+    ul.govuk-list.govuk-list--bullet
+      li
+        | Telephone: 020 4551 0081
+      li
+        | E-mail:
+        =< link_to 'kingsawards@businessandtrade.gov.uk', 'mailto:kingsawards@businessandtrade.gov.uk'
+
     p.govuk-body
       | We’ll consider your request and get back to you in 15 days.
 
     h2.govuk-heading-m
       | Reporting accessibility problems with this website
     p.govuk-body
-      | We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, contact us.
+      | We're always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we're not meeting accessibility requirements, contact us.
 
     h2.govuk-heading-m
       | Enforcement procedure
@@ -96,6 +58,7 @@ h1.govuk-heading-xl
       | The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint,
       =< link_to 'contact the Equality Advisory and Support Service (EASS)', 'https://www.equalityadvisoryservice.com/', target: '_blank', title: 'opens in a new window', rel: 'noreferrer nofollow'
       | .
+
     h2.govuk-heading-m
       | Contacting us by phone or visiting us in person
     p.govuk-body
@@ -114,34 +77,25 @@ h1.govuk-heading-xl
     h2.govuk-heading-m
       | Technical information about this website’s accessibility
     p.govuk-body
-      | BEIS is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+      |  DBT is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+
     h2.govuk-heading-m
       | Compliance status
     p.govuk-body
-      | This website is partially compliant with the
-      =< link_to 'Web Content Accessibility Guidelines version 2.1 AA standard', 'https://www.w3.org/TR/WCAG21/', target: '_blank', title: 'opens in a new window', rel: 'noreferrer nofollow'
-      | .
+      | This website is fully compliant with the
+      =< link_to 'Web Content Accessibility Guidelines version 2.1', 'https://www.w3.org/TR/WCAG21/', target: '_blank', title: 'opens in a new window', rel: 'noreferrer nofollow'
+      |  AA standard.
+
     h2.govuk-heading-l
       | Disproportionate burden
     h3.govuk-heading-m
-      | Completing form content
-    p.govuk-body
-      | For all use types, form validation error messages are generic for all fields.
-
-
-    p.govuk-body
-      | We’ve assessed the cost of adding in custom error messages for all fields. We believe that doing so now would be a
-      =<> link_to 'disproportionate burden', 'http://www.legislation.gov.uk/uksi/2018/952/regulation/7/made', target: '_blank', rel: 'noreferrer nofollow', title: 'opens in a new window'
-      | within the meaning of the accessibility regulations. We will make another assessment when the supplier contract is up for renewal, likely to be in 12 months.
-    h3.govuk-heading-m
       | Content that’s not within the scope of the accessibility regulations
-
     p.govuk-body
       | Some of our PDFs are non-essential to our users as they also exist in HTML form. For example, we have PDFs with case summary and feedback information.
 
     h3.govuk-heading-m
       | Preparation of this accessibility statement
     p.govuk-body
-      | This statement was prepared on 13th January 2022.
+      | This statement was prepared on 1st November 2023.
     p.govuk-body
-      | This website was last tested in December 2021. The test was carried out by Bit Zesty Limited.
+      | This website was last tested in September 2023. The test was carried out by Bit Zesty Limited.

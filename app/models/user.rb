@@ -7,9 +7,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable, :confirmable,
          :zxcvbnable, :lockable, :timeoutable, :session_limitable
+  include PasswordValidator
 
   attr_accessor :agreed_with_privacy_policy
-  attr_accessor :current_password, :skip_password_validation
+  attr_accessor :current_password
 
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 
@@ -44,7 +45,7 @@ class User < ApplicationRecord
                          source: :feedback
     has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
-    belongs_to :account
+    belongs_to :account, optional: true
     has_many :form_answer_attachments, as: :attachable
     has_many :support_letter_attachments, dependent: :destroy
     has_many :supporters, dependent: :destroy
@@ -161,7 +162,7 @@ class User < ApplicationRecord
   end
 
   def timeout_in
-    24.hours
+    ENV.fetch("SESSION_TIMEOUT", 24).to_i.hours
   end
 
   def check_email_on_bounces!
@@ -194,10 +195,5 @@ class User < ApplicationRecord
     full_name_changed = first_name_changed? || last_name_changed?
     yield
     form_answers.each { |f| f.update(user_full_name: full_name) } if full_name_changed
-  end
-
-  def password_required?
-    return false if skip_password_validation
-    super
   end
 end

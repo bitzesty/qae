@@ -48,8 +48,19 @@ html.no-js
               .navbar-collapse.collapse#nav-main-collapse
 
                 ul.nav.navbar-nav.navbar-right
-                  li.dropdown
-                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                  li
+                    details.if-js-hide
+                      summary
+                        ' My Account
+                        span.caret
+                      ul.dropdown-menu
+                        li
+                          = button_to "Sign out",
+                              destroy_admin_session_path,
+                              method: :delete,
+                              class: "btn btn-link as-link"
+
+                    a.dropdown-toggle.if-no-js-hide href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account
                       span.caret
                     ul.dropdown-menu

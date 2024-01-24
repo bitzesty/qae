@@ -18,19 +18,21 @@ class HardCopyGenerators::Base
   def run
     # Create a tempfile
     @tmpfile = Tempfile.new([tempfile_name, '.pdf'])
-
-    # set to binary mode to avoid UTF-8 conversion errors
-    tmpfile.binmode
-
-    # Use render to write the file contents
-    tmpfile.write pdf.render
-
-    # Upload the tempfile with your Carrierwave uploader
-    attach_generated_file!
-
-    # Close the tempfile and delete it
-    tmpfile.close
-    tmpfile.unlink
+  
+    begin
+      # set to binary mode to avoid UTF-8 conversion errors
+      tmpfile.binmode
+  
+      # Use render to write the file contents
+      tmpfile.write pdf.render
+  
+      # Upload the tempfile with your Carrierwave uploader
+      attach_generated_file!
+    ensure
+      # Close the tempfile and delete it
+      tmpfile.close
+      tmpfile.unlink if tmpfile
+    end
   end
 
   private
