@@ -36,7 +36,8 @@ ready = ->
     e.preventDefault()
     $.ajax
       url: $(this).attr('action')
-      headers: 'Content-Type': 'application/json'
+      data:
+        authenticity_token: $("meta[name='csrf-token']").attr("content")
       type: 'DELETE'
       success: () =>
         numberWrapper = $(@).closest(".panel").find(".panel-heading .comments-number")
