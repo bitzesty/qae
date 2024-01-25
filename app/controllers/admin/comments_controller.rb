@@ -39,9 +39,9 @@ class Admin::CommentsController < Admin::BaseController
     log_event if resource.update(update_params)
 
     respond_to do |format|
-      format.html do 
+      format.html do
         render_flash_message_for(resource)
-        redirect_to([namespace_name, form_answer]) 
+        redirect_to([namespace_name, form_answer])
       end
       format.js { head :ok }
     end
@@ -54,7 +54,7 @@ class Admin::CommentsController < Admin::BaseController
 
     respond_to do |format|
       format.json { render(json: :ok)}
-      format.html do 
+      format.html do
         render_flash_message_for(resource)
         redirect_to(admin_form_answer_path(form_answer))
       end
