@@ -187,8 +187,9 @@ class AwardYears::V2025::QaeForms
           sub_fields_words_max 50
         end
 
-        text :website_url, "Website address (optional)." do
+        text :website_url, "Website address." do
           classes "text-words-max"
+          required
           ref "B 8"
           style "large"
           context %(
