@@ -58,8 +58,16 @@ class Assessor < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && !deleted?
+    super && !deleted? && !suspended?
   end
+
+  def suspended?
+    suspended_at.present?
+  end
+
+  def inactive_message
+    !suspended? ? super : :suspended
+ end
 
   def self.roles
     [["Not Assigned", nil], ["Lead Assessor", "lead"], ["Assessor", "regular"]]
