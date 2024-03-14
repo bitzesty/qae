@@ -22,7 +22,7 @@ The Award will be announced publicly on <%= @end_of_embargo.try :strftime, "%-d 
 
 #Terms of the Embargo
 
-We will provide Awards information to the media in mid-April, including a list of Recipients and their press contact details, so that they can prepare news articles for release on <%= @media_deadline.try :strftime, "%A %-d %B %Y" %>.
+We will provide Awards information to the media in mid-April, including a list of Recipients and their press contact details, so that they can prepare news articles for release on <%= @media_deadline.try :strftime, "%A, %-d %B %Y" %>.
 
 The list of Recipients will be published in the supplement to the London Gazette on the announcement day https://www.thegazette.co.uk/awards-and-accreditation/content/kings-awards-for-enterprise
 
@@ -40,7 +40,7 @@ Log in to your King's Awards for Enterprise account <%= dashboard_url %> to acce
 
 You can find examples of other recipients' press book information in The Gazette (as per the link earlier).
 
-#Then click the "Submit" button by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A %-d %B %Y" %>. If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold.
+#Then click the "Submit" button by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A, %-d %B %Y" %>. If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold.
 
 #3. The King's Awards Recipients Manual
 
