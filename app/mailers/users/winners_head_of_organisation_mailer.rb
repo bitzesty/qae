@@ -3,6 +3,7 @@
 class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
   before_action :set_end_of_embargo_deadline
   before_action :set_press_summary_deadline
+  before_action :set_reception_deadlines
 
   def notify(form_answer_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
