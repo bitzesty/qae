@@ -11,7 +11,7 @@ class AccountMailers::BusinessAppsWinnersMailer < AccountMailers::BaseMailer
     collaborator = User.find(collaborator_id)
 
     @name = "#{@user.title} #{@user.last_name}"
-    @end_of_embargo_without_year = @end_of_embargo.deadline.strftime("%d %B")
+    @end_of_embargo_without_year = @end_of_embargo.strftime("%d %B")
 
     subject = "Important information about your King's Award"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
