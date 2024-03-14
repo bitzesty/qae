@@ -204,7 +204,7 @@ class MailRenderer
       "buckingham_palace_confirm_press_book_notes",
       "#{book_notes_deadline_time} on %A %-d %B %Y"
     )
-
+   
     assigns[:reception_date] = deadline_str(
       "buckingham_palace_attendees_invite",
       "%-d %B %Y"
