@@ -186,6 +186,11 @@ class MailRenderer
       "#{end_of_embargo_time} on %-d %B %Y"
     )
 
+    assigns[:end_of_embargo_without_year] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "%-d %B"
+    )
+
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",
       "%A %d %B %Y"
@@ -198,6 +203,11 @@ class MailRenderer
     assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
       "#{book_notes_deadline_time} on %A %-d %B %Y"
+    )
+
+    assigns[:reception_date] = deadline_str(
+      "buckingham_palace_attendees_invite",
+      "%-d %B %Y"
     )
 
     render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
