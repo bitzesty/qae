@@ -16,7 +16,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @last_name = @form_answer.document["head_of_business_last_name"]
     @name = "#{@title} #{@last_name}"
 
-    @subject = "Important information about your King's Award Entry!"
+    @subject = "Important information about your King's Award application"
 
     send_mail_if_not_bounces(ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], to: @head_email, subject: subject_with_env_prefix(@subject))
   end
