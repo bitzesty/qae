@@ -11,6 +11,7 @@ en:
       inactive: "Your account is not activated yet."
       invalid: "Invalid %{authentication_keys} or password."
       locked: "Your account is locked."
+      suspended: "Your account has been temporarily disabled. As you have finished this round of assessments, your account has been temporarily deactivated for data security reasons. It will be re-activated when you need to do assessments."
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "Invalid %{authentication_keys} or password."
       timeout: "Your session expired. Please sign in again to continue."
