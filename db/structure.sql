@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -399,7 +406,8 @@ CREATE TABLE public.assessors (
     mobility_role character varying,
     deleted boolean DEFAULT false,
     autosave_token character varying,
-    unique_session_id character varying
+    unique_session_id character varying,
+    suspended_at timestamp(6) without time zone
 );
 
 
@@ -4312,6 +4320,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220906085443'),
 ('20220906085454'),
 ('20220927093210'),
-('20231025022311');
+('20231025022311'),
+('20240314105208');
 
 
