@@ -2,53 +2,60 @@
 
 Dear <%= @name %>,
 
-Thank you for your application to The Queen's Awards for Enterprise, now known as The King's Awards for Enterprise (see Annex A at the end of this email for further details)
+Thank you for your application for a King's Award for Enterprise.
 
 I am delighted to inform you that His Majesty The King has approved the Prime Minister's recommendation that your company should receive a King's Award for Enterprise in the <%= @form_answer.award_type_full_name %> category this year. We have also informed the head of your organisation by email.
 
-The last few years have been a challenging time for businesses and this achievement is testament to the resilience you and your staff have shown throughout these unprecedented times.
+The last few years have been a challenging time for businesses, and this award is a testament to everything you and your team have worked together to accomplish.
 
-If you are a Collaborator please liaise with the account holder.
+If you are a Collaborator, please ensure that you liaise with the Account Holder over the next steps.
 
-#Please read this email carefully as it contains important information about four key actions you need to take now.
+#Please read this carefully as it contains important information about four key actions you need to take now.
 
-#1. Official Announcement and Embargo Terms
+#1. Official Public Announcement and Embargo Terms
 
-The Award will be announced publicly on <%= @end_of_embargo.try :strftime, "%-d %B %Y" %> - you can make arrangements for publicity now, and we would encourage you to do so. Please bear in mind the following conditions:
+The Award will be announced publicly on <%= @end_of_embargo.try :strftime, "%-d %B %Y" %>. Please bear in mind the following conditions:
 
-#There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>. You must not make any announcement about your Award, either to your employees or those outside your organisation, before this date.
+#There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>. You must not make any announcement about your Award, either to your employees or those outside your organisation, before <%= @end_of_embargo.try :strftime, "%-d %B" %>.
 
-Under the terms of the embargo, we will provide information including a list of Recipients and their press contact details, to the media this month (March 2023) so that they can prepare news articles for release on <%= @media_deadline.try :strftime, "%A %-d %B %Y" %>. The list of Recipients will be published in the supplement to the London Gazette on the announcement day. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will be under embargo conditions. You are also permitted to approach your own press contacts to arrange media coverage of your Award. However, please:
+#We do encourage you to privately make publicity arrangements for the announcement on <%= @end_of_embargo.try :strftime, "%-d %B" %>.
 
-#Make it clear to anyone you approach in the media, that they cannot publish anything until after <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
+#Terms of the Embargo
+
+We will provide Awards information to the media in mid-April, including a list of Recipients and their press contact details, so that they can prepare news articles for release on <%= @media_deadline.try :strftime, "%A, %-d %B %Y" %>.
+
+The list of Recipients will be published in the supplement to the London Gazette on the announcement day https://www.thegazette.co.uk/awards-and-accreditation/content/kings-awards-for-enterprise
+
+Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them; however, this will be under embargo conditions. You are also permitted to approach your own press contacts to arrange media coverage of your Award.
+
+#However, please make it clear to anyone that you approach in the media, that they cannot publish anything until after <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
 #2. Approve your Press Book entry, which must be a factual account of why you have achieved the Award.
 
-Log in to your King's Awards for Enterpise account <%= dashboard_url %> to access the Recipients' Dashboard in order to:
+Log in to your King's Awards for Enterprise account <%= dashboard_url %> to access the Recipients' Dashboard in order to:
 
-* check the Press Book entry
-* check the other details for your organisation are correct, and
+* check the Press Book entry;
+* check the other details for your organisation are correct; and,
 * check the details of your contact for press enquiries.
 
-#Then click the "Submit" button by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A %-d %B %Y" %>. If you do not respond by the deadline, we will use the proposed text together with the contact details that we already hold.
+You can find examples of other recipients' press book information in The Gazette (as per the link earlier).
 
-#3. The King's Awards Media Pack
+#Then click the "Submit" button by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A, %-d %B %Y" %>. If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold.
 
-On your online account, you will also have access to The King's Awards Media Pack, which provides all relevant information about your Award and the permitted use of the Royal Emblem for marketing/promotion purposes. You can also access the King's Awards <%= @form_answer.award_year.year %> Emblems in various file types.
+#3. The King's Awards Recipients Manual
 
-By accepting the Award, you agree to the terms set out in The King's Awards Media Pack.
+On your online account, you will also have access to The King's Awards Recipients Manual, which provides all relevant information about your Award and the permitted use of the Royal Emblem for marketing/promotion purposes. You can also access the King's Awards <%= @form_answer.award_year.year %> Emblems in various file types.
 
-#4. Reception at Buckingham Palace
+By accepting the Award, you agree to the terms set out in The King's Awards Recipients Manual.
 
-Please note: This year, one representative from each successful organisation will be invited to attend a Reception at Buckingham Palace hosted by His Majesty The King. Unfortunately this number cannot be increased. We will contact you on Friday 31st March with further details, once the date has been agreed.
+#4. Reception at Windsor Castle on <%= @reception_date.try :strftime, "%-d %B %Y" %>
+
+Please note the date and venue. One representative from each successful organisation will be invited to attend a Reception at Windsor Castle hosted by His Majesty The King. Please note that, unfortunately, this number cannot be increased. We will contact you in due course, asking you to nominate one representative to attend the event.
 
 Congratulations once again on your Award. I look forward to hearing from you.
 
 Yours sincerely,
 
 Nichola Bruno
-The Secretary
-The King's Awards Office
-
-#Annex A: Link to the press release announcing change of name to The King's Awards on GOV.UK website
-https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards
+#The Secretary
+#The King's Award for Enterprise Office
