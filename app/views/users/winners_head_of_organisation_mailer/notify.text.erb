@@ -2,7 +2,7 @@
 
 <%= "Dear #{@name}," %>
 
-Thank you for your application for The King's Awards for Enterprise.
+Thank you for your application for The King's Award for Enterprise.
 
 I am delighted to inform you that His Majesty The King has approved the Prime Minister's recommendation that your company should receive a King's Award for Enterprise in the <%= @award_category_title %> category this year.
 
@@ -30,8 +30,7 @@ Your online account holder has received an email today with a link to the Recipi
 * check the other details for your organisation are correct; and,
 * check the contact details for press enquiries.
 
-Your account holder needs to complete the above actions by
-#<%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A, %-d %B %Y" %>.
+Your account holder needs to complete the above actions by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A, %-d %B %Y" %>.
 
 If we do not receive a response by then, we will use the proposed text and the press contact details that we already hold.
 
@@ -62,5 +61,5 @@ Congratulations once again on your King's Award for Enterprise.
 Yours sincerely,
 
 Nichola Bruno
-#The Secretary
-#The King's Awards Office
+The Secretary
+The King's Awards Office
