@@ -9,14 +9,14 @@
 div
   h1.govuk-heading-xl Winners' Resources 2024
 
-  .article-container.article-container-wider
+  .article-container.article-container-widest
     article.group role="article"
       div
-        p.govuk-body Here you can download King's Awards for Enterprise resources for use in your websites and advertising materials. The King's Awards Media Pack provides more detailed information on where and how you are allowed to use these resources.
+        p.govuk-body Here you can download King's Awards for Enterprise resources for use in your websites and advertising materials. The King's Awards Recipients Manual provides more detailed information on where and how you are allowed to use these resources.
 
         br
 
-        h2.govuk-heading-m Download The King's Awards Media Pack 2024
+        h2.govuk-heading-m Download The King's Awards Recipients Manual 2024
 
         .form-download
           p.govuk-body
@@ -38,6 +38,10 @@ div
                         static_s3_asset_path(2024, "KAE_logo_2024_promoting_opportunity.eps"),
                         target: "_blank", class: 'govuk-link'
             p.govuk-body
+              = link_to "King's Awards for Enterprise 2024 Emblem: Red - Promoting Opportunities (JPG, 3.9MB)",
+                        static_s3_asset_path(2024, "KAE_logo_2024_promoting_opportunity.jpg"),
+                        target: "_blank", class: 'govuk-link'
+            p.govuk-body
               = link_to "King's Awards for Enterprise 2024 Emblem: White - Promoting Opportunities (PNG, 886.4KB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_promoting_opportunity_white.png"),
                         target: "_blank", class: 'govuk-link'
@@ -45,6 +49,7 @@ div
               = link_to "King's Awards for Enterprise 2024 Emblem: White - Promoting Opportunities (EPS, 5.7MB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_promoting_opportunity_white.eps"),
                         target: "_blank", class: 'govuk-link'
+            hr.govuk-section-break.govuk-section-break--s
 
           - if any_innovation_winner
             p.govuk-body
@@ -56,6 +61,10 @@ div
                         static_s3_asset_path(2024, "KAE_logo_2024_innovation.eps"),
                         target: "_blank", class: 'govuk-link'
             p.govuk-body
+              = link_to "King's Awards for Enterprise 2024 Emblem: Red - Enterprise Innovation (JPG, 3.6MB)",
+                        static_s3_asset_path(2024, "KAE_logo_2024_innovation.jpg"),
+                        target: "_blank", class: 'govuk-link'
+            p.govuk-body
               = link_to "King's Awards for Enterprise 2024 Emblem: White - Enterprise Innovation (PNG, 804.5KB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_innovation_white.png"),
                         target: "_blank", class: 'govuk-link'
@@ -63,6 +72,7 @@ div
               = link_to "King's Awards for Enterprise 2024 Emblem: White - Enterprise Innovation (EPS, 5.7MB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_innovation_white.eps"),
                         target: "_blank", class: 'govuk-link'
+            hr.govuk-section-break.govuk-section-break--s
 
           - if any_trade_winner
             p.govuk-body
@@ -74,6 +84,10 @@ div
                         static_s3_asset_path(2024, "KAE_logo_2024_international_trade.eps"),
                         target: "_blank", class: 'govuk-link'
             p.govuk-body
+              = link_to "King's Awards for Enterprise 2024 Emblem: Red - International Trade (JPG, 3.9MB)",
+                        static_s3_asset_path(2024, "KAE_logo_2024_international_trade.jpg"),
+                        target: "_blank", class: 'govuk-link'
+            p.govuk-body
               = link_to "King's Awards for Enterprise 2024 Emblem: White - International Trade (PNG, 872.1KB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_international_trade_white.png"),
                         target: "_blank", class: 'govuk-link'
@@ -81,6 +95,7 @@ div
               = link_to "King's Awards for Enterprise 2024 Emblem: White - International Trade (EPS, 5.7MB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_international_trade_white.eps"),
                         target: "_blank", class: 'govuk-link'
+            hr.govuk-section-break.govuk-section-break--s
 
           - if any_development_winner
             p.govuk-body
@@ -92,6 +107,10 @@ div
                         static_s3_asset_path(2024, "KAE_logo_2024_sustainable_development.eps"),
                         target: "_blank", class: 'govuk-link'
             p.govuk-body
+              = link_to "King's Awards for Enterprise 2024 Emblem: Red - Sustainable Development (JPG, 4.0KB)",
+                        static_s3_asset_path(2024, "KAE_logo_2024_sustainable_development.jpg"),
+                        target: "_blank", class: 'govuk-link'
+            p.govuk-body
               = link_to "King's Awards for Enterprise 2024 Emblem: White - Sustainable Development (PNG, 904.3KB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_sustainable_development_white.png"),
                         target: "_blank", class: 'govuk-link'
@@ -99,27 +118,74 @@ div
               = link_to "King's Awards for Enterprise 2024 Emblem: White - Sustainable Development (EPS, 5.7MB)",
                         static_s3_asset_path(2024, "KAE_logo_2024_sustainable_development_white.eps"),
                         target: "_blank", class: 'govuk-link'
+            hr.govuk-section-break.govuk-section-break--s
+
+        .form-download
+          p.govuk-body
+            = link_to "King's Awards for Enterprise 2024 Logo: Red (PNG, 808.3KB)",
+                      static_s3_asset_path(2024, "KAE_logo_2024.png"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise 2024 Logo: Red (EPS, 5.7MB)",
+                      static_s3_asset_path(2024, "KAE_logo_2024.eps"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise 2024 Logo: Red (JPG, 3.3MB)",
+                      static_s3_asset_path(2024, "KAE_logo_2024.jpg"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise 2024 Logo: White (PNG, 731.4KB)",
+                      static_s3_asset_path(2024, "KAE_logo_2024_white.png"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise 2024 Logo: White (EPS, 5.6MB)",
+                      static_s3_asset_path(2024, "KAE_logo_2024_white.eps"),
+                      target: "_blank", class: 'govuk-link'
+          hr.govuk-section-break.govuk-section-break--s
+
+        .form-download
+          p.govuk-body
+            = link_to "King's Awards for Enterprise Logo: Red (PNG, 792.7KB)",
+                      static_s3_asset_path(2024, "KAE_logo.png"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise Logo: Red (EPS, 5.7MB)",
+                      static_s3_asset_path(2024, "KAE_logo.eps"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise Logo: Red (JPG, 3.3MB)",
+                      static_s3_asset_path(2024, "KAE_logo.jpg"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise Logo: White (PNG, 717.6KB)",
+                      static_s3_asset_path(2024, "KAE_logo_white.png"),
+                      target: "_blank", class: 'govuk-link'
+          p.govuk-body
+            = link_to "King's Awards for Enterprise Logo: White (EPS, 5.6MB)",
+                      static_s3_asset_path(2024, "KAE_logo_white.eps"),
+                      target: "_blank", class: 'govuk-link'
+          hr.govuk-section-break.govuk-section-break--s
 
         .form-download
           p.govuk-body
             = link_to "King's Awards for Enterprise 2024 Emblem: Red (PNG, 563.2KB)",
-                      static_s3_asset_path(2024, "KAE_logo_2024.png"),
+                      static_s3_asset_path(2024, "KAE_logo_2024_emblem.png"),
                       target: "_blank", class: 'govuk-link'
-
           p.govuk-body
             = link_to "King's Awards for Enterprise 2024 Emblem: Red (EPS, 5.6MB)",
-                      static_s3_asset_path(2024, "KAE_logo_2024.eps"),
+                      static_s3_asset_path(2024, "KAE_logo_2024_emblem.eps"),
                       target: "_blank", class: 'govuk-link'
-
-        .form-download
+          p.govuk-body
+            = link_to "King's Awards for Enterprise 2024 Emblem: Red (JPG, 2.5MB)",
+                      static_s3_asset_path(2024, "KAE_logo_2024_emblem.jpg"),
+                      target: "_blank", class: 'govuk-link'
           p.govuk-body
             = link_to "King's Awards for Enterprise 2024 Emblem: White (PNG, 531.1KB)",
-                      static_s3_asset_path(2024, "KAE_logo_2024_white.png"),
+                      static_s3_asset_path(2024, "KAE_logo_2024_emblem_white.png"),
                       target: "_blank", class: 'govuk-link'
-
           p.govuk-body
             = link_to "King's Awards for Enterprise 2024 Emblem: White (EPS, 5.6MB)",
-                      static_s3_asset_path(2024, "KAE_logo_2024_white.eps"),
+                      static_s3_asset_path(2024, "KAE_logo_2024_emblem_white.eps"),
                       target: "_blank", class: 'govuk-link'
 
         footer
