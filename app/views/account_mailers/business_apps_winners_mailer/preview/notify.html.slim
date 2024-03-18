@@ -7,7 +7,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Thank you for your application to The Queen's Awards for Enterprise, now known as The King's Awards for Enterprise (see Annex A at the end of this email for further details)
+  | Thank you for your application for a King's Award for Enterprise.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | I am delighted to inform you that His Majesty The King has approved the Prime Minister's recommendation that your company should receive a King's Award for Enterprise in the
@@ -15,37 +15,58 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | category this year. We have also informed the head of your organisation by email.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | The last few years have been a challenging time for businesses and this achievement is testament to the resilience you and your staff have shown throughout these unprecedented times.
+  | The last few years have been a challenging time for businesses, and this award is a testament to everything you and your team have worked together to accomplish.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | If you are a Collaborator please liaise with the account holder.
+  | If you are a Collaborator, please ensure that you liaise with the Account Holder over the next steps.
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | Please read this email carefully as it contains important information about four key actions you need to take now.
+  | Please read this carefully, as it contains important information about four key actions you need to take now.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    | 1. Official Announcement and Embargo Terms
+    | 1. Official Public Announcement and Embargo Terms
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | The Award will be announced publicly on
-  =<> @end_of_embargo
-  | - you can make arrangements for publicity now, and we would encourage you to do so. Please bear in mind the following conditions:
+  =< @end_of_embargo
+  | . Please bear in mind the following conditions:
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
     | There is a strict embargo preventing public announcement or publication of any Awards information until
     =< @end_of_embargo_with_time
-    | . You must not make any announcement about your Award, either to your employees or those outside your organisation, before this date.
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Under the terms of the embargo, we will provide information including a list of Recipients and their press contact details, to the media this month (March 2023) so that they can prepare news articles for release on
-  =< @media_deadline
-  | . The list of Recipients will be published in the supplement to the London Gazette on the announcement day. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will be under embargo conditions. You are also permitted to approach your own press contacts to arrange media coverage of your Award. However, please:
+    | . You must not make any announcement about your Award, either to your employees or those outside your organisation, before
+    =< @end_of_embargo_without_year
+    | .
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    | Make it clear to anyone you approach in the media, that they cannot publish anything until after
+    | We do encourage you to privately make publicity arrangements for the announcement on
+    =< @end_of_embargo_without_year
+    | .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong
+    | Terms of the Embargo
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | We will provide Awards information to the media in mid-April, including a list of Recipients and their press contact details, so that they can prepare news articles for release on
+  =< @media_deadline
+  | .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | The list of Recipients will be published in the supplement to the London Gazette on the announcement day
+  =< link_to "https://www.thegazette.co.uk/awards-and-accreditation/content/kings-awards-for-enterprise",
+    "https://www.thegazette.co.uk/awards-and-accreditation/content/kings-awards-for-enterprise",
+    target: '_blank', rel: 'noreferrer nofollow', title: 'opens in a new window'
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Prior to the official announcement on
+  =< @end_of_embargo_without_year
+  | , you may be contacted by the press regarding your Award. You are permitted to speak to them; however, this will be under embargo conditions. You are also permitted to approach your own press contacts to arrange media coverage of your Award.
+  strong
+    |  However, please make it clear to anyone that you approach in the media, that they cannot publish anything until after
     =< @end_of_embargo_with_time
     | .
 
@@ -54,41 +75,43 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
     | 2. Approve your Press Book entry, which must be a factual account of why you have achieved the Award.
 
 div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | Log in to your King's Awards for Enterpise account
+  | Log in to your King's Awards for Enterprise account
   =<> link_to dashboard_url, dashboard_url
   | to access the Recipients' Dashboard in order to:
   br
   br
   ul
-    li check the Press Book entry
-    li check the other details for your organisation are correct, and
+    li check the Press Book entry;
+    li check the other details for your organisation are correct; and,
     li check the details of your contact for press enquiries.
   br
+  | You can find examples of other recipients' press book information in The Gazette (as per the link earlier).
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
     | Then click the "Submit" button by
     =< @book_notes_deadline_with_time_and_day
-    | . If you do not respond by the deadline, we will use the proposed text together with the contact details that we already hold.
+    | . If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    | 3. The King's Awards Media Pack
+    | 3. The King's Awards Recipients Manual
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | On your online account, you will also have access to The King's Awards Media Pack, which provides all relevant information about your Award and the permitted use of the Royal Emblem for marketing/promotion purposes. You can also access the King's Awards
+  | On your online account, you will also have access to The King's Awards Recipients Manual, which provides all relevant information about your Award and the permitted use of the Royal Emblem for marketing/promotion purposes. You can also access the King's Awards
   =<> @form_answer.award_year.year
   | Emblems in various file types.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | By accepting the Award, you agree to the terms set out in The King's Awards Media Pack.
+  | By accepting the Award, you agree to the terms set out in The King's Awards Recipients Manual.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    | 4. Reception at Buckingham Palace
+    | 4. Reception at Windsor Castle on
+    =< @reception_date
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | Please note: This year, one representative from each successful organisation will be invited to attend a Reception at Buckingham Palace hosted by His Majesty The King. Unfortunately this number cannot be increased. We will contact you on Friday 31st March with further details, once the date has been agreed.
+  | Please note the date and venue. One representative from each successful organisation will be invited to attend a Reception at Windsor Castle hosted by His Majesty The King. Please note that, unfortunately, this number cannot be increased. We will contact you in due course, asking you to nominate one representative to attend the event.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   | Congratulations once again on your Award. I look forward to hearing from you.
@@ -101,11 +124,4 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   br
   | The Secretary
   br
-  | The King's Awards Office
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  strong
-    | Annex A: Link to the press release announcing change of name to The King's Awards on GOV.UK website
-  =< link_to  "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards",
-    "https://www.gov.uk/government/news/king-charles-iii-continues-queen-elizabeths-legacy-by-giving-his-majestys-name-to-prestigious-awards",
-    target: '_blank', rel: 'noreferrer nofollow', title: 'opens in a new window'
+  | The King's Award for Enterprise Office

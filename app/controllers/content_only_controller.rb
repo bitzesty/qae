@@ -103,7 +103,7 @@ class ContentOnlyController < ApplicationController
     flash.clear
   end
 
-  def deadline_for(kind, format = "%A %d %B %Y")
+  def deadline_for(kind, format = "%A, %d %B %Y")
     deadline = settings.deadlines.find_by(kind: kind)
     if deadline.present? && deadline.trigger_at.present?
       deadline.trigger_at.strftime(format)

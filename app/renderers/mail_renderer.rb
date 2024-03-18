@@ -93,7 +93,7 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     deadline_time = deadline_time("submission_end")
-    assigns[:deadline] = deadline_str("submission_end", "#{deadline_time} on %A %d %B %Y")
+    assigns[:deadline] = deadline_str("submission_end", "#{deadline_time} on %A, %d %B %Y")
 
     render(assigns, "account_mailers/reminder_to_submit_mailer/preview/notify")
   end
@@ -186,18 +186,28 @@ class MailRenderer
       "#{end_of_embargo_time} on %-d %B %Y"
     )
 
+    assigns[:end_of_embargo_without_year] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "%-d %B"
+    )
+
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",
-      "%A %d %B %Y"
+      "%A, %d %B %Y"
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%A %d %B %Y"
+      "%A, %d %B %Y"
     )
     book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
     assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "#{book_notes_deadline_time} on %A %-d %B %Y"
+      "#{book_notes_deadline_time} on %A, %-d %B %Y"
+    )
+
+    assigns[:reception_date] = deadline_str(
+      "buckingham_palace_attendees_invite",
+      "%-d %B %Y"
     )
 
     render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
@@ -227,17 +237,22 @@ class MailRenderer
 
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%A %d %B %Y"
+      "%A, %d %B %Y"
     )
     book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
     assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "#{book_notes_deadline_time} on %A %-d %B %Y"
+      "#{book_notes_deadline_time} on %A, %-d %B %Y"
     )
 
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",
-      "%A %d %B %Y"
+      "%A, %d %B %Y"
+    )
+
+    assigns[:reception_date] = deadline_str(
+      "buckingham_palace_attendees_invite",
+      "%-d %B %Y"
     )
 
     render(assigns, "users/winners_head_of_organisation_mailer/preview/notify")
@@ -252,13 +267,13 @@ class MailRenderer
 
     assigns[:reception_date] = deadline_str(
       "buckingham_palace_attendees_invite",
-      "%A %-d %B %Y"
+      "%A, %-d %B %Y"
     )
 
     reception_deadline_time = deadline_time("buckingham_palace_reception_attendee_information_due_by")
     assigns[:reception_deadline_with_day_and_time] = deadline_str(
       "buckingham_palace_reception_attendee_information_due_by",
-      "#{reception_deadline_time} on %A %-d %B %Y"
+      "#{reception_deadline_time} on %A, %-d %B %Y"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/preview/invite")
