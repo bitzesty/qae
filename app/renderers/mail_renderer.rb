@@ -210,6 +210,10 @@ class MailRenderer
       "%-d %B %Y"
     )
 
+    assigns[:reception_start_time] = deadline_time(
+      "buckingham_palace_attendees_invite"
+    )
+
     render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
   end
 
@@ -253,6 +257,10 @@ class MailRenderer
     assigns[:reception_date] = deadline_str(
       "buckingham_palace_attendees_invite",
       "%-d %B %Y"
+    )
+
+    assigns[:reception_start_time] = deadline_time(
+      "buckingham_palace_attendees_invite"
     )
 
     render(assigns, "users/winners_head_of_organisation_mailer/preview/notify")
