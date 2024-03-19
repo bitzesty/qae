@@ -4,6 +4,7 @@ FactoryBot.define do
     last_name { "Doe" }
     password { "my98ssdkjv9823kds=2" }
     email
+    telephone_number { generate(:phone) }
     confirmed_at { Time.zone.now }
 
     trait :lead_for_all do
