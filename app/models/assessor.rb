@@ -67,7 +67,7 @@ class Assessor < ApplicationRecord
 
   def inactive_message
     !suspended? ? super : :suspended
- end
+  end
 
   def self.roles
     [["Not Assigned", nil], ["Lead Assessor", "lead"], ["Assessor", "regular"]]
@@ -146,6 +146,12 @@ class Assessor < ApplicationRecord
   def lead_roles
     FormAnswer::POSSIBLE_AWARDS.select do |cat|
       get_role(cat) == "lead"
+    end
+  end
+
+  def roles
+    FormAnswer::POSSIBLE_AWARDS.select do |cat|
+      get_role(cat) == ("lead" || "regular")
     end
   end
 

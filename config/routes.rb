@@ -244,6 +244,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :users_reports, only: [] do
+      collection do
+        get :assessors_judges_admins_data
+      end
+    end
+
     resources :users, except: [:destroy] do
       member do
         patch :resend_confirmation_email

@@ -4,7 +4,10 @@
   display: inline-block;
   padding-left: 1.75em;
   position: relative;
-  font-weight: bold;
+
+  :not(.user-data-report) {
+    font-weight: bold;
+  }
 
   &:before {
     content: " ";
@@ -20,6 +23,10 @@
     left: 0;
     top: pxToRem(2);
   }
+}
+
+.user-data-report {
+  margin-bottom: 1rem;
 }
 
 .dashboard__header {
