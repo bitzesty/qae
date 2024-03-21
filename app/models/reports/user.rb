@@ -32,4 +32,12 @@ class Reports::User
       "N/A"
     end
   end
+
+  def status
+    if @user.is_a?(Assessor)
+      @user.suspended? ? "Deactivated" : "Active"
+    else
+      "Active"
+    end
+  end
 end
