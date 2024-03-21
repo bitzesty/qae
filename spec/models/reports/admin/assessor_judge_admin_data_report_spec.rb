@@ -26,7 +26,7 @@ describe Reports::Admin::AssessorJudgeAdminDataReport do
     expect(output).to include("Assessor")
     expect(output).to include(assessor.created_at.to_s)
     expect(output).to include(assessor.last_sign_in_at.to_s)
-    expect(output).to include("trade")
+    expect(output).to include("International Trade")
   end
 
   it "creates the output with relevant data for Judges" do
@@ -37,6 +37,6 @@ describe Reports::Admin::AssessorJudgeAdminDataReport do
     expect(output).to include("Judge")
     expect(output).to include(judge.created_at.to_s)
     expect(output).to include(judge.last_sign_in_at.to_s)
-    expect(output).to include("innovation")
+    expect(output).to include("Innovation")
   end
 end
