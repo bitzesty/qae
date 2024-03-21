@@ -24,6 +24,9 @@ class Reports::Admin::AssessorJudgeAdminDataReport
       label: "User type",
       method: :user_type
     }, {
+      label: "Status",
+      method: :status
+    }, {
       label: "User creation date",
       method: :created_at
     }, {
@@ -59,7 +62,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
         end
       end
 
-      Judge.find_each do |user|
+      Judge.active.find_each do |user|
         u = Reports::User.new(user)
 
         csv << mapping.map do |m|
@@ -72,7 +75,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
   end
 
   def csv_filename
-    "aassessors_judges_admins_data.csv"
+    "assessors_judges_admins_data.csv"
   end
 
   private
