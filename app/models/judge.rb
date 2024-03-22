@@ -42,6 +42,10 @@ class Judge < ApplicationRecord
     "#{first_name} #{last_name}".strip
   end
 
+  def self.role_meth(category)
+    "#{category}_role"
+  end
+
   def self.roles
     [["Not Assigned", nil], ["Assigned", "judge"]]
   end
@@ -58,5 +62,17 @@ class Judge < ApplicationRecord
 
   def soft_delete!
     update_column(:deleted, true)
+  end
+
+  def roles
+    FormAnswer::POSSIBLE_AWARDS.select do |cat|
+      get_role(cat) == "judge"
+    end
+  end
+
+  private
+
+  def get_role(category)
+    public_send self.class.role_meth(category)
   end
 end

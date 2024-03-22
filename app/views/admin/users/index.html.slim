@@ -3,6 +3,11 @@
 .dashboard
   h1.dashboard__heading
     | Users
+
+  p
+    = link_to "Download CSV with assessors, judges and admins user data", assessors_judges_admins_data_admin_users_reports_path(format: :csv),
+      class: "download-link govuk-link user-data-report", aria: { label: "Download CSV with assessors, judges and admins user data" }
+
   = simple_form_for @search, url: "#", method: :get, as: :search, html: { class: "search-form", aria: { label: "Search users" } } do |f|
     = render 'admin/users/navigation'
 

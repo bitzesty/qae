@@ -282,7 +282,11 @@ class AwardYear < ApplicationRecord
           month = deadline.trigger_at.month
         end
 
-        Date.new(AwardYear.current.year - 1 - years_number, month, day).strftime("%d/%m/%Y")
+        begin
+          Date.new(AwardYear.current.year - 1 - years_number, month, day).strftime("%d/%m/%Y")
+        rescue Date::Error # avoiding 29th of February in non-leap years
+          Date.new(AwardYear.current.year - 1 - years_number, month, day - 1).strftime("%d/%m/%Y")
+        end
       end
     end
 
@@ -311,7 +315,12 @@ class AwardYear < ApplicationRecord
           Date.new(AwardYear.current.year - 1 - to, month + 1, 1)
         end
 
-      end_date = Date.new(AwardYear.current.year - 1 - from, month, day)
+      end_date =
+        begin
+          Date.new(AwardYear.current.year - 1 - from, month, day)
+        rescue Date::Error # avoiding 29th of February in non-leap years
+          Date.new(AwardYear.current.year - 1 - from, month, day - 1)
+        end
 
       if opts[:minmax] == true
         return (start_date..end_date).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
