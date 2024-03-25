@@ -257,7 +257,28 @@ Rails.application.routes.draw do
         post :scan_via_debounce_api
       end
     end
-    resources :assessors
+    resources :assessors do
+      member do
+        get :confirm_activate
+        get :confirm_deactivate
+        patch :activate
+        patch :deactivate
+      end
+
+      collection do
+        get :suspension_status
+
+        get :confirm_bulk_activate_pi
+        get :confirm_bulk_deactivate_pi
+        get :confirm_bulk_activate_dt
+        get :confirm_bulk_deactivate_dt
+
+        put :bulk_activate_pi
+        put :bulk_deactivate_pi
+        put :bulk_activate_dt
+        put :bulk_deactivate_dt
+      end
+    end
     resources :judges
 
     resources :admins do

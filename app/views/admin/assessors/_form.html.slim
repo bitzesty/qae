@@ -88,6 +88,25 @@
                 include_blank: false,
                 label: false
 
+  - if f.object.persisted?
+    .row.question-group
+      .col-md-4.col-sm-6.assessor-account-status
+        = f.label :suspended_at, "Account status"
+        br
+        - if f.object.suspended?
+          span.label-status.label-status-grey DEACTIVATED
+
+          = link_to "Re-activate",
+                    confirm_activate_admin_assessor_path(f.object),
+                    class: "govuk-link govuk-link--no-visited-state"
+        - else
+          span.label-status.label-status-green ACTIVE
+
+          = link_to "Temporarily deactivate",
+                    confirm_deactivate_admin_assessor_path(f.object),
+                    class: "govuk-link govuk-link--no-visited-state text-danger"
+
+
   br
   .row
     .col-md-4.col-sm-6

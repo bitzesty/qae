@@ -1,0 +1,22 @@
+.row
+  .col-xs-12
+    .page-header-nav
+      = link_to "‹ Go back to assessor’s details", edit_admin_assessor_path(@resource), class: "btn btn-link btn-lg"
+
+.row
+  .col-xs-6
+    h1.dashboard__heading
+      | Are you sure you want to temporarily deactivate this assessor?
+
+
+= simple_form_for @form, url: deactivate_admin_assessor_path(@resource), method: :patch, html: { class: "confirmation-form" } do |f|
+  .row
+    .col-xs-6
+      .form-group
+        = f.input :confirmation, as: :radio_buttons, collection: [["Yes, deactivate this assessor", true], ["No", false]], label: false
+
+  .row
+    .col-md-4.col-sm-6
+      = f.submit "Confirm", class: "btn btn-primary btn-md"
+      ' &nbsp;
+      = link_to "Cancel", edit_admin_assessor_path(@resource), class: "govuk-link"
