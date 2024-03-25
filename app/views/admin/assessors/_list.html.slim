@@ -7,6 +7,9 @@
             = sort_link f, 'Name', @search, :full_name
           th.sortable
             = sort_link f, 'Email', @search, :email
+          th Assigned categories
+          th.sortable
+            = sort_link f, 'Status', @search, :suspended_at
           th.sortable
             = sort_link f, 'Signed in on', @search, :last_sign_in_at
           th.sortable
@@ -24,6 +27,8 @@
               td.td-title
                 = link_to assessor.full_name, edit_admin_assessor_path(assessor), class: 'link-edit-user'
               td = mail_to assessor.email, assessor.email, {class: "ellipsis"}
+              td = assessor.all_assigned_award_types
+              td = assessor.suspended? ? "Deactivated" : "Active"
               td
                 small.text-muted
                   span.visible-lg

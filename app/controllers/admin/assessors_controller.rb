@@ -14,6 +14,51 @@ class Admin::AssessorsController < Admin::UsersController
     authorize @resource, :create?
   end
 
+  def confirm_activate
+    @form = ConfirmationForm.new("activate_assessor")
+
+    authorize @resource, :activate?
+  end
+
+  def confirm_deactivate
+    @form = ConfirmationForm.new("deactivate_assessor")
+    authorize @resource, :deactivate?
+  end
+
+  def activate
+    @form = ConfirmationForm.new("activate_assessor", params[:confirmation_form])
+    authorize @resource, :activate?
+
+    if @form.valid?
+      if @form.confirmed?
+        @resource.unsuspend!
+        flash[:notice] = "The assessor has been re-activated."
+      end
+
+      redirect_to edit_admin_assessor_path(@resource)
+    else
+      render :confirm_activate
+    end
+  end
+
+  def deactivate
+    @form = ConfirmationForm.new(params[:confirmation_form])
+    authorize @resource, :deactivate?
+
+    @form = ConfirmationForm.new("deactivate_assessor", params[:confirmation_form])
+
+    if @form.valid?
+      if @form.confirmed?
+        @resource.suspend!
+        flash[:notice] = "The assessor has been deactivated."
+      end
+
+      redirect_to edit_admin_assessor_path(@resource)
+    else
+      render :confirm_deactivate
+    end
+  end
+
   def create
     @resource = Assessor.new(resource_params)
     @resource.skip_password_validation = true
