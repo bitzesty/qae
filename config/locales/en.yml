@@ -361,3 +361,7 @@ en:
       not_recommended: Not recommended
       awarded: Awarded
       not_awarded: Not awarded
+  confirmation_form:
+    errors:
+      activate_assessor: "You must select whether you want to activate this assessor or not."
+      deactivate_assessor: "You must select whether you want to deactivate this assessor or not."

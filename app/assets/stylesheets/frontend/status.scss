@@ -1,5 +1,6 @@
 $status-red: #9c1111;
 $status-green: #3b816f;
+$status-grey: #6f777b;
 
 .label-status {
   padding: 0 3px;
@@ -22,6 +23,11 @@ $status-green: #3b816f;
     border-color: $status-green;
     color: $status-green;
   }
+
+  &.label-status-grey {
+    border-color: $status-grey;
+    color: $status-grey;
+  }
 }
 
 [data-status-reversible='true'],
@@ -38,5 +44,11 @@ $status-green: #3b816f;
   .label-status + button,
   .label-status + form {
     display: none;
+  }
+}
+
+.assessor-account-status {
+  .label-status {
+    margin-right: 10px;
   }
 }

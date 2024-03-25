@@ -65,6 +65,14 @@ class Assessor < ApplicationRecord
     suspended_at.present?
   end
 
+  def unsuspend!
+    update_attribute(:suspended_at, nil)
+  end
+
+  def suspend!
+    update_attribute(:suspended_at, Time.current)
+  end
+
   def inactive_message
     !suspended? ? super : :suspended
   end
@@ -181,6 +189,12 @@ class Assessor < ApplicationRecord
 
   def has_access_to_award_type?(award_type)
     categories[award_type].present?
+  end
+
+  def all_assigned_award_types
+    assigned_categories_as(%w(lead regular)).map do |cat|
+      FormAnswer::AWARD_TYPE_FULL_NAMES[cat]
+    end.join(", ")
   end
 
   private
