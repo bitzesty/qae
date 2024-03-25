@@ -1,0 +1,46 @@
+.row
+  .col-xs-12
+    .page-header-nav
+      = link_to "‹ Go back to assessors list", admin_assessors_path, class: "btn btn-link btn-lg"
+
+.page-header
+  h1.dashboard__heading
+    | Edit assessors’ access to the system
+  p.govuk-body
+    | You can temporarily deactivate all assessors accounts assigned to particular award categories.
+
+
+.row.assessor-account-status.sd-it
+  .col-md-6
+    p.govuk-body
+      strong
+        | Assessors assigned to Sustainable Development and International Trade awards
+    p.govuk-body
+      - if @dt_status == "active"
+        span.label-status.label-status-green ACTIVE
+        = link_to "Temporarily deactivate", confirm_bulk_deactivate_dt_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state text-danger"
+      - else
+        span.label-status.label-status-grey DEACTIVATED
+        = link_to "Re-activate", confirm_bulk_activate_dt_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state text-danger"
+
+br
+
+.row.assessor-account-status.po-i
+  .col-md-6
+    p.govuk-body
+      strong
+        | Assessors assigned to Promoting Opportunity and Innovation awards
+    p.govuk-body
+      - if @pi_status == "active"
+        span.label-status.label-status-green ACTIVE
+        = link_to "Temporarily deactivate", confirm_bulk_deactivate_pi_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state text-danger"
+      - else
+        span.label-status.label-status-grey DEACTIVATED
+        = link_to "Re-activate", confirm_bulk_activate_pi_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state text-danger"
+
+br
+
+.row
+  .col-xs-12
+    .page-header-nav
+      = link_to "‹ Go back to assessors list", admin_assessors_path, class: "btn btn-link btn-lg"

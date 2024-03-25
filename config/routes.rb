@@ -264,6 +264,20 @@ Rails.application.routes.draw do
         patch :activate
         patch :deactivate
       end
+
+      collection do
+        get :suspension_status
+
+        get :confirm_bulk_activate_pi
+        get :confirm_bulk_deactivate_pi
+        get :confirm_bulk_activate_dt
+        get :confirm_bulk_deactivate_dt
+
+        put :bulk_activate_pi
+        put :bulk_deactivate_pi
+        put :bulk_activate_dt
+        put :bulk_deactivate_dt
+      end
     end
     resources :judges
 
