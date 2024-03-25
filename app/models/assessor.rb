@@ -48,6 +48,10 @@ class Assessor < ApplicationRecord
 
   scope :by_email, -> { order(:email) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :not_suspended, -> { where(suspended_at: nil) }
+  scope :trade_and_development, -> { available_for("development").or(available_for("trade")) }
+  scope :mobility_and_innovation, -> { available_for("mobility").or(available_for("innovation")) }
+
 
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AVAILABLE_ROLES.each do |role|
