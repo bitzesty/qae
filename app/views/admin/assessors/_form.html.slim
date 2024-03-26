@@ -109,16 +109,13 @@
 
   br
   .row
-    .col-md-4.col-sm-6
+    .col-md-4.col-sm-6.btn-admin-group
+      = f.submit "#{f.object.persisted? ? 'Update' : 'Create'} assessor",
+                class: 'btn btn-primary btn-md'
+
+      = link_to "Cancel",
+                admin_assessors_path,
+                class: 'btn btn-default btn-md'
+
       - if action_name == "edit" && policy(resource).destroy?
-        = link_to 'Delete', admin_assessor_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md pull-left'
-
-      .pull-right
-        = link_to "Cancel",
-                  admin_assessors_path,
-                  class: 'btn btn-default btn-md'
-
-        ' &nbsp;
-
-        = f.submit "#{f.object.persisted? ? 'Update' : 'Create'} assessor",
-                  class: 'btn btn-primary btn-md'
+        = link_to 'Delete', admin_assessor_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md'

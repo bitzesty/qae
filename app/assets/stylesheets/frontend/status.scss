@@ -3,7 +3,7 @@ $status-green: #3b816f;
 $status-grey: #6f777b;
 
 .label-status {
-  padding: 0 3px;
+  padding: 3px 3px 2px 3px;
   border: 2px solid transparent;
   border-radius: 3px;
   font-size: 12px;
@@ -48,7 +48,10 @@ $status-grey: #6f777b;
 }
 
 .assessor-account-status {
+  margin: 10px 0;
+
   .label-status {
     margin-right: 10px;
+    font-size: 16px;
   }
 }
