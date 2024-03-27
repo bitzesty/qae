@@ -1,0 +1,92 @@
+title = content_for?(:title) ? "#{'Appraisal view of ' if admin_in_read_only_mode?}" + yield(:title)  + " - King's Awards for Enterprise" : "King's Awards for Enterprise"
+
+- content_for :head do
+  = stylesheet_link_tag "application.css"
+
+  - if Rails.env.test?
+    style
+      | * { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }
+
+  = csrf_meta_tags
+
+  = yield :section_meta_tags
+
+  = yield :head
+
+
+- content_for :header_class do
+  - unless landing_page?
+    ' with-proposition
+
+
+- content_for :content do
+  = render "shared/offline_message"
+  = render "shared/dev_or_staging_banner"
+
+  #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
+    #QAE class="#{'layout-dev' if Rails.env.development?}"
+      .govuk-width-container role="region"
+        .govuk-phase-banner
+          p.govuk-phase-banner__content
+            strong.govuk-tag.govuk-phase-banner__content__tag
+              ' BETA
+            span.govuk-phase-banner__text
+              ' This is a new service
+              - if action_name != "feedback"
+                ' – your
+                = link_to "feedback", feedback_path, target: "_blank", class: 'govuk-link'
+                '  will help us to improve it.
+
+      .govuk-width-container
+        main#content.group class="govuk-main-wrapper app-main-class #{yield :page_content_class}"
+          = render "layouts/flash"
+
+          = yield
+
+- content_for :footer_support_links do
+  h2.govuk-visually-hidden Support links
+  ul.govuk-footer__inline-list
+    li.govuk-footer__inline-list-item
+      = link_to "Help", "https://www.gov.uk/help", class: 'govuk-footer__link'
+    li.govuk-footer__inline-list-item
+      = link_to "Privacy Statement", privacy_path, class: 'govuk-footer__link'
+    li.govuk-footer__inline-list-item
+      = link_to "Accessibility Statement", accessibility_statement_path, class: 'govuk-footer__link'
+    li.govuk-footer__inline-list-item
+      ' Built by
+      = link_to "The King's Awards Office", "http://blogs.bis.gov.uk/queensawards/", class: 'govuk-footer__link'
+
+- content_for :body_end do
+  - if should_enable_js?
+    = include_gon
+    = javascript_include_tag 'application'
+
+  - if Rails.env.test?
+    = javascript_tag("$.fx.off = true;")
+
+  - if ENV["GOOGLE_ANALYTICS_ID"].present?
+    / Google Analytics
+    script type="text/javascript"
+      | if (Cookies.get("gaconsent") === "accept" && !Cookies.get("gaoptout")) {
+      |   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      |   ga('create', '#{ENV["GOOGLE_ANALYTICS_ID"]}', 'auto');
+
+      |   ga('create', 'UA-145652997-1', 'auto', 'govuk_shared', {'allowLinker': true});
+      |   ga('govuk_shared.require', 'linker');
+      |   ga('govuk_shared.linker.set', 'anonymizeIp', true);
+      |   ga('govuk_shared.linker:autoLink', ['www.gov.uk']);
+
+      - if current_user
+        | ga('set', 'userId', '#{current_user.id}');
+        | ga('set', 'dimension1', '#{current_user.id}');
+
+      |   ga('set', 'anonymizeIp', true);
+      |   ga('send', 'pageview');
+      |   ga('govuk_shared.send', 'pageview');
+      | }
+
+
+= render template: 'layouts/govuk_template'
+
+- if should_enable_js?
+  = javascript_tag "$(function() { #{yield(:javascript_code)} });" if content_for? :javascript_code

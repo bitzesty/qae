@@ -1,0 +1,21 @@
+.row
+  .col-xs-12
+    .page-header-nav.confirmation-nav
+      = link_to "‹ Go back to edit assessors’ access to the system", suspension_status_admin_assessors_path, class: "btn btn-link btn-lg"
+
+.row
+  .col-xs-6
+    h1.dashboard__heading.confirmation-header
+      | Are you sure you want to re-activate assessors assigned to Promoting Opportunity and Innovation awards?
+
+
+= simple_form_for @form, url: bulk_activate_pi_admin_assessors_path, method: :put, html: { class: "confirmation-form" } do |f|
+  .row
+    .col-xs-6
+      .form-group
+        = f.input :confirmation, as: :radio_buttons, collection: [["Yes, re-activate assessors", true], ["No", false]], label: false
+
+  .row
+    .col-md-4.col-sm-6.confirmation-buttons
+      = f.submit "Confirm", class: "btn btn-primary btn-md"
+      = link_to "Cancel", suspension_status_admin_assessors_path, class: "govuk-link"

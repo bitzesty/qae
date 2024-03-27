@@ -33,3 +33,10 @@ input.form-control, select.form-control,
 .input-group-addon {
   height: 2.42em !important;
 }
+
+
+.btn-admin-group {
+  & > .btn {
+    margin-right: 15px !important;
+  }
+}

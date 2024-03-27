@@ -1,0 +1,22 @@
+.confirmation-form {
+  .govuk-radios__input {
+    margin-left: 0 !important;
+  }
+}
+
+.confirmation-nav {
+  margin-bottom: 20px;
+}
+
+.confirmation-header {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.confirmation-buttons {
+  margin-top: 20px;
+
+  > .btn:first-child {
+    margin-right: 15px;
+  }
+}
