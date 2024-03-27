@@ -62,7 +62,7 @@ class Assessor < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && !deleted? && !suspended?
+    super && !deleted?
   end
 
   def suspended?
@@ -75,10 +75,6 @@ class Assessor < ApplicationRecord
 
   def suspend!
     update_attribute(:suspended_at, Time.current)
-  end
-
-  def inactive_message
-    !suspended? ? super : :suspended
   end
 
   def self.roles

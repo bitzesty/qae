@@ -4,6 +4,7 @@ class Assessor::BaseController < ApplicationController
   layout "application-assessor"
 
   before_action :authenticate_assessor!, :load_award_year_and_settings
+  before_action :check_suspension_status
   after_action :verify_authorized
 
   skip_before_action :authenticate_user!, raise: false
@@ -42,5 +43,12 @@ class Assessor::BaseController < ApplicationController
 
   def user_for_paper_trail
     "ASSESSOR:#{current_assessor.id}" if current_assessor.present?
+  end
+
+  def check_suspension_status
+    if current_assessor.suspended? && controller_name != "dashboard" && action_name != "suspended"
+      flash.clear # clearing any successfull login messages
+      redirect_to assessor_suspended_path
+    end
   end
 end

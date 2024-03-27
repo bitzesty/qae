@@ -173,6 +173,8 @@ Rails.application.routes.draw do
       end
     end
 
+    get :suspended, to: "dashboard#suspended"
+
     resources :review_audit_certificates, only: [:create]
     resources :review_commercial_figures, only: [:create]
 
