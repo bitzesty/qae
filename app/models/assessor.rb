@@ -48,6 +48,10 @@ class Assessor < ApplicationRecord
 
   scope :by_email, -> { order(:email) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :not_suspended, -> { where(suspended_at: nil) }
+  scope :trade_and_development, -> { available_for("development").or(available_for("trade")) }
+  scope :mobility_and_innovation, -> { available_for("mobility").or(available_for("innovation")) }
+
 
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AVAILABLE_ROLES.each do |role|
@@ -58,15 +62,19 @@ class Assessor < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && !deleted? && !suspended?
+    super && !deleted?
   end
 
   def suspended?
     suspended_at.present?
   end
 
-  def inactive_message
-    !suspended? ? super : :suspended
+  def unsuspend!
+    update_attribute(:suspended_at, nil)
+  end
+
+  def suspend!
+    update_attribute(:suspended_at, Time.current)
   end
 
   def self.roles
@@ -181,6 +189,12 @@ class Assessor < ApplicationRecord
 
   def has_access_to_award_type?(award_type)
     categories[award_type].present?
+  end
+
+  def all_assigned_award_types
+    assigned_categories_as(%w(lead regular)).map do |cat|
+      FormAnswer::AWARD_TYPE_FULL_NAMES[cat]
+    end.join(", ")
   end
 
   private

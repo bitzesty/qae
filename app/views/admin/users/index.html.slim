@@ -19,9 +19,14 @@
             = f.input :query, label: false, input_html: { class: "form-control", type: "search", aria: { label: "Search users" } }
             = submit_tag :submit, class: 'search-submit'
 
-      .col-md-3.col-sm-4.col-xs-12.pull-right.text-right
-        = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-secondary btn-md' do
-          = "+ Add #{controller_name == "users" ? "applicant" : controller_name.singularize}"
+      .col-md-6.col-sm-4.col-xs-12.pull-right.text-right
+        .row
+          - if controller_name == "assessors"
+            = link_to "Edit assessors’ access to the system", suspension_status_admin_assessors_path, class: "btn btn-default btn-md"
+            ' &nbsp;
+
+          = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-secondary btn-md' do
+            = "+ Add #{controller_name == "users" ? "applicant" : controller_name.singularize}"
     .clear
 
     - if @search.query?

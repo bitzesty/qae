@@ -23,6 +23,10 @@ FactoryBot.define do
       trade_role { "regular" }
     end
 
+    trait :regular_for_development do
+      development_role { "regular" }
+    end
+
     trait :regular_for_innovation do
       innovation_role { "regular" }
     end

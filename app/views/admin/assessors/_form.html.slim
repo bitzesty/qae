@@ -88,18 +88,34 @@
                 include_blank: false,
                 label: false
 
+  - if f.object.persisted?
+    .row.question-group
+      .col-md-4.col-sm-6.assessor-account-status
+        = f.label :suspended_at, "Account status"
+        br
+        - if f.object.suspended?
+          span.label-status.label-status-grey DEACTIVATED
+
+          = link_to "Re-activate",
+                    confirm_activate_admin_assessor_path(f.object),
+                    class: "govuk-link govuk-link--no-visited-state"
+        - else
+          span.label-status.label-status-green ACTIVE
+
+          = link_to "Temporarily deactivate",
+                    confirm_deactivate_admin_assessor_path(f.object),
+                    class: "govuk-link govuk-link--no-visited-state text-danger"
+
+
   br
   .row
-    .col-md-4.col-sm-6
+    .col-md-4.col-sm-6.btn-admin-group
+      = f.submit "#{f.object.persisted? ? 'Update' : 'Create'} assessor",
+                class: 'btn btn-primary btn-md'
+
+      = link_to "Cancel",
+                admin_assessors_path,
+                class: 'btn btn-default btn-md'
+
       - if action_name == "edit" && policy(resource).destroy?
-        = link_to 'Delete', admin_assessor_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md pull-left'
-
-      .pull-right
-        = link_to "Cancel",
-                  admin_assessors_path,
-                  class: 'btn btn-default btn-md'
-
-        ' &nbsp;
-
-        = f.submit "#{f.object.persisted? ? 'Update' : 'Create'} assessor",
-                  class: 'btn btn-primary btn-md'
+        = link_to 'Delete', admin_assessor_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md'
