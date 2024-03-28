@@ -33,7 +33,9 @@
 
     - if policy(resource).download_feedback_pdf?
       li
-        = link_to "View/print an application's feedbacks", download_pdf_admin_form_answer_feedbacks_path(resource.object, format: :pdf), target: admin_conditional_pdf_link_target(resource.object, "feedback")
+        = link_to "View/print an application's feedbacks",
+          download_pdf_admin_form_answer_feedbacks_path(resource.object, format: :pdf),
+          target: admin_conditional_pdf_link_target(resource.object, "feedback")
 - else
   p.p-empty
     ' No documents have been attached.
