@@ -51,13 +51,13 @@ class Admin::BaseController < ApplicationController
                   type: "application/pdf",
                   disposition: 'attachment'
       else
-        redirect_to pdf_hard_copy.file.url
+        redirect_to pdf_hard_copy.file.url, allow_other_host: true
       end
     else
       send_data pdf_data.render,
                 filename: "application_#{mode.pluralize}_#{form_answer.decorate.pdf_filename}",
                 type: "application/pdf",
-                disposition: 'attachment'              
+                disposition: 'attachment'
     end
   end
 end
