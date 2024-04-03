@@ -565,10 +565,41 @@ class AwardYears::V2025::QaeForms
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
-        matrix :disadvantaged_participants_in_group_year, "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
-          classes "sub-question question-matrix"
+        checkbox_seria :disadvantaged_participants, "What disadvantaged groups does your initiative support?" do
+          classes "question-limited-selections"
           sub_ref "C 5.3"
           required
+          context %(
+            <p><em>Select all that apply.</em></p>
+          )
+          check_options [
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
+            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered", "People recovering or who have recovered from addiction "],
+            ["domestic_violence", "Survivors of domestic violence"],
+            ["military_veterans", "Military veterans"],
+            ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
+            ["others", "Other disadvantaged group"]
+          ]
+        end
+
+        matrix :disadvantaged_participants_in_group_year, "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
+          classes "sub-question question-matrix"
+          sub_ref "C 5.4"
+          required
+          required_rows :disadvantaged_participants
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )
@@ -601,10 +632,10 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :disadvantaged_group_not_in_list, "If you are putting forward a group that is not on this list, please provide details and explain why you believe the group you support should be considered disadvantaged." do
-          sub_ref "C 5.3.1"
+          sub_ref "C 5.4.1"
           context %(
             <p><em>
-              Answer this question if you provided numbers for 'Other disadvantaged group' in question C5.3.
+              Answer this question if you provided numbers for 'Other disadvantaged group' in question C5.4.
             </em></p>
           )
           words_max 300
@@ -612,8 +643,9 @@ class AwardYears::V2025::QaeForms
 
         matrix :disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative has resulted in employment opportunities for them." do
           classes "sub-question question-matrix"
-          sub_ref "C 5.4"
+          sub_ref "C 5.5"
           required
+          required_rows :disadvantaged_participants
           context %(
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
@@ -652,17 +684,18 @@ class AwardYears::V2025::QaeForms
           column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
         end
 
-        textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.4, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
+        textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.5, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
           classes "sub-question"
-          sub_ref "C 5.4.1"
+          sub_ref "C 5.5.1"
           required
           words_max 150
         end
 
         matrix :disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your initiative resulted in educational opportunities for them." do
           classes "sub-question question-matrix"
-          sub_ref "C 5.5"
+          sub_ref "C 5.6"
           required
+          required_rows :disadvantaged_participants
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
@@ -703,8 +736,9 @@ class AwardYears::V2025::QaeForms
 
         matrix :disadvantaged_groups_opportunities_numbers, "Provide the number of participants in each disadvantaged group that your initiative resulted in other opportunities for them." do
           classes "sub-question question-matrix"
-          sub_ref "C 5.6"
+          sub_ref "C 5.7"
           required
+          required_rows :disadvantaged_participants
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
@@ -745,7 +779,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :disadvantaged_groups_numbers_explained, "Explain how you collected the impact numbers." do
           classes "sub-question"
-          sub_ref "C 5.7"
+          sub_ref "C 5.8"
           required
           context  %(
             <p>This may include but is not limited to internal records, third-party evidence, survey responses.</p>
@@ -755,7 +789,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_qualitative_impact, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
           classes "sub-question"
-          sub_ref "C 5.8"
+          sub_ref "C 5.9"
           required
           context %(
             <p>Provide qualitative data (for example, people’s stories as well as comments, feedback from participants and key stakeholders) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
@@ -782,7 +816,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_feedback, "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
           classes "sub-question"
-          sub_ref "C 5.9"
+          sub_ref "C 5.10"
           required
           context %(
             <ul>
