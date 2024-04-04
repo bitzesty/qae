@@ -599,7 +599,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question question-matrix"
           sub_ref "C 5.4"
           required
-          required_rows :disadvantaged_participants
+          required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )
@@ -645,7 +645,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question question-matrix"
           sub_ref "C 5.5"
           required
-          required_rows :disadvantaged_participants
+          required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
@@ -695,7 +695,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question question-matrix"
           sub_ref "C 5.6"
           required
-          required_rows :disadvantaged_participants
+          required_rows :disadvantaged_participants, hide_unchecked: true
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
@@ -738,7 +738,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question question-matrix"
           sub_ref "C 5.7"
           required
-          required_rows :disadvantaged_participants
+          required_rows :disadvantaged_participants, hide_unchecked: true
           pdf_context_with_header_blocks [
             [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
