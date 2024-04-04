@@ -452,7 +452,7 @@ window.FormValidation =
     requiredRows = []
     requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
 
-    shouldHideRow = element && element[0].hasAttribute('data-required-row-hide-unchecked')
+    shouldHideRow = element[0] && element[0].hasAttribute('data-required-row-hide-unchecked')
 
     subquestions = question.find("input")
     map = new Map()
