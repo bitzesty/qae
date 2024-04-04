@@ -543,7 +543,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question question-matrix"
           ref "C 5.2"
           required
-          required_rows :initiative_activities
+          required_rows :initiative_activities, hide_unchecked: true
           context %(
             <p>When answering this question, please refer to the guidance under C5.</p>
           )
