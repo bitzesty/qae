@@ -445,39 +445,62 @@ window.FormValidation =
       return
     # end of conditional validation
 
+    # finds required row question gets checked answers
+    element = question.find('input[data-required-row-parent]').first()
+
+    requiredRowParent = element && element.attr('data-required-row-parent')
+    requiredRows = []
+    requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
+
+    shouldHideRow = element && element[0].hasAttribute('data-required-row-hide-unchecked')
+
     subquestions = question.find("input")
+    map = new Map()
 
     if input
       subquestions = [input]
 
     for subquestion in subquestions
       subq = $(subquestion)
-      qParent = subq.closest("td")
+      qRow = subq.closest("tr")
+      qCell = subq.closest("td")
+      key = subq.attr('id')
+
+      if requiredRowParent
+        qRow.show()
+
+        if map.has(key)
+          cond = map.get(key)
+        else
+          cond = requiredRows.find (v) ->
+            key.includes(v)
+          map.set(key, cond)
+
+        if !cond && shouldHideRow
+          subq.val("")
+          qRow.hide()
+
       val = subq.val().trim()
 
-      # finds required row question gets checked answers
-      requiredRowParent = subq.attr('data-required-row-parent')
-      requiredRows = []
-      requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
-
       if not val
-        if !subq.attr('data-required-row-parent')
-          @appendMessage(qParent, "Required")
-          @addErrorClass(qParent)
+        if !requiredRowParent
+          @appendMessage(qCell, "Required")
+          @addErrorClass(qCell)
         # only adds 'required' error when y_heading matches checked answer
         else
-          for yHeading in requiredRows
-            if subq.attr('id').includes(yHeading)
-              @appendMessage(qParent, "Required")
-              @addErrorClass(qParent)
+          cond = map.get(key)
+
+          if cond
+            @appendMessage(qCell, "Required")
+            @addErrorClass(qCell)
       else if isNaN(val)
-        @appendMessage(qParent, "Only numbers")
-        @addErrorClass(qParent)
+        @appendMessage(qCell, "Only numbers")
+        @addErrorClass(qCell)
       else
         t = parseInt(val, 10)
         if t < 0
-          @appendMessage(qParent, "At least 0")
-          @addErrorClass(qParent)
+          @appendMessage(qCell, "At least 0")
+          @addErrorClass(qCell)
 
   validateCurrentAwards: (question) ->
     $(".govuk-error-message", question).empty()
@@ -907,18 +930,25 @@ window.FormValidation =
       @validateIndividualQuestion(question)
 
 # to toggle matrix error messages on click
-$(document).on 'click', "input[type=checkbox]", ->
+$(document).on 'change', 'input[type=checkbox]', ->
   checkedValue = $(this).val()
   questions = $(".question-block.question-matrix")
+
   for question in questions
+    conditional = false
     question = $(question)
     subquestions = question.find('input')
+
     for subquestion in subquestions
-      subq = $(subquestion)
-      if subq.attr("id").includes(checkedValue) && subq.attr("data-required-row-parent")
-        question.find(".govuk-error-message").empty()
-        question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
-        window.FormValidation.validateMatrix(question)
+      if !conditional
+        identifier = subquestion.getAttribute("id")
+
+        if identifier && identifier.includes(checkedValue)
+          conditional = !!subquestion.hasAttribute("data-required-row-parent")
+    if conditional
+      question.find(".govuk-error-message").empty()
+      question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
+      window.FormValidation.validateMatrix(question)
 
 eachCons = (list, n, callback) ->
   return [] if n == 0
