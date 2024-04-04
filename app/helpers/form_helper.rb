@@ -10,6 +10,14 @@ module FormHelper
     ops
   end
 
+  def required_row_html_options(**opts)
+    opts.each_with_object(Hash[]) do |(key, value), memo|
+      param = key.to_s.dasherize
+
+      memo["data-required-row-#{param}"] = value
+    end
+  end
+
   def current_form_is_editable?
     !current_form_is_not_editable?
   end

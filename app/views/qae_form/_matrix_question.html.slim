@@ -26,10 +26,12 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
             div.govuk-form-group
               label.visuallyhidden-on-desktop.govuk-label for=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}")
                 = "#{y_heading.label} numbers for #{x_heading.label}"
+
               input.js-trigger-autosave.matrix-question-input.govuk-input [
                 type="number"
                 readonly=disabled_input.present?
                 data-required-row-parent=question.required_row_parent
+                *required_row_html_options(**question.required_row_options)
                 min="0"
                 step="1"
                 name=question.input_name(suffix: "#{x_heading.key}_#{y_heading.key}")
