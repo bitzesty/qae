@@ -5,7 +5,7 @@ module QaePdfForms::CustomQuestions::Matrix
 
   def matrix_rows
     y_headings = if question.required_row_parent.present? && !question.required_row_options.blank?
-      checked_options = form_pdf.filled_answers[question.required_row_parent].map(&:values).flatten
+      checked_options = form_pdf.filled_answers.fetch(question.required_row_parent, []).map(&:values).flatten
       question.y_headings.filter { |h| h.key.in?(checked_options) }
     else
       question.y_headings
