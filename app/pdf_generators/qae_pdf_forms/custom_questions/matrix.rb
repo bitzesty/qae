@@ -41,6 +41,6 @@ module QaePdfForms::CustomQuestions::Matrix
   end
 
   def render_matrix
-    render_multirows_table(matrix_headers, matrix_rows, matrix_options)
+    render_multirows_table(matrix_headers, matrix_rows, matrix_options) if matrix_rows.size.positive?
   end
 end
