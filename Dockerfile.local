@@ -18,7 +18,7 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle config set --local path 'vendor/bundle'
 RUN bundle config set --local without 'development test'
-RUN gem install bundler:2.4.19 && bundle install --jobs 4 --retry 3
+RUN gem install bundler:2.5.6 && bundle install --jobs 4 --retry 3
 
 COPY . /app
 RUN yarn install
