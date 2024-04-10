@@ -86,7 +86,7 @@ gem 'prawn-table'
 gem 'nokogiri'
 
 # Uploads
-gem 'carrierwave', '~> 2.2.6'
+gem 'carrierwave', '~> 1.3'
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails', '~> 2.2.0'
