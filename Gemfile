@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 3.2.2'
 
-gem 'rails', '7.0.5.1'
+gem 'rails', '7.0.8.1'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -24,7 +24,7 @@ gem 'sassc-rails', '~> 2.1.2'
 gem 'slim-rails', '~> 3.2.0'
 gem 'coffee-rails', '5.0'
 gem 'jquery-rails', '4.4.0'
-gem 'jquery-ui-rails', '6.0.1'
+gem 'jquery-ui-rails', '>= 7.0.0'
 gem 'bootstrap-sass', '~> 3.4'
 gem 'govuk-components'
 gem 'uglifier', '>= 2.7.2'
@@ -92,7 +92,7 @@ gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails', '~> 2.2.0'
 
 # Background jobs
-gem "sidekiq", "~> 6.4"
+gem "sidekiq", "~> 6.5.10"
 gem "sidekiq-cron", "~> 1.1"
 gem 'sinatra', '3.0.5', require: nil
 gem 'rack-protection', '3.0.5'
@@ -125,7 +125,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '~> 6.3.1'
+gem 'puma', '~> 6.4.2'
 
 # Performance & Error reporting
 gem 'appsignal'
