@@ -223,13 +223,13 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <ul>
-              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
               <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
               <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
             </ul>
           )
           pdf_context %(
-            \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+            \u2022 How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?
             \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
             \u2022 Provide any contextual information or challenges you would like the assessors to consider.
           )

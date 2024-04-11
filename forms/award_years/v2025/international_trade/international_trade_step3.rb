@@ -196,41 +196,20 @@ class AwardYears::V2025::QaeForms
           words_max 300
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade due to COVID-19, and how you overcame them." do
-          ref "C 6"
-          classes "word-max-strict"
-          required
-          context %(
-            <ul>
-              <li>Describe the impact COVID-19 has had on your business and its performance.</li>
-              <li>How have you adapted or mitigated it, and with what results?</li>
-            </ul>
-          )
-          pdf_context %(
-            <p>
-              \u2022 Describe the impact COVID-19 has had on your business and its performance.
-
-              \u2022 How have you adapted or mitigated it, and with what results?
-            </p>
-          )
-          rows 2
-          words_max 200
-        end
-
-        textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years (due to factors other than COVID-19)." do
-          sub_ref "C 6.1"
+        textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
+          sub_ref "C 6"
           classes "sub-question word-max-strict"
           required
           context %(
             <ul>
-              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
               <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
               <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
             <ul>
           )
           pdf_context %(
             <p>
-              \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+              \u2022 How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?
               \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
               \u2022 Provide any contextual information or challenges you would like the assessors to consider.
             </p>
