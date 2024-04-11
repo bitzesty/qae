@@ -27,8 +27,8 @@ class Eligibility::Mobility < Eligibility
             values: [
               "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity).",
               "B. We are a subsidiary with the principal activity of promoting social mobility. However, social mobility is not our parent organisation's core activity.",
-              "C. We are an organisation whose core activity is to improve social mobility, and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications; or ii) have a social mobility initiative for our own workforce.",
-              "D. We are an organisation whose core activity is to improve social mobility, and we are applying for this award on the basis of our core activity."
+              "C. We are an organisation whose core activity is to improve social mobility (this may include providing education or training), and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications, or ii) have a social mobility initiative for our own workforce.",
+              "D. We are an organisation whose core activity is to improve social mobility (this may include providing education or training), and we are applying for this award on the basis of our core activity."
             ],
             label: "Your social mobility in relation to your whole organisation.",
             accept: "promoting_opportunity_involvement"
@@ -57,7 +57,7 @@ class Eligibility::Mobility < Eligibility
 
   property :evidence_of_impact,
             boolean: true,
-            label: "Are you able to provide evidence of the impact of your promoting opportunity (through social mobility) activities?",
+            label: "Are you able to provide evidence of the impact of your promoting opportunity (through social mobility) activities, including the diversity data?",
             accept: :true,
             hint: %(
               <div class='govuk-hint'>
@@ -66,6 +66,9 @@ class Eligibility::Mobility < Eligibility
                 </p>
                 <p>
                   The evidence could include but is not limited to internal records, third-party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+                </p>
+                <p>
+                  Please note that you will need to provide the diversity data about the people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
                 </p>
               </div>
             )
