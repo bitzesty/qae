@@ -135,9 +135,9 @@ class QaeFormBuilder
     # Covid impact
     def covid_impact
       OpenStruct.new(
-        :header => "COVID-19 impact",
+        :header => "Impact of COVID-19 and other adverse events",
         :context => [
-          "If your growth was affected by COVID-19, this would be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges."
+          "If your growth was affected by adverse national and global events - such as COVID-19, the war in Ukraine, flooding, and wildfires - this will be taken into consideration during the assessment process. Question C6 allows you to explain how your organisation was affected and how you responded to these challenges."
         ]
       )
     end
