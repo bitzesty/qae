@@ -446,28 +446,33 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p>
-              This may include new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+              You must demonstrate that your innovation positively impacted your commercial success (in terms of turnover or profitability) over at least the last two years.
+            </p>
+            <p>
+              This may include new sales and orders secured, cost savings, and their overall effect on turnover and profitability, as well as new investments secured.
             </p>
             <p>
               A couple of examples that may help you answer this question:
               <ul>
-                <li>Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…</li>
+                <li>Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation...</li>
                 <li>Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...</li>
               </ul>
             </p>
             <p>
-              If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered.
+              If further improvements are still anticipated, clearly demonstrate how and when they will be delivered.
             </p>
           )
           pdf_context %(
-            This may include new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+            You must demonstrate that your innovation positively impacted your commercial success (in terms of turnover or profitability) over at least the last two years.
+
+            This may include new sales and orders secured, cost savings, and their overall effect on turnover and profitability, as well as new investments secured.
 
             A couple of examples that may help you answer this question:
 
-            \u2022 Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…
+            \u2022 Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation...
             \u2022 Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...
 
-            If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered.
+            If further improvements are still anticipated, clearly demonstrate how and when they will be delivered.
           )
           rows 3
           words_max 250
