@@ -37,14 +37,20 @@ div[class="steps-progress-container #{side_bar_menu_height}"]
               - if @form_answer.eligible?
                 .eligibility-passed
                   - if @form_answer.promotion?
-                    p.govuk-body-l You are eligible to begin your application for an Enterprise Promotion Award Nomination.
+                    p.govuk-body-l
+                      strong You are eligible to begin your application for an Enterprise Promotion Award Nomination.
                   - elsif @form_answer.award_type == "mobility"
-                    p.govuk-body-l You are eligible to begin your application for a Promoting Opportunity Award (through social mobility).
+                    p.govuk-body-l
+                      strong You are eligible to begin your application for a Promoting Opportunity Award (through social mobility).
                   - elsif @form_answer.award_type == "development"
-                    p.govuk-body-l You are eligible to begin your application for a Sustainable Development Award.
+                    p.govuk-body-l
+                      strong You are eligible to begin your application for a Sustainable Development Award.
                   - else
-                    p.govuk-body-l You are eligible to begin your application for an #{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award.
-                  p.govuk-body-l Before you start your application, please check your eligibility answers are correct.
+                    p.govuk-body-l
+                      strong You are eligible to begin your application for an #{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award.
+                  p.govuk-body-l
+                    ' The application form will ask you to provide further details and supporting evidence on these eligibility-related questions. If you are shortlisted, we also seek third-party proof. Before you start your application,
+                    strong please check that your eligibility answers are correct.
 
                 - if (!step || step.to_s == "wicked_finish")
                   br
