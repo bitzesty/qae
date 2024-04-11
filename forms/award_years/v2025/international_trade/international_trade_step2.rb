@@ -78,6 +78,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question text-words-max"
           ref "B 3.1"
           context %(
+            <p class="govuk-hint">To be eligible, the organisations must be based in the UK, including the Channel Islands and Isle of Man.</p>
             <p class="govuk-hint">
               If you're an unregistered subsidiary, enter your parent company's number.
             </p>
