@@ -38,9 +38,9 @@ class QaeFormBuilder
       when "your_innovation"
         [about_section_C_innovation, word_limits, technical_language, supplementary_materials]
       when "your_international_trade"
-        [about_section_C_international_trade, small_organisations, covid_impact, word_limits, technical_language, supplementary_materials]
+        [about_section_C_international_trade, small_organisations, word_limits, technical_language, supplementary_materials]
       when "your_sustainable_development"
-        [about_section_C_sustainable_development, small_organisations, covid_impact_development, un_sdgs, supplementary_materials_development]
+        [about_section_C_sustainable_development, small_organisations, un_sdgs, supplementary_materials_development]
       when "innovation_commercial_performance"
         [about_section_D_innovation, financial_periods_innovation, estimated_figures]
       when "trade_commercial_performance"
