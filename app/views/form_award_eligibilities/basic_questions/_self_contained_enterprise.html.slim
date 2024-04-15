@@ -1,5 +1,5 @@
 .question-body
   p.govuk-hint
-    ' A self-contained unit is under its own management, produces its own accounts, and markets its own products or services.
+    ' A self-contained unit is under its own management and produces its own accounts.
   = f.input :self_contained_enterprise, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" },label_html: { class: 'visuallyhidden' }
   span.clear
