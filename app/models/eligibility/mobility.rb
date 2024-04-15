@@ -24,12 +24,7 @@ class Eligibility::Mobility < Eligibility
             )
 
   property :promoting_opportunity_involvement,
-            values: [
-              "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity).",
-              "B. We are a subsidiary with the principal activity of promoting social mobility. However, social mobility is not our parent organisation's core activity.",
-              "C. We are an organisation whose core activity is to improve social mobility (this may include providing education or training), and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications, or ii) have a social mobility initiative for our own workforce.",
-              "D. We are an organisation whose core activity is to improve social mobility (this may include providing education or training), and we are applying for this award on the basis of our core activity."
-            ],
+            values: %w[initiative subsidiary organisation_joint_application organisation_core_activity],
             label: "Your social mobility in relation to your whole organisation.",
             accept: "promoting_opportunity_involvement"
 
