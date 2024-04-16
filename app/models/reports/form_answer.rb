@@ -239,4 +239,12 @@ class Reports::FormAnswer
   def po_sd_provided_actual_figures?
     %w[mobility development].include?(obj.award_type) && obj.document["product_estimated_figures"] == "no"
   end
+
+  def government_support
+    if obj.innovation?
+      obj.document["innovations_grant_funding"]
+    else
+      obj.document["received_grant"]
+    end.presence.to_s.humanize
+  end
 end
