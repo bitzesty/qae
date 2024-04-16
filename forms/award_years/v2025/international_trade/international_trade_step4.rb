@@ -295,7 +295,7 @@ class AwardYears::V2025::QaeForms
           context %(
             <p>If none of the support was in relation to your export products or services, please state so.</p>
           )
-          rows 2
+          rows 3
           words_max 250
           conditional :received_grant, "yes"
         end
@@ -307,7 +307,7 @@ class AwardYears::V2025::QaeForms
           context %(
             <p>If the support was in relation to your export products or services, don't repeat it.</p>
           )
-          rows 2
+          rows 3
           words_max 250
           conditional :received_grant, "yes"
         end

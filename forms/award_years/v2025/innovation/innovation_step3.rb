@@ -240,30 +240,6 @@ class AwardYears::V2025::QaeForms
           words_max 100
         end
 
-        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as an innovation loan, in relation to your innovation?" do
-          sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "C 1.9"
-          required
-          yes_no
-          context %(
-            <p>
-              To receive grant funding or other government support, usually the company must go through a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance and the assessors appreciate that as well.
-            </p>
-          )
-        end
-
-        textarea :innovation_grant_funding_sources, "Please give details of dates, sources and levels of funding." do
-          sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
-          sub_ref "C 1.9.1"
-          required
-          conditional :innovations_grant_funding, :yes
-          rows 3
-          words_max 250
-        end
-
-
         header :innovation_timeline_header, "Innovation development" do
           ref "C 2"
           linkable true
