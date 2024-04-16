@@ -237,8 +237,30 @@ class AwardYears::V2025::QaeForms
           words_max 350
         end
 
-        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
+        options :received_grant, "Have you received any grant funding or made use of any other government support?" do
           ref "D 7"
+          required
+          yes_no
+          context %(
+            <p>Answer yes if you received such support during your application period (3 years) and up to now.</p>
+            <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
+          )
+        end
+
+        textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 7.1"
+          required
+          context %(
+            <p>Include any such support received during your application period (3 years) and up to now.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
+          ref "D 8"
           required
           yes_no
           context %(
@@ -251,7 +273,7 @@ class AwardYears::V2025::QaeForms
 
         confirm :agree_to_provide_actual_figures, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 7.1"
+          sub_ref "D 8.1"
           required
           text %(
             I understand that if this application is shortlisted, I will have to provide actual figures and related VAT returns before the specified November deadline (the exact date will be provided in the shortlisting email).
@@ -261,7 +283,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :product_estimates_use, "Explain the use of estimates and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "D 7.2"
+          sub_ref "D 8.2"
           required
           rows 5
           words_max 250
@@ -270,7 +292,7 @@ class AwardYears::V2025::QaeForms
 
         upload :supporting_financials, "To support your figures, please upload your financial statements for the years covered in previous questions in section D." do
           classes "sub-question"
-          sub_ref "D 8"
+          sub_ref "D 9"
           context %(
             <p>
               If you are a company, upload relevant accounts as submitted to the Companies House. In addition, upload the full accounts prepared by your company and your corporation tax returns as submitted to HMRC.

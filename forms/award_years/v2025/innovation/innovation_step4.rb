@@ -497,9 +497,44 @@ class AwardYears::V2025::QaeForms
           words_max 350
         end
 
+        options :innovations_grant_funding, "Have you received any grant funding or made use of any other government support?" do
+          classes "sub-question"
+          sub_ref "D 9"
+          required
+          yes_no
+          context %(
+            <p>Answer yes if you received such support during your application period (2 to 5 years) and up to now or at any time if it was in relation to your innovation.</p>
+            <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
+          )
+        end
+
+        textarea :innovation_grant_funding_sources, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your innovation." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 9.1"
+          required
+          context %(
+            <p>If none of the support was in relation to your innovation, please state so.</p>
+          )
+          conditional :innovations_grant_funding, :yes
+          rows 3
+          words_max 250
+        end
+
+        textarea :innovation_grant_funding_sources_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during your application period (2 to 5 years) and up to now." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 9.2"
+          required
+          context %(
+            <p>If the support was in relation to your innovation, don't repeat it.</p>
+          )
+          conditional :innovations_grant_funding, :yes
+          rows 3
+          words_max 250
+        end
+
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
           required
-          ref "D 9"
+          ref "D 10"
           yes_no
           context %(
             <p>
@@ -511,7 +546,7 @@ class AwardYears::V2025::QaeForms
 
         confirm :agree_to_provide_actual_figures, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 9.1"
+          sub_ref "D 10.1"
           required
           text " I understand that if this application is shortlisted, I will have to provide actual figures that have been verified by an external accountant before the specified November deadline (the exact date will be provided in the shortlisting email)."
           conditional :product_estimated_figures, :yes
@@ -520,7 +555,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :product_estimates_use, "Explain your use of estimates and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "D 9.2"
+          sub_ref "D 10.2"
           required
           rows 2
           words_max 200

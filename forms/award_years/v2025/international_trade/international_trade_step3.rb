@@ -216,26 +216,6 @@ class AwardYears::V2025::QaeForms
           )
           words_max 350
         end
-
-        options :received_grant, "Did you receive any grant funding to support your export products/services?" do
-          ref "C 7"
-          required
-          yes_no
-          context %(
-            <p>
-              We ask this to help us carry out due diligence if your application is shortlisted.
-            </p>
-          )
-        end
-
-        textarea :funding_details, "Please provide dates, sources and levels of funding." do
-          classes "sub-question word-max-strict"
-          sub_ref "C 7.1"
-          required
-          rows 2
-          words_max 200
-          conditional :received_grant, "yes"
-        end
       end
     end
   end

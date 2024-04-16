@@ -278,8 +278,42 @@ class AwardYears::V2025::QaeForms
           words_max 300
         end
 
-        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+        options :received_grant, "Have you received any grant funding or made use of any other government support?" do
           ref "D 6"
+          required
+          yes_no
+          context %(
+            <p>Answer yes if you received such support during your application period (3 or 6 years) and up to now or at any time if it was in relation to your export products or services.</p>
+            <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
+          )
+        end
+
+        textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your export products or services." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 6.1"
+          required
+          context %(
+            <p>If none of the support was in relation to your export products or services, please state so.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        textarea :funding_details_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during your application period (3 or 6 years) and up to now." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 6.2"
+          required
+          context %(
+            <p>If the support was in relation to your export products or services, don't repeat it.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+          ref "D 7"
           required
           context %(
             <p>
@@ -291,7 +325,7 @@ class AwardYears::V2025::QaeForms
 
         confirm :agree_to_provide_actuals, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 6.1"
+          sub_ref "D 7.1"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes
           text %(
@@ -301,7 +335,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question word-max-strict"
-          sub_ref "D 6.2"
+          sub_ref "D 7.2"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes
           rows 5
