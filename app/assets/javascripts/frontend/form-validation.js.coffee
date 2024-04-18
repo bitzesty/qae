@@ -493,22 +493,25 @@ window.FormValidation =
       if not val
         if !requiredRowParent
           @appendMessage(qCell, "Required")
-          @addErrorClass(qCell)
+          @addErrorClass(question)
         # only adds 'required' error when y_heading matches checked answer
         else
           cond = map.get(key)
 
           if cond
             @appendMessage(qCell, "Required")
-            @addErrorClass(qCell)
+            @addErrorClass(question)
       else if isNaN(val)
         @appendMessage(qCell, "Only numbers")
-        @addErrorClass(qCell)
+        @addErrorClass(question)
       else
         t = parseInt(val, 10)
         if t < 0
           @appendMessage(qCell, "At least 0")
-          @addErrorClass(qCell)
+          @addErrorClass(question)
+
+    if question.find(".govuk-error-message").filter(-> @innerHTML).length
+      @addErrorClass(question)
 
   validateCurrentAwards: (question) ->
     $(".govuk-error-message", question).empty()
