@@ -1,5 +1,34 @@
 .question-body
-  p.govuk-hint
-    = @eligibility.class.hint(question).html_safe
-  = f.input :adherence_to_esg_principles, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
+  p.govuk-body
+    | You must be able to show responsible business conduct concerning the environment, wider society, your workforce, customers, suppliers, and corporate governance. This includes having a good, continuous compliance record covering at least five years or your application period and up to now (whichever is the longest period).
+  p.govuk-body
+    | Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence process that we undertake with a number of Government Departments and Agencies informing the decision to grant an award.
+  p.govuk-body
+    | Please check with your directors, accountant and legal representatives to see if there are any issues before applying.
+  details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details"
+    summary.govuk-details__summary
+      span.govuk-details__summary-text
+        | Learn more about the types of issues to consider and the time periods:
+    .govuk-details__text
+      p.govuk-body
+        | Some examples of issues that may prevent your organisation from receiving final clearance for The King's Awards for Enterprise Award:
+      ul.govuk-list.govuk-list--bullet
+        li Fines, penalties or warnings received from any government department or agency;
+        li Not paying the right amount of tax on time;
+        li Non-compliance with regulations;
+        li Failure to pay your workforce the minimum wage;
+        li Accident within the workplace which has resulted in harm being caused to the environment or workforce;
+        li Environmental pollution;
+        li Failure to fully comply with administrative filing requirements as stipulated by any government department or agency.
+      p.govuk-body
+        | Your application period will vary depending on the award you are applying for and your specific circumstances:
+      ul.govuk-list.govuk-list--bullet
+        li International Trade: 3 or 6 years
+        li Innovation: from 2 to 5 years
+        li Promoting Opportunity: from 2 to 5 years
+        li Sustainable Development: 3 years
+      p.govuk-body
+        | Non-compliance that occurred and was resolved before the period covering your application or over five years ago (whichever is the longest period) will be assessed on a case-by-case basis.
+  p.govuk-body
+    = f.input :adherence_to_esg_principles, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
   span.clear
