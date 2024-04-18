@@ -38,7 +38,7 @@ class Eligibility::Basic < Eligibility
             boolean: true,
             label: "Can you demonstrate that you adhere to environmental, social, and corporate governance (ESG) practices?",
             accept: :true,
-            hint: "Even if you don't have formal ESG policies, you must be able to show responsible business conduct concerning the environment, wider society, and your workforce, customers and suppliers."
+            hint_partial: "form_award_eligibilities/basic_questions/adherence_to_esg_principles"
 
   def eligible?
     current_step_index = questions.index(current_step) || questions.size - 1
