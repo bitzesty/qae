@@ -41,7 +41,7 @@ class AwardYears::V2025::QaeForms
               <li>Not paying the right amount of tax on time;</li>
               <li>Non-compliance with regulations;</li>
               <li>Failure to pay your workforce the minimum wage;</li>
-              <li>Accident within the workplace, which has resulted in harm being caused to the environment or workforce;</li>
+              <li>Accident within the workplace which has resulted in harm being caused to the environment or workforce;</li>
               <li>Environmental pollution;</li>
               <li>Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.</li>
             </ul>
@@ -116,7 +116,7 @@ class AwardYears::V2025::QaeForms
               \u2022 Not paying the right amount of tax on time;
               \u2022 Non-compliance with regulations;
               \u2022 Failure to pay your workforce the minimum wage;
-              \u2022 Accident within the workplace, which has resulted in harm being caused to the environment or workforce;
+              \u2022 Accident within the workplace which has resulted in harm being caused to the environment or workforce;
               \u2022 Environmental pollution;
               \u2022 Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
 
@@ -171,8 +171,18 @@ class AwardYears::V2025::QaeForms
           ]
         end
 
+        confirm :strong_esg_record, "Strong environmental, social, and corporate governance (ESG) record" do
+          ref "A 2.1"
+          classes "sub-question"
+          required
+          show_ref_always true
+          text %(
+            I confirm that we have demonstrated strong environmental, social and corporate governance practices for at least five years or the period of our application (3 or 6 years) and up to now (whichever is the greatest).
+          )
+        end
+
         options :organisation_conduct, "Organisation's conduct" do
-          sub_ref "A 2.1"
+          sub_ref "A 2.2"
           required
           show_ref_always true
           context %(
@@ -182,7 +192,7 @@ class AwardYears::V2025::QaeForms
         end
 
         confirm :agree_being_contacted_by_kao, "Consent to enquiries by The King's Awards Office" do
-          sub_ref "A 2.2"
+          sub_ref "A 2.3"
           required
           show_ref_always true
           text %(
@@ -191,7 +201,7 @@ class AwardYears::V2025::QaeForms
         end
 
         confirm :due_diligence, "Agree to the outcome of the due diligence checks" do
-          ref "A 2.3"
+          ref "A 2.4"
           required
           show_ref_always true
           text %(
