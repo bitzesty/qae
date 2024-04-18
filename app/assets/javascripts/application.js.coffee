@@ -163,6 +163,10 @@ jQuery ->
     requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
 
     shouldHideRow = element[0] && element[0].hasAttribute('data-required-row-hide-unchecked')
+    if !!requiredRowParent
+      shouldDisableRow = document.querySelectorAll('[id^="form['+requiredRowParent+'"][type=checkbox]:checked').length == 0
+    else
+      shouldDisableRow = false
 
     subquestions = question.find("input")
     map = new Map()
@@ -174,6 +178,7 @@ jQuery ->
 
       if requiredRowParent
         row.show()
+        subq.prop('disabled', false)
 
         if map.has(key)
           cond = map.get(key)
@@ -184,7 +189,10 @@ jQuery ->
 
         if !cond && shouldHideRow
           subq.val("")
-          row.hide()
+          if shouldDisableRow
+            subq.prop('disabled', true)
+          else
+            row.hide()
 
   # Simple conditional using a == b
   simpleConditionalQuestion = (input, clicked) ->

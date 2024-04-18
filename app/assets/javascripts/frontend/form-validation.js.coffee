@@ -453,6 +453,10 @@ window.FormValidation =
     requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
 
     shouldHideRow = element[0] && element[0].hasAttribute('data-required-row-hide-unchecked')
+    if !!requiredRowParent
+      shouldDisableRow = document.querySelectorAll('[id^="form['+requiredRowParent+'"][type=checkbox]:checked').length == 0
+    else
+      shouldDisableRow = false
 
     subquestions = question.find("input")
     map = new Map()
@@ -468,6 +472,7 @@ window.FormValidation =
 
       if requiredRowParent
         qRow.show()
+        subq.prop('disabled', false)
 
         if map.has(key)
           cond = map.get(key)
@@ -478,7 +483,10 @@ window.FormValidation =
 
         if !cond && shouldHideRow
           subq.val("")
-          qRow.hide()
+          if shouldDisableRow
+            subq.prop('disabled', true)
+          else
+            qRow.hide()
 
       val = subq.val().trim()
 
