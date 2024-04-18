@@ -179,8 +179,18 @@ class AwardYears::V2025::QaeForms
           )
         end
 
+        textarea :major_issues_overcome, "Please explain any major issues that you have overcome in recent years and the remedial steps you have taken." do
+          ref "A 2.2"
+          classes "sub-question"
+          required
+          context %(
+            <p class="govuk-body">For example, what steps did you take following a major Health and Safety incident.</p>
+          )
+          words_max 200
+        end
+
         options :organisation_conduct, "Organisation's conduct" do
-          sub_ref "A 2.2"
+          sub_ref "A 2.3"
           required
           show_ref_always true
           context %(
@@ -190,7 +200,7 @@ class AwardYears::V2025::QaeForms
         end
 
         confirm :agree_being_contacted_by_kao, "Consent to enquiries by The King's Awards Office" do
-          sub_ref "A 2.3"
+          sub_ref "A 2.4"
           show_ref_always true
           required
           text %(
@@ -199,7 +209,7 @@ class AwardYears::V2025::QaeForms
         end
 
         confirm :due_diligence, "Agree to the outcome of the due diligence checks" do
-          ref "A 2.4"
+          ref "A 2.5"
           required
           show_ref_always true
           text %(
