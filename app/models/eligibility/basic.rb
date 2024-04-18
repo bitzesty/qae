@@ -9,8 +9,8 @@ class Eligibility::Basic < Eligibility
 
   property :do_you_file_company_tax_returns,
             values: %w[true false na],
-            label: "Do you have a good compliance record with HM Revenue and Customs (HMRC)?",
-            hint: "All companies and partnerships must select either 'Yes' or 'No'. However, if you are a charity or if you are based in the Channel Islands or the Isle of Man and do not pay tax to the HMRC, please select N/A.",
+            label: "Do you have a good, continuous compliance record with HM Revenue and Customs (HMRC) or relevant tax authority?",
+            hint: "A good, continuous compliance record includes paying the right amount of tax on time.",
             accept: :not_no
 
   property :organization_kind,
