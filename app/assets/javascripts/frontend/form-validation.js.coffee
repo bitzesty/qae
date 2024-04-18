@@ -927,7 +927,7 @@ window.FormValidation =
     if question.hasClass("sub-fields-word-max")
       @validateSubfieldWordLimit(question)
 
-    if question.find("input[type='website_url']")
+    if question.find("input[type='website_url']").length
       @validateWebsiteUrl(question)
 
   validate: ->
