@@ -785,6 +785,21 @@ window.FormValidation =
       @appendMessage(question, "Select a maximum of " + selection_limit)
       @addErrorClass(question)
 
+  validateWebsiteUrl: (question) ->
+    questionRef = question.attr("data-question_ref")
+    url = question.find("input[type='website_url']").val()
+    urlRegex = /(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/i;
+
+    if !url
+      @appendMessage(question, "Question #{questionRef} is incomplete. It is required and must be filled in. Use the format as shown in the description.")
+      @addErrorClass(question)
+    else
+      if !url[/\Ahttp:\/\//] || !url[/\Ahttps:\/\//]
+        url = "http://#{url}"
+      if !urlRegex.test(url) || url.includes("<script")
+        @logThis(question, "validateWebsiteUrl", "Not a valid URL")
+        @addErrorMessage(question, "The website address is in an incorrect format. Use the format as shown in the description.")
+        @addErrorClass(question)
 
   # It's for easy debug of validation errors
   # As it really tricky to find out the validation which blocks form
@@ -903,6 +918,9 @@ window.FormValidation =
 
     if question.hasClass("sub-fields-word-max")
       @validateSubfieldWordLimit(question)
+
+    if question.find("input[type='website_url']")
+      @validateWebsiteUrl(question)
 
   validate: ->
     @clearAllErrors()

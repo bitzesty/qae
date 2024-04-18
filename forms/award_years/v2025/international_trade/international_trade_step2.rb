@@ -193,6 +193,7 @@ class AwardYears::V2025::QaeForms
         end
 
         text :website_url, "Website address." do
+          type "website_url"
           classes "text-words-max"
           required
           ref "B 8"
