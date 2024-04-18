@@ -32,15 +32,17 @@ class AwardYears::V2025::QaeForms
         header :due_diligence_header, "Organisation's conduct & due diligence checks" do
           ref "A 2"
           context %{
-            <p class="govuk-body">Please be aware that due diligence checks inform the decision to grant an award.</p>
-            <p class="govuk-body">Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence process that we undertake with a number of Government Departments and Agencies.</p>
-            <p class="govuk-body">Therefore, please check with your accountant and legal representatives if there are any outstanding or recent issues, as The King's Awards for Enterprise Office starts the due diligence process immediately after the submission and is unable to repeat the due diligence process.</p>
+            <p class="govuk-body">Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence process that we undertake with a number of Government Departments and Agencies informing the decision to grant an award.</p>
+            <p class="govuk-body">You must be able to show responsible business conduct concerning the environment, wider society, your workforce, customers, suppliers, and corporate governance. This includes having a good, continuous compliance record covering at least five years or your application period and up to now (whichever is the longest period).</p>
+            <p class="govuk-body">Please check with your directors, accountant and legal representatives to see if there are any issues before applying.</p>
             <p class="govuk-body">Some examples of issues that may prevent your organisation from receiving final clearance for The King's Awards for Enterprise Award:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>Fines or penalties;</li>
+              <li>Not paying the right amount of tax on time;</li>
               <li>Non-compliance with regulations;</li>
               <li>Failure to pay your workforce the minimum wage;</li>
               <li>Accident within the workplace, which has resulted in harm being caused to the environment or workforce;</li>
+              <li>Environmental pollution;</li>
               <li>Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.</li>
             </ul>
             <details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details">
@@ -93,6 +95,7 @@ class AwardYears::V2025::QaeForms
                   <li>Scottish Environment Protection Agency</li>
                   <li>Scottish Funding Council</li>
                   <li>Serious Fraud Office</li>
+                  <li>Trades Union Congress</li>
                   <li>UK Export Finance</li>
                   <li>Wales Government</li>
                 </ul>
@@ -101,18 +104,20 @@ class AwardYears::V2025::QaeForms
           }
           pdf_context_with_header_blocks [
             [:normal, %(
-              Please be aware that due diligence checks inform the decision to grant an award.
+              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence process that we undertake with a number of Government Departments and Agencies informing the decision to grant an award.
 
-              Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence process that we undertake with a number of Government Departments and Agencies.
+              You must be able to show responsible business conduct concerning the environment, wider society, your workforce, customers, suppliers, and corporate governance. This includes having a good, continuous compliance record covering at least five years or your application period and up to now (whichever is the longest period).
 
-              Therefore, please check with your accountant and legal representatives if there are any outstanding or recent issues, as The King's Awards for Enterprise Office starts the due diligence process immediately after the submission and is unable to repeat the due diligence process.
+              Please check with your directors, accountant and legal representatives to see if there are any issues before applying.
 
               Some examples of issues that may prevent your organisation from receiving final clearance for The King's Awards for Enterprise Award:
 
               \u2022 Fines or penalties;
+              \u2022 Not paying the right amount of tax on time;
               \u2022 Non-compliance with regulations;
               \u2022 Failure to pay your workforce the minimum wage;
               \u2022 Accident within the workplace, which has resulted in harm being caused to the environment or workforce;
+              \u2022 Environmental pollution;
               \u2022 Failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
 
               Government Departments and Agencies we undertake due diligence checks with:
@@ -159,6 +164,7 @@ class AwardYears::V2025::QaeForms
               \u2022 Scottish Environment Protection Agency
               \u2022 Scottish Funding Council
               \u2022 Serious Fraud Office
+              \u2022 Trades Union Congress
               \u2022 UK Export Finance
               \u2022 Wales Government
             )]
