@@ -194,7 +194,7 @@ class AwardYears::V2025::QaeForms
           required
           show_ref_always true
           context %(
-            The King's Awards for Enterprise recognises leaders in their field who adopt exemplary working practices and inspire other businesses. The King's Awards for Enterprise recipients' past and present conduct should not cause reputational damage to the Awards. On this basis, are you satisfied that your company would merit a Royal Award?
+            The King's Awards for Enterprise recognises leaders in their field who adopt exemplary working practices and inspire other businesses. The King's Awards for Enterprise recipients' past and present conduct should not cause reputational damage to the Awards. On this basis, are you satisfied that your organisation would merit a Royal Award?
           )
           yes_no
         end
