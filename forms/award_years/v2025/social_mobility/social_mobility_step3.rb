@@ -523,9 +523,13 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p><em>You must answer C2 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."]
+            [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
           ]
 
           auto_totals_column true
@@ -549,9 +553,13 @@ class AwardYears::V2025::QaeForms
           required_rows :initiative_activities, hide_unchecked: true
           context %(
             <p><em>You must answer C2 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."]
+            [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
           ]
           corner_label "Activity type"
 
@@ -608,9 +616,13 @@ class AwardYears::V2025::QaeForms
           required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
             <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."]
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
           ]
           corner_label "Disadvantaged group type"
 
@@ -657,9 +669,13 @@ class AwardYears::V2025::QaeForms
           required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
             <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."]
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -707,9 +723,13 @@ class AwardYears::V2025::QaeForms
           required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
             <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."]
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -750,9 +770,13 @@ class AwardYears::V2025::QaeForms
           required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
             <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."]
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"

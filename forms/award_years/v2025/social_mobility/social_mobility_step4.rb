@@ -109,6 +109,9 @@ class AwardYears::V2025::QaeForms
             <p>
               You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
             </p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -129,6 +132,9 @@ class AwardYears::V2025::QaeForms
             <p>
               If you are a charity, please provide your total income figures; if you are a company, please provide your turnover figures.
             </p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -142,6 +148,9 @@ class AwardYears::V2025::QaeForms
             <p>
               If you are a charity, please provide your net income figures; if you are a company, please provide your net profit after tax but before dividends figures.
             </p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -151,7 +160,12 @@ class AwardYears::V2025::QaeForms
           classes "sub-question total-net-assets"
           sub_ref "D 4.3"
           required
-          context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
+          context %(
+            <p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>
+            <p>
+              If none, please enter "0".
+            </p>
+          )
           type :money
           label ->(y) { "Financial year #{y}" }
         end
