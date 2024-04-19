@@ -242,7 +242,7 @@ class AwardYears::V2025::QaeForms
           required
           yes_no
           context %(
-            <p>Answer yes if you received such support during your application period (3 years) and up to now.</p>
+            <p>Answer yes if you received such support during the last five years.</p>
             <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
@@ -252,7 +252,7 @@ class AwardYears::V2025::QaeForms
           sub_ref "D 7.1"
           required
           context %(
-            <p>Include any such support received during your application period (3 years) and up to now.</p>
+            <p>Include any such support received during the last five years.</p>
           )
           rows 3
           words_max 250

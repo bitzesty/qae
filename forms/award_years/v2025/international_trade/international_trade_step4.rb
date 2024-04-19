@@ -283,12 +283,12 @@ class AwardYears::V2025::QaeForms
           required
           yes_no
           context %(
-            <p>Answer yes if you received such support during your application period (3 or 6 years) and up to now or at any time if it was in relation to your export products or services.</p>
+            <p>Answer yes if you received such support during the last five years or at any time if it was in relation to your export products or services.</p>
             <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
 
-        textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your export products or services." do
+        textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your export products or services (at any time)." do
           classes "sub-question word-max-strict"
           sub_ref "D 6.1"
           required
@@ -300,7 +300,7 @@ class AwardYears::V2025::QaeForms
           conditional :received_grant, "yes"
         end
 
-        textarea :funding_details_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during your application period (3 or 6 years) and up to now." do
+        textarea :funding_details_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
           classes "sub-question word-max-strict"
           sub_ref "D 6.2"
           required
