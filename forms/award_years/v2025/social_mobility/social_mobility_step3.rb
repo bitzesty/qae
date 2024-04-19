@@ -609,7 +609,7 @@ class AwardYears::V2025::QaeForms
           ]
         end
 
-        matrix :disadvantaged_participants_in_group_year, "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
+        matrix :disadvantaged_participants_in_group_year, "Provide the number of participants in each disadvantaged group where your initiative has resulted in employment opportunities." do
           classes "sub-question question-matrix"
           sub_ref "C 5.4"
           required
@@ -662,7 +662,7 @@ class AwardYears::V2025::QaeForms
           words_max 300
         end
 
-        matrix :disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative has resulted in employment opportunities for them." do
+        matrix :disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group where your initiative has resulted in educational opportunities." do
           classes "sub-question question-matrix"
           sub_ref "C 5.5"
           required
