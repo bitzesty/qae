@@ -106,7 +106,7 @@ describe MailRenderer do
     it "renders e-mail" do
       rendered = described_class.new.winners_notification
       expect(rendered).to match("Mr Smith")
-      expect(rendered).to match(deadline_str("%A, %d %B %Y"))
+      expect(rendered).to match(deadline_str("%A %d %B"))
     end
   end
 
