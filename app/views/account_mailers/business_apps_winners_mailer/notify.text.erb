@@ -10,23 +10,23 @@ The last few years have been a challenging time for businesses, and this award i
 
 If you are a Collaborator, please ensure that you liaise with the Account Holder over the next steps.
 
-#Please read this carefully as it contains important information about four key actions you need to take now.
+#Please read this email carefully as it contains important information about four key actions you need to take now.
 
 #1. Official Public Announcement and Embargo Terms
 
-The Award will be announced publicly on <%= @end_of_embargo.try :strftime, "%-d %B %Y" %>. Please bear in mind the following conditions:
+I understand that this is a very exciting time for you personally and for your employees, supply chain and clients. However, please bear in mind the following conditions:
 
-#There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>. You must not make any announcement about your Award, either to your employees or those outside your organisation, before <%= @end_of_embargo.try :strftime, "%-d %B" %>.
+#There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>. You must not make any announcement about your Award, either to your employees or those outside your organisation, before <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
-#We do encourage you to privately make publicity arrangements for the announcement on <%= @end_of_embargo.try :strftime, "%-d %B" %>.
+#We do encourage you to privately make arrangements now for the announcement which can go live from <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
 #Terms of the Embargo
 
-We will provide Awards information to the media in mid-April, including a list of Recipients and their press contact details, so that they can prepare news articles for release on <%= @media_deadline.try :strftime, "%A, %-d %B %Y" %>.
+We have provided Awards information to the media, including a list of Recipients and their press contact details, so that they can prepare news articles for release on <%= @media_deadline.try :strftime, "%A, %-d %B" %>.
 
 The list of Recipients will be published in the supplement to the London Gazette on the announcement day https://www.thegazette.co.uk/awards-and-accreditation/content/kings-awards-for-enterprise
 
-Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them; however, this will be under embargo conditions. You are also permitted to approach your own press contacts to arrange media coverage of your Award.
+Prior to the official announcement on <%= @end_of_embargo.try :strftime, "%-d %B" %>, you may be contacted by the press regarding your Award. You are permitted to speak to them; however, this will be under embargo conditions. You are also permitted to approach your own press contacts to arrange media coverage of your Award.
 
 #However, please make it clear to anyone that you approach in the media, that they cannot publish anything until after <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
 
@@ -38,15 +38,15 @@ Log in to your King's Awards for Enterprise account <%= dashboard_url %> to acce
 * check the other details for your organisation are correct; and,
 * check the details of your contact for press enquiries.
 
-You can find examples of other recipients' press book information in The Gazette (as per the link earlier).
+You can find examples of other recipients' press book information in The Gazette at the link above.
 
-#Then click the "Submit" button by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A, %-d %B %Y" %>. If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold.
+#Then click the "Submit" button by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A %-d %B" %>. If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold in your application form.
 
 #3. The King's Awards Recipients Manual
 
 On your online account, you will also have access to The King's Awards Recipients Manual, which provides all relevant information about your Award and the permitted use of the Royal Emblem for marketing/promotion purposes. You can also access the King's Awards <%= @form_answer.award_year.year %> Emblems in various file types.
 
-By accepting the Award, you agree to the terms set out in The King's Awards Recipients Manual.
+By accepting the Award, you agree to the terms set out in The King's Awards for Enterprise Recipients Manual.
 
 #4. Reception at Windsor Castle on <%= @reception_date.try :strftime, "%-d %B %Y" %>
 
