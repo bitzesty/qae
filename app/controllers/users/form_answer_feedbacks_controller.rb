@@ -15,9 +15,6 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
 
   before_action :require_application_to_have_a_feedback!
 
-  # temporarily restrict access for recommended applications
-  before_action :restrict_access_for_recommended_applications
-
   def show
     respond_to do |format|
       format.pdf do
@@ -50,12 +47,6 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
       redirect_to dashboard_url,
                   notice: "There are no any feedback for this application!"
       return false
-    end
-  end
-
-  def restrict_access_for_recommended_applications
-    if form_answer.state == "recommended"
-      raise ActionController::RoutingError, "Not Found"
     end
   end
 end
