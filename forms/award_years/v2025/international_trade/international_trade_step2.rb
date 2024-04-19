@@ -117,12 +117,12 @@ class AwardYears::V2025::QaeForms
           context %(
             <p>Usually, this is the same name as your organisation's full legal name.</p>
             <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
-            <p>If your application is successful, please consider how the name would appear on The King's Award certificate and trophy. The <a class="govuk-link" target="_blank" href="/account/useful_information">Useful Information page</a> provides more detailed guidance.</p>
+            <p>Please note that this is the name that will appear on your Award certificate if you are successful. We recommend not capitalising all letters as it may affect legibility, as the document uses an ornate typeface.</p>
           )
           pdf_context %(
             <p>Usually, this is the same name as your organisation's full legal name.</p>
             <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
-            <p>If your application is successful, please consider how the name would appear on The King's Award certificate and trophy. The Useful Information page - #{ENV["HOST"]}/account/useful_information - provides more detailed guidance.</p>
+            <p>Please note that this is the name that will appear on your Award certificate if you are successful. We recommend not capitalising all letters as it may affect legibility, as the document uses an ornate typeface.</p>
           )
           text_words_max 50
         end
