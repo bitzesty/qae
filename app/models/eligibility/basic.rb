@@ -10,7 +10,7 @@ class Eligibility::Basic < Eligibility
   property :do_you_file_company_tax_returns,
             values: %w[true false na],
             label: "Do you have a good, continuous compliance record with HM Revenue and Customs (HMRC) or relevant tax authority?",
-            hint: "A good, continuous compliance record includes paying the right amount of tax on time.",
+            hint_partial: "form_award_eligibilities/basic_questions/do_you_file_company_tax_returns",
             accept: :not_no
 
   property :organization_kind,

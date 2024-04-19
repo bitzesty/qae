@@ -1,5 +1,7 @@
 .question-body
   p.govuk-hint
-    = @eligibility.class.hint(question).html_safe
+    | A good, continuous compliance record includes paying the right amount of tax on time.
+  p.govuk-hint
+    | All companies and partnerships must select either 'Yes' or 'No'. However, if you are a charity and do not pay tax to the HMRC, please select N/A.
   = f.input :do_you_file_company_tax_returns, as: :radio_buttons, collection: eligibility_tax_returns_question_ops, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
   span.clear
