@@ -141,10 +141,12 @@ class AwardYears::V2025::QaeForms
           required
           ref "B 6"
           pdf_context_with_header_blocks [
-            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal, "If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man."],
+            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
           ]
           county_context %(
-            <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
+            <p class='govuk-hint'>If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man.</p>
+            <p class='govuk-hint'>If the address is elsewhere in the country, please double-check the county using the GOV.UK tool:
               <a class="govuk-link" target="_blank" href="https://www.gov.uk/find-local-council">https://www.gov.uk/find-local-council</a>
             </p>
           )
@@ -152,7 +154,7 @@ class AwardYears::V2025::QaeForms
             { building: "Building" },
             { street: "Street" },
             { city: "Town or city" },
-            { county: "County" },
+            { county: "County/Crown Dependency" },
             { postcode: "Postcode" }
           ])
           sub_fields_words_max 50
