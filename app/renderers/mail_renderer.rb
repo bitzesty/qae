@@ -202,7 +202,7 @@ class MailRenderer
     book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
     assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "#{book_notes_deadline_time} on %A, %-d %B %Y"
+      "#{book_notes_deadline_time} on %A, %-d %B"
     )
 
     assigns[:reception_date] = deadline_str(
