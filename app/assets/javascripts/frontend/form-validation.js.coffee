@@ -453,6 +453,10 @@ window.FormValidation =
     requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
 
     shouldHideRow = element[0] && element[0].hasAttribute('data-required-row-hide-unchecked')
+    if !!requiredRowParent
+      shouldDisableRow = document.querySelectorAll('[id^="form['+requiredRowParent+'"][type=checkbox]:checked').length == 0
+    else
+      shouldDisableRow = false
 
     subquestions = question.find("input")
     map = new Map()
@@ -468,6 +472,7 @@ window.FormValidation =
 
       if requiredRowParent
         qRow.show()
+        subq.prop('disabled', false)
 
         if map.has(key)
           cond = map.get(key)
@@ -478,29 +483,35 @@ window.FormValidation =
 
         if !cond && shouldHideRow
           subq.val("")
-          qRow.hide()
+          if shouldDisableRow
+            subq.prop('disabled', true)
+          else
+            qRow.hide()
 
       val = subq.val().trim()
 
       if not val
         if !requiredRowParent
           @appendMessage(qCell, "Required")
-          @addErrorClass(qCell)
+          @addErrorClass(question)
         # only adds 'required' error when y_heading matches checked answer
         else
           cond = map.get(key)
 
           if cond
             @appendMessage(qCell, "Required")
-            @addErrorClass(qCell)
+            @addErrorClass(question)
       else if isNaN(val)
         @appendMessage(qCell, "Only numbers")
-        @addErrorClass(qCell)
+        @addErrorClass(question)
       else
         t = parseInt(val, 10)
         if t < 0
           @appendMessage(qCell, "At least 0")
-          @addErrorClass(qCell)
+          @addErrorClass(question)
+
+    if question.find(".govuk-error-message").filter(-> @innerHTML).length
+      @addErrorClass(question)
 
   validateCurrentAwards: (question) ->
     $(".govuk-error-message", question).empty()
@@ -919,7 +930,7 @@ window.FormValidation =
     if question.hasClass("sub-fields-word-max")
       @validateSubfieldWordLimit(question)
 
-    if question.find("input[type='website_url']")
+    if question.find("input[type='website_url']").length
       @validateWebsiteUrl(question)
 
   validate: ->
