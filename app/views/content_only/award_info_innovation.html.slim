@@ -22,9 +22,11 @@ h1.govuk-heading-xl
               p.govuk-body
                 | You need to
                 =<> link_to "add one or more collaborators", account_collaborators_path(form_id: @form_answer.id), class: 'govuk-link'
-                | before you can continue. Your named collaborators will be able to help you work on the form. They are able to see and edit all your forms if you are applying for more than one award.
+                | before you can continue. Your named collaborators will be able to help you work on the form. However, we advise that only one person works on a section at a time to avoid data-saving issues.
               p.govuk-body
                 | Adding collaborators also means that important correspondence we send regarding your application is not overlooked if one applicant is not available.
+              p.govuk-body
+                | They are able to see and edit all your forms if you are applying for more than one award.
 
               - if @collaborators.any?
                 br
