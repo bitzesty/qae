@@ -16,7 +16,9 @@
         li The majority of previous applicants reported taking around 20 hours to fill in the form. Please make enough time to prepare your responses and to ensure submission before the deadline.
 
       h2.govuk-heading-l Collaborators
-      p.govuk-body = "We recommend that you #{link_to('add collaborators', account_collaborators_path)} to the account. Collaborators are usually colleagues in the same organisation who can help fill in the application. Adding collaborators means that more people in your organisation can receive key notifications. Please be aware that all additional collaborators are able to see and edit all of your applications if you apply for more than one Award.".html_safe
+      p.govuk-body = "We recommend that you #{link_to('add collaborators', account_collaborators_path)} to the account. Collaborators are usually colleagues in the same organisation who can help fill in the application. However, we advise that only one person works on a section at a time to avoid data-saving issues.".html_safe
+      p.govuk-body = "Adding collaborators means that more people in your organisation can receive key notifications."
+      p.govuk-body = "Please be aware that all additional collaborators are able to see and edit all of your applications if you apply for more than one Award."
 
       h2.govuk-heading-l Need help?
       p.govuk-body If you need assistance filling in the digital form or have any questions, please feel free to get in touch with The King's Awards Office:
@@ -34,7 +36,7 @@
       details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details"
         summary.govuk-details__summary
           span.govuk-details__summary-text
-            | View Government Departments and Agencies we undertake due diligence checks with
+            | View Government Departments and other Agencies we undertake due diligence checks with
         .govuk-details__text
           ul
             li Biotechnology & Biological Sciences Research Council
@@ -77,6 +79,7 @@
             li Scottish Environment Protection Agency
             li Scottish Funding Council
             li Serious Fraud Office
+            li Trade Union Congress
             li UK Export Finance
             li Wales Government
       br
@@ -85,11 +88,15 @@
 
       p.govuk-body Some examples of issues that may prevent your organisation from receiving clearance for The King's Awards for Enterprise include the following:
       ul.govuk-list.govuk-list--bullet
-        li a failure to pay staff the minimum wage;
-        li an accident within the workplace, which has resulted in harm being caused to the environment or employees;
-        li a failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
+        li Fines, penalties or warnings received from any government department or agency;
+        li Not paying the right amount of tax on time;
+        li Non-compliance with regulations;
+        li Failure to pay your workforce the minimum wage;
+        li Accident within the workplace which has resulted in harm being caused to the environment or workforce;
+        li Environmental pollution;
+        li Failure to fully comply with administrative filing requirements as stipulated by any government department or agency.
 
-      p.govuk-body Further information can be found on the application form.
+      p.govuk-body Further information can be found on the application form. Please be aware - firms have previously failed this part of the process for as little as a few hundred pounds so it really is worth checking with your finance team.
       p.govuk-body You can download a Memorandum of Understanding between the Department for Business, Energy & Industrial Strategy and HMRC regarding due diligence checks made.
       p.govuk-body
         .download-link.govuk-link = link_to('Download the Memorandum of Understanding', 'https://s3.eu-west-2.amazonaws.com/www.queens-awards-enterprise.service.gov.uk/memorandum_of_understanding_2023.pdf', target: "_blank")
