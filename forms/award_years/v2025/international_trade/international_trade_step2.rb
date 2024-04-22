@@ -112,18 +112,16 @@ class AwardYears::V2025::QaeForms
 
         text :brand_name, "Organisation name as you would like it to appear on award certificate and announcements." do
           classes "sub-question text-words-max"
-          sub_ref "B 4.1"
+          ref "B 4.1"
           required
           context %(
-            <p>Usually, this is the same name as your organisation's full legal name.</p>
-            <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
-            <p>Please note that this is the name that will appear on your Award certificate if you are successful. We recommend not capitalising all letters as it may affect legibility, as the document uses an ornate typeface.</p>
+            <p class="govuk-hint">Usually, this is the same name as your organisation's full legal name.</p>
+
+            <p class="govuk-hint">However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
+
+              <p class="govuk-hint">Please note that this is the name that will appear on your Award certificate if you are successful. We recommend not capitalising all letters as it may affect legibility, as the document uses an ornate typeface.</p>
           )
-          pdf_context %(
-            <p>Usually, this is the same name as your organisation's full legal name.</p>
-            <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
-            <p>Please note that this is the name that will appear on your Award certificate if you are successful. We recommend not capitalising all letters as it may affect legibility, as the document uses an ornate typeface.</p>
-          )
+          style "small"
           text_words_max 50
         end
 
