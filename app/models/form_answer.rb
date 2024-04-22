@@ -285,6 +285,47 @@ class FormAnswer < ApplicationRecord
     super || {}
   end
 
+  def disabled_questions_hash
+    if instance_variable_defined?(:"@_disabled_questions_hash")
+      return instance_variable_get(:"@_disabled_questions_hash")
+    end
+
+    progress_hash = HashWithIndifferentAccess.new(document || {})
+    form = award_form.decorate(answers: progress_hash)
+
+    value = form.steps.each_with_object(Hash[:halted, Hash[:step, nil]]) do |step, memo|
+              memo[step.index] = Hash[].tap do |hash|
+                s_idx = memo.dig(:halted, :step)
+                q_idx = nil
+
+                hash[:disabled] = !!(s_idx && step.index > s_idx)
+                step.questions.each_with_index do |question, idx|
+                  memo[:halted][:step] ||= step.index if question.halted?
+                  q_idx ||= idx if question.halted?
+
+                  hash[question.key] = !!(hash[:disabled] || q_idx && idx > q_idx)
+                end
+              end
+            end
+
+    instance_variable_set(:"@_disabled_questions_hash", value)
+  end
+
+  def form_disabled?
+    if instance_variable_defined?(:"@_form_disabled")
+      return instance_variable_get(:"@_form_disabled")
+    end
+
+    progress_hash = HashWithIndifferentAccess.new(document || {})
+    form = award_form.decorate(answers: progress_hash)
+
+    value = form.steps.any? do |step|
+              step.questions.any?(&:halted?)
+            end
+
+    instance_variable_set(:"@_form_disabled", value)
+  end
+
   def head_of_business
     head_of_business = document["head_of_business_first_name"].to_s
     head_of_business += " "
