@@ -158,6 +158,9 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
+            <p>
               Include only:
             </p>
             <ul>
@@ -189,6 +192,9 @@ class AwardYears::V2025::QaeForms
           )
 
           pdf_context %(
+            <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
             <p>
               Include only:
             </p>
