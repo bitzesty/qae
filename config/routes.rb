@@ -92,6 +92,7 @@ Rails.application.routes.draw do
 
   resource :form_award_eligibility, only: [:show, :update] do
    collection do
+      get :warning
       get :result
     end
   end
