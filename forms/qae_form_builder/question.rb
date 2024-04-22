@@ -112,6 +112,18 @@ class QaeFormBuilder
       options[:suffix] ? "#{delegate_obj.key}_#{options[:suffix]}" : delegate_obj.key
     end
 
+    def halted?
+      return false unless haltable
+
+      meth = halt_options.dig(:if)
+
+      if meth.respond_to?(:call)
+        meth.(self)
+      elsif respond_to?(meth)
+        send(meth)
+      end
+    end
+
     def label_as_legend?
       type = delegate_obj.class.name.demodulize.underscore
 
@@ -524,6 +536,11 @@ class QaeFormBuilder
     def header_context header_context
       @q.header_context = header_context
     end
+
+    def halt(**opts)
+      @q.haltable = true
+      @q.halt_options = opts
+    end
   end
 
   QuestionCondition = Struct.new(:parent_question_key, :question_key, :question_value, :options)
@@ -550,6 +567,8 @@ class QaeFormBuilder
                   :display_sub_ref_on_js_form,
                   :show_ref_always,
                   :conditions,
+                  :haltable,
+                  :halt_options,
                   :header,
                   :header_context,
                   :classes,
@@ -572,6 +591,8 @@ class QaeFormBuilder
       @help = []
       @hint = []
       @conditions = []
+      @haltable = false
+      @halt_options = Hash[]
       @display_sub_ref_on_js_form = true
       @show_ref_always = false
 
