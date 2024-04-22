@@ -205,7 +205,7 @@ class AwardYears::V2025::QaeForms
               <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
               <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
               <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
-            <ul>
+            </ul>
           )
           pdf_context %(
             <p>
