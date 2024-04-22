@@ -35,7 +35,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
     | There is a strict embargo preventing public announcement or publication of any Awards information until
     =< @end_of_embargo_with_time
     | . You must not make any announcement about your Award, either to your employees or those outside your organisation, before
-    =< @end_of_embargo_with_time
+    =< @end_of_embargo_without_year
     | .
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
@@ -55,8 +55,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | The list of Recipients will be published in the supplement to the London Gazette on the announcement day
-  =< link_to "https://www.thegazette.co.uk/awards-and-accreditation/content/kings-awards-for-enterprise",
-    "https://www.thegazette.co.uk/awards-and-accreditation/content/kings-awards-for-enterprise",
+  =< link_to "https://www.thegazette.co.uk/all-notices/content/104235",
+    "https://www.thegazette.co.uk/all-notices/content/104235",
     target: '_blank', rel: 'noreferrer nofollow', title: 'opens in a new window'
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
@@ -70,7 +70,9 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    | 2. Approve your Press Book entry, which must be a factual account of why you have achieved the Award.
+    | 2. Approve your Press Book entry by
+    =< @book_notes_deadline_with_time_and_day
+    | : which must be a factual account of why you have achieved the Award.
 
 div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | Log in to your King's Awards for Enterprise account
@@ -79,17 +81,16 @@ div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   br
   br
   ul
-    li check the Press Book entry;
-    li check the other details for your organisation are correct; and,
-    li check the details of your contact for press enquiries.
+    li check the Press Book entry
+    li check the other details for your organisation are correct
+    li check the details of your contact for press enquiries, and
+    li click the submit button by the deadline.
   br
-  | You can find examples of other recipients' press book information in The Gazette at the link above.
+  | You can find examples of other Recipients' press book information in The Gazette at the link above.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    | Then click the "Submit" button by
-    =< @book_notes_deadline_with_time_and_day
-    | . If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold in your application form.
+    | If you do not respond by the deadline, we will use the proposed text and the contact details that we already hold in your application form.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
