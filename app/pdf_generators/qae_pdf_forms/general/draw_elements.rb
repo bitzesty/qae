@@ -154,7 +154,7 @@ module QaePdfForms::General::DrawElements
     render_text(block_2)
 
     render_text("Use of web-based AI and editing tools in King's Awards applications:", size: 14, style: :bold)
-    render_text("Use of web-based AI and editing tools in King's Awards applications. We recognise that web-based AI and editing tools can greatly assist writing and editing and can help improve grammar and overall style. There may be issues to consider when entering information and generating text via web-based AI and online editing tools. We have included more guidance online in the 'Useful Application Info' section.")
+    render_text("We recognise that web-based AI and editing tools can greatly assist writing and editing and can help improve grammar and overall style. There may be issues to consider when entering information and generating text via web-based AI and online editing tools. We have included more guidance online in the 'Useful Application Info' section.")
 
     render_text("Need help?", size: 14, style: :bold)
 
