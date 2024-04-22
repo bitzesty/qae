@@ -976,6 +976,7 @@ $(document).on 'change', 'input[type=checkbox]', ->
           conditional = !!subquestion.hasAttribute("data-required-row-parent")
     if conditional
       question.find(".govuk-error-message").empty()
+      question.removeClass("govuk-form-group--error")
       question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
       window.FormValidation.validateMatrix(question)
 
