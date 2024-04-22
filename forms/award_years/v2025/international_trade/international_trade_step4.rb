@@ -224,6 +224,7 @@ class AwardYears::V2025::QaeForms
           by_year_condition :trade_commercial_success, "6 plus", 6
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           first_year_min_value "100000", "Cannot be less than £100,000"
+          halt if: ->(q) { q.has_drops? }
           drop_block_conditional
         end
 
