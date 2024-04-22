@@ -132,6 +132,7 @@ module QaePdfForms::General::DrawElements
       #{bullet} You <b>must</b> complete the <b>online form</b>.
       #{bullet} The online form can be completed over a number of days.
       #{bullet} You can save and return to the online form at any point.
+      #{bullet} Collaborators can work on the form simultaneously if they are on different sections.
     3. Submit your application
       #{bullet} The deadline for submissions is <b>#{deadline}</b>.
       #{bullet}  You can still edit submitted applications up to this date.)
