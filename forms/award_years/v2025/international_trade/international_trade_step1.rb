@@ -37,7 +37,7 @@ class AwardYears::V2025::QaeForms
             <p class="govuk-body">Please check with your directors, accountant and legal representatives to see if there are any issues before applying.</p>
             <p class="govuk-body">Some examples of issues that may prevent your organisation from receiving final clearance for The King's Awards for Enterprise Award:</p>
             <ul class="govuk-list govuk-list--bullet">
-              <li>Fines or penalties;</li>
+              <li>Fines, penalties or warnings received from any government department or agency;</li>
               <li>Not paying the right amount of tax on time;</li>
               <li>Non-compliance with regulations;</li>
               <li>Failure to pay your workforce the minimum wage;</li>
@@ -99,6 +99,7 @@ class AwardYears::V2025::QaeForms
                   <li>UK Export Finance</li>
                   <li>Wales Government</li>
                 </ul>
+                <p class="govuk-body">Non-compliance that occurred and was resolved before the period covering your application will be assessed on a case-by-case basis.</p>
               </div>
             </details>
           }
@@ -112,7 +113,7 @@ class AwardYears::V2025::QaeForms
 
               Some examples of issues that may prevent your organisation from receiving final clearance for The King's Awards for Enterprise Award:
 
-              \u2022 Fines or penalties;
+              \u2022 Fines, penalties or warnings received from any government department or agency;
               \u2022 Not paying the right amount of tax on time;
               \u2022 Non-compliance with regulations;
               \u2022 Failure to pay your workforce the minimum wage;
@@ -167,6 +168,8 @@ class AwardYears::V2025::QaeForms
               \u2022 Trades Union Congress
               \u2022 UK Export Finance
               \u2022 Wales Government
+
+              Non-compliance that occurred and was resolved before the period covering your application will be assessed on a case-by-case basis.
             )]
           ]
         end
