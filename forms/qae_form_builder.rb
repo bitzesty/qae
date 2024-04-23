@@ -55,6 +55,8 @@ require "qae_form_builder/turnover_exports_calculation_question"
 
 require "qae_form_builder/matrix_question"
 
+require "qae_form_builder/financial_summary_question"
+
 class QaeFormBuilder
   class << self
 

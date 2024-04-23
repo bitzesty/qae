@@ -1,0 +1,172 @@
+span.question-context.question-debug.govuk-hint
+  | The data below is pulled from previous questions and automatically calculated. It is there to help you ensure you entered the correct figures and see your growth.
+
+h3.govuk-heading-s Financial data you have entered
+
+span.question-context.question-debug.govuk-hint
+  | The table below displays the financial data you have entered in the table format. Please check that the numbers you entered are correct. You can edit the financial data in relevant questions in the D5 section of this form.
+
+table.govuk-table.user-financial-summary-table.trade-data
+  thead
+    tr.govuk-table__row.year-header data-type="fs-changed-dates"
+      th.govuk-table__header
+        span.visuallyhidden Financial data type
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 1)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 2)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 3)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 4)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 5)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 6)
+    tbody
+      tr data-type="fs-overseas-sales"
+        td.govuk-table__cell.label-cell
+          | D5.1 Overseas sales (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+      tr data-type="fs-total-turnover"
+        td.govuk-table__cell
+          | D5.2 Turnover (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+      tr data-type="fs-net-profit"
+        td.govuk-table__cell
+          | D5.3 Net profit after tax but before dividends (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+
+
+h3.govuk-heading-s Overseas sales annual percentages
+
+span.question-context.question-debug.govuk-hint
+  | The table below displays the financial data calculated from the figures you have entered in questions D5.1 and D5.2.
+
+table.govuk-table.user-financial-summary-table.trade-growth
+  thead
+    tr.govuk-table__row.year-header data-type="fs-changed-dates"
+      th.govuk-table__header
+        span.visuallyhidden Financial data type
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 1)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 2)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 3)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 4)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 5)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 6)
+    tbody
+      tr data-type="fs-overseas-sales-growth"
+        td.govuk-table__cell.label-cell
+          | Year on year overseas sales growth (%)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+      tr data-type="fs-overseas-sales-percentage"
+        td.govuk-table__cell
+          | Overseas sales as percentage of turnover (%)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+
+h3.govuk-heading-s Overall overseas sales growth
+
+span.question-context.question-debug.govuk-hint
+  | The table below displays the financial data calculated from the figures you have entered in question D5.1.
+
+table.govuk-table.user-financial-summary-table.trade-summary class="govuk-!-width-two-thirds"
+  tbody
+    tr.govuk-table__row
+      td.govuk-table__cell.js-label-absolute-cell
+        ' Overall overseas sales growth in £
+        span
+          | (year 6 minus 1)
+      td.govuk-table__cell.govuk-table__cell--numeric data-type="fs-overall-overseas-sales-growth"
+        | -
+    tr.govuk-table__row
+      td.govuk-table__cell.js-label-percent-cell
+        ' Overall overseas sales growth %
+        span
+          | (year 6 over year 1)
+      td.govuk-table__cell.govuk-table__cell--numeric data-type="fs-overall-overseas-sales-growth-percentage"
+        | -
