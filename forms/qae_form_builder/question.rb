@@ -157,8 +157,7 @@ class QaeFormBuilder
     end
 
     def fieldset_classes
-      result = ["question-block",
-       "js-conditional-answer"]
+      result = ["question-block", "js-conditional-answer"]
       result << delegate_obj.classes if delegate_obj.classes
       result << "question-required" if delegate_obj.required
       result << "js-conditional-drop-answer" if delegate_obj.drop_condition.present?
@@ -167,16 +166,16 @@ class QaeFormBuilder
     end
 
     def fieldset_data_hash
-      result = { answer: delegate_obj.parameterized_title }
+      result = { "answer": delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
 
       if delegate_obj.drop_condition.present?
-        result['drop-question'] = Array.wrap(delegate_obj.drop_condition).map do |k|
+        result["drop-question"] = Array.wrap(delegate_obj.drop_condition).map do |k|
           delegate_obj.form[k].parameterized_title
-        end.join(',')
+        end.join(",")
       end
 
       if delegate_obj.sub_section.present?
-        result['sub-section'] = delegate_obj.sub_section
+        result["sub-section"] = delegate_obj.sub_section
       end
 
       result
