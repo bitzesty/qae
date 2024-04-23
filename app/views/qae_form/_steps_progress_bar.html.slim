@@ -19,15 +19,15 @@
           ' Form
         ul
           - for step in @form.steps do
-           li.js-step-link.js-step-condition.govuk-body data-step="step-#{step.title.parameterize}" class=('step-current' if (!current_step && step.index == 0) || current_step == step.title.parameterize)
+           li class=class_names("js-step-link js-step-condition govuk-body", "js-step-disabled" => !!@form_answer.disabled_questions_hash.dig(step.index, :disabled)) data-step="step-#{step.title.parameterize}" class=('step-current' if (!current_step && step.index == 0) || current_step == step.title.parameterize)
              - if step.opts[:id] == :letters_of_support_step
-               = link_to form_form_answer_supporters_path(@form_answer), disabled: !!@form_answer.disabled_questions_hash.dig(step.index, :disabled), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}", "step-index": "#{step.index}", haltable: { target: "link" } } do
+               = link_to form_form_answer_supporters_path(@form_answer), disabled: !!@form_answer.disabled_questions_hash.dig(step.index, :disabled), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}", "step-index": "#{step.index}", "haltable-target": "link" } do
                  span
                    span.step-number
                      ' #{step_letters[step.index]}.
                    = step.short_title.html_safe
              - else
-               = link_to edit_form_path(@form_answer.id, step: step.title.parameterize), disabled: !!@form_answer.disabled_questions_hash.dig(step.index, :disabled), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}", "step-index": "#{step.index}", haltable: { target: "link" } } do
+               = link_to edit_form_path(@form_answer.id, step: step.title.parameterize), disabled: !!@form_answer.disabled_questions_hash.dig(step.index, :disabled), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}", "step-index": "#{step.index}", "haltable-target": "link" } do
                  span
                    span.step-number
                      ' #{step_letters[step.index]}.
@@ -36,8 +36,8 @@
                - if step.sub_headers.any?
                  ul
                    - step.sub_headers.each do |sub_header|
-                     li.govuk-body data-step="step-#{step.title.parameterize}/header_#{sub_header.key}"
-                       = link_to edit_form_path(@form_answer.id, step: step.title.parameterize, anchor: "header_#{sub_header.key}"), disabled: !!@form_answer.disabled_questions_hash.dig(step.index, :disabled), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}/header_#{sub_header.key}", "step-index": "#{step.index}", haltable: { target: "link" } } do
+                     li class=class_names("govuk-body", "js-step-disabled" => !!@form_answer.disabled_questions_hash.dig(step.index, :disabled)) data-step="step-#{step.title.parameterize}/header_#{sub_header.key}"
+                       = link_to edit_form_path(@form_answer.id, step: step.title.parameterize, anchor: "header_#{sub_header.key}"), disabled: !!@form_answer.disabled_questions_hash.dig(step.index, :disabled), class: "js-step-link js-step-condition govuk-link", data: { step: "step-#{step.title.parameterize}/header_#{sub_header.key}", "step-index": "#{step.index}", "haltable-target": "link" } do
                          span
                            span.step-number
                              ' #{sub_header.ref}.
