@@ -1,14 +1,7 @@
-- if @form_answer.promotion?
-  - page_title = "Enterprise Promotion Award Nomination"
-  - title "Eligibility: #{page_title}"
-- else
-  - page_title =  "#{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award Application"
-  - title  "Eligibility: #{page_title}"
-  - page_title = "Promoting Opportunity Award (through social mobility) Application" if @form_answer.award_type == "mobility"
-
+- title "Eligibility: #{t("eligibility_form.title.#{@form_answer.award_type}")}"
 - input_steps = ['number_of_innovative_products']
 
-h1.govuk-heading-xl = page_title
+h1.govuk-heading-xl = t("eligibility_form.title.#{@form_answer.award_type}")
 
 - side_bar_menu_height = @form_answer.innovation? ? "min-height-1300" : "min-height-800"
 div[class="steps-progress-container #{side_bar_menu_height}"]

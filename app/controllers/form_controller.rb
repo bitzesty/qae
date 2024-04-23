@@ -105,7 +105,7 @@ class FormController < ApplicationController
         redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
       end
     else
-      redirect_to form_award_eligibility_url(form_id: @form_answer.id)
+      redirect_to warning_form_award_eligibility_path(form_id: @form_answer.id)
     end
   end
 

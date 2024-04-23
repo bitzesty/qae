@@ -373,3 +373,9 @@ en:
       deactivate_assessor: "You must select whether you want to deactivate this assessor or not."
       bulk_activate_assessors: "You must select whether you want to activate assessors or not."
       bulk_deactivate_assessors: "You must select whether you want to deactivate assessors or not."
+  eligibility_form:
+    title:
+      innovation: "Innovation Award Application"
+      development: "Sustainable Development Award Application"
+      trade: "International Trade Award Application"
+      mobility: "Promoting Opportunity Award (through social mobility) Application"
