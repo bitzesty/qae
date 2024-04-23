@@ -153,7 +153,8 @@ window.FormValidation =
   addSubfieldWordLimitError: (question, subquestion, wordLimit) ->
     questionRef = question.attr("data-question_ref")
     input = $(subquestion).find('input,textarea,select').filter(':visible')
-    inputLength = $(subquestion).find('input').filter(':visible').val().split(" ").length
+    inputValue = $(subquestion).find('input').filter(':visible').val()
+    inputLength = if inputValue? then inputValue.split(" ").length else 0
     label = @extractText(input.attr('id'))
     if inputLength > wordLimit
       errorMessage = "Question #{questionRef} is incomplete. #{label} exceeded #{wordLimit} word limit."
