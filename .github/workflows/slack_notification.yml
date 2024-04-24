@@ -6,7 +6,7 @@ on:
 
 jobs:
   notify-slack:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
@@ -17,7 +17,7 @@ jobs:
           # user_string="johndoe:U12345678, janedoe:U87654321, alice:U98765432"
           user_string="${{ vars.SLACK_USER_IDS }}"
           suid=""
-          
+
           IFS=", " read -r -a users <<< "$user_string"
           for user in "${users[@]}"; do
             IFS=':' read -r github_username slack_user_id <<< "$user"
@@ -26,7 +26,7 @@ jobs:
               break
             fi
           done
-          
+
           echo "::set-output name=suid::$suid"
       - name: tests
         uses: ravsamhq/notify-slack-action@v2

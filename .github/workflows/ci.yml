@@ -2,7 +2,7 @@ name: CI
 on: [push]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     services:
       db:
         image: postgres:12-alpine
@@ -66,7 +66,7 @@ jobs:
   deploy_dev:
     needs: [test]
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       max-parallel: 1
     steps:
@@ -107,7 +107,7 @@ jobs:
   deploy_staging:
     needs: [test]
     if: github.ref == 'refs/heads/staging'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       max-parallel: 1
     steps:
