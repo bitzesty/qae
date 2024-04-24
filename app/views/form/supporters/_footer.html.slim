@@ -15,7 +15,7 @@ footer
               | Back
 
       - if step.next
-        li class=class_names("submit js-next-link js-step-link", "js-link-disabled" => @form_answer.halted?) data-step="step-#{step.next.title.parameterize}"
+        li class=class_names("submit js-next-link js-step-link", "js-link-disabled" => @form_answer.halted?) data-step="step-#{step.next.title.parameterize}" data-target="haltable" data-halt-state="hidden" data-halt-class-value="js-link-disabled"
           = link_to edit_form_url(id: @form_answer.id, step: step.next.title.parameterize), rel: "next", title: "Save and continue to #{step.next.title}", class: "button", role: "button" do
             ' Save and continue
 

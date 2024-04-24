@@ -9,7 +9,8 @@
   .govuk-form-group
     == question.context
 - elsif question.label_as_legend?
-  div class=class_names(*question.fieldset_classes, "js-question-disabled" => @form_answer.disabled_questions_hash(flatten: true).dig(question.key)) data=question.fieldset_data_hash data-question_ref="#{ref}"
+  - question_disabled = @form_answer.disabled_questions_hash(flatten: true).dig(question.key)
+  div class=class_names(*question.fieldset_classes, "js-question-disabled" => question_disabled) data=question.fieldset_data_hash data-question_ref="#{ref}" data-question-haltable=question.haltable inert=question_disabled
     = condition_divs question do
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && ((question.delegate_obj.respond_to?(:by_year_conditions) && question.delegate_obj.by_year_conditions.map { |c| (1..c.years).any? { |y| @form_answer.validator_errors&.dig(question.hash_key(suffix: "#{y}of#{c.years}")).present? } }.flatten.compact_blank.present?) || @form_answer.validator_errors[question.hash_key]))
         - if question.title != "" || question.show_ref_always.present?
@@ -78,7 +79,8 @@
             = render "qae_form/question_halted_alert", question: question, visible: true
 
 - else
-  div class=class_names(*question.fieldset_classes, "js-question-disabled" => @form_answer.disabled_questions_hash(flatten: true).dig(question.key)) data=question.fieldset_data_hash data-question_ref="#{ref}"
+  - question_disabled = @form_answer.disabled_questions_hash(flatten: true).dig(question.key)
+  div class=class_names(*question.fieldset_classes, "js-question-disabled" => question_disabled) data=question.fieldset_data_hash data-question_ref="#{ref}" data-question-haltable=question.haltable inert=question_disabled
     = condition_divs question do
       .govuk-form-group class=(" govuk-form-group--error" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
         - if question.title != "" || question.show_ref_always.present?

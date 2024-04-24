@@ -8,7 +8,7 @@ footer
           span.if-js-hide
             = button_tag "Save and come back later", class: "govuk-button save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
       - if step.next
-        li class=class_names("submit js-next-link js-step-link", "js-link-disabled" => @form_answer.halted?) data-step="step-#{step.next.title.parameterize}"
+        li class=class_names("submit js-next-link js-step-link", "js-link-disabled" => @form_answer.halted?) data-step="step-#{step.next.title.parameterize}" data-target="haltable" data-halt-state="hidden" data-halt-class-value="js-link-disabled"
           - opts = possible_read_only_ops
           - opts[:class] ||= ""
           - opts[:class] << " govuk-button"
