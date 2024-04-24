@@ -915,6 +915,17 @@ input[type="file"] {
   }
 }
 
+.govuk-error-summary {
+  &--question-halted {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    > div {
+      margin-bottom: 0;
+    }
+  }
+}
+
 // Numbered steps for form sections
 // Taken from https://github.com/alphagov/calculators/blob/9181624cc9e00a079bea2141a650321f7183b6d0/app/assets/stylesheets/calculators/child_benefit.scss
 .question-block .steps {

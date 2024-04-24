@@ -73,6 +73,10 @@
         - if question.can_have_conditional_hints?
           = render "qae_form/conditional_hints/list", question: question
 
+        - if question.halted?
+          div.if-js-hide
+            = render "qae_form/question_halted_alert", question: question, visible: true
+
 - else
   div class=class_names(*question.fieldset_classes, "js-question-disabled" => @form_answer.disabled_questions_hash(flatten: true).dig(question.key)) data=question.fieldset_data_hash data-question_ref="#{ref}"
     = condition_divs question do
@@ -141,3 +145,7 @@
         / Conditional hints
         - if question.can_have_conditional_hints?
           = render "qae_form/conditional_hints/list", question: question
+
+        - if question.halted?
+          div.if-js-hide
+            = render "qae_form/question_halted_alert", question: question, visible: true

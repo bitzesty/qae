@@ -1,0 +1,16 @@
+- title = question.halt_options.dig(:title)
+- message = question.halt_options.dig(:message)
+- value = local_assigns.dig(:value) || question
+- visible = local_assigns.dig(:visible)
+
+div class=class_names("govuk-error-summary govuk-error-summary--question-halted", "govuk-visually-hidden" => !visible) data-module="govuk-error-summary"
+  div class="govuk-warning-text"
+    span class="govuk-warning-text__icon" aria-hidden="true"
+      | !
+    div class="govuk-warning-text__text"
+      span class="govuk-visually-hidden"
+        | Warning
+      h4 class="govuk-error-summary__title"
+        = title
+      div class="govuk-error-summary__body"
+        = message.respond_to?(:call) ? message.(value) : message
