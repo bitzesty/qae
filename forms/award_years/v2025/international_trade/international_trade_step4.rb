@@ -228,8 +228,6 @@ class AwardYears::V2025::QaeForms
                title: "You do not meet the eligibility criteria for this award.",
                message: ->(resource) do
                  value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
-                 puts "=---="*100
-                 puts value
                  value == 3 ? %Q{
                    Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.
                  } : %Q{
