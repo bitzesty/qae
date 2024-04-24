@@ -191,9 +191,9 @@ class MailRenderer
       "%-d %B"
     )
 
-    assigns[:media_deadline] = deadline_str(
+    assigns[:media_deadline_without_year] = deadline_str(
       "buckingham_palace_media_information",
-      "%A, %d %B %Y"
+      "%A, %d %B"
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
