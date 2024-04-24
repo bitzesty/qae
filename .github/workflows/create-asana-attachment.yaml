@@ -4,7 +4,7 @@ on:
 
 jobs:
   create-asana-attachment-job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     name: Create pull request attachments on Asana tasks
     steps:
       - name: Create pull request attachments
