@@ -1,0 +1,126 @@
+span.question-context.question-debug.govuk-hint
+  | The data below is pulled from previous questions and automatically calculated. It is there to help you ensure you entered the correct figures and see your growth.
+
+h3.govuk-heading-s Financial data you have entered
+
+span.question-context.question-debug.govuk-hint
+  | The table below displays the financial data you have entered in the table format. Please check that the numbers you entered are correct. You can edit the financial data in relevant questions in the D4 section of this form.
+
+table.govuk-table.user-financial-summary-table.development-data
+  thead
+    tr.govuk-table__row.year-header data-type="fs-changed-dates"
+      th.govuk-table__header
+        span.visuallyhidden Financial data type
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 1)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 2)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 3)
+    tbody
+      tr data-type="fs-total-turnover"
+        td.govuk-table__cell.label-cell
+          | D4.1 Turnover (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+      tr data-type="fs-exports"
+        td.govuk-table__cell
+          | D4.2 Of which exports (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+      tr data-type="fs-uk-sales"
+        td.govuk-table__cell
+          | D4.3 Of which UK sales (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+      tr data-type="fs-net-profit"
+        td.govuk-table__cell
+          | D4.4 Net profit after tax but before dividends (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+      tr data-type="fs-total-assets"
+        td.govuk-table__cell
+          | D4.5 Net assets (£)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+
+h3.govuk-heading-s Turnover annual percentages
+
+span.question-context.question-debug.govuk-hint
+  | The table below displays the financial data calculated from the figures you have entered in questions D4.1
+
+table.govuk-table.user-financial-summary-table.development-growth
+  thead
+    tr.govuk-table__row.year-header data-type="fs-changed-dates"
+      th.govuk-table__header
+        span.visuallyhidden Financial data type
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 1)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 2)
+      th.govuk-table__header
+        span.year
+        span.legend
+          | (Year 3)
+    tbody
+      tr data-type="fs-turnover-growth"
+        td.govuk-table__cell.label-cell
+          | Year on year turnover growth (%)
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+        td.govuk-table__cell.govuk-table__cell--numeric
+          | -
+
+h3.govuk-heading-s Overall turnover growth
+
+span.question-context.question-debug.govuk-hint
+  | The table below displays the financial data calculated from the figures you have entered in question D4.1.
+
+table.govuk-table.user-financial-summary-table.development-summary class="govuk-!-width-two-thirds"
+  tbody
+    tr.govuk-table__row
+      td.govuk-table__cell.js-label-absolute-cell
+        ' Overall turnover growth in £
+        span
+          | (year 3 minus 1)
+      td.govuk-table__cell.govuk-table__cell--numeric data-type="fs-overall-turnover-growth"
+        | -
+    tr.govuk-table__row
+      td.govuk-table__cell.js-label-percent-cell
+        ' Overall overseas sales growth %
+        span
+          | (year 3 over year 1)
+      td.govuk-table__cell.govuk-table__cell--numeric data-type="fs-overall-turnover-growth-percentage"
+        | -

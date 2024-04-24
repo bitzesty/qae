@@ -1,6 +1,6 @@
 class FinancialSummaryTableTrade
   constructor: () ->
-    @wrapper = $(".financial-summary-tables")
+    @wrapper = $(".financial-summary-tables-trade")
     @tableData = $(".user-financial-summary-table.trade-data")
     @tableGrowth = $(".user-financial-summary-table.trade-growth")
     @tableSummary = $(".user-financial-summary-table.trade-summary")
@@ -142,4 +142,5 @@ class FinancialSummaryTableTrade
       row.find("td:eq(#{i + 1})").text(value)
 
 $(document).ready ->
-  new FinancialSummaryTableTrade()
+  if $(".financial-summary-tables-trade").length > 0
+    new FinancialSummaryTableTrade()
