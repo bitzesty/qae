@@ -141,9 +141,7 @@ class AwardYears::V2025::QaeForms
         header :overseas_markets_header, "Overseas Markets" do
           ref "C 4"
           context %(
-            <p class="govuk-body">
-              If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?
-            </p>
+            <p class="govuk-body">If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK (or Channel Islands or Isle of Man) exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?</p>
           )
         end
 
@@ -188,7 +186,7 @@ class AwardYears::V2025::QaeForms
           ]
         end
 
-        textarea :operate_model_benefits, "Explain your franchise or other business models and the rationale for this. Describe the benefits this brings to the UK." do
+        textarea :operate_model_benefits, "Explain your franchise or other business models and the rationale for this. Describe the benefits this brings to the UK (or Channel Islands or Isle of Man)." do
           classes "sub-question word-max-strict"
           sub_ref "C 5.1"
           required

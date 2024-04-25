@@ -308,12 +308,18 @@ class AwardYears::V2025::QaeForms
           ref "B 12"
           required
           yes_no
+          context %(
+            <p class="govuk-hint">If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK).</p>
+          )
         end
 
         subsidiaries_associates_plants :trading_figures_add, "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
           required
           classes "sub-question"
           sub_ref "B 12.1"
+          context %(
+            <p class="govuk-hint">If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK). Also, only count the employees who are located there (do not include employees who are in the UK).</p>
+          )
           pdf_title "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them."
           conditional :trading_figures, :yes
           details_words_max 100
