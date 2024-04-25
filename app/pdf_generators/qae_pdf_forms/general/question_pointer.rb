@@ -10,7 +10,7 @@ class QaePdfForms::General::QuestionPointer
   include QuestionTextHelper
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees).freeze
-  QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add).freeze
+  QUESTIONS_WITH_PDF_TITLES = %w().freeze
   SKIP_HEADER_HINT_KEYS = %w(head_of_business_header).freeze
   RENDER_INLINE_KEYS = %w(head_of_business_title).freeze
 

@@ -509,7 +509,7 @@ class AwardYears::V2025::QaeForms
         header :disadvantaged_participants_header, "The impact on participants." do
           ref "C 5"
           context %(
-            <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups at the start of this section.</p>
+            <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups at the start of this section".</p>
 
             <p class="govuk-body">Your answer should consider the goals or targets that you have outlined in question C4.</p>
 
