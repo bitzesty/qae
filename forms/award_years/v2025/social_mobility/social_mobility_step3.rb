@@ -72,7 +72,7 @@ class AwardYears::V2025::QaeForms
             </p>
 
             <p class="govuk-body">
-              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement.
             </p>
 
             <h3 class="govuk-heading-m">Evidence</h3>
@@ -104,7 +104,7 @@ class AwardYears::V2025::QaeForms
             <h3 class="govuk-heading-m">Small initiatives</h3>
 
             <p class="govuk-body">
-              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
+              The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
             </p>
 
             <p class="govuk-body">
@@ -190,7 +190,7 @@ class AwardYears::V2025::QaeForms
 
               This is not an exhaustive list. However, if you are putting forward a group that is not on this list, you will have to explain why you believe the group you support should be considered disadvantaged.
 
-              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement.
             )],
 
             [:bold, "Evidence"],
@@ -214,7 +214,7 @@ class AwardYears::V2025::QaeForms
 
             [:bold, "Small initiatives"],
             [:normal, %(
-              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
+              The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
 
               If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals.
             )],
@@ -510,9 +510,9 @@ class AwardYears::V2025::QaeForms
           ref "C 5"
           context %(
             <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups at the start of this section.</p>
-            <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
             <p class="govuk-body">Your answer should consider the goals or targets that you have outlined in question C4.</p>
-            <p class="govuk-body">Please note, to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative.</p>
+            <p class="govuk-body">Please note that to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative. If your organisation is based in the Channel Islands or Isle of Man, for the purpose of this award application, you should count only the participants who are located there (do not count participants who are in the UK).</p>
+            <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
             <p class="govuk-body">Provide totals for at least the last two years (full 24 months) and no more than the last five years. Please cover the same number of years in all your answers to ensure consistency across all of them.</p>
           )
         end

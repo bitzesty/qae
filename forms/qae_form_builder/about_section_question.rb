@@ -298,7 +298,8 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "Group entries",
         :context => [
-          "A parent company making a group entry should include the trading figures of all UK members of the group."
+          "A parent company making a group entry should include the trading figures of all UK members of the group.",
+          "If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK)."
         ]
       )
     end
