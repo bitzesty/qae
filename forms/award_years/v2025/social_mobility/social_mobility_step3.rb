@@ -18,7 +18,7 @@ class AwardYears::V2025::QaeForms
               Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
             </p>
             <p class='govuk-body'>
-            The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+            The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section".
             </p>
             <p class='govuk-body'>
               Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
@@ -130,7 +130,7 @@ class AwardYears::V2025::QaeForms
 
               Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
 
-              The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+              The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section".
 
               Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
 
