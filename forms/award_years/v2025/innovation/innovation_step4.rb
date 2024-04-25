@@ -97,18 +97,15 @@ class AwardYears::V2025::QaeForms
           ref "D 3"
           required
           context %(
-            <p>
-              We recommend that you answer question B5 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
-            </p>
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
-            <p>
-              If you started trading within the last five years, you only need to provide numbers for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide employee numbers for at least your two most recent financial years, covering the full 24 months.
-            </p>
-            <p>
-              Enter '0' if you had none.
-            </p>
+            <p>We recommend that you answer question B5 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.</p>
+
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If you started trading within the last five years, you only need to provide numbers for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide employee numbers for at least your two most recent financial years, covering the full 24 months.</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
+
+            <p>Enter '0' if you had none.</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -117,16 +114,13 @@ class AwardYears::V2025::QaeForms
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
           conditional :financial_year_date_changed, :true
-
           employees_question
-
           validatable_years_position [-2..-1] # validate only last 2 years for employee min. threshold
         end
 
         about_section :company_financials, "Company Financials" do
           ref "D 4"
           section "company_financials_innovation"
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -134,14 +128,12 @@ class AwardYears::V2025::QaeForms
           ref "D 4.1"
           required
           classes "sub-question"
-
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -149,15 +141,17 @@ class AwardYears::V2025::QaeForms
           classes "sub-question"
           sub_ref "D 4.2"
           required
-          context %(<p>Enter '0' if you had none.</p>)
+          context %(
+            <p>If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as exports. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as exports.</p>
 
+            <p>Please enter '0' if you had none. If you don't have exact export figures, you can provide approximate ones.</p>
+          )
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -165,7 +159,11 @@ class AwardYears::V2025::QaeForms
         turnover_exports_calculation :uk_sales, "Of which UK sales." do
           classes "sub-question"
           sub_ref "D 4.3"
-          context %(<p>This number is automatically calculated using your total turnover and export figures.</p>)
+          context %(
+            <p>This number is automatically calculated using your total turnover and export figures.</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, these will be your local sales.</p>
+          )
           label ->(y) { "Financial year #{y}" }
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
@@ -504,7 +502,7 @@ class AwardYears::V2025::QaeForms
           yes_no
           context %(
             <p>Answer yes if you received such support during the last five years or at any time if it was in relation to your innovation.</p>
-            
+
             <p> To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
