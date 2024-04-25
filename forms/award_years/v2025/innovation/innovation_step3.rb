@@ -127,6 +127,9 @@ class AwardYears::V2025::QaeForms
           sub_ref "C 1.5"
           required
           yes_no
+          context %(
+            <p>If your organisation is based in the Channel Islands or Isle of Man, answer if the whole of your innovation was conceived and developed in the Channel Islands or Isle of Man (if parts of it were conceived or developed in the UK, answer "No").</p>
+          )
         end
 
         textarea :innovation_other_countries_it_was_developed, "Describe in what other countries and, if applicable, by what parties it was developed." do
