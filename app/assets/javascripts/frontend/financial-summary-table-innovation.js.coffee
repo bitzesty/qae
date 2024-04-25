@@ -1,10 +1,10 @@
-class FinancialSummaryTableDevelopment
+class FinancialSummaryTableInnovation
   constructor: () ->
     @wrapper = $(".financial-summary-tables")
-    @tableData = $(".user-financial-summary-table.development-data")
-    @tableGrowth = $(".user-financial-summary-table.development-growth")
-    @tableSummary = $(".user-financial-summary-table.development-summary")
-
+    @tableData = $(".user-financial-summary-table.innovation-data")
+    @tableGrowth = $(".user-financial-summary-table.innovation-growth")
+    @tableSummary = $(".user-financial-summary-table.innovation-summary")
+    console.log "init"
     setTimeout(@renderTables, 1000)
 
     $(".fs-trackable input").on "change", (e) =>
@@ -27,6 +27,7 @@ class FinancialSummaryTableDevelopment
       @wrapper.hide()
 
   adjustYears: () =>
+    numberOfYears = $(".fs-total-turnover input:visible").length
     datePattern = /\d{2}\/\d{2}\/\d{4}/
 
     yearsLabels = $(".fs-total-turnover .js-year-text:visible").map (i, el) =>
@@ -36,8 +37,11 @@ class FinancialSummaryTableDevelopment
         @showFinancials = false
         ""
 
-    @morphTable(@tableData, yearsLabels)
-    @morphTable(@tableGrowth, yearsLabels)
+    @morphTable(@tableData, numberOfYears, yearsLabels)
+    @morphTable(@tableGrowth, numberOfYears, yearsLabels)
+
+    @tableSummary.find("td.js-label-absolute-cell span").text("(year #{numberOfYears} minus 1)")
+    @tableSummary.find("td.js-label-percent-cell span").text("(year #{numberOfYears} over year 1)")
 
   morphTable: (table, yearsLabels) =>
     table.find("th").each (i, th) =>
@@ -102,7 +106,7 @@ class FinancialSummaryTableDevelopment
 
     elements =
       if calculatable
-        $(".#{type} span.fs-calculated")
+        $(".#{type} span.fs-calculated:visible")
       else
         $(".#{type} input:visible")
 
@@ -122,5 +126,5 @@ class FinancialSummaryTableDevelopment
       row.find("td:eq(#{i + 1})").text(value)
 
 $(document).ready ->
-  if $(".financial-summary-tables-development").length > 0
-    new FinancialSummaryTableDevelopment()
+  if $(".financial-summary-tables-innovation").length > 0
+    new FinancialSummaryTableInnovation()

@@ -203,7 +203,7 @@ class AwardYears::V2025::QaeForms
           )
         end
 
-        financial_summary :trade_financial_summary, "Summary of your company financials (for information only)" do
+        financial_summary :development_financial_summary, "Summary of your company financials (for information only)" do
         end
 
         textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
