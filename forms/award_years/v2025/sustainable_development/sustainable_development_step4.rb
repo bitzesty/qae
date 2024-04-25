@@ -106,15 +106,13 @@ class AwardYears::V2025::QaeForms
           ref "D 3"
           required
           context %(
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
-
           conditional :financial_year_date_changed, :true
-
           employees_question
         end
 
@@ -139,9 +137,9 @@ class AwardYears::V2025::QaeForms
           sub_ref "D 4.2"
           required
           context %(
-            <p>
-              Please enter '0' if you had none. If you don't have exact export figures, you can provide approximate ones.
-            </p>
+            <p>If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as exports. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as exports.</p>
+
+            <p>Please enter '0' if you had none. If you don't have exact export figures, you can provide approximate ones.</p>
           )
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -153,16 +151,14 @@ class AwardYears::V2025::QaeForms
           classes "sub-question"
           sub_ref "D 4.3"
           label ->(y) { "Financial year #{y}" }
-
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
           exports :exports
           one_option_financial_data_mode true
-
           context %(
-            <p>
-              This number is automatically calculated using your total turnover and export figures.
-            </p>
+            <p>This number is automatically calculated using your total turnover and export figures.</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, these will be your local sales.</p>
           )
         end
 
@@ -243,7 +239,7 @@ class AwardYears::V2025::QaeForms
           yes_no
           context %(
             <p>Answer yes if you received such support during the last five years.</p>
-            
+
             <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
