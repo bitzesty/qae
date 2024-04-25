@@ -155,7 +155,12 @@ class FormController < ApplicationController
             redirect_to submit_confirm_url(@form_answer)
           else
             if saved
-              params[:next_step] ||= @form.steps[1].title.parameterize
+              if @form_answer.halted?
+                params[:next_step] = params[:current_step]
+              else
+                params[:next_step] ||= @form.steps[1].title.parameterize
+              end
+
               redirect_to edit_form_url(@form_answer, step: params[:next_step])
             else
               params[:step] = @form_answer.steps_with_errors.try(:first)

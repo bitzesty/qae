@@ -430,7 +430,7 @@ table .ellipsis {
   }
 }
 
-.govuk-form-group--error {
+.govuk-form-group--error:not(.js-question-disabled) {
   .govuk-error-message {
     display: block;
     margin-bottom: pxToRem(5);

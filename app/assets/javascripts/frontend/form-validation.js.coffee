@@ -981,6 +981,70 @@ $(document).on 'change', 'input[type=checkbox]', ->
       question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
       window.FormValidation.validateMatrix(question)
 
+$(document).on 'change', '[data-question-haltable] .show-question input.govuk-input', ->
+  questions = $(document).find('.question-block')
+  questions.removeClass('js-question-disabled')
+  questions.removeAttr('inert')
+
+  links = $(document).find('.steps-progress-bar li.js-step-link:not(.step-past):not(.step-current)')
+  links.removeClass('js-step-disabled')
+  links.removeAttr('inert')
+
+  question = $(this).closest('[data-question-haltable]')
+
+  targets = []
+  targets.push($(question).find('.show-question [data-target="haltable"]'))
+  targets.push($('.js-next-link[data-target="haltable"]'))
+
+  $.map targets, (target) ->
+    state = $(target).attr('data-halt-state')
+    classValue = $(target).attr('data-halt-class-value')
+
+    if state == 'visible'
+      $(target).addClass(classValue)
+    else if state == 'hidden'
+      $(target).removeClass(classValue)
+
+  values = question.find('.show-question input.govuk-input').toArray().map((el) ->
+    value = $(el).val()
+    if value
+      Number(value)
+    else
+      null
+  )
+
+  if !(values.includes(null))
+    pairs = values.reduce (result, value, index, array) ->
+      [first, second] = array.slice(index, index + 2)
+      if first && second
+        result.push([first, second])
+
+      result
+    , []
+
+    check = pairs.every ([f, s]) -> s >= f
+
+    if !(check)
+      questions = $(document).find('.question-block')
+      index = questions.index(question)
+      $.map questions, (q, idx) ->
+        if idx > index
+          $(q).addClass('js-question-disabled')
+          $(q).attr('inert', true)
+
+      $.map targets, (target) ->
+        state = $(target).attr('data-halt-state')
+        classValue = $(target).attr('data-halt-class-value')
+
+        if state == 'visible'
+          $(target).removeClass(classValue)
+        else if state == 'hidden'
+          $(target).addClass(classValue)
+
+      links.addClass('js-step-disabled')
+      links.attr('inert', true)
+
+
 eachCons = (list, n, callback) ->
   return [] if n == 0
   start = 0

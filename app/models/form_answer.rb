@@ -285,6 +285,52 @@ class FormAnswer < ApplicationRecord
     super || {}
   end
 
+  def disabled_questions_hash(flatten: false)
+    ivar = flatten ? :"@_disabled_questions_flat_map" : :"@_disabled_questions_map"
+
+    if instance_variable_defined?(ivar)
+      return instance_variable_get(ivar)
+    end
+
+    progress_hash = HashWithIndifferentAccess.new(document || {})
+    form = award_form.decorate(answers: progress_hash)
+
+    res = form.steps.each_with_object(Hash[:halted, Hash[:step, nil]]) do |step, memo|
+            memo[step.index] = Hash[].tap do |hash|
+              s_idx = memo.dig(:halted, :step)
+              q_idx = nil
+
+              hash[:disabled] = !!(s_idx && step.index > s_idx)
+              step.questions.each_with_index do |question, idx|
+                memo[:halted][:step] ||= step.index if question.halted?
+                q_idx ||= idx if question.halted?
+
+                hash[question.key] = !!(hash[:disabled] || q_idx && idx > q_idx)
+              end
+            end
+          end
+
+    instance_variable_set(:"@_disabled_questions_map", res)
+    instance_variable_set(:"@_disabled_questions_flat_map", res.values.reduce({}, :merge))
+
+    instance_variable_get(ivar)
+  end
+
+  def halted?
+    if instance_variable_defined?(:"@_form_halted")
+      return instance_variable_get(:"@_form_halted")
+    end
+
+    progress_hash = HashWithIndifferentAccess.new(document || {})
+    form = award_form.decorate(answers: progress_hash)
+
+    value = form.steps.any? do |step|
+              step.questions.any?(&:halted?)
+            end
+
+    instance_variable_set(:"@_form_halted", value)
+  end
+
   def head_of_business
     head_of_business = document["head_of_business_first_name"].to_s
     head_of_business += " "

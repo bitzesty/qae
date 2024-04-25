@@ -158,6 +158,9 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
+            <p>
               Include only:
             </p>
             <ul>
@@ -190,6 +193,9 @@ class AwardYears::V2025::QaeForms
 
           pdf_context %(
             <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
+            <p>
               Include only:
             </p>
             <p>
@@ -218,6 +224,16 @@ class AwardYears::V2025::QaeForms
           by_year_condition :trade_commercial_success, "6 plus", 6
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           first_year_min_value "100000", "Cannot be less than £100,000"
+          halt if: ->(q) { q.has_drops? },
+               title: "You do not meet the eligibility criteria for this award.",
+               message: ->(resource) do
+                 value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
+                 value == 3 ? %Q{
+                   Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.
+                 } : %Q{
+                   Your total overseas sales are showing dips during the period of our entry. If you had a steep year-on-year growth (without dips) over the three most recent financial years, consider applying on an "Outstanding Short-Term Growth" basis by changing your answer in D1. If you had dips in total overseas sales during that period, you do not meet eligibility for the award and cannot proceed.
+                 }
+               end
           drop_block_conditional
         end
 

@@ -786,6 +786,10 @@ input[type="file"] {
     .lte-ie7 & {
       width: 35%;
     }
+
+    &.js-link-disabled {
+      display: none !important;
+    }
   }
 
   li.previous-alternate {
@@ -847,7 +851,7 @@ input[type="file"] {
 
 .field-with-errors .error,
 .smart-answer article .error,
-.govuk-form-group--error .errors-container li,
+.govuk-form-group--error:not(.js-question-disabled) .errors-container li,
 .supporters-list .errors-container li,
 .audit-certificate-upload-form .errors-container li {
   @include core-19;
@@ -861,7 +865,7 @@ input[type="file"] {
   color: $red;
 }
 
-.govuk-form-group--error .errors-container li,
+.govuk-form-group--error:not(.js-question-disabled) .errors-container li,
 .supporters-list .errors-container li,
 .audit-certificate-upload-form .errors-container li {
   .lte-ie7 & {
@@ -871,7 +875,7 @@ input[type="file"] {
   }
 }
 
-.show-question.govuk-form-group--error,
+.show-question.govuk-form-group--error:not(.js-question-disabled),
 .field-with-errors {
   display: block;
   margin-bottom: 2.45em;
@@ -895,6 +899,30 @@ input[type="file"] {
   .date-input,
   .question-group {
     margin-bottom: 0;
+  }
+}
+
+.js-question-disabled {
+  &.govuk-form-group--error,
+  .govuk-form-group--error {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    .govuk-error-message {
+      display: none !important;
+    }
+  }
+}
+
+.govuk-error-summary {
+  &--question-halted {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    > div {
+      margin-bottom: 0;
+    }
   }
 }
 
