@@ -10,7 +10,6 @@ class QaePdfForms::General::QuestionPointer
   include QuestionTextHelper
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees).freeze
-  QUESTIONS_WITH_PDF_TITLES = %w().freeze
   SKIP_HEADER_HINT_KEYS = %w(head_of_business_header).freeze
   RENDER_INLINE_KEYS = %w(head_of_business_title).freeze
 
@@ -195,8 +194,7 @@ class QaePdfForms::General::QuestionPointer
 
     form_pdf.move_cursor_to form_pdf.cursor + 10.mm
 
-    if question.escaped_title.present? &&
-      (!pdf_title_question? || (pdf_title_question? && list_rows.blank?))
+    if question.escaped_title.present?
       form_pdf.indent 25.mm do
         form_pdf.render_text question.escaped_title,
                              style: :bold
@@ -208,10 +206,6 @@ class QaePdfForms::General::QuestionPointer
         render_question_sub_title
       end
     end
-  end
-
-  def pdf_title_question?
-    QUESTIONS_WITH_PDF_TITLES.include?(question.key.to_s)
   end
 
   def render_question_without_ref
