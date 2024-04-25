@@ -106,12 +106,11 @@ class AwardYears::V2025::QaeForms
           classes "question-employee-min"
           required
           context %(
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
-            <p>
-              If none, please enter "0".
-            </p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
+            
+            <p>If none, please enter "0".</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -211,7 +210,7 @@ class AwardYears::V2025::QaeForms
           yes_no
           context %(
             <p>Answer yes if you received such support during the last five years.</p>
-            
+
             <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
