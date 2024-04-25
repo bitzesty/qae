@@ -37,6 +37,10 @@
     }
   }
 
+  &.js-step-disabled a {
+    background: none !important;
+  }
+
   &.step-current a {
     cursor: default;
     color: $black;
