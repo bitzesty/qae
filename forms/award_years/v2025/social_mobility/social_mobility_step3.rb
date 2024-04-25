@@ -510,9 +510,13 @@ class AwardYears::V2025::QaeForms
           ref "C 5"
           context %(
             <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups at the start of this section.</p>
+
             <p class="govuk-body">Your answer should consider the goals or targets that you have outlined in question C4.</p>
+
             <p class="govuk-body">Please note that to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative. If your organisation is based in the Channel Islands or Isle of Man, for the purpose of this award application, you should count only the participants who are located there (do not count participants who are in the UK).</p>
+
             <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
+
             <p class="govuk-body">Provide totals for at least the last two years (full 24 months) and no more than the last five years. Please cover the same number of years in all your answers to ensure consistency across all of them.</p>
           )
         end
