@@ -15,12 +15,11 @@ class Eligibility::Mobility < Eligibility
             )
   property :full_time_employees,
             boolean: true,
-            label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your three most recent financial years?",
+            label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your two most recent financial years?",
             accept: :true,
             hint: %(
-              <p class='govuk-hint'>
-               You can calculate the number of full-time employees at the year-end or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-              </p>
+              <p class='govuk-hint'>You can calculate the number of full-time employees at the year-end, or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+              <p class='govuk-hint'>If your organisation is based in the Channel Islands or Isle of Man, you should count only the employees who are located there (do not count employees who are in the UK).</p>
             )
 
   property :promoting_opportunity_involvement,
@@ -37,7 +36,10 @@ class Eligibility::Mobility < Eligibility
   property :participants_based_in_uk,
            boolean: true,
            label: "Are your target group members, the participants, based in the UK and were over 16 years old at the start of the engagement?",
-           accept: :true
+           accept: :true,
+           hint: %(
+            <p class='govuk-hint'>If your organisation is based in the Channel Islands or Isle of Man, for the purpose of this award application, you should consider only the participants who are located there (do not consider participants who are in the UK).</p>
+           )
 
   property :social_mobility_activities,
             boolean: true,
