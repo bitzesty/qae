@@ -133,9 +133,9 @@ class AwardYears::V2025::QaeForms
           ref "D 4"
           required
           context %(
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -189,6 +189,9 @@ class AwardYears::V2025::QaeForms
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
+            </p>
           )
 
           pdf_context %(
@@ -216,6 +219,9 @@ class AwardYears::V2025::QaeForms
             </p>
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
+            </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
             </p>
           )
 
@@ -300,7 +306,7 @@ class AwardYears::V2025::QaeForms
           yes_no
           context %(
             <p>Answer yes if you received such support during the last five years or at any time if it was in relation to your export products or services.</p>
-            
+
             <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
