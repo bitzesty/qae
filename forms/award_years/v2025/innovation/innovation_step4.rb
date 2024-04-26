@@ -9,6 +9,7 @@ class AwardYears::V2025::QaeForms
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
           ref "D 1"
+          classes "fs-trackable"
           required
           financial_date_pointer
         end
@@ -20,7 +21,7 @@ class AwardYears::V2025::QaeForms
           option (AwardYear.current.year - 1).to_s, (AwardYear.current.year - 1).to_s
           default_option (AwardYear.current.year - 1).to_s
 
-          classes "js-most-recent-financial-year"
+          classes "js-most-recent-financial-year fs-trackable"
           context %(
             <p>
               Answer this question if your dates in question D1 range between #{Settings.current_award_year_switch_date.decorate.formatted_trigger_date} to #{Settings.current_submission_deadline.decorate.formatted_trigger_date}.
@@ -31,7 +32,7 @@ class AwardYears::V2025::QaeForms
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>five</span> most recent financial years that you will be providing figures for?" do
-          classes "sub-question js-financial-year-change"
+          classes "sub-question js-financial-year-change fs-trackable"
           sub_ref "D 2"
           context %(
             <p>
@@ -44,7 +45,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question"
+          classes "sub-question fs-year-end fs-trackable"
           sub_ref "D 2.1"
           required
           type :date
@@ -127,7 +128,7 @@ class AwardYears::V2025::QaeForms
         by_years :total_turnover, "Total turnover." do
           ref "D 4.1"
           required
-          classes "sub-question"
+          classes "sub-question fs-total-turnover fs-trackable"
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
@@ -138,7 +139,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years :exports, "Of which exports." do
-          classes "sub-question"
+          classes "sub-question fs-exports fs-trackable"
           sub_ref "D 4.2"
           required
           context %(
@@ -157,7 +158,7 @@ class AwardYears::V2025::QaeForms
 
         # UK sales = turnover - exports
         turnover_exports_calculation :uk_sales, "Of which UK sales." do
-          classes "sub-question"
+          classes "sub-question fs-uk-sales"
           sub_ref "D 4.3"
           context %(
             <p>This number is automatically calculated using your total turnover and export figures.</p>
@@ -176,7 +177,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)." do
-          classes "sub-question"
+          classes "sub-question fs-net-profit fs-trackable"
           sub_ref "D 4.4"
           required
 
@@ -195,7 +196,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years :total_net_assets, "Total net assets." do
-          classes "sub-question total-net-assets"
+          classes "sub-question total-net-assets fs-total-assets fs-trackable"
           sub_ref "D 4.5"
           required
           context %(
@@ -270,6 +271,9 @@ class AwardYears::V2025::QaeForms
               If your innovation is expected to recover its full costs in the future, explain how and when this will happen.
             </p>
           )
+        end
+
+        financial_summary :innovation_financial_summary, "Summary of your company financials (for information only)" do
         end
 
         options :innovation_part_of, "How would the innovation that forms the basis of this application fit within the overall business?" do
