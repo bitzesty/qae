@@ -1,31 +1,4 @@
-class FinancialSummaryTableTrade
-  constructor: () ->
-    @wrapper = $(".financial-summary-tables-trade")
-    @tableData = $(".user-financial-summary-table.trade-data")
-    @tableGrowth = $(".user-financial-summary-table.trade-growth")
-    @tableSummary = $(".user-financial-summary-table.trade-summary")
-
-    setTimeout(@renderTables, 1000)
-
-    $(".fs-trackable input").on "change", (e) =>
-      setTimeout(@renderTables, 1000)
-
-  renderTables: () =>
-    console.log("rendering tables")
-    @showFinancials = true
-
-    @adjustYears()
-    @renderTableData()
-    @renderTableGrowth()
-    @renderTableSummary()
-    console.log @showFinancials
-    if @showFinancials
-      console.log("showing")
-      @wrapper.show()
-    else
-      console.log("hiding")
-      @wrapper.hide()
-
+class FinancialSummaryTableTrade extends FinancialSummaryTableBase
   adjustYears: () =>
     numberOfYears = $(".fs-overseas-sales input:visible").length
     datePattern = /\d{2}\/\d{2}\/\d{4}/
@@ -123,23 +96,6 @@ class FinancialSummaryTableTrade
     diff = lastYear - firstYear
     totalOverseasGrowth.text(diff)
     totalOverseasGrowthPercentage.text((diff / firstYear * 100).toFixed(0))
-
-
-  fillInRow: (type) =>
-    row = @tableData.find("tr[data-type='#{type}']")
-    inputs = $(".#{type} input:visible")
-
-    inputs.each (i, input) =>
-      value = $(input).val()
-
-      if value
-        value = parseFloat(value).toLocaleString()
-      else
-        @showFinancials = false
-        value = "-"
-
-      console.log "#{@showFinancials} - #{value}"
-      row.find("td:eq(#{i + 1})").text(value)
 
 $(document).ready ->
   if $(".financial-summary-tables-trade").length > 0

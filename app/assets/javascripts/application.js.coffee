@@ -20,6 +20,9 @@
 #= require vendor/details.polyfill.js
 #= require js.cookie
 #= require_tree ./frontend
+#= require ./frontend/financial_summary_tables/fst_base.js
+#= require_tree ./frontend/financial_summary_tables
+#
 #= require offline
 
 safeParse = (str) ->

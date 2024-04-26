@@ -46,13 +46,14 @@ class AwardYears::V2025::QaeForms
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+          classes "fs-trackable"
           ref "D 2"
           required
           financial_date_pointer
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your three most recent financial years that you will be providing figures for?" do
-          classes "sub-question js-financial-year-change"
+          classes "sub-question js-financial-year-change fs-trackable"
           sub_ref "D 2.1"
           required
           context %(
@@ -65,7 +66,7 @@ class AwardYears::V2025::QaeForms
         end
 
         one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question one-option-by-years"
+          classes "sub-question one-option-by-years fs-trackable"
           sub_ref "D 2.2"
           required
           context %(
@@ -124,7 +125,7 @@ class AwardYears::V2025::QaeForms
         end
 
         one_option_by_years :total_turnover, "Total income or turnover." do
-          classes "sub-question"
+          classes "sub-question fs-total-turnover fs-trackable"
           ref "D 4.1"
           required
           context %(
@@ -140,7 +141,7 @@ class AwardYears::V2025::QaeForms
         end
 
         one_option_by_years :net_profit, "Net income or net profit after tax but before dividends." do
-          classes "sub-question"
+          classes "sub-question fs-net-profit fs-trackable"
           sub_ref "D 4.2"
           required
           context %(
@@ -156,7 +157,7 @@ class AwardYears::V2025::QaeForms
         end
 
         one_option_by_years :total_net_assets, "Total net assets." do
-          classes "sub-question total-net-assets"
+          classes "sub-question total-net-assets fs-total-assets fs-trackable"
           sub_ref "D 4.3"
           required
           context %(
@@ -183,6 +184,9 @@ class AwardYears::V2025::QaeForms
           )
           rows 5
           words_max 300
+        end
+
+        financial_summary :mobility_financial_summary, "Summary of your company financials (for information only)" do
         end
 
         textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do

@@ -1,55 +1,57 @@
-class FinancialSummaryTableDevelopment
+class window.FinancialSummaryTableBase
   constructor: () ->
     @wrapper = $(".financial-summary-tables")
-    @tableData = $(".user-financial-summary-table.development-data")
-    @tableGrowth = $(".user-financial-summary-table.development-growth")
-    @tableSummary = $(".user-financial-summary-table.development-summary")
+
+    @tableData = $(".user-financial-summary-table.table-data")
+    @tableGrowth = $(".user-financial-summary-table.table-growth")
+    @tableSummary = $(".user-financial-summary-table.table-summary")
 
     setTimeout(@renderTables, 1000)
+
+    $(".js-step-link").on "click", (e) =>
+      setTimeout(@renderTables, 1000)
 
     $(".fs-trackable input").on "change", (e) =>
       setTimeout(@renderTables, 1000)
 
   renderTables: () =>
-    console.log("rendering tables")
+    return unless $(".fs-trackable:visible").length
+
     @showFinancials = true
 
     @adjustYears()
     @renderTableData()
     @renderTableGrowth()
     @renderTableSummary()
-    console.log @showFinancials
+
     if @showFinancials
-      console.log("showing")
       @wrapper.show()
     else
-      console.log("hiding")
       @wrapper.hide()
 
-  adjustYears: () =>
-    datePattern = /\d{2}\/\d{2}\/\d{4}/
+  fillInRow: (type, calculatable = false) =>
+    row = @tableData.find("tr[data-type='#{type}']")
 
-    yearsLabels = $(".fs-total-turnover .js-year-text:visible").map (i, el) =>
-      if matched = $(el).text().match(datePattern)
-        matched[0]
+    elements =
+      if calculatable
+        $(".#{type} span.fs-calculated:visible")
+      else
+        $(".#{type} input:visible")
+
+    elements.each (i, el) =>
+      value = if calculatable
+        $(el).text()
+      else
+        $(el).val()
+
+      if value
+        value = parseFloat(value).toLocaleString()
       else
         @showFinancials = false
-        ""
+        value = "-"
 
-    @morphTable(@tableData, yearsLabels)
-    @morphTable(@tableGrowth, yearsLabels)
+      row.find("td:eq(#{i + 1})").text(value)
 
-  morphTable: (table, yearsLabels) =>
-    table.find("th").each (i, th) =>
-      if i > 0
-        $("span.year", th).text(yearsLabels[i - 1])
-
-  renderTableData: () =>
-    @fillInRow("fs-total-turnover")
-    @fillInRow("fs-exports")
-    @fillInRow("fs-uk-sales", true)
-    @fillInRow("fs-net-profit")
-    @fillInRow("fs-total-assets")
 
   renderTableGrowth: () =>
     turnoverGrowthRow = @tableGrowth.find("tr[data-type='fs-turnover-growth']")
@@ -95,32 +97,3 @@ class FinancialSummaryTableDevelopment
     diff = lastYear - firstYear
     totalTurnoverGrowth.text(diff)
     totalTurnoverGrowthPercentage.text((diff / firstYear * 100).toFixed(0))
-
-
-  fillInRow: (type, calculatable = false) =>
-    row = @tableData.find("tr[data-type='#{type}']")
-
-    elements =
-      if calculatable
-        $(".#{type} span.fs-calculated")
-      else
-        $(".#{type} input:visible")
-
-    elements.each (i, el) =>
-      value = if calculatable
-        $(el).text()
-      else
-        $(el).val()
-
-      if value
-        value = parseFloat(value).toLocaleString()
-      else
-        @showFinancials = false
-        value = "-"
-
-      console.log "#{@showFinancials} - #{value}"
-      row.find("td:eq(#{i + 1})").text(value)
-
-$(document).ready ->
-  if $(".financial-summary-tables-development").length > 0
-    new FinancialSummaryTableDevelopment()
