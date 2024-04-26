@@ -107,6 +107,14 @@ class AwardYears::V2025::QaeForms
               <li>Your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero” or beyond.</p>
               <li>How you have measured your emissions.</li>
               <li>Other areas that show your organisation operates sustainably, such as being part of the circular economy, or reductions in hazardous waste and plastics (if relevant).</li>
+            </ul>
+            <p><strong>Carbon offsetting</strong><p>
+            <p>Where carbon offsetting has been used as part of your carbon reduction strategy, we expect complete transparency on the volumes and types of carbon credits purchased and retired. Please specify:</p>
+            <ul>
+              <li>the volume of high-quality carbon credits retired as a % of a company's remaining emissions once it has demonstrated progress towards its near-term emission reduction targets.</li>
+              <li>the type of carbon credits purchased by specifying the project type, geography, vintage year and how they are certified.</li>
+            </ul>
+            <p>Credits can be either emission reductions or removal achieved outside the value chain of the company. This is also referred to as 'beyond value chain mitigation'.</p>
             <p>
               Please note, if your application is focused on climate change, do not repeat climate change related information in your answer to C2.5, just state that it's covered in other answers.
             </p>
@@ -114,15 +122,24 @@ class AwardYears::V2025::QaeForms
           pdf_context %(
             At a minimum, we expect all winning organisations to have good practices around climate change. Therefore, if your sustainable development interventions are not climate focused, describe:
 
-            /u2022 Your strategy and approach related to climate change.
-            /u2022 Your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero” or beyond.
-            /u2022 How you have measured your emissions.
-            /u2022 Other areas that show your organisation operates sustainably, such as being part of the circular economy, or reductions in hazardous waste and plastics (if relevant).
+            \u2022 Your strategy and approach related to climate change.
+            \u2022 Your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero” or beyond.
+            \u2022 How you have measured your emissions.
+            \u2022 Other areas that show your organisation operates sustainably, such as being part of the circular economy, or reductions in hazardous waste and plastics (if relevant).
+
+            Carbon offsetting
+
+            Where carbon offsetting has been used as part of your carbon reduction strategy, we expect complete transparency on the volumes and types of carbon credits purchased and retired. Please specify:
+
+            \u2022 the volume of high-quality carbon credits retired as a % of a company's remaining emissions once it has demonstrated progress towards its near-term emission reduction targets.
+            \u2022 the type of carbon credits purchased by specifying the project type, geography, vintage year and how they are certified.
+
+            Credits can be either emission reductions or removal achieved outside the value chain of the company. This is also referred to as 'beyond value chain mitigation'.
 
             Please note, if your application is focused on climate change, do not repeat climate change related information in your answer to C2.5, just state that it's covered in other answers.
           )
           rows 2
-          words_max 300
+          words_max 400
         end
 
         textarea :how_sustainability_interventions_benefit_business_strategy, "How do sustainability interventions benefit the overall business strategy?" do
@@ -209,7 +226,7 @@ class AwardYears::V2025::QaeForms
           required
           context %{
             <p>
-              Describe your organisation's diversity and inclusion strategy and any policies. Provide evidence that these are effective.
+              Describe your organisation's diversity and inclusion strategy and any policies, and provide evidence that they are effective. Include data on how employees with protected characteristics are represented in your workforce.
             </p>
           }
           rows 5

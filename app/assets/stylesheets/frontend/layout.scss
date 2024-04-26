@@ -565,13 +565,20 @@ header.page-header aside .inner {
     text-align: left;
 
     &,
-    a:not(#sidenav-download-link) {
+    &.js-step-disabled a {
       color: $grey-1;
       text-decoration: none;
     }
 
+    &.step-current,
+    &.step-errors {
+      a {
+        text-decoration: none;
+      }
+    }
+
     a:visited {
-      color: $grey-1 !important;
+      color: $link-visited-colour !important;
     }
 
     a:focus {

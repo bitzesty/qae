@@ -22,9 +22,11 @@ h1.govuk-heading-xl
               p.govuk-body
                 | You need to
                 =<> link_to "add one or more collaborators", account_collaborators_path(form_id: @form_answer.id), class: 'govuk-link'
-                | before you can continue. Your named collaborators will be able to help you work on the form. They are able to see and edit all your forms if you are applying for more than one award.
+                | before you can continue. Your named collaborators will be able to help you work on the form. However, we advise that only one person works on a section at a time to avoid data-saving issues.
               p.govuk-body
                 | Adding collaborators also means that important correspondence we send regarding your application is not overlooked if one applicant is not available.
+              p.govuk-body
+                | They are able to see and edit all your forms if you are applying for more than one award.
 
               - if @collaborators.any?
                 br
@@ -73,8 +75,18 @@ h1.govuk-heading-xl
 
               ul.govuk-list.govuk-list--bullet
                 li Read through all the questions carefully before beginning your application.
-                li You may need to get your accountant to help with section D – allow sufficient time for that.
+                li You may need to get your accountant to help with section D - allow sufficient time for that.
                 li Sections C and E require longer text responses - start planning these as soon as you can.
+
+              h3.govuk-heading-m Use of web-based AI and editing tools in King's Awards applications:
+              p.govuk-body
+                | We recognise that the use of web-based AI and editing tools can greatly assist writing and editing and can help improve grammar and overall style. There may be issues to consider when entering information and generating text via a web-based AI and online editing tools.
+              p.govuk-body
+                | We have flagged these as follows:
+              ul.govuk-list.govuk-list--bullet
+                li Authenticity - it is always great for us to hear the voice of your business itself, and the King's Awards assessors like to learn what started off your initiative or innovation. If a web-based AI or editing tool is writing parts of the application for you, think about where you want your own voice to come through clearly.
+                li Accuracy - AI can generate text using multiple hard-to-identify content sources across the web. It runs the risk of including inaccuracies and views that differ from your own, so we advise that this text be checked carefully.
+                li Data protection and Intellectual Property Rights - applicants may wish to consider potential security and legal risks when entering personal data and sensitive commercial information into a web-based AI or editing tool. If in doubt, you should seek independent legal advice on the risks associated with sharing such information.
 
               h3.govuk-heading-m Need help?
 

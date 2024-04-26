@@ -57,6 +57,12 @@ en:
     eligibility/promotion:
       nominee_is_qae_ep_award_holder:
         i_dont_know: "I don't know"
+    eligibility/mobility:
+      promoting_opportunity_involvement:
+        initiative: "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity)."
+        subsidiary: "B. We are a subsidiary with the principal activity of promoting social mobility. However, social mobility is not our parent organisation's core activity."
+        organisation_joint_application: "C. We are an organisation whose core activity is to improve social mobility (this may include providing education or training), and we: i) are making a joint application with one or more businesses, and all the partners will submit separate applications, or ii) have a social mobility initiative for our own workforce."
+        organisation_core_activity: "D. We are an organisation whose core activity is to improve social mobility (this may include providing education or training), and we are applying for this award on the basis of our core activity."
 
   activerecord:
     errors:
@@ -367,3 +373,9 @@ en:
       deactivate_assessor: "You must select whether you want to deactivate this assessor or not."
       bulk_activate_assessors: "You must select whether you want to activate assessors or not."
       bulk_deactivate_assessors: "You must select whether you want to deactivate assessors or not."
+  eligibility_form:
+    title:
+      innovation: "Innovation Award Application"
+      development: "Sustainable Development Award Application"
+      trade: "International Trade Award Application"
+      mobility: "Promoting Opportunity Award (through social mobility) Application"

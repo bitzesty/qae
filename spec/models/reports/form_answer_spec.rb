@@ -99,4 +99,15 @@ describe Reports::FormAnswer do
       expect(Reports::FormAnswer.new(build(:form_answer)).send(:mso_grade_agreed)).to eq 'G,A'
     end
   end
+
+  describe '#government_support' do
+    it 'should return correct value' do
+      inn_form_answer = build(:form_answer, :innovation)
+      inn_form_answer.document = inn_form_answer.document.merge(
+        innovations_grant_funding: "yes",
+      )
+      expect(Reports::FormAnswer.new(build(:form_answer, :trade)).send(:government_support)).to eq "No"
+      expect(Reports::FormAnswer.new(inn_form_answer).send(:government_support)).to eq "Yes"
+    end
+  end
 end

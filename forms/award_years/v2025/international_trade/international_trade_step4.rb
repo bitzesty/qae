@@ -133,9 +133,9 @@ class AwardYears::V2025::QaeForms
           ref "D 4"
           required
           context %(
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -157,6 +157,9 @@ class AwardYears::V2025::QaeForms
           classes "sub-question"
           required
           context %(
+            <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
             <p>
               Include only:
             </p>
@@ -186,9 +189,15 @@ class AwardYears::V2025::QaeForms
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
+            </p>
           )
 
           pdf_context %(
+            <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
             <p>
               Include only:
             </p>
@@ -211,6 +220,9 @@ class AwardYears::V2025::QaeForms
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
+            </p>
           )
 
           type :money
@@ -218,6 +230,16 @@ class AwardYears::V2025::QaeForms
           by_year_condition :trade_commercial_success, "6 plus", 6
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           first_year_min_value "100000", "Cannot be less than £100,000"
+          halt if: ->(q) { q.has_drops? },
+               title: "You do not meet the eligibility criteria for this award.",
+               message: ->(resource) do
+                 value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
+                 value == 3 ? %Q{
+                   Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.
+                 } : %Q{
+                   Your total overseas sales are showing dips during the period of our entry. If you had a steep year-on-year growth (without dips) over the three most recent financial years, consider applying on an "Outstanding Short-Term Growth" basis by changing your answer in D1. If you had dips in total overseas sales during that period, you do not meet eligibility for the award and cannot proceed.
+                 }
+               end
           drop_block_conditional
         end
 
@@ -278,8 +300,43 @@ class AwardYears::V2025::QaeForms
           words_max 300
         end
 
-        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+        options :received_grant, "Have you received any grant funding or made use of any other government support?" do
           ref "D 6"
+          required
+          yes_no
+          context %(
+            <p>Answer yes if you received such support during the last five years or at any time if it was in relation to your export products or services.</p>
+
+            <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
+          )
+        end
+
+        textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your export products or services (at any time)." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 6.1"
+          required
+          context %(
+            <p>If none of the support was in relation to your export products or services, please state so.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        textarea :funding_details_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 6.2"
+          required
+          context %(
+            <p>If the support was in relation to your export products or services, don't repeat it.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+          ref "D 7"
           required
           context %(
             <p>
@@ -291,7 +348,7 @@ class AwardYears::V2025::QaeForms
 
         confirm :agree_to_provide_actuals, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 6.1"
+          sub_ref "D 7.1"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes
           text %(
@@ -301,7 +358,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question word-max-strict"
-          sub_ref "D 6.2"
+          sub_ref "D 7.2"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes
           rows 5

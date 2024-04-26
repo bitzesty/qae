@@ -54,10 +54,6 @@ class CaseSummaryPdfs::Base < ReportPdfBase
       scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode}'")
     end
 
-    puts "*"*100
-    puts scope.count
-    puts "*"*100
-
     scope
   end
 

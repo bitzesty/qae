@@ -15,6 +15,11 @@ class QaeFormBuilder
         result[question.hash_key] << " Exceeded #{limit} word limit."
       end
 
+      if question.type == "website_url" && question.input_value && !valid_url?(question.input_value)
+        result[question.hash_key] ||= ""
+        result[question.hash_key] << " The website address is in an incorrect format. Use the format as shown in the description."
+      end
+
       result
     end
   end

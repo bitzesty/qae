@@ -97,6 +97,10 @@ class FormAwardEligibilitiesController < ApplicationController
     return
   end
 
+  def warning
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+  end
+
   private
 
   def set_form_answer

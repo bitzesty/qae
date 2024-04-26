@@ -106,9 +106,11 @@ class AwardYears::V2025::QaeForms
           classes "question-employee-min"
           required
           context %(
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
+            
+            <p>If none, please enter "0".</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -129,6 +131,9 @@ class AwardYears::V2025::QaeForms
             <p>
               If you are a charity, please provide your total income figures; if you are a company, please provide your turnover figures.
             </p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -142,6 +147,9 @@ class AwardYears::V2025::QaeForms
             <p>
               If you are a charity, please provide your net income figures; if you are a company, please provide your net profit after tax but before dividends figures.
             </p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -151,7 +159,12 @@ class AwardYears::V2025::QaeForms
           classes "sub-question total-net-assets"
           sub_ref "D 4.3"
           required
-          context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
+          context %(
+            <p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>
+            <p>
+              If none, please enter "0".
+            </p>
+          )
           type :money
           label ->(y) { "Financial year #{y}" }
         end
@@ -177,13 +190,13 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <ul>
-              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
               <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
               <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
             </ul>
           )
           pdf_context %(
-            \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+            \u2022 How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?
             \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
             \u2022 Provide any contextual information or challenges you would like the assessors to consider.
           )
@@ -191,8 +204,31 @@ class AwardYears::V2025::QaeForms
           words_max 350
         end
 
-        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
+        options :received_grant, "Have you received any grant funding or made use of any other government support?" do
           ref "D 6"
+          required
+          yes_no
+          context %(
+            <p>Answer yes if you received such support during the last five years.</p>
+
+            <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
+          )
+        end
+
+        textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 6.1"
+          required
+          context %(
+            <p>Include any such support received during the last five years.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
+          ref "D 7"
           required
           context %(
             <p>
@@ -204,7 +240,7 @@ class AwardYears::V2025::QaeForms
 
         confirm :agree_to_provide_actuals, "Agreement to provide actual figures." do
           classes "sub-question"
-          sub_ref "D 6.1"
+          sub_ref "D 7.1"
           required
           conditional :product_estimated_figures, :yes
           text %(
@@ -214,7 +250,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :product_estimates_use, "Explain the use of estimates and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "D 6.2"
+          sub_ref "D 7.2"
           required
           rows 5
           words_max 250
@@ -223,7 +259,7 @@ class AwardYears::V2025::QaeForms
 
         upload :supporting_financials, "To support your figures, please upload your financial statements for the years covered in previous questions in section D." do
           classes "sub-question"
-          sub_ref "D 7"
+          sub_ref "D 8"
           context %(
             <p>
               If you are a company, upload relevant accounts as submitted to the Companies House. In addition, upload the full accounts prepared by your company and your corporation tax returns as submitted to HMRC.

@@ -55,6 +55,15 @@ class QaeFormBuilder
         limit
       end
     end
+
+    def valid_url?(url)
+      return false if url.include?("<script")
+      unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
+        url = "http://#{url}"
+      end
+      url_regexp = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
+      url =~ url_regexp ? true : false
+    end
   end
 
   class QuestionDecorator < QaeDecorator
@@ -103,6 +112,18 @@ class QaeFormBuilder
       options[:suffix] ? "#{delegate_obj.key}_#{options[:suffix]}" : delegate_obj.key
     end
 
+    def halted?
+      return false unless haltable
+
+      meth = halt_options.dig(:if)
+
+      if meth.respond_to?(:call)
+        meth.(self)
+      elsif respond_to?(meth)
+        send(meth)
+      end
+    end
+
     def label_as_legend?
       type = delegate_obj.class.name.demodulize.underscore
 
@@ -136,8 +157,7 @@ class QaeFormBuilder
     end
 
     def fieldset_classes
-      result = ["question-block",
-       "js-conditional-answer"]
+      result = ["question-block", "js-conditional-answer"]
       result << delegate_obj.classes if delegate_obj.classes
       result << "question-required" if delegate_obj.required
       result << "js-conditional-drop-answer" if delegate_obj.drop_condition.present?
@@ -146,16 +166,16 @@ class QaeFormBuilder
     end
 
     def fieldset_data_hash
-      result = { answer: delegate_obj.parameterized_title }
+      result = { "answer": delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
 
       if delegate_obj.drop_condition.present?
-        result['drop-question'] = Array.wrap(delegate_obj.drop_condition).map do |k|
+        result["drop-question"] = Array.wrap(delegate_obj.drop_condition).map do |k|
           delegate_obj.form[k].parameterized_title
-        end.join(',')
+        end.join(",")
       end
 
       if delegate_obj.sub_section.present?
-        result['sub-section'] = delegate_obj.sub_section
+        result["sub-section"] = delegate_obj.sub_section
       end
 
       result
@@ -515,6 +535,11 @@ class QaeFormBuilder
     def header_context header_context
       @q.header_context = header_context
     end
+
+    def halt(**opts)
+      @q.haltable = true
+      @q.halt_options = opts
+    end
   end
 
   QuestionCondition = Struct.new(:parent_question_key, :question_key, :question_value, :options)
@@ -541,6 +566,8 @@ class QaeFormBuilder
                   :display_sub_ref_on_js_form,
                   :show_ref_always,
                   :conditions,
+                  :haltable,
+                  :halt_options,
                   :header,
                   :header_context,
                   :classes,
@@ -563,6 +590,8 @@ class QaeFormBuilder
       @help = []
       @hint = []
       @conditions = []
+      @haltable = false
+      @halt_options = Hash[]
       @display_sub_ref_on_js_form = true
       @show_ref_always = false
 

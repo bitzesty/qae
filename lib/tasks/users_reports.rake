@@ -16,4 +16,19 @@ namespace :users_reports do
       end
     end
   end
+
+  desc "Export user emails and names to CSV for collaborators on recommended current year applications"
+  task export_collaborators_csv: :environment do
+    CSV.open("collaborators.csv", "w") do |csv|
+      csv << ["Email", "Name", "URN"]
+
+      FormAnswer.where(award_year: AwardYear.current).shortlisted.each do |form_answer| 
+        form_answer.collaborators.each do |user|
+          csv << [user.email, "#{user.title} #{user.last_name}", form_answer.urn]
+        end
+      end
+    end
+
+    puts "Collaborator CSV export complete - collaborators.csv generated"
+  end
 end

@@ -97,7 +97,10 @@ module RegionHelper
     "West Yorkshire": "Yorkshire & The Humber",
     "Wiltshire": "South West",
     "Worcestershire": "West Midlands",
-    "Wrexham": "Wales"
+    "Wrexham": "Wales",
+    "Bailiwick of Guernsey": "Channel Islands",
+    "Bailiwick of Jersey": "Channel Islands",
+    "Isle of Man": "Isle of Man"
   }
 
   def counties

@@ -15,13 +15,12 @@ class Eligibility::Development < Eligibility
             )
 
   property :has_management_and_two_employees,
-            label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your three most recent financial years?",
+            label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your two most recent financial years?",
             accept: :true,
             boolean: true,
             hint: %(
-              <p class='govuk-hint'>
-                You can calculate the number of full-time employees at the year-end or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-              </p>
+              <p class='govuk-hint'>You can calculate the number of full-time employees at the year-end, or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+              <p class='govuk-hint'>If your organisation is based in the Channel Islands or Isle of Man, you should count only the employees who are located there (do not count employees who are in the UK).</p>
             )
 
   property :sustainable_development,

@@ -14,6 +14,9 @@ class QaeFormBuilder
         end
       end
 
+      # Need to raise a validation error without displaying error as there will be custom warning.
+      result["#{question.hash_key}/halted"] = "" if question.halted?
+
       if question.fields_count && question.validatable_years_position.present?
         validatable_years = (1..question.fields_count).to_a[*question.validatable_years_position]
 

@@ -32,6 +32,7 @@ step "I create innovation form" do
   step "I go to dashboard"
   click_link "New application", href: '/apply_innovation_award'
   click_button "Save and start eligibility questionnaire"
+  click_link "Continue to eligibility questions"
   click_button "Continue" #eligibility step
 end
 
@@ -39,6 +40,7 @@ step "I create international trade form" do
   step "I go to dashboard"
   click_link "New application", href: '/apply_international_trade_award'
   click_button "Start eligibility questionnaire"
+  click_link "Continue to eligibility questions"
   click_button "Continue" #eligibility step
 end
 
@@ -46,6 +48,7 @@ step "I create sustainable development form" do
   step "I go to dashboard"
   click_link "New application", href: '/apply_sustainable_development_award'
   click_button "Start eligibility questionnaire"
+  click_link "Continue to eligibility questions"
   click_button "Continue" #eligibility step
 end
 

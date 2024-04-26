@@ -97,18 +97,15 @@ class AwardYears::V2025::QaeForms
           ref "D 3"
           required
           context %(
-            <p>
-              We recommend that you answer question B5 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
-            </p>
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
-            <p>
-              If you started trading within the last five years, you only need to provide numbers for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide employee numbers for at least your two most recent financial years, covering the full 24 months.
-            </p>
-            <p>
-              Enter '0' if you had none.
-            </p>
+            <p>We recommend that you answer question B5 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.</p>
+
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If you started trading within the last five years, you only need to provide numbers for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide employee numbers for at least your two most recent financial years, covering the full 24 months.</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
+
+            <p>Enter '0' if you had none.</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -117,16 +114,13 @@ class AwardYears::V2025::QaeForms
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
           conditional :financial_year_date_changed, :true
-
           employees_question
-
           validatable_years_position [-2..-1] # validate only last 2 years for employee min. threshold
         end
 
         about_section :company_financials, "Company Financials" do
           ref "D 4"
           section "company_financials_innovation"
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -134,14 +128,12 @@ class AwardYears::V2025::QaeForms
           ref "D 4.1"
           required
           classes "sub-question"
-
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -149,15 +141,17 @@ class AwardYears::V2025::QaeForms
           classes "sub-question"
           sub_ref "D 4.2"
           required
-          context %(<p>Enter '0' if you had none.</p>)
+          context %(
+            <p>If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as exports. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as exports.</p>
 
+            <p>Please enter '0' if you had none. If you don't have exact export figures, you can provide approximate ones.</p>
+          )
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
-
           conditional :financial_year_date_changed, :true
         end
 
@@ -165,7 +159,11 @@ class AwardYears::V2025::QaeForms
         turnover_exports_calculation :uk_sales, "Of which UK sales." do
           classes "sub-question"
           sub_ref "D 4.3"
-          context %(<p>This number is automatically calculated using your total turnover and export figures.</p>)
+          context %(
+            <p>This number is automatically calculated using your total turnover and export figures.</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, these will be your local sales.</p>
+          )
           label ->(y) { "Financial year #{y}" }
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
           by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
@@ -446,28 +444,33 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p>
-              This may include new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+              You must demonstrate that your innovation positively impacted your commercial success (in terms of turnover or profitability) over at least the last two years.
+            </p>
+            <p>
+              This may include new sales and orders secured, cost savings, and their overall effect on turnover and profitability, as well as new investments secured.
             </p>
             <p>
               A couple of examples that may help you answer this question:
               <ul>
-                <li>Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…</li>
+                <li>Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation...</li>
                 <li>Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...</li>
               </ul>
             </p>
             <p>
-              If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered.
+              If further improvements are still anticipated, clearly demonstrate how and when they will be delivered.
             </p>
           )
           pdf_context %(
-            This may include new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+            You must demonstrate that your innovation positively impacted your commercial success (in terms of turnover or profitability) over at least the last two years.
+
+            This may include new sales and orders secured, cost savings, and their overall effect on turnover and profitability, as well as new investments secured.
 
             A couple of examples that may help you answer this question:
 
-            \u2022 Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation…
+            \u2022 Our innovation is the only product sold and generates 100% of revenue. Our business has been built upon this innovation...
             \u2022 Our customer management platform has increased customer satisfaction ratings by X%, and our customer retention level has risen by Y% since its introduction. This has enabled us to grow our customer base by Z%...
 
-            If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered.
+            If further improvements are still anticipated, clearly demonstrate how and when they will be delivered.
           )
           rows 3
           words_max 250
@@ -478,13 +481,13 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <ul>
-              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
               <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
               <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
             </ul>
           )
           pdf_context %(
-            \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+            \u2022 How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?
             \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
             \u2022 Provide any contextual information or challenges you would like the assessors to consider.
           )
@@ -492,9 +495,45 @@ class AwardYears::V2025::QaeForms
           words_max 350
         end
 
+        options :innovations_grant_funding, "Have you received any grant funding or made use of any other government support?" do
+          classes "sub-question"
+          sub_ref "D 9"
+          required
+          yes_no
+          context %(
+            <p>Answer yes if you received such support during the last five years or at any time if it was in relation to your innovation.</p>
+
+            <p> To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
+          )
+        end
+
+        textarea :innovation_grant_funding_sources, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your innovation (at any time)." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 9.1"
+          required
+          context %(
+            <p>If none of the support was in relation to your innovation, please state so.</p>
+          )
+          conditional :innovations_grant_funding, :yes
+          rows 3
+          words_max 250
+        end
+
+        textarea :innovation_grant_funding_sources_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
+          classes "sub-question word-max-strict"
+          sub_ref "D 9.2"
+          required
+          context %(
+            <p>If the support was in relation to your innovation, don't repeat it.</p>
+          )
+          conditional :innovations_grant_funding, :yes
+          rows 3
+          words_max 250
+        end
+
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
           required
-          ref "D 9"
+          ref "D 10"
           yes_no
           context %(
             <p>
@@ -506,7 +545,7 @@ class AwardYears::V2025::QaeForms
 
         confirm :agree_to_provide_actual_figures, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 9.1"
+          sub_ref "D 10.1"
           required
           text " I understand that if this application is shortlisted, I will have to provide actual figures that have been verified by an external accountant before the specified November deadline (the exact date will be provided in the shortlisting email)."
           conditional :product_estimated_figures, :yes
@@ -515,7 +554,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :product_estimates_use, "Explain your use of estimates and how much of these are actual receipts or firm orders." do
           classes "sub-question"
-          sub_ref "D 9.2"
+          sub_ref "D 10.2"
           required
           rows 2
           words_max 200

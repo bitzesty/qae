@@ -59,7 +59,7 @@ div role="group" id="q_#{question.key}"
     - when :county
       .govuk-form-group.question-required
         label.govuk-label id="#{question.key}_region_label" for="form_#{question.key}_#{sub_field_key}" aria-describedby="#{question.key}_county_hint"
-          ' County
+          = sub_field_title || "County"
         - if @form_answer.validator_errors&.dig(question.hash_key(suffix: sub_field_key))
           span.govuk-error-message
             span.govuk-visually-hidden
