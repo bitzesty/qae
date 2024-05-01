@@ -26,8 +26,10 @@ class window.FinancialSummaryTableBase
 
     if @showFinancials
       @wrapper.show()
+      @wrapper.closest(".question-block").show()
     else
       @wrapper.hide()
+      @wrapper.closest(".question-block").hide()
 
   fillInRow: (type, calculatable = false) =>
     row = @tableData.find("tr[data-type='#{type}']")

@@ -302,6 +302,7 @@ class AwardYears::V2025::QaeForms
         end
 
         financial_summary :trade_financial_summary, "Summary of your company financials (for information only)" do
+          sub_ref "D 5.7"
         end
 
         options :received_grant, "Have you received any grant funding or made use of any other government support?" do
