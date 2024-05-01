@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
+  include QaePdfForms::CustomQuestions::FinancialTableSummary
   include QaePdfForms::CustomQuestions::Lists
   include QaePdfForms::CustomQuestions::Matrix
   include QaePdfForms::CustomQuestions::SupporterLists
@@ -135,6 +136,25 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_block
+    if question.delegate_obj.is_a?(QaeFormBuilder::FinancialSummaryQuestion)
+      # do not render the whole block if the data is not there
+
+      case form_answer.award_type
+      when "trade"
+        return unless fs_trade_filled_in?
+      when "innovation"
+        if question.partial == "innovation_part_1"
+          return unless fs_innovation_part_1_filled_in?
+        else
+          return unless fs_innovation_part_2_filled_in?
+        end
+      when "development"
+        return unless fs_development_filled_in?
+      when "mobility"
+        return unless fs_mobility_filled_in?
+      end
+    end
+
     render_validation_block
     render_question_title_with_ref_or_not
 
@@ -417,6 +437,21 @@ class QaePdfForms::General::QuestionPointer
         end
       when QaeFormBuilder::CheckboxSeriaQuestion
         render_checkbox_selected_values
+      when QaeFormBuilder::FinancialSummaryQuestion
+        case form_answer.award_type
+        when "trade"
+          render_trade_financial_summary
+        when "innovation"
+          if question.partial == "innovation_part_1"
+            render_innovation_financial_summary_part_1
+          else
+            render_innovation_financial_summary_part_2
+          end
+        when "development"
+          render_development_financial_summary
+        when "mobility"
+          render_mobility_financial_summary
+        end
       else
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
         form_pdf.render_standart_answer_block(title)
