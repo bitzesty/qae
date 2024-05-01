@@ -1,5 +1,5 @@
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | The King's Awards for Enterprise Reception at Buckingham Palace,
+  | The King's Awards for Enterprise Reception at Windsor Castle,
   =< @reception_date
   | .
 
@@ -7,36 +7,41 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | We are delighted to announce that His Majesty The King will be hosting a Reception for The King's Awards for Enterprise Recipients at Buckingham Palace on the evening of
-  =< @reception_date
-  | . This Reception will celebrate the achievements of the 2023 Awardees.
+  | We are delighted to announce that a Reception will be held at Windsor Castle on
+  =<> @reception_date_with_day_and_time
+  | to celebrate the achievements of the recipients of The King's Awards for Enterprise 2024.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Following the success of last year's Reception, each company is able to nominate one representative to attend. Unfortunately, the number of guests cannot be increased.
+  | Each company is able to nominate one representative to attend. The number of guests may not be increased.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Please read carefully the following important notices and guidance as key deadlines are included:
+  | Specific details about the event, including arrangements for special requirements and parking will be included with the formal invitation, which The Royal Household will send to guests approximately four weeks prior to the event.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Please read the following important notices carefully, as key deadlines are included:
 
 p style="font-weight: 700; font-size: 19px;; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | Important Notices:
 
 div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ul
-    li We kindly ask that you do not publicise the date of this event in advance.
-    li Please note that no mobile phones, cameras or electronic devices should be used during the Reception. However, there will be a professional photographer present and details of how to access the pictures will be provided on the evening.
-    li As you will appreciate, it will sadly not be possible for His Majesty The King or other Members of The Royal Family to meet every guest. There may be a small number of groups at the Reception, and Members of The Royal Family will circulate throughout, meeting as many Awardees as possible.
+    li We kindly ask that you do not publicise the date or time of this event in advance.
+    li Guests will arrive at the Castle from 5:15 pm, and entry will not be considered after 5:45 pm.
+    li Shuttle buses and buggies will be available on entry to support those with any mobility issues on the evening.
+    li Cloakrooms and restrooms are available as guests enter the Castle.
+    li Please note that mobile phones, cameras or electronic devices should not be used during the Reception. However, a host photographer will be present, and details of how to access the images captured will be provided on the evening.
+    li Members of The Royal Family will circulate throughout the Reception, although it may not be possible for every guest to be met in person.
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | Submission of Guest Details
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | The nominated guest must be an employed representative of the successful company. To submit their details, please fill in the palace invite form:
+  | The nominated guest must be an employed representative of the successful company. To submit their details, please fill in the following online invitation form - we can only accept details via this form, not by email:
   br
   = link_to edit_palace_invite_url(id: @token), edit_palace_invite_url(id: @token)
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    | Please ensure the address details are those of the company representative being invited to the Reception and not of the person or agent submitting the details.
+  | Please ensure the address details are those of the company representative being invited to the Reception and not of the person or agent submitting the details.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   strong
@@ -55,4 +60,4 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   br
   ' The Secretary
   br
-  ' The King's Awards Office
+  ' The King's Awards for Enterprise Office
