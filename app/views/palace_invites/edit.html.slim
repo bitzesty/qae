@@ -15,7 +15,8 @@ div
           =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(bold=false, format="full")
           | , a Royal Reception at Windsor Castle will be held for organisations who have received this year's King's Award. Successful organisations can send one attendee per award won.
 
-        br
+        p.govuk-body
+          | Please aim to arrive from 5:00 pm; entry will not be considered after 5:45 pm. The Royal Household will send full details in the formal invitation approximately four weeks before the Reception.
 
         - if !@invite.submitted?
           = render 'form'

@@ -50,7 +50,6 @@ p.govuk-body
                        label: "Please provide details of your or your organisation's associations with the Royal Family.",
                        wrapper_html: { class: "royal-connection-wrapper" }
 
-
           .question-group
             = ff.input :address_1, input_html: { class: "large" },
                                      hint: "Enter the address of the attendee (and not of the person or agent submitting the details).",
@@ -71,6 +70,14 @@ p.govuk-body
             = ff.input :phone_number, input_html: { class: "small" },
                                       label: "Telephone number",
                                       hint: "if known"
+          .question-group
+            = ff.input :dietary_requirements, as: :text, input_html: { rows: 5 }, label: "Dietary needs"
+
+          .question-group
+            label.govuk-label
+              | Does the attendee require disabled access?
+            = ff.input :disabled_access, as: :radio_buttons, label: false
+            
           .question-group
             = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Accessibility details (for example, wheelchair user or person hard of hearing)"
 

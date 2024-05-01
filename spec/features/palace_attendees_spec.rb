@@ -132,7 +132,8 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Surname", with: "Test"
         fill_in "Job title / position", with: "Test"
         fill_in "Decorations / post nominals", with: "Test"
-        choose "Yes"
+        royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]', match: :first)
+        royal_family_connections.set(true)
         fill_in "Please provide details of your or your organisation's associations with the Royal Family.", with: "I am the son of the Queen"
         fill_in "Address line 1", with: "Test"
         fill_in "Address line 2", with: "Test"
@@ -140,6 +141,8 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "County", with: "Test"
         fill_in "Postcode", with: "Test"
         fill_in "Telephone number", with: "Test"
+        disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)
+        disabled_access.set(true)
 
         expect {
           click_on "Confirm and submit attendee's details"

@@ -41,6 +41,8 @@ class PalaceInvitesController < ApplicationController
           :address_4,
           :postcode,
           :phone_number,
+          :disabled_access,
+          :dietary_requirements,
           :additional_info,
           :has_royal_family_connections,
           :royal_family_connection_details,

@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1097,7 +1090,9 @@ CREATE TABLE public.palace_attendees (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     has_royal_family_connections boolean,
-    royal_family_connection_details text
+    royal_family_connection_details text,
+    dietary_requirements character varying,
+    disabled_access boolean
 );
 
 
@@ -4321,6 +4316,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220906085454'),
 ('20220927093210'),
 ('20231025022311'),
-('20240314105208');
+('20240314105208'),
+('20240501155226');
 
 
