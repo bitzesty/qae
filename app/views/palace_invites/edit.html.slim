@@ -3,15 +3,17 @@
 div
   header.group.page-header.page-header-wider
     div
-      h1.govuk-heading-l Windsor Castle Attendee
+      h1.govuk-heading-l Windsor Castle Attendee Information
 
   .article-container.article-container-wider
     article.group role="article"
       .inner
         p.govuk-body
           | On
-          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(bold=false)
-          | , a Royal reception at Windsor Castle will be held for organisations who have received this year's King's Award/s. Successful organisations can send one attendee per award won.
+          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_day
+          | ,
+          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(bold=false, format="full")
+          | , a Royal Reception at Windsor Castle will be held for organisations who have received this year's King's Award. Successful organisations can send one attendee per award won.
 
         br
 
