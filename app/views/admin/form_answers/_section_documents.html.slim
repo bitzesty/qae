@@ -61,7 +61,7 @@
       ' Other Docs
     div[data-controller="inline-flash"]
       .document-list
-        p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.any?}"
+        p.p-empty class="#{'hide' if @form_answer.form_answer_attachments.any?}"
           ' No documents have been attached.
         ul.list-unstyled.list-actions
           - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
