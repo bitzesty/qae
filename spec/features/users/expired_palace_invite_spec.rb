@@ -41,14 +41,15 @@ describe "expired reception attendee information deadline" do
   end
 
   it "allows user to fill the form within due date" do
-    award_date = AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).decorate.formatted_trigger_time(bold=false)
+    award_day = AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).decorate.formatted_trigger_day
+    award_date = AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).decorate.formatted_trigger_time(bold=false, format="full")
     deadline.update_column(:trigger_at, Time.current + 1.day)
 
     visit edit_palace_invite_path(id: invite.token)
 
-    expect(page).to have_content("#{award_date}, a Royal reception at Windsor Castle will be held for organisations who have received this year's King's Award/s. Successful organisations can send one attendee per award won.")
+    expect(page).to have_content("On #{award_day}, #{award_date}, a Royal Reception at Windsor Castle will be held for organisations who have received this year's King's Award. Successful organisations can send one attendee per award won.")
 
     expect(page).to have_selector("form", id: "new_palace_invite")
-    expect(page).to have_button("Confirm Attendee")
+    expect(page).to have_button("Confirm and submit attendee's details")
   end
 end

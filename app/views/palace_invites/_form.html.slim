@@ -56,9 +56,15 @@ p.govuk-body
                                      hint: "Enter the address of the attendee (and not of the person or agent submitting the details).",
                                      label: "Address line 1"
 
-          - %w(address_2 address_3 address_4).each_with_index do |attr, idx|
-            .question-group
-              = ff.input attr, input_html: { class: "large" }, label: "Address line " + (idx+2).to_s
+            = ff.input :address_2, input_html: { class: "large" },
+                                      label: "Address line 2"
+
+            = ff.input :address_3, input_html: { class: "large" },
+                                      label: "City or town"
+
+            = ff.input :address_4, input_html: { class: "large" },
+                                      label: "County"
+
           .question-group
             = ff.input :postcode, input_html: { class: "small" }
           .question-group
@@ -66,7 +72,7 @@ p.govuk-body
                                       label: "Telephone number",
                                       hint: "if known"
           .question-group
-            = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Additional information, for example, wheelchair user"
+            = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Accessibility details (for example, wheelchair user or person hard of hearing)"
 
     = link_to "+ Add attendee", "#",
               class: "button button-add js-button-add #{'hide' if @invite_form.invite.palace_attendees.count == 1 || @invite_form.palace_attendees.count == 1}"
