@@ -12,7 +12,7 @@ div
           | On
           =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_day
           | ,
-          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(bold=false, format="full")
+          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(date_format: "%-d %B %Y,")
           | , a Royal Reception at Windsor Castle will be held for organisations who have received this year's King's Award. Successful organisations can send one attendee per award won.
 
         p.govuk-body

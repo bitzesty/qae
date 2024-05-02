@@ -42,7 +42,7 @@ describe "expired reception attendee information deadline" do
 
   it "allows user to fill the form within due date" do
     award_day = AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).decorate.formatted_trigger_day
-    award_date = AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).decorate.formatted_trigger_time(bold=false, format="full")
+    award_date = AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).decorate.formatted_trigger_time(date_format: "%-d %B %Y,")
     deadline.update_column(:trigger_at, Time.current + 1.day)
 
     visit edit_palace_invite_path(id: invite.token)
