@@ -44,7 +44,7 @@
               ' -
           br
           label Does the attendee require disabled access?
-          p= pa.disabled_access? && pa.disabled_access.presence || "-"
+          p= pa.disabled_access.presence || "-"
 
           - unless @form_answer.promotion?
             br
