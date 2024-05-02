@@ -1,9 +1,12 @@
 # coding: utf-8
 class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
-  before_action :set_reception_deadlines
-
   def invite(form_answer_id, notify_to_press_contact=false)
     form_answer = FormAnswer.find(form_answer_id).decorate
+    deadlines = form_answer.award_year.settings.deadlines
+    @reception_deadline = deadlines.where(kind: "buckingham_palace_reception_attendee_information_due_by").first
+    @reception_deadline_time = formatted_deadline_time(@reception_deadline)
+    @reception_date = deadlines.where(kind: "buckingham_palace_attendees_invite").first
+    @reception_date_time = formatted_deadline_time(@reception_date)
     invite = form_answer.palace_invite
     @token = invite.token
 
