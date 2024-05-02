@@ -1,0 +1,13 @@
+- if @form_answer.award_type == "innovation"
+  - if question.partial == "innovation_part_1"
+    div.financial-summary-tables class="financial-summary-tables-#{@form_answer.award_type}" style="display: none;"
+      = render "qae_form/financial_summary/#{question.partial}"
+  - else
+    div.financial-summary-tables-two class="financial-summary-tables-#{@form_answer.award_type}-two" style="display: none;"
+      = render "qae_form/financial_summary/#{question.partial}"
+- else
+  div.financial-summary-tables-two class="financial-summary-tables-#{@form_answer.award_type}" style="display: none;"
+    - if question.partial
+      = render "qae_form/financial_summary/#{question.partial}"
+    - else
+      = render "qae_form/financial_summary/#{@form_answer.award_type}"

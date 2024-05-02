@@ -8,7 +8,7 @@ class AwardYears::V2025::QaeForms
         end
 
         trade_commercial_success :trade_commercial_success, "Which award subcategory are you applying for?" do
-          classes "js-entry-period"
+          classes "js-entry-period fs-trackable"
           ref "D 1"
           required
           option "3 to 5", "Outstanding Short-Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years"
@@ -48,6 +48,7 @@ class AwardYears::V2025::QaeForms
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+          classes "fs-year-end fs-trackable"
           ref "D 2"
           required
           financial_date_pointer
@@ -71,7 +72,7 @@ class AwardYears::V2025::QaeForms
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period that you will be providing figures for?" do
-          classes "sub-question js-financial-year-change"
+          classes "sub-question js-financial-year-change fs-trackable fs-are-dates-changed"
           sub_ref "D 3"
           required
           yes_no
@@ -79,7 +80,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question"
+          classes "sub-question fs-changed-dates fs-trackable"
           sub_ref "D 3.1"
           required
           type :date
@@ -154,7 +155,7 @@ class AwardYears::V2025::QaeForms
 
         by_years :overseas_sales, "Total overseas sales" do
           ref "D 5.1"
-          classes "sub-question"
+          classes "sub-question fs-overseas-sales fs-trackable"
           required
           context %(
             <p>
@@ -244,7 +245,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years :total_turnover, "Total turnover (the UK and overseas)" do
-          classes "sub-question"
+          classes "sub-question fs-total-turnover fs-trackable"
           sub_ref "D 5.2"
           type :money
           required
@@ -259,7 +260,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
-          classes "sub-question"
+          classes "sub-question fs-net-profit fs-trackable"
           sub_ref "D 5.3"
           required
           type :money
@@ -298,6 +299,10 @@ class AwardYears::V2025::QaeForms
           required
           rows 5
           words_max 300
+        end
+
+        financial_summary :trade_financial_summary, "Summary of your company financials (for information only)" do
+          sub_ref "D 5.7"
         end
 
         options :received_grant, "Have you received any grant funding or made use of any other government support?" do

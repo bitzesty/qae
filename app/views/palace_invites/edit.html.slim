@@ -1,19 +1,22 @@
-- title "Buckingham Palace Attendee"
+- title "Windsor castle Attendee"
 - award_year = @invite.form_answer.award_year
 div
   header.group.page-header.page-header-wider
     div
-      h1.govuk-heading-l Buckingham Palace Attendee
+      h1.govuk-heading-l Windsor Castle Attendee Information
 
   .article-container.article-container-wider
     article.group role="article"
       .inner
         p.govuk-body
-          ' On
-          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_date("with_year")
-          ' , in the early evening at a time to be confirmed, a Royal reception at Buckingham Palace will be held for organisations who have received this year's King's Award/s. Successful organisations can send one attendee per award won.
+          | On
+          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_day
+          | ,
+          =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(date_format: "%-d %B %Y,")
+          | , a Royal Reception at Windsor Castle will be held for organisations who have received this year's King's Award. Successful organisations can send one attendee per award won.
 
-        br
+        p.govuk-body
+          | Please aim to arrive from 5:00 pm; entry will not be considered after 5:45 pm. The Royal Household will send full details in the formal invitation approximately four weeks before the Reception.
 
         - if !@invite.submitted?
           = render 'form'
