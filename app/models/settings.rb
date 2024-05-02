@@ -164,7 +164,7 @@ class Settings < ApplicationRecord
     end
 
     def submission_deadline_title
-      formatted_datetime = current_submission_deadline.decorate.formatted_trigger_time(false)
+      formatted_datetime = current_submission_deadline.decorate.formatted_trigger_time(bold: false)
       "Submission deadline: #{formatted_datetime}"
     end
 

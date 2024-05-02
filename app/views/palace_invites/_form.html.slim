@@ -1,3 +1,6 @@
+p.govuk-body
+  | Please enter details of the representative who will be attending the Reception. The person must be an employed representative of the organisation that won the Award.
+
 = simple_form_for @invite_form, as: :palace_invite, url: palace_invite_url(id: @invite.token), html: { class: 'qae-form', method: :patch } do |f|
 
   - @invite_form.build_palace_attendee if @invite_form.palace_attendees.none?
@@ -24,19 +27,19 @@
 
           .question-group
             = ff.input :job_name, input_html: { class: "medium" },
-                                  label: "Job Title / Position"
+                                  label: "Job title / position"
 
           .question-group
             = ff.input :post_nominals, input_html: { class: "medium" },
-                                       label: "Decorations / Post Nominals"
+                                       label: "Decorations / post nominals"
 
           .question-group
-            label.govuk-label Do you or your organisation have any associations and connections with the Royal Family?
+            label.govuk-label Do you or your organisation have any associations and connections with The Royal Family?
             span.govuk-hint
               | Answer yes, if:
               ol.govuk-list.govuk-list--number
-                li.govuk-hint 1. A member of the Royal Family has visited your organisation or is a patron of your charity, or if your company is a Duchy company.
-                li.govuk-hint 2. You have met a member of a Royal Family before, have received an Honour or Royal award, are involved with the Prince's Trust or any other organisation supported by a member of the Royal Family, or have other association with the Royal Family.
+                li.govuk-hint 1. A member of The Royal Family has visited your organisation or is a patron of your charity, or your company is a Duchy company.
+                li.govuk-hint 2. You have met a member of a Royal Family before, have received an Honour or Royal award, are involved with The Prince's Trust or any other organisation supported by a member of The Royal Family, or have other associations with The Royal Family.
 
 
             = ff.input :has_royal_family_connections, as: :radio_buttons, label: false, input_html: { class: "js-has-royal-connections" }
@@ -47,15 +50,20 @@
                        label: "Please provide details of your or your organisation's associations with the Royal Family.",
                        wrapper_html: { class: "royal-connection-wrapper" }
 
-
           .question-group
             = ff.input :address_1, input_html: { class: "large" },
-                                     hint: "First line on envelope",
-                                     label: "Address 1"
+                                     hint: "Enter the address of the attendee (and not of the person or agent submitting the details).",
+                                     label: "Address line 1"
 
-          - %w(address_2 address_3 address_4).each do |attr|
-            .question-group
-              = ff.input attr, input_html: { class: "large" }
+            = ff.input :address_2, input_html: { class: "large" },
+                                      label: "Address line 2"
+
+            = ff.input :address_3, input_html: { class: "large" },
+                                      label: "City or town"
+
+            = ff.input :address_4, input_html: { class: "large" },
+                                      label: "County"
+
           .question-group
             = ff.input :postcode, input_html: { class: "small" }
           .question-group
@@ -63,9 +71,17 @@
                                       label: "Telephone number",
                                       hint: "if known"
           .question-group
-            = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Additional Information, for example, wheelchair user"
+            = ff.input :dietary_requirements, as: :text, input_html: { rows: 5 }, label: "Dietary needs"
 
-    = link_to "+ Add Attendee", "#",
-              class: "button button-add js-button-add #{'visuallyhidden' if @invite_form.invite.palace_attendees.count == 1 || @invite_form.palace_attendees.count == 1}"
+          .question-group
+            label.govuk-label
+              | Does the attendee require disabled access?
+            = ff.input :disabled_access, as: :radio_buttons, label: false
+            
+          .question-group
+            = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Accessibility details (for example, wheelchair user or person hard of hearing)"
+
+    = link_to "+ Add attendee", "#",
+              class: "button button-add js-button-add #{'hide' if @invite_form.invite.palace_attendees.count == 1 || @invite_form.palace_attendees.count == 1}"
 
   = render 'actions', f: f

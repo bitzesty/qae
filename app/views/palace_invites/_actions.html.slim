@@ -4,10 +4,10 @@ footer
   nav.pagination aria-label="Pagination" role="navigation"
     ul.group
       li.submit
-        = f.submit "Save", class: "govuk-button govuk-button--primary save-palace-attendees-button",
+        = f.submit "Save and come back later", class: "govuk-button govuk-button--primary save-palace-attendees-button",
                            name: "save"
         span.palace-attendees-action-divider.govuk-body
-          ' OR
-        = f.submit "Confirm Attendee", class: "govuk-button govuk-button--primary",
+          ' or
+        = f.submit "Confirm and submit attendee's details", class: "govuk-button govuk-button--primary",
                                         rel: "next",
                                         name: "submit"
