@@ -18,7 +18,7 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
       @name = form_answer.head_of_business_full_name
     end
 
-    subject = "An invitation to HM The King's Reception at Windsor Castle"
+    subject = "An invitation to a Royal Reception at Windsor Castle"
     send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @email, subject: subject_with_env_prefix(subject)
   end
 end
