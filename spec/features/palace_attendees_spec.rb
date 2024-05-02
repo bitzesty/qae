@@ -130,8 +130,8 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Title", with: title
         fill_in "First name", with: my_first_name
         fill_in "Surname", with: "Test"
-        fill_in "Job title / position", with: "Test"
-        fill_in "Decorations / post nominals", with: "Test"
+        fill_in "Job title/position", with: "Test"
+        fill_in "Decorations/post-nominals", with: "Test"
         royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]', match: :first)
         royal_family_connections.set(true)
         fill_in "Please provide details of your or your organisation's associations with the Royal Family.", with: "I am the son of the Queen"
