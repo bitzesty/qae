@@ -126,7 +126,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "About section C",
         :context => [
-          "Read this section before planning the answers. Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.",
+          "Read this section before planning the answers. Try not to repeat points: instead, you can say that you are referring to a previous answer to another question and include that question number.",
           "Avoid using technical jargon."
         ]
       )

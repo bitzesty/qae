@@ -105,6 +105,8 @@ class AwardYears::V2025::QaeForms
             <ul>
               <li>Your strategy and approach related to climate change.</li>
               <li>Your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero” or beyond.</p>
+              <li>If you operate in an extractive or less environmentally sustainable industry, please explain how your business minimises the environmental impact. Where relevant, please list ISO accreditations.</li>
+              <li>If your business uses packaging, please provide information on how you are working towards minimising the impact of the packaging on the environment.</li>
               <li>How you have measured your emissions.</li>
               <li>Other areas that show your organisation operates sustainably, such as being part of the circular economy, or reductions in hazardous waste and plastics (if relevant).</li>
             </ul>
@@ -124,6 +126,8 @@ class AwardYears::V2025::QaeForms
 
             \u2022 Your strategy and approach related to climate change.
             \u2022 Your climate change related targets. Be clear whether your targets are for carbon neutrality or, if you go further, aiming for “net zero” or beyond.
+            \u2022 If you operate in an extractive or less environmentally sustainable industry, please explain how your business minimises the environmental impact. Where relevant, please list ISO accreditations.
+            \u2022 If your business uses packaging, please provide information on how you are working towards minimising the impact of the packaging on the environment.
             \u2022 How you have measured your emissions.
             \u2022 Other areas that show your organisation operates sustainably, such as being part of the circular economy, or reductions in hazardous waste and plastics (if relevant).
 
@@ -372,7 +376,7 @@ class AwardYears::V2025::QaeForms
           ref "C 6"
           context %{
             <p class="govuk-hint">
-              In questions C6.1 to C6.6, describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
+              In questions C6.1 to C6.6, describe the impact of your initiative. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
             </p>
             <p class="govuk-hint">
               Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
@@ -442,7 +446,7 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p>
-              For example, ISO 14000 group of standards or B-Corp accreditation. If you haven't achieved such standards or accreditations, use this space to explain what processes you have in place to maintain standards.
+              For example, ISO 14000 group of standards or B-Corp accreditation. If you haven't achieved such standards or accreditations, please explain and, if possible, illustrate what processes you have in place to maintain standards.
             </p>
           )
           rows 2
