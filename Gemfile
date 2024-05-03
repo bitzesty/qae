@@ -108,8 +108,7 @@ gem 'redis-store', "~> 1.4"
 gem 'rest-client'
 
 # We are using Pusher with Poxa server
-# for collaborators application edit stuff
-#
+# for multiple collaborators editing an application
 gem 'pusher', '0.15.2'
 
 # Text Search
@@ -122,7 +121,7 @@ gem 'nilify_blanks'
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator
-gem 'curb', '0.9.10'
+gem 'curb', '~> 1.0.5'
 
 # Web server
 gem 'puma', '~> 6.4.2'
@@ -137,9 +136,6 @@ gem 'lograge'
 gem 'bootscale', require: false
 
 gem 'browser', '2.4.0'
-
-# Simple colored logging
-gem 'shog'
 
 gem 'rails-healthcheck'
 
@@ -171,11 +167,6 @@ group :development, :test do
   gem "pry-byebug"
   gem 'rails-controller-testing'
   gem "selenium-webdriver"
-end
-
-group :production do
-  # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
-  gem 'rails_12factor', '~> 0.0.3'
 end
 
 group :test do

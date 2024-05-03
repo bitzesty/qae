@@ -78,7 +78,7 @@ GEM
     afm (0.2.2)
     amoeba (3.0.0)
       activerecord (>= 3.2.6)
-    appsignal (3.4.8)
+    appsignal (3.7.1)
       rack
     ast (2.4.2)
     authy (3.0.1)
@@ -131,7 +131,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    colorize (1.1.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     countries (2.1.4)
@@ -149,7 +148,7 @@ GEM
       cucumber-messages (~> 12.4, >= 12.4.0)
     cucumber-messages (12.4.0)
       protobuf-cucumber (~> 3.10, >= 3.10.8)
-    curb (0.9.10)
+    curb (1.0.5)
     database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -461,15 +460,10 @@ GEM
       railties
     rails-html-sanitizer (1.4.4)
       loofah (~> 2.19, >= 2.19.1)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
     rails_autolink (1.1.8)
       actionview (> 3.1)
       activesupport (> 3.1)
       railties (> 3.1)
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (7.0.8.1)
       actionpack (= 7.0.8.1)
       activesupport (= 7.0.8.1)
@@ -575,9 +569,6 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    shog (0.2.1)
-      colorize (>= 0.8)
-      rails (>= 4)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
     sidekiq (6.5.12)
@@ -700,7 +691,7 @@ DEPENDENCIES
   codeclimate_circle_ci_coverage
   coffee-rails (= 5.0)
   country_select (~> 3.1)
-  curb (= 0.9.10)
+  curb (~> 1.0.5)
   database_cleaner-active_record
   decent_exposure
   devise (~> 4.9)
@@ -750,7 +741,6 @@ DEPENDENCIES
   rails-controller-testing
   rails-healthcheck
   rails-html-sanitizer (~> 1.4.4)
-  rails_12factor (~> 0.0.3)
   rails_autolink
   rb-readline
   redis-rails
@@ -766,7 +756,6 @@ DEPENDENCIES
   sanitize
   sassc-rails (~> 2.1.2)
   selenium-webdriver
-  shog
   shoulda-matchers
   sidekiq (~> 6.5.10)
   sidekiq-cron (~> 1.1)

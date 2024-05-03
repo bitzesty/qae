@@ -14,6 +14,10 @@ h1.govuk-heading-xl
     .article-container
       article.group role="article"
         div
+          - if !current_user.account_admin?
+            p.govuk-body
+              ' Collaborators can work on the form simultaneously if they are on different sections.
+
           - if current_user.account_admin?
             - if current_account.has_collaborators?
               .govuk-warning-text
