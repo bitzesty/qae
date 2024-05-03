@@ -2,12 +2,20 @@ default: &default
   adapter: postgresql
   encoding: utf8
 
+credentials: &credentials
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: <%= ENV["DB_HOST"] %>
+  port: <%= ENV["DB_PORT"] %>
+
 development:
   <<: *default
+  <<: *credentials
   database: qae_development
 
 test:
   <<: *default
+  <<: *credentials
   database: qae_test
 
 production:

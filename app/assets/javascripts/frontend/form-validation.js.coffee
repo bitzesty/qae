@@ -153,7 +153,8 @@ window.FormValidation =
   addSubfieldWordLimitError: (question, subquestion, wordLimit) ->
     questionRef = question.attr("data-question_ref")
     input = $(subquestion).find('input,textarea,select').filter(':visible')
-    inputLength = $(subquestion).find('input').filter(':visible').val().split(" ").length
+    inputValue = $(subquestion).find('input').filter(':visible').val()
+    inputLength = if inputValue? then inputValue.split(" ").length else 0
     label = @extractText(input.attr('id'))
     if inputLength > wordLimit
       errorMessage = "Question #{questionRef} is incomplete. #{label} exceeded #{wordLimit} word limit."
@@ -445,39 +446,73 @@ window.FormValidation =
       return
     # end of conditional validation
 
+    # finds required row question gets checked answers
+    element = question.find('input[data-required-row-parent]').first()
+
+    requiredRowParent = element && element.attr('data-required-row-parent')
+    requiredRows = []
+    requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
+
+    shouldHideRow = element[0] && element[0].hasAttribute('data-required-row-hide-unchecked')
+    if !!requiredRowParent
+      shouldDisableRow = document.querySelectorAll('[id^="form['+requiredRowParent+'"][type=checkbox]:checked').length == 0
+    else
+      shouldDisableRow = false
+
     subquestions = question.find("input")
+    map = new Map()
 
     if input
       subquestions = [input]
 
     for subquestion in subquestions
       subq = $(subquestion)
-      qParent = subq.closest("td")
+      qRow = subq.closest("tr")
+      qCell = subq.closest("td")
+      key = subq.attr('id')
+
+      if requiredRowParent
+        qRow.show()
+        subq.prop('disabled', false)
+
+        if map.has(key)
+          cond = map.get(key)
+        else
+          cond = requiredRows.find (v) ->
+            key.includes(v)
+          map.set(key, cond)
+
+        if !cond && shouldHideRow
+          subq.val("")
+          if shouldDisableRow
+            subq.prop('disabled', true)
+          else
+            qRow.hide()
+
       val = subq.val().trim()
 
-      # finds required row question gets checked answers
-      requiredRowParent = subq.attr('data-required-row-parent')
-      requiredRows = []
-      requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
-
       if not val
-        if !subq.attr('data-required-row-parent')
-          @appendMessage(qParent, "Required")
-          @addErrorClass(qParent)
+        if !requiredRowParent
+          @appendMessage(qCell, "Required")
+          @addErrorClass(question)
         # only adds 'required' error when y_heading matches checked answer
         else
-          for yHeading in requiredRows
-            if subq.attr('id').includes(yHeading)
-              @appendMessage(qParent, "Required")
-              @addErrorClass(qParent)
+          cond = map.get(key)
+
+          if cond
+            @appendMessage(qCell, "Required")
+            @addErrorClass(question)
       else if isNaN(val)
-        @appendMessage(qParent, "Only numbers")
-        @addErrorClass(qParent)
+        @appendMessage(qCell, "Only numbers")
+        @addErrorClass(question)
       else
         t = parseInt(val, 10)
         if t < 0
-          @appendMessage(qParent, "At least 0")
-          @addErrorClass(qParent)
+          @appendMessage(qCell, "At least 0")
+          @addErrorClass(question)
+
+    if question.find(".govuk-error-message").filter(-> @innerHTML).length
+      @addErrorClass(question)
 
   validateCurrentAwards: (question) ->
     $(".govuk-error-message", question).empty()
@@ -762,6 +797,21 @@ window.FormValidation =
       @appendMessage(question, "Select a maximum of " + selection_limit)
       @addErrorClass(question)
 
+  validateWebsiteUrl: (question) ->
+    questionRef = question.attr("data-question_ref")
+    url = question.find("input[type='website_url']").val()
+    urlRegex = /(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/i;
+
+    if !url
+      @appendMessage(question, "Question #{questionRef} is incomplete. It is required and must be filled in. Use the format as shown in the description.")
+      @addErrorClass(question)
+    else
+      if !url[/\Ahttp:\/\//] || !url[/\Ahttps:\/\//]
+        url = "http://#{url}"
+      if !urlRegex.test(url) || url.includes("<script")
+        @logThis(question, "validateWebsiteUrl", "Not a valid URL")
+        @addErrorMessage(question, "The website address is in an incorrect format. Use the format as shown in the description.")
+        @addErrorClass(question)
 
   # It's for easy debug of validation errors
   # As it really tricky to find out the validation which blocks form
@@ -881,6 +931,9 @@ window.FormValidation =
     if question.hasClass("sub-fields-word-max")
       @validateSubfieldWordLimit(question)
 
+    if question.find("input[type='website_url']").length
+      @validateWebsiteUrl(question)
+
   validate: ->
     @clearAllErrors()
 
@@ -907,18 +960,90 @@ window.FormValidation =
       @validateIndividualQuestion(question)
 
 # to toggle matrix error messages on click
-$(document).on 'click', "input[type=checkbox]", ->
+$(document).on 'change', 'input[type=checkbox]', ->
   checkedValue = $(this).val()
   questions = $(".question-block.question-matrix")
+
   for question in questions
+    conditional = false
     question = $(question)
     subquestions = question.find('input')
+
     for subquestion in subquestions
-      subq = $(subquestion)
-      if subq.attr("id").includes(checkedValue) && subq.attr("data-required-row-parent")
-        question.find(".govuk-error-message").empty()
-        question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
-        window.FormValidation.validateMatrix(question)
+      if !conditional
+        identifier = subquestion.getAttribute("id")
+
+        if identifier && identifier.includes(checkedValue)
+          conditional = !!subquestion.hasAttribute("data-required-row-parent")
+    if conditional
+      question.find(".govuk-error-message").empty()
+      question.removeClass("govuk-form-group--error")
+      question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
+      window.FormValidation.validateMatrix(question)
+
+$(document).on 'change', '[data-question-haltable] .show-question input.govuk-input', ->
+  questions = $(document).find('.question-block')
+  questions.removeClass('js-question-disabled')
+  questions.removeAttr('inert')
+
+  links = $(document).find('.steps-progress-bar li.js-step-link:not(.step-past):not(.step-current)')
+  links.removeClass('js-step-disabled')
+  links.removeAttr('inert')
+
+  question = $(this).closest('[data-question-haltable]')
+
+  targets = []
+  targets.push($(question).find('.show-question [data-target="haltable"]'))
+  targets.push($('.js-next-link[data-target="haltable"]'))
+
+  $.map targets, (target) ->
+    state = $(target).attr('data-halt-state')
+    classValue = $(target).attr('data-halt-class-value')
+
+    if state == 'visible'
+      $(target).addClass(classValue)
+    else if state == 'hidden'
+      $(target).removeClass(classValue)
+
+  values = question.find('.show-question input.govuk-input').toArray().map((el) ->
+    value = $(el).val()
+    if value
+      Number(value)
+    else
+      null
+  )
+
+  if !(values.includes(null))
+    pairs = values.reduce (result, value, index, array) ->
+      [first, second] = array.slice(index, index + 2)
+      if first && second
+        result.push([first, second])
+
+      result
+    , []
+
+    check = pairs.every ([f, s]) -> s >= f
+
+    if !(check)
+      questions = $(document).find('.question-block')
+      index = questions.index(question)
+      $.map questions, (q, idx) ->
+        if idx > index
+          $(q).addClass('js-question-disabled')
+          $(q).attr('inert', true)
+
+      $.map targets, (target) ->
+        state = $(target).attr('data-halt-state')
+        classValue = $(target).attr('data-halt-class-value')
+
+        if state == 'visible'
+          $(target).removeClass(classValue)
+        else if state == 'hidden'
+          $(target).addClass(classValue)
+
+      links.addClass('js-step-disabled')
+      links.attr('inert', true)
+
 
 eachCons = (list, n, callback) ->
   return [] if n == 0

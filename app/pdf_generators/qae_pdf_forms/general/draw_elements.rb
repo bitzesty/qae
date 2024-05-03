@@ -132,6 +132,7 @@ module QaePdfForms::General::DrawElements
       #{bullet} You <b>must</b> complete the <b>online form</b>.
       #{bullet} The online form can be completed over a number of days.
       #{bullet} You can save and return to the online form at any point.
+      #{bullet} Collaborators can work on the form simultaneously if they are on different sections.
     3. Submit your application
       #{bullet} The deadline for submissions is <b>#{deadline}</b>.
       #{bullet}  You can still edit submitted applications up to this date.)
@@ -146,12 +147,15 @@ module QaePdfForms::General::DrawElements
       #{bullet} Plan enough time to prepare your responses, allowing time for refinement to ensure high-calibre submission before the deadline. Previous applicants reported taking at least 20 hours to complete the form, and a very few said they needed up to 50 hours.
       #{bullet} #{section} longer text responses - start planning these as soon as you can.
       #{bullet} You may want to spread your application over several weeks to allow time for collecting external evidence.
-      #{bullet} You may need to get your accountant to help with section D – allow sufficient time for that.
+      #{bullet} You may need to get your accountant to help with section D - allow sufficient time for that.
       #{bullet} All questions are mandatory unless specified otherwise, but if the question is not applicable to your organisation, you can state so, explaining why it is not applicable.
       #{bullet} Question numbers in the online version of the form aren't always consecutive, as we show and hide different questions depending on your previous answers.
       #{bullet} Your information is only shared with those involved in the assessment process.)
 
     render_text(block_2)
+
+    render_text("Use of web-based AI and editing tools in King's Awards applications:", size: 14, style: :bold)
+    render_text("We recognise that web-based AI and editing tools can greatly assist writing and editing and can help improve grammar and overall style. There may be issues to consider when entering information and generating text via web-based AI and online editing tools. We have included more guidance online in the 'Useful Application Info' section.")
 
     render_text("Need help?", size: 14, style: :bold)
 

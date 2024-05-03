@@ -35,9 +35,20 @@
             = pa.postcode
           p= pa.phone_number
           p= pa.post_nominals
+          br
+          label Dietary needs
+          p
+            - if pa.dietary_requirements.present?
+              = pa.dietary_requirements
+            - else
+              ' -
+          br
+          label Does the attendee require disabled access?
+          p= pa.disabled_access.presence || "-"
+
           - unless @form_answer.promotion?
             br
-            label Additional Information, for example, Wheelchair user
+            label Accessibility details (for example, wheelchair user or person hard of hearing)
             p
               - if pa.additional_info.present?
                 = pa.additional_info

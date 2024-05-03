@@ -92,6 +92,10 @@ class Reports::AllEntries
       method: :employees
     },
     {
+      label: "GovernmentSupport",
+      method: :government_support
+    },
+    {
       label: "CompanyRegNo",
       method: :business_reg_no
     },

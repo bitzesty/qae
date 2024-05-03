@@ -20,6 +20,9 @@
 #= require vendor/details.polyfill.js
 #= require js.cookie
 #= require_tree ./frontend
+#= require ./frontend/financial_summary_tables/fst_base.js
+#= require_tree ./frontend/financial_summary_tables
+#
 #= require offline
 
 safeParse = (str) ->
@@ -45,16 +48,16 @@ yearsFromDate = (input, years, format = false) ->
   months = (years * 12) - 1
 
   date = new Date(
-    input.getFullYear(), 
-    input.getMonth() + months, 
+    input.getFullYear(),
+    input.getMonth() + months,
     Math.min(
-      input.getDate(), 
+      input.getDate(),
       new Date(input.getFullYear(), input.getMonth() + months + 1, 0).getDate()
     )
   )
 
   if format
-    date.toLocaleDateString('en-GB') 
+    date.toLocaleDateString('en-GB')
   else
     date
 
@@ -153,6 +156,47 @@ jQuery ->
 
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
+
+  $(".js-conditional-question, .question-matrix").each () ->
+    question = $(this)
+    element = question.find('input[data-required-row-parent]').first()
+
+    requiredRowParent = element && element.attr('data-required-row-parent')
+    requiredRows = []
+    requiredRows.push(v.value) for own k, v of $('[id^="form['+requiredRowParent+'"]:checkbox:checked')
+
+    shouldHideRow = element[0] && element[0].hasAttribute('data-required-row-hide-unchecked')
+    if !!requiredRowParent
+      shouldDisableRow = document.querySelectorAll('[id^="form['+requiredRowParent+'"][type=checkbox]:checked').length == 0
+    else
+      shouldDisableRow = false
+
+    subquestions = question.find("input")
+    map = new Map()
+
+    for subquestion in subquestions
+      subq = $(subquestion)
+      row = subq.closest("tr")
+      key = subq.attr('id')
+
+      if requiredRowParent
+        row.show()
+        subq.prop('disabled', false)
+
+        if map.has(key)
+          cond = map.get(key)
+        else
+          cond = requiredRows.find (v) ->
+            key.includes(v)
+          map.set(key, cond)
+
+        if !cond && shouldHideRow
+          subq.val("")
+          if shouldDisableRow
+            subq.prop('disabled', true)
+          else
+            row.hide()
+
   # Simple conditional using a == b
   simpleConditionalQuestion = (input, clicked) ->
     answer = input.closest(".js-conditional-answer").attr("data-answer")
@@ -475,7 +519,7 @@ jQuery ->
 
     else if type == 'others'
       proportionInput?.value = ( colSums[cell.cellIndex] / (colSums[cell.cellIndex] + referenceValue) * 100).toFixed(2)
-    
+
     if isNaN(parseFloat(proportionInput?.value))
       proportionInput?.value = "0"
 

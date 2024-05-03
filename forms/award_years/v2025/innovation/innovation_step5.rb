@@ -49,6 +49,12 @@ class AwardYears::V2025::QaeForms
               <li>How environmental considerations and the efficient use of resources are built into your business, products or services.</li>
               <li>How you have reduced your carbon footprint.</li>
             </ul>
+            <p>
+              If you operate in an extractive or less environmentally sustainable industry, please explain how your business minimises the environmental impact. Where relevant, please list ISO accreditations.
+            </p>
+            <p>
+              Also, if your business uses packaging, please provide information on how you are working towards minimising the impact of the packaging on the environment.
+            </p>
           )
           pdf_context %(
             Examples of areas you may wish to describe:
@@ -60,9 +66,13 @@ class AwardYears::V2025::QaeForms
             \u2022 How environmental considerations and the efficient use of resources are built into your business, products or services.
 
             \u2022 How you have reduced your carbon footprint.
+
+            If you operate in an extractive or less environmentally sustainable industry, please explain how your business minimises the environmental impact. Where relevant, please list ISO accreditations.
+
+            Also, if your business uses packaging, please provide information on how you are working towards minimising the impact of the packaging on the environment.
           )
           rows 2
-          words_max 200
+          words_max 300
         end
 
         textarea :employees_relations, "Relations with your workforce." do
@@ -73,7 +83,8 @@ class AwardYears::V2025::QaeForms
               Examples of areas you may wish to describe:
             </p>
             <ul>
-              <li>If you have a code of conduct or workforce policies. For example, health and safety, training, welfare, whistleblowing and equal opportunities.</li>
+              <li>If you have a code of conduct or workforce policies. For example, health and safety, training, welfare, whistleblowing, diversity and inclusion and equal opportunities.</li>
+              <li>Your diversity and inclusion strategy, including data on how employees with protected characteristics are represented in your workforce. Provide evidence that these strategies are effective.</li>
               <li>If you offer any special working conditions. For example, flexible working or extended maternity pay.</li>
               <li>How you keep your workforce engaged. For example, communication, assessments, incentives and opportunities for career development.</li>
               <li>How you are training and developing your workforce. For example, if you provide mentoring or coaching, encourage or support them to learn new skills and gain new qualifications.</li>
@@ -83,7 +94,9 @@ class AwardYears::V2025::QaeForms
           pdf_context %(
             Examples of areas you may wish to describe:
 
-            \u2022 If you have a code of conduct or workforce policies. For example, health and safety, training, welfare, whistleblowing and equal opportunities.
+            \u2022 If you have a code of conduct or workforce policies. For example, health and safety, training, welfare, whistleblowing, diversity and inclusion and equal opportunities.
+
+            \u2022 Your diversity and inclusion strategy, including data on how employees with protected characteristics are represented in your workforce. Provide evidence that these strategies are effective.
 
             \u2022 If you offer any special working conditions. For example, flexible working or extended maternity pay.
 
@@ -94,7 +107,7 @@ class AwardYears::V2025::QaeForms
             \u2022 If you have work placements or take on apprentices, and if so, how many?
           )
           rows 2
-          words_max 200
+          words_max 300
         end
 
         textarea :partners_relations, "Relations with customers and suppliers." do

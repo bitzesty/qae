@@ -45,10 +45,9 @@ p.govuk-body
         li A school, college, university, or private training provider that provides skills training or education and are applying on the basis of the training that they provide for people from disadvantaged groups.
         li A charity that supports people from disadvantaged backgrounds through mentorship, work placements and campaigning and is applying on the basis of that work.
 
-= f.input question,
+= f.input :promoting_opportunity_involvement,
   as: :radio_buttons,
   label: "Select a statement that best describes your social mobility in relation to your whole organisation:",
-  collection: @eligibility.options_for_question(step),
   input_html: { class: 'promoting_opportunity_involvement_input'},
   wrapper_html: { role: "radiogroup", "id" => "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }
 

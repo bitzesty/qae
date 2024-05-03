@@ -1,6 +1,9 @@
 - if [@basic_eligibility, @award_eligibility].any? { |e| e && e.answers && e.answers.any? }
-  h4.govuk-heading-m class="govuk-!-margin-top-8"
+  h3.govuk-heading-m class="govuk-!-margin-top-8 govuk-body govuk-!-font-size-27 govuk-!-font-weight-bold"
     ' Your eligibility answers
+  .govuk-inset-text
+    p.govuk-body-l
+      | Please make sure that you focus on the same business entity across all questions.
   dl.govuk-summary-list
     = render "answers", eligibility: @basic_eligibility if @basic_eligibility
     = render "answers", eligibility: @award_eligibility

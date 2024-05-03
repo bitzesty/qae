@@ -141,9 +141,7 @@ class AwardYears::V2025::QaeForms
         header :overseas_markets_header, "Overseas Markets" do
           ref "C 4"
           context %(
-            <p class="govuk-body">
-              If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?
-            </p>
+            <p class="govuk-body">If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK (or Channel Islands or Isle of Man) exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?</p>
           )
         end
 
@@ -188,7 +186,7 @@ class AwardYears::V2025::QaeForms
           ]
         end
 
-        textarea :operate_model_benefits, "Explain your franchise or other business models and the rationale for this. Describe the benefits this brings to the UK." do
+        textarea :operate_model_benefits, "Explain your franchise or other business models and the rationale for this. Describe the benefits this brings to the UK (or Channel Islands or Isle of Man)." do
           classes "sub-question word-max-strict"
           sub_ref "C 5.1"
           required
@@ -196,66 +194,25 @@ class AwardYears::V2025::QaeForms
           words_max 300
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade due to COVID-19, and how you overcame them." do
-          ref "C 6"
-          classes "word-max-strict"
-          required
-          context %(
-            <ul>
-              <li>Describe the impact COVID-19 has had on your business and its performance.</li>
-              <li>How have you adapted or mitigated it, and with what results?</li>
-            </ul>
-          )
-          pdf_context %(
-            <p>
-              \u2022 Describe the impact COVID-19 has had on your business and its performance.
-
-              \u2022 How have you adapted or mitigated it, and with what results?
-            </p>
-          )
-          rows 2
-          words_max 200
-        end
-
-        textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years (due to factors other than COVID-19)." do
-          sub_ref "C 6.1"
+        textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
+          sub_ref "C 6"
           classes "sub-question word-max-strict"
           required
           context %(
             <ul>
-              <li>How have you adapted to or mitigated the impacts of recent national and global market conditions?</li>
+              <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
               <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
               <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
-            <ul>
+            </ul>
           )
           pdf_context %(
             <p>
-              \u2022 How have you adapted to or mitigated the impacts of recent national and global market conditions?
+              \u2022 How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?
               \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
               \u2022 Provide any contextual information or challenges you would like the assessors to consider.
             </p>
           )
           words_max 350
-        end
-
-        options :received_grant, "Did you receive any grant funding to support your export products/services?" do
-          ref "C 7"
-          required
-          yes_no
-          context %(
-            <p>
-              We ask this to help us carry out due diligence if your application is shortlisted.
-            </p>
-          )
-        end
-
-        textarea :funding_details, "Please provide dates, sources and levels of funding." do
-          classes "sub-question word-max-strict"
-          sub_ref "C 7.1"
-          required
-          rows 2
-          words_max 200
-          conditional :received_grant, "yes"
         end
       end
     end

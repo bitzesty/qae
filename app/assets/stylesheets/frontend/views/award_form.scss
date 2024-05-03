@@ -17,7 +17,7 @@
 .js-step-link {
   cursor: pointer;
 
-  &.step-errors {
+  &.step-errors:not(.js-step-disabled) {
     background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.75em;
     background-size: 16px 16px;
 
@@ -37,12 +37,16 @@
     }
   }
 
+  &.js-step-disabled a {
+    background: none !important;
+  }
+
   &.step-current a {
     cursor: default;
     color: $black;
   }
 
-  + ul li.step-errors {
+  + ul li.step-errors:not(.js-step-disabled) {
     background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.75em;
     background-size: 16px 16px;
 
@@ -61,6 +65,16 @@
     }
   }
 }
+
+.js-step-disabled,
+.js-question-disabled {
+  pointer-events: none;
+}
+
+.js-question-disabled {
+  opacity: 0.5;
+}
+
 
 .js-review-sections li ul {
   padding: 1em 0 0 0;

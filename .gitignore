@@ -24,6 +24,9 @@ sic_codes.csv
 coverage/*
 .env.production
 .env.development
+.env.*.local
+
+Procfile.local
 
 qae-dev_manifest.yml
 qae-dev-worker_manifest.yml

@@ -38,9 +38,9 @@ class QaeFormBuilder
       when "your_innovation"
         [about_section_C_innovation, word_limits, technical_language, supplementary_materials]
       when "your_international_trade"
-        [about_section_C_international_trade, small_organisations, covid_impact, word_limits, technical_language, supplementary_materials]
+        [about_section_C_international_trade, small_organisations, word_limits, technical_language, supplementary_materials]
       when "your_sustainable_development"
-        [about_section_C_sustainable_development, small_organisations, covid_impact_development, un_sdgs, supplementary_materials_development]
+        [about_section_C_sustainable_development, small_organisations, un_sdgs, supplementary_materials_development]
       when "innovation_commercial_performance"
         [about_section_D_innovation, financial_periods_innovation, estimated_figures]
       when "trade_commercial_performance"
@@ -126,7 +126,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "About section C",
         :context => [
-          "Read this section before planning the answers. Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.",
+          "Read this section before planning the answers. Try not to repeat points: instead, you can say that you are referring to a previous answer to another question and include that question number.",
           "Avoid using technical jargon."
         ]
       )
@@ -135,18 +135,18 @@ class QaeFormBuilder
     # Covid impact
     def covid_impact
       OpenStruct.new(
-        :header => "COVID-19 impact",
+        :header => "Impact of COVID-19 and other adverse events",
         :context => [
-          "If your growth was affected by COVID-19, this would be taken into consideration during the assessment process. Question C5 asks you to explain how your organisation responded to these challenges."
+          "If your growth was affected by adverse national and global events - such as COVID-19, the war in Ukraine, flooding, and wildfires - this will be taken into consideration during the assessment process. Question C6 allows you to explain how your organisation was affected and how you responded to these challenges."
         ]
       )
     end
 
     def covid_impact_development
       OpenStruct.new(
-        :header => "COVID-19 impact",
+        :header => "Impact of COVID-19 and other adverse events",
         :context => [
-          "We recognise that COVID-19 might have affected your growth plans and will take this into consideration during the assessment process."
+          "If your growth was affected by adverse national and global events - such as COVID-19, the war in Ukraine, flooding, and wildfires - this will be taken into consideration during the assessment process. Question D6 allows you to explain how your organisation was affected and how you responded to these challenges."
         ]
       )
     end
@@ -177,7 +177,7 @@ class QaeFormBuilder
         :header => "Supplementary materials",
         :context => [
           "To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.",
-          "Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
+          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
         ]
       )
     end
@@ -187,7 +187,7 @@ class QaeFormBuilder
         :header => "Supplementary materials",
         :context => [
           "To support your answers in this section, you can add up to three materials (documents or online links) in Section E. For assessors to review them, you must reference them by their names in your answers.",
-          "Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
+          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
         ]
       )
     end
@@ -298,7 +298,8 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "Group entries",
         :context => [
-          "A parent company making a group entry should include the trading figures of all UK members of the group."
+          "A parent company making a group entry should include the trading figures of all UK members of the group.",
+          "If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK)."
         ]
       )
     end

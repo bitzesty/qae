@@ -32,8 +32,8 @@
                 input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data [
                   type="number"
                   pattern="[0-9]*"
-                  name=question.input_name(suffix: suffix) 
-                  value=question.input_value(suffix: suffix).to_s.delete(",") 
+                  name=question.input_name(suffix: suffix)
+                  value=question.input_value(suffix: suffix).to_s.delete(",")
                   id=question.input_name(suffix: suffix)
                   autocomplete="off"
                   *possible_read_only_ops
@@ -45,12 +45,16 @@
                 input.govuk-input.gov-input--width-4.js-trigger-autosave.js-form-financial-data [
                   type="#{type}"
                   pattern="#{'[0-9]*' if type == 'number'}"
-                  name=question.input_name(suffix: suffix) 
-                  value=question.input_value(suffix: suffix).to_s.delete(",") 
-                  id=question.input_name(suffix: suffix) 
-                  autocomplete="off" 
+                  name=question.input_name(suffix: suffix)
+                  value=question.input_value(suffix: suffix).to_s.delete(",")
+                  id=question.input_name(suffix: suffix)
+                  autocomplete="off"
                   *possible_read_only_ops
                   *minmax_ops
                   aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{suffix}" : nil )
                 ]
       .clear
+
+      div.if-no-js-hide
+        - warning_visible = question.halted? && question.fields_count == c.years
+        = render "qae_form/question_halted_alert", question: question, value: c.years, visible: warning_visible

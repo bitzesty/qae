@@ -269,6 +269,11 @@ class MailRenderer
       "buckingham_palace_attendees_invite",
       "%A, %-d %B %Y"
     )
+    reception_date_time = deadline_time("buckingham_palace_attendees_invite")
+    assigns[:reception_date_with_day_and_time] = deadline_str(
+      "buckingham_palace_attendees_invite",
+      "%A, %-d %B %Y, #{reception_date_time}"
+    )
 
     reception_deadline_time = deadline_time("buckingham_palace_reception_attendee_information_due_by")
     assigns[:reception_deadline_with_day_and_time] = deadline_str(

@@ -8,10 +8,10 @@ class PalaceInvitesController < ApplicationController
       @invite_form.update(palace_invite_attributes.to_h.merge({submitted: params[:submit].present?}))
       log_event
       if @invite.submitted?
-        flash.notice = "Buckingham Palace Attendee details are successfully submitted!"
+        flash.notice = "Windsor Castle Attendee details have been successfully submitted."
         redirect_to edit_palace_invite_url(id: @invite.token)
       else
-        flash.notice = "Buckingham Palace Attendee details have been successfully updated"
+        flash.notice = "Windsor Castle Attendee details have been successfully updated."
         redirect_to edit_palace_invite_url(id: @invite.token)
       end
     else
@@ -41,6 +41,8 @@ class PalaceInvitesController < ApplicationController
           :address_4,
           :postcode,
           :phone_number,
+          :disabled_access,
+          :dietary_requirements,
           :additional_info,
           :has_royal_family_connections,
           :royal_family_connection_details,

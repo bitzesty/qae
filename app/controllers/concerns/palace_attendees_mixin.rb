@@ -86,6 +86,8 @@ module PalaceAttendeesMixin
       :phone_number,
       :has_royal_family_connections,
       :royal_family_connection_details,
+      :dietary_requirements,
+      :disabled_access,
       :additional_info,
       :palace_invite_id,
       :id

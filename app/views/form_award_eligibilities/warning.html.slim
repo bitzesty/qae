@@ -1,0 +1,15 @@
+- title "Eligibility: #{t("eligibility_form.title.#{@form_answer.award_type}")}"
+
+h1.govuk-heading-xl = t("eligibility_form.title.#{@form_answer.award_type}")
+
+- side_bar_menu_height = @form_answer.innovation? ? "min-height-1300" : "min-height-800"
+div[class="steps-progress-container #{side_bar_menu_height}"]
+  = render "steps_progress_bar", cant_access_future: true, previous_questions: step
+  .steps-progress-content
+    div
+      article.group role="article"
+        h2.govuk-heading-l = "Eligibility"
+        .govuk-inset-text
+          p.govuk-body-l
+            | When answering eligibility questions, please make sure that you focus on the same business entity across all questions.
+        = link_to "Continue to eligibility questions", form_award_eligibility_path(form_id: @form_answer.id), class: "govuk-button"

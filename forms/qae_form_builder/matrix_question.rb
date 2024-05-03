@@ -214,8 +214,9 @@ class QaeFormBuilder
       @q.column_widths = widths
     end
 
-    def required_rows question_key
+    def required_rows question_key, **opts
       @q.required_row_parent = question_key
+      @q.required_row_options = opts
     end
   end
 
@@ -231,6 +232,7 @@ class QaeFormBuilder
                   :values,
                   :column_widths,
                   :required_row_parent,
+                  :required_row_options,
                   :required_rows,
                   :auto_totals_column
 
@@ -240,6 +242,7 @@ class QaeFormBuilder
       @values = []
       @column_widths = nil
       @required_row_parent = nil
+      @required_row_options = Hash[]
       @required_rows = []
     end
 

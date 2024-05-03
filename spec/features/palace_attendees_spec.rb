@@ -56,7 +56,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         expect(page).to_not have_link("Palace Attendees")
 
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect(page).to have_no_content("Buckingham Palace Attendee")
+        expect(page).to have_no_content("Windsor Castle Attendee")
 
         settings.email_notifications.create!(
           kind: "buckingham_palace_invite",
@@ -64,7 +64,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         )
 
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect(page).to have_content("Buckingham Palace Attendee")
+        expect(page).to have_content("Windsor Castle Attendee")
       end
     end
 
@@ -80,7 +80,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
       it "should reject applicant with access denied message" do
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect_to_see "Buckingham Palace Attendee"
+        expect_to_see "Windsor Castle Attendee"
         expect(page).to have_no_content("Save")
       end
     end
@@ -108,20 +108,20 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "First name", with: my_first_name
 
         expect {
-          click_on "Confirm Attendee"
+          click_on "Confirm and submit attendee's details"
         }.not_to change {
           palace_invite.reload.submitted
         }
 
         expect_to_see "This field cannot be blank"
-        expect_to_see_no "Buckingham Palace Attendee details are successfully submitted!"
+        expect_to_see_no "Windsor Castle Attendee details have been successfully submitted."
 
         click_on "Save"
 
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
 
-        expect_to_see "Buckingham Palace Attendee details have been successfully updated"
+        expect_to_see "Windsor Castle Attendee details have been successfully updated."
       end
     end
 
@@ -130,19 +130,22 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Title", with: title
         fill_in "First name", with: my_first_name
         fill_in "Surname", with: "Test"
-        fill_in "Job Title / Position", with: "Test"
-        fill_in "Decorations / Post Nominals", with: "Test"
-        choose "Yes"
+        fill_in "Job title/position", with: "Test"
+        fill_in "Decorations/post-nominals", with: "Test"
+        royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]', match: :first)
+        royal_family_connections.set(true)
         fill_in "Please provide details of your or your organisation's associations with the Royal Family.", with: "I am the son of the Queen"
-        fill_in "Address 1", with: "Test"
-        fill_in "Address 2", with: "Test"
-        fill_in "Address 3", with: "Test"
-        fill_in "Address 4", with: "Test"
+        fill_in "Address line 1", with: "Test"
+        fill_in "Address line 2", with: "Test"
+        fill_in "City or town", with: "Test"
+        fill_in "County", with: "Test"
         fill_in "Postcode", with: "Test"
         fill_in "Telephone number", with: "Test"
+        disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)
+        disabled_access.set(true)
 
         expect {
-          click_on "Confirm Attendee"
+          click_on "Confirm and submit attendee's details"
         }.to change {
           palace_invite.reload.submitted
         }
@@ -150,7 +153,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
 
-        expect_to_see "Buckingham Palace Attendee details are successfully submitted!"
+        expect_to_see "Windsor Castle Attendee details have been successfully submitted."
       end
     end
   end

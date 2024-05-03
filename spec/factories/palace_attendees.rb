@@ -11,6 +11,7 @@ FactoryBot.define do
     address_4 { "MyString" }
     postcode { "MyString" }
     phone_number { "MyString" }
+    disabled_access { false }
     additional_info { "MyText" }
     has_royal_family_connections { false }
     association :palace_invite

@@ -127,6 +127,9 @@ class AwardYears::V2025::QaeForms
           sub_ref "C 1.5"
           required
           yes_no
+          context %(
+            <p>If your organisation is based in the Channel Islands or Isle of Man, answer if the whole of your innovation was conceived and developed in the Channel Islands or Isle of Man (if parts of it were conceived or developed in the UK, answer "No").</p>
+          )
         end
 
         textarea :innovation_other_countries_it_was_developed, "Describe in what other countries and, if applicable, by what parties it was developed." do
@@ -239,30 +242,6 @@ class AwardYears::V2025::QaeForms
           rows 2
           words_max 100
         end
-
-        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as an innovation loan, in relation to your innovation?" do
-          sub_section :innovation_background_header
-          classes "sub-question"
-          sub_ref "C 1.9"
-          required
-          yes_no
-          context %(
-            <p>
-              To receive grant funding or other government support, usually the company must go through a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance and the assessors appreciate that as well.
-            </p>
-          )
-        end
-
-        textarea :innovation_grant_funding_sources, "Please give details of dates, sources and levels of funding." do
-          sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
-          sub_ref "C 1.9.1"
-          required
-          conditional :innovations_grant_funding, :yes
-          rows 3
-          words_max 250
-        end
-
 
         header :innovation_timeline_header, "Innovation development" do
           ref "C 2"

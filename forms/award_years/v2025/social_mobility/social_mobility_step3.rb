@@ -18,7 +18,7 @@ class AwardYears::V2025::QaeForms
               Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
             </p>
             <p class='govuk-body'>
-            The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+            The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups" further down in this section.
             </p>
             <p class='govuk-body'>
               Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
@@ -72,7 +72,7 @@ class AwardYears::V2025::QaeForms
             </p>
 
             <p class="govuk-body">
-              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement.
             </p>
 
             <h3 class="govuk-heading-m">Evidence</h3>
@@ -85,6 +85,10 @@ class AwardYears::V2025::QaeForms
               The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
             </p>
 
+            <p class="govuk-body">
+              Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
+            </p>
+
             <h3 class="govuk-heading-m">Supporting materials </h3>
 
             <p class="govuk-body">
@@ -92,7 +96,7 @@ class AwardYears::V2025::QaeForms
             </p>
 
             <p class="govuk-body">
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             </p>
 
             <h3 class="govuk-heading-m">Small organisations</h3>
@@ -104,7 +108,7 @@ class AwardYears::V2025::QaeForms
             <h3 class="govuk-heading-m">Small initiatives</h3>
 
             <p class="govuk-body">
-              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
+              The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
             </p>
 
             <p class="govuk-body">
@@ -130,7 +134,7 @@ class AwardYears::V2025::QaeForms
 
               Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
 
-              The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+              The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups" further down in this section.
 
               Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
 
@@ -190,7 +194,7 @@ class AwardYears::V2025::QaeForms
 
               This is not an exhaustive list. However, if you are putting forward a group that is not on this list, you will have to explain why you believe the group you support should be considered disadvantaged.
 
-              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement.
             )],
 
             [:bold, "Evidence"],
@@ -198,13 +202,15 @@ class AwardYears::V2025::QaeForms
               Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
 
               The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+
+              Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
             )],
 
             [:bold, "Supporting materials"],
             [:normal, %(
               To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
 
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             )],
 
             [:bold, "Small organisations"],
@@ -214,7 +220,7 @@ class AwardYears::V2025::QaeForms
 
             [:bold, "Small initiatives"],
             [:normal, %(
-              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
+              The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
 
               If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals.
             )],
@@ -509,10 +515,14 @@ class AwardYears::V2025::QaeForms
         header :disadvantaged_participants_header, "The impact on participants." do
           ref "C 5"
           context %(
-            <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups at the start of this section.</p>
-            <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
+            <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups" at the start of this section.</p>
+
             <p class="govuk-body">Your answer should consider the goals or targets that you have outlined in question C4.</p>
-            <p class="govuk-body">Please note, to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative.</p>
+
+            <p class="govuk-body">Please note that to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative. If your organisation is based in the Channel Islands or Isle of Man, for the purpose of this award application, you should count only the participants who are located there (do not count participants who are in the UK).</p>
+
+            <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
+
             <p class="govuk-body">Provide totals for at least the last two years (full 24 months) and no more than the last five years. Please cover the same number of years in all your answers to ensure consistency across all of them.</p>
           )
         end
@@ -522,8 +532,15 @@ class AwardYears::V2025::QaeForms
           ref "C 5.1"
           required
           context %(
-            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
+            <p><em>You must answer C2 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
+          pdf_context_with_header_blocks [
+            [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
+          ]
 
           auto_totals_column true
           corner_label "Participants"
@@ -543,10 +560,17 @@ class AwardYears::V2025::QaeForms
           classes "sub-question question-matrix"
           ref "C 5.2"
           required
-          required_rows :initiative_activities
+          required_rows :initiative_activities, hide_unchecked: true
           context %(
-            <p>When answering this question, please refer to the guidance under C5.</p>
+            <p><em>You must answer C2 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
+          pdf_context_with_header_blocks [
+            [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
+          ]
           corner_label "Activity type"
 
           x_headings [2020, 2021, 2022, 2023, 2024]
@@ -565,13 +589,51 @@ class AwardYears::V2025::QaeForms
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
-        matrix :disadvantaged_participants_in_group_year, "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
-          classes "sub-question question-matrix"
+        checkbox_seria :disadvantaged_participants, "What disadvantaged groups does your initiative support?" do
+          classes "question-limited-selections"
           sub_ref "C 5.3"
           required
           context %(
-            <p>When answering this question, please refer to the guidance under C5.</p>
+            <p><em>Select all that apply.</em></p>
           )
+          check_options [
+            ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["people_low_incomes", "People on low incomes"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
+            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered", "People recovering or who have recovered from addiction "],
+            ["domestic_violence", "Survivors of domestic violence"],
+            ["military_veterans", "Military veterans"],
+            ["ex_offenders", "Ex-offenders"],
+            ["families_prisoners", "Families of prisoners"],
+            ["others", "Other disadvantaged group"]
+          ]
+        end
+
+        matrix :disadvantaged_participants_in_group_year, "Provide the number of participants in each disadvantaged group where your initiative has resulted in employment opportunities." do
+          classes "sub-question question-matrix"
+          sub_ref "C 5.4"
+          required
+          required_rows :disadvantaged_participants, hide_unchecked: true
+          context %(
+            <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
+          )
+          pdf_context_with_header_blocks [
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
+          ]
           corner_label "Disadvantaged group type"
 
           x_headings [2020, 2021, 2022, 2023, 2024]
@@ -601,24 +663,29 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :disadvantaged_group_not_in_list, "If you are putting forward a group that is not on this list, please provide details and explain why you believe the group you support should be considered disadvantaged." do
-          sub_ref "C 5.3.1"
+          sub_ref "C 5.4.1"
           context %(
             <p><em>
-              Answer this question if you provided numbers for 'Other disadvantaged group' in question C5.3.
+              Answer this question if you provided numbers for 'Other disadvantaged group' in question C5.4.
             </em></p>
           )
           words_max 300
         end
 
-        matrix :disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative has resulted in employment opportunities for them." do
+        matrix :disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group where your initiative has resulted in educational opportunities." do
           classes "sub-question question-matrix"
-          sub_ref "C 5.4"
+          sub_ref "C 5.5"
           required
+          required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
-            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
+            <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "When answering this question, please refer to the guidance under C5."]
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -652,23 +719,28 @@ class AwardYears::V2025::QaeForms
           column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
         end
 
-        textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.4, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
+        textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.5, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
           classes "sub-question"
-          sub_ref "C 5.4.1"
+          sub_ref "C 5.5.1"
           required
           words_max 150
         end
 
         matrix :disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your initiative resulted in educational opportunities for them." do
           classes "sub-question question-matrix"
-          sub_ref "C 5.5"
+          sub_ref "C 5.6"
           required
-          pdf_context_with_header_blocks [
-            [:italic, "When answering this question, please refer to the guidance under C5."],
-          ]
+          required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
-            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
+            <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
+          pdf_context_with_header_blocks [
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
+          ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
           others_label "Others receiving support from you who are not disadvantaged who benefited"
@@ -703,14 +775,19 @@ class AwardYears::V2025::QaeForms
 
         matrix :disadvantaged_groups_opportunities_numbers, "Provide the number of participants in each disadvantaged group that your initiative resulted in other opportunities for them." do
           classes "sub-question question-matrix"
-          sub_ref "C 5.6"
+          sub_ref "C 5.7"
           required
-          pdf_context_with_header_blocks [
-            [:italic, "When answering this question, please refer to the guidance under C5."],
-          ]
+          required_rows :disadvantaged_participants, hide_unchecked: true
           context %(
-            <p><em>When answering this question, please refer to the guidance under C5.</em></p>
+            <p><em>You must answer C5.3 before answering this question. Also, please refer to the guidance under C5.</em></p>
+            <p>
+              If none, please enter "0".
+            </p>
           )
+          pdf_context_with_header_blocks [
+            [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
+            [:normal, "If none, please enter '0'."]
+          ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
           others_label "Others receiving support from you who are not disadvantaged who benefited"
@@ -745,7 +822,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :disadvantaged_groups_numbers_explained, "Explain how you collected the impact numbers." do
           classes "sub-question"
-          sub_ref "C 5.7"
+          sub_ref "C 5.8"
           required
           context  %(
             <p>This may include but is not limited to internal records, third-party evidence, survey responses.</p>
@@ -755,7 +832,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_qualitative_impact, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
           classes "sub-question"
-          sub_ref "C 5.8"
+          sub_ref "C 5.9"
           required
           context %(
             <p>Provide qualitative data (for example, people’s stories as well as comments, feedback from participants and key stakeholders) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
@@ -782,7 +859,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_feedback, "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
           classes "sub-question"
-          sub_ref "C 5.9"
+          sub_ref "C 5.10"
           required
           context %(
             <ul>

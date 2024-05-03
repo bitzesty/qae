@@ -18,6 +18,7 @@ describe "Eligibility forms" do
       new_application("International Trade Award")
       # fill_in("nickname", with: "trade nick")
       click_button("Start eligibility questionnaire")
+      click_link("Continue to eligibility questions")
 
       form_choice([
         "Yes",
@@ -44,6 +45,7 @@ describe "Eligibility forms" do
       new_application("Innovation Award")
       # fill_in("nickname", with: "innovation nick")
       click_button("Save and start eligibility questionnaire")
+      click_link("Continue to eligibility questions")
       form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes", "Yes", "Yes", "Yes"])
 
       fill_in("How many innovative products, services, business models or processes would you like to enter for the award?", with: 2)
@@ -63,6 +65,7 @@ describe "Eligibility forms" do
       new_application("Sustainable Development Award")
       # fill_in "nickname", with: "development nick"
       click_button "Start eligibility questionnaire"
+      click_link("Continue to eligibility questions")
       form_choice([
         "Yes",
         "Yes",

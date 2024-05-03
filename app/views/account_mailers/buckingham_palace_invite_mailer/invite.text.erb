@@ -1,32 +1,35 @@
-#The King's Awards for Enterprise Reception at Buckingham Palace, <%= @reception_date.try(:strftime, "%A %-d %B %Y") %>.
+#The King's Awards for Enterprise Reception at Windsor Castle, <%= @reception_date.try(:strftime, "%A %-d %B %Y") %>.
 
 Dear <%= @name %>,
 
-We are delighted to announce that His Majesty The King will be hosting a Reception for The King's Awards for Enterprise Recipients at Buckingham Palace on the evening of <%= @reception_date.try(:strftime, "%A %-d %B %Y") %>. This Reception will celebrate the achievements of the 2023 Awardees.
+We are delighted to announce that a Reception will be held at Windsor Castle on <%= @reception_date.try(:strftime, "%A, %-d %B %Y, at #{@reception_date_time}") %> to celebrate the achievements of the recipients of The King's Awards for Enterprise 2024.
 
-Following the success of last year's Reception, each company is able to nominate one representative to attend. Unfortunately, the number of guests cannot be increased.
+Each company is able to nominate one representative to attend. The number of guests may not be increased.
 
-Please read carefully the following important notices and guidance as key deadlines are included:
+Specific details about the event, including arrangements for special requirements and parking will be included with the formal invitation, which The Royal Household will send to guests approximately four weeks prior to the event.
 
-#Important Notices:
+Please read the following important notices carefully, as key deadlines are included:
 
-* We kindly ask that you do not publicise the date of this event in advance.
-* Please note that no mobile phones, cameras or electronic devices should be used during the Reception. However, there will be a professional photographer present and details of how to access the pictures will be provided on the evening.
-* As you will appreciate, it will sadly not be possible for His Majesty The King or other Members of The Royal Family to meet every guest. There may be a small number of groups at the Reception, and Members of The Royal Family will circulate throughout, meeting as many Awardees as possible.
+#Important notices:
 
-#Submission of Guest Details
+* We kindly ask that you do not publicise the date or time of this event in advance.
+* Guests will arrive at the Castle from 5:15 pm, and entry will not be considered after 5:45 pm.
+* Shuttle buses and buggies will be available on entry to support those with any mobility issues on the evening.
+* Cloakrooms and restrooms are available as guests enter the Castle.
+* Please note that mobile phones, cameras or electronic devices should not be used during the Reception. However, a host photographer will be present, and details of how to access the images captured will be provided on the evening.
+* Members of The Royal Family will circulate throughout the Reception, although it may not be possible for every guest to be met in person.
 
-The nominated guest must be an employed representative of the successful company. To submit their details, please fill in the palace invite form:
+#Submission of guest details:
+
+The nominated guest must be an employed representative of the successful company. To submit their details, please fill in the following online invitation form - we can only accept details via this form, not by email:
 <%= edit_palace_invite_url(id: @token) %>
 
-#Please ensure the address details are those of the company representative being invited to the Reception and not of the person or agent submitting the details.
+Please ensure the address details are those of the company representative being invited to the Reception and not of the person or agent submitting the details.
 
 #I would be grateful if you could provide the requested information no later than <%= @reception_deadline.try(:strftime, "#{@reception_deadline_time} on %A, %-d %B %Y") %>.
-
-Specific details about the event will be included with the invitation, which the Royal Household will send to guests approximately four weeks prior to the event.
 
 Yours sincerely,
 
 Nichola Bruno
 The Secretary
-The King's Awards Office
+The King's Awards for Enterprise Office
