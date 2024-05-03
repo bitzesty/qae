@@ -10,9 +10,9 @@ graph LR
         PostgreSQL["PostgreSQL Database"]
         Redis["Redis Cache"]
 
-        KAE -->|stores data in| S3
+        KAE -->|stores files in| S3
         KAE -->|uses| PostgreSQL
-        KAE -->|caches data in| Redis
+        KAE -->|background jobs| Redis
         Vigilion -->|scans files in| S3
     end
     CDN[AWS CloudFront CDN]
