@@ -54,7 +54,7 @@ class Eligibility::Mobility < Eligibility
 
   property :evidence_of_impact,
             boolean: true,
-            label: "Are you able to provide evidence of the impact of your promoting opportunity (through social mobility) activities, including the diversity data?",
+            label: "Are you able to provide evidence of the impact of your promoting opportunity (through social mobility) activities, including diversity data?",
             accept: :true,
             hint: %(
               <div class='govuk-hint'>
@@ -65,7 +65,7 @@ class Eligibility::Mobility < Eligibility
                   The evidence could include but is not limited to internal records, third-party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
                 </p>
                 <p>
-                  Please note that you will need to provide the diversity data about the people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
+                  Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
                 </p>
               </div>
             )

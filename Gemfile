@@ -120,7 +120,7 @@ gem 'nilify_blanks'
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator
-gem 'curb', '0.9.10'
+gem 'curb', '~> 1.0.5'
 
 # Web server
 gem 'puma', '~> 6.4.2'
@@ -136,9 +136,6 @@ gem 'bootscale', require: false
 
 # IE 8 and lower detection
 gem 'browser', '6.0.0'
-
-# Simple colored logging
-gem 'shog'
 
 # Healthchecks
 gem 'rails-healthcheck'
@@ -172,11 +169,6 @@ group :development, :test do
   gem "pry-byebug"
   gem 'rails-controller-testing'
   gem "selenium-webdriver"
-end
-
-group :production do
-  # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
-  gem 'rails_12factor', '~> 0.0.3'
 end
 
 group :test do
