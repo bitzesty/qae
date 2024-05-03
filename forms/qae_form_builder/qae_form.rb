@@ -18,11 +18,11 @@ class QaeFormBuilder
       QaeFormDecorator.new self, options
     end
 
-    def step(title, short_title, options = {}, &))
+    def step(title, short_title, options = {}, &)
       step = Step.new self, title, short_title, options
 
       builder = StepBuilder.new step
-      builder.instance_eval((&)) if block
+      builder.instance_eval(&) if block
       @steps << step
       step
     end
