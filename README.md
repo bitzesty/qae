@@ -1,27 +1,44 @@
-## ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) King's Awards for Enterprise
+# ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) King's Awards for Enterprise
 
 "QAE" is the application which powers the application process for The King's Awards for Enterprise.
 
-# Setup
+## Development
 
-## Pre-requisites
+### Prerequisites
 
 - Ruby 3.2.2
-- `gem install bundler -v 2.5.6`
-- Rails 7.0.5
-- Postgresql 9.5+
-- Redis 2.8
-- Cloudfountry Client
+  - `gem install bundler -v 2.5.6`
+- Node.js
+- Rails 7.0
+- Postgresql 9.5+ with `hstore` extension
+- Redis 4+
 
-### Running application
+### Running the application
+
+There are environment variables that you may want to modify in the `.env` file.
+
+```
+cp .env.example .env
+```
+
+Ensure the postgres database and redis server are running.
 
 ```
 ./bin/setup
+```
+
+Run the application with the following commands:
+
+```
 bundle exec rails s
 bundle exec sidekiq -C config/sidekiq.yml
 ```
 
-If you're running this on your local dev setup, start redis first before starting sidekiq
+or with foreman:
+
+```
+foreman start
+```
 
 ### Running with docker
 
@@ -29,45 +46,41 @@ If you're running this on your local dev setup, start redis first before startin
     $ cp docker-compose.yml.local docker-compose.yml
     $ docker-compose up
 
-#### Help
+### Installing Poxa
 
-If you see the following error:
+If you need to test collaborators editing the application at the same time, install [poxa](https://github.com/bitzesty/poxa).
 
-```
-ActiveRecord::StatementInvalid: PG::UndefinedFile: ERROR:  could not open extension control file "/usr/share/postgresql/9.3/extension/hstore.control": No such file or directory
-: CREATE EXTENSION IF NOT EXISTS "hstore"
-```
+### Installing Malware Scanning
 
-This means, that `hstore postgresql` extension needs to be installed:
+Files are uploaded to S3 and then scanned with ClamAV via the Vigilion service.
 
-```
-sudo apt-get install postgresql-contrib
-```
+If you need to test malware scanning locally, install [Vigilion](https://github.com/bitzesty/vigilion-scanner) and set the `VIGILION_ACCESS_KEY_ID` and `VIGILION_SECRET_ACCESS_KEY` and `DISABLE_VIRUS_SCANNER` to `false` in the `.env` file.
 
-### Install Poxa
+### Running the tests
 
-If you need to test collaborators editing the application at the same time, install poxa.
+    $ bundle exec rspec
 
-# Deploying
+## Deploying
 
-Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging, production). For more details see the Github Actions.
+Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging). Production deployment is a manually triggered action (production branch). For more details see the Github Actions.
 
 CF based GOV.UK PaaS is used for hosting [https://cloud.service.gov.uk](https://www.cloud.service.gov.uk/).
 
-# License
+## License
 
-qae is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
+QAE is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
 software, and may be redistributed under the terms specified in the
 [LICENSE] file.
 
 [license]: https://github.com/bitzesty/qae/blob/master/LICENSE
 
-# About Bit Zesty
+## Helpful links
+- [GDS service standards](https://www.gov.uk/service-manual/service-standard)
+- [GDS design principles](https://www.gov.uk/design-principles)
+
+## About Bit Zesty
 
 ![Bit Zesty](https://bitzesty.com/wp-content/uploads/2017/01/logo_dark.png)
 
-qae is maintained by Bit Zesty LTD.
-The names and logos for Bit Zesty are trademarks of Bit Zesty LTD.
+QAE is maintained by [Bit Zesty Limited](https://bitzesty.com/).
 
-See [our other projects](https://bitzesty.com/client-stories/) or
-[hire us](https://bitzesty.com/contact/) to design, develop, and support your product or service.
