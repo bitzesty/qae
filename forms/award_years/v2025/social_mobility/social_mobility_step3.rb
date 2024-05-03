@@ -198,6 +198,8 @@ class AwardYears::V2025::QaeForms
               Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
 
               The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+
+              Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
             )],
 
             [:bold, "Supporting materials"],
