@@ -107,9 +107,7 @@ gem 'redis-store', "~> 1.4"
 # We use it for communicating with api.debounce.io
 gem 'rest-client'
 
-# We are using Pusher with Poxa server
-# for collaborators application edit stuff
-#
+# We are using Pusher with Poxa server for realtime collaborator editing
 gem 'pusher', '0.15.2'
 
 # Text Search
@@ -142,6 +140,7 @@ gem 'browser', '6.0.0'
 # Simple colored logging
 gem 'shog'
 
+# Healthchecks
 gem 'rails-healthcheck'
 
 # An implementation of Matrix and Vector classes.
