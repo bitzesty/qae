@@ -14,7 +14,7 @@ module CaseSummaryHelper
   def wrap_case_summary(summary, title = "Case Summary")
     OpenStruct.new(
       assessment: summary,
-      title:,
+      title: title,
     )
   end
 
