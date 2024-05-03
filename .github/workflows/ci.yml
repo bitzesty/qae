@@ -74,7 +74,11 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
       - name: Lint Ruby files
-        run: bundle exec rubocop --require rubocop-rails --format github
+        run: |
+          sudo apt update
+          sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+          bundle install --jobs 4 --retry 3
+          bundle exec rubocop --require rubocop-rails --format github
   deploy_dev:
     needs: [test]
     if: github.ref == 'refs/heads/main'
