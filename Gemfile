@@ -119,10 +119,6 @@ gem 'active_hash'
 gem 'virtus'
 gem 'nilify_blanks'
 
-# We use it for sending API requests to Sendgrid in
-# AdvancedEmailValidator
-gem 'curb', '~> 1.0.5'
-
 # Web server
 gem 'puma', '~> 6.4.2'
 
