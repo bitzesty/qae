@@ -52,7 +52,7 @@ If you need to test collaborators editing the application at the same time, inst
 
 ### Installing Malware Scanning
 
-Files are uploaded to S3 and then scanned with ClamAV via the vigilion service.
+Files are uploaded to S3 and then scanned with ClamAV via the Vigilion service.
 
 If you need to test malware scanning locally, install [Vigilion](https://github.com/bitzesty/vigilion-scanner) and set the `VIGILION_ACCESS_KEY_ID` and `VIGILION_SECRET_ACCESS_KEY` and `DISABLE_VIRUS_SCANNER` to `false` in the `.env` file.
 
