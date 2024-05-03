@@ -3,7 +3,7 @@ class Admin::SessionChecksController < ActionController::Base
 
   def show
     if session_is_valid?
-      render json: { elapsed: }, status: :ok
+      render json: { elapsed: elapsed }, status: :ok
     else
       head :unauthorized
     end
