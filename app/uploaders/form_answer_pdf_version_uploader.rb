@@ -5,7 +5,7 @@ class FormAnswerPdfVersionUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def extension_whitelist
+  def extension_allowlist
     %w(pdf)
   end
 
