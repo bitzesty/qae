@@ -5,8 +5,8 @@ class Form::SupportLettersController < Form::BaseController
     @support_letter = @form_answer.support_letters.new(
       support_letter_params.merge(
         user_id: current_user.id,
-        manual: true
-      )
+        manual: true,
+      ),
     )
 
     attachment = SupportLetterAttachment.new(attachment_params)
@@ -44,7 +44,7 @@ class Form::SupportLettersController < Form::BaseController
     params[:support_letter].permit(
       :first_name,
       :last_name,
-      :relationship_to_nominee
+      :relationship_to_nominee,
     )
   end
 
@@ -68,7 +68,7 @@ class Form::SupportLettersController < Form::BaseController
       first_name: @support_letter.first_name,
       last_name: @support_letter.last_name,
       relationship_to_nominee: @support_letter.relationship_to_nominee,
-      letter_of_support: @support_letter.support_letter_attachment.id
+      letter_of_support: @support_letter.support_letter_attachment.id,
     }
 
     letters << new_letter
@@ -88,10 +88,6 @@ class Form::SupportLettersController < Form::BaseController
   end
 
   def support_letters_doc
-    if @form_answer.document["supporter_letters_list"].present?
-      @form_answer.document["supporter_letters_list"]
-    else
-      []
-    end
+    @form_answer.document["supporter_letters_list"].presence || []
   end
 end

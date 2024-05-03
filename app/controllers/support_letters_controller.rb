@@ -2,7 +2,7 @@ class SupportLettersController < ApplicationController
   before_action :load_letter_and_check_access_key
 
   expose(:supporter) do
-    Supporter.find_by_access_key(params[:access_key])
+    Supporter.find_by(access_key: params[:access_key])
   end
 
   expose(:support_letter) do
@@ -12,7 +12,7 @@ class SupportLettersController < ApplicationController
         last_name: supporter.last_name,
         relationship_to_nominee: supporter.relationship_to_nominee,
         form_answer: supporter.form_answer,
-        user: supporter.user
+        user: supporter.user,
       )
   end
 
@@ -32,7 +32,7 @@ class SupportLettersController < ApplicationController
       if supporter.support_letter && supporter.support_letter.persisted? && action_name != "show"
         redirect_to support_letter_path(access_key: supporter.access_key),
                     notice: "Support Letter has been submitted already!"
-        return
+        nil
       end
     else
       head 404
@@ -52,7 +52,7 @@ class SupportLettersController < ApplicationController
         :city,
         :country,
         :postcode,
-        :body
+        :body,
       )
     else
       {}

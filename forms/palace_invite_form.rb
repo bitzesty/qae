@@ -15,9 +15,7 @@ class PalaceInviteForm
     end
 
     if attributes[:submitted].present?
-      if valid? && invite.save
-        invite.update_column(:submitted, true)
-      end
+      invite.update_column(:submitted, true) if valid? && invite.save
     else
       invite.save(validate: false)
     end
@@ -25,9 +23,9 @@ class PalaceInviteForm
 
   def valid?
     invite.valid? &&
-    palace_attendees.count > 0 &&
-    palace_attendees.count <= 2 &&
-    palace_attendees.all?(&:valid?)
+      palace_attendees.count > 0 &&
+      palace_attendees.count <= 2 &&
+      palace_attendees.all?(&:valid?)
   end
 
   def palace_attendees
@@ -47,13 +45,13 @@ class PalaceInviteForm
   def palace_attendees_attributes=(attrs = {})
     attrs.each do |(_, attendee_attributes)|
       attendee = if attendee_attributes["id"]
-        palace_attendees.detect { |a| a.id.to_s == attendee_attributes["id"] }
-      else
-        build_palace_attendee
-      end
+                   palace_attendees.detect { |a| a.id.to_s == attendee_attributes["id"] }
+                 else
+                   build_palace_attendee
+                 end
 
       if attendee_attributes.keys.count == 1 &&
-         attendee_attributes["id"].present?
+          attendee_attributes["id"].present?
         if attendee.persisted?
           attendee.mark_for_destruction
         else

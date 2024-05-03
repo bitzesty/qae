@@ -15,15 +15,15 @@ describe FormAnswerStateTransition do
 
       subject.subject = admin
 
-      expected = [
-        :assessment_in_progress,
-        :recommended,
-        :reserved,
-        :not_recommended,
-        :disqualified,
-        :awarded,
-        :not_awarded,
-        :withdrawn
+      expected = %i[
+        assessment_in_progress
+        recommended
+        reserved
+        not_recommended
+        disqualified
+        awarded
+        not_awarded
+        withdrawn
       ]
 
       expect(subject.collection).to eq(expected)
@@ -34,13 +34,13 @@ describe FormAnswerStateTransition do
 
       subject.subject = assessor
 
-      expected = [
-        :assessment_in_progress,
-        :recommended,
-        :reserved,
-        :not_recommended,
-        :disqualified,
-        :awarded
+      expected = %i[
+        assessment_in_progress
+        recommended
+        reserved
+        not_recommended
+        disqualified
+        awarded
       ]
 
       expect(subject.collection).to eq(expected)

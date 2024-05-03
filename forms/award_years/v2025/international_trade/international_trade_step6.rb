@@ -50,11 +50,11 @@ class AwardYears::V2025::QaeForms
         confirm :entry_confirmation, "Confirmation of entry." do
           ref "F 2"
           required
-          text -> do
+          text lambda {
             %(
               By submitting this entry for consideration for The King's Awards for Enterprise #{AwardYear.current.year}, I certify that all the given particulars and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The King's Awards Office of any changes to the information I have provided in this entry form.
             )
-          end
+          }
         end
 
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact." do

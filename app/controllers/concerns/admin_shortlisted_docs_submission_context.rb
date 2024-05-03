@@ -4,14 +4,10 @@ module AdminShortlistedDocsSubmissionContext
 
     if resource.submitted?
       resource.uncomplete
-    else
-      if resource.complete
-        if form_answer.assessors.primary.present?
-          Assessors::GeneralMailer.vat_returns_submitted(form_answer.id).deliver_later!
-        end
+    elsif resource.complete
+      Assessors::GeneralMailer.vat_returns_submitted(form_answer.id).deliver_later! if form_answer.assessors.primary.present?
 
-        Users::CommercialFiguresMailer.notify(form_answer.id, form_answer.account.owner_id).deliver_later!
-      end
+      Users::CommercialFiguresMailer.notify(form_answer.id, form_answer.account.owner_id).deliver_later!
     end
 
     respond_to do |format|
@@ -36,7 +32,7 @@ module AdminShortlistedDocsSubmissionContext
   end
 
   def resource
-    @resource ||= (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
+    @resource ||= form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
 
     return @resource if @resource.persisted?
 

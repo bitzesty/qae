@@ -3,9 +3,9 @@ class Users::AuditCertificatesController < Users::BaseController
   before_action :check_if_audit_certificate_already_exist!, only: [:create]
 
   expose(:form_answer) do
-    current_user.account.
-                form_answers.
-                find(params[:form_answer_id])
+    current_user.account
+                .form_answers
+                .find(params[:form_answer_id])
   end
 
   expose(:pdf_data) do
@@ -24,7 +24,7 @@ class Users::AuditCertificatesController < Users::BaseController
         send_data pdf_data.render,
                   filename: "External_Accountants_Report_#{form_answer.urn}_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf",
-                  disposition: 'attachment'
+                  disposition: "attachment"
       end
     end
   end
@@ -34,9 +34,7 @@ class Users::AuditCertificatesController < Users::BaseController
 
     if saved = audit_certificate.save
       log_event
-      if form_answer.assessors.primary.present?
-        Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
-      end
+      Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later! if form_answer.assessors.primary.present?
 
       Users::AuditCertificateMailer.notify(form_answer.id, current_user.id).deliver_later!
     end
@@ -88,11 +86,9 @@ class Users::AuditCertificatesController < Users::BaseController
     # This is fix of "missing 'audit_certificate' param"
     # if no any was selected in file input
     if params[:audit_certificate].blank?
-      params.merge!(
-        audit_certificate: {
-          attachment: ""
-        }
-      )
+      params[:audit_certificate] = {
+        attachment: "",
+      }
     end
 
     params.require(:audit_certificate).permit(:attachment)
@@ -107,16 +103,16 @@ class Users::AuditCertificatesController < Users::BaseController
   end
 
   def check_if_audit_certificate_already_exist!
-    if audit_certificate.present? && audit_certificate.persisted?
-      head :ok
-      return
-    end
+    return unless audit_certificate.present? && audit_certificate.persisted?
+
+    head :ok
+    nil
   end
 
   def check_if_vocf_is_required!
-    unless form_answer.requires_vocf?
-      redirect_to dashboard_url
-      return
-    end
+    return if form_answer.requires_vocf?
+
+    redirect_to dashboard_url
+    nil
   end
 end

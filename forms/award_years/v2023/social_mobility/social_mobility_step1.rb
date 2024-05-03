@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2023::QaeForms
   class << self
     def mobility_step1
@@ -83,7 +82,8 @@ class AwardYears::V2023::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               The purpose of this section is to collect all vital information about your company. For example, your company's registration number and address. It is important for the details provided to be accurate as it cannot be changed later. This information will also be used to enable us to undertake due diligence checks with other government departments and agencies if your application is shortlisted. Please be aware due diligence checks inform the decision to confer an award.
 
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence we undertake with a number of Government Departments and Agencies. For example, this may be fines or penalties you have received or non-compliance with regulations.
@@ -97,7 +97,8 @@ class AwardYears::V2023::QaeForms
               \u2022 A failure to fully comply with administrative filing requirements as stipulated by any Government Department or Agency.
             )],
             [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
-            [:normal, %(
+            [:normal,
+             %(
                 \u2022 Biotechnology & Biological Sciences Research Council
                 \u2022 Charity Commission
                 \u2022 Companies House
@@ -139,13 +140,12 @@ class AwardYears::V2023::QaeForms
                 \u2022 Serious Fraud Office
                 \u2022 UK Export Finance
                 \u2022 Wales Government
-              )
-            ],
+              )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
                 Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-              )
-            ]
+              )],
           ]
         end
 
@@ -235,17 +235,18 @@ class AwardYears::V2023::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                  Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award.
               </p>
             )
-          end
+          }
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
@@ -331,7 +332,8 @@ class AwardYears::V2023::QaeForms
           rows 2
         end
 
-        options :external_contribute_to_sustainable_product, "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
+        options :external_contribute_to_sustainable_product,
+                "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
           ref "A 9"
           required
           context %(
@@ -342,7 +344,8 @@ class AwardYears::V2023::QaeForms
           yes_no
         end
 
-        textarea :external_specify_organisations_contributions, "Specify the organisations that have contributed as well as what they contributed, including how and when." do
+        textarea :external_specify_organisations_contributions,
+                 "Specify the organisations that have contributed as well as what they contributed, including how and when." do
           sub_ref "A 9.1"
           required
           classes "sub-question"
@@ -372,7 +375,8 @@ class AwardYears::V2023::QaeForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
+        textarea :why_external_organisations_contributed_your_nomination,
+                 "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           classes "sub-question"
           sub_ref "A 9.3"
           required
@@ -386,8 +390,9 @@ class AwardYears::V2023::QaeForms
           required
           ref "A 10"
           pdf_context_with_header_blocks [
-            [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
-            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+            [:normal,
+             "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"],
           ]
           county_context %(
             <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
@@ -403,7 +408,7 @@ class AwardYears::V2023::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
         end
 
@@ -429,7 +434,7 @@ class AwardYears::V2023::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
         end
 
@@ -520,7 +525,7 @@ class AwardYears::V2023::QaeForms
             ["another_event", "A third party exhibition or event"],
             ["publication", "A newspaper/publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

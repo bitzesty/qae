@@ -1,18 +1,17 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Palace Attendees", %q{
+describe "Palace Attendees", '
 As a head of organization
 I want to be able to setup Buckingham Palace attendees details
 So that I provide a full list of attendees for Buckingham Palace reception
-} do
-
+' do
   let(:user) do
     create :user, :completed_profile, role: "account_admin"
   end
 
   let!(:form_answer) do
-    create :form_answer, :innovation, :awarded, user: user
+    create :form_answer, :innovation, :awarded, user:
   end
 
   let!(:award_year) do
@@ -23,27 +22,27 @@ So that I provide a full list of attendees for Buckingham Palace reception
     settings = award_year.settings
 
     invite = settings.deadlines.where(kind: "buckingham_palace_attendees_invite").first
-    invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 00))
+    invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 0o0))
 
     attendees_info_due = settings.deadlines.where(
-      kind: "buckingham_palace_reception_attendee_information_due_by"
+      kind: "buckingham_palace_reception_attendee_information_due_by",
     ).first
     attendees_info_due.update_column(:trigger_at,
-      DateTime.new(Date.current.year, 5, 6, 00, 00)
-    )
+                                     DateTime.new(Date.current.year, 5, 6, 0o0, 0o0),
+                                    )
 
     settings.reload
   end
 
   let!(:palace_invite) do
-    create :palace_invite, form_answer: form_answer, email: user.email
+    create :palace_invite, form_answer:, email: user.email
   end
 
   let!(:settings) do
     s = create(:settings, :expired_submission_deadlines)
     s.email_notifications.create!(
       kind: "winners_notification",
-      trigger_at: DateTime.now - 1.year
+      trigger_at: DateTime.now - 1.year,
     )
 
     s
@@ -60,7 +59,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
         settings.email_notifications.create!(
           kind: "buckingham_palace_invite",
-          trigger_at: DateTime.now - 1.year
+          trigger_at: DateTime.now - 1.year,
         )
 
         visit edit_palace_invite_path(id: palace_invite.token)
@@ -72,7 +71,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
       before do
         settings.email_notifications.create!(
           kind: "buckingham_palace_invite",
-          trigger_at: DateTime.now - 1.year
+          trigger_at: DateTime.now - 1.year,
         )
         palace_invite.submitted = true
         palace_invite.save!
@@ -90,7 +89,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
     before do
       settings.email_notifications.create!(
         kind: "buckingham_palace_invite",
-        trigger_at: DateTime.now - 1.year
+        trigger_at: DateTime.now - 1.year,
       )
 
       visit edit_palace_invite_path(id: palace_invite.token)
@@ -107,11 +106,11 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Title", with: title
         fill_in "First name", with: my_first_name
 
-        expect {
+        expect do
           click_on "Confirm and submit attendee's details"
-        }.not_to change {
+        end.not_to(change do
           palace_invite.reload.submitted
-        }
+        end)
 
         expect_to_see "This field cannot be blank"
         expect_to_see_no "Windsor Castle Attendee details have been successfully submitted."
@@ -132,9 +131,11 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Surname", with: "Test"
         fill_in "Job title/position", with: "Test"
         fill_in "Decorations/post-nominals", with: "Test"
-        royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]', match: :first)
+        royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]',
+                                        match: :first)
         royal_family_connections.set(true)
-        fill_in "Please provide details of your or your organisation's associations with the Royal Family.", with: "I am the son of the Queen"
+        fill_in "Please provide details of your or your organisation's associations with the Royal Family.",
+                with: "I am the son of the Queen"
         fill_in "Address line 1", with: "Test"
         fill_in "Address line 2", with: "Test"
         fill_in "City or town", with: "Test"
@@ -144,11 +145,11 @@ So that I provide a full list of attendees for Buckingham Palace reception
         disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)
         disabled_access.set(true)
 
-        expect {
+        expect do
           click_on "Confirm and submit attendee's details"
-        }.to change {
+        end.to(change do
           palace_invite.reload.submitted
-        }
+        end)
 
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)

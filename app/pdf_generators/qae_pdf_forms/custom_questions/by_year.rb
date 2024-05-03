@@ -1,6 +1,6 @@
 module QaePdfForms::CustomQuestions::ByYear
   EMPTY_STRING = "".freeze
-  YEAR_LABELS = %w(day month year).freeze
+  YEAR_LABELS = %w[day month year].freeze
   FORMATTED_FINANCIAL_YEAR_WITH_DATE = "Financial year ended %<date>s".freeze
   FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE = "Financial year %<index>d".freeze
   ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze
@@ -29,17 +29,17 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def render_years_table
     rows = if CALCULATED_FINANCIAL_DATA.include?(question.key)
-      res = get_audit_data(question.key).map do |field|
-        ApplicationController.helpers.formatted_uk_sales_value(field)
-      end
+             res = get_audit_data(question.key).map do |field|
+               ApplicationController.helpers.formatted_uk_sales_value(field)
+             end
 
-      res.all? { |el| el == {}} ? [] : res
-    else
-      active_fields.map do |field|
-        entry = year_entry(field).to_s.delete(",")
-        entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : EMPTY_STRING
-      end
-    end
+             res.all? { |el| el == {} } ? [] : res
+           else
+             active_fields.map do |field|
+               entry = year_entry(field).to_s.delete(",")
+               entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : EMPTY_STRING
+             end
+           end
 
     render_single_row_list(year_headers, rows)
   end
@@ -58,10 +58,10 @@ module QaePdfForms::CustomQuestions::ByYear
       size = financial_table_headers.size
 
       financial_table_headers.each.with_index(1) do |item, idx|
-        frmt = if !::Utils::Date.valid?(item)
-                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
-               else
+        frmt = if ::Utils::Date.valid?(item)
                  opts.dig(:format)
+               else
+                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
                end
 
         frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
@@ -103,10 +103,10 @@ module QaePdfForms::CustomQuestions::ByYear
     day = form_pdf.filled_answers["financial_year_date_day"].to_s
     month_number = form_pdf.filled_answers["financial_year_date_month"]
     month = if with_month_check
-      to_month(month_number)
-    else
-      month_number
-    end.to_s
+              to_month(month_number)
+            else
+              month_number
+            end.to_s
 
     year = Date.today.year
     year -= 1 if year_ended?

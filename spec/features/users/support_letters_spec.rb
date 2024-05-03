@@ -1,15 +1,15 @@
 require "rails_helper"
 
-describe "Submission of SupportLetter", %{
+describe "Submission of SupportLetter", %(
 As a Supporter
 I want to be able to fill and submit support letter
 So that I can support my nominator
-} do
+) do
   let!(:user) { create(:user) }
-  let!(:form_answer) { create(:form_answer, :promotion, user: user) }
+  let!(:form_answer) { create(:form_answer, :promotion, user:) }
   let!(:supporter) do
-    create :supporter, form_answer: form_answer,
-                       user: user
+    create :supporter, form_answer:,
+                       user:
   end
   let(:access_key) { supporter.access_key }
   let(:support_letter) do
@@ -31,9 +31,9 @@ So that I can support my nominator
 
     describe "Already submitted letter" do
       let!(:support_letter) do
-        create :support_letter, form_answer: form_answer,
-                                user: user,
-                                supporter: supporter
+        create :support_letter, form_answer:,
+                                user:,
+                                supporter:
       end
 
       before do
@@ -62,9 +62,9 @@ So that I can support my nominator
 
         expect do
           click_on "Submit"
-        end.not_to change {
+        end.not_to(change do
           SupportLetter.count
-        }
+        end)
 
         expect_to_see "First name is empty - it is a required field and must be filled in"
       end

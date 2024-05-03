@@ -5,7 +5,7 @@ class AwardedTradeApplicationsCsv
   CSV_HEADERS = [
     "Application number",
     "B4 Describe the geographical spread of your overseas markets.",
-    "B4 What percentage of total overseas sales was made to each of your top 5 overseas markets (ie. individual countries) during the final year of your entry?"
+    "B4 What percentage of total overseas sales was made to each of your top 5 overseas markets (ie. individual countries) during the final year of your entry?",
   ]
 
   class << self
@@ -20,7 +20,7 @@ class AwardedTradeApplicationsCsv
           csv_out << [
             item.urn,
             item.document["markets_geo_spread"],
-            item.document["top_overseas_sales"]
+            item.document["top_overseas_sales"],
           ]
         end
       end

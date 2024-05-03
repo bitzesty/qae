@@ -43,6 +43,6 @@ module FormHelper
 
   def application_collaborator_group_mode?
     current_form_is_editable? &&
-    @form_answer.has_more_than_one_contributor?
+      @form_answer.has_more_than_one_contributor?
   end
 end

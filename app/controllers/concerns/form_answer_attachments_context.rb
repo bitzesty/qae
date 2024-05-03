@@ -26,10 +26,10 @@ module FormAnswerAttachmentsContext
           render partial: "admin/form_answer_attachments/form",
                  locals: {
                    form_answer_attachment: service.resource,
-                   form_answer: form_answer
+                   form_answer:,
                  },
                  content_type: "text/plain",
-                 status: 422
+                 status: :unprocessable_entity
         end
       end
     end

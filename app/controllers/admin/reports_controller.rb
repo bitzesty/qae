@@ -1,5 +1,4 @@
 class Admin::ReportsController < Admin::BaseController
-
   expose(:import_csv_pdf_guide) do
     File.open("#{Rails.root}/lib/assets/IMPORT_CSV_INTO_MS_EXCEL_GUIDE.pdf")
   end
@@ -18,7 +17,7 @@ class Admin::ReportsController < Admin::BaseController
       format.xlsx do
         send_data resource.as_xlsx.stream.string,
                   type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                  disposition: 'attachment'
+                  disposition: "attachment"
       end
 
       format.pdf do
@@ -28,7 +27,7 @@ class Admin::ReportsController < Admin::BaseController
           send_data pdf.data,
                     filename: pdf.filename,
                     type: "application/pdf",
-                    disposition: 'attachment'
+                    disposition: "attachment"
         else
           redirect_to pdf.data, allow_other_host: true
         end
@@ -41,14 +40,14 @@ class Admin::ReportsController < Admin::BaseController
 
     send_data import_csv_pdf_guide.read,
               type: "application/pdf",
-              disposition: 'inline'
+              disposition: "inline"
   end
 
   private
 
   def stream_csv
     headers["Content-Type"] = "text/csv; charset=utf-8" # In Rails 5 it's set to HTML??
-    headers["Content-Disposition"] = %{attachment; filename="#{csv_filename}"}
+    headers["Content-Disposition"] = %(attachment; filename="#{csv_filename}")
 
     headers["X-Accel-Buffering"] = "no"
     headers["Cache-Control"] = "no-cache"

@@ -27,7 +27,7 @@ class AddCollaborator
 
   def find_or_build_collaborator
     if Email.new(email).valid?
-      user = User.find_by email: email
+      user = User.find_by(email:)
 
       if user.present?
         if user.account_id == account.id
@@ -43,7 +43,7 @@ class AddCollaborator
 
     @new_user = true
     user = User.new(params)
-    user.agreed_with_privacy_policy = '1'
+    user.agreed_with_privacy_policy = "1"
     user.skip_password_validation = true
     user
   end

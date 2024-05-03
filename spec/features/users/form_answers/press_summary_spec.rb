@@ -12,7 +12,7 @@ describe "Press Summary" do
       create :form_answer, :innovation
     end
 
-    let!(:press_summary) { create :press_summary, form_answer: form_answer, approved: true, submitted: true }
+    let!(:press_summary) { create :press_summary, form_answer:, approved: true, submitted: true }
 
     it "should allow to fill the form untill deadline" do
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
@@ -42,7 +42,7 @@ describe "Press Summary" do
       create :form_answer, :promotion
     end
 
-    let!(:press_summary) { create :press_summary, form_answer: form_answer, approved: true, submitted: true }
+    let!(:press_summary) { create :press_summary, form_answer:, approved: true, submitted: true }
 
     it "should show acceptance form before press summary form" do
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
@@ -69,7 +69,7 @@ describe "Press Summary" do
       click_button "Continue"
 
       expect(page).to have_no_content(
-        "Please check that the Press Book Notes are factually accurate:"
+        "Please check that the Press Book Notes are factually accurate:",
       )
     end
   end

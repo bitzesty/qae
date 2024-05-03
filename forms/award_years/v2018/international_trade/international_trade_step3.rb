@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2018::QaeForms
   class << self
     def trade_step3
@@ -23,12 +22,15 @@ class AwardYears::V2018::QaeForms
           )
         end
 
-        trade_commercial_success :trade_commercial_success, "How you would describe the impact of your international trade activities on your organisation's financial performance?" do
+        trade_commercial_success :trade_commercial_success,
+                                 "How you would describe the impact of your international trade activities on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
-          option "3 to 5", "Outstanding Short Term Growth: international trade has resulted in outstanding year on year growth in the last 3 years with no dips"
-          option "6 plus", "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last 6 years with no dips"
+          option "3 to 5",
+                 "Outstanding Short Term Growth: international trade has resulted in outstanding year on year growth in the last 3 years with no dips"
+          option "6 plus",
+                 "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last 6 years with no dips"
           placeholder_preselected_condition :queen_award_holder_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
@@ -38,7 +40,7 @@ class AwardYears::V2018::QaeForms
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question
@@ -60,7 +62,8 @@ class AwardYears::V2018::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> year) entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> year) entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -227,7 +230,8 @@ class AwardYears::V2018::QaeForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected" do
+        textarea :drops_in_turnover,
+                 "Explain any drops in total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
           rows 5

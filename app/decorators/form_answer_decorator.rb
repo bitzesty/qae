@@ -5,13 +5,13 @@ class FormAnswerDecorator < ApplicationDecorator
                    "International Trade" => "Int'l Trade",
                    "Sustainable Development" => "Sust. Dev.",
                    "Promoting Opportunity" => "Prom. Opp.",
-                   "Enterprise Promotion" => "Ent. Prom."
+                   "Enterprise Promotion" => "Ent. Prom.",
                  }
 
   NOT_ASSIGNED = "Not Assigned"
   ASSESSORS_NOT_ASSIGNED = "Assessors are not assigned"
 
-  def pdf_generator(pdf_blank_mode=false)
+  def pdf_generator(pdf_blank_mode = false)
     "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object, pdf_blank_mode)
   end
 
@@ -26,8 +26,8 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def pdf_audit_certificate_generator
-    "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize.
-                                                                             new(object)
+    "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize
+                                                                             .new(object)
   end
 
   def download_filename
@@ -40,7 +40,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def pdf_filename
     timestamp = Time.zone.now.strftime("%d-%m-%Y_%-l-%M%P")
-    "#{object.award_type_full_name.gsub(" ", "_")}_Award_#{timestamp}.pdf"
+    "#{object.award_type_full_name.tr(" ", "_")}_Award_#{timestamp}.pdf"
   end
 
   def csv_filename
@@ -67,16 +67,14 @@ class FormAnswerDecorator < ApplicationDecorator
     "The King's Awards for Enterprise: #{object.award_type_full_name} #{object.award_year.try(:year)}"
   end
 
-  def company_or_nominee_name
-    object.company_or_nominee_name
-  end
+  delegate :company_or_nominee_name, to: :object
 
   def company_nominee_or_application_name
     company_or_nominee_name || application_name
   end
 
   def data
-    #object.document
+    # object.document
     OpenStruct.new(object.document.merge(persisted?: true))
   end
 
@@ -84,42 +82,40 @@ class FormAnswerDecorator < ApplicationDecorator
     object.document.merge! attributes.except(*array_keys)
 
     array_keys.each do |key|
-      if attributes.has_key? key
-        result = {}
+      next unless attributes.has_key? key
 
-        attributes.each do |k, v|
-          if v.is_a?(Hash)
-            v.values.each do |value|
-              result[k] ||= []
+      result = {}
 
-              if value.is_a?(Hash)
-                result[k] << value
-              end
-            end
+      attributes.each do |k, v|
+        next unless v.is_a?(Hash)
+
+        v.values.each do |value|
+          result[k] ||= []
+
+          result[k] << value if value.is_a?(Hash)
+        end
+      end
+
+      old_array = object.document[key]
+      new_array = result[key]
+
+      if new_array.any? { |h| h.keys == %w[type] }
+        object.document.merge! result
+      else
+        new_array.each_with_index do |value, index|
+          if index.to_i < old_array.length
+            old_array[index.to_i].merge! value
+          else
+            old_array << value
           end
         end
-
-        old_array = object.document[key]
-        new_array = result[key]
-
-        if new_array.any? {|h| h.keys == ["type"]}
-          object.document.merge! result
-        else
-          new_array.each_with_index do |value, index|
-            if index.to_i < old_array.length
-              old_array[index.to_i].merge! value
-            else
-              old_array << value
-            end
-          end
-          old_array.reject!{|i| i.include? "_destroy" }
-        end
+        old_array.reject! { |i| i.include? "_destroy" }
       end
     end
   end
 
   def array_keys
-    object.document.select{ |item, value|  value.kind_of?(Array) }.keys
+    object.document.select { |_item, value| value.is_a?(Array) }.keys
   end
 
   def company_name
@@ -127,7 +123,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominee_title
-    object.nominee_title ? object.nominee_title : document["nominee_title"]
+    object.nominee_title || document["nominee_title"]
   end
 
   def progress_class
@@ -153,10 +149,10 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def average_growth_for(year)
-    if object.sic_code.present?
-      sic = SicCode.find_by(code: object.sic_code)
-      sic.by_year(year) if sic
-    end
+    return if object.sic_code.blank?
+
+    sic = SicCode.find_by(code: object.sic_code)
+    sic.by_year(year) if sic
   end
 
   def all_average_growths
@@ -167,13 +163,13 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def sic_code_name
     sic = object.sic_code
-    if sic.present?
-      SicCode.find_by(code: sic).name
-    end
+    return if sic.blank?
+
+    SicCode.find_by(code: sic).name
   end
 
   def shortlisted?
-    ["recommended", "reserved"].include? object.state
+    %w[recommended reserved].include? object.state
   end
 
   def corp_responsibility_required_keys
@@ -209,13 +205,12 @@ class FormAnswerDecorator < ApplicationDecorator
     id = object.financial_data["updated_by_id"]
     kind = object.financial_data["updated_by_type"]
 
-    if id && kind
-      if %w[Admin Assessor].include?(kind)
-        user = kind.constantize.find_by_id(id)
+    return unless id && kind
+    return unless %w[Admin Assessor].include?(kind)
 
-        user.decorate.full_name if user
-      end
-    end
+    user = kind.constantize.find_by(id:)
+
+    user.decorate.full_name if user
   end
 
   def financial_summary_updated_at
@@ -234,24 +229,24 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def last_state_updated_by
     transition = object.state_machine.last_transition
-    if transition.present? && transition.transitable
-      time = transition.created_at.try(:strftime, "%e %b %Y at %-l:%M%P")
-      "Updated by #{transition.transitable.decorate.full_name} - #{time}"
-    end
+    return unless transition.present? && transition.transitable
+
+    time = transition.created_at.try(:strftime, "%e %b %Y at %-l:%M%P")
+    "Updated by #{transition.transitable.decorate.full_name} - #{time}"
   end
 
   def feedback_updated_by
     feedback = object.feedback
-    if feedback && feedback.authorable.present?
-      "Updated by: #{feedback.authorable.decorate.full_name} - #{feedback.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
-    end
+    return unless feedback && feedback.authorable.present?
+
+    "Updated by: #{feedback.authorable.decorate.full_name} - #{feedback.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
   end
 
   def press_summary_updated_by
     ps = object.press_summary
-    if ps.present? && ps.authorable.present?
-      "Updated by #{ps.authorable.decorate.full_name} - #{ps.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
-    end
+    return unless ps.present? && ps.authorable.present?
+
+    "Updated by #{ps.authorable.decorate.full_name} - #{ps.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
   end
 
   def nominee_organisation
@@ -295,7 +290,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominator_name
-    "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
+    "#{document["user_info_first_name"]} #{document["user_info_last_name"]}".strip
   end
 
   def nominator_building
@@ -331,8 +326,9 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def date_started_trading
-    return nil if document['started_trading_year'].blank?
-    "#{document['started_trading_day']}/#{document['started_trading_month']}/#{document['started_trading_year']}".strip
+    return nil if document["started_trading_year"].blank?
+
+    "#{document["started_trading_day"]}/#{document["started_trading_month"]}/#{document["started_trading_year"]}".strip
   end
 
   def website_url
@@ -344,7 +340,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def head_of_business_full_name
-    "#{document['head_of_business_first_name']} #{document['head_of_business_last_name']}".strip
+    "#{document["head_of_business_first_name"]} #{document["head_of_business_last_name"]}".strip
   end
 
   def head_of_business_honours
@@ -369,7 +365,7 @@ class FormAnswerDecorator < ApplicationDecorator
     if p_summary.present?
       "#{p_summary.name} #{p_summary.last_name}"
     else
-      "#{document['press_contact_details_name']} #{document['press_contact_details_last_name']}"
+      "#{document["press_contact_details_name"]} #{document["press_contact_details_last_name"]}"
     end
   end
 
@@ -398,7 +394,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def innovation_desc_short
-   sanitize_html document["innovation_desc_short"]
+    sanitize_html document["innovation_desc_short"]
   end
 
   def development_desc_short
@@ -473,12 +469,13 @@ class FormAnswerDecorator < ApplicationDecorator
       (!development? || year < 2020) &&
       (!mobility? || year < 2020)
   end
+
   def this_entry_relates_to
     source_value = if document["application_relate_to"].present?
-      document["application_relate_to"]
-    elsif document["application_relate_to_header"].present?
-      document["application_relate_to_header"]
-    end
+                     document["application_relate_to"]
+                   elsif document["application_relate_to_header"].present?
+                     document["application_relate_to_header"]
+                   end
 
     source_value.map(&:values).flatten if source_value.present?
   end

@@ -12,11 +12,15 @@ class QaeFormBuilder
       day = question.input_value(suffix: "day")
       month = question.input_value(suffix: "month")
 
-      if day.blank? || month.blank?
-        date = nil
-      else
-        date = Date.parse(date.join("/")) rescue nil
-      end
+      date = if day.blank? || month.blank?
+               nil
+             else
+               begin
+                 Date.parse(date.join("/"))
+               rescue StandardError
+                 nil
+               end
+             end
 
       if question.required? && !date
         result[question.hash_key] ||= ""
@@ -30,8 +34,8 @@ class QaeFormBuilder
   class InnovationFinancialYearDateQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {day: "Day"},
-        {month: "Month"},
+        { day: "Day" },
+        { month: "Month" },
       ]
     end
   end
@@ -45,5 +49,4 @@ class QaeFormBuilder
   class InnovationFinancialYearDateQuestion < Question
     attr_accessor :financial_date_pointer
   end
-
 end

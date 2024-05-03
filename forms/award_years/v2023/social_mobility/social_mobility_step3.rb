@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2023::QaeForms
   class << self
     def mobility_step3
@@ -21,7 +20,7 @@ class AwardYears::V2023::QaeForms
               We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
             </p>
             <p class="govuk-body">
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             </p>
             <h3 class="govuk-heading-m">Estimated figures</h3>
             <p class="govuk-body">
@@ -30,23 +29,27 @@ class AwardYears::V2023::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               All applicants must demonstrate their viability and you will need to upload your accounts to provide evidence of this.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
             [:bold, "Volatile markets & last financial year"],
-            [:normal, %(
+            [:normal,
+             %(
               We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
 
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline).However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} (the submission deadline).However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            )]
+            )],
           ]
         end
 
@@ -88,7 +91,7 @@ class AwardYears::V2023::QaeForms
           sub_ref "C 2.2"
           required
           context %(
-            <p>Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.</p>
+            <p>Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.</p>
 
             <p>If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.</p>
           )
@@ -96,7 +99,8 @@ class AwardYears::V2023::QaeForms
           label ->(y) { "Financial year #{y}" }
         end
 
-        upload :supporting_financials, "To support your figures, please upload your financial statements for the years entered in question C2.2." do
+        upload :supporting_financials,
+               "To support your figures, please upload your financial statements for the years entered in question C2.2." do
           classes "sub-question"
           sub_ref "C 2.3"
           context %(
@@ -152,17 +156,20 @@ class AwardYears::V2023::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "Group entries"],
-            [:normal, %(
+            [:normal,
+             %(
               A parent organisation making a group entry should include figures of all UK members of the group.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -177,7 +184,6 @@ class AwardYears::V2023::QaeForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-
         end
 
         one_option_by_years :net_profit, "Net income or net profit after tax but before dividends" do
@@ -200,10 +206,10 @@ class AwardYears::V2023::QaeForms
           context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
           type :money
           label ->(y) { "As at the end of year #{y}" }
-
         end
 
-        textarea :drops_in_turnover, "Explain any drops in the total income or turnover, net income or net profit and total net assets and any losses made." do
+        textarea :drops_in_turnover,
+                 "Explain any drops in the total income or turnover, net income or net profit and total net assets and any losses made." do
           classes "sub-question"
           sub_ref "C 4.4"
           required
@@ -272,7 +278,6 @@ class AwardYears::V2023::QaeForms
           words_max 250
           conditional :product_estimated_figures, :yes
         end
-
       end
     end
   end

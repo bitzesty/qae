@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2024::QaeForms
   class << self
     def trade_step4
@@ -11,8 +10,10 @@ class AwardYears::V2024::QaeForms
           classes "js-entry-period"
           ref "D 1"
           required
-          option "3 to 5", "Outstanding Short-Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years"
-          option "6 plus", "Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years"
+          option "3 to 5",
+                 "Outstanding Short-Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years"
+          option "6 plus",
+                 "Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years"
           placeholder_preselected_condition :applied_for_queen_awards_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
@@ -33,7 +34,7 @@ class AwardYears::V2024::QaeForms
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question
@@ -53,7 +54,8 @@ class AwardYears::V2024::QaeForms
           financial_date_pointer
         end
 
-        trade_most_recent_financial_year_options :most_recent_financial_year, "Which year would you like to be your most recent financial year that you will submit figures for?" do
+        trade_most_recent_financial_year_options :most_recent_financial_year,
+                                                 "Which year would you like to be your most recent financial year that you will submit figures for?" do
           ref "D 2.1"
           required
           option (AwardYear.current.year - 2).to_s, (AwardYear.current.year - 2).to_s
@@ -67,10 +69,12 @@ class AwardYears::V2024::QaeForms
             </p>
           )
 
-          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true), data: {value: AwardYear.fy_date_range_threshold(minmax: true, format: true), type: :range}
+          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true),
+                                                              data: { value: AwardYear.fy_date_range_threshold(minmax: true, format: true), type: :range }
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period that you will be providing figures for?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period that you will be providing figures for?" do
           classes "sub-question js-financial-year-change"
           sub_ref "D 3"
           required
@@ -87,7 +91,7 @@ class AwardYears::V2024::QaeForms
 
           context %(
             <p>
-              For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+              For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
             </p>
           )
 
@@ -262,7 +266,8 @@ class AwardYears::V2024::QaeForms
           words_max 300
         end
 
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow and cash generated." do
+        textarea :drops_explain_how_your_business_is_financially_viable,
+                 "Explain how your business is financially viable in terms of cash flow and cash generated." do
           classes "sub-question"
           sub_ref "D 5.5"
           required
@@ -270,7 +275,8 @@ class AwardYears::V2024::QaeForms
           words_max 300
         end
 
-        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
+        textarea :investment_strategy_and_its_objectives,
+                 "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
           sub_ref "D 5.6"
           required

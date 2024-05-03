@@ -1,14 +1,19 @@
 require "award_years/v2018/qae_forms"
 require "award_years/v2019/qae_forms"
-require 'award_years/v2020/qae_forms'
+require "award_years/v2020/qae_forms"
 
 class FormController < ApplicationController
   before_action :authenticate_user!
   before_action :check_account_completion, :check_number_of_collaborators, unless: -> { admin_signed_in? || assessor_signed_in? }
   before_action :check_deadlines
-  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
-    :new, :create, :update, :destroy,
-    :submit_confirm, :save, :add_attachment
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: %i[
+    new
+    create
+    update
+    destroy
+    submit_confirm
+    save
+    add_attachment
   ]
 
   before_action :check_trade_deadline, :check_trade_count_limit, only: :new_international_trade_form
@@ -16,25 +21,25 @@ class FormController < ApplicationController
   before_action :check_mobility_deadline, only: :new_social_mobility_form
   before_action :check_innovation_deadline, only: :new_innovation_form
 
-  before_action :set_form_answer, except: [
-    :new_innovation_form,
-    :new_international_trade_form,
-    :new_sustainable_development_form,
-    :new_social_mobility_form
+  before_action :set_form_answer, except: %i[
+    new_innovation_form
+    new_international_trade_form
+    new_sustainable_development_form
+    new_social_mobility_form
   ]
 
   before_action :get_collaborators, only: [
-    :submit_confirm
+    :submit_confirm,
   ]
-  before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
+  before_action :check_if_deadline_ended!, only: %i[update save add_attachment]
 
-  before_action :check_eligibility!, only: [
-    :create,
-    :destroy,
-    :save,
-    :update,
-    :add_attachment,
-    :submit_confirm
+  before_action :check_eligibility!, only: %i[
+    create
+    destroy
+    save
+    update
+    add_attachment
+    submit_confirm
   ]
 
   before_action do
@@ -42,9 +47,8 @@ class FormController < ApplicationController
   end
 
   expose(:support_letter_attachments) do
-    @form_answer.support_letter_attachments.inject({}) do |r, attachment|
-      r[attachment.id] = attachment
-      r
+    @form_answer.support_letter_attachments.index_by do |attachment|
+      attachment.id
     end
   end
 
@@ -55,7 +59,7 @@ class FormController < ApplicationController
   expose(:questions_with_references) do
     all_form_questions.select do |q|
       !q.is_a?(QaeFormBuilder::HeaderQuestion) &&
-      (q.ref.present? || q.sub_ref.present?)
+        (q.ref.present? || q.sub_ref.present?)
     end
   end
 
@@ -124,69 +128,55 @@ class FormController < ApplicationController
       format.html do
         redirected = params[:next_action] == "redirect"
 
-        if submitted
-          @form_answer.submitted_at = Time.current
-        end
+        @form_answer.submitted_at = Time.current if submitted
 
         submitted_was_changed = @form_answer.submitted_at_changed? && @form_answer.submitted_at_was.nil?
         @form_answer.current_step = params[:current_step] || @form.steps.first.title.parameterize
 
-        if params[:form].present? && @form_answer.eligible? && (saved = @form_answer.save)
-          if submitted_was_changed
-            @form_answer.state_machine.submit(current_user)
-            FormAnswerUserSubmissionService.new(@form_answer).perform
+        if params[:form].present? && @form_answer.eligible? && (saved = @form_answer.save) && submitted_was_changed
+          @form_answer.state_machine.submit(current_user)
+          FormAnswerUserSubmissionService.new(@form_answer).perform
 
-            if @form_answer.submission_ended?
-              #
-              # If submission period ended and Admin makes manual submission
-              # then we need to generate Hard Copy PDF file
-              # as it required for all submitted applications after submission deadline.
-              #
-              HardCopyPdfGenerators::FormDataWorker.perform_async(@form_answer.id, true)
-            end
+          if @form_answer.submission_ended?
+            #
+            # If submission period ended and Admin makes manual submission
+            # then we need to generate Hard Copy PDF file
+            # as it required for all submitted applications after submission deadline.
+            #
+            HardCopyPdfGenerators::FormDataWorker.perform_async(@form_answer.id, true)
           end
         end
 
         if redirected
           @form_answer.save(validate: false)
           redirect_to(dashboard_url)
-        else
-          if submitted && saved
-            redirect_to submit_confirm_url(@form_answer)
+        elsif submitted && saved
+          redirect_to submit_confirm_url(@form_answer)
+        elsif saved
+          if @form_answer.halted?
+            params[:next_step] = params[:current_step]
           else
-            if saved
-              if @form_answer.halted?
-                params[:next_step] = params[:current_step]
-              else
-                params[:next_step] ||= @form.steps[1].title.parameterize
-              end
-
-              redirect_to edit_form_url(@form_answer, step: params[:next_step])
-            else
-              params[:step] = @form_answer.steps_with_errors.try(:first)
-              # avoid redirecting to supporters page
-              if !params[:step] || params[:step] == "letters-of-support"
-                params[:step] = @form.steps.first.title.parameterize
-              end
-
-              render template: "qae_form/show"
-            end
+            params[:next_step] ||= @form.steps[1].title.parameterize
           end
+
+          redirect_to edit_form_url(@form_answer, step: params[:next_step])
+        else
+          params[:step] = @form_answer.steps_with_errors.try(:first)
+          # avoid redirecting to supporters page
+          params[:step] = @form.steps.first.title.parameterize if !params[:step] || params[:step] == "letters-of-support"
+
+          render template: "qae_form/show"
         end
       end
 
       format.js do
-        if submitted
-          @form_answer.submitted_at = Time.current
-        end
+        @form_answer.submitted_at = Time.current if submitted
 
         submitted_was_changed = @form_answer.submitted_at_changed? && @form_answer.submitted_at_was.nil?
 
-        if params[:form].present? && @form_answer.eligible? && @form_answer.save
-          if submitted_was_changed
-            @form_answer.state_machine.submit(current_user)
-            FormAnswerUserSubmissionService.new(@form_answer).perform
-          end
+        if params[:form].present? && @form_answer.eligible? && @form_answer.save && submitted_was_changed
+          @form_answer.state_machine.submit(current_user)
+          FormAnswerUserSubmissionService.new(@form_answer).perform
         end
 
         render json: { progress: @form_answer.fill_progress }
@@ -202,9 +192,11 @@ class FormController < ApplicationController
   def add_attachment
     FormAnswer.transaction do
       attachment_params = params[:form]
-      attachment_params.merge!(form_answer_id: @form_answer.id)
+      attachment_params[:form_answer_id] = @form_answer.id
 
-      attachment_params.merge!(original_filename: attachment_params[:file].original_filename) if attachment_params[:file].respond_to?(:original_filename)
+      if attachment_params[:file].respond_to?(:original_filename)
+        attachment_params[:original_filename] = attachment_params[:file].original_filename
+      end
 
       attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
 
@@ -212,12 +204,10 @@ class FormController < ApplicationController
       @attachment.attachable = current_user
       @attachment.question_key = params[:question_key] if params[:question_key].present?
 
-      if @attachment.question_key == "org_chart"
-        @form_answer.form_answer_attachments.where(question_key: "org_chart").destroy_all
-      end
+      @form_answer.form_answer_attachments.where(question_key: "org_chart").destroy_all if @attachment.question_key == "org_chart"
 
       if @attachment.save
-        @form_answer.document[@attachment.question_key]  ||= {}
+        @form_answer.document[@attachment.question_key] ||= {}
         attachments_hash = @form_answer.document[@attachment.question_key]
         index = next_index(attachments_hash)
         attachments_hash[index] = { file: @attachment.id }
@@ -240,7 +230,8 @@ class FormController < ApplicationController
 
   def next_index(hash)
     return 0 if hash.empty?
-    return hash.keys.sort.last.to_i + 1
+
+    hash.keys.sort.last.to_i + 1
   end
 
   def updating_step
@@ -254,7 +245,7 @@ class FormController < ApplicationController
     @form_answer.document.merge(prepare_doc_structures(allowed_params))
   end
 
-  def prepare_doc_structures doc
+  def prepare_doc_structures(doc)
     result = {}
 
     doc.each do |(k, v)|
@@ -263,9 +254,7 @@ class FormController < ApplicationController
           v.values.each do |value|
             result[k] ||= []
 
-            if value.is_a?(Hash)
-              result[k] << value
-            end
+            result[k] << value if value.is_a?(Hash)
           end
         else
           result[k] = v
@@ -282,11 +271,11 @@ class FormController < ApplicationController
     form_answer = FormAnswer.create!(
       user: current_user,
       account: current_user.account,
-      award_type: award_type,
-      nickname: nickname,
+      award_type:,
+      nickname:,
       document: {
-        company_name: current_user.company_name
-      }
+        company_name: current_user.company_name,
+      },
     )
 
     redirect_to edit_form_url(form_answer)
@@ -295,9 +284,8 @@ class FormController < ApplicationController
   def set_form_answer
     @form_answer = current_user.account.form_answers.find(params[:id])
 
-    @attachments = @form_answer.form_answer_attachments.inject({}) do |r, attachment|
-      r[attachment.id] = attachment
-      r
+    @attachments = @form_answer.form_answer_attachments.index_by do |attachment|
+      attachment.id
     end
   end
 
@@ -308,20 +296,20 @@ class FormController < ApplicationController
   def check_deadlines
     return if admin_in_read_only_mode?
 
-    unless submission_started?
-      flash.alert = "Sorry, submission is still closed"
-      redirect_to dashboard_url
-    end
+    return if submission_started?
+
+    flash.alert = "Sorry, submission is still closed"
+    redirect_to dashboard_url
   end
 
-  %w(innovation trade mobility development).each do |award|
+  %w[innovation trade mobility development].each do |award|
     define_method "check_#{award}_deadline" do
       return if admin_in_read_only_mode?
 
-      unless public_send("#{award}_submission_started?")
-        flash.alert = "Sorry, submission is still closed"
-        redirect_to dashboard_url
-      end
+      return if public_send("#{award}_submission_started?")
+
+      flash.alert = "Sorry, submission is still closed"
+      redirect_to dashboard_url
     end
   end
 
@@ -330,16 +318,16 @@ class FormController < ApplicationController
   end
 
   def check_if_deadline_ended!
-    if current_form_submission_ended?
-      if request.xhr? || request.format.js?
-        render json: { error: "ERROR: Form can't be updated as submission ended!" }
-      else
-        redirect_to dashboard_path,
-                    notice: "Form can't be updated as submission ended!"
-      end
+    return unless current_form_submission_ended?
 
-      return false
+    if request.xhr? || request.format.js?
+      render json: { error: "ERROR: Form can't be updated as submission ended!" }
+    else
+      redirect_to dashboard_path,
+                  notice: "Form can't be updated as submission ended!"
     end
+
+    false
   end
 
   def humanized_upload_errors
@@ -351,10 +339,10 @@ class FormController < ApplicationController
   end
 
   def check_eligibility!
-    if @form_answer.eligibility.present? && !this_form_eligible?
-      redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
-      return false
-    end
+    return unless @form_answer.eligibility.present? && !this_form_eligible?
+
+    redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
+    false
   end
 
   def this_form_eligible?

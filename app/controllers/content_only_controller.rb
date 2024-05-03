@@ -3,35 +3,35 @@ class ContentOnlyController < ApplicationController
                 :check_account_completion,
                 :check_additional_contact_preferences,
                 :check_number_of_collaborators, unless: -> { admin_signed_in? || assessor_signed_in? },
-                except: [
-                  :home,
-                  :awards_for_organisations,
-                  :enterprise_promotion_awards,
-                  :how_to_apply,
-                  :timeline,
-                  :additional_information_and_contact,
-                  :privacy,
-                  :cookies,
-                  :accessibility_statement,
-                  :apply_for_queens_award_for_enterprise,
-                  :sign_up_complete,
-                  :submitted_nomination_successful
-                ]
+                                                except: %i[
+                                                  home
+                                                  awards_for_organisations
+                                                  enterprise_promotion_awards
+                                                  how_to_apply
+                                                  timeline
+                                                  additional_information_and_contact
+                                                  privacy
+                                                  cookies
+                                                  accessibility_statement
+                                                  apply_for_queens_award_for_enterprise
+                                                  sign_up_complete
+                                                  submitted_nomination_successful
+                                                ]
 
   before_action :get_current_form,
-                only: [
-                  :award_info_innovation,
-                  :award_info_trade,
-                  :award_info_development,
-                  :award_info_mobility
+                only: %i[
+                  award_info_innovation
+                  award_info_trade
+                  award_info_development
+                  award_info_mobility
                 ]
 
   before_action :get_collaborators,
-                only: [
-                  :award_info_innovation,
-                  :award_info_trade,
-                  :award_info_development,
-                  :award_info_mobility
+                only: %i[
+                  award_info_innovation
+                  award_info_trade
+                  award_info_development
+                  award_info_mobility
                 ]
 
   before_action :restrict_access_if_admin_in_read_only_mode!,
@@ -91,7 +91,7 @@ class ContentOnlyController < ApplicationController
   def get_current_form
     @form_answer = current_account.form_answers.find(params[:form_id])
     @form = @form_answer.award_form.decorate(
-      answers: HashWithIndifferentAccess.new(@form_answer.document)
+      answers: HashWithIndifferentAccess.new(@form_answer.document),
     )
   end
 
@@ -104,7 +104,7 @@ class ContentOnlyController < ApplicationController
   end
 
   def deadline_for(kind, format = "%A, %d %B %Y")
-    deadline = settings.deadlines.find_by(kind: kind)
+    deadline = settings.deadlines.find_by(kind:)
     if deadline.present? && deadline.trigger_at.present?
       deadline.trigger_at.strftime(format)
     else

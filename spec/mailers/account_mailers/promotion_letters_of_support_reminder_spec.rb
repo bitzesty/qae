@@ -3,7 +3,7 @@ require "rails_helper"
 describe AccountMailers::PromotionLettersOfSupportReminderMailer do
   let(:user) { create :user }
   let!(:award_year) { AwardYear.current }
-  let(:form_answer) { create :form_answer, :promotion, user: user }
+  let(:form_answer) { create :form_answer, :promotion, user: }
 
   let!(:settings) { create :settings, :submission_deadlines }
 
@@ -11,12 +11,12 @@ describe AccountMailers::PromotionLettersOfSupportReminderMailer do
     Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
   end
 
-  let(:mail) {
+  let(:mail) do
     AccountMailers::PromotionLettersOfSupportReminderMailer.notify(
       form_answer.id,
-      user.id
+      user.id,
     )
-  }
+  end
 
   before do
     doc = form_answer.document

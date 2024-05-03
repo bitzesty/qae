@@ -23,7 +23,7 @@ class Users::FormAnswersController < Users::BaseController
           send_data pdf.render,
                     filename: form_answer.decorate.pdf_filename,
                     type: "application/pdf",
-                    disposition: 'attachment'
+                    disposition: "attachment"
         end
       end
     else
@@ -34,15 +34,15 @@ class Users::FormAnswersController < Users::BaseController
   private
 
   def log_download_action
-    if admin_in_read_only_mode?
-      subject = if admin_signed_in?
-        current_admin
-      else
-        current_assessor
-      end
+    return unless admin_in_read_only_mode?
 
-      AuditLog.create!(subject: subject, action_type: "download_form_answer", auditable: form_answer)
-    end
+    subject = if admin_signed_in?
+                current_admin
+              else
+                current_assessor
+              end
+
+    AuditLog.create!(subject:, action_type: "download_form_answer", auditable: form_answer)
   end
 
   def can_render_pdf_on_fly?
@@ -61,25 +61,23 @@ class Users::FormAnswersController < Users::BaseController
     #
 
     pdf_blank_mode ||
-    !form_answer.submission_ended? ||
-    (
-      form_answer.submission_ended? &&
-      !form_answer.submitted? &&
-      form_answer.award_year_id == AwardYear.current.id
-    )
+      !form_answer.submission_ended? ||
+      (
+        form_answer.submission_ended? &&
+        !form_answer.submitted? &&
+        form_answer.award_year_id == AwardYear.current.id
+      )
   end
 
   def render_hard_copy_pdf
     if form_answer.pdf_version.present?
       redirect_to form_answer.pdf_version.url, allow_other_host: true
+    elsif !admin_in_read_only_mode?
+      redirect_to dashboard_path,
+                  notice: "PDF version for your application is not available!"
     else
-      if !admin_in_read_only_mode?
-        redirect_to dashboard_path,
-                    notice: "PDF version for your application is not available!"
-      else
-        flash[:notice] = "PDF version for your application is not available!"
-        redirect_back(fallback_location: root_path)
-      end
+      flash[:notice] = "PDF version for your application is not available!"
+      redirect_back(fallback_location: root_path)
     end
   end
 end

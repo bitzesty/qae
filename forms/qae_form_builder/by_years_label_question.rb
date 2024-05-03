@@ -8,27 +8,32 @@ class QaeFormBuilder
       return result unless question.visible?
 
       dates = question.active_fields.each_with_object(Hash[]) do |field, outer|
-                suffix = "#{question.key}_#{field}"
-                parts = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
-                  key = "#{suffix}#{sub}"
-                  inner << answers[key]
-                end
+        suffix = "#{question.key}_#{field}"
+        parts = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
+          key = "#{suffix}#{sub}"
+          inner << answers[key]
+        end
 
-                if parts.any?(&:blank?)
-                  outer[suffix] = :blank
-                else
-                  date = parts.join("/")
-                  outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
-                end
-              end
-      
-      required = question.required?        
+        if parts.any?(&:blank?)
+          outer[suffix] = :blank
+        else
+          date = parts.join("/")
+          outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
+        end
+      end
 
-      dates.each.with_index(1) do |(key, value), idx|
-        next unless value == :invalid || value == :blank
+      required = question.required?
+
+      dates.each.with_index(1) do |(key, value), _idx|
+        next unless %i[invalid blank].include?(value)
+
         result[key] ||= ""
-        result[key] << "Question #{question.ref || question.sub_ref} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY." if (value == :blank && required)
-        result[key] << "The date entered for Question #{question.ref || question.sub_ref} is not valid. Use the format DD/MM/YYYY." if (value == :invalid)
+        if value == :blank && required
+          result[key] << "Question #{question.ref || question.sub_ref} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY."
+        end
+        if value == :invalid
+          result[key] << "The date entered for Question #{question.ref || question.sub_ref} is not valid. Use the format DD/MM/YYYY."
+        end
       end
 
       dates.each_cons(2) do |values|
@@ -37,14 +42,14 @@ class QaeFormBuilder
 
         next if [beginning_date, end_date].any? { |v| v.nil? || v.in?(%i[invalid blank]) }
 
-        if beginning_date > end_date
-          result[beginning_key] ||= ""
-          result[end_key] ||= ""
-          result[beginning_key] << "The date entered for Question #{question.ref || question.sub_ref} should be before #{end_date.strftime('%d/%m/%Y')}."
-          result[end_key] << "The date entered for Question #{question.ref || question.sub_ref} should be after #{beginning_date.strftime('%d/%m/%Y')}."
-        end
+        next unless beginning_date > end_date
+
+        result[beginning_key] ||= ""
+        result[end_key] ||= ""
+        result[beginning_key] << "The date entered for Question #{question.ref || question.sub_ref} should be before #{end_date.strftime("%d/%m/%Y")}."
+        result[end_key] << "The date entered for Question #{question.ref || question.sub_ref} should be after #{beginning_date.strftime("%d/%m/%Y")}."
       end
-              
+
       validatable = dates.values.each_cons(2).reject { |values| values.any? { |v| v.nil? || v.in?(%i[invalid blank]) } }
 
       return result if validatable.blank?
@@ -71,7 +76,7 @@ class QaeFormBuilder
       result
     end
 
-    def format_label y
+    def format_label(y)
       if delegate_obj.label && delegate_obj.label.is_a?(Proc)
         delegate_obj.label.call y
       else
@@ -84,6 +89,7 @@ class QaeFormBuilder
       active_fields.each do |f|
         v = input_value(suffix: f).to_f
         return true if (last && v < last) || v < 0
+
         last = v
       end
       false
@@ -92,13 +98,14 @@ class QaeFormBuilder
     def active_fields
       return [] unless fields_count
 
-      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+      (1..fields_count).map { |y| "#{y}of#{fields_count}" }
     end
 
     def fields_count
       c = active_by_year_condition
       c ||= default_by_year_condition
       return nil unless c
+
       c.years
     end
 
@@ -113,7 +120,11 @@ class QaeFormBuilder
               date << q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue StandardError
+              nil
+            end
 
             c.question_value.call(date)
           else
@@ -128,27 +139,29 @@ class QaeFormBuilder
     def default_by_year_condition
       delegate_obj.by_year_conditions.find do |c|
         return false unless c.question_value.respond_to?(:call)
+
         (c.options || {}).dig(:default) == true
       end
     end
   end
 
   class ByYearsLabelQuestionBuilder < QuestionBuilder
-    def type type
+    def type(type)
       @q.type = type
     end
 
-    def label label
+    def label(label)
       @q.label = label
     end
 
-    def by_year_condition k, v, num, options = {}
+    def by_year_condition(k, v, num, options = {})
       @q.by_year_conditions << ByYearsCondition.new(k, v, num, **options)
     end
   end
 
   class ByYearsCondition
     attr_accessor :question_key, :question_value, :years, :options
+
     def initialize question_key, question_value, years, **options
       @question_key = question_key
       @question_value = question_value
@@ -159,9 +172,9 @@ class QaeFormBuilder
 
   class ByYearsLabelQuestion < Question
     attr_accessor :type, :by_year_conditions, :label
+
     def after_create
       @by_year_conditions = []
     end
   end
-
 end

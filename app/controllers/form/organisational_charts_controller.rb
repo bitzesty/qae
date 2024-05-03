@@ -1,5 +1,4 @@
 class Form::OrganisationalChartsController < Form::MaterialsBaseController
-
   # This controller handles saving of OrganisationalCharts attachments
   # This section is used in case if JS disabled
 
@@ -9,7 +8,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
 
   expose(:form_answer_attachment) do
     current_user.form_answer_attachments.new(
-      form_answer_id: @form_answer.id
+      form_answer_id: @form_answer.id,
     )
   end
 
@@ -22,16 +21,12 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
   end
 
   expose(:existing_org_chart) do
-    if existing_org_chart_doc.present?
-      existing_org_chart_doc
-    else
-      {}
-    end
+    existing_org_chart_doc.presence || {}
   end
 
   expose(:created_attachment_ops) do
     {
-      "file" => form_answer_attachment.id.to_s
+      "file" => form_answer_attachment.id.to_s,
     }
   end
 
@@ -40,13 +35,13 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     res["0"] = created_attachment_ops
 
     @form_answer.document.merge(
-      org_chart: res
+      org_chart: res,
     )
   end
 
   expose(:remove_org_chart_result_doc) do
     @form_answer.document.merge(
-      org_chart: {}
+      org_chart: {},
     )
   end
 
@@ -54,23 +49,22 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     "header_org_chart"
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.form_answer_attachment = current_user.form_answer_attachments.new(
       attachment_params.merge({
         form_answer_id: @form_answer.id,
-        original_filename: original_filename,
-        question_key: "org_chart"
-      })
+        original_filename:,
+        question_key: "org_chart",
+      }),
     )
 
     if form_answer_attachment.save
       @form_answer.document = add_org_chart_result_doc
       @form_answer.save
 
-      redirect_to edit_form_url(id: @form_answer.id, step: "company-information", anchor: anchor)
+      redirect_to edit_form_url(id: @form_answer.id, step: "company-information", anchor:)
     else
       render :new
     end
@@ -84,16 +78,14 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     self.form_answer_attachment = form_answer_attachments.find(params[:id])
     @form_answer.document = remove_org_chart_result_doc
 
-    if @form_answer.save
-      form_answer_attachment.destroy
-    end
+    form_answer_attachment.destroy if @form_answer.save
 
     respond_to do |format|
       format.html do
         if request.xhr? || request.format.js?
           head :ok
         else
-          redirect_to edit_form_url(id: @form_answer.id, step: "company-information", anchor: anchor)
+          redirect_to edit_form_url(id: @form_answer.id, step: "company-information", anchor:)
         end
       end
     end
@@ -101,10 +93,10 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
 
   private
 
-    def attachment_params
-      params.require(:form_answer_attachment).permit(
-        :file,
-        :form_answer_id
-      )
-    end
+  def attachment_params
+    params.require(:form_answer_attachment).permit(
+      :file,
+      :form_answer_id,
+    )
+  end
 end

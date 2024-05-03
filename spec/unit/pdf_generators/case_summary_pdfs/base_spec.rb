@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "CaseSummaryPdfs::Base" do
   let!(:award_year) do
@@ -6,18 +6,18 @@ describe "CaseSummaryPdfs::Base" do
   end
 
   let!(:form_answer_current_year_innovation) do
-    FactoryBot.create :form_answer, :recommended, :innovation, award_year: award_year
+    FactoryBot.create :form_answer, :recommended, :innovation, award_year:
   end
 
   let!(:form_answer_current_year_trade) do
-    FactoryBot.create :form_answer, :recommended, :trade, award_year: award_year
+    FactoryBot.create :form_answer, :recommended, :trade, award_year:
   end
 
   before do
     [:current_year].each do |year|
-      [:innovation, :trade].each do |award_type|
+      %i[innovation trade].each do |award_type|
         form_answer = send("form_answer_#{year}_#{award_type}")
-        create :assessor_assignment, form_answer: form_answer,
+        create :assessor_assignment, form_answer:,
                                      submitted_at: Date.today,
                                      assessor: nil,
                                      position: "case_summary",
@@ -31,7 +31,7 @@ describe "CaseSummaryPdfs::Base" do
       innovation_case_summaries = CaseSummaryPdfs::Base.new(
         "all", nil, {
           category: "innovation",
-          award_year: award_year
+          award_year:,
         }
       ).set_form_answers
        .map(&:id)
@@ -43,8 +43,8 @@ describe "CaseSummaryPdfs::Base" do
       trade_case_summaries = CaseSummaryPdfs::Base.new(
         "all", nil, {
           category: "trade",
-          award_year: award_year,
-          years_mode: "3"
+          award_year:,
+          years_mode: "3",
         }
       ).set_form_answers
        .map(&:id)
@@ -60,9 +60,9 @@ describe "CaseSummaryPdfs::Base" do
   def set_case_summary_content(form_answer)
     res = {}
 
-    AppraisalForm.struct(form_answer).each do |key, value|
+    AppraisalForm.struct(form_answer).each do |key, _value|
       res["#{key}_desc"] = "Lorem Ipsum"
-      res["#{key}_rate"] = ["negative", "positive", "average"].sample
+      res["#{key}_rate"] = %w[negative positive average].sample
     end
 
     res

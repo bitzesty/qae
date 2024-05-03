@@ -8,36 +8,36 @@ class FormAnswer::DocumentParser
     doc.each do |k, v|
       parsed_value = begin
         JSON.parse(v)
-      rescue
+      rescue StandardError
         v
       end
 
       parsed_value = if parsed_value.is_a?(Array)
-        if parsed_value.any? { |el| el.include?("{") }
-          parsed_value.map { |el| JSON.parse(el) }
-        else # simple array, no need to parse it
-          parsed_value
-        end
-      elsif parsed_value.is_a?(Hash)
-        new_hash = {}
+                       if parsed_value.any? { |el| el.include?("{") }
+                         parsed_value.map { |el| JSON.parse(el) }
+                       else # simple array, no need to parse it
+                         parsed_value
+                       end
+                     elsif parsed_value.is_a?(Hash)
+                       new_hash = {}
 
-        parsed_value.each do |key, value|
-          new_hash[key] = if value.is_a?(Hash)
-            value
-          else
-            begin
-              JSON.parse(value)
-            rescue
-              value
-            end
-          end
-        end
+                       parsed_value.each do |key, value|
+                         new_hash[key] = if value.is_a?(Hash)
+                                           value
+                                         else
+                                           begin
+                                             JSON.parse(value)
+                                           rescue StandardError
+                                             value
+                                           end
+                                         end
+                       end
 
-        new_hash
-      else
+                       new_hash
+                     else
 
-        parsed_value
-      end
+                       parsed_value
+                     end
 
       result[k] = parsed_value
     end

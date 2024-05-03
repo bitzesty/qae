@@ -10,9 +10,7 @@ class FormAnswer
     def eligibility
       method = "#{form_answer.award_type}_eligibility"
 
-      unless form_answer.public_send(method)
-        form_answer.public_send("build_#{method}", account_id: account.id).save!
-      end
+      form_answer.public_send("build_#{method}", account_id: account.id).save! unless form_answer.public_send(method)
 
       form_answer.public_send(method)
     end

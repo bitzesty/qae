@@ -28,7 +28,7 @@ describe "Assessor press_summary management", js: true do
   end
 
   describe "press_summary approval" do
-    let!(:press_summary) { create :press_summary, form_answer: form_answer }
+    let!(:press_summary) { create :press_summary, form_answer: }
 
     before do
       press_summary.body = "body"

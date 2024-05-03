@@ -1,11 +1,13 @@
 class CommentPolicy < ApplicationPolicy
   def create?
     return true if admin?
+
     lead_or_assigned?
   end
 
   def update?
     return true if admin?
+
     lead_or_assigned?
   end
 

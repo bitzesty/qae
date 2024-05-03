@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2019::QaeForms
   class << self
     def mobility_step3
@@ -178,7 +177,8 @@ class AwardYears::V2019::QaeForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme." do
+        textarea :investments_details,
+                 "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme." do
           ref "C 6"
           required
           context %(

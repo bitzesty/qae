@@ -6,8 +6,8 @@ class FormAnswerTransition < ApplicationRecord
   def transitable
     t_type = metadata["transitable_type"]
     t_id = metadata["transitable_id"]
-    if t_id.present? && t_type.present? && ["Admin", "Assessor", "User"].include?(t_type)
-      t_type.constantize.find_by_id(t_id)
-    end
+    return unless t_id.present? && t_type.present? && %w[Admin Assessor User].include?(t_type)
+
+    t_type.constantize.find_by(id: t_id)
   end
 end

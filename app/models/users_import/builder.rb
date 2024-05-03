@@ -4,7 +4,7 @@ class UsersImport::Builder
   attr_reader :csv
 
   def initialize(filepath)
-    file = File.open(filepath).read
+    file = File.read(filepath)
     @csv = CSV.parse(file, headers: true)
   end
 
@@ -13,7 +13,7 @@ class UsersImport::Builder
     not_saved = []
     @csv.each do |user|
       email = user["RegisteredUserEmail"].downcase if user["RegisteredUserEmail"].present?
-      u = User.where(email: email).first_or_initialize
+      u = User.where(email:).first_or_initialize
       if u.new_record? && email.present?
         log "saving: #{email}"
 
@@ -37,10 +37,10 @@ class UsersImport::Builder
       end
     end
     log "Imported: #{saved.count}; not_saved: #{not_saved.map(&:email)}"
-    { saved: saved, not_saved: not_saved }
+    { saved:, not_saved: }
   end
 
-  # TODO  not being used, can be removed
+  # TODO: not being used, can be removed
   # def self.send_mailing
   #   User.where(imported: true).each do |user|
   #     raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
@@ -71,12 +71,12 @@ class UsersImport::Builder
       "RegisteredUserPostcode" => :postcode,
       "RegisteredUserTelephone1" => :phone_number,
       "RegisteredUserTelephone2" => :phone_number2,
-      "RegisteredUserMobile" => :mobile_number
+      "RegisteredUserMobile" => :mobile_number,
     }
   end
 
   def assign_password(user)
-    passw = (0...15).map { (65 + rand(26)).chr }.join
+    passw = (0...15).map { rand(65..90).chr }.join
     user.password = passw
     user.password_confirmation = passw
     user

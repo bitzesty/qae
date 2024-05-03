@@ -6,12 +6,14 @@
 namespace :db do
   desc "fix wrong assessments on dev and staging"
   task fix_wrong_assessments_on_dev_and_staging: :environment do
-    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by_year(2017), position: [0,1,4]).where("assessed_at IS NOT NULL")
+    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by(year: 2017), position: [0, 1, 4]).where.not(assessed_at: nil)
 
     # Move strategy to "corporate_social_responsibility"
     # and remove strategy as these award types should not have strategy
     #
-    without_strategy = entries.select { |e| e.form_answer.award_type == "innovation" || e.form_answer.award_type == "mobility" || e.form_answer.award_type == "development" }
+    without_strategy = entries.select do |e|
+      e.form_answer.award_type == "innovation" || e.form_answer.award_type == "mobility" || e.form_answer.award_type == "development"
+    end
 
     without_strategy.each do |entry|
       strategy_desc = entry.document["strategy_desc"]
@@ -21,7 +23,7 @@ namespace :db do
 
       new_document["corporate_social_responsibility_desc"] = strategy_desc
       new_document["corporate_social_responsibility_rate"] = strategy_rate
-      new_document.reject! { |k, v| k == "strategy_desc" || k == "strategy_rate" }
+      new_document.reject! { |k, _v| %w[strategy_desc strategy_rate].include?(k) }
 
       entry.document = new_document
       entry.save!(validate: false)
@@ -44,7 +46,7 @@ namespace :db do
 
   desc "fix appraisal forms on dev and staging"
   task fix_staging_dev_apprailsal_forms: :environment do
-    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by_year(2017), position: [0,1,4]).where("assessed_at IS NOT NULL")
+    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by(year: 2017), position: [0, 1, 4]).where.not(assessed_at: nil)
 
     # Reject strategy for development
 
@@ -52,7 +54,7 @@ namespace :db do
 
     development.each do |entry|
       new_document = entry.document
-      new_document.reject! { |k, v| k == "strategy_desc" || k == "strategy_rate" }
+      new_document.reject! { |k, _v| %w[strategy_desc strategy_rate].include?(k) }
 
       entry.document = new_document
       entry.save!(validate: false)
@@ -61,18 +63,18 @@ namespace :db do
 
   desc "fix staging and dev sust dev assessments"
   task fix_staging_dev_sust_dev_assessments: :environment do
-    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by_year(2017)).select { |a| a.document != {} }
+    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by(year: 2017)).select { |a| a.document != {} }
 
     # Reject keys from development
 
-    keys_to_remove = [
-      "environment_protection",
-      "benefiting_the_wilder_community",
-      "sustainable_resource",
-      "economic_sustainability",
-      "supporting_employees",
-      "internal_leadership",
-      "industry_sector"
+    keys_to_remove = %w[
+      environment_protection
+      benefiting_the_wilder_community
+      sustainable_resource
+      economic_sustainability
+      supporting_employees
+      internal_leadership
+      industry_sector
     ]
 
     development = entries.select { |e| e.form_answer.award_type == "development" }
@@ -81,7 +83,7 @@ namespace :db do
       new_document = entry.document
 
       keys_to_remove.each do |key|
-        new_document.reject! { |k, v| k == "#{key}_desc" || k == "#{key}_rate" }
+        new_document.reject! { |k, _v| ["#{key}_desc", "#{key}_rate"].include?(k) }
       end
 
       entry.document = new_document
@@ -90,16 +92,16 @@ namespace :db do
       form = entry.form_answer
       feedback = form.feedback
 
-      if feedback.present?
-        f_doc = feedback.document
+      next if feedback.blank?
 
-        keys_to_remove.each do |key|
-          f_doc.reject! { |k, v| k == "#{key}_desc" || k == "#{key}_rate" }
-        end
+      f_doc = feedback.document
 
-        feedback.document = f_doc
-        feedback.save!(validate: false)
+      keys_to_remove.each do |key|
+        f_doc.reject! { |k, _v| ["#{key}_desc", "#{key}_rate"].include?(k) }
       end
+
+      feedback.document = f_doc
+      feedback.save!(validate: false)
     end
   end
 end

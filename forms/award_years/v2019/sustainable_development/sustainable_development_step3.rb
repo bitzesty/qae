@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2019::QaeForms
   class << self
     def development_step3
@@ -23,7 +22,8 @@ class AwardYears::V2019::QaeForms
           )
         end
 
-        options :development_performance_years, "How would you describe the impact of your sustainable development on your organisation's financial performance?" do
+        options :development_performance_years,
+                "How would you describe the impact of your sustainable development on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
@@ -31,7 +31,7 @@ class AwardYears::V2019::QaeForms
           option "5 plus", "Continuous Sustainable Development: sustainable development has improved commercial performance over five years"
           financial_date_selector({
             "2 to 4" => "2",
-            "5 plus" => "5"
+            "5 plus" => "5",
           })
           default_option "5 plus"
           sub_category_question
@@ -51,7 +51,8 @@ class AwardYears::V2019::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -220,7 +221,8 @@ class AwardYears::V2019::QaeForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
+        textarea :drops_in_turnover,
+                 "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
           rows 5
@@ -230,7 +232,8 @@ class AwardYears::V2019::QaeForms
           drop_condition_parent
         end
 
-        options :entry_relates_to, "How does the sustainable development product, service or management approach that forms the basis of this application fit within the overall business?" do
+        options :entry_relates_to,
+                "How does the sustainable development product, service or management approach that forms the basis of this application fit within the overall business?" do
           ref "C 5"
           required
           option :entire_business, "It's integral to the whole business"
@@ -319,7 +322,8 @@ class AwardYears::V2019::QaeForms
           by_year_condition :development_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
+        textarea :costs_change_desc,
+                 "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5
@@ -344,7 +348,8 @@ class AwardYears::V2019::QaeForms
           conditional :development_performance_years, :true
         end
 
-        textarea :development_performance, "What cost-savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
+        textarea :development_performance,
+                 "What cost-savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
           ref "C 8"
           required
           context %(
@@ -356,7 +361,8 @@ class AwardYears::V2019::QaeForms
           words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
+        textarea :investments_details,
+                 "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
           ref "C 9"
           required
           context %(

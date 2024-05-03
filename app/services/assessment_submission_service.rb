@@ -17,34 +17,28 @@ class AssessmentSubmissionService
       if submit_assessment
         populate_case_summary
 
-        if resource.primary?
-          populate_feedback
-        end
+        populate_feedback if resource.primary?
       end
 
-      if resource.moderated? || resource.case_summary?
-        perform_state_transition!
-      end
+      perform_state_transition! if resource.moderated? || resource.case_summary?
     end
 
-    if primary_and_secondary_assessments_submitted?
-      check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
-    end
+    return unless primary_and_secondary_assessments_submitted?
+
+    check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
   end
 
   def resubmit!
     # TODO: probably need further actions!
     # NEED TO CONFIRM!
     #
-    if set_submitted_at_as_now!
-      if resource.primary?
-        populate_feedback
-      end
+    return unless set_submitted_at_as_now!
 
-      if resource.moderated?
-        perform_state_transition!
-      end
-    end
+    populate_feedback if resource.primary?
+
+    return unless resource.moderated?
+
+    perform_state_transition!
   end
 
   delegate :as_json, :errors, to: :resource
@@ -58,22 +52,22 @@ class AssessmentSubmissionService
   def set_submitted_at_as_now!
     resource.update(
       submitted_at: DateTime.now,
-      locked_at: DateTime.now
+      locked_at: DateTime.now,
     )
   end
 
   def populate_case_summary
-    if resource.moderated?
-      case_summary = record(AssessorAssignment.positions[:case_summary])
-      moderated_assessment = record(AssessorAssignment.positions[:moderated])
+    return unless resource.moderated?
 
-      document = primary_assessment.document.merge(
-        "verdict_rate" => moderated_assessment.document["verdict_rate"]
-      )
+    case_summary = record(AssessorAssignment.positions[:case_summary])
+    moderated_assessment = record(AssessorAssignment.positions[:moderated])
 
-      case_summary.document = document
-      case_summary.save
-    end
+    document = primary_assessment.document.merge(
+      "verdict_rate" => moderated_assessment.document["verdict_rate"],
+    )
+
+    case_summary.document = document
+    case_summary.save
   end
 
   def populate_feedback
@@ -109,7 +103,7 @@ class AssessmentSubmissionService
 
   def record(position)
     AssessorAssignment.where(
-      form_answer_id: form_answer.id, position: position
+      form_answer_id: form_answer.id, position:,
     ).first_or_create
   end
 
@@ -127,52 +121,52 @@ class AssessmentSubmissionService
     end
 
     rate_type_keys.map do |rate_key|
-      primary_grade = primary_assessment.document[rate_key.to_s] || ''
-      secondary_grade = secondary_assessment.document[rate_key.to_s] || ''
+      primary_grade = primary_assessment.document[rate_key.to_s] || ""
+      secondary_grade = secondary_assessment.document[rate_key.to_s] || ""
 
-      if primary_grade != secondary_grade
-        q_main_key = rate_key.to_s
-                            .gsub('_rate', '')
-                            .to_sym
+      next unless primary_grade != secondary_grade
 
-        appraisal_title = appraisal_form_settings[q_main_key][:label][0..-2]
+      q_main_key = rate_key.to_s
+                          .gsub("_rate", "")
+                          .to_sym
 
-        labels = question_answer_labels(q_main_key)
-        primary_grade_label = get_answer_label(labels, primary_grade)
-        secondary_grade_label = get_answer_label(labels, secondary_grade)
+      appraisal_title = appraisal_form_settings[q_main_key][:label][0..-2]
 
-        discrepancies << [
-          rate_key,
-          appraisal_title,
-          primary_grade_label,
-          secondary_grade_label
-        ]
-      end
+      labels = question_answer_labels(q_main_key)
+      primary_grade_label = get_answer_label(labels, primary_grade)
+      secondary_grade_label = get_answer_label(labels, secondary_grade)
+
+      discrepancies << [
+        rate_key,
+        appraisal_title,
+        primary_grade_label,
+        secondary_grade_label,
+      ]
     end
 
-    if discrepancies.present?
-      primary_assessor = primary_assessment.assessor
-      secondary_assessor = secondary_assessment.assessor
+    return if discrepancies.blank?
 
-      res = {
-        discrepancies: discrepancies,
-        primary_assessor_name: primary_assessor&.full_name,
-        primary_assessor_email: primary_assessor&.email,
-        primary_assessor_submitted_at: format_date(primary_assessment.submitted_at),
-        secondary_assessor_name: secondary_assessor&.full_name,
-        secondary_assessor_email: secondary_assessor&.email,
-        secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at)
-      }
+    primary_assessor = primary_assessment.assessor
+    secondary_assessor = secondary_assessment.assessor
 
-      form_answer.update_column(
-        :discrepancies_between_primary_and_secondary_appraisals, res
-      )
-    end
+    res = {
+      discrepancies:,
+      primary_assessor_name: primary_assessor&.full_name,
+      primary_assessor_email: primary_assessor&.email,
+      primary_assessor_submitted_at: format_date(primary_assessment.submitted_at),
+      secondary_assessor_name: secondary_assessor&.full_name,
+      secondary_assessor_email: secondary_assessor&.email,
+      secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at),
+    }
+
+    form_answer.update_column(
+      :discrepancies_between_primary_and_secondary_appraisals, res
+    )
   end
 
   def primary_and_secondary_assessments_submitted?
     primary_assessment.submitted? &&
-    secondary_assessment.submitted?
+      secondary_assessment.submitted?
   end
 
   def primary_assessment
@@ -189,10 +183,10 @@ class AssessmentSubmissionService
 
   def question_answer_labels(key)
     q_type = if key.to_s == "corporate_social_responsibility"
-      "CSR_RAG"
-    else
-      get_question_type(key)
-    end
+               "CSR_RAG"
+             else
+               get_question_type(key)
+             end
 
     AppraisalForm.const_get("#{q_type.upcase}_OPTIONS_#{form_answer.award_year.year}")
   end

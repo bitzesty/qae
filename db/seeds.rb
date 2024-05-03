@@ -4,7 +4,7 @@ unless Admin.exists?
     password: "^#ur9EkLm@1W",
     first_name: "First name",
     last_name: "Last name",
-    confirmed_at: DateTime.now
+    confirmed_at: DateTime.now,
   }
 
   Admin.create!(admin_args)
@@ -17,15 +17,15 @@ unless Assessor.exists?
     password: "^#ur9EkLm@1W",
     first_name: "First name",
     last_name: "Last name",
-    confirmed_at: DateTime.now
+    confirmed_at: DateTime.now,
   }
 
   Assessor.create!(assessor_args)
   p "========Assessor created========"
 end
 
-roles = ["lead", "regular", "none"]
-awards = ["trade", "innovation", "development", "promotion", "mobility"]
+roles = %w[lead regular none]
+awards = %w[trade innovation development promotion mobility]
 
 awards.each do |award|
   roles.each do |role|
@@ -35,7 +35,7 @@ awards.each do |award|
       last_name: "#{award}",
     }
     role_args = {
-      "#{award}_role" => (role == "none" ? nil : role)
+      "#{award}_role" => (role == "none" ? nil : role),
     }
 
     assessor_args.merge!(role_args)

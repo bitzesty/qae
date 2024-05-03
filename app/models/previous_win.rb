@@ -3,7 +3,7 @@ class PreviousWin
     "Innovation" => "innovation",
     "International Trade" => "international_trade",
     "Sustainable Development" => "sustainable_development",
-    "Promoting Opportunity" => "social_mobility"
+    "Promoting Opportunity" => "social_mobility",
   }
 
   def self.available_years

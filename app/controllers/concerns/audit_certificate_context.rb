@@ -12,9 +12,7 @@ module AuditCertificateContext
     if saved = audit_certificate.save
       log_event
 
-      if form_answer.assessors.primary.present?
-        Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
-      end
+      Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later! if form_answer.assessors.primary.present?
 
       Users::AuditCertificateMailer.notify(form_answer.id, form_answer.user_id).deliver_later!
     end
@@ -27,20 +25,20 @@ module AuditCertificateContext
 
         format.js do
           render  partial: "admin/form_answers/docs/post_shortlisting_docs",
-            locals: {
-            resource: form_answer.decorate
-          },
-          content_type: "text/plain"
+                  locals: {
+                    resource: form_answer.decorate,
+                  },
+                  content_type: "text/plain"
         end
       else
         format.html do
           redirect_to [namespace_name, form_answer],
-            alert: audit_certificate.errors.full_messages.join(", ")
+                      alert: audit_certificate.errors.full_messages.join(", ")
         end
         format.js do
           render json: audit_certificate,
-            status: :created,
-            content_type: "text/plain"
+                 status: :created,
+                 content_type: "text/plain"
         end
       end
     end
@@ -69,11 +67,9 @@ module AuditCertificateContext
     # This is fix of "missing 'audit_certificate' param"
     # if no any was selected in file input
     if params[:audit_certificate].blank?
-      params.merge!(
-        audit_certificate: {
-          attachment: ""
-        }
-      )
+      params[:audit_certificate] = {
+        attachment: "",
+      }
     end
 
     params.require(:audit_certificate).permit(:attachment)

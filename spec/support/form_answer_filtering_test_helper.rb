@@ -9,8 +9,8 @@ module FormAnswerFilteringTestHelper
     within ".applications-filter.status-filter" do
       find(".dropdown-toggle").click
 
-      expect(page).to have_selector('.status-filter .dropdown.open', visible: true)
-      expect(page).to have_selector('.status-filter li.apply button', visible: true)
+      expect(page).to have_selector(".status-filter .dropdown.open", visible: true)
+      expect(page).to have_selector(".status-filter li.apply button", visible: true)
 
       within ".status-filter .dropdown-menu" do
         button = find("li.apply button")
@@ -18,12 +18,12 @@ module FormAnswerFilteringTestHelper
           next if li.all(".label-contents").count == 0
 
           content = li.first(".label-contents")
-          if content.text.to_s == val
-            li.first("label input").click
-            button.click
+          next unless content.text.to_s == val
 
-            return
-          end
+          li.first("label input").click
+          button.click
+
+          return
         end
       end
     end
@@ -32,8 +32,8 @@ module FormAnswerFilteringTestHelper
       expect(page).to have_selector(".dropdown-toggle")
       find(".dropdown-toggle").click
 
-      expect(page).to have_selector('.sub-status-filter .dropdown.open', visible: true)
-      expect(page).to have_selector('.sub-status-filter li.apply button', visible: true)
+      expect(page).to have_selector(".sub-status-filter .dropdown.open", visible: true)
+      expect(page).to have_selector(".sub-status-filter li.apply button", visible: true)
 
       within ".sub-status-filter .dropdown-menu" do
         button = find("li.apply button")
@@ -41,16 +41,16 @@ module FormAnswerFilteringTestHelper
           next if li.all(".label-contents").count == 0
 
           content = li.first(".label-contents")
-          if content.text.to_s == val
-            li.first("label input").click
-            button.click
+          next unless content.text.to_s == val
 
-            return
-          end
+          li.first("label input").click
+          button.click
+
+          return
         end
       end
     end
-    fail "NotFoundOption"
+    raise "NotFoundOption"
   end
 
   def assign_dummy_assessors(form_answers, assessor)
@@ -70,7 +70,7 @@ module FormAnswerFilteringTestHelper
 
   def assign_dummy_feedback(form_answers, submitted = true)
     Array(form_answers).each do |fa|
-      feedback = fa.build_feedback(submitted: submitted)
+      feedback = fa.build_feedback(submitted:)
       feedback.save(validate: false)
     end
   end

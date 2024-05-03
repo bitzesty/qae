@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2021::QaeForms
   class << self
     def mobility_step2
@@ -60,19 +59,22 @@ class AwardYears::V2021::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
             )],
 
             [:bold, "Social mobility definition"],
-            [:normal, %(
+            [:normal,
+             %(
               Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
 
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
               \u2022 Socio-economic status is a person's current social and economic circumstances.)],
             [:bold, "Disadvantaged groups that Queens’ Awards for Enterprise focuses on"],
-            [:normal, %(
+            [:normal,
+             %(
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
 
               \u2022 People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;
@@ -115,21 +117,24 @@ class AwardYears::V2021::QaeForms
             )],
 
             [:bold, "Evidence"],
-            [:normal, %(
+            [:normal,
+             %(
               Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
 
               The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
             )],
 
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
 
             [:bold, "Answering questions"],
-            [:normal, %(
+            [:normal,
+             %(
               Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.
-            )]
+            )],
           ]
         end
 
@@ -141,31 +146,38 @@ class AwardYears::V2021::QaeForms
               Select whether your application is for:
             </p>
           )
-          option "initiative", "a) <strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds."
-          option "organisation", "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
+          option "initiative",
+                 "a) <strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds."
+          option "organisation",
+                 "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
 
           context_for_option "initiative", "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.<br/><br/>
             For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.<br/><br/>
             If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim. <br/><br/>
             If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
 
-
-          context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
+          context_for_option "organisation",
+                             "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
 
           pdf_context_for_option "initiative", [
-            [:normal, "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.\n"],
+            [:normal,
+             "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.\n"],
 
-            [:normal, "For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.\n"],
-            [:normal, "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
-            [:normal, "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
+            [:normal,
+             "For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.\n"],
+            [:normal,
+             "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
+            [:normal,
+             "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
 
-            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"]
+            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"],
           ]
 
           pdf_context_for_option "organisation", [
 
-            [:normal, "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
-            [:italic, "(If you selected this option, answer all B2b, B3b, B4b, B5b, B6b, B7b questions)"]
+            [:normal,
+             "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
+            [:italic, "(If you selected this option, answer all B2b, B3b, B4b, B5b, B6b, B7b questions)"],
           ]
 
           default_option "initiative"
@@ -175,11 +187,13 @@ class AwardYears::V2021::QaeForms
 
         comment :initiative_question_guidance, "" do
           pdf_context_with_header_blocks [
-            [:italic, "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."]
+            [:italic,
+             "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."],
           ]
         end
 
-        checkbox_seria :initiative_activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
+        checkbox_seria :initiative_activities,
+                       "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2a"
           required
           classes "question-limited-selections"
@@ -188,14 +202,22 @@ class AwardYears::V2021::QaeForms
             <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
           )
           check_options [
-            ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
-            ["fairer_recruitment", "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic."],
-            ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
-            ["work_placements", "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
-            ["early_careers", "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
-            ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
-            ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
-            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
+            ["careers_advice",
+             "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
+            ["fairer_recruitment",
+             "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic."],
+            ["skills_development",
+             "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
+            ["work_placements",
+             "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
+            ["early_careers",
+             "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
+            ["job_opportunities",
+             "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
+            ["advancement",
+             "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
+            ["advocacy_and_leadership",
+             "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
           ]
           conditional :application_category, "initiative"
         end
@@ -216,7 +238,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_desc_medium, "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
+        textarea :initiative_desc_medium,
+                 "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
           classes "sub-question"
           sub_ref "B 3.2a"
           required
@@ -276,7 +299,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_measuring_targets, "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your initiative." do
+        textarea :initiative_measuring_targets,
+                 "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your initiative." do
           classes "sub-question"
           sub_ref "B 4.2a"
           required
@@ -298,7 +322,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_targets_not_met, "Explain what happens if your initiative doesn't meet the KPIs or alternative performance targets?" do
+        textarea :initiative_targets_not_met,
+                 "Explain what happens if your initiative doesn't meet the KPIs or alternative performance targets?" do
           classes "sub-question"
           sub_ref "B 4.3a"
           required
@@ -395,7 +420,7 @@ class AwardYears::V2021::QaeForms
               2. the proportion of participants from disadvantaged backgrounds;
 
               3. the breakdown of these participants by disadvantaged group;
-              
+
               4. for each disadvantaged group, specify the participant age range and in what UK counties they are based.
 
               Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.
@@ -404,7 +429,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_quantitative_evidence, "Provide quantitative evidence on the impact that your initiative has achieved for your participants." do
+        textarea :initiative_quantitative_evidence,
+                 "Provide quantitative evidence on the impact that your initiative has achieved for your participants." do
           classes "sub-question"
           sub_ref "B 5.2a"
           required
@@ -441,7 +467,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_qualitative_evidence, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
+        textarea :initiative_qualitative_evidence,
+                 "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
           classes "sub-question"
           sub_ref "B 5.3a"
           required
@@ -469,7 +496,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_feedback, "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
+        textarea :initiative_feedback,
+                 "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
           classes "sub-question"
           sub_ref "B 5.4a"
           required
@@ -496,7 +524,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation?" do
+        textarea :initiative_impact_sharing,
+                 "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation?" do
           classes "sub-question"
           sub_ref "B 6.1a"
           required
@@ -507,7 +536,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_member_engagement, "Explain if and how you engage the organisation’s members or employees in the design and implementation of your initiative." do
+        textarea :initiative_member_engagement,
+                 "Explain if and how you engage the organisation’s members or employees in the design and implementation of your initiative." do
           classes "sub-question"
           sub_ref "B 6.2a"
           required
@@ -515,7 +545,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do." do
+        textarea :initiative_long_term_plans,
+                 "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do." do
           classes "sub-question"
           sub_ref "B 6.3a"
           required
@@ -523,7 +554,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_organisation_benefits, "Are there any other benefits of the initiative to your organisation that you haven't yet outlined in the previous responses?" do
+        textarea :initiative_organisation_benefits,
+                 "Are there any other benefits of the initiative to your organisation that you haven't yet outlined in the previous responses?" do
           classes "sub-question"
           sub_ref "B 6.4a"
           required
@@ -545,9 +577,9 @@ class AwardYears::V2021::QaeForms
         textarea :initiative_community_society_impact, "Impact on community and society." do
           sub_ref "B 7a"
           required
-          question_sub_title %{
+          question_sub_title %(
             What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?
-          }
+          )
           context %(
             <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
@@ -569,11 +601,13 @@ class AwardYears::V2021::QaeForms
 
         comment :organisation_question_guidance, "" do
           pdf_context_with_header_blocks [
-            [:italic, "Answer the questions below if you selected option (b) in question B1 - your application is for the whole organisation whose core aim is to promote opportunity through social mobility."]
+            [:italic,
+             "Answer the questions below if you selected option (b) in question B1 - your application is for the whole organisation whose core aim is to promote opportunity through social mobility."],
           ]
         end
 
-        checkbox_seria :organisation_activities, "What activities did you implement to make a positive impact by promoting opportunity through social mobility?" do
+        checkbox_seria :organisation_activities,
+                       "What activities did you implement to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2b"
           required
           classes "question-limited-selections"
@@ -582,24 +616,34 @@ class AwardYears::V2021::QaeForms
             <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
           )
           check_options [
-            ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
-            ["fairer_recruitment", "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic."],
-            ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
-            ["work_placements", "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
-            ["early_careers", "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
-            ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
-            ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
-            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
+            ["careers_advice",
+             "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
+            ["fairer_recruitment",
+             "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic."],
+            ["skills_development",
+             "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
+            ["work_placements",
+             "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
+            ["early_careers",
+             "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
+            ["job_opportunities",
+             "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
+            ["advancement",
+             "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
+            ["advocacy_and_leadership",
+             "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
           ]
           conditional :application_category, "organisation"
         end
 
-        header :organisation_header_b3b, "Details of how your organisation has made a significant difference by promoting opportunity through social mobility." do
+        header :organisation_header_b3b,
+               "Details of how your organisation has made a significant difference by promoting opportunity through social mobility." do
           ref "B 3b"
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_desc_short, "Provide a one-line description of your organisation in terms of how it promotes opportunity through social mobility." do
+        textarea :organisation_desc_short,
+                 "Provide a one-line description of your organisation in terms of how it promotes opportunity through social mobility." do
           classes "sub-question"
           sub_ref "B 3.1b"
           required
@@ -610,7 +654,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_desc_medium, "Briefly describe your core organisation, its aims, what it does and how it promotes opportunity through social mobility for people from disadvantaged backgrounds." do
+        textarea :organisation_desc_medium,
+                 "Briefly describe your core organisation, its aims, what it does and how it promotes opportunity through social mobility for people from disadvantaged backgrounds." do
           classes "sub-question"
           sub_ref "B 3.2b"
           required
@@ -618,7 +663,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_motivations, "Outline the social mobility factors or issues that motivated your organisation to be founded or that led your organisation to focus on promoting opportunity through social mobility." do
+        textarea :organisation_motivations,
+                 "Outline the social mobility factors or issues that motivated your organisation to be founded or that led your organisation to focus on promoting opportunity through social mobility." do
           classes "sub-question"
           sub_ref "B 3.3b"
           required
@@ -658,7 +704,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_measuring_targets, "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your core aim to promote opportunity through social mobility." do
+        textarea :organisation_measuring_targets,
+                 "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your core aim to promote opportunity through social mobility." do
           classes "sub-question"
           sub_ref "B 4.1b"
           required
@@ -769,7 +816,7 @@ class AwardYears::V2021::QaeForms
 
               \u2022 Families of prisoners.
 
-              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement. 
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
 
               Please provide the totals and year by year breakdown of:
 
@@ -787,7 +834,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_quantitative_evidence, "Provide quantitative evidence on the impact that your organisation has achieved for your participants." do
+        textarea :organisation_quantitative_evidence,
+                 "Provide quantitative evidence on the impact that your organisation has achieved for your participants." do
           classes "sub-question"
           sub_ref "B 5.2b"
           required
@@ -824,7 +872,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_qualitative_evidence, "Provide qualitative evidence on the impact that your organisation has achieved for your participants." do
+        textarea :organisation_qualitative_evidence,
+                 "Provide qualitative evidence on the impact that your organisation has achieved for your participants." do
           classes "sub-question"
           sub_ref "B 5.3b"
           required
@@ -852,7 +901,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_feedback, "Describe what feedback, if any, you sought on how your organisation could be improved (in the context of your core aim to promote opportunity through social mobility). What, if any, of the suggested improvements have you implemented?" do
+        textarea :organisation_feedback,
+                 "Describe what feedback, if any, you sought on how your organisation could be improved (in the context of your core aim to promote opportunity through social mobility). What, if any, of the suggested improvements have you implemented?" do
           classes "sub-question"
           sub_ref "B 5.4b"
           required
@@ -879,7 +929,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_impact_sharing, "Explain if and how you share and celebrate the evidence of the impact across the organisation?" do
+        textarea :organisation_impact_sharing,
+                 "Explain if and how you share and celebrate the evidence of the impact across the organisation?" do
           classes "sub-question"
           sub_ref "B 6.1b"
           required
@@ -890,7 +941,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_member_engagement, "Explain if and how you engage the organisation’s members or employees in the design, implementation and evaluation of your work (in the context of your core aim to promote opportunity through social mobility)." do
+        textarea :organisation_member_engagement,
+                 "Explain if and how you engage the organisation’s members or employees in the design, implementation and evaluation of your work (in the context of your core aim to promote opportunity through social mobility)." do
           classes "sub-question"
           sub_ref "B 6.2b"
           required
@@ -898,7 +950,8 @@ class AwardYears::V2021::QaeForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote or improve the promotion of opportunities through social mobility beyond what you already do?" do
+        textarea :organisation_long_term_plans,
+                 "What are your long-term plans for ensuring your organisation continues to promote or improve the promotion of opportunities through social mobility beyond what you already do?" do
           classes "sub-question"
           sub_ref "B 6.3b"
           required
@@ -909,9 +962,9 @@ class AwardYears::V2021::QaeForms
         textarea :organisation_community_society_impact, "Impact on community and society." do
           sub_ref "B 7b"
           required
-          question_sub_title %{
+          question_sub_title %(
             What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?
-          }
+          )
           context %(
             <p>For example, has your organisation’s activities led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )

@@ -7,7 +7,7 @@ class PressSummaryPolicy < ApplicationPolicy
     (!record.submitted? && subject.lead_or_assigned?(form_answer)) || admin?
   end
 
-  alias :create? :update?
+  alias create? update?
 
   def approve?
     !record.approved? && subject.lead?(form_answer)
@@ -26,7 +26,7 @@ class PressSummaryPolicy < ApplicationPolicy
   end
 
   def can_update_contact_details?
-    ( !deadline_passed? && update? ) || admin?
+    (!deadline_passed? && update?) || admin?
   end
 
   def deadline_passed?

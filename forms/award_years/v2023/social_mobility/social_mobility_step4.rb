@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2023::QaeForms
   class << self
     def mobility_step4
@@ -31,11 +30,13 @@ class AwardYears::V2023::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About section D"],
-            [:normal, %(
+            [:normal,
+             %(
               The Declaration of Corporate Social Responsibility is an opportunity for you to highlight your responsible business conduct and its social, economic and environmental impact within your organisation, supply chain and wider community. We expect all applicants for a Queen's Award for Enterprise to adhere to commonly accepted standards for corporate responsibility. Provide examples for each heading, relative to the size and scale of your business. For this section, you may wish to consider the following points: How do you invest in employees, or select suppliers with the same high standards? Do you provide opportunities such as mentoring, coaching or work experience placements? How have you reduced your carbon footprint? Applicants who are not able to demonstrate corporate social responsibility will not be successful.
             )],
             [:bold, "Answering questions"],
-            [:normal, %(
+            [:normal,
+             %(
               The word limits are a guide. You do not need to completely fill in every box if there is no reason to - we suggest you focus on your strongest examples in each case.
 
               Furthermore, you may have answered some of the questions in this section in other parts of the form - such as the questions relating to your innovation's value-add in B3. If you believe this is the case, you do not need to repeat the information but make it clear by referencing the questions in other parts of the form.
@@ -45,9 +46,10 @@ class AwardYears::V2023::QaeForms
               Finally, there is no need to provide information on how you are adhering to statutory laws or regulations - such as 'we pay minimum wage'. We're more interested in how you are going above and beyond.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-            )]
+            )],
           ]
         end
 

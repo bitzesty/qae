@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2021::QaeForms
   class << self
     def innovation_step1
@@ -68,12 +67,13 @@ class AwardYears::V2021::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
                 We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
-              )
-            ],
+              )],
             [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
-            [:normal, %(
+            [:normal,
+             %(
                 \u2022 Biotechnology & Biological Sciences Research Council
                 \u2022 Charity Commission
                 \u2022 Companies House
@@ -115,13 +115,12 @@ class AwardYears::V2021::QaeForms
                 \u2022 Serious Fraud Office
                 \u2022 UK Export Finance
                 \u2022 Wales Government
-              )
-            ],
+              )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
                 Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-              )
-            ]
+              )],
           ]
         end
 
@@ -200,18 +199,19 @@ class AwardYears::V2021::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
@@ -313,7 +313,8 @@ class AwardYears::V2021::QaeForms
           conditional :innovation_contributors_aware, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
+        textarea :innovation_contributors_why_organisations,
+                 "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           classes "sub-question"
           sub_ref "A 9.2"
           required
@@ -341,13 +342,14 @@ class AwardYears::V2021::QaeForms
           required
           ref "A 11"
           pdf_context_with_header_blocks [
-            [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
-            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+            [:normal,
+             "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"],
           ]
           county_context %(
             <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p> 
+            <p>
               <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
                 See the full list of London districts on Wikipedia
               </a>
@@ -358,7 +360,7 @@ class AwardYears::V2021::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
         end
 

@@ -9,15 +9,15 @@ describe "Progress halt" do
   let!(:account) { user.reload.account }
 
   let!(:form_answer) do
-    create :form_answer, :trade, user: user, account: account
+    create :form_answer, :trade, user:, account:
   end
 
   let!(:basic_eligibility) do
-    create :basic_eligibility, form_answer: form_answer, account: account
+    create :basic_eligibility, form_answer:, account:
   end
 
   let!(:trade_eligibility) do
-    create :trade_eligibility, form_answer: form_answer, account: account
+    create :trade_eligibility, form_answer:, account:
   end
 
   let!(:questions) { form_answer.award_form.steps.map { |s| s.questions.map(&:key) }.flatten }
@@ -53,12 +53,14 @@ describe "Progress halt" do
         within("div[data-question-key=\"overseas_sales\"] > .govuk-form-group > .if-js-hide") do
           expect(page).not_to have_selector(".govuk-error-summary.govuk-visually-hidden")
           expect(page).to have_selector(".govuk-error-summary.govuk-error-summary--question-halted", count: 1)
-          expect(page).to have_selector(".govuk-error-summary .govuk-error-summary__title", text: "You do not meet the eligibility criteria for this award.")
-          expect(page).to have_selector(".govuk-error-summary .govuk-error-summary__body", text: "Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.")
+          expect(page).to have_selector(".govuk-error-summary .govuk-error-summary__title",
+                                        text: "You do not meet the eligibility criteria for this award.")
+          expect(page).to have_selector(".govuk-error-summary .govuk-error-summary__body",
+                                        text: "Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.")
         end
       end
 
-      visible, hidden = questions.partition.with_index do |k, idx|
+      visible, hidden = questions.partition.with_index do |_k, idx|
         idx <= questions.index(:overseas_sales)
       end
 
@@ -74,12 +76,12 @@ describe "Progress halt" do
 
       expect(page).to have_selector("li.submit.js-next-link.js-step-link.js-link-disabled", count: 5)
 
-      ["step-consent-due-diligence", "step-company-information", "step-your-international-trade", "step-commercial-performance"].each do |k|
+      %w[step-consent-due-diligence step-company-information step-your-international-trade step-commercial-performance].each do |k|
         expect(page).not_to have_selector(".steps-progress-bar ul li[data-step=\"#{k}\"].js-step-disabled")
         expect(page).to have_selector(".steps-progress-bar ul li[data-step=\"#{k}\"]", count: 1)
       end
 
-      ["step-environmental-social-corporate-governance-esg", "step-supplementary-materials-confirmation"].each do |k|
+      %w[step-environmental-social-corporate-governance-esg step-supplementary-materials-confirmation].each do |k|
         expect(page).to have_selector(".steps-progress-bar ul li[data-step=\"#{k}\"].js-step-disabled", count: 1)
       end
     end

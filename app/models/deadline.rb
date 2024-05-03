@@ -8,34 +8,34 @@ class Deadline < ApplicationRecord
 
   belongs_to :settings, optional: true
 
-  AVAILABLE_DEADLINES = [
-    "award_year_switch",
-    "innovation_submission_start",
-    "trade_submission_start",
-    "development_submission_start",
-    "mobility_submission_start",
-    "submission_start",
-    "submission_end",
-    "buckingham_palace_attendees_details",
-    "buckingham_palace_attendees_invite",
-    "buckingham_palace_confirm_press_book_notes",
-    "buckingham_palace_media_information",
-    "buckingham_palace_reception_attendee_information_due_by",
-    "audit_certificates"
+  AVAILABLE_DEADLINES = %w[
+    award_year_switch
+    innovation_submission_start
+    trade_submission_start
+    development_submission_start
+    mobility_submission_start
+    submission_start
+    submission_end
+    buckingham_palace_attendees_details
+    buckingham_palace_attendees_invite
+    buckingham_palace_confirm_press_book_notes
+    buckingham_palace_media_information
+    buckingham_palace_reception_attendee_information_due_by
+    audit_certificates
   ]
 
-  SUBMISSION_START_DEADLINES = [
-    "innovation_submission_start",
-    "trade_submission_start",
-    "development_submission_start",
-    "mobility_submission_start"
+  SUBMISSION_START_DEADLINES = %w[
+    innovation_submission_start
+    trade_submission_start
+    development_submission_start
+    mobility_submission_start
   ]
 
   enumerize :kind, in: AVAILABLE_DEADLINES, predicates: true
   validates :kind, presence: true
 
-  after_save :clear_cache
   after_destroy :clear_cache
+  after_save :clear_cache
 
   class << self
     def with_states_to_trigger(time = DateTime.now)
@@ -54,7 +54,7 @@ class Deadline < ApplicationRecord
       where(kind: "submission_start").first
     end
 
-    %w(innovation trade mobility development).each do |award|
+    %w[innovation trade mobility development].each do |award|
       define_method "#{award}_submission_start" do
         where(kind: "#{award}_submission_start").first
       end
@@ -97,8 +97,8 @@ class Deadline < ApplicationRecord
     Rails.cache.delete("#{kind.value}_deadline")
     Rails.cache.delete("#{kind}_deadline_#{settings.award_year.year}")
 
-    if SUBMISSION_START_DEADLINES.include?(kind.to_s)
-      Rails.cache.delete("submission_start_deadlines")
-    end
+    return unless SUBMISSION_START_DEADLINES.include?(kind.to_s)
+
+    Rails.cache.delete("submission_start_deadlines")
   end
 end

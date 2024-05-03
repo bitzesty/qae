@@ -11,13 +11,13 @@ class QaeFormBuilder
         { first_name: "First name" },
         { last_name: "Last name" },
         { telephone: "Telephone" },
-        { email: "Email address" }
+        { email: "Email address" },
       ]
     end
   end
 
   class PressContactDetailsQuestionBuilder < QuestionBuilder
-    def sub_fields fields
+    def sub_fields(fields)
       @q.sub_fields = fields
     end
   end
@@ -25,5 +25,4 @@ class QaeFormBuilder
   class PressContactDetailsQuestion < Question
     attr_accessor :sub_fields
   end
-
 end

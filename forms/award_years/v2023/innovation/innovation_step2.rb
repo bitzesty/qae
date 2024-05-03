@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2023::QaeForms
   class << self
     def innovation_step2
@@ -28,21 +27,25 @@ class AwardYears::V2023::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About section B"],
-            [:normal, %(
+            [:normal,
+             %(
               This section is structured to enable you to tell your success story of the innovation's development, implementation and impact enabling the Assessing Team to understand the role innovation plays within your overall business and how this impacts on the performance of your business.
             )],
             [:bold, "Word limits"],
-            [:normal, %(
+            [:normal,
+             %(
               What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for. Do not feel that you have to aim for the maximum number of words allowed.
             )],
             [:bold, "Technical language"],
-            [:normal, %(
+            [:normal,
+             %(
               Please also avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             )],
             [:bold, "Supporting information"],
-            [:normal, %(
+            [:normal,
+             %(
               If you feel there is additional information that might support your application, you can attach documents in Section E. You should make sure that you reference any supporting documents, videos or websites in your answers below. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
-            )]
+            )],
           ]
         end
 
@@ -79,7 +82,7 @@ class AwardYears::V2023::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model or process"]
+            ["business_model", "A business model or process"],
           ]
           application_type_question true
         end
@@ -132,7 +135,8 @@ class AwardYears::V2023::QaeForms
           words_max 15
         end
 
-        options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation." do
+        options :description_that_best_reflects_the_type_of_innovation,
+                "Select the description that best reflects the type of your innovation." do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.3"
@@ -158,7 +162,8 @@ class AwardYears::V2023::QaeForms
           yes_no
         end
 
-        textarea :innovation_hold_existing_patent_details, "Provide a link to your published patent document. If you do not have a patent, please explain the reasons why not." do
+        textarea :innovation_hold_existing_patent_details,
+                 "Provide a link to your published patent document. If you do not have a patent, please explain the reasons why not." do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.4.1"
@@ -183,7 +188,8 @@ class AwardYears::V2023::QaeForms
           yes_no
         end
 
-        textarea :innovation_other_countries_it_was_developed, "Describe in what other countries and, if applicable, by what parties it was developed." do
+        textarea :innovation_other_countries_it_was_developed,
+                 "Describe in what other countries and, if applicable, by what parties it was developed." do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.5.1"
@@ -228,7 +234,8 @@ class AwardYears::V2023::QaeForms
           yes_no
         end
 
-        textarea :innovation_external_contributors, "Name any external organisations or individuals that contributed to your innovation, and explain their contributions." do
+        textarea :innovation_external_contributors,
+                 "Name any external organisations or individuals that contributed to your innovation, and explain their contributions." do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.7.1"
@@ -259,7 +266,8 @@ class AwardYears::V2023::QaeForms
           conditional :innovation_contributors_aware, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
+        textarea :innovation_contributors_why_organisations,
+                 "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.7.3"
@@ -287,7 +295,8 @@ class AwardYears::V2023::QaeForms
           words_max 100
         end
 
-        options :innovations_grant_funding, "Have you received any grant funding or made use of any government support, such as innovation loan, in relation to your innovation?" do
+        options :innovations_grant_funding,
+                "Have you received any grant funding or made use of any government support, such as innovation loan, in relation to your innovation?" do
           sub_section :innovation_background_header
           classes "sub-question"
           sub_ref "B 1.9"
@@ -309,7 +318,6 @@ class AwardYears::V2023::QaeForms
           rows 3
           words_max 250
         end
-
 
         header :innovation_timeline_header, "Innovation development" do
           ref "B 2"
@@ -345,18 +353,19 @@ class AwardYears::V2023::QaeForms
           classes "sub-question"
           sub_ref "B 2.2"
           required
-          context -> do
+          context lambda {
             %(
               <p>
                 Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (if you are applying for the two-year award) or after #{AwardYear.start_trading_since(5)} (if you are applying for the five-year award).
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(2)
         end
 
-        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
+        textarea :innovation_context,
+                 "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
           sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.3"
@@ -433,7 +442,8 @@ class AwardYears::V2023::QaeForms
           words_max 350
         end
 
-        textarea :innovation_overcomes_issues, "Describe any challenges you encountered in developing your innovation and how you overcame them." do
+        textarea :innovation_overcomes_issues,
+                 "Describe any challenges you encountered in developing your innovation and how you overcame them." do
           sub_section :innovation_timeline_header
           classes "sub-question"
           sub_ref "B 2.6"
@@ -635,7 +645,8 @@ class AwardYears::V2023::QaeForms
           words_max 400
         end
 
-        textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation benefit others, and if so, how and to whom?" do
+        textarea :beyond_your_immediate_customers,
+                 "Beyond your immediate customers, does the innovation benefit others, and if so, how and to whom?" do
           sub_section :innovation_value_add_header
           classes "sub-question"
           sub_ref "B 3.3"

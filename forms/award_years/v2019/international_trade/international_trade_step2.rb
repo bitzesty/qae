@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2019::QaeForms
   class << self
     def trade_step2
@@ -66,8 +65,8 @@ class AwardYears::V2019::QaeForms
             <p>Select all that apply.</p>
           )
           check_options [
-            ["products", "Products"],
-            ["services", "Services"]
+            %w[products Products],
+            %w[services Services],
           ]
           application_type_question true
         end
@@ -90,7 +89,8 @@ class AwardYears::V2019::QaeForms
           default_option "1"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations,
+                                          "List and briefly describe each product or services you export." do
           classes "sub-question word-max-strict"
           sub_ref "B 2.2"
           required
@@ -109,7 +109,8 @@ class AwardYears::V2019::QaeForms
           conditional :trade_goods_amount, :true
         end
 
-        textarea :trade_plans_desc, "Describe your overall growth plans and the links and importance between your international and domestic trading strategies (plans), your vision and objectives for the future, your method of implementation, and how your actual performance compared to the plans set out." do
+        textarea :trade_plans_desc,
+                 "Describe your overall growth plans and the links and importance between your international and domestic trading strategies (plans), your vision and objectives for the future, your method of implementation, and how your actual performance compared to the plans set out." do
           ref "B 3"
           required
           context %(
@@ -143,7 +144,8 @@ class AwardYears::V2019::QaeForms
           words_max 500
         end
 
-        textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
+        textarea :top_overseas_sales,
+                 "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
           classes "sub-question"
           sub_ref "B 4.2"
           required
@@ -151,7 +153,8 @@ class AwardYears::V2019::QaeForms
           words_max 100
         end
 
-        textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry and their contribution to total overseas sales." do
+        textarea :identify_new_overseas,
+                 "Identify new overseas markets established during your period of entry and their contribution to total overseas sales." do
           classes "sub-question"
           sub_ref "B 4.3"
           required
@@ -159,7 +162,8 @@ class AwardYears::V2019::QaeForms
           words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade in products or services, and how you overcame them." do
+        textarea :trade_factors,
+                 "Describe any special challenges affecting your trade in products or services, and how you overcame them." do
           ref "B 5"
           required
           rows 5
@@ -174,11 +178,12 @@ class AwardYears::V2019::QaeForms
           )
           check_options [
             ["franchise", "As a franchise"],
-            ["other", "Other business model(s)"]
+            ["other", "Other business model(s)"],
           ]
         end
 
-        textarea :operate_model_benefits, "Explain your franchise or other business models and rationale for this. Describe the benefits this brings to the UK." do
+        textarea :operate_model_benefits,
+                 "Explain your franchise or other business models and rationale for this. Describe the benefits this brings to the UK." do
           classes "sub-question"
           sub_ref "B 6.1"
           required

@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 module CaseSummaryPdfs::General::DataPointer
   PREVIOUS_AWARDS = { "innovation" => "Innovation",
                       "international_trade" => "International Trade",
                       "sustainable_development" => "Sustainable Development" }
 
-  COLOR_LABELS = %w(positive average negative neutral)
+  COLOR_LABELS = %w[positive average negative neutral]
   POSITIVE_COLOR = "6B8E23"
   AVERAGE_COLOR = "DAA520"
   NEGATIVE_COLOR = "FF0000"
@@ -27,7 +26,7 @@ module CaseSummaryPdfs::General::DataPointer
   def application_type_question
     all_questions.detect do |q|
       q.delegate_obj.is_a?(QaeFormBuilder::CheckboxSeriaQuestion) &&
-      q.application_type_question.present?
+        q.application_type_question.present?
     end
   end
 
@@ -73,8 +72,8 @@ module CaseSummaryPdfs::General::DataPointer
     [
       [
         "Case summary comments",
-        "RAG"
-      ]
+        "RAG",
+      ],
     ]
   end
 
@@ -83,7 +82,7 @@ module CaseSummaryPdfs::General::DataPointer
       [
         value[:label].delete(":"),
         data["#{key}_desc"] || undefined_value,
-        value[:type] == :non_rag ? "" : rag(key, value)
+        value[:type] == :non_rag ? "" : rag(key, value),
       ]
     end
   end
@@ -123,11 +122,9 @@ module CaseSummaryPdfs::General::DataPointer
       render_application_background
     else
       # type and sub category Qs are missing for SD2020+, so need to move up
-      if form_answer.development? && form_answer.award_year.year >= 2020
-        pdf_doc.move_up 16.mm
-      end
+      pdf_doc.move_up 16.mm if form_answer.development? && form_answer.award_year.year >= 2020
 
-      pdf_doc.move_down y_coord('general_block').mm
+      pdf_doc.move_down y_coord("general_block").mm
       render_application_background
     end
 
@@ -138,24 +135,22 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_financial_block(trade_mode)
-    if financial_pointer.present? && !financial_pointer.period_length.zero?
-      move_length = 3.mm
+    return unless financial_pointer.present? && !financial_pointer.period_length.zero?
 
-      if trade_mode.present?
-        move_length = y_coord('general_block').mm
-      end
+    move_length = 3.mm
 
-      pdf_doc.move_down move_length
-      render_financial_table
-    end
+    move_length = y_coord("general_block").mm if trade_mode.present?
+
+    pdf_doc.move_down move_length
+    render_financial_table
   end
 
   def render_application_background
     pdf_doc.stroke_horizontal_rule
     pdf_doc.move_down 7.mm
-    pdf_doc.text "Application background", header_text_properties.merge({size: 13})
+    pdf_doc.text "Application background", header_text_properties.merge({ size: 13 })
     pdf_doc.move_down 5.mm
-    pdf_doc.text data["application_background_section_desc"], header_text_properties.merge({style: :normal})
+    pdf_doc.text data["application_background_section_desc"], header_text_properties.merge({ style: :normal })
     pdf_doc.move_down 7.mm
     pdf_doc.stroke_horizontal_rule
   end
@@ -166,7 +161,7 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_case_summaries_header
-    pdf_doc.text "Case summary comments", header_text_properties.merge({size: 13})
+    pdf_doc.text "Case summary comments", header_text_properties.merge({ size: 13 })
   end
 
   # Classes and methods are not available inside pdf_doc.table below (Prawn::Table)
@@ -184,7 +179,6 @@ module CaseSummaryPdfs::General::DataPointer
     pdf_doc.move_down 5.mm
 
     case_summaries_entries.each_with_index do |entry, index|
-
       if index > 0
         pdf_doc.stroke_horizontal_rule
         pdf_doc.move_down 5.mm
@@ -192,11 +186,11 @@ module CaseSummaryPdfs::General::DataPointer
 
       pdf_doc.text entry[0], header_text_properties
 
-      pdf_doc.text entry[2], header_text_properties.merge({color: color_by_value(entry[2], year)})
+      pdf_doc.text entry[2], header_text_properties.merge({ color: color_by_value(entry[2], year) })
 
       pdf_doc.move_down 5.mm
 
-      pdf_doc.text entry[1], header_text_properties.merge({style: :normal})
+      pdf_doc.text entry[1], header_text_properties.merge({ style: :normal })
       pdf_doc.move_down 5.mm
     end
   end
@@ -218,29 +212,29 @@ module CaseSummaryPdfs::General::DataPointer
   def render_financial_section_header
     pdf_doc.stroke_horizontal_rule
     pdf_doc.move_down 10.mm
-    pdf_doc.text "Financial Summary", header_text_properties.merge({size: 13})
+    pdf_doc.text "Financial Summary", header_text_properties.merge({ size: 13 })
     pdf_doc.move_down 5.mm
   end
 
   def render_financial_table_header
-    pdf_doc.table [year_rows], row_colors: %w(FFFFFF),
-                  cell_style: { size: 12, font_style: :bold },
-                  column_widths: column_widths
+    pdf_doc.table [year_rows], row_colors: %w[FFFFFF],
+                               cell_style: { size: 12, font_style: :bold },
+                               column_widths:
   end
 
   def render_financials
     financial_metrics_by_years.each do |row|
       if row[0] == CaseSummaryPdfs::Pointer::DATE_LABEL
         pdf_doc.table([row],
-          row_colors: %w(FFFFFF),
-          cell_style: { size: 12, font_style: :bold },
-          column_widths: column_widths
-        )
+                      row_colors: %w[FFFFFF],
+                      cell_style: { size: 12, font_style: :bold },
+                      column_widths:,
+                     )
       else
         pdf_doc.table([row],
-          cell_style: { size: 12 },
-          column_widths: column_widths
-        )
+                      cell_style: { size: 12 },
+                      column_widths:,
+                     )
       end
     end
   end
@@ -252,17 +246,17 @@ module CaseSummaryPdfs::General::DataPointer
     exclude_innovation_years = !form_answer.innovation?
     period_length = financial_pointer.period_length(exclude_innovation_years)
     first_row_width = case period_length
-    when 2
-      first_row_width = 607
-    when 3
-      first_row_width = 527
-    when 4
-      first_row_width = 447
-    when 5
-      first_row_width = 367
-    when 6
-      first_row_width = 287
-    end
+                      when 2
+                        first_row_width = 607
+                      when 3
+                        first_row_width = 527
+                      when 4
+                        first_row_width = 447
+                      when 5
+                        first_row_width = 367
+                      when 6
+                        first_row_width = 287
+                      end
 
     res = { 0 => first_row_width }
 
@@ -280,32 +274,32 @@ module CaseSummaryPdfs::General::DataPointer
   # for the overall growth table
   def benchmarks_column_widths
     first_row_width = case financial_pointer.period_length
-    when 2
-      {
-        0 => 607,
-        1 => 160
-      }
-    when 3
-      {
-        0 => 527,
-        1 => 240
-      }
-    when 4
-      {
-        0 => 447,
-        1 => 320
-      }
-    when 5
-      {
-        0 => 367,
-        1 => 400
-      }
-    when 6
-      {
-        0 => 287,
-        1 => 480
-      }
-    end
+                      when 2
+                        {
+                          0 => 607,
+                          1 => 160,
+                        }
+                      when 3
+                        {
+                          0 => 527,
+                          1 => 240,
+                        }
+                      when 4
+                        {
+                          0 => 447,
+                          1 => 320,
+                        }
+                      when 5
+                        {
+                          0 => 367,
+                          1 => 400,
+                        }
+                      when 6
+                        {
+                          0 => 287,
+                          1 => 480,
+                        }
+                      end
   end
 
   def render_financial_benchmarks
@@ -319,39 +313,39 @@ module CaseSummaryPdfs::General::DataPointer
 
   def render_base_growth_table
     rows = if @form_answer.trade?
-      [
-        @growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
-        @sales_exported_list.unshift("% Sales exported"),
-        # Removing this until SIC codes are updated
-        # @average_growth_for_list.unshift("% Sector average growth")
-      ]
-    else
-      [
-        @growth_in_total_turnover_list.unshift("% Growth in total turnover")
-      ]
-    end
+             [
+               @growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
+               @sales_exported_list.unshift("% Sales exported"),
+               # Removing this until SIC codes are updated
+               # @average_growth_for_list.unshift("% Sector average growth")
+             ]
+           else
+             [
+               @growth_in_total_turnover_list.unshift("% Growth in total turnover"),
+             ]
+           end
 
     pdf_doc.table(rows,
-      cell_style: { size: 12 },
-      column_widths: column_widths
-    )
+                  cell_style: { size: 12 },
+                  column_widths:,
+                 )
   end
 
   def render_overall_growth_table
     rows = [
       [
         "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
-        @overall_growth
+        @overall_growth,
       ],
       [
         "Overall growth in % (year 1 - #{financial_pointer.period_length})",
-        @overall_growth_in_percents
-      ]
+        @overall_growth_in_percents,
+      ],
     ]
 
     pdf_doc.table(rows,
-      cell_style: { size: 12 },
-      column_widths: benchmarks_column_widths
-    )
+                  cell_style: { size: 12 },
+                  column_widths: benchmarks_column_widths,
+                 )
   end
 end

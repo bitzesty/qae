@@ -7,10 +7,10 @@ module CaseSummaryPdfs::General::DrawElements
 
   def sic_code_offset
     @sic_code_offset ||= if sic_code.length > 100
-      -5.mm
-    else
-      0.mm
-    end
+                           -5.mm
+                         else
+                           0.mm
+                         end
   end
 
   def main_header
@@ -29,7 +29,7 @@ module CaseSummaryPdfs::General::DrawElements
       else
         render_type(offset: sic_code_offset)
         render_current_awards(offset: sic_code_offset)
-        render_sub_category(0, y_coord('sub_category') + sic_code_offset.to_i)
+        render_sub_category(0, y_coord("sub_category") + sic_code_offset.to_i)
       end
     end
 
@@ -39,31 +39,31 @@ module CaseSummaryPdfs::General::DrawElements
 
   def render_organization_type
     pdf_doc.text_box "Organisation Type: #{organisation_type}", header_text_properties.merge(
-      at: [0.mm, 112.mm + default_offset]
+      at: [0.mm, 112.mm + default_offset],
     )
   end
 
   def render_type(offset: 0.mm)
     pdf_doc.text_box "Type: #{application_type}",
-            header_text_properties.merge(
-      at: [0.mm, 97.mm + default_offset + offset],
-      width: 272.mm
-    )
+                     header_text_properties.merge(
+                       at: [0.mm, 97.mm + default_offset + offset],
+                       width: 272.mm,
+                     )
   end
 
   def y_coord(mode)
     mode_number = case mode
-    when 'awards'
-      0
-    when 'sub_category'
-      1
-    when 'general_block'
-      2
-    end
+                  when "awards"
+                    0
+                  when "sub_category"
+                    1
+                  when "general_block"
+                    2
+                  end
 
     if form_answer.award_type == "mobility" &&
-       form_answer.award_year.year < 2020 &&
-       application_type_answer.size > 0
+        form_answer.award_year.year < 2020 &&
+        application_type_answer.size > 0
       case application_type_answer.size
       when 1
         [79, 71, 75]
@@ -79,7 +79,7 @@ module CaseSummaryPdfs::General::DrawElements
 
   def render_sic_code
     pdf_doc.text_box "SIC code: #{sic_code}",
-            header_text_properties.merge(width: 272.mm, at: [0.mm, 104.5.mm + default_offset])
+                     header_text_properties.merge(width: 272.mm, at: [0.mm, 104.5.mm + default_offset])
   end
 
   def render_current_awards(offset: 0)
@@ -89,14 +89,15 @@ module CaseSummaryPdfs::General::DrawElements
     awards.each_with_index do |awards_line, index|
       if index == 0
         pdf_doc.text_box "Current Awards: #{awards_line}",
-                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord('awards').mm + default_offset + offset])
+                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset])
       else
         pdf_doc.text_box "#{awards_line}",
-                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord('awards').mm + default_offset + offset - index * ONE_LINE_OFFSET])
+                         header_text_properties.merge(width: 650.mm,
+                                                      at: [0.mm,
+                                                           y_coord("awards").mm + default_offset + offset - (index * ONE_LINE_OFFSET)])
 
         pdf_doc.move_down ONE_LINE_OFFSET
       end
     end
-
   end
 end

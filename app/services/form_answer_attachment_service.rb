@@ -22,9 +22,9 @@ class FormAnswerAttachmentService
       partial: "admin/form_answer_attachments/form_answer_attachment",
       locals: {
         form_answer_attachment: resource,
-        form_answer: form_answer
+        form_answer:,
       },
-      content_type: "text/plain"
+      content_type: "text/plain",
     }
   end
 
@@ -35,7 +35,7 @@ class FormAnswerAttachmentService
   end
 
   def create_params
-    attrs = [:file, :title]
+    attrs = %i[file title]
     attrs << :restricted_to_admin if subject.is_a?(Admin)
 
     params[:form_answer_attachment].permit(*attrs)

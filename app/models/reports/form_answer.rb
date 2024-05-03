@@ -8,24 +8,24 @@ class Reports::FormAnswer
               :award_form,
               :financial_data
 
-  def initialize(form_answer, limited_access=false)
+  def initialize(form_answer, limited_access = false)
     @obj = form_answer
     @answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document)
-    @award_form = form_answer.award_form.decorate(answers: answers)
+    @award_form = form_answer.award_form.decorate(answers:)
     @financial_data = form_answer.financial_data || {}
 
-    unless limited_access
-      @moderated = pick_assignment("moderated")
-      @primary = pick_assignment("primary")
-      @secondary = pick_assignment("secondary")
-      @case_summary = pick_assignment("case_summary")
+    return if limited_access
 
-      @secondary_assessor = @obj.secondary_assessor
+    @moderated = pick_assignment("moderated")
+    @primary = pick_assignment("primary")
+    @secondary = pick_assignment("secondary")
+    @case_summary = pick_assignment("case_summary")
 
-      if @obj.press_summary.present?
-        @press_summary = @obj.press_summary
-      end
-    end
+    @secondary_assessor = @obj.secondary_assessor
+
+    return if @obj.press_summary.blank?
+
+    @press_summary = @obj.press_summary
   end
 
   def question_visible?(question_key)
@@ -50,13 +50,13 @@ class Reports::FormAnswer
       [
         @press_summary.title,
         @press_summary.name,
-        @press_summary.last_name
+        @press_summary.last_name,
       ]
     else
       [
         @obj.document["press_contact_details_title"],
         @obj.document["press_contact_details_first_name"],
-        @obj.document["press_contact_details_last_name"]
+        @obj.document["press_contact_details_last_name"],
       ]
     end.map(&:presence).compact.join(" ")
   end
@@ -109,6 +109,7 @@ class Reports::FormAnswer
 
   def mso_grade_agreed
     return unless @moderated
+
     rates = @moderated.document.select { |k, _| k =~ /\w_rate/ }
     rates.map do |_, rate|
       rag rate
@@ -186,7 +187,7 @@ class Reports::FormAnswer
     {
       "negative" => "R",
       "positive" => "G",
-      "average" => "A"
+      "average" => "A",
     }[var]
   end
 
@@ -203,21 +204,21 @@ class Reports::FormAnswer
   end
 
   def applicant_submitted_press_note
-    if @press_summary.present?
-      bool @press_summary.try(:applicant_submitted?)
-    end
+    return if @press_summary.blank?
+
+    bool @press_summary.try(:applicant_submitted?)
   end
 
   def assessor_agreed_press_note
-    if @press_summary.present?
-      bool @press_summary.try(:submitted?)
-    end
+    return if @press_summary.blank?
+
+    bool @press_summary.try(:submitted?)
   end
 
   def qao_agreed_press_note
-    if @press_summary.present?
-      bool @press_summary.try(:admin_sign_off?)
-    end
+    return if @press_summary.blank?
+
+    bool @press_summary.try(:admin_sign_off?)
   end
 
   def case_summary_status

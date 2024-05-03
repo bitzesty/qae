@@ -4,16 +4,16 @@ require "rails_helper"
 describe "Admin generates the CSV reports" do
   let!(:user) { create(:user, :completed_profile) }
 
-  let!(:trade) { create(:form_answer, :trade, user: user, submitted_at: Time.current) }
-  let!(:innovation) { create(:form_answer, :innovation, user: user) }
-  let!(:development) { create(:form_answer, :development, user: user, state: "awarded") }
-  let!(:mobility) { create(:form_answer, :mobility, user: user) }
+  let!(:trade) { create(:form_answer, :trade, user:, submitted_at: Time.current) }
+  let!(:innovation) { create(:form_answer, :innovation, user:) }
+  let!(:development) { create(:form_answer, :development, user:, state: "awarded") }
+  let!(:mobility) { create(:form_answer, :mobility, user:) }
 
   let(:output) do
     data = Reports::AdminReport.new(id, AwardYear.current).as_csv
 
     if data.is_a?(Enumerator)
-      data.entries.map { |row| CSV.parse(row) }.flatten(1)
+      data.entries.flat_map { |row| CSV.parse(row) }
     else
       CSV.parse(data)
     end
@@ -67,9 +67,9 @@ describe "Admin generates the CSV reports" do
     end
 
     let!(:attendee) do
-      create(:palace_attendee, palace_invite: palace_invite,
-                               title: title,
-                               first_name: first_name)
+      create(:palace_attendee, palace_invite:,
+                               title:,
+                               first_name:)
     end
 
     it "produces proper output" do

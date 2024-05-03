@@ -7,7 +7,7 @@ module Utils
 
       res = v1.to_i - v2.to_i
       abs ? res.abs : res
-    rescue
+    rescue StandardError
       nil
     end
   end

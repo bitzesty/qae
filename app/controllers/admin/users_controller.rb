@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :find_resource, except: [:index, :new, :create]
+  before_action :find_resource, except: %i[index new create]
 
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
@@ -29,9 +29,10 @@ class Admin::UsersController < Admin::BaseController
     @resource.save
     location = @resource.persisted? ? admin_users_path : nil
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
-    respond_with :admin, @resource, location: location
+    respond_with :admin, @resource, location:
   end
 
   def update
@@ -40,7 +41,8 @@ class Admin::UsersController < Admin::BaseController
     @resource.skip_password_validation = true
     @resource.update_without_password(resource_params)
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_users_path
   end
@@ -99,7 +101,7 @@ class Admin::UsersController < Admin::BaseController
       :notification_when_development_award_open,
       :notification_when_mobility_award_open,
       :notification_when_submission_deadline_is_coming,
-      :agree_sharing_of_details_with_lieutenancies
+      :agree_sharing_of_details_with_lieutenancies,
     )
   end
 end

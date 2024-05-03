@@ -12,7 +12,7 @@ class ReportPdfBase < Prawn::Document
               :missing_data_name,
               :award_year
 
-  def initialize(mode, form_answer=nil, options={})
+  def initialize(mode, form_answer = nil, options = {})
     super(page_size: "A4", page_layout: :landscape)
 
     @pdf_doc = self
@@ -22,10 +22,10 @@ class ReportPdfBase < Prawn::Document
     set_fonts!
     set_language!
     @award_year = if mode == "singular"
-      form_answer.award_year
-    else
-      options[:award_year]
-    end
+                    form_answer.award_year
+                  else
+                    options[:award_year]
+                  end
 
     generate!
   end

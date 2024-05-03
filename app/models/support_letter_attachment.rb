@@ -5,18 +5,18 @@ class SupportLetterAttachment < ApplicationRecord
   include ::InfectedFileCleaner
   clean_after_scan :attachment
 
-  begin :associations
+  begin
     belongs_to :user, optional: true
     belongs_to :form_answer, optional: true
     belongs_to :support_letter, optional: true
   end
 
-  begin :validations
+  begin
     validates :form_answer, :user, presence: true
     validates :attachment, presence: true,
                            on: :create,
                            file_size: {
-                             maximum: 5.megabytes.to_i
+                             maximum: 5.megabytes.to_i,
                            }
   end
 end

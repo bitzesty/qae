@@ -9,16 +9,16 @@ class FormPdf < Prawn::Document
   UNDEFINED_TITLE = "No answer ..."
   NOTHING_SELECTED = "Nothing selected"
   UNDEFINED_TYPE = "undefined type UNDEFINED"
-  TABLE_WITH_COMMENT_QUESTION = %w(financial_year_dates total_turnover exports net_profit total_net_assets)
-  INLINE_DATE_QUESTION = %w(
+  TABLE_WITH_COMMENT_QUESTION = %w[financial_year_dates total_turnover exports net_profit total_net_assets]
+  INLINE_DATE_QUESTION = %w[
     started_trading
     financial_year_date
     nominee_date_of_birth
     innovation_was_launched_in_the_market
     development_was_launched_since
-  )
+  ]
   JUST_NOTES = [
-    "QaeFormBuilder::HeaderQuestion"
+    "QaeFormBuilder::HeaderQuestion",
   ]
   DEFAULT_ANSWER_COLOR = "5B5656"
 
@@ -33,7 +33,7 @@ class FormPdf < Prawn::Document
               :financial_pointer,
               :pdf_blank_mode
 
-  def initialize(form_answer, pdf_blank_mode=false)
+  def initialize(form_answer, pdf_blank_mode = false)
     super()
 
     @form_answer = form_answer
@@ -42,7 +42,7 @@ class FormPdf < Prawn::Document
     @answers = fetch_answers(pdf_blank_mode)
     set_fonts!
     set_language!
-    @award_form = form_answer.award_form.decorate(answers: answers)
+    @award_form = form_answer.award_form.decorate(answers:)
     @steps = award_form.steps
     @all_questions = steps.map(&:questions).flatten
     @form_answer_attachments = form_answer.form_answer_attachments.select do |a|
@@ -59,9 +59,9 @@ class FormPdf < Prawn::Document
     main_header
 
     steps.each do |step|
-      QaePdfForms::General::StepPointer.new(award_form: award_form,
+      QaePdfForms::General::StepPointer.new(award_form:,
                                             form_pdf: self,
-                                            step: step).render!
+                                            step:).render!
     end
 
     render_submission_deadline_block(32)

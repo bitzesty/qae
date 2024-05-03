@@ -1,5 +1,4 @@
 module CommercialFiguresMixin
-
   def show
     send_data file_record.attachment.read,
               filename: file_record.attachment.file.filename,
@@ -8,9 +7,7 @@ module CommercialFiguresMixin
 
   def destroy
     if deadline_allows_deletion?
-      if file_record.destroy
-        log_event
-      end
+      log_event if file_record.destroy
     else
       flash[:notice] = "Can't delete files after the deadline"
     end
@@ -52,20 +49,18 @@ module CommercialFiguresMixin
       .gsub("Attachment ", "")
   end
 
-
   def figures_wrapper
-    @figures_wrapper ||= (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
+    @figures_wrapper ||= form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
 
-    @figures_wrapper.save! if !@figures_wrapper.persisted?
+    @figures_wrapper.save! unless @figures_wrapper.persisted?
 
     @figures_wrapper
   end
 
-
   def form_answer
-    @form_answer ||= current_user.account.
-                       form_answers.
-                       find(params[:form_answer_id])
+    @form_answer ||= current_user.account
+                       .form_answers
+                       .find(params[:form_answer_id])
   end
 
   def scope

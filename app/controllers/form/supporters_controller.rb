@@ -42,12 +42,12 @@ class Form::SupportersController < Form::BaseController
       first_name: @supporter.first_name,
       last_name: @supporter.last_name,
       relationship_to_nominee: @supporter.relationship_to_nominee,
-      email: @supporter.email
+      email: @supporter.email,
     }
 
     supporters << new_supporter
 
-    @form_answer.document = @form_answer.document.merge(supporters: supporters)
+    @form_answer.document = @form_answer.document.merge(supporters:)
   end
 
   def remove_supporter_from_document!
@@ -57,15 +57,11 @@ class Form::SupportersController < Form::BaseController
       sup["supporter_id"] == @supporter.id
     end
 
-    @form_answer.document = @form_answer.document.merge(supporters: supporters)
+    @form_answer.document = @form_answer.document.merge(supporters:)
   end
 
   def supporters_doc
-    if @form_answer.document["supporters"].present?
-      @form_answer.document["supporters"]
-    else
-      []
-    end
+    @form_answer.document["supporters"].presence || []
   end
 
   def supporter_params
@@ -73,7 +69,7 @@ class Form::SupportersController < Form::BaseController
       :first_name,
       :last_name,
       :relationship_to_nominee,
-      :email
+      :email,
     )
   end
 end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin all feedbacks pdf generation" do
   let!(:form_answer) do
@@ -8,7 +8,7 @@ shared_context "admin all feedbacks pdf generation" do
   end
 
   let!(:feedback) do
-    create :feedback, form_answer: form_answer,
+    create :feedback, form_answer:,
                       document: feedback_document,
                       submitted: true
   end
@@ -38,7 +38,7 @@ shared_context "admin all feedbacks pdf generation" do
   def feedback_document
     res = {}
 
-    FeedbackForm.fields_for_award_type(form_answer).each do |key, value|
+    FeedbackForm.fields_for_award_type(form_answer).each do |key, _value|
       res["#{key}_strength"] = "#{key} strength"
       res["#{key}_weakness"] = "#{key} weakness"
     end

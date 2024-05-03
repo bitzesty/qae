@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2019::QaeForms
   class << self
     def mobility_step1
@@ -86,17 +85,18 @@ class AwardYears::V2019::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                  Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award.
               </p>
             )
-          end
+          }
           date_max AwardYear.start_trading_since(3)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
@@ -192,7 +192,8 @@ class AwardYears::V2019::QaeForms
           rows 2
         end
 
-        options :external_contribute_to_sustainable_product, "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
+        options :external_contribute_to_sustainable_product,
+                "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
           ref "A 9"
           required
           context %(
@@ -224,7 +225,8 @@ class AwardYears::V2019::QaeForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this application." do
+        textarea :why_external_organisations_contributed_your_nomination,
+                 "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this application." do
           classes "sub-question"
           sub_ref "A 9.2"
           required
@@ -248,7 +250,7 @@ class AwardYears::V2019::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 

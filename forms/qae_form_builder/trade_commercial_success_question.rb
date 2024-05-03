@@ -10,7 +10,7 @@ class QaeFormBuilder
                   :question_value,
                   :placeholder_text
 
-    def initialize(question_key, options={})
+    def initialize(question_key, options = {})
       @question_key = question_key
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
@@ -33,11 +33,11 @@ class QaeFormBuilder
   end
 
   class TradeCommercialSuccessQuestionBuilder < OptionsQuestionBuilder
-    def main_header text
+    def main_header(text)
       @q.main_header = text
     end
 
-    def placeholder_preselected_condition(q_key, options={})
+    def placeholder_preselected_condition(q_key, options = {})
       @q.question_key = q_key
       @q.placeholder_preselected_conditions << PlaceholderPreselectedCondition.new(q_key, options)
     end
@@ -61,23 +61,21 @@ class QaeFormBuilder
         end
 
         condition_enabled = if c.parent_question_answer_key == "application_disabled"
-          trade_answers.any? do |a|
-            a["year"].to_i >= (AwardYear.current.year - 1)
-          end
-        elsif c.parent_question_answer_key == "3_years_application"
-          trade_answers.any? do |a|
-            a["year"].to_i > (AwardYear.current.year - 5) &&
-              a["year"].to_i < (AwardYear.current.year - 1)
-          end
-        end
+                              trade_answers.any? do |a|
+                                a["year"].to_i >= (AwardYear.current.year - 1)
+                              end
+                            elsif c.parent_question_answer_key == "3_years_application"
+                              trade_answers.any? do |a|
+                                a["year"].to_i > (AwardYear.current.year - 5) &&
+                                  a["year"].to_i < (AwardYear.current.year - 1)
+                              end
+                            end
 
         answers["applied_for_queen_awards"] == "yes" && condition_enabled
       end
     end
 
-    def placeholder_preselected_conditions
-      delegate_obj.placeholder_preselected_conditions
-    end
+    delegate :placeholder_preselected_conditions, to: :delegate_obj
 
     def preselected_condition_by_option(option)
       placeholder_preselected_conditions.detect do |condition|

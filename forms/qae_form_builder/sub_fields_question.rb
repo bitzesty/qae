@@ -6,9 +6,9 @@ class QaeFormBuilder
       if question.required?
         question.required_sub_fields.each do |sub_field|
           suffix = sub_field.keys[0]
-          if !question.input_value(suffix: suffix).present?
-            result[question.hash_key(suffix: suffix)] ||= ""
-            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. #{suffix.to_s.humanize} is required and and must be filled in."
+          if question.input_value(suffix:).blank?
+            result[question.hash_key(suffix:)] ||= ""
+            result[question.hash_key(suffix:)] << "Question #{question.ref || question.sub_ref} is incomplete. #{suffix.to_s.humanize} is required and and must be filled in."
           end
         end
       end
@@ -16,13 +16,13 @@ class QaeFormBuilder
       question.sub_fields.each do |sub_field|
         suffix = sub_field.keys[0]
 
-        length = question.input_value(suffix: suffix).to_s.split(" ").reject(&:blank?).length
+        length = question.input_value(suffix:).to_s.split(" ").reject(&:blank?).length
 
         limit = question.delegate_obj.sub_fields_words_max
 
         if limit && length && length > limit
-          result[question.hash_key(suffix: suffix)] ||= ""
-          result[question.hash_key(suffix: suffix)] << " Exceeded #{limit} word limit."
+          result[question.hash_key(suffix:)] ||= ""
+          result[question.hash_key(suffix:)] << " Exceeded #{limit} word limit."
         end
       end
 
@@ -44,13 +44,13 @@ class QaeFormBuilder
 
     def rendering_sub_fields
       sub_fields.map do |f|
-        {key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint)}
+        { key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint) }
       end
     end
   end
 
   class SubFieldsQuestionBuilder < QuestionBuilder
-    def sub_fields fields
+    def sub_fields(fields)
       @q.sub_fields = fields
     end
 
@@ -62,5 +62,4 @@ class QaeFormBuilder
   class SubFieldsQuestion < Question
     attr_accessor :sub_fields, :sub_fields_words_max
   end
-
 end

@@ -1,6 +1,36 @@
 class FileUploader < CarrierWave::Uploader::Base
-  POSSIBLE_IMG_EXTENSIONS = %w(jpg jpeg gif png)
-  POSSIBLE_DOC_EXTENSIONS = %w(chm csv diff doc docx dot dxf eps gml ics kml odp ods odt pdf ppt pptx ps rdf rtf sch txt wsdl xls xlsm xlsx xlt xsd xslt zip msg)
+  POSSIBLE_IMG_EXTENSIONS = %w[jpg jpeg gif png]
+  POSSIBLE_DOC_EXTENSIONS = %w[chm
+                               csv
+                               diff
+                               doc
+                               docx
+                               dot
+                               dxf
+                               eps
+                               gml
+                               ics
+                               kml
+                               odp
+                               ods
+                               odt
+                               pdf
+                               ppt
+                               pptx
+                               ps
+                               rdf
+                               rtf
+                               sch
+                               txt
+                               wsdl
+                               xls
+                               xlsm
+                               xlsx
+                               xlt
+                               xsd
+                               xslt
+                               zip
+                               msg]
 
   def extension_whitelist
     POSSIBLE_IMG_EXTENSIONS + POSSIBLE_DOC_EXTENSIONS
@@ -11,6 +41,6 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{@original_filename.gsub(/\W/,'').gsub(/#{file.extension}\z/, '')}.#{file.extension}" if @original_filename.present?
+    "#{@original_filename.gsub(/\W/, "").gsub(/#{file.extension}\z/, "")}.#{file.extension}" if @original_filename.present?
   end
 end

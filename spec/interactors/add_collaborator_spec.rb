@@ -1,21 +1,21 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "Interactors::AddCollaborator" do
   include ActiveJob::TestHelper
 
   let!(:account_admin) do
     FactoryBot.create :user, :completed_profile,
-                              first_name: "Account Admin John",
-                              role: "account_admin"
+                      first_name: "Account Admin John",
+                      role: "account_admin"
   end
 
   let(:account) { account_admin.account }
 
   let!(:form_answer) do
     FactoryBot.create :form_answer, :innovation,
-                                     user: account_admin,
-                                     urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+                      user: account_admin,
+                      urn: "QA0001/19T",
+                      document: { company_name: "Bitzesty" }
   end
 
   let(:add_collaborator_interactor) do
@@ -29,7 +29,7 @@ describe "Interactors::AddCollaborator" do
     let(:new_user_email) { generate :email }
     let(:role) { "regular" }
     let(:create_params) do
-      { email: new_user_email, role: role }
+      { email: new_user_email, role: }
     end
     let(:new_regular_admin) do
       account.reload.users.last
@@ -40,9 +40,9 @@ describe "Interactors::AddCollaborator" do
     end
 
     it "should generate new User account without password and add person to collaborators" do
-      expect {
+      expect do
         add_collaborator_interactor.run
-      }.to change {
+      end.to change {
         User.count
       }.by(1)
 
@@ -56,16 +56,16 @@ describe "Interactors::AddCollaborator" do
   end
 
   describe "Attempt to add to Collaborators of existing user, which is belongs_to another Account" do
-   let!(:existing_user_with_another_account_association) do
+    let!(:existing_user_with_another_account_association) do
       FactoryBot.create :user, :completed_profile,
-                                first_name: "Another Account Admin Dave",
-                                role: "account_admin"
+                        first_name: "Another Account Admin Dave",
+                        role: "account_admin"
     end
 
     let(:existing_user_email) { existing_user_with_another_account_association.email }
     let(:role) { "regular" }
     let(:create_params) do
-      { email: existing_user_email, role: role }
+      { email: existing_user_email, role: }
     end
 
     before do
@@ -73,11 +73,11 @@ describe "Interactors::AddCollaborator" do
     end
 
     it "should not add existing user to collaborators as it already associated with another account" do
-      expect {
+      expect do
         add_collaborator_interactor.run
-      }.not_to change {
+      end.not_to(change do
         account.reload.users.count
-      }
+      end)
 
       expect(account.reload.users.count).to be_eql 1
       expect(enqueued_jobs.size).to be_eql(0)
@@ -88,27 +88,27 @@ describe "Interactors::AddCollaborator" do
   describe "Attempt to add user to Collaborators twice" do
     let!(:existing_collaborator) do
       FactoryBot.create :user, :completed_profile,
-                                first_name: "Collaborator Matt",
-                                account: account,
-                                role: "regular"
+                        first_name: "Collaborator Matt",
+                        account:,
+                        role: "regular"
     end
 
     let(:existing_user_email) { existing_collaborator.email }
     let(:role) { "regular" }
-    let(:create_params) {
-      { email: existing_user_email, role: role }
-    }
+    let(:create_params) do
+      { email: existing_user_email, role: }
+    end
 
     before do
       clear_enqueued_jobs
     end
 
     it "should not add user to collaborators twice" do
-      expect {
+      expect do
         add_collaborator_interactor.run
-      }.not_to change {
+      end.not_to(change do
         account.reload.users.count
-      }
+      end)
 
       expect(account.reload.users.count).to be_eql 2
       expect(enqueued_jobs.size).to be_eql(0)

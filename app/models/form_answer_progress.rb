@@ -5,8 +5,10 @@ class FormAnswerProgress < ApplicationRecord
 
   def section(number)
     return "-" if sections.blank?
+
     out = sections["section#{number}"]
     return "-" if out.blank?
+
     "#{out}%"
   end
 
@@ -22,6 +24,7 @@ class FormAnswerProgress < ApplicationRecord
 
   def as_percentage(p)
     return nil unless p
+
     ((p.progress || 0) * 100).round
   end
 end

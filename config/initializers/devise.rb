@@ -1,16 +1,16 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
-  config.secret_key = ENV['DEVISE_SECRET_KEY'] || "2e540986ced007b7f4f525f404de81dd1203f0d029d989b56428b0b5b4b5e19bca5905d9b89420b005fa116879eb518b3322e3474ed5cdfc3d8657ce7aa4c4e2"
+  config.secret_key = ENV["DEVISE_SECRET_KEY"] || "2e540986ced007b7f4f525f404de81dd1203f0d029d989b56428b0b5b4b5e19bca5905d9b89420b005fa116879eb518b3322e3474ed5cdfc3d8657ce7aa4c4e2"
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = ENV["MAILER_FROM"] || "no-reply@kings-awards-enterprise.service.gov.uk"
 
   # Configure the class responsible to send e-mails.
-  #config.mailer = "Devise::Mailer"
+  # config.mailer = "Devise::Mailer"
 
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -32,12 +32,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
@@ -62,7 +62,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = ENV['DEVISE_PEPPER']
+  config.pepper = ENV.fetch("DEVISE_PEPPER", nil)
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
@@ -119,7 +119,7 @@ Devise.setup do |config|
   config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  config.unlock_keys = [ :email ]
+  config.unlock_keys = [:email]
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
@@ -138,7 +138,7 @@ Devise.setup do |config|
   # ==> Configuration for :recoverable
   #
   # Defines which key will be used when recovering the password for an account
-  config.reset_password_keys = [ :email ]
+  config.reset_password_keys = [:email]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to

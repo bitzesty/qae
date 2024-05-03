@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2018::QaeForms
   class << self
     def innovation_step3
@@ -23,7 +22,8 @@ class AwardYears::V2018::QaeForms
           )
         end
 
-        options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance?" do
+        options :innovation_performance_years,
+                "How would you describe the impact of your innovation on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
@@ -36,7 +36,7 @@ class AwardYears::V2018::QaeForms
           option "5 plus", "Continuous Commercial Performance: innovation has improved commercial performance over 5 years"
           financial_date_selector({
             "2 to 4" => "2",
-            "5 plus" => "5"
+            "5 plus" => "5",
           })
           default_option "5 plus"
           sub_category_question
@@ -51,7 +51,8 @@ class AwardYears::V2018::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -216,7 +217,8 @@ class AwardYears::V2018::QaeForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made" do
+        textarea :drops_in_turnover,
+                 "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
           rows 5
@@ -326,7 +328,8 @@ class AwardYears::V2018::QaeForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)" do
+        textarea :avg_unit_price_desc,
+                 "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5
@@ -346,7 +349,8 @@ class AwardYears::V2018::QaeForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
+        textarea :costs_change_desc,
+                 "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.9"
           rows 5
@@ -370,7 +374,8 @@ class AwardYears::V2018::QaeForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered" do
+        textarea :innovation_performance,
+                 "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered" do
           ref "C 8"
           required
           context %(
@@ -382,7 +387,8 @@ class AwardYears::V2018::QaeForms
           words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all your investments in the innovation. Include all investments made both during and prior to your entry period. Also include the year(s) in which they were made" do
+        textarea :investments_details,
+                 "Please enter details of all your investments in the innovation. Include all investments made both during and prior to your entry period. Also include the year(s) in which they were made" do
           ref "C 9"
           required
           rows 5

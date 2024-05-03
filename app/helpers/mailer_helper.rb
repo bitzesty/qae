@@ -1,6 +1,6 @@
 module MailerHelper
-  def formatted_deadline_time deadline
-    #govuk suggested format is 12-hour clock with meridian indicator
+  def formatted_deadline_time(deadline)
+    # govuk suggested format is 12-hour clock with meridian indicator
     time = deadline.trigger_at.try :strftime, "%-I:%M %P"
     if time == "12:00 pm"
       "noon"

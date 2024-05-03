@@ -1,12 +1,12 @@
 class FormAnswerPdfVersionUploader < CarrierWave::Uploader::Base
   def filename
-    if original_filename.present?
-      "#{original_filename.split("_SEPARATOR")[0]}.#{file.extension}"
-    end
+    return if original_filename.blank?
+
+    "#{original_filename.split("_SEPARATOR")[0]}.#{file.extension}"
   end
 
   def extension_whitelist
-    %w(pdf)
+    %w[pdf]
   end
 
   def store_dir

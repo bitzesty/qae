@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2022::QaeForms
   class << self
     def mobility_step3
@@ -29,25 +28,30 @@ class AwardYears::V2022::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               All applicants for any Queen’s Award must demonstrate financial sustainability.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
-            [:normal, %(
+            [:normal,
+             %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
             [:bold, "Latest financial year and COVID-19"],
-            [:normal, %(
+            [:normal,
+             %(
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -126,17 +130,20 @@ class AwardYears::V2022::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "Group entries"],
-            [:normal, %(
+            [:normal,
+             %(
               A parent organisation making a group entry should include figures of all UK members of the group.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -151,7 +158,6 @@ class AwardYears::V2022::QaeForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-
         end
 
         one_option_by_years :net_profit, "Net income or net profit after tax but before dividends" do
@@ -174,10 +180,10 @@ class AwardYears::V2022::QaeForms
           context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
           type :money
           label ->(y) { "As at the end of year #{y}" }
-
         end
 
-        textarea :drops_in_turnover, "Explain any drops in the total income or turnover, net income or net profit and total net assets and any losses made." do
+        textarea :drops_in_turnover,
+                 "Explain any drops in the total income or turnover, net income or net profit and total net assets and any losses made." do
           classes "sub-question"
           sub_ref "C 4.4"
           required
@@ -235,7 +241,8 @@ class AwardYears::V2022::QaeForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :covid_impact, "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
+        textarea :covid_impact,
+                 "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
           sub_ref "C 6"
           required
           rows 5

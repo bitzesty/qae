@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2019::QaeForms
   class << self
     def development_step2
@@ -23,7 +22,7 @@ class AwardYears::V2019::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["management_approach", "A management approach"]
+            ["management_approach", "A management approach"],
           ]
           application_type_question true
         end
@@ -77,7 +76,8 @@ class AwardYears::V2019::QaeForms
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product, service or management approach specifically concerning your core business, and any practices followed as a result of the operations or requirements of the wider organisation/parent company." do
+        textarea :development_desc_long,
+                 "Summarise your product, service or management approach specifically concerning your core business, and any practices followed as a result of the operations or requirements of the wider organisation/parent company." do
           classes "sub-question word-max-strict"
           ref "B 1.2"
           required
@@ -93,7 +93,8 @@ class AwardYears::V2019::QaeForms
           words_max 500
         end
 
-        textarea :development_desc_short, "Describe how you demonstrate leadership regarding influencing staff or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
+        textarea :development_desc_short,
+                 "Describe how you demonstrate leadership regarding influencing staff or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
           classes "word-max-strict"
           ref "B 2"
           required
@@ -157,7 +158,8 @@ class AwardYears::V2019::QaeForms
           words_max 750
         end
 
-        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
+        header :provide_evidence_header,
+               "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
           ref "B 3"
           context %(
             <p>
@@ -454,7 +456,8 @@ class AwardYears::V2019::QaeForms
           words_max 750
         end
 
-        textarea :sector_leader_desc, "How does the information provided in previous answers demonstrate that you are showing sector-leading sustainability performance?" do
+        textarea :sector_leader_desc,
+                 "How does the information provided in previous answers demonstrate that you are showing sector-leading sustainability performance?" do
           ref "B 4"
           required
           context %(
@@ -470,7 +473,8 @@ class AwardYears::V2019::QaeForms
           words_max 750
         end
 
-        textarea :name_of_external_organization_or_individual, 'Please name the external organisation(s) or individual(s) that contributed to your product, service or management approach, and explain their contributions or enter "N/A".' do
+        textarea :name_of_external_organization_or_individual,
+                 'Please name the external organisation(s) or individual(s) that contributed to your product, service or management approach, and explain their contributions or enter "N/A".' do
           ref "B 5"
           required
           rows 5
@@ -512,16 +516,17 @@ class AwardYears::V2019::QaeForms
           conditional :grant_support, :yes
         end
 
-        date :development_was_launched_since, "Please select the date since when your product, service or management approach has been in commercial operation, production or in progress?" do
+        date :development_was_launched_since,
+             "Please select the date since when your product, service or management approach has been in commercial operation, production or in progress?" do
           required
           ref "B 8"
-          context -> do
+          context lambda {
             %(
               <p>
                 You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
               </p>
             )
-          end
+          }
           date_max AwardYear.start_trading_since(2)
         end
 

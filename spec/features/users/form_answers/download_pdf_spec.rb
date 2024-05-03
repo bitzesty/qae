@@ -1,12 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Download a pdf of the award form filled", %q{
+describe "Download a pdf of the award form filled", '
 As a User
 I want to be able to download a pdf of the filled in form filled in with whatever I have entered so far
 So that I can review my progress or share the pdf with others
-} do
-
+' do
   let!(:user) do
     FactoryBot.create :user
   end
@@ -18,8 +17,8 @@ So that I can review my progress or share the pdf with others
   describe "International Trade Award" do
     let!(:trade_award_form_answer) do
       FactoryBot.create :form_answer, :trade,
-        user: user,
-        document: { company_name: "Bitzesty" }
+                        user:,
+                        document: { company_name: "Bitzesty" }
     end
 
     let(:pdf_filename) do
@@ -40,9 +39,9 @@ So that I can review my progress or share the pdf with others
   describe "Innovation Award" do
     let!(:innovation_award_form_answer) do
       FactoryBot.create :form_answer, :innovation,
-        user: user,
-        urn: "QA0001/19T",
-        document: { company_name: "Bitzesty" }
+                        user:,
+                        urn: "QA0001/19T",
+                        document: { company_name: "Bitzesty" }
     end
 
     let(:pdf_filename) do
@@ -63,8 +62,8 @@ So that I can review my progress or share the pdf with others
   describe "Sustainable Development Award" do
     let!(:development_award_form_answer) do
       FactoryBot.create :form_answer, :development,
-        user: user,
-        document: { company_name: "Bitzesty" }
+                        user:,
+                        document: { company_name: "Bitzesty" }
     end
 
     let(:pdf_filename) do

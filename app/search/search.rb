@@ -1,4 +1,4 @@
-require 'ostruct'
+require "ostruct"
 
 class Search
   extend ActiveModel::Naming
@@ -29,15 +29,13 @@ class Search
     @params = search_params || {}
 
     if params[:sort]
-      column, order = params[:sort].split('.')
+      column, order = params[:sort].split(".")
 
-      @ordered_desc = order == 'desc'
+      @ordered_desc = order == "desc"
       @ordered_by   = column
     end
 
-    if params[:search_filter]
-      @filter_params = params[:search_filter].dup
-    end
+    @filter_params = params[:search_filter].dup if params[:search_filter]
 
     @query = params[:query] if params[:query].present?
 
@@ -48,29 +46,27 @@ class Search
     @search_results = scope
 
     filter_params.each do |column, value|
-      next unless value.present?
+      next if value.blank?
 
-      if included_in_model_columns?(column)
-        @search_results = @search_results.where(column => value)
-      else
-        @search_results = apply_custom_filter(@search_results, column, value)
-      end
+      @search_results = if included_in_model_columns?(column)
+                          @search_results.where(column => value)
+                        else
+                          apply_custom_filter(@search_results, column, value)
+                        end
     end
 
-    if query
-      @search_results = @search_results.basic_search(query).reorder(nil)
-    end
+    @search_results = @search_results.basic_search(query).reorder(nil) if query
 
     if ordered_by
-      if included_in_model_columns?(ordered_by)
-        if ordered_desc
-          @search_results = @search_results.order("#{ordered_by} DESC")
-        else
-          @search_results = @search_results.order(ordered_by)
-        end
-      else
-        @search_results = apply_custom_sort(@search_results, params[:sort])
-      end
+      @search_results = if included_in_model_columns?(ordered_by)
+                          if ordered_desc
+                            @search_results.order("#{ordered_by} DESC")
+                          else
+                            @search_results.order(ordered_by)
+                          end
+                        else
+                          apply_custom_sort(@search_results, params[:sort])
+                        end
     end
 
     @search_results
@@ -95,8 +91,8 @@ class Search
   end
 
   def apply_custom_sort(scoped_results, sort_value)
-    column, order = sort_value.split('.')
-    desc = order == 'desc'
+    column, order = sort_value.split(".")
+    desc = order == "desc"
     public_send("sort_by_#{column}", scoped_results, desc)
   end
 

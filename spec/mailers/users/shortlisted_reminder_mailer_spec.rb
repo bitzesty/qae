@@ -3,7 +3,7 @@ require "rails_helper"
 describe Users::ShortlistedReminderMailer do
   let!(:user) { create :user }
   let(:form_answer) do
-    create :form_answer, :submitted, :innovation, user: user
+    create :form_answer, :submitted, :innovation, user:
   end
 
   let!(:deadline) do

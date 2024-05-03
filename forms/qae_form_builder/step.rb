@@ -1,13 +1,11 @@
-require 'active_support/inflector'
+require "active_support/inflector"
 
 class QaeFormBuilder
-
   class StepDecorator < QaeDecorator
-
-    QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w(
+    QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w[
       innovation_materials
       org_chart
-    )
+    ]
 
     def next
       @next ||= begin
@@ -17,7 +15,7 @@ class QaeFormBuilder
 
     def previous
       @previous ||= begin
-        form.steps[index-1] if index-1 >=0
+        form.steps[index - 1] if index - 1 >= 0
       end
     end
 
@@ -27,6 +25,7 @@ class QaeFormBuilder
 
     def progress
       return 0 if required_visible_questions_total.zero?
+
       required_visible_questions_filled.to_f / required_visible_questions_total
     end
 
@@ -47,26 +46,25 @@ class QaeFormBuilder
         question_possible_sub_keys(question).each do |sub_question_key|
           allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QaeFormBuilder::ByYearsQuestion) || question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
             # Sometimes users can input commas, we are stripping them
-            form_data[sub_question_key].to_s.delete(",")
-          else
+                                               form_data[sub_question_key].to_s.delete(",")
+                                             else
             form_data[sub_question_key]
-          end
+                                             end
         end
 
-        if question.delegate_obj.is_a?(QaeFormBuilder::UploadQuestion) &&
+        next unless question.delegate_obj.is_a?(QaeFormBuilder::UploadQuestion) &&
             hashify_params(form_data[question.key]).nil?
-          # This code handles case when user removes all attachments / links
-          # from Form: Add Website Address/Documents section
-          # As in this case params wouldn't have empty hash {}
-          # And data for this question wouldn't be updated
-          allowed_params[question.key] = {}
-        end
+        # This code handles case when user removes all attachments / links
+        # from Form: Add Website Address/Documents section
+        # As in this case params wouldn't have empty hash {}
+        # And data for this question wouldn't be updated
+        allowed_params[question.key] = {}
       end
 
       allowed_params = allowed_params.select do |k, v|
         v.present? ||
-        document[k.to_s].present? ||
-        QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
+          document[k.to_s].present? ||
+          QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
       end
 
       allowed_params
@@ -79,23 +77,31 @@ class QaeFormBuilder
     def question_possible_sub_keys(question)
       sub_question_keys = []
 
-      sub_fields = question.sub_fields rescue nil
-      required_sub_fields = question.required_sub_fields rescue nil
-      by_year_conditions = question.by_year_conditions rescue nil
+      sub_fields = begin
+                     question.sub_fields
+                   rescue
+                     nil
+                   end
+      required_sub_fields = begin
+                              question.required_sub_fields
+                            rescue
+                              nil
+                            end
+      by_year_conditions = begin
+                             question.by_year_conditions
+                           rescue
+                             nil
+                           end
 
-      if sub_fields.present?
-        sub_question_keys += sub_fields.map { |f| f.keys.first }
-      end
+      sub_question_keys += sub_fields.map { |f| f.keys.first } if sub_fields.present?
 
-      if required_sub_fields.present?
-        sub_question_keys += required_sub_fields.map { |f| f.keys.first }
-      end
+      sub_question_keys += required_sub_fields.map { |f| f.keys.first } if required_sub_fields.present?
 
       if by_year_conditions.present?
         sub_question_keys += question.by_year_conditions.map do |c|
           (1..c.years).map do |y|
             if question.delegate_obj.is_a?(QaeFormBuilder::ByYearsLabelQuestion)
-              [:day, :month, :year].map do |i|
+              %i[day month year].map do |i|
                 "#{y}of#{c.years}#{i}"
               end
             else
@@ -119,7 +125,7 @@ class QaeFormBuilder
       if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
         sub_question_keys += (1..3).map do |y|
           if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion)
-            [:day, :month, :year].map do |i|
+            %i[day month year].map do |i|
               "#{y}of3#{i}"
             end
           else
@@ -135,35 +141,42 @@ class QaeFormBuilder
 
     private
 
-    def count_questions meth
+    def count_questions(meth)
       questions.map { |q| q.send(meth) ? 1 : 0 }.reduce(:+)
     end
   end
 
   class StepBuilder
-
-    def initialize step
+    def initialize(step)
       @step = step
     end
 
-    def context context
+    def context(context)
       @step.context = context
     end
 
-    def submit text, &block
+    def submit(text, &block)
       s = StepSubmit.new text
       b = StepSubmitBuilder.new s
-      b.instance_eval &block if block
+      b.instance_eval(&block) if block
       @step.submit = s
     end
 
-    def method_missing(meth, *args, &block)
-      klass_builder = QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder") rescue nil
-      klass = QaeFormBuilder.const_get("#{meth.to_s.camelize}Question") rescue nil
+    def method_missing(meth, *args, &)
+      klass_builder = begin
+                        QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder")
+                      rescue
+                        nil
+                      end
+      klass = begin
+                QaeFormBuilder.const_get("#{meth.to_s.camelize}Question")
+              rescue
+                nil
+              end
 
       if klass_builder && klass && args.length >= 2 && args.length <= 3
         id, title, opts = args
-        create_question klass_builder, klass, id, title, opts, &block
+        create_question(klass_builder, klass, id, title, opts, &)
       else
         super
       end
@@ -171,32 +184,31 @@ class QaeFormBuilder
 
     private
 
-    def create_question builder_klass, klass, id, title, opts={}, &block
+    def create_question(builder_klass, klass, id, title, opts = {}, &))
       q = klass.new @step, id, title, opts
       b = builder_klass.new q
-      b.instance_eval &block if block_given?
+      b.instance_eval((&)) if block
       @step.questions << q
 
-      if q.respond_to?(:linkable?) && q.linkable?
-        @step.sub_headers << q
-      end
+      @step.sub_headers << q if q.respond_to?(:linkable?) && q.linkable?
 
       raise ArgumentError, "Duplicate question key #{q.key}" if @step.form[q.key]
+
       @step.form.questions_by_key[q.key] = q
       q
     end
   end
 
   class StepSubmitBuilder
-    def initialize submit
+    def initialize(submit)
       @submit = submit
     end
 
-    def notice notice
+    def notice(notice)
       @submit.notice = notice
     end
 
-    def style style
+    def style(style)
       @submit.style = style
     end
   end
@@ -204,7 +216,7 @@ class QaeFormBuilder
   class StepSubmit
     attr_accessor :notice, :style, :text
 
-    def initialize text
+    def initialize(text)
       @text = text
     end
   end
@@ -212,7 +224,7 @@ class QaeFormBuilder
   class Step
     attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit, :sub_headers
 
-    def initialize form, title, short_title, opts={}
+    def initialize(form, title, short_title, opts = {})
       @form = form
       @title = title
       @short_title = short_title
@@ -221,9 +233,8 @@ class QaeFormBuilder
       @sub_headers = []
     end
 
-    def decorate options = {}
+    def decorate(options = {})
       StepDecorator.new self, options
     end
-
   end
 end

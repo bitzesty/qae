@@ -1,4 +1,3 @@
-# coding: utf-8
 module PdfAuditCertificates::Awards2016::Development
   class Base < PdfAuditCertificates::Base
     # HERE YOU CAN OVERRIDE STANDART METHODS
@@ -33,7 +32,7 @@ module PdfAuditCertificates::Awards2016::Development
 
       rows = [
         financial_pointer.years_list.unshift(""),
-        financial_table_year_and_date_data
+        financial_table_year_and_date_data,
       ]
 
       rows << revised_row(rows.last.length - 1, 1)
@@ -44,20 +43,17 @@ module PdfAuditCertificates::Awards2016::Development
         row = data.detect { |r| r[field] }
 
         rows << if field == :uk_sales
-          render_financial_uk_sales_row(row, index + 2)
-        else
-          render_financial_row(row, index + 2)
-        end
+                  render_financial_uk_sales_row(row, index + 2)
+                else
+                  render_financial_row(row, index + 2)
+                end
 
         rows << revised_row(row.values.first.length, index + 2)
       end
 
-
       table(rows, table_default_ops(:main_table)) do
         rows.each_with_index do |row, i|
-          if row.first.include?("Revised")
-            style(row(i), text_color: "808080")
-          end
+          style(row(i), text_color: "808080") if row.first.include?("Revised")
         end
       end
     end

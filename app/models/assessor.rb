@@ -2,7 +2,7 @@ class Assessor < ApplicationRecord
   include PgSearch::Model
   include AutosaveTokenGeneration
 
-  AVAILABLE_ROLES = ["lead", "regular"]
+  AVAILABLE_ROLES = %w[lead regular]
   # lead - created & assigned to Admin to specific categories
   # has access to almost all resources from all form answers within this category
   # regular - assigned by lead, as primary/secondary from set of all assessors assigned
@@ -28,20 +28,20 @@ class Assessor < ApplicationRecord
             :mobility_role,
             :promotion_role,
             inclusion: {
-              in: AVAILABLE_ROLES
+              in: AVAILABLE_ROLES,
             },
             allow_nil: true
 
   pg_search_scope :basic_search,
-                  against: [
-                    :first_name,
-                    :last_name,
-                    :email
+                  against: %i[
+                    first_name
+                    last_name
+                    email
                   ],
                   using: {
                     tsearch: {
-                      prefix: true
-                    }
+                      prefix: true,
+                    },
                   }
 
   default_scope { where(deleted: false) }
@@ -52,10 +52,9 @@ class Assessor < ApplicationRecord
   scope :trade_and_development, -> { available_for("development").or(available_for("trade")) }
   scope :mobility_and_innovation, -> { available_for("mobility").or(available_for("innovation")) }
 
-
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AVAILABLE_ROLES.each do |role|
-      scope "#{award_category}_#{role}", -> {
+      scope "#{award_category}_#{role}", lambda {
         where("#{award_category}_role" => role)
       }
     end
@@ -82,7 +81,7 @@ class Assessor < ApplicationRecord
   end
 
   def self.available_for(category)
-    where(role_meth(category) => ["regular", "lead"])
+    where(role_meth(category) => %w[regular lead])
   end
 
   def self.leads_for(category)
@@ -94,15 +93,15 @@ class Assessor < ApplicationRecord
   end
 
   def applications_scope(award_year = nil)
-    c = assigned_categories_as(%w(lead))
+    c = assigned_categories_as(%w[lead])
     join = "LEFT OUTER JOIN assessor_assignments ON
     assessor_assignments.form_answer_id = form_answers.id"
 
     scope = if award_year
-      award_year.form_answers
-    else
-      FormAnswer
-    end
+              award_year.form_answers
+            else
+              FormAnswer
+            end
 
     out = scope.joins(join)
     out.where("
@@ -117,7 +116,7 @@ class Assessor < ApplicationRecord
   # with account's other applications
   # they were not assigned to
   def extended_applications_scope
-    c = assigned_categories_as(%w(lead regular))
+    c = assigned_categories_as(%w[lead regular])
 
     out = FormAnswer.where("
       form_answers.award_type in (?)
@@ -192,7 +191,7 @@ class Assessor < ApplicationRecord
   end
 
   def all_assigned_award_types
-    assigned_categories_as(%w(lead regular)).map do |cat|
+    assigned_categories_as(%w[lead regular]).map do |cat|
       FormAnswer::AWARD_TYPE_FULL_NAMES[cat]
     end.join(", ")
   end
@@ -213,14 +212,12 @@ class Assessor < ApplicationRecord
   end
 
   def assigned_categories_as(roles)
-    FormAnswer::POSSIBLE_AWARDS.map do |award|
-      award if roles.include?(get_role(award).to_s)
-    end.compact
+    FormAnswer::POSSIBLE_AWARDS.select { |award| roles.include?(get_role(award).to_s) }
   end
 
   def nil_if_blank
     FormAnswer::POSSIBLE_AWARDS.each do |award|
-      self.public_send("#{award}_role=", nil) if get_role(award).blank?
+      public_send("#{award}_role=", nil) if get_role(award).blank?
     end
   end
 

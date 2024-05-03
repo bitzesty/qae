@@ -2,26 +2,26 @@ class EmailNotification < ApplicationRecord
   extend Enumerize
   include FormattedTime::DateTimeFor
 
-  NOTIFICATION_KINDS = [
-                         :award_year_open_notifier,
-                         :trade_submission_started_notification,
-                         :mobility_submission_started_notification,
-                         :development_submission_started_notification,
-                         :innovation_submission_started_notification,
-                         :reminder_to_submit,
-                         :ep_reminder_support_letters,
-                         :winners_notification,
-                         :unsuccessful_notification,
-                         :unsuccessful_ep_notification,
-                         :shortlisted_notifier,
-                         :shortlisted_po_sd_notifier,
-                         :shortlisted_po_sd_with_actual_figures_notifier,
-                         :shortlisted_audit_certificate_reminder,
-                         :shortlisted_po_sd_reminder,
-                         :not_shortlisted_notifier,
-                         :winners_head_of_organisation_notification,
-                         :buckingham_palace_invite
-                       ]
+  NOTIFICATION_KINDS = %i[
+    award_year_open_notifier
+    trade_submission_started_notification
+    mobility_submission_started_notification
+    development_submission_started_notification
+    innovation_submission_started_notification
+    reminder_to_submit
+    ep_reminder_support_letters
+    winners_notification
+    unsuccessful_notification
+    unsuccessful_ep_notification
+    shortlisted_notifier
+    shortlisted_po_sd_notifier
+    shortlisted_po_sd_with_actual_figures_notifier
+    shortlisted_audit_certificate_reminder
+    shortlisted_po_sd_reminder
+    not_shortlisted_notifier
+    winners_head_of_organisation_notification
+    buckingham_palace_invite
+  ]
 
   date_time_for :trigger_at
 
@@ -31,8 +31,8 @@ class EmailNotification < ApplicationRecord
 
   validates :kind, :trigger_at, presence: true
 
-  after_save :clear_cache
   after_destroy :clear_cache
+  after_save :clear_cache
 
   scope :current, -> { where("trigger_at < ?", Time.now.utc).where("sent = 'f' OR sent IS NULL") }
 
@@ -45,7 +45,7 @@ class EmailNotification < ApplicationRecord
   end
 
   def self.not_awarded
-    where(kind: ["unsuccessful_notification", "unsuccessful_ep_notification"])
+    where(kind: %w[unsuccessful_notification unsuccessful_ep_notification])
   end
 
   private

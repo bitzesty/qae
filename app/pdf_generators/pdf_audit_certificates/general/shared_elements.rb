@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 module PdfAuditCertificates::General::SharedElements
   DEFAULT_OFFSET = 110.mm
-  NOT_CURRENCY_QUESTION_KEYS = %w(employees)
+  NOT_CURRENCY_QUESTION_KEYS = %w[employees]
 
   def render_main_header
     render_certificate_info
@@ -18,7 +17,8 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_recipients_info
-    render_text_line("<b>To</b>: The Kings Award’s Office, The Department for Business, Energy & Industrial Strategy", 1, inline_format: true)
+    render_text_line("<b>To</b>: The Kings Award’s Office, The Department for Business, Energy & Industrial Strategy", 1,
+                     inline_format: true)
   end
 
   def render_company_info
@@ -30,7 +30,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_base_paragraph
-    p1 = %{We have performed the work agreed with #{form_answer.company_name} in line with the requirements set out in the document “King’s Awards for Enterprise: #{form_answer.award_type_full_name} #{form_answer.award_year.year}” which constitutes the application form for the award.}
+    p1 = %(We have performed the work agreed with #{form_answer.company_name} in line with the requirements set out in the document “King’s Awards for Enterprise: #{form_answer.award_type_full_name} #{form_answer.award_year.year}” which constitutes the application form for the award.)
     render_text_line(p1, 2, { leading: 2 })
 
     p2 = "Our work was carried out solely to assist your process for considering #{form_answer.company_name} for a King’s Awards for Enterprise. We have reviewed the figures provided by #{form_answer.company_name} in section C of the application form.  We have used the guidance in section C of the application form of the as our own guidance in terms of the information that #{form_answer.company_name} should have provided. "
@@ -53,7 +53,7 @@ module PdfAuditCertificates::General::SharedElements
   def render_financial_main_table
     rows = [
       financial_pointer.years_list.unshift(""),
-      financial_table_year_and_date_data
+      financial_table_year_and_date_data,
     ]
 
     rows << revised_row(rows.last.length - 1, 1)
@@ -62,25 +62,23 @@ module PdfAuditCertificates::General::SharedElements
       next if row[:financial_year_changed_dates]
 
       rows << if row[:uk_sales]
-        render_financial_uk_sales_row(row, index + 2)
-      else
-        render_financial_row(row, index + 1)
-      end
+                render_financial_uk_sales_row(row, index + 2)
+              else
+                render_financial_row(row, index + 1)
+              end
 
       rows << revised_row(row.values.first.length, index + 1)
     end
 
     table(rows, table_default_ops(:main_table)) do
       rows.each_with_index do |row, i|
-        if row.first.include?("Revised")
-          style(row(i), text_color: "808080")
-        end
+        style(row(i), text_color: "808080") if row.first.include?("Revised")
       end
     end
   end
 
   def revised_row(length, index)
-    ["#{index}. Revised"] + [""] * length
+    ["#{index}. Revised"] + ([""] * length)
   end
 
   def render_financial_uk_sales_row(row, index)
@@ -103,9 +101,7 @@ module PdfAuditCertificates::General::SharedElements
     award_specific_key = "row"
     key ||= row.keys.first
 
-    if form_answer.innovation? && key == :sales
-      award_specific_key = "innovation"
-    end
+    award_specific_key = "innovation" if form_answer.innovation? && key == :sales
 
     res = ["#{index}. " + I18n.t("#{financials_i18_prefix}.#{award_specific_key}.#{key}")]
 
@@ -134,17 +130,17 @@ module PdfAuditCertificates::General::SharedElements
     rows = []
 
     rows += if form_answer.trade?
-      [
-        benchmarks_row("growth_overseas_earnings"),
-        benchmarks_row("sales_exported"),
-        # removing this until SIC codes are updated
-        # benchmarks_row("average_growth_for")
-      ]
-    else
-      [
-        benchmarks_row("growth_in_total_turnover")
-      ]
-    end
+              [
+                benchmarks_row("growth_overseas_earnings"),
+                benchmarks_row("sales_exported"),
+                # removing this until SIC codes are updated
+                # benchmarks_row("average_growth_for")
+              ]
+            else
+              [
+                benchmarks_row("growth_in_total_turnover"),
+              ]
+            end
 
     table rows, table_default_ops(:main_table)
   end
@@ -163,10 +159,10 @@ module PdfAuditCertificates::General::SharedElements
     res = ["1. " + I18n.t("#{financials_i18_prefix}.years_row.financial_year_changed_dates")]
 
     res += if financial_pointer.data.first[:financial_year_changed_dates].present?
-      financial_pointer.financial_year_changed_dates
-    else
-      financial_pointer.financial_year_dates
-    end
+             financial_pointer.financial_year_changed_dates
+           else
+             financial_pointer.financial_year_dates
+           end
 
     res
   end
@@ -185,12 +181,12 @@ module PdfAuditCertificates::General::SharedElements
     rows = [
       [
         "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
-        formatted_uk_sales_value(financial_pointer.overall_growth)
+        formatted_uk_sales_value(financial_pointer.overall_growth),
       ],
       [
         "Overall growth in % (year 1 - #{financial_pointer.period_length})",
-        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents)
-      ]
+        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents),
+      ],
     ]
 
     table rows, table_default_ops(:overall_benchmarks)
@@ -201,32 +197,31 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
-
-    dotted_line = %{...............................................................................................................................}
+    dotted_line = %(...............................................................................................................................)
 
     b1 = %{Signed (External Accountant) ............................................................................}
     render_text_line(b1, 1)
     render_text_line(dotted_line, 1)
 
-    b2 = %{Company partnership name: ............................................................................}
+    b2 = %(Company partnership name: ............................................................................)
     render_text_line(b2, 1)
     render_text_line(dotted_line, 1)
 
-    b3 = %{Company registration number/Professional body practising certificate number: }
+    b3 = %(Company registration number/Professional body practising certificate number: )
     render_text_line(b3, 1)
     render_text_line(dotted_line, 1)
     render_text_line(dotted_line, 1)
 
-    b4 = %{Address: ..............................................................................................................}
+    b4 = %(Address: ..............................................................................................................)
     render_text_line(b4, 1)
 
-    b5 = %{Telephone number: ...........................................................................................}
+    b5 = %(Telephone number: ...........................................................................................)
     render_text_line(b5, 1)
 
-    b6 = %{Email: ...................................................................................................................}
+    b6 = %(Email: ...................................................................................................................)
     render_text_line(b6, 1)
 
-    b7 = %{Date: ....................................................................................................................}
+    b7 = %(Date: ....................................................................................................................)
     render_text_line(b7, 5)
   end
 
@@ -237,13 +232,13 @@ module PdfAuditCertificates::General::SharedElements
     line = "We confirm we have updated the figures originally submitted in our application to The King’s Award for Enterprise. The revised figures should be used as the basis of our application."
     render_text_line(line, 2, default_text_ops)
 
-    b1 = %{Signed ................................................................................................................}
+    b1 = %(Signed ................................................................................................................)
     render_text_line(b1, 1)
 
-    b2 = %{Job title: ..............................................................................................................}
+    b2 = %(Job title: ..............................................................................................................)
     render_text_line(b2, 1)
 
-    b3 = %{Company: ..........................................................................................................}
+    b3 = %(Company: ..........................................................................................................)
     render_text_line(b3, 1)
 
     move_down 6.mm
@@ -308,18 +303,22 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line("FEEDBACK", 5, style: :bold)
 
     render_text_line("Immediate feedback", 1, style: :bold)
-    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
+    render_text_line(
+      "We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
     move_down 60.mm
 
     render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
 
-    render_text_line("We are committed to improving experiences for everyone who is involved in The King’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
+    render_text_line(
+      "We are committed to improving experiences for everyone who is involved in The King’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
 
     render_text_line("Yes       No", 10, style: :bold)
 
-    render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 3, style: :bold)
+    render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.",
+                     3, style: :bold)
 
-    render_text_line("Email: ....................................................................................................................", 1)
+    render_text_line(
+      "Email: ....................................................................................................................", 1)
   end
 
   def render_appendix
@@ -337,13 +336,13 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total turnover figure per the form to the general ledger (account number [xxx]) for each year stated.",
       "Agree the total turnover figure per the form to HMRC and/or Companies House filings for each year stated.",
-      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices.",
     ]
     render_list_with_header(header, list)
 
     header = "Employees:"
     list = [
-      "Agree the total number of full-time employees in the form to [name of payroll report] for each year stated."
+      "Agree the total number of full-time employees in the form to [name of payroll report] for each year stated.",
     ]
     render_list_with_header(header, list)
 
@@ -351,24 +350,25 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
       "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices.",
-      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
+      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period.",
     ]
     render_list_with_header(header, list)
 
     header = "Sales by product group"
     list = [
       "Agree the total sales by product group per the form to the general ledger (account numbers [xxx] and [xxx]).",
-      "Trace a sample of 5% sales from the general ledger to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger to underlying sales invoices.",
     ]
     render_list_with_header(header, list)
 
     header = "Net profit"
     list = [
-      "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated."
+      "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated.",
     ]
     render_list_with_header(header, list)
 
-    render_text_line("These examples are illustrative and other procedures may be undertaken. As a minimum, The King’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, The King’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
+    render_text_line(
+      "These examples are illustrative and other procedures may be undertaken. As a minimum, The King’s Awards for Enterprise expects at least one procedure is done per item in the report. For population sizes when tracing a sample to underlying evidence, The King’s Awards for Enterprise expects a sample size of 5% of the population (by quantity, not by value) subject to a maximum sample size of 25.", 5)
   end
 
   def render_list_with_header(header, list)
@@ -381,15 +381,14 @@ module PdfAuditCertificates::General::SharedElements
     move_down 3.mm
   end
 
-
   def render_footer_note
     title = %{Note for applicants/auditors: This submission to the King's Awards Office (KAO) provides authority for the KAO to verify the information contained in it with the above-named auditor.}
     text_box title, default_text_ops.merge({
-      at: [0.mm, 10.mm]
+      at: [0.mm, 10.mm],
     })
   end
 
-  def render_text_line(title, margin=0, ops={})
+  def render_text_line(title, margin = 0, ops = {})
     text title, default_text_ops.merge(ops)
     move_down margin.mm
   end
@@ -403,21 +402,21 @@ module PdfAuditCertificates::General::SharedElements
     default_text_ops.merge({
       height: 20.mm,
       style: :bold,
-      size: 11.5
+      size: 11.5,
     })
   end
 
   def default_list_ops
     {
       leading: 1.8,
-      indent_paragraphs: 10
+      indent_paragraphs: 10,
     }
   end
 
   def default_text_ops
     {
       size: 10,
-      align: :justify
+      align: :justify,
     }
   end
 
@@ -430,37 +429,37 @@ module PdfAuditCertificates::General::SharedElements
       column_widths: send("#{table_type}_column_widths"),
       cell_style: {
         size: 10,
-        padding: [3, 3, 3, 3]
-      }
+        padding: [3, 3, 3, 3],
+      },
     }
   end
 
   def main_table_column_widths
     res = case financial_pointer.years_list.size
-    when 2
-      [340, 100, 100]
-    when 3
-      [324, 72, 72, 72]
-    when 5
-      [180, 72, 72, 72, 72, 72]
-    when 6
-      [150, 65, 65, 65, 65, 65, 65]
-    end
+          when 2
+            [340, 100, 100]
+          when 3
+            [324, 72, 72, 72]
+          when 5
+            [180, 72, 72, 72, 72, 72]
+          when 6
+            [150, 65, 65, 65, 65, 65, 65]
+          end
 
     hashed_columns(res)
   end
 
   def overall_benchmarks_column_widths
     res = case financial_pointer.years_list.size
-    when 2
-      [340, 200]
-    when 3
-      [324, 216]
-    when 5
-      [180, 360]
-    when 6
-      [150, 390]
-    end
+          when 2
+            [340, 200]
+          when 3
+            [324, 216]
+          when 5
+            [180, 360]
+          when 6
+            [150, 390]
+          end
 
     hashed_columns(res)
   end

@@ -6,12 +6,12 @@ class QaeFormBuilder
   QueenAwardApplicationsOutcome = Struct.new(:value, :text)
 
   class QueenAwardApplicationsQuestionBuilder < QuestionBuilder
-    def year year
-      #TODO: type checking
+    def year(year)
+      # TODO: type checking
       @q.years << year
     end
 
-    def category value, text
+    def category(value, text)
       @q.categories << QueenAwardApplicationsCategory.new(value, text)
     end
 
@@ -19,11 +19,11 @@ class QaeFormBuilder
       @q.outcomes << QueenAwardApplicationsOutcome.new(value, text)
     end
 
-    def children_options_depends_on str
+    def children_options_depends_on(str)
       @q.children_options_depends_on = str
     end
 
-    def dependable_values values
+    def dependable_values(values)
       @q.dependable_values = values.join(",")
     end
   end
@@ -41,7 +41,7 @@ class QaeFormBuilder
 
   class QueenAwardApplicationsQuestionDecorator < MultiQuestionDecorator
     def required_sub_fields_list
-      %w(category year outcome)
+      %w[category year outcome]
     end
   end
 end

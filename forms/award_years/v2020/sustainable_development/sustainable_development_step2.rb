@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2020::QaeForms
   class << self
     def development_step2
@@ -49,17 +48,20 @@ class AwardYears::V2020::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               Read this section before planning the answers.
               Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
               Avoid using technical jargon.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "Sustainable Development Goals (SDGs)"],
-            [:normal, %(
+            [:normal,
+             %(
               You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
 
               You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
@@ -114,7 +116,7 @@ class AwardYears::V2020::QaeForms
 
               \u2022 GOAL 17: Partnerships to achieve the Goal
               https://www.un.org/development/desa/disabilities/envision2030-goal17.html
-            )]
+            )],
           ]
         end
 
@@ -127,7 +129,8 @@ class AwardYears::V2020::QaeForms
           )
         end
 
-        textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
+        textarea :describe_your_interventions_using_un,
+                 "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
           required
           classes "sub-question"
           sub_ref "B 1.1"
@@ -211,9 +214,9 @@ class AwardYears::V2020::QaeForms
           classes "word-max-strict"
           ref "B 2"
           required
-          question_sub_title %{
+          question_sub_title %(
             Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
-          }
+          )
           context %{
             <p>
               Please include:
@@ -270,9 +273,9 @@ class AwardYears::V2020::QaeForms
           classes "word-max-strict"
           ref "B 4"
           required
-          question_sub_title %{
+          question_sub_title %(
             Please describe the driving force of your organisation’s sustainability.
-          }
+          )
           context %{
             <p>
               a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?
@@ -308,9 +311,9 @@ class AwardYears::V2020::QaeForms
           classes "word-max-strict"
           ref "B 5"
           required
-          question_sub_title %{
+          question_sub_title %(
             Describe how your organisation’s culture fosters and supports sustainability.
-          }
+          )
           context %{
             <p>
               Please include:

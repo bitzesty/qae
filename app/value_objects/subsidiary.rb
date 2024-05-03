@@ -12,9 +12,9 @@ class Subsidiary
   validates :description, presence: true
 
   # Should be 100 words maximum (limit + 10%).to_i + 1)
-  validate :words_in_description, if: Proc.new { |m| m.description.present? }
+  validate :words_in_description, if: proc { |m| m.description.present? }
 
-  def initialize(attrs={})
+  def initialize(attrs = {})
     attrs.each do |key, value|
       instance_variable_set("@#{key}", value.to_s.strip)
     end
@@ -23,9 +23,8 @@ class Subsidiary
   private
 
   def words_in_description
-    if description.split.size > 100
-      errors.add(:description, message: "is too long (maximum is 100 words)")
-    end
-  end
+    return unless description.split.size > 100
 
+    errors.add(:description, message: "is too long (maximum is 100 words)")
+  end
 end

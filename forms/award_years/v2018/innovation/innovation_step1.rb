@@ -83,31 +83,31 @@ class AwardYears::V2018::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
               </p>
             )
-          end
+          }
 
           dynamic_date_max(
             dates: {
               "2 to 4" => AwardYear.start_trading_since(2),
-              "5 plus" => AwardYear.start_trading_since(5)
+              "5 plus" => AwardYear.start_trading_since(5),
             },
-            conditional: :innovation_performance_years
+            conditional: :innovation_performance_years,
           )
         end
 
         options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do
           required
           ref "A 6"
-          context -> do
+          context lambda {
             %(
               <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
             )
-          end
+          }
           yes_no
           option "i_dont_know", "I don't know"
           classes "queen-award-holder"
@@ -214,7 +214,8 @@ class AwardYears::V2018::QaeForms
           conditional :innovation_contributors_aware, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
+        textarea :innovation_contributors_why_organisations,
+                 "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
           classes "sub-question"
           sub_ref "A 9.2"
           required
@@ -247,7 +248,7 @@ class AwardYears::V2018::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 

@@ -1,11 +1,10 @@
 require "rails_helper"
 
 describe UserSharedDecorator do
-
   let(:user) do
     build_stubbed(:user, first_name: "John",
                          last_name: "Doe",
-                         last_sign_in_at: DateTime.new(2015,2,6,8,30)).decorate
+                         last_sign_in_at: DateTime.new(2015, 2, 6, 8, 30)).decorate
   end
 
   describe "#full_name" do

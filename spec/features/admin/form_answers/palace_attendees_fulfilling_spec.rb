@@ -7,7 +7,7 @@ describe "Admin fulfills the Palace Attendees" do
 
   before do
     login_admin(admin)
-    # TODO stub the winner condition
+    # TODO: stub the winner condition
     form_answer.create_palace_invite
     visit admin_form_answer_path(form_answer)
   end

@@ -7,7 +7,9 @@ describe ManualUpdaters::TradeAwardDowngrader do
     end
 
     it "raises the error if the application is not a trade application" do
-      expect { described_class.new(build(:form_answer, :development)).run! }.to raise_error(ArgumentError, "You must provide trade application")
+      expect do
+        described_class.new(build(:form_answer, :development)).run!
+      end.to raise_error(ArgumentError, "You must provide trade application")
     end
 
     it "raises the error if the application is not a trade application" do
@@ -27,18 +29,18 @@ describe ManualUpdaters::TradeAwardDowngrader do
       document["trade_commercial_success"] = "6 plus"
 
       6.times do |i|
-        document["employees_#{i+1}of6"] = i + 1
+        document["employees_#{i + 1}of6"] = i + 1
       end
 
-      %w(day month).each do |attr|
+      %w[day month].each do |attr|
         5.times do |i|
           document["financial_year_changed_dates_#{i + 1}of6#{attr}"] = i + 1
         end
       end
 
-      %w(overseas_sales total_turnover net_profit).each do |attr|
+      %w[overseas_sales total_turnover net_profit].each do |attr|
         6.times do |i|
-          document["#{attr}_#{i + 1}of6"] = 100000 + i + 1
+          document["#{attr}_#{i + 1}of6"] = 100_000 + i + 1
         end
       end
 
@@ -51,18 +53,18 @@ describe ManualUpdaters::TradeAwardDowngrader do
       document = form_answer.document
 
       3.times do |i|
-        expect(document["employees_#{i+1}of3"]).to eq(i + 4)
+        expect(document["employees_#{i + 1}of3"]).to eq(i + 4)
       end
 
-      %w(day month).each do |attr|
+      %w[day month].each do |attr|
         2.times do |i|
           expect(document["financial_year_changed_dates_#{i + 1}of3#{attr}"]).to eq(i + 4)
         end
       end
 
-      %w(overseas_sales total_turnover net_profit).each do |attr|
+      %w[overseas_sales total_turnover net_profit].each do |attr|
         3.times do |i|
-          expect(document["#{attr}_#{i + 1}of3"]).to eq(100000 + i + 4)
+          expect(document["#{attr}_#{i + 1}of3"]).to eq(100_000 + i + 4)
         end
       end
     end

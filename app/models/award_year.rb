@@ -7,12 +7,12 @@ class AwardYear < ApplicationRecord
   has_one :settings, inverse_of: :award_year, autosave: true
 
   has_many :aggregated_case_summary_hard_copies, -> { where(type_of_report: "case_summary") },
-                                                    class_name: "AggregatedAwardYearPdf",
-                                                    dependent: :destroy
+           class_name: "AggregatedAwardYearPdf",
+           dependent: :destroy
 
   has_many :aggregated_feedback_hard_copies, -> { where(type_of_report: "feedback") },
-                                                 class_name: "AggregatedAwardYearPdf",
-                                                 dependent: :destroy
+           class_name: "AggregatedAwardYearPdf",
+           dependent: :destroy
 
   after_create :create_settings
 
@@ -24,7 +24,7 @@ class AwardYear < ApplicationRecord
   DEFAULT_FINANCIAL_SWITCH_DAY = 20
   DEFAULT_FINANCIAL_SWITCH_MONTH = 4
 
-  scope :past, -> {
+  scope :past, lambda {
     where(year: past_years)
   }
 
@@ -39,7 +39,7 @@ class AwardYear < ApplicationRecord
   ]
 
   def current?
-    self.year == self.class.current.year
+    year == self.class.current.year
   end
 
   #
@@ -49,7 +49,7 @@ class AwardYear < ApplicationRecord
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AggregatedAwardYearPdf::TYPES.each do |pdf_type|
       define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
-        send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
+        send("aggregated_#{pdf_type}_hard_copies").find_by(award_category:)
       end
     end
   end
@@ -58,11 +58,11 @@ class AwardYear < ApplicationRecord
   # For trade category Case summary would have 2 hard copies
   # for '3 to 5' and '6 plus' years
   #
-  ["3", "6"].map do |i|
+  %w[3 6].map do |i|
     define_method("case_summary_trade_#{i}_hard_copy_pdf") do
       send("aggregated_case_summary_hard_copies").find_by(
-        award_category: 'trade',
-        sub_type: i
+        award_category: "trade",
+        sub_type: i,
       )
     end
   end
@@ -73,33 +73,33 @@ class AwardYear < ApplicationRecord
 
   def form_data_generation_can_be_started?
     Settings.after_current_submission_deadline? &&
-    form_data_hard_copies_state.nil?
+      form_data_hard_copies_state.nil?
   end
 
   def case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    case_summary_hard_copies_state.nil?
+      case_summary_hard_copies_state.nil?
   end
 
   def feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    feedback_hard_copies_state.nil?
+      feedback_hard_copies_state.nil?
   end
 
   def aggregated_case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    aggregated_case_summary_hard_copy_state.nil?
+      aggregated_case_summary_hard_copy_state.nil?
   end
 
   def aggregated_feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    aggregated_feedback_hard_copy_state.nil?
+      aggregated_feedback_hard_copy_state.nil?
   end
 
   def aggregated_hard_copies_completed?(type)
     CURRENT_YEAR_AWARDS.all? do |award_category|
       if award_category == "trade" && type == "case_summary"
-        ["3", "6"].all? do |i|
+        %w[3 6].all? do |i|
           copy_record = send("#{type}_#{award_category}_#{i}_hard_copy_pdf")
           copy_record.present? && copy_record.file.present?
         end
@@ -122,10 +122,10 @@ class AwardYear < ApplicationRecord
     scope = send("hard_copy_#{type}_scope")
 
     condition_rule = if type == "form_data"
-      scope.count == scope.hard_copy_generated(type).count
-    else
-      scope.count.count == scope.hard_copy_generated(type).count.count
-    end
+                       scope.count == scope.hard_copy_generated(type).count
+                     else
+                       scope.count.count == scope.hard_copy_generated(type).count.count
+                     end
 
     if condition_rule
       update_column("#{type}_hard_copies_state", "completed")
@@ -164,6 +164,7 @@ class AwardYear < ApplicationRecord
   def self.current
     Rails.cache.fetch "current_award_year", expires_in: 1.minute do
       return where(year: DateTime.now.year + 1).first_or_create if mock_current_year?
+
       now = DateTime.now
       deadline = AwardYear.where(year: now.year + 1)
                           .first_or_create
@@ -172,11 +173,11 @@ class AwardYear < ApplicationRecord
                           .try(:trigger_at)
 
       deadline ||= Date.new(now.year, 4, 21)
-      if now >= deadline.to_datetime
-        y = now.year + 1
-      else
-        y = now.year
-      end
+      y = if now >= deadline.to_datetime
+            now.year + 1
+          else
+            now.year
+          end
 
       where(year: y).first_or_create
     end
@@ -189,7 +190,7 @@ class AwardYear < ApplicationRecord
   end
 
   def self.for_year(year)
-    where(year: year)
+    where(year:)
   end
 
   def user_creation_range
@@ -266,11 +267,11 @@ class AwardYear < ApplicationRecord
 
     def buckingham_palace_reception_attendee_information_due_by
       current_year_deadline(
-        "buckingham_palace_reception_attendee_information_due_by"
+        "buckingham_palace_reception_attendee_information_due_by",
       ).trigger_at
     end
 
-    def start_trading_since(years_number=3)
+    def start_trading_since(years_number = 3)
       if AwardYear.current.year < 2019
         Date.new(AwardYear.current.year - 1 - years_number, 9, 3).strftime("%d/%m/%Y")
       else
@@ -324,6 +325,7 @@ class AwardYear < ApplicationRecord
 
       if opts[:minmax] == true
         return (start_date..end_date).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
+
         (start_date..end_date).minmax
       else
         start_date..end_date
@@ -336,6 +338,7 @@ class AwardYear < ApplicationRecord
 
       if opts[:minmax] == true
         return (from..to).minmax.map { |d| d.strftime("%d/%m/%Y") } if opts[:format] == true
+
         (from..to).minmax
       else
         from..to

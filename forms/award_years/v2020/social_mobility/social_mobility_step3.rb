@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2020::QaeForms
   class << self
     def mobility_step3
@@ -20,17 +19,20 @@ class AwardYears::V2020::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               You will have to submit data for your latest financial year that falls before the <strong>#{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}</strong> (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -124,17 +126,20 @@ class AwardYears::V2020::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "Group entries"],
-            [:normal, %(
+            [:normal,
+             %(
               A parent company making a group entry should include the trading figures of all UK members of the group.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -152,7 +157,7 @@ class AwardYears::V2020::QaeForms
           label ->(y) { "Financial year #{y}" }
 
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
+          drop_conditional %i[drops_in_turnover drops_explain_how_your_business_is_financially_viable]
         end
 
         one_option_by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
@@ -168,7 +173,7 @@ class AwardYears::V2020::QaeForms
           type :money
           label ->(y) { "Financial year #{y}" }
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
+          drop_conditional %i[drops_in_turnover drops_explain_how_your_business_is_financially_viable]
         end
 
         one_option_by_years :total_net_assets, "Total net assets" do
@@ -184,7 +189,7 @@ class AwardYears::V2020::QaeForms
           label ->(y) { "As at the end of year #{y}" }
 
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
+          drop_conditional %i[drops_in_turnover drops_explain_how_your_business_is_financially_viable]
         end
 
         textarea :drops_in_turnover, "Explain any drops in the total turnover, total net assets or net profit, and any losses made." do
@@ -201,7 +206,8 @@ class AwardYears::V2020::QaeForms
           drop_condition_parent
         end
 
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
+        textarea :drops_explain_how_your_business_is_financially_viable,
+                 "Explain how your business is financially viable, in terms of cash flow and cash generated." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.5"
           context %(
@@ -215,7 +221,8 @@ class AwardYears::V2020::QaeForms
           drop_condition_parent
         end
 
-        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
+        textarea :investment_strategy_and_its_objectives,
+                 "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
           sub_ref "C 4.6"
           required
@@ -249,7 +256,8 @@ class AwardYears::V2020::QaeForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme." do
+        textarea :investments_details,
+                 "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme." do
           ref "C 6"
           required
           context %(

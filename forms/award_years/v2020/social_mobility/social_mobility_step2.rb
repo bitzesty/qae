@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2020::QaeForms
   class << self
     def mobility_step2
@@ -72,11 +71,13 @@ class AwardYears::V2020::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               This section enables you to present the details of your social mobility programme and to give us the evidence on how your programme benefits your staff and your organisation.
             )],
             [:bold, "Definition of Social Mobility"],
-            [:normal, %(
+            [:normal,
+             %(
               Social mobility is a measure of the ability to move from lower socio-economic background to higher socio-economic status.
 
               Socio-economic background is a set of social and economic circumstances from which a person has come. Socio-economic status is a person's current social and economic circumstances.
@@ -94,7 +95,8 @@ class AwardYears::V2020::QaeForms
               \u2022 The type of school the person attended.
             )],
             [:bold, "Qualifying programmes"],
-            [:normal, %(
+            [:normal,
+             %(
               You should demonstrate positive impacts in at least one of the following:
 
               \u2022 A programme which provides careers advice, skills development or mentoring that prepare young people from disadvantaged or lower socio-economic backgrounds for the world of work or accessible, structured work experience.
@@ -106,7 +108,8 @@ class AwardYears::V2020::QaeForms
               Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.
             )],
             [:bold, "Types of activities"],
-            [:normal, %(
+            [:normal,
+             %(
               When considering positive impacts, the following may help in clarifying what we are looking for in your application:
 
               \u2022 Accessible routes - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.
@@ -124,20 +127,23 @@ class AwardYears::V2020::QaeForms
               \u2022 Advocacy and leadership - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.
             )],
             [:bold, "Overarching criteria"],
-            [:normal, %(
+            [:normal,
+             %(
               Please note, we are looking to recognise those who are going above and beyond their core day-to-day business, acting to improve social mobility within their company locally or nationally, accessing and retaining talent regardless of socio-economic background.
 
               An award is unlikely to be granted to a social enterprise, learning provider or charity whose main purpose is to deliver social mobility programmes either for itself or on behalf of other organisations. This is because we are seeking to reward and encourage companies to address social mobility challenges within their organisations, even though this is not their sole objective.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "Answering questions"],
-            [:normal, %(
+            [:normal,
+             %(
               If you have more than one social mobility programme, please provide details.
               Please try to avoid using technical jargon in this section.
-            )]
+            )],
           ]
         end
 

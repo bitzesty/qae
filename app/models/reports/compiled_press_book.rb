@@ -1,9 +1,9 @@
-require 'rubyXL'
-require 'rubyXL/convenience_methods/cell'
-require 'rubyXL/convenience_methods/color'
-require 'rubyXL/convenience_methods/font'
-require 'rubyXL/convenience_methods/workbook'
-require 'rubyXL/convenience_methods/worksheet'
+require "rubyXL"
+require "rubyXL/convenience_methods/cell"
+require "rubyXL/convenience_methods/color"
+require "rubyXL/convenience_methods/font"
+require "rubyXL/convenience_methods/workbook"
+require "rubyXL/convenience_methods/worksheet"
 
 class Reports::CompiledPressBook
   attr_reader :groupped_form_answers, :scope
@@ -20,6 +20,7 @@ class Reports::CompiledPressBook
     include Reports::DataPickers::FormDocumentPicker
 
     attr_reader :obj, :financial_data
+
     def initialize(obj)
       @obj = obj
       @financial_data = obj.financial_data || {}
@@ -33,7 +34,7 @@ class Reports::CompiledPressBook
         doc("organization_address_street"),
         doc("organization_address_city"),
         principal_county,
-        doc("organization_address_postcode")
+        doc("organization_address_postcode"),
       ].map(&:presence).compact.join(", ")
     end
 
@@ -42,13 +43,13 @@ class Reports::CompiledPressBook
         [
           obj.press_summary.title,
           obj.press_summary.name,
-          obj.press_summary.last_name
+          obj.press_summary.last_name,
         ]
       else
         [
           obj.document["press_contact_details_title"],
           obj.document["press_contact_details_first_name"],
-          obj.document["press_contact_details_last_name"]
+          obj.document["press_contact_details_last_name"],
         ]
       end.map(&:presence).compact.join(" ")
     end
@@ -90,7 +91,7 @@ class Reports::CompiledPressBook
     press_contact_full_name: "Press Contact",
     press_contact_tel: "Tel",
     press_contact_email: "Email",
-    press_contact_notes: "Press Book Notes"
+    press_contact_notes: "Press Book Notes",
   }
 
   def initialize(year)
@@ -124,7 +125,7 @@ class Reports::CompiledPressBook
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
-    header_cell.change_vertical_alignment('center')
+    header_cell.change_vertical_alignment("center")
 
     worksheet.change_column_width(0, 20)
     worksheet.change_column_width(1, 60)
@@ -154,7 +155,7 @@ class Reports::CompiledPressBook
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
-    header_cell.change_vertical_alignment('center')
+    header_cell.change_vertical_alignment("center")
 
     # / Category header
 
@@ -162,18 +163,17 @@ class Reports::CompiledPressBook
 
     category_form_answers.compact.each do |form_answer|
       ATTRIBUTES_MAP.each do |method_name, pretty_name|
-
         attr_name_cell = worksheet.add_cell(current_row_index, 0, pretty_name)
         attr_name_cell.change_font_color(WHITE_FONT)
         attr_name_cell.change_fill(LIGHT_BG)
         attr_name_cell.change_font_size(FONT_SIZE)
         attr_name_cell.change_font_bold(true)
-        attr_name_cell.change_vertical_alignment('top')
+        attr_name_cell.change_vertical_alignment("top")
 
         attr_cell = worksheet.add_cell(current_row_index, 1, PressBookFormAnswer.new(form_answer).public_send(method_name))
         attr_cell.change_font_size(FONT_SIZE)
         attr_cell.change_text_wrap(true)
-        attr_cell.change_vertical_alignment('top')
+        attr_cell.change_vertical_alignment("top")
 
         if method_name == :company_or_nominee_name
           attr_cell.change_font_bold(true)
@@ -201,7 +201,7 @@ class Reports::CompiledPressBook
       "International Trade",
       "Promoting Opportunity",
       "Sustainable Development",
-      "Total"
+      "Total",
     ]
 
     header_cell = worksheet.add_cell(0, 0, main_header)
@@ -211,12 +211,11 @@ class Reports::CompiledPressBook
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
-    header_cell.change_vertical_alignment('center')
+    header_cell.change_vertical_alignment("center")
 
     # changing columns width
     worksheet.change_column_width(0, 30)
     5.times { |i| worksheet.change_column_width(i + 1, 15) }
-
 
     table_headers.each_with_index do |header, index|
       cell = worksheet.add_cell(2, index, header)
@@ -225,7 +224,7 @@ class Reports::CompiledPressBook
       cell.change_font_color(WHITE_FONT)
       cell.change_text_wrap(true)
       cell.change_font_size(FONT_SIZE)
-      cell.change_vertical_alignment('top')
+      cell.change_vertical_alignment("top")
     end
 
     worksheet.sheet_data[2][0].change_font_bold(true)
@@ -266,10 +265,10 @@ class Reports::CompiledPressBook
 
   def render_total_cell(worksheet, row_i, column_i, category)
     total_count = if category == "total"
-      scope.count
-    else
-      scope.where(award_type: category).count
-    end
+                    scope.count
+                  else
+                    scope.where(award_type: category).count
+                  end
 
     cell = worksheet.add_cell(row_i, column_i, total_count)
     cell.change_font_bold(true)

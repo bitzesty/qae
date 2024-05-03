@@ -10,7 +10,7 @@ module FinancialTable
   def financial_table_headers
     if financial_year_changed_dates?
       financial_table_changed_dates_headers
-    elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
+    elsif financial_date_day.to_i > 0 && financial_date_month.to_i > 0
       financial_table_pointer_headers
     else
       financial_table_default_headers
@@ -30,15 +30,17 @@ module FinancialTable
 
       res.shift(diff.abs) if diff.negative?
 
-      diff.times do 
-        date_to_calculate_from = res.first
-        if Utils::Date.valid?(date_to_calculate_from)
-          date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
-          res.unshift(date) 
-        else
-          res.unshift(nil)
+      if diff.positive?
+        diff.times do
+          date_to_calculate_from = res.first
+          if Utils::Date.valid?(date_to_calculate_from)
+            date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
+            res.unshift(date)
+          else
+            res.unshift(nil)
+          end
         end
-      end if diff.positive?
+      end
     end
 
     if res.any?(&:present?)
@@ -57,10 +59,10 @@ module FinancialTable
     #
     corrected_result = res.each_with_object([]) do |entry, memo|
       memo << if ::Utils::Date.valid?(entry)
-        Date.parse(entry).strftime("%d/%m/%Y")
-      else
-        ""
-      end
+                Date.parse(entry).strftime("%d/%m/%Y")
+              else
+                ""
+              end
     end
   end
 
@@ -90,7 +92,7 @@ module FinancialTable
   def financial_empty_values
     res = []
 
-    financial_years_number.to_i.times do |i|
+    financial_years_number.to_i.times do |_i|
       res << {}
     end
 
@@ -134,27 +136,25 @@ module FinancialTable
   def financial_date_pointer_value
     FinancialYearPointer.new(
       question: financial_date_pointer,
-      financial_pointer: financial_pointer
+      financial_pointer:,
     ).latest_year_label
   end
 
   def financial_years_number
     @financial_years_number ||=
-      begin
-        if financial_date_selector_value.present?
-          if one_option_question_or_development?
-            "3"
-          elsif form_answer.innovation?
-            innovation_years_number
-          else
-            financial_date_selector.ops_values[financial_date_selector_value]
-          end
-        elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
-          financial_pointer.period_length
+      if financial_date_selector_value.present?
+        if one_option_question_or_development?
+          "3"
+        elsif form_answer.innovation?
+          innovation_years_number
         else
-          # If not selected yet, render last option as default
-          financial_date_selector.ops_values.values.last
+          financial_date_selector.ops_values[financial_date_selector_value]
         end
+      elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
+        financial_pointer.period_length
+      else
+        # If not selected yet, render last option as default
+        financial_date_selector.ops_values.values.last
       end
   end
 
@@ -189,7 +189,7 @@ module FinancialTable
       end
 
       years = result.years if result.present?
-    rescue
+    rescue StandardError
       nil
     ensure
       return years.to_s

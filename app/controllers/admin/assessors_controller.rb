@@ -1,18 +1,18 @@
 class Admin::AssessorsController < Admin::UsersController
   before_action :find_resource,
-                except: [
-                  :index,
-                  :new,
-                  :create,
-                  :suspension_status,
-                  :confirm_bulk_activate_pi,
-                  :confirm_bulk_activate_dt,
-                  :bulk_activate_pi,
-                  :bulk_activate_dt,
-                  :confirm_bulk_deactivate_pi,
-                  :confirm_bulk_deactivate_dt,
-                  :bulk_deactivate_pi,
-                  :bulk_deactivate_dt
+                except: %i[
+                  index
+                  new
+                  create
+                  suspension_status
+                  confirm_bulk_activate_pi
+                  confirm_bulk_activate_dt
+                  bulk_activate_pi
+                  bulk_activate_dt
+                  confirm_bulk_deactivate_pi
+                  confirm_bulk_deactivate_dt
+                  bulk_deactivate_pi
+                  bulk_deactivate_dt
                 ]
 
   def index
@@ -20,8 +20,8 @@ class Admin::AssessorsController < Admin::UsersController
     params[:search].permit!
     authorize :assessor, :index?
 
-    @search = AssessorSearch.new(Assessor.all).
-                             search(params[:search])
+    @search = AssessorSearch.new(Assessor.all)
+                             .search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -174,9 +174,10 @@ class Admin::AssessorsController < Admin::UsersController
     @resource.save
     location = @resource.persisted? ? admin_assessors_path : nil
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
-    respond_with :admin, @resource, location: location
+    respond_with :admin, @resource, location:
   end
 
   def update
@@ -184,7 +185,8 @@ class Admin::AssessorsController < Admin::UsersController
     @resource.skip_password_validation = true
     @resource.update_without_password(resource_params)
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_assessors_path
   end
@@ -193,7 +195,8 @@ class Admin::AssessorsController < Admin::UsersController
     authorize @resource, :destroy?
     @resource.soft_delete!
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_assessors_path
   end
@@ -205,16 +208,16 @@ class Admin::AssessorsController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:assessor).
-      permit(:email,
-             :company,
-             :first_name,
-             :last_name,
-             :telephone_number,
-             :trade_role,
-             :innovation_role,
-             :development_role,
-             :mobility_role,
-             :promotion_role)
+    params.require(:assessor)
+      .permit(:email,
+              :company,
+              :first_name,
+              :last_name,
+              :telephone_number,
+              :trade_role,
+              :innovation_role,
+              :development_role,
+              :mobility_role,
+              :promotion_role)
   end
 end

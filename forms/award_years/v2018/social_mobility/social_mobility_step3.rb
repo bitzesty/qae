@@ -1,5 +1,3 @@
-
-# -*- coding: utf-8 -*-
 class AwardYears::V2018::QaeForms
   class << self
     def mobility_step3
@@ -33,7 +31,8 @@ class AwardYears::V2018::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during the <span class='js-entry-period-subtext'>3</span> year entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during the <span class='js-entry-period-subtext'>3</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 1.1"
           required
@@ -164,7 +163,8 @@ class AwardYears::V2018::QaeForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme" do
+        textarea :investments_details,
+                 "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme" do
           ref "C 5"
           required
           context %(

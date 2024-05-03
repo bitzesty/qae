@@ -8,7 +8,7 @@ shared_context "successful appraisal form edition" do
   let(:moderated_header) { "#appraisal-form-moderated-heading" }
 
   before do
-    login_as(subject, scope: scope)
+    login_as(subject, scope:)
     visit show_path
   end
 
@@ -53,7 +53,7 @@ shared_context "successful case summary edition" do
   let(:text) { "textareatext123123" }
 
   before do
-    login_as(subject, scope: scope)
+    login_as(subject, scope:)
     visit show_path
   end
 
@@ -124,9 +124,9 @@ def assert_description_change(section_id, header_id)
   take_a_nap
 
   within section_id do
-    expect(page).to have_selector(".form-value p", text: text, count: 1)
+    expect(page).to have_selector(".form-value p", text:, count: 1)
     first(".form-edit-link").click
-    expect(page).to have_selector("textarea", text: text)
+    expect(page).to have_selector("textarea", text:)
   end
   visit show_path
 end
@@ -154,7 +154,7 @@ def assert_multiple_description_change(section_id, header_id, prefix)
 
     all(".form-edit-link").last.click
 
-    expect(page.find("##{prefix}_verdict").text).to eq  text2
+    expect(page.find("##{prefix}_verdict").text).to eq text2
   end
 end
 

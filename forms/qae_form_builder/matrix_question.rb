@@ -1,6 +1,6 @@
 class QaeFormBuilder
-  AUTO_CALCULATED_HEADINGS = %w(total_system_calculated calculated_total calculated_proportion calculated_sub_total).freeze
-  EXCLUDED_HEADINGS = %w(calculated_sub_total others calculated_total calculated_proportion).freeze
+  AUTO_CALCULATED_HEADINGS = %w[total_system_calculated calculated_total calculated_proportion calculated_sub_total].freeze
+  EXCLUDED_HEADINGS = %w[calculated_sub_total others calculated_total calculated_proportion].freeze
   class MatrixQuestionValidator < QuestionValidator
     def errors
       result = super
@@ -8,17 +8,15 @@ class QaeFormBuilder
         question.y_headings.each do |y_heading|
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
-            if !AUTO_CALCULATED_HEADINGS.any? { |excluded| question.input_name(suffix: suffix).include?(excluded) }
-              if !question.input_value(suffix: suffix).present?
+            unless AUTO_CALCULATED_HEADINGS.any? { |excluded| question.input_name(suffix:).include?(excluded) }
+              if question.input_value(suffix:).blank?
                 if (question.required_row_parent && question.required_rows.include?(y_heading.key)) || !question.required_row_parent
-                  result[question.hash_key(suffix: suffix)] ||= ""
-                  result[question.hash_key(suffix: suffix)] << "Required"
+                  result[question.hash_key(suffix:)] ||= ""
+                  result[question.hash_key(suffix:)] << "Required"
                 end
-              else
-                if !/\A\d+\z/.match(question.input_value(suffix: suffix).to_s)
-                  result[question.hash_key(suffix: suffix)] ||= ""
-                  result[question.hash_key(suffix: suffix)] << "Must be a whole number"
-                end
+              elsif !/\A\d+\z/.match(question.input_value(suffix:).to_s)
+                result[question.hash_key(suffix:)] ||= ""
+                result[question.hash_key(suffix:)] << "Must be a whole number"
               end
             end
           end
@@ -37,7 +35,7 @@ class QaeFormBuilder
       errors = super
 
       if delegate_obj.required_row_parent
-        step.form[delegate_obj.required_row_parent].input_value&.each {|a| delegate_obj.required_rows << a["type"] }
+        step.form[delegate_obj.required_row_parent].input_value&.each { |a| delegate_obj.required_rows << a["type"] }
       end
 
       errors
@@ -50,9 +48,7 @@ class QaeFormBuilder
         row_totals[y_heading.key] ||= 0
         x_headings.each do |x_heading|
           cell_value = answers["#{question_key}_#{x_heading.key}_#{y_heading.key}"]
-          unless x_heading.key == "total_system_calculated"
-            row_totals[y_heading.key] += cell_value.to_i
-          end
+          row_totals[y_heading.key] += cell_value.to_i unless x_heading.key == "total_system_calculated"
           answers["#{question_key}_total_system_calculated_#{y_heading.key}"] = row_totals[y_heading.key]
         end
       end
@@ -87,20 +83,18 @@ class QaeFormBuilder
         col_subtotals[x_heading.key] ||= 0
         y_headings.each do |y_heading|
           cell_value = answers["#{question_key}_#{x_heading.key}_#{y_heading.key}"]
-          unless EXCLUDED_HEADINGS.include?(y_heading.key)
-            col_subtotals[x_heading.key] += cell_value.to_i
-          end
+          col_subtotals[x_heading.key] += cell_value.to_i unless EXCLUDED_HEADINGS.include?(y_heading.key)
           answers["#{question_key}_#{x_heading.key}_calculated_sub_total"] = col_subtotals[x_heading.key]
         end
       end
     end
 
-    def calculate_proportion(question_key, answers, x_heading, y_heading)
-      if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
-        disadvantaged = answers["#{question_key}_#{x_heading}_calculated_sub_total"].to_f
-      else
-        disadvantaged = answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
-      end
+    def calculate_proportion(question_key, answers, x_heading, _y_heading)
+      disadvantaged = if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
+                        answers["#{question_key}_#{x_heading}_calculated_sub_total"].to_f
+                      else
+                        answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
+                      end
       total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
       proportion = (disadvantaged.to_f / total * 100).round(2)
       answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion
@@ -142,75 +136,69 @@ class QaeFormBuilder
   end
 
   class MatrixQuestionBuilder < QuestionBuilder
-    def label label
+    def label(label)
       @q.label = label
     end
 
-    def others_label label
+    def others_label(label)
       @q.others_label = label
     end
 
-    def subtotals_label label
+    def subtotals_label(label)
       @q.subtotals_label = label
     end
 
-    def totals_label label
+    def totals_label(label)
       @q.totals_label = label
     end
 
-    def proportion_label label
+    def proportion_label(label)
       @q.proportion_label = label
     end
 
-    def corner_label label
+    def corner_label(label)
       @q.corner_label = label
     end
 
-    def auto_totals_column auto_totals_column
+    def auto_totals_column(auto_totals_column)
       @q.auto_totals_column = auto_totals_column
     end
 
-    def x_heading key, label
-      @q.x_headings << MatrixHeading.new(key: key, label: label)
+    def x_heading(key, label)
+      @q.x_headings << MatrixHeading.new(key:, label:)
     end
 
-    def y_heading key, label, options = {}
-      @q.y_headings << MatrixHeading.new(key: key, label: label, options: options)
+    def y_heading(key, label, options = {})
+      @q.y_headings << MatrixHeading.new(key:, label:, options:)
     end
 
-    def x_headings headings
+    def x_headings(headings)
       headings.each do |heading|
         if heading.is_a?(Array)
-          x_heading *heading
+          x_heading(*heading)
         else
           x_heading heading.to_s.parameterize.underscore, heading
         end
       end
     end
 
-    def y_headings headings
+    def y_headings(headings)
       headings.each do |heading|
         if heading.is_a?(Array)
-          y_heading *heading
+          y_heading(*heading)
         else
           y_heading heading.to_s.parameterize.underscore, heading
         end
       end
-      if @q.subtotals_label
-        y_heading "calculated_sub_total", @q.subtotals_label, {"row_class": "auto-subtotals-row"}
-      end
-      if @q.others_label
-        y_heading "others", @q.others_label, {"row_class": "others-not-disadvantaged-row"}
-      end
-      if @q.totals_label
-        y_heading "calculated_total", @q.totals_label, {"row_class": "auto-totals-row"}
-      end
-      if @q.proportion_label
-        y_heading "calculated_proportion", @q.proportion_label, {"row_class": "auto-proportion-row"}
-      end
+      y_heading "calculated_sub_total", @q.subtotals_label, { row_class: "auto-subtotals-row" } if @q.subtotals_label
+      y_heading "others", @q.others_label, { row_class: "others-not-disadvantaged-row" } if @q.others_label
+      y_heading "calculated_total", @q.totals_label, { row_class: "auto-totals-row" } if @q.totals_label
+      return unless @q.proportion_label
+
+      y_heading "calculated_proportion", @q.proportion_label, { row_class: "auto-proportion-row" }
     end
 
-    def column_widths widths
+    def column_widths(widths)
       @q.column_widths = widths
     end
 
@@ -250,5 +238,4 @@ class QaeFormBuilder
       "question-matrix"
     end
   end
-
 end

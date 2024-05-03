@@ -4,7 +4,7 @@ include Warden::Test::Helpers
 describe "Assessor reviews the shortlisted docs" do
   let(:assessor) { create(:assessor, :lead_for_all) }
   let!(:form_answer) { create(:form_answer, :development, :recommended) }
-  let!(:sdw) { create(:shortlisted_documents_wrapper, form_answer: form_answer) }
+  let!(:sdw) { create(:shortlisted_documents_wrapper, form_answer:) }
 
   before do
     create(:vat_returns_file, shortlisted_documents_wrapper: sdw)

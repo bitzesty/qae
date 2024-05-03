@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2018::QaeForms
   class << self
     def promotion_step3
@@ -15,7 +14,8 @@ class AwardYears::V2018::QaeForms
           words_max 500
         end
 
-        textarea :benefits_from_nominee_service, "Describe the benefits of your nominee's services to a particular field, group, community or society as a whole." do
+        textarea :benefits_from_nominee_service,
+                 "Describe the benefits of your nominee's services to a particular field, group, community or society as a whole." do
           ref "C 2"
           required
           context %(
@@ -31,7 +31,7 @@ class AwardYears::V2018::QaeForms
         end
 
         options :nominee_active_in_сurrent_enterprise_promotion_role,
-          "Has your nominee been active in their current enterprise promotion role for over ten years?" do
+                "Has your nominee been active in their current enterprise promotion role for over ten years?" do
           required
           ref "C 3"
           yes_no

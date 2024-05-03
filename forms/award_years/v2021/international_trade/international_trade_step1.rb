@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2021::QaeForms
   class << self
     def trade_step1
@@ -68,12 +67,13 @@ class AwardYears::V2021::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
                 We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
-              )
-            ],
+              )],
             [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
-            [:normal, %(
+            [:normal,
+             %(
                 \u2022 Biotechnology & Biological Sciences Research Council
                 \u2022 Charity Commission
                 \u2022 Companies House
@@ -115,13 +115,12 @@ class AwardYears::V2021::QaeForms
                 \u2022 Serious Fraud Office
                 \u2022 UK Export Finance
                 \u2022 Wales Government
-              )
-            ],
+              )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
                 Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-              )
-            ]
+              )],
           ]
         end
 
@@ -198,18 +197,19 @@ class AwardYears::V2021::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(3)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
@@ -275,13 +275,14 @@ class AwardYears::V2021::QaeForms
           required
           ref "A 8"
           pdf_context_with_header_blocks [
-            [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
-            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+            [:normal,
+             "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"],
           ]
           county_context %(
             <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
 
-            <p> 
+            <p>
               <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
                 See the full list of London districts on Wikipedia
               </a>
@@ -292,7 +293,7 @@ class AwardYears::V2021::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
         end
 
@@ -372,7 +373,8 @@ class AwardYears::V2021::QaeForms
           yes_no
         end
 
-        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
+        textarea :pareent_group_why_excluding_members,
+                 "Please explain why you are excluding any members of your group from this application." do
           classes "sub-question"
           sub_ref "A 12.2"
           rows 5
@@ -419,13 +421,15 @@ class AwardYears::V2021::QaeForms
           conditional :parent_ultimate_control, :no
         end
 
-        options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
+        options :trading_figures,
+                "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
           ref "A 14"
           required
           yes_no
         end
 
-        subsidiaries_associates_plants :trading_figures_add, "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
+        subsidiaries_associates_plants :trading_figures_add,
+                                       "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
           required
           classes "sub-question"
           sub_ref "A 14.1"

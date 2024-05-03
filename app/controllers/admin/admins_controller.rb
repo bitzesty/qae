@@ -1,11 +1,11 @@
 class Admin::AdminsController < Admin::UsersController
-  before_action :find_resource, except: [:index, :new, :create, :login_as_assessor, :login_as_user]
+  before_action :find_resource, except: %i[index new create login_as_assessor login_as_user]
   def index
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
     params[:search].permit!
     authorize Admin, :index?
-    @search = AdminSearch.new(Admin.all).
-                         search(params[:search])
+    @search = AdminSearch.new(Admin.all)
+                         .search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -21,10 +21,11 @@ class Admin::AdminsController < Admin::UsersController
 
     @resource.save
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     location = @resource.persisted? ? admin_admins_path : nil
-    respond_with :admin, @resource, location: location
+    respond_with :admin, @resource, location:
   end
 
   def update
@@ -37,7 +38,8 @@ class Admin::AdminsController < Admin::UsersController
       @resource.update_without_password(resource_params)
     end
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_admins_path
   end
@@ -46,7 +48,8 @@ class Admin::AdminsController < Admin::UsersController
     authorize @resource, :destroy?
     @resource.soft_delete!
 
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
+    render_flash_message_for(@resource,
+                             message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
 
     respond_with :admin, @resource, location: admin_admins_path
   end
@@ -54,7 +57,7 @@ class Admin::AdminsController < Admin::UsersController
   # NOTE: debug abilities for Admin - BEGIN
   def login_as_assessor
     authorize Admin, :index?
-    assessor = Assessor.find_by_email(params[:email])
+    assessor = Assessor.find_by(email: params[:email])
     sign_in(assessor, scope: :assessor, skip_session_limitable: true)
 
     redirect_to assessor_root_path
@@ -62,7 +65,7 @@ class Admin::AdminsController < Admin::UsersController
 
   def login_as_user
     authorize Admin, :index?
-    user = User.find_by_email(params[:email])
+    user = User.find_by(email: params[:email])
     sign_in(user, scope: :user, skip_session_limitable: true)
 
     redirect_to dashboard_url
@@ -76,11 +79,11 @@ class Admin::AdminsController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:admin).
-      permit(:email,
-             :password,
-             :password_confirmation,
-             :first_name,
-             :last_name)
+    params.require(:admin)
+      .permit(:email,
+              :password,
+              :password_confirmation,
+              :first_name,
+              :last_name)
   end
 end

@@ -4,9 +4,10 @@ class CustomEmailForm
   include ActiveModel::Validations
   extend Enumerize
 
-  SCOPES = %w(myself qae_opt_in_group bis_opt_in assessors all_users)
+  SCOPES = %w[myself qae_opt_in_group bis_opt_in assessors all_users]
 
   attr_reader :scope, :message, :admin_id, :subject
+
   validates :message, :scope, :subject, presence: true
 
   enumerize :scope, in: SCOPES
@@ -24,12 +25,10 @@ class CustomEmailForm
 
   def send!
     users.each do |user|
-      begin
-        Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
-      rescue => e
-        puts "Error: #{e}"
-        Appsignal.send_error(e)
-      end
+      Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
+    rescue StandardError => e
+      puts "Error: #{e}"
+      Appsignal.send_error(e)
     end
   end
 

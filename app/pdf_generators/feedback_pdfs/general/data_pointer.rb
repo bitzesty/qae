@@ -1,5 +1,5 @@
 module FeedbackPdfs::General::DataPointer
-  COLOR_LABELS = %w(positive average negative neutral)
+  COLOR_LABELS = %w[positive average negative neutral]
 
   POSITIVE_COLOR = "6B8E23"
   AVERAGE_COLOR = "DAA520"
@@ -21,31 +21,31 @@ module FeedbackPdfs::General::DataPointer
       [
         "",
         "Key strengths",
-        "Information to strengthen the application"
-      ]
+        "Information to strengthen the application",
+      ],
     ]
   end
 
   def feedback_entries
     FeedbackForm.fields_for_award_type(form_answer).map do |key, value|
-      if value[:type] != :strengths
-        [
-          value[:label].delete(":"),
-          data["#{key}_strength"] || undefined_value,
-          data["#{key}_weakness"] || undefined_value
-        ]
-      end
+      next unless value[:type] != :strengths
+
+      [
+        value[:label].delete(":"),
+        data["#{key}_strength"] || undefined_value,
+        data["#{key}_weakness"] || undefined_value,
+      ]
     end.compact
   end
 
   def strengths_entries
     FeedbackForm.fields_for_award_type(form_answer).map do |key, value|
-      if value[:type] == :strengths
-        [
-          value[:label].delete(":"),
-          rag(key)
-        ]
-      end
+      next unless value[:type] == :strengths
+
+      [
+        value[:label].delete(":"),
+        rag(key),
+      ]
     end.compact
   end
 
@@ -56,45 +56,45 @@ module FeedbackPdfs::General::DataPointer
     render_headers(feedback_table_headers, {
       0 => 130,
       1 => 300,
-      2 => 337
+      2 => 337,
     })
     render_table(table_items, {
       0 => 130,
       1 => 300,
-      2 => 337
+      2 => 337,
     })
 
-    if form_answer.development? && strengths_entries.present?
-      year = form_answer.award_year.year
+    return unless form_answer.development? && strengths_entries.present?
 
-      pdf_doc.table(strengths_entries,
-                    cell_style: { size: 12 },
-                    column_widths: {
-                      0 => 130,
-                      1 => 637
-                    }) do
-        values = cells.columns(1).rows(0..-1)
+    year = form_answer.award_year.year
 
-        green_rags = values.filter do |cell|
-          FeedbackPdfs::Pointer.const_get("POSITIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
-        end
-        green_rags.background_color = POSITIVE_COLOR
+    pdf_doc.table(strengths_entries,
+                  cell_style: { size: 12 },
+                  column_widths: {
+                    0 => 130,
+                    1 => 637,
+                  }) do
+      values = cells.columns(1).rows(0..-1)
 
-        amber_rags = values.filter do |cell|
-          FeedbackPdfs::Pointer.const_get("AVERAGE_LABELS_#{year}").include?(cell.content.to_s.strip)
-        end
-        amber_rags.background_color = AVERAGE_COLOR
-
-        red_rags = values.filter do |cell|
-          FeedbackPdfs::Pointer.const_get("NEGATIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
-        end
-        red_rags.background_color = NEGATIVE_COLOR
-
-        neutral_rags = values.filter do |cell|
-          FeedbackPdfs::Pointer.const_get("NEUTRAL_LABELS_#{year}").include?(cell.content.to_s.strip)
-        end
-        neutral_rags.background_color = NEUTRAL_COLOR
+      green_rags = values.filter do |cell|
+        FeedbackPdfs::Pointer.const_get("POSITIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
       end
+      green_rags.background_color = POSITIVE_COLOR
+
+      amber_rags = values.filter do |cell|
+        FeedbackPdfs::Pointer.const_get("AVERAGE_LABELS_#{year}").include?(cell.content.to_s.strip)
+      end
+      amber_rags.background_color = AVERAGE_COLOR
+
+      red_rags = values.filter do |cell|
+        FeedbackPdfs::Pointer.const_get("NEGATIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
+      end
+      red_rags.background_color = NEGATIVE_COLOR
+
+      neutral_rags = values.filter do |cell|
+        FeedbackPdfs::Pointer.const_get("NEUTRAL_LABELS_#{year}").include?(cell.content.to_s.strip)
+      end
+      neutral_rags.background_color = NEUTRAL_COLOR
     end
   end
 
@@ -102,15 +102,15 @@ module FeedbackPdfs::General::DataPointer
     pdf_doc.move_down 30.mm
     render_table([["Overall Summary", data["overall_summary"]]], {
       0 => 130,
-      1 => 637
+      1 => 637,
     })
   end
 
   def render_headers(table_lines, column_widths)
     pdf_doc.move_down 10.mm
-    pdf_doc.table table_lines, row_colors: %w(F0F0F0),
+    pdf_doc.table table_lines, row_colors: %w[F0F0F0],
                                cell_style: { size: 12, font_style: :bold },
-                               column_widths: column_widths
+                               column_widths:
   end
 
   def rag(key)

@@ -1,10 +1,10 @@
 namespace :feedbacks do
   desc "Add locked_at to all submitted feedbacks"
-  task :populate_locked_at => :environment do
+  task populate_locked_at: :environment do
     Feedback.submitted.where(locked_at: nil).update_all(locked_at: Time.zone.now)
   end
 
-  task :populate_sustainable_development_feedback => :environment do
+  task populate_sustainable_development_feedback: :environment do
     FormAnswer.not_shortlisted.where(award_type: "development").each do |form_answer|
       feedback = form_answer.feedback || form_answer.build_feedback
       primary_assignment = form_answer.assessor_assignments.primary

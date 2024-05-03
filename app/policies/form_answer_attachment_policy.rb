@@ -8,7 +8,7 @@ class FormAnswerAttachmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin? && record.created_by_admin? ||
-      assessor? && record.attachable == subject
+    (admin? && record.created_by_admin?) ||
+      (assessor? && record.attachable == subject)
   end
 end

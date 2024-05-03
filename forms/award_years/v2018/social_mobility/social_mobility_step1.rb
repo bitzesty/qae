@@ -83,13 +83,13 @@ class AwardYears::V2018::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                  Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award.
               </p>
             )
-          end
+          }
           date_max AwardYear.start_trading_since(3)
         end
 
@@ -97,11 +97,11 @@ class AwardYears::V2018::QaeForms
           required
           ref "A 6"
           yes_no
-          context -> do
+          context lambda {
             %(
               <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
             )
-          end
+          }
           option "i_dont_know", "I don't know"
           classes "queen-award-holder"
         end
@@ -187,7 +187,8 @@ class AwardYears::V2018::QaeForms
           rows 2
         end
 
-        options :external_contribute_to_sustainable_product, "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
+        options :external_contribute_to_sustainable_product,
+                "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
           ref "A 9"
           required
           context %(
@@ -218,7 +219,8 @@ class AwardYears::V2018::QaeForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this applications" do
+        textarea :why_external_organisations_contributed_your_nomination,
+                 "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this applications" do
           sub_ref "A 9.2"
           required
           words_max 200
@@ -236,7 +238,7 @@ class AwardYears::V2018::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 

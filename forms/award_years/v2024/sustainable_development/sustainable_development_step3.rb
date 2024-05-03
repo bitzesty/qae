@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2024::QaeForms
   class << self
     def development_step3
@@ -24,7 +23,7 @@ class AwardYears::V2024::QaeForms
               <li>Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.</li>
             </ul>
           )
-          pdf_context %{
+          pdf_context %(
             <p>If your application is successful, this description will appear in the London Gazette.</p>
             <p>Some good examples from previously shortlisted organisations:</p>
             <p>
@@ -32,7 +31,7 @@ class AwardYears::V2024::QaeForms
               \u2022 Manufacturer of environmentally friendly cleaning products since 2007. Loved by professionals, approved by the planet.
               \u2022 Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.
             </p>
-          }
+          )
           rows 2
           words_max 15
         end
@@ -50,11 +49,11 @@ class AwardYears::V2024::QaeForms
 
         header :sustainable_development_core_business_header, "Core business and your approach to sustainability" do
           ref "C 2"
-          context %{
+          context %(
             <p class='govuk-hint'>
               In questions C2.1 to C2.7, describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
             </p>
-          }
+          )
         end
 
         textarea :briefly_describe_your_core_business, "A brief summary of your organisation." do
@@ -70,7 +69,8 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :describe_previous_situation_before_sustainability, "What was the situation before your organisation adopted a sustainability purpose, objectives and interventions?" do
+        textarea :describe_previous_situation_before_sustainability,
+                 "What was the situation before your organisation adopted a sustainability purpose, objectives and interventions?" do
           classes "word-max-strict sub-question"
           ref "C 2.2"
           required
@@ -78,7 +78,8 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :why_these_particular_interventions, "Why did you choose these particular interventions, and how do they align with the core aims and values of your organisation?" do
+        textarea :why_these_particular_interventions,
+                 "Why did you choose these particular interventions, and how do they align with the core aims and values of your organisation?" do
           classes "word-max-strict sub-question"
           ref "C 2.3"
           required
@@ -86,7 +87,8 @@ class AwardYears::V2024::QaeForms
           words_max 300
         end
 
-        textarea :how_have_you_embedded_sustainability_objectives, "How have you embedded sustainability objectives or purpose in your organisation?" do
+        textarea :how_have_you_embedded_sustainability_objectives,
+                 "How have you embedded sustainability objectives or purpose in your organisation?" do
           classes "word-max-strict sub-question"
           ref "C 2.4"
           required
@@ -94,7 +96,8 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :explain_how_the_business_operates_sustainably, "If your application is focused on particular sustainable development interventions, explain how your whole business also operates sustainably, especially in terms of climate change." do
+        textarea :explain_how_the_business_operates_sustainably,
+                 "If your application is focused on particular sustainable development interventions, explain how your whole business also operates sustainably, especially in terms of climate change." do
           classes "word-max-strict sub-question"
           ref "C 2.5"
           required
@@ -125,7 +128,8 @@ class AwardYears::V2024::QaeForms
           words_max 300
         end
 
-        textarea :how_sustainability_interventions_benefit_business_strategy, "How do sustainability interventions benefit the overall business strategy?" do
+        textarea :how_sustainability_interventions_benefit_business_strategy,
+                 "How do sustainability interventions benefit the overall business strategy?" do
           classes "word-max-strict sub-question"
           ref "C 2.6"
           required
@@ -137,25 +141,26 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 2.7"
           required
-          context %{
+          context %(
             <p>
               For example, how are you changing your business to respond to future sustainability challenges in your business or sector?
             </p>
-          }
+          )
           rows 2
           words_max 200
         end
 
         header :leadership_and_management, "Leadership and management" do
           ref "C 3"
-          context %{
+          context %(
             <p class="govuk-hint">
               In questions C3.1 to C3.8, describe the driving force of your organisation's sustainability.
             </p>
-          }
+          )
         end
 
-        textarea :describe_the_driving_force_of_your_organisation, "Who is ultimately responsible for the organisation's sustainability interventions and their success?" do
+        textarea :describe_the_driving_force_of_your_organisation,
+                 "Who is ultimately responsible for the organisation's sustainability interventions and their success?" do
           classes "word-max-strict sub-question"
           ref "C 3.1"
           required
@@ -163,18 +168,20 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :who_is_responsible_for_day_to_day_management, "Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?" do
+        textarea :who_is_responsible_for_day_to_day_management,
+                 "Who is responsible for the day-to-day management, and the main areas of sustainability, in your organisation?" do
           classes "word-max-strict sub-question"
           ref "C 3.2"
           required
-          context %{
+          context %(
             <p>You may include flow charts to make it easier for assessors to understand how your programme is managed in section E of this form.</p>
-          }
+          )
           rows 2
           words_max 200
         end
 
-        textarea :describe_the_senior_decision_makers_commitment_to_sustainability, "What is the senior decision maker's commitment to the future sustainable growth of the organisation?" do
+        textarea :describe_the_senior_decision_makers_commitment_to_sustainability,
+                 "What is the senior decision maker's commitment to the future sustainable growth of the organisation?" do
           classes "word-max-strict sub-question"
           ref "C 3.3"
           required
@@ -182,15 +189,16 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :how_does_your_organisation_inspire_others, "How does your organisation inspire other organisations to be more sustainable?" do
+        textarea :how_does_your_organisation_inspire_others,
+                 "How does your organisation inspire other organisations to be more sustainable?" do
           classes "word-max-strict sub-question"
           ref "C 3.4"
           required
-          context %{
+          context %(
             <p>
               For example, businesses in your supply chain, stakeholders, customers, local communities or even competitors.
             </p>
-          }
+          )
           rows 4
           words_max 400
         end
@@ -203,20 +211,22 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :describe_your_organisation_diversity, "How does your organisation attract, recruit, promote and retain a diverse workforce?" do
+        textarea :describe_your_organisation_diversity,
+                 "How does your organisation attract, recruit, promote and retain a diverse workforce?" do
           classes "word-max-strict sub-question"
           ref "C 3.6"
           required
-          context %{
+          context %(
             <p>
               Describe your organisation's diversity and inclusion strategy and any policies. Provide evidence that these are effective.
             </p>
-          }
+          )
           rows 5
           words_max 500
         end
 
-        textarea :describe_how_employee_relations_improved_their_motivation, "How do you ensure workforce motivation, well-being and satisfaction?" do
+        textarea :describe_how_employee_relations_improved_their_motivation,
+                 "How do you ensure workforce motivation, well-being and satisfaction?" do
           classes "word-max-strict sub-question"
           ref "C 3.7"
           required
@@ -226,14 +236,15 @@ class AwardYears::V2024::QaeForms
 
         header :culture_and_values, "Culture and values regarding sustainability" do
           ref "C 4"
-          context %{
+          context %(
             <p class="govuk-hint">
               In questions C4.1 to C4.4, describe how your organisation's culture fosters and supports sustainability.
             </p>
-          }
+          )
         end
 
-        textarea :culture_and_values_regarding_sustainability, "How is sustainability embedded in your organisation's culture and values?" do
+        textarea :culture_and_values_regarding_sustainability,
+                 "How is sustainability embedded in your organisation's culture and values?" do
           classes "word-max-strict sub-question"
           ref "C 4.1"
           required
@@ -241,7 +252,8 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :how_do_you_increase_positive_perception_of_sustainability, "How do you increase positive perceptions of your organisation's sustainability among stakeholders, such as your workforce, supply chain, customers, communities, and media?" do
+        textarea :how_do_you_increase_positive_perception_of_sustainability,
+                 "How do you increase positive perceptions of your organisation's sustainability among stakeholders, such as your workforce, supply chain, customers, communities, and media?" do
           classes "word-max-strict sub-question"
           ref "C 4.2"
           context %(
@@ -260,7 +272,8 @@ class AwardYears::V2024::QaeForms
           words_max 400
         end
 
-        textarea :what_are_your_long_term_plans_for_sustainability, "What are your long-term plans for ensuring your organisation provides the leadership, innovation or interventions to enable greater sustainable development?" do
+        textarea :what_are_your_long_term_plans_for_sustainability,
+                 "What are your long-term plans for ensuring your organisation provides the leadership, innovation or interventions to enable greater sustainable development?" do
           classes "word-max-strict sub-question"
           ref "C 4.3"
           required
@@ -270,25 +283,25 @@ class AwardYears::V2024::QaeForms
 
         header :sustainable_development_interventions_header, "Your sustainable development interventions in detail" do
           ref "C 5"
-          context %{
+          context %(
             <p class="govuk-hint">
               In questions C5.1 to C5.4, describe your interventions using the UN SDGs to structure your answer to each section, but only where relevant.
             </p>
             <p class="govuk-hint">
               You need to summarise your interventions for sustainable development and demonstrate a sustainable strategy across the business.
             </p>
-          }
+          )
         end
 
         textarea :describe_your_interventions_using_un, "Which UN SDGs are your efforts targeted towards?" do
           required
           classes "word-max-strict sub-question"
           sub_ref "C 5.1"
-          context %{
+          context %(
             <p>
               Please note, you do not need to address each UN SDG, only the ones that are most applicable to your sustainable development interventions.
             </p>
-          }
+          )
           rows 2
           words_max 200
         end
@@ -297,16 +310,17 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 5.2"
           required
-          context %{
+          context %(
             <p>
               For example, this could be, to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community and society in general.
             </p>
-          }
+          )
           rows 2
           words_max 200
         end
 
-        textarea :proportion_of_interventions_compared_to_organisation_size, "The proportion of these interventions compared to your whole organisation's size." do
+        textarea :proportion_of_interventions_compared_to_organisation_size,
+                 "The proportion of these interventions compared to your whole organisation's size." do
           classes "word-max-strict sub-question"
           ref "C 5.3"
           required
@@ -323,7 +337,7 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 5.4"
           required
-          context %{
+          context %(
             <p>
               For example, they may be exemplary as a result of:
             </p>
@@ -336,7 +350,7 @@ class AwardYears::V2024::QaeForms
             <p>
               If you have any external documents or other media to support your answer, please add these in Section E and reference them by their names in your answers.
             </p>
-          }
+          )
           pdf_context %(
             For example, it may be exemplary as a result of:
 
@@ -374,7 +388,8 @@ class AwardYears::V2024::QaeForms
           words_max 300
         end
 
-        textarea :what_qualitive_measures_were_used_to_measure_success, "State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, workforce or others in meeting objectives for performance." do
+        textarea :what_qualitive_measures_were_used_to_measure_success,
+                 "State what qualitative measures were used to evaluate the success of your sustainable business objectives to your organisation, customers, workforce or others in meeting objectives for performance." do
           ref "C 6.2"
           classes "word-max-strict sub-question"
           required
@@ -386,32 +401,34 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 6.3"
           required
-          context %{
+          context %(
             <p>
               Describe the impact on your organisation, workforce, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets and how you are part of the circular economy.
             </p>
-          }
+          )
           rows 3
           words_max 300
         end
 
-        textarea :how_does_the_scale_of_intervention_compare_to_others, "How does the scale of your interventions compare with other organisations in your sector?" do
+        textarea :how_does_the_scale_of_intervention_compare_to_others,
+                 "How does the scale of your interventions compare with other organisations in your sector?" do
           classes "word-max-strict sub-question"
           ref "C 6.4"
           required
-          context %{
+          context %(
             <p>
               Explain and, if possible, provide evidence or research on how you have compared your organisation to others in your sector, including a web link if available.
             </p>
             <p>
               Explain how you know that your sustainability performance is exemplary compared with the sector in general.
             </p>
-          }
+          )
           rows 3
           words_max 300
         end
 
-        textarea :what_longer_term_outcomes_do_you_expect, "What longer-term outcomes do you expect as a result of your sustainable development efforts?" do
+        textarea :what_longer_term_outcomes_do_you_expect,
+                 "What longer-term outcomes do you expect as a result of your sustainable development efforts?" do
           classes "word-max-strict sub-question"
           ref "C 6.5"
           required
@@ -419,7 +436,8 @@ class AwardYears::V2024::QaeForms
           words_max 200
         end
 
-        textarea :which_accreditations_have_been_achieved, "If your organisation has achieved recognised standards or accreditations, please list them." do
+        textarea :which_accreditations_have_been_achieved,
+                 "If your organisation has achieved recognised standards or accreditations, please list them." do
           classes "word-max-strict sub-question"
           ref "C 6.6"
           required
@@ -435,11 +453,11 @@ class AwardYears::V2024::QaeForms
         textarea :governance, "Additional information about your Environmental, Social, and Corporate Governance (ESG). (optional)" do
           classes "word-max-strict sub-question"
           ref "C 6.7"
-          context %{
+          context %(
             <p>
               Please highlight your responsible business conduct and its impact within your organisation, supply chain and the wider community, if not already covered.
             </p>
-          }
+          )
           rows 2
           words_max 200
         end

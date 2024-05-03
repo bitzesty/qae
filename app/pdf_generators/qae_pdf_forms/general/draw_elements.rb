@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-require 'open-uri'
+require "open-uri"
 
 module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm
@@ -9,7 +8,7 @@ module QaePdfForms::General::DrawElements
   ALERT_ICON = "icon-important-print.png".freeze
   ALERT_BIG_ICON = "icon-important-big-print.png".freeze
 
-  def attachment_path(attachment_file, link=false)
+  def attachment_path(attachment_file, link = false)
     if Rails.env.production?
       attachment_file.url
     elsif link
@@ -28,7 +27,7 @@ module QaePdfForms::General::DrawElements
     end
   end
 
-  def path_to_attachment_file(attachment_file, link=false)
+  def path_to_attachment_file(attachment_file, _link = false)
     file = attachment_icon(attachment_file)
 
     if Rails.env.production?
@@ -55,7 +54,7 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       attachment_path(attachment.file, true),
       attachment.original_filename.truncate(60),
-      description ? description : nil)
+      description || nil)
 
     move_down 5.mm
   end
@@ -65,17 +64,17 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       v["link"],
       v["link"],
-      v["description"] ? v["description"] : v["link"],
+      v["description"] || v["link"],
       {})
   end
 
-  def base_link_sceleton(url, filename, description=nil, ops = {})
-    indent (ops[:description_left_margin] || 0) do
+  def base_link_sceleton(url, filename, description = nil, ops = {})
+    indent(ops[:description_left_margin] || 0) do
       formatted_text [{
-                        text: filename,
-                        link: url,
-                        styles: [:underline]
-                      }]
+        text: filename,
+        link: url,
+        styles: [:underline],
+      }]
 
       move_down 3.mm
 
@@ -92,10 +91,10 @@ module QaePdfForms::General::DrawElements
     indent 32.mm do
       render_urn if form_answer.urn.present? && pdf_blank_mode.blank?
       render_award_information
-      render_company_name unless pdf_blank_mode.present?
+      render_company_name if pdf_blank_mode.blank?
     end
 
-    if !form_answer.urn.present? || pdf_blank_mode
+    if form_answer.urn.blank? || pdf_blank_mode
       move_down 6.mm
       render_intro_text
       move_down 2.mm
@@ -105,13 +104,13 @@ module QaePdfForms::General::DrawElements
     move_down 7.mm
   end
 
-  def render_submission_deadline_block(indent_value=0)
+  def render_submission_deadline_block(indent_value = 0)
     title = Settings.submission_deadline_title
 
-    if title.present?
-      indent indent_value.mm do
-        render_text(title, style: :bold)
-      end
+    return if title.blank?
+
+    indent indent_value.mm do
+      render_text(title, style: :bold)
     end
   end
 
@@ -178,11 +177,11 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_award_information
-    if form_answer.promotion?
-      award_title = "King's Award for Enterprise Promotion #{form_answer.award_year.year}"
-    else
-      award_title = form_answer.decorate.award_application_title_print
-    end
+    award_title = if form_answer.promotion?
+                    "King's Award for Enterprise Promotion #{form_answer.award_year.year}"
+                  else
+                    form_answer.decorate.award_application_title_print
+                  end
     text award_title.upcase,
          header_text_properties.merge(style: :bold)
   end
@@ -202,7 +201,7 @@ module QaePdfForms::General::DrawElements
             width: 22.5.mm
 
       intro_text = %(
-        This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>.
+        This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? "nomination" : "application"} is for <b>reference only</b>.
 
         To apply for this award, <b>you must complete the online form</b>. <b>Do not send this PDF version of the form</b> to apply for this award.
       )
@@ -215,10 +214,10 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_standart_answer_block(title)
-    if title.present?
-      indent 7.mm do
-        render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
-      end
+    return if title.blank?
+
+    indent 7.mm do
+      render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
     end
   end
 
@@ -228,13 +227,13 @@ module QaePdfForms::General::DrawElements
     ##
     # force title to be a String, as Integer may
     # raise undefined method `gsub'
-    text title.to_s, ops.merge!({inline_format: true})
+    text title.to_s, ops.merge!({ inline_format: true })
   end
 
   def render_table(table_lines, ops = {})
     default_options = {
-      row_colors: %w(F0F0F0 FFFFFF),
-      cell_style: { size: 10, font_style: :bold }
+      row_colors: %w[F0F0F0 FFFFFF],
+      cell_style: { size: 10, font_style: :bold },
     }
 
     options = {}.merge(default_options).merge(ops)
@@ -259,7 +258,7 @@ module QaePdfForms::General::DrawElements
     host = default_url_options[:host]
     port = default_url_options[:port]
 
-    "http://#{host}#{port ? ':' + port.to_s : ''}"
+    "http://#{host}#{port ? ":" + port.to_s : ""}"
   end
 
   def default_bottom_margin
@@ -271,11 +270,11 @@ module QaePdfForms::General::DrawElements
       width: 160.mm,
       size: 16,
       align: :left,
-      valign: :top
+      valign: :top,
     }
   end
 
   def render_value_or_undefined(val, undefined_text)
-    val.present? ? val : undefined_text
+    val.presence || undefined_text
   end
 end

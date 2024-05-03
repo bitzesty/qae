@@ -8,7 +8,7 @@ describe Notifiers::Submission::SuccessNotifier do
 
   let!(:form_answer) do
     FactoryBot.create :form_answer, :submitted, :innovation,
-                                                 user: user
+                      user:
   end
 
   describe "#run" do

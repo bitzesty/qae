@@ -23,7 +23,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
     @award_year = pdf_doc.award_year
     @form_answer = form_answer
     @answers = fetch_answers
-    @award_form = form_answer.award_form.decorate(answers: answers)
+    @award_form = form_answer.award_form.decorate(answers:)
     @all_questions = award_form.steps.map(&:questions).flatten
     @filled_answers = fetch_filled_answers
 
@@ -42,7 +42,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   def fetch_financial_data
     @financial_pointer = FinancialSummaryPointer.new(form_answer.decorate, {
       exclude_ignored_questions: true,
-      award_year: @award_year
+      award_year: @award_year,
     })
 
     @financial_data = financial_pointer.summary_data
@@ -61,18 +61,18 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
       key, values = row.each_pair.first
 
       memo << if key == :dates
-        values.map do |value|
-          value.nil? ? EMPTY_STRING : value
-        end.unshift(DATE_LABEL)
-      elsif key == :uk_sales
-        values.map do |value|
-          value.nil? ? EMPTY_STRING : formatted_uk_sales_value(value)
-        end.unshift(I18n.t("#{LOCALE_PREFIX}.uk_sales_row.#{key}"))
-      else
-        values.map do |h|
-          h[:value].nil? ? EMPTY_STRING : ApplicationController.helpers.number_with_delimiter(h[:value])
-        end.unshift(I18n.t("#{LOCALE_PREFIX}.row.#{key}"))
-      end
+                values.map do |value|
+                  value.nil? ? EMPTY_STRING : value
+                end.unshift(DATE_LABEL)
+              elsif key == :uk_sales
+                values.map do |value|
+                  value.nil? ? EMPTY_STRING : formatted_uk_sales_value(value)
+                end.unshift(I18n.t("#{LOCALE_PREFIX}.uk_sales_row.#{key}"))
+              else
+                values.map do |h|
+                  h[:value].nil? ? EMPTY_STRING : ApplicationController.helpers.number_with_delimiter(h[:value])
+                end.unshift(I18n.t("#{LOCALE_PREFIX}.row.#{key}"))
+              end
     end
   end
 

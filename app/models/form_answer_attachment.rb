@@ -13,6 +13,7 @@ class FormAnswerAttachment < ApplicationRecord
 
   # Used for NON JS implementation - begin
   attr_accessor :non_js_creation, :description
+
   # Should be 100 words maximum (limit + 10%).to_i + 1)
   validates :description, presence: true,
                           on: :create,
@@ -24,17 +25,17 @@ class FormAnswerAttachment < ApplicationRecord
   validate :question_key_correctness
   # Used for NON JS implementation - end
 
-  begin :validations
+  begin
     validates :form_answer_id, presence: true
     validates :file, presence: true,
                      on: :create,
                      file_size: {
-                       maximum: 5.megabytes.to_i
+                       maximum: 5.megabytes.to_i,
                      }
   end
 
   def filename
-    read_attribute(:file)
+    self[:file]
   end
 
   def created_by_admin?
@@ -57,16 +58,15 @@ class FormAnswerAttachment < ApplicationRecord
     # possible improvements:
     # - validating all upload questions in this way
     # - smart collecting max-attachments information from the form structure
-    if question_key == "org_chart" && new_record?
-      if self.class.where(question_key: question_key, form_answer_id: form_answer_id).count > 0
-        errors.add(:base, "Maximum amount of these kind of files reached.")
-      end
-    end
+    return unless question_key == "org_chart" && new_record?
+    return unless self.class.where(question_key:, form_answer_id:).count > 0
+
+    errors.add(:base, "Maximum amount of these kind of files reached.")
   end
 
   def words_in_description
-    if description.split.size > 100
-      errors.add(:description, message: "is too long (maximum is 100 words)")
-    end
+    return unless description.split.size > 100
+
+    errors.add(:description, message: "is too long (maximum is 100 words)")
   end
 end

@@ -18,6 +18,6 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
 
     @subject = "Important information about your King's Award application"
 
-    send_mail_if_not_bounces(ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], to: @head_email, subject: subject_with_env_prefix(@subject))
+    send_mail_if_not_bounces(ENV.fetch("GOV_UK_NOTIFY_API_TEMPLATE_ID", nil), to: @head_email, subject: subject_with_env_prefix(@subject))
   end
 end

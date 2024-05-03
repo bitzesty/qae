@@ -7,13 +7,13 @@ module Utils
       return false unless range.is_a?(Range)
 
       date = case value
-        when ::Date, ::DateTime then value.to_date
-        when ::String then ::Date.parse(value)
-      end
+             when ::Date, ::DateTime then value.to_date
+             when ::String then ::Date.parse(value)
+             end
       min, max = range.minmax
 
-      return date >= min && date <= max
-    rescue
+      date >= min && date <= max
+    rescue StandardError
       false
     end
 
@@ -30,7 +30,7 @@ module Utils
       else
         false
       end
-    rescue
+    rescue StandardError
       false
     end
   end

@@ -81,31 +81,31 @@ class AwardYears::V2018::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
               </p>
             )
-          end
+          }
 
           dynamic_date_max(
             dates: {
               "3 to 5" => AwardYear.start_trading_since(3),
-              "6 plus" => AwardYear.start_trading_since(6)
+              "6 plus" => AwardYear.start_trading_since(6),
             },
-            conditional: :trade_commercial_success
+            conditional: :trade_commercial_success,
           )
         end
 
         options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do
           required
           ref "A 6"
-          context -> do
+          context lambda {
             %(
               <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
             )
-          end
+          }
           yes_no
           option "i_dont_know", "I don't know"
           classes "queen-award-holder"
@@ -181,7 +181,7 @@ class AwardYears::V2018::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 
@@ -218,7 +218,8 @@ class AwardYears::V2018::QaeForms
           yes_no
         end
 
-        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
+        textarea :pareent_group_why_excluding_members,
+                 "Please explain why you are excluding any members of your group from this application?" do
           classes "sub-question"
           sub_ref "A 12.2"
           rows 5
@@ -265,13 +266,15 @@ class AwardYears::V2018::QaeForms
           conditional :parent_ultimate_control, :no
         end
 
-        options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
+        options :trading_figures,
+                "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
           ref "A 14"
           required
           yes_no
         end
 
-        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them" do
+        subsidiaries_associates_plants :trading_figures_add,
+                                       "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them" do
           required
           classes "sub-question"
           sub_ref "A 14.1"

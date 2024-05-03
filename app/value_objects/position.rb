@@ -21,11 +21,11 @@ class Position
   # Should be 100 words maximum (limit + 10%).to_i + 1)
   validates :details, length: {
     maximum: 111,
-    tokenizer: -> (str) { str.split },
-    message: "is too long (maximum is 100 words)"
+    tokenizer: ->(str) { str.split },
+    message: "is too long (maximum is 100 words)",
   }
 
-  def initialize(attrs={})
+  def initialize(attrs = {})
     attrs.each do |key, value|
       instance_variable_set("@#{key}", value.to_s.strip)
     end

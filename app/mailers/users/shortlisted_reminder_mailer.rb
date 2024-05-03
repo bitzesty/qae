@@ -11,7 +11,8 @@ class Users::ShortlistedReminderMailer < ApplicationMailer
     @deadline_time = "midday" if midday?
 
     @subject = "King's Awards for Enterprise: Reminder to provide latest financial statements & VAT returns - Application ref #{@form_answer.urn}"
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @recipient.email, subject: subject_with_env_prefix(@subject)
+    send_mail_if_not_bounces ENV.fetch("GOV_UK_NOTIFY_API_TEMPLATE_ID", nil), to: @recipient.email,
+                                                                              subject: subject_with_env_prefix(@subject)
   end
 
   private

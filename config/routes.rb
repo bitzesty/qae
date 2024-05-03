@@ -1,5 +1,5 @@
-require 'sidekiq/web'
-require 'sidekiq/cron/web'
+require "sidekiq/web"
+require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
   Healthcheck.routes(self)
@@ -11,27 +11,27 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations",
     passwords: "users/passwords",
     sessions: "users/sessions",
-    unlocks: "users/unlocks"
+    unlocks: "users/unlocks",
   }
 
   devise_for :admins, controllers: {
     confirmations: "admins/confirmations",
-    devise_authy: "admin/devise_authy"
+    devise_authy: "admin/devise_authy",
   }, path_names: {
     verify_authy: "/verify-token",
     enable_authy: "/enable-two-factor",
-    verify_authy_installation: "/verify-installation"
+    verify_authy_installation: "/verify-installation",
   }
 
   authenticate :admin do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => "/sidekiq"
   end
 
   devise_for :assessors, controllers: {
-    confirmations: "assessors/confirmations"
+    confirmations: "assessors/confirmations",
   }
   devise_for :judges, controllers: {
-    confirmations: "judges/confirmations"
+    confirmations: "judges/confirmations",
   }
 
   get "/awards_for_organisations"                       => redirect("https://www.gov.uk/kings-awards-for-enterprise/business-awards")
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get "/how_to_apply"                                   => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
   get "/timeline"                                       => redirect("https://www.gov.uk/kings-awards-for-enterprise/timeline")
   get "/additional_information_and_contact"             => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
-  get "/apply-for-kings-award-for-enterprise"          => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
+  get "/apply-for-kings-award-for-enterprise" => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
 
   get "/sign_up_complete"                               => "content_only#sign_up_complete",                               as: "sign_up_complete"
   get "/privacy"                                        => "content_only#privacy",                                        as: "privacy"
@@ -90,15 +90,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :form_award_eligibility, only: [:show, :update] do
-   collection do
+  resource :form_award_eligibility, only: %i[show update] do
+    collection do
       get :warning
       get :result
     end
   end
 
-  resource :support_letter, only: [:new, :show, :create]
-  resource :feedback, only: [:show, :create] do
+  resource :support_letter, only: %i[new show create]
+  resource :feedback, only: %i[show create] do
     get :success
   end
 
@@ -111,18 +111,18 @@ Rails.application.routes.draw do
       end
 
       # shortlisted docs block
-      resource :audit_certificate, only: [:show, :create, :destroy]
+      resource :audit_certificate, only: %i[show create destroy]
       resource :figures_and_vat_returns, only: [:show] do
         patch :submit, on: :member
       end
 
-      resources :actual_figures, only: [:new, :show, :create, :destroy]
-      resources :vat_returns, only: [:new, :show, :create, :destroy]
+      resources :actual_figures, only: %i[new show create destroy]
+      resources :vat_returns, only: %i[new show create destroy]
 
       resource :support_letter_attachments, only: :create
-      resources :supporters, only: [:create, :destroy]
-      resources :support_letters, only: [:create, :show, :destroy]
-      resource :press_summary, only: [:show, :update] do
+      resources :supporters, only: %i[create destroy]
+      resources :support_letters, only: %i[create show destroy]
+      resource :press_summary, only: %i[show update] do
         get :acceptance
         get :success
         get :failure
@@ -132,32 +132,32 @@ Rails.application.routes.draw do
     resources :form_answer_feedbacks, only: [:show]
   end
 
-  resource :palace_invite, only: [:edit, :update] do
+  resource :palace_invite, only: %i[edit update] do
     resource :expired_palace_invite, only: [:show], as: "expired", path: "expired", on: :member
   end
 
   # NON JS implementation - begin
   namespace :form do
     resources :form_answers do
-      resources :supporters, only: [:new, :create, :index, :destroy]
-      resources :support_letters, only: [:new, :create, :destroy]
-      resources :form_attachments, only: [:index, :new, :create, :destroy] do
+      resources :supporters, only: %i[new create index destroy]
+      resources :support_letters, only: %i[new create destroy]
+      resources :form_attachments, only: %i[index new create destroy] do
         get :confirm_deletion
       end
-      resources :organisational_charts, only: [:new, :create, :destroy] do
+      resources :organisational_charts, only: %i[new create destroy] do
         get :confirm_deletion
       end
-      resource :positions, only: [:new, :create, :edit, :update, :destroy] do
+      resource :positions, only: %i[new create edit update destroy] do
         get :index, on: :collection
       end
 
-      [
-        :current_queens_awards,
-        :awards,
-        :subsidiaries,
-        :form_links
+      %i[
+        current_queens_awards
+        awards
+        subsidiaries
+        form_links
       ].each do |resource_name|
-        resource resource_name, only: [:new, :create, :edit, :update, :destroy] do
+        resource resource_name, only: %i[new create edit update destroy] do
           get :confirm_deletion
         end
       end
@@ -167,7 +167,7 @@ Rails.application.routes.draw do
 
   namespace :assessor do
     root to: "form_answers#index"
-    resources :palace_attendees, only: [:new, :create, :update, :destroy]
+    resources :palace_attendees, only: %i[new create update destroy]
     resources :palace_invites, only: [] do
       member do
         post :submit
@@ -182,21 +182,21 @@ Rails.application.routes.draw do
     resources :form_answers do
       resources :form_answer_state_transitions, only: [:create]
       resources :comments
-      resources :form_answer_attachments, only: [:create, :show, :destroy]
+      resources :form_answer_attachments, only: %i[create show destroy]
       resources :support_letters, only: [:show]
-      resources :audit_certificates, only: [:show, :create]
-      resources :commercial_figures_files, only: [:create, :show, :destroy]
-      resources :vat_returns_files, only: [:create, :show, :destroy]
+      resources :audit_certificates, only: %i[show create]
+      resources :commercial_figures_files, only: %i[create show destroy]
+      resources :vat_returns_files, only: %i[create show destroy]
       resources :shortlisted_documents_submissions, only: [:create]
 
-      resources :feedbacks, only: [:create, :update] do
+      resources :feedbacks, only: %i[create update] do
         member do
           post :submit
           post :unlock
         end
       end
 
-      resources :press_summaries, only: [:create, :update] do
+      resources :press_summaries, only: %i[create update] do
         member do
           post :approve
           post :submit
@@ -208,20 +208,20 @@ Rails.application.routes.draw do
         patch :update_financials
         get :review
       end
-      resources :draft_notes, only: [:create, :update]
+      resources :draft_notes, only: %i[create update]
     end
 
     resources :assessor_assignments, only: [:update]
     resources :assessor_assignment_collections, only: [:create]
-    resources :reports, only: [:index, :show]
+    resources :reports, only: %i[index show]
 
     resources :assessment_submissions, only: [:create] do
       patch :unlock, on: :member
     end
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 
@@ -296,7 +296,7 @@ Rails.application.routes.draw do
     end
     resources :review_audit_certificates, only: [:create]
     resources :review_commercial_figures, only: [:create]
-    resources :palace_attendees, only: [:new, :create, :update, :destroy]
+    resources :palace_attendees, only: %i[new create update destroy]
     resources :palace_invites, only: [] do
       member do
         post :submit
@@ -316,16 +316,16 @@ Rails.application.routes.draw do
 
       resources :form_answer_state_transitions, only: [:create]
       resources :comments
-      resources :form_answer_attachments, only: [:create, :show, :destroy]
+      resources :form_answer_attachments, only: %i[create show destroy]
       resources :support_letters, only: [:show]
-      resources :audit_certificates, only: [:show, :create] do
+      resources :audit_certificates, only: %i[show create] do
         get :download_initial_pdf, on: :collection
       end
-      resources :commercial_figures_files, only: [:create, :show, :destroy]
-      resources :vat_returns_files, only: [:create, :show, :destroy]
+      resources :commercial_figures_files, only: %i[create show destroy]
+      resources :vat_returns_files, only: %i[create show destroy]
       resources :shortlisted_documents_submissions, only: [:create]
 
-      resources :feedbacks, only: [:create, :update] do
+      resources :feedbacks, only: %i[create update] do
         member do
           post :submit
           post :unlock
@@ -333,7 +333,7 @@ Rails.application.routes.draw do
 
         get :download_pdf, on: :collection
       end
-      resources :press_summaries, only: [:create, :update] do
+      resources :press_summaries, only: %i[create update] do
         member do
           post :approve
           post :submit
@@ -342,7 +342,7 @@ Rails.application.routes.draw do
         end
       end
       resources :case_summaries, only: [:index]
-      resources :draft_notes, only: [:create, :update]
+      resources :draft_notes, only: %i[create update]
       resources :review_corp_responsibility, only: [:create]
       resources :collaborators, only: [:create], module: "form_answers" do
         get :search, on: :collection
@@ -351,7 +351,7 @@ Rails.application.routes.draw do
 
     resource :settings, only: [:show] do
       resources :deadlines, only: [:update]
-      resources :email_notifications, only: [:create, :update, :destroy] do
+      resources :email_notifications, only: %i[create update destroy] do
         collection do
           post :run_notifications
         end
@@ -363,13 +363,13 @@ Rails.application.routes.draw do
       patch :unlock, on: :member
     end
 
-    resource :custom_email, only: [:show, :create]
+    resource :custom_email, only: %i[show create]
     resource :users_feedback, only: [:show]
     resources :audit_logs, only: :index
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 
@@ -387,9 +387,9 @@ Rails.application.routes.draw do
       get :download, on: :collection
     end
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 end

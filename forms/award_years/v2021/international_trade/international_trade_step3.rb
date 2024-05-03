@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2021::QaeForms
   class << self
     def trade_step3
@@ -25,21 +24,25 @@ class AwardYears::V2021::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "Latest financial year and COVID-19"],
-            [:normal, %(
+            [:normal,
+             %(
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -52,7 +55,8 @@ class AwardYears::V2021::QaeForms
           )
         end
 
-        trade_commercial_success :trade_commercial_success, "How would you describe the impact of your international trade activities on your organisation's financial performance?" do
+        trade_commercial_success :trade_commercial_success,
+                                 "How would you describe the impact of your international trade activities on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
@@ -76,7 +80,7 @@ class AwardYears::V2021::QaeForms
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question
@@ -93,7 +97,8 @@ class AwardYears::V2021::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> years) entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> years) entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -175,17 +180,20 @@ class AwardYears::V2021::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "Group entries"],
-            [:normal, %(
+            [:normal,
+             %(
               A parent company making a group entry should include the trading figures of all UK members of the group.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -313,7 +321,8 @@ class AwardYears::V2021::QaeForms
           words_max 300
         end
 
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
+        textarea :drops_explain_how_your_business_is_financially_viable,
+                 "Explain how your business is financially viable, in terms of cash flow and cash generated." do
           classes "sub-question"
           sub_ref "C 4.5"
           required
@@ -329,7 +338,8 @@ class AwardYears::V2021::QaeForms
           words_max 300
         end
 
-        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
+        textarea :investment_strategy_and_its_objectives,
+                 "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
           sub_ref "C 4.6"
           required

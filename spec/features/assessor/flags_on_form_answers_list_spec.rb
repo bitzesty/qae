@@ -3,16 +3,16 @@ include Warden::Test::Helpers
 
 describe "assessor sees the proper number of flags and sort by it" do
   let!(:assessor) { create(:assessor, :lead_for_all) }
-  let!(:form_answer) { create(:form_answer, state: 'assessment_in_progress') }
+  let!(:form_answer) { create(:form_answer, state: "assessment_in_progress") }
 
   before do
     login_as(assessor, scope: :assessor)
   end
 
   context "no comments" do
-    before {
+    before do
       visit assessor_form_answers_path
-    }
+    end
     it "doesn't see counters" do
       within ".applications-table" do
         expect(page).not_to have_css(".flag-count")
@@ -25,9 +25,9 @@ describe "assessor sees the proper number of flags and sort by it" do
     let!(:comment) do
       create(:comment, :assessor, commentable: form_answer, authorable: assessor)
     end
-    before {
+    before do
       visit assessor_form_answers_path
-    }
+    end
 
     it "sees sum of comments" do
       within ".applications-table" do
@@ -41,9 +41,9 @@ describe "assessor sees the proper number of flags and sort by it" do
     let!(:comment) do
       create(:comment, :flagged, :assessor, commentable: form_answer, authorable: assessor)
     end
-    before {
+    before do
       visit assessor_form_answers_path
-    }
+    end
 
     it "sees sum of comments and flagged comments" do
       within ".applications-table" do

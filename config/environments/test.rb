@@ -19,7 +19,7 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    "Cache-Control" => "public, max-age=#{1.hour.to_i}"
+    "Cache-Control" => "public, max-age=#{1.hour.to_i}",
   }
 
   # Show full error reports and disable caching.
@@ -44,7 +44,7 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  config.action_mailer.default_url_options = { host: "example.com" }  # Raises error for missing translations
+  config.action_mailer.default_url_options = { host: "example.com" } # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   # Raise exceptions for disallowed deprecations.
@@ -66,7 +66,7 @@ Rails.application.configure do
     PaperTrail.enabled = false
   end
 
-  if ENV['RAILS_DISABLE_TEST_LOG']
+  if ENV["RAILS_DISABLE_TEST_LOG"]
     config.logger = Logger.new(nil)
     config.log_level = :fatal
   end

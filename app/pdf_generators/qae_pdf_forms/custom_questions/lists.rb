@@ -3,32 +3,32 @@ module QaePdfForms::CustomQuestions::Lists
     QaeFormBuilder::AwardHolderQuestion,
     QaeFormBuilder::QueenAwardApplicationsQuestion,
     QaeFormBuilder::PositionDetailsQuestion,
-    QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+    QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion,
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/personal honour title",
     "Year",
-    "Details"
+    "Details",
   ].freeze
-  AWARD_APPLICATIONS_LIST_HEADERS = [
-    "Award",
-    "Year",
-    "Outcome"
+  AWARD_APPLICATIONS_LIST_HEADERS = %w[
+    Award
+    Year
+    Outcome
   ].freeze
   NOMINATION_AWARD_LIST_HEADERS = [
     "Award/personal honour title",
-    "Details"
+    "Details",
   ].freeze
   POSITION_LIST_HEADERS = [
     "Name",
     "Start Date",
     "End Date",
     "Ongoing",
-    "Details"
+    "Details",
   ].freeze
   TRADE_GOODS_AND_SERVICES_HEADERS = [
     "Product/Service",
-    "% of your total overseas trade"
+    "% of your total overseas trade",
   ].freeze
   UNDEFINED_CELL_VALUE = "Undefined".freeze
 
@@ -40,12 +40,10 @@ module QaePdfForms::CustomQuestions::Lists
         form_pdf.default_bottom_margin
         render_word_limit
       end
+    elsif question.delegate_obj.is_a?(QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
+      render_by_trade_goods_question
     else
-      if question.delegate_obj.is_a?(QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
-        render_by_trade_goods_question
-      else
-        render_word_limit
-      end
+      render_word_limit
     end
   end
 
@@ -86,12 +84,12 @@ module QaePdfForms::CustomQuestions::Lists
   end
 
   def queen_award_holder_query_conditions(prepared_item)
-    if prepared_item["category"].present? && prepared_item["year"].present?
-      [
-        prepared_item["category"],
-        prepared_item["year"]
-      ]
-    end
+    return unless prepared_item["category"].present? && prepared_item["year"].present?
+
+    [
+      prepared_item["category"],
+      prepared_item["year"],
+    ]
   end
 
   def award_applications_query_conditions(item)
@@ -101,96 +99,96 @@ module QaePdfForms::CustomQuestions::Lists
     [
       item["category"],
       item["year"],
-      item["outcome"]
+      item["outcome"],
     ]
   end
 
   def award_holder_query_conditions(prepared_item)
-    if prepared_item["title"].present?
-      if question.award_years_present
-        [
-          prepared_item["title"],
-          prepared_item["year"],
-          prepared_item["details"]
-        ]
-      else
-        [
-          prepared_item["title"],
-          prepared_item["details"]
-        ]
-      end
+    return if prepared_item["title"].blank?
+
+    if question.award_years_present
+      [
+        prepared_item["title"],
+        prepared_item["year"],
+        prepared_item["details"],
+      ]
+    else
+      [
+        prepared_item["title"],
+        prepared_item["details"],
+      ]
     end
   end
 
   def position_details_query_conditions(prepared_item)
-    if prepared_item["name"].present?
-      [
-        prepared_item["name"],
-        position_date(prepared_item['start_month'], prepared_item['start_year']),
-        position_date(prepared_item['end_month'], prepared_item['end_year']),
-        prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
-        prepared_item["details"]
-      ]
-    end
+    return if prepared_item["name"].blank?
+
+    [
+      prepared_item["name"],
+      position_date(prepared_item["start_month"], prepared_item["start_year"]),
+      position_date(prepared_item["end_month"], prepared_item["end_year"]),
+      prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
+      prepared_item["details"],
+    ]
   end
 
   def position_date(month, year)
     [
-      month || '-',
-      year || '-'
+      month || "-",
+      year || "-",
     ].join("/")
   end
 
   def subsidiaries_associates_plants_query_conditions(prepared_item)
-    if prepared_item["name"].present?
-      [
-        prepared_item["name"],
-        prepared_item["location"],
-        prepared_item["employees"],
-        prepared_item["description"]
-      ]
-    end
+    return if prepared_item["name"].blank?
+
+    [
+      prepared_item["name"],
+      prepared_item["location"],
+      prepared_item["employees"],
+      prepared_item["description"],
+    ]
   end
 
   def trade_goods_conditions(prepared_item)
-    if prepared_item["desc_short"].present? || prepared_item["total_overseas_trade"].present?
-      [
-        form_pdf.render_value_or_undefined(prepared_item["desc_short"], UNDEFINED_CELL_VALUE),
-        form_pdf.render_value_or_undefined(prepared_item["total_overseas_trade"], UNDEFINED_CELL_VALUE)
-      ]
-    end
+    return unless prepared_item["desc_short"].present? || prepared_item["total_overseas_trade"].present?
+
+    [
+      form_pdf.render_value_or_undefined(prepared_item["desc_short"], UNDEFINED_CELL_VALUE),
+      form_pdf.render_value_or_undefined(prepared_item["total_overseas_trade"], UNDEFINED_CELL_VALUE),
+    ]
   end
 
   def list_rows
-    if humanized_answer.present?
-      if question.delegate_obj.is_a? QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion
-        render_goods_and_services
-      else
-        humanized_answer.map do |item|
-          case question.delegate_obj
-          when QaeFormBuilder::AwardHolderQuestion
-            award_holder_query_conditions(item)
-          when QaeFormBuilder::QueenAwardApplicationsQuestion
-            award_applications_query_conditions(item)
-          when QaeFormBuilder::QueenAwardHolderQuestion
-            queen_award_holder_query_conditions(item)
-          when QaeFormBuilder::PositionDetailsQuestion
-            position_details_query_conditions(item)
-          when QaeFormBuilder::SubsidiariesAssociatesPlantsQuestion
-            subsidiaries_associates_plants_query_conditions(item)
-          end
-        end.compact
-      end
+    return if humanized_answer.blank?
+
+    if question.delegate_obj.is_a? QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+      render_goods_and_services
+    else
+      humanized_answer.map do |item|
+        case question.delegate_obj
+        when QaeFormBuilder::AwardHolderQuestion
+          award_holder_query_conditions(item)
+        when QaeFormBuilder::QueenAwardApplicationsQuestion
+          award_applications_query_conditions(item)
+        when QaeFormBuilder::QueenAwardHolderQuestion
+          queen_award_holder_query_conditions(item)
+        when QaeFormBuilder::PositionDetailsQuestion
+          position_details_query_conditions(item)
+        when QaeFormBuilder::SubsidiariesAssociatesPlantsQuestion
+          subsidiaries_associates_plants_query_conditions(item)
+        end
+      end.compact
     end
   end
 
   def render_goods_and_services
     trade_goods_amount = filled_answers["trade_goods_and_services_explanations"].length
 
-    if trade_goods_amount.present?
-      humanized_answer[0..(trade_goods_amount.to_i - 1)].map do |item|
-        trade_goods_conditions(item)
-      end
+    return if trade_goods_amount.blank?
+
+    humanized_answer[0..(trade_goods_amount.to_i - 1)].map do |item|
+      trade_goods_conditions(item)
     end
   end
 end

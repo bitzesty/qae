@@ -11,7 +11,7 @@ class QaeFailureApp < Devise::FailureApp
     controller, action = warden_options[:recall].split("#")
 
     flash[:alert] = i18n_message(:invalid)
-    redirect_to action: action, controller: controller
+    redirect_to action:, controller:
   end
 
   protected

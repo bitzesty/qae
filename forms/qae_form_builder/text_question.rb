@@ -29,11 +29,11 @@ class QaeFormBuilder
       @q.text_words_max = value
     end
 
-    def style style
+    def style(style)
       @q.style = style
     end
 
-    def type type
+    def type(type)
       @q.type = type
     end
   end
@@ -41,5 +41,4 @@ class QaeFormBuilder
   class TextQuestion < Question
     attr_accessor :type, :style, :text_words_max
   end
-
 end

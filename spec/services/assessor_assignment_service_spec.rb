@@ -17,9 +17,9 @@ describe AssessorAssignmentService do
     let(:params) do
       {
         assessor_assignment: {
-          assessor_id: 1
+          assessor_id: 1,
         },
-        id: primary.id
+        id: primary.id,
       }.with_indifferent_access
     end
 
@@ -33,7 +33,7 @@ describe AssessorAssignmentService do
         allow(assessor).to receive(:lead?).and_return(false)
       end
 
-      it "can not change the assigned assessor"do
+      it "can not change the assigned assessor" do
         expect(subject.permitted_params).to_not include(:assessor_id)
       end
     end
@@ -55,10 +55,10 @@ describe AssessorAssignmentService do
       {
         assessor_assignment: {
           commercial_success_desc: "",
-          verdict_desc: "this is a verdict"
+          verdict_desc: "this is a verdict",
 
         },
-        id: primary.id
+        id: primary.id,
       }.with_indifferent_access
     end
 
@@ -82,10 +82,10 @@ describe AssessorAssignmentService do
           assessor_assignment: {
             commercial_success_desc: "I am description",
             strategy_desc: "should not be saved",
-            whatever_desc: "asd"
+            whatever_desc: "asd",
           },
           updated_section: "commercial_success_desc",
-          id: primary.id
+          id: primary.id,
         }.with_indifferent_access
       end
 
@@ -102,10 +102,10 @@ describe AssessorAssignmentService do
             commercial_success_rate: "negative",
             another_rate: "negative",
             strategy_desc: "asd",
-            created_at: "text"
+            created_at: "text",
           },
           updated_section: "commercial_success_rate",
-          id: primary.id
+          id: primary.id,
         }.with_indifferent_access
       end
 
@@ -121,10 +121,10 @@ describe AssessorAssignmentService do
         {
           assessor_assignment: {
             commercial_success_desc: "I am description",
-            strategy_desc: "should be saved"
+            strategy_desc: "should be saved",
           },
           updated_section: "asd",
-          id: primary.id
+          id: primary.id,
         }.with_indifferent_access
       end
 

@@ -1,11 +1,11 @@
-require_relative '../../forms/award_years/v2018/qae_forms'
-require_relative '../../forms/award_years/v2019/qae_forms'
-require_relative '../../forms/award_years/v2020/qae_forms'
-require_relative '../../forms/award_years/v2021/qae_forms'
-require_relative '../../forms/award_years/v2022/qae_forms'
-require_relative '../../forms/award_years/v2023/qae_forms'
-require_relative '../../forms/award_years/v2024/qae_forms'
-require_relative '../../forms/award_years/v2025/qae_forms'
+require_relative "../../forms/award_years/v2018/qae_forms"
+require_relative "../../forms/award_years/v2019/qae_forms"
+require_relative "../../forms/award_years/v2020/qae_forms"
+require_relative "../../forms/award_years/v2021/qae_forms"
+require_relative "../../forms/award_years/v2022/qae_forms"
+require_relative "../../forms/award_years/v2023/qae_forms"
+require_relative "../../forms/award_years/v2024/qae_forms"
+require_relative "../../forms/award_years/v2025/qae_forms"
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -20,18 +20,18 @@ class FormAnswer < ApplicationRecord
   attr_accessor :current_step, :validator_errors, :steps_with_errors, :current_non_js_step
 
   pg_search_scope :basic_search,
-                  against: [
-                    :urn,
-                    :award_type_full_name,
-                    :company_or_nominee_name,
-                    :nominee_full_name,
-                    :user_full_name,
-                    :user_email
+                  against: %i[
+                    urn
+                    award_type_full_name
+                    company_or_nominee_name
+                    nominee_full_name
+                    user_full_name
+                    user_email
                   ],
                   using: {
                     tsearch: {
-                      prefix: true
-                    }
+                      prefix: true,
+                    },
                   }
 
   POSSIBLE_AWARDS = [
@@ -39,17 +39,17 @@ class FormAnswer < ApplicationRecord
     "innovation", # Innovation Award
     "development", # Sustainable Development Award
     "mobility", # Promoting Opportunity Award
-    "promotion" # Enterprise Promotion Award
+    "promotion", # Enterprise Promotion Award
   ]
 
-  BUSINESS_AWARD_TYPES = %w(trade innovation development mobility)
+  BUSINESS_AWARD_TYPES = %w[trade innovation development mobility]
 
   AWARD_TYPE_FULL_NAMES = {
     "trade" => "International Trade",
     "innovation" => "Innovation",
     "development" => "Sustainable Development",
     "mobility" => "Promoting Opportunity",
-    "promotion" => "Enterprise Promotion"
+    "promotion" => "Enterprise Promotion",
   }
   CURRENT_AWARD_TYPE_FULL_NAMES = AWARD_TYPE_FULL_NAMES.reject do |k, _|
     k == "promotion"
@@ -68,25 +68,25 @@ class FormAnswer < ApplicationRecord
       "innovation" => 4,
       "development" => 4,
       "mobility" => 4,
-    }
+    },
   }
 
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 
   mount_uploader :pdf_version, FormAnswerPdfVersionUploader
 
-  begin :associations
+  begin
     belongs_to :user, optional: true
     belongs_to :account, optional: true
     belongs_to :award_year, optional: true
     belongs_to :company_details_editable, polymorphic: true, optional: true
 
-    has_one :form_basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
-    has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
-    has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
-    has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
-    has_one :mobility_eligibility, class_name: 'Eligibility::Mobility', dependent: :destroy
-    has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
+    has_one :form_basic_eligibility, class_name: "Eligibility::Basic", dependent: :destroy
+    has_one :trade_eligibility, class_name: "Eligibility::Trade", dependent: :destroy
+    has_one :innovation_eligibility, class_name: "Eligibility::Innovation", dependent: :destroy
+    has_one :development_eligibility, class_name: "Eligibility::Development", dependent: :destroy
+    has_one :mobility_eligibility, class_name: "Eligibility::Mobility", dependent: :destroy
+    has_one :promotion_eligibility, class_name: "Eligibility::Promotion", dependent: :destroy
     has_one :audit_certificate, dependent: :destroy
     has_one :feedback, dependent: :destroy
     has_one :press_summary, dependent: :destroy
@@ -100,8 +100,8 @@ class FormAnswer < ApplicationRecord
     has_one :case_summary_hard_copy_pdf, dependent: :destroy
     has_one :feedback_hard_copy_pdf, dependent: :destroy
 
-    belongs_to :primary_assessor, optional: true, class_name: "Assessor", foreign_key: :primary_assessor_id
-    belongs_to :secondary_assessor, optional: true, class_name: "Assessor", foreign_key: :secondary_assessor_id
+    belongs_to :primary_assessor, optional: true, class_name: "Assessor"
+    belongs_to :secondary_assessor, optional: true, class_name: "Assessor"
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
     has_many :commercial_figures_files, dependent: :destroy
@@ -114,45 +114,47 @@ class FormAnswer < ApplicationRecord
     has_many :form_answer_transitions, autosave: false
     has_many :assessor_assignments, dependent: :destroy
     has_many :lead_or_primary_assessor_assignments,
-             -> { where.not(submitted_at: nil)
+             lambda {
+               where.not(submitted_at: nil)
                        .where(position: [3, 4])
-                       .order(position: :desc) },
+                       .order(position: :desc)
+             },
              class_name: "AssessorAssignment",
              foreign_key: :form_answer_id
     has_many :assessors, through: :assessor_assignments do
       def primary
         where(assessor_assignments:
           {
-            position: 0
-          }
-        ).first
+            position: 0,
+          },
+             ).first
       end
 
       def secondary
         where(assessor_assignments:
           {
-            position: 1
-          }
-        ).first
+            position: 1,
+          },
+             ).first
       end
     end
   end
 
-  begin :validations
+  begin
     validates :user, presence: true
     validates :award_type, presence: true,
                            inclusion: {
-                             in: POSSIBLE_AWARDS
+                             in: POSSIBLE_AWARDS,
                            }
-    validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
-    validates :sic_code, format: { with: SicCode::REGEX }, allow_nil: true, allow_blank: true
+    validates :urn, uniqueness: { allow_blank: true }
+    validates :sic_code, format: { with: SicCode::REGEX }, allow_blank: true
     validate :validate_answers
   end
 
-  begin :scopes
-    scope :for_award_type, -> (award_type) { where(award_type: award_type) }
-    scope :for_year, -> (year) { joins(:award_year).where(award_years: { year: year }) }
-    scope :shortlisted, -> { where(state: %w(reserved recommended)) }
+  begin
+    scope :for_award_type, ->(award_type) { where(award_type:) }
+    scope :for_year, ->(year) { joins(:award_year).where(award_years: { year: }) }
+    scope :shortlisted, -> { where(state: %w[reserved recommended]) }
     scope :not_shortlisted, -> { where(state: "not_recommended") }
     scope :winners, -> { where(state: "awarded") }
     scope :unsuccessful_applications, -> { submitted.where("state not in ('awarded', 'withdrawn')") }
@@ -162,36 +164,36 @@ class FormAnswer < ApplicationRecord
     scope :not_positive, -> { where(state: FormAnswerStateMachine::NOT_POSITIVE_STATES) }
     scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
-    scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
-    scope :without_product_figures, ->(condition) {
-      where(%Q{(#{FormAnswer.table_name}.metadata::JSONB->>'product_estimated_figures')::boolean is #{condition}})
+    scope :in_progress, -> { where(state: %w[eligibility_in_progress application_in_progress]) }
+    scope :without_product_figures, lambda { |condition|
+      where(%{(#{FormAnswer.table_name}.metadata::JSONB->>'product_estimated_figures')::boolean is #{condition}})
     }
     scope :with_estimated_figures_provided, -> { without_product_figures(true) }
     scope :with_actual_figures_provided, -> { without_product_figures(false) }
-    scope :by_registration_numbers, ->(*numbers) {
+    scope :by_registration_numbers, lambda { |*numbers|
       query = numbers.join("|")
 
       where(
-        %Q{#{table_name}.metadata::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'}
+        %{#{table_name}.metadata::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'},
       )
     }
 
-    scope :past, -> {
+    scope :past, lambda {
       where(award_year_id: AwardYear.past.pluck(:id)).order("award_type")
     }
 
-    scope :hard_copy_generated, -> (mode) {
+    scope :hard_copy_generated, lambda { |mode|
       submitted.where("#{mode}_hard_copy_generated" => true)
     }
 
-    scope :with_comments_counters, -> {
+    scope :with_comments_counters, lambda {
       select("form_answers.*, COUNT(DISTINCT(comments.id)) AS comments_count, COUNT(DISTINCT(flagged_admin_comments.id)) AS flagged_admin_comments_count, COUNT(DISTINCT(flagged_critical_comments.id)) AS flagged_critical_comments_count")
         .joins("LEFT OUTER JOIN comments ON comments.commentable_id = form_answers.id AND comments.commentable_type = 'FormAnswer'")
         .joins("LEFT OUTER JOIN comments AS flagged_admin_comments ON flagged_admin_comments.commentable_id = form_answers.id AND flagged_admin_comments.commentable_type = 'FormAnswer' AND flagged_admin_comments.flagged IS true AND flagged_admin_comments.section = 0")
         .joins("LEFT OUTER JOIN comments AS flagged_critical_comments ON flagged_critical_comments.commentable_id = form_answers.id AND flagged_critical_comments.commentable_type = 'FormAnswer' AND flagged_critical_comments.flagged IS true AND flagged_critical_comments.section = 1")
     }
 
-    scope :primary_and_secondary_appraisals_are_not_match, -> {
+    scope :primary_and_secondary_appraisals_are_not_match, lambda {
       where("discrepancies_between_primary_and_secondary_appraisals::text <> '{}'::text")
     }
 
@@ -200,7 +202,7 @@ class FormAnswer < ApplicationRecord
     scope :provided_estimates, -> { where("document #>> '{product_estimated_figures}' = 'yes'") }
   end
 
-  begin :callbacks
+  begin
     before_save :set_award_year, unless: :award_year
     before_save :set_urn
     before_save :set_progress
@@ -214,7 +216,7 @@ class FormAnswer < ApplicationRecord
   store_accessor :document
   store_accessor :financial_data
 
-  begin :state_machine
+  begin
     delegate :current_state, :trigger!, :available_events, to: :state_machine
     delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
              to: :state_machine
@@ -223,7 +225,6 @@ class FormAnswer < ApplicationRecord
       @state_machine ||= FormAnswerStateMachine.new(self, transition_class: FormAnswerTransition)
     end
   end
-
 
   # FormAnswer#award_form
   # fetches relevant award form for the application's award year if available
@@ -236,29 +237,27 @@ class FormAnswer < ApplicationRecord
   # So if the form_class of requested year doesn't implement requested award type, it will fallback to oldest award year
   #
   def award_form
-    if award_year.present?
-      form_class = if self.class.const_defined?(award_form_class_name(award_year.year))
-        self.class.const_get(award_form_class_name(award_year.year))
-      elsif self.class.const_defined?(award_form_class_name(AwardYear.current.year))
-        self.class.const_get(award_form_class_name(AwardYear.current.year))
-      elsif Rails.env.test?
-        year = Date.current.year
-        if self.class.const_defined?(award_form_class_name(year + 1))
-          self.class.const_get(award_form_class_name(year + 1))
-        elsif self.class.const_defined?(award_form_class_name(year))
-          self.class.const_get(award_form_class_name(year))
-        end
-      else
-        raise ArgumentError, "Can not find award form for the application"
-      end
+    return if award_year.blank?
 
-      if award_type.present?
-        unless form_class.respond_to?(award_type)
-          form_class = self.class.const_get(award_form_class_name(2018))
-        end
-        form_class.public_send(award_type)
-      end
-    end
+    form_class = if self.class.const_defined?(award_form_class_name(award_year.year))
+                   self.class.const_get(award_form_class_name(award_year.year))
+                 elsif self.class.const_defined?(award_form_class_name(AwardYear.current.year))
+                   self.class.const_get(award_form_class_name(AwardYear.current.year))
+                 elsif Rails.env.test?
+                   year = Date.current.year
+                   if self.class.const_defined?(award_form_class_name(year + 1))
+                     self.class.const_get(award_form_class_name(year + 1))
+                   elsif self.class.const_defined?(award_form_class_name(year))
+                     self.class.const_get(award_form_class_name(year))
+                   end
+                 else
+                   raise ArgumentError, "Can not find award form for the application"
+                 end
+
+    return if award_type.blank?
+
+    form_class = self.class.const_get(award_form_class_name(2018)) unless form_class.respond_to?(award_type)
+    form_class.public_send(award_type)
   end
 
   def eligibility
@@ -286,49 +285,45 @@ class FormAnswer < ApplicationRecord
   end
 
   def disabled_questions_hash(flatten: false)
-    ivar = flatten ? :"@_disabled_questions_flat_map" : :"@_disabled_questions_map"
+    ivar = flatten ? :@_disabled_questions_flat_map : :@_disabled_questions_map
 
-    if instance_variable_defined?(ivar)
-      return instance_variable_get(ivar)
-    end
+    return instance_variable_get(ivar) if instance_variable_defined?(ivar)
 
     progress_hash = HashWithIndifferentAccess.new(document || {})
     form = award_form.decorate(answers: progress_hash)
 
     res = form.steps.each_with_object(Hash[:halted, Hash[:step, nil]]) do |step, memo|
-            memo[step.index] = Hash[].tap do |hash|
-              s_idx = memo.dig(:halted, :step)
-              q_idx = nil
+      memo[step.index] = Hash[].tap do |hash|
+        s_idx = memo.dig(:halted, :step)
+        q_idx = nil
 
-              hash[:disabled] = !!(s_idx && step.index > s_idx)
-              step.questions.each_with_index do |question, idx|
-                memo[:halted][:step] ||= step.index if question.halted?
-                q_idx ||= idx if question.halted?
+        hash[:disabled] = !!(s_idx && step.index > s_idx)
+        step.questions.each_with_index do |question, idx|
+          memo[:halted][:step] ||= step.index if question.halted?
+          q_idx ||= idx if question.halted?
 
-                hash[question.key] = !!(hash[:disabled] || q_idx && idx > q_idx)
-              end
-            end
-          end
+          hash[question.key] = !!(hash[:disabled] || (q_idx && idx > q_idx))
+        end
+      end
+    end
 
-    instance_variable_set(:"@_disabled_questions_map", res)
-    instance_variable_set(:"@_disabled_questions_flat_map", res.values.reduce({}, :merge))
+    instance_variable_set(:@_disabled_questions_map, res)
+    instance_variable_set(:@_disabled_questions_flat_map, res.values.reduce({}, :merge))
 
     instance_variable_get(ivar)
   end
 
   def halted?
-    if instance_variable_defined?(:"@_form_halted")
-      return instance_variable_get(:"@_form_halted")
-    end
+    return instance_variable_get(:@_form_halted) if instance_variable_defined?(:@_form_halted)
 
     progress_hash = HashWithIndifferentAccess.new(document || {})
     form = award_form.decorate(answers: progress_hash)
 
     value = form.steps.any? do |step|
-              step.questions.any?(&:halted?)
-            end
+      step.questions.any?(&:halted?)
+    end
 
-    instance_variable_set(:"@_form_halted", value)
+    instance_variable_set(:@_form_halted, value)
   end
 
   def head_of_business
@@ -338,7 +333,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def company_or_nominee_from_document
-    comp_attr = promotion? ? 'organization_name' : 'company_name'
+    comp_attr = promotion? ? "organization_name" : "company_name"
     name = document[comp_attr]
     name = nominee_full_name_from_document if promotion? && name.blank?
     name = name.try(:strip)
@@ -346,7 +341,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def nominee_full_name_from_document
-    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+    "#{document["nominee_info_first_name"]} #{document["nominee_info_last_name"]}".strip
   end
 
   def fill_progress_in_percents
@@ -393,8 +388,8 @@ class FormAnswer < ApplicationRecord
   end
 
   def financial_step
-    h = FINANCIAL_STEPS.select { |y| y === self.award_year.year }
-    h.values[0][self.award_type] - 1
+    h = FINANCIAL_STEPS.select { |y| y === award_year.year }
+    h.values[0][award_type] - 1
   end
 
   #
@@ -419,8 +414,8 @@ class FormAnswer < ApplicationRecord
 
   def hard_copy_ready_for?(mode)
     send("#{mode}_hard_copy_generated?") &&
-    send("#{mode}_hard_copy_pdf").present? &&
-    send("#{mode}_hard_copy_pdf").file.present?
+      send("#{mode}_hard_copy_pdf").present? &&
+      send("#{mode}_hard_copy_pdf").file.present?
   end
 
   #
@@ -444,7 +439,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def palace_invite_submitted
-    palace_invite.try(:submitted) ? 'Yes' : 'No'
+    palace_invite.try(:submitted) ? "Yes" : "No"
   end
 
   def submitted?
@@ -454,9 +449,9 @@ class FormAnswer < ApplicationRecord
   # SIC code helpers
   #
   def sic_code=(code)
-    if code.present?
-      document["sic_code"] = code
-    end
+    return if code.blank?
+
+    document["sic_code"] = code
   end
 
   def sic_code
@@ -478,8 +473,8 @@ class FormAnswer < ApplicationRecord
       .fetch("applied_for_queen_awards_details", [])
       .detect do |a|
         a["category"] == "international_trade" &&
-        a["outcome"] == "won" &&
-        a["year"].to_i >= (AwardYear.current.year - 1)
+          a["outcome"] == "won" &&
+          a["year"].to_i >= (AwardYear.current.year - 1)
       end
 
     !!condition
@@ -490,16 +485,16 @@ class FormAnswer < ApplicationRecord
   end
 
   def requires_vocf?
-    return false if !business?
+    return false unless business?
     return true if award_year && award_year.before_vocf_switch?
 
-    %w(trade innovation).include?(award_type)
+    %w[trade innovation].include?(award_type)
   end
 
   def financial_year_changeable?
     key = :most_recent_financial_year
     selected = %i[most_recent_financial_year financial_year_date_day financial_year_date_month]
-    self.award_form
+    award_form
         .questions_by_key[key]
         &.decorate(answers: HashWithIndifferentAccess.new(document || {}).slice(*selected))
         &.year_changeable?
@@ -514,13 +509,13 @@ class FormAnswer < ApplicationRecord
   end
 
   def other_applications_from_same_entity
-    content = self.document.dig("registration_number")
+    content = document.dig("registration_number")
     extracted_numbers = ::CompanyRegistrationNumber.extract_from(content)
 
     return [] if extracted_numbers.empty?
 
     self.class.submitted
-              .where.not(id: self.id)
+              .where.not(id:)
               .by_registration_numbers(*extracted_numbers)
               .joins(:award_year)
               .order("award_years.year DESC")
@@ -529,7 +524,7 @@ class FormAnswer < ApplicationRecord
   private
 
   def nominator_full_name_from_document
-    "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
+    "#{document["user_info_first_name"]} #{document["user_info_last_name"]}".strip
   end
 
   def nominator_email_from_document
@@ -550,12 +545,12 @@ class FormAnswer < ApplicationRecord
   end
 
   def set_progress
-    #TODO: move this logic to it's specific class when you create one class per document type.
-    if award_type == "promotion"
-      questions_that_dont_count = []
-    else
-      questions_that_dont_count = [:company_name]
-    end
+    # TODO: move this logic to it's specific class when you create one class per document type.
+    questions_that_dont_count = if award_type == "promotion"
+                                  []
+                                else
+                                  [:company_name]
+                                end
 
     ## questions that don't count are excluded to show 0% progress for applications not started
     progress_hash = HashWithIndifferentAccess.new(document || {}).except(*questions_that_dont_count)
@@ -566,7 +561,7 @@ class FormAnswer < ApplicationRecord
       ## section progress should include questions that don't count
       progress_hash = HashWithIndifferentAccess.new(document || {})
       form = award_form.decorate(answers: progress_hash)
-      progress = (form_answer_progress || build_form_answer_progress)
+      progress = form_answer_progress || build_form_answer_progress
       progress.assign_sections(form)
       progress.save
     end
@@ -579,9 +574,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def assign_searching_attributes
-    unless submitted_and_after_the_deadline?
-      self.company_or_nominee_name = company_or_nominee_from_document
-    end
+    self.company_or_nominee_name = company_or_nominee_from_document unless submitted_and_after_the_deadline?
 
     self.nominee_full_name = nominee_full_name_from_document
     self.nominator_full_name = nominator_full_name_from_document
@@ -590,30 +583,28 @@ class FormAnswer < ApplicationRecord
   end
 
   def set_user_info
-    if user.present?
-      self.user_full_name ||= user.full_name
-      self.user_email ||= user.email
-    end
+    return if user.blank?
+
+    self.user_full_name ||= user.full_name
+    self.user_email ||= user.email
   end
 
   def validate_answers
-    if current_non_js_step.present? || (submitted? && (current_step || (submitted_at_changed? && submitted_at_was.nil?)))
+    return unless current_non_js_step.present? || (submitted? && (current_step || (submitted_at_changed? && submitted_at_was.nil?)))
 
-      validator = FormAnswerValidator.new(self)
+    validator = FormAnswerValidator.new(self)
 
-      unless validator.valid?
+    return if validator.valid?
 
-        if Rails.env.test?
-          # Better output in Test env
-          # so that devs can easily detect the reasons of issues!
-          errors.add(:base, "Answers invalid! Errors: #{validator.errors.inspect}")
-        else
-          errors.add(:base, "Answers invalid")
-        end
-
-        self.validator_errors = validator.errors
-      end
+    if Rails.env.test?
+      # Better output in Test env
+      # so that devs can easily detect the reasons of issues!
+      errors.add(:base, "Answers invalid! Errors: #{validator.errors.inspect}")
+    else
+      errors.add(:base, "Answers invalid")
     end
+
+    self.validator_errors = validator.errors
   end
 
   def award_form_class_name(year)

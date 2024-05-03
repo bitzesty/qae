@@ -7,7 +7,8 @@ class AccountMailers::NotifyNonShortlistedMailer < AccountMailers::BaseMailer
     @current_year = @form_answer.award_year.year
     @subject = "King's Awards for Enterprise: Thank you for applying - Application ref #{@form_answer.urn}"
 
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(@subject)
+    send_mail_if_not_bounces ENV.fetch("GOV_UK_NOTIFY_API_TEMPLATE_ID", nil), to: collaborator.email,
+                                                                              subject: subject_with_env_prefix(@subject)
   end
 
   # ep_notify is disabled for now
@@ -19,6 +20,7 @@ class AccountMailers::NotifyNonShortlistedMailer < AccountMailers::BaseMailer
     @current_year = @form_answer.award_year.year
     @subject = "King's Awards for Enterprise Promotion: Thank you for your nomination"
 
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(@subject)
+    send_mail_if_not_bounces ENV.fetch("GOV_UK_NOTIFY_API_TEMPLATE_ID", nil), to: collaborator.email,
+                                                                              subject: subject_with_env_prefix(@subject)
   end
 end

@@ -2,11 +2,11 @@ class FormAnswerSearch < Search
   attr_reader :subject
 
   DEFAULT_SEARCH = {
-    sort: 'company_or_nominee_name',
+    sort: "company_or_nominee_name",
     search_filter: {
       award_type: FormAnswer::AWARD_TYPE_FULL_NAMES.invert.values,
-      status: FormAnswerStatus::AdminFilter.all
-    }
+      status: FormAnswerStatus::AdminFilter.all,
+    },
   }
 
   def initialize(scope, subject)
@@ -80,23 +80,23 @@ class FormAnswerSearch < Search
         out = secondary_assessment_submitted(out)
       when "missing_additional_finances"
         out = out.joins(
-          "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id"
+          "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id",
         ).joins(
-          "LEFT OUTER JOIN shortlisted_documents_wrappers ON shortlisted_documents_wrappers.form_answer_id = form_answers.id"
+          "LEFT OUTER JOIN shortlisted_documents_wrappers ON shortlisted_documents_wrappers.form_answer_id = form_answers.id",
         ).joins(
-          "LEFT OUTER JOIN award_years awd_yrs ON awd_yrs.id = form_answers.award_year_id"
+          "LEFT OUTER JOIN award_years awd_yrs ON awd_yrs.id = form_answers.award_year_id",
         ).where("(awd_yrs.year >= 2023 AND (
                    (form_answers.award_type IN ('trade', 'innovation') AND audit_certificates.id IS NULL)
                    OR (form_answers.award_type IN ('development', 'mobility') AND form_answers.document #>> '{product_estimated_figures}' = 'yes' AND shortlisted_documents_wrappers.submitted_at IS NULL)
                  )
                  OR (awd_yrs.year < 2023 AND audit_certificates.id IS NULL))")
       when "additional_finances_not_reviewed"
-       out = out.joins(
-          "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id"
+        out = out.joins(
+          "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id",
         ).joins(
-          "LEFT OUTER JOIN shortlisted_documents_wrappers ON shortlisted_documents_wrappers.form_answer_id = form_answers.id"
+          "LEFT OUTER JOIN shortlisted_documents_wrappers ON shortlisted_documents_wrappers.form_answer_id = form_answers.id",
         ).joins(
-          "LEFT OUTER JOIN award_years awd_yrs ON awd_yrs.id = form_answers.award_year_id"
+          "LEFT OUTER JOIN award_years awd_yrs ON awd_yrs.id = form_answers.award_year_id",
         ).where("(awd_yrs.year >= 2023 AND (
                    (form_answers.award_type IN ('trade', 'innovation') AND audit_certificates.reviewed_at IS NULL)
                    OR (form_answers.award_type IN ('development', 'mobility') AND form_answers.document #>> '{product_estimated_figures}' = 'yes' AND shortlisted_documents_wrappers.reviewed_at IS NULL)
@@ -104,28 +104,28 @@ class FormAnswerSearch < Search
                  OR (awd_yrs.year < 2023 AND audit_certificates.reviewed_at IS NULL))")
       when "missing_feedback"
         out = out.joins(
-          "LEFT OUTER JOIN feedbacks on feedbacks.form_answer_id=form_answers.id"
+          "LEFT OUTER JOIN feedbacks on feedbacks.form_answer_id=form_answers.id",
         ).where("feedbacks.submitted = false OR feedbacks.id IS NULL")
       when "missing_press_summary"
         out = out.joins(
-          "LEFT OUTER JOIN press_summaries on press_summaries.form_answer_id = form_answers.id"
+          "LEFT OUTER JOIN press_summaries on press_summaries.form_answer_id = form_answers.id",
         ).where("press_summaries.id IS NULL OR press_summaries.submitted = false")
       when "missing_rsvp_details"
         out = out.joins(
-          "LEFT OUTER JOIN palace_invites on palace_invites.form_answer_id = form_answers.id"
+          "LEFT OUTER JOIN palace_invites on palace_invites.form_answer_id = form_answers.id",
         ).joins(
-          "LEFT OUTER JOIN palace_attendees ON palace_attendees.palace_invite_id = palace_invites.id"
+          "LEFT OUTER JOIN palace_attendees ON palace_attendees.palace_invite_id = palace_invites.id",
         ).where("palace_invites.id IS NULL OR palace_attendees.id IS NULL")
       when "primary_and_secondary_assessments_submitted"
         out = primary_assessment_submitted(out)
         out = secondary_assessment_submitted(out)
       when "primary_assessment_not_submitted"
         out = out.joins(
-          "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id"
+          "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id",
         ).where("primary_assignments.position = ? AND primary_assignments.submitted_at IS NULL", AssessorAssignment.positions[:primary])
       when "secondary_assessment_not_submitted"
         out = out.joins(
-          "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
+          "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id",
         ).where("secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NULL", AssessorAssignment.positions[:secondary])
       when "recommendation_disperancy"
         # both assessments should be submitted
@@ -141,9 +141,9 @@ class FormAnswerSearch < Search
   private
 
   def post_submission_states_for_sql
-    quoted_states = FormAnswerStateMachine::POST_SUBMISSION_STATES.map { |s| "'#{s}'"}
+    quoted_states = FormAnswerStateMachine::POST_SUBMISSION_STATES.map { |s| "'#{s}'" }
 
-    "(#{quoted_states.join(', ')})"
+    "(#{quoted_states.join(", ")})"
   end
 
   def advanced_select
@@ -160,17 +160,17 @@ class FormAnswerSearch < Search
 
   def primary_assessment_submitted(scope)
     scope.joins(
-      "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id"
+      "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id",
     ).where("primary_assignments.position = ? AND primary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:primary])
   end
 
   def secondary_assessment_submitted(scope)
     scope.joins(
-      "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
+      "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id",
     ).where("secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:secondary])
   end
 
   def sort_order(desc = false)
-    desc ? 'desc' : 'asc'
+    desc ? "desc" : "asc"
   end
 end

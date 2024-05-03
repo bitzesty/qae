@@ -1,14 +1,14 @@
 class Users::SupportersController < Users::BaseController
   expose(:form_answer) do
-    current_user.account.
-                form_answers.
-                find(params[:form_answer_id])
+    current_user.account
+                .form_answers
+                .find(params[:form_answer_id])
   end
   expose(:supporter) do
     form_answer.supporters.new(
       supporter_params.merge({
-        user_id: current_user.id
-      })
+        user_id: current_user.id,
+      }),
     )
   end
 
@@ -30,12 +30,12 @@ class Users::SupportersController < Users::BaseController
 
   private
 
-    def supporter_params
-      params.require(:support_letter).permit(
-        :first_name,
-        :last_name,
-        :relationship_to_nominee,
-        :email
-      )
-    end
+  def supporter_params
+    params.require(:support_letter).permit(
+      :first_name,
+      :last_name,
+      :relationship_to_nominee,
+      :email,
+    )
+  end
 end

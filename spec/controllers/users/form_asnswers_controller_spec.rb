@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Users::FormAnswersController do
   describe "logging" do
@@ -6,8 +6,8 @@ describe Users::FormAnswersController do
 
     let!(:form_answer) do
       FactoryBot.create :form_answer, :development,
-        user: user,
-        document: { company_name: "Bitzesty" }
+                        user:,
+                        document: { company_name: "Bitzesty" }
     end
 
     let(:assessor) do
@@ -20,9 +20,9 @@ describe Users::FormAnswersController do
       allow_any_instance_of(ApplicationController).to receive(:assessor_signed_in?).and_return(true)
       allow_any_instance_of(ApplicationController).to receive(:current_assessor).and_return(assessor)
 
-      expect {
-        get :show, params: { id: form_answer.id }, format: :pdf, session: {admin_in_read_only_mode: true }
-      }.to change { AuditLog.count }.by(1)
+      expect do
+        get :show, params: { id: form_answer.id }, format: :pdf, session: { admin_in_read_only_mode: true }
+      end.to change { AuditLog.count }.by(1)
 
       log = AuditLog.last
 

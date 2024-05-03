@@ -47,8 +47,8 @@ class Eligibility < ApplicationRecord
     @questions
   end
 
-  def self.context_for_options
-    @context_for_options
+  class << self
+    attr_reader :context_for_options
   end
 
   # AWARD_NAME should be overriden by sub-classes
@@ -66,13 +66,11 @@ class Eligibility < ApplicationRecord
 
     validates name, presence: true, if: proc { current_step == name }
 
-    if values && values.any?
-      enumerize name, in: values
-    end
+    enumerize name, in: values if values && values.any?
 
     if options[:boolean] || options[:acts_like_boolean]
       define_method "#{name}?" do
-        ['1', 'true', 'yes', true].include?(public_send(name))
+        ["1", "true", "yes", true].include?(public_send(name))
       end
     end
 
@@ -80,9 +78,7 @@ class Eligibility < ApplicationRecord
       validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }, if: proc { current_step == name }
     end
 
-    if options[:context_for_options]
-      @context_for_options = options[:context_for_options]
-    end
+    @context_for_options = options[:context_for_options] if options[:context_for_options]
 
     @questions.merge!(name => options)
   end
@@ -95,7 +91,7 @@ class Eligibility < ApplicationRecord
   end
 
   def eligible_on_step?(step)
-    current_step_index = questions.index(step) || questions.size - 1
+    current_step_index = questions.index(step) || (questions.size - 1)
     previous_questions = questions[0..current_step_index]
 
     answers.any? && answers.all? do |question, answer|
@@ -114,9 +110,7 @@ class Eligibility < ApplicationRecord
       sorted = {}
 
       self.class.questions.each do |question|
-        if answers[question.to_s]
-          sorted[question.to_s] = answers[question.to_s]
-        end
+        sorted[question.to_s] = answers[question.to_s] if answers[question.to_s]
       end
 
       sorted
@@ -133,11 +127,12 @@ class Eligibility < ApplicationRecord
   end
 
   def any_error_yet?
-    answers.any?{ |answer| !answer_valid?(answer[0], answer[1]) }
+    answers.any? { |answer| !answer_valid?(answer[0], answer[1]) }
   end
 
   def answer_valid?(question, answer)
     return true if self.class.questions_storage[question.to_sym].nil?
+
     acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
     validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
     validator.valid?
@@ -162,9 +157,7 @@ class Eligibility < ApplicationRecord
 
     self.class.questions_storage.each do |question, options|
       if options[:if]
-        if instance_eval(&options[:if])
-          collection.merge!(question => options)
-        end
+        collection.merge!(question => options) if instance_eval(&options[:if])
       else
         collection.merge!(question => options)
       end
@@ -174,8 +167,8 @@ class Eligibility < ApplicationRecord
   end
 
   def current_step_validation
-    if current_step && public_send(current_step).nil?
-      errors.add(current_step, :blank)
-    end
+    return unless current_step && public_send(current_step).nil?
+
+    errors.add(current_step, :blank)
   end
 end

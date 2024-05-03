@@ -11,33 +11,33 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
     settings = year.settings
 
     invite = settings.deadlines.where(kind: "buckingham_palace_attendees_invite").first
-    invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 00))
+    invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 0o0))
 
     attendees_info_due = settings.deadlines.where(
-      kind: "buckingham_palace_reception_attendee_information_due_by"
+      kind: "buckingham_palace_reception_attendee_information_due_by",
     ).first
     attendees_info_due.update_column(:trigger_at,
-      DateTime.new(Date.current.year, 5, 6, 00, 00)
-    )
+                                     DateTime.new(Date.current.year, 5, 6, 0o0, 0o0),
+                                    )
 
     settings.reload
   end
 
   let!(:form_answer) do
-    fa = build(:form_answer, :awarded, :trade, user: user, award_year: year)
+    fa = build(:form_answer, :awarded, :trade, user:, award_year: year)
 
     allow(fa).to receive(:valid?).and_return(true)
 
     # this field is no longer used in 2019 awards, but we're using closed award year here
     # can be simplified when 2020 awards kick in
-    fa.document.merge!("queen_award_holder" => "no")
+    fa.document["queen_award_holder"] = "no"
     fa.save!
 
     fa
   end
 
   let!(:palace_invite) do
-    create :palace_invite, form_answer: form_answer, email: user.email
+    create :palace_invite, form_answer:, email: user.email
   end
 
   let(:account_holder) do
@@ -50,7 +50,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
 
   let(:mail) do
     AccountMailers::BuckinghamPalaceInviteMailer.invite(
-      form_answer.id
+      form_answer.id,
     )
   end
 

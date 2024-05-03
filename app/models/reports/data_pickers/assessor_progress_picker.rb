@@ -1,5 +1,4 @@
 class Reports::DataPickers::AssessorProgressPicker
-
   attr_accessor :award_year_id,
                 :award_category
 
@@ -21,7 +20,7 @@ class Reports::DataPickers::AssessorProgressPicker
         entry.secondary_assigned.to_i,
         entry.secondary_assessed.to_i,
         entry.primary_assigned.to_i + entry.secondary_assigned.to_i,
-        entry.primary_assessed.to_i + entry.secondary_assessed.to_i
+        entry.primary_assessed.to_i + entry.secondary_assessed.to_i,
       ]
     end
   end
@@ -33,7 +32,7 @@ class Reports::DataPickers::AssessorProgressPicker
   end
 
   def sql_query
-    <<-eos
+    <<-EOS
       SELECT DISTINCT(assessors.id) as id,
              concat_ws(' ', assessors.first_name::text, assessors.last_name::text) AS name,
              assessors.email AS email,
@@ -111,6 +110,6 @@ class Reports::DataPickers::AssessorProgressPicker
       WHERE assessors.confirmed_at IS NOT NULL
             AND assessors.#{award_category}_role IN ('lead', 'regular')
       ORDER BY assessors.id ASC
-    eos
+    EOS
   end
 end

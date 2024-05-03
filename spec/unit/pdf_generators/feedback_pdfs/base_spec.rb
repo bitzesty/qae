@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "FeedbackPdfs::Base" do
   let!(:award_year) do
@@ -28,7 +28,7 @@ describe "FeedbackPdfs::Base" do
       innovation_feedbacks = FeedbackPdfs::Base.new(
         "all", nil, {
           category: "innovation",
-          award_year: award_year
+          award_year:,
         }
       ).set_feedbacks
        .map(&:id)
@@ -40,7 +40,7 @@ describe "FeedbackPdfs::Base" do
       trade_feedbacks = FeedbackPdfs::Base.new(
         "all", nil, {
           category: "trade",
-          award_year: award_year
+          award_year:,
         }
       ).set_feedbacks
        .map(&:id)

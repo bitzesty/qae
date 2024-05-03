@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2022::QaeForms
   class << self
     def trade_step2
@@ -25,18 +24,21 @@ class AwardYears::V2022::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               This section enables you to present the details of your products or services that you export and to give us the evidence of their commercial impact on your business.
               Please avoid using technical language in this section.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
-            [:normal, %(
+            [:normal,
+             %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            )]
+            )],
           ]
         end
 
@@ -92,8 +94,8 @@ class AwardYears::V2022::QaeForms
             <p>Select all that apply.</p>
           )
           check_options [
-            ["products", "Products"],
-            ["services", "Services"]
+            %w[products Products],
+            %w[services Services],
           ]
           application_type_question true
         end
@@ -116,7 +118,8 @@ class AwardYears::V2022::QaeForms
           default_option "1"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "List and briefly describe each product or services you export." do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations,
+                                          "List and briefly describe each product or services you export." do
           classes "sub-question word-max-strict"
           sub_ref "B 2.2"
           required
@@ -135,7 +138,8 @@ class AwardYears::V2022::QaeForms
           conditional :trade_goods_amount, :true
         end
 
-        textarea :trade_plans_desc, "Describe your overall growth plans and the links and importance between your international and domestic trading strategies (plans), your vision and objectives for the future, your method of implementation, and how your actual performance compared to the plans set out." do
+        textarea :trade_plans_desc,
+                 "Describe your overall growth plans and the links and importance between your international and domestic trading strategies (plans), your vision and objectives for the future, your method of implementation, and how your actual performance compared to the plans set out." do
           ref "B 3"
           required
           context %(
@@ -169,7 +173,8 @@ class AwardYears::V2022::QaeForms
           words_max 500
         end
 
-        textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
+        textarea :top_overseas_sales,
+                 "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
           classes "sub-question"
           sub_ref "B 4.2"
           required
@@ -177,7 +182,8 @@ class AwardYears::V2022::QaeForms
           words_max 100
         end
 
-        textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry and their contribution to total overseas sales." do
+        textarea :identify_new_overseas,
+                 "Identify new overseas markets established during your period of entry and their contribution to total overseas sales." do
           classes "sub-question"
           sub_ref "B 4.3"
           required
@@ -185,7 +191,8 @@ class AwardYears::V2022::QaeForms
           words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade, especially due to COVID-19, and how you overcame them." do
+        textarea :trade_factors,
+                 "Describe any special challenges affecting your trade, especially due to COVID-19, and how you overcame them." do
           ref "B 5"
           required
           context %(
@@ -208,11 +215,12 @@ class AwardYears::V2022::QaeForms
           )
           check_options [
             ["franchise", "As a franchise"],
-            ["other", "Other business model(s)"]
+            ["other", "Other business model(s)"],
           ]
         end
 
-        textarea :operate_model_benefits, "Explain your franchise or other business models and rationale for this. Describe the benefits this brings to the UK." do
+        textarea :operate_model_benefits,
+                 "Explain your franchise or other business models and rationale for this. Describe the benefits this brings to the UK." do
           classes "sub-question"
           sub_ref "B 6.1"
           required

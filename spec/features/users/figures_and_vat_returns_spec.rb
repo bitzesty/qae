@@ -4,7 +4,7 @@ include Warden::Test::Helpers
 describe "User uploads VAT returns and actual figures" do
   let(:user) { create(:user, :completed_profile) }
   let!(:settings) { create(:settings, :expired_submission_deadlines, award_year_id: AwardYear.current.id) }
-  let!(:form_answer) { create(:form_answer, :mobility, :recommended, user: user) }
+  let!(:form_answer) { create(:form_answer, :mobility, :recommended, user:) }
 
   before do
     form_answer.document["product_estimated_figures"] = "yes"
@@ -15,7 +15,7 @@ describe "User uploads VAT returns and actual figures" do
 
     settings.email_notifications.create!(
       kind: "shortlisted_notifier",
-      trigger_at: DateTime.now - 1.day
+      trigger_at: DateTime.now - 1.day,
     )
   end
 

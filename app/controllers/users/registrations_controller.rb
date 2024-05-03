@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
-    :update, :destroy
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: %i[
+    update destroy
   ]
 
   protected
@@ -21,9 +21,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def build_resource(hash=nil)
+  def build_resource(hash = nil)
     super
 
-    resource.role = 'account_admin' if action_name == 'create'
+    resource.role = "account_admin" if action_name == "create"
   end
 end

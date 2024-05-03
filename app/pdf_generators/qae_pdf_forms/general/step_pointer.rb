@@ -31,7 +31,7 @@ class QaePdfForms::General::StepPointer
     form_pdf.render_header("#{step.title.upcase}:")
 
     filtered_questions.each do |question|
-      QaePdfForms::General::QuestionPointer.new(form_pdf: form_pdf,
+      QaePdfForms::General::QuestionPointer.new(form_pdf:,
                                                 step: self,
                                                 question: question.decorate).render!
     end

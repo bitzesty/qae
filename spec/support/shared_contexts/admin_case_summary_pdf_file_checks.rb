@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin case summary pdf file checks" do
   let!(:user) { create :user }
@@ -7,11 +7,11 @@ shared_context "admin case summary pdf file checks" do
     create :form_answer,
            :recommended,
            award_type,
-           user: user
+           user:
   end
 
   let!(:assessor_assignment) do
-    create :assessor_assignment, form_answer: form_answer,
+    create :assessor_assignment, form_answer:,
                                  submitted_at: Date.today,
                                  assessor: nil,
                                  position: "case_summary",
@@ -24,9 +24,7 @@ shared_context "admin case summary pdf file checks" do
     AppraisalForm.struct(form_answer).each_with_index do |block, index|
       key = block[0]
       res["#{key}_desc"] = "#{index}_desc"
-      if block[1][:type] != :non_rag
-        res["#{key}_rate"] = "positive"
-      end
+      res["#{key}_rate"] = "positive" if block[1][:type] != :non_rag
     end
 
     res

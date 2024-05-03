@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def title(page_title)
     content_for(:title) { page_title }
   end
@@ -8,46 +7,43 @@ module ApplicationHelper
     opts[:class] ||= "govuk-body"
     step_status = ""
 
-    if opts[:index]
-      if opts[:index_name]
-        index_step_text = "<span class='step-number'>#{opts[:index_name]}</span> #{name}".html_safe
-      else
-        index_step_text = "<span class='step-number'>#{opts[:index]}.</span> #{name}".html_safe
-      end
-    else
-      index_step_text = name
-    end
-
+    index_step_text = if opts[:index]
+                        if opts[:index_name]
+                          "<span class='step-number'>#{opts[:index_name]}</span> #{name}".html_safe
+                        else
+                          "<span class='step-number'>#{opts[:index]}.</span> #{name}".html_safe
+                        end
+                      else
+                        name
+                      end
 
     if opts[:index] && opts[:active]
       if opts[:index] == opts[:active]
-        step_status  = "current"
+        step_status = "current"
         opts[:class] += " step-current"
-      else
-        if opts[:disable_progression].present? && opts[:disable_progression]
-          opts[:class] += " step-regular"
-        elsif opts[:index] < opts[:active]
-          step_status  = "past"
-          opts[:class] += " step-past"
-        end
+      elsif opts[:disable_progression].present? && opts[:disable_progression]
+        opts[:class] += " step-regular"
+      elsif opts[:index] < opts[:active]
+        step_status = "past"
+        opts[:class] += " step-past"
       end
     end
 
-    content_tag :li, opts do
+    tag.li(opts) do
       if step_status == "current" or (step_status != "past" && opts[:cant_access_future])
-        content_tag :span, class: 'govuk-body' do
+        tag.span(class: "govuk-body") do
           index_step_text
         end
       else
-        link_to url, class: 'govuk-link' do
+        link_to url, class: "govuk-link" do
           index_step_text
         end
       end
     end
   end
 
-  def condition_divs(question, &block)
-    inner = capture(&block)
+  def condition_divs(question, &)
+    inner = capture(&)
     return inner if question.conditions.empty?
 
     current = inner
@@ -55,27 +51,27 @@ module ApplicationHelper
       dep = question.form[condition.question_key]
       raise "Can't find parent question for conditional #{question.key} -> #{condition.question_key}" unless dep
 
-      data_attrs = {question: dep.parameterized_title, value: condition.question_value}
+      data_attrs = { question: dep.parameterized_title, value: condition.question_value }
       data_attrs = data_attrs.merge((condition.options || {}).fetch(:data, {})) if condition.options
 
-      current = content_tag(:div, current, class: "js-conditional-question", data: data_attrs)
+      current = tag.div(current, class: "js-conditional-question", data: data_attrs)
     end
 
     current
   end
 
   def landing_page?
-    controller_name == 'content_only' && %w[
-                                           home
-                                           awards_for_organisations
-                                           enterprise_promotion_awards
-                                           how_to_apply
-                                           timeline
-                                           additional_information_and_contact
-                                           apply_for_queens_award_for_enterprise
-                                           privacy
-                                           cookies
-                                         ].include?(action_name)
+    controller_name == "content_only" && %w[
+      home
+      awards_for_organisations
+      enterprise_promotion_awards
+      how_to_apply
+      timeline
+      additional_information_and_contact
+      apply_for_queens_award_for_enterprise
+      privacy
+      cookies
+    ].include?(action_name)
   end
 
   def show_navigation_links?
@@ -84,7 +80,7 @@ module ApplicationHelper
 
   def application_deadline(kind)
     deadline = Rails.cache.fetch("#{kind}_deadline", expires: 1.minute) do
-      Settings.current.deadlines.where(kind: kind).first
+      Settings.current.deadlines.where(kind:).first
     end
 
     deadline.decorate.formatted_trigger_time
@@ -92,15 +88,15 @@ module ApplicationHelper
 
   def application_deadline_short(kind)
     deadline = Rails.cache.fetch("#{kind}_deadline", expires: 1.minute) do
-      Settings.current.deadlines.where(kind: kind).first
+      Settings.current.deadlines.where(kind:).first
     end
 
     deadline.decorate.formatted_trigger_time_short
   end
 
-  def application_deadline_for_year(award_year, kind, format=nil)
+  def application_deadline_for_year(award_year, kind, format = nil)
     deadline = Rails.cache.fetch("#{kind}_deadline_#{award_year.year}", expires: 1.minute) do
-      award_year.settings.deadlines.where(kind: kind).first
+      award_year.settings.deadlines.where(kind:).first
     end.decorate
 
     if format.present?
@@ -110,7 +106,7 @@ module ApplicationHelper
     end
   end
 
-  def deadline_or_default(award_year, kind, manual_value, format=nil)
+  def deadline_or_default(award_year, kind, manual_value, format = nil)
     str = application_deadline_for_year(award_year, kind, format)
     str.to_s.include?("---") ? manual_value : str
   end
@@ -125,35 +121,35 @@ module ApplicationHelper
     text = sanitize(text)
     paragraphs = split_paragraphs(text)
 
-    if paragraphs.present?
-      paragraphs.map! { |paragraph|
-        raw(paragraph)
-      }.join("<br/><br/>").html_safe
-    end
+    return if paragraphs.blank?
+
+    paragraphs.map! do |paragraph|
+      raw(paragraph)
+    end.join("<br/><br/>").html_safe
   end
 
   def ordinal(n)
     ending = case n % 100
-           when 11, 12, 13 then 'th'
-           else
-             case n % 10
-             when 1 then 'st'
-             when 2 then 'nd'
-             when 3 then 'rd'
-             else 'th'
+             when 11, 12, 13 then "th"
+             else
+               case n % 10
+               when 1 then "st"
+               when 2 then "nd"
+               when 3 then "rd"
+               else "th"
+               end
              end
-           end
     n.to_s + ending
   end
 
   def remove_html_tags(str)
     Nokogiri::HTML.parse(
-      str
+      str,
     ).text.strip
   end
 
   def display_banner?
-    subdomain_from_request.present? && subdomain_from_request.in?(["dev", "staging"])
+    subdomain_from_request.present? && subdomain_from_request.in?(%w[dev staging])
   end
 
   def subdomain_from_request

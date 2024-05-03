@@ -18,7 +18,7 @@ module UserDeviseHelper
 
   def login_invalid_message
     I18n.t(:devise)[:failure][:invalid]
-        .gsub("%{authentication_keys}", "email")
+        .gsub("%<authentication_keys>s", "email")
   end
 
   def login_unconfirmed_message

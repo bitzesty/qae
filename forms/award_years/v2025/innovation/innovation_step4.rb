@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def innovation_step4
@@ -14,7 +13,8 @@ class AwardYears::V2025::QaeForms
           financial_date_pointer
         end
 
-        trade_most_recent_financial_year_options :most_recent_financial_year, "Which year would you like to be your most recent financial year that you will submit figures for?" do
+        trade_most_recent_financial_year_options :most_recent_financial_year,
+                                                 "Which year would you like to be your most recent financial year that you will submit figures for?" do
           ref "D 1.1"
           required
           option (AwardYear.current.year - 2).to_s, (AwardYear.current.year - 2).to_s
@@ -28,10 +28,12 @@ class AwardYears::V2025::QaeForms
             </p>
           )
 
-          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true), disable_pdf_conditional_hints: true, data: {value: AwardYear.fy_date_range_threshold(minmax: true, format: true), type: :range}
+          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true),
+                                                              disable_pdf_conditional_hints: true, data: { value: AwardYear.fy_date_range_threshold(minmax: true, format: true), type: :range }
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>five</span> most recent financial years that you will be providing figures for?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your <span class='js-entry-period-subtext'>five</span> most recent financial years that you will be providing figures for?" do
           classes "sub-question js-financial-year-change fs-trackable fs-two-trackable"
           sub_ref "D 2"
           context %(
@@ -56,14 +58,22 @@ class AwardYears::V2025::QaeForms
               We recommend that you answer question B5 before proceeding with this and further questions, as this will automatically adjust the number of years you need to provide the figures for.
             </p>
             <p>
-              For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current_submission_deadline.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+              For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current_submission_deadline.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
             </p>
           )
 
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                              }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                              }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                              }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                              }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
           conditional :financial_year_date_changed, :yes
         end
 
@@ -110,10 +120,18 @@ class AwardYears::V2025::QaeForms
           )
           type :number
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                              }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                              }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                              }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                              }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
           conditional :financial_year_date_changed, :true
           employees_question
           validatable_years_position [-2..-1] # validate only last 2 years for employee min. threshold
@@ -131,10 +149,18 @@ class AwardYears::V2025::QaeForms
           classes "sub-question fs-total-turnover fs-trackable"
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                              }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                              }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                              }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                              }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
           conditional :financial_year_date_changed, :true
         end
 
@@ -149,10 +175,18 @@ class AwardYears::V2025::QaeForms
           )
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                              }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                              }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                              }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                              }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
           conditional :financial_year_date_changed, :true
         end
 
@@ -166,10 +200,18 @@ class AwardYears::V2025::QaeForms
             <p>If your organisation is based in the Channel Islands or Isle of Man, these will be your local sales.</p>
           )
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                              }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                              }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                              }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                              }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
 
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
@@ -183,10 +225,18 @@ class AwardYears::V2025::QaeForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                              }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                              }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                              }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                              }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
           context %(
             <p>
               Use a minus symbol to record any losses.
@@ -207,15 +257,24 @@ class AwardYears::V2025::QaeForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :started_trading, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                              }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                              }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                              }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :started_trading, lambda { |v|
+                                                Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                              }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
 
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :drops_in_turnover, "Explain any losses, drops in the total turnover, export sales, total net assets or reductions in net profit." do
+        textarea :drops_in_turnover,
+                 "Explain any losses, drops in the total turnover, export sales, total net assets or reductions in net profit." do
           classes "sub-question"
           sub_ref "D 4.6"
           required
@@ -231,7 +290,8 @@ class AwardYears::V2025::QaeForms
           )
         end
 
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow, cash generated, and investment received." do
+        textarea :drops_explain_how_your_business_is_financially_viable,
+                 "Explain how your business is financially viable in terms of cash flow, cash generated, and investment received." do
           classes "sub-question"
           sub_ref "D 4.7"
           required
@@ -247,7 +307,8 @@ class AwardYears::V2025::QaeForms
           words_max 300
         end
 
-        textarea :investments_details, "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the years in which they were made." do
+        textarea :investments_details,
+                 "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the years in which they were made." do
           classes "sub-question"
           sub_ref "D 4.8"
           required
@@ -260,7 +321,8 @@ class AwardYears::V2025::QaeForms
           )
         end
 
-        textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investments outlined in question D4.8. How long did it take or will it take to recover the investments?" do
+        textarea :roi_details,
+                 "Please provide calculations on how you have recovered or will recover the investments outlined in question D4.8. How long did it take or will it take to recover the investments?" do
           classes "sub-question"
           sub_ref "D 4.9"
           required
@@ -333,10 +395,18 @@ class AwardYears::V2025::QaeForms
           type :number
           label ->(y) { "Financial year #{y}" }
 
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                                                    }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                                                    }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                                                    }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                                                    }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
         end
 
         by_years :sales, "Sales of your innovative product/service (if applicable)." do
@@ -348,10 +418,18 @@ class AwardYears::V2025::QaeForms
           type :money
           label ->(y) { "Financial year #{y}" }
 
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                                                    }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                                                    }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                                                    }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                                                    }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
         end
 
         by_years :sales_exports, "Of which exports (if applicable)." do
@@ -363,10 +441,18 @@ class AwardYears::V2025::QaeForms
           type :money
           label ->(y) { "Financial year #{y}" }
 
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                                                    }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                                                    }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                                                    }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                                                    }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
         end
 
         by_years :sales_royalties, "Of which royalties or licences (if applicable)." do
@@ -378,10 +464,18 @@ class AwardYears::V2025::QaeForms
           type :money
           label ->(y) { "Financial year #{y}" }
 
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                                                    }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                                                    }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                                                    }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                                                    }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
         end
 
         textarea :drops_in_sales, "Explain any drop in sales or the number of units sold (if applicable)." do
@@ -406,13 +500,22 @@ class AwardYears::V2025::QaeForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                                                    }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                                                    }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                                                    }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                                                    }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
         end
 
-        textarea :avg_unit_price_desc, "Explain your unit selling prices or contract values, highlighting any changes over the above periods (if applicable)." do
+        textarea :avg_unit_price_desc,
+                 "Explain your unit selling prices or contract values, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.7"
           section :innovation_financials
@@ -431,13 +534,22 @@ class AwardYears::V2025::QaeForms
           ).squish
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3)) }, 2, data: {value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4)) }, 3, data: {value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5)) }, 4, data: {value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5"}
-          by_year_condition :innovation_was_launched_in_the_market, ->(v) { Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250)) }, 5, data: {value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true}, default: true
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(2, 3))
+                                                                    }, 2, data: { value: AwardYear.start_trading_between(2, 3, minmax: true, format: true), type: :range, identifier: "2 to 3" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(3, 4))
+                                                                    }, 3, data: { value: AwardYear.start_trading_between(3, 4, minmax: true, format: true), type: :range, identifier: "3 to 4" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(4, 5))
+                                                                    }, 4, data: { value: AwardYear.start_trading_between(4, 5, minmax: true, format: true), type: :range, identifier: "4 to 5" }
+          by_year_condition :innovation_was_launched_in_the_market, lambda { |v|
+                                                                      Utils::Date.within_range?(v, AwardYear.start_trading_between(5, 250))
+                                                                    }, 5, data: { value: AwardYear.start_trading_between(5, 250, minmax: true, format: true), type: :range, identifier: "5 plus", default: true }, default: true
         end
 
-        textarea :costs_change_desc, "Explain your direct unit or contract costs, highlighting any changes over the above periods (if applicable)." do
+        textarea :costs_change_desc,
+                 "Explain your direct unit or contract costs, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "D 6.9"
           section :innovation_financials
@@ -450,7 +562,8 @@ class AwardYears::V2025::QaeForms
           sub_ref "D 6.10"
         end
 
-        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business." do
+        textarea :innovation_performance,
+                 "Describe how, when, and to what extent the innovation has improved the commercial performance of your business." do
           ref "D 7"
           required
           context %(
@@ -487,7 +600,8 @@ class AwardYears::V2025::QaeForms
           words_max 250
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
+        textarea :covid_impact_details,
+                 "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
           ref "D 8"
           required
           context %(
@@ -518,7 +632,8 @@ class AwardYears::V2025::QaeForms
           )
         end
 
-        textarea :innovation_grant_funding_sources, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your innovation (at any time)." do
+        textarea :innovation_grant_funding_sources,
+                 "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your innovation (at any time)." do
           classes "sub-question word-max-strict"
           sub_ref "D 9.1"
           required
@@ -530,7 +645,8 @@ class AwardYears::V2025::QaeForms
           words_max 250
         end
 
-        textarea :innovation_grant_funding_sources_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
+        textarea :innovation_grant_funding_sources_in_application_period,
+                 "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
           classes "sub-question word-max-strict"
           sub_ref "D 9.2"
           required

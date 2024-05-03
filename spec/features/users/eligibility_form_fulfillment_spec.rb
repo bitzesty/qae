@@ -31,10 +31,10 @@ describe "Eligibility forms" do
         "Yes",
         "Yes",
         "No",
-        "Yes"
+        "Yes",
       ])
       expect(page).to have_content("You are eligible to begin your application")
-      first('.previous-answers').click_link("Continue")
+      first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an International Trade Award.")
     end
   end
@@ -54,7 +54,7 @@ describe "Eligibility forms" do
       form_choice("Yes")
       form_choice("Yes")
       expect(page).to have_content("You are eligible to begin your application")
-      first('.previous-answers').click_link("Continue")
+      first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an Innovation Award.")
     end
   end
@@ -77,10 +77,10 @@ describe "Eligibility forms" do
         "Yes",
         "Yes",
         "Yes",
-        "Yes"
+        "Yes",
       ])
       expect(page).to have_content("You are eligible to begin your application")
-      first('.previous-answers').click_link("Continue")
+      first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for a Sustainable Development Award.")
     end
   end
@@ -105,5 +105,5 @@ end
 
 def new_application(type)
   header = find(".applications-list .govuk-summary-list__row .govuk-summary-list__key .govuk-heading-s", text: type)
-  header.find(:xpath, '../..').first("a").click
+  header.find(:xpath, "../..").first("a").click
 end

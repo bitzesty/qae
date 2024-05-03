@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2019::QaeForms
   class << self
     def trade_step1
@@ -84,18 +83,19 @@ class AwardYears::V2019::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(3)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
@@ -181,7 +181,7 @@ class AwardYears::V2019::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 
@@ -217,7 +217,8 @@ class AwardYears::V2019::QaeForms
           yes_no
         end
 
-        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
+        textarea :pareent_group_why_excluding_members,
+                 "Please explain why you are excluding any members of your group from this application." do
           classes "sub-question"
           sub_ref "A 12.2"
           rows 5
@@ -264,13 +265,15 @@ class AwardYears::V2019::QaeForms
           conditional :parent_ultimate_control, :no
         end
 
-        options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
+        options :trading_figures,
+                "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
           ref "A 14"
           required
           yes_no
         end
 
-        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full-time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them." do
+        subsidiaries_associates_plants :trading_figures_add,
+                                       "Enter the name, location and amount of UK employees (FTE - full-time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them." do
           required
           classes "sub-question"
           sub_ref "A 14.1"

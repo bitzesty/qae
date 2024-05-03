@@ -1,5 +1,4 @@
 class Admin::DashboardReportsController < Admin::BaseController
-
   # all methods accept the following params:
   # params[:kind]
   # - by_month
@@ -47,10 +46,10 @@ class Admin::DashboardReportsController < Admin::BaseController
 
   private
 
-  def render_or_download_report award_type, kind, format
+  def render_or_download_report(award_type, kind, _format)
     authorize :dashboard, :reports?
 
-    @report = Reports::Dashboard::ApplicationsReport.new(kind: kind, award_type: award_type)
+    @report = Reports::Dashboard::ApplicationsReport.new(kind:, award_type:)
 
     respond_to do |format|
       format.csv do

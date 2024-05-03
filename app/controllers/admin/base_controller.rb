@@ -49,7 +49,7 @@ class Admin::BaseController < ApplicationController
         send_data pdf_hard_copy.file.read,
                   filename: pdf_hard_copy.original_filename,
                   type: "application/pdf",
-                  disposition: 'attachment'
+                  disposition: "attachment"
       else
         redirect_to pdf_hard_copy.file.url, allow_other_host: true
       end
@@ -57,7 +57,7 @@ class Admin::BaseController < ApplicationController
       send_data pdf_data.render,
                 filename: "application_#{mode.pluralize}_#{form_answer.decorate.pdf_filename}",
                 type: "application/pdf",
-                disposition: 'attachment'
+                disposition: "attachment"
     end
   end
 end

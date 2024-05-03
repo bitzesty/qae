@@ -6,7 +6,8 @@ class QaeFormBuilder
       date, range = question.get_changeable_date_range
 
       if date.present? && range.present? && !date.in?(range) && question.year_has_changed?
-        result[question.key] = "You can only change the year if your dates in question D2 range between #{from.decorate.formatted_trigger_date} to #{to.decorate.formatted_trigger_date}."
+        result[question.key] =
+          "You can only change the year if your dates in question D2 range between #{from.decorate.formatted_trigger_date} to #{to.decorate.formatted_trigger_date}."
       end
 
       result
@@ -53,8 +54,8 @@ class QaeFormBuilder
                         r = (Date.new(1900, from_ts.month, from_ts.day - 1)..Date.new(1900, to_ts.month, to_ts.day - 1))
                       end
                       d = if financial_year_date_parts.values.none?(&:nil?)
-                        Date.new(1900, financial_year_date_parts[:month], financial_year_date_parts[:day])
-                      end
+                            Date.new(1900, financial_year_date_parts[:month], financial_year_date_parts[:day])
+                          end
 
                       [d, r]
                     end

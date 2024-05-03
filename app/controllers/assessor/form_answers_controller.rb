@@ -6,7 +6,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
   expose(:financial_pointer) do
     FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
-      financial_summary_view: true
+      financial_summary_view: true,
     })
   end
 
@@ -22,12 +22,12 @@ class Assessor::FormAnswersController < Assessor::BaseController
     params[:search] ||= {
       sort: "company_or_nominee_name",
       search_filter: {
-        status: FormAnswerStatus::AssessorFilter::checked_options.invert.values
-      }
+        status: FormAnswerStatus::AssessorFilter.checked_options.invert.values,
+      },
     }
     params[:search].permit!
     scope = current_assessor.applications_scope(
-      params[:year].to_s == "all_years" ? nil : @award_year
+      params[:year].to_s == "all_years" ? nil : @award_year,
     )
 
     if params[:search][:query].blank? && category_picker.show_award_tabs_for_assessor?

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2022::QaeForms
   class << self
     def development_step3
@@ -32,25 +31,30 @@ class AwardYears::V2022::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               To be eligible for a Queen's Awards for Enterprise, your business must be financially viable. You are required to demonstrate this by providing three years of financial growth figures that cover the period your sustainable development actions or interventions have been in place.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
-            [:normal, %(
+            [:normal,
+             %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
             [:bold, "Latest financial year and COVID-19"],
-            [:normal, %(
+            [:normal,
+             %(
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -72,7 +76,8 @@ class AwardYears::V2022::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>3</span> year entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your <span class='js-entry-period-subtext'>3</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -215,7 +220,8 @@ class AwardYears::V2022::QaeForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
+        textarea :drops_in_turnover,
+                 "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question"
           sub_ref "C 4.6"
           required
@@ -246,7 +252,8 @@ class AwardYears::V2022::QaeForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :development_performance, "What cost-savings have you or your customers’ businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
+        textarea :development_performance,
+                 "What cost-savings have you or your customers’ businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
           ref "C 6"
           required
           context %(
@@ -258,7 +265,8 @@ class AwardYears::V2022::QaeForms
           words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
+        textarea :investments_details,
+                 "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
           ref "C 7"
           required
           context %(
@@ -270,7 +278,8 @@ class AwardYears::V2022::QaeForms
           words_max 400
         end
 
-        textarea :covid_19_impact, "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
+        textarea :covid_19_impact,
+                 "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
           ref "C 8"
           required
           rows 5

@@ -10,7 +10,7 @@ class ShortlistedDocumentsWrapper < ActiveRecord::Base
   def complete
     set_submission_date
   end
-  alias_method :submit, :complete
+  alias submit complete
 
   def uncomplete
     set_submission_date(nil)
@@ -33,9 +33,9 @@ class ShortlistedDocumentsWrapper < ActiveRecord::Base
   end
 
   private
-  
+
   def set_submission_date(timestamp = Time.zone.now)
-    self.update(submitted_at: timestamp)
+    update(submitted_at: timestamp)
   end
 
   def requirements_fulfilled?

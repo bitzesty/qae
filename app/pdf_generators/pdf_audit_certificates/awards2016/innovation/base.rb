@@ -1,4 +1,3 @@
-# coding: utf-8
 module PdfAuditCertificates::Awards2016::Innovation
   class Base < PdfAuditCertificates::Base
     # HERE YOU CAN OVERRIDE STANDART METHODS
@@ -13,7 +12,7 @@ module PdfAuditCertificates::Awards2016::Innovation
 
     def partitioned_rows
       indexes = formatted_data.map.with_index { |x, idx| idx if x.keys && x.keys[0] == :dates }.compact_blank
-      return formatted_data unless (indexes.size > 1)
+      return formatted_data unless indexes.size > 1
 
       first = formatted_data[0...(indexes[-1])]
       last = formatted_data[indexes[-1]..-1]
@@ -78,19 +77,17 @@ module PdfAuditCertificates::Awards2016::Innovation
         next unless row
 
         memo << if field == :dates
-          render_date_row(row, index)
-        else
-          render_financial_row(row, index, key: field)
-        end
+                  render_date_row(row, index)
+                else
+                  render_financial_row(row, index, key: field)
+                end
 
         memo << revised_row(row.values.first.length, index)
       end
 
       table(rows, table_default_ops(:main_table)) do
         rows.each_with_index do |row, i|
-          if row.first.include?("Revised")
-            style(row(i), text_color: "808080")
-          end
+          style(row(i), text_color: "808080") if row.first.include?("Revised")
         end
       end
     end
@@ -100,25 +97,23 @@ module PdfAuditCertificates::Awards2016::Innovation
 
       rows = FIRST_TABLE_ROWS.each_with_object([]).with_index(1) do |(field, memo), index|
         row = financial_rows.detect { |r| r[field] }
-        
+
         next unless row
-        
+
         memo << if field == :dates
-          render_date_row(row, index)
-        elsif field == :uk_sales
-          render_financial_uk_sales_row(row, index)
-        else
-          render_financial_row(row, index, key: field)
-        end
+                  render_date_row(row, index)
+                elsif field == :uk_sales
+                  render_financial_uk_sales_row(row, index)
+                else
+                  render_financial_row(row, index, key: field)
+                end
 
         memo << revised_row(row.values.first.length, index)
       end
 
       table(rows, table_default_ops(:main_table)) do
         rows.each_with_index do |row, i|
-          if row.first.include?("Revised")
-            style(row(i), text_color: "808080")
-          end
+          style(row(i), text_color: "808080") if row.first.include?("Revised")
         end
       end
     end

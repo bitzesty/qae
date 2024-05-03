@@ -21,8 +21,10 @@ class AssessorAssignmentCollection
 
   def save
     return unless valid?
+
     form_answers.each do |fa|
       next unless @subject.lead?(fa)
+
       prim = fa.assessor_assignments.primary
       sec = fa.assessor_assignments.secondary
       handle_double_assignment(fa, prim, sec)
@@ -42,26 +44,23 @@ class AssessorAssignmentCollection
       prim.save || add_error(prim.errors.to_a)
     end
 
-    if secondary_assignable?(fa)
-      sec.assessor = secondary_assessor
-      sec.save || add_error(sec.errors.to_a)
-    end
+    return unless secondary_assignable?(fa)
+
+    sec.assessor = secondary_assessor
+    sec.save || add_error(sec.errors.to_a)
   end
 
   def handle_double_assignment(fa, prim, sec)
     if primary_assessor.present? &&
-       secondary_assessor.present? &&
-       primary_assignable?(fa) &&
-       secondary_assignable?(fa)
+        secondary_assessor.present? &&
+        primary_assignable?(fa) &&
+        secondary_assignable?(fa) && (primary_assessor == sec.assessor ||
+          secondary_assessor == prim.assessor)
 
-      if primary_assessor == sec.assessor ||
-         secondary_assessor == prim.assessor
-
-        prim.assessor_id = nil
-        sec.assessor_id = nil
-        prim.save
-        sec.save
-      end
+      prim.assessor_id = nil
+      sec.assessor_id = nil
+      prim.save
+      sec.save
     end
   end
 
@@ -85,11 +84,13 @@ class AssessorAssignmentCollection
 
   def secondary_assessor
     return if secondary_assessor_id == NOT_ASSIGNED
+
     @secondary_assessor ||= Assessor.where(id: secondary_assessor_id).first
   end
 
   def primary_assessor
     return if primary_assessor_id == NOT_ASSIGNED
+
     @primary_assessor ||= Assessor.where(id: primary_assessor_id).first
   end
 
@@ -99,7 +100,7 @@ class AssessorAssignmentCollection
 
   def assessors_can_not_be_the_same
     if primary_assessor_id == secondary_assessor_id &&
-       primary_assessor_present?
+        primary_assessor_present?
       errors.add(:base, "Primary/Secondary Assessor can not be the same.")
     end
   end

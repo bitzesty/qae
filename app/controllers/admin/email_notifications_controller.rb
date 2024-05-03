@@ -1,5 +1,5 @@
 class Admin::EmailNotificationsController < Admin::BaseController
-  before_action :load_email_notification, only: [:update, :destroy]
+  before_action :load_email_notification, only: %i[update destroy]
 
   def create
     authorize :email_notifications, :create?
@@ -57,9 +57,7 @@ class Admin::EmailNotificationsController < Admin::BaseController
   def run_notifications
     authorize :email_notifications, :create?
 
-    if ::ServerEnvironment.local_or_dev_or_staging_server?
-      ::Notifiers::EmailNotificationService.run
-    end
+    ::Notifiers::EmailNotificationService.run if ::ServerEnvironment.local_or_dev_or_staging_server?
 
     redirect_to admin_settings_path
   end
@@ -71,6 +69,6 @@ class Admin::EmailNotificationsController < Admin::BaseController
   end
 
   def notification_params
-    params.require(:email_notification).permit([:formatted_trigger_at_date, :formatted_trigger_at_time, :kind])
+    params.require(:email_notification).permit(%i[formatted_trigger_at_date formatted_trigger_at_time kind])
   end
 end

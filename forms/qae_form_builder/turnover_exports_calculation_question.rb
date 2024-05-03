@@ -3,7 +3,7 @@ class QaeFormBuilder
   end
 
   class TurnoverExportsCalculationQuestionDecorator < QuestionDecorator
-    def format_label y
+    def format_label(y)
       if delegate_obj.label && delegate_obj.label.is_a?(Proc)
         delegate_obj.label.call y
       else
@@ -36,11 +36,15 @@ class QaeFormBuilder
               date << q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue StandardError
+              nil
+            end
 
-            c.question_value.(date)
+            c.question_value.call(date)
           else
-            c.question_value.(form[c.question_key].input_value)
+            c.question_value.call(form[c.question_key].input_value)
           end
         else
           form[c.question_key].input_value == c.question_value
@@ -50,23 +54,23 @@ class QaeFormBuilder
   end
 
   class TurnoverExportsCalculationQuestionBuilder < QuestionBuilder
-    def label label
+    def label(label)
       @q.label = label
     end
 
-    def by_year_condition k, v, num, options = {}
+    def by_year_condition(k, v, num, options = {})
       @q.by_year_conditions << ByYearsCondition.new(k, v, num, **options)
     end
 
-    def turnover key
+    def turnover(key)
       @q.turnover_question = key.to_s.to_sym
     end
 
-    def exports key
+    def exports(key)
       @q.exports_question = key.to_s.to_sym
     end
 
-    def one_option_financial_data_mode val
+    def one_option_financial_data_mode(val)
       @q.one_option_financial_data_mode = val
     end
   end
@@ -76,6 +80,7 @@ class QaeFormBuilder
                   :question_value,
                   :years,
                   :span_class
+
     def initialize question_key, question_value, years, **options
       @question_key = question_key
       @question_value = question_value
@@ -95,5 +100,4 @@ class QaeFormBuilder
       @by_year_conditions = []
     end
   end
-
 end

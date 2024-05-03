@@ -1,13 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 include ActiveJob::TestHelper
 
-describe "Collaborators", %q{
+describe "Collaborators", '
 As a Account Admin
 I want to be able to add / remove collaborators to Account
 So that they can collaborate form answers
-} do
-
+' do
   let!(:account_admin) do
     create :user,
            :completed_profile,
@@ -27,33 +26,33 @@ So that they can collaborate form answers
 
   let!(:basic_eligibility) do
     create :basic_eligibility,
-           form_answer: form_answer,
-           account: account
+           form_answer:,
+           account:
   end
 
   let!(:innovation_eligibility) do
     create :innovation_eligibility,
-           form_answer: form_answer,
-           account: account
- end
+           form_answer:,
+           account:
+  end
 
   let!(:trade_eligibility) do
     create :trade_eligibility,
-           form_answer: form_answer,
-           account: account
+           form_answer:,
+           account:
   end
 
   let!(:development_eligibility) do
     create :development_eligibility,
-           form_answer: form_answer,
-           account: account
+           form_answer:,
+           account:
   end
 
   let!(:another_account_admin) do
     create :user,
            :completed_profile,
            first_name: "Another Account Admin Mike",
-           account: account,
+           account:,
            role: "account_admin"
   end
 
@@ -61,7 +60,7 @@ So that they can collaborate form answers
     create :user,
            :completed_profile,
            first_name: "Regular User Kelly",
-           account: account,
+           account:,
            role: "regular"
   end
 
@@ -93,11 +92,11 @@ So that they can collaborate form answers
         describe "Invalid Attempts" do
           it "can't add person without email" do
             within("#new_collaborator") do
-              expect {
+              expect do
                 click_on "Add the collaborator"
-              }.to_not change {
+              end.to_not(change do
                 account.reload.users.count
-              }
+              end)
             end
 
             within(".collaborator_email") do
@@ -110,11 +109,11 @@ So that they can collaborate form answers
               fill_in "Email", with: "12345678"
               choose("Collaborator only")
 
-              expect {
+              expect do
                 click_on "Add the collaborator"
-              }.to_not change {
+              end.to_not(change do
                 account.reload.users.count
-              }
+              end)
             end
 
             within(".collaborator_email") do
@@ -134,11 +133,11 @@ So that they can collaborate form answers
                 fill_in "Email", with: user_associated_with_another_account.email
                 choose("Admin and collaborator")
 
-                expect {
+                expect do
                   click_on "Add the collaborator"
-                }.to_not change {
+                end.to_not(change do
                   account.reload.users.count
-                }
+                end)
               end
 
               expect_to_see "User already associated with another account!"
@@ -151,11 +150,11 @@ So that they can collaborate form answers
                 fill_in "Email", with: account_admin.email
                 choose("Admin and collaborator")
 
-                expect {
+                expect do
                   click_on "Add the collaborator"
-                }.to_not change {
+                end.to_not(change do
                   account.reload.users.count
-                }
+                end)
               end
 
               expect_to_see "This user already added to collaborators!"
@@ -172,9 +171,9 @@ So that they can collaborate form answers
                 fill_in "Email", with: new_user_email
                 choose("Collaborator only")
 
-                expect {
+                expect do
                   click_on "Add the collaborator"
-                }.to change {
+                end.to change {
                   account.reload.users.count
                 }.by(1)
               end
@@ -208,9 +207,9 @@ So that they can collaborate form answers
             click_on "Edit details"
           end
 
-          expect {
-            click_link 'js-remove-collaborator-link'
-          }.to change {
+          expect do
+            click_link "js-remove-collaborator-link"
+          end.to change {
             account.reload.users.count
           }.by(-1)
 
@@ -233,9 +232,9 @@ So that they can collaborate form answers
           click_link "Remove collaborator"
           expect_to_see "Are you sure you want remove this collaborator?"
 
-          expect {
+          expect do
             click_link "Yes, remove collaborator"
-          }.to change {
+          end.to change {
             account.reload.users.count
           }.by(-1)
         end

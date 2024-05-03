@@ -20,7 +20,7 @@ describe FormAnswerSearch do
     expect(PalaceAttendee.count).to eq(1)
     expect(PalaceInvite.count).to eq(2)
 
-    res = described_class.new(scope, admin).filter_by_sub_status(scope, ["missing_rsvp_details"])
+    res = described_class.new(scope, admin).filter_by_sub_status(scope, %w[missing_rsvp_details])
     expect(res.size).to eq(3)
     expect(res).to_not include(invite2)
     res = described_class.new(scope, admin).filter_by_sub_status(scope, [])
@@ -42,7 +42,7 @@ describe FormAnswerSearch do
       let(:assessment) { form_answer.assessor_assignments.primary }
 
       it "filters out if assessment is not present" do
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["primary_assessment_submitted"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[primary_assessment_submitted])
 
         expect(result.length).to be_zero
       end
@@ -50,7 +50,7 @@ describe FormAnswerSearch do
       it "filters out if assessment is not submitted" do
         assessment
 
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["primary_assessment_submitted"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[primary_assessment_submitted])
 
         expect(result.length).to be_zero
       end
@@ -58,7 +58,7 @@ describe FormAnswerSearch do
       it "shows application if assessment is submitted" do
         AssessmentSubmissionService.new(assessment, assessor).perform
 
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["primary_assessment_submitted"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[primary_assessment_submitted])
 
         expect(result.length).to be_zero
       end
@@ -68,7 +68,7 @@ describe FormAnswerSearch do
       let(:assessment) { form_answer.assessor_assignments.secondary }
 
       it "filters out if assessment is not present" do
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["secondary_assessment_submitted"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[secondary_assessment_submitted])
 
         expect(result.length).to be_zero
       end
@@ -76,7 +76,7 @@ describe FormAnswerSearch do
       it "filters out if assessment is not submitted" do
         assessment
 
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["secondary_assessment_submitted"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[secondary_assessment_submitted])
 
         expect(result.length).to be_zero
       end
@@ -84,7 +84,7 @@ describe FormAnswerSearch do
       it "shows application if assessment is submitted" do
         AssessmentSubmissionService.new(assessment, assessor).perform
 
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["secondary_assessment_submitted"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[secondary_assessment_submitted])
 
         expect(result.length).to be_zero
       end
@@ -103,14 +103,14 @@ describe FormAnswerSearch do
           overseas_earnings_growth_desc: "1",
           overseas_earnings_growth_rate: "average",
           corporate_social_responsibility_desc: "testcsr",
-          corporate_social_responsibility_rate: "average"
+          corporate_social_responsibility_rate: "average",
         }
       end
 
       before do
-        primary_assessment.document = assessment_document.merge({verdict_rate: "average"})
+        primary_assessment.document = assessment_document.merge({ verdict_rate: "average" })
         primary_assessment.submitted_at = Time.current
-        secondary_assessment.document = assessment_document.merge({verdict_rate: "positive"})
+        secondary_assessment.document = assessment_document.merge({ verdict_rate: "positive" })
         secondary_assessment.submitted_at = Time.current
 
         primary_assessment.save!
@@ -118,15 +118,15 @@ describe FormAnswerSearch do
       end
 
       it "shows applications with different verdicts" do
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["recommendation_disperancy"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[recommendation_disperancy])
         expect(result.length).to eq(1)
       end
 
       it "filters out applications with same verdicts" do
-        secondary_assessment.document = assessment_document.merge({verdict_rate: "average"})
+        secondary_assessment.document = assessment_document.merge({ verdict_rate: "average" })
         secondary_assessment.save!
 
-        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["recommendation_disperancy"])
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, %w[recommendation_disperancy])
         expect(result.length).to be_zero
       end
     end

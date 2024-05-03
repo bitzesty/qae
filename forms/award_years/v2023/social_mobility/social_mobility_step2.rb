@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2023::QaeForms
   class << self
     def mobility_step2
@@ -86,7 +85,8 @@ class AwardYears::V2023::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility, for at least two years. It is to recognise those organisations engaged in enterprise whose core activity is not social mobility but have a programme that supports it.
 
               Not-for-profits, social enterprises and charities are welcome to apply.
@@ -95,14 +95,16 @@ class AwardYears::V2023::QaeForms
             )],
 
             [:bold, "Social mobility definition"],
-            [:normal, %(
+            [:normal,
+             %(
               Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
 
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
               \u2022 Socio-economic status is a person's current social and economic circumstances.)],
             [:bold, "Disadvantaged groups that Queen's Awards for Enterprise focuses on"],
-            [:normal, %(
+            [:normal,
+             %(
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
 
               \u2022 Black, Asian and minority ethnic people, including Gypsy and Traveller people;
@@ -145,26 +147,30 @@ class AwardYears::V2023::QaeForms
             )],
 
             [:bold, "Evidence"],
-            [:normal, %(
+            [:normal,
+             %(
               Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
 
               The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
             )],
 
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               The Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
 
             [:bold, "COVID-19 impact"],
-            [:normal, %(
+            [:normal,
+             %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
 
             [:bold, "Answering questions"],
-            [:normal, %(
+            [:normal,
+             %(
               Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.
-            )]
+            )],
           ]
         end
 
@@ -176,32 +182,41 @@ class AwardYears::V2023::QaeForms
               Select whether your application is for:
             </p>
           )
-          option "initiative", "a) <strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds."
-          option "organisation", "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
+          option "initiative",
+                 "a) <strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds."
+          option "organisation",
+                 "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
 
           context_for_option "initiative", "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.<br/><br/>
             For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.<br/><br/>
             If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim. <br/><br/>
             If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
 
-
-          context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
+          context_for_option "organisation",
+                             "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
 
           pdf_context_for_option "initiative", [
-            [:normal, "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.\n"],
+            [:normal,
+             "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.\n"],
 
-            [:normal, "For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.\n"],
-            [:normal, "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
-            [:normal, "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
+            [:normal,
+             "For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.\n"],
+            [:normal,
+             "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
+            [:normal,
+             "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
 
-            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"]
+            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"],
           ]
 
           pdf_context_for_option "organisation", [
 
-            [:normal, "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
-            [:bold, "If you selected option b, you cannot proceed. As per our eligibility questionnaire, we are no longer accepting applications for organisations whose sole purpose is promoting opportunity through Social Mobility.\n"],
-            [:bold, "However, if your organisation’s core purpose is not social mobility, but improving social mobility is a big part of your mission, please apply on the basis of having the initiative - please select the option “a) An initiative” in question B1."]
+            [:normal,
+             "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
+            [:bold,
+             "If you selected option b, you cannot proceed. As per our eligibility questionnaire, we are no longer accepting applications for organisations whose sole purpose is promoting opportunity through Social Mobility.\n"],
+            [:bold,
+             "However, if your organisation’s core purpose is not social mobility, but improving social mobility is a big part of your mission, please apply on the basis of having the initiative - please select the option “a) An initiative” in question B1."],
           ]
 
           default_option "initiative"
@@ -211,11 +226,13 @@ class AwardYears::V2023::QaeForms
 
         comment :initiative_question_guidance, "" do
           pdf_context_with_header_blocks [
-            [:italic, "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."]
+            [:italic,
+             "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."],
           ]
         end
 
-        checkbox_seria :initiative_activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
+        checkbox_seria :initiative_activities,
+                       "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2a"
           required
           classes "question-limited-selections"
@@ -224,15 +241,23 @@ class AwardYears::V2023::QaeForms
             <p>If necessary, you can select more than one activity.</p>
           )
           check_options [
-            ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
-            ["fairer_recruitment", "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic."],
-            ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
-            ["work_placements", "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
-            ["early_careers", "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
-            ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
-            ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
-            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
-            ["other", "<strong>Other activity types</strong>"]
+            ["careers_advice",
+             "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
+            ["fairer_recruitment",
+             "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic."],
+            ["skills_development",
+             "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
+            ["work_placements",
+             "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
+            ["early_careers",
+             "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
+            ["job_opportunities",
+             "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
+            ["advancement",
+             "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
+            ["advocacy_and_leadership",
+             "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
+            ["other", "<strong>Other activity types</strong>"],
           ]
           conditional :application_category, "initiative"
         end
@@ -246,14 +271,17 @@ class AwardYears::V2023::QaeForms
           rows 2
         end
 
-        matrix :initiative_participants_activity_type, "Provide the number of participants in each activity type that your initiative supports each year." do
+        matrix :initiative_participants_activity_type,
+               "Provide the number of participants in each activity type that your initiative supports each year." do
           classes "sub-question question-matrix"
           ref "B 2.2a"
           required
           pdf_context_with_header_blocks [
-            [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
-            [:normal, "A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Where none, enter zeros."]
+            [:normal,
+             "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
+            [:normal,
+             "A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal, "Where none, enter zeros."],
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
@@ -269,14 +297,14 @@ class AwardYears::V2023::QaeForms
 
           y_headings [
             ["careers_advice", "Careers advice"],
-            [ "fairer_recruitment", "Fairer recruitment"],
-            [ "skills_development", "Skills development"],
-            [ "work_placements", "Work placements"],
-            [ "early_careers", "Early careers"],
-            [ "job_opportunities", "Job opportunities"],
-            [ "advancement", "Advancement"],
-            [ "advocacy_and_leadership", "Advocacy and leadership"],
-            [ "other_activity_types", "Other activity types"]
+            ["fairer_recruitment", "Fairer recruitment"],
+            ["skills_development", "Skills development"],
+            ["work_placements", "Work placements"],
+            ["early_careers", "Early careers"],
+            ["job_opportunities", "Job opportunities"],
+            ["advancement", "Advancement"],
+            ["advocacy_and_leadership", "Advocacy and leadership"],
+            ["other_activity_types", "Other activity types"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
@@ -298,7 +326,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_desc_medium, "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
+        textarea :initiative_desc_medium,
+                 "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
           classes "sub-question"
           sub_ref "B 3.2a"
           required
@@ -330,10 +359,14 @@ class AwardYears::V2023::QaeForms
           sub_ref "B 3.4a"
           required
           pdf_context_with_header_blocks [
-            [:normal, "Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups."],
-            [:normal, "For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this."],
-            [:normal, "Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this."],
-            [:normal, "Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation."]
+            [:normal,
+             "Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups."],
+            [:normal,
+             "For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this."],
+            [:normal,
+             "Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this."],
+            [:normal,
+             "Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation."],
           ]
           context %(
             <p>Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups.</p>
@@ -375,7 +408,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_measuring_targets, "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your initiative." do
+        textarea :initiative_measuring_targets,
+                 "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your initiative." do
           classes "sub-question"
           sub_ref "B 4.2a"
           required
@@ -397,7 +431,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_targets_not_met, "Explain what happens if your initiative doesn't meet the KPIs or alternative performance targets?" do
+        textarea :initiative_targets_not_met,
+                 "Explain what happens if your initiative doesn't meet the KPIs or alternative performance targets?" do
           classes "sub-question"
           sub_ref "B 4.3a"
           required
@@ -410,14 +445,17 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        matrix :initiative_disadvantaged_groups_year, "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
+        matrix :initiative_disadvantaged_groups_year,
+               "Provide the number of participants in each disadvantaged group that your initiative supports each year." do
           classes "sub-question question-matrix"
           sub_ref "B 5.1a"
           required
           pdf_context_with_header_blocks [
-            [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Where none, enter zeros."]
+            [:normal,
+             "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
+            [:normal,
+             "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal, "Where none, enter zeros."],
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
@@ -433,37 +471,48 @@ class AwardYears::V2023::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
-            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["lone_parents",
+             "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals",
+             "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed",
+             "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers",
+             "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education",
+             "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment",
+             "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification",
+             "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability",
+             "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
-        matrix :initiative_disadvantaged_groups_impact_employment, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of employment opportunities." do
+        matrix :initiative_disadvantaged_groups_impact_employment,
+               "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of employment opportunities." do
           classes "sub-question question-matrix"
           sub_ref "B 5.2a"
           required
           pdf_context_with_header_blocks [
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:normal,
+             "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal,
+             "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
+            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."],
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
@@ -475,41 +524,55 @@ class AwardYears::V2023::QaeForms
           corner_label "Disadvantaged group type"
           totals_label "Total number of discrete participants supported"
 
-          x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
+          x_headings ["Jobs secured within a year of support",
+                      "Jobs retained for more than one year",
+                      "Apprenticeships secured",
+                      "Apprenticeships completed"]
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
-            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["lone_parents",
+             "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals",
+             "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed",
+             "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers",
+             "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education",
+             "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment",
+             "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification",
+             "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability",
+             "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
         end
 
-        matrix :initiative_disadvantaged_groups_impact_education, "Provide the number of participants in each disadvantaged group that your initiative resulted in terms of education opportunities." do
+        matrix :initiative_disadvantaged_groups_impact_education,
+               "Provide the number of participants in each disadvantaged group that your initiative resulted in terms of education opportunities." do
           classes "sub-question question-matrix"
           sub_ref "B 5.3a"
           required
           pdf_context_with_header_blocks [
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:normal,
+             "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal,
+             "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
+            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."],
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
@@ -521,41 +584,56 @@ class AwardYears::V2023::QaeForms
           corner_label "Disadvantaged group type"
           totals_label "Total number of discrete participants supported"
 
-          x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
+          x_headings ["NVQ levels 1-3",
+                      "NVQ level 4 and above",
+                      "GCSEs	A levels",
+                      "Entrance to Further Education	",
+                      "Entrance to Higher Education"]
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
-            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["lone_parents",
+             "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals",
+             "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed",
+             "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers",
+             "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education",
+             "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment",
+             "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification",
+             "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability",
+             "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 20, 2 => 25, 3 => 20, 4 => 23, 5 => 23 })
         end
 
-        matrix :initiative_disadvantaged_groups_impact_other, "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of other opportunities." do
+        matrix :initiative_disadvantaged_groups_impact_other,
+               "Provide the number of participants in each disadvantaged group that your initiative had impacted in terms of other opportunities." do
           classes "sub-question question-matrix"
           sub_ref "B 5.4a"
           required
           pdf_context_with_header_blocks [
-            [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:normal,
+             "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
+            [:normal,
+             "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
+            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."],
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
@@ -571,24 +649,32 @@ class AwardYears::V2023::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
-            ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
-            ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["lone_parents",
+             "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals",
+             "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed",
+             "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers",
+             "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education",
+             "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["school_attainment",
+             "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
+            ["parents_qualification",
+             "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
+            ["mental_disability",
+             "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 25, 2 => 20, 3 => 23, 4 => 20, 5 => 15 })
@@ -605,7 +691,8 @@ class AwardYears::V2023::QaeForms
           )
         end
 
-        textarea :initiative_qualitative_evidence, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
+        textarea :initiative_qualitative_evidence,
+                 "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
           classes "sub-question"
           sub_ref "B 5.6a"
           required
@@ -633,7 +720,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_feedback, "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
+        textarea :initiative_feedback,
+                 "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
           classes "sub-question"
           sub_ref "B 5.7a"
           required
@@ -660,7 +748,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation?" do
+        textarea :initiative_impact_sharing,
+                 "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation?" do
           classes "sub-question"
           sub_ref "B 6.1a"
           required
@@ -671,7 +760,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_member_engagement, "Explain if and how you engage the organisation’s members or employees in the design and implementation of your initiative." do
+        textarea :initiative_member_engagement,
+                 "Explain if and how you engage the organisation’s members or employees in the design and implementation of your initiative." do
           classes "sub-question"
           sub_ref "B 6.2a"
           required
@@ -679,7 +769,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do." do
+        textarea :initiative_long_term_plans,
+                 "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do." do
           classes "sub-question"
           sub_ref "B 6.3a"
           required
@@ -687,7 +778,8 @@ class AwardYears::V2023::QaeForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_organisation_benefits, "Are there any other benefits of the initiative to your organisation that you haven't yet outlined in the previous responses?" do
+        textarea :initiative_organisation_benefits,
+                 "Are there any other benefits of the initiative to your organisation that you haven't yet outlined in the previous responses?" do
           classes "sub-question"
           sub_ref "B 6.4a"
           required
@@ -709,9 +801,9 @@ class AwardYears::V2023::QaeForms
         textarea :initiative_community_society_impact, "Impact on community and society." do
           sub_ref "B 7a"
           required
-          question_sub_title %{
+          question_sub_title %(
             What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?
-          }
+          )
           context %(
             <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )

@@ -3,13 +3,13 @@ require "rails_helper"
 describe AccountMailers::ReminderToSubmitMailer do
   let(:user) { create :user }
   let!(:award_year) { AwardYear.current }
-  let(:form_answer) { create :form_answer, user: user }
+  let(:form_answer) { create :form_answer, user: }
   let!(:settings) { create(:settings, :submission_deadlines) }
 
   let(:mail) do
     AccountMailers::ReminderToSubmitMailer.notify(
       form_answer.id,
-      user.id
+      user.id,
     )
   end
 

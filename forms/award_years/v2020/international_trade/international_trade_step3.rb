@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2020::QaeForms
   class << self
     def trade_step3
@@ -20,17 +19,20 @@ class AwardYears::V2020::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               You will have to submit data for your latest financial year that falls before the <strong>#{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}</strong> (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -43,7 +45,8 @@ class AwardYears::V2020::QaeForms
           )
         end
 
-        trade_commercial_success :trade_commercial_success, "How would you describe the impact of your international trade activities on your organisation's financial performance?" do
+        trade_commercial_success :trade_commercial_success,
+                                 "How would you describe the impact of your international trade activities on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
@@ -67,7 +70,7 @@ class AwardYears::V2020::QaeForms
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question
@@ -89,7 +92,8 @@ class AwardYears::V2020::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> years) entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> years) entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -163,17 +167,20 @@ class AwardYears::V2020::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "Group entries"],
-            [:normal, %(
+            [:normal,
+             %(
               A parent company making a group entry should include the trading figures of all UK members of the group.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -265,7 +272,7 @@ class AwardYears::V2020::QaeForms
             </p>
                     )
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
+          drop_conditional %i[drops_in_turnover drops_explain_how_your_business_is_financially_viable]
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
@@ -284,7 +291,7 @@ class AwardYears::V2020::QaeForms
             </p>
           )
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
+          drop_conditional %i[drops_in_turnover drops_explain_how_your_business_is_financially_viable]
         end
 
         textarea :drops_in_turnover, "Explain any drops in the total turnover or net profit, and any losses made." do
@@ -300,7 +307,8 @@ class AwardYears::V2020::QaeForms
           drop_condition_parent
         end
 
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
+        textarea :drops_explain_how_your_business_is_financially_viable,
+                 "Explain how your business is financially viable, in terms of cash flow and cash generated." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.5"
           context %(
@@ -313,7 +321,8 @@ class AwardYears::V2020::QaeForms
           drop_condition_parent
         end
 
-        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
+        textarea :investment_strategy_and_its_objectives,
+                 "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
           sub_ref "C 4.6"
           context %(

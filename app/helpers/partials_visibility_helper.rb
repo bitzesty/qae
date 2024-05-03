@@ -1,7 +1,8 @@
 module PartialsVisibilityHelper
   def show_section_case_summary?
     return false unless moderated_assessment.submitted?
-    return true if current_subject.lead?(@form_answer) || current_subject.primary?(@form_answer)
+
+    true if current_subject.lead?(@form_answer) || current_subject.primary?(@form_answer)
   end
 
   def show_section_appraisal_moderated?
@@ -51,7 +52,7 @@ module PartialsVisibilityHelper
 
   def admin_lead_or_primary?
     current_subject.is_a?(Admin) ||
-    current_subject.lead?(@form_answer) ||
-    current_subject.primary?(@form_answer)
+      current_subject.lead?(@form_answer) ||
+      current_subject.primary?(@form_answer)
   end
 end

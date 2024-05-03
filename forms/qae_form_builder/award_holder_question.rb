@@ -5,19 +5,17 @@ class QaeFormBuilder
 
       question.entities.each_with_index do |award, index|
         question.required_sub_fields_list.each do |attr|
-          if !award[attr].present?
+          if award[attr].blank?
             result[question.key] ||= {}
             result[question.key][index] ||= ""
             result[question.key][index] << " #{attr.humanize.capitalize} can't be blank."
-          else
-            if attr == "details"
-              limit = question.delegate_obj.details_words_max
-              length = award[attr].split(" ").length
+          elsif attr == "details"
+            limit = question.delegate_obj.details_words_max
+            length = award[attr].split(" ").length
 
-              if limit && limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
-                result[question.key][index] ||= ""
-                result[question.key][index] << " #{attr.humanize.capitalize} exeeded #{limit} words limit."
-              end
+            if limit && limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
+              result[question.key][index] ||= ""
+              result[question.key][index] << " #{attr.humanize.capitalize} exeeded #{limit} words limit."
             end
           end
         end
@@ -44,9 +42,9 @@ class QaeFormBuilder
   class AwardHolderQuestionDecorator < MultiQuestionDecorator
     def required_sub_fields_list
       if delegate_obj.award_years_present
-        %w(title year details)
+        %w[title year details]
       else
-        %w(title details)
+        %w[title details]
       end
     end
   end

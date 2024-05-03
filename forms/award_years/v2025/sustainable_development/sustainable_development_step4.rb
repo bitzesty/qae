@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def development_step4
@@ -52,14 +51,15 @@ class AwardYears::V2025::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three</span> most recent financial years that you will be providing figures for?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your <span class='js-entry-period-subtext'>three</span> most recent financial years that you will be providing figures for?" do
           classes "sub-question js-financial-year-change fs-trackable"
           sub_ref "D 2.1"
           required
           yes_no
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
             </p>
           )
           default_option "no"
@@ -70,7 +70,7 @@ class AwardYears::V2025::QaeForms
           sub_ref "D 2.2"
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
             </p>
           )
           required
@@ -102,7 +102,8 @@ class AwardYears::V2025::QaeForms
           conditional :financial_year_date_changed, :yes
         end
 
-        one_option_by_years :employees, "Enter the number of people employed by your organisation in the UK in each of your three most recent financial years." do
+        one_option_by_years :employees,
+                            "Enter the number of people employed by your organisation in the UK in each of your three most recent financial years." do
           classes "question-employee-min"
           ref "D 3"
           required
@@ -187,7 +188,8 @@ class AwardYears::V2025::QaeForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :drops_in_turnover, "If you have had any losses, drops in turnover (or income), or reductions in net profit, please explain them." do
+        textarea :drops_in_turnover,
+                 "If you have had any losses, drops in turnover (or income), or reductions in net profit, please explain them." do
           classes "sub-question"
           sub_ref "D 4.6"
           required
@@ -207,7 +209,8 @@ class AwardYears::V2025::QaeForms
           sub_ref "D 4.7"
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
+        textarea :investments_details,
+                 "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
           ref "D 5"
           required
           context %(
@@ -219,7 +222,8 @@ class AwardYears::V2025::QaeForms
           words_max 400
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
+        textarea :covid_impact_details,
+                 "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
           ref "D 6"
           required
           context %(
@@ -292,7 +296,8 @@ class AwardYears::V2025::QaeForms
           conditional :product_estimated_figures, :yes
         end
 
-        upload :supporting_financials, "To support your figures, please upload your financial statements for the years covered in previous questions in section D." do
+        upload :supporting_financials,
+               "To support your figures, please upload your financial statements for the years covered in previous questions in section D." do
           classes "sub-question"
           sub_ref "D 9"
           context %(

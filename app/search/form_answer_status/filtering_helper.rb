@@ -3,9 +3,7 @@ module FormAnswerStatus::FilteringHelper
     filtering_values = Array(filtering_values)
 
     filtering_values.flat_map do |val|
-      if supported_filter_attrs.include?(val.to_s)
-        options[val.to_sym][:states]
-      end
+      options[val.to_sym][:states] if supported_filter_attrs.include?(val.to_s)
     end.compact
   end
 

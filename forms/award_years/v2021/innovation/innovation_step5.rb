@@ -2,7 +2,8 @@ class AwardYears::V2021::QaeForms
   class << self
     def innovation_step5
       @innovation_step5 ||= proc do
-        upload :innovation_materials, "If there is additional material you feel would help us to assess your entry, then you can add up to 3 files or website addresses here." do
+        upload :innovation_materials,
+               "If there is additional material you feel would help us to assess your entry, then you can add up to 3 files or website addresses here." do
           ref "E 1"
           context %(
             <p>

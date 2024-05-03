@@ -1,7 +1,7 @@
 class Judge < ApplicationRecord
   include PgSearch::Model
 
-  AVAILABLE_ROLES = ["judge"]
+  AVAILABLE_ROLES = %w[judge]
 
   devise :database_authenticatable,
          :recoverable, :trackable, :validatable, :confirmable,
@@ -16,20 +16,20 @@ class Judge < ApplicationRecord
             :mobility_role,
             :promotion_role,
             inclusion: {
-              in: AVAILABLE_ROLES
+              in: AVAILABLE_ROLES,
             },
             allow_blank: true
 
   pg_search_scope :basic_search,
-                  against: [
-                    :first_name,
-                    :last_name,
-                    :email
+                  against: %i[
+                    first_name
+                    last_name
+                    email
                   ],
                   using: {
                     tsearch: {
-                      prefix: true
-                    }
+                      prefix: true,
+                    },
                   }
 
   scope :active, -> { where(deleted: false) }

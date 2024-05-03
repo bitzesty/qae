@@ -17,15 +17,15 @@ class Admin < ApplicationRecord
   default_scope { where(deleted: false) }
 
   pg_search_scope :basic_search,
-                  against: [
-                    :first_name,
-                    :last_name,
-                    :email
+                  against: %i[
+                    first_name
+                    last_name
+                    email
                   ],
                   using: {
                     tsearch: {
-                      prefix: true
-                    }
+                      prefix: true,
+                    },
                   }
   def lead?(*)
     true

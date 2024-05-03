@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2019::QaeForms
   class << self
     def mobility_step2
@@ -112,9 +111,12 @@ class AwardYears::V2019::QaeForms
             <p>Select all that apply</p>
           )
           check_options [
-            ["mentoring", "A programme which provides careers advice, skills development or mentoring that prepare young people from disadvantaged or lower socio-economic backgrounds for the world of work or accessible, structured work experience."],
-            ["career_opportunities_accessibility", "A programme which makes career opportunities more accessible by offering non-graduate routes such as well-structured traineeships, apprenticeships or internships, or by reforming recruitment practices and offering clear paths for progression."],
-            ["workplace_fostering", "A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers and champions a culture of inclusiveness at every level."]
+            ["mentoring",
+             "A programme which provides careers advice, skills development or mentoring that prepare young people from disadvantaged or lower socio-economic backgrounds for the world of work or accessible, structured work experience."],
+            ["career_opportunities_accessibility",
+             "A programme which makes career opportunities more accessible by offering non-graduate routes such as well-structured traineeships, apprenticeships or internships, or by reforming recruitment practices and offering clear paths for progression."],
+            ["workplace_fostering",
+             "A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers and champions a culture of inclusiveness at every level."],
           ]
           application_type_question true
         end
@@ -166,14 +168,16 @@ class AwardYears::V2019::QaeForms
           words_max 100
         end
 
-        textarea :business_cause, "What factors or issues motivated your organisation to provide the programme? What was the situation before the inception of this programme?" do
+        textarea :business_cause,
+                 "What factors or issues motivated your organisation to provide the programme? What was the situation before the inception of this programme?" do
           required
           ref "B 2"
           rows 5
           words_max 400
         end
 
-        textarea :programme_cause, "Why did you choose this particular programme and how does it align with the core aims and values of your organisation?" do
+        textarea :programme_cause,
+                 "Why did you choose this particular programme and how does it align with the core aims and values of your organisation?" do
           classes "sub-question"
           required
           ref "B 2.1"
@@ -205,7 +209,8 @@ class AwardYears::V2019::QaeForms
           words_max 100
         end
 
-        textarea :measurement_of_success, "How do you measure the success of your programme? What has the programme achieved for your targeted group(s)?" do
+        textarea :measurement_of_success,
+                 "How do you measure the success of your programme? What has the programme achieved for your targeted group(s)?" do
           classes "sub-question"
           required
           ref "B 2.2.4"
@@ -213,7 +218,8 @@ class AwardYears::V2019::QaeForms
           words_max 250
         end
 
-        textarea :investments_return_prediction, "How do you ensure that the programme provides a good return for your organisation, financially or otherwise?" do
+        textarea :investments_return_prediction,
+                 "How do you ensure that the programme provides a good return for your organisation, financially or otherwise?" do
           ref "B 3"
           required
           context %(
@@ -223,7 +229,8 @@ class AwardYears::V2019::QaeForms
           words_max 250
         end
 
-        textarea :investments_return_responsibility, "Who is ultimately responsible for the return from the programme? Who is responsible for the day-to-day management of the programme?" do
+        textarea :investments_return_responsibility,
+                 "Who is ultimately responsible for the return from the programme? Who is responsible for the day-to-day management of the programme?" do
           classes "sub-question"
           sub_ref "B 3.1"
           required
@@ -236,7 +243,8 @@ class AwardYears::V2019::QaeForms
           words_max 150
         end
 
-        textarea :programme_kpis, "What are the goals of the programme? What Key Performance Indicators (KPIs) are used to measure progress? How are they set and monitored? Are the KPIs being met and what happens if they are not met?" do
+        textarea :programme_kpis,
+                 "What are the goals of the programme? What Key Performance Indicators (KPIs) are used to measure progress? How are they set and monitored? Are the KPIs being met and what happens if they are not met?" do
           classes "sub-question"
           sub_ref "B 3.2"
           context %(
@@ -315,7 +323,8 @@ class AwardYears::V2019::QaeForms
           words_max 700
         end
 
-        textarea :employability_improvement_evidence, "Provide evidence on how your organisation improved the employability of the people who engaged in your programme and how it has raised their career aspirations and confidence." do
+        textarea :employability_improvement_evidence,
+                 "Provide evidence on how your organisation improved the employability of the people who engaged in your programme and how it has raised their career aspirations and confidence." do
           classes "sub-question"
           sub_ref "B 4.1"
           required
@@ -335,7 +344,8 @@ class AwardYears::V2019::QaeForms
           words_max 500
         end
 
-        textarea :programme_integration, "Describe how the programme benefits the overall business strategy, and what is the senior decision makers’ commitment to the future growth of the programme." do
+        textarea :programme_integration,
+                 "Describe how the programme benefits the overall business strategy, and what is the senior decision makers’ commitment to the future growth of the programme." do
           ref "B 5"
           required
           context %(
@@ -345,7 +355,8 @@ class AwardYears::V2019::QaeForms
           words_max 250
         end
 
-        textarea :benefits_communication, "What mechanisms are in place to communicate the benefits of the programme to employees, key internal and external stakeholders, including the disadvantaged groups at which the programme is aimed?" do
+        textarea :benefits_communication,
+                 "What mechanisms are in place to communicate the benefits of the programme to employees, key internal and external stakeholders, including the disadvantaged groups at which the programme is aimed?" do
           classes "sub-question"
           sub_ref "B 5.1"
           required
@@ -358,7 +369,8 @@ class AwardYears::V2019::QaeForms
           words_max 250
         end
 
-        textarea :organisation_culture_fosters, "Describe how your organisation’s culture fosters and supports the social mobility programme." do
+        textarea :organisation_culture_fosters,
+                 "Describe how your organisation’s culture fosters and supports the social mobility programme." do
           classes "sub-question"
           sub_ref "B 5.2"
           required
@@ -449,7 +461,8 @@ class AwardYears::V2019::QaeForms
           words_max 750
         end
 
-        textarea :possible_development_without_the_programme, "Provide an assessment of what would have happened to your organisation if you <strong>had not</strong> developed your social mobility programme." do
+        textarea :possible_development_without_the_programme,
+                 "Provide an assessment of what would have happened to your organisation if you <strong>had not</strong> developed your social mobility programme." do
           ref "B 6.1"
           classes "sub-question"
           required
@@ -460,7 +473,8 @@ class AwardYears::V2019::QaeForms
           words_max 250
         end
 
-        textarea :long_term_plans_for_promoting_oportunities, "What are your long-term plans for ensuring your organisation continues to promote opportunities for those from disadvantaged backgrounds, beyond any initiatives you already have in place?" do
+        textarea :long_term_plans_for_promoting_oportunities,
+                 "What are your long-term plans for ensuring your organisation continues to promote opportunities for those from disadvantaged backgrounds, beyond any initiatives you already have in place?" do
           ref "B 6.2"
           classes "sub-question"
           required

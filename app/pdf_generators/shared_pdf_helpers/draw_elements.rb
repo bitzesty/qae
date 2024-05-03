@@ -42,15 +42,15 @@ module SharedPdfHelpers::DrawElements
 
   def render_headers(table_lines, column_widths)
     pdf_doc.move_down 30.mm
-    pdf_doc.table table_lines, row_colors: %w(F0F0F0),
+    pdf_doc.table table_lines, row_colors: %w[F0F0F0],
                                cell_style: { size: 12, font_style: :bold },
-                               column_widths: column_widths
+                               column_widths:
   end
 
   def render_table(table_lines, column_widths = {})
-    pdf_doc.table table_lines, row_colors: %w(FFFFFF),
+    pdf_doc.table table_lines, row_colors: %w[FFFFFF],
                                cell_style: { size: 12 },
-                               column_widths: column_widths
+                               column_widths:
   end
 
   def render_not_found_block
@@ -85,7 +85,7 @@ module SharedPdfHelpers::DrawElements
       size: 12,
       align: :left,
       valign: :top,
-      style: :bold
+      style: :bold,
     }
   end
 end

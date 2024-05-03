@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2020::QaeForms
   class << self
     def innovation_step1
@@ -20,13 +19,13 @@ class AwardYears::V2020::QaeForms
                   <li>Biotechnology & Biological Sciences Research Council</li>
                   <li>Charity Commission</li>
                   <li>Companies House</li>
-                  <li>Competition and Markets Authority</li> 
+                  <li>Competition and Markets Authority</li>
                   <li>Crown Commercial Service</li>
                   <li>Department for Business, Energy and Industrial Strategy</li>
                   <li>Department for Communities and Local Government</li>
                   <li>Department for Culture Media & Sport</li>
                   <li>Department for Education</li>
-                  <li>Department for Environment, Food & Rural Affairs</li>  
+                  <li>Department for Environment, Food & Rural Affairs</li>
                   <li>Department for International Trade</li>
                   <li>Department for Transport</li>
                   <li>Department of Economic Development, Isle of Man</li>
@@ -68,22 +67,23 @@ class AwardYears::V2020::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
                 We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
-              )
-            ],
+              )],
             [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
-            [:normal, %(
+            [:normal,
+             %(
                 \u2022 Biotechnology & Biological Sciences Research Council
                 \u2022 Charity Commission
                 \u2022 Companies House
-                \u2022 Competition and Markets Authority 
+                \u2022 Competition and Markets Authority
                 \u2022 Crown Commercial Service
                 \u2022 Department for Business, Energy and Industrial Strategy
                 \u2022 Department for Communities and Local Government
                 \u2022 Department for Culture Media & Sport
                 \u2022 Department for Education
-                \u2022 Department for Environment, Food & Rural Affairs  
+                \u2022 Department for Environment, Food & Rural Affairs
                 \u2022 Department for International Trade
                 \u2022 Department for Transport
                 \u2022 Department of Economic Development, Isle of Man
@@ -107,21 +107,20 @@ class AwardYears::V2020::QaeForms
                 \u2022 Medical Research Council Technology
                 \u2022 National Measurement Office
                 \u2022 Natural England
-                \u2022 Natural Environment Research Council 
+                \u2022 Natural Environment Research Council
                 \u2022 Office of the Scottish Charity Regulator
                 \u2022 Scottish Government
                 \u2022 Scottish Environment Protection Agency
                 \u2022 Scottish Funding Council
                 \u2022 Serious Fraud Office
                 \u2022 UK Export Finance
-                \u2022 Wales Government           
-              )
-            ],
+                \u2022 Wales Government
+              )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
                 Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-              )
-            ]
+              )],
           ]
         end
 
@@ -200,18 +199,19 @@ class AwardYears::V2020::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
@@ -313,7 +313,8 @@ class AwardYears::V2020::QaeForms
           conditional :innovation_contributors_aware, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
+        textarea :innovation_contributors_why_organisations,
+                 "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           classes "sub-question"
           sub_ref "A 9.2"
           required
@@ -351,7 +352,7 @@ class AwardYears::V2020::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 
@@ -365,7 +366,7 @@ class AwardYears::V2020::QaeForms
           ref "A 12"
           context %(
             <p>
-              If your application is successful, you may get contacted by the press. 
+              If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>
@@ -398,7 +399,7 @@ class AwardYears::V2020::QaeForms
           classes "sub-question"
           style "large"
           required
-        end        
+        end
 
         text :website_url, "Website address" do
           ref "A 13"

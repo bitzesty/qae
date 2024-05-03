@@ -44,11 +44,11 @@ describe "Assessor feedback management" do
       find("#feedback-heading a").click
 
       expect(page).to have_selector(".feedback-holder", text: "Feedback Submitted")
-      expect {
+      expect do
         find(:button, "Unlock").click
-      }.to change {
+      end.to(change do
         feedback.reload.locked_at
-      }
+      end)
     end
   end
 end

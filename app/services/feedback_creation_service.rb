@@ -7,9 +7,9 @@ class FeedbackCreationService
   end
 
   def perform
-    if form_answer.development?
-      populate_feedback!
-    end
+    return unless form_answer.development?
+
+    populate_feedback!
   end
 
   private

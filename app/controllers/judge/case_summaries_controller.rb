@@ -14,7 +14,7 @@ class Judge::CaseSummariesController < Judge::BaseController
           send_data pdf.data,
                     filename: pdf.filename,
                     type: "application/pdf",
-                    disposition: 'attachment'
+                    disposition: "attachment"
         else
           redirect_to pdf.data, allow_other_host: true
         end

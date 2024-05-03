@@ -10,13 +10,9 @@ class QaeFormBuilder
 
       count = calculate_without_blanks(supporters)
 
-      if question.answers["manually_upload"] == "yes"
-        count += calculate_without_blanks(letters)
-      end
+      count += calculate_without_blanks(letters) if question.answers["manually_upload"] == "yes"
 
-      if count < MIN_LIMIT
-        result["supporters"] = "You need to provide at least 2 letters of support"
-      end
+      result["supporters"] = "You need to provide at least 2 letters of support" if count < MIN_LIMIT
 
       result
     end
@@ -39,7 +35,7 @@ class QaeFormBuilder
       @q.default = value
     end
 
-    def list_type list_type
+    def list_type(list_type)
       @q.list_type = list_type
     end
   end

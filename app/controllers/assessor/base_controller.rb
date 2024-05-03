@@ -46,9 +46,9 @@ class Assessor::BaseController < ApplicationController
   end
 
   def check_suspension_status
-    if current_assessor.suspended? && controller_name != "dashboard" && action_name != "suspended"
-      flash.clear # clearing any successfull login messages
-      redirect_to assessor_suspended_path
-    end
+    return unless current_assessor.suspended? && controller_name != "dashboard" && action_name != "suspended"
+
+    flash.clear # clearing any successfull login messages
+    redirect_to assessor_suspended_path
   end
 end

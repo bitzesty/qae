@@ -8,8 +8,10 @@ module AssessorAssignmentContext
         log_event
         format.json { render json: { errors: [] } }
       else
-        format.json { render status: :unprocessable_entity,
-                             json: { errors: assessment.resource.errors } }
+        format.json do
+          render status: :unprocessable_entity,
+                 json: { errors: assessment.resource.errors }
+        end
         Appsignal.send_error(Exception.new("Failed to save `AssessorAssignment##{assessor_assignment.id}. \n #{assessment.resource.errors} \n #{params}"))
       end
 

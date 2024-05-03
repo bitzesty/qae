@@ -53,7 +53,7 @@ class Admin::CommentsController < Admin::BaseController
     log_event if resource.destroy
 
     respond_to do |format|
-      format.json { render(json: :ok)}
+      format.json { render(json: :ok) }
       format.html do
         render_flash_message_for(resource)
         redirect_to(admin_form_answer_path(form_answer))

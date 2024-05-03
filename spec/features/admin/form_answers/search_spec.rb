@@ -14,9 +14,9 @@ describe "Form answer search", "
 
   context "success searching" do
     context "by user name" do
-      let!(:user) { create(:user, first_name: first_name) }
-      let(:first_name) { "user-#{rand(100000)}" }
-      let!(:form_answer) { create(:form_answer, user: user) }
+      let!(:user) { create(:user, first_name:) }
+      let(:first_name) { "user-#{rand(100_000)}" }
+      let!(:form_answer) { create(:form_answer, user:) }
 
       it "searchs for form answer with first name" do
         within ".search-input" do

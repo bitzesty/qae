@@ -36,7 +36,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = ENV['ASSET_HOST']
+  config.action_controller.asset_host = ENV.fetch("ASSET_HOST", nil)
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -55,10 +55,10 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = ENV['LOG_LEVEL'].present? ? ENV['LOG_LEVEL'] : :debug
+  config.log_level = ENV["LOG_LEVEL"].presence || :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -68,13 +68,13 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
-  config.action_mailer.asset_host = "https://#{ENV['ASSET_HOST']}"
+  config.action_mailer.default_url_options = { host: ENV.fetch("MAILER_HOST", nil) }
+  config.action_mailer.asset_host = "https://#{ENV.fetch("ASSET_HOST", nil)}"
   config.action_mailer.delivery_method = :notify
   config.action_mailer.notify_settings = {
-    api_key: ENV['GOV_UK_NOTIFY_API_KEY']
+    api_key: ENV.fetch("GOV_UK_NOTIFY_API_KEY", nil),
   }
-  
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -83,11 +83,11 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   config.lograge.enabled = true
-  config.lograge.ignore_actions = ['HealthchecksController#show']
+  config.lograge.ignore_actions = ["HealthchecksController#show"]
   config.lograge.keep_original_rails_log = true
   config.lograge.logger = Appsignal::Logger.new(
     "rails",
-    format: Appsignal::Logger::LOGFMT
+    format: Appsignal::Logger::LOGFMT,
   )
   config.logger = ActiveSupport::Logger.new(STDOUT) # Lograge-formatted logs to STDOUT
 

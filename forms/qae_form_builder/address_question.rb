@@ -4,7 +4,7 @@ class QaeFormBuilder
 
   class AddressQuestionDecorator < SubFieldsQuestionDecorator
     include RegionHelper
-    NO_VALIDATION_SUB_FIELDS = [:street, :county]
+    NO_VALIDATION_SUB_FIELDS = %i[street county]
 
     def required_sub_fields
       if sub_fields.present?
@@ -17,7 +17,7 @@ class QaeFormBuilder
           { street: "Street", ignore_validation: true },
           { city: "Town or city" },
           { country: "Country" },
-          { postcode: "Postcode" }
+          { postcode: "Postcode" },
         ]
       end
     end

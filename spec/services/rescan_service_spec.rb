@@ -12,7 +12,7 @@ describe RescanService do
 
   describe ".rescan_model" do
     let!(:form_answer) { create(:form_answer) }
-    let!(:audit_certificate) { create(:audit_certificate, form_answer: form_answer) }
+    let!(:audit_certificate) { create(:audit_certificate, form_answer:) }
 
     it "rescans unresolved files" do
       audit_certificate.attachment_scan_results = "scanning"

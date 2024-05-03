@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2025::QaeForms
   class << self
     def innovation_step2
@@ -68,12 +67,12 @@ class AwardYears::V2025::QaeForms
 
         text :other_organisation_type, "" do
           classes "text-words-max"
-          context %{
+          context %(
             <p class="govuk-body">Please specify</p>
-          }
-          pdf_context %{
+          )
+          pdf_context %(
             <p class="govuk-body">Please specify if selected Other</p>
-          }
+          )
           conditional :organisation_type, :other
           text_words_max 50
         end
@@ -84,7 +83,7 @@ class AwardYears::V2025::QaeForms
           ref "B 3.1"
           context %(
             <p>To be eligible, the organisations must be based in the UK, including the Channel Islands and Isle of Man.</p>
-            
+
             <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
@@ -130,13 +129,13 @@ class AwardYears::V2025::QaeForms
           classes "js-started-trading date-DDMMYYYY"
           required
           ref "B 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award.
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(2)
         end
@@ -146,8 +145,9 @@ class AwardYears::V2025::QaeForms
           required
           ref "B 6"
           pdf_context_with_header_blocks [
-            [:normal, "If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man."],
-            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal,
+             "If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man."],
+            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"],
           ]
           county_context %(
             <p class='govuk-hint'>If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man.</p>
@@ -160,7 +160,7 @@ class AwardYears::V2025::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County/Crown Dependency" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
           sub_fields_words_max 50
         end
@@ -191,7 +191,7 @@ class AwardYears::V2025::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -291,7 +291,8 @@ class AwardYears::V2025::QaeForms
           max_attachments 1
         end
 
-        options :applied_for_queen_awards, "In the last ten years, have you applied for The Queen's/King's Awards for Enterprise in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years, have you applied for The Queen's/King's Awards for Enterprise in any category?" do
           required
           ref "B 12"
           yes_no
@@ -303,7 +304,8 @@ class AwardYears::V2025::QaeForms
           classes "queen-award-holder"
         end
 
-        queen_award_applications :applied_for_queen_awards_details, " List the Queen's/King's awards you have applied for in the last 10 years." do
+        queen_award_applications :applied_for_queen_awards_details,
+                                 " List the Queen's/King's awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "B 12.1"
           required
@@ -372,7 +374,7 @@ class AwardYears::V2025::QaeForms
             ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper or publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

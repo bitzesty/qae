@@ -4,38 +4,48 @@ class Reports::Admin::AssessorJudgeAdminDataReport
   MAPPING = [
     {
       label: "ID",
-      method: :id
-    }, {
+      method: :id,
+    },
+    {
       label: "First name",
-      method: :first_name
-    }, {
+      method: :first_name,
+    },
+    {
       label: "Last name",
-      method: :last_name
-    }, {
+      method: :last_name,
+    },
+    {
       label: "Company",
-      method: :company
-    }, {
+      method: :company,
+    },
+    {
       label: "Email",
-      method: :email
-    }, {
+      method: :email,
+    },
+    {
       label: "Telephone",
-      method: :telephone_number
-    }, {
+      method: :telephone_number,
+    },
+    {
       label: "User type",
-      method: :user_type
-    }, {
+      method: :user_type,
+    },
+    {
       label: "Status",
-      method: :status
-    }, {
+      method: :status,
+    },
+    {
       label: "User creation date",
-      method: :created_at
-    }, {
+      method: :created_at,
+    },
+    {
       label: "Last sign in date",
-      method: :last_sign_in_at
-    }, {
+      method: :last_sign_in_at,
+    },
+    {
       label: "Awards assigned",
-      method: :awards_assigned
-    }
+      method: :awards_assigned,
+    },
   ]
 
   def as_csv
@@ -47,7 +57,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
 
         csv << mapping.map do |m|
           sanitize_string(
-            u.call_method(m[:method])
+            u.call_method(m[:method]),
           )
         end
       end
@@ -57,7 +67,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
 
         csv << mapping.map do |m|
           sanitize_string(
-            u.call_method(m[:method])
+            u.call_method(m[:method]),
           )
         end
       end
@@ -67,7 +77,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
 
         csv << mapping.map do |m|
           sanitize_string(
-            u.call_method(m[:method])
+            u.call_method(m[:method]),
           )
         end
       end

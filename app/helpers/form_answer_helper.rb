@@ -14,34 +14,32 @@ module FormAnswerHelper
 
   def application_flags(fa, subject = nil)
     comments_count = if subject
-      if current_subject.is_a?(Admin)
-        fa.flagged_admin_comments_count
-      else
-        fa.flagged_critical_comments_count
-      end
-    else
-      if current_subject.is_a?(Admin)
-        fa.flagged_critical_comments_count
-      else
-        fa.flagged_admin_comments_count
-      end
-    end
+                       if current_subject.is_a?(Admin)
+                         fa.flagged_admin_comments_count
+                       else
+                         fa.flagged_critical_comments_count
+                       end
+                     elsif current_subject.is_a?(Admin)
+                       fa.flagged_critical_comments_count
+                     else
+                       fa.flagged_admin_comments_count
+                     end
 
     current_user_class = current_subject.model_name.to_s.parameterize
 
     flag_type = if subject
-      "icon-flag-#{current_user_class}"
-    else
-      current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
-    end
+                  "icon-flag-#{current_user_class}"
+                else
+                  current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
+                end
 
-    if comments_count > 0
-      content_tag :span, class: "icon-flagged #{flag_type}" do
-        "#{current_user_class} flags: ".html_safe +
-        content_tag(:span, class: "flag-count") do
+    return unless comments_count > 0
+
+    tag.span(class: "icon-flagged #{flag_type}") do
+      "#{current_user_class} flags: ".html_safe +
+        tag.span(class: "flag-count") do
           comments_count.to_s
         end
-      end
     end
   end
 
@@ -63,7 +61,7 @@ module FormAnswerHelper
   end
 
   def award_types_collection(year)
-    FormAnswer::AWARD_TYPE_FULL_NAMES.invert.select do |k, v|
+    FormAnswer::AWARD_TYPE_FULL_NAMES.invert.select do |_k, v|
       if year.present? && year.to_i <= 2016
         true
       else
@@ -72,11 +70,11 @@ module FormAnswerHelper
     end.to_a
   end
 
-  def each_index_or_empty(collection, attrs, &block)
+  def each_index_or_empty(collection, attrs, &)
     if collection.any?
-      collection.each_with_index &block
+      collection.each_with_index(&)
     else
-      block.(attrs, 0)
+      yield(attrs, 0)
     end
   end
 

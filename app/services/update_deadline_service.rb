@@ -7,9 +7,9 @@ class UpdateDeadlineService
   end
 
   def perform
-    if deadline.update(params)
-      trigger_states_transition
-    end
+    return unless deadline.update(params)
+
+    trigger_states_transition
   end
 
   private
@@ -18,12 +18,10 @@ class UpdateDeadlineService
     now = DateTime.now
     trigger_at = deadline.trigger_at
 
-    if deadline.submission_end? && trigger_at.present? && now >= trigger_at
-      ::SubmissionDeadlineStatesTransitionWorker.perform_async
-    end
+    ::SubmissionDeadlineStatesTransitionWorker.perform_async if deadline.submission_end? && trigger_at.present? && now >= trigger_at
 
-    if deadline.audit_certificates? && trigger_at.present? && now >= trigger_at
-      ::DisqualifiedDeadlineStatesTransitionWorker.perform_async
-    end
+    return unless deadline.audit_certificates? && trigger_at.present? && now >= trigger_at
+
+    ::DisqualifiedDeadlineStatesTransitionWorker.perform_async
   end
 end

@@ -1,5 +1,4 @@
 module Reports::DataPickers::FormDocumentPicker
-
   def business_region
     if business_form?
       doc "organization_address_region"
@@ -21,33 +20,33 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def head_surname
-    if business_form?
-      doc("head_of_business_last_name")
-    end
+    return unless business_form?
+
+    doc("head_of_business_last_name")
   end
 
   def head_first_name
-    if business_form?
-      doc("head_of_business_first_name")
-    end
+    return unless business_form?
+
+    doc("head_of_business_first_name")
   end
 
   def head_position
-    if business_form?
-      doc("head_of_business_job_title") || doc("head_job_title")
-    end
+    return unless business_form?
+
+    doc("head_of_business_job_title") || doc("head_job_title")
   end
 
   def head_full_name
-    if business_form?
-      "#{doc('head_of_business_title') || doc('head_of_bussines_title')} #{doc('head_of_business_first_name')} #{doc('head_of_business_last_name')} #{doc('head_of_business_honours')}"
-    end
+    return unless business_form?
+
+    "#{doc("head_of_business_title") || doc("head_of_bussines_title")} #{doc("head_of_business_first_name")} #{doc("head_of_business_last_name")} #{doc("head_of_business_honours")}"
   end
 
   def personal_honours
-    if business_form?
-      doc "head_of_business_honours"
-    end
+    return unless business_form?
+
+    doc "head_of_business_honours"
   end
 
   def nominee_first_name
@@ -63,9 +62,9 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def head_of_business_email
-    if business_form?
-      doc("head_of_business_email") || doc("head_email")
-    end
+    return unless business_form?
+
+    doc("head_of_business_email") || doc("head_email")
   end
 
   def head_title
@@ -74,7 +73,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def innovation_type
     if innovation? && doc("application_relate_to_header")
-      types = doc("application_relate_to_header").map{ |hash| hash["type"] }
+      types = doc("application_relate_to_header").map { |hash| hash["type"] }
       types.join(",")
     else
       ""
@@ -92,7 +91,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def current_queens_award_holder
     awards = obj.previous_wins
-    return if !awards || awards.empty?
+    return if awards.blank?
 
     categories = PreviousWin::CATEGORIES.invert
 
@@ -192,13 +191,13 @@ module Reports::DataPickers::FormDocumentPicker
 
     if obj.award_year.year > 2017
       mobility_2017_change = {
-        "mobility" => "#{attr_name}_3of3"
+        "mobility" => "#{attr_name}_3of3",
       }
     end
 
     if obj.award_year.year >= 2020
       development_2020_change = {
-        "development" => "#{attr_name}_3of3"
+        "development" => "#{attr_name}_3of3",
       }
     end
 
@@ -209,9 +208,9 @@ module Reports::DataPickers::FormDocumentPicker
             "2 to 3" => "#{attr_name}_2of2",
             "3 to 4" => "#{attr_name}_3of3",
             "4 to 5" => "#{attr_name}_4of4",
-            "5 plus" => "#{attr_name}_5of5"
-          }
-        }
+            "5 plus" => "#{attr_name}_5of5",
+          },
+        },
       }
     end
 
@@ -219,26 +218,26 @@ module Reports::DataPickers::FormDocumentPicker
       "trade" => {
         "trade_commercial_success" => {
           "3 to 5" => "#{attr_name}_3of3",
-          "6 plus" => "#{attr_name}_6of6"
-        }
+          "6 plus" => "#{attr_name}_6of6",
+        },
       },
       "development" => {
         "development_performance_years" => {
           "3 to 5" => "#{attr_name}_3of3",
-        }
+        },
       },
       "mobility" => {
         "programme_performance_years" => {
           "2 to 4" => "#{attr_name}_2of2",
-          "5 plus" => "#{attr_name}_5of5"
-        }
+          "5 plus" => "#{attr_name}_5of5",
+        },
       },
       "innovation" => {
         "innovation_performance_years" => {
           "2 to 4" => "#{attr_name}_2of2",
-          "5 plus" => "#{attr_name}_5of5"
-        }
-      }
+          "5 plus" => "#{attr_name}_5of5",
+        },
+      },
     }.merge(mobility_2017_change)
      .merge(development_2020_change)
      .merge(innovation_2023_change)[obj.award_type]
@@ -249,7 +248,7 @@ module Reports::DataPickers::FormDocumentPicker
       "trade" => "trade_commercial_success",
       "development" => "development_performance_years",
       "mobility" => "development_performance_years",
-      "innovation" => "innovation_performance_years"
+      "innovation" => "innovation_performance_years",
     }[obj.award_type]
   end
 
@@ -259,7 +258,7 @@ module Reports::DataPickers::FormDocumentPicker
       if obj.award_year.year <= 2017
         {
           "2 to 4" => "Outstanding achievement over 2 years",
-          "5 plus" => "Continuous achievement over 5 years"
+          "5 plus" => "Continuous achievement over 5 years",
         }[doc(subcategory_field_name)]
       else
         "Outstanding achievement over 3 years"
@@ -270,17 +269,17 @@ module Reports::DataPickers::FormDocumentPicker
       if trade?
         {
           "3 to 5" => "Outstanding growth in the last 3 years",
-          "6 plus" => "Continuous growth in the last 6 years"
+          "6 plus" => "Continuous growth in the last 6 years",
         }
       elsif innovation?
         {
           "2 to 4" => "Outstanding performance improvements in the last 2 years",
-          "5 plus" => "Steady performance improvements in the last 5 years"
+          "5 plus" => "Steady performance improvements in the last 5 years",
         }
       elsif development?
         {
           "2 to 4" => "Outstanding achievement over 2 years",
-          "5 plus" => "Continuous achievement over 5 years"
+          "5 plus" => "Continuous achievement over 5 years",
         }
       else
         {}
@@ -290,22 +289,20 @@ module Reports::DataPickers::FormDocumentPicker
 
   def product_service
     service = if innovation?
-      doc("innovation_desc_short")
-    elsif development?
-      obj.award_year.year <= 2019 ? doc("development_management_approach_briefly") : doc("one_line_description_of_interventions")
-    elsif mobility?
-      if obj.award_year.year <= 2020
-        doc("mobility_desc_short")
-      else
-        if obj.award_year.year <= 2023
-          doc("application_category") == "initiative" ? doc("initiative_desc_short") : doc("organisation_desc_short")
-        else
-          doc("initiative_desc_short")
-        end
-      end
-    else
-      obj.award_year.year <= 2023 ? doc("trade_goods_briefly") : doc("trade_description_short")
-    end
+                doc("innovation_desc_short")
+              elsif development?
+                obj.award_year.year <= 2019 ? doc("development_management_approach_briefly") : doc("one_line_description_of_interventions")
+              elsif mobility?
+                if obj.award_year.year <= 2020
+                  doc("mobility_desc_short")
+                elsif obj.award_year.year <= 2023
+                  doc("application_category") == "initiative" ? doc("initiative_desc_short") : doc("organisation_desc_short")
+                else
+                  doc("initiative_desc_short")
+                end
+              else
+                obj.award_year.year <= 2023 ? doc("trade_goods_briefly") : doc("trade_description_short")
+              end
 
     ActionView::Base.full_sanitizer.sanitize(service)
   end
@@ -315,37 +312,41 @@ module Reports::DataPickers::FormDocumentPicker
     month = doc("started_trading_month")
     year = doc("started_trading_year")
 
-    if year && month && day
-      Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y") rescue nil
+    return unless year && month && day
+
+    begin
+      Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y")
+    rescue StandardError
+      nil
     end
   end
 
   def collect_final_value_from_doc(meth)
-    if meth
-      target_key = nil
+    return unless meth
 
-      if !(obj.award_year.year <= 2017) && mobility?
-        target_key = meth
-      elsif obj.award_year.year >= 2020 && development?
-        target_key = meth
-      elsif obj.award_year.year >= 2024 && innovation?
-        question = questions[meth.keys.first.to_sym]&.decorate(answers: answers)
+    target_key = nil
 
-        range = if question.respond_to?(:active_by_year_condition)
-                  question.active_by_year_condition&.options&.dig(:data, :identifier)
-                else
-                  doc(meth.keys.first)
-                end
+    if !(obj.award_year.year <= 2017) && mobility?
+      target_key = meth
+    elsif obj.award_year.year >= 2020 && development?
+      target_key = meth
+    elsif obj.award_year.year >= 2024 && innovation?
+      question = questions[meth.keys.first.to_sym]&.decorate(answers:)
 
-        target_key = meth.values.first[range]
-      else
-        range = doc(meth.keys.first)
-        target_key = meth.values.first[range]
-      end
+      range = if question.respond_to?(:active_by_year_condition)
+                question.active_by_year_condition&.options&.dig(:data, :identifier)
+              else
+                doc(meth.keys.first)
+              end
 
-      amended_value = financial_data[target_key]
-      amended_value.present? ? amended_value : doc(target_key)
+      target_key = meth.values.first[range]
+    else
+      range = doc(meth.keys.first)
+      target_key = meth.values.first[range]
     end
+
+    amended_value = financial_data[target_key]
+    amended_value.presence || doc(target_key)
   end
 
   def immediate_parent_name
@@ -362,10 +363,10 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def country_name(code)
-    if code.present?
-      country = ISO3166::Country[code]
-      country.name
-    end
+    return if code.blank?
+
+    country = ISO3166::Country[code]
+    country.name
   end
 
   def questions

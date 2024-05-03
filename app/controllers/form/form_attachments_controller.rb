@@ -1,5 +1,4 @@
 class Form::FormAttachmentsController < Form::MaterialsBaseController
-
   # This controller handles saving of attachments
   # This section is used in case if JS disabled (destroy action used for both JS and NON JS)
 
@@ -9,14 +8,14 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   expose(:form_answer_attachment) do
     current_user.form_answer_attachments.new(
-      form_answer_id: @form_answer.id
+      form_answer_id: @form_answer.id,
     )
   end
 
   expose(:created_attachment_ops) do
     {
       "file" => form_answer_attachment.id.to_s,
-      "description" => attachment_params[:description]
+      "description" => attachment_params[:description],
     }
   end
 
@@ -29,35 +28,33 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     result_materials[next_document_position.to_s] = created_attachment_ops
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
   expose(:remove_attachment_result_doc) do
     result_materials = existing_materials
-    result_materials.delete_if do |k, v|
+    result_materials.delete_if do |_k, v|
       v["file"] == params[:id].to_s
     end
-    result_materials = result_materials.present? ? result_materials : {}
+    result_materials = {} if result_materials.blank?
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
-  def index
-  end
+  def index; end
 
-  def new
-  end
+  def new; end
 
   def create
     self.form_answer_attachment = current_user.form_answer_attachments.new(
       attachment_params.merge({
         form_answer_id: @form_answer.id,
         non_js_creation: true,
-        original_filename: original_filename
-      })
+        original_filename:,
+      }),
     )
 
     if form_answer_attachment.save
@@ -71,16 +68,14 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   end
 
   def confirm_deletion
-    self.form_answer_attachment = self.form_answer_attachments.find(params[:form_attachment_id])
+    self.form_answer_attachment = form_answer_attachments.find(params[:form_attachment_id])
   end
 
   def destroy
     self.form_answer_attachment = form_answer_attachments.find(params[:id])
 
     @form_answer.document = remove_attachment_result_doc
-    if @form_answer.save
-      form_answer_attachment.destroy
-    end
+    form_answer_attachment.destroy if @form_answer.save
 
     respond_to do |format|
       format.html do
@@ -95,10 +90,10 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   private
 
-    def attachment_params
-      params.require(:form_answer_attachment).permit(
-        :file,
-        :description
-      )
-    end
+  def attachment_params
+    params.require(:form_answer_attachment).permit(
+      :file,
+      :description,
+    )
+  end
 end

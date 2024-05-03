@@ -30,14 +30,13 @@ module AssessmentSubmissionMixin
     "#{appraisal_type}_#{appraisal_action}"
   end
 
-  def form_answer
-    resource.form_answer
-  end
+  delegate :form_answer, to: :resource
 
   private
 
   def flash_message
     return nil if resource.errors.none?
+
     resource.errors.full_messages.join("<br />")
   end
 

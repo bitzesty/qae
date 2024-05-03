@@ -4,8 +4,8 @@ FactoryBot.define do
     attachment do
       Rack::Test::UploadedFile.new(
         File.join(
-          Rails.root,'spec','support','file_samples','audit_certificate_sample.pdf'
-        )
+          Rails.root, "spec", "support", "file_samples", "audit_certificate_sample.pdf"
+        ),
       )
     end
 
@@ -90,7 +90,7 @@ FactoryBot.define do
       financial_year_changed_dates_1of5month: "01",
       financial_year_changed_dates_2of5month: "01",
       financial_year_changed_dates_3of5month: "1",
-      financial_year_changed_dates_4of5month: "01"
+      financial_year_changed_dates_4of5month: "01",
     })
   end
 end

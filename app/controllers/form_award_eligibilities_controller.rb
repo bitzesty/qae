@@ -5,8 +5,8 @@ class FormAwardEligibilitiesController < ApplicationController
                 :check_number_of_collaborators
   before_action :set_form_answer
   before_action :set_steps_and_eligibilities, :setup_wizard
-  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
-    :new, :create, :update, :destroy
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: %i[
+    new create update destroy
   ]
   before_action do
     allow_assessor_access!(@form_answer)
@@ -19,15 +19,15 @@ class FormAwardEligibilitiesController < ApplicationController
     #      and there's no step
 
     if !params[:id] &&
-      (@form_answer.promotion? ||
-      (@basic_eligibility && (@basic_eligibility.eligible? || @basic_eligibility.answers.none?))) &&
-      (@award_eligibility.eligible? || @award_eligibility.answers.none?)
+        (@form_answer.promotion? ||
+        (@basic_eligibility && (@basic_eligibility.eligible? || @basic_eligibility.answers.none?))) &&
+        (@award_eligibility.eligible? || @award_eligibility.answers.none?)
 
       step = nil
 
       if @basic_eligibility &&
-        (@basic_eligibility.answers.none? ||
-         @basic_eligibility.questions.size != @basic_eligibility.answers.size)
+          (@basic_eligibility.answers.none? ||
+           @basic_eligibility.questions.size != @basic_eligibility.answers.size)
 
         step = @basic_eligibility.questions.first
       elsif @award_eligibility.answers.none?
@@ -62,9 +62,7 @@ class FormAwardEligibilitiesController < ApplicationController
         @form_answer.state_machine.after_eligibility_step_progress
       end
 
-      if step == @eligibility.questions.last
-        @eligibility.pass!
-      end
+      @eligibility.pass! if step == @eligibility.questions.last
 
       check_passed_award_eligibility_after_changing_answer!
 
@@ -81,7 +79,7 @@ class FormAwardEligibilitiesController < ApplicationController
         redirect_to action: :show, form_id: @form_answer.id
       end
 
-      return
+      nil
     else
       render :show
     end
@@ -94,7 +92,7 @@ class FormAwardEligibilitiesController < ApplicationController
       redirect_to public_send("#{@form_answer.award_type}_award_eligible_failure_path", form_id: @form_answer.id)
     end
 
-    return
+    nil
   end
 
   def warning
@@ -132,17 +130,17 @@ class FormAwardEligibilitiesController < ApplicationController
   end
 
   def check_passed_award_eligibility_after_changing_answer!
-    if @basic_eligibility.passed? && @award_eligibility.passed?
-      # We need to check validations it in case if user changed answer
-      # after passing of validation
-      #
-      @award_eligibility.force_validate_now = true
+    return unless @basic_eligibility.passed? && @award_eligibility.passed?
 
-      # Mark eligibility as not passed in case if answer was changed
-      # and now eligibility is not valid!
-      #
-      @award_eligibility.update_column(:passed, false) if !@award_eligibility.valid?
-    end
+    # We need to check validations it in case if user changed answer
+    # after passing of validation
+    #
+    @award_eligibility.force_validate_now = true
+
+    # Mark eligibility as not passed in case if answer was changed
+    # and now eligibility is not valid!
+    #
+    @award_eligibility.update_column(:passed, false) unless @award_eligibility.valid?
   end
 
   def eligibility_params

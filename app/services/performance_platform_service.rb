@@ -10,16 +10,16 @@ class PerformancePlatformService
     "trade" => "international-trade",
     "innovation" => "innovation",
     "development" => "sustainable-development",
-    "promotion" => "qaep"
+    "promotion" => "qaep",
   }
 
-  POSSIBLE_RANGES = [
-    "100-percent",
-    "75-99-percent",
-    "50-74-percent",
-    "25-49-percent",
-    "1-24-percent",
-    "0-percent"
+  POSSIBLE_RANGES = %w[
+    100-percent
+    75-99-percent
+    50-74-percent
+    25-49-percent
+    1-24-percent
+    0-percent
   ]
 
   def self.run
@@ -31,7 +31,7 @@ class PerformancePlatformService
     log_this("completed") unless Rails.env.test?
   end
 
-  #[
+  # [
   #  {
   #      "_id": "23456780",
   #      "_timestamp": "2015-03-10T00:00:00Z",
@@ -40,7 +40,7 @@ class PerformancePlatformService
   #      "channel_type": "digital",
   #      "count": 42
   #  }
-  #]
+  # ]
   def self.perform_transactions_by_channel
     timestamp = (Time.current - 1.week).beginning_of_day.utc
 
@@ -51,7 +51,7 @@ class PerformancePlatformService
       "channel" => "online",
       "channel_type" => "digital",
       "count" => form_answers_count,
-      "_timestamp" => timestamp.iso8601
+      "_timestamp" => timestamp.iso8601,
     }
 
     result["_id"] = generate_transactions_id(result)
@@ -59,7 +59,7 @@ class PerformancePlatformService
     perform_request(TRANSACTIONS_BY_CHANNEL_URL, [result])
   end
 
-  #[
+  # [
   #  {
   #      "_id": "23456789",
   #      "_timestamp": "2015-03-18T00:00:00Z",
@@ -78,7 +78,7 @@ class PerformancePlatformService
   #      "count": 42,
   #      "cumulative_count": 72
   #  }
-  #]
+  # ]
 
   def self.perform_applications_by_stage
     payload = fetch_applications_data
@@ -87,28 +87,27 @@ class PerformancePlatformService
   end
 
   def self.perform_request(url, payload)
-    if ENV["PERFORMANCE_PLATFORM_TOKEN"].present?
+    return if ENV["PERFORMANCE_PLATFORM_TOKEN"].blank?
 
-      headers = {
-        "Content-Type" =>"application/json",
-        "Authorization" => "Bearer #{ENV['PERFORMANCE_PLATFORM_TOKEN']}"
-      }
+    headers = {
+      "Content-Type" => "application/json",
+      "Authorization" => "Bearer #{ENV.fetch("PERFORMANCE_PLATFORM_TOKEN", nil)}",
+    }
 
-      uri = URI(url)
-      req = Net::HTTP::Post.new(uri.path, headers)
+    uri = URI(url)
+    req = Net::HTTP::Post.new(uri.path, headers)
 
-      req.body = payload.to_json
+    req.body = payload.to_json
 
-      res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        http.ssl_version = :SSLv3
-        http.request req
-      end
-
-      puts res.body
-
-      nil
+    res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.ssl_version = :SSLv3
+      http.request req
     end
+
+    puts res.body
+
+    nil
   end
 
   def self.fetch_applications_data
@@ -121,57 +120,57 @@ class PerformancePlatformService
         when "0-percent"
           count = form_answers
             .where("fill_progress IS NULL OR fill_progress = 0")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
 
           cumulative_count = form_answers
             .where("fill_progress IS NULL OR fill_progress >= 0 OR submitted_at IS NOT NULL")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
         when "1-24-percent"
           count = form_answers
             .where("fill_progress > 0 AND fill_progress < 25")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
 
           cumulative_count = form_answers
             .where("fill_progress > 0 OR submitted_at IS NOT NULL")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
         when "25-49-percent"
           count = form_answers
             .where("fill_progress >= 25 AND fill_progress < 50")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
 
           cumulative_count = form_answers
             .where("fill_progress >= 25 OR submitted_at IS NOT NULL")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
         when "50-74-percent"
           count = form_answers
             .where("fill_progress >= 50 AND fill_progress < 75")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
 
           cumulative_count = form_answers
             .where("fill_progress >= 50 OR submitted_at IS NOT NULL")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
         when "75-99-percent"
           count = form_answers
             .where("fill_progress >= 75 AND fill_progress < 100")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
 
           cumulative_count = form_answers
             .where("fill_progress >= 50 OR submitted_at IS NOT NULL")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
         when "100-percent"
           count = form_answers
             .where("fill_progress = 100 OR submitted_at IS NOT NULL")
-            .where(award_type: award_type)
+            .where(award_type:)
             .count
 
           cumulative_count = count
@@ -183,7 +182,7 @@ class PerformancePlatformService
           "award" => award,
           "stage" => stage,
           "count" => count,
-          "cumulative_count" => cumulative_count
+          "cumulative_count" => cumulative_count,
         }
 
         data["_id"] = generate_applications_id(data)
@@ -199,7 +198,7 @@ class PerformancePlatformService
   def self.generate_transactions_id(data)
     string = ""
 
-    %w(_timestamp period channel channel_type).each do |attr|
+    %w[_timestamp period channel channel_type].each do |attr|
       string << data[attr]
     end
 
@@ -210,7 +209,7 @@ class PerformancePlatformService
   def self.generate_applications_id(data)
     string = ""
 
-    %w(_timestamp period award stage).each do |attr|
+    %w[_timestamp period award stage].each do |attr|
       string << data[attr]
     end
 

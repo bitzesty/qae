@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin feedback pdf file checks" do
   let!(:user) { create :user }
@@ -7,7 +7,7 @@ shared_context "admin feedback pdf file checks" do
     create :form_answer,
            award_type,
            :submitted,
-           user: user
+           user:
   end
 
   let(:feedback_content) do
@@ -17,7 +17,7 @@ shared_context "admin feedback pdf file checks" do
       key = block[0]
 
       if block[1][:type] == :strengths
-        res["#{key}_rate"] = %w(average neutral negative positive).sample
+        res["#{key}_rate"] = %w[average neutral negative positive].sample
       else
         res["#{key}_strength"] = "#{index}_strength"
         res["#{key}_weakness"] = "#{index}_weakness"
@@ -28,7 +28,7 @@ shared_context "admin feedback pdf file checks" do
   end
 
   let!(:feedback) do
-    create :feedback, form_answer: form_answer,
+    create :feedback, form_answer:,
                       document: feedback_content
   end
 
@@ -69,7 +69,9 @@ shared_context "admin feedback pdf file checks" do
       FeedbackForm.fields_for_award_type(form_answer).each do |key, opts|
         if opts[:type] == :strengths
           year = form_answer.award_year.year
-          expect(pdf_content).to include(AppraisalForm.const_get("STRENGTH_OPTIONS_#{year}").detect { |k, v| v == feedback.document["#{key}_rate"] }[0] )
+          expect(pdf_content).to include(AppraisalForm.const_get("STRENGTH_OPTIONS_#{year}").detect do |_k, v|
+                                           v == feedback.document["#{key}_rate"]
+                                         end[0])
         else
           expect(pdf_content).to include(feedback.document["#{key}_strength"])
           expect(pdf_content).to include(feedback.document["#{key}_weakness"])

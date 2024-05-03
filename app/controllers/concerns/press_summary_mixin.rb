@@ -4,7 +4,7 @@ module PressSummaryMixin
   def self.included(base)
     base.before_action :load_form_answer
     base.before_action :load_press_summary, except: :create
-    base.after_action :log_event, only: [:create, :update, :submit, :signoff]
+    base.after_action :log_event, only: %i[create update submit signoff]
   end
 
   def create
@@ -89,7 +89,7 @@ module PressSummaryMixin
       :phone_number,
       :email,
       :contact_details_update,
-      :body_update
+      :body_update,
     )
   end
 

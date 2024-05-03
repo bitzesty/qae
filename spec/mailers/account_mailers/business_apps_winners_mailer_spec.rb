@@ -9,12 +9,12 @@ describe AccountMailers::BusinessAppsWinnersMailer do
   let(:account_holder) { form_answer.user }
   let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
 
-  let(:mail) {
+  let(:mail) do
     AccountMailers::BusinessAppsWinnersMailer.notify(
       form_answer.id,
-      account_holder.id
+      account_holder.id,
     )
-  }
+  end
 
   describe "#notify" do
     it "renders the headers" do

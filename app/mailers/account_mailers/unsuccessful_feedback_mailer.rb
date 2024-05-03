@@ -8,7 +8,8 @@ class AccountMailers::UnsuccessfulFeedbackMailer < AccountMailers::BaseMailer
     @name = "#{@user.title} #{@user.last_name}"
 
     subject = "Important information about your King's Award application"
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
+    send_mail_if_not_bounces ENV.fetch("GOV_UK_NOTIFY_API_TEMPLATE_ID", nil), to: collaborator.email,
+                                                                              subject: subject_with_env_prefix(subject)
   end
 
   def ep_notify(form_answer_id, collaborator_id)
@@ -20,6 +21,7 @@ class AccountMailers::UnsuccessfulFeedbackMailer < AccountMailers::BaseMailer
     @year = AwardYear.closed.year
 
     subject = "Important information about your King's Award nomination"
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
+    send_mail_if_not_bounces ENV.fetch("GOV_UK_NOTIFY_API_TEMPLATE_ID", nil), to: collaborator.email,
+                                                                              subject: subject_with_env_prefix(subject)
   end
 end

@@ -6,9 +6,9 @@ class QuestionWordsValidator < ActiveModel::Validator
 
     calculated_word_max = word_max.to_i + ten_percents(word_max) + 1
 
-    if str.size > calculated_word_max
-      record.errors[field_name] = "is too long (maximum is #{word_max} words)"
-    end
+    return unless str.size > calculated_word_max
+
+    record.errors[field_name] = "is too long (maximum is #{word_max} words)"
   end
 
   def ten_percents(word_max)

@@ -24,7 +24,7 @@ describe "award winners section" do
     create :form_answer,
            :awarded,
            :trade,
-           user: user,
+           user:,
            award_year_id: current_award_year.id
   end
 
@@ -32,7 +32,7 @@ describe "award winners section" do
     create :form_answer,
            :awarded,
            :innovation,
-           user: user,
+           user:,
            award_year_id: old_award_year.id
   end
 
@@ -43,13 +43,13 @@ describe "award winners section" do
 
   it "see current year's submissions" do
     expect(page).to have_content(
-      "#{current_form_answer.award_type_full_name} #{AwardYear.current.year} Emblem"
+      "#{current_form_answer.award_type_full_name} #{AwardYear.current.year} Emblem",
     )
   end
 
   it "don't see other year's submissions" do
     expect(page).to_not have_content(
-      "#{old_form_answer.award_type_full_name} #{AwardYear.current.year} Emblem"
+      "#{old_form_answer.award_type_full_name} #{AwardYear.current.year} Emblem",
     )
   end
 end

@@ -12,9 +12,9 @@ class FeedbackForm
       AppraisalForm.const_get("DEVELOPMENT_#{year}").keys.map { |k| "#{k}_rate" }
     end.flatten.uniq
 
-    ["overall_summary"] +
-    keys.map { |k| ["#{k}_strength", "#{k}_weakness"] }.flatten +
-    development_rates
+    %w[overall_summary] +
+      keys.map { |k| ["#{k}_strength", "#{k}_weakness"] }.flatten +
+      development_rates
   end
 
   def self.fields_for_award_type(form_answer)
@@ -44,8 +44,8 @@ class FeedbackForm
     end || ["Select Key Strengths and Focuses", "blank"]
 
     OpenStruct.new(
-      options: options,
-      option: option
+      options:,
+      option:,
     )
   end
 end

@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2024::QaeForms
   class << self
     def trade_step2
@@ -63,12 +62,12 @@ class AwardYears::V2024::QaeForms
 
         text :other_organisation_type, "" do
           classes "text-words-max"
-          context %{
+          context %(
             <p class="govuk-body">Please specify</p>
-          }
-          pdf_context %{
+          )
+          pdf_context %(
             <p class="govuk-body">Please specify if selected Other</p>
-          }
+          )
           conditional :organisation_type, :other
           text_words_max 50
         end
@@ -141,7 +140,7 @@ class AwardYears::V2024::QaeForms
           required
           ref "B 6"
           pdf_context_with_header_blocks [
-            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"],
           ]
           county_context %(
             <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
@@ -153,7 +152,7 @@ class AwardYears::V2024::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
           sub_fields_words_max 50
         end
@@ -184,7 +183,7 @@ class AwardYears::V2024::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -226,8 +225,9 @@ class AwardYears::V2024::QaeForms
             </p>
           )
           pdf_context_with_header_blocks [
-            [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/."],
-            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."]
+            [:normal,
+             "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/."],
+            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."],
           ]
         end
 
@@ -245,7 +245,8 @@ class AwardYears::V2024::QaeForms
           required
         end
 
-        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
+        textarea :pareent_group_why_excluding_members,
+                 "Please explain why you are excluding any members of your group from this application." do
           classes "sub-question word-max-strict"
           sub_ref "B 10.2"
           rows 5
@@ -299,13 +300,15 @@ class AwardYears::V2024::QaeForms
           required
         end
 
-        options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
+        options :trading_figures,
+                "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
           ref "B 12"
           required
           yes_no
         end
 
-        subsidiaries_associates_plants :trading_figures_add, "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
+        subsidiaries_associates_plants :trading_figures_add,
+                                       "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
           required
           classes "sub-question"
           sub_ref "B 12.1"
@@ -342,7 +345,8 @@ class AwardYears::V2024::QaeForms
           max_attachments 1
         end
 
-        options :applied_for_queen_awards, "In the last ten years, have you applied for The Queen's/King's Awards for Enterprise in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years, have you applied for The Queen's/King's Awards for Enterprise in any category?" do
           required
           ref "B 16"
           classes "queen-award-holder"
@@ -354,7 +358,8 @@ class AwardYears::V2024::QaeForms
           yes_no
         end
 
-        queen_award_applications :applied_for_queen_awards_details, "List the King's/Queen's awards you have applied for in the last 10 years." do
+        queen_award_applications :applied_for_queen_awards_details,
+                                 "List the King's/Queen's awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "B 16.1"
 
@@ -424,7 +429,7 @@ class AwardYears::V2024::QaeForms
             ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper or publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

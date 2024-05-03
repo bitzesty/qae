@@ -11,11 +11,10 @@ class Admin::AuditCertificatesController < Admin::BaseController
     respond_to do |format|
       format.pdf do
         send_data pdf_data.render,
-          filename: "audit_certificate_#{@form_answer.decorate.pdf_filename}",
-          type: "application/pdf",
-          disposition: 'attachment'
+                  filename: "audit_certificate_#{@form_answer.decorate.pdf_filename}",
+                  type: "application/pdf",
+                  disposition: "attachment"
       end
     end
   end
-
 end

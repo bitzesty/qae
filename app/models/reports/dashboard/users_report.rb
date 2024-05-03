@@ -19,10 +19,10 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
 
       content = (4..deadline_month || 9).to_a.map do |month|
         date = if month == deadline_month
-          deadline
-        else
-          Date.new(award_year.year - 1, month).end_of_month
-        end
+                 deadline
+               else
+                 Date.new(award_year.year - 1, month).end_of_month
+               end
 
         generate_content(users, deadline_month ? date : nil)
       end
@@ -61,7 +61,6 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
     end
   end
 
-
   def generate_content(users, date)
     if date && Date.current >= date
       users.where("created_at < ?", date).count
@@ -72,21 +71,33 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
 
   def as_csv
     CSV.generate do |csv|
-      headers = ["Year"]
+      headers = %w[Year]
       case kind
       when "by_month"
         columns = ["By end of April", "By end of May", "By end of June", "By end of July", "By end of August", "Totals on deadline"]
       when "by_week"
-        columns = ["6 weeks before deadline", "5 weeks before deadline", "4 weeks before deadline", "3 weeks before deadline", "2 weeks before deadline", "1 week before deadline", "Totals on deadline"]
+        columns = ["6 weeks before deadline",
+                   "5 weeks before deadline",
+                   "4 weeks before deadline",
+                   "3 weeks before deadline",
+                   "2 weeks before deadline",
+                   "1 week before deadline",
+                   "Totals on deadline"]
       when "by_day"
-        columns = ["6 days before deadline", "5 days before deadline", "4 days before deadline", "3 days before deadline", "2 days before deadline", "1 day before deadline", "Totals on deadline"]
+        columns = ["6 days before deadline",
+                   "5 days before deadline",
+                   "4 days before deadline",
+                   "3 days before deadline",
+                   "2 days before deadline",
+                   "1 day before deadline",
+                   "Totals on deadline"]
       end
       csv << (headers + columns).flatten
-      
+
       stats.each do |row|
         content = []
         content << row.label
-        row.content.each{|c| content << (c == "&nbsp;" ? nil : c)}
+        row.content.each { |c| content << (c == "&nbsp;" ? nil : c) }
         csv << content
       end
     end

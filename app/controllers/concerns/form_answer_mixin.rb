@@ -14,8 +14,8 @@ module FormAnswerMixin
         render json: {
           form_answer: {
             sic_codes: resource.decorate.all_average_growths,
-            legend: resource.decorate.average_growth_legend
-          }
+            legend: resource.decorate.average_growth_legend,
+          },
         }
       end
 
@@ -37,11 +37,11 @@ module FormAnswerMixin
     if request.xhr? || request.format.js?
       head :ok, content_type: "text/html"
 
-      return
+      nil
     else
       flash.notice = "Financial data updated"
       redirect_to action: :show
-      return
+      nil
     end
   end
 
@@ -81,9 +81,9 @@ module FormAnswerMixin
     ops = params.require(:form_answer).permit!
     ops = ops.to_h
 
-    ops.reject! do |k, v|
+    ops.reject! do |k, _v|
       (k.to_sym == :company_or_nominee_name || k.to_sym == :nominee_title) &&
-      !CompanyDetailPolicy.new(pundit_user, resource).can_manage_company_name?
+        !CompanyDetailPolicy.new(pundit_user, resource).can_manage_company_name?
     end
     ops
   end
@@ -112,7 +112,7 @@ module FormAnswerMixin
     {
       updated_at: Time.zone.now,
       updated_by_id: pundit_user.id,
-      updated_by_type: pundit_user.class
+      updated_by_type: pundit_user.class,
     }.merge(params[:financial_data].permit!)
   end
 end

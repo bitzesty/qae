@@ -1,5 +1,4 @@
 class Account::CollaboratorsController < Account::BaseController
-
   before_action :require_to_be_not_current_user_and_not_account_owner!, only: [:destroy]
   before_action :set_form_answer
 
@@ -18,17 +17,17 @@ class Account::CollaboratorsController < Account::BaseController
   end
   expose(:add_collaborator_interactor) do
     AddCollaborator.new(
-        current_user,
-        account,
-        {})
+      current_user,
+      account,
+      {})
   end
 
   def index
     @active_step = 4
 
-    if current_user.account_admin?
-      current_account.update_column(:collaborators_checked_at, Time.zone.now)
-    end
+    return unless current_user.account_admin?
+
+    current_account.update_column(:collaborators_checked_at, Time.zone.now)
   end
 
   def new
@@ -60,14 +59,13 @@ class Account::CollaboratorsController < Account::BaseController
   def update
     if collaborator.update(update_params)
       redirect_to account_collaborators_path,
-                    notice: "The collaborator #{collaborator.email} details were successfully updated."
+                  notice: "The collaborator #{collaborator.email} details were successfully updated."
     else
       render :edit
     end
   end
 
-  def confirm_deletion
-  end
+  def confirm_deletion; end
 
   def destroy
     form_id = params[:form_id].presence
@@ -78,14 +76,14 @@ class Account::CollaboratorsController < Account::BaseController
     collaborator.form_answers
                 .update_all(user_id: account.owner_id)
 
-    redirect_to account_collaborators_path(form_id: form_id),
+    redirect_to account_collaborators_path(form_id:),
                 notice: "#{collaborator.email} successfully removed from Collaborators!"
   end
 
   def set_form_answer
-    if params.has_key? :form_id
-      @form_answer = current_account.form_answers.find(params[:form_id])
-    end
+    return unless params.has_key? :form_id
+
+    @form_answer = current_account.form_answers.find(params[:form_id])
   end
 
   private
@@ -99,7 +97,7 @@ class Account::CollaboratorsController < Account::BaseController
       :phone_number,
       :email,
       :role,
-      :form_id
+      :form_id,
     )
   end
 
@@ -110,13 +108,13 @@ class Account::CollaboratorsController < Account::BaseController
       :last_name,
       :job_title,
       :phone_number,
-      :role
+      :role,
     )
   end
 
   def require_to_be_not_current_user_and_not_account_owner!
     if current_user.id == collaborator.id ||
-       account_owner.id == collaborator.id
+        account_owner.id == collaborator.id
 
       render head :forbidden
     end

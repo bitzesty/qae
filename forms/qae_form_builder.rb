@@ -59,12 +59,10 @@ require "qae_form_builder/financial_summary_question"
 
 class QaeFormBuilder
   class << self
-
-    def build title, &block
+    def build(title, &))
       form = QaeForm.new title
-      form.instance_eval &block if block_given?
+      form.instance_eval((&)) if block
       form
     end
-
   end
 end

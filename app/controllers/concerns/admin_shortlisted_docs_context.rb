@@ -24,7 +24,7 @@ module AdminShortlistedDocsContext
 
         format.js do
           render partial: "admin/figures_and_vat_returns/file",
-                 locals: { attachment: attachment },
+                 locals: { attachment: },
                  content_type: "text/plain"
         end
       end
@@ -38,11 +38,11 @@ module AdminShortlistedDocsContext
         format.js do
           render partial: "admin/figures_and_vat_returns/form",
                  locals: {
-                   form_answer: form_answer, 
-                   attachment: attachment
+                   form_answer:,
+                   attachment:,
                  },
                  content_type: "text/plain",
-                 status: 422
+                 status: :unprocessable_entity
         end
       end
     end
@@ -82,11 +82,11 @@ module AdminShortlistedDocsContext
   end
 
   def begin_of_association_chain
-    @_begin_of_association_chain ||= 
-      (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
+    @_begin_of_association_chain ||=
+      form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
 
     return @_begin_of_association_chain if @_begin_of_association_chain.persisted?
-    
+
     @_begin_of_association_chain.save!
     @_begin_of_association_chain
   end

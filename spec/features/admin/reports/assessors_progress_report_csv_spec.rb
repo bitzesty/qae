@@ -6,14 +6,14 @@ describe "Assessors Progress Reports CSV" do
   let!(:first_assessor) { create(:assessor, :regular_for_trade) }
   let!(:second_assessor) { create(:assessor, :regular_for_trade) }
 
-  let(:positions) {
+  let(:positions) do
     {
       primary: 0,
       secondary: 1,
       moderated: 2,
-      case_summary: 4
+      case_summary: 4,
     }
-  }
+  end
 
   before do
     #
@@ -36,7 +36,7 @@ describe "Assessors Progress Reports CSV" do
       [1, "case_summary", true],
       [1, "primary", false],
       [2, "secondary", false],
-      [1, "case_summary", false]
+      [1, "case_summary", false],
     ].each do |entry|
       build_entry!(entry, first_assessor)
     end
@@ -68,7 +68,7 @@ describe "Assessors Progress Reports CSV" do
       [3, "case_summary", true],
       [3, "primary", false],
       [2, "secondary", false],
-      [1, "case_summary", false]
+      [1, "case_summary", false],
     ].each do |entry|
       build_entry!(entry, second_assessor)
     end
@@ -83,12 +83,12 @@ describe "Assessors Progress Reports CSV" do
     create(:feedback, authorable: second_assessor, submitted: false)
   end
 
-  let(:data) {
+  let(:data) do
     Reports::DataPickers::AssessorProgressPicker.new(
       AwardYear.current,
-      "trade"
+      "trade",
     ).results
-  }
+  end
 
   #
   # Data should be returned for following:
@@ -105,13 +105,13 @@ describe "Assessors Progress Reports CSV" do
   # "Total Assigned",
   # "Total Assessed"
 
-  let(:expected_first_entry_data) {
+  let(:expected_first_entry_data) do
     [first_assessor.id, first_assessor.full_name, first_assessor.email, 3, 2, 1, 1, 5, 3, 8, 5]
-  }
+  end
 
-  let(:expected_second_entry_data) {
+  let(:expected_second_entry_data) do
     [second_assessor.id, second_assessor.full_name, second_assessor.email, 4, 1, 3, 2, 4, 2, 8, 3]
-  }
+  end
 
   it "should render proper data" do
     expect(data[0]).to be_eql expected_first_entry_data
@@ -127,12 +127,10 @@ describe "Assessors Progress Reports CSV" do
       assessment = AssessorAssignment.new(
         position: positions[entry[1].to_sym],
         assessor_id: assessor.id,
-        form_answer_id: f.id
+        form_answer_id: f.id,
       )
 
-      if entry[2].present?
-        assessment.submitted_at = Time.now
-      end
+      assessment.submitted_at = Time.now if entry[2].present?
 
       assessment.save!(validate: false)
     end

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2022::QaeForms
   class << self
     def innovation_step3
@@ -29,25 +28,30 @@ class AwardYears::V2022::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation had on your organisation's financial performance.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "COVID-19 impact"],
-            [:normal, %(
+            [:normal,
+             %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             )],
             [:bold, "Latest financial year and COVID-19"],
-            [:normal, %(
+            [:normal,
+             %(
               Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2021 you may want to use the financial year ending 31 May 2020 for your final set of financial figures.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -60,7 +64,8 @@ class AwardYears::V2022::QaeForms
           )
         end
 
-        options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance?" do
+        options :innovation_performance_years,
+                "How would you describe the impact of your innovation on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
@@ -73,7 +78,7 @@ class AwardYears::V2022::QaeForms
           option "5 plus", "Continuous Commercial Performance: innovation has improved commercial performance over five years"
           financial_date_selector({
             "2 to 4" => "2",
-            "5 plus" => "5"
+            "5 plus" => "5",
           })
           default_option "5 plus"
           sub_category_question
@@ -85,7 +90,8 @@ class AwardYears::V2022::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -169,17 +175,20 @@ class AwardYears::V2022::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "Group entries"],
-            [:normal, %(
+            [:normal,
+             %(
               A parent company making a group entry should include the trading figures of all UK members of the group.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
 
           conditional :innovation_performance_years, :true
@@ -275,7 +284,8 @@ class AwardYears::V2022::QaeForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :drops_in_turnover, "Explain any drops in the total turnover, export sales, total net assets or net profit, and any losses made." do
+        textarea :drops_in_turnover,
+                 "Explain any drops in the total turnover, export sales, total net assets or net profit, and any losses made." do
           classes "sub-question"
           sub_ref "C 4.6"
           required
@@ -291,7 +301,8 @@ class AwardYears::V2022::QaeForms
           )
         end
 
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow and cash generated." do
+        textarea :drops_explain_how_your_business_is_financially_viable,
+                 "Explain how your business is financially viable in terms of cash flow and cash generated." do
           classes "sub-question"
           sub_ref "C 4.7"
           required
@@ -299,7 +310,8 @@ class AwardYears::V2022::QaeForms
           words_max 300
         end
 
-        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives and, if applicable, the types, scale and dates of investments you have received." do
+        textarea :investment_strategy_and_its_objectives,
+                 "Please describe your investment strategy and its objectives and, if applicable, the types, scale and dates of investments you have received." do
           classes "sub-question"
           sub_ref "C 4.8"
           required
@@ -343,17 +355,20 @@ class AwardYears::V2022::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "About this question"],
-            [:normal, %(
+            [:normal,
+             %(
               Some sub-questions may not apply to your innovation. Answer the ones that are relevant to help us understand the financial value of your innovation.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -426,7 +441,8 @@ class AwardYears::V2022::QaeForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)." do
+        textarea :avg_unit_price_desc,
+                 "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5
@@ -446,7 +462,8 @@ class AwardYears::V2022::QaeForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
+        textarea :costs_change_desc,
+                 "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "C 6.9"
           rows 5
@@ -477,7 +494,8 @@ class AwardYears::V2022::QaeForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered." do
+        textarea :innovation_performance,
+                 "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered." do
           ref "C 8"
           required
           context %(
@@ -489,7 +507,8 @@ class AwardYears::V2022::QaeForms
           words_max 250
         end
 
-        textarea :investments_details, "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the year(s) in which they were made." do
+        textarea :investments_details,
+                 "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the year(s) in which they were made." do
           ref "C 9"
           required
           rows 5
@@ -501,7 +520,8 @@ class AwardYears::V2022::QaeForms
           )
         end
 
-        textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investment above. How long did it take or will it take to recover the investment?" do
+        textarea :roi_details,
+                 "Please provide calculations on how you have recovered or will recover the investment above. How long did it take or will it take to recover the investment?" do
           classes "sub-question"
           sub_ref "C 9.1"
           required
@@ -514,7 +534,8 @@ class AwardYears::V2022::QaeForms
           )
         end
 
-        textarea :covid_impact_details, "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
+        textarea :covid_impact_details,
+                 "Describe the impact COVID-19 has had on your business and its performance. How you have adapted or mitigated it, and with what results?" do
           ref "C 10"
           required
           rows 5

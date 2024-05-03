@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2023::QaeForms
   class << self
     def trade_step3
@@ -19,36 +18,41 @@ class AwardYears::V2023::QaeForms
               We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
             </p>
             <p class="govuk-body">
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             <p>
             <h3 class="govuk-heading-m">Estimated figures</h3>
             <p class="govuk-body">
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
+              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
             </p>
           )
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities have had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate as you will need to verify them if shortlisted.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
             )],
             [:bold, "Volatile markets & last financial year"],
-            [:normal, %(
+            [:normal,
+             %(
               We recognise that recent volatile market conditions might have affected your growth plans. We will take this into consideration during the assessment process.
 
-              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Also, typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
               )],
             [:bold, "Estimated figures"],
-            [:normal, %(
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
-            )]
+            [:normal,
+             %(
+              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
+            )],
           ]
         end
 
-        trade_commercial_success :trade_commercial_success, "How would you describe the impact of your international trade activities on your organisation's financial performance?" do
+        trade_commercial_success :trade_commercial_success,
+                                 "How would you describe the impact of your international trade activities on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
@@ -74,7 +78,7 @@ class AwardYears::V2023::QaeForms
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question
@@ -91,7 +95,8 @@ class AwardYears::V2023::QaeForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> years) entry period?" do
+        options :financial_year_date_changed,
+                "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> years) entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -113,10 +118,10 @@ class AwardYears::V2023::QaeForms
 
           context %(
             <p>
-              Typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
+              Typically, you would have to submit data for your last financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} (the submission deadline). However, if your latest financial performance has been affected by the volatile market conditions due to factors such as Covid, you may wish to use your last financial year before Covid. For example, if your year-end is 31 January 2022, you may want to use the financial year ending 31 January 2020 for your final set of financial figures.
             </p>
             <p>
-              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
+              If you are providing figures for the year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} and haven't reached or finalised your accounts for that year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November. Typically, this would be an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.
             </p>
           )
 
@@ -173,17 +178,20 @@ class AwardYears::V2023::QaeForms
           )
           pdf_context_with_header_blocks [
             [:bold, "Group entries"],
-            [:normal, %(
+            [:normal,
+             %(
               A parent company making a group entry should include the trading figures of all UK members of the group.
             )],
             [:bold, "Estimated figures"],
-            [:normal, %(
+            [:normal,
+             %(
               If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an external accountant by November.
             )],
             [:bold, "Figures - format"],
-            [:normal, %(
+            [:normal,
+             %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -311,7 +319,8 @@ class AwardYears::V2023::QaeForms
           words_max 300
         end
 
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow and cash generated." do
+        textarea :drops_explain_how_your_business_is_financially_viable,
+                 "Explain how your business is financially viable in terms of cash flow and cash generated." do
           classes "sub-question"
           sub_ref "C 4.5"
           required
@@ -319,7 +328,8 @@ class AwardYears::V2023::QaeForms
           words_max 300
         end
 
-        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
+        textarea :investment_strategy_and_its_objectives,
+                 "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
           sub_ref "C 4.6"
           required

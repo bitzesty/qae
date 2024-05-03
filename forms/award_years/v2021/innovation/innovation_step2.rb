@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2021::QaeForms
   class << self
     def innovation_step2
@@ -20,14 +19,16 @@ class AwardYears::V2021::QaeForms
 
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
-            [:normal, %(
+            [:normal,
+             %(
               This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
               Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             )],
             [:bold, "Small organisations"],
-            [:normal, %(
+            [:normal,
+             %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-            )]
+            )],
           ]
         end
 
@@ -40,7 +41,7 @@ class AwardYears::V2021::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model"]
+            ["business_model", "A business model"],
           ]
           application_type_question true
         end
@@ -113,7 +114,8 @@ class AwardYears::V2021::QaeForms
           words_max 750
         end
 
-        options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation" do
+        options :description_that_best_reflects_the_type_of_innovation,
+                "Select the description that best reflects the type of your innovation" do
           sub_ref "B 1.4"
           classes "sub-question"
           required
@@ -134,7 +136,8 @@ class AwardYears::V2021::QaeForms
           yes_no
         end
 
-        textarea :innovation_hold_existing_patent_details, "Provide details of the patent. If you do not have a patent, please explain the reasons why not." do
+        textarea :innovation_hold_existing_patent_details,
+                 "Provide details of the patent. If you do not have a patent, please explain the reasons why not." do
           classes "sub-question"
           sub_ref "B 2.1"
           required
@@ -145,14 +148,14 @@ class AwardYears::V2021::QaeForms
           words_max 100
         end
 
-
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
           ref "B 3"
           required
           yes_no
         end
 
-        textarea :innovation_other_countries_it_was_developed, "Describe in what other countries (and by what parties) it was developed. Estimate what proportion of the innovation was developed there." do
+        textarea :innovation_other_countries_it_was_developed,
+                 "Describe in what other countries (and by what parties) it was developed. Estimate what proportion of the innovation was developed there." do
           classes "sub-question"
           sub_ref "B 3.1"
           required
@@ -161,21 +164,24 @@ class AwardYears::V2021::QaeForms
           words_max 400
         end
 
-        textarea :innovation_external_contributors, 'Name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
+        textarea :innovation_external_contributors,
+                 'Name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
           ref "B 4"
           required
           rows 5
           words_max 400
         end
 
-        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market. " do
+        textarea :innovation_context,
+                 "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market. " do
           ref "B 5"
           required
           rows 5
           words_max 500
         end
 
-        textarea :innovation_overcomes_issues, "Describe the degree to which your innovation solves previous problems, and any difficulties you overcame in achieving these solutions." do
+        textarea :innovation_overcomes_issues,
+                 "Describe the degree to which your innovation solves previous problems, and any difficulties you overcame in achieving these solutions." do
           ref "B 6"
           required
           rows 5
@@ -206,14 +212,16 @@ class AwardYears::V2021::QaeForms
           words_max 400
         end
 
-        textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation bring benefit to others, and if so how and to whom?" do
+        textarea :beyond_your_immediate_customers,
+                 "Beyond your immediate customers, does the innovation bring benefit to others, and if so how and to whom?" do
           ref "B 9"
           required
           rows 5
           words_max 400
         end
 
-        textarea :innovation_competitors, "Who offers similar or different products, services or business models that compete with yours? Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions." do
+        textarea :innovation_competitors,
+                 "Who offers similar or different products, services or business models that compete with yours? Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions." do
           ref "B 10"
           required
           rows 5
@@ -246,13 +254,13 @@ class AwardYears::V2021::QaeForms
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
           required
           ref "B 12"
-          context -> do
+          context lambda {
             %(
               <p>
                 Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(2)
         end

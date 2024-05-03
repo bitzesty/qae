@@ -13,6 +13,7 @@ class CurrentAwardTypePicker
   def current_award_type
     lead_categories = current_subject.categories_as_lead
     return nil if lead_categories.blank?
+
     regular_categories = current_subject.applications_scope.pluck(:award_type).uniq
     categories = lead_categories + regular_categories
     if params[:award_type].present?
@@ -28,9 +29,7 @@ class CurrentAwardTypePicker
 
     categories = lead_categories + regular_categories
 
-    if !params[:year].present? || params[:year].to_i > 2016
-      categories -= ["promotion"]
-    end
+    categories -= %w[promotion] if params[:year].blank? || params[:year].to_i > 2016
 
     categories.uniq.map.with_index do |category, index|
       AwardCategory.new(slug: category, first_element: index == 0)
@@ -38,9 +37,9 @@ class CurrentAwardTypePicker
   end
 
   def show_award_tabs_for_assessor?
-    if current_subject.categories_as_lead.size > 0
-      return true if visible_categories.size > 1
-    end
+    return unless current_subject.categories_as_lead.size > 0
+
+    true if visible_categories.size > 1
   end
 
   class AwardCategory < OpenStruct

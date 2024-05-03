@@ -6,21 +6,21 @@ describe "expired reception attendee information deadline" do
   let(:user) { create :user, :completed_profile }
   let!(:settings) { create(:settings, :submission_deadlines, award_year_id: AwardYear.current.id) }
 
-  let!(:form_answer) {
+  let!(:form_answer) do
     create :form_answer,
            :awarded,
            :trade,
-           user: user,
+           user:,
            award_year_id: AwardYear.current.id
-  }
+  end
 
   let!(:invite) { form_answer.create_palace_invite }
   let!(:palace_attendee) { create(:palace_attendee, palace_invite: invite) }
 
-  let!(:deadline) {
+  let!(:deadline) do
     form_answer.award_year
                .fetch_deadline("buckingham_palace_reception_attendee_information_due_by")
-  }
+  end
 
   before do
     AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).update_column(:trigger_at, Time.current.end_of_year)

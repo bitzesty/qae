@@ -1,5 +1,4 @@
 class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving of Awards
   # This section is used in case if JS disabled
 
@@ -30,7 +29,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
   expose(:created_item_ops) do
     attrs = {
       "title" => item_params[:title],
-      "details" => item_params[:details]
+      "details" => item_params[:details],
     }
 
     attrs["year"] = item_params[:year] if params[:holder].present?
@@ -41,12 +40,11 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     form_form_answer_awards_url(
       @form_answer.id,
       award: created_item_ops,
-      holder: params[:holder]
+      holder: params[:holder],
     )
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.item = item_class.new(question,
@@ -60,7 +58,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
       redirect_to edit_form_url(
         id: @form_answer.id,
         step: step.title.parameterize,
-        anchor: anchor,
+        anchor:,
       )
     else
       render :new
@@ -80,7 +78,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     redirect_to edit_form_url(
       id: @form_answer.id,
       step: step.title.parameterize,
-      anchor: anchor
+      anchor:,
     )
   end
 
@@ -102,17 +100,17 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
       redirect_to edit_form_url(
         id: @form_answer.id,
         step: step.title.parameterize,
-        anchor: anchor
+        anchor:,
       )
     else
       render :edit
     end
   end
 
-  def item_detect_condition(el, attrs=nil)
+  def item_detect_condition(el, attrs = nil)
     if params[:holder].present?
       el["title"] == (attrs.present? ? attrs[:title] : ops_hash[:title]) &&
-      el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
+        el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
     else
       el["title"] == (attrs.present? ? attrs[:title] : ops_hash[:title])
     end
@@ -124,7 +122,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     params.require(:award).permit(
       :title,
       :year,
-      :details
+      :details,
     )
   end
 end

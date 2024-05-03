@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2020::QaeForms
   class << self
     def development_step1
@@ -86,18 +85,19 @@ class AwardYears::V2020::QaeForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context -> do
+          context lambda {
             %(
               <p>
                 Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
               </p>
             )
-          end
+          }
 
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
+        options :applied_for_queen_awards,
+                "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
@@ -222,7 +222,8 @@ class AwardYears::V2020::QaeForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
+        textarea :why_external_organisations_contributed_your_nomination,
+                 "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
           classes "sub-question"
           sub_ref "A 9.2"
           required
@@ -246,7 +247,7 @@ class AwardYears::V2020::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 
@@ -260,7 +261,7 @@ class AwardYears::V2020::QaeForms
           ref "A 11"
           context %(
             <p>
-              If your application is successful, you may get contacted by the press. 
+              If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>

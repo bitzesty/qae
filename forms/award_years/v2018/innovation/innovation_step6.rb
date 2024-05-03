@@ -16,7 +16,7 @@ class AwardYears::V2018::QaeForms
           sub_fields([
             { first_name: "First name" },
             { last_name: "Last name" },
-            { honours: "Personal Honours" }
+            { honours: "Personal Honours" },
           ])
         end
 
@@ -34,7 +34,7 @@ class AwardYears::V2018::QaeForms
           required
         end
 
-        # TODO Pull in info for A13
+        # TODO: Pull in info for A13
         confirm :confirmation_of_consent, "Confirmation of consent" do
           ref "F 2"
           required
@@ -59,14 +59,14 @@ class AwardYears::V2018::QaeForms
         confirm :entry_confirmation, "Confirmation of entry" do
           ref "F 4"
           required
-          text -> do
+          text lambda {
             %(
               By ticking this box, I submit an entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}. I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
               <br>
               <br>
               I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
             )
-          end
+          }
         end
 
         confirm :shortlisted_case_confirmation, "" do

@@ -3,7 +3,7 @@ require "rails_helper"
 describe Users::AuditCertificateRequestMailer do
   let!(:user) { create :user }
   let(:form_answer) do
-    create :form_answer, :submitted, :innovation, user: user
+    create :form_answer, :submitted, :innovation, user:
   end
 
   let!(:deadline) do
@@ -13,9 +13,9 @@ describe Users::AuditCertificateRequestMailer do
   end
 
   let(:award_title) { form_answer.decorate.award_application_title }
-  let(:subject) {
+  let(:subject) do
     "King's Awards for Enterprise: Reminder to provide verification of commercial figures - Application ref #{form_answer.urn}"
-  }
+  end
 
   before do
     form_answer

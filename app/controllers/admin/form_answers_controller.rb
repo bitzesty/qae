@@ -1,12 +1,12 @@
 class Admin::FormAnswersController < Admin::BaseController
   include FormAnswerMixin
 
-  before_action :load_resource, only: [
-    :review,
-    :show,
-    :update,
-    :update_financials,
-    :remove_audit_certificate
+  before_action :load_resource, only: %i[
+    review
+    show
+    update
+    update_financials
+    remove_audit_certificate
   ]
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
@@ -14,7 +14,7 @@ class Admin::FormAnswersController < Admin::BaseController
   expose(:financial_pointer) do
     FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
-      financial_summary_view: true
+      financial_summary_view: true,
     })
   end
 
@@ -72,8 +72,8 @@ class Admin::FormAnswersController < Admin::BaseController
     send_data(
       @csv_data.force_encoding(::Encoding::UTF_8),
       filename: "awarded_trade_applications.csv",
-      type: 'text/csv; charset=Unicode(UTF-8); header=present',
-      disposition: 'attachment'
+      type: "text/csv; charset=Unicode(UTF-8); header=present",
+      disposition: "attachment",
     )
   end
 
@@ -88,7 +88,7 @@ class Admin::FormAnswersController < Admin::BaseController
   def resource
     @form_answer ||= load_resource
   end
-  alias_method :form_answer, :resource
+  alias form_answer resource
 
   def load_versions
     @versions = FormAnswerVersionsDispatcher.new(@form_answer).versions

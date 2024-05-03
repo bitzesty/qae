@@ -9,13 +9,18 @@ module MailgunHelper
     def query_ops(email)
       {
         params: {
-          address: email
-        }
+          address: email,
+        },
       }
     end
 
     def mailgun_public_key
-      (Rails.env.test? ? 'mailgun_public_key' : ENV['MAILGUN_PUBLIC_KEY']) || raise("You need to supply your mailgun public api key")
+      (if Rails.env.test?
+         "mailgun_public_key"
+       else
+         ENV.fetch("MAILGUN_PUBLIC_KEY",
+                   nil)
+       end) || raise("You need to supply your mailgun public api key")
     end
 
     def url(email)
@@ -24,16 +29,18 @@ module MailgunHelper
 
     def query_string(email)
       {
-        address: email
+        address: email,
       }.to_query
     end
 
     def valid?(email)
       return true if Rails.env.test?
+
       body = Curl::Easy.perform(url(email)).body
 
       if response = JSON.parse(body)
         return false if response.is_a?(Hash) && response["is_valid"].to_s == "false"
+
         response.size > 0
       end
     rescue Exception => e

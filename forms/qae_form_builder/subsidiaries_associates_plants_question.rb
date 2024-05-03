@@ -14,13 +14,13 @@ class QaeFormBuilder
 
   class SubsidiariesAssociatesPlantsQuestionDecorator < QuestionDecorator
     def subsidiaries
-      @subsidiaries ||= (answers[delegate_obj.key.to_s] || [])
+      @subsidiaries ||= answers[delegate_obj.key.to_s] || []
     end
 
-    alias :entities :subsidiaries
+    alias entities subsidiaries
 
     def required_sub_fields_list
-      %w(name location employees)
+      %w[name location employees]
     end
   end
 end

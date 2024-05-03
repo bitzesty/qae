@@ -1,22 +1,22 @@
 class QaeFormBuilder
   class QuestionValidator
     # multifield questions that can not be simply validated
-    SKIP_PRESENCE_VALIDATION_QUESTIONS = [
-      "DateQuestion",
-      "SubFieldsQuestion",
-      "AddressQuestion",
-      "InnovationFinancialYearDateQuestion",
-      "ByYearsQuestion",
-      "ByYearsLabelQuestion",
-      "OneOptionByYearsQuestion",
-      "OneOptionByYearsLabelQuestion",
-      "UserInfoQuestion",
-      "AwardHolderQuestion",
-      "QueenAwardApplicationsQuestion",
-      "SupportersQuestion",
-      "SubsidiariesAssociatesPlantsQuestion",
-      "ByTradeGoodsAndServicesLabelQuestion",
-      "MatrixQuestion"
+    SKIP_PRESENCE_VALIDATION_QUESTIONS = %w[
+      DateQuestion
+      SubFieldsQuestion
+      AddressQuestion
+      InnovationFinancialYearDateQuestion
+      ByYearsQuestion
+      ByYearsLabelQuestion
+      OneOptionByYearsQuestion
+      OneOptionByYearsLabelQuestion
+      UserInfoQuestion
+      AwardHolderQuestion
+      QueenAwardApplicationsQuestion
+      SupportersQuestion
+      SubsidiariesAssociatesPlantsQuestion
+      ByTradeGoodsAndServicesLabelQuestion
+      MatrixQuestion
     ]
 
     attr_reader :question, :answers
@@ -31,10 +31,9 @@ class QaeFormBuilder
 
       return {} if skip_base_validation?
 
-      if question.required?
-        if !question.input_value.present?
-          result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and and must be filled in."
-        end
+      if question.required? && question.input_value.blank?
+        result[question.hash_key] =
+          "Question #{question.ref || question.sub_ref} is incomplete. It is required and and must be filled in."
       end
 
       result
@@ -50,7 +49,7 @@ class QaeFormBuilder
 
     def limit_with_buffer(limit)
       if limit > 15
-        (limit + limit * 0.1).to_i + 1
+        (limit + (limit * 0.1)).to_i + 1
       else
         limit
       end
@@ -58,16 +57,15 @@ class QaeFormBuilder
 
     def valid_url?(url)
       return false if url.include?("<script")
-      unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
-        url = "http://#{url}"
-      end
-      url_regexp = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
-      url =~ url_regexp ? true : false
+
+      url = "http://#{url}" unless url[%r{\Ahttp://}] || url[%r{\Ahttps://}]
+      url_regexp = %r{\A(http|https)://[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?\z}ix
+      url&.match?(url_regexp) ? true : false
     end
   end
 
   class QuestionDecorator < QaeDecorator
-    def input_name options = {}
+    def input_name(options = {})
       if options[:index]
         suffix = options.fetch(:suffix)
         "#{form_name}[#{delegate_obj.key}][#{options[:index]}][#{suffix}]"
@@ -76,14 +74,14 @@ class QaeFormBuilder
       end
     end
 
-    def input_value options = {}
+    def input_value(options = {})
       result = if options[:index]
-        suffix = options.fetch(:suffix)
-        json = answers[delegate_obj.key] || {}
-        json[options[:index]][suffix]
-      else
-        answers[hash_key(options)]
-      end
+                 suffix = options.fetch(:suffix)
+                 json = answers[delegate_obj.key] || {}
+                 json[options[:index]][suffix]
+               else
+                 answers[hash_key(options)]
+               end
 
       if options[:json]
         result || {}
@@ -105,10 +103,10 @@ class QaeFormBuilder
     end
 
     def form_name
-      @decorator_options[:form_name] || 'form'
+      @decorator_options[:form_name] || "form"
     end
 
-    def hash_key options = {}
+    def hash_key(options = {})
       options[:suffix] ? "#{delegate_obj.key}_#{options[:suffix]}" : delegate_obj.key
     end
 
@@ -118,7 +116,7 @@ class QaeFormBuilder
       meth = halt_options.dig(:if)
 
       if meth.respond_to?(:call)
-        meth.(self)
+        meth.call(self)
       elsif respond_to?(meth)
         send(meth)
       end
@@ -127,37 +125,37 @@ class QaeFormBuilder
     def label_as_legend?
       type = delegate_obj.class.name.demodulize.underscore
 
-      legend_types = [
-        "header_question",
-        "turnover_exports_calculation_question",
-        "options_question",
-        "options_business_name_changed_question",
-        "trade_most_recent_financial_year_options",
-        "regions_question",
-        "trade_commercial_success_question",
-        "checkbox_seria_question",
-        "confirm_question",
-        "address_question",
-        "date_question",
-        "queen_award_applications_question",
-        "subsidiaries_associates_plants_question",
-        "by_trade_goods_and_services_label_question",
-        "innovation_financial_year_date_question",
-        "one_option_by_years_question",
-        "one_option_by_years_label_question",
-        "by_years_question",
-        "by_years_label_question",
-        "matrix_question",
-        "press_contact_details_question",
-        "sub_fields_question",
-        "upload_question"
+      legend_types = %w[
+        header_question
+        turnover_exports_calculation_question
+        options_question
+        options_business_name_changed_question
+        trade_most_recent_financial_year_options
+        regions_question
+        trade_commercial_success_question
+        checkbox_seria_question
+        confirm_question
+        address_question
+        date_question
+        queen_award_applications_question
+        subsidiaries_associates_plants_question
+        by_trade_goods_and_services_label_question
+        innovation_financial_year_date_question
+        one_option_by_years_question
+        one_option_by_years_label_question
+        by_years_question
+        by_years_label_question
+        matrix_question
+        press_contact_details_question
+        sub_fields_question
+        upload_question
       ]
 
       legend_types.include?(type)
     end
 
     def fieldset_classes
-      result = ["question-block", "js-conditional-answer"]
+      result = %w[question-block js-conditional-answer]
       result << delegate_obj.classes if delegate_obj.classes
       result << "question-required" if delegate_obj.required
       result << "js-conditional-drop-answer" if delegate_obj.drop_condition.present?
@@ -166,7 +164,7 @@ class QaeFormBuilder
     end
 
     def fieldset_data_hash
-      result = { "answer": delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
+      result = { answer: delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
 
       if delegate_obj.drop_condition.present?
         result["drop-question"] = Array.wrap(delegate_obj.drop_condition).map do |k|
@@ -174,21 +172,19 @@ class QaeFormBuilder
         end.join(",")
       end
 
-      if delegate_obj.sub_section.present?
-        result["sub-section"] = delegate_obj.sub_section
-      end
+      result["sub-section"] = delegate_obj.sub_section if delegate_obj.sub_section.present?
 
       result
     end
 
     def has_drops?
-      if delegate_obj.drop_condition_parent.present?
-        step.questions.select do |q|
-          q.drop_condition.present? &&
+      return if delegate_obj.drop_condition_parent.blank?
+
+      step.questions.select do |q|
+        q.drop_condition.present? &&
           Array.wrap(q.drop_condition).include?(key)
-        end.any? do |q|
-          q.has_drops?
-        end
+      end.any? do |q|
+        q.has_drops?
       end
     end
 
@@ -226,7 +222,7 @@ class QaeFormBuilder
       delegate_obj.conditions.any?
     end
 
-    def visible?(fetched_answers=nil)
+    def visible?(fetched_answers = nil)
       dc = delegate_obj.drop_condition_parent
       delegate_obj.conditions.all? do |condition|
         question_value = condition.question_value
@@ -245,7 +241,7 @@ class QaeFormBuilder
           day, month = if fetched_answers.present?
                          [
                            fetched_answers["#{condition.question_key}_day"],
-                           fetched_answers["#{condition.question_key}_month"]
+                           fetched_answers["#{condition.question_key}_month"],
                          ]
                        else
                          q = step.form[condition.question_key]
@@ -253,7 +249,11 @@ class QaeFormBuilder
                        end
 
           if day.present? && month.present?
-            date = Date.parse("#{day.to_i}/#{month.to_i}/2000") rescue nil
+            date = begin
+              Date.parse("#{day.to_i}/#{month.to_i}/2000")
+            rescue StandardError
+              nil
+            end
             if date
               from, to = condition.options.dig(:range)
               date.between?(from, to)
@@ -263,12 +263,10 @@ class QaeFormBuilder
           else
             false
           end
+        elsif parent_question_answer.is_a?(Array)
+          parent_question_answer.find { |a| a["type"].to_s == question_value.to_s }.present?
         else
-          if parent_question_answer.is_a?(Array)
-            parent_question_answer.find { |a| a["type"].to_s == question_value.to_s }.present?
-          else
-            parent_question_answer == question_value.to_s
-          end
+          parent_question_answer == question_value.to_s
         end
       end &&
         (!dc || (dc.present? && has_drops?))
@@ -293,7 +291,7 @@ class QaeFormBuilder
     end
 
     def escaped_title
-      r_title = ''
+      r_title = ""
       title = delegate_obj.title
       pdf_title = delegate_obj.pdf_title
       main_header = delegate_obj.main_header if delegate_obj.respond_to?(:main_header)
@@ -306,11 +304,7 @@ class QaeFormBuilder
     end
 
     def escaped_context
-      content = if delegate_obj.pdf_context.present?
-        delegate_obj.pdf_context
-      else
-        delegate_obj.context
-      end
+      content = delegate_obj.pdf_context.presence || delegate_obj.context
 
       prepared_text(content) if content.present?
     end
@@ -320,7 +314,7 @@ class QaeFormBuilder
     end
 
     def prepared_text(content)
-      Sanitize.fragment(content, elements: ["strong"]).strip
+      Sanitize.fragment(content, elements: %w[strong]).strip
     end
 
     # Detects children conditions, grouped by option
@@ -338,12 +332,12 @@ class QaeFormBuilder
 
     def can_have_conditional_hints?
       delegate_obj.is_a?(QaeFormBuilder::OptionsQuestion) ||
-      delegate_obj.is_a?(QaeFormBuilder::TradeCommercialSuccessQuestion)
+        delegate_obj.is_a?(QaeFormBuilder::TradeCommercialSuccessQuestion)
     end
 
     def can_have_parent_conditional_hints?
       !delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion) &&
-      !delegate_obj.is_a?(QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion)
+        !delegate_obj.is_a?(QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion)
     end
 
     def pdf_conditional_hints(questions_with_references)
@@ -354,15 +348,13 @@ class QaeFormBuilder
           q.key == condition.question_key
         end
 
-        parent_ref = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
-        [parent_ref.to_s.delete(' '), condition.question_value]
+        parent_ref = parent_q.ref.presence || parent_q.sub_ref
+        [parent_ref.to_s.delete(" "), condition.question_value]
       end
 
       pdf_hints = refs_and_values.map do |parent_ref, parent_val|
         if parent_ref.present?
-          if parent_val.to_s != "true"
-            "if you selected '#{parent_val.to_s.split('_').join(' ').capitalize}' in question #{parent_ref}"
-          end
+          "if you selected '#{parent_val.to_s.split("_").join(" ").capitalize}' in question #{parent_ref}" if parent_val.to_s != "true"
         else
           "if you selected '#{parent_val.capitalize}' in previous question"
         end
@@ -382,8 +374,8 @@ class QaeFormBuilder
           q.key == c.parent_question_key
         end
 
-        res = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
-        res.delete(' ')
+        res = parent_q.ref.presence || parent_q.sub_ref
+        res.delete(" ")
       end
 
       generate_hint(option_name, dependencies)
@@ -399,8 +391,8 @@ class QaeFormBuilder
         "If #{option_name}, please answer both parts of question A8.1 and B7"
 
       elsif delegate_obj.form.title == "International Trade Award Application" &&
-            delegate_obj.ref.to_s == "A 1" &&
-            option_name.to_s == "Organisation"
+          delegate_obj.ref.to_s == "A 1" &&
+          option_name.to_s == "Organisation"
         # Hardcoded condition by client request:
         #
         # On International Trade, Question A1 please can you remove note 'if organisation,
@@ -415,23 +407,23 @@ class QaeFormBuilder
   end
 
   class QuestionBuilder
-    def initialize q
+    def initialize(q)
       @q = q
     end
 
-    def pdf_title text
+    def pdf_title(text)
       @q.pdf_title = text
     end
 
-    def context text
+    def context(text)
       @q.context = text
     end
 
-    def pdf_context text
+    def pdf_context(text)
       @q.pdf_context = text
     end
 
-    def pdf_context_with_header_blocks text
+    def pdf_context_with_header_blocks(text)
       @q.pdf_context_with_header_blocks = text
     end
 
@@ -439,29 +431,29 @@ class QaeFormBuilder
       condition = options[:if]
 
       if condition && condition.respond_to?(:call)
-        @q.additional_pdf_context = text if condition.call()
+        @q.additional_pdf_context = text if condition.call
       else
         @q.additional_pdf_context = text
       end
     end
 
-    def classes text
+    def classes(text)
       @q.classes = text
     end
 
-    def ref id
+    def ref(id)
       @q.ref = id
     end
 
-    def sub_ref id
+    def sub_ref(id)
       @q.sub_ref = id
     end
 
-    def section id
+    def section(id)
       @q.section = id
     end
 
-    def question_sub_title str
+    def question_sub_title(str)
       @q.question_sub_title = str
     end
 
@@ -489,20 +481,20 @@ class QaeFormBuilder
       @q.excluded_header_questions = true
     end
 
-    def help title, text
+    def help(title, text)
       @q.help << QuestionHelp.new(title, text)
     end
 
-    def hint title, text
+    def hint(title, text)
       @q.hint << QuestionHelp.new(title, text)
     end
 
-    def form_hint text
+    def form_hint(text)
       @q.form_hint = text
     end
 
-    def conditional key, value, **opts
-      @q.conditions << QuestionCondition.new(@q.key, key, value, **opts)
+    def conditional(key, value, **)
+      @q.conditions << QuestionCondition.new(@q.key, key, value, **)
     end
 
     #
@@ -528,11 +520,11 @@ class QaeFormBuilder
       @q.drop_condition_parent = true
     end
 
-    def header header
+    def header(header)
       @q.header = header
     end
 
-    def header_context header_context
+    def header_context(header_context)
       @q.header_context = header_context
     end
 
@@ -581,7 +573,7 @@ class QaeFormBuilder
                   :about_section,
                   :section
 
-    def initialize step, key, title, opts={}
+    def initialize(step, key, title, opts = {})
       @step = step
       @key = key
       @title = title
@@ -595,7 +587,7 @@ class QaeFormBuilder
       @display_sub_ref_on_js_form = true
       @show_ref_always = false
 
-      self.after_create if self.respond_to?(:after_create)
+      after_create if respond_to?(:after_create)
     end
 
     def context
@@ -614,9 +606,13 @@ class QaeFormBuilder
       end
     end
 
-    def decorate options = {}
-      kls_name = self.class.name.split('::').last
-      kls = QaeFormBuilder.const_get "#{kls_name}Decorator" rescue nil
+    def decorate(options = {})
+      kls_name = self.class.name.split("::").last
+      kls = begin
+        QaeFormBuilder.const_get "#{kls_name}Decorator"
+      rescue StandardError
+        nil
+      end
       (kls || QuestionDecorator).new self, options
     end
 

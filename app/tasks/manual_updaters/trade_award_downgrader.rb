@@ -16,14 +16,14 @@ class ManualUpdaters::TradeAwardDowngrader
     puts "Downgrading Trade Application ##{form_answer.id}"
 
     # financial year changed dates
-    %w(day month).each do |attr|
+    %w[day month].each do |attr|
       # two times since the last date is already set
       2.times do |i|
         document["financial_year_changed_dates_#{i + 1}of3#{attr}"] = document["financial_year_changed_dates_#{i + 4}of6#{attr}"]
       end
     end
 
-    %w(employees overseas_sales total_turnover net_profit).each do |attr|
+    %w[employees overseas_sales total_turnover net_profit].each do |attr|
       3.times do |i|
         document["#{attr}_#{i + 1}of3"] = document["#{attr}_#{i + 4}of6"]
       end

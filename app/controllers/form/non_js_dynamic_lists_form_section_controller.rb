@@ -14,16 +14,12 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
   end
 
   expose(:existing_parsed_list_doc) do
-    if existing_list_doc.present?
-      existing_list_doc
-    else
-      []
-    end
+    existing_list_doc.presence || []
   end
 
-  expose(:ops_hash) {
+  expose(:ops_hash) do
     ActiveSupport::HashWithIndifferentAccess.new(item_params)
-  }
+  end
 
   expose(:anchor) do
     "non_js_#{input_name}-list-question"
@@ -34,7 +30,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
     res.push(created_item_ops)
 
     @form_answer.document.merge(
-      input_name => res
+      input_name => res,
     )
   end
 
@@ -44,10 +40,10 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
       item_detect_condition(el)
     end
 
-    res = res.present? ? res : []
+    res = [] if res.blank?
 
     @form_answer.document.merge(
-      input_name => res
+      input_name => res,
     )
   end
 
@@ -56,7 +52,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
     res[params[:index].to_i] = item_params
 
     @form_answer.document.merge(
-      input_name => res
+      input_name => res,
     )
   end
 

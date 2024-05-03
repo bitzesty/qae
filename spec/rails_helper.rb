@@ -1,12 +1,12 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
+require "spec_helper"
+ENV["RAILS_ENV"] ||= "test"
+require_relative "../config/environment"
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
+require "rspec/rails"
 require "shoulda/matchers"
-require 'webmock/rspec'
+require "webmock/rspec"
 require "simplecov"
 require "codeclimate-test-reporter"
 
@@ -20,14 +20,14 @@ class LineFilter < SimpleCov::Filter
   end
 end
 
-SimpleCov.start 'rails' do
-  add_filter '/spec/'
+SimpleCov.start "rails" do
+  add_filter "/spec/"
   add_filter "/lib/tasks/"
   add_filter "/app/forms/award_years/"
   add_filter "/app/pdf_generators/"
   add_filter "/app/tasks/"
   add_filter do |source_file|
-    source_file.filename =~ /app\/controllers/ && source_file.lines.count < 8
+    source_file.filename =~ %r{app/controllers} && source_file.lines.count < 8
   end
 end
 
@@ -47,7 +47,7 @@ ActiveRecord::Migration.check_pending!
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join("spec", "support", "**", "*.rb")].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -73,7 +73,7 @@ RSpec.configure do |config|
   config.raise_error_for_unimplemented_steps = true
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -114,6 +114,6 @@ RSpec.configure do |config|
 end
 
 def stub_sendgrid_bounced_emails_check_request(email)
-  stub_request(:get, "https://sendgrid.com/api/bounces.get.jsonapi_key=test_smtp_password&api_user=test_smtp_username&email=#{email}").
-    to_return(status: 200, body: "", headers: {})
+  stub_request(:get, "https://sendgrid.com/api/bounces.get.jsonapi_key=test_smtp_password&api_user=test_smtp_username&email=#{email}")
+    .to_return(status: 200, body: "", headers: {})
 end

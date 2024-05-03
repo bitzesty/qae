@@ -19,8 +19,8 @@ class ConfirmationForm
   private
 
   def confirmed_or_rejected
-    unless params[:confirmation].in?(%w[true false])
-      errors.add(:confirmation, I18n.t(type, scope: "confirmation_form.errors"))
-    end
+    return if params[:confirmation].in?(%w[true false])
+
+    errors.add(:confirmation, I18n.t(type, scope: "confirmation_form.errors"))
   end
 end

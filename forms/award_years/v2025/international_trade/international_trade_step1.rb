@@ -22,9 +22,10 @@ class AwardYears::V2025::QaeForms
             { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
-            { honours: "Personal Honours (optional)", hint: "For example, Lieutenant (LVO), Member of the Most Excellent Order of the British Empire (MBE), Air Force Cross (AFC). Please do not include qualifications such as a master's degree or doctorate." },
+            { honours: "Personal Honours (optional)",
+              hint: "For example, Lieutenant (LVO), Member of the Most Excellent Order of the British Empire (MBE), Air Force Cross (AFC). Please do not include qualifications such as a master's degree or doctorate." },
             { job_title: "Job title or role in the organisation" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -104,7 +105,8 @@ class AwardYears::V2025::QaeForms
             </details>
           }
           pdf_context_with_header_blocks [
-            [:normal, %(
+            [:normal,
+             %(
               Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence process that we undertake with a number of Government Departments and Agencies informing the decision to grant an award.
 
               You must be able to show responsible business conduct concerning the environment, wider society, your workforce, customers, suppliers, and corporate governance. This includes having a good, continuous compliance record covering at least five years or your application period and up to now (whichever is the longest period).
@@ -170,7 +172,7 @@ class AwardYears::V2025::QaeForms
               \u2022 Wales Government
 
               Non-compliance that occurred and was resolved before the period covering your application will be assessed on a case-by-case basis.
-            )]
+            )],
           ]
         end
 
@@ -184,7 +186,8 @@ class AwardYears::V2025::QaeForms
           )
         end
 
-        textarea :major_issues_overcome, "Please explain any major issues that you have overcome in recent years and the remedial steps you have taken." do
+        textarea :major_issues_overcome,
+                 "Please explain any major issues that you have overcome in recent years and the remedial steps you have taken." do
           ref "A 2.2"
           classes "sub-question"
           required

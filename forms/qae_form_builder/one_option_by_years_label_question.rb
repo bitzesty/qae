@@ -3,11 +3,11 @@ class QaeFormBuilder
   end
 
   class OneOptionByYearsLabelQuestionBuilder < QuestionBuilder
-    def type type
+    def type(type)
       @q.type = type
     end
 
-    def label label
+    def label(label)
       @q.label = label
     end
   end
@@ -19,7 +19,7 @@ class QaeFormBuilder
       result
     end
 
-    def format_label y
+    def format_label(y)
       if delegate_obj.label && delegate_obj.label.is_a?(Proc)
         delegate_obj.label.call y
       else
@@ -32,13 +32,14 @@ class QaeFormBuilder
       active_fields.each do |f|
         v = input_value(suffix: f).to_f
         return true if (last && v < last) || v < 0
+
         last = v
       end
       false
     end
 
     def active_fields
-      (1..3).map{|y| "#{y}of3"}
+      (1..3).map { |y| "#{y}of3" }
     end
 
     def fields_count
@@ -46,9 +47,9 @@ class QaeFormBuilder
     end
 
     def active_by_year_condition
-      delegate_obj.by_year_conditions.find {|c|
+      delegate_obj.by_year_conditions.find do |c|
         form[c.question_key].input_value == c.question_value
-      }
+      end
     end
   end
 

@@ -1,5 +1,5 @@
 class SupportLetter < ApplicationRecord
-  begin :associations
+  begin
     belongs_to :supporter, optional: true
     belongs_to :form_answer, optional: true
     belongs_to :user, optional: true
@@ -7,7 +7,7 @@ class SupportLetter < ApplicationRecord
     has_one :support_letter_attachment, autosave: true, dependent: :destroy
   end
 
-  begin :validations
+  begin
     validates :first_name,
               :last_name,
               :user,
@@ -18,7 +18,7 @@ class SupportLetter < ApplicationRecord
     validates :support_letter_attachment, presence: true, if: proc { manual? }
   end
 
-  begin :scopes
+  begin
     scope :manual, -> { where(manual: true) }
     scope :not_manual, -> { where(manual: false) }
   end

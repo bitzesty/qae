@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "non js form base" do
   let!(:user) do
@@ -16,7 +16,7 @@ shared_context "non js form base" do
   private
 
   def prepare_setting_deadlines
-    %w(innovation trade mobility development).each do |award|
+    %w[innovation trade mobility development].each do |award|
       start = settings.deadlines.public_send("#{award}_submission_start")
       start.update_column(:trigger_at, Time.zone.now - 20.days)
     end
