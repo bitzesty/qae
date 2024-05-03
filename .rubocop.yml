@@ -1,13 +1,90 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
+AllCops:
+  NewCops: enable
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+    - 'bin/**'
+    - 'config.ru'
+    - 'tmp/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'vendor/**/*'
+    - 'assets/builds/*'
+    - 'bin/**/*'
+    - 'doc/**/*'
+
+Layout/LineLength:
+  Max: 140
+  Exclude:
+    - 'config/**/*'
+    - 'db/**/*'
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+Layout/MultilineHashBraceLayout:
+  Enabled: false
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+Style/WordArray:
+  MinSize: 0
 Style/StringLiterals:
   EnforcedStyle: double_quotes
-  SupportedStyles:
-    - single_quotes
-    - double_quotes
-Style/AccessorMethodName:
-  enabled: false
-Style/MethodDefParentheses:
-  enabled: false
-Metrics/LineLength:
-  Max: 120
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+Style/Documentation:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
 Metrics/MethodLength:
-  enabled: false
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrate/**/*.rb'
+Rails/Output:
+  Exclude:
+    - 'lib/**/*'
+    - 'db/migrate/**/*.rb'
+Rails/ApplicationRecord:
+  Exclude:
+    - 'db/migrate/**'
+Naming/VariableNumber:
+  Enabled: false
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+Bundler/OrderedGems:
+  Enabled: false
+
