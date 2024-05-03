@@ -136,13 +136,15 @@ gem 'lograge'
 # speedup server boot time
 gem 'bootscale', require: false
 
-gem 'browser', '2.4.0'
+# IE 8 and lower detection
+gem 'browser', '6.0.0'
 
 # Simple colored logging
 gem 'shog'
 
 gem 'rails-healthcheck'
 
+# An implementation of Matrix and Vector classes.
 gem 'matrix'
 
 # Used to convert HTML to text, with the exception of whitelisted attributes.
