@@ -22,7 +22,7 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions/cache@v2
         with:
           path: vendor/bundle
@@ -63,6 +63,18 @@ jobs:
           bundle install --jobs 4 --retry 3
           RAILS_ENV=test bundle exec rake db:create db:migrate
           RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RSpec::Github::Formatter --format progress
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Lint Ruby files
+        run: bundle exec rubocop --require rubocop-rails --format github
   deploy_dev:
     needs: [test]
     if: github.ref == 'refs/heads/main'

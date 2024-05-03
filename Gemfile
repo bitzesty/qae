@@ -148,12 +148,14 @@ group :development do
   gem 'letter_opener'
   gem 'rack-mini-profiler', '>= 0.10.1', require: false
   gem 'binding_of_caller'
-  gem 'rubocop', '~> 0.52', require: false
   # When need to copy model with nested associations
   gem 'amoeba', '3.0.0'
   # for RailsPanel Chrome extension
   gem 'listen'
-
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "standard", require: false
   # Fixes https://github.com/rails/rails/issues/26658#issuecomment-255590071
   gem 'rb-readline'
 end
