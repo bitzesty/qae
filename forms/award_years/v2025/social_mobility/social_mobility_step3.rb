@@ -92,7 +92,7 @@ class AwardYears::V2025::QaeForms
             </p>
 
             <p class="govuk-body">
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             </p>
 
             <h3 class="govuk-heading-m">Small organisations</h3>
@@ -204,7 +204,7 @@ class AwardYears::V2025::QaeForms
             [:normal, %(
               To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
 
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             )],
 
             [:bold, "Small organisations"],
