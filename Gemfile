@@ -107,8 +107,7 @@ gem 'redis-store', "~> 1.4"
 # We use it for communicating with api.debounce.io
 gem 'rest-client'
 
-# We are using Pusher with Poxa server
-# for multiple collaborators editing an application
+# We are using Pusher with Poxa server for realtime collaborator editing
 gem 'pusher', '0.15.2'
 
 # Text Search
@@ -131,10 +130,13 @@ gem 'lograge'
 # speedup server boot time
 gem 'bootscale', require: false
 
-gem 'browser', '2.4.0'
+# IE 8 and lower detection
+gem 'browser', '6.0.0'
 
+# Healthchecks
 gem 'rails-healthcheck'
 
+# An implementation of Matrix and Vector classes.
 gem 'matrix'
 
 # Used to convert HTML to text, with the exception of whitelisted attributes.
