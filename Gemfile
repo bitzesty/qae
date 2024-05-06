@@ -63,7 +63,7 @@ gem 'devise_zxcvbn', '>= 4.4.1'
 gem 'devise-security', '~> 0.18.0'
 
 # GOV.UK Notify support (for mailers)
-gem 'mail-notify', '~> 1.0'
+gem 'mail-notify', '~> 2.0'
 
 # Pagenation
 gem 'kaminari'
