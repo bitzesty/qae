@@ -31,7 +31,7 @@
           .govuk-form-group--error#password-guidance
             p.govuk-error-message.text-underline Please improve your password
             p.govuk-error-message#password-too-short
-              ' It must be at least 10 characters.
+              ' It must be at least #{Devise.password_length.begin} characters.
             p.govuk-error-message#parts-of-email It shouldn't include part or all of your email address.
             p.govuk-error-message#password-entropy
               ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
@@ -40,7 +40,7 @@
             .input-group
               = f.input :password,
                         wrapper_html: { class: 'form-group' },
-                        input_html: { class: 'form-control', "data-min-password-length" => "10" },
+                        input_html: { class: 'form-control', "data-min-password-length" => Devise.password_length.begin },
                         label: false
               span#password-result-span.input-group-addon.hide
                 i#password-result.glyphicon.glyphicon-ok
