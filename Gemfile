@@ -63,7 +63,7 @@ gem 'devise_zxcvbn', '>= 4.4.1'
 gem 'devise-security', '~> 0.18.0'
 
 # GOV.UK Notify support (for mailers)
-gem 'mail-notify', '~> 1.0'
+gem 'mail-notify', '~> 2.0'
 
 # Pagenation
 gem 'kaminari'
@@ -118,10 +118,6 @@ gem 'pg_search', "~> 2.3.3"
 gem 'active_hash'
 gem 'virtus'
 gem 'nilify_blanks'
-
-# We use it for sending API requests to Sendgrid in
-# AdvancedEmailValidator
-gem 'curb', '~> 1.0.5'
 
 # Web server
 gem 'puma', '~> 6.4.2'
