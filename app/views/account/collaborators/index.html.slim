@@ -16,7 +16,10 @@ h1.govuk-heading-xl
         div
           - if !current_user.account_admin?
             p.govuk-body
-              ' Collaborators can work on the form simultaneously if they are on different sections.
+              ' Account users can work on the form simultaneously
+              strong 
+                ' if they are on different sections
+              ' .
 
           - if current_user.account_admin?
             - if current_account.has_collaborators?
