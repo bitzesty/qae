@@ -32,7 +32,7 @@ module QaePdfForms::General::DrawElements
     file = attachment_icon(attachment_file)
 
     if Rails.env.production?
-      open(file)
+      File.open(file)
     else
       file
     end
