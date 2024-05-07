@@ -258,7 +258,7 @@ class AwardYears::V2025::QaeForms
           sub_ref "C 2.1"
           required
           min 2000
-          max 2020
+          max -> { Time.now.year }
         end
 
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
