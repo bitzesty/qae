@@ -113,6 +113,8 @@ RSpec.configure do |config|
   end
 end
 
+RSpec::Matchers.define_negated_matcher :not_change, :change
+
 def stub_sendgrid_bounced_emails_check_request(email)
   stub_request(:get, "https://sendgrid.com/api/bounces.get.jsonapi_key=test_smtp_password&api_user=test_smtp_username&email=#{email}").
     to_return(status: 200, body: "", headers: {})
