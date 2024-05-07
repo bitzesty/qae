@@ -89,6 +89,7 @@ class AccountsController < ApplicationController
     current_user.set_step(5)
 
     if current_user.update_with_password(password_settings_params)
+      sign_in(current_user, bypass: true)
       flash.notice = 'Your account details were successfully saved'
       redirect_to dashboard_path
     else
