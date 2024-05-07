@@ -9,21 +9,21 @@
           p
             | We use some essential cookies to make this service work.
           p
-            | We’d also like to use analytics cookies so we can understand how you use the service and make improvements.
+            | We'd also like to use analytics cookies so we can understand how you use the service and make improvements.
 
     .govuk-button-group
       button.govuk-button.cookies-action value="accept" type="button" name="cookies" data-module="govuk-button"
         | Accept analytics cookies
       button.govuk-button.cookies-action value="reject" type="button" name="cookies" data-module="govuk-button"
         | Reject analytics cookies
-      = link_to "View cookies", cookies_path, class: "govuk-link"
+      = link_to "View cookie policy", cookies_path, class: "govuk-link"
 
   .govuk-cookie-banner__message.govuk-width-container.reject-message hidden="true"
     .govuk-grid-row
       .govuk-grid-column-two-thirds
         .govuk-cookie-banner__content
           p.govuk-body
-            | You’ve rejected analytics cookies. You can
+            | You've rejected analytics cookies. You can
             =<> link_to "change your cookie settings", cookies_path, class: "govuk-link"
             | at any time.
     .govuk-button-group
@@ -35,7 +35,7 @@
       .govuk-grid-column-two-thirds
         .govuk-cookie-banner__content
           p.govuk-body
-            | You’ve accepted analytics cookies. You can
+            | You've accepted analytics cookies. You can
             =<> link_to "change your cookie settings", cookies_path, class: "govuk-link"
             | at any time.
     .govuk-button-group
