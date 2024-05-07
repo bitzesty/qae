@@ -1,101 +1,52 @@
-- title "Cookies"
+- title "Details about cookies on kings-awards-enterprise.service.gov.uk"
 
 h1.govuk-heading-xl
-  span Help
-  ' Cookies
+  | Details about cookies on kings-awards-enterprise-service.gov.uk
 
 .article-container
   article.group role="article"
     div
-      p.govuk-body GOV.UK puts small files (known as 'cookies') onto your computer to collect information about how you browse the site.
+      p.govuk-body kings-awards-enterprise-service.gov.uk puts small files (known as 'cookies') onto your computer to collect information about how you browse the site. Find out more about the cookies we use, what they're for and when they expire.
 
-      p.govuk-body Cookies are used to:
+      h3.govuk-heading-m Cookies that measure website use
 
-      ul.govuk-list.govuk-list--bullet
-        li measure how you use the website so it can be updated and improved based on your needs
-        li remember the notifications you've seen so that we don't show them to you again
+      p.govuk-body We use Google Analytics software (Universal Analytics) to collect anonymised information about how you use kings-awards-enterprise-service.gov.uk. We do this to help make sure the site is meeting the needs of its users and to help us make improvements to the site and to government digital services.
 
-      .application-notice.info-notice
-        p.govuk-body GOV.UK cookies aren't used to identify you personally.
-
-      p.govuk-body You'll normally see a message on the site before we store a cookie on your computer.
-
-      p.govuk-body
-        ' Find out more about
-        = link_to "how to manage cookies.", "http://www.aboutcookies.org/", rel: "external", class: 'govuk-link'
-
-      h2.govuk-heading-l How cookies are used on GOV.UK
-
-      h3.govuk-heading-m Measuring website usage (Google Analytics)
-
-      p.govuk-body
-        ' We use Google Analytics software to collect information about how you use GOV.UK. We do this to help make sure the site is meeting the needs of its users and to
-        = link_to "help us make improvements", "https://insidegovuk.blog.gov.uk/2014/10/29/info-pages-publishing-data-about-user-needs-and-metrics/", rel: "external", class: 'govuk-link'
-        ' .
+      p.govuk-body We do not allow Google to use or share the data about how you use this site.
 
       p.govuk-body Google Analytics stores information about:
 
       ul.govuk-list.govuk-list--bullet
-        li the pages you visit on GOV.UK
-        li how long you spend on each GOV.UK page
         li how you got to the site
+        li the pages you visit on kings-awards-enterprise-service.gov.uk and how long you spend on them
         li what you click on while you're visiting the site
 
-      p.govuk-body
-        ' We don't collect or store your personal information (eg your name or address) so this information can't be used to identify who you are.
+      p.govuk-body Google Analytics sets the following cookies.
 
-      .application-notice.info-notice
-        p.govuk-body We don't allow Google to use or share our analytics data.
+      div role="region" aria-label="google analytics cookies" tabindex="0"
+        table.govuk-table
+          thead.govuk-table__head
+            tr.govuk-table__row
+              th.govuk-table__header Name
+              th.govuk-table__header Purpose
+              th.govuk-table__header Expires
+          tbody.govuk-table__body
+            tr.govuk-table__row
+              td.govuk-table__cell _ga
+              td.govuk-table__cell These help us count how many people visit kings-awards-enterprise-service.gov.uk by tracking if you've visited before
+              td.govuk-table__cell 2 years
+            tr.govuk-table__row
+              td.govuk-table__cell _ga_CW0G9QK5M5
+              td.govuk-table__cell These help us understand how people that visit kings-awards-enterprise-service.gov.uk use the website by storing their session state.
+              td.govuk-table__cell 2 years
 
-      table.govuk-table
-        caption.govuk-body Google Analytics sets the following cookies:
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell _ga
-            td.govuk-table__cell This helps us count how many people visit GOV.UK by tracking if you have visited before
-            td.govuk-table__cell 2 years
-          tr.govuk-table__row
-            td.govuk-table__cell _utma
-            td.govuk-table__cell Like _ga, this lets us know if you've visited before, so we can count how many of our visitors are new to GOV.UK or to a certain page
-            td.govuk-table__cell 2 years
-          tr.govuk-table__row
-            td.govuk-table__cell _utmb
-            td.govuk-table__cell This works with.govuk-table__header _utmc to calculate the average length.govuk-table__header of time you spend on GOV.UK
-            td.govuk-table__cell 30 minutes
-          tr.govuk-table__row
-            td.govuk-table__cell _utmc
-            td.govuk-table__cell This works with.govuk-table__header _utmb to calculate when you close your browser
-            td.govuk-table__cell when you close your browser
-          tr.govuk-table__row
-            td.govuk-table__cell _utmz
-            td.govuk-table__cell This tells us how you reached GOV.UK (like from another website or a search engine)
-            td.govuk-table__cell 6 months
-          tr.govuk-table__row
-            td.govuk-table__cell analytics_nextpage_call
-            td.govuk-table__cell This lets us know the next page you visit on GOV.UK, so we can make journeys better
-            td.govuk-table__cell when you close your browser
-          tr.govuk-table__row
-            td.govuk-table__cell GDS_successEvents and GDS_analyticsTokens
-            td.govuk-table__cell These help us identify how you use GOV.UK so we can make the site better
-            td.govuk-table__cell 4 months
-
-      h3.govuk-heading-m User ID
-      p.govuk-body
-        ' When you first register on the QAE site a unique user ID (an alphanumeric string) will be assigned to you. We use this user ID to identify you when you sign in to your account.
-      p.govuk-body
-        ' If you are signed in, we may use your user ID in combination with.govuk-table__header Google Analytics to track and analyse the pages of the site that you visit. We do this only to better understand how you use the site, with.govuk-table__header a view to offering improvements for all users of the service.
       p.govuk-body
         .hidden-hint
           span.hidden-link.govuk-link
             | I want to opt out of Google Analytics cookies
           span.hidden-content
             p.govuk-hint
-              | If you opt out, weʼll set a QAE cookie to remember your decision.
+              | If you opt out, we'll set a cookie to remember your decision.
             table.govuk-table
               thead.govuk-table__head
                 tr.govuk-table__row
@@ -104,13 +55,9 @@ h1.govuk-heading-xl
                   th.govuk-table__header Expires
               tbody.govuk-table__body
                 tr.govuk-table__row
-                  td.govuk-table__cell gaoptout (superseded)
-                  td.govuk-table__cell This allows us to make sure Google Analytics cookies are turned off when you visit our service in future.
-                  td.govuk-table__cell 10 years
-                tr.govuk-table__row
                   td.govuk-table__cell gaconsent
                   td.govuk-table__cell Stores explicit consent from user whether or not they allow Google Analytics to track them.
-                  td.govuk-table__cell 10 years
+                  td.govuk-table__cell 1 year
 
             label.govuk-hint
               => check_box_tag "ga-optout-input", "1"
@@ -119,153 +66,35 @@ h1.govuk-heading-xl
 
             = button_tag "Save", class: "govuk-button", id: "ga-optout"
 
-      h3.govuk-heading-m Our introductory message
+      h3.govuk-heading-m Strictly necessary cookies
+      h5.govuk-heading-s Your progress when applying for the award
 
-      p.govuk-body You may see a pop-up welcome message when you first visit GOV.UK. We'll store a cookie so that your computer knows you've seen it and knows not to show it again.
+      p.govuk-body When you use the kings-awards-enterprise-service.gov.uk service, we'll set a cookie to remember your progress through the forms. These cookies do not store your personal data and are deleted after 24 hours.
 
-      table.govuk-table
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell seen_cookie_message
-            td.govuk-table__cell Saves a message to let us know that you have seen our cookie message
-            td.govuk-table__cell 1 month
+      div role="region" aria-label="strictly necessary cookies" tabindex="1"
+        table.govuk-table
+            thead.govuk-table__head
+              tr.govuk-table__row
+                th.govuk-table__header Name
+                th.govuk-table__header Purpose
+                th.govuk-table__header Expires
+            tbody.govuk-table__body
+              tr.govuk-table__row
+                td.govuk-table__cell _qae_session_production
+                td.govuk-table__cell Set to remember information you've entered into the application when nominating a group
+                td.govuk-table__cell 24 hours
 
-      h3.govuk-heading-m Your progress when applying for a licence
+      h5.govuk-heading-s Your cookie consent status
 
-      p.govuk-body When you apply for a licence using the 'apply for a licence' service, we'll set a cookie to remember your progress through the forms. These cookies don't store your personal data and are deleted once you've completed the transaction.
+      div role="region" aria-label="cookie consent status" tabindex="2"
+        table.govuk-table
+            thead.govuk-table__body
+              tr.govuk-table__row
+                td.govuk-table__cell gaconsent
+                td.govuk-table__cell
+                  | Remembers whether you've set any cookie preference and is used to hide the cookie banner.
+                td.govuk-table__cell 1 year
 
-      table.govuk-table
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell licensing_session
-            td.govuk-table__cell Set to remember information you have entered into a form when applying for a licence
-            td.govuk-table__cell When you close your browser
+      h3.govuk-heading-m Third-party websites
 
-      h3.govuk-heading-m YouTube videos
-
-      p.govuk-body We use YouTube to provide videos on some pages of the site. YouTube sets cookies when you visit one of these pages.
-
-      table.govuk-table
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell _use_hitbox
-            td.govuk-table__cell This is a randomly generated number that identifies your browser
-            td.govuk-table__cell When you close your browser
-          tr.govuk-table__row
-            td.govuk-table__cell VISITOR_INFO1_LIVE
-            td.govuk-table__cell Lets Youtube count the views of embedded Youtube videos
-            td.govuk-table__cell 9 months
-
-      h3.govuk-heading-m Directgov-branded government services
-
-      p.govuk-body
-        ' Some of the Directgov-branded government services we link to may set
-        = link_to "additional cookies.", "http://www.direct.gov.uk/en/SiteInformation/Cookies/DG_WP201870", rel: "external", class: 'govuk-link'
-
-      h3.govuk-heading-m Browser upgrade prompt
-
-      p.govuk-body We log a cookie the first time you visit GOV.UK to let us know you've visited once.
-
-      p.govuk-body If you're using an out-of-date browser the next time you visit, we'll show you a message suggesting you upgrade.
-
-      p.govuk-body We'll also save a cookie that lets us know you don't want to see the prompt if you dismiss it.
-
-      table.govuk-table
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell govuk_not_first_visit
-            td.govuk-table__cell Stops us prompting you to upgrade an out-of-date browser until after your first visit
-            td.govuk-table__cell 28 days
-          tr.govuk-table__row
-            td.govuk-table__cell govuk_browser_upgrade_dismissed
-            td.govuk-table__cell Saves a message to let us know you've seen and dismissed the browser upgrade prompt
-            td.govuk-table__cell 28 days
-
-      h3.govuk-heading-m Our user satisfaction survey
-
-      p.govuk-body We select some users to take part in a user-satisfaction survey. If you choose to take part, or dismiss the survey, we'll save a cookie that lets us know that you've seen the message so that we don't show it to you again.
-
-      table.govuk-table
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell govuk_takenUserSatisfactionSurvey
-            td.govuk-table__cell Saves a message to remember if you've taken the survey or dismissed it
-            td.govuk-table__cell 4 months
-
-      p.govuk-body
-        ' We use
-        = link_to "SurveyMonkey", "http://www.surveymonkey.com/", rel: "external", class: 'govuk-link'
-        '  to collect responses to the survey. If you take part, SurveyMonkey will save extra cookies to your computer to track your progress through it.
-
-      table.govuk-table
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell mbox
-            td.govuk-table__cell This is used to keep your progress through the survey
-            td.govuk-table__cell 30 minutes
-
-          tr.govuk-table__row
-            td.govuk-table__cell SSOE
-            td.govuk-table__cell This is used for testing different content and features on the survey website to help make it better
-            td.govuk-table__cell When you close your browser
-
-          tr.govuk-table__row
-            td.govuk-table__cell TS5159a2 and TSd0b041
-            td.govuk-table__cell These are used to manage survey traffic by sending your computer to a specific server
-            td.govuk-table__cell When you close your browser
-
-          tr.govuk-table__row
-            td.govuk-table__cell ep201
-            td.govuk-table__cell This is used to help us identify how you use the survey
-            td.govuk-table__cell 30 minutes
-
-          tr.govuk-table__row
-            td.govuk-table__cell ep202
-            td.govuk-table__cell This works with.govuk-table__header ep201 to help us identify how you use the survey
-            td.govuk-table__cell 1 year
-
-      h3.govuk-heading-m Multivariate testing
-
-      p.govuk-body We sometimes test different versions of pages with.govuk-table__header different users to see which work better. We'll save a cookie so that you consistently see the same version when browsing GOV.UK.
-
-      table.govuk-table
-        thead.govuk-table__head
-          tr.govuk-table__row
-            th.govuk-table__header Name
-            th.govuk-table__header Purpose
-            th.govuk-table__header Expires
-        tbody.govuk-table__body
-          tr.govuk-table__row
-            td.govuk-table__cell multivariatetest_cohort_topics_menu_text
-            td.govuk-table__cell Remember which version of the page you were shown
-            td.govuk-table__cell 1 month
+      p.govuk-body DBT does not take responsibility for any cookies placed on your device from other websites. Please note that if you click through to a website that we have provided a link to, DBT has no control over the cookies set on these websites, so please see that organisations cookie policy and setting pages for details on how to manage their cookies.
