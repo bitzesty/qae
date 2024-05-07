@@ -2,8 +2,6 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'API' do
-  include ActiveJob::TestHelper
-
   let!(:account_admin) do
     FactoryBot.create :user, :completed_profile,
                               first_name: "Account Admin John",
@@ -75,7 +73,6 @@ describe 'API' do
     }
 
     before do
-      clear_enqueued_jobs
       post account_collaborators_path, params: { collaborator: create_params }, xhr: true
     end
 
@@ -106,16 +103,13 @@ describe 'API' do
              role: "account_admin"
     end
 
-    before do
-      clear_enqueued_jobs
-      delete account_collaborator_path(existing_collaborator), xhr: true
-    end
-
     it "should remove user from collaborators, but do not remove user account" do
+      expect {
+        delete account_collaborator_path(existing_collaborator), xhr: true
+      }.to not_change { MailDeliveryWorker.jobs.size }
+
       expect(User.count).to be_eql 3
       expect(account.reload.users.count).to be_eql 2
-
-      expect(enqueued_jobs.size).to be_eql(0)
     end
   end
 end

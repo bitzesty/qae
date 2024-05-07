@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe "Interactors::AddCollaborator" do
-  include ActiveJob::TestHelper
-
   let!(:account_admin) do
     FactoryBot.create :user, :completed_profile,
                               first_name: "Account Admin John",
@@ -35,10 +33,6 @@ describe "Interactors::AddCollaborator" do
       account.reload.users.last
     end
 
-    before do
-      clear_enqueued_jobs
-    end
-
     it "should generate new User account without password and add person to collaborators" do
       expect {
         add_collaborator_interactor.run
@@ -68,19 +62,12 @@ describe "Interactors::AddCollaborator" do
       { email: existing_user_email, role: role }
     end
 
-    before do
-      clear_enqueued_jobs
-    end
-
     it "should not add existing user to collaborators as it already associated with another account" do
-      expect {
-        add_collaborator_interactor.run
-      }.not_to change {
-        account.reload.users.count
-      }
+      expect { add_collaborator_interactor.run }
+        .to not_change { account.reload.users.count }
+        .and not_change { MailDeliveryWorker.jobs.size }
 
       expect(account.reload.users.count).to be_eql 1
-      expect(enqueued_jobs.size).to be_eql(0)
       expect(add_collaborator_interactor.errors).to be_eql ["User already associated with another account!"]
     end
   end
@@ -99,19 +86,13 @@ describe "Interactors::AddCollaborator" do
       { email: existing_user_email, role: role }
     }
 
-    before do
-      clear_enqueued_jobs
-    end
-
     it "should not add user to collaborators twice" do
-      expect {
-        add_collaborator_interactor.run
-      }.not_to change {
-        account.reload.users.count
-      }
+      expect { add_collaborator_interactor.run }
+        .to not_change { account.reload.users.count }
+        .and not_change { MailDeliveryWorker.jobs.size }
+
 
       expect(account.reload.users.count).to be_eql 2
-      expect(enqueued_jobs.size).to be_eql(0)
       expect(add_collaborator_interactor.errors).to be_eql ["This user already added to collaborators!"]
     end
   end
