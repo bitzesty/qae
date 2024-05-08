@@ -68,7 +68,7 @@ class Form::SupportLettersController < Form::BaseController
       first_name: @support_letter.first_name,
       last_name: @support_letter.last_name,
       relationship_to_nominee: @support_letter.relationship_to_nominee,
-      letter_of_support: @support_letter.support_letter_attachment.id
+      letter_of_support: @support_letter.support_letter_attachment.id,
     }
 
     letters << new_letter

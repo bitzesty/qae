@@ -15,7 +15,7 @@ describe AssessorAssignmentCollection do
       {
         form_asnwer_ids: "1,2",
         primary_assessor_id: 1,
-        secondary_assessor_id: 1
+        secondary_assessor_id: 1,
       }
     end
 
@@ -29,7 +29,7 @@ describe AssessorAssignmentCollection do
       {
         form_answer_ids: form_answer.id.to_s,
         primary_assessor_id: assessor1.id,
-        secondary_assessor_id: assessor2.id
+        secondary_assessor_id: assessor2.id,
       }
     end
     # primary/secondary are assigned at once
@@ -59,7 +59,7 @@ describe AssessorAssignmentCollection do
       {
         form_answer_ids: form_answer.id.to_s,
         primary_assessor_id: "not assigned",
-        secondary_assessor_id: ""
+        secondary_assessor_id: "",
       }
     end
 
@@ -75,7 +75,7 @@ describe AssessorAssignmentCollection do
     let(:params) do
       {
         form_answer_ids: form_answer.id.to_s,
-        primary_assessor_id: assessor1.id.to_s
+        primary_assessor_id: assessor1.id.to_s,
       }
     end
 

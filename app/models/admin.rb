@@ -24,8 +24,8 @@ class Admin < ApplicationRecord
     ],
     using: {
       tsearch: {
-        prefix: true
-      }
+        prefix: true,
+      },
     }
   def lead?(*)
     true

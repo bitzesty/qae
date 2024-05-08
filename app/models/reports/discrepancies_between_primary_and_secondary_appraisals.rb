@@ -4,35 +4,35 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
   MAPPING = [
     {
       label: "URN",
-      method: :urn
+      method: :urn,
     },
     {
       label: "Primary Assessor Name",
-      method: :primary_assessor_name
+      method: :primary_assessor_name,
     },
     {
       label: "Primary Assessor Email",
-      method: :primary_assessor_email
+      method: :primary_assessor_email,
     },
     {
       label: "Primary Assessor Submitted At",
-      method: :primary_assessor_submitted_at
+      method: :primary_assessor_submitted_at,
     },
     {
       label: "Secondary Assessor Name",
-      method: :secondary_assessor_name
+      method: :secondary_assessor_name,
     },
     {
       label: "Secondary Assessor Email",
-      method: :secondary_assessor_email
+      method: :secondary_assessor_email,
     },
     {
       label: "Secondary Assessor Submitted At",
-      method: :secondary_assessor_submitted_at
+      method: :secondary_assessor_submitted_at,
     },
     {
       label: "Discrepancies (Primary - Secondary)",
-      method: :discrepancies_between_primary_and_secondary_appraisals_details
+      method: :discrepancies_between_primary_and_secondary_appraisals_details,
     }
   ]
 

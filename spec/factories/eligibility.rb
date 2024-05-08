@@ -18,7 +18,7 @@ FactoryBot.define do
         industry: "product_business",
         self_contained_enterprise: true,
         current_holder: "no",
-        adherence_to_esg_principles: true
+        adherence_to_esg_principles: true,
       }}
     end
 
@@ -30,7 +30,7 @@ FactoryBot.define do
         has_management_and_two_employees: true,
         current_holder_of_qae_for_trade: false,
         qae_for_trade_award_year: "2015",
-        growth_over_the_last_three_years: true
+        growth_over_the_last_three_years: true,
       } }
     end
 
@@ -43,7 +43,7 @@ FactoryBot.define do
         was_on_market_for_two_years: true,
         number_of_innovative_products: 1,
         had_impact_on_commercial_performace_over_two_years: true,
-        have_you_recovered_all_investments: true
+        have_you_recovered_all_investments: true,
       }}
     end
 
@@ -53,7 +53,7 @@ FactoryBot.define do
         able_to_provide_actual_figures: "yes",
         has_management_and_two_employees: "yes",
         sustainable_development: "yes",
-        adheres_to_sustainable_principles: "yes"
+        adheres_to_sustainable_principles: "yes",
       }}
     end
 
@@ -67,7 +67,7 @@ FactoryBot.define do
         participants_based_in_uk: "yes",
         social_mobility_activities: "yes",
         active_for_atleast_two_years: "yes",
-        evidence_of_impact: "yes"
+        evidence_of_impact: "yes",
       }}
     end
 
@@ -83,7 +83,7 @@ FactoryBot.define do
         nominee_is_qae_ep_award_holder: "no",
         nominee_has_honours: false,
         nominee_was_put_forward_for_honours_this_year: false,
-        able_to_get_two_letters_of_support: true
+        able_to_get_two_letters_of_support: true,
       }}
     end
 

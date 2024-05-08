@@ -13,7 +13,7 @@ module AuditHelper
      agreed_with_privacy_policy: "1",
      role: "regular",
      first_name: "Unknown",
-     last_name: "User"
+     last_name: "User",
    }
   end
 end

@@ -90,7 +90,7 @@ class Reports::CompiledPressBook
     press_contact_full_name: "Press Contact",
     press_contact_tel: "Tel",
     press_contact_email: "Email",
-    press_contact_notes: "Press Book Notes"
+    press_contact_notes: "Press Book Notes",
   }
 
   def initialize(year)

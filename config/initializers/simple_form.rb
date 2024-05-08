@@ -184,7 +184,7 @@ SimpleForm.setup do |config|
     boolean: :checkbox,
     radio_buttons: :radio_buttons,
     select: :select,
-    text: :textarea
+    text: :textarea,
   }
 
   # Default priority for time_zone inputs.

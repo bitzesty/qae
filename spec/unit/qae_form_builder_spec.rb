@@ -111,7 +111,7 @@ describe QaeFormBuilder do
       sample.decorate(answers: HashWithIndifferentAccess.new({
         grandparent: "2",
         parent_1of2: 2,
-        parent_2of2: 1
+        parent_2of2: 1,
       }))
     end
 
@@ -119,7 +119,7 @@ describe QaeFormBuilder do
       sample.decorate(answers: HashWithIndifferentAccess.new({
         grandparent: "2",
         parent_1of2: 1,
-        parent_2of2: 2
+        parent_2of2: 2,
       }))
     end
 
@@ -130,7 +130,7 @@ describe QaeFormBuilder do
         parent_2of5: 2,
         parent_3of5: 3,
         parent_4of5: 0,
-        parent_5of5: 5
+        parent_5of5: 5,
       }))
     end
 
@@ -141,7 +141,7 @@ describe QaeFormBuilder do
         parent_2of5: 2,
         parent_3of5: 3,
         parent_4of5: 4,
-        parent_5of5: 5
+        parent_5of5: 5,
       }))
     end
 

@@ -32,7 +32,7 @@ describe FormController do
       id: form_answer.id,
       form: form_answer.document,
       current_step_id: form_answer.award_form.steps.last.title.parameterize,
-      submit: "true"
+      submit: "true",
     }
   end
 

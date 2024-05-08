@@ -53,7 +53,7 @@ module PalaceAttendeesMixin
             locals: {
               index: 0,
               pa: palace_attendee,
-              palace_invite: invite
+              palace_invite: invite,
             }
           )
         else

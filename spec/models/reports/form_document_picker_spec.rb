@@ -27,17 +27,17 @@ describe Reports::DataPickers::FormDocumentPicker do
           {
               "category" => "innovation",
               "year" => year_1,
-              "outcome" => "won"
+              "outcome" => "won",
           },
           {
               "category" => "",
               "year" => year_2,
-              "outcome" => "won"
+              "outcome" => "won",
           },
           {
               "category" => "trade",
               "year" => year_3,
-              "outcome" => "did_not_win"
+              "outcome" => "did_not_win",
           }
       ]
 

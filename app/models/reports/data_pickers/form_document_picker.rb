@@ -192,13 +192,13 @@ module Reports::DataPickers::FormDocumentPicker
 
     if obj.award_year.year > 2017
       mobility_2017_change = {
-        "mobility" => "#{attr_name}_3of3"
+        "mobility" => "#{attr_name}_3of3",
       }
     end
 
     if obj.award_year.year >= 2020
       development_2020_change = {
-        "development" => "#{attr_name}_3of3"
+        "development" => "#{attr_name}_3of3",
       }
     end
 
@@ -209,9 +209,9 @@ module Reports::DataPickers::FormDocumentPicker
             "2 to 3" => "#{attr_name}_2of2",
             "3 to 4" => "#{attr_name}_3of3",
             "4 to 5" => "#{attr_name}_4of4",
-            "5 plus" => "#{attr_name}_5of5"
-          }
-        }
+            "5 plus" => "#{attr_name}_5of5",
+          },
+        },
       }
     end
 
@@ -219,26 +219,26 @@ module Reports::DataPickers::FormDocumentPicker
       "trade" => {
         "trade_commercial_success" => {
           "3 to 5" => "#{attr_name}_3of3",
-          "6 plus" => "#{attr_name}_6of6"
-        }
+          "6 plus" => "#{attr_name}_6of6",
+        },
       },
       "development" => {
         "development_performance_years" => {
           "3 to 5" => "#{attr_name}_3of3",
-        }
+        },
       },
       "mobility" => {
         "programme_performance_years" => {
           "2 to 4" => "#{attr_name}_2of2",
-          "5 plus" => "#{attr_name}_5of5"
-        }
+          "5 plus" => "#{attr_name}_5of5",
+        },
       },
       "innovation" => {
         "innovation_performance_years" => {
           "2 to 4" => "#{attr_name}_2of2",
-          "5 plus" => "#{attr_name}_5of5"
-        }
-      }
+          "5 plus" => "#{attr_name}_5of5",
+        },
+      },
     }.merge(mobility_2017_change)
      .merge(development_2020_change)
      .merge(innovation_2023_change)[obj.award_type]
@@ -249,7 +249,7 @@ module Reports::DataPickers::FormDocumentPicker
       "trade" => "trade_commercial_success",
       "development" => "development_performance_years",
       "mobility" => "development_performance_years",
-      "innovation" => "innovation_performance_years"
+      "innovation" => "innovation_performance_years",
     }[obj.award_type]
   end
 
@@ -259,7 +259,7 @@ module Reports::DataPickers::FormDocumentPicker
       if obj.award_year.year <= 2017
         {
           "2 to 4" => "Outstanding achievement over 2 years",
-          "5 plus" => "Continuous achievement over 5 years"
+          "5 plus" => "Continuous achievement over 5 years",
         }[doc(subcategory_field_name)]
       else
         "Outstanding achievement over 3 years"
@@ -270,17 +270,17 @@ module Reports::DataPickers::FormDocumentPicker
       if trade?
         {
           "3 to 5" => "Outstanding growth in the last 3 years",
-          "6 plus" => "Continuous growth in the last 6 years"
+          "6 plus" => "Continuous growth in the last 6 years",
         }
       elsif innovation?
         {
           "2 to 4" => "Outstanding performance improvements in the last 2 years",
-          "5 plus" => "Steady performance improvements in the last 5 years"
+          "5 plus" => "Steady performance improvements in the last 5 years",
         }
       elsif development?
         {
           "2 to 4" => "Outstanding achievement over 2 years",
-          "5 plus" => "Continuous achievement over 5 years"
+          "5 plus" => "Continuous achievement over 5 years",
         }
       else
         {}

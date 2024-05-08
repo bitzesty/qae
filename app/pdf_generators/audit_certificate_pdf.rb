@@ -26,7 +26,7 @@ class AuditCertificatePdf < Prawn::Document
     @company_name = @form_answer.company_name
     @financial_pointer = FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
-      financial_summary_view: true
+      financial_summary_view: true,
     })
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions
@@ -79,7 +79,7 @@ class AuditCertificatePdf < Prawn::Document
         bounds.bottom + 0
       ],
       align: :right,
-      size: 14
+      size: 14,
     }
   end
 

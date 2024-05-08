@@ -186,7 +186,7 @@ class Reports::FormAnswer
     {
       "negative" => "R",
       "positive" => "G",
-      "average" => "A"
+      "average" => "A",
     }[var]
   end
 

@@ -35,7 +35,7 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
       "start_month" => item_params[:start_month],
       "start_year" => item_params[:start_year],
       "end_month" => item_params[:end_month],
-      "end_year" => item_params[:end_year]
+      "end_year" => item_params[:end_year],
     }
   end
 

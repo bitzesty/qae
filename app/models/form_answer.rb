@@ -30,8 +30,8 @@ class FormAnswer < ApplicationRecord
     ],
     using: {
       tsearch: {
-        prefix: true
-      }
+        prefix: true,
+      },
     }
 
   POSSIBLE_AWARDS = [
@@ -49,7 +49,7 @@ class FormAnswer < ApplicationRecord
     "innovation" => "Innovation",
     "development" => "Sustainable Development",
     "mobility" => "Promoting Opportunity",
-    "promotion" => "Enterprise Promotion"
+    "promotion" => "Enterprise Promotion",
   }
   CURRENT_AWARD_TYPE_FULL_NAMES = AWARD_TYPE_FULL_NAMES.reject do |k, _|
     k == "promotion"
@@ -68,7 +68,7 @@ class FormAnswer < ApplicationRecord
       "innovation" => 4,
       "development" => 4,
       "mobility" => 4,
-    }
+    },
   }
 
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
@@ -123,7 +123,7 @@ class FormAnswer < ApplicationRecord
       def primary
         where(assessor_assignments:
           {
-            position: 0
+            position: 0,
           }
         ).first
       end
@@ -131,7 +131,7 @@ class FormAnswer < ApplicationRecord
       def secondary
         where(assessor_assignments:
           {
-            position: 1
+            position: 1,
           }
         ).first
       end
@@ -142,7 +142,7 @@ class FormAnswer < ApplicationRecord
     validates :user, presence: true
     validates :award_type, presence: true,
       inclusion: {
-        in: POSSIBLE_AWARDS
+        in: POSSIBLE_AWARDS,
       }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
     validates :sic_code, format: { with: SicCode::REGEX }, allow_nil: true, allow_blank: true

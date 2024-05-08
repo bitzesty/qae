@@ -15,14 +15,14 @@ RSpec.describe Admin::FormAnswerStateTransitionsController do
       allow_any_instance_of(AssessmentSubmissionService).to receive(:perform) {}
       post :create, params: {
         form_answer_id: form_answer.id ,
-        form_answer_state_transition: { state: "recommended" }
+        form_answer_state_transition: { state: "recommended" },
       }
 
       expect(response).to redirect_to [:admin, form_answer]
 
       post :create, params: {
         form_answer_id: form_answer.id,
-        form_answer_state_transition: { state: "recommended" }
+        form_answer_state_transition: { state: "recommended" },
       }, xhr: true
 
       expect(response).to render_template(:partial => "admin/form_answers/_states_list")

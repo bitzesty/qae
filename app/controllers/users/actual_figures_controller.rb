@@ -41,7 +41,7 @@ class Users::ActualFiguresController < Users::BaseController
     if params[:commercial_figures_file].blank?
       params.merge!(
         commercial_figures_file: {
-          attachment: ""
+          attachment: "",
         }
       )
     end

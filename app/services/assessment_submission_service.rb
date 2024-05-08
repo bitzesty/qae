@@ -161,7 +161,7 @@ class AssessmentSubmissionService
         primary_assessor_submitted_at: format_date(primary_assessment.submitted_at),
         secondary_assessor_name: secondary_assessor&.full_name,
         secondary_assessor_email: secondary_assessor&.email,
-        secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at)
+        secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at),
       }
 
       form_answer.update_column(

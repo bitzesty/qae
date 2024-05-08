@@ -4,71 +4,71 @@ class Reports::ReceptionBuckinghamPalaceReport
   MAPPING = [
     {
       label: "Award / Category",
-      method: :award_category
+      method: :award_category,
     },
     {
       label: "Organisation / Company (NOT included on envelope)",
-      method: :organisation_company
+      method: :organisation_company,
     },
     {
       label: "Title",
-      method: :title
+      method: :title,
     },
     {
       label: "First name",
-      method: :first_name
+      method: :first_name,
     },
     {
       label: "Surname",
-      method: :last_name
+      method: :last_name,
     },
     {
       label: "Job Title / Position",
-      method: :job_name
+      method: :job_name,
     },
     {
       label: "Decorations / Post Nominals",
-      method: :post_nominals
+      method: :post_nominals,
     },
     {
       label: "Address 1 (first line on envelope)",
-      method: :address_1
+      method: :address_1,
     },
     {
       label: "Address 2",
-      method: :address_2
+      method: :address_2,
     },
     {
       label: "Address 3",
-      method: :address_3
+      method: :address_3,
     },
     {
       label: "Address 4",
-      method: :address_4
+      method: :address_4,
     },
     {
       label: "Postcode",
-      method: :postcode
+      method: :postcode,
     },
     {
       label: "Telephone number (if known)",
-      method: :phone_number
+      method: :phone_number,
     },
     {
       label: "Product or brief description",
-      method: :product_description
+      method: :product_description,
     },
     {
       label: "Additional Information, for example, Wheelchair user",
-      method: :additional_info
+      method: :additional_info,
     },
     {
       label: "Previous years won",
-      method: :previous_years_won
+      method: :previous_years_won,
     },
     {
       label: "Royal Affiliation / Previous Links",
-      method: :royal_family_connection_details
+      method: :royal_family_connection_details,
     }
 
   ]

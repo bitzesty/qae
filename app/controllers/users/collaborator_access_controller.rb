@@ -19,8 +19,8 @@ class Users::CollaboratorAccessController < Users::BaseController
           name: current_user.full_name,
           email: current_user.email,
           section: params[:section],
-          joined_at: params[:timestamp]
-        }
+          joined_at: params[:timestamp],
+        },
       }
     )
 

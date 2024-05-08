@@ -11,16 +11,16 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations",
     passwords: "users/passwords",
     sessions: "users/sessions",
-    unlocks: "users/unlocks"
+    unlocks: "users/unlocks",
   }
 
   devise_for :admins, controllers: {
     confirmations: "admins/confirmations",
-    devise_authy: "admin/devise_authy"
+    devise_authy: "admin/devise_authy",
   }, path_names: {
     verify_authy: "/verify-token",
     enable_authy: "/enable-two-factor",
-    verify_authy_installation: "/verify-installation"
+    verify_authy_installation: "/verify-installation",
   }
 
   authenticate :admin do
@@ -28,10 +28,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :assessors, controllers: {
-    confirmations: "assessors/confirmations"
+    confirmations: "assessors/confirmations",
   }
   devise_for :judges, controllers: {
-    confirmations: "judges/confirmations"
+    confirmations: "judges/confirmations",
   }
 
   get "/awards_for_organisations" => redirect("https://www.gov.uk/kings-awards-for-enterprise/business-awards")

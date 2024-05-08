@@ -4,184 +4,184 @@ class Reports::AllEntries
   MAPPING = [
     {
       label: "URN",
-      method: :urn
+      method: :urn,
     },
     {
       label: "Category",
-      method: :category
+      method: :category,
     },
     # Head of business attributes
     {
       label: "Title",
-      method: :head_title
+      method: :head_title,
     },
     {
       label: "FirstName",
-      method: :head_first_name
+      method: :head_first_name,
     },
     {
       label: "Surname",
-      method: :head_surname
+      method: :head_surname,
     },
     {
       label: "PersonalHonours",
-      method: :personal_honours
+      method: :personal_honours,
     },
     {
       label: "HeadOfUnitPosition",
-      method: :head_position
+      method: :head_position,
     },
     {
       label: "HeadOfUnitEmail",
-      method: :head_of_business_email
+      method: :head_of_business_email,
     },
     {
       label: "CompanyName",
-      method: :company_or_nominee_name
+      method: :company_or_nominee_name,
     },
     {
       label: "ContactTitle",
-      method: :contact_title
+      method: :contact_title,
     },
     {
       label: "ContactFirstName",
-      method: :contact_first_name
+      method: :contact_first_name,
     },
     {
       label: "ContactSurname",
-      method: :contact_surname
+      method: :contact_surname,
     },
     {
       label: "ContactPosition",
-      method: :contact_position
+      method: :contact_position,
     },
     {
       label: "ContactEmail",
-      method: :contact_email
+      method: :contact_email,
     },
     {
       label: "ContactTelephone",
-      method: :contact_telephone
+      method: :contact_telephone,
     },
     {
       label: "Agreed To Data Sharing With Lord-Lieutenants?",
-      method: :agree_sharing_of_details_with_lieutenancies?
+      method: :agree_sharing_of_details_with_lieutenancies?,
     },
     {
       label: "Innovation Type",
-      method: :innovation_type
+      method: :innovation_type,
     },
     {
       label: "Innovation Description",
-      method: :innovation_description
+      method: :innovation_description,
     },
     {
       label: "CaseSummaryOverallGrade",
-      method: :case_summary_overall_grade
+      method: :case_summary_overall_grade,
     },
     {
       label: "Overall Status",
-      method: :overall_status
+      method: :overall_status,
     },
     {
       label: "SICCode",
-      method: :sic_code
+      method: :sic_code,
     },
     {
       label: "Employees",
-      method: :employees
+      method: :employees,
     },
     {
       label: "GovernmentSupport",
-      method: :government_support
+      method: :government_support,
     },
     {
       label: "CompanyRegNo",
-      method: :business_reg_no
+      method: :business_reg_no,
     },
     {
       label: "Address1",
-      method: :principal_address1
+      method: :principal_address1,
     },
     {
       label: "Address2",
-      method: :principal_address2
+      method: :principal_address2,
     },
     {
       label: "Address3",
-      method: :principal_address3
+      method: :principal_address3,
     },
     {
       label: "County",
-      method: :principal_county
+      method: :principal_county,
     },
     {
       label: "Region",
-      method: :business_region
+      method: :business_region,
     },
     {
       label: "Postcode",
-      method: :principal_postcode
+      method: :principal_postcode,
     },
     {
       label: "UnitWebsite",
-      method: :unit_website
+      method: :unit_website,
     },
     {
       label: "ImmediateParentName",
-      method: :immediate_parent_name
+      method: :immediate_parent_name,
     },
     {
       label: "ImmediateParentCountry",
-      method: :immediate_parent_country
+      method: :immediate_parent_country,
     },
     {
       label: "OrganisationWithUltimateControl",
-      method: :organisation_with_ultimate_control
+      method: :organisation_with_ultimate_control,
     },
     {
       label: "OrganisationWithUltimateControlCountry",
-      method: :organisation_with_ultimate_control_country
+      method: :organisation_with_ultimate_control_country,
     },
     {
       label: "ProductService",
-      method: :product_service
+      method: :product_service,
     },
     {
       label: "FinalYearOverseasSales",
-      method: :final_year_overseas_sales
+      method: :final_year_overseas_sales,
     },
     {
       label: "FinalYearTotalSales",
-      method: :final_year_total_sales
+      method: :final_year_total_sales,
     },
     {
       label: "CurrentQueensAwardHolder",
-      method: :current_queens_award_holder
+      method: :current_queens_award_holder,
     },
     {
       label: "DateStartedTrading",
-      method: :date_started_trading
+      method: :date_started_trading,
     },
     {
       label: "ExportMarkets",
-      method: :export_markets
+      method: :export_markets,
     },
     {
       label: "NomineeTitle",
-      method: :nominee_title
+      method: :nominee_title,
     },
     {
       label: "NomineeFirstName",
-      method: :nominee_first_name
+      method: :nominee_first_name,
     },
     {
       label: "NomineeSurname",
-      method: :nominee_surname
+      method: :nominee_surname,
     },
     {
       label: "NomineeEmail",
-      method: :nominee_email
+      method: :nominee_email,
     }
   ]
 

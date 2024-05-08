@@ -38,7 +38,7 @@ class FormAnswerStatistics::Picker
     submitted = collect_submission_ranges(fa_year_scope.where.not(award_type: "promotion"))
     out[:applications_submitted] = {
       name: "Applications submitted",
-      counters: submitted
+      counters: submitted,
     }
     out
   end

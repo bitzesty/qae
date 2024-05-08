@@ -9,7 +9,7 @@ class Users::SupportLettersController < Users::BaseController
       support_letter_params.merge({
         user_id: current_user.id,
         manual: true,
-        support_letter_attachment: attachment
+        support_letter_attachment: attachment,
       })
     )
   end

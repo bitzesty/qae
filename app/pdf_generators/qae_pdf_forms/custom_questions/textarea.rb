@@ -22,8 +22,8 @@ module QaePdfForms::CustomQuestions::Textarea
               {
                 "<" + t_name + ">" => {
                   style: wysywyg_get_style(child),
-                  content: wysywyg_get_item_content(child)
-                }
+                  content: wysywyg_get_item_content(child),
+                },
               }
             )
           end
@@ -254,7 +254,7 @@ module QaePdfForms::CustomQuestions::Textarea
     style_options = Array.wrap(style_options)
 
     styles = { inline_format: true,
-                       color: FormPdf::DEFAULT_ANSWER_COLOR }
+                       color: FormPdf::DEFAULT_ANSWER_COLOR, }
     if style_options.present?
       margin_list = style_options.select do |el|
         el.include?("margin-left")

@@ -6,7 +6,7 @@ class AuditCertificate < ActiveRecord::Base
     validates :attachment, presence: true,
       on: :create,
       file_size: {
-        maximum: 15.megabytes.to_i
+        maximum: 15.megabytes.to_i,
       }
 
     validates :form_answer_id, uniqueness: true,
@@ -17,7 +17,7 @@ class AuditCertificate < ActiveRecord::Base
 
   enum status: {
     no_changes_necessary: 0,
-    confirmed_changes: 1
+    confirmed_changes: 1,
   }
 
   private

@@ -27,13 +27,13 @@ class User < ApplicationRecord
   validates :phone_number, length: {
     minimum: 7,
     maximum: 20,
-    message: "This is not a valid telephone number"
+    message: "This is not a valid telephone number",
   }, if: -> { first_step? }
 
   validates :company_phone_number, length: {
     minimum: 7,
     maximum: 20,
-    message: "This is not a valid telephone number"
+    message: "This is not a valid telephone number",
   }, allow_blank: true, if: -> { second_step? }
 
   validates_with AdvancedEmailValidator
@@ -120,8 +120,8 @@ class User < ApplicationRecord
       ],
       using: {
         tsearch: {
-          prefix: true
-        }
+          prefix: true,
+        },
       }
     # TODO: take into consideration forcing NULL for all attributes.
     nilify_blanks only: [

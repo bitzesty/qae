@@ -333,685 +333,685 @@ class AppraisalForm
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   TRADE_2017 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2018 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2019 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2020 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2021 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2022 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2023 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2024 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Environmental, social and corporate governance (section E):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   TRADE_2025 = {
     overseas_earnings_growth: {
       type: :rag,
       label: "Overseas earnings growth:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Environmental, social and corporate governance (section E):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2016 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   INNOVATION_2017 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2018 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2019 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2020 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2021 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2022 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2023 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2024 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Environmental, social and corporate governance (section E):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   INNOVATION_2025 = {
     level_of_innovation: {
       type: :rag,
       label: "Level of innovation:",
-      position: 0
+      position: 0,
     },
     extent_of_value_added: {
       type: :rag,
       label: "Extent of value added:",
-      position: 1
+      position: 1,
     },
     impact_of_innovation: {
       type: :rag,
       label: "Impact of innovation:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Environmental, social and corporate governance (section E):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2016 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   PROMOTION_2017 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2018 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2019 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2020 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
 
@@ -1019,845 +1019,845 @@ class AppraisalForm
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2022 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2023 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2024 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   PROMOTION_2025 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
-      position: 0
+      position: 0,
     },
     impact_achievement: {
       type: :rag,
       label: "Impact/achievement:",
-      position: 1
+      position: 1,
     },
     level_of_support: {
       type: :rag,
       label: "Level of support:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }
 
   DEVELOPMENT_2016 = {
     product_service_contribution: {
       type: :rag,
       label: "Product/service contribution:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     strategy: {
       type: :rag,
       label: "Strategy:",
-      position: 2
+      position: 2,
     },
     environment: {
       type: :non_rag,
       label: "Environmental dimension:",
-      position: 3
+      position: 3,
     },
     social: {
       type: :non_rag,
       label: "Social dimension:",
-      position: 4
+      position: 4,
     },
     economic: {
       type: :non_rag,
       label: "Economic dimension:",
-      position: 5
+      position: 5,
     },
     leadership_management: {
       type: :non_rag,
       label: "Leadership & management:",
-      position: 6
+      position: 6,
     },
     environment_protection: {
       type: :strengths,
       label: "Environmental protection and management:",
-      position: 7
+      position: 7,
     },
     benefiting_the_wilder_community: {
       type: :strengths,
       label: "Benefiting the wider community:",
-      position: 8
+      position: 8,
     },
     sustainable_resource: {
       type: :strengths,
       label: "Sustainable resource use:",
-      position: 9
+      position: 9,
     },
     economic_sustainability: {
       type: :strengths,
       label: "Economic sustainability:",
-      position: 10
+      position: 10,
     },
     supporting_employees: {
       type: :strengths,
       label: "Supporting employees:",
-      position: 11
+      position: 11,
     },
     internal_leadership: {
       type: :strengths,
       label: "Internal leadership & management:",
-      position: 12
+      position: 12,
     },
     industry_sector: {
       type: :strengths,
       label: "Industry/sector leadership:",
-      position: 13
+      position: 13,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 14
-    }
+      position: 14,
+    },
   }
 
   DEVELOPMENT_2017 = {
     product_service_contribution: {
       type: :rag,
       label: "Product/service contribution:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     environment: {
       type: :non_rag,
       label: "Environmental dimension:",
-      position: 2
+      position: 2,
     },
     social: {
       type: :non_rag,
       label: "Social dimension:",
-      position: 3
+      position: 3,
     },
     economic: {
       type: :non_rag,
       label: "Economic dimension:",
-      position: 4
+      position: 4,
     },
     leadership_management: {
       type: :rag,
       label: "Leadership & management:",
-      position: 5
+      position: 5,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 6
+      position: 6,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 7
-    }
+      position: 7,
+    },
   }
 
   DEVELOPMENT_2018 = {
     product_service_contribution: {
       type: :rag,
       label: "Product/service contribution:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     environment: {
       type: :non_rag,
       label: "Environmental dimension:",
-      position: 2
+      position: 2,
     },
     social: {
       type: :non_rag,
       label: "Social dimension:",
-      position: 3
+      position: 3,
     },
     economic: {
       type: :non_rag,
       label: "Economic dimension:",
-      position: 4
+      position: 4,
     },
     leadership_management: {
       type: :rag,
       label: "Leadership & management:",
-      position: 5
+      position: 5,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 6
+      position: 6,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 7
-    }
+      position: 7,
+    },
   }
 
   DEVELOPMENT_2019 = {
     product_service_contribution: {
       type: :rag,
       label: "Product/service contribution:",
-      position: 0
+      position: 0,
     },
     commercial_success: {
       type: :rag,
       label: "Commercial success:",
-      position: 1
+      position: 1,
     },
     environment: {
       type: :non_rag,
       label: "Environmental dimension:",
-      position: 2
+      position: 2,
     },
     social: {
       type: :non_rag,
       label: "Social dimension:",
-      position: 3
+      position: 3,
     },
     economic: {
       type: :non_rag,
       label: "Economic dimension:",
-      position: 4
+      position: 4,
     },
     leadership_management: {
       type: :rag,
       label: "Leadership & management:",
-      position: 5
+      position: 5,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 6
+      position: 6,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 7
-    }
+      position: 7,
+    },
   }
 
   DEVELOPMENT_2020 = {
     strategy_and_targets: {
       type: :rag,
       label: "Strategy and Targets - 25% max:",
-      position: 0
+      position: 0,
     },
     approach: {
       type: :rag,
       label: "Approach - 25% max:",
-      position: 1
+      position: 1,
     },
     positive_impacts: {
       type: :rag,
       label: "Positive Impacts - 50% max:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   DEVELOPMENT_2021 = {
     strategy_and_targets: {
       type: :rag,
       label: "Strategy and Targets - 25% max:",
-      position: 0
+      position: 0,
     },
     approach: {
       type: :rag,
       label: "Approach - 25% max:",
-      position: 1
+      position: 1,
     },
     positive_impacts: {
       type: :rag,
       label: "Positive Impacts - 50% max:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   DEVELOPMENT_2022 = {
     strategy_and_targets: {
       type: :rag,
       label: "Strategy and Targets - 25% max:",
-      position: 0
+      position: 0,
     },
     approach: {
       type: :rag,
       label: "Approach - 25% max:",
-      position: 1
+      position: 1,
     },
     positive_impacts: {
       type: :rag,
       label: "Positive Impacts - 50% max:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   DEVELOPMENT_2023 = {
     strategy_and_targets: {
       type: :rag,
       label: "Strategy and Targets - 25% max:",
-      position: 0
+      position: 0,
     },
     approach: {
       type: :rag,
       label: "Approach - 25% max:",
-      position: 1
+      position: 1,
     },
     positive_impacts: {
       type: :rag,
       label: "Positive Impacts - 50% max:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   DEVELOPMENT_2024 = {
     strategy_and_targets: {
       type: :rag,
       label: "Strategy and Targets - 25% max:",
-      position: 0
+      position: 0,
     },
     approach: {
       type: :rag,
       label: "Approach - 25% max:",
-      position: 1
+      position: 1,
     },
     positive_impacts: {
       type: :rag,
       label: "Positive Impacts - 50% max:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   DEVELOPMENT_2025 = {
     strategy_and_targets: {
       type: :rag,
       label: "Strategy and Targets - 25% max:",
-      position: 0
+      position: 0,
     },
     approach: {
       type: :rag,
       label: "Approach - 25% max:",
-      position: 1
+      position: 1,
     },
     positive_impacts: {
       type: :rag,
       label: "Positive Impacts - 50% max:",
-      position: 2
+      position: 2,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
-    }
+      position: 3,
+    },
   }
 
   MOBILITY_2016 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "Questions B2 – B2.2: What is the organisation aiming to achieve with the programme? (10%)",
-      position: 0
+      position: 0,
     },
     mobility_programme_provide_a_good: {
       type: :rag,
       label: "Questions B3 – B3.2: How does the programme provide a good return on investment? (15%)",
-      position: 1
+      position: 1,
     },
     mobility_embedded_is_the_programme: {
       type: :rag,
       label: "Questions B4 – B4.2: How embedded is the programme, and how will it help the organisation grow? (15%)",
-      position: 2
+      position: 2,
     },
     mobility_programme_benefit: {
       type: :rag,
       label: "Questions B5 – B5.1: How does the programme benefit people? (20%)",
-      position: 3
+      position: 3,
     },
     mobility_programme_benefit_the_organisation: {
       type: :rag,
       label: "Questions B6 – B6.1: How does the programme benefit the organisation? (20%)",
-      position: 4
+      position: 4,
     },
     mobility_organisation_approach: {
       type: :rag,
       label: "Question B7: What makes the organisation's approach exemplary? (20%)",
-      position: 5
+      position: 5,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 6
-    }
+      position: 6,
+    },
   }
 
   MOBILITY_2017 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "What are you doing? (10% max) - Questions B2-B2.2",
-      position: 0
+      position: 0,
     },
     mobility_programme_provide_a_good: {
       type: :rag,
       label: "How do you do it? (30% max) - Questions B3-B4.2",
-      position: 1
+      position: 1,
     },
     mobility_embedded_is_the_programme: {
       type: :rag,
       label: "What have you achieved? (60% max) - Questions B5-B7",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2018 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "What are you doing? (10% max) - Questions B2-B2.2",
-      position: 0
+      position: 0,
     },
     mobility_programme_provide_a_good: {
       type: :rag,
       label: "How do you do it? (30% max) - Questions B3-B4.2",
-      position: 1
+      position: 1,
     },
     mobility_embedded_is_the_programme: {
       type: :rag,
       label: "What have you achieved? (60% max) - Questions B5-B7",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2019 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "What are you doing? (10% max) - Questions B2-B2.2",
-      position: 0
+      position: 0,
     },
     mobility_programme_provide_a_good: {
       type: :rag,
       label: "How do you do it? (30% max) - Questions B3-B4.2",
-      position: 1
+      position: 1,
     },
     mobility_embedded_is_the_programme: {
       type: :rag,
       label: "What have you achieved? (60% max) - Questions B5-B7",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2020 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "The Social Mobility programme and its context:",
-      position: 0
+      position: 0,
     },
     mobility_embedding_info: {
       type: :rag,
       label: "Embedding the programme & Organisational culture:",
-      position: 1
+      position: 1,
     },
     mobility_impact_of_the_programme: {
       type: :rag,
       label: "Impact of the programme:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility:",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2021 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "The Social Mobility programme and its context:",
-      position: 0
+      position: 0,
     },
     mobility_embedding_info: {
       type: :rag,
       label: "Embedding the programme & Organisational culture:",
-      position: 1
+      position: 1,
     },
     mobility_impact_of_the_programme: {
       type: :rag,
       label: "Impact of the programme:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility:",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2022 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "The Social Mobility programme and its context:",
-      position: 0
+      position: 0,
     },
     mobility_embedding_info: {
       type: :rag,
       label: "Embedding the programme & Organisational culture:",
-      position: 1
+      position: 1,
     },
     mobility_impact_of_the_programme: {
       type: :rag,
       label: "Impact of the programme:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility:",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2023 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "The Social Mobility programme and its context:",
-      position: 0
+      position: 0,
     },
     mobility_embedding_info: {
       type: :rag,
       label: "Embedding the programme & Organisational culture:",
-      position: 1
+      position: 1,
     },
     mobility_impact_of_the_programme: {
       type: :rag,
       label: "Impact of the programme:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility:",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2024 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "The Social Mobility programme and its context:",
-      position: 0
+      position: 0,
     },
     mobility_embedding_info: {
       type: :rag,
       label: "Embedding the programme & Organisational culture:",
-      position: 1
+      position: 1,
     },
     mobility_impact_of_the_programme: {
       type: :rag,
       label: "Impact of the programme:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Environmental, social and corporate governance (section E):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MOBILITY_2025 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
       label: "The Social Mobility programme and its context:",
-      position: 0
+      position: 0,
     },
     mobility_embedding_info: {
       type: :rag,
       label: "Embedding the programme & Organisational culture:",
-      position: 1
+      position: 1,
     },
     mobility_impact_of_the_programme: {
       type: :rag,
       label: "Impact of the programme:",
-      position: 2
+      position: 2,
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Environmental, social and corporate governance (section E):",
-      position: 3
+      position: 3,
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 4
-    }
+      position: 4,
+    },
   }.freeze
 
   MODERATED_2016 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2017 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2018 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2019 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2020 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2021 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2022 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2023 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2024 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   MODERATED_2025 = {
     verdict: {
       type: :verdict,
-      label: "Overall verdict:"
-    }
+      label: "Overall verdict:",
+    },
   }
 
   CASE_SUMMARY_METHODS_2016 = [

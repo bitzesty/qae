@@ -7,7 +7,7 @@ class Users::SupportersController < Users::BaseController
   expose(:supporter) do
     form_answer.supporters.new(
       supporter_params.merge({
-        user_id: current_user.id
+        user_id: current_user.id,
       })
     )
   end

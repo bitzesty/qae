@@ -4,7 +4,7 @@ class CommercialFiguresFile < ActiveRecord::Base
   validates :attachment, presence: true,
     on: :create,
     file_size: {
-      maximum: 5.megabytes.to_i
+      maximum: 5.megabytes.to_i,
     }
 
   validates :form_answer_id, uniqueness: true,

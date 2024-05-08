@@ -31,7 +31,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
 
   expose(:created_attachment_ops) do
     {
-      "file" => form_answer_attachment.id.to_s
+      "file" => form_answer_attachment.id.to_s,
     }
   end
 
@@ -62,7 +62,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
       attachment_params.merge({
         form_answer_id: @form_answer.id,
         original_filename: original_filename,
-        question_key: "org_chart"
+        question_key: "org_chart",
       })
     )
 

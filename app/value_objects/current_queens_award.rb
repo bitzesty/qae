@@ -12,12 +12,12 @@ class CurrentQueensAward
 
   validates :category, length: { maximum: 100 },
     inclusion: {
-      in: -> (record) { record.categories }
+      in: -> (record) { record.categories },
     }
 
   validates :year, length: { maximum: 4 },
     inclusion: {
-      in: -> (record) { record.years }
+      in: -> (record) { record.years },
     }
 
   def initialize(categories, years, outcomes, attrs={})

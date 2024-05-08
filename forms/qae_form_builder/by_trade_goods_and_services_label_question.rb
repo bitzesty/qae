@@ -2,7 +2,7 @@ class QaeFormBuilder
   class ByTradeGoodsAndServicesLabelQuestionValidator < QuestionValidator
     HUMANIZED_ATTRS = {
       "desc_short" => "Description",
-      "total_overseas_trade" => "Trade percentage"
+      "total_overseas_trade" => "Trade percentage",
     }
 
     def errors

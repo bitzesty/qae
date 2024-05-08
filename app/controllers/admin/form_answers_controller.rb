@@ -14,7 +14,7 @@ class Admin::FormAnswersController < Admin::BaseController
   expose(:financial_pointer) do
     FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
-      financial_summary_view: true
+      financial_summary_view: true,
     })
   end
 

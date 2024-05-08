@@ -9,8 +9,8 @@ module MailgunHelper
     def query_ops(email)
       {
         params: {
-          address: email
-        }
+          address: email,
+        },
       }
     end
 
@@ -24,7 +24,7 @@ module MailgunHelper
 
     def query_string(email)
       {
-        address: email
+        address: email,
       }.to_query
     end
 

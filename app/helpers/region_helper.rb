@@ -99,7 +99,7 @@ module RegionHelper
     "Worcestershire": "West Midlands",
     "Bailiwick of Guernsey": "Channel Islands",
     "Bailiwick of Jersey": "Channel Islands",
-    "Isle of Man": "Isle of Man"
+    "Isle of Man": "Isle of Man",
   }
 
   def counties

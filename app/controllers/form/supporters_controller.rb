@@ -42,7 +42,7 @@ class Form::SupportersController < Form::BaseController
       first_name: @supporter.first_name,
       last_name: @supporter.last_name,
       relationship_to_nominee: @supporter.relationship_to_nominee,
-      email: @supporter.email
+      email: @supporter.email,
     }
 
     supporters << new_supporter

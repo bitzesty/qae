@@ -4,43 +4,43 @@ class Reports::CaseIndexReport
   MAPPING = [
     {
       label: "URN",
-      method: :urn
+      method: :urn,
     },
     {
       label: "Category",
-      method: :category
+      method: :category,
     },
     {
       label: "CompanyName",
-      method: :company_or_nominee_name
+      method: :company_or_nominee_name,
     },
     {
       label: "Overall status",
-      method: :overall_status
+      method: :overall_status,
     },
     {
       label: "SIC Code",
-      method: :sic_code
+      method: :sic_code,
     },
     {
       label: "Employees",
-      method: :employees
+      method: :employees,
     },
     {
       label: "CurrentQueensAwardHolder",
-      method: :current_queens_award_holder
+      method: :current_queens_award_holder,
     },
     {
       label: "Verdict",
-      method: :empty_column
+      method: :empty_column,
     },
     {
       label: "Panel Comments",
-      method: :empty_column
+      method: :empty_column,
     },
     {
       label: "Feedback",
-      method: :empty_column
+      method: :empty_column,
     }
   ]
 

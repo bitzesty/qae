@@ -6,7 +6,7 @@ class AssessorAssignment < ApplicationRecord
     primary: 0,
     secondary: 1,
     moderated: 2,
-    case_summary: 4
+    case_summary: 4,
   }
 
   begin :validations

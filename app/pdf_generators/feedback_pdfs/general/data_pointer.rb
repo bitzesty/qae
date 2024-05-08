@@ -56,12 +56,12 @@ module FeedbackPdfs::General::DataPointer
     render_headers(feedback_table_headers, {
       0 => 130,
       1 => 300,
-      2 => 337
+      2 => 337,
     })
     render_table(table_items, {
       0 => 130,
       1 => 300,
-      2 => 337
+      2 => 337,
     })
 
     if form_answer.development? && strengths_entries.present?
@@ -71,7 +71,7 @@ module FeedbackPdfs::General::DataPointer
         cell_style: { size: 12 },
         column_widths: {
           0 => 130,
-          1 => 637
+          1 => 637,
         }) do
         values = cells.columns(1).rows(0..-1)
 
@@ -102,7 +102,7 @@ module FeedbackPdfs::General::DataPointer
     pdf_doc.move_down 30.mm
     render_table([["Overall Summary", data["overall_summary"]]], {
       0 => 130,
-      1 => 637
+      1 => 637,
     })
   end
 

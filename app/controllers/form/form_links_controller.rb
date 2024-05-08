@@ -10,7 +10,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
   expose(:created_link_ops) do
     {
       "link" => link_params[:link],
-      "description" => link_params[:description]
+      "description" => link_params[:description],
     }
   end
 

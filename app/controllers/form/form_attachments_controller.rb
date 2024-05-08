@@ -16,7 +16,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   expose(:created_attachment_ops) do
     {
       "file" => form_answer_attachment.id.to_s,
-      "description" => attachment_params[:description]
+      "description" => attachment_params[:description],
     }
   end
 
@@ -56,7 +56,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
       attachment_params.merge({
         form_answer_id: @form_answer.id,
         non_js_creation: true,
-        original_filename: original_filename
+        original_filename: original_filename,
       })
     )
 

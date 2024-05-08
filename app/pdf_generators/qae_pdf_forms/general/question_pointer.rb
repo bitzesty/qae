@@ -32,7 +32,7 @@ class QaePdfForms::General::QuestionPointer
   PREVIOUS_AWARDS = { "innovation" => "Innovation",
                       "international_trade" => "International Trade",
                       "sustainable_development" => "Sustainable Development",
-                      "social_mobility" => "Promoting Opportunity"
+                      "social_mobility" => "Promoting Opportunity",
                     }
 
   ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze

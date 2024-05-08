@@ -12,7 +12,7 @@ describe "QaePdfForms::Awards2016::Trade::Base" do
 
   let(:step2_question_answers) {
     {
-      company_name: "BitZesty"
+      company_name: "BitZesty",
     }
   }
 

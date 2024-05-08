@@ -28,7 +28,7 @@ module AuditCertificateContext
         format.js do
           render partial: "admin/form_answers/docs/post_shortlisting_docs",
             locals: {
-            resource: form_answer.decorate
+            resource: form_answer.decorate,
           },
             content_type: "text/plain"
         end
@@ -71,7 +71,7 @@ module AuditCertificateContext
     if params[:audit_certificate].blank?
       params.merge!(
         audit_certificate: {
-          attachment: ""
+          attachment: "",
         }
       )
     end

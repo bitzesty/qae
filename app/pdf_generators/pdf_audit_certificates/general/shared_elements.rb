@@ -385,7 +385,7 @@ module PdfAuditCertificates::General::SharedElements
   def render_footer_note
     title = %{Note for applicants/auditors: This submission to the King's Awards Office (KAO) provides authority for the KAO to verify the information contained in it with the above-named auditor.}
     text_box title, default_text_ops.merge({
-      at: [0.mm, 10.mm]
+      at: [0.mm, 10.mm],
     })
   end
 
@@ -403,21 +403,21 @@ module PdfAuditCertificates::General::SharedElements
     default_text_ops.merge({
       height: 20.mm,
       style: :bold,
-      size: 11.5
+      size: 11.5,
     })
   end
 
   def default_list_ops
     {
       leading: 1.8,
-      indent_paragraphs: 10
+      indent_paragraphs: 10,
     }
   end
 
   def default_text_ops
     {
       size: 10,
-      align: :justify
+      align: :justify,
     }
   end
 
@@ -430,8 +430,8 @@ module PdfAuditCertificates::General::SharedElements
       column_widths: send("#{table_type}_column_widths"),
       cell_style: {
         size: 10,
-        padding: [3, 3, 3, 3]
-      }
+        padding: [3, 3, 3, 3],
+      },
     }
   end
 

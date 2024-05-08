@@ -5,8 +5,8 @@ class FormAnswerSearch < Search
     sort: "company_or_nominee_name",
     search_filter: {
       award_type: FormAnswer::AWARD_TYPE_FULL_NAMES.invert.values,
-      status: FormAnswerStatus::AdminFilter.all
-    }
+      status: FormAnswerStatus::AdminFilter.all,
+    },
   }
 
   def initialize(scope, subject)

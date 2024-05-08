@@ -5,7 +5,7 @@ class SiteFeedback < ApplicationRecord
                            satisfied: 4,
                            neither_satisfied_or_dissatisfied: 3,
                            dissatisfied: 2,
-                           very_dissatisfied: 1 }
+                           very_dissatisfied: 1, }
 
   validates :rating, presence: true
 end

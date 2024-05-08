@@ -5,7 +5,7 @@ class FormAnswerDecorator < ApplicationDecorator
                    "International Trade" => "Int'l Trade",
                    "Sustainable Development" => "Sust. Dev.",
                    "Promoting Opportunity" => "Prom. Opp.",
-                   "Enterprise Promotion" => "Ent. Prom."
+                   "Enterprise Promotion" => "Ent. Prom.",
                  }
 
   NOT_ASSIGNED = "Not Assigned"

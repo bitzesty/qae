@@ -30,7 +30,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
   expose(:created_item_ops) do
     attrs = {
       "title" => item_params[:title],
-      "details" => item_params[:details]
+      "details" => item_params[:details],
     }
 
     attrs["year"] = item_params[:year] if params[:holder].present?

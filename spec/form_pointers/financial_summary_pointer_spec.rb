@@ -4,7 +4,7 @@ describe FinancialSummaryPointer do
   let(:partitioned_hash) do
     {
       nil => [:employees, :total_turnover, :exports, :net_profit, :total_net_assets],
-      :innovation_financials => [:sales, :sales_exports, :sales_royalties]
+      :innovation_financials => [:sales, :sales_exports, :sales_royalties],
     }
   end
 
@@ -18,12 +18,12 @@ describe FinancialSummaryPointer do
             financial_year_changed_dates: [
                                             ["07", "07", "2021"],
                                             ["06", "09", "2022"],
-                                          ]
+                                          ],
           },
           { employees: [
                          { value: "10", name: "employees_1of2" },
                          { value: "12", name: "employees_2of2" },
-                       ]
+                       ],
           },
           {
             sales: [
@@ -31,7 +31,7 @@ describe FinancialSummaryPointer do
                      { value: "10", name: "sales_2of4" },
                      { value: "10", name: "sales_3of4" },
                      { value: "10", name: "sales_4of4" },
-                   ]
+                   ],
           },
         ]
       end
@@ -72,20 +72,20 @@ describe FinancialSummaryPointer do
                                             ["06", "06", "2020"],
                                             ["07", "07", "2021"],
                                             ["08", "08", "2022"],
-                                          ]
+                                          ],
           },
           { employees: [
                          { value: "10", name: "employees_1of4" },
                          { value: "10", name: "employees_2of4" },
                          { value: "10", name: "employees_3of4" },
                          { value: "10", name: "employees_4of4" },
-                       ]
+                       ],
           },
           {
             sales: [
                      { value: "10", name: "sales_1of2" },
                      { value: "10", name: "sales_2of2" },
-                   ]
+                   ],
           },
         ]
       end
@@ -123,7 +123,7 @@ describe FinancialSummaryPointer do
           { employees: [
                          { value: "10", name: "employees_1of2" },
                          { value: "12", name: "employees_2of2" },
-                       ]
+                       ],
           },
           {
             sales: [
@@ -131,7 +131,7 @@ describe FinancialSummaryPointer do
                      { value: "10", name: "sales_2of4" },
                      { value: "10", name: "sales_3of4" },
                      { value: "10", name: "sales_4of4" },
-                   ]
+                   ],
           },
         ]
       end
@@ -226,13 +226,13 @@ describe FinancialSummaryPointer do
                          { value: "10", name: "employees_2of4" },
                          { value: "10", name: "employees_3of4" },
                          { value: "10", name: "employees_4of4" },
-                       ]
+                       ],
           },
           {
             sales: [
                      { value: "10", name: "sales_1of2" },
                      { value: "10", name: "sales_2of2" },
-                   ]
+                   ],
           },
         ]
       end

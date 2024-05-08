@@ -39,7 +39,7 @@ module AdminShortlistedDocsContext
           render partial: "admin/figures_and_vat_returns/form",
             locals: {
               form_answer: form_answer, 
-              attachment: attachment
+              attachment: attachment,
             },
             content_type: "text/plain",
             status: 422

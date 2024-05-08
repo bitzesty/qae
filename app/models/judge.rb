@@ -16,7 +16,7 @@ class Judge < ApplicationRecord
     :mobility_role,
     :promotion_role,
     inclusion: {
-      in: AVAILABLE_ROLES
+      in: AVAILABLE_ROLES,
     },
     allow_blank: true
 
@@ -28,8 +28,8 @@ class Judge < ApplicationRecord
     ],
     using: {
       tsearch: {
-        prefix: true
-      }
+        prefix: true,
+      },
     }
 
   scope :active, -> { where(deleted: false) }

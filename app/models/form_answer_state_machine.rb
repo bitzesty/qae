@@ -133,7 +133,7 @@ class FormAnswerStateMachine
     new_state = {
       "negative" => :not_recommended,
       "average" => :reserved,
-      "positive" => :recommended
+      "positive" => :recommended,
     }[verdict]
 
     perform_transition(new_state, subject)
@@ -162,7 +162,7 @@ class FormAnswerStateMachine
   def get_metadata(subject)
     meta = {
       transitable_id: subject.id,
-      transitable_type: subject.class.to_s
+      transitable_type: subject.class.to_s,
     } if subject.present?
     meta ||= {}
     meta

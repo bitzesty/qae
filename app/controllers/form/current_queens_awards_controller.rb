@@ -43,7 +43,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     {
       "category" => item_params[:category],
       "year" => item_params[:year],
-      "outcome" => item_params[:outcome]
+      "outcome" => item_params[:outcome],
     }
   end
 
@@ -53,7 +53,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
       current_queens_award: {
         category: item.category,
         year: item.year,
-        outcome: item.outcome
+        outcome: item.outcome,
       }
     )
   end

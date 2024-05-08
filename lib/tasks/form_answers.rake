@@ -189,7 +189,7 @@ namespace :form_answers do
         company_or_nominee_name: f.company_or_nominee_from_document,
         nominee_full_name: f.nominee_full_name_from_document,
         nominator_full_name: f.send(:nominator_full_name_from_document),
-        nominator_email: f.send(:nominator_email_from_document)
+        nominator_email: f.send(:nominator_email_from_document),
       }
 
       f.update_columns(args)
@@ -222,7 +222,7 @@ namespace :form_answers do
     counter = 0
     county_mapper = {
       "Befordshire" => "Bedfordshire",
-      "Stafffordshire" => "Staffordshire"
+      "Stafffordshire" => "Staffordshire",
     }
 
     puts "Updating form answers..."

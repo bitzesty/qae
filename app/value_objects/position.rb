@@ -22,7 +22,7 @@ class Position
   validates :details, length: {
     maximum: 111,
     tokenizer: -> (str) { str.split },
-    message: "is too long (maximum is 100 words)"
+    message: "is too long (maximum is 100 words)",
   }
 
   def initialize(attrs={})

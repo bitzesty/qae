@@ -28,7 +28,7 @@ class Assessor < ApplicationRecord
     :mobility_role,
     :promotion_role,
     inclusion: {
-      in: AVAILABLE_ROLES
+      in: AVAILABLE_ROLES,
     },
     allow_nil: true
 
@@ -40,8 +40,8 @@ class Assessor < ApplicationRecord
     ],
     using: {
       tsearch: {
-        prefix: true
-      }
+        prefix: true,
+      },
     }
 
   default_scope { where(deleted: false) }

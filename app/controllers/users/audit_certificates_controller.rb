@@ -90,7 +90,7 @@ class Users::AuditCertificatesController < Users::BaseController
     if params[:audit_certificate].blank?
       params.merge!(
         audit_certificate: {
-          attachment: ""
+          attachment: "",
         }
       )
     end

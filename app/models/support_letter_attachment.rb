@@ -16,7 +16,7 @@ class SupportLetterAttachment < ApplicationRecord
     validates :attachment, presence: true,
       on: :create,
       file_size: {
-        maximum: 5.megabytes.to_i
+        maximum: 5.megabytes.to_i,
       }
   end
 end

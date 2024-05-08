@@ -19,7 +19,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
         bounds.top + 20
       ],
       align: :right,
-      size: 14
+      size: 14,
     }
   end
 

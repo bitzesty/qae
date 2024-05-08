@@ -32,7 +32,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
       "name" => item_params[:name],
       "location" => item_params[:location],
       "employees" => item_params[:employees],
-      "description" => item_params[:description]
+      "description" => item_params[:description],
     }
   end
 
@@ -41,7 +41,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
       @form_answer.id,
       subsidiary: {
         name: item.name,
-        location: item.location
+        location: item.location,
       }
     )
   end

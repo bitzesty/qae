@@ -14,8 +14,8 @@ module FormAnswerMixin
         render json: {
           form_answer: {
             sic_codes: resource.decorate.all_average_growths,
-            legend: resource.decorate.average_growth_legend
-          }
+            legend: resource.decorate.average_growth_legend,
+          },
         }
       end
 
@@ -112,7 +112,7 @@ module FormAnswerMixin
     {
       updated_at: Time.zone.now,
       updated_by_id: pundit_user.id,
-      updated_by_type: pundit_user.class
+      updated_by_type: pundit_user.class,
     }.merge(params[:financial_data].permit!)
   end
 end

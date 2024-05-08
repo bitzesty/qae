@@ -9,7 +9,7 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
     form_answer.support_letter_attachments.new(
       support_letter_attachment_params.merge({
         user_id: current_user.id,
-        original_filename: original_filename
+        original_filename: original_filename,
       })
     )
   end
@@ -30,7 +30,7 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
 
     def support_letter_attachment_params
       {
-        attachment: params[:form][:supporter_letters_list].first[1][:letter_of_support]
+        attachment: params[:form][:supporter_letters_list].first[1][:letter_of_support],
       }
     end
 

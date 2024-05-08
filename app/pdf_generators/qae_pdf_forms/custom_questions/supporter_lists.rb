@@ -15,7 +15,7 @@ module QaePdfForms::CustomQuestions::SupporterLists
     entries.each do |entry|
       ops = {
         full_name: "#{entry.first_name} #{entry.last_name}",
-        relationship_to_nominee: entry.relationship_to_nominee
+        relationship_to_nominee: entry.relationship_to_nominee,
       }
 
       if entry.is_a?(Supporter)

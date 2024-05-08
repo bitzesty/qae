@@ -15,7 +15,7 @@ class FinancialYearPointer
 
   def data
     {
-      key => fetch_data
+      key => fetch_data,
     }
   end
 
@@ -43,7 +43,7 @@ class FinancialYearPointer
       value = entry(field).to_s.delete(",")
       {
         value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
-        name: "#{key}_#{field}"
+        name: "#{key}_#{field}",
       }
     end
   end
@@ -59,7 +59,7 @@ class FinancialYearPointer
       value = entry(field).to_s.delete(",")
       {
         value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
-        name: "#{key}_#{field}"
+        name: "#{key}_#{field}",
       }
     end
   end

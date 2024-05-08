@@ -285,7 +285,7 @@ class FormController < ApplicationController
       award_type: award_type,
       nickname: nickname,
       document: {
-        company_name: current_user.company_name
+        company_name: current_user.company_name,
       }
     )
 

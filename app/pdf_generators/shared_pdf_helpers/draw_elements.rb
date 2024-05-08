@@ -85,7 +85,7 @@ module SharedPdfHelpers::DrawElements
       size: 12,
       align: :left,
       valign: :top,
-      style: :bold
+      style: :bold,
     }
   end
 end

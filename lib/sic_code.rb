@@ -17,7 +17,7 @@ class SicCode < ActiveYaml::Base
       4 => "year3",
       5 => "year4",
       6 => "year5",
-      7 => "year6"
+      7 => "year6",
     }
 
     res = csv[1..-1].map do |row|
@@ -40,7 +40,7 @@ class SicCode < ActiveYaml::Base
     "1*" => "Those SIC codes for which the sector is not covered in PRODCOM database,
     UK exports published as zero, no principal products, UK sales and/or exports not
     available or suppressed implying ratios not defined or no principal products for
-    some years and ratios smaller than 0.5%"
+    some years and ratios smaller than 0.5%",
   }
 
   def by_year(year)

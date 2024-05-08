@@ -23,7 +23,7 @@ So that I can print and review application case summaries
         ops = {
           id: "case_summaries",
           category: award_type, format: :pdf,
-          year: AwardYear.current.year
+          year: AwardYear.current.year,
         }
 
         if award_type == "trade"

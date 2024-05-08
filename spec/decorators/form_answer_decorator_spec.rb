@@ -35,7 +35,7 @@ describe FormAnswerDecorator do
     development_desc_short: "development_desc_short",
     development_management_approach_briefly: "development_management_approach_briefly",
     mobility_desc_short: "mobility_desc_short",
-    organisation_type: "organisation_type"
+    organisation_type: "organisation_type",
   }
 
   let(:user) { build_stubbed(:user, first_name: "John", last_name: "Doe") }

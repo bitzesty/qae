@@ -40,7 +40,7 @@ module QaePdfForms::CustomQuestions::Matrix
   def matrix_options
     {
       header: true,
-      column_widths: millimeterized_column_widths
+      column_widths: millimeterized_column_widths,
     }
   end
 

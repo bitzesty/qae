@@ -8,7 +8,7 @@ class CheckAccountOnBouncesEmail
     "5" => "Delivarable. Verified as real address.",                
     "6" => "Invalid. Verified as not valid.",             
     "7" => "Unknown. The server cannot be reached.",           
-    "8" => "Role. Role accounts such as info, support, etc."
+    "8" => "Role. Role accounts such as info, support, etc.",
   }
 
   VALID_DEBOUNCE_API_CODES = [ 4, 5, 7, 8 ]
