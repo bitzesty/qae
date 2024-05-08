@@ -9,7 +9,7 @@ module TriggerAtDecorator
     trigger_at = "midday" if midday?
 
     if format[:bold]
-      h.content_tag(:strong, trigger_on) + " at #{trigger_at}".html_safe
+      h.tag.strong(trigger_on) + " at #{trigger_at}".html_safe
     else
       "#{trigger_on} at #{trigger_at}"
     end

@@ -33,9 +33,9 @@ module ApplicationHelper
       end
     end
 
-    content_tag :li, opts do
+    tag.li(opts) do
       if step_status == "current" or (step_status != "past" && opts[:cant_access_future])
-        content_tag :span, class: "govuk-body" do
+        tag.span(class: "govuk-body") do
           index_step_text
         end
       else
@@ -58,7 +58,7 @@ module ApplicationHelper
       data_attrs = {question: dep.parameterized_title, value: condition.question_value}
       data_attrs = data_attrs.merge((condition.options || {}).fetch(:data, {})) if condition.options
 
-      current = content_tag(:div, current, class: "js-conditional-question", data: data_attrs)
+      current = tag.div(current, class: "js-conditional-question", data: data_attrs)
     end
 
     current
