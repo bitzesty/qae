@@ -88,10 +88,6 @@ class Form::SupportLettersController < Form::BaseController
   end
 
   def support_letters_doc
-    if @form_answer.document["supporter_letters_list"].present?
-      @form_answer.document["supporter_letters_list"]
-    else
-      []
-    end
+    @form_answer.document["supporter_letters_list"].presence || []
   end
 end

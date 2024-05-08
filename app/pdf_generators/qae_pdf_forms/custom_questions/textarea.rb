@@ -199,11 +199,7 @@ module QaePdfForms::CustomQuestions::Textarea
     @ns_history << @counter
     @string = []
 
-    @styles << if wysywyg_get_style_values(i).present?
-      wysywyg_get_style_values(i)
-    else
-      "margin-left: 20px"
-    end
+    @styles << wysywyg_get_style_values(i).presence || "margin-left: 20px"
   end
 
   def wysywyg_handle_ol_tag(i)
@@ -215,11 +211,7 @@ module QaePdfForms::CustomQuestions::Textarea
     @string = []
     @keys_history << "<ol>"
 
-    @styles << if wysywyg_get_style_values(i).present?
-      wysywyg_get_style_values(i)
-    else
-      "margin-left: 20px"
-    end
+    @styles << wysywyg_get_style_values(i).presence || "margin-left: 20px"
   end
 
   def marker_of_list(string, key, n)

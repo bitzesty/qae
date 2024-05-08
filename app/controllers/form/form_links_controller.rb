@@ -28,7 +28,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
     result_materials.delete_if do |k, v|
       v["link"] == params[:link]
     end
-    result_materials = result_materials.present? ? result_materials : {}
+    result_materials = result_materials.presence || {}
 
     @form_answer.document.merge(
       innovation_materials: result_materials,

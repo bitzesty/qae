@@ -306,11 +306,7 @@ class QaeFormBuilder
     end
 
     def escaped_context
-      content = if delegate_obj.pdf_context.present?
-        delegate_obj.pdf_context
-      else
-        delegate_obj.context
-      end
+      content = delegate_obj.pdf_context.presence || delegate_obj.context
 
       prepared_text(content) if content.present?
     end
@@ -354,7 +350,7 @@ class QaeFormBuilder
           q.key == condition.question_key
         end
 
-        parent_ref = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
+        parent_ref = parent_q.ref.presence || parent_q.sub_ref
         [parent_ref.to_s.delete(" "), condition.question_value]
       end
 
@@ -382,7 +378,7 @@ class QaeFormBuilder
           q.key == c.parent_question_key
         end
 
-        res = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
+        res = parent_q.ref.presence || parent_q.sub_ref
         res.delete(" ")
       end
 

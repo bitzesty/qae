@@ -61,11 +61,7 @@ class Form::SupportersController < Form::BaseController
   end
 
   def supporters_doc
-    if @form_answer.document["supporters"].present?
-      @form_answer.document["supporters"]
-    else
-      []
-    end
+    @form_answer.document["supporters"].presence || []
   end
 
   def supporter_params

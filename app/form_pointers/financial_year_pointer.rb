@@ -42,7 +42,7 @@ class FinancialYearPointer
     active_fields.map do |field|
       value = entry(field).to_s.delete(",")
       {
-        value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
+        value: value.presence || FormFinancialPointer::IN_PROGRESS,
         name: "#{key}_#{field}",
       }
     end
@@ -58,7 +58,7 @@ class FinancialYearPointer
     active_fields.map do |field|
       value = entry(field).to_s.delete(",")
       {
-        value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
+        value: value.presence || FormFinancialPointer::IN_PROGRESS,
         name: "#{key}_#{field}",
       }
     end

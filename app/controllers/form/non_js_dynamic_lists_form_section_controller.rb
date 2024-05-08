@@ -14,11 +14,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
   end
 
   expose(:existing_parsed_list_doc) do
-    if existing_list_doc.present?
-      existing_list_doc
-    else
-      []
-    end
+    existing_list_doc.presence || []
   end
 
   expose(:ops_hash) {
@@ -44,7 +40,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
       item_detect_condition(el)
     end
 
-    res = res.present? ? res : []
+    res = res.presence || []
 
     @form_answer.document.merge(
       input_name => res,

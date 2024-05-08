@@ -276,6 +276,6 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_value_or_undefined(val, undefined_text)
-    val.present? ? val : undefined_text
+    val.presence || undefined_text
   end
 end

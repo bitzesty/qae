@@ -12,11 +12,7 @@ class Form::MaterialsBaseController < Form::BaseController
   end
 
   expose(:existing_materials) do
-    if innovation_materials_doc.present?
-      innovation_materials_doc
-    else
-      {}
-    end
+    innovation_materials_doc.presence || {}
   end
 
   expose(:next_document_position) do

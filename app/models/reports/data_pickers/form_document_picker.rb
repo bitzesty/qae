@@ -344,7 +344,7 @@ module Reports::DataPickers::FormDocumentPicker
       end
 
       amended_value = financial_data[target_key]
-      amended_value.present? ? amended_value : doc(target_key)
+      amended_value.presence || doc(target_key)
     end
   end
 

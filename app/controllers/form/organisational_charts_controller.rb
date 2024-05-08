@@ -22,11 +22,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
   end
 
   expose(:existing_org_chart) do
-    if existing_org_chart_doc.present?
-      existing_org_chart_doc
-    else
-      {}
-    end
+    existing_org_chart_doc.presence || {}
   end
 
   expose(:created_attachment_ops) do
