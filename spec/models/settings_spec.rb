@@ -40,13 +40,13 @@ describe Settings do
     end
 
     it "should return true if some of the awards are still closed" do
-      allow(Settings).to receive(:current_award_year_switch_date) {build(:deadline, trigger_at: 2.day.ago)}
+      allow(Settings).to receive(:current_award_year_switch_date) {build(:deadline, trigger_at: 2.days.ago)}
       allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.ago), double(trigger_at: nil)]}
       expect(Settings.current_award_year_switched?).to be_truthy
     end
 
     it "should return false if all of the awards are opened" do
-      allow(Settings).to receive(:current_award_year_switch_date) {build(:deadline, trigger_at: 2.day.ago)}
+      allow(Settings).to receive(:current_award_year_switch_date) {build(:deadline, trigger_at: 2.days.ago)}
       allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.ago), double(trigger_at: 1.day.ago)]}
       expect(Settings.current_award_year_switched?).to eq(false)
     end

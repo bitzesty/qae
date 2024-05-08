@@ -24,7 +24,7 @@ describe FormAnswerStatistics::Picker do
           fa1.state_machine.perform_transition(:not_eligible, nil, false)
         end
 
-        Timecop.freeze(current_date - 2.month) do
+        Timecop.freeze(current_date - 2.months) do
           create(:user)
         end
 

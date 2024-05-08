@@ -14,7 +14,7 @@ So that I can fill form completelly even if Javascript is turned off
   end
 
   let(:trade_award_year) do
-    (Date.current - 1.years).year.to_s
+    (Date.current - 1.year).year.to_s
   end
 
   let(:awards) do

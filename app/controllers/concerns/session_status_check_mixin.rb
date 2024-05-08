@@ -51,6 +51,6 @@ module SessionStatusCheckMixin
       elsif namespace == JUDGE_NAMESPACE
         judge_session
     end
-    (now - (session["last_request_at"] || params["__t"].to_i)).to_i / 1.minutes
+    (now - (session["last_request_at"] || params["__t"].to_i)).to_i / 1.minute
   end
 end
