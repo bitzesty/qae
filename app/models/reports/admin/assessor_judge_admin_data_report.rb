@@ -5,37 +5,47 @@ class Reports::Admin::AssessorJudgeAdminDataReport
     {
       label: "ID",
       method: :id,
-    }, {
+    },
+    {
       label: "First name",
       method: :first_name,
-    }, {
+    },
+    {
       label: "Last name",
       method: :last_name,
-    }, {
+    },
+    {
       label: "Company",
       method: :company,
-    }, {
+    },
+    {
       label: "Email",
       method: :email,
-    }, {
+    },
+    {
       label: "Telephone",
       method: :telephone_number,
-    }, {
+    },
+    {
       label: "User type",
       method: :user_type,
-    }, {
+    },
+    {
       label: "Status",
       method: :status,
-    }, {
+    },
+    {
       label: "User creation date",
       method: :created_at,
-    }, {
+    },
+    {
       label: "Last sign in date",
       method: :last_sign_in_at,
-    }, {
+    },
+    {
       label: "Awards assigned",
       method: :awards_assigned,
-    }
+    },
   ]
 
   def as_csv

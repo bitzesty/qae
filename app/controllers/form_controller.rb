@@ -7,8 +7,7 @@ class FormController < ApplicationController
   before_action :check_account_completion, :check_number_of_collaborators, unless: -> { admin_signed_in? || assessor_signed_in? }
   before_action :check_deadlines
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
-    :new, :create, :update, :destroy,
-    :submit_confirm, :save, :add_attachment
+    :new, :create, :update, :destroy, :submit_confirm, :save, :add_attachment
   ]
 
   before_action :check_trade_deadline, :check_trade_count_limit, only: :new_international_trade_form

@@ -107,7 +107,10 @@ class User < ApplicationRecord
     online
     local_trade_body
     national_trade_body
-    mail_from_qae word_of_mouth other)
+    mail_from_qae
+    word_of_mouth
+    other
+  )
   enumerize :role, in: POSSIBLE_ROLES, predicates: true
 
   begin :searching

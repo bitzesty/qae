@@ -53,6 +53,7 @@ Layout/MultilineOperationIndentation:
 
 Layout/MultilineArrayLineBreaks:
   Enabled: true
+  AllowMultilineFinalElement: true
 
 Layout/MultilineHashKeyLineBreaks:
   Enabled: true
