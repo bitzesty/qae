@@ -4,7 +4,7 @@ FactoryBot.define do
     file do
       Rack::Test::UploadedFile.new(
         File.join(
-          Rails.root, 'spec', 'fixtures', 'cat.jpg'
+          Rails.root, "spec", "fixtures", "cat.jpg"
         )
       )
     end

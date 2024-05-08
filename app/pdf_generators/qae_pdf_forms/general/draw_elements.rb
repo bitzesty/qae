@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'open-uri'
+require "open-uri"
 
 module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm

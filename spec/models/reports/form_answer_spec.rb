@@ -10,9 +10,9 @@ describe Reports::FormAnswer do
     end
   end
 
-  describe '#call_method' do
-    it 'should return missing method' do
-      expect(Reports::FormAnswer.new(build(:form_answer, :trade)).call_method(:missing)).to eq 'missing method'
+  describe "#call_method" do
+    it "should return missing method" do
+      expect(Reports::FormAnswer.new(build(:form_answer, :trade)).call_method(:missing)).to eq "missing method"
     end
   end
 
@@ -40,7 +40,7 @@ describe Reports::FormAnswer do
     end
   end
 
-  describe 'user methods' do
+  describe "user methods" do
     let(:user) do
       build(:user,
             company_address_first: "company_address_first",
@@ -53,55 +53,55 @@ describe Reports::FormAnswer do
     end
     let(:report) {Reports::FormAnswer.new(build(:form_answer, user: user))}
 
-    it '#address_line1 should return address_line1' do
+    it "#address_line1 should return address_line1" do
       expect(report.address_line1).to eq "company_address_first"
     end
 
-    it '#address_line2 should return address_line2' do
+    it "#address_line2 should return address_line2" do
       expect(report.address_line2).to eq "company_address_second"
     end
 
-    it '#address_line3 should return address_line3' do
+    it "#address_line3 should return address_line3" do
       expect(report.address_line3).to eq "company_city"
     end
 
-    it '#postcode should return postcode' do
+    it "#postcode should return postcode" do
       expect(report.postcode).to eq "company_postcode"
     end
 
-    it '#telephone1 should return telephone1' do
+    it "#telephone1 should return telephone1" do
       expect(report.telephone1).to eq "phone_number"
     end
 
-    it '#telephone2 should return telephone2' do
+    it "#telephone2 should return telephone2" do
       expect(report.telephone2).to eq "company_phone_number"
     end
   end
 
 
-  describe '#case_summary_status' do
-    it 'should return correct status' do
+  describe "#case_summary_status" do
+    it "should return correct status" do
       assessor_assignment = build(:assessor_assignment)
       allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment) {assessor_assignment}
       allow_any_instance_of(AssessorAssignment).to receive(:submitted?) {true}
       allow_any_instance_of(AssessorAssignment).to receive(:locked?) {true}
-      expect(Reports::FormAnswer.new(build(:form_answer, :trade)).send(:case_summary_status)).to eq 'Submitted'
+      expect(Reports::FormAnswer.new(build(:form_answer, :trade)).send(:case_summary_status)).to eq "Submitted"
 
       allow_any_instance_of(AssessorAssignment).to receive(:locked?) {false}
-      expect(Reports::FormAnswer.new(build(:form_answer, :trade)).send(:case_summary_status)).to eq 'Not Submitted'
+      expect(Reports::FormAnswer.new(build(:form_answer, :trade)).send(:case_summary_status)).to eq "Not Submitted"
     end
   end
 
-  describe '#mso_grade_agreed' do
-    it 'should return correct grade' do
+  describe "#mso_grade_agreed" do
+    it "should return correct grade" do
       allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment) {build(:assessor_assignment_moderated)}
-      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment).with('moderated') {build(:assessor_assignment_moderated, document: { w_rate_1: 'positive', w_rate_2: 'average', })}
-      expect(Reports::FormAnswer.new(build(:form_answer)).send(:mso_grade_agreed)).to eq 'G,A'
+      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment).with("moderated") {build(:assessor_assignment_moderated, document: { w_rate_1: "positive", w_rate_2: "average", })}
+      expect(Reports::FormAnswer.new(build(:form_answer)).send(:mso_grade_agreed)).to eq "G,A"
     end
   end
 
-  describe '#government_support' do
-    it 'should return correct value' do
+  describe "#government_support" do
+    it "should return correct value" do
       inn_form_answer = build(:form_answer, :innovation)
       inn_form_answer.document = inn_form_answer.document.merge(
         innovations_grant_funding: "yes",

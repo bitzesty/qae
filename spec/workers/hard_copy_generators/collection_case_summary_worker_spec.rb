@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe HardCopyPdfGenerators::Collection::CaseSummaryWorker  do
-  it 'should perform correctly' do
+  it "should perform correctly" do
 
     allow_any_instance_of(AwardYear).to receive(:case_summary_generation_can_be_started?) {true}
 

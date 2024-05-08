@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin all feedbacks pdf generation" do
   let!(:form_answer) do

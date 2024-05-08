@@ -1,6 +1,6 @@
 require "award_years/v2018/qae_forms"
 require "award_years/v2019/qae_forms"
-require 'award_years/v2020/qae_forms'
+require "award_years/v2020/qae_forms"
 
 class FormController < ApplicationController
   before_action :authenticate_user!

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Verification of Commercial Figures", %q{
@@ -39,10 +39,10 @@ So that I can check, complete it and then upload it to application
   describe "Output correct award type short names for pdf generator classes" do
     it "should match translation strings" do
       [
-        [PdfAuditCertificates::Awards2016::Innovation::Base, 'Innovation'],
-        [PdfAuditCertificates::Awards2016::Trade::Base, 'Trade'],
-        [PdfAuditCertificates::Awards2016::Development::Base, 'Development'],
-        [PdfAuditCertificates::Awards2016::Mobility::Base, 'Mobility'],
+        [PdfAuditCertificates::Awards2016::Innovation::Base, "Innovation"],
+        [PdfAuditCertificates::Awards2016::Trade::Base, "Trade"],
+        [PdfAuditCertificates::Awards2016::Development::Base, "Development"],
+        [PdfAuditCertificates::Awards2016::Mobility::Base, "Mobility"],
       ].each do |pdf_class, name|
         expect(pdf_class.new(form_answer).award_type_short).to eq(name)
       end

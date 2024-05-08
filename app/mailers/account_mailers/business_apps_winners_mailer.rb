@@ -15,6 +15,6 @@ class AccountMailers::BusinessAppsWinnersMailer < AccountMailers::BaseMailer
     @media_deadline_without_year = @media_deadline.strftime("%d %B")
 
     subject = "Important information about your King's Award application"
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject_with_env_prefix(subject)
+    send_mail_if_not_bounces ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], to: collaborator.email, subject: subject_with_env_prefix(subject)
   end
 end

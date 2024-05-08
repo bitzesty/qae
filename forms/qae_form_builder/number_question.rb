@@ -5,7 +5,7 @@ class QaeFormBuilder
   class NumberQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
-      result << 'question-number'
+      result << "question-number"
       result
     end
   end

@@ -15,7 +15,7 @@ describe Settings do
     end
   end
 
-  describe 'class methods & scopes ' do
+  describe "class methods & scopes " do
     it ".winner_notification_date should filter correctly" do
       target = Settings.current.winners_email_notification.try(:trigger_at).presence
       expect(target).to eq Settings.winner_notification_date

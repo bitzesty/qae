@@ -105,7 +105,7 @@ class QaeFormBuilder
     end
 
     def form_name
-      @decorator_options[:form_name] || 'form'
+      @decorator_options[:form_name] || "form"
     end
 
     def hash_key options = {}
@@ -293,7 +293,7 @@ class QaeFormBuilder
     end
 
     def escaped_title
-      r_title = ''
+      r_title = ""
       title = delegate_obj.title
       pdf_title = delegate_obj.pdf_title
       main_header = delegate_obj.main_header if delegate_obj.respond_to?(:main_header)
@@ -355,7 +355,7 @@ class QaeFormBuilder
         end
 
         parent_ref = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
-        [parent_ref.to_s.delete(' '), condition.question_value]
+        [parent_ref.to_s.delete(" "), condition.question_value]
       end
 
       pdf_hints = refs_and_values.map do |parent_ref, parent_val|
@@ -383,7 +383,7 @@ class QaeFormBuilder
         end
 
         res = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
-        res.delete(' ')
+        res.delete(" ")
       end
 
       generate_hint(option_name, dependencies)
@@ -615,7 +615,7 @@ class QaeFormBuilder
     end
 
     def decorate options = {}
-      kls_name = self.class.name.split('::').last
+      kls_name = self.class.name.split("::").last
       kls = QaeFormBuilder.const_get "#{kls_name}Decorator" rescue nil
       (kls || QuestionDecorator).new self, options
     end

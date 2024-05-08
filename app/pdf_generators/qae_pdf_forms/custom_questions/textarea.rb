@@ -127,13 +127,13 @@ module QaePdfForms::CustomQuestions::Textarea
     @li_counter = 0
 
     content.each do |i|
-      if wysywyg_is_it_tag?(i, 'li')
+      if wysywyg_is_it_tag?(i, "li")
         wysywyg_handle_li_tag(key, i)
 
-      elsif wysywyg_is_it_tag?(i, 'ul')
+      elsif wysywyg_is_it_tag?(i, "ul")
         wysywyg_handle_ul_tag(key, i)
 
-      elsif wysywyg_is_it_tag?(i, 'ol')
+      elsif wysywyg_is_it_tag?(i, "ol")
         wysywyg_handle_ol_tag(i)
 
       elsif wysywyg_list_ending_tag?(i)
@@ -294,8 +294,8 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def simple_text(tag)
-    if tag.xpath('text()').present?
-      tag.xpath('text()').text
+    if tag.xpath("text()").present?
+      tag.xpath("text()").text
     end
   end
 
@@ -334,13 +334,13 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def sanitize_content(content)
     content = Nokogiri::HTML(content)
-    content.xpath('//@style')
+    content.xpath("//@style")
            .remove
 
     content.children
            .css("body")
            .to_html
-           .gsub('<body>', '')
-           .gsub('</body>', '')
+           .gsub("<body>", "")
+           .gsub("</body>", "")
   end
 end

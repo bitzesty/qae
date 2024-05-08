@@ -61,7 +61,7 @@ class AwardYear < ApplicationRecord
   ["3", "6"].map do |i|
     define_method("case_summary_trade_#{i}_hard_copy_pdf") do
       send("aggregated_case_summary_hard_copies").find_by(
-        award_category: 'trade',
+        award_category: "trade",
         sub_type: i
       )
     end

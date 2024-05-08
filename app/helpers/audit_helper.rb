@@ -10,7 +10,7 @@ module AuditHelper
    {
      email: "dummy_user@example.com",
      password: SecureRandom.base64(16),
-     agreed_with_privacy_policy: '1',
+     agreed_with_privacy_policy: "1",
      role: "regular",
      first_name: "Unknown",
      last_name: "User"

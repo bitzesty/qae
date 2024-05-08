@@ -14,14 +14,14 @@ describe "Assessor assigns assessors", %(
 
   describe "Form submission" do
     let!(:form_answer) do
-      f = create(:form_answer, :trade, state: 'assessment_in_progress')
+      f = create(:form_answer, :trade, state: "assessment_in_progress")
       f.document["company_name"] = "ABC Company"
       f.save!
       f.reload
     end
 
     let!(:form_answer1) do
-      f = create(:form_answer, :trade, state: 'assessment_in_progress')
+      f = create(:form_answer, :trade, state: "assessment_in_progress")
       f.document["company_name"] = "BBC Company"
       f.save!
       f.reload

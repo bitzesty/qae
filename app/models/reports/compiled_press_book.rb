@@ -1,9 +1,9 @@
-require 'rubyXL'
-require 'rubyXL/convenience_methods/cell'
-require 'rubyXL/convenience_methods/color'
-require 'rubyXL/convenience_methods/font'
-require 'rubyXL/convenience_methods/workbook'
-require 'rubyXL/convenience_methods/worksheet'
+require "rubyXL"
+require "rubyXL/convenience_methods/cell"
+require "rubyXL/convenience_methods/color"
+require "rubyXL/convenience_methods/font"
+require "rubyXL/convenience_methods/workbook"
+require "rubyXL/convenience_methods/worksheet"
 
 class Reports::CompiledPressBook
   attr_reader :groupped_form_answers, :scope
@@ -124,7 +124,7 @@ class Reports::CompiledPressBook
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
-    header_cell.change_vertical_alignment('center')
+    header_cell.change_vertical_alignment("center")
 
     worksheet.change_column_width(0, 20)
     worksheet.change_column_width(1, 60)
@@ -154,7 +154,7 @@ class Reports::CompiledPressBook
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
-    header_cell.change_vertical_alignment('center')
+    header_cell.change_vertical_alignment("center")
 
     # / Category header
 
@@ -168,12 +168,12 @@ class Reports::CompiledPressBook
         attr_name_cell.change_fill(LIGHT_BG)
         attr_name_cell.change_font_size(FONT_SIZE)
         attr_name_cell.change_font_bold(true)
-        attr_name_cell.change_vertical_alignment('top')
+        attr_name_cell.change_vertical_alignment("top")
 
         attr_cell = worksheet.add_cell(current_row_index, 1, PressBookFormAnswer.new(form_answer).public_send(method_name))
         attr_cell.change_font_size(FONT_SIZE)
         attr_cell.change_text_wrap(true)
-        attr_cell.change_vertical_alignment('top')
+        attr_cell.change_vertical_alignment("top")
 
         if method_name == :company_or_nominee_name
           attr_cell.change_font_bold(true)
@@ -211,7 +211,7 @@ class Reports::CompiledPressBook
     header_cell.change_font_color(WHITE_FONT)
     header_cell.change_font_size(HEADER_FONT_SIZE)
     header_cell.change_font_bold(true)
-    header_cell.change_vertical_alignment('center')
+    header_cell.change_vertical_alignment("center")
 
     # changing columns width
     worksheet.change_column_width(0, 30)
@@ -225,7 +225,7 @@ class Reports::CompiledPressBook
       cell.change_font_color(WHITE_FONT)
       cell.change_text_wrap(true)
       cell.change_font_size(FONT_SIZE)
-      cell.change_vertical_alignment('top')
+      cell.change_vertical_alignment("top")
     end
 
     worksheet.sheet_data[2][0].change_font_bold(true)

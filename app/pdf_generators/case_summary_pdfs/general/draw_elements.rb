@@ -29,7 +29,7 @@ module CaseSummaryPdfs::General::DrawElements
       else
         render_type(offset: sic_code_offset)
         render_current_awards(offset: sic_code_offset)
-        render_sub_category(0, y_coord('sub_category') + sic_code_offset.to_i)
+        render_sub_category(0, y_coord("sub_category") + sic_code_offset.to_i)
       end
     end
 
@@ -53,11 +53,11 @@ module CaseSummaryPdfs::General::DrawElements
 
   def y_coord(mode)
     mode_number = case mode
-    when 'awards'
+    when "awards"
       0
-    when 'sub_category'
+    when "sub_category"
       1
-    when 'general_block'
+    when "general_block"
       2
     end
 
@@ -89,10 +89,10 @@ module CaseSummaryPdfs::General::DrawElements
     awards.each_with_index do |awards_line, index|
       if index == 0
         pdf_doc.text_box "Current Awards: #{awards_line}",
-                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord('awards').mm + default_offset + offset])
+                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset])
       else
         pdf_doc.text_box "#{awards_line}",
-                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord('awards').mm + default_offset + offset - index * ONE_LINE_OFFSET])
+                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset - index * ONE_LINE_OFFSET])
 
         pdf_doc.move_down ONE_LINE_OFFSET
       end

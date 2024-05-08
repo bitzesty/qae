@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 include ActiveJob::TestHelper
 
@@ -209,7 +209,7 @@ So that they can collaborate form answers
           end
 
           expect {
-            click_link 'js-remove-collaborator-link'
+            click_link "js-remove-collaborator-link"
           }.to change {
             account.reload.users.count
           }.by(-1)

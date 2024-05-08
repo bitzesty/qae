@@ -66,21 +66,21 @@ class QaeFormBuilder
   class DateQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
-      result << 'question-date-max' if delegate_obj.date_max
-      result << 'question-dynamic-date-max' if delegate_obj.dynamic_date_max
-      result << 'question-date-min' if delegate_obj.date_min
-      result << 'question-date-between' if delegate_obj.date_between
+      result << "question-date-max" if delegate_obj.date_max
+      result << "question-dynamic-date-max" if delegate_obj.dynamic_date_max
+      result << "question-date-min" if delegate_obj.date_min
+      result << "question-date-between" if delegate_obj.date_between
       result
     end
 
     def fieldset_data_hash
       result = super
-      result['date-max'] = delegate_obj.date_max if delegate_obj.date_max
-      result['date-min'] = delegate_obj.date_min if delegate_obj.date_min
-      result['date-between'] = delegate_obj.date_between.join(',') if delegate_obj.date_between
+      result["date-max"] = delegate_obj.date_max if delegate_obj.date_max
+      result["date-min"] = delegate_obj.date_min if delegate_obj.date_min
+      result["date-between"] = delegate_obj.date_between.join(",") if delegate_obj.date_between
 
       if delegate_obj.dynamic_date_max
-        result['dynamic-date-max'] = delegate_obj.dynamic_date_max.to_json
+        result["dynamic-date-max"] = delegate_obj.dynamic_date_max.to_json
       end
 
       result

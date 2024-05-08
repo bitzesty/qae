@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::CustomEmailsController do
@@ -17,9 +17,9 @@ RSpec.describe Admin::CustomEmailsController do
 
   describe "POST create" do
     it "should create a message" do
-      post :create, params: { custom_email_form: { message: 'test', scope: 'myself', subject: 'test' } }
+      post :create, params: { custom_email_form: { message: "test", scope: "myself", subject: "test" } }
       expect(response).to redirect_to admin_custom_email_path
-      post :create, params: { custom_email_form: { message: 'test', scope: 'myself', subject: 'test' } }
+      post :create, params: { custom_email_form: { message: "test", scope: "myself", subject: "test" } }
       expect(response).to redirect_to admin_custom_email_path
     end
     it "should render show" do

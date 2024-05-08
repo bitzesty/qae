@@ -5,7 +5,7 @@ class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
                 :type_of_report
 
   def initialize(award_category, award_year, type_of_report)
-    @timestamp = Time.zone.now.strftime('%d_%b_%Y_%H_%M')
+    @timestamp = Time.zone.now.strftime("%d_%b_%Y_%H_%M")
     @award_category = award_category
     @award_year = award_year
     @type_of_report = type_of_report

@@ -5,7 +5,7 @@ class HardCopyPdfGenerators::Collection::FormDataWorker < HardCopyPdfGenerators:
 
     if year.form_data_generation_can_be_started?
       # Set status of generation process
-      year.update_column(:form_data_hard_copies_state, 'started')
+      year.update_column(:form_data_hard_copies_state, "started")
 
       # Schedule individual PDF generation worker per each FormAnswer entry
       AwardYear.current.form_answers.submitted.find_each do |form_answer|

@@ -23,8 +23,8 @@ class QaeFormBuilder
     end
 
     def yes_no
-      @q.options << QuestionAnswerOption.new(:yes, 'Yes')
-      @q.options << QuestionAnswerOption.new(:no, 'No')
+      @q.options << QuestionAnswerOption.new(:yes, "Yes")
+      @q.options << QuestionAnswerOption.new(:no, "No")
     end
 
     def financial_date_selector(ops={})

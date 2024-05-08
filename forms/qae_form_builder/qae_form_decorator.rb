@@ -3,7 +3,7 @@ class QaeFormBuilder
   class QaeFormDecorator < QaeDecorator
 
     def form_name
-      @decorator_options[:form_name] || 'form'
+      @decorator_options[:form_name] || "form"
     end
 
     def progress

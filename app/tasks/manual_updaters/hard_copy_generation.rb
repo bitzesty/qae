@@ -43,7 +43,7 @@ module ManualUpdaters
 
       def case_summary_individual
         year = AwardYear.find_by(year: 2016)
-        year.update_column(:case_summary_hard_copies_state, 'started')
+        year.update_column(:case_summary_hard_copies_state, "started")
 
         not_updated_entries_cs_individual = []
 
@@ -78,7 +78,7 @@ module ManualUpdaters
 
       def feedback_individual
         year = AwardYear.find_by(year: 2016)
-        year.update_column(:feedback_hard_copies_state, 'started')
+        year.update_column(:feedback_hard_copies_state, "started")
 
         not_updated_entries_feed_individual = []
 
@@ -113,7 +113,7 @@ module ManualUpdaters
 
       def case_summary_aggregated
         year = AwardYear.find_by(year: 2016)
-        year.update_column(:aggregated_case_summary_hard_copy_state, 'started')
+        year.update_column(:aggregated_case_summary_hard_copy_state, "started")
 
         FormAnswer::POSSIBLE_AWARDS.each do |award_category|
           HardCopyGenerators::AggregatedCaseSummaryGenerator.new(award_category, year, "case_summary").run
@@ -124,7 +124,7 @@ module ManualUpdaters
 
       def feedback_aggregated
         year = AwardYear.find_by(year: 2016)
-        year.update_column(:aggregated_feedback_hard_copy_state, 'started')
+        year.update_column(:aggregated_feedback_hard_copy_state, "started")
 
         FormAnswer::POSSIBLE_AWARDS.each do |award_category|
           HardCopyGenerators::AggregatedFeedbackGenerator.new(award_category, year, "feedback").run

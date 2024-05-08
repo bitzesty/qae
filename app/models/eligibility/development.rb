@@ -1,5 +1,5 @@
 class Eligibility::Development < Eligibility
-  AWARD_NAME = 'Sustainable Development'
+  AWARD_NAME = "Sustainable Development"
 
   property :able_to_provide_actual_figures,
             boolean: true,

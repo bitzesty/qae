@@ -127,12 +127,12 @@ class AssessmentSubmissionService
     end
 
     rate_type_keys.map do |rate_key|
-      primary_grade = primary_assessment.document[rate_key.to_s] || ''
-      secondary_grade = secondary_assessment.document[rate_key.to_s] || ''
+      primary_grade = primary_assessment.document[rate_key.to_s] || ""
+      secondary_grade = secondary_assessment.document[rate_key.to_s] || ""
 
       if primary_grade != secondary_grade
         q_main_key = rate_key.to_s
-                            .gsub('_rate', '')
+                            .gsub("_rate", "")
                             .to_sym
 
         appraisal_title = appraisal_form_settings[q_main_key][:label][0..-2]

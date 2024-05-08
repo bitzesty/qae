@@ -1,5 +1,5 @@
-require 'sidekiq/web'
-require 'sidekiq/cron/web'
+require "sidekiq/web"
+require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
   Healthcheck.routes(self)
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   }
 
   authenticate :admin do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => "/sidekiq"
   end
 
   devise_for :assessors, controllers: {
@@ -219,9 +219,9 @@ Rails.application.routes.draw do
       patch :unlock, on: :member
     end
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 
@@ -367,9 +367,9 @@ Rails.application.routes.draw do
     resource :users_feedback, only: [:show]
     resources :audit_logs, only: :index
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 
@@ -387,9 +387,9 @@ Rails.application.routes.draw do
       get :download, on: :collection
     end
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 end

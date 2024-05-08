@@ -12,7 +12,7 @@ class User < ApplicationRecord
   attr_accessor :agreed_with_privacy_policy
   attr_accessor :current_password
 
-  validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
+  validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: "1" }, on: :create
 
   validates :role, :account, presence: true
 
@@ -43,7 +43,7 @@ class User < ApplicationRecord
     has_many :feedbacks, through: :form_answers,
                          class_name: "Feedback",
                          source: :feedback
-    has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
+    has_one :owned_account, foreign_key: :owner_id, class_name: "Account"
 
     belongs_to :account, optional: true
     has_many :form_answer_attachments, as: :attachable

@@ -79,7 +79,7 @@ describe Reports::DataPickers::FormDocumentPicker do
     let(:subject) {custom_class.new}
 
     context "business_region" do
-      it 'should return correct doc' do
+      it "should return correct doc" do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)
         allow(subject).to receive(:obj).and_return(double(document: { "organization_address_region" => 1, "nominee_personal_address_region" => 2 }))
@@ -90,17 +90,17 @@ describe Reports::DataPickers::FormDocumentPicker do
     end
 
     context "principal_postcode" do
-      it 'should return correct value' do
+      it "should return correct value" do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)
-        allow(subject).to receive(:obj).and_return(double(document: { "organization_address_postcode" => 'a', "nominee_personal_address_postcode" => 'b' }))
-        expect(subject.principal_postcode).to eq 'A'
+        allow(subject).to receive(:obj).and_return(double(document: { "organization_address_postcode" => "a", "nominee_personal_address_postcode" => "b" }))
+        expect(subject.principal_postcode).to eq "A"
         allow(subject).to receive(:business_form?).and_return(false)
-        expect(subject.principal_postcode).to eq 'B'
+        expect(subject.principal_postcode).to eq "B"
       end
     end
     context "principal_address1" do
-      it 'should return correct value' do
+      it "should return correct value" do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)
         allow(subject).to receive(:obj).and_return(double(document: { "organization_address_building" => 1, "nominee_personal_address_building" => 2 }))
@@ -111,7 +111,7 @@ describe Reports::DataPickers::FormDocumentPicker do
     end
 
     context "principal_address2" do
-      it 'should return correct value' do
+      it "should return correct value" do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)
         allow(subject).to receive(:obj).and_return(double(document: { "organization_address_street" => 1, "nominee_personal_address_street" => 2 }))
@@ -122,7 +122,7 @@ describe Reports::DataPickers::FormDocumentPicker do
     end
 
     context "principal_address3" do
-      it 'should return correct value' do
+      it "should return correct value" do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)
         allow(subject).to receive(:obj).and_return(double(document: { "organization_address_city" => 1, "nominee_personal_address_city" => 2 }))
@@ -133,7 +133,7 @@ describe Reports::DataPickers::FormDocumentPicker do
     end
 
     context "principal_county" do
-      it 'should return correct value' do
+      it "should return correct value" do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)
         allow(subject).to receive(:obj).and_return(double(document: { "organization_address_county" => "1", "nominee_personal_address_county" => "2" }))
@@ -144,7 +144,7 @@ describe Reports::DataPickers::FormDocumentPicker do
     end
 
     context "sub_category" do
-      it 'should return nil' do
+      it "should return nil" do
         allow(subject).to receive(:trade?).and_return(false)
         allow(subject).to receive(:innovation?).and_return(false)
         allow(subject).to receive(:development?).and_return(false)

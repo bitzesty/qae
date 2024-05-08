@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe HardCopyPdfGenerators::FeedbackWorker  do
-  it 'should perform correctly' do
+  it "should perform correctly" do
 
     form_answer = build_stubbed(:form_answer)
     expect(FormAnswer).to receive(:find).with(1) {form_answer}

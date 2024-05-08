@@ -36,10 +36,10 @@ class PressSummary < ApplicationRecord
   def set_press_contact_details_data_from_form
     doc = form_answer.document
 
-    self.title = doc['press_contact_details_title']
-    self.name = doc['press_contact_details_first_name']
-    self.last_name = doc['press_contact_details_last_name']
-    self.phone_number = doc['press_contact_details_telephone']
-    self.email = doc['press_contact_details_email']
+    self.title = doc["press_contact_details_title"]
+    self.name = doc["press_contact_details_first_name"]
+    self.last_name = doc["press_contact_details_last_name"]
+    self.phone_number = doc["press_contact_details_telephone"]
+    self.email = doc["press_contact_details_email"]
   end
 end

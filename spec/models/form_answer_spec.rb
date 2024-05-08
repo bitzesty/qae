@@ -4,28 +4,28 @@ RSpec.describe FormAnswer, type: :model do
   let(:award_year) { create(:award_year, year: 2019) }
   let(:form_answer) { build(:form_answer) }
 
-  describe 'class methods & scopes ' do
+  describe "class methods & scopes " do
     it ".hard_copy_generated should filter correctly" do
       target = FormAnswer.submitted.where("feedback_hard_copy_generated" => true).to_sql
-      expect(target).to eq FormAnswer.hard_copy_generated('feedback').to_sql
+      expect(target).to eq FormAnswer.hard_copy_generated("feedback").to_sql
     end
   end
 
   describe "#unsuccessful?" do
-    it 'should return correct class' do
+    it "should return correct class" do
       allow_any_instance_of(FormAnswer).to receive(:not_recommended?) {true}
       expect(form_answer.unsuccessful?).to be_truthy
     end
   end
 
   describe "#eligibility_class" do
-    it 'should return correct class' do
-      expect(FormAnswer.new(award_type: 'trade').eligibility_class).to eq Eligibility::Trade
+    it "should return correct class" do
+      expect(FormAnswer.new(award_type: "trade").eligibility_class).to eq Eligibility::Trade
     end
   end
 
   describe "#head_of_business" do
-    it 'should return correct result' do
+    it "should return correct result" do
       form_answer = FormAnswer.new(document: { "head_of_business_first_name" => "foo", "head_of_business_last_name" => "bar" })
       expect(form_answer.head_of_business).to eq "foo bar"
     end
@@ -59,14 +59,14 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "#performance_years" do
-    it 'should return correct result' do
+    it "should return correct result" do
       form_answer = FormAnswer.new(award_type: "innovation", document: { "innovation_performance_years" => 2018 })
       expect(form_answer.performance_years).to eq 2018
     end
   end
 
   describe "#whodunnit" do
-    it 'should return correct result' do
+    it "should return correct result" do
       user = build(:user)
       request = double(whodunnit: user)
       allow(PaperTrail).to receive(:request) { request }
@@ -75,14 +75,14 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "#shortlisted?" do
-    it 'should return correct result' do
-      form_answer.state = 'reserved'
+    it "should return correct result" do
+      form_answer.state = "reserved"
       expect(form_answer.shortlisted?).to be_truthy
     end
   end
 
   describe "#unsuccessful_app?" do
-    it 'should return correct result' do
+    it "should return correct result" do
       allow_any_instance_of(FormAnswer).to receive(:awarded?) {false}
       allow_any_instance_of(FormAnswer).to receive(:withdrawn?) {false}
       expect(form_answer.unsuccessful_app?).to be_truthy
@@ -90,7 +90,7 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "#previous_wins" do
-    it 'should return correct result' do
+    it "should return correct result" do
       form_answer.document = { "applied_for_queen_awards_details" => [{ "outcome" => "won", "foo" => "bar" }, { "outcome" => "failed", "lorem" => "ipsum" }] }
       expect(form_answer.previous_wins).to eq [{ "outcome" => "won", "foo" => "bar" }]
 
@@ -103,22 +103,22 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "pdf generation" do
-    it '#generate_pdf_version! triggers correctly' do
+    it "#generate_pdf_version! triggers correctly" do
       expect(HardCopyGenerators::FormDataGenerator).to receive_message_chain(:new, :run)
       form_answer.generate_pdf_version!
     end
 
-    it '#generate_pdf_version_from_latest_doc! triggers correctly' do
+    it "#generate_pdf_version_from_latest_doc! triggers correctly" do
       expect(HardCopyGenerators::FormDataGenerator).to receive_message_chain(:new, :run)
       form_answer.generate_pdf_version_from_latest_doc!
     end
 
-    it '#generate_case_summary_hard_copy_pdf! triggers correctly' do
+    it "#generate_case_summary_hard_copy_pdf! triggers correctly" do
       expect(HardCopyGenerators::CaseSummaryGenerator).to receive_message_chain(:new, :run)
       form_answer.generate_case_summary_hard_copy_pdf!
     end
 
-    it '#generate_feedback_hard_copy_pdf! triggers correctly' do
+    it "#generate_feedback_hard_copy_pdf! triggers correctly" do
       expect(HardCopyGenerators::FeedbackGenerator).to receive_message_chain(:new, :run)
       form_answer.generate_feedback_hard_copy_pdf!
     end

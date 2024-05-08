@@ -192,7 +192,7 @@ describe FormAnswerDecorator do
   DOCUMENT_FIELDS.keys.each do |field|
     describe "##{field}" do
       it "returns the document field with key #{DOCUMENT_FIELDS[field]}" do
-        document = {DOCUMENT_FIELDS[field] => 'An expected value'}
+        document = {DOCUMENT_FIELDS[field] => "An expected value"}
         form = build(:form_answer, :development, document: document)
 
         decorated_app = described_class.new(form)

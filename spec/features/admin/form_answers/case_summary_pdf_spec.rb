@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Admin: Download an application's case summaries PDF", %q{

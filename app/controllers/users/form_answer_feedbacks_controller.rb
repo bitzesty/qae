@@ -22,7 +22,7 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
         send_data pdf.render,
                   filename: "application_feedback_#{form_answer.pdf_filename}",
                   type: "application/pdf",
-                  disposition: 'attachment'
+                  disposition: "attachment"
       end
     end
   end

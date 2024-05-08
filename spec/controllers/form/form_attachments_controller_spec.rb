@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Form::FormAttachmentsController do
@@ -34,7 +34,7 @@ RSpec.describe Form::FormAttachmentsController do
   describe "POST create" do
     it "should create a resource" do
       allow_any_instance_of(FormAnswerAttachment).to receive(:save) {true}
-      post :create, params: { form_answer_id: form_answer.id, form_answer_attachment: { description: 'title' } }
+      post :create, params: { form_answer_id: form_answer.id, form_answer_attachment: { description: "title" } }
       expect(response).to redirect_to redirect_to edit_form_url(form_answer, step: "supplementary-materials-confirmation")
       expect(form_answer.reload.document.present?).to be_truthy
     end

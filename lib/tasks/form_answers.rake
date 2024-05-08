@@ -96,7 +96,7 @@ namespace :form_answers do
     end
   end
 
-  desc 'fixes missing org_chart from document'
+  desc "fixes missing org_chart from document"
   task fix_missing_org_chart: :environment do
     FormAnswerAttachment.where(question_key: "org_chart").find_each do |attachment|
       attachment.form_answer.document["org_chart"] = { "0" => { "file" => attachment.id } }
@@ -104,7 +104,7 @@ namespace :form_answers do
     end
   end
 
-  desc 'Adds search indexed data'
+  desc "Adds search indexed data"
   task refresh_search_indexes: :environment do
     FormAnswer.find_each do |f|
       user = f.user

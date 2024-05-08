@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 require "models/shared/formatted_time_for_examples"
 
 RSpec.describe Deadline do
@@ -23,7 +23,7 @@ RSpec.describe Deadline do
     end
   end
 
-  describe 'class methods' do
+  describe "class methods" do
     it ".with_states_to_trigger should filter correctly" do
       time = Time.now
       target = Deadline.where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time).to_sql

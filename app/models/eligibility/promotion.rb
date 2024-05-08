@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Eligibility::Promotion < Eligibility
-  AWARD_NAME = 'Enterprise Promotion'
+  AWARD_NAME = "Enterprise Promotion"
 
   property :nominee,
             values: %w[yourself someone_else more_than_one_person],

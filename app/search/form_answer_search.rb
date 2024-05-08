@@ -2,7 +2,7 @@ class FormAnswerSearch < Search
   attr_reader :subject
 
   DEFAULT_SEARCH = {
-    sort: 'company_or_nominee_name',
+    sort: "company_or_nominee_name",
     search_filter: {
       award_type: FormAnswer::AWARD_TYPE_FULL_NAMES.invert.values,
       status: FormAnswerStatus::AdminFilter.all
@@ -171,6 +171,6 @@ class FormAnswerSearch < Search
   end
 
   def sort_order(desc = false)
-    desc ? 'desc' : 'asc'
+    desc ? "desc" : "asc"
   end
 end

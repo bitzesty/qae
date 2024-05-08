@@ -1,4 +1,4 @@
-require 'ostruct'
+require "ostruct"
 
 class Search
   extend ActiveModel::Naming
@@ -29,9 +29,9 @@ class Search
     @params = search_params || {}
 
     if params[:sort]
-      column, order = params[:sort].split('.')
+      column, order = params[:sort].split(".")
 
-      @ordered_desc = order == 'desc'
+      @ordered_desc = order == "desc"
       @ordered_by   = column
     end
 
@@ -95,8 +95,8 @@ class Search
   end
 
   def apply_custom_sort(scoped_results, sort_value)
-    column, order = sort_value.split('.')
-    desc = order == 'desc'
+    column, order = sort_value.split(".")
+    desc = order == "desc"
     public_send("sort_by_#{column}", scoped_results, desc)
   end
 

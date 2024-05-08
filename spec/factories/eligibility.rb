@@ -74,7 +74,7 @@ FactoryBot.define do
     trait :promotion do
       type { "Eligibility::Promotion" }
       answers {{
-        nominee: 'someone_else',
+        nominee: "someone_else",
         nominee_contributes_to_promotion_of_business_enterprise: true,
         contribution_is_outside_requirements_of_activity: true,
         nominee_is_active: true,

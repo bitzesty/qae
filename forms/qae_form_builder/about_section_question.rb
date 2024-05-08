@@ -25,7 +25,7 @@ class QaeFormBuilder
     def pdf_context(data)
       [
         [:bold, data.header],
-        [:normal, data.context.map { |c| c.gsub(/<br\s*\/?>/, '')}.join("\n\n")]
+        [:normal, data.context.map { |c| c.gsub(/<br\s*\/?>/, "")}.join("\n\n")]
       ]
     end
 

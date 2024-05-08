@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe UserSearch do
   before do
@@ -15,8 +15,8 @@ describe UserSearch do
     end
   end
 
-  it 'sorts user by full name' do
-    results = described_class.new(User.all).search(sort: 'full_name').results
+  it "sorts user by full name" do
+    results = described_class.new(User.all).search(sort: "full_name").results
 
     sorted_names = results.map { |user| "#{user.first_name} #{user.last_name}" }
     expected =
@@ -32,8 +32,8 @@ describe UserSearch do
     expect(sorted_names).to eq(expected)
   end
 
-  it 'filters by role' do
-    results = described_class.new(User.all).search(sort: 'full_name', search_filter: { role: 'regular' }).results
+  it "filters by role" do
+    results = described_class.new(User.all).search(sort: "full_name", search_filter: { role: "regular" }).results
 
     sorted_names = results.map { |user| "#{user.first_name} #{user.last_name}" }
     expected =

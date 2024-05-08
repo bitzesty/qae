@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Eligibility::Innovation, type: :model do
   let(:account) { FactoryBot.create(:account) }
 
-  context 'answers storage' do
-    it 'saves and reads answers' do
+  context "answers storage" do
+    it "saves and reads answers" do
       eligibility = Eligibility::Innovation.new(account: account)
-      eligibility.innovative_product = 'yes'
+      eligibility.innovative_product = "yes"
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
       eligibility.had_impact_on_commercial_performace_over_two_years = true
@@ -22,17 +22,17 @@ RSpec.describe Eligibility::Innovation, type: :model do
     end
   end
 
-  describe '#eligible?' do
+  describe "#eligible?" do
     let(:eligibility) { Eligibility::Innovation.new(account: account) }
 
-    it 'is not eligible by default' do
+    it "is not eligible by default" do
       expect(eligibility).not_to be_eligible
     end
 
-    it 'is eligible when all questions are answered correctly' do
-      eligibility.able_to_provide_financial_figures = 'yes'
-      eligibility.has_two_full_time_employees = 'yes'
-      eligibility.innovative_product = 'yes'
+    it "is eligible when all questions are answered correctly" do
+      eligibility.able_to_provide_financial_figures = "yes"
+      eligibility.has_two_full_time_employees = "yes"
+      eligibility.innovative_product = "yes"
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
       eligibility.had_impact_on_commercial_performace_over_two_years = true
@@ -41,8 +41,8 @@ RSpec.describe Eligibility::Innovation, type: :model do
       expect(eligibility).to be_eligible
     end
 
-    it 'is not eligible when not all answers are correct' do
-      eligibility.innovative_product = 'yes'
+    it "is not eligible when not all answers are correct" do
+      eligibility.innovative_product = "yes"
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = false
       eligibility.had_impact_on_commercial_performace_over_two_years = true
@@ -51,10 +51,10 @@ RSpec.describe Eligibility::Innovation, type: :model do
     end
   end
 
-  describe '#questions' do
+  describe "#questions" do
     let(:eligibility) { Eligibility::Innovation.new(account: account) }
 
-    it 'returns all questions for new eligibility' do
+    it "returns all questions for new eligibility" do
       expect(eligibility.questions).to eq([
                                            :able_to_provide_financial_figures,
                                            :has_two_full_time_employees,
@@ -66,16 +66,16 @@ RSpec.describe Eligibility::Innovation, type: :model do
                                           ])
     end
 
-    it 'does not return number of innovative products if account does not have them' do
-      eligibility.innovative_product = 'no'
+    it "does not return number of innovative products if account does not have them" do
+      eligibility.innovative_product = "no"
       expect(eligibility.questions).not_to include(:number_of_innovative_products)
     end
   end
 
-  describe '.award_name' do
+  describe ".award_name" do
     let(:eligibility) { Eligibility::Innovation.new(account: account) }
 
-    it 'should return award_name' do
+    it "should return award_name" do
       expect(eligibility.class.award_name).to eq "Innovation Award"
     end
   end

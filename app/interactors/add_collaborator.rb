@@ -43,7 +43,7 @@ class AddCollaborator
 
     @new_user = true
     user = User.new(params)
-    user.agreed_with_privacy_policy = '1'
+    user.agreed_with_privacy_policy = "1"
     user.skip_password_validation = true
     user
   end

@@ -1,5 +1,5 @@
 class Eligibility::Innovation < Eligibility
-  AWARD_NAME = 'Innovation'
+  AWARD_NAME = "Innovation"
 
   validates :number_of_innovative_products, presence: true, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }, if: proc { innovative_product? && (!current_step || current_step == :number_of_innovative_products) }
 

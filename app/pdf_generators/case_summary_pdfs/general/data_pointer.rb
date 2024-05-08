@@ -127,7 +127,7 @@ module CaseSummaryPdfs::General::DataPointer
         pdf_doc.move_up 16.mm
       end
 
-      pdf_doc.move_down y_coord('general_block').mm
+      pdf_doc.move_down y_coord("general_block").mm
       render_application_background
     end
 
@@ -142,7 +142,7 @@ module CaseSummaryPdfs::General::DataPointer
       move_length = 3.mm
 
       if trade_mode.present?
-        move_length = y_coord('general_block').mm
+        move_length = y_coord("general_block").mm
       end
 
       pdf_doc.move_down move_length

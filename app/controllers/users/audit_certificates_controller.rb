@@ -24,7 +24,7 @@ class Users::AuditCertificatesController < Users::BaseController
         send_data pdf_data.render,
                   filename: "External_Accountants_Report_#{form_answer.urn}_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf",
-                  disposition: 'attachment'
+                  disposition: "attachment"
       end
     end
   end

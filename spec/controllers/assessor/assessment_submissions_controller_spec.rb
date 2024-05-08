@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Assessor::AssessmentSubmissionsController do
@@ -18,7 +18,7 @@ RSpec.describe Assessor::AssessmentSubmissionsController do
       expect(response).to redirect_to [:assessor, assessor_assignment.form_answer]
 
       post :create, params: { assessment_id: assessor_assignment.id }, format: :json
-      expect(response.content_type).to eq('application/json; charset=utf-8')
+      expect(response.content_type).to eq("application/json; charset=utf-8")
     end
   end
 

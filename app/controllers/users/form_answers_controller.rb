@@ -23,7 +23,7 @@ class Users::FormAnswersController < Users::BaseController
           send_data pdf.render,
                     filename: form_answer.decorate.pdf_filename,
                     type: "application/pdf",
-                    disposition: 'attachment'
+                    disposition: "attachment"
         end
       end
     else

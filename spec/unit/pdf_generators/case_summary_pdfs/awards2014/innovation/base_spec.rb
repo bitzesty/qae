@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "CaseSummaryPdfs::Awards2016::Innovation::Base" do
   let(:award_type) { :innovation }

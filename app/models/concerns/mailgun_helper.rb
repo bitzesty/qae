@@ -15,7 +15,7 @@ module MailgunHelper
     end
 
     def mailgun_public_key
-      (Rails.env.test? ? 'mailgun_public_key' : ENV['MAILGUN_PUBLIC_KEY']) || raise("You need to supply your mailgun public api key")
+      (Rails.env.test? ? "mailgun_public_key" : ENV["MAILGUN_PUBLIC_KEY"]) || raise("You need to supply your mailgun public api key")
     end
 
     def url(email)

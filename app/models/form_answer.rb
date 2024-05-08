@@ -1,11 +1,11 @@
-require_relative '../../forms/award_years/v2018/qae_forms'
-require_relative '../../forms/award_years/v2019/qae_forms'
-require_relative '../../forms/award_years/v2020/qae_forms'
-require_relative '../../forms/award_years/v2021/qae_forms'
-require_relative '../../forms/award_years/v2022/qae_forms'
-require_relative '../../forms/award_years/v2023/qae_forms'
-require_relative '../../forms/award_years/v2024/qae_forms'
-require_relative '../../forms/award_years/v2025/qae_forms'
+require_relative "../../forms/award_years/v2018/qae_forms"
+require_relative "../../forms/award_years/v2019/qae_forms"
+require_relative "../../forms/award_years/v2020/qae_forms"
+require_relative "../../forms/award_years/v2021/qae_forms"
+require_relative "../../forms/award_years/v2022/qae_forms"
+require_relative "../../forms/award_years/v2023/qae_forms"
+require_relative "../../forms/award_years/v2024/qae_forms"
+require_relative "../../forms/award_years/v2025/qae_forms"
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -81,12 +81,12 @@ class FormAnswer < ApplicationRecord
     belongs_to :award_year, optional: true
     belongs_to :company_details_editable, polymorphic: true, optional: true
 
-    has_one :form_basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
-    has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
-    has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
-    has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
-    has_one :mobility_eligibility, class_name: 'Eligibility::Mobility', dependent: :destroy
-    has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
+    has_one :form_basic_eligibility, class_name: "Eligibility::Basic", dependent: :destroy
+    has_one :trade_eligibility, class_name: "Eligibility::Trade", dependent: :destroy
+    has_one :innovation_eligibility, class_name: "Eligibility::Innovation", dependent: :destroy
+    has_one :development_eligibility, class_name: "Eligibility::Development", dependent: :destroy
+    has_one :mobility_eligibility, class_name: "Eligibility::Mobility", dependent: :destroy
+    has_one :promotion_eligibility, class_name: "Eligibility::Promotion", dependent: :destroy
     has_one :audit_certificate, dependent: :destroy
     has_one :feedback, dependent: :destroy
     has_one :press_summary, dependent: :destroy
@@ -338,7 +338,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def company_or_nominee_from_document
-    comp_attr = promotion? ? 'organization_name' : 'company_name'
+    comp_attr = promotion? ? "organization_name" : "company_name"
     name = document[comp_attr]
     name = nominee_full_name_from_document if promotion? && name.blank?
     name = name.try(:strip)
@@ -444,7 +444,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def palace_invite_submitted
-    palace_invite.try(:submitted) ? 'Yes' : 'No'
+    palace_invite.try(:submitted) ? "Yes" : "No"
   end
 
   def submitted?

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe AggregatedAwardYearPdf do
   it { is_expected.to validate_presence_of(:file) }

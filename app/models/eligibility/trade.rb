@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Eligibility::Trade < Eligibility
-  AWARD_NAME = 'International Trade'
+  AWARD_NAME = "International Trade"
 
   validates :current_holder_of_qae_for_trade,
             presence: true,

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 include ActiveJob::TestHelper
 
@@ -52,7 +52,7 @@ So that they can collaborate applications
             within(".js-admin-search-collaborators-results-box") do
               expect_to_see(user_associated_with_another_account.first_name)
               expect_to_see("can not be added as linked with another account!")
-              expect(page).to have_no_link('Add')
+              expect(page).to have_no_link("Add")
             end
           end
         end
@@ -73,7 +73,7 @@ So that they can collaborate applications
           within(".js-admin-search-collaborators-results-box") do
             expect_to_see(user.email)
             expect_to_see_no("can not be added as linked with another account!")
-            expect(page).to have_link('Add')
+            expect(page).to have_link("Add")
           end
         end
       end

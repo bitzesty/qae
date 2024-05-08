@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Non JS | Dynamic Lists | Subsidiaries", %q{
@@ -145,7 +145,7 @@ So that I can fill form completelly even if Javascript is turned off
 
     it "should allow to remove existing" do
       within("li[non-js-attribute=#{second_item[:name]}]") do
-        first('a.remove-link').click
+        first("a.remove-link").click
       end
 
       expect_to_see "Are you sure?"

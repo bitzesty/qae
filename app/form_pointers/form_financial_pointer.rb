@@ -185,13 +185,13 @@ class FormFinancialPointer
     res = []
 
     period_length.times do |i|
-      day = form_answer.document['financial_year_date_day'].to_s
-      month = form_answer.document['financial_year_date_month'].to_s
+      day = form_answer.document["financial_year_date_day"].to_s
+      month = form_answer.document["financial_year_date_month"].to_s
       year = calculate_last_year(form_answer, day, month) - period_length + i + 1
 
       res << [
-        day.rjust(2, '0'),
-        month.rjust(2, '0'),
+        day.rjust(2, "0"),
+        month.rjust(2, "0"),
         year
       ].join("/")
     end
@@ -207,7 +207,7 @@ class FormFinancialPointer
       last_year = dates_by_years.last.split("/")[-1][-1].to_i
 
       dates_by_years.each do |date|
-        res << date.join('/')
+        res << date.join("/")
       end
 
       res

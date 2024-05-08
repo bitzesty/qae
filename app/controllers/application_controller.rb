@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
 
   def should_enable_js?
-    browser = Browser.new(request.env['HTTP_USER_AGENT'], accept_language: "en-gb")
+    browser = Browser.new(request.env["HTTP_USER_AGENT"], accept_language: "en-gb")
 
     !browser.ie? || browser.ie?([">8"])
   end
@@ -152,9 +152,9 @@ class ApplicationController < ActionController::Base
   # to protect sensitive data
   #
   def disable_browser_caching!
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
   end
 
   def set_context_tags

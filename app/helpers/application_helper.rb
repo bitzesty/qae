@@ -35,11 +35,11 @@ module ApplicationHelper
 
     content_tag :li, opts do
       if step_status == "current" or (step_status != "past" && opts[:cant_access_future])
-        content_tag :span, class: 'govuk-body' do
+        content_tag :span, class: "govuk-body" do
           index_step_text
         end
       else
-        link_to url, class: 'govuk-link' do
+        link_to url, class: "govuk-link" do
           index_step_text
         end
       end
@@ -65,7 +65,7 @@ module ApplicationHelper
   end
 
   def landing_page?
-    controller_name == 'content_only' && %w[
+    controller_name == "content_only" && %w[
                                            home
                                            awards_for_organisations
                                            enterprise_promotion_awards
@@ -133,13 +133,13 @@ module ApplicationHelper
 
   def ordinal(n)
     ending = case n % 100
-           when 11, 12, 13 then 'th'
+           when 11, 12, 13 then "th"
            else
              case n % 10
-             when 1 then 'st'
-             when 2 then 'nd'
-             when 3 then 'rd'
-             else 'th'
+             when 1 then "st"
+             when 2 then "nd"
+             when 3 then "rd"
+             else "th"
              end
            end
     n.to_s + ending

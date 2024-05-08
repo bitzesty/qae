@@ -126,8 +126,8 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        position_date(prepared_item['start_month'], prepared_item['start_year']),
-        position_date(prepared_item['end_month'], prepared_item['end_year']),
+        position_date(prepared_item["start_month"], prepared_item["start_year"]),
+        position_date(prepared_item["end_month"], prepared_item["end_year"]),
         prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
         prepared_item["details"]
       ]
@@ -136,8 +136,8 @@ module QaePdfForms::CustomQuestions::Lists
 
   def position_date(month, year)
     [
-      month || '-',
-      year || '-'
+      month || "-",
+      year || "-"
     ].join("/")
   end
 

@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "assessor sees the proper number of flags and sort by it" do
   let!(:assessor) { create(:assessor, :lead_for_all) }
-  let!(:form_answer) { create(:form_answer, state: 'assessment_in_progress') }
+  let!(:form_answer) { create(:form_answer, state: "assessment_in_progress") }
 
   before do
     login_as(assessor, scope: :assessor)

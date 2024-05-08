@@ -1,5 +1,5 @@
 class Eligibility::Mobility < Eligibility
-  AWARD_NAME = 'Social Mobility'
+  AWARD_NAME = "Social Mobility"
 
   property :can_provide_financial_figures,
             boolean: true,

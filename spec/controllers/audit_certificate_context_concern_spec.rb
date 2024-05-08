@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe AuditCertificateContext, type: :controller do
 
@@ -13,12 +13,12 @@ describe AuditCertificateContext, type: :controller do
   before do
     sign_in admin
     routes.draw {
-      get 'show' => 'anonymous#show'
+      get "show" => "anonymous#show"
     }
   end
 
-  describe 'GET show' do
-    it 'should redirect to attachment_url' do
+  describe "GET show" do
+    it "should redirect to attachment_url" do
       allow(controller).to receive(:authorize).and_return(true)
       form_answer = build(:form_answer)
       audit_certificate = build(:audit_certificate)

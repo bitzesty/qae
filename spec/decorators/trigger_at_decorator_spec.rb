@@ -33,14 +33,14 @@ describe TriggerAtDecorator do
 
   describe "#formatted_trigger_time_short" do
     context "without a trigger_at value" do
-      it 'returns a placeholder value' do
+      it "returns a placeholder value" do
         deadline = build_stubbed(:deadline, trigger_at: nil).decorate
         expect(deadline.formatted_trigger_time_short).to eq("<strong>-- --- #{AwardYear.current.year}</strong> at --:--".html_safe)
       end
     end
 
     context "with a trigger_at value" do
-      it 'returns the trigger_at value formatted' do
+      it "returns the trigger_at value formatted" do
         deadline = build_stubbed(:deadline, trigger_at: date).decorate
         expect(deadline.formatted_trigger_time_short).to eq(deadline.trigger_at.strftime("%d/%m/%Y"))
       end
@@ -49,21 +49,21 @@ describe TriggerAtDecorator do
 
   describe "#formatted_trigger_date" do
     context "without a trigger_at value" do
-      it 'returns a date placeholder value' do
+      it "returns a date placeholder value" do
         deadline = build_stubbed(:deadline, trigger_at: nil).decorate
         expect(deadline.formatted_trigger_date).to eq("<strong>-- --- #{AwardYear.current.year}</strong>".html_safe)
       end
     end
 
     context "without a format param" do
-      it 'returns the default format for date' do
+      it "returns the default format for date" do
         deadline = build_stubbed(:deadline, trigger_at: date).decorate
         expect(deadline.formatted_trigger_date).to eq(deadline.trigger_at.strftime("#{deadline.trigger_at.day.ordinalize} %B"))
       end
     end
 
     context "with a trigger_at value and a format param value" do
-      it 'returns the trigger_at value formatted with year' do
+      it "returns the trigger_at value formatted with year" do
         deadline = build_stubbed(:deadline, trigger_at: date).decorate
         expect(deadline.formatted_trigger_date("with_year")).to eq(deadline.trigger_at.strftime(deadline.trigger_at.strftime("#{deadline.trigger_at.day.ordinalize} %B %Y")))
       end

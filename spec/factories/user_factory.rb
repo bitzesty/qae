@@ -4,8 +4,8 @@ FactoryBot.define do
     last_name { "Doe" }
     password { "my98ssdkjv9823kds=2" }
     email
-    role { 'regular' }
-    agreed_with_privacy_policy { '1' }
+    role { "regular" }
+    agreed_with_privacy_policy { "1" }
     sequence(:phone_number) { |n| "1111111#{n}"}
     confirmed_at { Time.zone.now }
 

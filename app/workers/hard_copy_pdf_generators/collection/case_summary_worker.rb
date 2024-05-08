@@ -5,7 +5,7 @@ class HardCopyPdfGenerators::Collection::CaseSummaryWorker < HardCopyPdfGenerato
 
     if year.case_summary_generation_can_be_started?
       # Set status of generation process
-      year.update_column(:case_summary_hard_copies_state, 'started')
+      year.update_column(:case_summary_hard_copies_state, "started")
 
       # Schedule individual PDF generation worker per each FormAnswer entry
       AwardYear.current.hard_copy_case_summary_scope.find_each do |form_answer|

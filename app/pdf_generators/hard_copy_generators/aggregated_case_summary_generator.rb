@@ -11,11 +11,11 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
   attr_accessor :sub_type
 
   def initialize(award_category, award_year, type_of_report, sub_type=nil)
-    @timestamp = Time.zone.now.strftime('%d_%b_%Y_%H_%M')
+    @timestamp = Time.zone.now.strftime("%d_%b_%Y_%H_%M")
     @award_category = award_category
     @award_year = award_year
     @type_of_report = type_of_report
-    @sub_type = sub_type || 'standart'
+    @sub_type = sub_type || "standart"
 
     set_pdf!
   end

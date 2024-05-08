@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin all case summaries pdf generation" do
   let!(:form_answer) do
@@ -35,7 +35,7 @@ shared_context "admin all case summaries pdf generation" do
     before do
       ops = {category: award_type, format: :pdf}
       # For trade category it would have year depends links ('3 years' and '6 years')
-      ops[:years_mode] = '3' if award_type == :trade
+      ops[:years_mode] = "3" if award_type == :trade
 
       visit admin_report_path("case_summaries", ops)
     end

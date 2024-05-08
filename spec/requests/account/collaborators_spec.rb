@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
-describe 'API' do
+describe "API" do
   let!(:account_admin) do
     FactoryBot.create :user, :completed_profile,
                               first_name: "Account Admin John",

@@ -26,7 +26,7 @@ class Users::CollaboratorAccessController < Users::BaseController
 
     render(
       plain: "#{pusher_callback}(#{response.to_json})",
-      content_type: 'application/javascript'
+      content_type: "application/javascript"
     )
   end
 end

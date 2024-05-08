@@ -1,4 +1,4 @@
-require 'securerandom'
+require "securerandom"
 
 class Supporter < ApplicationRecord
   begin :associations

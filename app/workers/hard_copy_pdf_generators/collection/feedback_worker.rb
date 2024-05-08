@@ -5,7 +5,7 @@ class HardCopyPdfGenerators::Collection::FeedbackWorker < HardCopyPdfGenerators:
 
     if year.feedback_generation_can_be_started?
       # Set status of generation process
-      year.update_column(:feedback_hard_copies_state, 'started')
+      year.update_column(:feedback_hard_copies_state, "started")
 
       # Schedule individual PDF generation worker per each FormAnswer entry
       AwardYear.current.hard_copy_feedback_scope.find_each do |form_answer|

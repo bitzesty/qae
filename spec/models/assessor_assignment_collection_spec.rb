@@ -84,9 +84,9 @@ describe AssessorAssignmentCollection do
       expect(primary.reload.assessor).to eq(assessor1)
     end
   end
-  describe '#add_error' do
+  describe "#add_error" do
     let(:params) {}
-    it 'should set errors' do
+    it "should set errors" do
       object =  AssessorAssignmentCollection.new
       object.send(:add_error, "test error")
       expect(object.assignment_errors).to eq(["test error"])

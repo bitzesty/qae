@@ -158,7 +158,7 @@ describe AssessorAssignment do
     it "can not have assigned assessor" do
       subject.assessor_id = 1
       expect(subject).to_not be_valid
-      expect(subject.errors.map { |error| error.message }.join(', ')).to match("cannot be present for this")
+      expect(subject.errors.map { |error| error.message }.join(", ")).to match("cannot be present for this")
     end
   end
 
@@ -196,25 +196,25 @@ describe AssessorAssignment do
     end
   end
 
-  describe '#locked?' do
-    it 'should return false' do
+  describe "#locked?" do
+    it "should return false" do
       expect((build :assessor_assignment, locked_at: nil).locked?).to be_falsey
     end
-    it 'should return true' do
+    it "should return true" do
       expect((build :assessor_assignment, locked_at: 1.minute.ago).locked?).to be_truthy
     end
   end
 
-  describe '#as_json' do
+  describe "#as_json" do
     let(:form) { create(:form_answer, :trade )}
 
-    it 'should return error' do
+    it "should return error" do
       assessor_assignment = build :assessor_assignment, position: nil, form_answer: form
       assessor_assignment.valid?
       expect(assessor_assignment.as_json).to eq({ :error => ["Position is empty - it is a required field and an option should be selected from the following list"] })
     end
 
-    it 'should return empty json' do
+    it "should return empty json" do
       assessor_assignment = build :assessor_assignment, form_answer: form
       expect(assessor_assignment.as_json).to eq({})
     end
@@ -222,7 +222,7 @@ describe AssessorAssignment do
 
   describe "#secondary_assessor_can_edit?" do
     let(:form) { create(:form_answer, :trade) }
-    it 'should return true' do
+    it "should return true" do
       secondary = form.assessor_assignments.secondary
       expect(secondary.send(:secondary_assessor_can_edit?, build(:admin))).to be_truthy
     end
@@ -231,7 +231,7 @@ describe AssessorAssignment do
   describe "#assessor_assignment_to_category" do
     let(:form) { create(:form_answer, :trade) }
     let(:assessor1) {create(:assessor, :regular_for_all)}
-    it 'should return true' do
+    it "should return true" do
       allow_any_instance_of(Assessor).to receive(:assignable?) {false}
       secondary = form.assessor_assignments.secondary
       secondary.assessor = assessor1
