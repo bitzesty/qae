@@ -3,7 +3,7 @@ class FormAnswerAttachment < ApplicationRecord
   belongs_to :attachable, polymorphic: true, optional: true
 
   mount_uploader :file, FormAnswerAttachmentUploader
-  scan_file      :file
+  scan_file :file
 
   include ::InfectedFileCleaner
   clean_after_scan :file

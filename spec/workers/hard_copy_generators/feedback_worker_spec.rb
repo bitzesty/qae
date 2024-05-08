@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe HardCopyPdfGenerators::FeedbackWorker  do
+RSpec.describe HardCopyPdfGenerators::FeedbackWorker do
   it "should perform correctly" do
 
     form_answer = build_stubbed(:form_answer)

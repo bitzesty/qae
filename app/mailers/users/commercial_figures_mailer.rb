@@ -1,4 +1,4 @@
-class  Users::CommercialFiguresMailer < ApplicationMailer
+class Users::CommercialFiguresMailer < ApplicationMailer
   def notify(form_answer_id, user_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
     @recipient = User.find(user_id).decorate

@@ -81,11 +81,11 @@ namespace :form_answers do
 
   def fix_address f, old_key, new_key
     replace_key f, "#{new_key}_building", "#{old_key}_building"
-    replace_key f, "#{new_key}_street",   "#{old_key}_street"
-    replace_key f, "#{new_key}_city",     "#{old_key}_city"
-    replace_key f, "#{new_key}_county",   "#{old_key}_county"
+    replace_key f, "#{new_key}_street", "#{old_key}_street"
+    replace_key f, "#{new_key}_city", "#{old_key}_city"
+    replace_key f, "#{new_key}_county", "#{old_key}_county"
     replace_key f, "#{new_key}_postcode", "#{old_key}_postcode"
-    replace_key f, "#{new_key}_region",   "#{old_key}_region"
+    replace_key f, "#{new_key}_region", "#{old_key}_region"
   end
 
   desc "normalize address fields to use the same fields for different kind of documentss"

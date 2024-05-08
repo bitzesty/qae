@@ -65,7 +65,7 @@ RSpec.describe Assessor, type: :model do
   describe "reports" do
     it "CasesStatusReport should return csv" do
       year = create(:award_year)
-      assessor =  create(:assessor, :regular_for_trade)
+      assessor = create(:assessor, :regular_for_trade)
       report = Reports::CasesStatusReport.new(year).build_for_lead(assessor)
 
       expect(report).to_not be_empty
@@ -73,14 +73,14 @@ RSpec.describe Assessor, type: :model do
 
     it "AssessorsProgressReport should return csv" do
       year = create(:award_year)
-      assessor =  create(:assessor, :regular_for_trade)
+      assessor = create(:assessor, :regular_for_trade)
       target_csv = "\"Assessor ID\",\"Assessor Name\",\"Assessor Email\",\"Primary Assigned\",\"Primary Assessed\",\"Primary Case Summary\",\"Primary Feedback\",\"Secondary Assigned\",\"Secondary Assessed\",\"Total Assigned\",\"Total Assessed\"\n\"#{assessor.id}\",\"John Doe\",\"#{assessor.email}\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"\n"
       expect(Reports::AssessorsProgressReport.new(year, "trade").build).to eq target_csv
     end
 
     it "AssessorReport should trigger correctly" do
       year = create(:award_year)
-      assessor =  create(:assessor, :regular_for_trade)
+      assessor = create(:assessor, :regular_for_trade)
 
       expect(Reports::CasesStatusReport).to receive_message_chain(:new, :build_for_lead)
       Reports::AssessorReport.new("cases-status", year, assessor).as_csv

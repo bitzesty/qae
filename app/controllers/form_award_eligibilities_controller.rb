@@ -110,7 +110,7 @@ class FormAwardEligibilitiesController < ApplicationController
   def set_steps_and_eligibilities
     builder = FormAnswer::AwardEligibilityBuilder.new(@form_answer)
     @award_eligibility = builder.eligibility
-    @basic_eligibility =  builder.basic_eligibility
+    @basic_eligibility = builder.basic_eligibility
 
     if @basic_eligibility && @basic_eligibility.questions.map(&:to_s).include?(params[:id])
       @eligibility = @basic_eligibility

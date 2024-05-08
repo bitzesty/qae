@@ -217,7 +217,7 @@ class FormController < ApplicationController
       end
 
       if @attachment.save
-        @form_answer.document[@attachment.question_key]  ||= {}
+        @form_answer.document[@attachment.question_key] ||= {}
         attachments_hash = @form_answer.document[@attachment.question_key]
         index = next_index(attachments_hash)
         attachments_hash[index] = { file: @attachment.id }

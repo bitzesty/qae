@@ -42,7 +42,7 @@ describe AssessmentSubmissionService do
     let(:assessment) { form_answer.assessor_assignments.case_summary }
 
     it "performs state transition when case summary is submitted" do
-      assessment.document =  { "verdict_desc" => "description to copy", "verdict_rate" => "negative" }
+      assessment.document = { "verdict_desc" => "description to copy", "verdict_rate" => "negative" }
 
       subject.perform
       expect(form_answer.reload.state).to eq("not_recommended")

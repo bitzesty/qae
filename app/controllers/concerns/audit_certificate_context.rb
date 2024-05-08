@@ -26,7 +26,7 @@ module AuditCertificateContext
         end
 
         format.js do
-          render  partial: "admin/form_answers/docs/post_shortlisting_docs",
+          render partial: "admin/form_answers/docs/post_shortlisting_docs",
             locals: {
             resource: form_answer.decorate
           },

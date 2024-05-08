@@ -17,12 +17,12 @@ class Search
   #   }
   # }
   def initialize(scope)
-    @scope        = scope
-    @params       = {}
-    @ordered_by   = nil
+    @scope = scope
+    @params = {}
+    @ordered_by = nil
     @ordered_desc = false
     @filter_params = {}
-    @query         = nil
+    @query = nil
   end
 
   def search(search_params)
@@ -32,7 +32,7 @@ class Search
       column, order = params[:sort].split(".")
 
       @ordered_desc = order == "desc"
-      @ordered_by   = column
+      @ordered_by = column
     end
 
     if params[:search_filter]

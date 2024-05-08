@@ -87,7 +87,7 @@ describe AssessorAssignmentCollection do
   describe "#add_error" do
     let(:params) {}
     it "should set errors" do
-      object =  AssessorAssignmentCollection.new
+      object = AssessorAssignmentCollection.new
       object.send(:add_error, "test error")
       expect(object.assignment_errors).to eq(["test error"])
     end

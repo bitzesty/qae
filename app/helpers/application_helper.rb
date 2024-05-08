@@ -21,13 +21,13 @@ module ApplicationHelper
 
     if opts[:index] && opts[:active]
       if opts[:index] == opts[:active]
-        step_status  = "current"
+        step_status = "current"
         opts[:class] += " step-current"
       else
         if opts[:disable_progression].present? && opts[:disable_progression]
           opts[:class] += " step-regular"
         elsif opts[:index] < opts[:active]
-          step_status  = "past"
+          step_status = "past"
           opts[:class] += " step-past"
         end
       end

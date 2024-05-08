@@ -824,7 +824,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question"
           sub_ref "C 5.8"
           required
-          context  %(
+          context %(
             <p>This may include but is not limited to internal records, third-party evidence, survey responses.</p>
           )
           words_max 150

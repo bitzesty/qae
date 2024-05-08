@@ -13,7 +13,7 @@ RSpec.describe EmailNotification do
     end
 
     it ".not_awarded should filter correctly" do
-      target =  EmailNotification.where(kind: ["unsuccessful_notification", "unsuccessful_ep_notification"]).to_sql
+      target = EmailNotification.where(kind: ["unsuccessful_notification", "unsuccessful_ep_notification"]).to_sql
       expect(target).to eq EmailNotification.not_awarded.to_sql
     end
   end

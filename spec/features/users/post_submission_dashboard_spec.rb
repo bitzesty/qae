@@ -1,7 +1,7 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe  "User sees the post submission dashboard" do
+describe "User sees the post submission dashboard" do
   let(:user) { create(:user, :completed_profile) }
   let!(:settings) { create(:settings, :submission_deadlines, award_year_id: AwardYear.current.id) }
   let!(:form_answer) { create(:form_answer, :with_audit_certificate, user: user) }

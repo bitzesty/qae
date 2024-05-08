@@ -154,7 +154,7 @@ def assert_multiple_description_change(section_id, header_id, prefix)
 
     all(".form-edit-link").last.click
 
-    expect(page.find("##{prefix}_verdict").text).to eq  text2
+    expect(page.find("##{prefix}_verdict").text).to eq text2
   end
 end
 
