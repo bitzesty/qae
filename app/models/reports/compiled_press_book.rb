@@ -25,7 +25,7 @@ class Reports::CompiledPressBook
       @financial_data = obj.financial_data || {}
     end
 
-    delegate :company_or_nominee_name, :mobility?, :development?, to: :obj
+    delegate :company_or_nominee_name, :mobility?, :trade?, :development?, :innovation?, to: :obj
 
     def principal_address
       [
