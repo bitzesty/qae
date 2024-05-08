@@ -31,8 +31,8 @@ class EmailNotification < ApplicationRecord
 
   validates :kind, :trigger_at, presence: true
 
-  after_save :clear_cache
   after_destroy :clear_cache
+  after_save :clear_cache
 
   scope :current, -> { where("trigger_at < ?", Time.now.utc).where("sent = 'f' OR sent IS NULL") }
 

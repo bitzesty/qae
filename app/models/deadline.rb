@@ -34,8 +34,8 @@ class Deadline < ApplicationRecord
   enumerize :kind, in: AVAILABLE_DEADLINES, predicates: true
   validates :kind, presence: true
 
-  after_save :clear_cache
   after_destroy :clear_cache
+  after_save :clear_cache
 
   class << self
     def with_states_to_trigger(time = DateTime.now)
