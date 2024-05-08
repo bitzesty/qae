@@ -30,11 +30,11 @@ module FinancialTable
 
       res.shift(diff.abs) if diff.negative?
 
-      diff.times do 
+      diff.times do
         date_to_calculate_from = res.first
         if Utils::Date.valid?(date_to_calculate_from)
           date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
-          res.unshift(date) 
+          res.unshift(date)
         else
           res.unshift(nil)
         end
@@ -166,7 +166,8 @@ module FinancialTable
     question.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestionDecorator) ||
       question.is_a?(QaeFormBuilder::OneOptionByYearsQuestionDecorator) ||
       question.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion) ||
-      question.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
+      question.is_a?(QaeFormBuilder::OneOptionByYearsQuestion) ||
+      (question.delegate_obj.is_a?(QaeFormBuilder::FinancialSummaryQuestion) && question.one_option?)
   end
 
   def innovation_years_number
