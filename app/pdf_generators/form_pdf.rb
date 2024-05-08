@@ -18,7 +18,7 @@ class FormPdf < Prawn::Document
     development_was_launched_since
   )
   JUST_NOTES = [
-    "QaeFormBuilder::HeaderQuestion"
+    "QaeFormBuilder::HeaderQuestion",
   ]
   DEFAULT_ANSWER_COLOR = "5B5656"
 

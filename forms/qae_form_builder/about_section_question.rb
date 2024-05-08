@@ -25,7 +25,7 @@ class QaeFormBuilder
     def pdf_context(data)
       [
         [:bold, data.header],
-        [:normal, data.context.map { |c| c.gsub(/<br\s*\/?>/, "")}.join("\n\n")]
+        [:normal, data.context.map { |c| c.gsub(/<br\s*\/?>/, "")}.join("\n\n")],
       ]
     end
 
@@ -108,7 +108,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "About section C",
         :context => [
-          "This section is structured to enable you to tell your success story of the innovation's development, implementation and impact, enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business."
+          "This section is structured to enable you to tell your success story of the innovation's development, implementation and impact, enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.",
         ],
       )
     end
@@ -117,7 +117,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "About section C",
         :context => [
-          "The purpose of this section is to enable the assessing team to understand your company, its product, services, and the role exporting plays within your overall business. We need to understand how this impacts the overall performance of your business."
+          "The purpose of this section is to enable the assessing team to understand your company, its product, services, and the role exporting plays within your overall business. We need to understand how this impacts the overall performance of your business.",
         ],
       )
     end
@@ -127,7 +127,7 @@ class QaeFormBuilder
         :header => "About section C",
         :context => [
           "Read this section before planning the answers. Try not to repeat points: instead, you can say that you are referring to a previous answer to another question and include that question number.",
-          "Avoid using technical jargon."
+          "Avoid using technical jargon.",
         ],
       )
     end
@@ -137,7 +137,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "Impact of COVID-19 and other adverse events",
         :context => [
-          "If your growth was affected by adverse national and global events - such as COVID-19, the war in Ukraine, flooding, and wildfires - this will be taken into consideration during the assessment process. Question C6 allows you to explain how your organisation was affected and how you responded to these challenges."
+          "If your growth was affected by adverse national and global events - such as COVID-19, the war in Ukraine, flooding, and wildfires - this will be taken into consideration during the assessment process. Question C6 allows you to explain how your organisation was affected and how you responded to these challenges.",
         ],
       )
     end
@@ -146,7 +146,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "Impact of COVID-19 and other adverse events",
         :context => [
-          "If your growth was affected by adverse national and global events - such as COVID-19, the war in Ukraine, flooding, and wildfires - this will be taken into consideration during the assessment process. Question D6 allows you to explain how your organisation was affected and how you responded to these challenges."
+          "If your growth was affected by adverse national and global events - such as COVID-19, the war in Ukraine, flooding, and wildfires - this will be taken into consideration during the assessment process. Question D6 allows you to explain how your organisation was affected and how you responded to these challenges.",
         ],
       )
     end
@@ -156,7 +156,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "Word limits",
         :context => [
-          "What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for."
+          "What matters most is the quality of the information and insight you provide. The word limits for each question are just there to stop your application from becoming overlong and give an idea of the relative level of detail the assessors are looking for.",
         ],
       )
     end
@@ -166,7 +166,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "Technical language",
         :context => [
-          "Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time."
+          "Please avoid using technical language - we need to understand your answers without having specific knowledge of your industry. If you use acronyms, please define them when you use them for the first time.",
         ],
       )
     end
@@ -177,7 +177,7 @@ class QaeFormBuilder
         :header => "Supplementary materials",
         :context => [
           "To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.",
-          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
+          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.",
         ],
       )
     end
@@ -187,7 +187,7 @@ class QaeFormBuilder
         :header => "Supplementary materials",
         :context => [
           "To support your answers in this section, you can add up to three materials (documents or online links) in Section E. For assessors to review them, you must reference them by their names in your answers.",
-          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions."
+          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.",
         ],
       )
     end
@@ -199,7 +199,7 @@ class QaeFormBuilder
         :context => [
           "You may find it helpful to familiarise yourself with the United Nations 17 Sustainable Development Goals (UN SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.",
           "You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.",
-          "You can find more <a class='govuk-link' target='_blank' href='https://www.un.org/sustainabledevelopment/sustainable-development-goals/.'>information about each goal on the United Nations (UN) website.</a>"
+          "You can find more <a class='govuk-link' target='_blank' href='https://www.un.org/sustainabledevelopment/sustainable-development-goals/.'>information about each goal on the United Nations (UN) website.</a>",
         ],
       )
     end
@@ -214,7 +214,7 @@ class QaeFormBuilder
         :header => "About section D",
         :context => [
           "All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your innovation has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate, as you will need to verify them if shortlisted.",
-          "We recommend you get your accountant to assist you with this section."
+          "We recommend you get your accountant to assist you with this section.",
         ],
       )
     end
@@ -224,7 +224,7 @@ class QaeFormBuilder
         :header => "About section D",
         :context => [
           "All applicants must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade has had on your organisation's financial performance. Financial information must be supplied so your organisation's commercial performance can be evaluated. It is important that these details are accurate, as you will need to verify them if shortlisted.",
-          "We recommend you get your accountant to assist you with this section."
+          "We recommend you get your accountant to assist you with this section.",
         ],
       )
     end
@@ -234,7 +234,7 @@ class QaeFormBuilder
         :header => "About section D",
         :context => [
           "You must demonstrate that your organisation is financially viable. You will also need to upload your financial statements to provide evidence of this.",
-          "We recommend you get your accountant to assist you with this section."
+          "We recommend you get your accountant to assist you with this section.",
         ],
       )
     end
@@ -245,7 +245,7 @@ class QaeFormBuilder
         :header => "Periods the figures are required for",
         :context => [
           "We ask you to provide figures for your five most recent financial years. If you started trading within the last five years, you only need to provide figures for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide figures for at least your two most recent financial years, covering the full 24 months.",
-          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline."
+          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.",
         ],
       )
     end
@@ -256,7 +256,7 @@ class QaeFormBuilder
         :context => [
           "Depending on which award you are applying for, you must be able to provide financial figures for your three most recent financial years, covering exactly 36 consecutive months; or if you are applying for a 6-year award (see question D1), you must provide figures for the last six financial years, covering exactly 72 consecutive months.",
           "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.",
-          "If you have changed your year-end during the period of your application, see D2.3 for an explanation of how this must be dealt with."
+          "If you have changed your year-end during the period of your application, see D2.3 for an explanation of how this must be dealt with.",
         ],
       )
     end
@@ -267,7 +267,7 @@ class QaeFormBuilder
         :context => [
           "You must provide financial figures for your three most recent financial years, covering 36 months.",
           "If you have changed your year-end during the period of your application, see D2.3 for an explanation of how this must be dealt with.",
-          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline."
+          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.",
         ],
       )
     end
@@ -278,7 +278,7 @@ class QaeFormBuilder
         :header => "Estimated figures",
         :context => [
           "If you haven't reached or finalised accounts for your most recent financial year, you can provide estimated figures for now.",
-          "If you are shortlisted, you will have to provide the actual figures that have been verified before the specified November deadline (the exact date will be provided in the shortlisting email). Typically, the verification is done by an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit."
+          "If you are shortlisted, you will have to provide the actual figures that have been verified before the specified November deadline (the exact date will be provided in the shortlisting email). Typically, the verification is done by an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.",
         ],
       )
     end
@@ -288,7 +288,7 @@ class QaeFormBuilder
         :header => "Estimated figures",
         :context => [
           "If you haven't reached or finalised accounts for your most recent financial year, you can provide estimated figures for now.",
-          "If you are shortlisted, you will have to provide the actual figures and the related VAT returns before the specified November deadline (the exact date will be provided in the shortlisting email)."
+          "If you are shortlisted, you will have to provide the actual figures and the related VAT returns before the specified November deadline (the exact date will be provided in the shortlisting email).",
         ],
       )
     end
@@ -299,7 +299,7 @@ class QaeFormBuilder
         :header => "Group entries",
         :context => [
           "A parent company making a group entry should include the trading figures of all UK members of the group.",
-          "If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK)."
+          "If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK).",
         ],
       )
     end
@@ -310,7 +310,7 @@ class QaeFormBuilder
         :header => "Required figures",
         :context => [
           "We ask you to provide figures for your five most recent financial years. If you started trading within the last five years, you only need to provide figures for the years you have been trading. However, to meet minimum eligibility requirements, you must be able to provide figures for at least your two most recent financial years, covering the full 24 months.",
-          "If you haven't reached your latest year-end, please use estimates to complete these questions."
+          "If you haven't reached your latest year-end, please use estimates to complete these questions.",
         ],
       )
     end
@@ -320,7 +320,7 @@ class QaeFormBuilder
         :header => "Required figures",
         :context => [
           "We ask you to provide figures for your five most recent financial years. If the innovation has been in the market for less than five years, you only need to provide figures for the years it was in the market. However, to meet minimum eligibility requirements, you must be able to provide figures for at least your two most recent financial years, covering the full 24 months.",
-          "If you haven't reached your latest year-end, please use estimates to complete these questions."
+          "If you haven't reached your latest year-end, please use estimates to complete these questions.",
         ],
       )
     end
@@ -330,7 +330,7 @@ class QaeFormBuilder
         :header => "Required figures",
         :context => [
           "If you have selected “Outstanding Short-Term Growth” in D1, you will only need to provide information for the last three years.",
-          "If you haven't reached your latest year-end, please use estimates to complete these questions."
+          "If you haven't reached your latest year-end, please use estimates to complete these questions.",
         ],
       )
     end
@@ -344,7 +344,7 @@ class QaeFormBuilder
           Round the figures to the nearest pound (do not enter pennies).<br>
           Do not separate your figures with commas.<br>
           Use a minus symbol to record any losses.<br>
-          Enter '0' if you had none."
+          Enter '0' if you had none.",
         ],
       )
     end
@@ -354,7 +354,7 @@ class QaeFormBuilder
       OpenStruct.new(
         :header => "About D6 questions",
         :context => [
-          "Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation."
+          "Some of the details may not apply to your innovation. Answer the questions that are relevant to help us understand the financial value of your innovation.",
         ],
       )
     end
@@ -367,7 +367,7 @@ class QaeFormBuilder
         :header => "About section E",
         :context => [
           "The environmental, social, and corporate governance (ESG) section is an opportunity for you to highlight your responsible business conduct and its impact within your organisation, supply chain and the wider community.",
-          "We expect all King's Award for Enterprise applicants to adhere to commonly accepted standards for environmentally and socially responsible corporate governance. Failure to demonstrate that will result in your application not being successful."
+          "We expect all King's Award for Enterprise applicants to adhere to commonly accepted standards for environmentally and socially responsible corporate governance. Failure to demonstrate that will result in your application not being successful.",
         ],
       )
     end
@@ -381,7 +381,7 @@ class QaeFormBuilder
           "The word limits are a guide. You do not need to maximise the word limit if there is no reason to - we suggest you focus on your strongest examples in each case.",
           "Furthermore, you may have already answered some of the questions in this section in other parts of the form. If you believe this is the case, you do not need to repeat the information but make it clear by referencing the questions in other parts of the form.",
           "The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes, and describe any relevant policies or procedures that you have in place.",
-          "Finally, there is no need to provide information on how you are adhering to statutory laws or regulations - such as 'we pay minimum wage'. We're more interested in how you are going above and beyond."
+          "Finally, there is no need to provide information on how you are adhering to statutory laws or regulations - such as 'we pay minimum wage'. We're more interested in how you are going above and beyond.",
         ],
       )
     end

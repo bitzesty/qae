@@ -9,251 +9,251 @@ class AppraisalForm
   RAG_OPTIONS_2016 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2017 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2018 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2019 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2020 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2021 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2022 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2023 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2024 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   RAG_OPTIONS_2025 = [
     %w(Red negative),
     %w(Amber average),
-    %w(Green positive)
+    %w(Green positive),
   ]
 
   CSR_RAG_OPTIONS_2016 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2017 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2018 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2019 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2020 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2021 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2022 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2023 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    ["Exceptional (32-50)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2024 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-40)", "positive"]
+    ["Exceptional (32-40)", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2025 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-40)", "positive"]
+    ["Exceptional (32-40)", "positive"],
   ]
 
   STRENGTH_OPTIONS_2016 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2017 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2018 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2019 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2020 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2021 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2022 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2023 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2024 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   STRENGTH_OPTIONS_2025 = [
     ["Insufficient Information Supplied", "neutral"],
     ["Priority Focus for Development", "negative"],
     ["Positive - Scope for Ongoing Development", "average"],
-    ["Key Strength", "positive"]
+    ["Key Strength", "positive"],
   ]
 
   VERDICT_OPTIONS_2016 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2017 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2018 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2019 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2020 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2021 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2022 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2023 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2024 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   VERDICT_OPTIONS_2025 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
-    ["Recommended", "positive"]
+    ["Recommended", "positive"],
   ]
 
   def self.rag_options_for(object, section)
@@ -307,26 +307,26 @@ class AppraisalForm
   RAG_ALLOWED_VALUES = [
     "negative",
     "average",
-    "positive"
+    "positive",
   ]
 
   NON_RAG_ALLOWED_VALUES = [
     "negative",
     "average",
-    "positive"
+    "positive",
   ]
 
   STRENGTHS_ALLOWED_VALUES = [
     "neutral",
     "negative",
     "average",
-    "positive"
+    "positive",
   ]
 
   VERDICT_ALLOWED_VALUES = [
     "negative",
     "average",
-    "positive"
+    "positive",
   ]
 
   TRADE_2016 = {
@@ -1861,43 +1861,43 @@ class AppraisalForm
   }
 
   CASE_SUMMARY_METHODS_2016 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2017 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2018 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2019 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2020 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2021 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2022 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2023 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2024 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   CASE_SUMMARY_METHODS_2025 = [
-    :application_background_section_desc
+    :application_background_section_desc,
   ]
 
   ALL_FORMS_2016 = [TRADE_2016, INNOVATION_2016, PROMOTION_2016, DEVELOPMENT_2016, MOBILITY_2016]

@@ -76,7 +76,7 @@ class AuditCertificatePdf < Prawn::Document
       start_count_at: 1,
       at: [
         bounds.right - 50,
-        bounds.bottom + 0
+        bounds.bottom + 0,
       ],
       align: :right,
       size: 14,

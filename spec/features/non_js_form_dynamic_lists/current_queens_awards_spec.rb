@@ -20,7 +20,7 @@ So that I can fill form completelly even if Javascript is turned off
   let(:awards) do
     [
       { category: "innovation", year: innovation_award_year },
-      { category: "international_trade", year: trade_award_year }
+      { category: "international_trade", year: trade_award_year },
     ]
   end
 

@@ -15,7 +15,7 @@ namespace :db do
       "mobility_organisation_approach_desc",
       "mobility_organisation_approach_rate",
       "corporate_social_responsibility_desc",
-      "corporate_social_responsibility_rate"
+      "corporate_social_responsibility_rate",
     ]
 
     mobility_appraisals.each do |entry|

@@ -172,7 +172,7 @@ namespace :form_answers do
         "overseas_sales_indirect_3of6",
         "overseas_sales_indirect_4of6",
         "overseas_sales_indirect_5of6",
-        "overseas_sales_indirect_6of6"
+        "overseas_sales_indirect_6of6",
 
       ]
       attributes.each do |a|

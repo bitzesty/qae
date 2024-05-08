@@ -12,7 +12,7 @@ class Admin::AssessorsController < Admin::UsersController
       :confirm_bulk_deactivate_pi,
       :confirm_bulk_deactivate_dt,
       :bulk_deactivate_pi,
-      :bulk_deactivate_dt
+      :bulk_deactivate_dt,
     ]
 
   def index

@@ -34,7 +34,7 @@ describe "Admin sets up previous winnings" do
 
       form.document["applied_for_queen_awards_details"] = [
         {"category"=>"international_trade", "year"=>"2015", "outcome" => "won"},
-        {"category"=>"international_trade", "year"=>"2015", "outcome" => "won"}
+        {"category"=>"international_trade", "year"=>"2015", "outcome" => "won"},
       ]
       form.update_column(:document, form.document)
 

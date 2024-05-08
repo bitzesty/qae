@@ -69,7 +69,7 @@ class AwardYears::V2025::QaeForms
           )
           check_options [
             ["products", "Products"],
-            ["services", "Services"]
+            ["services", "Services"],
           ]
           application_type_question true
         end
@@ -182,7 +182,7 @@ class AwardYears::V2025::QaeForms
           )
           check_options [
             ["franchise", "As a franchise"],
-            ["other", "Other business models"]
+            ["other", "Other business models"],
           ]
         end
 

@@ -16,7 +16,7 @@ class FormFinancialPointer
     QaeFormBuilder::ByYearsLabelQuestion,
     QaeFormBuilder::ByYearsQuestion,
     QaeFormBuilder::OneOptionByYearsLabelQuestion,
-    QaeFormBuilder::OneOptionByYearsQuestion
+    QaeFormBuilder::OneOptionByYearsQuestion,
   ]
   YEAR_LABELS = %w(day month year)
   IN_PROGRESS = "-"
@@ -26,7 +26,7 @@ class FormFinancialPointer
 
   UK_SALES_EXCLUDED_FORM_TYPES = [
     :trade,
-    :promotion
+    :promotion,
   ]
 
   def initialize(form_answer, options={})
@@ -192,7 +192,7 @@ class FormFinancialPointer
       res << [
         day.rjust(2, "0"),
         month.rjust(2, "0"),
-        year
+        year,
       ].join("/")
     end
 

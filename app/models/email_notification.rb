@@ -20,7 +20,7 @@ class EmailNotification < ApplicationRecord
                          :shortlisted_po_sd_reminder,
                          :not_shortlisted_notifier,
                          :winners_head_of_organisation_notification,
-                         :buckingham_palace_invite
+                         :buckingham_palace_invite,
                        ]
 
   date_time_for :trigger_at

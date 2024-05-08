@@ -73,8 +73,8 @@ module CaseSummaryPdfs::General::DataPointer
     [
       [
         "Case summary comments",
-        "RAG"
-      ]
+        "RAG",
+      ],
     ]
   end
 
@@ -83,7 +83,7 @@ module CaseSummaryPdfs::General::DataPointer
       [
         value[:label].delete(":"),
         data["#{key}_desc"] || undefined_value,
-        value[:type] == :non_rag ? "" : rag(key, value)
+        value[:type] == :non_rag ? "" : rag(key, value),
       ]
     end
   end
@@ -327,7 +327,7 @@ module CaseSummaryPdfs::General::DataPointer
       ]
     else
       [
-        @growth_in_total_turnover_list.unshift("% Growth in total turnover")
+        @growth_in_total_turnover_list.unshift("% Growth in total turnover"),
       ]
     end
 
@@ -341,12 +341,12 @@ module CaseSummaryPdfs::General::DataPointer
     rows = [
       [
         "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
-        @overall_growth
+        @overall_growth,
       ],
       [
         "Overall growth in % (year 1 - #{financial_pointer.period_length})",
-        @overall_growth_in_percents
-      ]
+        @overall_growth_in_percents,
+      ],
     ]
 
     pdf_doc.table(rows,

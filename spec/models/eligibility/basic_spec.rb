@@ -65,7 +65,7 @@ RSpec.describe Eligibility::Basic, type: :model do
         :industry,
         :self_contained_enterprise,
         :current_holder,
-        :adherence_to_esg_principles
+        :adherence_to_esg_principles,
       ])
     end
 

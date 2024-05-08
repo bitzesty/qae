@@ -15,7 +15,7 @@ class ContentOnlyController < ApplicationController
       :accessibility_statement,
       :apply_for_queens_award_for_enterprise,
       :sign_up_complete,
-      :submitted_nomination_successful
+      :submitted_nomination_successful,
     ]
 
   before_action :get_current_form,
@@ -23,7 +23,7 @@ class ContentOnlyController < ApplicationController
       :award_info_innovation,
       :award_info_trade,
       :award_info_development,
-      :award_info_mobility
+      :award_info_mobility,
     ]
 
   before_action :get_collaborators,
@@ -31,7 +31,7 @@ class ContentOnlyController < ApplicationController
       :award_info_innovation,
       :award_info_trade,
       :award_info_development,
-      :award_info_mobility
+      :award_info_mobility,
     ]
 
   before_action :restrict_access_if_admin_in_read_only_mode!,

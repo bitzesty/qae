@@ -21,7 +21,7 @@ class Reports::DataPickers::AssessorProgressPicker
         entry.secondary_assigned.to_i,
         entry.secondary_assessed.to_i,
         entry.primary_assigned.to_i + entry.secondary_assigned.to_i,
-        entry.primary_assessed.to_i + entry.secondary_assessed.to_i
+        entry.primary_assessed.to_i + entry.secondary_assessed.to_i,
       ]
     end
   end

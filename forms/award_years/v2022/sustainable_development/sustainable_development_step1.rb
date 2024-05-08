@@ -238,7 +238,7 @@ class AwardYears::V2022::QaeForms
           ref "A 10"
           pdf_context_with_header_blocks [
             [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
-            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"],
           ]
           county_context %(
             <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
@@ -254,7 +254,7 @@ class AwardYears::V2022::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
         end
 
@@ -280,7 +280,7 @@ class AwardYears::V2022::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
         end
 
@@ -366,7 +366,7 @@ class AwardYears::V2022::QaeForms
             ["another_event", "A third party exhibition or event"],
             ["publication", "A newspaper/publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

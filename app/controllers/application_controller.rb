@@ -171,7 +171,7 @@ class ApplicationController < ActionController::Base
         :email,
         :password,
         :password_confirmation,
-        :agreed_with_privacy_policy
+        :agreed_with_privacy_policy,
       ],
     )
     devise_parameter_sanitizer.permit(
@@ -196,7 +196,7 @@ class ApplicationController < ActionController::Base
         :company_phone_number,
         :prefered_method_of_contact,
         :subscribed_to_emails,
-        :agree_being_contacted_by_department_of_business
+        :agree_being_contacted_by_department_of_business,
       ],
     )
   end

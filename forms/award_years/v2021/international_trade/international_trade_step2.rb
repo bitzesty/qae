@@ -27,7 +27,7 @@ class AwardYears::V2021::QaeForms
             [:bold, "Small organisations"],
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-            )]
+            )],
           ]
         end
 
@@ -84,7 +84,7 @@ class AwardYears::V2021::QaeForms
           )
           check_options [
             ["products", "Products"],
-            ["services", "Services"]
+            ["services", "Services"],
           ]
           application_type_question true
         end
@@ -191,7 +191,7 @@ class AwardYears::V2021::QaeForms
           )
           check_options [
             ["franchise", "As a franchise"],
-            ["other", "Other business model(s)"]
+            ["other", "Other business model(s)"],
           ]
         end
 

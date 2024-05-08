@@ -353,7 +353,7 @@ class AwardYears::V2025::QaeForms
           ineligible_option "core_activity"
 
           pdf_context_with_header_blocks [
-            [:italic, "If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are discretionary or that are in partnership with businesses for whom it is discretionary."]
+            [:italic, "If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are discretionary or that are in partnership with businesses for whom it is discretionary."],
           ]
         end
 
@@ -373,7 +373,7 @@ class AwardYears::V2025::QaeForms
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds who are leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and tracking the progress of employees from non-graduate routes."],
             ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility by encouraging supply chains to take action on social mobility."],
-            ["other_activity_types", "<strong>Other activity types - list the activities in C2.1</strong>"]
+            ["other_activity_types", "<strong>Other activity types - list the activities in C2.1</strong>"],
           ]
         end
 
@@ -539,7 +539,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
 
           auto_totals_column true
@@ -569,7 +569,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Activity type"
 
@@ -584,7 +584,7 @@ class AwardYears::V2025::QaeForms
             ["job_opportunities", "Job opportunities"],
             ["advancement", "Advancement"],
             ["advocacy_and_leadership", "Advocacy and leadership"],
-            ["other_activity_types", "Other activity types (as listed in C2.1)"]
+            ["other_activity_types", "Other activity types (as listed in C2.1)"],
           ]
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
@@ -615,7 +615,7 @@ class AwardYears::V2025::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Other disadvantaged group"]
+            ["others", "Other disadvantaged group"],
           ]
         end
 
@@ -632,7 +632,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
 
@@ -657,7 +657,7 @@ class AwardYears::V2025::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Other disadvantaged group"]
+            ["others", "Other disadvantaged group"],
           ]
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
@@ -685,7 +685,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -739,7 +739,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -786,7 +786,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"

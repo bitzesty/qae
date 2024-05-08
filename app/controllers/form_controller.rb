@@ -20,11 +20,11 @@ class FormController < ApplicationController
     :new_innovation_form,
     :new_international_trade_form,
     :new_sustainable_development_form,
-    :new_social_mobility_form
+    :new_social_mobility_form,
   ]
 
   before_action :get_collaborators, only: [
-    :submit_confirm
+    :submit_confirm,
   ]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
 
@@ -34,7 +34,7 @@ class FormController < ApplicationController
     :save,
     :update,
     :add_attachment,
-    :submit_confirm
+    :submit_confirm,
   ]
 
   before_action do

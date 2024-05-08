@@ -74,7 +74,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
     if date && Date.current > date
       [
         created_count - submitted_count, # in progress
-        submitted_count
+        submitted_count,
       ]
     else
       ["&nbsp;".html_safe, "&nbsp;".html_safe]

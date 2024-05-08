@@ -72,7 +72,7 @@ namespace :db do
       "economic_sustainability",
       "supporting_employees",
       "internal_leadership",
-      "industry_sector"
+      "industry_sector",
     ]
 
     development = entries.select { |e| e.form_answer.award_type == "development" }

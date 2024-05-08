@@ -101,7 +101,7 @@ class Reports::RegisteredUsers
     {
       label: "HowDidYouHearAboutKAOther",
       method: :qae_info_source_other,
-    }
+    },
   ]
 
   def initialize(year)

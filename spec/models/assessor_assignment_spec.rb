@@ -24,7 +24,7 @@ describe AssessorAssignment do
             :overseas_earnings_growth,
             :commercial_success,
             :strategy,
-            :verdict
+            :verdict,
         ]
       end
 

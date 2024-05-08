@@ -33,7 +33,7 @@ module PdfAuditCertificates::Awards2016::Development
 
       rows = [
         financial_pointer.years_list.unshift(""),
-        financial_table_year_and_date_data
+        financial_table_year_and_date_data,
       ]
 
       rows << revised_row(rows.last.length - 1, 1)

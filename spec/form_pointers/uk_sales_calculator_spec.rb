@@ -7,7 +7,7 @@ describe UkSalesCalculator do
                         { value: "1100", name: "total_turnover_2of5" },
                         { value: "1210", name: "total_turnover_3of5" },
                         { value: "1300", name: "total_turnover_4of5" },
-                        { value: "1300", name: "total_turnover_5of5" }
+                        { value: "1300", name: "total_turnover_5of5" },
                       ],
     }
   end
@@ -19,10 +19,10 @@ describe UkSalesCalculator do
                    { value: "100", name: "exports_2of5" },
                    { value: "200", name: "exports_3of5" },
                    { value: "300", name: "exports_4of5" },
-                   { value: "350", name: "exports_5of5" }
+                   { value: "350", name: "exports_5of5" },
                  ],
       },
-      total_turnover
+      total_turnover,
     ]
   end
 
@@ -33,10 +33,10 @@ describe UkSalesCalculator do
                    { value: "100", name: "exports_2of5" },
                    { value: "200", name: "exports_3of5" },
                    { value: "300", name: "exports_4of5" },
-                   { value: "350", name: "exports_5of5" }
+                   { value: "350", name: "exports_5of5" },
                  ],
       },
-      total_turnover
+      total_turnover,
     ]
   end
 

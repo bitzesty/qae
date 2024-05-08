@@ -26,7 +26,7 @@ class FormAnswer < ApplicationRecord
       :company_or_nominee_name,
       :nominee_full_name,
       :user_full_name,
-      :user_email
+      :user_email,
     ],
     using: {
       tsearch: {
@@ -39,7 +39,7 @@ class FormAnswer < ApplicationRecord
     "innovation", # Innovation Award
     "development", # Sustainable Development Award
     "mobility", # Promoting Opportunity Award
-    "promotion" # Enterprise Promotion Award
+    "promotion", # Enterprise Promotion Award
   ]
 
   BUSINESS_AWARD_TYPES = %w(trade innovation development mobility)

@@ -36,7 +36,7 @@ describe "Assessors Progress Reports CSV" do
       [1, "case_summary", true],
       [1, "primary", false],
       [2, "secondary", false],
-      [1, "case_summary", false]
+      [1, "case_summary", false],
     ].each do |entry|
       build_entry!(entry, first_assessor)
     end
@@ -68,7 +68,7 @@ describe "Assessors Progress Reports CSV" do
       [3, "case_summary", true],
       [3, "primary", false],
       [2, "secondary", false],
-      [1, "case_summary", false]
+      [1, "case_summary", false],
     ].each do |entry|
       build_entry!(entry, second_assessor)
     end

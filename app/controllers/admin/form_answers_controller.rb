@@ -6,7 +6,7 @@ class Admin::FormAnswersController < Admin::BaseController
     :show,
     :update,
     :update_financials,
-    :remove_audit_certificate
+    :remove_audit_certificate,
   ]
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]

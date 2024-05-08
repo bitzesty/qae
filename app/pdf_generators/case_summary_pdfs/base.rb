@@ -16,7 +16,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
       start_count_at: 1,
       at: [
         bounds.right - 50,
-        bounds.top + 20
+        bounds.top + 20,
       ],
       align: :right,
       size: 14,

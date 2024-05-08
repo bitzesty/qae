@@ -145,7 +145,7 @@ class AssessmentSubmissionService
           rate_key,
           appraisal_title,
           primary_grade_label,
-          secondary_grade_label
+          secondary_grade_label,
         ]
       end
     end

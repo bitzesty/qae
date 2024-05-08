@@ -69,7 +69,7 @@ class Reports::ReceptionBuckinghamPalaceReport
     {
       label: "Royal Affiliation / Previous Links",
       method: :royal_family_connection_details,
-    }
+    },
 
   ]
 

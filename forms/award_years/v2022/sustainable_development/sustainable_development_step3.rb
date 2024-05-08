@@ -50,7 +50,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Estimated figures"],
             [:normal, %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 

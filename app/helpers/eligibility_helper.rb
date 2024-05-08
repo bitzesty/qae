@@ -7,7 +7,7 @@ module EligibilityHelper
     [
       ["Yes", "true"], 
       ["No", "false"], 
-      ["N/A", "na"]
+      ["N/A", "na"],
     ]
   end
 

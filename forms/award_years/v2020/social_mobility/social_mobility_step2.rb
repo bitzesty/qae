@@ -137,7 +137,7 @@ class AwardYears::V2020::QaeForms
             [:normal, %(
               If you have more than one social mobility programme, please provide details.
               Please try to avoid using technical jargon in this section.
-            )]
+            )],
           ]
         end
 

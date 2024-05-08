@@ -33,7 +33,7 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
     {
       label: "Discrepancies (Primary - Secondary)",
       method: :discrepancies_between_primary_and_secondary_appraisals_details,
-    }
+    },
   ]
 
   def initialize(year, award_type, current_subject=nil)

@@ -182,7 +182,7 @@ class Reports::AllEntries
     {
       label: "NomineeEmail",
       method: :nominee_email,
-    }
+    },
   ]
 
   def initialize(year)

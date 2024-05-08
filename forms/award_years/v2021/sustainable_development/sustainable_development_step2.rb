@@ -114,7 +114,7 @@ class AwardYears::V2021::QaeForms
 
               \u2022 GOAL 17: Partnerships to achieve the Goal
               https://www.un.org/development/desa/disabilities/envision2030-goal17.html
-            )]
+            )],
           ]
         end
 

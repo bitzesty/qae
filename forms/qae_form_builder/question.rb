@@ -16,7 +16,7 @@ class QaeFormBuilder
       "SupportersQuestion",
       "SubsidiariesAssociatesPlantsQuestion",
       "ByTradeGoodsAndServicesLabelQuestion",
-      "MatrixQuestion"
+      "MatrixQuestion",
     ]
 
     attr_reader :question, :answers
@@ -150,7 +150,7 @@ class QaeFormBuilder
         "matrix_question",
         "press_contact_details_question",
         "sub_fields_question",
-        "upload_question"
+        "upload_question",
       ]
 
       legend_types.include?(type)
@@ -245,7 +245,7 @@ class QaeFormBuilder
           day, month = if fetched_answers.present?
                          [
                            fetched_answers["#{condition.question_key}_day"],
-                           fetched_answers["#{condition.question_key}_month"]
+                           fetched_answers["#{condition.question_key}_month"],
                          ]
                        else
                          q = step.form[condition.question_key]

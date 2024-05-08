@@ -39,7 +39,7 @@ class AwardYears::V2021::QaeForms
             [:bold, "Estimated figures"],
             [:normal, %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -185,7 +185,7 @@ class AwardYears::V2021::QaeForms
             [:bold, "Figures - format"],
             [:normal, %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 

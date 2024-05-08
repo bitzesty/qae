@@ -9,7 +9,7 @@ class DeclarationOfResponsibilityForm
       :impact_on_environment,
       :partners_relations,
       :employees_relations,
-      :customers_relations
+      :customers_relations,
     ]
 
   attr_reader :form_answer

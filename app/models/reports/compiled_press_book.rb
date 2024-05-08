@@ -33,7 +33,7 @@ class Reports::CompiledPressBook
         doc("organization_address_street"),
         doc("organization_address_city"),
         principal_county,
-        doc("organization_address_postcode")
+        doc("organization_address_postcode"),
       ].map(&:presence).compact.join(", ")
     end
 
@@ -42,13 +42,13 @@ class Reports::CompiledPressBook
         [
           obj.press_summary.title,
           obj.press_summary.name,
-          obj.press_summary.last_name
+          obj.press_summary.last_name,
         ]
       else
         [
           obj.document["press_contact_details_title"],
           obj.document["press_contact_details_first_name"],
-          obj.document["press_contact_details_last_name"]
+          obj.document["press_contact_details_last_name"],
         ]
       end.map(&:presence).compact.join(" ")
     end
@@ -201,7 +201,7 @@ class Reports::CompiledPressBook
       "International Trade",
       "Promoting Opportunity",
       "Sustainable Development",
-      "Total"
+      "Total",
     ]
 
     header_cell = worksheet.add_cell(0, 0, main_header)

@@ -46,7 +46,7 @@ class AwardYears::V2023::QaeForms
             [:bold, "Estimated figures"],
             [:normal, %(
               Please note, if you are providing estimated figures for the current year and do not yet have the financial statements to support these, if you are shortlisted, you may be asked to provide the actual figures and the latest year's VAT returns by October/November.
-            )]
+            )],
           ]
         end
 
@@ -162,7 +162,7 @@ class AwardYears::V2023::QaeForms
             [:bold, "Figures - format"],
             [:normal, %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 

@@ -9,7 +9,7 @@ describe UserSearch do
      %w[Curt Knickerbocker regular],
      %w[Lea Reimer account_admin],
      %w[Lea Tencher regular],
-     %w[Catrice Berk account_admin]
+     %w[Catrice Berk account_admin],
     ].each do |(first_name, last_name, role)|
       create(:user, first_name: first_name, last_name: last_name, role: role)
     end
@@ -27,7 +27,7 @@ describe UserSearch do
        "Lea Reimer",
        "Lea Tencher",
        "Margot Tito",
-       "Noella Adan"
+       "Noella Adan",
       ]
     expect(sorted_names).to eq(expected)
   end
@@ -39,7 +39,7 @@ describe UserSearch do
     expected =
       [
        "Curt Knickerbocker",
-       "Lea Tencher"
+       "Lea Tencher",
       ]
     expect(sorted_names).to eq(expected)
   end

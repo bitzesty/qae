@@ -11,7 +11,7 @@ class QaeFormBuilder
         { first_name: "First name" },
         { last_name: "Last name" },
         { telephone: "Telephone" },
-        { email: "Email address" }
+        { email: "Email address" },
       ]
     end
   end

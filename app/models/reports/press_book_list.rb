@@ -97,7 +97,7 @@ class Reports::PressBookList
     {
       label: "ConfirmedPalaceAttendees",
       method: :palace_invite_submitted,
-    }
+    },
   ]
 
   def initialize(year)

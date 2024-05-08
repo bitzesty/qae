@@ -237,7 +237,7 @@ class AwardYears::V2021::QaeForms
           ref "A 10"
           pdf_context_with_header_blocks [
             [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
-            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"],
           ]
           county_context %(
             <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
@@ -253,7 +253,7 @@ class AwardYears::V2021::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
         end
 

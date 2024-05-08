@@ -164,7 +164,7 @@ class AwardYears::V2023::QaeForms
             [:bold, "Answering questions"],
             [:normal, %(
               Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.
-            )]
+            )],
           ]
         end
 
@@ -194,14 +194,14 @@ class AwardYears::V2023::QaeForms
             [:normal, "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
             [:normal, "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
 
-            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"]
+            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"],
           ]
 
           pdf_context_for_option "organisation", [
 
             [:normal, "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
             [:bold, "If you selected option b, you cannot proceed. As per our eligibility questionnaire, we are no longer accepting applications for organisations whose sole purpose is promoting opportunity through Social Mobility.\n"],
-            [:bold, "However, if your organisation’s core purpose is not social mobility, but improving social mobility is a big part of your mission, please apply on the basis of having the initiative - please select the option “a) An initiative” in question B1."]
+            [:bold, "However, if your organisation’s core purpose is not social mobility, but improving social mobility is a big part of your mission, please apply on the basis of having the initiative - please select the option “a) An initiative” in question B1."],
           ]
 
           default_option "initiative"
@@ -211,7 +211,7 @@ class AwardYears::V2023::QaeForms
 
         comment :initiative_question_guidance, "" do
           pdf_context_with_header_blocks [
-            [:italic, "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."]
+            [:italic, "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."],
           ]
         end
 
@@ -232,7 +232,7 @@ class AwardYears::V2023::QaeForms
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
             ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."],
-            ["other", "<strong>Other activity types</strong>"]
+            ["other", "<strong>Other activity types</strong>"],
           ]
           conditional :application_category, "initiative"
         end
@@ -253,7 +253,7 @@ class AwardYears::V2023::QaeForms
           pdf_context_with_header_blocks [
             [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
             [:normal, "A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Where none, enter zeros."]
+            [:normal, "Where none, enter zeros."],
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
@@ -276,7 +276,7 @@ class AwardYears::V2023::QaeForms
             [ "job_opportunities", "Job opportunities"],
             [ "advancement", "Advancement"],
             [ "advocacy_and_leadership", "Advocacy and leadership"],
-            [ "other_activity_types", "Other activity types"]
+            [ "other_activity_types", "Other activity types"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
@@ -333,7 +333,7 @@ class AwardYears::V2023::QaeForms
             [:normal, "Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups."],
             [:normal, "For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this."],
             [:normal, "Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this."],
-            [:normal, "Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation."]
+            [:normal, "Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation."],
           ]
           context %(
             <p>Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups.</p>
@@ -417,7 +417,7 @@ class AwardYears::V2023::QaeForms
           pdf_context_with_header_blocks [
             [:normal, "Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement."],
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
-            [:normal, "Where none, enter zeros."]
+            [:normal, "Where none, enter zeros."],
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
@@ -450,7 +450,7 @@ class AwardYears::V2023::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
@@ -463,7 +463,7 @@ class AwardYears::V2023::QaeForms
           pdf_context_with_header_blocks [
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."],
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
@@ -496,7 +496,7 @@ class AwardYears::V2023::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 20, 2 => 20, 3 => 23, 4 => 23 })
@@ -509,7 +509,7 @@ class AwardYears::V2023::QaeForms
           pdf_context_with_header_blocks [
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."],
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
@@ -542,7 +542,7 @@ class AwardYears::V2023::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 20, 2 => 25, 3 => 20, 4 => 23, 5 => 23 })
@@ -555,7 +555,7 @@ class AwardYears::V2023::QaeForms
           pdf_context_with_header_blocks [
             [:normal, "A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once."],
             [:normal, "Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a."],
-            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."]
+            [:normal, "Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells."],
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
@@ -588,7 +588,7 @@ class AwardYears::V2023::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Others receiving support from you"]
+            ["others", "Others receiving support from you"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 25, 2 => 20, 3 => 23, 4 => 20, 5 => 15 })

@@ -31,7 +31,7 @@ describe "Eligibility forms" do
         "Yes",
         "Yes",
         "No",
-        "Yes"
+        "Yes",
       ])
       expect(page).to have_content("You are eligible to begin your application")
       first(".previous-answers").click_link("Continue")
@@ -77,7 +77,7 @@ describe "Eligibility forms" do
         "Yes",
         "Yes",
         "Yes",
-        "Yes"
+        "Yes",
       ])
       expect(page).to have_content("You are eligible to begin your application")
       first(".previous-answers").click_link("Continue")

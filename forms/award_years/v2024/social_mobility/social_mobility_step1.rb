@@ -22,7 +22,7 @@ class AwardYears::V2024::QaeForms
             { last_name: "Last name" },
             { honours: "Personal Honours (optional)", hint: "For example, Lieutenant (LVO), Member of the Most Excellent Order of the British Empire (MBE), Air Force Cross (AFC). Please do not include qualifications such as a master's degree or doctorate." },
             { job_title: "Job title or role in the organisation" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -159,7 +159,7 @@ class AwardYears::V2024::QaeForms
               \u2022 Serious Fraud Office
               \u2022 UK Export Finance
               \u2022 Wales Government
-            )]
+            )],
           ]
         end
 

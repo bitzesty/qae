@@ -1,7 +1,7 @@
 module CaseSummaryHelper
   def visible_case_summaries(subject, form_answer)
     all = [
-      wrap_case_summary(case_summary_assessment)
+      wrap_case_summary(case_summary_assessment),
     ]
     return all if subject.is_a?(Admin)
 

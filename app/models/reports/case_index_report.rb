@@ -41,7 +41,7 @@ class Reports::CaseIndexReport
     {
       label: "Feedback",
       method: :empty_column,
-    }
+    },
   ]
 
   def initialize(year, options = {})

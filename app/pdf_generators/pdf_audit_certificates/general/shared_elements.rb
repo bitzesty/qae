@@ -53,7 +53,7 @@ module PdfAuditCertificates::General::SharedElements
   def render_financial_main_table
     rows = [
       financial_pointer.years_list.unshift(""),
-      financial_table_year_and_date_data
+      financial_table_year_and_date_data,
     ]
 
     rows << revised_row(rows.last.length - 1, 1)
@@ -142,7 +142,7 @@ module PdfAuditCertificates::General::SharedElements
       ]
     else
       [
-        benchmarks_row("growth_in_total_turnover")
+        benchmarks_row("growth_in_total_turnover"),
       ]
     end
 
@@ -185,12 +185,12 @@ module PdfAuditCertificates::General::SharedElements
     rows = [
       [
         "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
-        formatted_uk_sales_value(financial_pointer.overall_growth)
+        formatted_uk_sales_value(financial_pointer.overall_growth),
       ],
       [
         "Overall growth in % (year 1 - #{financial_pointer.period_length})",
-        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents)
-      ]
+        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents),
+      ],
     ]
 
     table rows, table_default_ops(:overall_benchmarks)
@@ -337,13 +337,13 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total turnover figure per the form to the general ledger (account number [xxx]) for each year stated.",
       "Agree the total turnover figure per the form to HMRC and/or Companies House filings for each year stated.",
-      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices.",
     ]
     render_list_with_header(header, list)
 
     header = "Employees:"
     list = [
-      "Agree the total number of full-time employees in the form to [name of payroll report] for each year stated."
+      "Agree the total number of full-time employees in the form to [name of payroll report] for each year stated.",
     ]
     render_list_with_header(header, list)
 
@@ -351,20 +351,20 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
       "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices.",
-      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
+      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period.",
     ]
     render_list_with_header(header, list)
 
     header = "Sales by product group"
     list = [
       "Agree the total sales by product group per the form to the general ledger (account numbers [xxx] and [xxx]).",
-      "Trace a sample of 5% sales from the general ledger to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger to underlying sales invoices.",
     ]
     render_list_with_header(header, list)
 
     header = "Net profit"
     list = [
-      "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated."
+      "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated.",
     ]
     render_list_with_header(header, list)
 

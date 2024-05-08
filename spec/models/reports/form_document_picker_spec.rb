@@ -38,7 +38,7 @@ describe Reports::DataPickers::FormDocumentPicker do
               "category" => "trade",
               "year" => year_3,
               "outcome" => "did_not_win",
-          }
+          },
       ]
 
       allow(subject).to receive(:obj).and_return(double(previous_wins: awards))

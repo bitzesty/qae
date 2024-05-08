@@ -50,13 +50,13 @@ class Reports::FormAnswer
       [
         @press_summary.title,
         @press_summary.name,
-        @press_summary.last_name
+        @press_summary.last_name,
       ]
     else
       [
         @obj.document["press_contact_details_title"],
         @obj.document["press_contact_details_first_name"],
-        @obj.document["press_contact_details_last_name"]
+        @obj.document["press_contact_details_last_name"],
       ]
     end.map(&:presence).compact.join(" ")
   end

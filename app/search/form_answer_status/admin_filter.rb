@@ -74,43 +74,43 @@ class FormAnswerStatus::AdminFilter
     recommended: {
       label: "Recommended",
       states: [
-        :recommended
+        :recommended,
       ],
     },
     reserve: {
       label: "Reserved",
       states: [
-        :reserved
+        :reserved,
       ],
     },
     not_recommended: {
       label: "Not recomended",
       states: [
-        :not_recommended
+        :not_recommended,
       ],
     },
     not_eligible: {
       label: "Not eligible",
       states: [
-        :not_eligible
+        :not_eligible,
       ],
     },
     withdrawn: {
       label: "Withdrawn/Ineligible",
       states: [
-        :withdrawn
+        :withdrawn,
       ],
     },
     awarded: {
       label: "Awarded",
       states: [
-        :awarded
+        :awarded,
       ],
     },
     not_awarded: {
       label: "Not Awarded",
       states: [
-        :not_awarded
+        :not_awarded,
       ],
     },
   }

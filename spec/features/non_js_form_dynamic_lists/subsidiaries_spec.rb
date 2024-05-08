@@ -14,7 +14,7 @@ So that I can fill form completelly even if Javascript is turned off
   let(:subsidiaries) do
     [
       { name: "location_name_1", location: "location1", employees: "10", description: "desc1" },
-      { name: "location_name_2", location: "location2", employees: "20", description: "desc2" }
+      { name: "location_name_2", location: "location2", employees: "20", description: "desc2" },
     ]
   end
 
@@ -78,7 +78,7 @@ So that I can fill form completelly even if Javascript is turned off
       [
         "Name",
         "Location",
-        "Number of UK Employees"
+        "Number of UK Employees",
       ].each do |field_name|
         expect_to_see "#{field_name}can't be blank"
       end

@@ -12,7 +12,7 @@ class Reports::AssessorsProgressReport
     "Secondary Assigned",
     "Secondary Assessed",
     "Total Assigned",
-    "Total Assessed"
+    "Total Assessed",
   ]
 
   attr_accessor :year,

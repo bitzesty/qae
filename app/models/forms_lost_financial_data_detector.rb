@@ -18,7 +18,7 @@ class FormsLostFinancialDataDetector
     "sales_royalties_",
     "avg_unit_cost_self_",
     "overseas_sales_",
-    "avg_unit_price_"
+    "avg_unit_price_",
   ]
 
   attr_accessor :forms, :date_of_update
@@ -99,7 +99,7 @@ class FormsLostFinancialDataDetector
       [
         id,
         form,
-        date
+        date,
       ]
     end.select do |item|
       #ids.include?(item[0].to_s) &&

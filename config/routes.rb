@@ -155,7 +155,7 @@ Rails.application.routes.draw do
         :current_queens_awards,
         :awards,
         :subsidiaries,
-        :form_links
+        :form_links,
       ].each do |resource_name|
         resource resource_name, only: [:new, :create, :edit, :update, :destroy] do
           get :confirm_deletion

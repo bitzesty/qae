@@ -97,7 +97,7 @@ class Reports::CasesStatusReport
     {
       label: "SubCategory",
       method: :sub_category,
-    }
+    },
   ]
 
   def initialize(year)

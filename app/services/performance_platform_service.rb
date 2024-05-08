@@ -19,7 +19,7 @@ class PerformancePlatformService
     "50-74-percent",
     "25-49-percent",
     "1-24-percent",
-    "0-percent"
+    "0-percent",
   ]
 
   def self.run

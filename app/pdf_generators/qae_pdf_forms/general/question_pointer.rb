@@ -54,7 +54,7 @@ class QaePdfForms::General::QuestionPointer
     QaeFormBuilder::OneOptionByYearsQuestion,
     QaeFormBuilder::SupportersQuestion,
     QaeFormBuilder::TextareaQuestion,
-    QaeFormBuilder::TextQuestion
+    QaeFormBuilder::TextQuestion,
   ]
 
   def initialize(ops = {})
@@ -128,7 +128,7 @@ class QaePdfForms::General::QuestionPointer
 
       res << [
         sub_field[sub_field_key],
-        sub_answer ? form_pdf.answer_based_on_type(sub_field_key, sub_answer) : ""
+        sub_answer ? form_pdf.answer_based_on_type(sub_field_key, sub_answer) : "",
       ]
     end
 

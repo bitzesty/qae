@@ -6,7 +6,7 @@ class QaeFormBuilder
     def required_sub_fields
       [
         { name: "Name used previously" },
-        { refnum: "Reference number used previously" }
+        { refnum: "Reference number used previously" },
       ]
     end
   end

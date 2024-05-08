@@ -21,8 +21,8 @@ module FeedbackPdfs::General::DataPointer
       [
         "",
         "Key strengths",
-        "Information to strengthen the application"
-      ]
+        "Information to strengthen the application",
+      ],
     ]
   end
 
@@ -32,7 +32,7 @@ module FeedbackPdfs::General::DataPointer
         [
           value[:label].delete(":"),
           data["#{key}_strength"] || undefined_value,
-          data["#{key}_weakness"] || undefined_value
+          data["#{key}_weakness"] || undefined_value,
         ]
       end
     end.compact
@@ -43,7 +43,7 @@ module FeedbackPdfs::General::DataPointer
       if value[:type] == :strengths
         [
           value[:label].delete(":"),
-          rag(key)
+          rag(key),
         ]
       end
     end.compact

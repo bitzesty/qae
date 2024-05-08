@@ -14,13 +14,13 @@ class FormAnswerStateMachine
     :reserved,
     :not_recommended,
     :awarded,
-    :not_awarded
+    :not_awarded,
   ]
 
   POSITIVE_STATES = [
     :reserved,
     :recommended,
-    :awarded
+    :awarded,
   ]
 
   POST_SUBMISSION_STATES = [
@@ -32,12 +32,12 @@ class FormAnswerStateMachine
     :reserved,
     :not_recommended,
     :awarded,
-    :not_awarded
+    :not_awarded,
   ]
 
   NOT_POSITIVE_STATES = [
     :not_recommended,
-    :not_awarded
+    :not_awarded,
   ]
 
   state :eligibility_in_progress, initial: true
@@ -178,7 +178,7 @@ class FormAnswerStateMachine
         :disqualified,
         :awarded,
         :not_awarded,
-        :withdrawn
+        :withdrawn,
       ]
 
       case object.state.to_sym

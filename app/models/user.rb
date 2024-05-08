@@ -116,7 +116,7 @@ class User < ApplicationRecord
         :email,
         :first_name,
         :last_name,
-        :company_name
+        :company_name,
       ],
       using: {
         tsearch: {
@@ -128,7 +128,7 @@ class User < ApplicationRecord
       :title,
       :first_name,
       :last_name,
-      :company_name
+      :company_name,
     ]
   end
 

@@ -58,7 +58,7 @@ class QaeFormBuilder
       [
         { day: "Day" },
         { month: "Month" },
-        { year: "Year" }
+        { year: "Year" },
       ]
     end
   end

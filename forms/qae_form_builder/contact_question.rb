@@ -7,7 +7,7 @@ class QaeFormBuilder
       [
         {title: "Title"},
         {first_name: "First name"},
-        {last_name: "Last name"}
+        {last_name: "Last name"},
       ]
     end
   end

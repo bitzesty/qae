@@ -20,7 +20,7 @@ class Admin < ApplicationRecord
     against: [
       :first_name,
       :last_name,
-      :email
+      :email,
     ],
     using: {
       tsearch: {

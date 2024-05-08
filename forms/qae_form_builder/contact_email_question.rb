@@ -6,7 +6,7 @@ class QaeFormBuilder
     def required_sub_fields
       [
         { primary: "Primary" },
-        { confirmation: "Confirmation" }
+        { confirmation: "Confirmation" },
       ]
     end
   end
