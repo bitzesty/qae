@@ -1,11 +1,11 @@
 class HardCopyGenerators::Base
 
   attr_reader :form_answer,
-              :pdf,
-              :tempfile_name,
-              :timestamp,
-              :tmpfile,
-              :use_latest_version
+    :pdf,
+    :tempfile_name,
+    :timestamp,
+    :tmpfile,
+    :use_latest_version
 
   def initialize(form_answer, use_latest_version=false)
     @form_answer = form_answer

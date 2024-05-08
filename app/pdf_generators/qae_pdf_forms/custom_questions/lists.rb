@@ -62,7 +62,7 @@ module QaePdfForms::CustomQuestions::Lists
 
       form_pdf.default_bottom_margin
       form_pdf.text "#{text}:",
-                    inline_format: true
+        inline_format: true
     end
   end
 

@@ -7,12 +7,12 @@ class AwardYear < ApplicationRecord
   has_one :settings, inverse_of: :award_year, autosave: true
 
   has_many :aggregated_case_summary_hard_copies, -> { where(type_of_report: "case_summary") },
-                                                    class_name: "AggregatedAwardYearPdf",
-                                                    dependent: :destroy
+    class_name: "AggregatedAwardYearPdf",
+    dependent: :destroy
 
   has_many :aggregated_feedback_hard_copies, -> { where(type_of_report: "feedback") },
-                                                 class_name: "AggregatedAwardYearPdf",
-                                                 dependent: :destroy
+    class_name: "AggregatedAwardYearPdf",
+    dependent: :destroy
 
   after_create :create_settings
 

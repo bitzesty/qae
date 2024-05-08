@@ -1,9 +1,9 @@
 class QaePdfForms::General::StepPointer
   attr_reader :award_form,
-              :form_pdf,
-              :step,
-              :step_questions,
-              :filtered_questions
+    :form_pdf,
+    :step,
+    :step_questions,
+    :filtered_questions
 
   def initialize(ops = {})
     ops.each do |k, v|
@@ -32,8 +32,8 @@ class QaePdfForms::General::StepPointer
 
     filtered_questions.each do |question|
       QaePdfForms::General::QuestionPointer.new(form_pdf: form_pdf,
-                                                step: self,
-                                                question: question.decorate).render!
+        step: self,
+        question: question.decorate).render!
     end
   end
 end

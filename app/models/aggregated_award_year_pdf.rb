@@ -5,11 +5,11 @@ class AggregatedAwardYearPdf < ApplicationRecord
   belongs_to :award_year, optional: true
 
   validates :award_year_id, uniqueness: { scope: [:award_category, :type_of_report, :sub_type] },
-                            presence: true
+    presence: true
 
   validates :file,
-            :award_category,
-            :type_of_report, presence: true
+    :award_category,
+    :type_of_report, presence: true
 
   mount_uploader :file, FormAnswerPdfVersionUploader
 end

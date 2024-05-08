@@ -9,8 +9,8 @@ class Assessor < ApplicationRecord
   # to specific category (award type), they act per specific form answer.
 
   devise :database_authenticatable,
-         :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable, :session_limitable
+    :recoverable, :trackable, :validatable, :confirmable,
+    :zxcvbnable, :lockable, :timeoutable, :session_limitable
   include PasswordValidator
 
   validates :first_name, :last_name, presence: true
@@ -18,31 +18,31 @@ class Assessor < ApplicationRecord
   has_many :assessor_assignments
 
   has_many :form_answers,
-           through: :assessor_assignments
+    through: :assessor_assignments
 
   before_validation :nil_if_blank
 
   validates :trade_role,
-            :innovation_role,
-            :development_role,
-            :mobility_role,
-            :promotion_role,
-            inclusion: {
-              in: AVAILABLE_ROLES
-            },
-            allow_nil: true
+    :innovation_role,
+    :development_role,
+    :mobility_role,
+    :promotion_role,
+    inclusion: {
+      in: AVAILABLE_ROLES
+    },
+    allow_nil: true
 
   pg_search_scope :basic_search,
-                  against: [
-                    :first_name,
-                    :last_name,
-                    :email
-                  ],
-                  using: {
-                    tsearch: {
-                      prefix: true
-                    }
-                  }
+    against: [
+      :first_name,
+      :last_name,
+      :email
+    ],
+    using: {
+      tsearch: {
+        prefix: true
+      }
+    }
 
   default_scope { where(deleted: false) }
 

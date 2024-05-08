@@ -10,7 +10,7 @@ class Award
 
   validates :title, length: { maximum: 100 }
   validates :year, length: { maximum: 4 },
-                   presence: true, if: -> { holder? }
+    presence: true, if: -> { holder? }
 
   validates_with QuestionWordsValidator, field_name: :details
 

@@ -7,7 +7,7 @@ class Eligibility < ApplicationRecord
   belongs_to :form_answer, optional: true
 
   attr_accessor :current_step,
-                :force_validate_now
+    :force_validate_now
 
   validate :current_step_validation
 

@@ -4,11 +4,11 @@ class QaeFormBuilder
 
   class PlaceholderPreselectedCondition
     attr_accessor :question_key,
-                  :question_suffix,
-                  :parent_question_answer_key,
-                  :answer_key,
-                  :question_value,
-                  :placeholder_text
+      :question_suffix,
+      :parent_question_answer_key,
+      :answer_key,
+      :question_value,
+      :placeholder_text
 
     def initialize(question_key, options={})
       @question_key = question_key
@@ -20,10 +20,10 @@ class QaeFormBuilder
 
   class TradeCommercialSuccessQuestion < OptionsQuestion
     attr_accessor :main_header,
-                  :placeholder_preselected_conditions,
-                  :options,
-                  :question_key,
-                  :default_option
+      :placeholder_preselected_conditions,
+      :options,
+      :question_key,
+      :default_option
 
     def after_create
       super()

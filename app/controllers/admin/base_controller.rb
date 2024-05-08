@@ -47,17 +47,17 @@ class Admin::BaseController < ApplicationController
     if form_answer.hard_copy_ready_for?(mode)
       if Rails.env.development?
         send_data pdf_hard_copy.file.read,
-                  filename: pdf_hard_copy.original_filename,
-                  type: "application/pdf",
-                  disposition: "attachment"
+          filename: pdf_hard_copy.original_filename,
+          type: "application/pdf",
+          disposition: "attachment"
       else
         redirect_to pdf_hard_copy.file.url, allow_other_host: true
       end
     else
       send_data pdf_data.render,
-                filename: "application_#{mode.pluralize}_#{form_answer.decorate.pdf_filename}",
-                type: "application/pdf",
-                disposition: "attachment"
+        filename: "application_#{mode.pluralize}_#{form_answer.decorate.pdf_filename}",
+        type: "application/pdf",
+        disposition: "attachment"
     end
   end
 end

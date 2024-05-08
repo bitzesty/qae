@@ -27,12 +27,12 @@ So that I can fill form completelly even if Javascript is turned off
 
   let!(:basic_eligibility) do
     FactoryBot.create :basic_eligibility, form_answer: form_answer,
-                                           account: account
+      account: account
   end
 
   let!(:trade_eligibility) do
     FactoryBot.create :trade_eligibility, form_answer: form_answer,
-                                           account: account
+      account: account
   end
 
   before do

@@ -68,11 +68,11 @@ module FeedbackPdfs::General::DataPointer
       year = form_answer.award_year.year
 
       pdf_doc.table(strengths_entries,
-                    cell_style: { size: 12 },
-                    column_widths: {
-                      0 => 130,
-                      1 => 637
-                    }) do
+        cell_style: { size: 12 },
+        column_widths: {
+          0 => 130,
+          1 => 637
+        }) do
         values = cells.columns(1).rows(0..-1)
 
         green_rags = values.filter do |cell|
@@ -109,8 +109,8 @@ module FeedbackPdfs::General::DataPointer
   def render_headers(table_lines, column_widths)
     pdf_doc.move_down 10.mm
     pdf_doc.table table_lines, row_colors: %w(F0F0F0),
-                               cell_style: { size: 12, font_style: :bold },
-                               column_widths: column_widths
+      cell_style: { size: 12, font_style: :bold },
+      column_widths: column_widths
   end
 
   def rag(key)

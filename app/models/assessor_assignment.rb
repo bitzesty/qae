@@ -11,8 +11,8 @@ class AssessorAssignment < ApplicationRecord
 
   begin :validations
     validates :form_answer_id,
-              :position,
-              presence: true
+      :position,
+      presence: true
 
     validate :award_specific_attributes
     validate :mandatory_fields_for_submitted
@@ -26,8 +26,8 @@ class AssessorAssignment < ApplicationRecord
     validate :assessor_existence
     validate :assessor_assignment_to_category
     validates :assessor_id,
-              uniqueness: { scope: [:form_answer_id] },
-              allow_nil: true
+      uniqueness: { scope: [:form_answer_id] },
+      allow_nil: true
   end
 
   begin :associations

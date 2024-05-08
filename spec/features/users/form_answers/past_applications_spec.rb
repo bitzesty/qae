@@ -60,9 +60,9 @@ So that I see
     describe "Successful Applications" do
       let!(:past_awarded_form_answer) do
         create(:form_answer, :innovation,
-                             :awarded,
-                             award_year: previous_award_year,
-                             user: user)
+          :awarded,
+          award_year: previous_award_year,
+          user: user)
       end
 
       before do

@@ -14,8 +14,8 @@ class CheckAccountOnBouncesEmail
   VALID_DEBOUNCE_API_CODES = [ 4, 5, 7, 8 ]
 
   attr_accessor :user,
-                :email,
-                :code
+    :email,
+    :code
 
   def initialize(user)
     @user = user

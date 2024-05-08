@@ -5,16 +5,16 @@ class Position
   include ActiveModel::Model
 
   attr_reader :name,
-              :details,
-              :ongoing,
-              :start_month,
-              :start_year,
-              :end_month,
-              :end_year
+    :details,
+    :ongoing,
+    :start_month,
+    :start_year,
+    :end_month,
+    :end_year
 
   validates :name,
-            :start_month,
-            :start_year, presence: true
+    :start_month,
+    :start_year, presence: true
 
   validates :name, length: { maximum: 500 }
 

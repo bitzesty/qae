@@ -62,14 +62,14 @@ describe "Admin generates the CSV reports" do
 
     let!(:palace_invite) do
       create :palace_invite, form_answer: development,
-                             email: user.email,
-                             submitted: true
+        email: user.email,
+        submitted: true
     end
 
     let!(:attendee) do
       create(:palace_attendee, palace_invite: palace_invite,
-                               title: title,
-                               first_name: first_name)
+        title: title,
+        first_name: first_name)
     end
 
     it "produces proper output" do

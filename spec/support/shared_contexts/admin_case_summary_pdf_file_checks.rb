@@ -5,17 +5,17 @@ shared_context "admin case summary pdf file checks" do
 
   let!(:form_answer) do
     create :form_answer,
-           :recommended,
-           award_type,
-           user: user
+      :recommended,
+      award_type,
+      user: user
   end
 
   let!(:assessor_assignment) do
     create :assessor_assignment, form_answer: form_answer,
-                                 submitted_at: Date.today,
-                                 assessor: nil,
-                                 position: "case_summary",
-                                 document: assessor_assignment_document
+      submitted_at: Date.today,
+      assessor: nil,
+      position: "case_summary",
+      document: assessor_assignment_document
   end
 
   let(:assessor_assignment_document) do

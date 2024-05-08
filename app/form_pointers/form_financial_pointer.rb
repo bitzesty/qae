@@ -3,14 +3,14 @@ class FormFinancialPointer
   include LatestYearGenerator
 
   attr_reader :form_answer,
-              :award_form,
-              :steps,
-              :all_questions,
-              :answers,
-              :filled_answers,
-              :financial_step,
-              :target_financial_questions,
-              :options
+    :award_form,
+    :steps,
+    :all_questions,
+    :answers,
+    :filled_answers,
+    :financial_step,
+    :target_financial_questions,
+    :options
 
   TARGET_FINANCIAL_DATA_QUESTION_TYPES = [
     QaeFormBuilder::ByYearsLabelQuestion,

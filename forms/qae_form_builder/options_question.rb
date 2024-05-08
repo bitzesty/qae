@@ -57,12 +57,12 @@ class QaeFormBuilder
     attr_reader :options
 
     attr_accessor :financial_date_selector,
-                  :sub_category_question,
-                  :ops_values,
-                  :default_option,
-                  :context_for_options,
-                  :pdf_context_for_options,
-                  :ineligible_option
+      :sub_category_question,
+      :ops_values,
+      :default_option,
+      :context_for_options,
+      :pdf_context_for_options,
+      :ineligible_option
 
     def after_create
       @options = []

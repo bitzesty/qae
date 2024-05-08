@@ -227,7 +227,7 @@ class FormController < ApplicationController
         render json: @attachment, status: :created, content_type: "text/plain"
       else
         render json: { errors: humanized_upload_errors }.to_json,
-               status: :unprocessable_entity
+          status: :unprocessable_entity
       end
     end
   end
@@ -335,7 +335,7 @@ class FormController < ApplicationController
         render json: { error: "ERROR: Form can't be updated as submission ended!" }
       else
         redirect_to dashboard_path,
-                    notice: "Form can't be updated as submission ended!"
+          notice: "Form can't be updated as submission ended!"
       end
 
       return false

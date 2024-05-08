@@ -59,9 +59,9 @@ end
 def create_application
   user = create :user, :completed_profile, first_name: "Test User john"
   form_answer = create :form_answer, :innovation,
-                                     user: user,
-                                     urn: "QA0001/19T",
-                                     document: { head_of_business_first_name: "David" }
+    user: user,
+    urn: "QA0001/19T",
+    document: { head_of_business_first_name: "David" }
   create :basic_eligibility, form_answer: form_answer, account: user.account
   create :innovation_eligibility, form_answer: form_answer, account: user.account
   form_answer

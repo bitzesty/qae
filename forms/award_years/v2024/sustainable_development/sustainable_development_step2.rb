@@ -307,7 +307,7 @@ class AwardYears::V2024::QaeForms
         end
 
         options :external_contribute_to_sustainable_product,
-                "Did any external organisations or individuals significantly contribute to your sustainable development interventions?" do
+          "Did any external organisations or individuals significantly contribute to your sustainable development interventions?" do
           ref "B 13"
           required
           context %(
@@ -331,7 +331,7 @@ class AwardYears::V2024::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           classes "sub-question"
           sub_ref "B 13.2"
           required

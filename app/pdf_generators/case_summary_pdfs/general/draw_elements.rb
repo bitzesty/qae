@@ -45,9 +45,9 @@ module CaseSummaryPdfs::General::DrawElements
 
   def render_type(offset: 0.mm)
     pdf_doc.text_box "Type: #{application_type}",
-            header_text_properties.merge(
-      at: [0.mm, 97.mm + default_offset + offset],
-      width: 272.mm
+      header_text_properties.merge(
+        at: [0.mm, 97.mm + default_offset + offset],
+        width: 272.mm
     )
   end
 
@@ -79,7 +79,7 @@ module CaseSummaryPdfs::General::DrawElements
 
   def render_sic_code
     pdf_doc.text_box "SIC code: #{sic_code}",
-            header_text_properties.merge(width: 272.mm, at: [0.mm, 104.5.mm + default_offset])
+      header_text_properties.merge(width: 272.mm, at: [0.mm, 104.5.mm + default_offset])
   end
 
   def render_current_awards(offset: 0)
@@ -89,10 +89,10 @@ module CaseSummaryPdfs::General::DrawElements
     awards.each_with_index do |awards_line, index|
       if index == 0
         pdf_doc.text_box "Current Awards: #{awards_line}",
-                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset])
+          header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset])
       else
         pdf_doc.text_box "#{awards_line}",
-                         header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset - index * ONE_LINE_OFFSET])
+          header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset - index * ONE_LINE_OFFSET])
 
         pdf_doc.move_down ONE_LINE_OFFSET
       end

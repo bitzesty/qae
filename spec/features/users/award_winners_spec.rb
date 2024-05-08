@@ -22,18 +22,18 @@ describe "award winners section" do
 
   let!(:current_form_answer) do
     create :form_answer,
-           :awarded,
-           :trade,
-           user: user,
-           award_year_id: current_award_year.id
+      :awarded,
+      :trade,
+      user: user,
+      award_year_id: current_award_year.id
   end
 
   let!(:old_form_answer) do
     create :form_answer,
-           :awarded,
-           :innovation,
-           user: user,
-           award_year_id: old_award_year.id
+      :awarded,
+      :innovation,
+      user: user,
+      award_year_id: old_award_year.id
   end
 
   before do

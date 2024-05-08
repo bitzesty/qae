@@ -43,12 +43,12 @@ describe Reports::FormAnswer do
   describe "user methods" do
     let(:user) do
       build(:user,
-            company_address_first: "company_address_first",
-            company_address_second: "company_address_second",
-            company_city: "company_city",
-            company_postcode: "company_postcode",
-            phone_number: "phone_number",
-            company_phone_number: "company_phone_number",
+        company_address_first: "company_address_first",
+        company_address_second: "company_address_second",
+        company_city: "company_city",
+        company_postcode: "company_postcode",
+        phone_number: "phone_number",
+        company_phone_number: "company_phone_number",
       )
     end
     let(:report) {Reports::FormAnswer.new(build(:form_answer, user: user))}

@@ -20,19 +20,19 @@ class FormAnswer < ApplicationRecord
   attr_accessor :current_step, :validator_errors, :steps_with_errors, :current_non_js_step
 
   pg_search_scope :basic_search,
-                  against: [
-                    :urn,
-                    :award_type_full_name,
-                    :company_or_nominee_name,
-                    :nominee_full_name,
-                    :user_full_name,
-                    :user_email
-                  ],
-                  using: {
-                    tsearch: {
-                      prefix: true
-                    }
-                  }
+    against: [
+      :urn,
+      :award_type_full_name,
+      :company_or_nominee_name,
+      :nominee_full_name,
+      :user_full_name,
+      :user_email
+    ],
+    using: {
+      tsearch: {
+        prefix: true
+      }
+    }
 
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
@@ -114,11 +114,11 @@ class FormAnswer < ApplicationRecord
     has_many :form_answer_transitions, autosave: false
     has_many :assessor_assignments, dependent: :destroy
     has_many :lead_or_primary_assessor_assignments,
-             -> { where.not(submitted_at: nil)
-                       .where(position: [3, 4])
-                       .order(position: :desc) },
-             class_name: "AssessorAssignment",
-             foreign_key: :form_answer_id
+      -> { where.not(submitted_at: nil)
+                .where(position: [3, 4])
+                .order(position: :desc) },
+      class_name: "AssessorAssignment",
+      foreign_key: :form_answer_id
     has_many :assessors, through: :assessor_assignments do
       def primary
         where(assessor_assignments:
@@ -141,9 +141,9 @@ class FormAnswer < ApplicationRecord
   begin :validations
     validates :user, presence: true
     validates :award_type, presence: true,
-                           inclusion: {
-                             in: POSSIBLE_AWARDS
-                           }
+      inclusion: {
+        in: POSSIBLE_AWARDS
+      }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
     validates :sic_code, format: { with: SicCode::REGEX }, allow_nil: true, allow_blank: true
     validate :validate_answers
@@ -217,7 +217,7 @@ class FormAnswer < ApplicationRecord
   begin :state_machine
     delegate :current_state, :trigger!, :available_events, to: :state_machine
     delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
-             to: :state_machine
+      to: :state_machine
 
     def state_machine
       @state_machine ||= FormAnswerStateMachine.new(self, transition_class: FormAnswerTransition)

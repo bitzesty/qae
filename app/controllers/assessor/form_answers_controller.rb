@@ -11,11 +11,11 @@ class Assessor::FormAnswersController < Assessor::BaseController
   end
 
   helper_method :resource,
-                :primary_assessment,
-                :secondary_assessment,
-                :moderated_assessment,
-                :case_summary_assessment,
-                :category_picker
+    :primary_assessment,
+    :secondary_assessment,
+    :moderated_assessment,
+    :case_summary_assessment,
+    :category_picker
 
   def index
     authorize :form_answer, :index?

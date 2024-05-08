@@ -3,15 +3,15 @@ require "rails_helper"
 shared_context "admin all case summaries pdf generation" do
   let!(:form_answer) do
     create :form_answer, award_type,
-                         :submitted
+      :submitted
   end
 
   let!(:assessor_assignment) do
     create :assessor_assignment, form_answer: form_answer,
-                                 submitted_at: Date.today,
-                                 assessor: nil,
-                                 position: "case_summary",
-                                 document: assessor_assignment_document
+      submitted_at: Date.today,
+      assessor: nil,
+      position: "case_summary",
+      document: assessor_assignment_document
   end
 
   let(:assessor_assignment_document) do

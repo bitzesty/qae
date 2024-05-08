@@ -6,11 +6,11 @@ RSpec.describe Assessor, type: :model do
   describe "#create" do
     it "creates an autosave token for an assessor" do
       assessor = Assessor.create!(
-          email: "john-assessor@example.com",
-          first_name: "John",
-          last_name: "Smith",
-          password: "^#ur9EkLm@1W+OaDvg",
-          password_confirmation: "^#ur9EkLm@1W+OaDvg"
+        email: "john-assessor@example.com",
+        first_name: "John",
+        last_name: "Smith",
+        password: "^#ur9EkLm@1W+OaDvg",
+        password_confirmation: "^#ur9EkLm@1W+OaDvg"
       )
 
       expect(assessor.autosave_token).not_to be nil

@@ -7,10 +7,10 @@ describe FormController do
   let!(:collaborator) { create :user, :completed_profile, role: "regular", account: account }
   let(:form_answer) do
     create :form_answer,
-           :innovation,
-           user: user,
-           account: account,
-           award_year: award_year
+      :innovation,
+      user: user,
+      account: account,
+      award_year: award_year
   end
 
   let!(:settings) { create(:settings, :submission_deadlines) }
@@ -43,8 +43,8 @@ describe FormController do
 
     it "denies to open trade form if it is not the first one" do
       create :form_answer,
-             :trade,
-             user: user
+        :trade,
+        user: user
       expect(get :new_international_trade_form).to redirect_to(dashboard_url)
     end
   end

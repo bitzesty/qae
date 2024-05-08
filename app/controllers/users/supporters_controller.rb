@@ -15,10 +15,10 @@ class Users::SupportersController < Users::BaseController
   def create
     if supporter.save
       render json: supporter.id,
-             status: :created
+        status: :created
     else
       render json: supporter.errors.messages.to_json,
-             status: :unprocessable_entity
+        status: :unprocessable_entity
     end
   end
 

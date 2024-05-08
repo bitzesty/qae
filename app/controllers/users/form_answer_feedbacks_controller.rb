@@ -20,9 +20,9 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
       format.pdf do
         pdf = form_answer.feedbacks_pdf_generator
         send_data pdf.render,
-                  filename: "application_feedback_#{form_answer.pdf_filename}",
-                  type: "application/pdf",
-                  disposition: "attachment"
+          filename: "application_feedback_#{form_answer.pdf_filename}",
+          type: "application/pdf",
+          disposition: "attachment"
       end
     end
   end
@@ -45,7 +45,7 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
   def require_application_to_have_a_feedback!
     unless form_answer.feedback.present?
       redirect_to dashboard_url,
-                  notice: "There are no any feedback for this application!"
+        notice: "There are no any feedback for this application!"
       return false
     end
   end

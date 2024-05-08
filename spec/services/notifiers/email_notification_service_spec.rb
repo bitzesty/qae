@@ -282,9 +282,9 @@ describe Notifiers::EmailNotificationService do
     context "for an application with submitted attendees details" do
       it "does not send an invite" do
         create(:palace_invite,
-               email: form_answer.decorate.head_of_business_email,
-               form_answer: form_answer,
-               submitted: true)
+          email: form_answer.decorate.head_of_business_email,
+          form_answer: form_answer,
+          submitted: true)
 
         expect(AccountMailers::BuckinghamPalaceInviteMailer).not_to receive(:invite)
 

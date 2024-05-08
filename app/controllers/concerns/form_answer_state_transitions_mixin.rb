@@ -12,7 +12,7 @@ module FormAnswerStateTransitionsMixin
       format.html do
         if request.xhr? || request.format.js?
           render partial: "admin/form_answers/states_list",
-                 locals: { collection: @form_answer_state_transition.collection, policy: policy(@form_answer_state_transition).view_dropdown? }
+            locals: { collection: @form_answer_state_transition.collection, policy: policy(@form_answer_state_transition).view_dropdown? }
         else
           redirect_to [namespace_name, form_answer]
         end

@@ -3,14 +3,14 @@ require "rails_helper"
 shared_context "admin all feedbacks pdf generation" do
   let!(:form_answer) do
     create :form_answer,
-           award_type,
-           :submitted
+      award_type,
+      :submitted
   end
 
   let!(:feedback) do
     create :feedback, form_answer: form_answer,
-                      document: feedback_document,
-                      submitted: true
+      document: feedback_document,
+      submitted: true
   end
 
   let(:pdf_filename) do

@@ -396,7 +396,7 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_text_box(title, top, options = {})
     text_box title,
-             default_text_header_ops.merge(at: [0.mm, top.mm + DEFAULT_OFFSET]).merge(options)
+      default_text_header_ops.merge(at: [0.mm, top.mm + DEFAULT_OFFSET]).merge(options)
   end
 
   def default_text_header_ops

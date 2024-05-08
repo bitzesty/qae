@@ -224,8 +224,8 @@ module CaseSummaryPdfs::General::DataPointer
 
   def render_financial_table_header
     pdf_doc.table [year_rows], row_colors: %w(FFFFFF),
-                  cell_style: { size: 12, font_style: :bold },
-                  column_widths: column_widths
+      cell_style: { size: 12, font_style: :bold },
+      column_widths: column_widths
   end
 
   def render_financials

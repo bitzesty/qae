@@ -58,8 +58,8 @@ describe AssessorAssignment do
       context "with not allowed value" do
         subject do
           build :assessor_assignment,
-                :trade,
-                commercial_success_rate: "invalid"
+            :trade,
+            commercial_success_rate: "invalid"
         end
         it "is invalid" do
           expect(subject).to_not be_valid
@@ -70,8 +70,8 @@ describe AssessorAssignment do
     context "with allowed value" do
       subject do
         build :assessor_assignment,
-              :trade,
-              commercial_success_rate: "negative"
+          :trade,
+          commercial_success_rate: "negative"
       end
       it "is valid" do
         expect(subject).to be_valid

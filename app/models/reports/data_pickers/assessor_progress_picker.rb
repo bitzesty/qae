@@ -1,7 +1,7 @@
 class Reports::DataPickers::AssessorProgressPicker
 
   attr_accessor :award_year_id,
-                :award_category
+    :award_category
 
   def initialize(year, award_category)
     self.award_year_id = year.id

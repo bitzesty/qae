@@ -5,8 +5,8 @@ class User < ApplicationRecord
   POSSIBLE_ROLES = %w(account_admin regular)
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable, :session_limitable
+    :recoverable, :trackable, :validatable, :confirmable,
+    :zxcvbnable, :lockable, :timeoutable, :session_limitable
   include PasswordValidator
 
   attr_accessor :agreed_with_privacy_policy
@@ -41,8 +41,8 @@ class User < ApplicationRecord
   begin :associations
     has_many :form_answers
     has_many :feedbacks, through: :form_answers,
-                         class_name: "Feedback",
-                         source: :feedback
+      class_name: "Feedback",
+      source: :feedback
     has_one :owned_account, foreign_key: :owner_id, class_name: "Account"
 
     belongs_to :account, optional: true
@@ -63,7 +63,7 @@ class User < ApplicationRecord
     }
     scope :by_query_part, -> (email) {
       where("email ilike ? OR first_name ilike ? OR last_name ilike ?",
-            "%#{email}%", "%#{email}%", "%#{email}%")
+        "%#{email}%", "%#{email}%", "%#{email}%")
     }
     scope :not_in_ids, -> (ids) {
       where.not(id: ids)
@@ -112,17 +112,17 @@ class User < ApplicationRecord
 
   begin :searching
     pg_search_scope :basic_search,
-                    against: [
-                      :email,
-                      :first_name,
-                      :last_name,
-                      :company_name
-                    ],
-                    using: {
-                      tsearch: {
-                        prefix: true
-                      }
-                    }
+      against: [
+        :email,
+        :first_name,
+        :last_name,
+        :company_name
+      ],
+      using: {
+        tsearch: {
+          prefix: true
+        }
+      }
     # TODO: take into consideration forcing NULL for all attributes.
     nilify_blanks only: [
       :title,

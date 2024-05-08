@@ -34,18 +34,18 @@ RSpec.describe SupportLetterAttachment, type: :model do
 
       let(:attachment_with_too_big_file) do
         build :support_letter_attachment, form_answer: form_answer,
-                                          user: user,
-                                          attachment: too_big_file
+          user: user,
+          attachment: too_big_file
       end
       let(:attachment_with_wrong_extension_file) do
         build :support_letter_attachment, form_answer: form_answer,
-                                          user: user,
-                                          attachment: file_with_wrong_extension
+          user: user,
+          attachment: file_with_wrong_extension
       end
       let(:attachment_with_normal_file) do
         build :support_letter_attachment, form_answer: form_answer,
-                                          user: user,
-                                          attachment: normal_file
+          user: user,
+          attachment: normal_file
       end
 
       it "should allow to upload 5MB file maximum" do

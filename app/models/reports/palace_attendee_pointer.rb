@@ -1,8 +1,8 @@
 class Reports::PalaceAttendeePointer
 
   attr_reader :palace_attendee,
-              :form_answer,
-              :form_answer_pointer
+    :form_answer,
+    :form_answer_pointer
 
   def initialize(palace_attendee)
     @palace_attendee = palace_attendee

@@ -175,7 +175,7 @@ class AwardYears::V2018::QaeForms
         end
 
         options :part_of_joint_entry,
-                "Is this application part of a joint entry with any contributing organisation(s)?" do
+          "Is this application part of a joint entry with any contributing organisation(s)?" do
           ref "A 8"
           required
           context %(
@@ -195,7 +195,7 @@ class AwardYears::V2018::QaeForms
         end
 
         options :external_contribute_to_sustainable_product,
-                "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
+          "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
           ref "A 9"
           required
           context %(
@@ -207,7 +207,7 @@ class AwardYears::V2018::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           sub_ref "A 9.1"
           required
           option "yes", "Yes, they are all aware"

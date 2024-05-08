@@ -16,10 +16,10 @@ class Supporter < ApplicationRecord
     validates :email, email: true
 
     validates :first_name,
-              :last_name,
-              :user,
-              :form_answer,
-              :relationship_to_nominee, presence: true
+      :last_name,
+      :user,
+      :form_answer,
+      :relationship_to_nominee, presence: true
   end
 
   before_create :generate_access_key

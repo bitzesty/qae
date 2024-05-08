@@ -4,8 +4,8 @@ namespace :db do
 
     mobility_appraisals = AssessorAssignment.joins(:form_answer)
       .where(award_year: AwardYear.find_by(year: 2017),
-             position: [0, 1, 4],
-             form_answers: {award_type: "mobility"})
+        position: [0, 1, 4],
+        form_answers: {award_type: "mobility"})
 
     appraisals_removed_keys = [
       "mobility_programme_benefit_desc",

@@ -16,7 +16,7 @@ class Reports::AssessorsProgressReport
   ]
 
   attr_accessor :year,
-                :award_category
+    :award_category
 
   def initialize(year, award_category)
     self.year = year

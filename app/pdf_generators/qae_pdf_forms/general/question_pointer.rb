@@ -15,19 +15,19 @@ class QaePdfForms::General::QuestionPointer
   RENDER_INLINE_KEYS = %w(head_of_business_title).freeze
 
   attr_reader :form_pdf,
-              :form_answer,
-              :step,
-              :question,
-              :key,
-              :answer,
-              :humanized_answer,
-              :sub_answers,
-              :financial_pointer,
-              :audit_data,
-              :filled_answers,
-              :step_questions,
-              :questions_with_references,
-              :non_header_questions
+    :form_answer,
+    :step,
+    :question,
+    :key,
+    :answer,
+    :humanized_answer,
+    :sub_answers,
+    :financial_pointer,
+    :audit_data,
+    :filled_answers,
+    :step_questions,
+    :questions_with_references,
+    :non_header_questions
 
   PREVIOUS_AWARDS = { "innovation" => "Innovation",
                       "international_trade" => "International Trade",
@@ -178,7 +178,7 @@ class QaePdfForms::General::QuestionPointer
 
       form_pdf.indent 25.mm do
         form_pdf.render_text "Please note that #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions.",
-                             style: :italic
+          style: :italic
       end
     end
   end
@@ -209,7 +209,7 @@ class QaePdfForms::General::QuestionPointer
 
     form_pdf.indent 11.mm do
       form_pdf.render_text "#{ref.delete(' ')}.",
-                           style: :bold, width: 20.mm
+        style: :bold, width: 20.mm
     end
 
     form_pdf.move_cursor_to form_pdf.cursor + 10.mm
@@ -217,7 +217,7 @@ class QaePdfForms::General::QuestionPointer
     if question.escaped_title.present?
       form_pdf.indent 25.mm do
         form_pdf.render_text question.escaped_title,
-                             style: :bold
+          style: :bold
 
       if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
         render_info_about_conditional_parent
@@ -240,7 +240,7 @@ class QaePdfForms::General::QuestionPointer
             inline_question_text += ANSWER_FONT_END
 
             form_pdf.text inline_question_text,
-                          inline_format: true
+              inline_format: true
           else
             form_pdf.text "#{question.escaped_title}:"
           end
@@ -248,7 +248,7 @@ class QaePdfForms::General::QuestionPointer
       else
         form_pdf.indent 11.mm do
           form_pdf.render_text "#{question.escaped_title}",
-                               style: :bold
+            style: :bold
         end
       end
     end
@@ -302,11 +302,11 @@ class QaePdfForms::General::QuestionPointer
   def render_context_or_help_block(context)
     if question.classes == "application-notice help-notice"
       form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
-                     at: [-10.mm, form_pdf.cursor - 3.5.mm],
-                     width: 6.5.mm,
-                     height: 6.5.mm
+        at: [-10.mm, form_pdf.cursor - 3.5.mm],
+        width: 6.5.mm,
+        height: 6.5.mm
       form_pdf.render_text context,
-                           style: :bold
+        style: :bold
     else
       form_pdf.render_text context
     end
@@ -324,8 +324,8 @@ class QaePdfForms::General::QuestionPointer
       end
 
       form_pdf.image "#{Rails.root}/app/assets/images/#{valid_icon}",
-                     at: [0, form_pdf.cursor - 4.mm],
-                     width: 7.mm
+        at: [0, form_pdf.cursor - 4.mm],
+        width: 7.mm
     end
   end
 
@@ -467,7 +467,7 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.indent 7.mm do
           list_rows.each do |award|
             form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
-                                 color: FormPdf::DEFAULT_ANSWER_COLOR
+              color: FormPdf::DEFAULT_ANSWER_COLOR
           end
         end
       end
@@ -484,7 +484,7 @@ class QaePdfForms::General::QuestionPointer
             outcome = question.outcomes.detect { |o| o.value == award[2] }.try(:text)
 
             form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]} - #{outcome}",
-                                 color: FormPdf::DEFAULT_ANSWER_COLOR
+              color: FormPdf::DEFAULT_ANSWER_COLOR
           end
         end
       end
@@ -513,12 +513,12 @@ class QaePdfForms::General::QuestionPointer
           subsidiary_text += ANSWER_FONT_END
 
           form_pdf.render_text subsidiary_text,
-                               inline_format: true
+            inline_format: true
 
           desc = subsidiary[3]
           if desc.present?
             form_pdf.render_text "#{ANSWER_FONT_START} #{desc} #{ANSWER_FONT_END}",
-                                 inline_format: true
+              inline_format: true
           end
         end
       end
@@ -625,7 +625,7 @@ class QaePdfForms::General::QuestionPointer
 
         res = q_visible? ? "#{ANSWER_FONT_START}#{row[index]}#{ANSWER_FONT_END}" : ""
         form_pdf.text "#{headers[index]}: #{res}",
-                      inline_format: true
+          inline_format: true
       end
     end
   end
@@ -669,7 +669,7 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.default_bottom_margin
     res = q_visible? ? "#{ANSWER_FONT_START}#{sub_answer}#{ANSWER_FONT_END}" : ""
     form_pdf.text "#{sub_question}: #{res}",
-                  inline_format: true
+      inline_format: true
   end
 
   def sub_question_block_without_title(sub_answer)
@@ -679,7 +679,7 @@ class QaePdfForms::General::QuestionPointer
       end
     end
     form_pdf.render_text (q_visible? ? sub_answer : ""),
-                         color: FormPdf::DEFAULT_ANSWER_COLOR
+      color: FormPdf::DEFAULT_ANSWER_COLOR
   end
 
   def question_option_title

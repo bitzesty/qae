@@ -1,9 +1,9 @@
 module AdminActions
   class AddCollaborator
     attr_reader :form_answer,
-                :user,
-                :success,
-                :errors
+      :user,
+      :success,
+      :errors
 
     def initialize(form_answer, user)
       @form_answer = form_answer

@@ -5,6 +5,6 @@ class Users::SubmissionStartedNotificationMailer < ApplicationMailer
     subject = "Notification: applications for #{@award_type} Award are open"
     
     send_mail_if_not_bounces ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], to: @user.email,
-         subject: subject_with_env_prefix(subject)
+      subject: subject_with_env_prefix(subject)
   end
 end

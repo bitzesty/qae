@@ -23,7 +23,7 @@ class FileSizeValidator < ActiveModel::EachValidator
 
     if keys.empty?
       raise ArgumentError,
-           "Range unspecified. Specify the :within, :maximum, :minimum, or :is option."
+        "Range unspecified. Specify the :within, :maximum, :minimum, or :is option."
     end
 
     keys.each do |key|

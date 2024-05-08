@@ -285,7 +285,7 @@ class AwardYears::V2022::QaeForms
         end
 
         options :part_of_joint_entry,
-                "Is this application part of a joint entry with any contributing organisation(s)?" do
+          "Is this application part of a joint entry with any contributing organisation(s)?" do
           ref "A 8"
           required
           context %(
@@ -329,7 +329,7 @@ class AwardYears::V2022::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           sub_ref "A 9.2"
           classes "sub-question"
           required

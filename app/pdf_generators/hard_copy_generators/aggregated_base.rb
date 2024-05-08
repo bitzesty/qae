@@ -1,8 +1,8 @@
 class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
 
   attr_accessor :award_category,
-                :award_year,
-                :type_of_report
+    :award_year,
+    :type_of_report
 
   def initialize(award_category, award_year, type_of_report)
     @timestamp = Time.zone.now.strftime("%d_%b_%Y_%H_%M")

@@ -6,10 +6,10 @@ SimpleForm.setup do |config|
   # stack. The options given below are used to wrap the
   # whole input.
   config.wrappers :default,
-                  class: "govuk-form-group",
-                  label_class: "govuk-label",
-                  hint_class: "field-with-hint",
-                  error_class: "govuk-form-group--error" do |b|
+    class: "govuk-form-group",
+    label_class: "govuk-label",
+    hint_class: "field-with-hint",
+    error_class: "govuk-form-group--error" do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.

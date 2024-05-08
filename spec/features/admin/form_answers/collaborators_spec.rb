@@ -12,8 +12,8 @@ So that they can collaborate applications
 
   let!(:form_answer) do
     create :form_answer,
-           :innovation,
-           :submitted
+      :innovation,
+      :submitted
   end
 
   let!(:account) do
@@ -30,16 +30,16 @@ So that they can collaborate applications
       describe "Attempt to add person, which is already associated with another account which has application" do
         let!(:user_associated_with_another_account) do
           create :user,
-                 :completed_profile,
-                 first_name: "Applicant with account",
-                 role: "account_admin"
+            :completed_profile,
+            first_name: "Applicant with account",
+            role: "account_admin"
         end
 
         let!(:another_form_answer) do
           create :form_answer,
-                 :innovation,
-                 :submitted,
-                 user: user_associated_with_another_account
+            :innovation,
+            :submitted,
+            user: user_associated_with_another_account
         end
 
         it "can't add" do

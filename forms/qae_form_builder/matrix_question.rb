@@ -222,19 +222,19 @@ class QaeFormBuilder
 
   class MatrixQuestion < Question
     attr_accessor :label,
-                  :others_label,
-                  :subtotals_label,
-                  :totals_label,
-                  :proportion_label,
-                  :corner_label,
-                  :x_headings,
-                  :y_headings,
-                  :values,
-                  :column_widths,
-                  :required_row_parent,
-                  :required_row_options,
-                  :required_rows,
-                  :auto_totals_column
+      :others_label,
+      :subtotals_label,
+      :totals_label,
+      :proportion_label,
+      :corner_label,
+      :x_headings,
+      :y_headings,
+      :values,
+      :column_widths,
+      :required_row_parent,
+      :required_row_options,
+      :required_rows,
+      :auto_totals_column
 
     def after_create
       @x_headings = []

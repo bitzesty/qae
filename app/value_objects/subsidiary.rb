@@ -7,7 +7,7 @@ class Subsidiary
   attr_reader :name, :location, :employees, :description
 
   validates :name, :location, :employees, presence: true,
-                                          length: { maximum: 100 }
+    length: { maximum: 100 }
 
   validates :description, presence: true
 

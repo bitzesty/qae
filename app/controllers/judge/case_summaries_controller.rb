@@ -12,9 +12,9 @@ class Judge::CaseSummariesController < Judge::BaseController
         pdf = Reports::AdminReport.new("case_summaries", AwardYear.current, params).as_pdf
         if pdf[:hard_copy].blank? || Rails.env.development?
           send_data pdf.data,
-                    filename: pdf.filename,
-                    type: "application/pdf",
-                    disposition: "attachment"
+            filename: pdf.filename,
+            type: "application/pdf",
+            disposition: "attachment"
         else
           redirect_to pdf.data, allow_other_host: true
         end

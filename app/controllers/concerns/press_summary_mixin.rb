@@ -118,7 +118,7 @@ module PressSummaryMixin
           render "shared/press_summaries/create"
         else
           render status: :unprocessable_entity,
-                 json: { errors: @press_summary.errors.full_messages }
+            json: { errors: @press_summary.errors.full_messages }
         end
       end
     end

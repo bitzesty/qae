@@ -1,12 +1,12 @@
 class AddCollaborator
   attr_reader :current_user,
-              :account,
-              :params,
-              :collaborator,
-              :email,
-              :success,
-              :new_user,
-              :errors
+    :account,
+    :params,
+    :collaborator,
+    :email,
+    :success,
+    :new_user,
+    :errors
 
   def initialize(current_user, account, params)
     @current_user = current_user

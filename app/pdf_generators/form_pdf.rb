@@ -23,15 +23,15 @@ class FormPdf < Prawn::Document
   DEFAULT_ANSWER_COLOR = "5B5656"
 
   attr_reader :user,
-              :form_answer,
-              :award_form,
-              :steps,
-              :all_questions,
-              :answers,
-              :filled_answers,
-              :form_answer_attachments,
-              :financial_pointer,
-              :pdf_blank_mode
+    :form_answer,
+    :award_form,
+    :steps,
+    :all_questions,
+    :answers,
+    :filled_answers,
+    :form_answer_attachments,
+    :financial_pointer,
+    :pdf_blank_mode
 
   def initialize(form_answer, pdf_blank_mode=false)
     super()
@@ -60,8 +60,8 @@ class FormPdf < Prawn::Document
 
     steps.each do |step|
       QaePdfForms::General::StepPointer.new(award_form: award_form,
-                                            form_pdf: self,
-                                            step: step).render!
+        form_pdf: self,
+        step: step).render!
     end
 
     render_submission_deadline_block(32)

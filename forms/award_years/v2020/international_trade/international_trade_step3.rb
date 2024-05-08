@@ -50,18 +50,18 @@ class AwardYears::V2020::QaeForms
           option "3 to 5", "Outstanding Short Term Growth: a steep year on year growth over three years"
           option "6 plus", "Outstanding Continued Growth: a substantial year on year growth over six years"
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "3 to 5",
-                                            parent_question_answer_key: "3_years_application",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "3 to 5",
+            parent_question_answer_key: "3_years_application",
+            placeholder_text: %(
               As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
             )
 
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "",
-                                            parent_question_answer_key: "application_disabled",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "",
+            parent_question_answer_key: "application_disabled",
+            placeholder_text: %(
               As you currently hold a Queen's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 

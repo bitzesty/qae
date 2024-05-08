@@ -3,7 +3,7 @@ class Users::PressSummariesController < Users::BaseController
 
   before_action :check_deadline, :load_press_summary, except: [:success, :failure]
   before_action :check_promotion_award_acceptance,
-                except: [:acceptance, :update_acceptance, :success, :failure]
+    except: [:acceptance, :update_acceptance, :success, :failure]
 
   before_action :require_press_summary_to_be_valid!, only: [:show, :update]
 
@@ -95,7 +95,7 @@ class Users::PressSummariesController < Users::BaseController
   def require_press_summary_to_be_valid!
     if !@press_summary.submitted? || @press_summary.applicant_submitted?
       redirect_to dashboard_url,
-                  notice: "Press Summary can't be updated!"
+        notice: "Press Summary can't be updated!"
       return
     end
   end

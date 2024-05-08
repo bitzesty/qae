@@ -9,13 +9,13 @@ class AuditCertificatePdf < Prawn::Document
   include SharedPdfHelpers::LanguageHelper
 
   attr_reader :audit_data,
-              :form_answer,
-              :award_type,
-              :award_type_full_name,
-              :company_name,
-              :financial_pointer,
-              :step_questions,
-              :filled_answers
+    :form_answer,
+    :award_type,
+    :award_type_full_name,
+    :company_name,
+    :financial_pointer,
+    :step_questions,
+    :filled_answers
 
   def initialize(form_answer)
     super()

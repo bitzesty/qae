@@ -4,14 +4,14 @@ class PressSummary < ApplicationRecord
   validates :form_answer, :token, presence: true
   validates :body, presence: true, unless: :contact_details_update?
   validates :name, :email, :phone_number,
-            presence: true,
-            unless: proc {|c| c.body_update.present?},
-            if: :applicant_submitted?
+    presence: true,
+    unless: proc {|c| c.body_update.present?},
+    if: :applicant_submitted?
 
   validates :title, :last_name,
-            presence: true,
-            unless: proc {|c| c.body_update.present? && form_answer.award_year.year >= 2020 },
-            if: :applicant_submitted?
+    presence: true,
+    unless: proc {|c| c.body_update.present? && form_answer.award_year.year >= 2020 },
+    if: :applicant_submitted?
 
   before_validation :set_token, on: :create
 

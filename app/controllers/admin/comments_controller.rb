@@ -22,7 +22,7 @@ class Admin::CommentsController < Admin::BaseController
         if request.xhr? || request.format.js?
           if @comment.persisted?
             render partial: "admin/form_answers/comment",
-                   locals: { comment: @comment, resource: form_answer }
+              locals: { comment: @comment, resource: form_answer }
           else
             head :ok
           end

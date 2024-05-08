@@ -6,8 +6,8 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   devise :authy_authenticatable, :database_authenticatable,
-         :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable, :session_limitable
+    :recoverable, :trackable, :validatable, :confirmable,
+    :zxcvbnable, :lockable, :timeoutable, :session_limitable
   include PasswordValidator
 
   validates :first_name, :last_name, presence: true
@@ -17,16 +17,16 @@ class Admin < ApplicationRecord
   default_scope { where(deleted: false) }
 
   pg_search_scope :basic_search,
-                  against: [
-                    :first_name,
-                    :last_name,
-                    :email
-                  ],
-                  using: {
-                    tsearch: {
-                      prefix: true
-                    }
-                  }
+    against: [
+      :first_name,
+      :last_name,
+      :email
+    ],
+    using: {
+      tsearch: {
+        prefix: true
+      }
+    }
   def lead?(*)
     true
   end

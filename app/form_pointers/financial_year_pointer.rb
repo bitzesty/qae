@@ -2,8 +2,8 @@ class FinancialYearPointer
   include LatestYearGenerator
 
   attr_reader :financial_pointer,
-              :question,
-              :key
+    :question,
+    :key
 
   def initialize(ops = {})
     ops.each do |k, v|

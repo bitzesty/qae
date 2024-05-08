@@ -25,8 +25,8 @@ module Qae
         allow do
           origins ENV["CORS_HOST"] || "*"
           resource "*",
-                   headers: :any,
-                   methods: %i[get options]
+            headers: :any,
+            methods: %i[get options]
         end
       end
     end

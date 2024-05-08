@@ -73,9 +73,9 @@ class QaeFormBuilder
 
   class TurnoverExportsCalculationCondition
     attr_accessor :question_key,
-                  :question_value,
-                  :years,
-                  :span_class
+      :question_value,
+      :years,
+      :span_class
     def initialize question_key, question_value, years, **options
       @question_key = question_key
       @question_value = question_value
@@ -86,10 +86,10 @@ class QaeFormBuilder
 
   class TurnoverExportsCalculationQuestion < Question
     attr_accessor :by_year_conditions,
-                  :label,
-                  :turnover_question,
-                  :exports_question,
-                  :one_option_financial_data_mode
+      :label,
+      :turnover_question,
+      :exports_question,
+      :one_option_financial_data_mode
 
     def after_create
       @by_year_conditions = []

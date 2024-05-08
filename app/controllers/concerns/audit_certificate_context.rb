@@ -30,7 +30,7 @@ module AuditCertificateContext
             locals: {
             resource: form_answer.decorate
           },
-          content_type: "text/plain"
+            content_type: "text/plain"
         end
       else
         format.html do

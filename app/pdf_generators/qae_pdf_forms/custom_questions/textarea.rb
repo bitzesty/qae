@@ -84,8 +84,8 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def wysywyg_print_lists(key, line)
     wysywyg_list_content_generator(wysywyg_prepare_list_content(line),
-                                   wysywyg_get_list_left_margin(line),
-                                   key)
+      wysywyg_get_list_left_margin(line),
+      key)
   end
 
   def wysywyg_get_list_left_margin(line)

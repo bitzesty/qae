@@ -190,7 +190,7 @@ class AwardYears::V2021::QaeForms
         end
 
         options :external_contribute_to_sustainable_product,
-                "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
+          "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
           ref "A 9"
           required
           context %(
@@ -202,7 +202,7 @@ class AwardYears::V2021::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           classes "sub-question"
           sub_ref "A 9.1"
           required

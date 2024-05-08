@@ -120,10 +120,10 @@ class Reports::RegisteredUsers
 
   def scoped_collection
     @year.form_answers.preload(:user,
-                               :assessor_assignments,
-                               :primary_assessor,
-                               :secondary_assessor,
-                               :form_answer_progress)
+      :assessor_assignments,
+      :primary_assessor,
+      :secondary_assessor,
+      :form_answer_progress)
   end
 
   def mapping

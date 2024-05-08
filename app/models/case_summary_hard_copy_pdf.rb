@@ -4,6 +4,6 @@ class CaseSummaryHardCopyPdf < ApplicationRecord
   mount_uploader :file, FormAnswerPdfVersionUploader
 
   validates :form_answer,
-            :file,
-            :original_filename, presence: true
+    :file,
+    :original_filename, presence: true
 end

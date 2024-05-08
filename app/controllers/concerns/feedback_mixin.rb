@@ -89,7 +89,7 @@ module FeedbackMixin
           render json: { errors: [] }
         else
           render status: :unprocessable_entity,
-                 json: { errors: @feedback.resource.errors }
+            json: { errors: @feedback.resource.errors }
         end
       end
     end

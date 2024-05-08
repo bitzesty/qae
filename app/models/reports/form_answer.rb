@@ -4,9 +4,9 @@ class Reports::FormAnswer
   include FormAnswersBasePointer
 
   attr_reader :obj,
-              :answers,
-              :award_form,
-              :financial_data
+    :answers,
+    :award_form,
+    :financial_data
 
   def initialize(form_answer, limited_access=false)
     @obj = form_answer

@@ -81,7 +81,7 @@ module QaePdfForms::General::DrawElements
 
       if description.present?
         text description,
-             color: FormPdf::DEFAULT_ANSWER_COLOR
+          color: FormPdf::DEFAULT_ANSWER_COLOR
       end
     end
   end
@@ -168,13 +168,13 @@ module QaePdfForms::General::DrawElements
 
   def render_logo
     image "#{IMAGES_PATH}#{LOGO_ICON}",
-          at: [0, 137.5.mm + DEFAULT_OFFSET],
-          width: 25.mm
+      at: [0, 137.5.mm + DEFAULT_OFFSET],
+      width: 25.mm
   end
 
   def render_urn
     text form_answer.urn,
-         header_text_properties
+      header_text_properties
   end
 
   def render_award_information
@@ -184,12 +184,12 @@ module QaePdfForms::General::DrawElements
       award_title = form_answer.decorate.award_application_title_print
     end
     text award_title.upcase,
-         header_text_properties.merge(style: :bold)
+      header_text_properties.merge(style: :bold)
   end
 
   def render_company_name
     text "<b>#{form_answer.decorate.company_name.try(:upcase)}</b>",
-         header_text_properties.merge(inline_format: true)
+      header_text_properties.merge(inline_format: true)
   end
 
   def render_intro_text
@@ -198,8 +198,8 @@ module QaePdfForms::General::DrawElements
       stroke_bounds
 
       image "#{IMAGES_PATH}#{ALERT_BIG_ICON}",
-            at: [5.5.mm, cursor - 3.mm],
-            width: 22.5.mm
+        at: [5.5.mm, cursor - 3.mm],
+        width: 22.5.mm
 
       intro_text = %(
         This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>.
@@ -208,9 +208,9 @@ module QaePdfForms::General::DrawElements
       )
 
       text_box intro_text,
-               at: [35.mm, cursor - 3.mm],
-               width: 145.mm,
-               inline_format: true
+        at: [35.mm, cursor - 3.mm],
+        width: 145.mm,
+        inline_format: true
     end
   end
 
@@ -245,8 +245,8 @@ module QaePdfForms::General::DrawElements
 
   def render_header(title)
     text title, style: :bold,
-                size: 16,
-                align: :left
+      size: 16,
+      align: :left
     stroke_color = "999999"
     move_down 4.mm
     stroke_horizontal_line 0, 192.mm

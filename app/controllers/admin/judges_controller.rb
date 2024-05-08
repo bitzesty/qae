@@ -55,12 +55,12 @@ class Admin::JudgesController < Admin::UsersController
   def resource_params
     params.require(:judge)
       .permit(:email,
-             :first_name,
-             :last_name,
-             :trade_role,
-             :innovation_role,
-             :development_role,
-             :mobility_role,
-             :promotion_role)
+        :first_name,
+        :last_name,
+        :trade_role,
+        :innovation_role,
+        :development_role,
+        :mobility_role,
+        :promotion_role)
   end
 end

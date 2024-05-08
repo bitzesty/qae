@@ -124,11 +124,11 @@ class Reports::CasesStatusReport
     @year.form_answers.submitted
                       .order(:id)
                       .preload(:user,
-                               :assessor_assignments,
-                               :audit_certificate,
-                               :feedback,
-                               :primary_assessor,
-                               :secondary_assessor)
+                        :assessor_assignments,
+                        :audit_certificate,
+                        :feedback,
+                        :primary_assessor,
+                        :secondary_assessor)
   end
 
   def mapping

@@ -3,8 +3,8 @@ module AdminShortlistedDocsContext
     authorize form_answer, :download_commercial_figures?
 
     send_data resource.attachment.read,
-              filename: resource.attachment.file.filename,
-              disposition: "attachment"
+      filename: resource.attachment.file.filename,
+      disposition: "attachment"
   end
 
   def create
@@ -24,8 +24,8 @@ module AdminShortlistedDocsContext
 
         format.js do
           render partial: "admin/figures_and_vat_returns/file",
-                 locals: { attachment: attachment },
-                 content_type: "text/plain"
+            locals: { attachment: attachment },
+            content_type: "text/plain"
         end
       end
     else
@@ -37,12 +37,12 @@ module AdminShortlistedDocsContext
 
         format.js do
           render partial: "admin/figures_and_vat_returns/form",
-                 locals: {
-                   form_answer: form_answer, 
-                   attachment: attachment
-                 },
-                 content_type: "text/plain",
-                 status: 422
+            locals: {
+              form_answer: form_answer, 
+              attachment: attachment
+            },
+            content_type: "text/plain",
+            status: 422
         end
       end
     end

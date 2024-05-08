@@ -14,18 +14,18 @@ class AwardYears::V2025::QaeForms
           option "3 to 5", "Outstanding Short-Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years"
           option "6 plus", "Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years"
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "3 to 5",
-                                            parent_question_answer_key: "3_years_application",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "3 to 5",
+            parent_question_answer_key: "3_years_application",
+            placeholder_text: %(
               As you currently hold a King's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
             )
 
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "",
-                                            parent_question_answer_key: "application_disabled",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "",
+            parent_question_answer_key: "application_disabled",
+            placeholder_text: %(
               As you currently hold a King's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 
@@ -232,15 +232,15 @@ class AwardYears::V2025::QaeForms
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           first_year_min_value "100000", "Cannot be less than £100,000"
           halt if: ->(q) { q.has_drops? },
-               title: "You do not meet the eligibility criteria for this award.",
-               message: ->(resource) do
-                 value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
-                 value == 3 ? %Q{
+            title: "You do not meet the eligibility criteria for this award.",
+            message: ->(resource) do
+              value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
+              value == 3 ? %Q{
                    Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.
                  } : %Q{
                    Your total overseas sales are showing dips during the period of our entry. If you had a steep year-on-year growth (without dips) over the three most recent financial years, consider applying on an "Outstanding Short-Term Growth" basis by changing your answer in D1. If you had dips in total overseas sales during that period, you do not meet eligibility for the award and cannot proceed.
                  }
-               end
+            end
           drop_block_conditional
         end
 

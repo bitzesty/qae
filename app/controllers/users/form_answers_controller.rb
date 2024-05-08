@@ -21,9 +21,9 @@ class Users::FormAnswersController < Users::BaseController
         format.pdf do
           pdf = form_answer.decorate.pdf_generator(pdf_blank_mode)
           send_data pdf.render,
-                    filename: form_answer.decorate.pdf_filename,
-                    type: "application/pdf",
-                    disposition: "attachment"
+            filename: form_answer.decorate.pdf_filename,
+            type: "application/pdf",
+            disposition: "attachment"
         end
       end
     else
@@ -75,7 +75,7 @@ class Users::FormAnswersController < Users::BaseController
     else
       if !admin_in_read_only_mode?
         redirect_to dashboard_path,
-                    notice: "PDF version for your application is not available!"
+          notice: "PDF version for your application is not available!"
       else
         flash[:notice] = "PDF version for your application is not available!"
         redirect_back(fallback_location: root_path)

@@ -15,12 +15,12 @@ describe "FeedbackPdfs::Base" do
 
   before do
     create :feedback, submitted: true,
-                      form_answer: form_answer_trade,
-                      document: set_feedback_content(form_answer_trade)
+      form_answer: form_answer_trade,
+      document: set_feedback_content(form_answer_trade)
 
     create :feedback, submitted: true,
-                      form_answer: form_answer_innovation,
-                      document: set_feedback_content(form_answer_innovation)
+      form_answer: form_answer_innovation,
+      document: set_feedback_content(form_answer_innovation)
   end
 
   describe "#set_feedbacks" do

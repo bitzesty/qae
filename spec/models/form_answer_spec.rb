@@ -140,15 +140,15 @@ RSpec.describe FormAnswer, type: :model do
       form_answer.submitted_at = Time.zone.now
 
       form_answer.document = form_answer.document.merge(started_trading_day: "2",
-                                                        started_trading_month: 12,
-                                                        started_trading_year: Date.current.year - 2,
-                                                        trade_commercial_success: "3 to 5")
+        started_trading_month: 12,
+        started_trading_year: Date.current.year - 2,
+        trade_commercial_success: "3 to 5")
       expect(form_answer).to be_invalid
 
       form_answer.document = form_answer.document.merge(started_trading_day: "2",
-                                                        started_trading_month: 12,
-                                                        started_trading_year: Date.current.year - 7,
-                                                        trade_commercial_success: "3 to 5")
+        started_trading_month: 12,
+        started_trading_year: Date.current.year - 7,
+        trade_commercial_success: "3 to 5")
       expect(form_answer).to be_valid
     end
 

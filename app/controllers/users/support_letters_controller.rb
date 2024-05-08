@@ -23,10 +23,10 @@ class Users::SupportLettersController < Users::BaseController
       attachment.save!
 
       render json: support_letter.id,
-             status: :created
+        status: :created
     else
       render json: support_letter.errors.messages.to_json,
-             status: :unprocessable_entity
+        status: :unprocessable_entity
     end
   end
 

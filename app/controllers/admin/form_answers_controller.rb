@@ -80,10 +80,10 @@ class Admin::FormAnswersController < Admin::BaseController
   private
 
   helper_method :resource,
-                :primary_assessment,
-                :secondary_assessment,
-                :moderated_assessment,
-                :case_summary_assessment
+    :primary_assessment,
+    :secondary_assessment,
+    :moderated_assessment,
+    :case_summary_assessment
 
   def resource
     @form_answer ||= load_resource

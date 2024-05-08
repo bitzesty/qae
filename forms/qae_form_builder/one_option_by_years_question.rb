@@ -77,11 +77,11 @@ class QaeFormBuilder
 
   class OneOptionByYearsQuestion < Question
     attr_accessor :type,
-                  :label,
-                  :employees_question,
-                  :first_year_min_value,
-                  :first_year_validation_message,
-                  :validatable_years_position
+      :label,
+      :employees_question,
+      :first_year_min_value,
+      :first_year_validation_message,
+      :validatable_years_position
 
   end
 end

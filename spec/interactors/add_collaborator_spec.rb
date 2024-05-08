@@ -3,17 +3,17 @@ require "rails_helper"
 describe "Interactors::AddCollaborator" do
   let!(:account_admin) do
     FactoryBot.create :user, :completed_profile,
-                              first_name: "Account Admin John",
-                              role: "account_admin"
+      first_name: "Account Admin John",
+      role: "account_admin"
   end
 
   let(:account) { account_admin.account }
 
   let!(:form_answer) do
     FactoryBot.create :form_answer, :innovation,
-                                     user: account_admin,
-                                     urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+      user: account_admin,
+      urn: "QA0001/19T",
+      document: { company_name: "Bitzesty" }
   end
 
   let(:add_collaborator_interactor) do
@@ -52,8 +52,8 @@ describe "Interactors::AddCollaborator" do
   describe "Attempt to add to Collaborators of existing user, which is belongs_to another Account" do
    let!(:existing_user_with_another_account_association) do
       FactoryBot.create :user, :completed_profile,
-                                first_name: "Another Account Admin Dave",
-                                role: "account_admin"
+        first_name: "Another Account Admin Dave",
+        role: "account_admin"
     end
 
     let(:existing_user_email) { existing_user_with_another_account_association.email }
@@ -75,9 +75,9 @@ describe "Interactors::AddCollaborator" do
   describe "Attempt to add user to Collaborators twice" do
     let!(:existing_collaborator) do
       FactoryBot.create :user, :completed_profile,
-                                first_name: "Collaborator Matt",
-                                account: account,
-                                role: "regular"
+        first_name: "Collaborator Matt",
+        account: account,
+        role: "regular"
     end
 
     let(:existing_user_email) { existing_collaborator.email }

@@ -11,14 +11,14 @@ class CurrentQueensAward
   validates :outcome, presence: { message: "Outcome is required and an option must be selected from the following list"}
 
   validates :category, length: { maximum: 100 },
-                       inclusion: {
-                         in: -> (record) { record.categories }
-                       }
+    inclusion: {
+      in: -> (record) { record.categories }
+    }
 
   validates :year, length: { maximum: 4 },
-                   inclusion: {
-                     in: -> (record) { record.years }
-                   }
+    inclusion: {
+      in: -> (record) { record.years }
+    }
 
   def initialize(categories, years, outcomes, attrs={})
     @categories = categories.map { |c| [c.value] }.flatten.map(&:to_s)

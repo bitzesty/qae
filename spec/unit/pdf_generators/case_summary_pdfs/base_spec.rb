@@ -18,10 +18,10 @@ describe "CaseSummaryPdfs::Base" do
       [:innovation, :trade].each do |award_type|
         form_answer = send("form_answer_#{year}_#{award_type}")
         create :assessor_assignment, form_answer: form_answer,
-                                     submitted_at: Date.today,
-                                     assessor: nil,
-                                     position: "case_summary",
-                                     document: set_case_summary_content(form_answer)
+          submitted_at: Date.today,
+          assessor: nil,
+          position: "case_summary",
+          document: set_case_summary_content(form_answer)
       end
     end
   end

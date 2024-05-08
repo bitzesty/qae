@@ -18,9 +18,9 @@ class Account::CollaboratorsController < Account::BaseController
   end
   expose(:add_collaborator_interactor) do
     AddCollaborator.new(
-        current_user,
-        account,
-        {})
+      current_user,
+      account,
+      {})
   end
 
   def index
@@ -47,10 +47,10 @@ class Account::CollaboratorsController < Account::BaseController
     if add_collaborator_interactor.success?
       if params.has_key? :form_id
         redirect_to account_collaborators_path(form_id: params[:form_id]),
-                    notice: "#{collaborator.email} successfully added to Collaborators!"
+          notice: "#{collaborator.email} successfully added to Collaborators!"
       else
         redirect_to account_collaborators_path,
-                    notice: "#{collaborator.email} successfully added to Collaborators!"
+          notice: "#{collaborator.email} successfully added to Collaborators!"
       end
     else
       render :new
@@ -60,7 +60,7 @@ class Account::CollaboratorsController < Account::BaseController
   def update
     if collaborator.update(update_params)
       redirect_to account_collaborators_path,
-                    notice: "The collaborator #{collaborator.email} details were successfully updated."
+        notice: "The collaborator #{collaborator.email} details were successfully updated."
     else
       render :edit
     end
@@ -79,7 +79,7 @@ class Account::CollaboratorsController < Account::BaseController
                 .update_all(user_id: account.owner_id)
 
     redirect_to account_collaborators_path(form_id: form_id),
-                notice: "#{collaborator.email} successfully removed from Collaborators!"
+      notice: "#{collaborator.email} successfully removed from Collaborators!"
   end
 
   def set_form_answer
