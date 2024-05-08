@@ -29,7 +29,7 @@ module FormAnswerAttachmentsContext
               form_answer: form_answer,
             },
             content_type: "text/plain",
-            status: 422
+            status: :unprocessable_entity
         end
       end
     end
