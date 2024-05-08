@@ -1,5 +1,14 @@
 - title "Details about cookies on kings-awards-enterprise.service.gov.uk"
 
+.govuk-notification-banner.govuk-notification-banner--success.cookie-settings-banner.hide role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+  .govuk-notification-banner__header
+    h2.govuk-notification-banner__title#govuk-notification-banner-title
+      | Success
+  .govuk-notification-banner__content
+    p.govuk-notification-banner__heading
+      | You've set your cookie preferences.
+      =< link_to "Go back to your dashboard", href="/", class: "govuk-notification-banner__link"
+
 h1.govuk-heading-xl
   | Details about cookies on kings-awards-enterprise-service.gov.uk
 
@@ -40,32 +49,6 @@ h1.govuk-heading-xl
               td.govuk-table__cell These help us understand how people that visit kings-awards-enterprise-service.gov.uk use the website by storing their session state.
               td.govuk-table__cell 2 years
 
-      p.govuk-body
-        .hidden-hint
-          span.hidden-link.govuk-link
-            | I want to opt out of Google Analytics cookies
-          span.hidden-content
-            p.govuk-hint
-              | If you opt out, we'll set a cookie to remember your decision.
-            table.govuk-table
-              thead.govuk-table__head
-                tr.govuk-table__row
-                  th.govuk-table__header Name
-                  th.govuk-table__header Purpose
-                  th.govuk-table__header Expires
-              tbody.govuk-table__body
-                tr.govuk-table__row
-                  td.govuk-table__cell gaconsent
-                  td.govuk-table__cell Stores explicit consent from user whether or not they allow Google Analytics to track them.
-                  td.govuk-table__cell 1 year
-
-            label.govuk-hint
-              => check_box_tag "ga-optout-input", "1"
-              | Opt out and delete Google Analytics cookies from my browser
-            br
-
-            = button_tag "Save", class: "govuk-button", id: "ga-optout"
-
       h3.govuk-heading-m Strictly necessary cookies
       h5.govuk-heading-s Your progress when applying for the award
 
@@ -98,3 +81,42 @@ h1.govuk-heading-xl
       h3.govuk-heading-m Third-party websites
 
       p.govuk-body DBT does not take responsibility for any cookies placed on your device from other websites. Please note that if you click through to a website that we have provided a link to, DBT has no control over the cookies set on these websites, so please see that organisations cookie policy and setting pages for details on how to manage their cookies.
+
+      h3.govuk-heading-l
+        | Change your cookie settings
+      .if-js-hide
+        p.govuk-body
+          | We cannot change your cookie settings at the moment because JavaScript is not running in your browser. To fix this, try:
+          ul.govuk-list.govuk-list--bullet
+            li turning on JavaScript in your browser settings
+            li reloading this page
+
+      .if-no-js-hide
+        .govuk-form-group.cookie-consent-form
+          fieldset.govuk-fieldset
+            legend.govuk-fieldset__legend
+              | Select whether or not you want to allow using cookies that measure website use
+            p.govuk-hint
+              | If you opt out, we'll set a cookie to remember your decision.
+            table.govuk-table
+              thead.govuk-table__head
+                tr.govuk-table__row
+                  th.govuk-table__header Name
+                  th.govuk-table__header Purpose
+                  th.govuk-table__header Expires
+              tbody.govuk-table__body
+                tr.govuk-table__row
+                  td.govuk-table__cell gaconsent
+                  td.govuk-table__cell Stores explicit consent from user whether or not they allow Google Analytics to track them.
+                  td.govuk-table__cell 1 year
+            .govuk-radios
+              .govuk-radios__item
+                input.govuk-radios__input.ga-optout-input type="radio" name="ga-optout" value="yes" id="ga-optin-input"
+                label.govuk-label.govuk-radios__label for="ga-optin"
+                  | Use cookies that measure my website use
+              .govuk-radios__item
+                input.govuk-radios__input.ga-optout-input type="radio" name="ga-optout" value="no" checked="true" id="ga-optout-input"
+                label.govuk-label.govuk-radios__label for="ga-optout"
+                  | Do not use cookies that measure my website use
+
+        = button_tag "Save cookie settings", class: "govuk-button", id: "ga-optout"
