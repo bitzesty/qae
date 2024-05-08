@@ -3,6 +3,7 @@ inherit_mode:
     - Exclude
 
 require:
+  - rubocop-rails
   - rubocop-performance
   - standard
 
@@ -28,7 +29,9 @@ AllCops:
 
 inherit_from:
   - .rubocop_todo.yml
-  - .rubocop/rails.yml
+
+Bundler/OrderedGems:
+  Enabled: false
 
 Layout/LineLength:
   Max: 130
@@ -60,6 +63,50 @@ Layout/MultilineHashBraceLayout:
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
+Rails:
+  Enabled: true
+
+Rails/ApplicationRecord:
+  Exclude:
+    - db/migrate/**
+
+Rails/FindBy:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - lib/**/*
+    - db/migrate/**/*.rb
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - db/migrate/**/*.rb
+    - spec/**/*.rb
+
 Style/MethodCalledOnDoEndBlock:
   Enabled: true
 
@@ -85,35 +132,4 @@ Style/Documentation:
   Enabled: false
 
 Metrics/ClassLength:
-  Enabled: false
-
-Metrics/ModuleLength:
-  Enabled: false
-
-Metrics/MethodLength:
-  Enabled: false
-
-Metrics/ParameterLists:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
-
-Metrics/BlockLength:
-  Enabled: false
-
-Metrics/AbcSize:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Exclude:
-    - db/migrate/**/*.rb
-
-Naming/VariableNumber:
-  Enabled: false
-
-Naming/MemoizedInstanceVariableName:
-  EnforcedStyleForLeadingUnderscores: optional
-
-Bundler/OrderedGems:
   Enabled: false
