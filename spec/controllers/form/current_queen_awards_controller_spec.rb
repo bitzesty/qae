@@ -25,7 +25,7 @@ RSpec.describe Form::CurrentQueensAwardsController do
   end
   describe "GET edit" do
     it "renders the edit template" do
-      get :edit, params: { id: "000", form_answer_id: form_answer.id, current_queens_award: { category: "title", year: Date.today.year } }
+      get :edit, params: { id: "000", form_answer_id: form_answer.id, current_queens_award: { category: "title", year: Date.current.year } }
       expect(response).to render_template("edit")
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe Form::CurrentQueensAwardsController do
   describe "POST create" do
     it "should create a resource" do
       allow_any_instance_of(CurrentQueensAward).to receive(:valid?) {true}
-      post :create, params: { form_answer_id: form_answer.id, current_queens_award: { category: "title", year: Date.today.year } }
+      post :create, params: { form_answer_id: form_answer.id, current_queens_award: { category: "title", year: Date.current.year } }
       expect(response).to redirect_to edit_form_url(form_answer, step: "company-information", anchor: "non_js_applied_for_queen_awards_details-list-question")
       expect(form_answer.reload.document.present?).to be_truthy
     end

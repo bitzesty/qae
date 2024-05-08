@@ -12,7 +12,7 @@ shared_context "admin case summary pdf file checks" do
 
   let!(:assessor_assignment) do
     create :assessor_assignment, form_answer: form_answer,
-      submitted_at: Date.today,
+      submitted_at: Date.current,
       assessor: nil,
       position: "case_summary",
       document: assessor_assignment_document

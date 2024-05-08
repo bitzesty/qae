@@ -10,11 +10,11 @@ So that I can fill form completelly even if Javascript is turned off
   include_context "non js form base"
 
   let(:innovation_award_year) do
-    (Date.today - 2.years).year.to_s
+    (Date.current - 2.years).year.to_s
   end
 
   let(:trade_award_year) do
-    (Date.today - 1.years).year.to_s
+    (Date.current - 1.years).year.to_s
   end
 
   let(:awards) do

@@ -108,7 +108,7 @@ module QaePdfForms::CustomQuestions::ByYear
       month_number
     end.to_s
 
-    year = Date.today.year
+    year = Date.current.year
     year -= 1 if year_ended?
 
     day = "0" + day if day.size == 1

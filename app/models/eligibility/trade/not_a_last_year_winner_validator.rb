@@ -8,6 +8,6 @@ class Eligibility::Trade::NotALastYearWinnerValidator < ActiveModel::EachValidat
 
   # must not be winner last year
   def self.valid_year?(value)
-    value.to_i < Date.today.year
+    value.to_i < Date.current.year
   end
 end

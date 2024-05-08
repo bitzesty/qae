@@ -19,7 +19,7 @@ RSpec.describe Form::AwardsController do
   end
   describe "GET edit" do
     it "renders the edit template" do
-      get :edit, params: { id: "000", form_answer_id: form_answer.id, award: { title: "title", year: Date.today.year } }
+      get :edit, params: { id: "000", form_answer_id: form_answer.id, award: { title: "title", year: Date.current.year } }
       expect(response).to render_template("edit")
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe Form::AwardsController do
   describe "POST create" do
     it "should create a resource" do
       allow_any_instance_of(Award).to receive(:valid?) {true}
-      post :create, params: { form_answer_id: form_answer.id, award: { title: "title", year: Date.today.year } }
+      post :create, params: { form_answer_id: form_answer.id, award: { title: "title", year: Date.current.year } }
       expect(response).to redirect_to edit_form_url(form_answer, step: "test", anchor: "non_js_nomination_awards-list-question")
       expect(form_answer.reload.document.present?).to be_truthy
     end
