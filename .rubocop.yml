@@ -108,9 +108,6 @@ Rails/SkipsModelValidations:
     - db/migrate/**/*.rb
     - spec/**/*.rb
 
-Style/MethodCalledOnDoEndBlock:
-  Enabled: true
-
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
