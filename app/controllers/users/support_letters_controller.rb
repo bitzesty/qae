@@ -14,7 +14,7 @@ class Users::SupportLettersController < Users::BaseController
     )
   end
   expose(:attachment) do
-    SupportLetterAttachment.find_by_id(support_letter_params[:attachment])
+    SupportLetterAttachment.find_by(id: support_letter_params[:attachment])
   end
 
   def create

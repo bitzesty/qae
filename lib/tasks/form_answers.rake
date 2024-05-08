@@ -11,7 +11,7 @@ namespace :form_answers do
 
   desc "Populate submitted_at"
   task populate_submitted_at: :environment do
-    current_award_year_id = AwardYear.find_by_year(2017).id
+    current_award_year_id = AwardYear.find_by(year: 2017).id
     current_time = Time.current
     FormAnswer.where(submitted_at: nil).find_each do |f|
       if f.award_year_id == current_award_year_id

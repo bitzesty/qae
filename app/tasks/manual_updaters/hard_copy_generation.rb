@@ -28,7 +28,7 @@
 # FeedbackHardCopyPdf.destroy_all
 # AggregatedAwardYearPdf.destroy_all
 
-# award_year = AwardYear.find_by_year(2016)
+# award_year = AwardYear.find_by(year: 2016)
 # award_year.case_summary_hard_copies_state = nil
 # award_year.feedback_hard_copies_state = nil
 # award_year.aggregated_case_summary_hard_copy_state = nil

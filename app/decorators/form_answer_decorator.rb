@@ -211,7 +211,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
     if id && kind
       if %w[Admin Assessor].include?(kind)
-        user = kind.constantize.find_by_id(id)
+        user = kind.constantize.find_by(id: id)
 
         user.decorate.full_name if user
       end

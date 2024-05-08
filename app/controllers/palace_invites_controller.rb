@@ -22,7 +22,7 @@ class PalaceInvitesController < ApplicationController
   private
 
   def load_invite
-    @invite = PalaceInvite.find_by_token(params[:id]) or raise ActionController::RoutingError.new("Not Found")
+    @invite = PalaceInvite.find_by(token: params[:id]) or raise ActionController::RoutingError.new("Not Found")
     @invite_form = PalaceInviteForm.new(@invite)
   end
 

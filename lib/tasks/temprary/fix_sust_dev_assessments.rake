@@ -7,7 +7,7 @@ namespace :db do
 
   desc "fix appraisal forms on dev and staging"
   task fix_sust_dev_apprailsal_forms_v: :environment do
-    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by_year(2017), position: [0,1,4]).where("assessed_at IS NOT NULL")
+    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by(year: 2017), position: [0,1,4]).where("assessed_at IS NOT NULL")
 
     development = entries.select { |e| e.form_answer.award_type == "development" }
 

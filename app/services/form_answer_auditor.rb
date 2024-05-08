@@ -37,7 +37,7 @@ class FormAnswerAuditor
   def get_user_from_papertrail_version(version)
     return dummy_user if version.whodunnit.nil?
     klass, id = version.whodunnit.split(":")
-    klass.capitalize.constantize.find_by_id(id) || dummy_user
+    klass.capitalize.constantize.find_by(id: id) || dummy_user
   end
 
 end

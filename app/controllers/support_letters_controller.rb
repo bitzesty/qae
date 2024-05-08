@@ -2,7 +2,7 @@ class SupportLettersController < ApplicationController
   before_action :load_letter_and_check_access_key
 
   expose(:supporter) do
-    Supporter.find_by_access_key(params[:access_key])
+    Supporter.find_by(access_key: params[:access_key])
   end
 
   expose(:support_letter) do
