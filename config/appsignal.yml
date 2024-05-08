@@ -21,6 +21,9 @@ default: &defaults
   ignore_actions:
     - Healthcheck::HealthchecksController#check
 
+  ignore_errors:
+    - ActionController::InvalidAuthenticityToken
+
   # Enable allocation tracking for memory metrics. Default: true
   enable_allocation_tracking: true
 
