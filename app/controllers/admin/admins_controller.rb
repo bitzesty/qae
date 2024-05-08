@@ -4,8 +4,8 @@ class Admin::AdminsController < Admin::UsersController
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
     params[:search].permit!
     authorize Admin, :index?
-    @search = AdminSearch.new(Admin.all).
-                         search(params[:search])
+    @search = AdminSearch.new(Admin.all)
+                         .search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -76,8 +76,8 @@ class Admin::AdminsController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:admin).
-      permit(:email,
+    params.require(:admin)
+      .permit(:email,
              :password,
              :password_confirmation,
              :first_name,

@@ -1,8 +1,8 @@
 class Users::SupportersController < Users::BaseController
   expose(:form_answer) do
-    current_user.account.
-                form_answers.
-                find(params[:form_answer_id])
+    current_user.account
+                .form_answers
+                .find(params[:form_answer_id])
   end
   expose(:supporter) do
     form_answer.supporters.new(

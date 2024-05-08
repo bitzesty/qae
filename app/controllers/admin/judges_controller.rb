@@ -4,8 +4,8 @@ class Admin::JudgesController < Admin::UsersController
     params[:search].permit!
     authorize :judge, :index?
 
-    @search = JudgeSearch.new(Judge.active).
-                             search(params[:search])
+    @search = JudgeSearch.new(Judge.active)
+                             .search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -53,8 +53,8 @@ class Admin::JudgesController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:judge).
-      permit(:email,
+    params.require(:judge)
+      .permit(:email,
              :first_name,
              :last_name,
              :trade_role,

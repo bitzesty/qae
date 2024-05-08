@@ -26,8 +26,8 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def pdf_audit_certificate_generator
-    "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize.
-                                                                             new(object)
+    "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize
+                                                                             .new(object)
   end
 
   def download_filename

@@ -20,8 +20,8 @@ class Admin::AssessorsController < Admin::UsersController
     params[:search].permit!
     authorize :assessor, :index?
 
-    @search = AssessorSearch.new(Assessor.all).
-                             search(params[:search])
+    @search = AssessorSearch.new(Assessor.all)
+                             .search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -205,8 +205,8 @@ class Admin::AssessorsController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:assessor).
-      permit(:email,
+    params.require(:assessor)
+      .permit(:email,
              :company,
              :first_name,
              :last_name,

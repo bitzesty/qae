@@ -3,9 +3,9 @@ class Users::AuditCertificatesController < Users::BaseController
   before_action :check_if_audit_certificate_already_exist!, only: [:create]
 
   expose(:form_answer) do
-    current_user.account.
-                form_answers.
-                find(params[:form_answer_id])
+    current_user.account
+                .form_answers
+                .find(params[:form_answer_id])
   end
 
   expose(:pdf_data) do

@@ -65,9 +65,9 @@ class FormsLostFinancialDataDetector
   end
 
   def fetch_forms
-    target_forms = FormAnswer.where(award_type: ["innovation", "development", "trade"]).
-                              where("date(form_answers.updated_at) = ?", date_of_update).
-                              where("(document #>> '{employees_1of2}') IS NULL AND
+    target_forms = FormAnswer.where(award_type: ["innovation", "development", "trade"])
+                              .where("date(form_answers.updated_at) = ?", date_of_update)
+                              .where("(document #>> '{employees_1of2}') IS NULL AND
                                      (document #>> '{employees_1of3}') IS NULL AND
                                      (document #>> '{employees_1of5}') IS NULL AND
                                      (document #>> '{employees_1of6}') IS NULL AND

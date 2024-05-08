@@ -65,8 +65,8 @@ class FinancialYearPointer
   end
 
   def active_fields
-    question.decorate(answers: financial_pointer.filled_answers).
-             active_fields
+    question.decorate(answers: financial_pointer.filled_answers)
+             .active_fields
   end
 
   def entries

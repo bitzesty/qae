@@ -1,8 +1,8 @@
 class Users::SupportLetterAttachmentsController < Users::BaseController
   expose(:form_answer) do
-    current_user.account.
-                form_answers.
-                find(params[:form_answer_id])
+    current_user.account
+                .form_answers
+                .find(params[:form_answer_id])
   end
 
   expose(:support_letter_attachment) do
@@ -39,10 +39,10 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
     end
 
     def humanized_errors
-      support_letter_attachment.errors.
-                               full_messages.
-                               reject { |m| m == "Attachment This field cannot be blank" }.
-                               join(", ").
-                               gsub("Attachment ", "")
+      support_letter_attachment.errors
+                               .full_messages
+                               .reject { |m| m == "Attachment This field cannot be blank" }
+                               .join(", ")
+                               .gsub("Attachment ", "")
     end
 end

@@ -38,9 +38,9 @@ class Account < ApplicationRecord
   end
 
   def has_award_in_this_year?(award_type)
-    form_answers.for_year(AwardYear.current.year.to_s).
-                 for_award_type(award_type).
-                 present?
+    form_answers.for_year(AwardYear.current.year.to_s)
+                 .for_award_type(award_type)
+                 .present?
   end
 
   def collaborators_checked?
