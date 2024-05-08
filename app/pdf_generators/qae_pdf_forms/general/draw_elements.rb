@@ -55,7 +55,7 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       attachment_path(attachment.file, true),
       attachment.original_filename.truncate(60),
-      description ? description : nil)
+      description ? description : nil,)
 
     move_down 5.mm
   end
@@ -66,7 +66,7 @@ module QaePdfForms::General::DrawElements
       v["link"],
       v["link"],
       v["description"] ? v["description"] : v["link"],
-      {})
+      {},)
   end
 
   def base_link_sceleton(url, filename, description=nil, ops = {})

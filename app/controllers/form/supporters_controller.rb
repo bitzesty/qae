@@ -73,7 +73,7 @@ class Form::SupportersController < Form::BaseController
       :first_name,
       :last_name,
       :relationship_to_nominee,
-      :email
+      :email,
     )
   end
 end

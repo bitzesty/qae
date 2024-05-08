@@ -286,7 +286,7 @@ class FormController < ApplicationController
       nickname: nickname,
       document: {
         company_name: current_user.company_name,
-      }
+      },
     )
 
     redirect_to edit_form_url(form_answer)

@@ -123,7 +123,7 @@ class Reports::RegisteredUsers
       :assessor_assignments,
       :primary_assessor,
       :secondary_assessor,
-      :form_answer_progress)
+      :form_answer_progress,)
   end
 
   def mapping

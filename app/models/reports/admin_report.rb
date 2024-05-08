@@ -81,7 +81,7 @@ class Reports::AdminReport
       OpenStruct.new(
         hard_copy: true,
         data: (Rails.env.development? ? attachment.file.read : attachment.file.url),
-        filename: attachment.original_filename
+        filename: attachment.original_filename,
       )
     else
       # Render dynamically
@@ -92,7 +92,7 @@ class Reports::AdminReport
 
       OpenStruct.new(
         data: data.render,
-        filename: pdf_filename(sub_type)
+        filename: pdf_filename(sub_type),
       )
     end
   end

@@ -42,7 +42,7 @@ class Users::VatReturnsController < Users::BaseController
       params.merge!(
         vat_returns_file: {
           attachment: "",
-        }
+        },
       )
     end
 

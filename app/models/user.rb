@@ -63,7 +63,7 @@ class User < ApplicationRecord
     }
     scope :by_query_part, -> (email) {
       where("email ilike ? OR first_name ilike ? OR last_name ilike ?",
-        "%#{email}%", "%#{email}%", "%#{email}%")
+        "%#{email}%", "%#{email}%", "%#{email}%",)
     }
     scope :not_in_ids, -> (ids) {
       where.not(id: ids)
@@ -73,7 +73,7 @@ class User < ApplicationRecord
     }
     scope :not_bounced_emails, -> {
       where(
-        "marked_at_bounces_email IS FALSE OR marked_at_bounces_email IS NULL"
+        "marked_at_bounces_email IS FALSE OR marked_at_bounces_email IS NULL",
       )
     }
     scope :allowed_to_get_award_open_notification, -> (award_type) {
@@ -81,7 +81,7 @@ class User < ApplicationRecord
     }
     scope :debounce_scan_candidates, -> () {
       order(id: :asc).where(
-        "debounce_api_latest_check_at IS NULL OR debounce_api_latest_check_at < ?", 6.months.ago
+        "debounce_api_latest_check_at IS NULL OR debounce_api_latest_check_at < ?", 6.months.ago,
       )
     }
     scope :want_to_receive_opening_notification_for_at_least_one_award, -> () {

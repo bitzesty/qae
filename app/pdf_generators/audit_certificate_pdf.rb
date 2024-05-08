@@ -27,7 +27,7 @@ class AuditCertificatePdf < Prawn::Document
     @financial_pointer = FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
       financial_summary_view: true,
-    })
+    },)
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions
     @filled_answers = financial_pointer.filled_answers

@@ -12,7 +12,7 @@ class SupportLettersController < ApplicationController
         last_name: supporter.last_name,
         relationship_to_nominee: supporter.relationship_to_nominee,
         form_answer: supporter.form_answer,
-        user: supporter.user
+        user: supporter.user,
       )
   end
 
@@ -52,7 +52,7 @@ class SupportLettersController < ApplicationController
         :city,
         :country,
         :postcode,
-        :body
+        :body,
       )
     else
       {}

@@ -11,14 +11,14 @@ class Admin::FormAnswers::CollaboratorsController < Admin::BaseController
   expose(:search_users) do
     AdminActions::SearchCollaboratorCandidates.new(
       form_answer,
-      search_params
+      search_params,
     )
   end
 
   expose(:add_collaborator_interactor) do
     AdminActions::AddCollaborator.new(
       form_answer,
-      user
+      user,
     )
   end
 
@@ -45,7 +45,7 @@ class Admin::FormAnswers::CollaboratorsController < Admin::BaseController
   def search_params
     if params[:search].present?
       params.require(:search).permit(
-        :query
+        :query,
       )
     end
   end

@@ -39,7 +39,7 @@ module CaseSummaryPdfs::General::DrawElements
 
   def render_organization_type
     pdf_doc.text_box "Organisation Type: #{organisation_type}", header_text_properties.merge(
-      at: [0.mm, 112.mm + default_offset]
+      at: [0.mm, 112.mm + default_offset],
     )
   end
 
@@ -47,7 +47,7 @@ module CaseSummaryPdfs::General::DrawElements
     pdf_doc.text_box "Type: #{application_type}",
       header_text_properties.merge(
         at: [0.mm, 97.mm + default_offset + offset],
-        width: 272.mm
+        width: 272.mm,
     )
   end
 

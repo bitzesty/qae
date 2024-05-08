@@ -91,7 +91,7 @@ class ContentOnlyController < ApplicationController
   def get_current_form
     @form_answer = current_account.form_answers.find(params[:form_id])
     @form = @form_answer.award_form.decorate(
-      answers: HashWithIndifferentAccess.new(@form_answer.document)
+      answers: HashWithIndifferentAccess.new(@form_answer.document),
     )
   end
 

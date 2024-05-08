@@ -215,6 +215,6 @@ class Admin::AssessorsController < Admin::UsersController
         :innovation_role,
         :development_role,
         :mobility_role,
-        :promotion_role)
+        :promotion_role,)
   end
 end

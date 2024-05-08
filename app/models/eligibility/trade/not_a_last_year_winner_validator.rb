@@ -2,7 +2,7 @@ class Eligibility::Trade::NotALastYearWinnerValidator < ActiveModel::EachValidat
   def validate_each(record, attribute, value)
     record.errors.add(
       attribute,
-      "Not eligible to apply this year"
+      "Not eligible to apply this year",
     ) unless self.class.valid_year?(value)
   end
 

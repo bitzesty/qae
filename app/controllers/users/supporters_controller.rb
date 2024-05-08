@@ -8,7 +8,7 @@ class Users::SupportersController < Users::BaseController
     form_answer.supporters.new(
       supporter_params.merge({
         user_id: current_user.id,
-      })
+      }),
     )
   end
 
@@ -35,7 +35,7 @@ class Users::SupportersController < Users::BaseController
         :first_name,
         :last_name,
         :relationship_to_nominee,
-        :email
+        :email,
       )
     end
 end

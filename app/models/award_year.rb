@@ -62,7 +62,7 @@ class AwardYear < ApplicationRecord
     define_method("case_summary_trade_#{i}_hard_copy_pdf") do
       send("aggregated_case_summary_hard_copies").find_by(
         award_category: "trade",
-        sub_type: i
+        sub_type: i,
       )
     end
   end
@@ -266,7 +266,7 @@ class AwardYear < ApplicationRecord
 
     def buckingham_palace_reception_attendee_information_due_by
       current_year_deadline(
-        "buckingham_palace_reception_attendee_information_due_by"
+        "buckingham_palace_reception_attendee_information_due_by",
       ).trigger_at
     end
 

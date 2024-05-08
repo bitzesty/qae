@@ -52,7 +52,7 @@ class CheckAccountOnBouncesEmail
       begin
         res = RestClient.get(
           "https://api.debounce.io/v1/?api=#{ENV['DEBOUNCE_API_KEY']}&email=#{email}", 
-          {accept: :json}
+          {accept: :json},
         )
         @code = JSON.parse(res.body)["debounce"]["code"]
 

@@ -10,7 +10,7 @@ class Users::SupportLettersController < Users::BaseController
         user_id: current_user.id,
         manual: true,
         support_letter_attachment: attachment,
-      })
+      }),
     )
   end
   expose(:attachment) do
@@ -53,7 +53,7 @@ class Users::SupportLettersController < Users::BaseController
       :first_name,
       :last_name,
       :relationship_to_nominee,
-      :attachment
+      :attachment,
     )
   end
 end

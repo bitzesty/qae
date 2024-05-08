@@ -5,7 +5,7 @@ describe UserDecorator do
     first_name: "Foo",
     last_name: "Bar",
     role: "account_admin",
-    company_name: "Umbrella Corporation"
+    company_name: "Umbrella Corporation",
   )}
 
   let(:subject) { UserDecorator.decorate(user) }

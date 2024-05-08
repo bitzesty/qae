@@ -21,12 +21,12 @@ class Users::CollaboratorAccessController < Users::BaseController
           section: params[:section],
           joined_at: params[:timestamp],
         },
-      }
+      },
     )
 
     render(
       plain: "#{pusher_callback}(#{response.to_json})",
-      content_type: "application/javascript"
+      content_type: "application/javascript",
     )
   end
 end

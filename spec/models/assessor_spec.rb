@@ -10,7 +10,7 @@ RSpec.describe Assessor, type: :model do
         first_name: "John",
         last_name: "Smith",
         password: "^#ur9EkLm@1W+OaDvg",
-        password_confirmation: "^#ur9EkLm@1W+OaDvg"
+        password_confirmation: "^#ur9EkLm@1W+OaDvg",
       )
 
       expect(assessor.autosave_token).not_to be nil

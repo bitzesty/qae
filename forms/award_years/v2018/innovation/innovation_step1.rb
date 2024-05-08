@@ -96,7 +96,7 @@ class AwardYears::V2018::QaeForms
               "2 to 4" => AwardYear.start_trading_since(2),
               "5 plus" => AwardYear.start_trading_since(5),
             },
-            conditional: :innovation_performance_years
+            conditional: :innovation_performance_years,
           )
         end
 

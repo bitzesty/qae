@@ -20,7 +20,7 @@ class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
       file: tmpfile,
       type_of_report: type_of_report,
       award_category: award_category,
-      original_filename: "#{file_prefix}.pdf"
+      original_filename: "#{file_prefix}.pdf",
     )
 
     pdf_record.save!

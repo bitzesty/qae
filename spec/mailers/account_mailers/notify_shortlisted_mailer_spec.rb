@@ -24,7 +24,7 @@ describe AccountMailers::NotifyShortlistedMailer do
     let(:mail) do
       described_class.notify(
         form_answer.id,
-        user.id
+        user.id,
       )
     end
 
@@ -48,7 +48,7 @@ describe AccountMailers::NotifyShortlistedMailer do
     let(:mail) do
       described_class.notify_po_sd(
         form_answer.id,
-        user.id
+        user.id,
       )
     end
 

@@ -99,7 +99,7 @@ class Admin::UsersController < Admin::BaseController
       :notification_when_development_award_open,
       :notification_when_mobility_award_open,
       :notification_when_submission_deadline_is_coming,
-      :agree_sharing_of_details_with_lieutenancies
+      :agree_sharing_of_details_with_lieutenancies,
     )
   end
 end

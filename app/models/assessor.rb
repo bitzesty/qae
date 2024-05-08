@@ -109,7 +109,7 @@ class Assessor < ApplicationRecord
       (form_answers.award_type in (?) OR
       (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))
       AND form_answers.state NOT IN (?)
-    ", c, [0, 1], id, "withdrawn")
+    ", c, [0, 1], id, "withdrawn",)
   end
 
   # we're using extended scope on the resource page
@@ -122,7 +122,7 @@ class Assessor < ApplicationRecord
     out = FormAnswer.where("
       form_answers.award_type in (?)
       AND form_answers.state NOT IN (?)
-    ", c, "withdrawn")
+    ", c, "withdrawn",)
   end
 
   def full_name

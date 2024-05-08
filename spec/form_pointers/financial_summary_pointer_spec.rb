@@ -58,7 +58,7 @@ describe FinancialSummaryPointer do
               {:name => "sales_3of4", :value => "10"},
               {:name => "sales_4of4", :value => "10"},
             ] },
-          ]
+          ],
         )
       end
     end
@@ -112,7 +112,7 @@ describe FinancialSummaryPointer do
               {:name => "sales_1of2", :value => "10"},
               {:name => "sales_2of2", :value => "10"},
             ] },
-          ]
+          ],
         )
       end
     end
@@ -159,7 +159,7 @@ describe FinancialSummaryPointer do
               {:name => "sales_3of4", :value => "10"},
               {:name => "sales_4of4", :value => "10"},
             ] },
-          ]
+          ],
         )
       end
 
@@ -186,7 +186,7 @@ describe FinancialSummaryPointer do
               {:name => "sales_3of4", :value => "10"},
               {:name => "sales_4of4", :value => "10"},
             ] },
-          ]
+          ],
         )
       end
       
@@ -213,7 +213,7 @@ describe FinancialSummaryPointer do
               {:name => "sales_3of4", :value => "10"},
               {:name => "sales_4of4", :value => "10"},
             ] },
-          ]
+          ],
         )
       end
     end

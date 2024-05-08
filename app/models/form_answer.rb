@@ -124,7 +124,7 @@ class FormAnswer < ApplicationRecord
         where(assessor_assignments:
           {
             position: 0,
-          }
+          },
         ).first
       end
 
@@ -132,7 +132,7 @@ class FormAnswer < ApplicationRecord
         where(assessor_assignments:
           {
             position: 1,
-          }
+          },
         ).first
       end
     end
@@ -172,7 +172,7 @@ class FormAnswer < ApplicationRecord
       query = numbers.join("|")
 
       where(
-        %Q{#{table_name}.metadata::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'}
+        %Q{#{table_name}.metadata::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'},
       )
     }
 

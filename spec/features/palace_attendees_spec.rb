@@ -26,10 +26,10 @@ So that I provide a full list of attendees for Buckingham Palace reception
     invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 00))
 
     attendees_info_due = settings.deadlines.where(
-      kind: "buckingham_palace_reception_attendee_information_due_by"
+      kind: "buckingham_palace_reception_attendee_information_due_by",
     ).first
     attendees_info_due.update_column(:trigger_at,
-      DateTime.new(Date.current.year, 5, 6, 00, 00)
+      DateTime.new(Date.current.year, 5, 6, 00, 00),
     )
 
     settings.reload
@@ -43,7 +43,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
     s = create(:settings, :expired_submission_deadlines)
     s.email_notifications.create!(
       kind: "winners_notification",
-      trigger_at: DateTime.now - 1.year
+      trigger_at: DateTime.now - 1.year,
     )
 
     s
@@ -60,7 +60,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
         settings.email_notifications.create!(
           kind: "buckingham_palace_invite",
-          trigger_at: DateTime.now - 1.year
+          trigger_at: DateTime.now - 1.year,
         )
 
         visit edit_palace_invite_path(id: palace_invite.token)
@@ -72,7 +72,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
       before do
         settings.email_notifications.create!(
           kind: "buckingham_palace_invite",
-          trigger_at: DateTime.now - 1.year
+          trigger_at: DateTime.now - 1.year,
         )
         palace_invite.submitted = true
         palace_invite.save!
@@ -90,7 +90,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
     before do
       settings.email_notifications.create!(
         kind: "buckingham_palace_invite",
-        trigger_at: DateTime.now - 1.year
+        trigger_at: DateTime.now - 1.year,
       )
 
       visit edit_palace_invite_path(id: palace_invite.token)

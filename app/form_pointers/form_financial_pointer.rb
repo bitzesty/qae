@@ -49,7 +49,7 @@ class FormFinancialPointer
       fetched = target_financial_questions.map do |question|
         FinancialYearPointer.new(
           question: question,
-          financial_pointer: self
+          financial_pointer: self,
         ).data
       end
 

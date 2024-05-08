@@ -47,7 +47,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
 
         csv << mapping.map do |m|
           sanitize_string(
-            u.call_method(m[:method])
+            u.call_method(m[:method]),
           )
         end
       end
@@ -57,7 +57,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
 
         csv << mapping.map do |m|
           sanitize_string(
-            u.call_method(m[:method])
+            u.call_method(m[:method]),
           )
         end
       end
@@ -67,7 +67,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
 
         csv << mapping.map do |m|
           sanitize_string(
-            u.call_method(m[:method])
+            u.call_method(m[:method]),
           )
         end
       end

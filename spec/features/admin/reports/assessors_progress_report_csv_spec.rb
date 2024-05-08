@@ -86,7 +86,7 @@ describe "Assessors Progress Reports CSV" do
   let(:data) {
     Reports::DataPickers::AssessorProgressPicker.new(
       AwardYear.current,
-      "trade"
+      "trade",
     ).results
   }
 
@@ -127,7 +127,7 @@ describe "Assessors Progress Reports CSV" do
       assessment = AssessorAssignment.new(
         position: positions[entry[1].to_sym],
         assessor_id: assessor.id,
-        form_answer_id: f.id
+        form_answer_id: f.id,
       )
 
       if entry[2].present?

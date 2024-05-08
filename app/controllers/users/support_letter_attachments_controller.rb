@@ -10,7 +10,7 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
       support_letter_attachment_params.merge({
         user_id: current_user.id,
         original_filename: original_filename,
-      })
+      }),
     )
   end
 

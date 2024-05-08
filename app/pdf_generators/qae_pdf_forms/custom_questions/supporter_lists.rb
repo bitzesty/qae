@@ -48,7 +48,7 @@ module QaePdfForms::CustomQuestions::SupporterLists
     if entry.support_letter_attachment.present?
       form_pdf.base_link_sceleton(
         form_pdf.attachment_path(entry.support_letter_attachment.attachment, true),
-        entry.support_letter_attachment.original_filename.truncate(60)
+        entry.support_letter_attachment.original_filename.truncate(60),
       )
     end
 

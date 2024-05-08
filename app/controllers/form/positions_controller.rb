@@ -103,7 +103,7 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
       :start_month,
       :start_year,
       :end_month,
-      :end_year
+      :end_year,
     )
   end
 end

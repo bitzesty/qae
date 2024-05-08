@@ -269,7 +269,7 @@ class AppraisalForm
 
     OpenStruct.new(
       options: options,
-      option: option
+      option: option,
     )
   end
 
@@ -287,7 +287,7 @@ class AppraisalForm
 
     OpenStruct.new(
       options: options,
-      option: option
+      option: option,
     )
   end
 
@@ -300,7 +300,7 @@ class AppraisalForm
 
     OpenStruct.new(
       options: options,
-      option: option
+      option: option,
     )
   end
 

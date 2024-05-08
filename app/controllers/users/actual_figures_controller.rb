@@ -42,7 +42,7 @@ class Users::ActualFiguresController < Users::BaseController
       params.merge!(
         commercial_figures_file: {
           attachment: "",
-        }
+        },
       )
     end
 

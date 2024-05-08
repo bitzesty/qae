@@ -5,8 +5,8 @@ class Form::SupportLettersController < Form::BaseController
     @support_letter = @form_answer.support_letters.new(
       support_letter_params.merge(
         user_id: current_user.id,
-        manual: true
-      )
+        manual: true,
+      ),
     )
 
     attachment = SupportLetterAttachment.new(attachment_params)
@@ -44,7 +44,7 @@ class Form::SupportLettersController < Form::BaseController
     params[:support_letter].permit(
       :first_name,
       :last_name,
-      :relationship_to_nominee
+      :relationship_to_nominee,
     )
   end
 
@@ -74,7 +74,7 @@ class Form::SupportLettersController < Form::BaseController
     letters << new_letter
 
     @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters,
-      manually_upload: "yes")
+      manually_upload: "yes",)
   end
 
   def remove_support_letter_from_document!

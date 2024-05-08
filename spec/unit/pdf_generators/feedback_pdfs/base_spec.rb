@@ -29,7 +29,7 @@ describe "FeedbackPdfs::Base" do
         "all", nil, {
           category: "innovation",
           award_year: award_year,
-        }
+        },
       ).set_feedbacks
        .map(&:id)
 
@@ -41,7 +41,7 @@ describe "FeedbackPdfs::Base" do
         "all", nil, {
           category: "trade",
           award_year: award_year,
-        }
+        },
       ).set_feedbacks
        .map(&:id)
 

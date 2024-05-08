@@ -6,7 +6,7 @@ module SharedPdfHelpers::FontHelper
         bold: font_path("OpenSans-Bold.ttf"),
         italic: font_path("OpenSans-RegularItalic.ttf"),
         bold_italic: font_path("OpenSans-BoldItalic.ttf"),
-      }
+      },
     )
 
     self.font("OpenSans")

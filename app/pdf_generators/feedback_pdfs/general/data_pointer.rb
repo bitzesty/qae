@@ -57,12 +57,12 @@ module FeedbackPdfs::General::DataPointer
       0 => 130,
       1 => 300,
       2 => 337,
-    })
+    },)
     render_table(table_items, {
       0 => 130,
       1 => 300,
       2 => 337,
-    })
+    },)
 
     if form_answer.development? && strengths_entries.present?
       year = form_answer.award_year.year
@@ -72,7 +72,7 @@ module FeedbackPdfs::General::DataPointer
         column_widths: {
           0 => 130,
           1 => 637,
-        }) do
+        },) do
         values = cells.columns(1).rows(0..-1)
 
         green_rags = values.filter do |cell|
@@ -103,7 +103,7 @@ module FeedbackPdfs::General::DataPointer
     render_table([["Overall Summary", data["overall_summary"]]], {
       0 => 130,
       1 => 637,
-    })
+    },)
   end
 
   def render_headers(table_lines, column_widths)

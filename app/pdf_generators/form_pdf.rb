@@ -61,7 +61,7 @@ class FormPdf < Prawn::Document
     steps.each do |step|
       QaePdfForms::General::StepPointer.new(award_form: award_form,
         form_pdf: self,
-        step: step).render!
+        step: step,).render!
     end
 
     render_submission_deadline_block(32)

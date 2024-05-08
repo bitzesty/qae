@@ -58,7 +58,7 @@ class AssessmentSubmissionService
   def set_submitted_at_as_now!
     resource.update(
       submitted_at: DateTime.now,
-      locked_at: DateTime.now
+      locked_at: DateTime.now,
     )
   end
 
@@ -68,7 +68,7 @@ class AssessmentSubmissionService
       moderated_assessment = record(AssessorAssignment.positions[:moderated])
 
       document = primary_assessment.document.merge(
-        "verdict_rate" => moderated_assessment.document["verdict_rate"]
+        "verdict_rate" => moderated_assessment.document["verdict_rate"],
       )
 
       case_summary.document = document
@@ -109,7 +109,7 @@ class AssessmentSubmissionService
 
   def record(position)
     AssessorAssignment.where(
-      form_answer_id: form_answer.id, position: position
+      form_answer_id: form_answer.id, position: position,
     ).first_or_create
   end
 
@@ -165,7 +165,7 @@ class AssessmentSubmissionService
       }
 
       form_answer.update_column(
-        :discrepancies_between_primary_and_secondary_appraisals, res
+        :discrepancies_between_primary_and_secondary_appraisals, res,
       )
     end
   end

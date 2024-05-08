@@ -43,7 +43,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
     @financial_pointer = FinancialSummaryPointer.new(form_answer.decorate, {
       exclude_ignored_questions: true,
       award_year: @award_year,
-    })
+    },)
 
     @financial_data = financial_pointer.summary_data
 

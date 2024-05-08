@@ -87,7 +87,7 @@ Rails.application.configure do
   config.lograge.keep_original_rails_log = true
   config.lograge.logger = Appsignal::Logger.new(
     "rails",
-    format: Appsignal::Logger::LOGFMT
+    format: Appsignal::Logger::LOGFMT,
   )
   config.logger = ActiveSupport::Logger.new(STDOUT) # Lograge-formatted logs to STDOUT
 

@@ -29,7 +29,7 @@ describe Notifiers::EmailNotificationService do
 
       expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
         user.id,
-        "innovation"
+        "innovation",
       ) { mailer }
 
       described_class.run
@@ -50,7 +50,7 @@ describe Notifiers::EmailNotificationService do
 
       expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
         user.id,
-        "trade"
+        "trade",
       ) { mailer }
 
       described_class.run
@@ -71,7 +71,7 @@ describe Notifiers::EmailNotificationService do
 
       expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
         user.id,
-        "mobility"
+        "mobility",
       ) { mailer }
 
       described_class.run
@@ -92,7 +92,7 @@ describe Notifiers::EmailNotificationService do
 
       expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
         user.id,
-        "development"
+        "development",
       ) { mailer }
 
       described_class.run
@@ -110,7 +110,7 @@ describe Notifiers::EmailNotificationService do
     it "triggers current notification" do
       expect(Users::AuditCertificateRequestMailer).to receive(:notify).with(
         form_answer.id,
-        user.id
+        user.id,
       ) { mailer }
 
       described_class.run
@@ -147,7 +147,7 @@ describe Notifiers::EmailNotificationService do
 
       expect(Users::ShortlistedReminderMailer).to receive(:notify).with(
         form_answer.id,
-        user.id
+        user.id,
       ) { mailer }
 
       described_class.run
@@ -164,7 +164,7 @@ describe Notifiers::EmailNotificationService do
       mailer = double(deliver_later!: true)
       expect(AccountMailers::NotifyNonShortlistedMailer).to receive(:notify).with(
         form_answer.id,
-        user.id
+        user.id,
       ) { mailer }
 
       described_class.run
@@ -182,7 +182,7 @@ describe Notifiers::EmailNotificationService do
       mailer = double(deliver_later!: true)
       expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify).with(
         form_answer.id,
-        user.id
+        user.id,
       ) { mailer }
 
       described_class.run
@@ -207,12 +207,12 @@ describe Notifiers::EmailNotificationService do
 
       expect(AccountMailers::NotifyShortlistedMailer).not_to receive(:notify_po_sd_with_actual_figures).with(
         form_answer1.id,
-        form_answer1.user.id
+        form_answer1.user.id,
       ) { mailer }
 
       expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd_with_actual_figures).with(
         form_answer2.id,
-        form_answer2.user.id
+        form_answer2.user.id,
       ) { mailer }
 
       described_class.run
@@ -232,7 +232,7 @@ describe Notifiers::EmailNotificationService do
       mailer = double(deliver_later!: true)
       expect(AccountMailers::NotifyShortlistedMailer).to receive(:notify_po_sd).with(
         form_answer.id,
-        user.id
+        user.id,
       ) { mailer }
 
       described_class.run
@@ -249,7 +249,7 @@ describe Notifiers::EmailNotificationService do
       mailer = double(deliver_later!: true)
       expect(AccountMailers::BusinessAppsWinnersMailer).to receive(:notify).with(
         form_answer.id,
-        user.id
+        user.id,
       ) { mailer }
 
       described_class.run
@@ -284,7 +284,7 @@ describe Notifiers::EmailNotificationService do
         create(:palace_invite,
           email: form_answer.decorate.head_of_business_email,
           form_answer: form_answer,
-          submitted: true)
+          submitted: true,)
 
         expect(AccountMailers::BuckinghamPalaceInviteMailer).not_to receive(:invite)
 
@@ -311,7 +311,7 @@ describe Notifiers::EmailNotificationService do
       it "triggers current notification" do
         expect(AccountMailers::ReminderToSubmitMailer).to receive(:notify).with(
           form_answer.id,
-          user.id
+          user.id,
         ) { mailer }
 
         described_class.run
@@ -328,7 +328,7 @@ describe Notifiers::EmailNotificationService do
       it "does not send email notification" do
         expect(AccountMailers::ReminderToSubmitMailer).not_to receive(:notify).with(
           form_answer.id,
-          user.id
+          user.id,
         ) { mailer }
 
         described_class.run
@@ -348,7 +348,7 @@ describe Notifiers::EmailNotificationService do
       mailer = double(deliver_later!: true)
       expect(AccountMailers::UnsuccessfulFeedbackMailer).to receive(:notify).with(
         form_answer.id,
-        user.id
+        user.id,
       ) { mailer }
 
       described_class.run
@@ -368,7 +368,7 @@ describe Notifiers::EmailNotificationService do
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
       expect(Users::WinnersHeadOfOrganisationMailer).to receive(:notify).with(
-        form_answer.id
+        form_answer.id,
       ) { mailer }
 
       described_class.run

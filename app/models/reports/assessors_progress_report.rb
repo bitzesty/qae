@@ -26,7 +26,7 @@ class Reports::AssessorsProgressReport
   def build
     data = Reports::DataPickers::AssessorProgressPicker.new(
       year,
-      award_category
+      award_category,
     ).results
 
     CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|

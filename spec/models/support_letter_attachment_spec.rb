@@ -13,22 +13,22 @@ RSpec.describe SupportLetterAttachment, type: :model do
       let(:too_big_file) do
         Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root,"spec","support","file_samples","photo_with_size_more_than_5MB.jpg"
-          )
+            Rails.root,"spec","support","file_samples","photo_with_size_more_than_5MB.jpg",
+          ),
         )
       end
       let(:file_with_wrong_extension) do
         Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root,"spec","support","file_samples","simple_txt_sample.log"
-          )
+            Rails.root,"spec","support","file_samples","simple_txt_sample.log",
+          ),
         )
       end
       let(:normal_file) do
         Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root,"spec","support","file_samples","photo_with_size_less_than_5MB.jpg"
-          )
+            Rails.root,"spec","support","file_samples","photo_with_size_less_than_5MB.jpg",
+          ),
         )
       end
 
@@ -51,14 +51,14 @@ RSpec.describe SupportLetterAttachment, type: :model do
       it "should allow to upload 5MB file maximum" do
         expect(attachment_with_too_big_file.valid?).to be_falsey
         expect(attachment_with_too_big_file.errors.full_messages).to include(
-          "Attachment is too big (should be at most 5 MB)"
+          "Attachment is too big (should be at most 5 MB)",
         )
       end
 
       it "should allow to upload files with allowed extensions" do
         expect(attachment_with_wrong_extension_file.valid?).to be_falsey
         expect(attachment_with_wrong_extension_file.errors.full_messages).to include(
-          "Attachment You are not allowed to upload \"log\" files, allowed types: #{FileUploader.new.extension_allowlist.join(", ")}"
+          "Attachment You are not allowed to upload \"log\" files, allowed types: #{FileUploader.new.extension_allowlist.join(", ")}",
         )
       end
 

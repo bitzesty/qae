@@ -91,7 +91,7 @@ class Users::AuditCertificatesController < Users::BaseController
       params.merge!(
         audit_certificate: {
           attachment: "",
-        }
+        },
       )
     end
 

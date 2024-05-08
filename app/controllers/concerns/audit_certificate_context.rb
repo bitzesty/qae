@@ -72,7 +72,7 @@ module AuditCertificateContext
       params.merge!(
         audit_certificate: {
           attachment: "",
-        }
+        },
       )
     end
 

@@ -45,7 +45,7 @@ class FeedbackForm
 
     OpenStruct.new(
       options: options,
-      option: option
+      option: option,
     )
   end
 end

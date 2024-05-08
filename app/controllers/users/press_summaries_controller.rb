@@ -62,7 +62,7 @@ class Users::PressSummariesController < Users::BaseController
       :name,
       :last_name,
       :phone_number,
-      :email
+      :email,
     )
   end
 
@@ -88,7 +88,7 @@ class Users::PressSummariesController < Users::BaseController
     FormFinancialPointer.new(
       award,
       exclude_ignored_questions: true,
-      financial_summary_view: true
+      financial_summary_view: true,
     ).data.detect { |r| r[:employees].present? }
   end
 

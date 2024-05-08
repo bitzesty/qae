@@ -139,7 +139,7 @@ class ApplicationController < ActionController::Base
     AuditLog.create!(
       subject: current_subject,
       auditable: form_answer,
-      action_type: action_type
+      action_type: action_type,
       )
   end
 
@@ -172,7 +172,7 @@ class ApplicationController < ActionController::Base
         :password,
         :password_confirmation,
         :agreed_with_privacy_policy
-      ]
+      ],
     )
     devise_parameter_sanitizer.permit(
       :account_update,
@@ -197,7 +197,7 @@ class ApplicationController < ActionController::Base
         :prefered_method_of_contact,
         :subscribed_to_emails,
         :agree_being_contacted_by_department_of_business
-      ]
+      ],
     )
   end
 

@@ -30,7 +30,7 @@ describe Reports::FormAnswer do
       form_answer.document = form_answer.document.merge(
         press_contact_details_title: "Countess",
         press_contact_details_first_name: "Kathleen",
-        press_contact_details_last_name: "Stark"
+        press_contact_details_last_name: "Stark",
       )
 
       summary = double(name: "", title: "Earl", last_name: "Stark")

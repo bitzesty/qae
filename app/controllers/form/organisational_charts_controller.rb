@@ -9,7 +9,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
 
   expose(:form_answer_attachment) do
     current_user.form_answer_attachments.new(
-      form_answer_id: @form_answer.id
+      form_answer_id: @form_answer.id,
     )
   end
 
@@ -40,13 +40,13 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     res["0"] = created_attachment_ops
 
     @form_answer.document.merge(
-      org_chart: res
+      org_chart: res,
     )
   end
 
   expose(:remove_org_chart_result_doc) do
     @form_answer.document.merge(
-      org_chart: {}
+      org_chart: {},
     )
   end
 
@@ -63,7 +63,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
         form_answer_id: @form_answer.id,
         original_filename: original_filename,
         question_key: "org_chart",
-      })
+      }),
     )
 
     if form_answer_attachment.save
@@ -104,7 +104,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     def attachment_params
       params.require(:form_answer_attachment).permit(
         :file,
-        :form_answer_id
+        :form_answer_id,
       )
     end
 end

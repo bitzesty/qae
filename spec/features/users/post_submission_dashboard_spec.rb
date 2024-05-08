@@ -26,7 +26,7 @@ describe "User sees the post submission dashboard" do
 
       settings.email_notifications.create!(
         kind: "shortlisted_notifier",
-        trigger_at: DateTime.now - 1.year
+        trigger_at: DateTime.now - 1.year,
       )
       visit dashboard_path
 
@@ -36,7 +36,7 @@ describe "User sees the post submission dashboard" do
 
       settings.email_notifications.create!(
         kind: "winners_notification",
-        trigger_at: DateTime.now - 1.year
+        trigger_at: DateTime.now - 1.year,
       )
 
       visit dashboard_path
@@ -53,7 +53,7 @@ describe "User sees the post submission dashboard" do
 
       settings.email_notifications.create!(
         kind: "unsuccessful_notification",
-        trigger_at: DateTime.now - 1.year
+        trigger_at: DateTime.now - 1.year,
       )
 
       visit dashboard_path

@@ -54,7 +54,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
         category: item.category,
         year: item.year,
         outcome: item.outcome,
-      }
+      },
     )
   end
 
@@ -65,7 +65,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     self.item = item_class.new(categories,
       years,
       outcomes,
-      item_params)
+      item_params,)
 
     if item.valid?
       @form_answer.document = add_result_doc
@@ -74,7 +74,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
       redirect_to edit_form_url(
         id: @form_answer.id,
         step: step.title.parameterize,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :new
@@ -85,7 +85,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     self.item = item_class.new(categories,
       years,
       [],
-      item_params)
+      item_params,)
   end
 
   def destroy
@@ -95,7 +95,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     redirect_to edit_form_url(
       id: @form_answer.id,
       step: step.title.parameterize,
-      anchor: anchor
+      anchor: anchor,
     )
   end
 
@@ -103,14 +103,14 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     self.item = item_class.new(categories,
       years,
       outcomes,
-      item_params)
+      item_params,)
   end
 
   def update
     self.item = item_class.new(categories,
       years,
       outcomes,
-      item_params)
+      item_params,)
 
     if item.valid?
       @form_answer.document = update_result_doc
@@ -119,7 +119,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
       redirect_to edit_form_url(
         id: @form_answer.id,
         step: step.title.parameterize,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :edit
@@ -137,7 +137,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     params.require(:current_queens_award).permit(
       :category,
       :year,
-      :outcome
+      :outcome,
     )
   end
 end

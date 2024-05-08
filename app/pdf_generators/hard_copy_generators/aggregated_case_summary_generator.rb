@@ -28,7 +28,7 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
       type_of_report: type_of_report,
       sub_type: sub_type,
       award_category: award_category,
-      original_filename: "#{file_prefix}.pdf"
+      original_filename: "#{file_prefix}.pdf",
     )
 
     pdf_record.save!
@@ -52,7 +52,7 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
     ops[:years_mode] = sub_type if award_category == "trade"
 
     @pdf = CaseSummaryPdfs::Base.new(
-      "all", nil, ops
+      "all", nil, ops,
     )
   end
 end

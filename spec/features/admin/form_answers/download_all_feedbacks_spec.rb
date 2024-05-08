@@ -24,8 +24,8 @@ So that I can print and review application feedbacks
           expect(page).to have_link("Download",
             href: admin_report_path(
               id: "feedbacks",
-              category: award_type, format: :pdf, year: AwardYear.current.year
-            )
+              category: award_type, format: :pdf, year: AwardYear.current.year,
+            ),
           )
         end
       end

@@ -109,7 +109,7 @@ class AccountsController < ApplicationController
       :last_name,
       :job_title,
       :phone_number,
-      :email
+      :email,
     )
   end
 
@@ -121,7 +121,7 @@ class AccountsController < ApplicationController
       :company_city,
       :company_country,
       :company_postcode,
-      :company_phone_number
+      :company_phone_number,
     )
   end
 
@@ -137,7 +137,7 @@ class AccountsController < ApplicationController
       :notification_when_development_award_open,
       :notification_when_mobility_award_open,
       :notification_when_submission_deadline_is_coming,
-      :agree_sharing_of_details_with_lieutenancies
+      :agree_sharing_of_details_with_lieutenancies,
     )
   end
 
@@ -145,13 +145,13 @@ class AccountsController < ApplicationController
     params.require(:user).permit(
       :current_password,
       :password,
-      :password_confirmation
+      :password_confirmation,
     )
   end
 
   def additional_contact_preferences_params
     params.require(:user).permit(
-      :agree_sharing_of_details_with_lieutenancies
+      :agree_sharing_of_details_with_lieutenancies,
     )
   end
 

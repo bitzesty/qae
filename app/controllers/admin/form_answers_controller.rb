@@ -15,7 +15,7 @@ class Admin::FormAnswersController < Admin::BaseController
     FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
       financial_summary_view: true,
-    })
+    },)
   end
 
   expose(:target_scope) do
@@ -73,7 +73,7 @@ class Admin::FormAnswersController < Admin::BaseController
       @csv_data.force_encoding(::Encoding::UTF_8),
       filename: "awarded_trade_applications.csv",
       type: "text/csv; charset=Unicode(UTF-8); header=present",
-      disposition: "attachment"
+      disposition: "attachment",
     )
   end
 

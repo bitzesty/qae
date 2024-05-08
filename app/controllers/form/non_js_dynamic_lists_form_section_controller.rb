@@ -34,7 +34,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
     res.push(created_item_ops)
 
     @form_answer.document.merge(
-      input_name => res
+      input_name => res,
     )
   end
 
@@ -47,7 +47,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
     res = res.present? ? res : []
 
     @form_answer.document.merge(
-      input_name => res
+      input_name => res,
     )
   end
 
@@ -56,7 +56,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
     res[params[:index].to_i] = item_params
 
     @form_answer.document.merge(
-      input_name => res
+      input_name => res,
     )
   end
 

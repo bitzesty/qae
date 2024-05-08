@@ -24,7 +24,7 @@ module QaePdfForms::CustomQuestions::Textarea
                   style: wysywyg_get_style(child),
                   content: wysywyg_get_item_content(child),
                 },
-              }
+              },
             )
           end
         end
@@ -50,7 +50,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def wysywyg_entries
     Nokogiri::HTML.parse(
-      humanized_answer
+      humanized_answer,
     ).children[1]
      .children[0]
      .children
@@ -85,7 +85,7 @@ module QaePdfForms::CustomQuestions::Textarea
   def wysywyg_print_lists(key, line)
     wysywyg_list_content_generator(wysywyg_prepare_list_content(line),
       wysywyg_get_list_left_margin(line),
-      key)
+      key,)
   end
 
   def wysywyg_get_list_left_margin(line)

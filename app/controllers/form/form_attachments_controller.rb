@@ -9,7 +9,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   expose(:form_answer_attachment) do
     current_user.form_answer_attachments.new(
-      form_answer_id: @form_answer.id
+      form_answer_id: @form_answer.id,
     )
   end
 
@@ -29,7 +29,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     result_materials[next_document_position.to_s] = created_attachment_ops
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
@@ -41,7 +41,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     result_materials = result_materials.present? ? result_materials : {}
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
@@ -57,7 +57,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
         form_answer_id: @form_answer.id,
         non_js_creation: true,
         original_filename: original_filename,
-      })
+      }),
     )
 
     if form_answer_attachment.save
@@ -98,7 +98,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     def attachment_params
       params.require(:form_answer_attachment).permit(
         :file,
-        :description
+        :description,
       )
     end
 end

@@ -234,12 +234,12 @@ module CaseSummaryPdfs::General::DataPointer
         pdf_doc.table([row],
           row_colors: %w(FFFFFF),
           cell_style: { size: 12, font_style: :bold },
-          column_widths: column_widths
+          column_widths: column_widths,
         )
       else
         pdf_doc.table([row],
           cell_style: { size: 12 },
-          column_widths: column_widths
+          column_widths: column_widths,
         )
       end
     end
@@ -333,7 +333,7 @@ module CaseSummaryPdfs::General::DataPointer
 
     pdf_doc.table(rows,
       cell_style: { size: 12 },
-      column_widths: column_widths
+      column_widths: column_widths,
     )
   end
 
@@ -351,7 +351,7 @@ module CaseSummaryPdfs::General::DataPointer
 
     pdf_doc.table(rows,
       cell_style: { size: 12 },
-      column_widths: benchmarks_column_widths
+      column_widths: benchmarks_column_widths,
     )
   end
 end

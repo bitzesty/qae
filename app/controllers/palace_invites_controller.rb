@@ -48,7 +48,7 @@ class PalaceInvitesController < ApplicationController
           :royal_family_connection_details,
           :id,
           :_remove
-        ]
+        ],
       )
     end
   end

@@ -31,7 +31,7 @@ So that I can check, complete it and then upload it to application
       expect_to_see "Verification of Commercial Figures"
       expect(page).to have_link(
         "Download the External Accountant's Report form",
-        href: users_form_answer_audit_certificate_url(form_answer, format: :pdf)
+        href: users_form_answer_audit_certificate_url(form_answer, format: :pdf),
       )
     end
   end
@@ -61,7 +61,7 @@ So that I can check, complete it and then upload it to application
     xit "should generate pdf file" do
       expect(page.status_code).to eq(200)
       expect(page.response_headers["Content-Disposition"]).to include(
-        "attachment; filename=\"#{CGI.escape(audit_certificate_filename)}\""
+        "attachment; filename=\"#{CGI.escape(audit_certificate_filename)}\"",
       )
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end

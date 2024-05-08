@@ -27,12 +27,12 @@ So that I see
 
     settings.email_notifications.create!(
       kind: "winners_notification",
-      trigger_at: previous_year
+      trigger_at: previous_year,
     )
 
     settings.email_notifications.create!(
       kind: "unsuccessful_notification",
-      trigger_at: previous_year
+      trigger_at: previous_year,
     )
 
     settings.reload
@@ -62,7 +62,7 @@ So that I see
         create(:form_answer, :innovation,
           :awarded,
           award_year: previous_award_year,
-          user: user)
+          user: user,)
       end
 
       before do

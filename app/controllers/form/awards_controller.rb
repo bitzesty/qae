@@ -41,7 +41,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     form_form_answer_awards_url(
       @form_answer.id,
       award: created_item_ops,
-      holder: params[:holder]
+      holder: params[:holder],
     )
   end
 
@@ -51,7 +51,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
   def create
     self.item = item_class.new(question,
       params[:holder],
-      item_params)
+      item_params,)
 
     if item.valid?
       @form_answer.document = add_result_doc
@@ -70,7 +70,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
   def confirm_deletion
     self.item = item_class.new(question,
       params[:holder],
-      item_params)
+      item_params,)
   end
 
   def destroy
@@ -80,20 +80,20 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     redirect_to edit_form_url(
       id: @form_answer.id,
       step: step.title.parameterize,
-      anchor: anchor
+      anchor: anchor,
     )
   end
 
   def edit
     self.item = item_class.new(question,
       params[:holder],
-      item_params)
+      item_params,)
   end
 
   def update
     self.item = item_class.new(question,
       params[:holder],
-      item_params)
+      item_params,)
 
     if item.valid?
       @form_answer.document = update_result_doc
@@ -102,7 +102,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
       redirect_to edit_form_url(
         id: @form_answer.id,
         step: step.title.parameterize,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :edit
@@ -124,7 +124,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     params.require(:award).permit(
       :title,
       :year,
-      :details
+      :details,
     )
   end
 end

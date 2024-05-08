@@ -32,7 +32,7 @@ describe "CaseSummaryPdfs::Base" do
         "all", nil, {
           category: "innovation",
           award_year: award_year,
-        }
+        },
       ).set_form_answers
        .map(&:id)
 
@@ -45,7 +45,7 @@ describe "CaseSummaryPdfs::Base" do
           category: "trade",
           award_year: award_year,
           years_mode: "3",
-        }
+        },
       ).set_form_answers
        .map(&:id)
 

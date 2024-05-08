@@ -20,7 +20,7 @@ describe "Interactors::AddCollaborator" do
     AddCollaborator.new(
       account_admin,
       account,
-      create_params)
+      create_params,)
   end
 
   describe "Add new user account and add him to Collaborators" do

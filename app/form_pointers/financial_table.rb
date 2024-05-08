@@ -134,7 +134,7 @@ module FinancialTable
   def financial_date_pointer_value
     FinancialYearPointer.new(
       question: financial_date_pointer,
-      financial_pointer: financial_pointer
+      financial_pointer: financial_pointer,
     ).latest_year_label
   end
 

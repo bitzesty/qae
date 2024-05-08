@@ -10,7 +10,7 @@ RSpec.describe Admin, type: :model do
         first_name: "John",
         last_name: "Smith",
         password: "^#ur9EkLm@1W+OaDvg",
-        password_confirmation: "^#ur9EkLm@1W+OaDvg"
+        password_confirmation: "^#ur9EkLm@1W+OaDvg",
       )
 
       expect(admin.autosave_token).not_to be nil

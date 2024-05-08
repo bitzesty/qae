@@ -54,7 +54,7 @@ module PalaceAttendeesMixin
               index: 0,
               pa: palace_attendee,
               palace_invite: invite,
-            }
+            },
           )
         else
           redirect_to [namespace_name, invite.form_answer]
@@ -90,7 +90,7 @@ module PalaceAttendeesMixin
       :disabled_access,
       :additional_info,
       :palace_invite_id,
-      :id
+      :id,
     )
   end
 

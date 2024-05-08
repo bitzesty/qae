@@ -89,7 +89,7 @@ module PressSummaryMixin
       :phone_number,
       :email,
       :contact_details_update,
-      :body_update
+      :body_update,
     )
   end
 

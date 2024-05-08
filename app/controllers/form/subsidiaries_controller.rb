@@ -42,7 +42,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
       subsidiary: {
         name: item.name,
         location: item.location,
-      }
+      },
     )
   end
 
@@ -58,7 +58,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :new
@@ -75,7 +75,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
 
     redirect_to edit_form_url(
       id: @form_answer.id,
-      anchor: anchor
+      anchor: anchor,
     )
   end
 
@@ -92,7 +92,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :edit
@@ -111,7 +111,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
       :name,
       :location,
       :employees,
-      :description
+      :description,
     )
   end
 end

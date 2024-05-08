@@ -30,15 +30,15 @@ So that I can print and review application case summaries
           [3, 6].map do |i|
             expect(page).to have_link("Download",
               href: admin_report_path(
-                ops.merge({years_mode: i})
-              )
+                ops.merge({years_mode: i}),
+              ),
             )
           end
         else
           expect(page).to have_link("Download",
             href: admin_report_path(
-              ops
-            )
+              ops,
+            ),
           )
         end
       end
