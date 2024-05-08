@@ -27,6 +27,7 @@ AllCops:
   TargetRubyVersion: 3.2.0
 
 inherit_from:
+  - .rubocop_todo.yml
   - .rubocop/rails.yml
 
 Layout/LineLength:
@@ -116,4 +117,3 @@ Naming/MemoizedInstanceVariableName:
 
 Bundler/OrderedGems:
   Enabled: false
-
