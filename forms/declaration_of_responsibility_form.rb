@@ -17,7 +17,7 @@ class DeclarationOfResponsibilityForm
   attr_accessor *ATTRIBUTES
 
   ATTRIBUTES.each do |attr_name|
-    class_eval <<-EVAL, __FILE__, __LINE__+1
+    class_eval <<-EVAL, __FILE__, __LINE__ + 1
       validate :words_in_#{attr_name}, if: Proc.new { |m| m.public_send("#{attr_name}").present? }
     EVAL
   end

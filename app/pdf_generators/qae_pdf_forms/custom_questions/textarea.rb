@@ -95,7 +95,7 @@ module QaePdfForms::CustomQuestions::Textarea
       margin_left = lists_style.split(", ").select do |el|
         el.include?("margin-left")
       end.map! do |el|
-        el.split(":").second.strip.gsub!("px", "").to_i/2
+        el.split(":").second.strip.gsub!("px", "").to_i / 2
       end.sum
 
       "margin-left:#{margin_left}px"

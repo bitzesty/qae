@@ -378,7 +378,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
       else
           []
       end
-      
   end
 
   def fs_table_default_ops
@@ -415,7 +414,7 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   end
 
   def fs_enumerize_years(years)
-    years.map.with_index { |y, i| "#{y}\n\r(Year #{i+1})" }
+    years.map.with_index { |y, i| "#{y}\n\r(Year #{i + 1})" }
   end
 
   def fs_calculate_growth(values)

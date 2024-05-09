@@ -297,26 +297,6 @@ Layout/SpaceAroundKeyword:
   Exclude:
     - 'spec/services/assessor_assignment_service_spec.rb'
 
-# Offense count: 24
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator, EnforcedStyleForRationalLiterals.
-# SupportedStylesForExponentOperator: space, no_space
-# SupportedStylesForRationalLiterals: space, no_space
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'app/models/concerns/infected_file_cleaner.rb'
-    - 'app/models/reports/dashboard/applications_report.rb'
-    - 'app/pdf_generators/qae_pdf_forms/custom_questions/textarea.rb'
-    - 'app/services/performance_platform_service.rb'
-    - 'forms/declaration_of_responsibility_form.rb'
-    - 'forms/qae_form_builder/step.rb'
-    - 'spec/features/admin/form_answers/previous_winnings_spec.rb'
-    - 'spec/models/form_answer_state_machine_spec.rb'
-    - 'spec/models/form_answer_statistics/picker_spec.rb'
-    - 'spec/models/reports/dashboard/applications_report.rb'
-    - 'spec/models/reports/dashboard/users_report.rb'
-    - 'spec/tasks/manual_updaters/trade_award_downgrader_spec.rb'
-
 # Offense count: 26
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.

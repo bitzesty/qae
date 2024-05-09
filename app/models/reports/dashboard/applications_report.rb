@@ -93,7 +93,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
         columns = ["6 days before deadline", "5 days before deadline", "4 days before deadline", "3 days before deadline", "2 days before deadline", "1 day before deadline", "Totals on deadline"]
       end
       csv << (headers + columns.map{|c| [c] << nil}).flatten
-      subheaders =[""]
+      subheaders = [""]
       columns.each{subheaders << ["In progress", "Submitted"]}
       csv << subheaders.flatten
       

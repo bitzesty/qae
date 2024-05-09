@@ -15,7 +15,7 @@ class QaeFormBuilder
     end
 
     def previous
-      @previous ||= (form.steps[index-1] if index-1 >=0)
+      @previous ||= (form.steps[index - 1] if index - 1 >= 0)
       
     end
 

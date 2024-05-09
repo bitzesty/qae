@@ -90,7 +90,7 @@ class PerformancePlatformService
     if ENV["PERFORMANCE_PLATFORM_TOKEN"].present?
 
       headers = {
-        "Content-Type" =>"application/json",
+        "Content-Type" => "application/json",
         "Authorization" => "Bearer #{ENV['PERFORMANCE_PLATFORM_TOKEN']}",
       }
 

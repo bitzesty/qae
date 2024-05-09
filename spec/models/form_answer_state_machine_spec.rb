@@ -117,7 +117,7 @@ describe FormAnswerStateMachine do
       allow(Settings).to receive(:after_current_submission_deadline?) {true}
       form_answer.state = :not_eligible
       expect(form_answer.state_machine.send(:permitted_states_with_deadline_constraint)).to eq []
-      form_answer.state =:not_submitted
+      form_answer.state = :not_submitted
       expect(form_answer.state_machine.send(:permitted_states_with_deadline_constraint)).to eq []
     end
   end
