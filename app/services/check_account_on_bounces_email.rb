@@ -49,7 +49,6 @@ class CheckAccountOnBouncesEmail
   private
 
   def debounce_api_says_it_is_valid?(email)
-
       res = RestClient.get(
         "https://api.debounce.io/v1/?api=#{ENV['DEBOUNCE_API_KEY']}&email=#{email}",
         { accept: :json },
@@ -67,6 +66,5 @@ class CheckAccountOnBouncesEmail
       #
 
       true
-
   end
 end

@@ -229,13 +229,6 @@ Layout/MultilineHashKeyLineBreaks:
   Exclude:
     - 'spec/features/admin/form_answers/download_all_case_summary_pdf_spec.rb'
 
-# Offense count: 103
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented
-Layout/MultilineOperationIndentation:
-  Enabled: false
-
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Layout/SpaceAfterColon:

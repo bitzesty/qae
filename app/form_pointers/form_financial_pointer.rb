@@ -279,7 +279,6 @@ class FormFinancialPointer
 
   def full_period_length
     @_full_period_length ||= data_minmax(data).dig(:max)
-
   end
 
   def data_values(key)

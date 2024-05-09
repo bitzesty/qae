@@ -19,7 +19,6 @@ class EligibilityForm
     else
         form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.try(:attributes) || {}))
     end
-
   end
 
   def update(eligibility_attrs, basic_eligibility_attrs)
