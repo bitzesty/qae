@@ -72,7 +72,7 @@ module ApplicationHelper
       additional_information_and_contact
       apply_for_queens_award_for_enterprise
       privacy
-                                         ].include?(action_name)
+    ].include?(action_name)
   end
 
   def show_navigation_links?

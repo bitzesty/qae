@@ -63,7 +63,7 @@ RSpec.describe Eligibility::Innovation, type: :model do
         :was_on_market_for_two_years,
         :had_impact_on_commercial_performace_over_two_years,
         :have_you_recovered_all_investments,
-                                          ])
+      ])
     end
 
     it "does not return number of innovative products if account does not have them" do
