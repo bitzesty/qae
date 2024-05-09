@@ -140,8 +140,7 @@ module FinancialTable
 
   def financial_years_number
     @financial_years_number ||=
-      begin
-        if financial_date_selector_value.present?
+      if financial_date_selector_value.present?
           if one_option_question_or_development?
             "3"
           elsif form_answer.innovation?
@@ -155,7 +154,7 @@ module FinancialTable
           # If not selected yet, render last option as default
           financial_date_selector.ops_values.values.last
         end
-      end
+      
   end
 
   def one_option_question_or_development?

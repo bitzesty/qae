@@ -10,15 +10,13 @@ class QaeFormBuilder
     )
 
     def next
-      @next ||= begin
-        form.steps[index + 1]
-      end
+      @next ||= form.steps[index + 1]
+      
     end
 
     def previous
-      @previous ||= begin
-        form.steps[index-1] if index-1 >=0
-      end
+      @previous ||= (form.steps[index-1] if index-1 >=0)
+      
     end
 
     def index

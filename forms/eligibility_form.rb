@@ -14,13 +14,12 @@ class EligibilityForm
   end
 
   def basic_eligibility
-    @basic_eligibility ||= begin
-      if form_answer.basic_eligibility.try(:persisted?)
+    @basic_eligibility ||= if form_answer.basic_eligibility.try(:persisted?)
         form_answer.basic_eligibility
       else
         form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.try(:attributes) || {}))
       end
-    end
+    
   end
 
   def update(eligibility_attrs, basic_eligibility_attrs)

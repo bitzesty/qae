@@ -371,15 +371,14 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
 
   def fs_financial_table_headers_filled_in
     @financial_table_headers_filled_in ||=
-      begin
-        if financial_year_changed_dates?
+      if financial_year_changed_dates?
           financial_table_changed_dates_headers
         elsif financial_date_day.to_i > 0 && financial_date_month.to_i > 0
           financial_table_pointer_headers
         else
           []
         end
-      end
+      
   end
 
   def fs_table_default_ops

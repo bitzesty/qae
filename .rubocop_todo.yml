@@ -1340,20 +1340,6 @@ Style/RedundantAssignment:
     - 'forms/qae_form_builder/date_question.rb'
     - 'forms/qae_form_builder/step.rb'
 
-# Offense count: 11
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantBegin:
-  Exclude:
-    - 'app/form_pointers/financial_table.rb'
-    - 'app/form_pointers/form_financial_pointer.rb'
-    - 'app/services/check_account_on_bounces_email.rb'
-    - 'app/tasks/manual_updaters/hard_copy_generation.rb'
-    - 'forms/custom_email_form.rb'
-    - 'forms/eligibility_form.rb'
-    - 'forms/qae_form_builder/step.rb'
-    - 'lib/tasks/form_answers.rake'
-    - 'spec/factories/settings_factory.rb'
-
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantCondition:
