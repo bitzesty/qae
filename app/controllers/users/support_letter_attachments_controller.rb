@@ -28,21 +28,21 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
 
   private
 
-    def support_letter_attachment_params
-      {
-        attachment: params[:form][:supporter_letters_list].first[1][:letter_of_support],
-      }
-    end
+  def support_letter_attachment_params
+    {
+      attachment: params[:form][:supporter_letters_list].first[1][:letter_of_support],
+    }
+  end
 
-    def original_filename
-      support_letter_attachment_params[:attachment].try(:original_filename)
-    end
+  def original_filename
+    support_letter_attachment_params[:attachment].try(:original_filename)
+  end
 
-    def humanized_errors
-      support_letter_attachment.errors
-                               .full_messages
-                               .reject { |m| m == "Attachment This field cannot be blank" }
-                               .join(", ")
-                               .gsub("Attachment ", "")
-    end
+  def humanized_errors
+    support_letter_attachment.errors
+                             .full_messages
+                             .reject { |m| m == "Attachment This field cannot be blank" }
+                             .join(", ")
+                             .gsub("Attachment ", "")
+  end
 end

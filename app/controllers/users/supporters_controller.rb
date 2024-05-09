@@ -30,12 +30,12 @@ class Users::SupportersController < Users::BaseController
 
   private
 
-    def supporter_params
-      params.require(:support_letter).permit(
-        :first_name,
-        :last_name,
-        :relationship_to_nominee,
-        :email,
-      )
-    end
+  def supporter_params
+    params.require(:support_letter).permit(
+      :first_name,
+      :last_name,
+      :relationship_to_nominee,
+      :email,
+    )
+  end
 end

@@ -32,8 +32,8 @@ class ServerEnvironment
 
     private
 
-      def mailer_host_equal_to?(url)
-        ENV["MAILER_HOST"].to_s == url
-      end
+    def mailer_host_equal_to?(url)
+      ENV["MAILER_HOST"].to_s == url
+    end
   end
 end

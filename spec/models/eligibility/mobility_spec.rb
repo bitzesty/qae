@@ -47,11 +47,11 @@ RSpec.describe Eligibility::Mobility, type: :model do
     end
   end
 
-    describe ".award_name" do
-    let(:eligibility) { Eligibility::Mobility.new(account: account) }
+  describe ".award_name" do
+  let(:eligibility) { Eligibility::Mobility.new(account: account) }
 
-    it "should return award_name" do
-      expect(eligibility.class.award_name).to eq "Social Mobility Award"
-    end
+  it "should return award_name" do
+    expect(eligibility.class.award_name).to eq "Social Mobility Award"
   end
+end
 end

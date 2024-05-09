@@ -65,7 +65,7 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
 
   private
 
-    def mapping
-      MAPPING
-    end
+  def mapping
+    MAPPING
+  end
 end

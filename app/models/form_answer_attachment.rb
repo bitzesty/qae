@@ -25,12 +25,12 @@ class FormAnswerAttachment < ApplicationRecord
   # Used for NON JS implementation - end
 
   begin :validations
-    validates :form_answer_id, presence: true
-    validates :file, presence: true,
-      on: :create,
-      file_size: {
-        maximum: 5.megabytes.to_i,
-      }
+        validates :form_answer_id, presence: true
+        validates :file, presence: true,
+          on: :create,
+          file_size: {
+            maximum: 5.megabytes.to_i,
+          }
   end
 
   def filename

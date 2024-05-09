@@ -169,13 +169,6 @@ Layout/HashAlignment:
     - 'app/pdf_generators/qae_pdf_forms/custom_questions/textarea.rb'
     - 'app/services/performance_platform_service.rb'
 
-# Offense count: 152
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: normal, indented_internal_methods
-Layout/IndentationConsistency:
-  Enabled: false
-
 # Offense count: 34
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Width, AllowedPatterns.

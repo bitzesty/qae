@@ -29,9 +29,9 @@ if defined?(ActionMailer)
 
     protected
 
-      def devise_mail(record, action, opts = {}, &block)
-        initialize_from_record(record)
-        view_mail ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], headers_for(action, opts), &block
-      end
+    def devise_mail(record, action, opts = {}, &block)
+      initialize_from_record(record)
+      view_mail ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], headers_for(action, opts), &block
+    end
   end
 end

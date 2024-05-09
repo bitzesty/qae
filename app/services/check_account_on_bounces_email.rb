@@ -48,25 +48,25 @@ class CheckAccountOnBouncesEmail
 
   private
 
-    def debounce_api_says_it_is_valid?(email)
-      
-        res = RestClient.get(
-          "https://api.debounce.io/v1/?api=#{ENV['DEBOUNCE_API_KEY']}&email=#{email}", 
-          { accept: :json },
-        )
-        @code = JSON.parse(res.body)["debounce"]["code"]
+  def debounce_api_says_it_is_valid?(email)
+    
+      res = RestClient.get(
+        "https://api.debounce.io/v1/?api=#{ENV['DEBOUNCE_API_KEY']}&email=#{email}", 
+        { accept: :json },
+      )
+      @code = JSON.parse(res.body)["debounce"]["code"]
 
-        VALID_DEBOUNCE_API_CODES.include?(code.to_i)
-    rescue RestClient::Exceptions::ReadTimeout => e
-        #
-        # RARE CASE:
-        #
-        # Mark email as valid in case of getting Timeout error
-        # as Debounce API sometimes returns Timeout error
-        # for valid emails.
-        #
+      VALID_DEBOUNCE_API_CODES.include?(code.to_i)
+  rescue RestClient::Exceptions::ReadTimeout => e
+      #
+      # RARE CASE:
+      #
+      # Mark email as valid in case of getting Timeout error
+      # as Debounce API sometimes returns Timeout error
+      # for valid emails.
+      #
 
-        true
-      
-    end
+      true
+    
+  end
 end

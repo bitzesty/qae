@@ -97,10 +97,10 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
 
   private
 
-    def attachment_params
-      params.require(:form_answer_attachment).permit(
-        :file,
-        :form_answer_id,
-      )
-    end
+  def attachment_params
+    params.require(:form_answer_attachment).permit(
+      :file,
+      :form_answer_id,
+    )
+  end
 end

@@ -92,7 +92,7 @@ describe FormAnswerDecorator do
   describe "#dashboard_status" do
     it "returns fill progress when application is not submitted" do
      form_answer = create(:form_answer, :trade, state: "application_in_progress", document: { sic_code: SicCode.first.code })
-      expect(described_class.new(form_answer).dashboard_status).to eq("Application in progress...8%")
+     expect(described_class.new(form_answer).dashboard_status).to eq("Application in progress...8%")
     end
 
     it "warns that assessors are not assigned if assessment is in progress and assessors are not assigned yet for admin section" do

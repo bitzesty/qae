@@ -71,10 +71,10 @@ class Form::FormLinksController < Form::MaterialsBaseController
   end
 
   private
-    def link_params
-      params.require(:form_link).permit(
-        :link,
-        :description,
-      )
-    end
+  def link_params
+    params.require(:form_link).permit(
+      :link,
+      :description,
+    )
+  end
 end
