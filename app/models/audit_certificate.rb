@@ -2,16 +2,13 @@ class AuditCertificate < ActiveRecord::Base
   include ShortlistedDocument
   include Reviewable
 
-  begin :validations
-        validates :attachment, presence: true,
-          on: :create,
-          file_size: {
-            maximum: 15.megabytes.to_i,
-          }
+  validates :attachment, presence: true,
+    on: :create,
+    file_size: {
+      maximum: 15.megabytes.to_i,
+    }
 
-        validates :form_answer_id, uniqueness: true,
-          presence: true
-  end
+  validates :form_answer_id, uniqueness: true, presence: true
 
   before_save :clean_changes_description
 

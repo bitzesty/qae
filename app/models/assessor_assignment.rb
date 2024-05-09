@@ -8,40 +8,36 @@ class AssessorAssignment < ApplicationRecord
     case_summary: 4,
   }
 
-  begin :validations
-        validates :form_answer_id,
-          :position,
-          presence: true
+  # validations
+  validates :form_answer_id,
+    :position,
+    presence: true
 
-        validate :award_specific_attributes
-        validate :mandatory_fields_for_submitted
+  validate :award_specific_attributes
+  validate :mandatory_fields_for_submitted
 
-        validate do
-          validate_rate :rag
-          validate_rate :strengths
-          validate_rate :verdict
-        end
-
-        validate :assessor_existence
-        validate :assessor_assignment_to_category
-        validates :assessor_id,
-          uniqueness: { scope: [:form_answer_id] },
-          allow_nil: true
+  validate do
+    validate_rate :rag
+    validate_rate :strengths
+    validate_rate :verdict
   end
 
-  begin :associations
-        belongs_to :assessor, optional: true
-        belongs_to :form_answer, optional: true
-        belongs_to :editable, polymorphic: true, optional: true
-        belongs_to :award_year, optional: true
-  end
+  validate :assessor_existence
+  validate :assessor_assignment_to_category
+  validates :assessor_id,
+    uniqueness: { scope: [:form_answer_id] },
+    allow_nil: true
 
-  begin :scopes
-        scope :submitted, -> { where.not(submitted_at: nil) }
-  end
+  # associations
+  belongs_to :assessor, optional: true
+  belongs_to :form_answer, optional: true
+  belongs_to :editable, polymorphic: true, optional: true
+  belongs_to :award_year, optional: true
+
+  # scopes
+  scope :submitted, -> { where.not(submitted_at: nil) }
 
   around_save :notify_form_answer
-
   before_create :set_award_year!
 
   store_accessor :document, *AppraisalForm.all

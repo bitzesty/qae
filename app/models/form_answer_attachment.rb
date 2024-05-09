@@ -24,14 +24,10 @@ class FormAnswerAttachment < ApplicationRecord
   validate :question_key_correctness
   # Used for NON JS implementation - end
 
-  begin :validations
-        validates :form_answer_id, presence: true
-        validates :file, presence: true,
-          on: :create,
-          file_size: {
-            maximum: 5.megabytes.to_i,
-          }
-  end
+  validates :form_answer_id, presence: true
+  validates :file, presence: true,
+    on: :create,
+    file_size: { maximum: 5.megabytes.to_i }
 
   def filename
     read_attribute(:file)
