@@ -148,21 +148,6 @@ Layout/EmptyLinesAroundModuleBody:
     - 'app/models/reports/data_pickers/form_document_picker.rb'
     - 'app/pdf_generators/qae_pdf_forms/custom_questions/textarea.rb'
 
-# Offense count: 11
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleAlignWith, Severity.
-# SupportedStylesAlignWith: keyword, variable, start_of_line
-Layout/EndAlignment:
-  Exclude:
-    - 'app/controllers/admin/custom_emails_controller.rb'
-    - 'app/decorators/form_answer_decorator.rb'
-    - 'app/form_pointers/financial_summary_pointer.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/models/reports/data_pickers/form_document_picker.rb'
-    - 'app/pdf_generators/qae_pdf_forms/custom_questions/by_year.rb'
-    - 'forms/qae_form_builder/question.rb'
-    - 'forms/qae_form_builder/trade_most_recent_financial_year_options_question.rb'
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, IndentationWidth.

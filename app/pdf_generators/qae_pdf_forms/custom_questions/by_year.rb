@@ -21,7 +21,7 @@ module QaePdfForms::CustomQuestions::ByYear
                 "#{header_item} #{ANSWER_FONT_START}#{rows[placement].join("/")}#{ANSWER_FONT_END}"
       else
                 "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
-              end
+      end
 
       form_pdf.text title, inline_format: true
     end
@@ -62,7 +62,7 @@ module QaePdfForms::CustomQuestions::ByYear
                  FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
         else
                  opts.dig(:format)
-               end
+        end
 
         frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE
 

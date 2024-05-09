@@ -153,7 +153,7 @@ module FinancialTable
       else
           # If not selected yet, render last option as default
           financial_date_selector.ops_values.values.last
-        end
+      end
       
   end
 

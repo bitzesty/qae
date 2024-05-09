@@ -141,7 +141,7 @@ module ApplicationHelper
              when 3 then "rd"
              else "th"
              end
-           end
+    end
     n.to_s + ending
   end
 

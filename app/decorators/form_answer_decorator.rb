@@ -457,7 +457,7 @@ class FormAnswerDecorator < ApplicationDecorator
                        document["development_management_approach_briefly"]
                      when "mobility"
                        document["mobility_desc_short"]
-                     end
+    end
 
     sanitize_html app_background
   end

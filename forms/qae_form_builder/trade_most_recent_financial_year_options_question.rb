@@ -57,7 +57,7 @@ class QaeFormBuilder
                       end
 
                       [d, r]
-                    end
+      end
 
       [date, range]
     end

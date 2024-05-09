@@ -237,7 +237,7 @@ class QaeFormBuilder
                                    fetched_answers[condition.question_key]
         else
                                    step.form[condition.question_key].input_value
-                                 end
+        end
 
         if question_value == :true
           parent_question_answer.present?
@@ -250,7 +250,7 @@ class QaeFormBuilder
           else
                          q = step.form[condition.question_key]
                          q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
-                       end
+          end
 
           if day.present? && month.present?
             date = Date.parse("#{day.to_i}/#{month.to_i}/2000") rescue nil

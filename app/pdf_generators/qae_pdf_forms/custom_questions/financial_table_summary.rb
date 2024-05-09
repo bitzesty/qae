@@ -377,7 +377,7 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
           financial_table_pointer_headers
       else
           []
-        end
+      end
       
   end
 

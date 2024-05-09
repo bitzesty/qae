@@ -18,7 +18,7 @@ class EligibilityForm
         form_answer.basic_eligibility
     else
         form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.try(:attributes) || {}))
-      end
+    end
     
   end
 

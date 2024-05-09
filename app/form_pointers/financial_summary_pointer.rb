@@ -37,7 +37,7 @@ class FinancialSummaryPointer < FormFinancialPointer
                  []
                else
                  nil
-               end
+      end
 
       diff = ::Utils::Diff.calc(minmax[:min], minmax[:max])
       diff.times { values.unshift(cloned) }
@@ -105,7 +105,7 @@ class FinancialSummaryPointer < FormFinancialPointer
                          [financial_year_changed_dates, true]
       else
                          [financial_year_dates, false]
-                       end
+      end
 
       [dates, changed]
     end

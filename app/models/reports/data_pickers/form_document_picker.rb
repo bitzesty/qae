@@ -335,7 +335,7 @@ module Reports::DataPickers::FormDocumentPicker
                   question.active_by_year_condition&.options&.dig(:data, :identifier)
         else
                   doc(meth.keys.first)
-                end
+        end
 
         target_key = meth.values.first[range]
       else
