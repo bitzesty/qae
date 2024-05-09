@@ -116,7 +116,7 @@ class Account::CollaboratorsController < Account::BaseController
 
   def require_to_be_not_current_user_and_not_account_owner!
     if current_user.id == collaborator.id ||
-       account_owner.id == collaborator.id
+        account_owner.id == collaborator.id
 
       render head :forbidden
     end

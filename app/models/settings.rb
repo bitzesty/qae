@@ -145,7 +145,7 @@ class Settings < ApplicationRecord
       submission_started_deadlines = current_submission_start_deadlines.map(&:trigger_at)
 
       award_year_switch_deadline.present? &&
-      award_year_switch_deadline < Time.zone.now && (
+        award_year_switch_deadline < Time.zone.now && (
         submission_started_deadlines.any?(&:blank?) ||
         submission_started_deadlines.all? { |d| d > Time.zone.now }
       )

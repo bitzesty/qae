@@ -73,27 +73,27 @@ class AwardYear < ApplicationRecord
 
   def form_data_generation_can_be_started?
     Settings.after_current_submission_deadline? &&
-    form_data_hard_copies_state.nil?
+      form_data_hard_copies_state.nil?
   end
 
   def case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    case_summary_hard_copies_state.nil?
+      case_summary_hard_copies_state.nil?
   end
 
   def feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    feedback_hard_copies_state.nil?
+      feedback_hard_copies_state.nil?
   end
 
   def aggregated_case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    aggregated_case_summary_hard_copy_state.nil?
+      aggregated_case_summary_hard_copy_state.nil?
   end
 
   def aggregated_feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    aggregated_feedback_hard_copy_state.nil?
+      aggregated_feedback_hard_copy_state.nil?
   end
 
   def aggregated_hard_copies_completed?(type)

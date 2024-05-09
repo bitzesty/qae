@@ -18,8 +18,8 @@ namespace :db do
 
       new_document.reject! do |k, v|
         k == "environment_rate" ||
-        k == "social_rate" ||
-        k == "economic_rate"
+          k == "social_rate" ||
+          k == "economic_rate"
       end
 
       entry.document = new_document

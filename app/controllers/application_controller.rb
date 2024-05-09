@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
 
   def admin_in_read_only_mode?
     @admin_in_read_only_mode ||= (admin_signed_in? || assessor_signed_in?) &&
-                                 session["warden.user.user.key"] &&
-                                 session[:admin_in_read_only_mode]
+      session["warden.user.user.key"] &&
+      session[:admin_in_read_only_mode]
   end
   helper_method :admin_in_read_only_mode?
 

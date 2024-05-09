@@ -51,7 +51,7 @@ module PartialsVisibilityHelper
 
   def admin_lead_or_primary?
     current_subject.is_a?(Admin) ||
-    current_subject.lead?(@form_answer) ||
-    current_subject.primary?(@form_answer)
+      current_subject.lead?(@form_answer) ||
+      current_subject.primary?(@form_answer)
   end
 end

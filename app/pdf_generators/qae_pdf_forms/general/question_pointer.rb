@@ -103,8 +103,8 @@ class QaePdfForms::General::QuestionPointer
 
   def render_bottom_space
     if question.delegate_obj.class.to_s != "QaeFormBuilder::HeaderQuestion" ||
-       question.classes != "regular-question" ||
-       question.classes == "application-notice help-notice"
+        question.classes != "regular-question" ||
+        question.classes == "application-notice help-notice"
 
       form_pdf.default_bottom_margin
     end
@@ -172,8 +172,8 @@ class QaePdfForms::General::QuestionPointer
 
   def render_header_hint
     if question.delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion) &&
-      (question.ref.present? || question.sub_ref.present?) &&
-      SKIP_HEADER_HINT_KEYS.exclude?(question.key.to_s)
+        (question.ref.present? || question.sub_ref.present?) &&
+        SKIP_HEADER_HINT_KEYS.exclude?(question.key.to_s)
 
       form_pdf.indent 25.mm do
         form_pdf.render_text "Please note that #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions.",
@@ -526,8 +526,8 @@ class QaePdfForms::General::QuestionPointer
 
   def render_word_limit
     if question.delegate_obj.respond_to?(:words_max) &&
-       question.words_max.present? &&
-       urn_blank_or_pdf_blank_mode?
+        question.words_max.present? &&
+        urn_blank_or_pdf_blank_mode?
       form_pdf.text "Word limit: #{question.words_max}"
       form_pdf.move_down 2.5.mm
     end
@@ -594,7 +594,7 @@ class QaePdfForms::General::QuestionPointer
   def render_table_with_optional_extra
     cells = sub_answers.select do |a|
       a[0].match(/\/{1}[0-9]{2}\/{1}/).present? ||
-      a[0].match(/Year/).present?
+        a[0].match(/Year/).present?
     end
 
     if cells.present?

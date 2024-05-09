@@ -1,7 +1,7 @@
 class FeedbackPolicy < ApplicationPolicy
   def create?
     admin? || (assessor? && subject.assigned?(form_answer)) &&
-    form_answer.reload.feedback.blank?
+      form_answer.reload.feedback.blank?
   end
 
   def update?
@@ -40,8 +40,8 @@ class FeedbackPolicy < ApplicationPolicy
 
   def can_be_re_submitted?
     !record.locked? &&
-    submit? &&
-    record.submitted?
+      submit? &&
+      record.submitted?
   end
 
   private

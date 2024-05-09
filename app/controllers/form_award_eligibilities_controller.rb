@@ -19,15 +19,15 @@ class FormAwardEligibilitiesController < ApplicationController
     #      and there's no step
 
     if !params[:id] &&
-      (@form_answer.promotion? ||
-      (@basic_eligibility && (@basic_eligibility.eligible? || @basic_eligibility.answers.none?))) &&
-      (@award_eligibility.eligible? || @award_eligibility.answers.none?)
+        (@form_answer.promotion? ||
+        (@basic_eligibility && (@basic_eligibility.eligible? || @basic_eligibility.answers.none?))) &&
+        (@award_eligibility.eligible? || @award_eligibility.answers.none?)
 
       step = nil
 
       if @basic_eligibility &&
-        (@basic_eligibility.answers.none? ||
-         @basic_eligibility.questions.size != @basic_eligibility.answers.size)
+          (@basic_eligibility.answers.none? ||
+           @basic_eligibility.questions.size != @basic_eligibility.answers.size)
 
         step = @basic_eligibility.questions.first
       elsif @award_eligibility.answers.none?

@@ -172,7 +172,7 @@ class AssessmentSubmissionService
 
   def primary_and_secondary_assessments_submitted?
     primary_assessment.submitted? &&
-    secondary_assessment.submitted?
+      secondary_assessment.submitted?
   end
 
   def primary_assessment

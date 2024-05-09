@@ -419,8 +419,8 @@ class FormAnswer < ApplicationRecord
 
   def hard_copy_ready_for?(mode)
     send("#{mode}_hard_copy_generated?") &&
-    send("#{mode}_hard_copy_pdf").present? &&
-    send("#{mode}_hard_copy_pdf").file.present?
+      send("#{mode}_hard_copy_pdf").present? &&
+      send("#{mode}_hard_copy_pdf").file.present?
   end
 
   #
@@ -478,8 +478,8 @@ class FormAnswer < ApplicationRecord
       .fetch("applied_for_queen_awards_details", [])
       .detect do |a|
         a["category"] == "international_trade" &&
-        a["outcome"] == "won" &&
-        a["year"].to_i >= (AwardYear.current.year - 1)
+          a["outcome"] == "won" &&
+          a["year"].to_i >= (AwardYear.current.year - 1)
       end
 
     !!condition

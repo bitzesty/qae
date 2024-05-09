@@ -2,8 +2,8 @@ class ServerEnvironment
   class << self
     def local_or_dev_or_staging_server?
       Rails.env.development? ||
-      dev_server? ||
-      staging_server?
+        dev_server? ||
+        staging_server?
     end
 
     def live_server?

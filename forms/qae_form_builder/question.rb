@@ -185,7 +185,7 @@ class QaeFormBuilder
       if delegate_obj.drop_condition_parent.present?
         step.questions.select do |q|
           q.drop_condition.present? &&
-          Array.wrap(q.drop_condition).include?(key)
+            Array.wrap(q.drop_condition).include?(key)
         end.any? do |q|
           q.has_drops?
         end
@@ -334,12 +334,12 @@ class QaeFormBuilder
 
     def can_have_conditional_hints?
       delegate_obj.is_a?(QaeFormBuilder::OptionsQuestion) ||
-      delegate_obj.is_a?(QaeFormBuilder::TradeCommercialSuccessQuestion)
+        delegate_obj.is_a?(QaeFormBuilder::TradeCommercialSuccessQuestion)
     end
 
     def can_have_parent_conditional_hints?
       !delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion) &&
-      !delegate_obj.is_a?(QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion)
+        !delegate_obj.is_a?(QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion)
     end
 
     def pdf_conditional_hints(questions_with_references)
@@ -395,8 +395,8 @@ class QaeFormBuilder
         "If #{option_name}, please answer both parts of question A8.1 and B7"
 
       elsif delegate_obj.form.title == "International Trade Award Application" &&
-            delegate_obj.ref.to_s == "A 1" &&
-            option_name.to_s == "Organisation"
+          delegate_obj.ref.to_s == "A 1" &&
+          option_name.to_s == "Organisation"
         # Hardcoded condition by client request:
         #
         # On International Trade, Question A1 please can you remove note 'if organisation,

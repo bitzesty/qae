@@ -13,8 +13,8 @@ class FeedbackForm
     end.flatten.uniq
 
     ["overall_summary"] +
-    keys.map { |k| ["#{k}_strength", "#{k}_weakness"] }.flatten +
-    development_rates
+      keys.map { |k| ["#{k}_strength", "#{k}_weakness"] }.flatten +
+      development_rates
   end
 
   def self.fields_for_award_type(form_answer)

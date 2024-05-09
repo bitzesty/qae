@@ -39,7 +39,7 @@ class FormsLostFinancialDataDetector
         end
       end
     end.flatten.uniq +
-    financial_dates
+      financial_dates
   end
 
   def financial_dates

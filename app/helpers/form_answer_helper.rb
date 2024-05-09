@@ -38,9 +38,9 @@ module FormAnswerHelper
     if comments_count > 0
       tag.span(class: "icon-flagged #{flag_type}") do
         "#{current_user_class} flags: ".html_safe +
-        tag.span(class: "flag-count") do
-          comments_count.to_s
-        end
+          tag.span(class: "flag-count") do
+            comments_count.to_s
+          end
       end
     end
   end

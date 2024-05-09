@@ -128,7 +128,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
   def item_detect_condition(el, attrs=nil)
     el["category"] == (attrs.present? ? attrs[:category] : ops_hash[:category]) &&
-    el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
+      el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
   end
 
   private

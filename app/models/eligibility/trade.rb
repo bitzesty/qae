@@ -5,7 +5,7 @@ class Eligibility::Trade < Eligibility
     presence: true,
     if: proc {
       (current_step == :current_holder_of_qae_for_trade || force_validate_now.present?) &&
-          current_holder_of_an_award?
+        current_holder_of_an_award?
     }, on: :update
 
   validates :qae_for_trade_award_year,
@@ -13,8 +13,8 @@ class Eligibility::Trade < Eligibility
     not_a_last_year_winner: true,
     if: proc {
       current_holder_of_an_award? &&
-          (current_step == :qae_for_trade_award_year || force_validate_now.present?) &&
-          current_holder_of_qae_for_trade?
+        (current_step == :qae_for_trade_award_year || force_validate_now.present?) &&
+        current_holder_of_qae_for_trade?
     }, on: :update
 
   property :growth_over_the_last_three_years,
@@ -78,7 +78,7 @@ class Eligibility::Trade < Eligibility
 
   def application_holder_of_an_award?
     form_answer &&
-        form_answer.form_basic_eligibility.present? &&
-        form_answer.form_basic_eligibility.current_holder == "yes"
+      form_answer.form_basic_eligibility.present? &&
+      form_answer.form_basic_eligibility.current_holder == "yes"
   end
 end

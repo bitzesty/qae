@@ -61,12 +61,12 @@ class Users::FormAnswersController < Users::BaseController
     #
 
     pdf_blank_mode ||
-    !form_answer.submission_ended? ||
-    (
-      form_answer.submission_ended? &&
-      !form_answer.submitted? &&
-      form_answer.award_year_id == AwardYear.current.id
-    )
+      !form_answer.submission_ended? ||
+      (
+        form_answer.submission_ended? &&
+        !form_answer.submitted? &&
+        form_answer.award_year_id == AwardYear.current.id
+      )
   end
 
   def render_hard_copy_pdf

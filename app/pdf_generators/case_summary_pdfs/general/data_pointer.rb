@@ -26,7 +26,7 @@ module CaseSummaryPdfs::General::DataPointer
   def application_type_question
     all_questions.detect do |q|
       q.delegate_obj.is_a?(QaeFormBuilder::CheckboxSeriaQuestion) &&
-      q.application_type_question.present?
+        q.application_type_question.present?
     end
   end
 

@@ -152,9 +152,9 @@ class FormFinancialPointer
   def fetch_financial_questions
     financial_step.questions.select do |question|
       !FormPdf::HIDDEN_QUESTIONS.include?(question.key.to_s) &&
-      TARGET_FINANCIAL_DATA_QUESTION_TYPES.include?(question.delegate_obj.class) &&
-      award_form[question.key].visible? &&
-      !excluded_by_ignored_questions_list?(question)
+        TARGET_FINANCIAL_DATA_QUESTION_TYPES.include?(question.delegate_obj.class) &&
+        award_form[question.key].visible? &&
+        !excluded_by_ignored_questions_list?(question)
     end
   end
 

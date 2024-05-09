@@ -35,8 +35,8 @@ class Reports::AdminReport
   def csv_filename
     sub_type = ""
     if category == "trade" &&
-       id == "case-index" &&
-       year.year != 2016
+        id == "case-index" &&
+        year.year != 2016
        # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
       sub_type = "_#{params[:years_mode]}"
     end
@@ -65,8 +65,8 @@ class Reports::AdminReport
 
     sub_type = ""
     if category == "trade" &&
-       id == "case_summaries" &&
-       year.year != 2016
+        id == "case_summaries" &&
+        year.year != 2016
        # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
       sub_type = "_#{params[:years_mode]}"
     end
@@ -74,8 +74,8 @@ class Reports::AdminReport
     attachment = year.send("#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
 
     if year.send("aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
-       attachment.present? &&
-       attachment.file.present?
+        attachment.present? &&
+        attachment.file.present?
       # Render Hard Copy if it's generated for this year
 
       OpenStruct.new(

@@ -62,8 +62,8 @@ module CaseSummaryPdfs::General::DrawElements
     end
 
     if form_answer.award_type == "mobility" &&
-       form_answer.award_year.year < 2020 &&
-       application_type_answer.size > 0
+        form_answer.award_year.year < 2020 &&
+        application_type_answer.size > 0
       case application_type_answer.size
       when 1
         [79, 71, 75]

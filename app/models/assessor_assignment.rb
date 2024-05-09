@@ -98,14 +98,14 @@ class AssessorAssignment < ApplicationRecord
 
   def role_allow_to_edit?(subject)
     admin?(subject) ||
-    subject.lead?(form_answer) ||
-    primary_assessor_can_edit?(subject) ||
-    secondary_assessor_can_edit?(subject)
+      subject.lead?(form_answer) ||
+      primary_assessor_can_edit?(subject) ||
+      secondary_assessor_can_edit?(subject)
   end
 
   def moderated_rag_editable_for?(subject)
     editable_for?(subject) &&
-    (position != "moderated" || not_submitted_or_not_locked?)
+      (position != "moderated" || not_submitted_or_not_locked?)
   end
 
   def as_json
@@ -124,25 +124,25 @@ class AssessorAssignment < ApplicationRecord
 
   def owner_or_administrative?(subject)
     admin?(subject) ||
-    subject.lead?(form_answer) ||
-    primary_or_secondary_assessors_allowed?(subject)
+      subject.lead?(form_answer) ||
+      primary_or_secondary_assessors_allowed?(subject)
   end
 
   def primary_or_secondary_assessors_allowed?(subject)
     (case_summary? && subject.primary?(form_answer)) ||
-    (!moderated? && !case_summary? && assessor_id == subject.id)
+      (!moderated? && !case_summary? && assessor_id == subject.id)
   end
 
   def primary_assessor_can_edit?(subject)
     not_submitted_or_not_locked? &&
-    (primary? || case_summary?) &&
-    subject.primary?(form_answer)
+      (primary? || case_summary?) &&
+      subject.primary?(form_answer)
   end
 
   def secondary_assessor_can_edit?(subject)
     not_submitted_or_not_locked? &&
-    secondary? &&
-    subject.secondary?(form_answer)
+      secondary? &&
+      subject.secondary?(form_answer)
   end
 
   def not_submitted_or_not_locked?
