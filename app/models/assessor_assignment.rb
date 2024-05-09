@@ -164,7 +164,7 @@ class AssessorAssignment < ApplicationRecord
   end
 
   def mandatory_fields_for_submitted
-    return if (!submitted? || !submission_action)
+    return if !submitted? || !submission_action
 
     struct.meths_for_award_type(form_answer, moderated?).each do |meth|
       if public_send(meth).blank?

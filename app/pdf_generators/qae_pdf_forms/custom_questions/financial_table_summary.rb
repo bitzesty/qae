@@ -374,7 +374,7 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
       begin
         if financial_year_changed_dates?
           financial_table_changed_dates_headers
-        elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
+        elsif financial_date_day.to_i > 0 && financial_date_month.to_i > 0
           financial_table_pointer_headers
         else
           []

@@ -1306,18 +1306,6 @@ Style/NumericLiteralPrefix:
     - 'spec/features/palace_attendees_spec.rb'
     - 'spec/mailers/account_mailers/buckingham_palace_invite_mailer_spec.rb'
 
-# Offense count: 7
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowSafeAssignment, AllowInMultilineConditions.
-Style/ParenthesesAroundCondition:
-  Exclude:
-    - 'app/form_pointers/financial_table.rb'
-    - 'app/helpers/authy_helper.rb'
-    - 'app/models/assessor_assignment.rb'
-    - 'app/pdf_generators/pdf_audit_certificates/awards2016/innovation/base.rb'
-    - 'forms/appraisal_form.rb'
-    - 'forms/qae_form_builder/by_years_label_question.rb'
-
 # Offense count: 211
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: PreferredDelimiters.

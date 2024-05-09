@@ -13,7 +13,7 @@ module PdfAuditCertificates::Awards2016::Innovation
 
     def partitioned_rows
       indexes = formatted_data.map.with_index { |x, idx| idx if x.keys && x.keys[0] == :dates }.compact_blank
-      return formatted_data unless (indexes.size > 1)
+      return formatted_data unless indexes.size > 1
 
       first = formatted_data[0...(indexes[-1])]
       last = formatted_data[indexes[-1]..-1]

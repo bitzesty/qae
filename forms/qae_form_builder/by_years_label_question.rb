@@ -27,8 +27,8 @@ class QaeFormBuilder
       dates.each.with_index(1) do |(key, value), idx|
         next unless value == :invalid || value == :blank
         result[key] ||= ""
-        result[key] << "Question #{question.ref || question.sub_ref} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY." if (value == :blank && required)
-        result[key] << "The date entered for Question #{question.ref || question.sub_ref} is not valid. Use the format DD/MM/YYYY." if (value == :invalid)
+        result[key] << "Question #{question.ref || question.sub_ref} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY." if value == :blank && required
+        result[key] << "The date entered for Question #{question.ref || question.sub_ref} is not valid. Use the format DD/MM/YYYY." if value == :invalid
       end
 
       dates.each_cons(2) do |values|

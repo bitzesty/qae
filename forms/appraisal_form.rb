@@ -1930,7 +1930,7 @@ class AppraisalForm
     end
     const_get("#{award_type.upcase}_#{award_year.year}").map do |k, obj|
       methods = Array.new
-      methods << Array(rate(k)) if ((!moderated && (obj[:type] != :non_rag)) || (moderated && obj[:type] == :verdict))
+      methods << Array(rate(k)) if (!moderated && (obj[:type] != :non_rag)) || (moderated && obj[:type] == :verdict)
       methods << desc(k) if assessment_types.include?(obj[:type])
       methods
     end.flatten.map(&:to_sym)
