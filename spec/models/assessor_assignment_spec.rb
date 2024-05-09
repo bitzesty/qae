@@ -21,10 +21,10 @@ describe AssessorAssignment do
     context "only with Trade fields present" do
       let(:attributes) do
         [
-            :overseas_earnings_growth,
-            :commercial_success,
-            :strategy,
-            :verdict,
+          :overseas_earnings_growth,
+          :commercial_success,
+          :strategy,
+          :verdict,
         ]
       end
 

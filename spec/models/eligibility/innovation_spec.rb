@@ -56,13 +56,13 @@ RSpec.describe Eligibility::Innovation, type: :model do
 
     it "returns all questions for new eligibility" do
       expect(eligibility.questions).to eq([
-                                           :able_to_provide_financial_figures,
-                                           :has_two_full_time_employees,
-                                           :innovative_product,
-                                           :number_of_innovative_products,
-                                           :was_on_market_for_two_years,
-                                           :had_impact_on_commercial_performace_over_two_years,
-                                           :have_you_recovered_all_investments,
+        :able_to_provide_financial_figures,
+        :has_two_full_time_employees,
+        :innovative_product,
+        :number_of_innovative_products,
+        :was_on_market_for_two_years,
+        :had_impact_on_commercial_performace_over_two_years,
+        :have_you_recovered_all_investments,
                                           ])
     end
 

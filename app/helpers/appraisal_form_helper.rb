@@ -26,8 +26,8 @@ module AppraisalFormHelper
       options.include?(i.keys.first)
     end.map do |el|
        [
-          el.keys.first,
-          el.values.first,
+         el.keys.first,
+         el.values.first,
        ]
     end
   end

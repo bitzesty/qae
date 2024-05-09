@@ -64,9 +64,9 @@ RSpec.describe Eligibility::Trade, type: :model do
 
     it "returns all questions for new eligibility" do
       expect(eligibility.questions).to eq([:growth_over_the_last_three_years,
-                                          :sales_above_100_000_pounds,
-                                          :any_dips_over_the_last_three_years,
-                                          :has_management_and_two_employees])
+        :sales_above_100_000_pounds,
+        :any_dips_over_the_last_three_years,
+        :has_management_and_two_employees])
     end
 
     it "Does not return holder award questions" do

@@ -24,21 +24,21 @@ describe Reports::DataPickers::FormDocumentPicker do
     it "returns list of awards" do
       year_1, year_2, year_3 = PreviousWin.available_years
       awards = [
-          {
-              "category" => "innovation",
-              "year" => year_1,
-              "outcome" => "won",
-          },
-          {
-              "category" => "",
-              "year" => year_2,
-              "outcome" => "won",
-          },
-          {
-              "category" => "trade",
-              "year" => year_3,
-              "outcome" => "did_not_win",
-          },
+        {
+            "category" => "innovation",
+            "year" => year_1,
+            "outcome" => "won",
+        },
+        {
+            "category" => "",
+            "year" => year_2,
+            "outcome" => "won",
+        },
+        {
+            "category" => "trade",
+            "year" => year_3,
+            "outcome" => "did_not_win",
+        },
       ]
 
       allow(subject).to receive(:obj).and_return(double(previous_wins: awards))

@@ -16,21 +16,21 @@ describe FinancialSummaryPointer do
         [
           {
             financial_year_changed_dates: [
-                                            ["07", "07", "2021"],
-                                            ["06", "09", "2022"],
+              ["07", "07", "2021"],
+              ["06", "09", "2022"],
                                           ],
           },
           { employees: [
-                         { value: "10", name: "employees_1of2" },
-                         { value: "12", name: "employees_2of2" },
+            { value: "10", name: "employees_1of2" },
+            { value: "12", name: "employees_2of2" },
                        ],
           },
           {
             sales: [
-                     { value: "10", name: "sales_1of4" },
-                     { value: "10", name: "sales_2of4" },
-                     { value: "10", name: "sales_3of4" },
-                     { value: "10", name: "sales_4of4" },
+              { value: "10", name: "sales_1of4" },
+              { value: "10", name: "sales_2of4" },
+              { value: "10", name: "sales_3of4" },
+              { value: "10", name: "sales_4of4" },
                    ],
           },
         ]
@@ -68,23 +68,23 @@ describe FinancialSummaryPointer do
         [
           {
             financial_year_changed_dates: [
-                                            ["05", "05", "2019"],
-                                            ["06", "06", "2020"],
-                                            ["07", "07", "2021"],
-                                            ["08", "08", "2022"],
+              ["05", "05", "2019"],
+              ["06", "06", "2020"],
+              ["07", "07", "2021"],
+              ["08", "08", "2022"],
                                           ],
           },
           { employees: [
-                         { value: "10", name: "employees_1of4" },
-                         { value: "10", name: "employees_2of4" },
-                         { value: "10", name: "employees_3of4" },
-                         { value: "10", name: "employees_4of4" },
+            { value: "10", name: "employees_1of4" },
+            { value: "10", name: "employees_2of4" },
+            { value: "10", name: "employees_3of4" },
+            { value: "10", name: "employees_4of4" },
                        ],
           },
           {
             sales: [
-                     { value: "10", name: "sales_1of2" },
-                     { value: "10", name: "sales_2of2" },
+              { value: "10", name: "sales_1of2" },
+              { value: "10", name: "sales_2of2" },
                    ],
           },
         ]
@@ -121,16 +121,16 @@ describe FinancialSummaryPointer do
       let(:data) do
         [
           { employees: [
-                         { value: "10", name: "employees_1of2" },
-                         { value: "12", name: "employees_2of2" },
+            { value: "10", name: "employees_1of2" },
+            { value: "12", name: "employees_2of2" },
                        ],
           },
           {
             sales: [
-                     { value: "10", name: "sales_1of4" },
-                     { value: "10", name: "sales_2of4" },
-                     { value: "10", name: "sales_3of4" },
-                     { value: "10", name: "sales_4of4" },
+              { value: "10", name: "sales_1of4" },
+              { value: "10", name: "sales_2of4" },
+              { value: "10", name: "sales_3of4" },
+              { value: "10", name: "sales_4of4" },
                    ],
           },
         ]
@@ -222,16 +222,16 @@ describe FinancialSummaryPointer do
       let(:data) do
         [
           { employees: [
-                         { value: "10", name: "employees_1of4" },
-                         { value: "10", name: "employees_2of4" },
-                         { value: "10", name: "employees_3of4" },
-                         { value: "10", name: "employees_4of4" },
+            { value: "10", name: "employees_1of4" },
+            { value: "10", name: "employees_2of4" },
+            { value: "10", name: "employees_3of4" },
+            { value: "10", name: "employees_4of4" },
                        ],
           },
           {
             sales: [
-                     { value: "10", name: "sales_1of2" },
-                     { value: "10", name: "sales_2of2" },
+              { value: "10", name: "sales_1of2" },
+              { value: "10", name: "sales_2of2" },
                    ],
           },
         ]
