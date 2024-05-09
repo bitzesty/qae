@@ -54,7 +54,7 @@ module ManualUpdaters
             sleep 3
 
             logy "[#{ENV['MAILER_HOST']} | CS IND | #{form_answer.id}] -------------------------------- updated"
-          rescue => e
+        rescue => e
             not_updated_entries_cs_individual << form_answer.id
 
             logy "[#{ENV['MAILER_HOST']} | CS IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
@@ -89,7 +89,7 @@ module ManualUpdaters
             sleep 3
 
             logy "[#{ENV['MAILER_HOST']} | FEED IND | #{form_answer.id}] -------------------------------- updated"
-          rescue => e
+        rescue => e
             not_updated_entries_feed_individual << form_answer.id
 
             logy "[#{ENV['MAILER_HOST']} | FEED IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"

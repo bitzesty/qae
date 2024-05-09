@@ -38,7 +38,7 @@ namespace :form_answers do
         sleep 1
 
         puts "[form_answer]---------------------------------#{form_answer.id} updated"
-      rescue
+    rescue
         not_updated_entries << form_answer.id
       
     end

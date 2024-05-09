@@ -9,7 +9,7 @@ FactoryBot.define do
         else
           Settings.first_or_create
         end
-      rescue ActiveRecord::RecordNotUnique
+    rescue ActiveRecord::RecordNotUnique
         retry
       
     end
