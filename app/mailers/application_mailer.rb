@@ -1,9 +1,13 @@
 class ApplicationMailer < Mail::Notify::Mailer
   include MailerHelper
 
+  def self.delivery_job
+    ::MailDeliveryWorker
+  end
+
   default(
     from: ENV["MAILER_FROM"] || "no-reply@kings-awards-enterprise.service.gov.uk",
-    reply_to: "kingsawards@businessandtrade.gov.uk"
+    reply_to: "kingsawards@businessandtrade.gov.uk",
   )
 
   def send_mail_if_not_bounces(template_id, headers)

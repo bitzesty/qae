@@ -10,7 +10,7 @@ module Reports::CsvHelper
 
         csv << mapping.map do |m|
           sanitize_string(
-            form_answer.call_method(m[:method])
+            form_answer.call_method(m[:method]),
           )
         end
       end
@@ -60,6 +60,6 @@ module Reports::CsvHelper
   end
 
   def sanitize_string(string)
-    string.present? ? string.to_s.tr("\n","").squish : ""
+    string.present? ? string.to_s.tr("\n", "").squish : ""
   end
 end

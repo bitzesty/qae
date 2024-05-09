@@ -27,7 +27,7 @@ class FormPaginator
 
   def next_entry
     if !defined?(@next_entry)
-      @next_entry = !last? ? scope.find(ids[position + 1]) : nil
+      @next_entry = (!last?) ? scope.find(ids[position + 1]) : nil
     else
       @next_entry
     end
@@ -35,7 +35,7 @@ class FormPaginator
 
   def prev_entry
     if !defined?(@prev_entry)
-      @pref_entry = !first? ? scope.find(ids[position - 1]) : nil
+      @pref_entry = (!first?) ? scope.find(ids[position - 1]) : nil
     else
       @prev_entry
     end

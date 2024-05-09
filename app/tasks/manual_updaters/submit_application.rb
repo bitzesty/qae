@@ -8,7 +8,6 @@
 
 module ManualUpdaters
   class SubmitApplication
-
     attr_accessor :form_answer
 
     def initialize(form_answer)

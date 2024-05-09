@@ -7,7 +7,7 @@ describe Account do
   let!(:user) do
     create(:user, account: account)
   end
-  let!(:current_year) { AwardYear.where(year: Date.today.year + 1).first_or_create }
+  let!(:current_year) { AwardYear.where(year: Date.current.year + 1).first_or_create }
   let!(:previous_year) { AwardYear.where(year: current_year).first_or_create }
 
   describe "#has_award_in_this_year?" do

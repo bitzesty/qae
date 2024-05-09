@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "CaseSummaryPdfs::Awards2016::Trade::Base" do
   let(:award_type) { :trade }

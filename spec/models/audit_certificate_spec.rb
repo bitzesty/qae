@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe AuditCertificate, type: :model do
   describe "associations" do
@@ -21,8 +21,8 @@ RSpec.describe AuditCertificate, type: :model do
     end
   end
 
-  describe 'save' do
-    it 'should set changes_description' do
+  describe "save" do
+    it "should set changes_description" do
       audit_certificate = create(:audit_certificate, changes_description: "test")
       audit_certificate.update(status: "no_changes_necessary")
       expect(audit_certificate.changes_description).to be_nil

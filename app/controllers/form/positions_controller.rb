@@ -1,5 +1,4 @@
 class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving / removing of Position Details on EP Form
   # This section is used in case if JS disabled
 
@@ -35,7 +34,7 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
       "start_month" => item_params[:start_month],
       "start_year" => item_params[:start_year],
       "end_month" => item_params[:end_month],
-      "end_year" => item_params[:end_year]
+      "end_year" => item_params[:end_year],
     }
   end
 
@@ -87,10 +86,10 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
     end
   end
 
-  def item_detect_condition(el, attrs=nil)
+  def item_detect_condition(el, attrs = nil)
     el["name"] == (attrs.present? ? attrs[:name] : ops_hash[:name]) &&
-    el["start_month"] == (attrs.present? ? attrs[:start_month] : ops_hash[:start_month]) &&
-    el["start_year"] == (attrs.present? ? attrs[:start_year] : ops_hash[:start_year])
+      el["start_month"] == (attrs.present? ? attrs[:start_month] : ops_hash[:start_month]) &&
+      el["start_year"] == (attrs.present? ? attrs[:start_year] : ops_hash[:start_year])
   end
 
   private
@@ -103,7 +102,7 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
       :start_month,
       :start_year,
       :end_month,
-      :end_year
+      :end_year,
     )
   end
 end

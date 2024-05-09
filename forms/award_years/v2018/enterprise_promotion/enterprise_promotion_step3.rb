@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2018::QaeForms
   class << self
     def promotion_step3
@@ -38,7 +37,7 @@ class AwardYears::V2018::QaeForms
         end
 
         header :nominee_is_eligible_for_lifetime_achievement_award,
-               "Your nominee is eligible for a Lifetime Achievement Award." do
+          "Your nominee is eligible for a Lifetime Achievement Award." do
           context %(
             <p>
               A Lifetime Achievement Award is a special Enterprise Promotion award that is given for outstanding, consistent and effective promotion of business enterprise skills and attitudes over <strong>at least ten years</strong>. All those nominated for Lifetime Achievement are still considered for the standard award.

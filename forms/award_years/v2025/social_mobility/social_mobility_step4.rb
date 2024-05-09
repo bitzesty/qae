@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def mobility_step4
@@ -58,7 +57,7 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the submission deadline.
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the submission deadline.
             </p>
           )
           yes_no
@@ -71,7 +70,7 @@ class AwardYears::V2025::QaeForms
           required
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the submission deadline.
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the submission deadline.
             </p>
           )
           type :date
@@ -188,6 +187,7 @@ class AwardYears::V2025::QaeForms
 
         financial_summary :mobility_financial_summary, "Summary of your company financials (for information only)" do
           sub_ref "D 4.5"
+          one_option
         end
 
         textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do

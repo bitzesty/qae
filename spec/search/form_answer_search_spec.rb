@@ -103,14 +103,14 @@ describe FormAnswerSearch do
           overseas_earnings_growth_desc: "1",
           overseas_earnings_growth_rate: "average",
           corporate_social_responsibility_desc: "testcsr",
-          corporate_social_responsibility_rate: "average"
+          corporate_social_responsibility_rate: "average",
         }
       end
 
       before do
-        primary_assessment.document = assessment_document.merge({verdict_rate: "average"})
+        primary_assessment.document = assessment_document.merge({ verdict_rate: "average" })
         primary_assessment.submitted_at = Time.current
-        secondary_assessment.document = assessment_document.merge({verdict_rate: "positive"})
+        secondary_assessment.document = assessment_document.merge({ verdict_rate: "positive" })
         secondary_assessment.submitted_at = Time.current
 
         primary_assessment.save!
@@ -123,7 +123,7 @@ describe FormAnswerSearch do
       end
 
       it "filters out applications with same verdicts" do
-        secondary_assessment.document = assessment_document.merge({verdict_rate: "average"})
+        secondary_assessment.document = assessment_document.merge({ verdict_rate: "average" })
         secondary_assessment.save!
 
         result = described_class.new(scope, admin).filter_by_sub_status(scope, ["recommendation_disperancy"])

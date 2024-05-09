@@ -1,4 +1,3 @@
-# coding: utf-8
 module PdfAuditCertificates::General::GuidanceElements
   def render_applicant_guidance_section
     render_applicant_guidance_header
@@ -28,7 +27,6 @@ module PdfAuditCertificates::General::GuidanceElements
       render_text_line(paragraph, 2, leading: 2)
     end
   end
-
 
   def render_accountant_guidance_intro
     header = "GUIDANCE FOR ACCOUNTANTS"

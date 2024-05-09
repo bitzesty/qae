@@ -20,7 +20,7 @@ class FormAnswerVersionsDispatcher
 
   def get_full_name(whodunnit_key)
     klass, id = whodunnit_key.split(":")
-    user = klass.capitalize.constantize.find_by_id(id)
+    user = klass.capitalize.constantize.find_by(id: id)
 
     # if user is destroyed we don't update versions' whodunnit keys
     # this helps to avoid 404 errors on the application page

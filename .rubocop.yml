@@ -1,13 +1,140 @@
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - standard
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  Exclude:
+    - config.ru
+    - assets/builds/*
+    - bin/**
+    - bin/**/*
+    - db/**
+    - db/migrate/**
+    - doc/**/*
+    - node_modules/**/*
+    - tmp/**
+    - vendor/**/*
+
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 3.2.0
+
+inherit_from:
+  - .rubocop_todo.yml
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 130
+  Exclude:
+    - config/**/*
+    - db/**/*
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+  AllowMultilineFinalElement: true
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+Layout/MultilineHashBraceLayout:
+  Enabled: false
+
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+  EnforcedStyle: space
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
+Rails:
+  Enabled: true
+
+Rails/ApplicationRecord:
+  Exclude:
+    - db/migrate/**
+
+Rails/FindBy:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - lib/**/*
+    - db/migrate/**/*.rb
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - db/migrate/**/*.rb
+    - spec/**/*.rb
+
+Style/HashConversion:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/WordArray:
+  MinSize: 0
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
-  SupportedStyles:
-    - single_quotes
-    - double_quotes
-Style/AccessorMethodName:
-  enabled: false
-Style/MethodDefParentheses:
-  enabled: false
-Metrics/LineLength:
-  Max: 120
-Metrics/MethodLength:
-  enabled: false
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false

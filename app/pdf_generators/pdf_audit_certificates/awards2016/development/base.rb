@@ -1,4 +1,3 @@
-# coding: utf-8
 module PdfAuditCertificates::Awards2016::Development
   class Base < PdfAuditCertificates::Base
     # HERE YOU CAN OVERRIDE STANDART METHODS
@@ -33,7 +32,7 @@ module PdfAuditCertificates::Awards2016::Development
 
       rows = [
         financial_pointer.years_list.unshift(""),
-        financial_table_year_and_date_data
+        financial_table_year_and_date_data,
       ]
 
       rows << revised_row(rows.last.length - 1, 1)
@@ -51,7 +50,6 @@ module PdfAuditCertificates::Awards2016::Development
 
         rows << revised_row(row.values.first.length, index + 2)
       end
-
 
       table(rows, table_default_ops(:main_table)) do
         rows.each_with_index do |row, i|

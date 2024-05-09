@@ -5,13 +5,13 @@ class FormAnswerDecorator < ApplicationDecorator
                    "International Trade" => "Int'l Trade",
                    "Sustainable Development" => "Sust. Dev.",
                    "Promoting Opportunity" => "Prom. Opp.",
-                   "Enterprise Promotion" => "Ent. Prom."
+                   "Enterprise Promotion" => "Ent. Prom.",
                  }
 
   NOT_ASSIGNED = "Not Assigned"
   ASSESSORS_NOT_ASSIGNED = "Assessors are not assigned"
 
-  def pdf_generator(pdf_blank_mode=false)
+  def pdf_generator(pdf_blank_mode = false)
     "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object, pdf_blank_mode)
   end
 
@@ -26,8 +26,8 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def pdf_audit_certificate_generator
-    "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize.
-                                                                             new(object)
+    "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize
+                                                                             .new(object)
   end
 
   def download_filename
@@ -102,7 +102,7 @@ class FormAnswerDecorator < ApplicationDecorator
         old_array = object.document[key]
         new_array = result[key]
 
-        if new_array.any? {|h| h.keys == ["type"]}
+        if new_array.any? { |h| h.keys == ["type"] }
           object.document.merge! result
         else
           new_array.each_with_index do |value, index|
@@ -112,14 +112,14 @@ class FormAnswerDecorator < ApplicationDecorator
               old_array << value
             end
           end
-          old_array.reject!{|i| i.include? "_destroy" }
+          old_array.reject!{ |i| i.include? "_destroy" }
         end
       end
     end
   end
 
   def array_keys
-    object.document.select{ |item, value|  value.kind_of?(Array) }.keys
+    object.document.select{ |item, value| value.kind_of?(Array) }.keys
   end
 
   def company_name
@@ -131,7 +131,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def progress_class
-    "#{object.state.dasherize[0..-2]}"
+    object.state.dasherize[0..-2].to_s
   end
 
   def state_text
@@ -211,7 +211,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
     if id && kind
       if %w[Admin Assessor].include?(kind)
-        user = kind.constantize.find_by_id(id)
+        user = kind.constantize.find_by(id: id)
 
         user.decorate.full_name if user
       end
@@ -295,7 +295,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominator_name
-    "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
+    "#{document["user_info_first_name"]} #{document["user_info_last_name"]}".strip
   end
 
   def nominator_building
@@ -331,8 +331,8 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def date_started_trading
-    return nil if document['started_trading_year'].blank?
-    "#{document['started_trading_day']}/#{document['started_trading_month']}/#{document['started_trading_year']}".strip
+    return nil if document["started_trading_year"].blank?
+    "#{document["started_trading_day"]}/#{document["started_trading_month"]}/#{document["started_trading_year"]}".strip
   end
 
   def website_url
@@ -344,7 +344,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def head_of_business_full_name
-    "#{document['head_of_business_first_name']} #{document['head_of_business_last_name']}".strip
+    "#{document["head_of_business_first_name"]} #{document["head_of_business_last_name"]}".strip
   end
 
   def head_of_business_honours
@@ -369,7 +369,7 @@ class FormAnswerDecorator < ApplicationDecorator
     if p_summary.present?
       "#{p_summary.name} #{p_summary.last_name}"
     else
-      "#{document['press_contact_details_name']} #{document['press_contact_details_last_name']}"
+      "#{document["press_contact_details_name"]} #{document["press_contact_details_last_name"]}"
     end
   end
 
@@ -449,15 +449,15 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def application_background
     app_background = case award_type
-                     when "trade"
+    when "trade"
                        document["trade_goods_briefly"]
-                     when "innovation"
+    when "innovation"
                        document["innovation_desc_short"]
-                     when "development"
+    when "development"
                        document["development_management_approach_briefly"]
-                     when "mobility"
+    when "mobility"
                        document["mobility_desc_short"]
-                     end
+    end
 
     sanitize_html app_background
   end

@@ -3,7 +3,7 @@ module ShortlistedDocument
 
   included do
     mount_uploader :attachment, AuditCertificateUploader
-    scan_file      :attachment
+    scan_file :attachment
 
     include ::InfectedFileCleaner
     clean_after_scan :attachment

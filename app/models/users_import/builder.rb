@@ -71,7 +71,7 @@ class UsersImport::Builder
       "RegisteredUserPostcode" => :postcode,
       "RegisteredUserTelephone1" => :phone_number,
       "RegisteredUserTelephone2" => :phone_number2,
-      "RegisteredUserMobile" => :mobile_number
+      "RegisteredUserMobile" => :mobile_number,
     }
   end
 

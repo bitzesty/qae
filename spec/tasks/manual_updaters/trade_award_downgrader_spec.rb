@@ -27,7 +27,7 @@ describe ManualUpdaters::TradeAwardDowngrader do
       document["trade_commercial_success"] = "6 plus"
 
       6.times do |i|
-        document["employees_#{i+1}of6"] = i + 1
+        document["employees_#{i + 1}of6"] = i + 1
       end
 
       %w(day month).each do |attr|
@@ -51,7 +51,7 @@ describe ManualUpdaters::TradeAwardDowngrader do
       document = form_answer.document
 
       3.times do |i|
-        expect(document["employees_#{i+1}of3"]).to eq(i + 4)
+        expect(document["employees_#{i + 1}of3"]).to eq(i + 4)
       end
 
       %w(day month).each do |attr|

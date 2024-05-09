@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module PdfAuditCertificates::General::SharedElements
   DEFAULT_OFFSET = 110.mm
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
@@ -53,7 +52,7 @@ module PdfAuditCertificates::General::SharedElements
   def render_financial_main_table
     rows = [
       financial_pointer.years_list.unshift(""),
-      financial_table_year_and_date_data
+      financial_table_year_and_date_data,
     ]
 
     rows << revised_row(rows.last.length - 1, 1)
@@ -142,7 +141,7 @@ module PdfAuditCertificates::General::SharedElements
       ]
     else
       [
-        benchmarks_row("growth_in_total_turnover")
+        benchmarks_row("growth_in_total_turnover"),
       ]
     end
 
@@ -185,12 +184,12 @@ module PdfAuditCertificates::General::SharedElements
     rows = [
       [
         "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
-        formatted_uk_sales_value(financial_pointer.overall_growth)
+        formatted_uk_sales_value(financial_pointer.overall_growth),
       ],
       [
         "Overall growth in % (year 1 - #{financial_pointer.period_length})",
-        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents)
-      ]
+        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents),
+      ],
     ]
 
     table rows, table_default_ops(:overall_benchmarks)
@@ -201,7 +200,6 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
-
     dotted_line = %{...............................................................................................................................}
 
     b1 = %{Signed (External Accountant) ............................................................................}
@@ -337,13 +335,13 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total turnover figure per the form to the general ledger (account number [xxx]) for each year stated.",
       "Agree the total turnover figure per the form to HMRC and/or Companies House filings for each year stated.",
-      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger for each year to underlying sales invoices.",
     ]
     render_list_with_header(header, list)
 
     header = "Employees:"
     list = [
-      "Agree the total number of full-time employees in the form to [name of payroll report] for each year stated."
+      "Agree the total number of full-time employees in the form to [name of payroll report] for each year stated.",
     ]
     render_list_with_header(header, list)
 
@@ -351,20 +349,20 @@ module PdfAuditCertificates::General::SharedElements
     list = [
       "Agree the total non-UK sales per the form to the general ledger (account number [xxx]) for each year stated.",
       "Trace a sample of 5% non-UK sales from the general ledger to underlying sales invoices.",
-      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period."
+      "Please note, for International Trade applicants, we need to ensure the sales demonstrates growth each year of the application period.",
     ]
     render_list_with_header(header, list)
 
     header = "Sales by product group"
     list = [
       "Agree the total sales by product group per the form to the general ledger (account numbers [xxx] and [xxx]).",
-      "Trace a sample of 5% sales from the general ledger to underlying sales invoices."
+      "Trace a sample of 5% sales from the general ledger to underlying sales invoices.",
     ]
     render_list_with_header(header, list)
 
     header = "Net profit"
     list = [
-      "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated."
+      "Agree the value per the form to submissions to HMRC and/or Companies House for each year stated.",
     ]
     render_list_with_header(header, list)
 
@@ -381,43 +379,42 @@ module PdfAuditCertificates::General::SharedElements
     move_down 3.mm
   end
 
-
   def render_footer_note
     title = %{Note for applicants/auditors: This submission to the King's Awards Office (KAO) provides authority for the KAO to verify the information contained in it with the above-named auditor.}
     text_box title, default_text_ops.merge({
-      at: [0.mm, 10.mm]
+      at: [0.mm, 10.mm],
     })
   end
 
-  def render_text_line(title, margin=0, ops={})
+  def render_text_line(title, margin = 0, ops = {})
     text title, default_text_ops.merge(ops)
     move_down margin.mm
   end
 
   def render_text_box(title, top, options = {})
     text_box title,
-             default_text_header_ops.merge(at: [0.mm, top.mm + DEFAULT_OFFSET]).merge(options)
+      default_text_header_ops.merge(at: [0.mm, top.mm + DEFAULT_OFFSET]).merge(options)
   end
 
   def default_text_header_ops
     default_text_ops.merge({
       height: 20.mm,
       style: :bold,
-      size: 11.5
+      size: 11.5,
     })
   end
 
   def default_list_ops
     {
       leading: 1.8,
-      indent_paragraphs: 10
+      indent_paragraphs: 10,
     }
   end
 
   def default_text_ops
     {
       size: 10,
-      align: :justify
+      align: :justify,
     }
   end
 
@@ -430,8 +427,8 @@ module PdfAuditCertificates::General::SharedElements
       column_widths: send("#{table_type}_column_widths"),
       cell_style: {
         size: 10,
-        padding: [3, 3, 3, 3]
-      }
+        padding: [3, 3, 3, 3],
+      },
     }
   end
 

@@ -181,19 +181,19 @@ $.fn.charcount = function() {
     setTimeout(function() {
       textInput.addClass("char-over-cut");
       while (textInput.hasClass("char-over-cut")) {
-        Countable.once(textInput[0], cutOverChar);
+        Countable.on(textInput[0], cutOverChar);
       }
     }, 100);
   });
 
   this.each(function() {
     // Makes word count dynamic
-    Countable.live(this, counting);
+    Countable.count(this, counting);
 
     // Count words even if you backspace/delete
     $(this).on("keydown keyup", function (e) {
       if (e.keyCode == 8 || e.keyCode == 46) {
-        Countable.once($(this)[0], counting);
+        Countable.on($(this)[0], counting);
       }
     });
   });

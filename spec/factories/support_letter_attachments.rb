@@ -5,8 +5,8 @@ FactoryBot.define do
     attachment do
       Rack::Test::UploadedFile.new(
         File.join(
-          Rails.root,"spec","support","file_samples","photo_with_size_less_than_5MB.jpg"
-        )
+          Rails.root, "spec", "support", "file_samples", "photo_with_size_less_than_5MB.jpg",
+        ),
       )
     end
   end

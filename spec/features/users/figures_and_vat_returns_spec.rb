@@ -15,7 +15,7 @@ describe "User uploads VAT returns and actual figures" do
 
     settings.email_notifications.create!(
       kind: "shortlisted_notifier",
-      trigger_at: DateTime.now - 1.day
+      trigger_at: DateTime.now - 1.day,
     )
   end
 

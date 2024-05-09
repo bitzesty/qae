@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :award_year do
-    year { Date.today.year }
+    year { Date.current.year }
   end
 end

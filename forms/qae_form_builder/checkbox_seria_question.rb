@@ -25,7 +25,7 @@ class QaeFormBuilder
   class CheckboxSeriaQuestionDecorator < QuestionDecorator
     def fieldset_data_hash
       result = super
-      result['selection-limit'] = delegate_obj.selection_limit if delegate_obj.selection_limit
+      result["selection-limit"] = delegate_obj.selection_limit if delegate_obj.selection_limit
 
       result
     end
@@ -51,7 +51,7 @@ class QaeFormBuilder
 
   class CheckboxSeriaQuestionDecorator < QuestionDecorator
     def entities
-      @entities ||= (answers[delegate_obj.key.to_s] || [])
+      @entities ||= answers[delegate_obj.key.to_s] || []
     end
   end
 end

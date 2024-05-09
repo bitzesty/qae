@@ -9,7 +9,7 @@ So that I can support my nominator
   let!(:form_answer) { create(:form_answer, :promotion, user: user) }
   let!(:supporter) do
     create :supporter, form_answer: form_answer,
-                       user: user
+      user: user
   end
   let(:access_key) { supporter.access_key }
   let(:support_letter) do
@@ -32,8 +32,8 @@ So that I can support my nominator
     describe "Already submitted letter" do
       let!(:support_letter) do
         create :support_letter, form_answer: form_answer,
-                                user: user,
-                                supporter: supporter
+          user: user,
+          supporter: supporter
       end
 
       before do

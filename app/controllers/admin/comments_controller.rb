@@ -22,7 +22,7 @@ class Admin::CommentsController < Admin::BaseController
         if request.xhr? || request.format.js?
           if @comment.persisted?
             render partial: "admin/form_answers/comment",
-                   locals: { comment: @comment, resource: form_answer }
+              locals: { comment: @comment, resource: form_answer }
           else
             head :ok
           end
@@ -53,7 +53,7 @@ class Admin::CommentsController < Admin::BaseController
     log_event if resource.destroy
 
     respond_to do |format|
-      format.json { render(json: :ok)}
+      format.json { render(json: :ok) }
       format.html do
         render_flash_message_for(resource)
         redirect_to(admin_form_answer_path(form_answer))

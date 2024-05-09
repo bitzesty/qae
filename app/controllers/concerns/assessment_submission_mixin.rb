@@ -25,8 +25,8 @@ module AssessmentSubmissionMixin
   end
 
   def action_type
-    appraisal_type = resource.position == "case_summary" ? "case_summary" : "#{resource.position}_appraisal"
-    appraisal_action = action_name == "create" ? "submit" : "unsubmit"
+    appraisal_type = (resource.position == "case_summary") ? "case_summary" : "#{resource.position}_appraisal"
+    appraisal_action = (action_name == "create") ? "submit" : "unsubmit"
     "#{appraisal_type}_#{appraisal_action}"
   end
 

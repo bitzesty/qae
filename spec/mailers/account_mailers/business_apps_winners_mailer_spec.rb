@@ -12,7 +12,7 @@ describe AccountMailers::BusinessAppsWinnersMailer do
   let(:mail) {
     AccountMailers::BusinessAppsWinnersMailer.notify(
       form_answer.id,
-      account_holder.id
+      account_holder.id,
     )
   }
 

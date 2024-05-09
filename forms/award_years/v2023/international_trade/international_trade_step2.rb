@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2023::QaeForms
   class << self
     def trade_step2
@@ -37,7 +36,7 @@ class AwardYears::V2023::QaeForms
             [:bold, "COVID-19 impact"],
             [:normal, %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            )]
+            )],
           ]
         end
 
@@ -94,7 +93,7 @@ class AwardYears::V2023::QaeForms
           )
           check_options [
             ["products", "Products"],
-            ["services", "Services"]
+            ["services", "Services"],
           ]
           application_type_question true
         end
@@ -209,7 +208,7 @@ class AwardYears::V2023::QaeForms
           )
           check_options [
             ["franchise", "As a franchise"],
-            ["other", "Other business model(s)"]
+            ["other", "Other business model(s)"],
           ]
         end
 

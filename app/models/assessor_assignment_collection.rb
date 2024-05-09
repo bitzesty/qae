@@ -50,12 +50,12 @@ class AssessorAssignmentCollection
 
   def handle_double_assignment(fa, prim, sec)
     if primary_assessor.present? &&
-       secondary_assessor.present? &&
-       primary_assignable?(fa) &&
-       secondary_assignable?(fa)
+        secondary_assessor.present? &&
+        primary_assignable?(fa) &&
+        secondary_assignable?(fa)
 
       if primary_assessor == sec.assessor ||
-         secondary_assessor == prim.assessor
+          secondary_assessor == prim.assessor
 
         prim.assessor_id = nil
         sec.assessor_id = nil
@@ -99,7 +99,7 @@ class AssessorAssignmentCollection
 
   def assessors_can_not_be_the_same
     if primary_assessor_id == secondary_assessor_id &&
-       primary_assessor_present?
+        primary_assessor_present?
       errors.add(:base, "Primary/Secondary Assessor can not be the same.")
     end
   end

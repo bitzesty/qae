@@ -7,6 +7,6 @@ class Users::SubmissionMailer < ApplicationMailer
     @recipient = User.find(user_id).decorate
     @subject = "[King's Awards for Enterprise] Thank you for submitting your King’s Award Application! - Application ref #{@form_answer.urn}"
 
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @recipient.email, subject: subject_with_env_prefix(@subject)
+    send_mail_if_not_bounces ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], to: @recipient.email, subject: subject_with_env_prefix(@subject)
   end
 end

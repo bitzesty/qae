@@ -25,9 +25,9 @@ class PalaceInviteForm
 
   def valid?
     invite.valid? &&
-    palace_attendees.count > 0 &&
-    palace_attendees.count <= 2 &&
-    palace_attendees.all?(&:valid?)
+      palace_attendees.count > 0 &&
+      palace_attendees.count <= 2 &&
+      palace_attendees.all?(&:valid?)
   end
 
   def palace_attendees
@@ -53,7 +53,7 @@ class PalaceInviteForm
       end
 
       if attendee_attributes.keys.count == 1 &&
-         attendee_attributes["id"].present?
+          attendee_attributes["id"].present?
         if attendee.persisted?
           attendee.mark_for_destruction
         else

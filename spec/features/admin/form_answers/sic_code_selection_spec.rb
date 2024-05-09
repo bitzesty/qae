@@ -4,7 +4,6 @@ include Warden::Test::Helpers
 describe "SIC Code selection", "
   As Admin
   I want to set up the SIC Code per application." do
-
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer, :trade, :submitted) }
   let(:selected) { "1623 - Manufacture of other builders' carpentry and joinery" }

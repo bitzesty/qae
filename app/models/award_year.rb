@@ -7,12 +7,12 @@ class AwardYear < ApplicationRecord
   has_one :settings, inverse_of: :award_year, autosave: true
 
   has_many :aggregated_case_summary_hard_copies, -> { where(type_of_report: "case_summary") },
-                                                    class_name: "AggregatedAwardYearPdf",
-                                                    dependent: :destroy
+    class_name: "AggregatedAwardYearPdf",
+    dependent: :destroy
 
   has_many :aggregated_feedback_hard_copies, -> { where(type_of_report: "feedback") },
-                                                 class_name: "AggregatedAwardYearPdf",
-                                                 dependent: :destroy
+    class_name: "AggregatedAwardYearPdf",
+    dependent: :destroy
 
   after_create :create_settings
 
@@ -61,8 +61,8 @@ class AwardYear < ApplicationRecord
   ["3", "6"].map do |i|
     define_method("case_summary_trade_#{i}_hard_copy_pdf") do
       send("aggregated_case_summary_hard_copies").find_by(
-        award_category: 'trade',
-        sub_type: i
+        award_category: "trade",
+        sub_type: i,
       )
     end
   end
@@ -73,27 +73,27 @@ class AwardYear < ApplicationRecord
 
   def form_data_generation_can_be_started?
     Settings.after_current_submission_deadline? &&
-    form_data_hard_copies_state.nil?
+      form_data_hard_copies_state.nil?
   end
 
   def case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    case_summary_hard_copies_state.nil?
+      case_summary_hard_copies_state.nil?
   end
 
   def feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    feedback_hard_copies_state.nil?
+      feedback_hard_copies_state.nil?
   end
 
   def aggregated_case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    aggregated_case_summary_hard_copy_state.nil?
+      aggregated_case_summary_hard_copy_state.nil?
   end
 
   def aggregated_feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    aggregated_feedback_hard_copy_state.nil?
+      aggregated_feedback_hard_copy_state.nil?
   end
 
   def aggregated_hard_copies_completed?(type)
@@ -266,11 +266,11 @@ class AwardYear < ApplicationRecord
 
     def buckingham_palace_reception_attendee_information_due_by
       current_year_deadline(
-        "buckingham_palace_reception_attendee_information_due_by"
+        "buckingham_palace_reception_attendee_information_due_by",
       ).trigger_at
     end
 
-    def start_trading_since(years_number=3)
+    def start_trading_since(years_number = 3)
       if AwardYear.current.year < 2019
         Date.new(AwardYear.current.year - 1 - years_number, 9, 3).strftime("%d/%m/%Y")
       else
@@ -310,7 +310,7 @@ class AwardYear < ApplicationRecord
 
       start_date =
         begin
-          Date.new(AwardYear.current.year - 1 - to, month, opts[:include_end_date] == true ? day : (day + 1))
+          Date.new(AwardYear.current.year - 1 - to, month, (opts[:include_end_date] == true) ? day : (day + 1))
         rescue Date::Error # avoiding 32th day of the month error
           Date.new(AwardYear.current.year - 1 - to, month + 1, 1)
         end

@@ -4,7 +4,7 @@ class QaeFormBuilder
       result = super
 
       length = ActionView::Base.full_sanitizer.sanitize(
-        question.input_value.to_s
+        question.input_value.to_s,
       ).split(" ")
        .reject do |a|
         a.blank?

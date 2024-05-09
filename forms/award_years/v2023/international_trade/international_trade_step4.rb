@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2023::QaeForms
   class << self
     def trade_step4
@@ -47,7 +46,7 @@ class AwardYears::V2023::QaeForms
             [:bold, "Small organisations"],
             [:normal, %(
               Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-            )]
+            )],
           ]
         end
 

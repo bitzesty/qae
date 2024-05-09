@@ -1,5 +1,6 @@
 
 # -*- coding: utf-8 -*-
+
 class AwardYears::V2018::QaeForms
   class << self
     def mobility_step3

@@ -4,7 +4,6 @@ describe AccountMailers::NotifyShortlistedMailer do
   let!(:user) { create :user }
   let!(:collaborator) { create :user, account: user.account, role: "regular" }
 
-
   let!(:deadline) do
     deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
     deadline.update(trigger_at: Date.current)
@@ -24,7 +23,7 @@ describe AccountMailers::NotifyShortlistedMailer do
     let(:mail) do
       described_class.notify(
         form_answer.id,
-        user.id
+        user.id,
       )
     end
 
@@ -48,7 +47,7 @@ describe AccountMailers::NotifyShortlistedMailer do
     let(:mail) do
       described_class.notify_po_sd(
         form_answer.id,
-        user.id
+        user.id,
       )
     end
 

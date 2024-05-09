@@ -61,7 +61,6 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
     end
   end
 
-
   def generate_content(users, date)
     if date && Date.current >= date
       users.where("created_at < ?", date).count
@@ -82,11 +81,11 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
         columns = ["6 days before deadline", "5 days before deadline", "4 days before deadline", "3 days before deadline", "2 days before deadline", "1 day before deadline", "Totals on deadline"]
       end
       csv << (headers + columns).flatten
-      
+
       stats.each do |row|
         content = []
         content << row.label
-        row.content.each{|c| content << (c == "&nbsp;" ? nil : c)}
+        row.content.each{ |c| content << ((c == "&nbsp;") ? nil : c) }
         csv << content
       end
     end

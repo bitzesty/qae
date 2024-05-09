@@ -21,9 +21,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def build_resource(hash=nil)
+  def build_resource(hash = nil)
     super
 
-    resource.role = 'account_admin' if action_name == 'create'
+    resource.role = "account_admin" if action_name == "create"
   end
 end

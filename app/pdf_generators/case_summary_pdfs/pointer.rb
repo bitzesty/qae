@@ -7,16 +7,16 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   EMPTY_STRING = "".freeze
 
   attr_reader :data,
-              :financial_pointer,
-              :financial_data,
-              :year_rows,
-              :financial_metrics_by_years,
-              :growth_overseas_earnings_list,
-              :sales_exported_list,
-              :average_growth_for_list,
-              :growth_in_total_turnover_list,
-              :overall_growth,
-              :overall_growth_in_percents
+    :financial_pointer,
+    :financial_data,
+    :year_rows,
+    :financial_metrics_by_years,
+    :growth_overseas_earnings_list,
+    :sales_exported_list,
+    :average_growth_for_list,
+    :growth_in_total_turnover_list,
+    :overall_growth,
+    :overall_growth_in_percents
 
   def initialize(pdf_doc, form_answer)
     @pdf_doc = pdf_doc
@@ -42,8 +42,8 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   def fetch_financial_data
     @financial_pointer = FinancialSummaryPointer.new(form_answer.decorate, {
       exclude_ignored_questions: true,
-      award_year: @award_year
-    })
+      award_year: @award_year,
+    },)
 
     @financial_data = financial_pointer.summary_data
 

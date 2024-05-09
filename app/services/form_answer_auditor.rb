@@ -18,7 +18,7 @@ class FormAnswerAuditor
         form_answer: form_answer,
         action_type: audit_log.action_type,
         subject: audit_log.subject || dummy_user,
-        created_at: audit_log.created_at
+        created_at: audit_log.created_at,
         )
     end
   end
@@ -29,7 +29,7 @@ class FormAnswerAuditor
         form_answer: form_answer,
         action_type: "application_#{version.event}",
         subject: get_user_from_papertrail_version(version),
-        created_at: version.created_at
+        created_at: version.created_at,
         )
     end
   end
@@ -37,7 +37,6 @@ class FormAnswerAuditor
   def get_user_from_papertrail_version(version)
     return dummy_user if version.whodunnit.nil?
     klass, id = version.whodunnit.split(":")
-    klass.capitalize.constantize.find_by_id(id) || dummy_user
+    klass.capitalize.constantize.find_by(id: id) || dummy_user
   end
-
 end

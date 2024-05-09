@@ -1,5 +1,4 @@
 class Form::FormLinksController < Form::MaterialsBaseController
-
   # This controller handles saving of website links
   # This section is used in case if JS disabled
 
@@ -10,7 +9,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
   expose(:created_link_ops) do
     {
       "link" => link_params[:link],
-      "description" => link_params[:description]
+      "description" => link_params[:description],
     }
   end
 
@@ -19,7 +18,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
     result_materials[next_document_position.to_s] = created_link_ops
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
@@ -28,10 +27,10 @@ class Form::FormLinksController < Form::MaterialsBaseController
     result_materials.delete_if do |k, v|
       v["link"] == params[:link]
     end
-    result_materials = result_materials.present? ? result_materials : {}
+    result_materials = result_materials.presence || {}
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
@@ -71,10 +70,11 @@ class Form::FormLinksController < Form::MaterialsBaseController
   end
 
   private
-    def link_params
-      params.require(:form_link).permit(
-        :link,
-        :description
-      )
-    end
+
+  def link_params
+    params.require(:form_link).permit(
+      :link,
+      :description,
+    )
+  end
 end

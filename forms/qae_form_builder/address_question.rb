@@ -17,7 +17,7 @@ class QaeFormBuilder
           { street: "Street", ignore_validation: true },
           { city: "Town or city" },
           { country: "Country" },
-          { postcode: "Postcode" }
+          { postcode: "Postcode" },
         ]
       end
     end

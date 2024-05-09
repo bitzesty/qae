@@ -2,8 +2,8 @@ class ServerEnvironment
   class << self
     def local_or_dev_or_staging_server?
       Rails.env.development? ||
-      dev_server? ||
-      staging_server?
+        dev_server? ||
+        staging_server?
     end
 
     def live_server?
@@ -32,8 +32,8 @@ class ServerEnvironment
 
     private
 
-      def mailer_host_equal_to?(url)
-        ENV["MAILER_HOST"].to_s == url
-      end
+    def mailer_host_equal_to?(url)
+      ENV["MAILER_HOST"].to_s == url
+    end
   end
 end
