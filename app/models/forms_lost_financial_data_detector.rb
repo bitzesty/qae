@@ -24,7 +24,7 @@ class FormsLostFinancialDataDetector
   attr_accessor :forms, :date_of_update
 
   def initialize
-    self.date_of_update = Date.new(2015,9,29)
+    self.date_of_update = Date.new(2015, 9, 29)
     self.forms = fetch_forms
   end
 

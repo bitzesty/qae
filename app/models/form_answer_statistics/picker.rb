@@ -45,7 +45,7 @@ class FormAnswerStatistics::Picker
 
   def applications_completions
     out = {}
-    out["total"] = [0,0,0,0,0,0,0,0]
+    out["total"] = [0, 0, 0, 0, 0, 0, 0, 0]
     klass::POSSIBLE_AWARDS.each do |aw|
       scope = fa_year_scope.where(award_type: aw).where(state: %w(application_in_progress eligibility_in_progress not_eligible))
 

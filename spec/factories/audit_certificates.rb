@@ -4,7 +4,7 @@ FactoryBot.define do
     attachment do
       Rack::Test::UploadedFile.new(
         File.join(
-          Rails.root,"spec","support","file_samples","audit_certificate_sample.pdf",
+          Rails.root, "spec", "support", "file_samples", "audit_certificate_sample.pdf",
         ),
       )
     end

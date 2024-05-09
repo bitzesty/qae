@@ -60,6 +60,6 @@ module Reports::CsvHelper
   end
 
   def sanitize_string(string)
-    string.present? ? string.to_s.tr("\n","").squish : ""
+    string.present? ? string.to_s.tr("\n", "").squish : ""
   end
 end

@@ -236,11 +236,6 @@ Layout/SpaceAfterColon:
     - 'app/helpers/search_helper.rb'
     - 'spec/acceptance/steps/application_form_creation_steps.rb'
 
-# Offense count: 93
-# This cop supports safe autocorrection (--autocorrect).
-Layout/SpaceAfterComma:
-  Enabled: false
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/SpaceAfterMethodName:
