@@ -77,7 +77,7 @@ class FormsLostFinancialDataDetector
 
     target_forms.select do |f|
       possible_question_keys.any? do |k|
-        f.document["#{k}"].blank?
+        f.document[k.to_s].blank?
       end
     end
   end
@@ -103,7 +103,7 @@ class FormsLostFinancialDataDetector
     end.select do |item|
       #ids.include?(item[0].to_s) &&
       possible_question_keys.any? do |k|
-        item[1]["#{k}"].present?
+        item[1][k.to_s].present?
       end
     end.sort do |a, b|
       b[2] <=> a[2]

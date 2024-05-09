@@ -57,7 +57,7 @@ module FormAnswerHelper
     return unless comments_count > 0
 
     output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
-    output += "#{comments_count}"
+    output += comments_count.to_s
     output += "</span></span>"
     output.html_safe
   end

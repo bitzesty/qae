@@ -8,7 +8,7 @@ describe "Form answer list sorting", js: true do
     3.times do |i|
       create :form_answer,
         :trade,
-        document: { company_name: "#{i}" },
+        document: { company_name: i.to_s },
         urn: "KAO-#{i}",
         state: "assessment_in_progress"
     end

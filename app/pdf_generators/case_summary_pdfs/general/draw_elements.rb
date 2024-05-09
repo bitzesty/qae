@@ -91,7 +91,7 @@ module CaseSummaryPdfs::General::DrawElements
         pdf_doc.text_box "Current Awards: #{awards_line}",
           header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset])
       else
-        pdf_doc.text_box "#{awards_line}",
+        pdf_doc.text_box awards_line.to_s,
           header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset - index * ONE_LINE_OFFSET])
 
         pdf_doc.move_down ONE_LINE_OFFSET

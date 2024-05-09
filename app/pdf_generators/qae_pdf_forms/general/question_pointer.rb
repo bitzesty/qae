@@ -246,7 +246,7 @@ class QaePdfForms::General::QuestionPointer
         end
       else
         form_pdf.indent 11.mm do
-          form_pdf.render_text "#{question.escaped_title}",
+          form_pdf.render_text question.escaped_title.to_s,
             style: :bold
         end
       end

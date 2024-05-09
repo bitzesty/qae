@@ -231,7 +231,7 @@ module QaePdfForms::CustomQuestions::Textarea
   def print_pdf(line, lines_style)
     form_pdf.indent 7.mm do
       if line.present?
-        form_pdf.text "#{line}", lines_style if lines_style.present?
+        form_pdf.text line.to_s, lines_style if lines_style.present?
         form_pdf.move_down 2.mm
       end
     end

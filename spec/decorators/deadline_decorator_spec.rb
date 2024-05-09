@@ -6,7 +6,7 @@ describe DeadlineDecorator do
 
   describe "#message" do
     Deadline::AVAILABLE_DEADLINES.each do |kind|
-      context "#{kind}" do
+      context kind.to_s do
         it "returns the expected message based on translation" do
           deadline.kind = kind
           expect(subject.message).to eq(I18n.t("deadline_messages.#{kind}"))
@@ -17,7 +17,7 @@ describe DeadlineDecorator do
 
   describe "#help_message" do
     Deadline::AVAILABLE_DEADLINES.each do |kind|
-      context "#{kind}" do
+      context kind.to_s do
         it "returns the expected message based on translation" do
           deadline.kind = kind
           expect(subject.help_message).to eq(I18n.t("deadline_help_messages.#{kind}"))

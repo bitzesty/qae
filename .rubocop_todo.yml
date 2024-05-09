@@ -1137,22 +1137,6 @@ Style/RedundantFreeze:
     - 'app/services/company_registration_number.rb'
     - 'app/validators/company_registration_number_validator.rb'
 
-# Offense count: 13
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/RedundantInterpolation:
-  Exclude:
-    - 'app/decorators/form_answer_decorator.rb'
-    - 'app/helpers/form_answer_helper.rb'
-    - 'app/models/forms_lost_financial_data_detector.rb'
-    - 'app/pdf_generators/case_summary_pdfs/general/draw_elements.rb'
-    - 'app/pdf_generators/qae_pdf_forms/custom_questions/matrix.rb'
-    - 'app/pdf_generators/qae_pdf_forms/custom_questions/textarea.rb'
-    - 'app/pdf_generators/qae_pdf_forms/general/question_pointer.rb'
-    - 'spec/decorators/deadline_decorator_spec.rb'
-    - 'spec/decorators/email_notification_decorator_spec.rb'
-    - 'spec/features/admin/form_answers/list_sorting_spec.rb'
-    - 'spec/features/assessor/list_sorting_spec.rb'
-
 # Offense count: 17
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantParentheses:

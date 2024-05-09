@@ -16,7 +16,7 @@ module QaePdfForms::CustomQuestions::Matrix
     end
 
     rows = y_headings.map do |y_heading|
-      columns = ["#{y_heading.label}"]
+      columns = [y_heading.label.to_s]
       question.x_headings.each do |x_heading|
         columns << form_pdf.filled_answers[question.key.to_s + "_#{x_heading.key}_#{y_heading.key}"]
       end

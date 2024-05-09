@@ -131,7 +131,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def progress_class
-    "#{object.state.dasherize[0..-2]}"
+    (object.state.dasherize[0..-2]).to_s
   end
 
   def state_text
