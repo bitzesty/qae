@@ -53,7 +53,7 @@ module FeedbackMixin
   private
 
   def action_type
-    action_name == "unlock" ? "feedback_unsubmit" : "feedback_#{action_name}"
+    (action_name == "unlock") ? "feedback_unsubmit" : "feedback_#{action_name}"
   end
 
   def form_answer

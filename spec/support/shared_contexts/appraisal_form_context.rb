@@ -100,8 +100,8 @@ def assert_description_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
   take_a_nap
 
-  selector = section_id == moderated ? "assessor_assignment_verdict_desc" : "assessor_assignment_level_of_innovation_desc"
-  parent_selector = section_id == moderated ? ".form-overall-verdict" : ".form-level-of-innovation"
+  selector = (section_id == moderated) ? "assessor_assignment_verdict_desc" : "assessor_assignment_level_of_innovation_desc"
+  parent_selector = (section_id == moderated) ? ".form-overall-verdict" : ".form-level-of-innovation"
 
   within section_id do
     within ".#{selector}" do

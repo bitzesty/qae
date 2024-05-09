@@ -291,19 +291,19 @@ module Reports::DataPickers::FormDocumentPicker
     service = if innovation?
       doc("innovation_desc_short")
     elsif development?
-      obj.award_year.year <= 2019 ? doc("development_management_approach_briefly") : doc("one_line_description_of_interventions")
+      (obj.award_year.year <= 2019) ? doc("development_management_approach_briefly") : doc("one_line_description_of_interventions")
     elsif mobility?
       if obj.award_year.year <= 2020
         doc("mobility_desc_short")
       else
         if obj.award_year.year <= 2023
-          doc("application_category") == "initiative" ? doc("initiative_desc_short") : doc("organisation_desc_short")
+          (doc("application_category") == "initiative") ? doc("initiative_desc_short") : doc("organisation_desc_short")
         else
           doc("initiative_desc_short")
         end
       end
     else
-      obj.award_year.year <= 2023 ? doc("trade_goods_briefly") : doc("trade_description_short")
+      (obj.award_year.year <= 2023) ? doc("trade_goods_briefly") : doc("trade_description_short")
     end
 
     ActionView::Base.full_sanitizer.sanitize(service)

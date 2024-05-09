@@ -67,7 +67,7 @@ class Reports::CaseIndexReport
       .order(:sic_code)
 
     if @category == "trade"
-      years_mode_query = @years_mode.to_s == "3" ? "3 to 5" : "6 plus"
+      years_mode_query = (@years_mode.to_s == "3") ? "3 to 5" : "6 plus"
 
       scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode_query}'")
     end

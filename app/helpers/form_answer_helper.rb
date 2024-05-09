@@ -32,7 +32,7 @@ module FormAnswerHelper
     flag_type = if subject
       "icon-flag-#{current_user_class}"
     else
-      current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
+      (current_user_class == "admin") ? "icon-flag-assessor" : "icon-flag-admin"
     end
 
     if comments_count > 0

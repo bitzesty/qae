@@ -68,11 +68,11 @@ class Reports::FormAnswer
   end
 
   def feedback_complete
-    obj.feedback && obj.feedback.submitted? && obj.feedback.locked? ? "Submitted" : "Not Submitted"
+    (obj.feedback && obj.feedback.submitted? && obj.feedback.locked?) ? "Submitted" : "Not Submitted"
   end
 
   def press_release_updated
-    obj.press_summary && obj.press_summary.submitted ? "Submitted" : "Not Submitted"
+    (obj.press_summary && obj.press_summary.submitted) ? "Submitted" : "Not Submitted"
   end
 
   def ac_received

@@ -49,7 +49,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
                       .where("form_answers.award_year_id =?", award_year.id)
 
     if options[:category] == "trade"
-      years_mode = options[:years_mode].to_s == "3" ? "3 to 5" : "6 plus"
+      years_mode = (options[:years_mode].to_s == "3") ? "3 to 5" : "6 plus"
       scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode}'")
     end
 

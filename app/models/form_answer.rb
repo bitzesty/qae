@@ -485,7 +485,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def agree_sharing_of_details_with_lieutenancies?
-    user.present? && user.agree_sharing_of_details_with_lieutenancies ? "Yes" : "No"
+    (user.present? && user.agree_sharing_of_details_with_lieutenancies) ? "Yes" : "No"
   end
 
   def requires_vocf?

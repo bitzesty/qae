@@ -33,7 +33,7 @@ module QaePdfForms::CustomQuestions::ByYear
         ApplicationController.helpers.formatted_uk_sales_value(field)
       end
 
-      res.all? { |el| el == {} } ? [] : res
+      (res.all? { |el| el == {} }) ? [] : res
     else
       active_fields.map do |field|
         entry = year_entry(field).to_s.delete(",")
@@ -51,7 +51,7 @@ module QaePdfForms::CustomQuestions::ByYear
   def financial_dates_year_headers(**opts)
     if form_pdf.pdf_blank_mode.present? # BLANK FOR MODE
       financial_table_default_headers.map.with_index(1) do |item, index|
-        financial_table_default_headers.size == index ? "#{item} (most recent)" : item
+        (financial_table_default_headers.size == index) ? "#{item} (most recent)" : item
       end
     else
       res = []

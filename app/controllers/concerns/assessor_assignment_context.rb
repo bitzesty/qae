@@ -28,6 +28,6 @@ module AssessorAssignmentContext
   end
 
   def action_type
-    assessor_assignment.position == "case_summary" ? "case_summary_update" : "#{assessor_assignment.position}_appraisal_update"
+    (assessor_assignment.position == "case_summary") ? "case_summary_update" : "#{assessor_assignment.position}_appraisal_update"
   end
 end

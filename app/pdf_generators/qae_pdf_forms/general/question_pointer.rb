@@ -425,7 +425,7 @@ class QaePdfForms::General::QuestionPointer
           render_supporters
         end
       when QaeFormBuilder::TextareaQuestion
-        title = q_visible? && humanized_answer.present? ? humanized_answer : ""
+        title = (q_visible? && humanized_answer.present?) ? humanized_answer : ""
 
         form_pdf.default_bottom_margin
         render_word_limit
@@ -452,7 +452,7 @@ class QaePdfForms::General::QuestionPointer
           render_mobility_financial_summary
         end
       else
-        title = q_visible? && humanized_answer.present? ? humanized_answer : ""
+        title = (q_visible? && humanized_answer.present?) ? humanized_answer : ""
         form_pdf.render_standart_answer_block(title)
       end
     end
@@ -686,7 +686,7 @@ class QaePdfForms::General::QuestionPointer
       option.value.to_s == humanized_answer.to_s
     end
 
-    q_visible? && res.present? ? res.text : ""
+    (q_visible? && res.present?) ? res.text : ""
   end
 
   def question_option_box(title)

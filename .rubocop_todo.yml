@@ -1313,13 +1313,6 @@ Style/SuperWithArgsParentheses:
   Exclude:
     - 'forms/qae_form_builder/number_question.rb'
 
-# Offense count: 36
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, AllowSafeAssignment.
-# SupportedStyles: require_parentheses, require_no_parentheses, require_parentheses_when_complex
-Style/TernaryParentheses:
-  Enabled: false
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/UnlessElse:

@@ -85,7 +85,7 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
       stats.each do |row|
         content = []
         content << row.label
-        row.content.each{ |c| content << (c == "&nbsp;" ? nil : c) }
+        row.content.each{ |c| content << ((c == "&nbsp;") ? nil : c) }
         csv << content
       end
     end

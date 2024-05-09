@@ -136,7 +136,7 @@ class FormFinancialPointer
 
   def overall_growth
     res = overall_growth_values
-    res && res.last && res.first ? res.last[:value].to_i - res.first[:value].to_i : "-"
+    (res && res.last && res.first) ? res.last[:value].to_i - res.first[:value].to_i : "-"
   end
 
   def overall_growth_in_percents
