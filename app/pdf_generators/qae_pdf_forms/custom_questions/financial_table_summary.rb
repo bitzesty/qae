@@ -388,8 +388,8 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
       width: 460,
       cell_style: {
         size: 10,
-        padding: [3, 3, 3, 3]
-      }
+        padding: [3, 3, 3, 3],
+      },
     }
   end
 
