@@ -1,13 +1,13 @@
 class CheckAccountOnBouncesEmail
 
   DEBOUNCE_API_RESPONSE_CODES = {
-    "1" => "Syntax. Not an email.",                       
-    "2" => "Spam Trap. Spam-trap by ESPs.",                    
-    "3" => "Disposable. A temporary, disposable address.",         
-    "4" => "Accept-All. A domain-wide setting.",                 
-    "5" => "Delivarable. Verified as real address.",                
-    "6" => "Invalid. Verified as not valid.",             
-    "7" => "Unknown. The server cannot be reached.",           
+    "1" => "Syntax. Not an email.",
+    "2" => "Spam Trap. Spam-trap by ESPs.",
+    "3" => "Disposable. A temporary, disposable address.",
+    "4" => "Accept-All. A domain-wide setting.",
+    "5" => "Delivarable. Verified as real address.",
+    "6" => "Invalid. Verified as not valid.",
+    "7" => "Unknown. The server cannot be reached.",
     "8" => "Role. Role accounts such as info, support, etc.",
   }
 
@@ -49,9 +49,9 @@ class CheckAccountOnBouncesEmail
   private
 
   def debounce_api_says_it_is_valid?(email)
-    
+
       res = RestClient.get(
-        "https://api.debounce.io/v1/?api=#{ENV['DEBOUNCE_API_KEY']}&email=#{email}", 
+        "https://api.debounce.io/v1/?api=#{ENV['DEBOUNCE_API_KEY']}&email=#{email}",
         { accept: :json },
       )
       @code = JSON.parse(res.body)["debounce"]["code"]
@@ -67,6 +67,6 @@ class CheckAccountOnBouncesEmail
       #
 
       true
-    
+
   end
 end

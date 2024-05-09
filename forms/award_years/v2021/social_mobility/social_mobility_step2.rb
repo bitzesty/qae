@@ -394,7 +394,7 @@ class AwardYears::V2021::QaeForms
               2. the proportion of participants from disadvantaged backgrounds;
 
               3. the breakdown of these participants by disadvantaged group;
-              
+
               4. for each disadvantaged group, specify the participant age range and in what UK counties they are based.
 
               Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.
@@ -768,7 +768,7 @@ class AwardYears::V2021::QaeForms
 
               \u2022 Families of prisoners.
 
-              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement. 
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
 
               Please provide the totals and year by year breakdown of:
 

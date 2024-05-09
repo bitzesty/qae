@@ -99,9 +99,9 @@ module PdfAuditCertificates::Awards2016::Innovation
 
       rows = FIRST_TABLE_ROWS.each_with_object([]).with_index(1) do |(field, memo), index|
         row = financial_rows.detect { |r| r[field] }
-        
+
         next unless row
-        
+
         memo << if field == :dates
           render_date_row(row, index)
         elsif field == :uk_sales

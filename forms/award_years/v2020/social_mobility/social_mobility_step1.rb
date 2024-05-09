@@ -76,13 +76,13 @@ class AwardYears::V2020::QaeForms
                 \u2022 Biotechnology & Biological Sciences Research Council
                 \u2022 Charity Commission
                 \u2022 Companies House
-                \u2022 Competition and Markets Authority 
+                \u2022 Competition and Markets Authority
                 \u2022 Crown Commercial Service
                 \u2022 Department for Business, Energy and Industrial Strategy
                 \u2022 Department for Communities and Local Government
                 \u2022 Department for Culture Media & Sport
                 \u2022 Department for Education
-                \u2022 Department for Environment, Food & Rural Affairs  
+                \u2022 Department for Environment, Food & Rural Affairs
                 \u2022 Department for International Trade
                 \u2022 Department for Transport
                 \u2022 Department of Economic Development, Isle of Man
@@ -106,7 +106,7 @@ class AwardYears::V2020::QaeForms
                 \u2022 Medical Research Council Technology
                 \u2022 National Measurement Office
                 \u2022 Natural England
-                \u2022 Natural Environment Research Council 
+                \u2022 Natural Environment Research Council
                 \u2022 Office of the Scottish Charity Regulator
                 \u2022 Scottish Government
                 \u2022 Scottish Environment Protection Agency
@@ -365,7 +365,7 @@ class AwardYears::V2020::QaeForms
           ref "A 11"
           context %(
             <p>
-              If your application is successful, you may get contacted by the press. 
+              If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>

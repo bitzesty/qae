@@ -4,12 +4,12 @@ class AwardYears::V2020::QaeForms
       @innovation_step2 ||= proc do
         header :innovation_b_section_header, "" do
           context %(
-            <h3>About this section</h3>  
+            <h3>About this section</h3>
             <p>
               This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
             </p>
             <p>
-              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.  
+              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             </p>
             <h3>Small organisations</h3>
             <p>
@@ -20,8 +20,8 @@ class AwardYears::V2020::QaeForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.         
-              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.    
+              This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
+              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             )],
             [:bold, "Small organisations"],
             [:normal, %(

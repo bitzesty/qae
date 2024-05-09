@@ -62,12 +62,12 @@ class FinancialSummaryPointer < FormFinancialPointer
       length = x.detect(&:first).values.flatten(1).size
       diff = ::Utils::Diff.calc(dates.size, length, abs: false)
 
-      # If the diff between no. of dates & no. of elements (think of cells in the row) is bigger, 
+      # If the diff between no. of dates & no. of elements (think of cells in the row) is bigger,
       # we cut the dates, so we don't go over the amount of cells
-      if diff 
+      if diff
         d.shift(diff) if diff.positive?
 
-        # this should only happen for innovation applications, when innovation was launched prior 
+        # this should only happen for innovation applications, when innovation was launched prior
         # to company started trading
         # we then calculate dates as - 1 year from the previous year
         if diff.negative?
@@ -75,7 +75,7 @@ class FinancialSummaryPointer < FormFinancialPointer
             date_to_calculate_from = d.first
             if Utils::Date.valid?(date_to_calculate_from)
               date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
-              d.unshift(date) 
+              d.unshift(date)
             else
               d.unshift(nil)
             end

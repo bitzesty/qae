@@ -72,20 +72,20 @@ class AwardYears::V2020::QaeForms
           show_ref_always true
           text %(
             I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
-          
+
             <p>
               <a href='#' class='js-form-expandable-content-link' data-ref='js-authorize-and-submit-step-view-gov-departments-and-agencies'>View Government Departments and Agencies we undertake due diligence checks with ></a>
               <ul class='js-company-step-view-gov-departments-and-agencies hidden'>
                 <li>Biotechnology & Biological Sciences Research Council</li>
                 <li>Charity Commission</li>
                 <li>Companies House</li>
-                <li>Competition and Markets Authority</li> 
+                <li>Competition and Markets Authority</li>
                 <li>Crown Commercial Service</li>
                 <li>Department for Business, Energy and Industrial Strategy</li>
                 <li>Department for Communities and Local Government</li>
                 <li>Department for Culture Media & Sport</li>
                 <li>Department for Education</li>
-                <li>Department for Environment, Food & Rural Affairs</li>  
+                <li>Department for Environment, Food & Rural Affairs</li>
                 <li>Department for International Trade</li>
                 <li>Department for Transport</li>
                 <li>Department of Economic Development, Isle of Man</li>

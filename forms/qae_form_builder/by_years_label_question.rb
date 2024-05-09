@@ -21,8 +21,8 @@ class QaeFormBuilder
                   outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
                 end
               end
-      
-      required = question.required?        
+
+      required = question.required?
 
       dates.each.with_index(1) do |(key, value), idx|
         next unless value == :invalid || value == :blank
@@ -44,7 +44,7 @@ class QaeFormBuilder
           result[end_key] << "The date entered for Question #{question.ref || question.sub_ref} should be after #{beginning_date.strftime('%d/%m/%Y')}."
         end
       end
-              
+
       validatable = dates.values.each_cons(2).reject { |values| values.any? { |v| v.nil? || v.in?(%i[invalid blank]) } }
 
       return result if validatable.blank?

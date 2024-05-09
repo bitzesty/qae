@@ -189,7 +189,7 @@ describe FinancialSummaryPointer do
           ],
         )
       end
-      
+
       it "handles leap years" do
         pointer = FinancialSummaryPointer.new(form_answer)
 

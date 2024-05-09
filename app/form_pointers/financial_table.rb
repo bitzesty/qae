@@ -154,7 +154,7 @@ module FinancialTable
           # If not selected yet, render last option as default
           financial_date_selector.ops_values.values.last
       end
-      
+
   end
 
   def one_option_question_or_development?

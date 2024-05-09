@@ -74,7 +74,7 @@ Rails.application.configure do
   config.action_mailer.notify_settings = {
     api_key: ENV["GOV_UK_NOTIFY_API_KEY"],
   }
-  
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

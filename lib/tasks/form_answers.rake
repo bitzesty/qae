@@ -33,14 +33,14 @@ namespace :form_answers do
     not_updated_entries = []
 
     AwardYear.current.form_answers.submitted.find_each do |form_answer|
-      
+
         form_answer.generate_pdf_version!
         sleep 1
 
         puts "[form_answer]---------------------------------#{form_answer.id} updated"
     rescue
         not_updated_entries << form_answer.id
-      
+
     end
 
     puts "[not_updated_entries] ------------ #{not_updated_entries.inspect}"

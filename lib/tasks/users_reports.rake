@@ -22,7 +22,7 @@ namespace :users_reports do
     CSV.open("collaborators.csv", "w") do |csv|
       csv << ["Email", "Name", "URN"]
 
-      FormAnswer.where(award_year: AwardYear.current).shortlisted.each do |form_answer| 
+      FormAnswer.where(award_year: AwardYear.current).shortlisted.each do |form_answer|
         form_answer.collaborators.each do |user|
           csv << [user.email, "#{user.title} #{user.last_name}", form_answer.urn]
         end

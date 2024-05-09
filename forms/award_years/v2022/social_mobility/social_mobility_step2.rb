@@ -64,11 +64,11 @@ class AwardYears::V2022::QaeForms
             </p>
 
             <h3 class="govuk-heading-m">COVID-19 impact</h3>
-            
+
             <p class="govuk-body">
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
             </p>
-              
+
             <h3 class="govuk-heading-m">Answering questions</h3>
 
             <p class="govuk-body">
@@ -244,14 +244,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
-		
+
             <p>A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
 
             <p>Where none, enter zeros.</p>
           )
           corner_label "Activity type"
           totals_label "Total number of discreet participants supported each year"
-          
+
           x_headings [2017, 2018, 2019, 2020, 2021]
 
           y_headings [
@@ -324,11 +324,11 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>Taking into account your mission, values and strategic objectives, describe how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups.</p>
-					
+
             <p>For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this.</p>
-					
+
             <p>Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this.</p>
-					
+
             <p>Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation.</p>
           )
           words_max 500
@@ -408,14 +408,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
-		
+
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
 
             <p>Where none, enter zeros.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported each year"
-          
+
           x_headings [2017, 2018, 2019, 2020, 2021]
 
           y_headings [
@@ -454,14 +454,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-		
+
             <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
 
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported"
-          
+
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
           y_headings [
@@ -500,14 +500,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-		
+
             <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
 
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported"
-          
+
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
           y_headings [
@@ -546,14 +546,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-		
+
             <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
 
             <p>Where none, enter zeros. If none are relevant to your initiative, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported"
-          
+
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
           y_headings [
@@ -766,14 +766,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
-		
+
             <p>A participant may fit into more than one activity type category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
 
             <p>Where none, enter zeros.</p>
           )
           corner_label "Activity type"
           totals_label "Total number of discreet participants supported each year"
-          
+
           x_headings [2017, 2018, 2019, 2020, 2021]
 
           y_headings [
@@ -912,14 +912,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>Please note, to be eligible for the award, the participants have to be based in the UK and be over 16 years old at the start of the engagement.</p>
-		
+
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
 
             <p>Where none, enter zeros.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported each year"
-          
+
           x_headings [2017, 2018, 2019, 2020, 2021]
 
           y_headings [
@@ -958,14 +958,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-		
+
             <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
 
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported"
-          
+
           x_headings ["Jobs secured within a year of support", "Jobs retained for more than one year", "Apprenticeships secured", "Apprenticeships completed"]
 
           y_headings [
@@ -1004,14 +1004,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-		
+
             <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
 
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported"
-          
+
           x_headings ["NVQ levels 1-3", "NVQ level 4 and above", "GCSEs	A levels", "Entrance to Further Education	", "Entrance to Higher Education"]
 
           y_headings [
@@ -1050,14 +1050,14 @@ class AwardYears::V2022::QaeForms
           ]
           context %(
             <p>A participant may fit into more than one disadvantaged group category - you can count them more than once by including them in each relevant category. However, when you count the total, only count them once.</p>
-		
+
             <p>Provide totals for at least the last two years and no more than the last five years in line with the numbers provided in question B5.1a.</p>
 
             <p>Where none, enter zeros. If none are relevant to your organisation, enter zeros in all table cells.</p>
           )
           corner_label "Disadvantaged group type"
           totals_label "Total number of discreet participants supported"
-          
+
           x_headings ["Internships",	"Payment of living wage",	"Businesses started",	"Housing secured", "Other"]
 
           y_headings [

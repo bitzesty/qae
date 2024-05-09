@@ -96,7 +96,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
       subheaders = [""]
       columns.each{ subheaders << ["In progress", "Submitted"] }
       csv << subheaders.flatten
-      
+
       stats.each do |row|
         content = []
         content << row.label

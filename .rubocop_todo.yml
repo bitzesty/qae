@@ -341,12 +341,6 @@ Layout/SpaceInsidePercentLiteralDelimiters:
 Layout/TrailingEmptyLines:
   Enabled: false
 
-# Offense count: 113
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowInHeredoc.
-Layout/TrailingWhitespace:
-  Enabled: false
-
 # Offense count: 9
 # This cop supports safe autocorrection (--autocorrect).
 Lint/AmbiguousOperator:

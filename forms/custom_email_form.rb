@@ -24,12 +24,12 @@ class CustomEmailForm
 
   def send!
     users.each do |user|
-      
+
         Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
     rescue => e
         puts "Error: #{e}"
         Appsignal.send_error(e)
-      
+
     end
   end
 
