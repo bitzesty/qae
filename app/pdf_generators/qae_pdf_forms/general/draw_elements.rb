@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 require "open-uri"
 
 module QaePdfForms::General::DrawElements

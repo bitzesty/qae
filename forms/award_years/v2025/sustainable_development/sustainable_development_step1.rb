@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 class AwardYears::V2025::QaeForms
   class << self
     def development_step1

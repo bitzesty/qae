@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
   def invite(form_answer_id, notify_to_press_contact=false)
     form_answer = FormAnswer.find(form_answer_id).decorate

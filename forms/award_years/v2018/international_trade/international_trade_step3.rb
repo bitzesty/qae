@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 class AwardYears::V2018::QaeForms
   class << self
     def trade_step3

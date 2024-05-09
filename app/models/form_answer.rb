@@ -95,8 +95,8 @@ class FormAnswer < ApplicationRecord
         has_one :form_answer_progress, dependent: :destroy
         has_one :shortlisted_documents_wrapper, dependent: :destroy
 
-    # PDF Hard Copies
-    #
+        # PDF Hard Copies
+        #
         has_one :case_summary_hard_copy_pdf, dependent: :destroy
         has_one :feedback_hard_copy_pdf, dependent: :destroy
 

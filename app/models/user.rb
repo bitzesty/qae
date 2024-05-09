@@ -126,7 +126,7 @@ class User < ApplicationRecord
               prefix: true,
             },
           }
-    # TODO: take into consideration forcing NULL for all attributes.
+        # TODO: take into consideration forcing NULL for all attributes.
         nilify_blanks only: [
           :title,
           :first_name,

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 class AwardYears::V2021::QaeForms
   class << self
     def innovation_step3

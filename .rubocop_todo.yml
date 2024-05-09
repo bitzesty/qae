@@ -1025,11 +1025,6 @@ Style/EmptyLiteral:
   Exclude:
     - 'forms/appraisal_form.rb'
 
-# Offense count: 131
-# This cop supports safe autocorrection (--autocorrect).
-Style/Encoding:
-  Enabled: false
-
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 Style/FileRead:

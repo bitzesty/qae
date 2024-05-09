@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module QaePdfForms::CustomQuestions::Textarea
 
   LIST_TAGS = ["ul", "ol"].freeze
