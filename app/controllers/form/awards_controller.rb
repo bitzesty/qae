@@ -108,7 +108,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     end
   end
 
-  def item_detect_condition(el, attrs=nil)
+  def item_detect_condition(el, attrs = nil)
     if params[:holder].present?
       el["title"] == (attrs.present? ? attrs[:title] : ops_hash[:title]) &&
         el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])

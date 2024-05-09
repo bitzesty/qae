@@ -8,7 +8,7 @@ class Reports::FormAnswer
     :award_form,
     :financial_data
 
-  def initialize(form_answer, limited_access=false)
+  def initialize(form_answer, limited_access = false)
     @obj = form_answer
     @answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document)
     @award_form = form_answer.award_form.decorate(answers: answers)

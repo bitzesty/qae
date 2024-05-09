@@ -33,7 +33,7 @@ class FormPdf < Prawn::Document
     :financial_pointer,
     :pdf_blank_mode
 
-  def initialize(form_answer, pdf_blank_mode=false)
+  def initialize(form_answer, pdf_blank_mode = false)
     super()
 
     @form_answer = form_answer

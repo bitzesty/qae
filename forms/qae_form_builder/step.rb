@@ -164,7 +164,7 @@ class QaeFormBuilder
 
     private
 
-    def create_question builder_klass, klass, id, title, opts={}, &block
+    def create_question builder_klass, klass, id, title, opts = {}, &block
       q = klass.new @step, id, title, opts
       b = builder_klass.new q
       b.instance_eval &block if block_given?
@@ -205,7 +205,7 @@ class QaeFormBuilder
   class Step
     attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit, :sub_headers
 
-    def initialize form, title, short_title, opts={}
+    def initialize form, title, short_title, opts = {}
       @form = form
       @title = title
       @short_title = short_title

@@ -1,5 +1,5 @@
 class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
-  def invite(form_answer_id, notify_to_press_contact=false)
+  def invite(form_answer_id, notify_to_press_contact = false)
     form_answer = FormAnswer.find(form_answer_id).decorate
     deadlines = form_answer.award_year.settings.deadlines
     @reception_deadline = deadlines.where(kind: "buckingham_palace_reception_attendee_information_due_by").first

@@ -14,7 +14,7 @@ class Subsidiary
   # Should be 100 words maximum (limit + 10%).to_i + 1)
   validate :words_in_description, if: Proc.new { |m| m.description.present? }
 
-  def initialize(attrs={})
+  def initialize(attrs = {})
     attrs.each do |key, value|
       instance_variable_set("@#{key}", value.to_s.strip)
     end

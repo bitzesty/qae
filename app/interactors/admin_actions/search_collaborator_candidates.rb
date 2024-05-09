@@ -7,7 +7,7 @@ module AdminActions
       :query,
       :error
 
-    def initialize(form_answer, query=nil)
+    def initialize(form_answer, query = nil)
       @query = query[:query]
       @form_answer = form_answer
       @account = form_answer.account

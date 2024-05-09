@@ -98,7 +98,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
     end
   end
 
-  def item_detect_condition(el, attrs=nil)
+  def item_detect_condition(el, attrs = nil)
     el["name"] == (attrs.present? ? attrs[:name] : ops_hash[:name]) &&
       el["location"] == (attrs.present? ? attrs[:location] : ops_hash[:location])
   end

@@ -270,7 +270,7 @@ class AwardYear < ApplicationRecord
       ).trigger_at
     end
 
-    def start_trading_since(years_number=3)
+    def start_trading_since(years_number = 3)
       if AwardYear.current.year < 2019
         Date.new(AwardYear.current.year - 1 - years_number, 9, 3).strftime("%d/%m/%Y")
       else

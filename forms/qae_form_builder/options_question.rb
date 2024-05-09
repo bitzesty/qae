@@ -27,7 +27,7 @@ class QaeFormBuilder
       @q.options << QuestionAnswerOption.new(:no, "No")
     end
 
-    def financial_date_selector(ops={})
+    def financial_date_selector(ops = {})
       @q.financial_date_selector = true
       @q.ops_values = ops
     end

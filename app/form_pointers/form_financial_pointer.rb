@@ -29,7 +29,7 @@ class FormFinancialPointer
     :promotion,
   ]
 
-  def initialize(form_answer, options={})
+  def initialize(form_answer, options = {})
     @form_answer = form_answer
     @options = options
     @answers = fetch_answers

@@ -388,7 +388,7 @@ module PdfAuditCertificates::General::SharedElements
     })
   end
 
-  def render_text_line(title, margin=0, ops={})
+  def render_text_line(title, margin = 0, ops = {})
     text title, default_text_ops.merge(ops)
     move_down margin.mm
   end

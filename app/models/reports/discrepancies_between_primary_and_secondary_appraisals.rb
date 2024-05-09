@@ -36,7 +36,7 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
     },
   ]
 
-  def initialize(year, award_type, current_subject=nil)
+  def initialize(year, award_type, current_subject = nil)
     @year = year
     @award_type = award_type
 

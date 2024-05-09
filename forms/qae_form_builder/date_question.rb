@@ -112,7 +112,7 @@ class QaeFormBuilder
   class DateQuestion < Question
     attr_accessor :date_max, :date_min, :date_between, :date, :dynamic_date_max
 
-    def initialize step, key, title, opts={}
+    def initialize step, key, title, opts = {}
       super
 
       @date = false

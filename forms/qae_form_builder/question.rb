@@ -226,7 +226,7 @@ class QaeFormBuilder
       delegate_obj.conditions.any?
     end
 
-    def visible?(fetched_answers=nil)
+    def visible?(fetched_answers = nil)
       dc = delegate_obj.drop_condition_parent
       delegate_obj.conditions.all? do |condition|
         question_value = condition.question_value
@@ -577,7 +577,7 @@ class QaeFormBuilder
       :about_section,
       :section
 
-    def initialize step, key, title, opts={}
+    def initialize step, key, title, opts = {}
       @step = step
       @key = key
       @title = title

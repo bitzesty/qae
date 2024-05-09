@@ -20,7 +20,7 @@ class CurrentQueensAward
       in: -> (record) { record.years },
     }
 
-  def initialize(categories, years, outcomes, attrs={})
+  def initialize(categories, years, outcomes, attrs = {})
     @categories = categories.map { |c| [c.value] }.flatten.map(&:to_s)
     @years = years.map(&:to_s)
     @outcomes = outcomes.map { |o| [o.value, o.text] }

@@ -290,7 +290,7 @@ module QaePdfForms::CustomQuestions::Textarea
     end
   end
 
-  def wysywyg_get_item_content(child, content=[])
+  def wysywyg_get_item_content(child, content = [])
     if child.children.present?
       child.children.each do |baby|
         t_name = wysywyg_get_tag_name(baby)

@@ -55,7 +55,7 @@ class QaeFormBuilder
   end
 
   class ByTradeGoodsAndServicesLabelQuestionBuilder < QuestionBuilder
-    def rows num=3
+    def rows num = 3
       @q.rows = num
     end
 

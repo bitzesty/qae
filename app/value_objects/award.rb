@@ -14,7 +14,7 @@ class Award
 
   validates_with QuestionWordsValidator, field_name: :details
 
-  def initialize(question, holder=false, attrs={})
+  def initialize(question, holder = false, attrs = {})
     @question = question
     @holder = holder
 

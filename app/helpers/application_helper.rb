@@ -97,7 +97,7 @@ module ApplicationHelper
     deadline.decorate.formatted_trigger_time_short
   end
 
-  def application_deadline_for_year(award_year, kind, format=nil)
+  def application_deadline_for_year(award_year, kind, format = nil)
     deadline = Rails.cache.fetch("#{kind}_deadline_#{award_year.year}", expires: 1.minute) do
       award_year.settings.deadlines.where(kind: kind).first
     end.decorate
@@ -109,7 +109,7 @@ module ApplicationHelper
     end
   end
 
-  def deadline_or_default(award_year, kind, manual_value, format=nil)
+  def deadline_or_default(award_year, kind, manual_value, format = nil)
     str = application_deadline_for_year(award_year, kind, format)
     str.to_s.include?("---") ? manual_value : str
   end

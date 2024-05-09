@@ -8,7 +8,7 @@ module QaePdfForms::General::DrawElements
   ALERT_ICON = "icon-important-print.png".freeze
   ALERT_BIG_ICON = "icon-important-big-print.png".freeze
 
-  def attachment_path(attachment_file, link=false)
+  def attachment_path(attachment_file, link = false)
     if Rails.env.production?
       attachment_file.url
     elsif link
@@ -27,7 +27,7 @@ module QaePdfForms::General::DrawElements
     end
   end
 
-  def path_to_attachment_file(attachment_file, link=false)
+  def path_to_attachment_file(attachment_file, link = false)
     file = attachment_icon(attachment_file)
 
     if Rails.env.production?
@@ -68,7 +68,7 @@ module QaePdfForms::General::DrawElements
       {},)
   end
 
-  def base_link_sceleton(url, filename, description=nil, ops = {})
+  def base_link_sceleton(url, filename, description = nil, ops = {})
     indent (ops[:description_left_margin] || 0) do
       formatted_text [{
                         text: filename,
@@ -104,7 +104,7 @@ module QaePdfForms::General::DrawElements
     move_down 7.mm
   end
 
-  def render_submission_deadline_block(indent_value=0)
+  def render_submission_deadline_block(indent_value = 0)
     title = Settings.submission_deadline_title
 
     if title.present?
