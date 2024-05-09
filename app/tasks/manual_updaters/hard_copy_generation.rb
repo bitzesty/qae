@@ -53,26 +53,26 @@ module ManualUpdaters
 
             sleep 3
 
-            logy "[#{ENV['MAILER_HOST']} | CS IND | #{form_answer.id}] -------------------------------- updated"
+            logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id}] -------------------------------- updated"
         rescue => e
             not_updated_entries_cs_individual << form_answer.id
 
-            logy "[#{ENV['MAILER_HOST']} | CS IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
+            logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
 
         end
 
         if not_updated_entries_cs_individual.present?
-          logy "[#{ENV['MAILER_HOST']} | CS IND | errored #{not_updated_entries_cs_individual.count}] ------------ #{not_updated_entries_cs_individual.inspect}"
+          logy "[#{ENV["MAILER_HOST"]} | CS IND | errored #{not_updated_entries_cs_individual.count}] ------------ #{not_updated_entries_cs_individual.inspect}"
         end
 
         if year.check_hard_copy_pdf_generation_status!("case_summary")
-          logy "[#{ENV['MAILER_HOST']} | CS IND] -------------- DONE SUCCESSFULY!"
+          logy "[#{ENV["MAILER_HOST"]} | CS IND] -------------- DONE SUCCESSFULY!"
         else
           stats = year.hard_copy_case_summary_scope.count.count
           updated_stats = year.hard_copy_case_summary_scope.hard_copy_generated("case_summary").count.count
 
-          logy "[#{ENV['MAILER_HOST']} | CS IND | ERRORS] -------------- STATS DIDN'T MATCH!"
-          logy "[#{ENV['MAILER_HOST']} | CS IND | ERRORS] -------------- scope: #{stats} | updated_scope: #{updated_stats}"
+          logy "[#{ENV["MAILER_HOST"]} | CS IND | ERRORS] -------------- STATS DIDN'T MATCH!"
+          logy "[#{ENV["MAILER_HOST"]} | CS IND | ERRORS] -------------- scope: #{stats} | updated_scope: #{updated_stats}"
         end
       end
 
@@ -88,26 +88,26 @@ module ManualUpdaters
 
             sleep 3
 
-            logy "[#{ENV['MAILER_HOST']} | FEED IND | #{form_answer.id}] -------------------------------- updated"
+            logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id}] -------------------------------- updated"
         rescue => e
             not_updated_entries_feed_individual << form_answer.id
 
-            logy "[#{ENV['MAILER_HOST']} | FEED IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
+            logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
 
         end
 
         if not_updated_entries_feed_individual.present?
-          logy "[#{ENV['MAILER_HOST']} | FEED IND | errored #{not_updated_entries_feed_individual.count}] ------------ #{not_updated_entries_feed_individual.inspect}"
+          logy "[#{ENV["MAILER_HOST"]} | FEED IND | errored #{not_updated_entries_feed_individual.count}] ------------ #{not_updated_entries_feed_individual.inspect}"
         end
 
         if year.check_hard_copy_pdf_generation_status!("feedback")
-          logy "[#{ENV['MAILER_HOST']} | FEED IND] -------------- DONE SUCCESSFULY! STATS MATCHES!"
+          logy "[#{ENV["MAILER_HOST"]} | FEED IND] -------------- DONE SUCCESSFULY! STATS MATCHES!"
         else
           stats = year.hard_copy_feedback_scope.count.count
           updated_stats = year.hard_copy_feedback_scope.hard_copy_generated("feedback").count.count
 
-          logy "[#{ENV['MAILER_HOST']} | FEED IND | ERRORS] -------------- STATS DIDN'T MATCH!"
-          logy "[#{ENV['MAILER_HOST']} | FEED IND | ERRORS] -------------- scope: #{stats} | updated_scope: #{updated_stats}"
+          logy "[#{ENV["MAILER_HOST"]} | FEED IND | ERRORS] -------------- STATS DIDN'T MATCH!"
+          logy "[#{ENV["MAILER_HOST"]} | FEED IND | ERRORS] -------------- scope: #{stats} | updated_scope: #{updated_stats}"
         end
       end
 

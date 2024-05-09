@@ -11,6 +11,6 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{@original_filename.gsub(/\W/, '').gsub(/#{file.extension}\z/, '')}.#{file.extension}" if @original_filename.present?
+    "#{@original_filename.gsub(/\W/, "").gsub(/#{file.extension}\z/, "")}.#{file.extension}" if @original_filename.present?
   end
 end

@@ -91,7 +91,7 @@ class PerformancePlatformService
 
       headers = {
         "Content-Type" => "application/json",
-        "Authorization" => "Bearer #{ENV['PERFORMANCE_PLATFORM_TOKEN']}",
+        "Authorization" => "Bearer #{ENV["PERFORMANCE_PLATFORM_TOKEN"]}",
       }
 
       uri = URI(url)

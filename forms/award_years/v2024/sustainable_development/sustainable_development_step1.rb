@@ -206,7 +206,7 @@ class AwardYears::V2024::QaeForms
               You will have to provide financial information and related financial statements for the three most recent financial years (covering 36 months) to demonstrate that the organisation is financially viable.
             </p>
             <p class="govuk-body">
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
             </p>
             <p class="govuk-body">
               If you haven't reached your most recent year-end, you can provide estimated figures in the interim.

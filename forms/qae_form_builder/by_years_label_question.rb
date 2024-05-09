@@ -40,8 +40,8 @@ class QaeFormBuilder
         if beginning_date > end_date
           result[beginning_key] ||= ""
           result[end_key] ||= ""
-          result[beginning_key] << "The date entered for Question #{question.ref || question.sub_ref} should be before #{end_date.strftime('%d/%m/%Y')}."
-          result[end_key] << "The date entered for Question #{question.ref || question.sub_ref} should be after #{beginning_date.strftime('%d/%m/%Y')}."
+          result[beginning_key] << "The date entered for Question #{question.ref || question.sub_ref} should be before #{end_date.strftime("%d/%m/%Y")}."
+          result[end_key] << "The date entered for Question #{question.ref || question.sub_ref} should be after #{beginning_date.strftime("%d/%m/%Y")}."
         end
       end
 

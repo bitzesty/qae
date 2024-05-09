@@ -295,7 +295,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominator_name
-    "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
+    "#{document["user_info_first_name"]} #{document["user_info_last_name"]}".strip
   end
 
   def nominator_building
@@ -332,7 +332,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def date_started_trading
     return nil if document["started_trading_year"].blank?
-    "#{document['started_trading_day']}/#{document['started_trading_month']}/#{document['started_trading_year']}".strip
+    "#{document["started_trading_day"]}/#{document["started_trading_month"]}/#{document["started_trading_year"]}".strip
   end
 
   def website_url
@@ -344,7 +344,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def head_of_business_full_name
-    "#{document['head_of_business_first_name']} #{document['head_of_business_last_name']}".strip
+    "#{document["head_of_business_first_name"]} #{document["head_of_business_last_name"]}".strip
   end
 
   def head_of_business_honours
@@ -369,7 +369,7 @@ class FormAnswerDecorator < ApplicationDecorator
     if p_summary.present?
       "#{p_summary.name} #{p_summary.last_name}"
     else
-      "#{document['press_contact_details_name']} #{document['press_contact_details_last_name']}"
+      "#{document["press_contact_details_name"]} #{document["press_contact_details_last_name"]}"
     end
   end
 

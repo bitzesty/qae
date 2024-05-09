@@ -7,7 +7,7 @@ class Eligibility::Mobility < Eligibility
     accept: :true,
     hint: %(
               <p class='govuk-hint'>
-                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
               </p>
               <p class='govuk-hint'>
                 If you haven't reached your most recent year-end, you can provide estimated figures in the interim.

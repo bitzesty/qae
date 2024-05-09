@@ -87,7 +87,7 @@ class AwardYears::V2025::QaeForms
 
           context %(
             <p>
-              For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+              For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
             </p>
           )
 

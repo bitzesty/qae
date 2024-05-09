@@ -30,7 +30,7 @@ class Eligibility::Trade < Eligibility
                 <li>Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years</li>
               </ul>
               <p class='govuk-hint'>
-                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
               </p>
             )
 

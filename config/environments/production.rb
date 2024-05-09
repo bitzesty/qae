@@ -69,7 +69,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: ENV["MAILER_HOST"] }
-  config.action_mailer.asset_host = "https://#{ENV['ASSET_HOST']}"
+  config.action_mailer.asset_host = "https://#{ENV["ASSET_HOST"]}"
   config.action_mailer.delivery_method = :notify
   config.action_mailer.notify_settings = {
     api_key: ENV["GOV_UK_NOTIFY_API_KEY"],

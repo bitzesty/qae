@@ -143,7 +143,7 @@ class FormAnswerSearch < Search
   def post_submission_states_for_sql
     quoted_states = FormAnswerStateMachine::POST_SUBMISSION_STATES.map { |s| "'#{s}'" }
 
-    "(#{quoted_states.join(', ')})"
+    "(#{quoted_states.join(", ")})"
   end
 
   def advanced_select

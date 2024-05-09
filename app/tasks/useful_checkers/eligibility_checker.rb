@@ -113,7 +113,7 @@ module UsefulCheckers
         puts "        #{k}: #{v}"
       end
       puts ""
-      puts "        #{e.errors.full_messages.join(', ')}"
+      puts "        #{e.errors.full_messages.join(", ")}"
       puts ""
     end
   end

@@ -207,7 +207,7 @@ class QaePdfForms::General::QuestionPointer
     ref = question.ref || question.sub_ref
 
     form_pdf.indent 11.mm do
-      form_pdf.render_text "#{ref.delete(' ')}.",
+      form_pdf.render_text "#{ref.delete(" ")}.",
         style: :bold, width: 20.mm
     end
 

@@ -1361,13 +1361,6 @@ Style/StringChars:
   Exclude:
     - 'app/validators/file_size_validator.rb'
 
-# Offense count: 91
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiteralsInInterpolation:
-  Enabled: false
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/SuperWithArgsParentheses:
