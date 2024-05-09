@@ -58,13 +58,13 @@ class Eligibility::Trade < Eligibility
     label: "Are you a current holder of a Queen's/King's Award for International Trade?",
     boolean: true,
     accept: :all,
-    if: proc {current_holder_of_an_award?}
+    if: proc { current_holder_of_an_award? }
 
   property :qae_for_trade_award_year,
     values: (AwardYear.current.year - 5..AwardYear.current.year - 1).to_a.reverse + ["before_#{AwardYear.current.year - 5}"],
     accept: :not_nil_if_current_holder_of_qae_for_trade,
     label: "In which year did you receive the award?",
-    if: proc {current_holder_of_an_award? && current_holder_of_qae_for_trade?},
+    if: proc { current_holder_of_an_award? && current_holder_of_qae_for_trade? },
     allow_nil: true
 
   private

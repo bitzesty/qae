@@ -102,7 +102,7 @@ class FormAnswerDecorator < ApplicationDecorator
         old_array = object.document[key]
         new_array = result[key]
 
-        if new_array.any? {|h| h.keys == ["type"]}
+        if new_array.any? { |h| h.keys == ["type"] }
           object.document.merge! result
         else
           new_array.each_with_index do |value, index|
@@ -112,7 +112,7 @@ class FormAnswerDecorator < ApplicationDecorator
               old_array << value
             end
           end
-          old_array.reject!{|i| i.include? "_destroy" }
+          old_array.reject!{ |i| i.include? "_destroy" }
         end
       end
     end

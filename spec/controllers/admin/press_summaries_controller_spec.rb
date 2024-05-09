@@ -2,9 +2,9 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::PressSummariesController do
-  let!(:admin) {create(:admin, superadmin: true)}
-  let!(:form_answer) {create(:form_answer)}
-  let!(:press_summary) {create(:press_summary, form_answer: form_answer)}
+  let!(:admin) { create(:admin, superadmin: true) }
+  let!(:form_answer) { create(:form_answer) }
+  let!(:press_summary) { create(:press_summary, form_answer: form_answer) }
 
   before do
     sign_in admin
@@ -43,7 +43,7 @@ RSpec.describe Admin::PressSummariesController do
   end
   describe "Post unlock" do
     it "should unlock a resource" do
-      allow_any_instance_of(PressSummaryPolicy).to receive(:unlock?) {true}
+      allow_any_instance_of(PressSummaryPolicy).to receive(:unlock?) { true }
       post :unlock, params: { id: press_summary.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to [:admin, form_answer]
       expect(press_summary.reload.submitted?).to be_falsey
@@ -52,7 +52,7 @@ RSpec.describe Admin::PressSummariesController do
 
   describe "Post signoff" do
     it "should signoff a resource" do
-      allow_any_instance_of(PressSummaryPolicy).to receive(:admin_signoff?) {true}
+      allow_any_instance_of(PressSummaryPolicy).to receive(:admin_signoff?) { true }
       post :signoff, params: { id: press_summary.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to [:admin, form_answer]
       expect(press_summary.reload.admin_sign_off?).to be_truthy

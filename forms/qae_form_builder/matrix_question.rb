@@ -37,7 +37,7 @@ class QaeFormBuilder
       errors = super
 
       if delegate_obj.required_row_parent
-        step.form[delegate_obj.required_row_parent].input_value&.each {|a| delegate_obj.required_rows << a["type"] }
+        step.form[delegate_obj.required_row_parent].input_value&.each { |a| delegate_obj.required_rows << a["type"] }
       end
 
       errors

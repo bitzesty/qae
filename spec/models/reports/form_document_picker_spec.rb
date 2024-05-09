@@ -11,7 +11,7 @@ describe Reports::DataPickers::FormDocumentPicker do
   end
 
   describe "#current_queens_award_holder" do
-    let(:subject) {dummy_class.new}
+    let(:subject) { dummy_class.new }
 
     it "returns nil if no awards were entered" do
       expect(subject).to receive(:obj).and_return(double(previous_wins: nil))
@@ -76,7 +76,7 @@ describe Reports::DataPickers::FormDocumentPicker do
 
       end
     end
-    let(:subject) {custom_class.new}
+    let(:subject) { custom_class.new }
 
     context "business_region" do
       it "should return correct doc" do

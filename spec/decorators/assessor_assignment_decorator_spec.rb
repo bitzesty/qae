@@ -3,7 +3,7 @@ require "rails_helper"
 describe AssessorAssignmentDecorator do
   let(:editor) { User.new(first_name: "Foo", last_name: "Bar") }
   let(:assessor_assignment) { AssessorAssignment.new(editable: editor) }
-  let(:subject) { assessor_assignment.decorate}
+  let(:subject) { assessor_assignment.decorate }
 
   describe "#last_editor_info" do
     context "not accessed" do

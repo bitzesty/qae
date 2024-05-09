@@ -2,9 +2,9 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::SupportLettersController do
-  let!(:admin) {create(:admin, superadmin: true)}
-  let!(:form_answer) {create(:form_answer)}
-  let!(:support_letter) {create(:support_letter, form_answer: form_answer)}
+  let!(:admin) { create(:admin, superadmin: true) }
+  let!(:form_answer) { create(:form_answer) }
+  let!(:support_letter) { create(:support_letter, form_answer: form_answer) }
 
   before do
     sign_in admin

@@ -2,13 +2,13 @@ require "rails_helper"
 
 describe Eligibility do
 
-  it {is_expected.to belong_to(:account).optional }
-  it {is_expected.to belong_to(:form_answer).optional }
+  it { is_expected.to belong_to(:account).optional }
+  it { is_expected.to belong_to(:form_answer).optional }
 
   describe "base validation" do
     it "should raise error" do
       object = Eligibility::Validation::Base.new(double, double, double)
-      expect {object.valid?}.to raise_error(NotImplementedError)
+      expect { object.valid? }.to raise_error(NotImplementedError)
     end
   end
 

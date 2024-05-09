@@ -51,7 +51,7 @@ describe Reports::FormAnswer do
         company_phone_number: "company_phone_number",
       )
     end
-    let(:report) {Reports::FormAnswer.new(build(:form_answer, user: user))}
+    let(:report) { Reports::FormAnswer.new(build(:form_answer, user: user)) }
 
     it "#address_line1 should return address_line1" do
       expect(report.address_line1).to eq "company_address_first"
@@ -82,20 +82,20 @@ describe Reports::FormAnswer do
   describe "#case_summary_status" do
     it "should return correct status" do
       assessor_assignment = build(:assessor_assignment)
-      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment) {assessor_assignment}
-      allow_any_instance_of(AssessorAssignment).to receive(:submitted?) {true}
-      allow_any_instance_of(AssessorAssignment).to receive(:locked?) {true}
+      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment) { assessor_assignment }
+      allow_any_instance_of(AssessorAssignment).to receive(:submitted?) { true }
+      allow_any_instance_of(AssessorAssignment).to receive(:locked?) { true }
       expect(Reports::FormAnswer.new(build(:form_answer, :trade)).send(:case_summary_status)).to eq "Submitted"
 
-      allow_any_instance_of(AssessorAssignment).to receive(:locked?) {false}
+      allow_any_instance_of(AssessorAssignment).to receive(:locked?) { false }
       expect(Reports::FormAnswer.new(build(:form_answer, :trade)).send(:case_summary_status)).to eq "Not Submitted"
     end
   end
 
   describe "#mso_grade_agreed" do
     it "should return correct grade" do
-      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment) {build(:assessor_assignment_moderated)}
-      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment).with("moderated") {build(:assessor_assignment_moderated, document: { w_rate_1: "positive", w_rate_2: "average" })}
+      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment) { build(:assessor_assignment_moderated) }
+      allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment).with("moderated") { build(:assessor_assignment_moderated, document: { w_rate_1: "positive", w_rate_2: "average" }) }
       expect(Reports::FormAnswer.new(build(:form_answer)).send(:mso_grade_agreed)).to eq "G,A"
     end
   end

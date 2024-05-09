@@ -174,58 +174,58 @@ describe AwardYear do
   end
 
   describe "instance methods" do
-     let(:award_year) {build(:award_year)}
+     let(:award_year) { build(:award_year) }
     context "form_data_generation_can_be_started?" do
       it "should return correct value" do
-        allow(Settings).to receive(:after_current_submission_deadline?) {true}
-        allow_any_instance_of(AwardYear).to receive(:form_data_hard_copies_state) {nil}
+        allow(Settings).to receive(:after_current_submission_deadline?) { true }
+        allow_any_instance_of(AwardYear).to receive(:form_data_hard_copies_state) { nil }
         expect(award_year.form_data_generation_can_be_started?).to be_truthy
 
-        allow_any_instance_of(AwardYear).to receive(:form_data_hard_copies_state) {"not_nil"}
+        allow_any_instance_of(AwardYear).to receive(:form_data_hard_copies_state) { "not_nil" }
         expect(award_year.form_data_generation_can_be_started?).to be_falsey
       end
     end
 
      context "case_summary_generation_can_be_started?" do
       it "should return correct value" do
-        allow(Settings).to receive(:winners_stage?) {true}
-        allow_any_instance_of(AwardYear).to receive(:case_summary_hard_copies_state) {nil}
+        allow(Settings).to receive(:winners_stage?) { true }
+        allow_any_instance_of(AwardYear).to receive(:case_summary_hard_copies_state) { nil }
         expect(award_year.case_summary_generation_can_be_started?).to be_truthy
 
-        allow_any_instance_of(AwardYear).to receive(:case_summary_hard_copies_state) {"not_nil"}
+        allow_any_instance_of(AwardYear).to receive(:case_summary_hard_copies_state) { "not_nil" }
         expect(award_year.case_summary_generation_can_be_started?).to be_falsey
       end
      end
 
      context "feedback_generation_can_be_started?" do
       it "should return correct value" do
-        allow(Settings).to receive(:unsuccessful_stage?) {true}
-        allow_any_instance_of(AwardYear).to receive(:feedback_hard_copies_state) {nil}
+        allow(Settings).to receive(:unsuccessful_stage?) { true }
+        allow_any_instance_of(AwardYear).to receive(:feedback_hard_copies_state) { nil }
         expect(award_year.feedback_generation_can_be_started?).to be_truthy
 
-        allow_any_instance_of(AwardYear).to receive(:feedback_hard_copies_state) {"not_nil"}
+        allow_any_instance_of(AwardYear).to receive(:feedback_hard_copies_state) { "not_nil" }
         expect(award_year.feedback_generation_can_be_started?).to be_falsey
       end
      end
 
      context "aggregated_case_summary_generation_can_be_started?" do
       it "should return correct value" do
-        allow(Settings).to receive(:winners_stage?) {true}
-        allow_any_instance_of(AwardYear).to receive(:aggregated_case_summary_hard_copy_state) {nil}
+        allow(Settings).to receive(:winners_stage?) { true }
+        allow_any_instance_of(AwardYear).to receive(:aggregated_case_summary_hard_copy_state) { nil }
         expect(award_year.aggregated_case_summary_generation_can_be_started?).to be_truthy
 
-        allow_any_instance_of(AwardYear).to receive(:aggregated_case_summary_hard_copy_state) {"not_nil"}
+        allow_any_instance_of(AwardYear).to receive(:aggregated_case_summary_hard_copy_state) { "not_nil" }
         expect(award_year.aggregated_case_summary_generation_can_be_started?).to be_falsey
       end
      end
 
     context "aggregated_feedback_generation_can_be_started?" do
       it "should return correct value" do
-        allow(Settings).to receive(:unsuccessful_stage?) {true}
-        allow_any_instance_of(AwardYear).to receive(:aggregated_feedback_hard_copy_state) {nil}
+        allow(Settings).to receive(:unsuccessful_stage?) { true }
+        allow_any_instance_of(AwardYear).to receive(:aggregated_feedback_hard_copy_state) { nil }
         expect(award_year.aggregated_feedback_generation_can_be_started?).to be_truthy
 
-        allow_any_instance_of(AwardYear).to receive(:aggregated_feedback_hard_copy_state) {"not_nil"}
+        allow_any_instance_of(AwardYear).to receive(:aggregated_feedback_hard_copy_state) { "not_nil" }
         expect(award_year.aggregated_feedback_generation_can_be_started?).to be_falsey
       end
      end

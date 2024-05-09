@@ -19,7 +19,7 @@ describe AssessorsImport::Builder do
 
      context "save failed" do
       it "return not_saved" do
-        allow_any_instance_of(Assessor).to receive(:save) {false}
+        allow_any_instance_of(Assessor).to receive(:save) { false }
         response = subject.process
         expect(response[:not_saved]).not_to be_empty
       end

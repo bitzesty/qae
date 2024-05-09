@@ -2,8 +2,8 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Form::AwardsController do
-  let!(:user) {create(:user)}
-  let!(:form_answer) {create :form_answer, user: user}
+  let!(:user) { create(:user) }
+  let!(:form_answer) { create :form_answer, user: user }
 
   before do
     sign_in user
@@ -26,7 +26,7 @@ RSpec.describe Form::AwardsController do
 
   describe "POST create" do
     it "should create a resource" do
-      allow_any_instance_of(Award).to receive(:valid?) {true}
+      allow_any_instance_of(Award).to receive(:valid?) { true }
       post :create, params: { form_answer_id: form_answer.id, award: { title: "title", year: Date.current.year } }
       expect(response).to redirect_to edit_form_url(form_answer, step: "test", anchor: "non_js_nomination_awards-list-question")
       expect(form_answer.reload.document.present?).to be_truthy
@@ -35,7 +35,7 @@ RSpec.describe Form::AwardsController do
 
   describe "PUT update" do
     it "should update a resource" do
-      allow_any_instance_of(Award).to receive(:valid?) {true}
+      allow_any_instance_of(Award).to receive(:valid?) { true }
       put :update, params: { id: "000", form_answer_id: form_answer.id, award: { title1: "title2" } }
       expect(response).to redirect_to edit_form_url(form_answer, step: "test", anchor: "non_js_nomination_awards-list-question")
     end
@@ -43,7 +43,7 @@ RSpec.describe Form::AwardsController do
 
   describe "Delete destroy" do
     it "should destroy a resource" do
-      allow_any_instance_of(FormAnswer).to receive(:set_progress) {true}
+      allow_any_instance_of(FormAnswer).to receive(:set_progress) { true }
       delete :destroy, params: { id: "000", form_answer_id: form_answer.id }
       expect(response).to redirect_to edit_form_url(form_answer, step: "test", anchor: "non_js_nomination_awards-list-question")
       expect(form_answer.reload.document.present?).to be_truthy

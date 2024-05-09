@@ -2,12 +2,12 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Assessor::ReportsController do
-  let!(:assessor) {create(:assessor)}
-  let!(:form_answer) {create(:form_answer)}
+  let!(:assessor) { create(:assessor) }
+  let!(:form_answer) { create(:form_answer) }
 
   before do
     sign_in assessor
-    allow_any_instance_of(Assessor).to receive(:lead_for_any_category?) {true}
+    allow_any_instance_of(Assessor).to receive(:lead_for_any_category?) { true }
   end
 
   describe "GET index" do

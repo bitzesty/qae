@@ -18,15 +18,15 @@ RSpec.describe Assessor, type: :model do
   end
 
   describe "#lead?" do
-    let(:form_answer) {build(:form_answer, :trade)}
+    let(:form_answer) { build(:form_answer, :trade) }
     context "lead" do
-      let(:assessor) {build(:assessor, :lead_for_trade)}
+      let(:assessor) { build(:assessor, :lead_for_trade) }
       it "is true" do
         expect(assessor.lead?(form_answer)).to eq(true)
       end
     end
     context "regular (not assigned)" do
-      let(:assessor) {build(:assessor, :regular_for_trade)}
+      let(:assessor) { build(:assessor, :regular_for_trade) }
       it "is false" do
         expect(assessor.lead?(form_answer)).to eq(false)
       end
@@ -88,7 +88,7 @@ RSpec.describe Assessor, type: :model do
       expect(Reports::AssessorsProgressReport).to receive_message_chain(:new, :build)
       Reports::AssessorReport.new("assessors-progress", year, assessor, category: "trade").as_csv
 
-      expect{Reports::AssessorReport.new("assessors-progress", year, assessor, category: "invalid").as_csv}.to raise_error(ArgumentError)
+      expect{ Reports::AssessorReport.new("assessors-progress", year, assessor, category: "invalid").as_csv }.to raise_error(ArgumentError)
     end
 
 

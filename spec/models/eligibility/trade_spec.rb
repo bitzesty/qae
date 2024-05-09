@@ -9,7 +9,7 @@ RSpec.describe Eligibility::Trade, type: :model do
       eligibility = Eligibility::Trade.create(account: account)
       eligibility.current_holder_of_qae_for_trade = nil
       eligibility.force_validate_now = true
-      allow_any_instance_of(Eligibility).to receive(:current_step) {:current_holder_of_qae_for_trade}
+      allow_any_instance_of(Eligibility).to receive(:current_step) { :current_holder_of_qae_for_trade }
       eligibility.save
       expect(eligibility.errors[:current_holder_of_qae_for_trade].present?).to be_truthy
     end

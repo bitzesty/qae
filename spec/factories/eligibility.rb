@@ -36,7 +36,7 @@ FactoryBot.define do
 
     trait :innovation do
       type { "Eligibility::Innovation" }
-      answers {{
+      answers { {
         able_to_provide_financial_figures: "yes",
         has_two_full_time_employees: "yes",
         innovative_product: "yes",
@@ -49,7 +49,7 @@ FactoryBot.define do
 
     trait :development do
       type { "Eligibility::Development" }
-      answers {{
+      answers { {
         able_to_provide_actual_figures: "yes",
         has_management_and_two_employees: "yes",
         sustainable_development: "yes",
@@ -59,7 +59,7 @@ FactoryBot.define do
 
     trait :mobility do
       type { "Eligibility::Mobility" }
-      answers {{
+      answers { {
         can_provide_financial_figures: "yes",
         full_time_employees: "yes",
         promoting_opportunity_involvement: "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity).",
@@ -73,7 +73,7 @@ FactoryBot.define do
 
     trait :promotion do
       type { "Eligibility::Promotion" }
-      answers {{
+      answers { {
         nominee: "someone_else",
         nominee_contributes_to_promotion_of_business_enterprise: true,
         contribution_is_outside_requirements_of_activity: true,

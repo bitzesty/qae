@@ -2,13 +2,13 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Assessor::AssessmentSubmissionsController do
-  let!(:assessor) {create(:assessor)}
-  let!(:assessor_assignment) {create(:assessor_assignment)}
+  let!(:assessor) { create(:assessor) }
+  let!(:assessor_assignment) { create(:assessor_assignment) }
 
   before do
     sign_in assessor
-    allow_any_instance_of(Assessor).to receive(:lead?) {true}
-    allow_any_instance_of(AssessorAssignment).to receive(:locked?) {true}
+    allow_any_instance_of(Assessor).to receive(:lead?) { true }
+    allow_any_instance_of(AssessorAssignment).to receive(:locked?) { true }
   end
 
   describe "POST create" do

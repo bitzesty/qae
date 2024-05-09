@@ -63,7 +63,7 @@ class QaeFormBuilder
     def active_fields
       return [] unless fields_count
 
-      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+      (1..fields_count).map{ |y| "#{y}of#{fields_count}" }
     end
 
     def fields_count

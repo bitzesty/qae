@@ -31,7 +31,7 @@ I want to be able to view, create and destroy the comments per application.
 
     expect{
       first(".link-delete-comment-confirm").click
-    }.to change{Comment.count}.by(-1)
+    }.to change{ Comment.count }.by(-1)
   end
 
   it "displays the comments" do

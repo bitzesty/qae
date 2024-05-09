@@ -13,7 +13,7 @@ RSpec.describe FormAnswer, type: :model do
 
   describe "#unsuccessful?" do
     it "should return correct class" do
-      allow_any_instance_of(FormAnswer).to receive(:not_recommended?) {true}
+      allow_any_instance_of(FormAnswer).to receive(:not_recommended?) { true }
       expect(form_answer.unsuccessful?).to be_truthy
     end
   end
@@ -83,8 +83,8 @@ RSpec.describe FormAnswer, type: :model do
 
   describe "#unsuccessful_app?" do
     it "should return correct result" do
-      allow_any_instance_of(FormAnswer).to receive(:awarded?) {false}
-      allow_any_instance_of(FormAnswer).to receive(:withdrawn?) {false}
+      allow_any_instance_of(FormAnswer).to receive(:awarded?) { false }
+      allow_any_instance_of(FormAnswer).to receive(:withdrawn?) { false }
       expect(form_answer.unsuccessful_app?).to be_truthy
     end
   end
@@ -127,7 +127,7 @@ RSpec.describe FormAnswer, type: :model do
 
   describe "validations" do
     %w(user).each do |field_name|
-      it {should validate_presence_of field_name}
+      it { should validate_presence_of field_name }
     end
 
     it "award_type" do
@@ -191,7 +191,7 @@ RSpec.describe FormAnswer, type: :model do
       create(:form_answer, :trade, :submitted)
     end
 
-    let(:award_year) {AwardYear.current.year.to_s[2..-1]}
+    let(:award_year) { AwardYear.current.year.to_s[2..-1] }
 
     it "creates form with URN" do
       expect(form_answer.urn).to eq("KA0001/#{award_year}T")
@@ -216,20 +216,20 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "#company_or_nominee_from_document" do
-    subject {build(:form_answer, kind, document: doc)}
-    let(:c_name) {"company name"}
-    let(:n_name) {"company name"}
+    subject { build(:form_answer, kind, document: doc) }
+    let(:c_name) { "company name" }
+    let(:n_name) { "company name" }
 
     context "promotion form" do
-      let(:doc) {{ "organization_name" => " #{c_name} " }}
-      let(:kind) {:promotion}
+      let(:doc) { { "organization_name" => " #{c_name} " } }
+      let(:kind) { :promotion }
 
       it "gets the orgzanization name first" do
         expect(subject.company_or_nominee_from_document).to eq(c_name)
       end
 
       context "organization name blank" do
-        let(:doc) {{ "nominee_info_first_name" => n_name }}
+        let(:doc) { { "nominee_info_first_name" => n_name } }
         it "gets the nominee name" do
           expect(subject.nominee_full_name_from_document).to eq(n_name)
         end
@@ -237,8 +237,8 @@ RSpec.describe FormAnswer, type: :model do
     end
 
     context "innovation form" do
-      let(:doc) {{ "company_name" => c_name }}
-      let(:kind) {:innovation}
+      let(:doc) { { "company_name" => c_name } }
+      let(:kind) { :innovation }
       it "gets the company name" do
         expect(subject.company_or_nominee_from_document).to eq(c_name)
       end

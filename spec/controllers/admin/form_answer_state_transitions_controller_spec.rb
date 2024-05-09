@@ -2,12 +2,12 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::FormAnswerStateTransitionsController do
-  let!(:admin) {create(:admin, superadmin: true)}
-  let!(:form_answer) {create(:form_answer)}
+  let!(:admin) { create(:admin, superadmin: true) }
+  let!(:form_answer) { create(:form_answer) }
 
   before do
     sign_in admin
-    allow_any_instance_of(AssessorAssignment).to receive(:locked?) {true}
+    allow_any_instance_of(AssessorAssignment).to receive(:locked?) { true }
   end
 
   describe "POST create" do

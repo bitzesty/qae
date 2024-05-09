@@ -6,9 +6,9 @@ class QaeFormBuilder
     def section ref
       data = section_data ref
 
-      @q.context = data.map {|d| form_context(d)}.join
+      @q.context = data.map { |d| form_context(d) }.join
 
-      @q.pdf_context_with_header_blocks = data.map {|d| pdf_context(d)}.flatten(1)
+      @q.pdf_context_with_header_blocks = data.map { |d| pdf_context(d) }.flatten(1)
     end
 
     private
@@ -25,7 +25,7 @@ class QaeFormBuilder
     def pdf_context(data)
       [
         [:bold, data.header],
-        [:normal, data.context.map { |c| c.gsub(/<br\s*\/?>/, "")}.join("\n\n")],
+        [:normal, data.context.map { |c| c.gsub(/<br\s*\/?>/, "") }.join("\n\n")],
       ]
     end
 

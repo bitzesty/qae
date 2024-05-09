@@ -2,8 +2,8 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::EmailNotificationsController do
-  let!(:admin) {create(:admin, superadmin: true)}
-  let!(:email_notification) {create(:email_notification)}
+  let!(:admin) { create(:admin, superadmin: true) }
+  let!(:email_notification) { create(:email_notification) }
   before do
     sign_in admin
   end

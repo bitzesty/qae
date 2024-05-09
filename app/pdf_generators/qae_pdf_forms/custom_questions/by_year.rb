@@ -33,7 +33,7 @@ module QaePdfForms::CustomQuestions::ByYear
         ApplicationController.helpers.formatted_uk_sales_value(field)
       end
 
-      res.all? { |el| el == {}} ? [] : res
+      res.all? { |el| el == {} } ? [] : res
     else
       active_fields.map do |field|
         entry = year_entry(field).to_s.delete(",")
