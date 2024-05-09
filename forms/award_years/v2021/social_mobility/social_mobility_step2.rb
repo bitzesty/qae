@@ -148,7 +148,6 @@ class AwardYears::V2021::QaeForms
             If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim. <br/><br/>
             If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
 
-
           context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
 
           pdf_context_for_option "initiative", [

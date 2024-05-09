@@ -98,7 +98,6 @@ class AwardYears::V2021::QaeForms
           type :number
           label ->(y) { "Financial year #{y}" }
 
-
           employees_question
         end
 

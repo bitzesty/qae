@@ -51,7 +51,6 @@ module PdfAuditCertificates::Awards2016::Development
         rows << revised_row(row.values.first.length, index + 2)
       end
 
-
       table(rows, table_default_ops(:main_table)) do
         rows.each_with_index do |row, i|
           if row.first.include?("Revised")

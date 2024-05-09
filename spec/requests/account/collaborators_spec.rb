@@ -37,7 +37,6 @@ describe "API" do
       account: account
   end
 
-
   before do
     login_as account_admin
   end

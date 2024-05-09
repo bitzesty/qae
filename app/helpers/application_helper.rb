@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def title(page_title)
     content_for(:title) { page_title }
   end
@@ -17,7 +16,6 @@ module ApplicationHelper
     else
       index_step_text = name
     end
-
 
     if opts[:index] && opts[:active]
       if opts[:index] == opts[:active]

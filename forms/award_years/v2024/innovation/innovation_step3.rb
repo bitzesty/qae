@@ -262,7 +262,6 @@ class AwardYears::V2024::QaeForms
           words_max 250
         end
 
-
         header :innovation_timeline_header, "Innovation development" do
           ref "C 2"
           linkable true

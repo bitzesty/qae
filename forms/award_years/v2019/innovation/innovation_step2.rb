@@ -104,7 +104,6 @@ class AwardYears::V2019::QaeForms
           words_max 100
         end
 
-
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
           ref "B 3"
           required

@@ -97,7 +97,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows << ["D4.4 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
     rows << ["D4.5 Net assets (£)"] + fs_get_all_financial_values(:total_net_assets)
 
-
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
 
@@ -245,7 +244,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows << ["D4.4 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
     rows << ["D4.5 Net assets (£)"] + fs_get_all_financial_values(:total_net_assets)
 
-
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
 
@@ -301,7 +299,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   # INNOVATION FINANCIAL SUMMARY P2 #
   ###################################
 
-
   def render_innovation_financial_summary_part_2
     # main table
     form_pdf.render_text "The data below is pulled from previous questions and automatically calculated. It is there to help you ensure you entered the correct figures and see your growth."
@@ -321,7 +318,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows << ["D6.4 Of which royalties or licences (£)"] + fs_get_all_financial_values(:sales_royalties)
     rows << ["D6.6 Average unit selling price/contract value (£)"] + fs_get_all_financial_values(:avg_unit_price)
     rows << ["D6.8 Direct cost of single unit/contract (£)"] + fs_get_all_financial_values(:avg_unit_cost_self)
-
 
     form_pdf.table(rows, fs_table_default_ops)
   end

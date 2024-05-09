@@ -97,6 +97,5 @@ module CaseSummaryPdfs::General::DrawElements
         pdf_doc.move_down ONE_LINE_OFFSET
       end
     end
-
   end
 end

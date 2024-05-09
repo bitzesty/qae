@@ -6,7 +6,6 @@ RSpec.describe Form::CurrentQueensAwardsController do
 
   let!(:form_answer) { create :form_answer, user: user }
 
-
   before do
     sign_in user
     # allow(controller).to receive(:step).and_return(double(title: 'test'))

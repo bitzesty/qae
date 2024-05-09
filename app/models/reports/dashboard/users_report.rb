@@ -61,7 +61,6 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
     end
   end
 
-
   def generate_content(users, date)
     if date && Date.current >= date
       users.where("created_at < ?", date).count

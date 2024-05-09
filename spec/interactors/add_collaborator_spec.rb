@@ -91,7 +91,6 @@ describe "Interactors::AddCollaborator" do
         .to not_change { account.reload.users.count }
         .and not_change { MailDeliveryWorker.jobs.size }
 
-
       expect(account.reload.users.count).to be_eql 2
       expect(add_collaborator_interactor.errors).to be_eql ["This user already added to collaborators!"]
     end

@@ -224,7 +224,6 @@ class FormAnswer < ApplicationRecord
         end
   end
 
-
   # FormAnswer#award_form
   # fetches relevant award form for the application's award year if available
   # else uses form for the current award year

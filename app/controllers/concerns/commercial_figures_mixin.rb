@@ -1,5 +1,4 @@
 module CommercialFiguresMixin
-
   def show
     send_data file_record.attachment.read,
       filename: file_record.attachment.file.filename,
@@ -52,7 +51,6 @@ module CommercialFiguresMixin
       .gsub("Attachment ", "")
   end
 
-
   def figures_wrapper
     @figures_wrapper ||= (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
 
@@ -60,7 +58,6 @@ module CommercialFiguresMixin
 
     @figures_wrapper
   end
-
 
   def form_answer
     @form_answer ||= current_user.account

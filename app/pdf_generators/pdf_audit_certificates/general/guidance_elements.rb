@@ -28,7 +28,6 @@ module PdfAuditCertificates::General::GuidanceElements
     end
   end
 
-
   def render_accountant_guidance_intro
     header = "GUIDANCE FOR ACCOUNTANTS"
 

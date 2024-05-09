@@ -1012,7 +1012,6 @@ class AppraisalForm
     },
   }
 
-
   PROMOTION_2021 = {
     nature_of_activities: {
       type: :rag,

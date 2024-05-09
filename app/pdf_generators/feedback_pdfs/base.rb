@@ -20,7 +20,6 @@ class FeedbackPdfs::Base < ReportPdfBase
                          .joins(form_answer: :award_year)
                          .where("form_answers.award_type = ?", options[:category])
                          .where("form_answers.award_year_id = ?", award_year.id)
-
   end
 
   def render_item(form_answer)

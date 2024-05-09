@@ -12,6 +12,7 @@ class QaeFormBuilder
     end
 
     private
+
     def form_context(data)
       @link = data.link
       %(

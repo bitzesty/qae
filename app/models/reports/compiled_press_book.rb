@@ -216,7 +216,6 @@ class Reports::CompiledPressBook
     worksheet.change_column_width(0, 30)
     5.times { |i| worksheet.change_column_width(i + 1, 15) }
 
-
     table_headers.each_with_index do |header, index|
       cell = worksheet.add_cell(2, index, header)
 

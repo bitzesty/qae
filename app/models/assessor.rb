@@ -52,7 +52,6 @@ class Assessor < ApplicationRecord
   scope :trade_and_development, -> { available_for("development").or(available_for("trade")) }
   scope :mobility_and_innovation, -> { available_for("mobility").or(available_for("innovation")) }
 
-
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AVAILABLE_ROLES.each do |role|
       scope "#{award_category}_#{role}", -> {

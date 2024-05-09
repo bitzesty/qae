@@ -200,7 +200,6 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
-
     dotted_line = %{...............................................................................................................................}
 
     b1 = %{Signed (External Accountant) ............................................................................}
@@ -379,7 +378,6 @@ module PdfAuditCertificates::General::SharedElements
 
     move_down 3.mm
   end
-
 
   def render_footer_note
     title = %{Note for applicants/auditors: This submission to the King's Awards Office (KAO) provides authority for the KAO to verify the information contained in it with the above-named auditor.}

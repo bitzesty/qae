@@ -10,7 +10,6 @@ describe UserDecorator do
 
   let(:subject) { UserDecorator.decorate(user) }
 
-
   describe "#general_info" do
     it "returns company name and full name" do
       expect(subject.general_info).to eq("#{user.company_name}: #{user.full_name}")

@@ -1,5 +1,4 @@
 module Reports::DataPickers::FormDocumentPicker
-
   def business_region
     if business_form?
       doc "organization_address_region"

@@ -1,5 +1,4 @@
 module RegionHelper
-
   COUNTY_REGION_MAPPINGS = {
     "Aberdeenshire": "Scotland",
     "Angus": "Scotland",
@@ -113,5 +112,4 @@ module RegionHelper
   def lookup_region_for_county(county)
     COUNTY_REGION_MAPPINGS[county]
   end
-
 end

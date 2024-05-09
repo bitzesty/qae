@@ -59,7 +59,6 @@ class Settings < ApplicationRecord
       end
     end
 
-
     def current_submission_start_deadlines
       Rails.cache.fetch("submission_start_deadlines", expires_in: 1.minute) do
         current.deadlines.where(kind: Deadline::SUBMISSION_START_DEADLINES)

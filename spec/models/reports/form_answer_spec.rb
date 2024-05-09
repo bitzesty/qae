@@ -78,7 +78,6 @@ describe Reports::FormAnswer do
     end
   end
 
-
   describe "#case_summary_status" do
     it "should return correct status" do
       assessor_assignment = build(:assessor_assignment)

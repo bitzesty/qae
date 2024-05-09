@@ -1,5 +1,4 @@
 module AuditHelper
-
   def dummy_user
     User.find_by(email: "dummy_user@example.com") || User.create!(dummy_user_params)
   end

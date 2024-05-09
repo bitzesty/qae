@@ -17,7 +17,6 @@ class PalaceAttendee < ApplicationRecord
   validates :royal_family_connection_details, presence: true, if: :has_royal_family_connections?
   validate :royal_family_connection_details_length
 
-
   private
 
   def royal_family_connection_details_length

@@ -1,5 +1,4 @@
 module QaePdfForms::CustomQuestions::Textarea
-
   LIST_TAGS = ["ul", "ol"].freeze
 
   MAIN_CONTENT_BLOCKS = (LIST_TAGS + ["p"]).freeze

@@ -7,7 +7,6 @@ RSpec.describe Form::FormAttachmentsController do
   let!(:form_answer) { create :form_answer, user: user }
   let!(:form_answer_attachment) { create :form_answer_attachment, form_answer: form_answer }
 
-
   before do
     sign_in user
     # allow(controller).to receive(:step).and_return(double(title: 'test'))
@@ -38,7 +37,6 @@ RSpec.describe Form::FormAttachmentsController do
       expect(form_answer.reload.document.present?).to be_truthy
     end
   end
-
 
   describe "Delete destroy" do
     it "should destroy a resource" do
