@@ -1098,22 +1098,6 @@ Style/GlobalStdStream:
   Exclude:
     - 'config/environments/production.rb'
 
-# Offense count: 15
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowSplatArgument.
-Style/HashConversion:
-  Exclude:
-    - 'app/form_pointers/financial_summary_pointer.rb'
-    - 'app/form_pointers/form_financial_pointer.rb'
-    - 'app/helpers/form_helper.rb'
-    - 'app/models/form_answer.rb'
-    - 'app/pdf_generators/pdf_audit_certificates/general/shared_elements.rb'
-    - 'app/services/form_answer_versions_dispatcher.rb'
-    - 'forms/qae_form_builder/by_years_label_question.rb'
-    - 'forms/qae_form_builder/matrix_question.rb'
-    - 'forms/qae_form_builder/question.rb'
-    - 'forms/qae_form_builder/trade_most_recent_financial_year_options_question.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/HashExcept:

@@ -64,6 +64,10 @@ Layout/MultilineHashBraceLayout:
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+  EnforcedStyle: space
+
 Metrics/ModuleLength:
   Enabled: false
 
@@ -107,6 +111,9 @@ Rails/SkipsModelValidations:
   Exclude:
     - db/migrate/**/*.rb
     - spec/**/*.rb
+
+Style/HashConversion:
+  Enabled: false
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
