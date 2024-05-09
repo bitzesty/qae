@@ -250,5 +250,4 @@ class QaeFormBuilder
       "question-matrix"
     end
   end
-
 end

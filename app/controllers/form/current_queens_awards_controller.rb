@@ -1,5 +1,4 @@
 class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving of CurrentQueensAwards
   # This section is used in case if JS disabled
 

@@ -1,5 +1,4 @@
 class Assessor::ReportsController < Assessor::BaseController
-
   def index
     authorize :report, :show?
   end

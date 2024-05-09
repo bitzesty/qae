@@ -17,5 +17,4 @@ class Admin::AuditCertificatesController < Admin::BaseController
       end
     end
   end
-
 end

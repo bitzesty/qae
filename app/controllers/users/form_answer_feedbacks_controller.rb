@@ -1,5 +1,4 @@
 class Users::FormAnswerFeedbacksController < Users::BaseController
-
   #
   # So devise can't handle redirect to new user session path
   # on using pdf format

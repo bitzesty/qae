@@ -1,5 +1,4 @@
 class Users::CollaboratorAccessController < Users::BaseController
-
   # stop rails CSRF protection for pusher authentication
   protect_from_forgery except: :auth
 

@@ -1,5 +1,4 @@
 class HardCopyPdfGenerators::FormDataWorker < HardCopyPdfGenerators::BaseWorker
-
   def perform(form_answer_id, generate_from_latest_doc=false)
     form_answer = FormAnswer.find(form_answer_id)
 

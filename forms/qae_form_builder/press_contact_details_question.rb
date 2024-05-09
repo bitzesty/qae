@@ -25,5 +25,4 @@ class QaeFormBuilder
   class PressContactDetailsQuestion < Question
     attr_accessor :sub_fields
   end
-
 end

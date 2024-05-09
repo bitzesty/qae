@@ -1,5 +1,4 @@
 class CaseSummaryPdfs::Base < ReportPdfBase
-
   attr_reader :form_answers
 
   def generate!

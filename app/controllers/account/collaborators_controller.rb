@@ -1,5 +1,4 @@
 class Account::CollaboratorsController < Account::BaseController
-
   before_action :require_to_be_not_current_user_and_not_account_owner!, only: [:destroy]
   before_action :set_form_answer
 

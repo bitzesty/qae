@@ -32,5 +32,4 @@ class QaeFormBuilder
   class NumberQuestion < TextQuestion
     attr_accessor :min, :max, :unit
   end
-
 end

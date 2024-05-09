@@ -17,5 +17,4 @@ class QaeFormBuilder
 
   class ContactQuestion < Question
   end
-
 end

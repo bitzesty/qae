@@ -39,5 +39,4 @@ class FormAnswerAuditor
     klass, id = version.whodunnit.split(":")
     klass.capitalize.constantize.find_by(id: id) || dummy_user
   end
-
 end

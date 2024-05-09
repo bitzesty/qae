@@ -40,7 +40,6 @@
 module ManualUpdaters
   class HardCopyGeneration
     class << self
-
       def case_summary_individual
         year = AwardYear.find_by(year: 2016)
         year.update_column(:case_summary_hard_copies_state, "started")

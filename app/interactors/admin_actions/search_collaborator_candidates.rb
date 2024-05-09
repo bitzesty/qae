@@ -1,6 +1,5 @@
 module AdminActions
   class SearchCollaboratorCandidates
-
     attr_accessor :form_answer,
       :account,
       :existing_collaborators,

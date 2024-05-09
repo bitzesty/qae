@@ -1,5 +1,4 @@
 class QaeFormBuilder
-
   class QaeDecorator
     attr_reader :delegate_obj
 
@@ -28,7 +27,5 @@ class QaeFormBuilder
         o
       end
     end
-
   end
-
 end

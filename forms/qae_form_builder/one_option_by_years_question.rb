@@ -82,6 +82,5 @@ class QaeFormBuilder
       :first_year_min_value,
       :first_year_validation_message,
       :validatable_years_position
-
   end
 end

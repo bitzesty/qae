@@ -1,5 +1,4 @@
 class HardCopyGenerators::Base
-
   attr_reader :form_answer,
     :pdf,
     :tempfile_name,

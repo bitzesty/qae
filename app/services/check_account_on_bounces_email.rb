@@ -1,5 +1,4 @@
 class CheckAccountOnBouncesEmail
-
   DEBOUNCE_API_RESPONSE_CODES = {
     "1" => "Syntax. Not an email.",
     "2" => "Spam Trap. Spam-trap by ESPs.",

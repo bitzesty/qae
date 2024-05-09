@@ -1,5 +1,4 @@
 class Form::FormAttachmentsController < Form::MaterialsBaseController
-
   # This controller handles saving of attachments
   # This section is used in case if JS disabled (destroy action used for both JS and NON JS)
 

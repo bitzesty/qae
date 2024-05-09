@@ -1,5 +1,4 @@
 class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving / removing of Position Details on EP Form
   # This section is used in case if JS disabled
 

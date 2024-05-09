@@ -45,5 +45,4 @@ class QaeFormBuilder
   class InnovationFinancialYearDateQuestion < Question
     attr_accessor :financial_date_pointer
   end
-
 end

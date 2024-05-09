@@ -1,5 +1,4 @@
 class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving of Subsidiaries on Trade Form
   # This section is used in case if JS disabled
 

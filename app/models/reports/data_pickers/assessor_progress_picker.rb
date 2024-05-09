@@ -1,5 +1,4 @@
 class Reports::DataPickers::AssessorProgressPicker
-
   attr_accessor :award_year_id,
     :award_category
 

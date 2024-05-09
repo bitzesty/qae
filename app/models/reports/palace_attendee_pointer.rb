@@ -1,5 +1,4 @@
 class Reports::PalaceAttendeePointer
-
   attr_reader :palace_attendee,
     :form_answer,
     :form_answer_pointer

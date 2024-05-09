@@ -7,7 +7,6 @@
 #
 
 class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::AggregatedBase
-
   attr_accessor :sub_type
 
   def initialize(award_category, award_year, type_of_report, sub_type=nil)

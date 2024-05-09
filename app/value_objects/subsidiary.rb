@@ -27,5 +27,4 @@ class Subsidiary
       errors.add(:description, message: "is too long (maximum is 100 words)")
     end
   end
-
 end

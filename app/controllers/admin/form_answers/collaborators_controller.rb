@@ -1,5 +1,4 @@
 class Admin::FormAnswers::CollaboratorsController < Admin::BaseController
-
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
   end

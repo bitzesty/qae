@@ -1,5 +1,4 @@
 class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
-
   attr_accessor :award_category,
     :award_year,
     :type_of_report

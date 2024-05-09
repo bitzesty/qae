@@ -41,5 +41,4 @@ class QaeFormBuilder
   class TextQuestion < Question
     attr_accessor :type, :style, :text_words_max
   end
-
 end

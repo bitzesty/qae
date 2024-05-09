@@ -1,9 +1,7 @@
 require "active_support/inflector"
 
 class QaeFormBuilder
-
   class StepDecorator < QaeDecorator
-
     QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w(
       innovation_materials
       org_chart
@@ -137,7 +135,6 @@ class QaeFormBuilder
   end
 
   class StepBuilder
-
     def initialize step
       @step = step
     end
@@ -220,6 +217,5 @@ class QaeFormBuilder
     def decorate options = {}
       StepDecorator.new self, options
     end
-
   end
 end

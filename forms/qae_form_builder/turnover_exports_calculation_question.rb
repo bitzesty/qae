@@ -95,5 +95,4 @@ class QaeFormBuilder
       @by_year_conditions = []
     end
   end
-
 end

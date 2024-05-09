@@ -1,7 +1,5 @@
 class QaeFormBuilder
-
   class QaeFormDecorator < QaeDecorator
-
     def form_name
       @decorator_options[:form_name] || "form"
     end
@@ -23,6 +21,5 @@ class QaeFormBuilder
     def count_questions meth
       steps.map{ |step| step.send meth }.reduce(:+)
     end
-
   end
 end

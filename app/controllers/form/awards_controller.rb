@@ -1,5 +1,4 @@
 class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving of Awards
   # This section is used in case if JS disabled
 

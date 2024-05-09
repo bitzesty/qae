@@ -1,5 +1,4 @@
 class Form::FormLinksController < Form::MaterialsBaseController
-
   # This controller handles saving of website links
   # This section is used in case if JS disabled
 

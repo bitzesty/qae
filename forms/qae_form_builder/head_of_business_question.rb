@@ -24,5 +24,4 @@ class QaeFormBuilder
   class HeadOfBusinessQuestion < Question
     attr_accessor :sub_fields
   end
-
 end

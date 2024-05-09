@@ -62,5 +62,4 @@ class QaeFormBuilder
   class SubFieldsQuestion < Question
     attr_accessor :sub_fields, :sub_fields_words_max
   end
-
 end

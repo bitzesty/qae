@@ -1,5 +1,4 @@
 class HardCopyPdfGenerators::Aggregated::CaseSummariesWorker < HardCopyPdfGenerators::BaseWorker
-
   def perform
     year = AwardYear.current
 

@@ -1,5 +1,4 @@
 class Form::OrganisationalChartsController < Form::MaterialsBaseController
-
   # This controller handles saving of OrganisationalCharts attachments
   # This section is used in case if JS disabled
 

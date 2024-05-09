@@ -1,5 +1,4 @@
 class AppraisalForm
-
   #
   # THIS NEED TO BE UPDATED EACH YEAR
   #

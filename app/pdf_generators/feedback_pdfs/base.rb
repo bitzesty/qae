@@ -1,5 +1,4 @@
 class FeedbackPdfs::Base < ReportPdfBase
-
   attr_reader :feedbacks
 
   def all_mode

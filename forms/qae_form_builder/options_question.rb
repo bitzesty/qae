@@ -73,7 +73,5 @@ class QaeFormBuilder
     def context_for_option(option_value)
       pdf_context_for_options[option_value] || context_for_options[option_value]
     end
-
   end
-
 end

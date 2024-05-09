@@ -154,5 +154,4 @@ class AccountsController < ApplicationController
       :agree_sharing_of_details_with_lieutenancies,
     )
   end
-
 end
