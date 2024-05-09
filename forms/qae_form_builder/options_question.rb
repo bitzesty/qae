@@ -23,11 +23,11 @@ class QaeFormBuilder
     end
 
     def yes_no
-      @q.options << QuestionAnswerOption.new(:yes, 'Yes')
-      @q.options << QuestionAnswerOption.new(:no, 'No')
+      @q.options << QuestionAnswerOption.new(:yes, "Yes")
+      @q.options << QuestionAnswerOption.new(:no, "No")
     end
 
-    def financial_date_selector(ops={})
+    def financial_date_selector(ops = {})
       @q.financial_date_selector = true
       @q.ops_values = ops
     end
@@ -57,12 +57,12 @@ class QaeFormBuilder
     attr_reader :options
 
     attr_accessor :financial_date_selector,
-                  :sub_category_question,
-                  :ops_values,
-                  :default_option,
-                  :context_for_options,
-                  :pdf_context_for_options,
-                  :ineligible_option
+      :sub_category_question,
+      :ops_values,
+      :default_option,
+      :context_for_options,
+      :pdf_context_for_options,
+      :ineligible_option
 
     def after_create
       @options = []
@@ -73,7 +73,5 @@ class QaeFormBuilder
     def context_for_option(option_value)
       pdf_context_for_options[option_value] || context_for_options[option_value]
     end
-
   end
-
 end

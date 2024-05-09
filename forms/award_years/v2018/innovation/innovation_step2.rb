@@ -22,7 +22,7 @@ class AwardYears::V2018::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model"]
+            ["business_model", "A business model"],
           ]
           application_type_question true
         end
@@ -80,7 +80,6 @@ class AwardYears::V2018::QaeForms
           rows 5
           words_max 100
         end
-
 
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
           ref "B 3"

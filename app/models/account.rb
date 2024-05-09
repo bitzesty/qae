@@ -3,14 +3,14 @@ class Account < ApplicationRecord
   has_many :form_answers, dependent: :nullify
 
   has_many :eligibilities, dependent: :destroy
-  has_many :basic_eligibilities, class_name: 'Eligibility::Basic'
-  has_many :trade_eligibilities, class_name: 'Eligibility::Trade'
-  has_many :innovation_eligibilities, class_name: 'Eligibility::Innovation'
-  has_many :development_eligibilities, class_name: 'Eligibility::Development'
-  has_many :mobility_eligibilities, class_name: 'Eligibility::Mobility'
-  has_many :promotion_eligibilities, class_name: 'Eligibility::Promotion'
+  has_many :basic_eligibilities, class_name: "Eligibility::Basic"
+  has_many :trade_eligibilities, class_name: "Eligibility::Trade"
+  has_many :innovation_eligibilities, class_name: "Eligibility::Innovation"
+  has_many :development_eligibilities, class_name: "Eligibility::Development"
+  has_many :mobility_eligibilities, class_name: "Eligibility::Mobility"
+  has_many :promotion_eligibilities, class_name: "Eligibility::Promotion"
 
-  belongs_to :owner, class_name: 'User', autosave: false, inverse_of: :owned_account, optional: true
+  belongs_to :owner, class_name: "User", autosave: false, inverse_of: :owned_account, optional: true
   validates :owner, presence: true
 
   def basic_eligibility
@@ -38,9 +38,9 @@ class Account < ApplicationRecord
   end
 
   def has_award_in_this_year?(award_type)
-    form_answers.for_year(AwardYear.current.year.to_s).
-                 for_award_type(award_type).
-                 present?
+    form_answers.for_year(AwardYear.current.year.to_s)
+                 .for_award_type(award_type)
+                 .present?
   end
 
   def collaborators_checked?

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def development_step1
@@ -23,7 +22,7 @@ class AwardYears::V2025::QaeForms
             { last_name: "Last name" },
             { honours: "Personal Honours (optional)", hint: "For example, Lieutenant (LVO), Member of the Most Excellent Order of the British Empire (MBE), Air Force Cross (AFC). Please do not include qualifications such as a master's degree or doctorate." },
             { job_title: "Job title or role in the organisation" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -169,7 +168,7 @@ class AwardYears::V2025::QaeForms
               \u2022 Wales Government
 
               Non-compliance that occurred and was resolved before the period covering your application will be assessed on a case-by-case basis.
-            )]
+            )],
           ]
         end
 
@@ -236,7 +235,7 @@ class AwardYears::V2025::QaeForms
               You will have to provide financial information and related financial statements for the three most recent financial years (covering 36 months) to demonstrate that the organisation is financially viable.
             </p>
             <p class="govuk-body">
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
             </p>
             <p class="govuk-body">
               If you haven't reached your most recent year-end, you can provide estimated figures in the interim.

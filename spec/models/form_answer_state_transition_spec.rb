@@ -23,7 +23,7 @@ describe FormAnswerStateTransition do
         :disqualified,
         :awarded,
         :not_awarded,
-        :withdrawn
+        :withdrawn,
       ]
 
       expect(subject.collection).to eq(expected)
@@ -40,7 +40,7 @@ describe FormAnswerStateTransition do
         :reserved,
         :not_recommended,
         :disqualified,
-        :awarded
+        :awarded,
       ]
 
       expect(subject.collection).to eq(expected)

@@ -41,7 +41,7 @@ describe Reports::Dashboard::ApplicationsReport do
         Settings.current_submission_deadline.update_column(:trigger_at, nil)
         year_stats = described_class.new(kind: "by_month").stats.first
 
-        expect(year_stats.content).to eq(["&nbsp;"]*12)
+        expect(year_stats.content).to eq(["&nbsp;"] * 12)
       end
     end
 
@@ -50,7 +50,7 @@ describe Reports::Dashboard::ApplicationsReport do
         Settings.current_submission_deadline.update_column(:trigger_at, nil)
         year_stats = described_class.new(kind: "by_week").stats.first
 
-        expect(year_stats.content).to eq(["&nbsp;"]*14)
+        expect(year_stats.content).to eq(["&nbsp;"] * 14)
       end
     end
 
@@ -59,7 +59,7 @@ describe Reports::Dashboard::ApplicationsReport do
         Settings.current_submission_deadline.update_column(:trigger_at, nil)
         year_stats = described_class.new(kind: "by_day").stats.first
 
-        expect(year_stats.content).to eq(["&nbsp;"]*14)
+        expect(year_stats.content).to eq(["&nbsp;"] * 14)
       end
     end
   end

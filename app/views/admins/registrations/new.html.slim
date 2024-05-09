@@ -27,8 +27,8 @@
                       = f.input :password,
                                 required: true,
                                 label: false,
-                                hint: ("#{@minimum_password_length} characters minimum" if @validatable),
-                                input_html: { class: "password-strength-meter js-disable-copy medium", "data-min-password-length" => "10" }
+                                hint: ("#{Devise.password_length.begin} characters minimum" if @validatable),
+                                input_html: { class: "password-strength-meter js-disable-copy medium", "data-min-password-length" => Devise.password_length.begin }
                       span#password-result-span.input-group-addon
                         i#password-result.glyphicon.glyphicon-ok
 
@@ -37,7 +37,7 @@
                   .alert.alert-warning
                     p.text-underline Please improve your password
                     p#password-too-short
-                      ' It must be at least 10 characters.
+                      ' It must be at least #{Devise.password_length.begin} characters.
                     p#parts-of-email It shouldn't include part or all of your email address.
                     p#password-entropy
                       ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.

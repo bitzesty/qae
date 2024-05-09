@@ -1,20 +1,20 @@
 class Users::SupportLettersController < Users::BaseController
   expose(:form_answer) do
-    current_user.account.
-                form_answers.
-                find(params[:form_answer_id])
+    current_user.account
+                .form_answers
+                .find(params[:form_answer_id])
   end
   expose(:support_letter) do
     form_answer.support_letters.new(
       support_letter_params.merge({
         user_id: current_user.id,
         manual: true,
-        support_letter_attachment: attachment
-      })
+        support_letter_attachment: attachment,
+      }),
     )
   end
   expose(:attachment) do
-    SupportLetterAttachment.find_by_id(support_letter_params[:attachment])
+    SupportLetterAttachment.find_by(id: support_letter_params[:attachment])
   end
 
   def create
@@ -23,10 +23,10 @@ class Users::SupportLettersController < Users::BaseController
       attachment.save!
 
       render json: support_letter.id,
-             status: :created
+        status: :created
     else
       render json: support_letter.errors.messages.to_json,
-             status: :unprocessable_entity
+        status: :unprocessable_entity
     end
   end
 
@@ -53,7 +53,7 @@ class Users::SupportLettersController < Users::BaseController
       :first_name,
       :last_name,
       :relationship_to_nominee,
-      :attachment
+      :attachment,
     )
   end
 end

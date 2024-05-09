@@ -14,13 +14,13 @@ class FormAnswerStateMachine
     :reserved,
     :not_recommended,
     :awarded,
-    :not_awarded
+    :not_awarded,
   ]
 
   POSITIVE_STATES = [
     :reserved,
     :recommended,
-    :awarded
+    :awarded,
   ]
 
   POST_SUBMISSION_STATES = [
@@ -32,12 +32,12 @@ class FormAnswerStateMachine
     :reserved,
     :not_recommended,
     :awarded,
-    :not_awarded
+    :not_awarded,
   ]
 
   NOT_POSITIVE_STATES = [
     :not_recommended,
-    :not_awarded
+    :not_awarded,
   ]
 
   state :eligibility_in_progress, initial: true
@@ -133,7 +133,7 @@ class FormAnswerStateMachine
     new_state = {
       "negative" => :not_recommended,
       "average" => :reserved,
-      "positive" => :recommended
+      "positive" => :recommended,
     }[verdict]
 
     perform_transition(new_state, subject)
@@ -162,7 +162,7 @@ class FormAnswerStateMachine
   def get_metadata(subject)
     meta = {
       transitable_id: subject.id,
-      transitable_type: subject.class.to_s
+      transitable_type: subject.class.to_s,
     } if subject.present?
     meta ||= {}
     meta
@@ -178,7 +178,7 @@ class FormAnswerStateMachine
         :disqualified,
         :awarded,
         :not_awarded,
-        :withdrawn
+        :withdrawn,
       ]
 
       case object.state.to_sym

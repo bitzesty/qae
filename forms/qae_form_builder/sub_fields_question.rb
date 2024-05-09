@@ -44,7 +44,7 @@ class QaeFormBuilder
 
     def rendering_sub_fields
       sub_fields.map do |f|
-        {key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint)}
+        { key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint) }
       end
     end
   end
@@ -62,5 +62,4 @@ class QaeFormBuilder
   class SubFieldsQuestion < Question
     attr_accessor :sub_fields, :sub_fields_words_max
   end
-
 end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Assessor: Download original pdf of application at the deadline", %q{
@@ -6,7 +6,6 @@ As an Assessor (Lead / Primary)
 I want to download original PDF of application at the deadline
 So that I can see original application data was at the deadline moment
 } do
-
   let(:target_url) do
     assessor_form_answer_path(form_answer)
   end

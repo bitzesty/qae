@@ -8,14 +8,14 @@ class ReportPdfFormAnswerPointerBase
   UNDEFINED_VALUE = "..."
 
   attr_reader :user,
-              :form_answer,
-              :award_form,
-              :all_questions,
-              :answers,
-              :filled_answers,
-              :data,
-              :pdf_doc,
-              :award_year
+    :form_answer,
+    :award_form,
+    :all_questions,
+    :answers,
+    :filled_answers,
+    :data,
+    :pdf_doc,
+    :award_year
 
   def initialize(pdf_doc, form_answer)
     @pdf_doc = pdf_doc

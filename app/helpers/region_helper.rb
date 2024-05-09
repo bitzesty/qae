@@ -1,5 +1,4 @@
 module RegionHelper
-
   COUNTY_REGION_MAPPINGS = {
     "Aberdeenshire": "Scotland",
     "Angus": "Scotland",
@@ -99,7 +98,7 @@ module RegionHelper
     "Worcestershire": "West Midlands",
     "Bailiwick of Guernsey": "Channel Islands",
     "Bailiwick of Jersey": "Channel Islands",
-    "Isle of Man": "Isle of Man"
+    "Isle of Man": "Isle of Man",
   }
 
   def counties
@@ -113,5 +112,4 @@ module RegionHelper
   def lookup_region_for_county(county)
     COUNTY_REGION_MAPPINGS[county]
   end
-
 end

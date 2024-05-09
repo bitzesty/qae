@@ -1,5 +1,5 @@
 module TriggerAtDecorator
-  def formatted_trigger_time(format={bold: true})
+  def formatted_trigger_time(format = { bold: true })
     return placeholder unless object.trigger_at
 
     trigger_on = object.trigger_at.strftime(format[:date_format] || "%-d %b %Y")
@@ -9,7 +9,7 @@ module TriggerAtDecorator
     trigger_at = "midday" if midday?
 
     if format[:bold]
-      h.content_tag(:strong, trigger_on) + " at #{trigger_at}".html_safe
+      h.tag.strong(trigger_on) + " at #{trigger_at}".html_safe
     else
       "#{trigger_on} at #{trigger_at}"
     end
@@ -21,7 +21,7 @@ module TriggerAtDecorator
     object.trigger_at.strftime("%d/%m/%Y")
   end
 
-  def formatted_trigger_date(format=nil)
+  def formatted_trigger_date(format = nil)
     return date_placeholder unless object.trigger_at
 
     str_format = "#{object.trigger_at.day.ordinalize} %B"

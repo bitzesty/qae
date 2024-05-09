@@ -6,7 +6,7 @@ RSpec.describe SupportLettersController, type: :controller do
     let!(:form_answer) { create(:form_answer, user: user) }
     let!(:supporter) do
       create :supporter, form_answer: form_answer,
-                         user: user
+        user: user
     end
 
     it "renders 404 if access key is invalid" do

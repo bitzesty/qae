@@ -3,7 +3,7 @@ class FormAnswerAttachment < ApplicationRecord
   belongs_to :attachable, polymorphic: true, optional: true
 
   mount_uploader :file, FormAnswerAttachmentUploader
-  scan_file      :file
+  scan_file :file
 
   include ::InfectedFileCleaner
   clean_after_scan :file
@@ -15,22 +15,22 @@ class FormAnswerAttachment < ApplicationRecord
   attr_accessor :non_js_creation, :description
   # Should be 100 words maximum (limit + 10%).to_i + 1)
   validates :description, presence: true,
-                          on: :create,
-                          if: -> { non_js_creation.present? }
+    on: :create,
+    if: -> { non_js_creation.present? }
 
   validate :words_in_description, on: :create,
-                                  if: -> { description.present? && non_js_creation.present? }
+    if: -> { description.present? && non_js_creation.present? }
 
   validate :question_key_correctness
   # Used for NON JS implementation - end
 
   begin :validations
-    validates :form_answer_id, presence: true
-    validates :file, presence: true,
-                     on: :create,
-                     file_size: {
-                       maximum: 5.megabytes.to_i
-                     }
+        validates :form_answer_id, presence: true
+        validates :file, presence: true,
+          on: :create,
+          file_size: {
+            maximum: 5.megabytes.to_i,
+          }
   end
 
   def filename

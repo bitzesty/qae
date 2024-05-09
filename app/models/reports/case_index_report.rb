@@ -4,44 +4,44 @@ class Reports::CaseIndexReport
   MAPPING = [
     {
       label: "URN",
-      method: :urn
+      method: :urn,
     },
     {
       label: "Category",
-      method: :category
+      method: :category,
     },
     {
       label: "CompanyName",
-      method: :company_or_nominee_name
+      method: :company_or_nominee_name,
     },
     {
       label: "Overall status",
-      method: :overall_status
+      method: :overall_status,
     },
     {
       label: "SIC Code",
-      method: :sic_code
+      method: :sic_code,
     },
     {
       label: "Employees",
-      method: :employees
+      method: :employees,
     },
     {
       label: "CurrentQueensAwardHolder",
-      method: :current_queens_award_holder
+      method: :current_queens_award_holder,
     },
     {
       label: "Verdict",
-      method: :empty_column
+      method: :empty_column,
     },
     {
       label: "Panel Comments",
-      method: :empty_column
+      method: :empty_column,
     },
     {
       label: "Feedback",
-      method: :empty_column
-    }
+      method: :empty_column,
+    },
   ]
 
   def initialize(year, options = {})
@@ -67,7 +67,7 @@ class Reports::CaseIndexReport
       .order(:sic_code)
 
     if @category == "trade"
-      years_mode_query = @years_mode.to_s == '3' ? '3 to 5' : '6 plus'
+      years_mode_query = (@years_mode.to_s == "3") ? "3 to 5" : "6 plus"
 
       scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode_query}'")
     end

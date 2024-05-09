@@ -1,12 +1,12 @@
 class AddCollaborator
   attr_reader :current_user,
-              :account,
-              :params,
-              :collaborator,
-              :email,
-              :success,
-              :new_user,
-              :errors
+    :account,
+    :params,
+    :collaborator,
+    :email,
+    :success,
+    :new_user,
+    :errors
 
   def initialize(current_user, account, params)
     @current_user = current_user
@@ -43,7 +43,7 @@ class AddCollaborator
 
     @new_user = true
     user = User.new(params)
-    user.agreed_with_privacy_policy = '1'
+    user.agreed_with_privacy_policy = "1"
     user.skip_password_validation = true
     user
   end

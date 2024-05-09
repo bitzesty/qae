@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin feedback pdf file checks" do
   let!(:user) { create :user }
 
   let!(:form_answer) do
     create :form_answer,
-           award_type,
-           :submitted,
-           user: user
+      award_type,
+      :submitted,
+      user: user
   end
 
   let(:feedback_content) do
@@ -29,7 +29,7 @@ shared_context "admin feedback pdf file checks" do
 
   let!(:feedback) do
     create :feedback, form_answer: form_answer,
-                      document: feedback_content
+      document: feedback_content
   end
 
   let(:pdf_generator) do

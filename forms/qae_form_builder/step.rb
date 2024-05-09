@@ -1,24 +1,18 @@
-require 'active_support/inflector'
+require "active_support/inflector"
 
 class QaeFormBuilder
-
   class StepDecorator < QaeDecorator
-
     QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w(
       innovation_materials
       org_chart
     )
 
     def next
-      @next ||= begin
-        form.steps[index + 1]
-      end
+      @next ||= form.steps[index + 1]
     end
 
     def previous
-      @previous ||= begin
-        form.steps[index-1] if index-1 >=0
-      end
+      @previous ||= (form.steps[index - 1] if index - 1 >= 0)
     end
 
     def index
@@ -65,8 +59,8 @@ class QaeFormBuilder
 
       allowed_params = allowed_params.select do |k, v|
         v.present? ||
-        document[k.to_s].present? ||
-        QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
+          document[k.to_s].present? ||
+          QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
       end
 
       allowed_params
@@ -141,7 +135,6 @@ class QaeFormBuilder
   end
 
   class StepBuilder
-
     def initialize step
       @step = step
     end
@@ -171,7 +164,7 @@ class QaeFormBuilder
 
     private
 
-    def create_question builder_klass, klass, id, title, opts={}, &block
+    def create_question builder_klass, klass, id, title, opts = {}, &block
       q = klass.new @step, id, title, opts
       b = builder_klass.new q
       b.instance_eval &block if block_given?
@@ -212,7 +205,7 @@ class QaeFormBuilder
   class Step
     attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit, :sub_headers
 
-    def initialize form, title, short_title, opts={}
+    def initialize form, title, short_title, opts = {}
       @form = form
       @title = title
       @short_title = short_title
@@ -224,6 +217,5 @@ class QaeFormBuilder
     def decorate options = {}
       StepDecorator.new self, options
     end
-
   end
 end

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2021::QaeForms
   class << self
     def mobility_step4
@@ -36,7 +35,7 @@ class AwardYears::V2021::QaeForms
               The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
 
               If you have already answered a question in another section in the application form, you can reference the relevant question number(s).
-            )]
+            )],
           ]
         end
 

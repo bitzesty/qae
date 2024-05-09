@@ -21,12 +21,12 @@ class QaeFormBuilder
       else
         if date_min && date < date_min
           result[question.hash_key] ||= ""
-          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be after #{date_min.strftime('%d/%m/%Y')}."
+          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be after #{date_min.strftime("%d/%m/%Y")}."
         end
 
         if date_max && date > date_max
           result[question.hash_key] ||= ""
-          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be before #{date_max.strftime('%d/%m/%Y')}."
+          result[question.hash_key] << "Question #{question.ref || question.sub_ref} is incomplete. Date should be before #{date_max.strftime("%d/%m/%Y")}."
         end
       end
 
@@ -45,7 +45,7 @@ class QaeFormBuilder
 
         if date_max && date > date_max
           result[question.hash_key] ||= ""
-          result[question.hash_key] << " Date should be less than #{date_max.strftime('%d/%m/%Y')}."
+          result[question.hash_key] << " Date should be less than #{date_max.strftime("%d/%m/%Y")}."
         end
       end
 
@@ -58,7 +58,7 @@ class QaeFormBuilder
       [
         { day: "Day" },
         { month: "Month" },
-        { year: "Year" }
+        { year: "Year" },
       ]
     end
   end
@@ -66,21 +66,21 @@ class QaeFormBuilder
   class DateQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
-      result << 'question-date-max' if delegate_obj.date_max
-      result << 'question-dynamic-date-max' if delegate_obj.dynamic_date_max
-      result << 'question-date-min' if delegate_obj.date_min
-      result << 'question-date-between' if delegate_obj.date_between
+      result << "question-date-max" if delegate_obj.date_max
+      result << "question-dynamic-date-max" if delegate_obj.dynamic_date_max
+      result << "question-date-min" if delegate_obj.date_min
+      result << "question-date-between" if delegate_obj.date_between
       result
     end
 
     def fieldset_data_hash
       result = super
-      result['date-max'] = delegate_obj.date_max if delegate_obj.date_max
-      result['date-min'] = delegate_obj.date_min if delegate_obj.date_min
-      result['date-between'] = delegate_obj.date_between.join(',') if delegate_obj.date_between
+      result["date-max"] = delegate_obj.date_max if delegate_obj.date_max
+      result["date-min"] = delegate_obj.date_min if delegate_obj.date_min
+      result["date-between"] = delegate_obj.date_between.join(",") if delegate_obj.date_between
 
       if delegate_obj.dynamic_date_max
-        result['dynamic-date-max'] = delegate_obj.dynamic_date_max.to_json
+        result["dynamic-date-max"] = delegate_obj.dynamic_date_max.to_json
       end
 
       result
@@ -112,7 +112,7 @@ class QaeFormBuilder
   class DateQuestion < Question
     attr_accessor :date_max, :date_min, :date_between, :date, :dynamic_date_max
 
-    def initialize step, key, title, opts={}
+    def initialize step, key, title, opts = {}
       super
 
       @date = false

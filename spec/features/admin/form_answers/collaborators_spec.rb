@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 include ActiveJob::TestHelper
 
@@ -7,13 +7,12 @@ As a an Admin
 I want to be able to add collaborators to any account
 So that they can collaborate applications
 } do
-
   let!(:admin) { create(:admin) }
 
   let!(:form_answer) do
     create :form_answer,
-           :innovation,
-           :submitted
+      :innovation,
+      :submitted
   end
 
   let!(:account) do
@@ -30,16 +29,16 @@ So that they can collaborate applications
       describe "Attempt to add person, which is already associated with another account which has application" do
         let!(:user_associated_with_another_account) do
           create :user,
-                 :completed_profile,
-                 first_name: "Applicant with account",
-                 role: "account_admin"
+            :completed_profile,
+            first_name: "Applicant with account",
+            role: "account_admin"
         end
 
         let!(:another_form_answer) do
           create :form_answer,
-                 :innovation,
-                 :submitted,
-                 user: user_associated_with_another_account
+            :innovation,
+            :submitted,
+            user: user_associated_with_another_account
         end
 
         it "can't add" do
@@ -52,7 +51,7 @@ So that they can collaborate applications
             within(".js-admin-search-collaborators-results-box") do
               expect_to_see(user_associated_with_another_account.first_name)
               expect_to_see("can not be added as linked with another account!")
-              expect(page).to have_no_link('Add')
+              expect(page).to have_no_link("Add")
             end
           end
         end
@@ -73,7 +72,7 @@ So that they can collaborate applications
           within(".js-admin-search-collaborators-results-box") do
             expect_to_see(user.email)
             expect_to_see_no("can not be added as linked with another account!")
-            expect(page).to have_link('Add')
+            expect(page).to have_link("Add")
           end
         end
       end

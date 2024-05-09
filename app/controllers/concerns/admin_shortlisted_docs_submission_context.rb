@@ -36,7 +36,7 @@ module AdminShortlistedDocsSubmissionContext
   end
 
   def resource
-    @resource ||= (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
+    @resource ||= form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
 
     return @resource if @resource.persisted?
 

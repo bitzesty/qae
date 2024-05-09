@@ -1,12 +1,12 @@
 step "I go to user management page" do
-  visit '/admin/users'
+  visit "/admin/users"
 end
 
 step "I create new user" do
   step "I go to user management page"
   click_link "+ Add applicant"
 
-  fill_in 'Email', with: 'user@example.com'
+  fill_in "Email", with: "user@example.com"
   select "Regular", from: "Account type"
 
   click_button "Save"
@@ -16,7 +16,7 @@ step "I edit user" do
   step "I go to user management page"
   find(".link-edit-user").click
 
-  fill_in 'Email', with: 'user@example.com'
+  fill_in "Email", with: "user@example.com"
 
   click_button "Save"
 end
@@ -24,7 +24,7 @@ end
 step "I should see user in the list" do
   step "I go to user management page"
 
-  expect(page).to have_link('user@example.com')
+  expect(page).to have_link("user@example.com")
 end
 
 step "a not confirmed user exists" do
@@ -41,7 +41,7 @@ step "I am on confirmed user page" do
 end
 
 step "I dont see resend confirmation link" do
-  expect(page).to have_no_link('Resend confirmation email')
+  expect(page).to have_no_link("Resend confirmation email")
 end
 
 step "I am on not confirmed user page" do
@@ -53,19 +53,19 @@ step "I am on locked user page" do
 end
 
 step "I see resend confirmation link" do
-  expect(page).to have_link('Resend confirmation email')
+  expect(page).to have_link("Resend confirmation email")
 end
 
 step "I see unlock user link" do
-  expect(page).to have_link('Unlock')
+  expect(page).to have_link("Unlock")
 end
 
 step "I do resend confirmation instructions" do
-  click_link 'Resend confirmation email'
+  click_link "Resend confirmation email"
 end
 
 step "I do unlock of user" do
-  click_link 'Unlock'
+  click_link "Unlock"
 end
 
 step "I should see flash message about confirmation email sending" do

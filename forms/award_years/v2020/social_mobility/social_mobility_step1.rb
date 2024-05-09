@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2020::QaeForms
   class << self
     def mobility_step1
@@ -77,13 +76,13 @@ class AwardYears::V2020::QaeForms
                 \u2022 Biotechnology & Biological Sciences Research Council
                 \u2022 Charity Commission
                 \u2022 Companies House
-                \u2022 Competition and Markets Authority 
+                \u2022 Competition and Markets Authority
                 \u2022 Crown Commercial Service
                 \u2022 Department for Business, Energy and Industrial Strategy
                 \u2022 Department for Communities and Local Government
                 \u2022 Department for Culture Media & Sport
                 \u2022 Department for Education
-                \u2022 Department for Environment, Food & Rural Affairs  
+                \u2022 Department for Environment, Food & Rural Affairs
                 \u2022 Department for International Trade
                 \u2022 Department for Transport
                 \u2022 Department of Economic Development, Isle of Man
@@ -107,7 +106,7 @@ class AwardYears::V2020::QaeForms
                 \u2022 Medical Research Council Technology
                 \u2022 National Measurement Office
                 \u2022 Natural England
-                \u2022 Natural Environment Research Council 
+                \u2022 Natural Environment Research Council
                 \u2022 Office of the Scottish Charity Regulator
                 \u2022 Scottish Government
                 \u2022 Scottish Environment Protection Agency
@@ -121,7 +120,7 @@ class AwardYears::V2020::QaeForms
             [:normal, %(
                 Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
               )
-            ]
+            ],
           ]
         end
 
@@ -273,7 +272,7 @@ class AwardYears::V2020::QaeForms
         end
 
         options :part_of_joint_entry,
-                "Is this application part of a joint entry with any contributing organisation(s)?" do
+          "Is this application part of a joint entry with any contributing organisation(s)?" do
           ref "A 8"
           required
           context %(
@@ -308,7 +307,7 @@ class AwardYears::V2020::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           sub_ref "A 9.1"
           classes "sub-question"
           required
@@ -352,7 +351,7 @@ class AwardYears::V2020::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 
@@ -366,7 +365,7 @@ class AwardYears::V2020::QaeForms
           ref "A 11"
           context %(
             <p>
-              If your application is successful, you may get contacted by the press. 
+              If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>

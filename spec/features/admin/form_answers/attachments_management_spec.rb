@@ -1,13 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
-describe 'Form answer attachments management', %q{
+describe "Form answer attachments management", %q{
   As Admin
   I want to see be able to view/create the attachments per application.
 } do
-
-  let!(:admin){ create(:admin)}
-  let!(:form_answer){ create(:form_answer)}
+  let!(:admin){ create(:admin) }
+  let!(:form_answer){ create(:form_answer) }
 
   before do
     login_admin admin
@@ -27,11 +26,11 @@ describe 'Form answer attachments management', %q{
       form_answer.form_answer_attachments.create!(
         file: Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root,'spec','support','file_samples','photo_with_size_less_than_5MB.jpg'
-          )
+            Rails.root, "spec", "support", "file_samples", "photo_with_size_less_than_5MB.jpg",
+          ),
         ),
         attachable: admin,
-        file_scan_results: "clean"
+        file_scan_results: "clean",
       )
       visit admin_form_answer_path(form_answer)
     end

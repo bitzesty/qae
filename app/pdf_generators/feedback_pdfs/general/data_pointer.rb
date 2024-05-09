@@ -21,8 +21,8 @@ module FeedbackPdfs::General::DataPointer
       [
         "",
         "Key strengths",
-        "Information to strengthen the application"
-      ]
+        "Information to strengthen the application",
+      ],
     ]
   end
 
@@ -32,7 +32,7 @@ module FeedbackPdfs::General::DataPointer
         [
           value[:label].delete(":"),
           data["#{key}_strength"] || undefined_value,
-          data["#{key}_weakness"] || undefined_value
+          data["#{key}_weakness"] || undefined_value,
         ]
       end
     end.compact
@@ -43,7 +43,7 @@ module FeedbackPdfs::General::DataPointer
       if value[:type] == :strengths
         [
           value[:label].delete(":"),
-          rag(key)
+          rag(key),
         ]
       end
     end.compact
@@ -56,23 +56,23 @@ module FeedbackPdfs::General::DataPointer
     render_headers(feedback_table_headers, {
       0 => 130,
       1 => 300,
-      2 => 337
-    })
+      2 => 337,
+    },)
     render_table(table_items, {
       0 => 130,
       1 => 300,
-      2 => 337
-    })
+      2 => 337,
+    },)
 
     if form_answer.development? && strengths_entries.present?
       year = form_answer.award_year.year
 
       pdf_doc.table(strengths_entries,
-                    cell_style: { size: 12 },
-                    column_widths: {
-                      0 => 130,
-                      1 => 637
-                    }) do
+        cell_style: { size: 12 },
+        column_widths: {
+          0 => 130,
+          1 => 637,
+        },) do
         values = cells.columns(1).rows(0..-1)
 
         green_rags = values.filter do |cell|
@@ -102,15 +102,15 @@ module FeedbackPdfs::General::DataPointer
     pdf_doc.move_down 30.mm
     render_table([["Overall Summary", data["overall_summary"]]], {
       0 => 130,
-      1 => 637
-    })
+      1 => 637,
+    },)
   end
 
   def render_headers(table_lines, column_widths)
     pdf_doc.move_down 10.mm
     pdf_doc.table table_lines, row_colors: %w(F0F0F0),
-                               cell_style: { size: 12, font_style: :bold },
-                               column_widths: column_widths
+      cell_style: { size: 12, font_style: :bold },
+      column_widths: column_widths
   end
 
   def rag(key)

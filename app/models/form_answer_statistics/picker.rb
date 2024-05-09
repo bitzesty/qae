@@ -27,10 +27,10 @@ class FormAnswerStatistics::Picker
     eligibility_in_progress << count_with_year(eligibility_in_progress(DateTime.now - 1.day).count)
     eligibility_in_progress << count_with_year(eligibility_in_progress(DateTime.now - 7.days).count)
     eligibility_in_progress << fa_year_scope.where(state: "eligibility_in_progress").count
-    out[:eligibility_in_progress] = { name: "Applications with eligibility in progress", counters: eligibility_in_progress}
+    out[:eligibility_in_progress] = { name: "Applications with eligibility in progress", counters: eligibility_in_progress }
 
     in_progress = []
-    in_progress << count_with_year(application_in_progress(Time.now - 1.days).count)
+    in_progress << count_with_year(application_in_progress(Time.now - 1.day).count)
     in_progress << count_with_year(application_in_progress(Time.now - 7.days).count)
     in_progress << fa_year_scope.where(state: "application_in_progress").count
     out[:applications_in_progress] = { name: "Applications in progress", counters: in_progress }
@@ -38,14 +38,14 @@ class FormAnswerStatistics::Picker
     submitted = collect_submission_ranges(fa_year_scope.where.not(award_type: "promotion"))
     out[:applications_submitted] = {
       name: "Applications submitted",
-      counters: submitted
+      counters: submitted,
     }
     out
   end
 
   def applications_completions
     out = {}
-    out["total"] = [0,0,0,0,0,0,0,0]
+    out["total"] = [0, 0, 0, 0, 0, 0, 0, 0]
     klass::POSSIBLE_AWARDS.each do |aw|
       scope = fa_year_scope.where(award_type: aw).where(state: %w(application_in_progress eligibility_in_progress not_eligible))
 
@@ -96,7 +96,7 @@ class FormAnswerStatistics::Picker
       .where(state: "application_in_progress")
       .where("(form_answer_transitions.to_state = ? AND
         form_answer_transitions.created_at > ?) OR (form_answers.created_at > ?)",
-        "application_in_progress", time_range, time_range)
+        "application_in_progress", time_range, time_range,)
       .group("form_answers.id")
   end
 
@@ -104,7 +104,7 @@ class FormAnswerStatistics::Picker
     fa_year_scope.joins(:form_answer_transitions)
       .where(state: "eligibility_in_progress")
       .where("form_answer_transitions.to_state = ? AND
-        form_answer_transitions.created_at > ?", "eligibility_in_progress", time_range)
+        form_answer_transitions.created_at > ?", "eligibility_in_progress", time_range,)
       .group("form_answers.id")
   end
 
@@ -112,7 +112,7 @@ class FormAnswerStatistics::Picker
     fa_year_scope.joins(:form_answer_transitions)
       .where(state: "not_eligible")
       .where("form_answer_transitions.to_state = ? AND
-        form_answer_transitions.created_at > ?", "not_eligible", time_range)
+        form_answer_transitions.created_at > ?", "not_eligible", time_range,)
       .group("form_answers.id")
   end
 

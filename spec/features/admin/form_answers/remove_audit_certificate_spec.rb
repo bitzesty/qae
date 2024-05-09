@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Admin: ability to remove Verification of Commercial Figures", %q{
@@ -6,7 +6,6 @@ As an Admin
 I want to have ability to delete the Verification of Commercial Figures in case the user has uploaded it in error
 So that User can re-upload Verification of Commercial Figures
 } do
-
   let!(:form_answer) do
     create(:form_answer, :submitted, :with_audit_certificate)
   end

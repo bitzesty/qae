@@ -51,7 +51,7 @@ class Admin::UsersController < Admin::BaseController
     @resource.send_confirmation_instructions
     flash[:notice] = "Confirmation instructions were successfully sent to #{@resource.decorate.full_name} (#{@resource.email})"
     respond_with :admin, @resource,
-                 location: admin_users_path
+      location: admin_users_path
   end
 
   def unlock
@@ -60,7 +60,7 @@ class Admin::UsersController < Admin::BaseController
     @resource.unlock_access!
     flash[:notice] = "User #{@resource.decorate.full_name} (#{@resource.email}) successfully unlocked!"
     respond_with :admin, @resource,
-                 location: edit_admin_user_path(@resource)
+      location: edit_admin_user_path(@resource)
   end
 
   def scan_via_debounce_api
@@ -70,7 +70,7 @@ class Admin::UsersController < Admin::BaseController
 
     flash[:notice] = "Scanning of email for this user successfully scheduled! Please refresh page in a minute!"
     respond_with :admin, @resource,
-                 location: edit_admin_user_path(@resource)
+      location: edit_admin_user_path(@resource)
   end
 
   private
@@ -99,7 +99,7 @@ class Admin::UsersController < Admin::BaseController
       :notification_when_development_award_open,
       :notification_when_mobility_award_open,
       :notification_when_submission_deadline_is_coming,
-      :agree_sharing_of_details_with_lieutenancies
+      :agree_sharing_of_details_with_lieutenancies,
     )
   end
 end

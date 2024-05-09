@@ -16,7 +16,7 @@ class QaeFormBuilder
       "SupportersQuestion",
       "SubsidiariesAssociatesPlantsQuestion",
       "ByTradeGoodsAndServicesLabelQuestion",
-      "MatrixQuestion"
+      "MatrixQuestion",
     ]
 
     attr_reader :question, :answers
@@ -62,7 +62,7 @@ class QaeFormBuilder
         url = "http://#{url}"
       end
       url_regexp = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
-      url =~ url_regexp ? true : false
+      (url =~ url_regexp) ? true : false
     end
   end
 
@@ -105,7 +105,7 @@ class QaeFormBuilder
     end
 
     def form_name
-      @decorator_options[:form_name] || 'form'
+      @decorator_options[:form_name] || "form"
     end
 
     def hash_key options = {}
@@ -150,7 +150,7 @@ class QaeFormBuilder
         "matrix_question",
         "press_contact_details_question",
         "sub_fields_question",
-        "upload_question"
+        "upload_question",
       ]
 
       legend_types.include?(type)
@@ -185,7 +185,7 @@ class QaeFormBuilder
       if delegate_obj.drop_condition_parent.present?
         step.questions.select do |q|
           q.drop_condition.present? &&
-          Array.wrap(q.drop_condition).include?(key)
+            Array.wrap(q.drop_condition).include?(key)
         end.any? do |q|
           q.has_drops?
         end
@@ -226,7 +226,7 @@ class QaeFormBuilder
       delegate_obj.conditions.any?
     end
 
-    def visible?(fetched_answers=nil)
+    def visible?(fetched_answers = nil)
       dc = delegate_obj.drop_condition_parent
       delegate_obj.conditions.all? do |condition|
         question_value = condition.question_value
@@ -235,9 +235,9 @@ class QaeFormBuilder
                                    # Used in Reports::AllEntries, as passing json of answers
                                    # allows to make it faster
                                    fetched_answers[condition.question_key]
-                                 else
+        else
                                    step.form[condition.question_key].input_value
-                                 end
+        end
 
         if question_value == :true
           parent_question_answer.present?
@@ -245,12 +245,12 @@ class QaeFormBuilder
           day, month = if fetched_answers.present?
                          [
                            fetched_answers["#{condition.question_key}_day"],
-                           fetched_answers["#{condition.question_key}_month"]
+                           fetched_answers["#{condition.question_key}_month"],
                          ]
-                       else
+          else
                          q = step.form[condition.question_key]
                          q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
-                       end
+          end
 
           if day.present? && month.present?
             date = Date.parse("#{day.to_i}/#{month.to_i}/2000") rescue nil
@@ -293,7 +293,7 @@ class QaeFormBuilder
     end
 
     def escaped_title
-      r_title = ''
+      r_title = ""
       title = delegate_obj.title
       pdf_title = delegate_obj.pdf_title
       main_header = delegate_obj.main_header if delegate_obj.respond_to?(:main_header)
@@ -306,11 +306,7 @@ class QaeFormBuilder
     end
 
     def escaped_context
-      content = if delegate_obj.pdf_context.present?
-        delegate_obj.pdf_context
-      else
-        delegate_obj.context
-      end
+      content = delegate_obj.pdf_context.presence || delegate_obj.context
 
       prepared_text(content) if content.present?
     end
@@ -338,12 +334,12 @@ class QaeFormBuilder
 
     def can_have_conditional_hints?
       delegate_obj.is_a?(QaeFormBuilder::OptionsQuestion) ||
-      delegate_obj.is_a?(QaeFormBuilder::TradeCommercialSuccessQuestion)
+        delegate_obj.is_a?(QaeFormBuilder::TradeCommercialSuccessQuestion)
     end
 
     def can_have_parent_conditional_hints?
       !delegate_obj.is_a?(QaeFormBuilder::HeaderQuestion) &&
-      !delegate_obj.is_a?(QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion)
+        !delegate_obj.is_a?(QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion)
     end
 
     def pdf_conditional_hints(questions_with_references)
@@ -354,14 +350,14 @@ class QaeFormBuilder
           q.key == condition.question_key
         end
 
-        parent_ref = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
-        [parent_ref.to_s.delete(' '), condition.question_value]
+        parent_ref = parent_q.ref.presence || parent_q.sub_ref
+        [parent_ref.to_s.delete(" "), condition.question_value]
       end
 
       pdf_hints = refs_and_values.map do |parent_ref, parent_val|
         if parent_ref.present?
           if parent_val.to_s != "true"
-            "if you selected '#{parent_val.to_s.split('_').join(' ').capitalize}' in question #{parent_ref}"
+            "if you selected '#{parent_val.to_s.split("_").join(" ").capitalize}' in question #{parent_ref}"
           end
         else
           "if you selected '#{parent_val.capitalize}' in previous question"
@@ -382,8 +378,8 @@ class QaeFormBuilder
           q.key == c.parent_question_key
         end
 
-        res = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
-        res.delete(' ')
+        res = parent_q.ref.presence || parent_q.sub_ref
+        res.delete(" ")
       end
 
       generate_hint(option_name, dependencies)
@@ -399,8 +395,8 @@ class QaeFormBuilder
         "If #{option_name}, please answer both parts of question A8.1 and B7"
 
       elsif delegate_obj.form.title == "International Trade Award Application" &&
-            delegate_obj.ref.to_s == "A 1" &&
-            option_name.to_s == "Organisation"
+          delegate_obj.ref.to_s == "A 1" &&
+          option_name.to_s == "Organisation"
         # Hardcoded condition by client request:
         #
         # On International Trade, Question A1 please can you remove note 'if organisation,
@@ -548,40 +544,40 @@ class QaeFormBuilder
 
   class Question
     attr_accessor :step,
-                  :key,
-                  :title,
-                  :pdf_title,
-                  :context,
-                  :pdf_context,
-                  :pdf_context_with_header_blocks,
-                  :additional_pdf_context,
-                  :opts,
-                  :required,
-                  :help,
-                  :hint,
-                  :form_hint,
-                  :ref,
-                  :sub_ref,
-                  :question_sub_title,
-                  :display_sub_ref_on_js_form,
-                  :show_ref_always,
-                  :conditions,
-                  :haltable,
-                  :halt_options,
-                  :header,
-                  :header_context,
-                  :classes,
-                  :drop_condition,
-                  :drop_condition_parent,
-                  :drop_block_condition,
-                  :section_info,
-                  :excluded_header_questions,
-                  :sub_section,
-                  :form_answer,
-                  :about_section,
-                  :section
+      :key,
+      :title,
+      :pdf_title,
+      :context,
+      :pdf_context,
+      :pdf_context_with_header_blocks,
+      :additional_pdf_context,
+      :opts,
+      :required,
+      :help,
+      :hint,
+      :form_hint,
+      :ref,
+      :sub_ref,
+      :question_sub_title,
+      :display_sub_ref_on_js_form,
+      :show_ref_always,
+      :conditions,
+      :haltable,
+      :halt_options,
+      :header,
+      :header_context,
+      :classes,
+      :drop_condition,
+      :drop_condition_parent,
+      :drop_block_condition,
+      :section_info,
+      :excluded_header_questions,
+      :sub_section,
+      :form_answer,
+      :about_section,
+      :section
 
-    def initialize step, key, title, opts={}
+    def initialize step, key, title, opts = {}
       @step = step
       @key = key
       @title = title
@@ -615,7 +611,7 @@ class QaeFormBuilder
     end
 
     def decorate options = {}
-      kls_name = self.class.name.split('::').last
+      kls_name = self.class.name.split("::").last
       kls = QaeFormBuilder.const_get "#{kls_name}Decorator" rescue nil
       (kls || QuestionDecorator).new self, options
     end

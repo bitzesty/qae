@@ -41,8 +41,8 @@ class Users::VatReturnsController < Users::BaseController
     if params[:vat_returns_file].blank?
       params.merge!(
         vat_returns_file: {
-          attachment: ""
-        }
+          attachment: "",
+        },
       )
     end
 

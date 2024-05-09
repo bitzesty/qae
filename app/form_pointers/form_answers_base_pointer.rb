@@ -11,10 +11,10 @@ module FormAnswersBasePointer
     # "agree_being_contacted_about_issues_not_related_to_application",
     # "agree_being_contacted_by_department_of_business"
     "innovation_contributors_aware_header_some",
-    "external_organization_or_individual_info_header_some"
+    "external_organization_or_individual_info_header_some",
   ]
 
-  def fetch_answers(pdf_blank_mode=false)
+  def fetch_answers(pdf_blank_mode = false)
     doc = pdf_blank_mode.present? ? {} : form_answer.document
     ActiveSupport::HashWithIndifferentAccess.new(doc).select do |key, _value|
       !HIDDEN_QUESTIONS.include?(key.to_s)

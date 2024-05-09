@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "QaePdfForms::Awards2016::Development::Base" do
   let!(:award_year) { AwardYear.current }
@@ -13,7 +13,7 @@ describe "QaePdfForms::Awards2016::Development::Base" do
 
   let(:step2_question_answers) {
     {
-      company_name: "BitZesty"
+      company_name: "BitZesty",
     }
   }
 

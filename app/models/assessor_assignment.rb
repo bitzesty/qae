@@ -1,44 +1,43 @@
 class AssessorAssignment < ApplicationRecord
-
   has_paper_trail unless: Proc.new { |t| Rails.env.test? }
 
   enum position: {
     primary: 0,
     secondary: 1,
     moderated: 2,
-    case_summary: 4
+    case_summary: 4,
   }
 
   begin :validations
-    validates :form_answer_id,
-              :position,
-              presence: true
+        validates :form_answer_id,
+          :position,
+          presence: true
 
-    validate :award_specific_attributes
-    validate :mandatory_fields_for_submitted
+        validate :award_specific_attributes
+        validate :mandatory_fields_for_submitted
 
-    validate do
-      validate_rate :rag
-      validate_rate :strengths
-      validate_rate :verdict
-    end
+        validate do
+          validate_rate :rag
+          validate_rate :strengths
+          validate_rate :verdict
+        end
 
-    validate :assessor_existence
-    validate :assessor_assignment_to_category
-    validates :assessor_id,
-              uniqueness: { scope: [:form_answer_id] },
-              allow_nil: true
+        validate :assessor_existence
+        validate :assessor_assignment_to_category
+        validates :assessor_id,
+          uniqueness: { scope: [:form_answer_id] },
+          allow_nil: true
   end
 
   begin :associations
-    belongs_to :assessor, optional: true
-    belongs_to :form_answer, optional: true
-    belongs_to :editable, polymorphic: true, optional: true
-    belongs_to :award_year, optional: true
+        belongs_to :assessor, optional: true
+        belongs_to :form_answer, optional: true
+        belongs_to :editable, polymorphic: true, optional: true
+        belongs_to :award_year, optional: true
   end
 
   begin :scopes
-    scope :submitted, -> { where.not(submitted_at: nil) }
+        scope :submitted, -> { where.not(submitted_at: nil) }
   end
 
   around_save :notify_form_answer
@@ -98,14 +97,14 @@ class AssessorAssignment < ApplicationRecord
 
   def role_allow_to_edit?(subject)
     admin?(subject) ||
-    subject.lead?(form_answer) ||
-    primary_assessor_can_edit?(subject) ||
-    secondary_assessor_can_edit?(subject)
+      subject.lead?(form_answer) ||
+      primary_assessor_can_edit?(subject) ||
+      secondary_assessor_can_edit?(subject)
   end
 
   def moderated_rag_editable_for?(subject)
     editable_for?(subject) &&
-    (position != "moderated" || not_submitted_or_not_locked?)
+      (position != "moderated" || not_submitted_or_not_locked?)
   end
 
   def as_json
@@ -124,25 +123,25 @@ class AssessorAssignment < ApplicationRecord
 
   def owner_or_administrative?(subject)
     admin?(subject) ||
-    subject.lead?(form_answer) ||
-    primary_or_secondary_assessors_allowed?(subject)
+      subject.lead?(form_answer) ||
+      primary_or_secondary_assessors_allowed?(subject)
   end
 
   def primary_or_secondary_assessors_allowed?(subject)
     (case_summary? && subject.primary?(form_answer)) ||
-    (!moderated? && !case_summary? && assessor_id == subject.id)
+      (!moderated? && !case_summary? && assessor_id == subject.id)
   end
 
   def primary_assessor_can_edit?(subject)
     not_submitted_or_not_locked? &&
-    (primary? || case_summary?) &&
-    subject.primary?(form_answer)
+      (primary? || case_summary?) &&
+      subject.primary?(form_answer)
   end
 
   def secondary_assessor_can_edit?(subject)
     not_submitted_or_not_locked? &&
-    secondary? &&
-    subject.secondary?(form_answer)
+      secondary? &&
+      subject.secondary?(form_answer)
   end
 
   def not_submitted_or_not_locked?
@@ -164,7 +163,7 @@ class AssessorAssignment < ApplicationRecord
   end
 
   def mandatory_fields_for_submitted
-    return if (!submitted? || !submission_action)
+    return if !submitted? || !submission_action
 
     struct.meths_for_award_type(form_answer, moderated?).each do |meth|
       if public_send(meth).blank?

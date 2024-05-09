@@ -10,7 +10,7 @@ class PerformancePlatformService
     "trade" => "international-trade",
     "innovation" => "innovation",
     "development" => "sustainable-development",
-    "promotion" => "qaep"
+    "promotion" => "qaep",
   }
 
   POSSIBLE_RANGES = [
@@ -19,7 +19,7 @@ class PerformancePlatformService
     "50-74-percent",
     "25-49-percent",
     "1-24-percent",
-    "0-percent"
+    "0-percent",
   ]
 
   def self.run
@@ -51,7 +51,7 @@ class PerformancePlatformService
       "channel" => "online",
       "channel_type" => "digital",
       "count" => form_answers_count,
-      "_timestamp" => timestamp.iso8601
+      "_timestamp" => timestamp.iso8601,
     }
 
     result["_id"] = generate_transactions_id(result)
@@ -90,8 +90,8 @@ class PerformancePlatformService
     if ENV["PERFORMANCE_PLATFORM_TOKEN"].present?
 
       headers = {
-        "Content-Type" =>"application/json",
-        "Authorization" => "Bearer #{ENV['PERFORMANCE_PLATFORM_TOKEN']}"
+        "Content-Type" => "application/json",
+        "Authorization" => "Bearer #{ENV["PERFORMANCE_PLATFORM_TOKEN"]}",
       }
 
       uri = URI(url)
@@ -183,7 +183,7 @@ class PerformancePlatformService
           "award" => award,
           "stage" => stage,
           "count" => count,
-          "cumulative_count" => cumulative_count
+          "cumulative_count" => cumulative_count,
         }
 
         data["_id"] = generate_applications_id(data)

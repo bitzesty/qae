@@ -69,7 +69,7 @@ describe "Press Summary" do
       click_button "Continue"
 
       expect(page).to have_no_content(
-        "Please check that the Press Book Notes are factually accurate:"
+        "Please check that the Press Book Notes are factually accurate:",
       )
     end
   end

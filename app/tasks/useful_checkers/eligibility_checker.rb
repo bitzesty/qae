@@ -5,15 +5,15 @@
 module UsefulCheckers
   class EligibilityChecker
     attr_accessor :year,
-                  :all_apps,
-                  :trade_apps,
-                  :innovation_apps,
-                  :development_apps,
-                  :mobility_apps,
-                  :wrong_trade_apps,
-                  :wrong_innovation_apps,
-                  :wrong_development_apps,
-                  :wrong_mobility_apps
+      :all_apps,
+      :trade_apps,
+      :innovation_apps,
+      :development_apps,
+      :mobility_apps,
+      :wrong_trade_apps,
+      :wrong_innovation_apps,
+      :wrong_development_apps,
+      :wrong_mobility_apps
 
     def initialize
       ActiveRecord::Base.logger.level = Logger::INFO
@@ -113,7 +113,7 @@ module UsefulCheckers
         puts "        #{k}: #{v}"
       end
       puts ""
-      puts "        #{e.errors.full_messages.join(', ')}"
+      puts "        #{e.errors.full_messages.join(", ")}"
       puts ""
     end
   end

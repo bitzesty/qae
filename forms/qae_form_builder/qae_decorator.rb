@@ -1,5 +1,4 @@
 class QaeFormBuilder
-
   class QaeDecorator
     attr_reader :delegate_obj
 
@@ -20,7 +19,7 @@ class QaeFormBuilder
         o.decorate options
       elsif o.is_a?(Array)
         r = []
-        o.each_with_index {|e, idx|
+        o.each_with_index { |e, idx|
           r << (wrap e, options.merge(collection_idx: idx))
         }
         r
@@ -28,7 +27,5 @@ class QaeFormBuilder
         o
       end
     end
-
   end
-
 end

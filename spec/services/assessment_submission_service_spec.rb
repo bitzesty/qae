@@ -28,7 +28,7 @@ describe AssessmentSubmissionService do
     it "populates the lead case summary form with values from primary form" do
       expected = {
         "verdict_desc" => "description to copy",
-        "verdict_rate" => "positive"
+        "verdict_rate" => "positive",
       }
 
       expect { expect_to_submit }.to change {
@@ -42,7 +42,7 @@ describe AssessmentSubmissionService do
     let(:assessment) { form_answer.assessor_assignments.case_summary }
 
     it "performs state transition when case summary is submitted" do
-      assessment.document =  { "verdict_desc" => "description to copy", "verdict_rate" => "negative" }
+      assessment.document = { "verdict_desc" => "description to copy", "verdict_rate" => "negative" }
 
       subject.perform
       expect(form_answer.reload.state).to eq("not_recommended")
@@ -65,7 +65,7 @@ describe AssessmentSubmissionService do
         corporate_social_responsibility_desc: "Bad",
         corporate_social_responsibility_rate: "negative",
         verdict_desc: "Mild",
-        verdict_rate: "average"
+        verdict_rate: "average",
       }
 
       assessment.save!
@@ -86,7 +86,7 @@ describe AssessmentSubmissionService do
         "strategy_weakness" => "",
         "corporate_social_responsibility_weakness" => "Bad",
         "corporate_social_responsibility_strength" => "",
-        "overall_summary" => "Mild"
+        "overall_summary" => "Mild",
       }
 
       expect(feedback.document).to eq(expected_document)

@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
 
   def admin_in_read_only_mode?
     @admin_in_read_only_mode ||= (admin_signed_in? || assessor_signed_in?) &&
-                                 session["warden.user.user.key"] &&
-                                 session[:admin_in_read_only_mode]
+      session["warden.user.user.key"] &&
+      session[:admin_in_read_only_mode]
   end
   helper_method :admin_in_read_only_mode?
 
@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
 
   def should_enable_js?
-    browser = Browser.new(request.env['HTTP_USER_AGENT'], accept_language: "en-gb")
+    browser = Browser.new(request.env["HTTP_USER_AGENT"], accept_language: "en-gb")
 
     !browser.ie? || browser.ie?([">8"])
   end
@@ -139,7 +139,7 @@ class ApplicationController < ActionController::Base
     AuditLog.create!(
       subject: current_subject,
       auditable: form_answer,
-      action_type: action_type
+      action_type: action_type,
       )
   end
 
@@ -152,9 +152,9 @@ class ApplicationController < ActionController::Base
   # to protect sensitive data
   #
   def disable_browser_caching!
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
   end
 
   def set_context_tags
@@ -171,8 +171,8 @@ class ApplicationController < ActionController::Base
         :email,
         :password,
         :password_confirmation,
-        :agreed_with_privacy_policy
-      ]
+        :agreed_with_privacy_policy,
+      ],
     )
     devise_parameter_sanitizer.permit(
       :account_update,
@@ -196,8 +196,8 @@ class ApplicationController < ActionController::Base
         :company_phone_number,
         :prefered_method_of_contact,
         :subscribed_to_emails,
-        :agree_being_contacted_by_department_of_business
-      ]
+        :agree_being_contacted_by_department_of_business,
+      ],
     )
   end
 
@@ -227,7 +227,7 @@ class ApplicationController < ActionController::Base
   def require_to_be_account_admin!
     unless current_user.account_admin?
       redirect_to dashboard_path,
-                  notice: "Access denied!"
+        notice: "Access denied!"
     end
   end
 
@@ -266,7 +266,7 @@ class ApplicationController < ActionController::Base
   def check_applications_limit(type_of_award)
     if current_account.has_award_in_this_year?(type_of_award)
       redirect_to dashboard_url, flash: {
-        alert: "You can not submit more than one #{FormAnswer::AWARD_TYPE_FULL_NAMES[type_of_award.to_s]} form per year!"
+        alert: "You can not submit more than one #{FormAnswer::AWARD_TYPE_FULL_NAMES[type_of_award.to_s]} form per year!",
       }
     end
   end
