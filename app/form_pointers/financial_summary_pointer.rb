@@ -31,11 +31,11 @@ class FinancialSummaryPointer < FormFinancialPointer
       end
 
       cloned = case values[0]
-               when Hash
+      when Hash
                  values[0].transform_values { |_v| nil }
-               when Array
+      when Array
                  []
-               else
+      else
                  nil
       end
 

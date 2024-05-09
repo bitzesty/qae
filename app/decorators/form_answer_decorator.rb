@@ -449,13 +449,13 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def application_background
     app_background = case award_type
-                     when "trade"
+    when "trade"
                        document["trade_goods_briefly"]
-                     when "innovation"
+    when "innovation"
                        document["innovation_desc_short"]
-                     when "development"
+    when "development"
                        document["development_management_approach_briefly"]
-                     when "mobility"
+    when "mobility"
                        document["mobility_desc_short"]
     end
 
