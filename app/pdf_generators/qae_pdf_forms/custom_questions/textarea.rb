@@ -298,7 +298,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
         content << case t_name
         when "ul", "ol", "li"
-          {"<" + t_name + ">" => {style: wysywyg_get_style(baby)}}
+          { "<" + t_name + ">" => { style: wysywyg_get_style(baby) } }
         when "a"
           "<u><link href=#{links_href(baby)}>"
         when "text", "p"

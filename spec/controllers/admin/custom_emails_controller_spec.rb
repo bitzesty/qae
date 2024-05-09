@@ -23,7 +23,7 @@ RSpec.describe Admin::CustomEmailsController do
       expect(response).to redirect_to admin_custom_email_path
     end
     it "should render show" do
-      post :create, params: { custom_email_form: { } }
+      post :create, params: { custom_email_form: {} }
       expect(response).to render_template("show")
     end
   end

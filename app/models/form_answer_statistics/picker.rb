@@ -27,7 +27,7 @@ class FormAnswerStatistics::Picker
     eligibility_in_progress << count_with_year(eligibility_in_progress(DateTime.now - 1.day).count)
     eligibility_in_progress << count_with_year(eligibility_in_progress(DateTime.now - 7.days).count)
     eligibility_in_progress << fa_year_scope.where(state: "eligibility_in_progress").count
-    out[:eligibility_in_progress] = { name: "Applications with eligibility in progress", counters: eligibility_in_progress}
+    out[:eligibility_in_progress] = { name: "Applications with eligibility in progress", counters: eligibility_in_progress }
 
     in_progress = []
     in_progress << count_with_year(application_in_progress(Time.now - 1.day).count)

@@ -21,7 +21,7 @@ describe Users::FormAnswersController do
       allow_any_instance_of(ApplicationController).to receive(:current_assessor).and_return(assessor)
 
       expect {
-        get :show, params: { id: form_answer.id }, format: :pdf, session: {admin_in_read_only_mode: true }
+        get :show, params: { id: form_answer.id }, format: :pdf, session: { admin_in_read_only_mode: true }
       }.to change { AuditLog.count }.by(1)
 
       log = AuditLog.last

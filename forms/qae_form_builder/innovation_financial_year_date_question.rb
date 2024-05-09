@@ -30,8 +30,8 @@ class QaeFormBuilder
   class InnovationFinancialYearDateQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {day: "Day"},
-        {month: "Month"},
+        { day: "Day" },
+        { month: "Month" },
       ]
     end
   end

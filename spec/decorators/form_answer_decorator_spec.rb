@@ -153,7 +153,7 @@ describe FormAnswerDecorator do
 
   describe "#application_background" do
     it "returns the trade_goods_briefly value if is type trade" do
-      document = {trade_goods_briefly: "International Trade"}
+      document = { trade_goods_briefly: "International Trade" }
       form = build(:form_answer, :trade, document: document)
 
       decorated_app = described_class.new(form)
@@ -162,7 +162,7 @@ describe FormAnswerDecorator do
     end
 
     it "returns the trade_goods_briefly value if is type innovation" do
-      document = {innovation_desc_short: "Innovation"}
+      document = { innovation_desc_short: "Innovation" }
       form = build(:form_answer, :innovation, document: document)
 
       decorated_app = described_class.new(form)
@@ -171,7 +171,7 @@ describe FormAnswerDecorator do
     end
 
     it "returns the trade_goods_briefly value if is type development" do
-      document = {development_management_approach_briefly: "Development"}
+      document = { development_management_approach_briefly: "Development" }
       form = build(:form_answer, :development, document: document)
 
       decorated_app = described_class.new(form)
@@ -180,7 +180,7 @@ describe FormAnswerDecorator do
     end
 
     it "returns the trade_goods_briefly value if is type mobility" do
-      document = {mobility_desc_short: "Mobility"}
+      document = { mobility_desc_short: "Mobility" }
       form = build(:form_answer, :mobility, document: document)
 
       decorated_app = described_class.new(form)
@@ -192,7 +192,7 @@ describe FormAnswerDecorator do
   DOCUMENT_FIELDS.keys.each do |field|
     describe "##{field}" do
       it "returns the document field with key #{DOCUMENT_FIELDS[field]}" do
-        document = {DOCUMENT_FIELDS[field] => "An expected value"}
+        document = { DOCUMENT_FIELDS[field] => "An expected value" }
         form = build(:form_answer, :development, document: document)
 
         decorated_app = described_class.new(form)

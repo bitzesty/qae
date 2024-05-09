@@ -410,7 +410,7 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   end
 
   def fs_overall_table_column_widths
-    { 0 => 230, 1 => 230}
+    { 0 => 230, 1 => 230 }
   end
 
   def fs_enumerize_years(years)

@@ -153,9 +153,9 @@ module CaseSummaryPdfs::General::DataPointer
   def render_application_background
     pdf_doc.stroke_horizontal_rule
     pdf_doc.move_down 7.mm
-    pdf_doc.text "Application background", header_text_properties.merge({size: 13})
+    pdf_doc.text "Application background", header_text_properties.merge({ size: 13 })
     pdf_doc.move_down 5.mm
-    pdf_doc.text data["application_background_section_desc"], header_text_properties.merge({style: :normal})
+    pdf_doc.text data["application_background_section_desc"], header_text_properties.merge({ style: :normal })
     pdf_doc.move_down 7.mm
     pdf_doc.stroke_horizontal_rule
   end
@@ -166,7 +166,7 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_case_summaries_header
-    pdf_doc.text "Case summary comments", header_text_properties.merge({size: 13})
+    pdf_doc.text "Case summary comments", header_text_properties.merge({ size: 13 })
   end
 
   # Classes and methods are not available inside pdf_doc.table below (Prawn::Table)
@@ -192,11 +192,11 @@ module CaseSummaryPdfs::General::DataPointer
 
       pdf_doc.text entry[0], header_text_properties
 
-      pdf_doc.text entry[2], header_text_properties.merge({color: color_by_value(entry[2], year)})
+      pdf_doc.text entry[2], header_text_properties.merge({ color: color_by_value(entry[2], year) })
 
       pdf_doc.move_down 5.mm
 
-      pdf_doc.text entry[1], header_text_properties.merge({style: :normal})
+      pdf_doc.text entry[1], header_text_properties.merge({ style: :normal })
       pdf_doc.move_down 5.mm
     end
   end
@@ -218,7 +218,7 @@ module CaseSummaryPdfs::General::DataPointer
   def render_financial_section_header
     pdf_doc.stroke_horizontal_rule
     pdf_doc.move_down 10.mm
-    pdf_doc.text "Financial Summary", header_text_properties.merge({size: 13})
+    pdf_doc.text "Financial Summary", header_text_properties.merge({ size: 13 })
     pdf_doc.move_down 5.mm
   end
 

@@ -44,19 +44,19 @@ describe FinancialSummaryPointer do
 
         expect(pointer.summary_data).to eq(
           [
-            { :dates => [nil, nil, "07/07/2021", "06/09/2022"]},
+            { :dates => [nil, nil, "07/07/2021", "06/09/2022"] },
             { :employees => [
-              {:name => nil, :value => nil},
-              {:name => nil, :value => nil},
-              {:name => "employees_1of2", :value => "10"},
-              {:name => "employees_2of2", :value => "12"},
+              { :name => nil, :value => nil },
+              { :name => nil, :value => nil },
+              { :name => "employees_1of2", :value => "10" },
+              { :name => "employees_2of2", :value => "12" },
             ] },
-            { :dates => ["07/07/2019", "07/07/2020", "07/07/2021", "06/09/2022"]},
+            { :dates => ["07/07/2019", "07/07/2020", "07/07/2021", "06/09/2022"] },
             { :sales => [
-              {:name => "sales_1of4", :value => "10"},
-              {:name => "sales_2of4", :value => "10"},
-              {:name => "sales_3of4", :value => "10"},
-              {:name => "sales_4of4", :value => "10"},
+              { :name => "sales_1of4", :value => "10" },
+              { :name => "sales_2of4", :value => "10" },
+              { :name => "sales_3of4", :value => "10" },
+              { :name => "sales_4of4", :value => "10" },
             ] },
           ],
         )
@@ -98,19 +98,19 @@ describe FinancialSummaryPointer do
 
         expect(pointer.summary_data).to eq(
           [
-            { :dates => ["05/05/2019", "06/06/2020", "07/07/2021", "08/08/2022"]},
+            { :dates => ["05/05/2019", "06/06/2020", "07/07/2021", "08/08/2022"] },
             { :employees => [
-              {:name => "employees_1of4", :value => "10"},
-              {:name => "employees_2of4", :value => "10"},
-              {:name => "employees_3of4", :value => "10"},
-              {:name => "employees_4of4", :value => "10"},
+              { :name => "employees_1of4", :value => "10" },
+              { :name => "employees_2of4", :value => "10" },
+              { :name => "employees_3of4", :value => "10" },
+              { :name => "employees_4of4", :value => "10" },
             ] },
-            { :dates => [nil, nil, "07/07/2021", "08/08/2022"]},
+            { :dates => [nil, nil, "07/07/2021", "08/08/2022"] },
             { :sales => [
-              {:name => nil, :value => nil},
-              {:name => nil, :value => nil},
-              {:name => "sales_1of2", :value => "10"},
-              {:name => "sales_2of2", :value => "10"},
+              { :name => nil, :value => nil },
+              { :name => nil, :value => nil },
+              { :name => "sales_1of2", :value => "10" },
+              { :name => "sales_2of2", :value => "10" },
             ] },
           ],
         )
@@ -145,19 +145,19 @@ describe FinancialSummaryPointer do
 
         expect(pointer.summary_data).to eq(
           [
-            { :dates => [nil, nil, "02/01/2022", "02/01/2023"]},
+            { :dates => [nil, nil, "02/01/2022", "02/01/2023"] },
             { :employees => [
-              {:name => nil, :value => nil},
-              {:name => nil, :value => nil},
-              {:name => "employees_1of2", :value => "10"},
-              {:name => "employees_2of2", :value => "12"},
+              { :name => nil, :value => nil },
+              { :name => nil, :value => nil },
+              { :name => "employees_1of2", :value => "10" },
+              { :name => "employees_2of2", :value => "12" },
             ] },
-            { :dates => ["02/01/2020", "02/01/2021", "02/01/2022", "02/01/2023"]},
+            { :dates => ["02/01/2020", "02/01/2021", "02/01/2022", "02/01/2023"] },
             { :sales => [
-              {:name => "sales_1of4", :value => "10"},
-              {:name => "sales_2of4", :value => "10"},
-              {:name => "sales_3of4", :value => "10"},
-              {:name => "sales_4of4", :value => "10"},
+              { :name => "sales_1of4", :value => "10" },
+              { :name => "sales_2of4", :value => "10" },
+              { :name => "sales_3of4", :value => "10" },
+              { :name => "sales_4of4", :value => "10" },
             ] },
           ],
         )
@@ -172,19 +172,19 @@ describe FinancialSummaryPointer do
 
         expect(pointer.summary_data).to eq(
           [
-            { :dates => [nil, nil, "02/01/2022", "02/01/2023"]},
+            { :dates => [nil, nil, "02/01/2022", "02/01/2023"] },
             { :employees => [
-              {:name => nil, :value => nil},
-              {:name => nil, :value => nil},
-              {:name => "employees_1of2", :value => "10"},
-              {:name => "employees_2of2", :value => "12"},
+              { :name => nil, :value => nil },
+              { :name => nil, :value => nil },
+              { :name => "employees_1of2", :value => "10" },
+              { :name => "employees_2of2", :value => "12" },
             ] },
-            { :dates => ["02/01/2020", "02/01/2021", "02/01/2022", "02/01/2023"]},
+            { :dates => ["02/01/2020", "02/01/2021", "02/01/2022", "02/01/2023"] },
             { :sales => [
-              {:name => "sales_1of4", :value => "10"},
-              {:name => "sales_2of4", :value => "10"},
-              {:name => "sales_3of4", :value => "10"},
-              {:name => "sales_4of4", :value => "10"},
+              { :name => "sales_1of4", :value => "10" },
+              { :name => "sales_2of4", :value => "10" },
+              { :name => "sales_3of4", :value => "10" },
+              { :name => "sales_4of4", :value => "10" },
             ] },
           ],
         )
@@ -199,19 +199,19 @@ describe FinancialSummaryPointer do
 
         expect(pointer.summary_data).to eq(
           [
-            { :dates => [nil, nil, "29/02/2024", "01/05/2025"]},
+            { :dates => [nil, nil, "29/02/2024", "01/05/2025"] },
             { :employees => [
-              {:name => nil, :value => nil},
-              {:name => nil, :value => nil},
-              {:name => "employees_1of2", :value => "10"},
-              {:name => "employees_2of2", :value => "12"},
+              { :name => nil, :value => nil },
+              { :name => nil, :value => nil },
+              { :name => "employees_1of2", :value => "10" },
+              { :name => "employees_2of2", :value => "12" },
             ] },
-            { :dates => ["28/02/2022", "28/02/2023", "29/02/2024", "01/05/2025"]},
+            { :dates => ["28/02/2022", "28/02/2023", "29/02/2024", "01/05/2025"] },
             { :sales => [
-              {:name => "sales_1of4", :value => "10"},
-              {:name => "sales_2of4", :value => "10"},
-              {:name => "sales_3of4", :value => "10"},
-              {:name => "sales_4of4", :value => "10"},
+              { :name => "sales_1of4", :value => "10" },
+              { :name => "sales_2of4", :value => "10" },
+              { :name => "sales_3of4", :value => "10" },
+              { :name => "sales_4of4", :value => "10" },
             ] },
           ],
         )

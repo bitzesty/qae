@@ -55,7 +55,7 @@ module ApplicationHelper
       dep = question.form[condition.question_key]
       raise "Can't find parent question for conditional #{question.key} -> #{condition.question_key}" unless dep
 
-      data_attrs = {question: dep.parameterized_title, value: condition.question_value}
+      data_attrs = { question: dep.parameterized_title, value: condition.question_value }
       data_attrs = data_attrs.merge((condition.options || {}).fetch(:data, {})) if condition.options
 
       current = tag.div(current, class: "js-conditional-question", data: data_attrs)

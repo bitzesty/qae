@@ -7,7 +7,7 @@ class MailRenderer
     include Rails.application.routes.url_helpers
 
     def default_url_options
-      {host: "www.kings-awards-enterprise.service.gov.uk"}
+      { host: "www.kings-awards-enterprise.service.gov.uk" }
     end
 
     def compiled_method_container

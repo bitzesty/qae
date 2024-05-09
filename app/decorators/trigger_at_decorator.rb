@@ -1,5 +1,5 @@
 module TriggerAtDecorator
-  def formatted_trigger_time(format={bold: true})
+  def formatted_trigger_time(format={ bold: true })
     return placeholder unless object.trigger_at
 
     trigger_on = object.trigger_at.strftime(format[:date_format] || "%-d %b %Y")

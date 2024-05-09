@@ -228,7 +228,7 @@ module QaePdfForms::General::DrawElements
     ##
     # force title to be a String, as Integer may
     # raise undefined method `gsub'
-    text title.to_s, ops.merge!({inline_format: true})
+    text title.to_s, ops.merge!({ inline_format: true })
   end
 
   def render_table(table_lines, ops = {})

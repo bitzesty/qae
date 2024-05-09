@@ -29,8 +29,8 @@ describe Eligibility do
   describe "#sorted_answers" do
     it "should return sorted_answers" do
       Eligibility.property(:test, {})
-      eligibility = Eligibility.new(answers: {test: "ans"})
-      expect(eligibility.sorted_answers).to eq ({"test" => "ans"})
+      eligibility = Eligibility.new(answers: { test: "ans" })
+      expect(eligibility.sorted_answers).to eq ({ "test" => "ans" })
     end
   end
 

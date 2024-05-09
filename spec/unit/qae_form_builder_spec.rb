@@ -79,8 +79,8 @@ describe QaeFormBuilder do
       end
     end
 
-    sample_visible = sample.decorate(answers: {parent: "yes"})
-    sample_invisible = sample.decorate(answers: {parent: "no"})
+    sample_visible = sample.decorate(answers: { parent: "yes" })
+    sample_invisible = sample.decorate(answers: { parent: "no" })
     expect(sample_visible[:child].visible?).to be_truthy
     expect(sample_invisible[:child].visible?).to be_falsey
   end

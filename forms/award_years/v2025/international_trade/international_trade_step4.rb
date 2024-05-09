@@ -68,7 +68,7 @@ class AwardYears::V2025::QaeForms
             </p>
           )
 
-          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true), data: {value: AwardYear.fy_date_range_threshold(minmax: true, format: true), type: :range}
+          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true), data: { value: AwardYear.fy_date_range_threshold(minmax: true, format: true), type: :range }
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period that you will be providing figures for?" do

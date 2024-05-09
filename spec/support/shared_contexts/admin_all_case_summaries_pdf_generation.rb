@@ -33,7 +33,7 @@ shared_context "admin all case summaries pdf generation" do
 
   describe "Download PDF" do
     before do
-      ops = {category: award_type, format: :pdf}
+      ops = { category: award_type, format: :pdf }
       # For trade category it would have year depends links ('3 years' and '6 years')
       ops[:years_mode] = "3" if award_type == :trade
 

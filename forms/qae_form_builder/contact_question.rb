@@ -5,9 +5,9 @@ class QaeFormBuilder
   class ContactQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {title: "Title"},
-        {first_name: "First name"},
-        {last_name: "Last name"},
+        { title: "Title" },
+        { first_name: "First name" },
+        { last_name: "Last name" },
       ]
     end
   end

@@ -48,7 +48,7 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
   end
 
   def set_pdf!
-    ops = {category: award_category, award_year: award_year}
+    ops = { category: award_category, award_year: award_year }
     ops[:years_mode] = sub_type if award_category == "trade"
 
     @pdf = CaseSummaryPdfs::Base.new(
