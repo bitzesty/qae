@@ -46,7 +46,7 @@ class QaeFormBuilder
 
   class ByTradeGoodsAndServicesLabelQuestionDecorator < QuestionDecorator
     def trade_goods_and_services
-      @trade_goods_and_services ||= (answers[delegate_obj.key.to_s] || [])
+      @trade_goods_and_services ||= answers[delegate_obj.key.to_s] || []
     end
 
     def required_sub_fields_list

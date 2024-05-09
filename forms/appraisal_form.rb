@@ -1961,7 +1961,7 @@ class AppraisalForm
     year = form_answer.award_year.year
 
     # Assessor assignment
-    moderated = (f && f.object && f.object.position == "moderated")
+    moderated = f && f.object && f.object.position == "moderated"
 
     list = if moderated
       const_get("MODERATED_#{year}")

@@ -168,7 +168,7 @@ class Settings < ApplicationRecord
     end
 
     def min_started_trading
-      (Date.current.year - (Date.new(COMPANIES_HOUSE_REGISTERING_SINCE).year))
+      (Date.current.year - Date.new(COMPANIES_HOUSE_REGISTERING_SINCE).year)
     end
   end
 

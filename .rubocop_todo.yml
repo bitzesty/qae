@@ -1137,26 +1137,6 @@ Style/RedundantFreeze:
     - 'app/services/company_registration_number.rb'
     - 'app/validators/company_registration_number_validator.rb'
 
-# Offense count: 17
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantParentheses:
-  Exclude:
-    - 'app/controllers/concerns/admin_shortlisted_docs_context.rb'
-    - 'app/controllers/concerns/admin_shortlisted_docs_submission_context.rb'
-    - 'app/controllers/concerns/commercial_figures_mixin.rb'
-    - 'app/form_pointers/form_financial_pointer.rb'
-    - 'app/models/form_answer.rb'
-    - 'app/models/settings.rb'
-    - 'app/pdf_generators/qae_pdf_forms/general/question_pointer.rb'
-    - 'app/policies/form_answer_policy.rb'
-    - 'app/validators/file_size_validator.rb'
-    - 'forms/appraisal_form.rb'
-    - 'forms/qae_form_builder/by_trade_goods_and_services_label_question.rb'
-    - 'forms/qae_form_builder/checkbox_seria_question.rb'
-    - 'forms/qae_form_builder/multi_question_decorator.rb'
-    - 'forms/qae_form_builder/regions_question.rb'
-    - 'forms/qae_form_builder/subsidiaries_associates_plants_question.rb'
-
 # Offense count: 23
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantPercentQ:

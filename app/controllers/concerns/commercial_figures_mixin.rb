@@ -52,7 +52,7 @@ module CommercialFiguresMixin
   end
 
   def figures_wrapper
-    @figures_wrapper ||= (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
+    @figures_wrapper ||= form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
 
     @figures_wrapper.save! if !@figures_wrapper.persisted?
 

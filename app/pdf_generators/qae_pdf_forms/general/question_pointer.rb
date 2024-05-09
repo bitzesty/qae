@@ -254,7 +254,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def urn_blank_or_pdf_blank_mode?
-    (form_pdf.form_answer.urn.blank? || form_pdf.pdf_blank_mode.present?)
+    form_pdf.form_answer.urn.blank? || form_pdf.pdf_blank_mode.present?
   end
 
   def render_question_context

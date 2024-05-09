@@ -159,9 +159,9 @@ class FormFinancialPointer
   end
 
   def excluded_by_ignored_questions_list?(question)
-    (options[:exclude_ignored_questions].present? &&
-     excluded_question_keys.present? &&
-     excluded_question_keys.include?(question.key))
+    options[:exclude_ignored_questions].present? &&
+      excluded_question_keys.present? &&
+      excluded_question_keys.include?(question.key)
   end
 
   def excluded_question_keys

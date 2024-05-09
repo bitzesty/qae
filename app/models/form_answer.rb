@@ -565,7 +565,7 @@ class FormAnswer < ApplicationRecord
       ## section progress should include questions that don't count
       progress_hash = HashWithIndifferentAccess.new(document || {})
       form = award_form.decorate(answers: progress_hash)
-      progress = (form_answer_progress || build_form_answer_progress)
+      progress = form_answer_progress || build_form_answer_progress
       progress.assign_sections(form)
       progress.save
     end
