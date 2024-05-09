@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 module CaseSummaryPdfs::General::DataPointer
   PREVIOUS_AWARDS = { "innovation" => "Innovation",
                       "international_trade" => "International Trade",

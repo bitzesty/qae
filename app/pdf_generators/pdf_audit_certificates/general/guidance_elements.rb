@@ -1,4 +1,5 @@
 # coding: utf-8
+
 module PdfAuditCertificates::General::GuidanceElements
   def render_applicant_guidance_section
     render_applicant_guidance_header

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 require "rails_helper"
 
 shared_context "pdf file checks" do

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 class Eligibility::Trade < Eligibility
   AWARD_NAME = "International Trade"
 

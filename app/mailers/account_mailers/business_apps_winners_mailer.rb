@@ -1,4 +1,5 @@
 # coding: utf-8
+
 class AccountMailers::BusinessAppsWinnersMailer < AccountMailers::BaseMailer
   before_action :set_end_of_embargo_deadline
   before_action :set_media_deadline

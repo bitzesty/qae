@@ -1,4 +1,5 @@
 # coding: utf-8
+
 class AwardYears::V2020::QaeForms
   class << self
     def development_step1

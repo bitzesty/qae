@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 class Eligibility::Promotion < Eligibility
   AWARD_NAME = "Enterprise Promotion"
 

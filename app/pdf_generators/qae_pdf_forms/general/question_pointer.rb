@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::FinancialTableSummary
