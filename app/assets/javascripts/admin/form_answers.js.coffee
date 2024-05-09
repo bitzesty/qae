@@ -176,7 +176,7 @@ ready = ->
       section.find(".document-list .p-empty").removeClass("visuallyhidden")
       $('#commercial-figures-attachment-form').toggleClass('visuallyhidden', $('.commercial-figures-file').length != 0)
       initializeFileUpload()
-    
+
     toggleCommercialFiguresButtonVisibility()
 
   if $("html").hasClass("lte-ie7")
@@ -228,7 +228,7 @@ ready = ->
     if $('.vat-returns-file').length == 0
       section.find(".document-list .p-empty").removeClass("visuallyhidden")
       $('#shortlisted-documents-status').attr('data-status-reversible', 'false')
-    else 
+    else
       $('#shortlisted-documents-status').attr('data-status-reversible', 'true')
 
   $(document).on 'click', "#shortlisted-documents-status a", (e) ->
@@ -440,7 +440,7 @@ showErrorForInvalidField = (field, values, containerSelector = '.form-container'
 
 buildBannerHtml = (message, type, identifier = null) ->
   id = identifier || "alert__#{String(Math.random()).slice(2, -1)}"
-  
+
   "<div id='#{id}' class='alert alert-#{type}' data-controller='element-removal' role='alert' style='padding-top: 6px; padding-bottom: 6px; margin-bottom: 8px;'>
     #{message}
     <button type='button' class='close' data-action='click->element-removal#remove' aria-label='Close'>

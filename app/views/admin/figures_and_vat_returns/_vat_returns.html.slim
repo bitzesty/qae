@@ -3,7 +3,7 @@ label
 
 div[data-controller="inline-flash"]
   .document-list.space-y-3
-    p.p-empty class="#{'hide' if figures_form.vat_returns_files.any?}"
+    p.p-empty class="#{'visuallyhidden' if figures_form.vat_returns_files.any?}"
       ' No documents have been attached.
     ul.list-unstyled.list-actions
       - if figures_form.vat_returns_files.any?
