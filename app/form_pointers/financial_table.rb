@@ -148,9 +148,9 @@ module FinancialTable
           else
             financial_date_selector.ops_values[financial_date_selector_value]
           end
-        elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
+      elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
           financial_pointer.period_length
-        else
+      else
           # If not selected yet, render last option as default
           financial_date_selector.ops_values.values.last
         end

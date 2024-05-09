@@ -103,7 +103,7 @@ class FinancialSummaryPointer < FormFinancialPointer
     @_financial_year_dates ||= begin
       dates, changed = if data_values(:financial_year_changed_dates).present?
                          [financial_year_changed_dates, true]
-                       else
+      else
                          [financial_year_dates, false]
                        end
 

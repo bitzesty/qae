@@ -333,7 +333,7 @@ module Reports::DataPickers::FormDocumentPicker
 
         range = if question.respond_to?(:active_by_year_condition)
                   question.active_by_year_condition&.options&.dig(:data, :identifier)
-                else
+        else
                   doc(meth.keys.first)
                 end
 

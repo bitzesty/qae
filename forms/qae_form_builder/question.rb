@@ -235,7 +235,7 @@ class QaeFormBuilder
                                    # Used in Reports::AllEntries, as passing json of answers
                                    # allows to make it faster
                                    fetched_answers[condition.question_key]
-                                 else
+        else
                                    step.form[condition.question_key].input_value
                                  end
 
@@ -247,7 +247,7 @@ class QaeFormBuilder
                            fetched_answers["#{condition.question_key}_day"],
                            fetched_answers["#{condition.question_key}_month"],
                          ]
-                       else
+          else
                          q = step.form[condition.question_key]
                          q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
                        end

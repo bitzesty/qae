@@ -46,9 +46,9 @@ module SessionStatusCheckMixin
   def elapsed
     session = if namespace == ADMIN_NAMESPACE
         admin_session
-      elsif namespace == ASSESSOR_NAMESPACE
+    elsif namespace == ASSESSOR_NAMESPACE
         assessor_session
-      elsif namespace == JUDGE_NAMESPACE
+    elsif namespace == JUDGE_NAMESPACE
         judge_session
     end
     (now - (session["last_request_at"] || params["__t"].to_i)).to_i / 1.minute

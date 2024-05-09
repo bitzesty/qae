@@ -81,17 +81,6 @@ Layout/CommentIndentation:
   Exclude:
     - 'app/models/reports/admin_report.rb'
 
-# Offense count: 9
-# This cop supports safe autocorrection (--autocorrect).
-Layout/ElseAlignment:
-  Exclude:
-    - 'app/controllers/admin/custom_emails_controller.rb'
-    - 'app/controllers/concerns/session_status_check_mixin.rb'
-    - 'app/form_pointers/financial_summary_pointer.rb'
-    - 'app/models/reports/data_pickers/form_document_picker.rb'
-    - 'app/pdf_generators/qae_pdf_forms/custom_questions/by_year.rb'
-    - 'forms/qae_form_builder/question.rb'
-
 # Offense count: 132
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterMagicComment:
