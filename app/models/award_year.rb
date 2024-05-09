@@ -24,6 +24,8 @@ class AwardYear < ApplicationRecord
   DEFAULT_FINANCIAL_SWITCH_DAY = 20
   DEFAULT_FINANCIAL_SWITCH_MONTH = 4
 
+  CASE_SUMMARY_YEAR_MODES = %w[3 6]
+
   scope :past, -> {
     where(year: past_years)
   }
@@ -58,7 +60,7 @@ class AwardYear < ApplicationRecord
   # For trade category Case summary would have 2 hard copies
   # for '3 to 5' and '6 plus' years
   #
-  ["3", "6"].map do |i|
+  CASE_SUMMARY_YEAR_MODES.map do |i|
     define_method("case_summary_trade_#{i}_hard_copy_pdf") do
       send("aggregated_case_summary_hard_copies").find_by(
         award_category: "trade",
