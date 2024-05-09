@@ -31,7 +31,7 @@ module ApplicationHelper
       end
     end
 
-    tag.li(opts) do
+    tag.li(**opts) do
       if step_status == "current" or (step_status != "past" && opts[:cant_access_future])
         tag.span(class: "govuk-body") do
           index_step_text
