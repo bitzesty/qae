@@ -6,7 +6,6 @@ As an Applicant
 I want to be able to see Past Applications for previous years
 So that I see
 } do
-
   let(:previous_year) do
     Date.new(2020, 4, 1)
   end

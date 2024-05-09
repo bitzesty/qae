@@ -183,7 +183,6 @@ module CaseSummaryPdfs::General::DataPointer
     pdf_doc.move_down 5.mm
 
     case_summaries_entries.each_with_index do |entry, index|
-
       if index > 0
         pdf_doc.stroke_horizontal_rule
         pdf_doc.move_down 5.mm

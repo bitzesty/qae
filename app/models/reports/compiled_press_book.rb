@@ -162,7 +162,6 @@ class Reports::CompiledPressBook
 
     category_form_answers.compact.each do |form_answer|
       ATTRIBUTES_MAP.each do |method_name, pretty_name|
-
         attr_name_cell = worksheet.add_cell(current_row_index, 0, pretty_name)
         attr_name_cell.change_font_color(WHITE_FONT)
         attr_name_cell.change_fill(LIGHT_BG)

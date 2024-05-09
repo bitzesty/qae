@@ -5,7 +5,6 @@ describe "Form answer attachments management", %q{
   As Admin
   I want to see be able to view/create the attachments per application.
 } do
-
   let!(:admin){ create(:admin) }
   let!(:form_answer){ create(:form_answer) }
 

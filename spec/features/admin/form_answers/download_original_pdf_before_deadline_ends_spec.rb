@@ -6,7 +6,6 @@ As an Admin
 I want to download original PDF of application at the deadline
 So that I can see original application data was at the deadline moment
 } do
-
   before do
     login_admin(create(:admin))
 

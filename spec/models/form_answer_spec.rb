@@ -122,7 +122,6 @@ RSpec.describe FormAnswer, type: :model do
       expect(HardCopyGenerators::FeedbackGenerator).to receive_message_chain(:new, :run)
       form_answer.generate_feedback_hard_copy_pdf!
     end
-
   end
 
   describe "validations" do

@@ -7,7 +7,6 @@ As a an Admin
 I want to be able to add collaborators to any account
 So that they can collaborate applications
 } do
-
   let!(:admin) { create(:admin) }
 
   let!(:form_answer) do

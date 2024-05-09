@@ -73,7 +73,6 @@ describe Reports::DataPickers::FormDocumentPicker do
 
         def mobility?
         end
-
       end
     end
     let(:subject) { custom_class.new }

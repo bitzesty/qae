@@ -7,7 +7,6 @@ As a Account Admin
 I want to be able to add / remove collaborators to Account
 So that they can collaborate form answers
 } do
-
   let!(:account_admin) do
     create :user,
       :completed_profile,

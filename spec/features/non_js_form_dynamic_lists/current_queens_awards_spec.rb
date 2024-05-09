@@ -6,7 +6,6 @@ As a User
 I want to be able to add Current King's Awards I hold
 So that I can fill form completelly even if Javascript is turned off
 } do
-
   include_context "non js form base"
 
   let(:innovation_award_year) do
@@ -63,7 +62,6 @@ So that I can fill form completelly even if Javascript is turned off
 
     it "should display existing items in list" do
       within("#non_js_applied_for_queen_awards_details-list-question") do
-
         awards.each do |award|
           expect(page).to have_selector(
             "li[non-js-attribute=#{item_entry(award)}]", count: 1,

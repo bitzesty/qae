@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe AuditCertificateContext, type: :controller do
-
   described_class.tap do |mod|
     controller(ActionController::Base) do
       include mod

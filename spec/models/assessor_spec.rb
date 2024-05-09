@@ -90,8 +90,6 @@ RSpec.describe Assessor, type: :model do
 
       expect{ Reports::AssessorReport.new("assessors-progress", year, assessor, category: "invalid").as_csv }.to raise_error(ArgumentError)
     end
-
-
   end
 
   describe "#lead_roles" do

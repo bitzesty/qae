@@ -14,7 +14,6 @@ RSpec.describe Form::CurrentQueensAwardsController do
     # allow(controller).to receive(:categories).and_return([double(value: 'test')])
     # allow(controller).to receive(:years).and_return([2018])
     # allow(controller).to receive(:outcomes).and_return([double(text: 'test', value: 'value')])
-
   end
 
   describe "GET new" do

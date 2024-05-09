@@ -15,7 +15,6 @@ describe UserDecorator do
     it "returns company name and full name" do
       expect(subject.general_info).to eq("#{user.company_name}: #{user.full_name}")
     end
-
   end
 
   describe "#general_info_print" do

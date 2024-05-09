@@ -239,7 +239,6 @@ describe AssessorAssignment do
       expect(secondary.errors[:assessor_id].present?).to be_truthy
     end
   end
-
 end
 
 def build_assignment_with(award_type, meth)

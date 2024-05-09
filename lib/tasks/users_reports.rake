@@ -1,5 +1,4 @@
 namespace :users_reports do
-
   desc "CSV of users for sending them a survey"
   task :export_csv, [:year] => :environment do |task, args|
     output_directory = Rails.root.join("tmp").to_s

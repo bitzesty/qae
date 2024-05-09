@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe FormAnswerAttachment, type: :model do
-
   describe ".validation" do
     it "should return error" do
       allow(FormAnswerAttachment).to receive_message_chain(:where, :count).and_return(2)

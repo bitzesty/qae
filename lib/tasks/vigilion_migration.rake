@@ -1,5 +1,4 @@
 namespace :vigilion_migration do
-
   desc "copies old VirusScans information into Vigilion columns"
   task convert_to_vigilion: :environment do
     ActiveRecord::Base.connection.execute <<-EOS

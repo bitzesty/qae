@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe UserSharedDecorator do
-
   let(:user) do
     build_stubbed(:user, first_name: "John",
       last_name: "Doe",

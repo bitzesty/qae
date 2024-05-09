@@ -6,7 +6,6 @@ As an Admin
 I want to download all Feedbacks as one pdf per category from Dashboard
 So that I can print and review application feedbacks
 } do
-
   let!(:admin) { create(:admin) }
 
   before do

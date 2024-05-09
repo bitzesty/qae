@@ -9,7 +9,6 @@ module Reviewable
       :reviewed_at,
       presence: true,
       if: :reviewed?
-
   end
 
   def reviewed?

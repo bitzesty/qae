@@ -171,7 +171,6 @@ class Notifiers::EmailNotificationService
     form_answer_ids = []
 
     award_year.form_answers.business.winners.each do |form_answer|
-
       invite = PalaceInvite.where(
         email: form_answer.decorate.head_of_business_email,
         form_answer_id: form_answer.id,

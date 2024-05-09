@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe TriggerAtDecorator do
-
   let(:date) { DateTime.new(2015, 2, 6, 8, 30) }
 
   before do

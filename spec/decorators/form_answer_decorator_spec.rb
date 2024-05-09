@@ -62,7 +62,6 @@ describe FormAnswerDecorator do
 
   describe "#last_state_updated_by" do
     it "Returns the person and time of who made the last transition" do
-
       Timecop.freeze(DateTime.new(Date.current.year, 2, 6, 8, 30)) do
         form_answer = create(:form_answer).decorate
         form_answer.state_machine.submit(form_answer.user)

@@ -20,7 +20,6 @@ RSpec.describe Admin::EmailNotificationsController do
       expect(response).to render_template("show")
       expect(EmailNotification.count).to eq 1
     end
-
   end
 
   describe "PUT update" do

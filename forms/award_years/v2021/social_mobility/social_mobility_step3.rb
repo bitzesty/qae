@@ -141,7 +141,6 @@ class AwardYears::V2021::QaeForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-
         end
 
         one_option_by_years :net_profit, "Net income or net profit after tax but before dividends" do
@@ -164,7 +163,6 @@ class AwardYears::V2021::QaeForms
           context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
           type :money
           label ->(y) { "As at the end of year #{y}" }
-
         end
 
         textarea :drops_in_turnover, "Explain any drops in the total income or turnover, net income or net profit and total net assets and any losses made." do

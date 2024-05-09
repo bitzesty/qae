@@ -1,7 +1,6 @@
 namespace :db do
   desc "remove keys from appraisal forms no longer used"
   task remove_keys_from_mobility_assessor_assignments: :environment do
-
     mobility_appraisals = AssessorAssignment.joins(:form_answer)
       .where(award_year: AwardYear.find_by(year: 2017),
         position: [0, 1, 4],

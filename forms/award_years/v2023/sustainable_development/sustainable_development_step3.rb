@@ -308,7 +308,6 @@ class AwardYears::V2023::QaeForms
           words_max 250
           conditional :product_estimated_figures, :yes
         end
-
       end
     end
   end

@@ -5,5 +5,4 @@ module TestClasses
 end
 
 describe Eligibility::Trade::NotALastYearWinnerValidator do
-
 end

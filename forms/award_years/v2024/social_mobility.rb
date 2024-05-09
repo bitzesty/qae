@@ -33,7 +33,6 @@ class AwardYears::V2024::QaeForms
           "Supplementary materials & confirmation",
           { id: :add_website_address_documents_step },
           &AwardYears::V2024::QaeForms.mobility_step6
-
       end
     end
   end

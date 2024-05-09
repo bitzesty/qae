@@ -6,7 +6,6 @@ As a User
 I want to be able to add UK subsidiaries, associates or plants
 So that I can fill form completelly even if Javascript is turned off
 } do
-
   include_context "non js form base"
 
   let(:question_key) { "trading_figures_add" }

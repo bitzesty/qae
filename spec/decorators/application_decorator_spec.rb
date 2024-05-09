@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe ApplicationDecorator do
-
   let(:date) { DateTime.new(2015, 2, 6, 8, 30) }
 
   describe "#created_at" do

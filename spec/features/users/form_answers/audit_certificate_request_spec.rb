@@ -6,7 +6,6 @@ As a User
 I want to be able to download an Verification of Commercial Figures
 So that I can check, complete it and then upload it to application
 } do
-
   let!(:user) do
     create :user
   end

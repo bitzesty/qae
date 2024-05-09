@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe HardCopyPdfGenerators::FormDataWorker do
   it "should perform correctly" do
-
     form_answer = build_stubbed(:form_answer)
     expect(FormAnswer).to receive(:find).with(1).twice { form_answer }
 

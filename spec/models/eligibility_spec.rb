@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe Eligibility do
-
   it { is_expected.to belong_to(:account).optional }
   it { is_expected.to belong_to(:form_answer).optional }
 
@@ -33,5 +32,4 @@ describe Eligibility do
       expect(eligibility.sorted_answers).to eq ({ "test" => "ans" })
     end
   end
-
 end

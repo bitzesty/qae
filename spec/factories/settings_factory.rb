@@ -3,7 +3,6 @@ FactoryBot.define do
     skip_create
 
     initialize_with do
-
         if attributes.present?
           Settings.where(attributes).first_or_create
         else
@@ -11,7 +10,6 @@ FactoryBot.define do
         end
     rescue ActiveRecord::RecordNotUnique
         retry
-
     end
   end
 

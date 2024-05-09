@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe QaeFormBuilder do
-
   it "should build QaeFormBuilder::Form instances" do
     empty = QaeFormBuilder.build "test"
     expect(empty.title).to eq("test")
