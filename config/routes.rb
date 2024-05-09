@@ -260,6 +260,9 @@ Rails.application.routes.draw do
         post :scan_via_debounce_api
       end
     end
+
+    resources :collaborator_deletion, only: [:destroy]
+
     resources :assessors do
       member do
         get :confirm_activate
