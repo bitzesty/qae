@@ -1,9 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::AssessorsController do
-  let!(:admin) {create(:admin, superadmin: true)}
-  let!(:assessor) {create(:assessor)}
+  let!(:admin) { create(:admin, superadmin: true) }
+  let!(:assessor) { create(:assessor) }
   before do
     sign_in admin
   end

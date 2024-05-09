@@ -21,14 +21,14 @@ class QaeFormBuilder
                   outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
                 end
               end
-      
-      required = question.required?        
+
+      required = question.required?
 
       dates.each.with_index(1) do |(key, value), idx|
         next unless value == :invalid || value == :blank
         result[key] ||= ""
-        result[key] << "Question #{question.ref || question.sub_ref} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY." if (value == :blank && required)
-        result[key] << "The date entered for Question #{question.ref || question.sub_ref} is not valid. Use the format DD/MM/YYYY." if (value == :invalid)
+        result[key] << "Question #{question.ref || question.sub_ref} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY." if value == :blank && required
+        result[key] << "The date entered for Question #{question.ref || question.sub_ref} is not valid. Use the format DD/MM/YYYY." if value == :invalid
       end
 
       dates.each_cons(2) do |values|
@@ -40,11 +40,11 @@ class QaeFormBuilder
         if beginning_date > end_date
           result[beginning_key] ||= ""
           result[end_key] ||= ""
-          result[beginning_key] << "The date entered for Question #{question.ref || question.sub_ref} should be before #{end_date.strftime('%d/%m/%Y')}."
-          result[end_key] << "The date entered for Question #{question.ref || question.sub_ref} should be after #{beginning_date.strftime('%d/%m/%Y')}."
+          result[beginning_key] << "The date entered for Question #{question.ref || question.sub_ref} should be before #{end_date.strftime("%d/%m/%Y")}."
+          result[end_key] << "The date entered for Question #{question.ref || question.sub_ref} should be after #{beginning_date.strftime("%d/%m/%Y")}."
         end
       end
-              
+
       validatable = dates.values.each_cons(2).reject { |values| values.any? { |v| v.nil? || v.in?(%i[invalid blank]) } }
 
       return result if validatable.blank?
@@ -92,7 +92,7 @@ class QaeFormBuilder
     def active_fields
       return [] unless fields_count
 
-      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+      (1..fields_count).map{ |y| "#{y}of#{fields_count}" }
     end
 
     def fields_count
@@ -163,5 +163,4 @@ class QaeFormBuilder
       @by_year_conditions = []
     end
   end
-
 end

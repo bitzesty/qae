@@ -5,14 +5,14 @@ class User < ApplicationRecord
   POSSIBLE_ROLES = %w(account_admin regular)
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable, :session_limitable
+    :recoverable, :trackable, :validatable, :confirmable,
+    :zxcvbnable, :lockable, :timeoutable, :session_limitable
   include PasswordValidator
 
   attr_accessor :agreed_with_privacy_policy
   attr_accessor :current_password
 
-  validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
+  validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: "1" }, on: :create
 
   validates :role, :account, presence: true
 
@@ -27,71 +27,71 @@ class User < ApplicationRecord
   validates :phone_number, length: {
     minimum: 7,
     maximum: 20,
-    message: "This is not a valid telephone number"
+    message: "This is not a valid telephone number",
   }, if: -> { first_step? }
 
   validates :company_phone_number, length: {
     minimum: 7,
     maximum: 20,
-    message: "This is not a valid telephone number"
+    message: "This is not a valid telephone number",
   }, allow_blank: true, if: -> { second_step? }
 
   validates_with AdvancedEmailValidator
 
   begin :associations
-    has_many :form_answers
-    has_many :feedbacks, through: :form_answers,
-                         class_name: "Feedback",
-                         source: :feedback
-    has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
+        has_many :form_answers
+        has_many :feedbacks, through: :form_answers,
+          class_name: "Feedback",
+          source: :feedback
+        has_one :owned_account, foreign_key: :owner_id, class_name: "Account"
 
-    belongs_to :account, optional: true
-    has_many :form_answer_attachments, as: :attachable
-    has_many :support_letter_attachments, dependent: :destroy
-    has_many :supporters, dependent: :destroy
+        belongs_to :account, optional: true
+        has_many :form_answer_attachments, as: :attachable
+        has_many :support_letter_attachments, dependent: :destroy
+        has_many :supporters, dependent: :destroy
   end
 
   begin :scopes
-    scope :not_including, -> (user) {
-      where.not(id: user.id)
-    }
-    scope :by_email, -> { order(:email) }
-    scope :qae_opt_in_group, -> { where(subscribed_to_emails: true) }
-    scope :bit_opt_in, -> { where(agree_being_contacted_by_department_of_business: true) }
-    scope :confirmed, -> {
-      where("confirmed_at IS NOT NULL")
-    }
-    scope :by_query_part, -> (email) {
-      where("email ilike ? OR first_name ilike ? OR last_name ilike ?",
-            "%#{email}%", "%#{email}%", "%#{email}%")
-    }
-    scope :not_in_ids, -> (ids) {
-      where.not(id: ids)
-    }
-    scope :bounced_emails, -> {
-      where(marked_at_bounces_email: true)
-    }
-    scope :not_bounced_emails, -> {
-      where(
-        "marked_at_bounces_email IS FALSE OR marked_at_bounces_email IS NULL"
-      )
-    }
-    scope :allowed_to_get_award_open_notification, -> (award_type) {
-      where("notification_when_#{award_type}_award_open" => true)
-    }
-    scope :debounce_scan_candidates, -> () {
-      order(id: :asc).where(
-        "debounce_api_latest_check_at IS NULL OR debounce_api_latest_check_at < ?", 6.months.ago
-      )
-    }
-    scope :want_to_receive_opening_notification_for_at_least_one_award, -> () {
-      where("
+        scope :not_including, -> (user) {
+          where.not(id: user.id)
+        }
+        scope :by_email, -> { order(:email) }
+        scope :qae_opt_in_group, -> { where(subscribed_to_emails: true) }
+        scope :bit_opt_in, -> { where(agree_being_contacted_by_department_of_business: true) }
+        scope :confirmed, -> {
+          where("confirmed_at IS NOT NULL")
+        }
+        scope :by_query_part, -> (email) {
+          where("email ilike ? OR first_name ilike ? OR last_name ilike ?",
+            "%#{email}%", "%#{email}%", "%#{email}%",)
+        }
+        scope :not_in_ids, -> (ids) {
+          where.not(id: ids)
+        }
+        scope :bounced_emails, -> {
+          where(marked_at_bounces_email: true)
+        }
+        scope :not_bounced_emails, -> {
+          where(
+            "marked_at_bounces_email IS FALSE OR marked_at_bounces_email IS NULL",
+          )
+        }
+        scope :allowed_to_get_award_open_notification, -> (award_type) {
+          where("notification_when_#{award_type}_award_open" => true)
+        }
+        scope :debounce_scan_candidates, -> () {
+          order(id: :asc).where(
+            "debounce_api_latest_check_at IS NULL OR debounce_api_latest_check_at < ?", 6.months.ago,
+          )
+        }
+        scope :want_to_receive_opening_notification_for_at_least_one_award, -> () {
+          where("
         notification_when_innovation_award_open IS TRUE OR
         notification_when_trade_award_open IS TRUE OR
         notification_when_development_award_open IS TRUE OR
         notification_when_mobility_award_open IS TRUE
       ")
-    }
+        }
   end
 
   before_validation :create_account, on: :create
@@ -107,29 +107,32 @@ class User < ApplicationRecord
     online
     local_trade_body
     national_trade_body
-    mail_from_qae word_of_mouth other)
+    mail_from_qae
+    word_of_mouth
+    other
+  )
   enumerize :role, in: POSSIBLE_ROLES, predicates: true
 
   begin :searching
-    pg_search_scope :basic_search,
-                    against: [
-                      :email,
-                      :first_name,
-                      :last_name,
-                      :company_name
-                    ],
-                    using: {
-                      tsearch: {
-                        prefix: true
-                      }
-                    }
-    # TODO: take into consideration forcing NULL for all attributes.
-    nilify_blanks only: [
-      :title,
-      :first_name,
-      :last_name,
-      :company_name
-    ]
+        pg_search_scope :basic_search,
+          against: [
+            :email,
+            :first_name,
+            :last_name,
+            :company_name,
+          ],
+          using: {
+            tsearch: {
+              prefix: true,
+            },
+          }
+        # TODO: take into consideration forcing NULL for all attributes.
+        nilify_blanks only: [
+          :title,
+          :first_name,
+          :last_name,
+          :company_name,
+        ]
   end
 
   def set_step (step)

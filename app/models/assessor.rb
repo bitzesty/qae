@@ -9,8 +9,8 @@ class Assessor < ApplicationRecord
   # to specific category (award type), they act per specific form answer.
 
   devise :database_authenticatable,
-         :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable, :session_limitable
+    :recoverable, :trackable, :validatable, :confirmable,
+    :zxcvbnable, :lockable, :timeoutable, :session_limitable
   include PasswordValidator
 
   validates :first_name, :last_name, presence: true
@@ -18,31 +18,31 @@ class Assessor < ApplicationRecord
   has_many :assessor_assignments
 
   has_many :form_answers,
-           through: :assessor_assignments
+    through: :assessor_assignments
 
   before_validation :nil_if_blank
 
   validates :trade_role,
-            :innovation_role,
-            :development_role,
-            :mobility_role,
-            :promotion_role,
-            inclusion: {
-              in: AVAILABLE_ROLES
-            },
-            allow_nil: true
+    :innovation_role,
+    :development_role,
+    :mobility_role,
+    :promotion_role,
+    inclusion: {
+      in: AVAILABLE_ROLES,
+    },
+    allow_nil: true
 
   pg_search_scope :basic_search,
-                  against: [
-                    :first_name,
-                    :last_name,
-                    :email
-                  ],
-                  using: {
-                    tsearch: {
-                      prefix: true
-                    }
-                  }
+    against: [
+      :first_name,
+      :last_name,
+      :email,
+    ],
+    using: {
+      tsearch: {
+        prefix: true,
+      },
+    }
 
   default_scope { where(deleted: false) }
 
@@ -51,7 +51,6 @@ class Assessor < ApplicationRecord
   scope :not_suspended, -> { where(suspended_at: nil) }
   scope :trade_and_development, -> { available_for("development").or(available_for("trade")) }
   scope :mobility_and_innovation, -> { available_for("mobility").or(available_for("innovation")) }
-
 
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AVAILABLE_ROLES.each do |role|
@@ -109,7 +108,7 @@ class Assessor < ApplicationRecord
       (form_answers.award_type in (?) OR
       (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))
       AND form_answers.state NOT IN (?)
-    ", c, [0, 1], id, "withdrawn")
+    ", c, [0, 1], id, "withdrawn",)
   end
 
   # we're using extended scope on the resource page
@@ -122,7 +121,7 @@ class Assessor < ApplicationRecord
     out = FormAnswer.where("
       form_answers.award_type in (?)
       AND form_answers.state NOT IN (?)
-    ", c, "withdrawn")
+    ", c, "withdrawn",)
   end
 
   def full_name

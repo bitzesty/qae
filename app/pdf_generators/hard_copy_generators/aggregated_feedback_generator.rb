@@ -17,7 +17,7 @@ class HardCopyGenerators::AggregatedFeedbackGenerator < HardCopyGenerators::Aggr
 
   def set_pdf!
     @pdf = FeedbackPdfs::Base.new(
-      "all", nil, category: award_category, award_year: award_year
+      "all", nil, category: award_category, award_year: award_year,
     )
   end
 end

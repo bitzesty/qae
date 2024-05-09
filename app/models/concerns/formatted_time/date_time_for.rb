@@ -20,7 +20,7 @@ module FormattedTime::DateTimeFor
 
             if seconds
               hours, minutes = seconds.divmod(3600)
-              '%02d:%02d' % [hours, (minutes / 60)]
+              "%02d:%02d" % [hours, (minutes / 60)]
             end
           end
         end

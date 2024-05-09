@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::CommentsController do
-  let!(:admin) {create(:admin, superadmin: true)}
-  let!(:form_answer) {create(:form_answer)}
-  let!(:comment) {create(:comment, section: 0, commentable: form_answer)}
+  let!(:admin) { create(:admin, superadmin: true) }
+  let!(:form_answer) { create(:form_answer) }
+  let!(:comment) { create(:comment, section: 0, commentable: form_answer) }
 
   before do
     sign_in admin
@@ -35,7 +35,7 @@ RSpec.describe Admin::CommentsController do
 
   describe "Delete destroy" do
     it "should destroy a resource" do
-      allow_any_instance_of(Comment).to receive(:author?) {true}
+      allow_any_instance_of(Comment).to receive(:author?) { true }
       delete :destroy, params: { id: comment.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to admin_form_answer_path(form_answer)
       expect(Comment.count).to eq 0

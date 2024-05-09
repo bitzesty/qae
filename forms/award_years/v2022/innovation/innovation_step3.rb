@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2022::QaeForms
   class << self
     def innovation_step3
@@ -47,7 +46,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Estimated figures"],
             [:normal, %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -73,7 +72,7 @@ class AwardYears::V2022::QaeForms
           option "5 plus", "Continuous Commercial Performance: innovation has improved commercial performance over five years"
           financial_date_selector({
             "2 to 4" => "2",
-            "5 plus" => "5"
+            "5 plus" => "5",
           })
           default_option "5 plus"
           sub_category_question
@@ -179,7 +178,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Figures - format"],
             [:normal, %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
 
           conditional :innovation_performance_years, :true
@@ -353,7 +352,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Figures - format"],
             [:normal, %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 

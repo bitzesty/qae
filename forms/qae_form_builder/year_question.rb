@@ -23,7 +23,7 @@ class QaeFormBuilder
   class YearQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
-      result << 'question-year'
+      result << "question-year"
       result
     end
   end

@@ -5,6 +5,6 @@ class Users::ImportMailer < ApplicationMailer
     @user = user
     subject = "The King's Awards for Enterprise: Welcome to our new application system"
 
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: user.email, subject: subject_with_env_prefix(subject)
+    send_mail_if_not_bounces ENV["GOV_UK_NOTIFY_API_TEMPLATE_ID"], to: user.email, subject: subject_with_env_prefix(subject)
   end
 end

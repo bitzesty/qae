@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 RSpec.describe Admin::DeadlinesController do
-  let!(:admin) {create(:admin, superadmin: true)}
+  let!(:admin) { create(:admin, superadmin: true) }
   before do
     sign_in admin
   end
@@ -11,7 +11,7 @@ RSpec.describe Admin::DeadlinesController do
     it "should update a resource" do
       deadline = create(:deadline)
       time = Time.now
-      put :update, params: { id: deadline.id, deadline: { trigger_at:  time} }
+      put :update, params: { id: deadline.id, deadline: { trigger_at: time } }
       expect(response).to redirect_to admin_settings_path
     end
   end

@@ -4,13 +4,13 @@ class QaeFormBuilder
 
   class PlaceholderPreselectedCondition
     attr_accessor :question_key,
-                  :question_suffix,
-                  :parent_question_answer_key,
-                  :answer_key,
-                  :question_value,
-                  :placeholder_text
+      :question_suffix,
+      :parent_question_answer_key,
+      :answer_key,
+      :question_value,
+      :placeholder_text
 
-    def initialize(question_key, options={})
+    def initialize(question_key, options = {})
       @question_key = question_key
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
@@ -20,10 +20,10 @@ class QaeFormBuilder
 
   class TradeCommercialSuccessQuestion < OptionsQuestion
     attr_accessor :main_header,
-                  :placeholder_preselected_conditions,
-                  :options,
-                  :question_key,
-                  :default_option
+      :placeholder_preselected_conditions,
+      :options,
+      :question_key,
+      :default_option
 
     def after_create
       super()
@@ -37,7 +37,7 @@ class QaeFormBuilder
       @q.main_header = text
     end
 
-    def placeholder_preselected_condition(q_key, options={})
+    def placeholder_preselected_condition(q_key, options = {})
       @q.question_key = q_key
       @q.placeholder_preselected_conditions << PlaceholderPreselectedCondition.new(q_key, options)
     end

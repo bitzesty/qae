@@ -1,5 +1,4 @@
 class Form::FormAttachmentsController < Form::MaterialsBaseController
-
   # This controller handles saving of attachments
   # This section is used in case if JS disabled (destroy action used for both JS and NON JS)
 
@@ -9,14 +8,14 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   expose(:form_answer_attachment) do
     current_user.form_answer_attachments.new(
-      form_answer_id: @form_answer.id
+      form_answer_id: @form_answer.id,
     )
   end
 
   expose(:created_attachment_ops) do
     {
       "file" => form_answer_attachment.id.to_s,
-      "description" => attachment_params[:description]
+      "description" => attachment_params[:description],
     }
   end
 
@@ -29,7 +28,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     result_materials[next_document_position.to_s] = created_attachment_ops
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
@@ -38,10 +37,10 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     result_materials.delete_if do |k, v|
       v["file"] == params[:id].to_s
     end
-    result_materials = result_materials.present? ? result_materials : {}
+    result_materials = result_materials.presence || {}
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials,
     )
   end
 
@@ -56,8 +55,8 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
       attachment_params.merge({
         form_answer_id: @form_answer.id,
         non_js_creation: true,
-        original_filename: original_filename
-      })
+        original_filename: original_filename,
+      }),
     )
 
     if form_answer_attachment.save
@@ -95,10 +94,10 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   private
 
-    def attachment_params
-      params.require(:form_answer_attachment).permit(
-        :file,
-        :description
-      )
-    end
+  def attachment_params
+    params.require(:form_answer_attachment).permit(
+      :file,
+      :description,
+    )
+  end
 end

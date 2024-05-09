@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2022::QaeForms
   class << self
     def mobility_step3
@@ -47,7 +46,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Estimated figures"],
             [:normal, %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -136,7 +135,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Figures - format"],
             [:normal, %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 
@@ -151,7 +150,6 @@ class AwardYears::V2022::QaeForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-
         end
 
         one_option_by_years :net_profit, "Net income or net profit after tax but before dividends" do
@@ -174,7 +172,6 @@ class AwardYears::V2022::QaeForms
           context "<p>As per your balance sheet. Total assets (fixed and current), minus liabilities (current and long-term).</p>"
           type :money
           label ->(y) { "As at the end of year #{y}" }
-
         end
 
         textarea :drops_in_turnover, "Explain any drops in the total income or turnover, net income or net profit and total net assets and any losses made." do

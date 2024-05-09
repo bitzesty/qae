@@ -1,14 +1,13 @@
 require "award_years/v2018/qae_forms"
 require "award_years/v2019/qae_forms"
-require 'award_years/v2020/qae_forms'
+require "award_years/v2020/qae_forms"
 
 class FormController < ApplicationController
   before_action :authenticate_user!
   before_action :check_account_completion, :check_number_of_collaborators, unless: -> { admin_signed_in? || assessor_signed_in? }
   before_action :check_deadlines
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
-    :new, :create, :update, :destroy,
-    :submit_confirm, :save, :add_attachment
+    :new, :create, :update, :destroy, :submit_confirm, :save, :add_attachment
   ]
 
   before_action :check_trade_deadline, :check_trade_count_limit, only: :new_international_trade_form
@@ -20,11 +19,11 @@ class FormController < ApplicationController
     :new_innovation_form,
     :new_international_trade_form,
     :new_sustainable_development_form,
-    :new_social_mobility_form
+    :new_social_mobility_form,
   ]
 
   before_action :get_collaborators, only: [
-    :submit_confirm
+    :submit_confirm,
   ]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
 
@@ -34,7 +33,7 @@ class FormController < ApplicationController
     :save,
     :update,
     :add_attachment,
-    :submit_confirm
+    :submit_confirm,
   ]
 
   before_action do
@@ -55,7 +54,7 @@ class FormController < ApplicationController
   expose(:questions_with_references) do
     all_form_questions.select do |q|
       !q.is_a?(QaeFormBuilder::HeaderQuestion) &&
-      (q.ref.present? || q.sub_ref.present?)
+        (q.ref.present? || q.sub_ref.present?)
     end
   end
 
@@ -217,7 +216,7 @@ class FormController < ApplicationController
       end
 
       if @attachment.save
-        @form_answer.document[@attachment.question_key]  ||= {}
+        @form_answer.document[@attachment.question_key] ||= {}
         attachments_hash = @form_answer.document[@attachment.question_key]
         index = next_index(attachments_hash)
         attachments_hash[index] = { file: @attachment.id }
@@ -227,7 +226,7 @@ class FormController < ApplicationController
         render json: @attachment, status: :created, content_type: "text/plain"
       else
         render json: { errors: humanized_upload_errors }.to_json,
-               status: :unprocessable_entity
+          status: :unprocessable_entity
       end
     end
   end
@@ -285,8 +284,8 @@ class FormController < ApplicationController
       award_type: award_type,
       nickname: nickname,
       document: {
-        company_name: current_user.company_name
-      }
+        company_name: current_user.company_name,
+      },
     )
 
     redirect_to edit_form_url(form_answer)
@@ -335,7 +334,7 @@ class FormController < ApplicationController
         render json: { error: "ERROR: Form can't be updated as submission ended!" }
       else
         redirect_to dashboard_path,
-                    notice: "Form can't be updated as submission ended!"
+          notice: "Form can't be updated as submission ended!"
       end
 
       return false

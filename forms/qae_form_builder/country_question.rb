@@ -10,5 +10,4 @@ class QaeFormBuilder
 
   class CountryQuestion < Question
   end
-
 end

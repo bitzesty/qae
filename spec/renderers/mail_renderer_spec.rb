@@ -117,7 +117,7 @@ describe MailRenderer do
     end
   end
 
-  def deadline_str(format="%d/%m/%Y")
+  def deadline_str(format = "%d/%m/%Y")
     DateTime.new(Date.current.year, 9, 21, 10, 30)
             .strftime(format)
   end

@@ -1,5 +1,4 @@
 class Form::OrganisationalChartsController < Form::MaterialsBaseController
-
   # This controller handles saving of OrganisationalCharts attachments
   # This section is used in case if JS disabled
 
@@ -9,7 +8,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
 
   expose(:form_answer_attachment) do
     current_user.form_answer_attachments.new(
-      form_answer_id: @form_answer.id
+      form_answer_id: @form_answer.id,
     )
   end
 
@@ -22,16 +21,12 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
   end
 
   expose(:existing_org_chart) do
-    if existing_org_chart_doc.present?
-      existing_org_chart_doc
-    else
-      {}
-    end
+    existing_org_chart_doc.presence || {}
   end
 
   expose(:created_attachment_ops) do
     {
-      "file" => form_answer_attachment.id.to_s
+      "file" => form_answer_attachment.id.to_s,
     }
   end
 
@@ -40,13 +35,13 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     res["0"] = created_attachment_ops
 
     @form_answer.document.merge(
-      org_chart: res
+      org_chart: res,
     )
   end
 
   expose(:remove_org_chart_result_doc) do
     @form_answer.document.merge(
-      org_chart: {}
+      org_chart: {},
     )
   end
 
@@ -62,8 +57,8 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
       attachment_params.merge({
         form_answer_id: @form_answer.id,
         original_filename: original_filename,
-        question_key: "org_chart"
-      })
+        question_key: "org_chart",
+      }),
     )
 
     if form_answer_attachment.save
@@ -101,10 +96,10 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
 
   private
 
-    def attachment_params
-      params.require(:form_answer_attachment).permit(
-        :file,
-        :form_answer_id
-      )
-    end
+  def attachment_params
+    params.require(:form_answer_attachment).permit(
+      :file,
+      :form_answer_id,
+    )
+  end
 end

@@ -14,7 +14,7 @@ class QaeFormBuilder
 
   class SubsidiariesAssociatesPlantsQuestionDecorator < QuestionDecorator
     def subsidiaries
-      @subsidiaries ||= (answers[delegate_obj.key.to_s] || [])
+      @subsidiaries ||= answers[delegate_obj.key.to_s] || []
     end
 
     alias :entities :subsidiaries

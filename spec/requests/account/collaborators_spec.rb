@@ -1,42 +1,41 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
-describe 'API' do
+describe "API" do
   let!(:account_admin) do
     FactoryBot.create :user, :completed_profile,
-                              first_name: "Account Admin John",
-                              role: "account_admin"
+      first_name: "Account Admin John",
+      role: "account_admin"
   end
 
   let(:account) { account_admin.account }
 
   let!(:form_answer) do
     FactoryBot.create :form_answer, :innovation,
-                                     user: account_admin,
-                                     urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+      user: account_admin,
+      urn: "QA0001/19T",
+      document: { company_name: "Bitzesty" }
   end
 
   let!(:basic_eligibility) do
     FactoryBot.create :basic_eligibility, form_answer: form_answer,
-                                           account: account
+      account: account
   end
 
   let!(:innovation_eligibility) do
     FactoryBot.create :innovation_eligibility, form_answer: form_answer,
-                                                account: account
+      account: account
   end
 
   let!(:trade_eligibility) do
     FactoryBot.create :trade_eligibility, form_answer: form_answer,
-                                           account: account
+      account: account
   end
 
   let!(:development_eligibility) do
     FactoryBot.create :development_eligibility, form_answer: form_answer,
-                                                 account: account
+      account: account
   end
-
 
   before do
     login_as account_admin
@@ -90,17 +89,17 @@ describe 'API' do
   describe "DELETE /account/collaborators/:id" do
     let!(:existing_collaborator) do
       FactoryBot.create :user, :completed_profile,
-                                first_name: "Collaborator Matt",
-                                account: account,
-                                role: "regular"
+        first_name: "Collaborator Matt",
+        account: account,
+        role: "regular"
     end
 
     let!(:another_account_admin) do
       create :user,
-             :completed_profile,
-             first_name: "Another Account Admin Mike",
-             account: account,
-             role: "account_admin"
+        :completed_profile,
+        first_name: "Another Account Admin Mike",
+        account: account,
+        role: "account_admin"
     end
 
     it "should remove user from collaborators, but do not remove user account" do

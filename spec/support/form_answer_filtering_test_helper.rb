@@ -9,8 +9,8 @@ module FormAnswerFilteringTestHelper
     within ".applications-filter.status-filter" do
       find(".dropdown-toggle").click
 
-      expect(page).to have_selector('.status-filter .dropdown.open', visible: true)
-      expect(page).to have_selector('.status-filter li.apply button', visible: true)
+      expect(page).to have_selector(".status-filter .dropdown.open", visible: true)
+      expect(page).to have_selector(".status-filter li.apply button", visible: true)
 
       within ".status-filter .dropdown-menu" do
         button = find("li.apply button")
@@ -32,8 +32,8 @@ module FormAnswerFilteringTestHelper
       expect(page).to have_selector(".dropdown-toggle")
       find(".dropdown-toggle").click
 
-      expect(page).to have_selector('.sub-status-filter .dropdown.open', visible: true)
-      expect(page).to have_selector('.sub-status-filter li.apply button', visible: true)
+      expect(page).to have_selector(".sub-status-filter .dropdown.open", visible: true)
+      expect(page).to have_selector(".sub-status-filter li.apply button", visible: true)
 
       within ".sub-status-filter .dropdown-menu" do
         button = find("li.apply button")

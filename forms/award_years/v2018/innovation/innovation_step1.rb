@@ -94,9 +94,9 @@ class AwardYears::V2018::QaeForms
           dynamic_date_max(
             dates: {
               "2 to 4" => AwardYear.start_trading_since(2),
-              "5 plus" => AwardYear.start_trading_since(5)
+              "5 plus" => AwardYear.start_trading_since(5),
             },
-            conditional: :innovation_performance_years
+            conditional: :innovation_performance_years,
           )
         end
 
@@ -247,7 +247,7 @@ class AwardYears::V2018::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 

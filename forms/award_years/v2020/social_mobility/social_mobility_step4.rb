@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2020::QaeForms
   class << self
     def mobility_step4
       @mobility_step4 ||= proc do
         header :complete_now_header, "" do
           context %(
-            <h3>About this section</h3>           
+            <h3>About this section</h3>
             <p>
               The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact. All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. Applicants who are not able to demonstrate corporate social responsibility will not be successful.
             </p>
@@ -13,9 +12,9 @@ class AwardYears::V2020::QaeForms
             <p>
               We recognise that for many smaller organisations the extent to which they can deliver high impact Corporate Responsibility may be limited. Given this, please answer the questions in a way that best suits your organisation.
             </p>
-            <h3>Answering questions</h3>    
+            <h3>Answering questions</h3>
             <p>
-              The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place. 
+              The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
             </p>
             <p>
               If you have already answered a question in another section in the application form, you can reference the relevant question number(s).
@@ -33,10 +32,10 @@ class AwardYears::V2020::QaeForms
             )],
             [:bold, "Answering questions"],
             [:normal, %(
-              The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place. 
-              
+              The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
+
               If you have already answered a question in another section in the application form, you can reference the relevant question number(s).
-            )]
+            )],
           ]
         end
 

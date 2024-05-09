@@ -8,9 +8,9 @@ class Admin::CustomEmailsController < Admin::BaseController
     authorize :custom_email, :create?
     custom_email_form_attributes = if params[:custom_email_form].present?
                                      params[:custom_email_form].merge(admin_id: current_admin.id)
-                                   else
+    else
                                      {}
-                                   end
+    end
 
     @form = CustomEmailForm.new(custom_email_form_attributes)
     if @form.valid?

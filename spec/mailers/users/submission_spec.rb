@@ -5,7 +5,7 @@ describe Users::SubmissionMailer do
 
   let(:form_answer) do
     FactoryBot.create :form_answer, :submitted, :innovation,
-                                                 user: user
+      user: user
   end
 
   let(:urn) { form_answer.urn }

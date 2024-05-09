@@ -1,6 +1,4 @@
-# coding: utf-8
 module QaePdfForms::CustomQuestions::Textarea
-
   LIST_TAGS = ["ul", "ol"].freeze
 
   MAIN_CONTENT_BLOCKS = (LIST_TAGS + ["p"]).freeze
@@ -22,9 +20,9 @@ module QaePdfForms::CustomQuestions::Textarea
               {
                 "<" + t_name + ">" => {
                   style: wysywyg_get_style(child),
-                  content: wysywyg_get_item_content(child)
-                }
-              }
+                  content: wysywyg_get_item_content(child),
+                },
+              },
             )
           end
         end
@@ -50,7 +48,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def wysywyg_entries
     Nokogiri::HTML.parse(
-      humanized_answer
+      humanized_answer,
     ).children[1]
      .children[0]
      .children
@@ -84,8 +82,8 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def wysywyg_print_lists(key, line)
     wysywyg_list_content_generator(wysywyg_prepare_list_content(line),
-                                   wysywyg_get_list_left_margin(line),
-                                   key)
+      wysywyg_get_list_left_margin(line),
+      key,)
   end
 
   def wysywyg_get_list_left_margin(line)
@@ -95,7 +93,7 @@ module QaePdfForms::CustomQuestions::Textarea
       margin_left = lists_style.split(", ").select do |el|
         el.include?("margin-left")
       end.map! do |el|
-        el.split(":").second.strip.gsub!("px", "").to_i/2
+        el.split(":").second.strip.gsub!("px", "").to_i / 2
       end.sum
 
       "margin-left:#{margin_left}px"
@@ -127,13 +125,13 @@ module QaePdfForms::CustomQuestions::Textarea
     @li_counter = 0
 
     content.each do |i|
-      if wysywyg_is_it_tag?(i, 'li')
+      if wysywyg_is_it_tag?(i, "li")
         wysywyg_handle_li_tag(key, i)
 
-      elsif wysywyg_is_it_tag?(i, 'ul')
+      elsif wysywyg_is_it_tag?(i, "ul")
         wysywyg_handle_ul_tag(key, i)
 
-      elsif wysywyg_is_it_tag?(i, 'ol')
+      elsif wysywyg_is_it_tag?(i, "ol")
         wysywyg_handle_ol_tag(i)
 
       elsif wysywyg_list_ending_tag?(i)
@@ -199,11 +197,7 @@ module QaePdfForms::CustomQuestions::Textarea
     @ns_history << @counter
     @string = []
 
-    @styles << if wysywyg_get_style_values(i).present?
-      wysywyg_get_style_values(i)
-    else
-      "margin-left: 20px"
-    end
+    @styles << wysywyg_get_style_values(i).presence || "margin-left: 20px"
   end
 
   def wysywyg_handle_ol_tag(i)
@@ -215,11 +209,7 @@ module QaePdfForms::CustomQuestions::Textarea
     @string = []
     @keys_history << "<ol>"
 
-    @styles << if wysywyg_get_style_values(i).present?
-      wysywyg_get_style_values(i)
-    else
-      "margin-left: 20px"
-    end
+    @styles << wysywyg_get_style_values(i).presence || "margin-left: 20px"
   end
 
   def marker_of_list(string, key, n)
@@ -241,7 +231,7 @@ module QaePdfForms::CustomQuestions::Textarea
   def print_pdf(line, lines_style)
     form_pdf.indent 7.mm do
       if line.present?
-        form_pdf.text "#{line}", lines_style if lines_style.present?
+        form_pdf.text line.to_s, lines_style if lines_style.present?
         form_pdf.move_down 2.mm
       end
     end
@@ -254,7 +244,7 @@ module QaePdfForms::CustomQuestions::Textarea
     style_options = Array.wrap(style_options)
 
     styles = { inline_format: true,
-                       color: FormPdf::DEFAULT_ANSWER_COLOR }
+                       color: FormPdf::DEFAULT_ANSWER_COLOR, }
     if style_options.present?
       margin_list = style_options.select do |el|
         el.include?("margin-left")
@@ -294,19 +284,19 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def simple_text(tag)
-    if tag.xpath('text()').present?
-      tag.xpath('text()').text
+    if tag.xpath("text()").present?
+      tag.xpath("text()").text
     end
   end
 
-  def wysywyg_get_item_content(child, content=[])
+  def wysywyg_get_item_content(child, content = [])
     if child.children.present?
       child.children.each do |baby|
         t_name = wysywyg_get_tag_name(baby)
 
         content << case t_name
         when "ul", "ol", "li"
-          {"<" + t_name + ">" => {style: wysywyg_get_style(baby)}}
+          { "<" + t_name + ">" => { style: wysywyg_get_style(baby) } }
         when "a"
           "<u><link href=#{links_href(baby)}>"
         when "text", "p"
@@ -334,13 +324,13 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def sanitize_content(content)
     content = Nokogiri::HTML(content)
-    content.xpath('//@style')
+    content.xpath("//@style")
            .remove
 
     content.children
            .css("body")
            .to_html
-           .gsub('<body>', '')
-           .gsub('</body>', '')
+           .gsub("<body>", "")
+           .gsub("</body>", "")
   end
 end

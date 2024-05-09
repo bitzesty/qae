@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
 
   enum section: {
     admin: 0, # only Admin can edit/see
-    critical: 1 # Admin & Assessors can edit/see
+    critical: 1, # Admin & Assessors can edit/see
   }
 
   def author?(subject)

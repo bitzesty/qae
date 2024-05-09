@@ -10,29 +10,29 @@ class AwardYears::V2019::QaeForms
     def development
       @development ||= QaeFormBuilder.build "Sustainable Development Award Application" do
         step "Company Information",
-             "Company Information",
-             &AwardYears::V2019::QaeForms.development_step1
+          "Company Information",
+          &AwardYears::V2019::QaeForms.development_step1
 
         step "Your Sustainable Development",
-             "Your Sustainable Development",
-             &AwardYears::V2019::QaeForms.development_step2
+          "Your Sustainable Development",
+          &AwardYears::V2019::QaeForms.development_step2
 
         step "Commercial Performance",
-             "Commercial Performance",
-             &AwardYears::V2019::QaeForms.development_step3
+          "Commercial Performance",
+          &AwardYears::V2019::QaeForms.development_step3
 
         step "Declaration of Corporate Responsibility",
-             "Declaration of Corporate Responsibility",
-             &AwardYears::V2019::QaeForms.development_step4
+          "Declaration of Corporate Responsibility",
+          &AwardYears::V2019::QaeForms.development_step4
 
         step "Add Website Address/Documents",
-             "Add Website Address/Documents",
-             { id: :add_website_address_documents_step },
-             &AwardYears::V2019::QaeForms.development_step5
+          "Add Website Address/Documents",
+          { id: :add_website_address_documents_step },
+          &AwardYears::V2019::QaeForms.development_step5
 
         step "Authorise & Submit",
-             "Authorise & Submit",
-             &AwardYears::V2019::QaeForms.development_step6
+          "Authorise & Submit",
+          &AwardYears::V2019::QaeForms.development_step6
       end
     end
   end

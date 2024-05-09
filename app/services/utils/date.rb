@@ -7,8 +7,8 @@ module Utils
       return false unless range.is_a?(Range)
 
       date = case value
-        when ::Date, ::DateTime then value.to_date
-        when ::String then ::Date.parse(value)
+      when ::Date, ::DateTime then value.to_date
+      when ::String then ::Date.parse(value)
       end
       min, max = range.minmax
 

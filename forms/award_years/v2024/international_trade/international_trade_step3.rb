@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2024::QaeForms
   class << self
     def trade_step3
@@ -69,7 +68,7 @@ class AwardYears::V2024::QaeForms
           )
           check_options [
             ["products", "Products"],
-            ["services", "Services"]
+            ["services", "Services"],
           ]
           application_type_question true
         end
@@ -184,7 +183,7 @@ class AwardYears::V2024::QaeForms
           )
           check_options [
             ["franchise", "As a franchise"],
-            ["other", "Other business models"]
+            ["other", "Other business models"],
           ]
         end
 

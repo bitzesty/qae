@@ -13,10 +13,10 @@ class FormLink
   validates :description, length: {
     maximum: 111,
     tokenizer: -> (str) { str.split },
-    message: "is too long (maximum is 100 words)"
+    message: "is too long (maximum is 100 words)",
   }
 
-  def initialize(attrs={})
+  def initialize(attrs = {})
     attrs.each do |key, value|
       instance_variable_set("@#{key}", value.to_s.strip)
     end

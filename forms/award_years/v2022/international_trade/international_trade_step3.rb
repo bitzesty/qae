@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2022::QaeForms
   class << self
     def trade_step3
@@ -48,7 +47,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Estimated figures"],
             [:normal, %(
               If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            )]
+            )],
           ]
         end
 
@@ -68,24 +67,24 @@ class AwardYears::V2022::QaeForms
           option "3 to 5", "Outstanding Short Term Growth: a steep year on year growth over three years"
           option "6 plus", "Outstanding Continued Growth: a substantial year on year growth over six years"
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "3 to 5",
-                                            parent_question_answer_key: "3_years_application",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "3 to 5",
+            parent_question_answer_key: "3_years_application",
+            placeholder_text: %(
               As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
             )
 
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "",
-                                            parent_question_answer_key: "application_disabled",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "",
+            parent_question_answer_key: "application_disabled",
+            placeholder_text: %(
               As you currently hold a Queen's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question
@@ -194,7 +193,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "Figures - format"],
             [:normal, %(
               You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
-            )]
+            )],
           ]
         end
 

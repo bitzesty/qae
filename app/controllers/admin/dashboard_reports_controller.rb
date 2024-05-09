@@ -1,5 +1,4 @@
 class Admin::DashboardReportsController < Admin::BaseController
-
   # all methods accept the following params:
   # params[:kind]
   # - by_month

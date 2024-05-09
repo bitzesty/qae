@@ -18,7 +18,7 @@ class Assessor::AssessorAssignmentCollectionsController < Assessor::BaseControll
   def create_params
     params.require(:assessor_assignment_collection)
       .permit :form_answer_ids,
-              :primary_assessor_id,
-              :secondary_assessor_id
+        :primary_assessor_id,
+        :secondary_assessor_id
   end
 end

@@ -18,5 +18,4 @@ class QaeFormBuilder
   class UploadQuestion < Question
     attr_accessor :max_attachments, :links, :description
   end
-
 end

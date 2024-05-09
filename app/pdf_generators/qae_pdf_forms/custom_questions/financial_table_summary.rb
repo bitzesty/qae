@@ -97,7 +97,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows << ["D4.4 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
     rows << ["D4.5 Net assets (£)"] + fs_get_all_financial_values(:total_net_assets)
 
-
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
 
@@ -245,7 +244,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows << ["D4.4 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
     rows << ["D4.5 Net assets (£)"] + fs_get_all_financial_values(:total_net_assets)
 
-
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
 
@@ -301,7 +299,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   # INNOVATION FINANCIAL SUMMARY P2 #
   ###################################
 
-
   def render_innovation_financial_summary_part_2
     # main table
     form_pdf.render_text "The data below is pulled from previous questions and automatically calculated. It is there to help you ensure you entered the correct figures and see your growth."
@@ -321,7 +318,6 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows << ["D6.4 Of which royalties or licences (£)"] + fs_get_all_financial_values(:sales_royalties)
     rows << ["D6.6 Average unit selling price/contract value (£)"] + fs_get_all_financial_values(:avg_unit_price)
     rows << ["D6.8 Direct cost of single unit/contract (£)"] + fs_get_all_financial_values(:avg_unit_cost_self)
-
 
     form_pdf.table(rows, fs_table_default_ops)
   end
@@ -371,14 +367,12 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
 
   def fs_financial_table_headers_filled_in
     @financial_table_headers_filled_in ||=
-      begin
-        if financial_year_changed_dates?
+      if financial_year_changed_dates?
           financial_table_changed_dates_headers
-        elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
+      elsif financial_date_day.to_i > 0 && financial_date_month.to_i > 0
           financial_table_pointer_headers
-        else
+      else
           []
-        end
       end
   end
 
@@ -388,8 +382,8 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
       width: 460,
       cell_style: {
         size: 10,
-        padding: [3, 3, 3, 3]
-      }
+        padding: [3, 3, 3, 3],
+      },
     }
   end
 
@@ -412,11 +406,11 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   end
 
   def fs_overall_table_column_widths
-    { 0 => 230, 1 => 230}
+    { 0 => 230, 1 => 230 }
   end
 
   def fs_enumerize_years(years)
-    years.map.with_index { |y, i| "#{y}\n\r(Year #{i+1})" }
+    years.map.with_index { |y, i| "#{y}\n\r(Year #{i + 1})" }
   end
 
   def fs_calculate_growth(values)

@@ -8,7 +8,7 @@ describe "Admin fulfills the company details" do
   before do
     login_admin(admin)
     form_answer.update_column(:submitted_at, Time.current)
-    Settings.current_award_year_switch_date.update(trigger_at: Time.current - 2.day)
+    Settings.current_award_year_switch_date.update(trigger_at: Time.current - 2.days)
     Settings.current_submission_deadline.update(trigger_at: Time.current - 1.day)
     visit admin_form_answer_path(form_answer)
   end

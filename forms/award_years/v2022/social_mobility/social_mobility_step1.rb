@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2022::QaeForms
   class << self
     def mobility_step1
@@ -122,7 +121,7 @@ class AwardYears::V2022::QaeForms
             [:normal, %(
                 Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
               )
-            ]
+            ],
           ]
         end
 
@@ -285,7 +284,7 @@ class AwardYears::V2022::QaeForms
         end
 
         options :part_of_joint_entry,
-                "Is this application part of a joint entry with any contributing organisation(s)?" do
+          "Is this application part of a joint entry with any contributing organisation(s)?" do
           ref "A 8"
           required
           context %(
@@ -329,7 +328,7 @@ class AwardYears::V2022::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           sub_ref "A 9.2"
           classes "sub-question"
           required
@@ -364,7 +363,7 @@ class AwardYears::V2022::QaeForms
           ref "A 10"
           pdf_context_with_header_blocks [
             [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
-            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"],
           ]
           county_context %(
             <p class='govuk-hint'>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
@@ -380,7 +379,7 @@ class AwardYears::V2022::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
         end
 
@@ -406,7 +405,7 @@ class AwardYears::V2022::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
         end
 
@@ -497,7 +496,7 @@ class AwardYears::V2022::QaeForms
             ["another_event", "A third party exhibition or event"],
             ["publication", "A newspaper/publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

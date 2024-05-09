@@ -33,7 +33,7 @@ class QaeFormBuilder
   end
 
   class UserInfoQuestionBuilder < QuestionBuilder
-    def sub_fields fields=[]
+    def sub_fields fields = []
       @q.sub_fields = fields
     end
   end

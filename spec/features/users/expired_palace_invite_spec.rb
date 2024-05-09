@@ -8,10 +8,10 @@ describe "expired reception attendee information deadline" do
 
   let!(:form_answer) {
     create :form_answer,
-           :awarded,
-           :trade,
-           user: user,
-           award_year_id: AwardYear.current.id
+      :awarded,
+      :trade,
+      user: user,
+      award_year_id: AwardYear.current.id
   }
 
   let!(:invite) { form_answer.create_palace_invite }

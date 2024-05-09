@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2023::QaeForms
   class << self
     def innovation_step2
@@ -42,7 +41,7 @@ class AwardYears::V2023::QaeForms
             [:bold, "Supporting information"],
             [:normal, %(
               If you feel there is additional information that might support your application, you can attach documents in Section E. You should make sure that you reference any supporting documents, videos or websites in your answers below. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
-            )]
+            )],
           ]
         end
 
@@ -79,7 +78,7 @@ class AwardYears::V2023::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model or process"]
+            ["business_model", "A business model or process"],
           ]
           application_type_question true
         end
@@ -309,7 +308,6 @@ class AwardYears::V2023::QaeForms
           rows 3
           words_max 250
         end
-
 
         header :innovation_timeline_header, "Innovation development" do
           ref "B 2"

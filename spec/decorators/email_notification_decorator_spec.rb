@@ -6,8 +6,8 @@ describe EmailNotificationDecorator do
 
   describe "#header" do
     EmailNotification::NOTIFICATION_KINDS.each do |kind|
-      context "#{kind}" do
-        it 'returns the expected value on translation' do
+      context kind.to_s do
+        it "returns the expected value on translation" do
           email_notification.kind = kind
           expect(subject.header).to eq(I18n.t("email_notification_headers.#{kind}"))
         end

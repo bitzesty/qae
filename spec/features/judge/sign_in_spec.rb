@@ -7,7 +7,6 @@ describe "Judge is able do sign in", %(
          As a Judge
          I want to be able to sign in to the system
 ) do
-
   let(:judge) { create(:judge, password: "#ur9EkLm@1W+OaDvg") }
 
   it "allows judge to sign in" do

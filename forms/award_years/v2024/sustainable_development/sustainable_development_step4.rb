@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2024::QaeForms
   class << self
     def development_step4
@@ -58,7 +57,7 @@ class AwardYears::V2024::QaeForms
           yes_no
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
             </p>
           )
           default_option "no"
@@ -69,7 +68,7 @@ class AwardYears::V2024::QaeForms
           sub_ref "D 2.2"
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
             </p>
           )
           required

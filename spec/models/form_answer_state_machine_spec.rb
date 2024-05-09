@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe FormAnswerStateMachine do
-  let!(:award_year) {AwardYear.current}
-  let(:form_answer) {create(:form_answer, :innovation, award_year: award_year)}
+  let!(:award_year) { AwardYear.current }
+  let(:form_answer) { create(:form_answer, :innovation, award_year: award_year) }
 
   describe "#submit" do
     context "before the submission deadline" do
@@ -21,10 +21,10 @@ describe FormAnswerStateMachine do
 
   describe "#trigger_deadlines" do
     context "deadline expired" do
-      let!(:settings) {create(:settings, :expired_submission_deadlines)}
+      let!(:settings) { create(:settings, :expired_submission_deadlines) }
 
       describe "assessment_in_progress -> withdrawn" do
-        let(:lead) {create(:assessor, :lead_for_all)}
+        let(:lead) { create(:assessor, :lead_for_all) }
         it "sends notification for the Lead Assessor" do
           expect(Assessors::GeneralMailer).to receive(
                                                   :led_application_withdrawn).and_return(double(deliver_later!: true))
@@ -35,7 +35,7 @@ describe FormAnswerStateMachine do
       end
 
       context "applications submitted" do
-        before {form_answer.update(state: "submitted")}
+        before { form_answer.update(state: "submitted") }
         it "automatically changes state to `assessment_in_progress`" do
           expect {
             FormAnswerStateMachine.trigger_deadlines
@@ -114,19 +114,19 @@ describe FormAnswerStateMachine do
 
   context "#permitted_states_with_deadline_constraint" do
     it "should return correct state " do
-      allow(Settings).to receive(:after_current_submission_deadline?) {true}
+      allow(Settings).to receive(:after_current_submission_deadline?) { true }
       form_answer.state = :not_eligible
       expect(form_answer.state_machine.send(:permitted_states_with_deadline_constraint)).to eq []
-      form_answer.state =:not_submitted
+      form_answer.state = :not_submitted
       expect(form_answer.state_machine.send(:permitted_states_with_deadline_constraint)).to eq []
     end
   end
 
   describe "#perform_transition" do
     context "after the deadline" do
-      let!(:settings) {create(:settings, :expired_submission_deadlines)}
+      let!(:settings) { create(:settings, :expired_submission_deadlines) }
       context "as Assessor" do
-        let(:lead) {create(:assessor, :lead_for_all)}
+        let(:lead) { create(:assessor, :lead_for_all) }
         it "can change state only to allowed" do
           form_answer.state_machine.perform_transition(:submitted, lead)
           expect(form_answer.reload.state).to_not eq("submitted")
@@ -144,11 +144,11 @@ describe FormAnswerStateMachine do
       # as for 2017 this spec is not actual
       #
 
-      let(:year_2016) {AwardYear.create!(year: 2016)}
-      let(:form_answer) {create(:form_answer, :development, :submitted, award_year: year_2016)}
-      let(:assessment) {form_answer.assessor_assignments.primary}
-      let(:assessor) {create(:assessor, :regular_for_all)}
-      let!(:settings) {create(:settings, :expired_submission_deadlines)}
+      let(:year_2016) { AwardYear.create!(year: 2016) }
+      let(:form_answer) { create(:form_answer, :development, :submitted, award_year: year_2016) }
+      let(:assessment) { form_answer.assessor_assignments.primary }
+      let(:assessor) { create(:assessor, :regular_for_all) }
+      let!(:settings) { create(:settings, :expired_submission_deadlines) }
 
       before do
         assessment.assessor = assessor

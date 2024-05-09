@@ -19,7 +19,7 @@ class AdvancedEmailValidator < ActiveModel::Validator
 
   def validate_address_domain(record, parsed)
     maybe_set_error(record, "is not a valid address because it ends with a dot or starts with a dot") do
-      parsed.domain.present? && (parsed.domain.end_with?('.') || parsed.domain.start_with?('.'))
+      parsed.domain.present? && (parsed.domain.end_with?(".") || parsed.domain.start_with?("."))
     end
   end
 

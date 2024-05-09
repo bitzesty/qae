@@ -8,7 +8,7 @@ class QaeFormBuilder
         date << question.input_value(suffix: sub_field.keys[0])
       end
 
-      date << Date.today.year.to_s
+      date << Date.current.year.to_s
       day = question.input_value(suffix: "day")
       month = question.input_value(suffix: "month")
 
@@ -30,8 +30,8 @@ class QaeFormBuilder
   class InnovationFinancialYearDateQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {day: "Day"},
-        {month: "Month"},
+        { day: "Day" },
+        { month: "Month" },
       ]
     end
   end
@@ -45,5 +45,4 @@ class QaeFormBuilder
   class InnovationFinancialYearDateQuestion < Question
     attr_accessor :financial_date_pointer
   end
-
 end

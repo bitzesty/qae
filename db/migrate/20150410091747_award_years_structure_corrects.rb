@@ -33,7 +33,7 @@ class AwardYearsStructureCorrects < ActiveRecord::Migration[4.2]
     # # Populate award_year_id value for existing FormAnswers
     FormAnswer.all.each do |form_answer|
       award_year_attr = form_answer.attributes["award_year"]
-      award_year = AwardYear.find_by_year(award_year_attr) || AwardYear.first
+      award_year = AwardYear.find_by(year: award_year_attr) || AwardYear.first
       form_answer.update_column(:award_year_id, award_year.id)
     end
 

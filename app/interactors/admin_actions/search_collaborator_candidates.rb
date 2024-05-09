@@ -1,14 +1,13 @@
 module AdminActions
   class SearchCollaboratorCandidates
-
     attr_accessor :form_answer,
-                  :account,
-                  :existing_collaborators,
-                  :candidates,
-                  :query,
-                  :error
+      :account,
+      :existing_collaborators,
+      :candidates,
+      :query,
+      :error
 
-    def initialize(form_answer, query=nil)
+    def initialize(form_answer, query = nil)
       @query = query[:query]
       @form_answer = form_answer
       @account = form_answer.account

@@ -1,9 +1,8 @@
 class QaeFormBuilder
-
   class QaeForm
     attr_reader :title, :opts, :steps, :questions_by_key
 
-    def initialize title, opts={}
+    def initialize title, opts = {}
       @title = title
       @opts = opts
       @steps = []
