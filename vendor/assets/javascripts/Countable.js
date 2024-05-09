@@ -128,7 +128,12 @@
      * @see <http://goo.gl/gFQQh>
      */
 
-    if (options.stripTags) original = original.replace(/<\/?[a-z][^>]*>/gi, '')
+    if (options.stripTags) {
+      original = original.replace(/\<head[^>]*\>([^]*)\<\/head/gi, '')
+      original = original.replace(/\<script[^>]*\>([^]*)\<\/script/gi, '')
+      original = original.replace(/\<style[^>]*\>([^]*)\<\/style/gi, '')
+      original = original.replace(/<\/?[a-z][^>]*>/gi, '')
+    }
 
     if (options.ignore) {
         each.call(options.ignore, function (i) {
