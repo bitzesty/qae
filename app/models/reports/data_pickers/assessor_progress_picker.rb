@@ -32,7 +32,7 @@ class Reports::DataPickers::AssessorProgressPicker
   end
 
   def sql_query
-    <<-eos
+    query = <<-SQL.squish
       SELECT DISTINCT(assessors.id) as id,
              concat_ws(' ', assessors.first_name::text, assessors.last_name::text) AS name,
              assessors.email AS email,
@@ -110,6 +110,8 @@ class Reports::DataPickers::AssessorProgressPicker
       WHERE assessors.confirmed_at IS NOT NULL
             AND assessors.#{award_category}_role IN ('lead', 'regular')
       ORDER BY assessors.id ASC
-    eos
+    SQL
+
+    ActiveRecord::Base.sanitize_sql(query)
   end
 end
