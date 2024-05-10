@@ -74,7 +74,7 @@ class window.FinancialSummaryTableBase
         if i > 0
           previousValue = turnoverValues[i - 1]
           growth = ((value - previousValue) / previousValue) * 100
-          turnoverGrowthRow.find("td:eq(#{i + 1})").text(growth.toFixed(0))
+          turnoverGrowthRow.find("td:eq(#{i + 1})").text(parseInt(growth).toLocaleString())
         else
           turnoverGrowthRow.find("td:eq(#{i + 1})").text("-")
 
@@ -97,5 +97,5 @@ class window.FinancialSummaryTableBase
     firstYear = turnoverValues[0]
     lastYear = turnoverValues[turnoverValues.length - 1]
     diff = lastYear - firstYear
-    totalTurnoverGrowth.text(diff)
-    totalTurnoverGrowthPercentage.text((diff / firstYear * 100).toFixed(0))
+    totalTurnoverGrowth.text(diff.toLocaleString())
+    totalTurnoverGrowthPercentage.text(parseInt(diff / firstYear * 100).toLocaleString())
