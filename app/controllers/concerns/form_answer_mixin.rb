@@ -78,7 +78,7 @@ module FormAnswerMixin
   end
 
   def allowed_params
-    ops = params.require(:form_answer).permit!
+    ops = params.require(:form_answer).permit(*PermittedParams::FORM_ANSWER)
     ops = ops.to_h
 
     ops.reject! do |k, v|

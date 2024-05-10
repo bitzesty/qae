@@ -322,6 +322,13 @@ module PermittedParams
     updated_by_id
     updated_by_type
   ]
+
+  FORM_ANSWER = [
+    :company_or_nominee_name,
+    :nominee_title,
+    :sic_code,
+    data_attributes: {},
+  ]
 end
 
 
