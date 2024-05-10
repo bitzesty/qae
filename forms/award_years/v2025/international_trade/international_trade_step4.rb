@@ -28,7 +28,7 @@ class AwardYears::V2025::QaeForms
               As you currently hold a King's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 
-          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context")
+          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context", next_year: AwardYear.current.year, two_years: AwardYear.current.year + 1)
 
           financial_date_selector({
             "3 to 5" => "3",
