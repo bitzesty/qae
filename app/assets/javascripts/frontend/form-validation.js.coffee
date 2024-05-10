@@ -1016,7 +1016,7 @@ $(document).on 'change', '[data-question-haltable] .show-question input.govuk-in
   if !(values.includes(null))
     pairs = values.reduce (result, value, index, array) ->
       [first, second] = array.slice(index, index + 2)
-      if first && second
+      if (first != undefined && second != undefined)
         result.push([first, second])
 
       result
