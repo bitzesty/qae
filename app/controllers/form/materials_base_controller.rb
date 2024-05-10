@@ -12,11 +12,7 @@ class Form::MaterialsBaseController < Form::BaseController
   end
 
   expose(:existing_materials) do
-    if innovation_materials_doc.present?
-      innovation_materials_doc
-    else
-      {}
-    end
+    innovation_materials_doc.presence || {}
   end
 
   expose(:next_document_position) do
@@ -27,11 +23,11 @@ class Form::MaterialsBaseController < Form::BaseController
 
   private
 
-    def check_materials_limit
-      if existing_materials.count >= MAX_ATTACHMENTS
-        redirect_to form_form_answer_form_attachments_url(@form_answer),
-                    alert: "You can add up to #{MAX_ATTACHMENTS} files or website addresses as maximum!"
-        return
-      end
+  def check_materials_limit
+    if existing_materials.count >= MAX_ATTACHMENTS
+      redirect_to form_form_answer_form_attachments_url(@form_answer),
+        alert: "You can add up to #{MAX_ATTACHMENTS} files or website addresses as maximum!"
+      return
     end
+  end
 end

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2019::QaeForms
   class << self
     def development_step2
@@ -23,7 +22,7 @@ class AwardYears::V2019::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["management_approach", "A management approach"]
+            ["management_approach", "A management approach"],
           ]
           application_type_question true
         end

@@ -4,7 +4,7 @@ Healthcheck.configure do |config|
   config.success = 200
   config.error = 503
   config.verbose = false
-  config.route = '/health_check'
+  config.route = "/health_check"
   config.method = :get
 
   # -- Custom Response --
@@ -14,9 +14,9 @@ Healthcheck.configure do |config|
   # }
 
   # -- Checks --
-  config.add_check :database,     -> { ActiveRecord::Base.connection.execute('select 1') }
-  config.add_check :migrations,   -> { ActiveRecord::Migration.check_pending! }
-  config.add_check :cache,        -> { Rails.cache.read('some_key') }
-  config.add_check :redis,        -> { Redis.new.ping }
+  config.add_check :database, -> { ActiveRecord::Base.connection.execute("select 1") }
+  config.add_check :migrations, -> { ActiveRecord::Migration.check_pending! }
+  config.add_check :cache, -> { Rails.cache.read("some_key") }
+  config.add_check :redis, -> { Redis.new(url: PaasResolver.redis_uri).ping }
   # config.add_check :environments, -> { Dotenv.require_keys('ENV_NAME', 'ANOTHER_ENV') }
 end

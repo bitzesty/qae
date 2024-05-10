@@ -2,7 +2,7 @@ class QaeFormBuilder
   class ByTradeGoodsAndServicesLabelQuestionValidator < QuestionValidator
     HUMANIZED_ATTRS = {
       "desc_short" => "Description",
-      "total_overseas_trade" => "Trade percentage"
+      "total_overseas_trade" => "Trade percentage",
     }
 
     def errors
@@ -46,7 +46,7 @@ class QaeFormBuilder
 
   class ByTradeGoodsAndServicesLabelQuestionDecorator < QuestionDecorator
     def trade_goods_and_services
-      @trade_goods_and_services ||= (answers[delegate_obj.key.to_s] || [])
+      @trade_goods_and_services ||= answers[delegate_obj.key.to_s] || []
     end
 
     def required_sub_fields_list
@@ -55,7 +55,7 @@ class QaeFormBuilder
   end
 
   class ByTradeGoodsAndServicesLabelQuestionBuilder < QuestionBuilder
-    def rows num=3
+    def rows num = 3
       @q.rows = num
     end
 

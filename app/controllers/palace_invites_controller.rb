@@ -5,13 +5,13 @@ class PalaceInvitesController < ApplicationController
 
   def update
     if palace_invite_attributes.present? &&
-      @invite_form.update(palace_invite_attributes.to_h.merge({submitted: params[:submit].present?}))
+        @invite_form.update(palace_invite_attributes.to_h.merge({ submitted: params[:submit].present? }))
       log_event
       if @invite.submitted?
-        flash.notice = "Buckingham Palace Attendee details are successfully submitted!"
+        flash.notice = "Windsor Castle Attendee details have been successfully submitted."
         redirect_to edit_palace_invite_url(id: @invite.token)
       else
-        flash.notice = "Buckingham Palace Attendee details have been successfully updated"
+        flash.notice = "Windsor Castle Attendee details have been successfully updated."
         redirect_to edit_palace_invite_url(id: @invite.token)
       end
     else
@@ -22,7 +22,7 @@ class PalaceInvitesController < ApplicationController
   private
 
   def load_invite
-    @invite = PalaceInvite.find_by_token(params[:id]) or raise ActionController::RoutingError.new("Not Found")
+    @invite = PalaceInvite.find_by(token: params[:id]) or raise ActionController::RoutingError.new("Not Found")
     @invite_form = PalaceInviteForm.new(@invite)
   end
 
@@ -41,12 +41,14 @@ class PalaceInvitesController < ApplicationController
           :address_4,
           :postcode,
           :phone_number,
+          :disabled_access,
+          :dietary_requirements,
           :additional_info,
           :has_royal_family_connections,
           :royal_family_connection_details,
           :id,
-          :_remove
-        ]
+          :_remove,
+        ],
       )
     end
   end

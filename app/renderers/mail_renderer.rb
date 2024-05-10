@@ -7,7 +7,7 @@ class MailRenderer
     include Rails.application.routes.url_helpers
 
     def default_url_options
-      {host: "www.kings-awards-enterprise.service.gov.uk"}
+      { host: "www.kings-awards-enterprise.service.gov.uk" }
     end
 
     def compiled_method_container
@@ -177,37 +177,37 @@ class MailRenderer
 
     assigns[:end_of_embargo] = deadline_str(
       "buckingham_palace_attendees_details",
-      "%-d %B %Y"
+      "%-d %B %Y",
     )
 
     end_of_embargo_time = deadline_time("buckingham_palace_attendees_details")
     assigns[:end_of_embargo_with_time] = deadline_str(
       "buckingham_palace_attendees_details",
-      "#{end_of_embargo_time} on %-d %B %Y"
+      "#{end_of_embargo_time} on %-d %B %Y",
     )
 
     assigns[:end_of_embargo_without_year] = deadline_str(
       "buckingham_palace_attendees_details",
-      "%-d %B"
+      "%-d %B",
     )
 
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",
-      "%A, %d %B %Y"
+      "%A, %d %B %Y",
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%A, %d %B %Y"
+      "%A, %d %B %Y",
     )
     book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
     assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "#{book_notes_deadline_time} on %A %-d %B"
+      "#{book_notes_deadline_time} on %A %-d %B",
     )
 
     assigns[:reception_date] = deadline_str(
       "buckingham_palace_attendees_invite",
-      "%-d %B %Y"
+      "%-d %B %Y",
     )
 
     render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
@@ -227,32 +227,32 @@ class MailRenderer
 
     assigns[:end_of_embargo] = deadline_str(
       "buckingham_palace_attendees_details",
-      "%-d %B %Y"
+      "%-d %B %Y",
     )
     end_of_embargo_time = deadline_time("buckingham_palace_attendees_details")
     assigns[:end_of_embargo_with_time] = deadline_str(
       "buckingham_palace_attendees_details",
-      "#{end_of_embargo_time} on %-d %B %Y"
+      "#{end_of_embargo_time} on %-d %B %Y",
     )
 
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%A, %d %B %Y"
+      "%A, %d %B %Y",
     )
     book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
     assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "#{book_notes_deadline_time} on %A %-d %B"
+      "#{book_notes_deadline_time} on %A %-d %B",
     )
 
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",
-      "%A, %d %B %Y"
+      "%A, %d %B %Y",
     )
 
     assigns[:reception_date] = deadline_str(
       "buckingham_palace_attendees_invite",
-      "%-d %B %Y"
+      "%-d %B %Y",
     )
 
     render(assigns, "users/winners_head_of_organisation_mailer/preview/notify")
@@ -267,13 +267,18 @@ class MailRenderer
 
     assigns[:reception_date] = deadline_str(
       "buckingham_palace_attendees_invite",
-      "%A, %-d %B %Y"
+      "%A, %-d %B %Y",
+    )
+    reception_date_time = deadline_time("buckingham_palace_attendees_invite")
+    assigns[:reception_date_with_day_and_time] = deadline_str(
+      "buckingham_palace_attendees_invite",
+      "%A, %-d %B %Y, #{reception_date_time}",
     )
 
     reception_deadline_time = deadline_time("buckingham_palace_reception_attendee_information_due_by")
     assigns[:reception_deadline_with_day_and_time] = deadline_str(
       "buckingham_palace_reception_attendee_information_due_by",
-      "#{reception_deadline_time} on %A, %-d %B %Y"
+      "#{reception_deadline_time} on %A, %-d %B %Y",
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/preview/invite")
@@ -297,7 +302,7 @@ class MailRenderer
         urn: "QA0128/16I",
         award_type: "innovation",
         award_year: AwardYear.current,
-        award_type_full_name: "Innovation"
+        award_type_full_name: "Innovation",
       )
       .decorate
   end
@@ -314,7 +319,7 @@ class MailRenderer
 
   def deadline(kind)
     Settings.current.deadlines.find_by(
-      kind: kind
+      kind: kind,
     )
   end
 

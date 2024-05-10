@@ -1,8 +1,22 @@
 class Reports::AdminReport
   attr_reader :id, :year, :params
 
+  VALID_REPORT_IDENTIFIERS = [
+    "registered-users",
+    "compiled-press-book",
+    "press-book-list",
+    "cases-status",
+    "case-index",
+    "feedbacks",
+    "case_summaries",
+    "entries-report",
+    "discrepancies_between_primary_and_secondary_appraisals",
+    "reception-buckingham-palace",
+    /assessors-progress/,
+  ]
+
   def initialize(id, year, params = {})
-    @id = id
+    @id = valid_identifier(id)
     @year = year
     @params = params
   end
@@ -16,7 +30,7 @@ class Reports::AdminReport
     when "cases-status"
       Reports::CasesStatusReport.new(year).stream
     when "case-index"
-      Reports::CaseIndexReport.new(year, category: category, years_mode: params[:years_mode]).stream
+      Reports::CaseIndexReport.new(year, category: category, years_mode: years_mode).stream
     when "entries-report"
       Reports::AllEntries.new(year).stream
     when "discrepancies_between_primary_and_secondary_appraisals"
@@ -24,8 +38,8 @@ class Reports::AdminReport
     when "reception-buckingham-palace"
       Reports::ReceptionBuckinghamPalaceReport.new(year).stream
     when /assessors-progress/
-      if FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
-        Reports::AssessorsProgressReport.new(year, params[:category]).build
+      if category.present?
+        Reports::AssessorsProgressReport.new(year, category).build
       else
         raise ArgumentError, "Invalid category"
       end
@@ -35,16 +49,16 @@ class Reports::AdminReport
   def csv_filename
     sub_type = ""
     if category == "trade" &&
-       id == "case-index" &&
-       year.year != 2016
+        id == "case-index" &&
+        year.year != 2016
        # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
-      sub_type = "_#{params[:years_mode]}"
+      sub_type = "_#{years_mode}"
     end
 
     case id
     when "case-index"
       time = Time.zone.now.strftime("%e_%b_%Y_at_%-l:%M%P")
-      "#{::FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award#{sub_type}_#{id}_#{time}.csv"
+      "#{category}_award#{sub_type}_#{id}_#{time}.csv"
     end
   end
 
@@ -65,48 +79,61 @@ class Reports::AdminReport
 
     sub_type = ""
     if category == "trade" &&
-       id == "case_summaries" &&
-       year.year != 2016
+        id == "case_summaries" &&
+        year.year != 2016
        # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
-      sub_type = "_#{params[:years_mode]}"
+      sub_type = "_#{years_mode}"
     end
 
     attachment = year.send("#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
 
     if year.send("aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
-       attachment.present? &&
-       attachment.file.present?
+        attachment.present? &&
+        attachment.file.present?
       # Render Hard Copy if it's generated for this year
 
       OpenStruct.new(
         hard_copy: true,
         data: (Rails.env.development? ? attachment.file.read : attachment.file.url),
-        filename: attachment.original_filename
+        filename: attachment.original_filename,
       )
     else
       # Render dynamically
-      ops = {category: category, award_year: year}
-      ops[:years_mode] = params[:years_mode] if category == "trade"
+      ops = { category: category, award_year: year }
+      ops[:years_mode] = years_mode if category == "trade"
 
       data = pdf_klass.new("all", nil, ops)
 
       OpenStruct.new(
         data: data.render,
-        filename: pdf_filename(sub_type)
+        filename: pdf_filename(sub_type),
       )
     end
   end
 
   private
 
+  def valid_identifier(identifier)
+    case identifier
+    when *VALID_REPORT_IDENTIFIERS
+      identifier
+    else
+      raise ArgumentError, "Invalid category"
+    end
+  end
+
   def category
     params[:category] if ::FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
+  end
+
+  def years_mode
+    params[:years_mode] if ::AwardYear::CASE_SUMMARY_YEAR_MODES.include?(params[:years_mode])
   end
 
   def pdf_filename(sub_type)
     sub_type = "#{sub_type}_years" if sub_type.present?
 
     pdf_timestamp = Time.zone.now.strftime("%e_%b_%Y_at_%-l:%M%P")
-    "#{::FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award#{sub_type}_#{id}_#{pdf_timestamp}.pdf"
+    "#{category}_award#{sub_type}_#{id}_#{pdf_timestamp}.pdf"
   end
 end

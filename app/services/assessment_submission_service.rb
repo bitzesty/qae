@@ -58,7 +58,7 @@ class AssessmentSubmissionService
   def set_submitted_at_as_now!
     resource.update(
       submitted_at: DateTime.now,
-      locked_at: DateTime.now
+      locked_at: DateTime.now,
     )
   end
 
@@ -68,7 +68,7 @@ class AssessmentSubmissionService
       moderated_assessment = record(AssessorAssignment.positions[:moderated])
 
       document = primary_assessment.document.merge(
-        "verdict_rate" => moderated_assessment.document["verdict_rate"]
+        "verdict_rate" => moderated_assessment.document["verdict_rate"],
       )
 
       case_summary.document = document
@@ -109,7 +109,7 @@ class AssessmentSubmissionService
 
   def record(position)
     AssessorAssignment.where(
-      form_answer_id: form_answer.id, position: position
+      form_answer_id: form_answer.id, position: position,
     ).first_or_create
   end
 
@@ -127,12 +127,12 @@ class AssessmentSubmissionService
     end
 
     rate_type_keys.map do |rate_key|
-      primary_grade = primary_assessment.document[rate_key.to_s] || ''
-      secondary_grade = secondary_assessment.document[rate_key.to_s] || ''
+      primary_grade = primary_assessment.document[rate_key.to_s] || ""
+      secondary_grade = secondary_assessment.document[rate_key.to_s] || ""
 
       if primary_grade != secondary_grade
         q_main_key = rate_key.to_s
-                            .gsub('_rate', '')
+                            .gsub("_rate", "")
                             .to_sym
 
         appraisal_title = appraisal_form_settings[q_main_key][:label][0..-2]
@@ -145,7 +145,7 @@ class AssessmentSubmissionService
           rate_key,
           appraisal_title,
           primary_grade_label,
-          secondary_grade_label
+          secondary_grade_label,
         ]
       end
     end
@@ -161,18 +161,18 @@ class AssessmentSubmissionService
         primary_assessor_submitted_at: format_date(primary_assessment.submitted_at),
         secondary_assessor_name: secondary_assessor&.full_name,
         secondary_assessor_email: secondary_assessor&.email,
-        secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at)
+        secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at),
       }
 
       form_answer.update_column(
-        :discrepancies_between_primary_and_secondary_appraisals, res
+        :discrepancies_between_primary_and_secondary_appraisals, res,
       )
     end
   end
 
   def primary_and_secondary_assessments_submitted?
     primary_assessment.submitted? &&
-    secondary_assessment.submitted?
+      secondary_assessment.submitted?
   end
 
   def primary_assessment

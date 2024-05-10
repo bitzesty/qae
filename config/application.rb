@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 require "govuk/components"
 
 # Require the gems listed in Gemfile, including any gems
@@ -20,13 +20,13 @@ module Qae
     # config.middleware.use Rack::SslEnforcer, except: "/healthcheck", except_environments: ["development", "test"]
     config.autoloader = :zeitwerk
 
-    if ENV['CORS_HOST'].present?
+    if ENV["CORS_HOST"].present?
       config.middleware.insert_before 0, Rack::Cors do
         allow do
-          origins ENV['CORS_HOST'] || '*'
-          resource '*',
-                   headers: :any,
-                   methods: %i[get options]
+          origins ENV["CORS_HOST"] || "*"
+          resource "*",
+            headers: :any,
+            methods: %i[get options]
         end
       end
     end

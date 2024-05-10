@@ -1,9 +1,9 @@
 class DraftNote < ApplicationRecord
   validates :notable_type,
-            :notable_id,
-            :authorable_type,
-            :authorable_id,
-            presence: true
+    :notable_id,
+    :authorable_type,
+    :authorable_id,
+    presence: true
 
   belongs_to :notable, polymorphic: true, optional: true
   belongs_to :authorable, polymorphic: true, optional: true

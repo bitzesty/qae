@@ -21,21 +21,21 @@ class Deadline < ApplicationRecord
     "buckingham_palace_confirm_press_book_notes",
     "buckingham_palace_media_information",
     "buckingham_palace_reception_attendee_information_due_by",
-    "audit_certificates"
+    "audit_certificates",
   ]
 
   SUBMISSION_START_DEADLINES = [
     "innovation_submission_start",
     "trade_submission_start",
     "development_submission_start",
-    "mobility_submission_start"
+    "mobility_submission_start",
   ]
 
   enumerize :kind, in: AVAILABLE_DEADLINES, predicates: true
   validates :kind, presence: true
 
-  after_save :clear_cache
   after_destroy :clear_cache
+  after_save :clear_cache
 
   class << self
     def with_states_to_trigger(time = DateTime.now)

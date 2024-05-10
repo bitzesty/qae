@@ -21,7 +21,7 @@ module ReviewCommercialFiguresMixin
     params.require(:shortlisted_documents_review_form).permit(
       :changes_description,
       :form_answer_id,
-      :status
+      :status,
     )
   end
 end

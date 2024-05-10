@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2022::QaeForms
   class << self
     def innovation_step2
@@ -36,7 +35,7 @@ class AwardYears::V2022::QaeForms
             [:bold, "COVID-19 impact"],
             [:normal, %(
               We recognise that Covid-19 might have affected your growth plans and will take this into consideration during the assessment process.
-            )]
+            )],
           ]
         end
 
@@ -49,7 +48,7 @@ class AwardYears::V2022::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model"]
+            ["business_model", "A business model"],
           ]
           application_type_question true
         end
@@ -223,7 +222,6 @@ class AwardYears::V2022::QaeForms
           rows 5
           words_max 100
         end
-
 
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
           ref "B 5"

@@ -21,7 +21,7 @@ module ReviewAuditCertificatesMixin
     params.require(:review_audit_certificate).permit(
       :changes_description,
       :form_answer_id,
-      :status
+      :status,
     )
   end
 end

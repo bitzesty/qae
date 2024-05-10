@@ -6,7 +6,7 @@ class Admin::FormAnswersController < Admin::BaseController
     :show,
     :update,
     :update_financials,
-    :remove_audit_certificate
+    :remove_audit_certificate,
   ]
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
@@ -14,8 +14,8 @@ class Admin::FormAnswersController < Admin::BaseController
   expose(:financial_pointer) do
     FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
-      financial_summary_view: true
-    })
+      financial_summary_view: true,
+    },)
   end
 
   expose(:target_scope) do
@@ -72,18 +72,18 @@ class Admin::FormAnswersController < Admin::BaseController
     send_data(
       @csv_data.force_encoding(::Encoding::UTF_8),
       filename: "awarded_trade_applications.csv",
-      type: 'text/csv; charset=Unicode(UTF-8); header=present',
-      disposition: 'attachment'
+      type: "text/csv; charset=Unicode(UTF-8); header=present",
+      disposition: "attachment",
     )
   end
 
   private
 
   helper_method :resource,
-                :primary_assessment,
-                :secondary_assessment,
-                :moderated_assessment,
-                :case_summary_assessment
+    :primary_assessment,
+    :secondary_assessment,
+    :moderated_assessment,
+    :case_summary_assessment
 
   def resource
     @form_answer ||= load_resource

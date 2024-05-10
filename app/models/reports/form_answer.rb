@@ -4,11 +4,11 @@ class Reports::FormAnswer
   include FormAnswersBasePointer
 
   attr_reader :obj,
-              :answers,
-              :award_form,
-              :financial_data
+    :answers,
+    :award_form,
+    :financial_data
 
-  def initialize(form_answer, limited_access=false)
+  def initialize(form_answer, limited_access = false)
     @obj = form_answer
     @answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document)
     @award_form = form_answer.award_form.decorate(answers: answers)
@@ -50,13 +50,13 @@ class Reports::FormAnswer
       [
         @press_summary.title,
         @press_summary.name,
-        @press_summary.last_name
+        @press_summary.last_name,
       ]
     else
       [
         @obj.document["press_contact_details_title"],
         @obj.document["press_contact_details_first_name"],
-        @obj.document["press_contact_details_last_name"]
+        @obj.document["press_contact_details_last_name"],
       ]
     end.map(&:presence).compact.join(" ")
   end
@@ -68,11 +68,11 @@ class Reports::FormAnswer
   end
 
   def feedback_complete
-    obj.feedback && obj.feedback.submitted? && obj.feedback.locked? ? "Submitted" : "Not Submitted"
+    (obj.feedback && obj.feedback.submitted? && obj.feedback.locked?) ? "Submitted" : "Not Submitted"
   end
 
   def press_release_updated
-    obj.press_summary && obj.press_summary.submitted ? "Submitted" : "Not Submitted"
+    (obj.press_summary && obj.press_summary.submitted) ? "Submitted" : "Not Submitted"
   end
 
   def ac_received
@@ -186,7 +186,7 @@ class Reports::FormAnswer
     {
       "negative" => "R",
       "positive" => "G",
-      "average" => "A"
+      "average" => "A",
     }[var]
   end
 

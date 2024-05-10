@@ -4,12 +4,12 @@ class AwardYears::V2020::QaeForms
       @innovation_step2 ||= proc do
         header :innovation_b_section_header, "" do
           context %(
-            <h3>About this section</h3>  
+            <h3>About this section</h3>
             <p>
               This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
             </p>
             <p>
-              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.  
+              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             </p>
             <h3>Small organisations</h3>
             <p>
@@ -20,13 +20,13 @@ class AwardYears::V2020::QaeForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.         
-              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.    
+              This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
+              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             )],
             [:bold, "Small organisations"],
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-            )]
+            )],
           ]
         end
 
@@ -39,7 +39,7 @@ class AwardYears::V2020::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model"]
+            ["business_model", "A business model"],
           ]
           application_type_question true
         end
@@ -135,7 +135,6 @@ class AwardYears::V2020::QaeForms
           rows 5
           words_max 100
         end
-
 
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
           ref "B 3"

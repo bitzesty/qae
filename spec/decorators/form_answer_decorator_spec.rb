@@ -35,7 +35,7 @@ describe FormAnswerDecorator do
     development_desc_short: "development_desc_short",
     development_management_approach_briefly: "development_management_approach_briefly",
     mobility_desc_short: "mobility_desc_short",
-    organisation_type: "organisation_type"
+    organisation_type: "organisation_type",
   }
 
   let(:user) { build_stubbed(:user, first_name: "John", last_name: "Doe") }
@@ -62,7 +62,6 @@ describe FormAnswerDecorator do
 
   describe "#last_state_updated_by" do
     it "Returns the person and time of who made the last transition" do
-
       Timecop.freeze(DateTime.new(Date.current.year, 2, 6, 8, 30)) do
         form_answer = create(:form_answer).decorate
         form_answer.state_machine.submit(form_answer.user)
@@ -91,8 +90,8 @@ describe FormAnswerDecorator do
 
   describe "#dashboard_status" do
     it "returns fill progress when application is not submitted" do
-     form_answer = create(:form_answer, :trade, state: "application_in_progress", document: { sic_code:  SicCode.first.code })
-      expect(described_class.new(form_answer).dashboard_status).to eq("Application in progress...8%")
+     form_answer = create(:form_answer, :trade, state: "application_in_progress", document: { sic_code: SicCode.first.code })
+     expect(described_class.new(form_answer).dashboard_status).to eq("Application in progress...8%")
     end
 
     it "warns that assessors are not assigned if assessment is in progress and assessors are not assigned yet for admin section" do
@@ -153,7 +152,7 @@ describe FormAnswerDecorator do
 
   describe "#application_background" do
     it "returns the trade_goods_briefly value if is type trade" do
-      document = {trade_goods_briefly: "International Trade"}
+      document = { trade_goods_briefly: "International Trade" }
       form = build(:form_answer, :trade, document: document)
 
       decorated_app = described_class.new(form)
@@ -162,7 +161,7 @@ describe FormAnswerDecorator do
     end
 
     it "returns the trade_goods_briefly value if is type innovation" do
-      document = {innovation_desc_short: "Innovation"}
+      document = { innovation_desc_short: "Innovation" }
       form = build(:form_answer, :innovation, document: document)
 
       decorated_app = described_class.new(form)
@@ -171,7 +170,7 @@ describe FormAnswerDecorator do
     end
 
     it "returns the trade_goods_briefly value if is type development" do
-      document = {development_management_approach_briefly: "Development"}
+      document = { development_management_approach_briefly: "Development" }
       form = build(:form_answer, :development, document: document)
 
       decorated_app = described_class.new(form)
@@ -180,7 +179,7 @@ describe FormAnswerDecorator do
     end
 
     it "returns the trade_goods_briefly value if is type mobility" do
-      document = {mobility_desc_short: "Mobility"}
+      document = { mobility_desc_short: "Mobility" }
       form = build(:form_answer, :mobility, document: document)
 
       decorated_app = described_class.new(form)
@@ -192,7 +191,7 @@ describe FormAnswerDecorator do
   DOCUMENT_FIELDS.keys.each do |field|
     describe "##{field}" do
       it "returns the document field with key #{DOCUMENT_FIELDS[field]}" do
-        document = {DOCUMENT_FIELDS[field] => 'An expected value'}
+        document = { DOCUMENT_FIELDS[field] => "An expected value" }
         form = build(:form_answer, :development, document: document)
 
         decorated_app = described_class.new(form)

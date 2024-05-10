@@ -63,7 +63,7 @@ class QaeFormBuilder
     def active_fields
       return [] unless fields_count
 
-      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+      (1..fields_count).map{ |y| "#{y}of#{fields_count}" }
     end
 
     def fields_count
@@ -142,16 +142,15 @@ class QaeFormBuilder
 
   class ByYearsQuestion < Question
     attr_accessor :type,
-                  :by_year_conditions,
-                  :label,
-                  :employees_question,
-                  :first_year_min_value,
-                  :first_year_validation_message,
-                  :validatable_years_position
+      :by_year_conditions,
+      :label,
+      :employees_question,
+      :first_year_min_value,
+      :first_year_validation_message,
+      :validatable_years_position
 
     def after_create
       @by_year_conditions = []
     end
   end
-
 end

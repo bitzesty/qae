@@ -3,15 +3,13 @@ FactoryBot.define do
     skip_create
 
     initialize_with do
-      begin
         if attributes.present?
           Settings.where(attributes).first_or_create
         else
           Settings.first_or_create
         end
-      rescue ActiveRecord::RecordNotUnique
+    rescue ActiveRecord::RecordNotUnique
         retry
-      end
     end
   end
 

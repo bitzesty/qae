@@ -3,20 +3,20 @@ class FormFinancialPointer
   include LatestYearGenerator
 
   attr_reader :form_answer,
-              :award_form,
-              :steps,
-              :all_questions,
-              :answers,
-              :filled_answers,
-              :financial_step,
-              :target_financial_questions,
-              :options
+    :award_form,
+    :steps,
+    :all_questions,
+    :answers,
+    :filled_answers,
+    :financial_step,
+    :target_financial_questions,
+    :options
 
   TARGET_FINANCIAL_DATA_QUESTION_TYPES = [
     QaeFormBuilder::ByYearsLabelQuestion,
     QaeFormBuilder::ByYearsQuestion,
     QaeFormBuilder::OneOptionByYearsLabelQuestion,
-    QaeFormBuilder::OneOptionByYearsQuestion
+    QaeFormBuilder::OneOptionByYearsQuestion,
   ]
   YEAR_LABELS = %w(day month year)
   IN_PROGRESS = "-"
@@ -26,10 +26,10 @@ class FormFinancialPointer
 
   UK_SALES_EXCLUDED_FORM_TYPES = [
     :trade,
-    :promotion
+    :promotion,
   ]
 
-  def initialize(form_answer, options={})
+  def initialize(form_answer, options = {})
     @form_answer = form_answer
     @options = options
     @answers = fetch_answers
@@ -49,7 +49,7 @@ class FormFinancialPointer
       fetched = target_financial_questions.map do |question|
         FinancialYearPointer.new(
           question: question,
-          financial_pointer: self
+          financial_pointer: self,
         ).data
       end
 
@@ -136,7 +136,7 @@ class FormFinancialPointer
 
   def overall_growth
     res = overall_growth_values
-    res && res.last && res.first ? res.last[:value].to_i - res.first[:value].to_i : "-"
+    (res && res.last && res.first) ? res.last[:value].to_i - res.first[:value].to_i : "-"
   end
 
   def overall_growth_in_percents
@@ -152,16 +152,16 @@ class FormFinancialPointer
   def fetch_financial_questions
     financial_step.questions.select do |question|
       !FormPdf::HIDDEN_QUESTIONS.include?(question.key.to_s) &&
-      TARGET_FINANCIAL_DATA_QUESTION_TYPES.include?(question.delegate_obj.class) &&
-      award_form[question.key].visible? &&
-      !excluded_by_ignored_questions_list?(question)
+        TARGET_FINANCIAL_DATA_QUESTION_TYPES.include?(question.delegate_obj.class) &&
+        award_form[question.key].visible? &&
+        !excluded_by_ignored_questions_list?(question)
     end
   end
 
   def excluded_by_ignored_questions_list?(question)
-    (options[:exclude_ignored_questions].present? &&
-     excluded_question_keys.present? &&
-     excluded_question_keys.include?(question.key))
+    options[:exclude_ignored_questions].present? &&
+      excluded_question_keys.present? &&
+      excluded_question_keys.include?(question.key)
   end
 
   def excluded_question_keys
@@ -185,14 +185,14 @@ class FormFinancialPointer
     res = []
 
     period_length.times do |i|
-      day = form_answer.document['financial_year_date_day'].to_s
-      month = form_answer.document['financial_year_date_month'].to_s
+      day = form_answer.document["financial_year_date_day"].to_s
+      month = form_answer.document["financial_year_date_month"].to_s
       year = calculate_last_year(form_answer, day, month) - period_length + i + 1
 
       res << [
-        day.rjust(2, '0'),
-        month.rjust(2, '0'),
-        year
+        day.rjust(2, "0"),
+        month.rjust(2, "0"),
+        year,
       ].join("/")
     end
 
@@ -207,7 +207,7 @@ class FormFinancialPointer
       last_year = dates_by_years.last.split("/")[-1][-1].to_i
 
       dates_by_years.each do |date|
-        res << date.join('/')
+        res << date.join("/")
       end
 
       res
@@ -278,9 +278,7 @@ class FormFinancialPointer
   end
 
   def full_period_length
-    @_full_period_length ||= begin
-      data_minmax(data).dig(:max)
-    end
+    @_full_period_length ||= data_minmax(data).dig(:max)
   end
 
   def data_values(key)

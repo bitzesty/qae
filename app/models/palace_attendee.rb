@@ -2,20 +2,20 @@ class PalaceAttendee < ApplicationRecord
   belongs_to :palace_invite, optional: true
 
   validates :palace_invite,
-            :title,
-            :first_name,
-            :last_name,
-            :job_name,
-            :address_1,
-            :address_2,
-            :postcode,
-            presence: true
+    :title,
+    :first_name,
+    :last_name,
+    :job_name,
+    :address_1,
+    :address_2,
+    :postcode,
+    presence: true
 
+  validates :disabled_access, inclusion: { in: [ true, false ], message: "This field cannot be blank" }
   validates :has_royal_family_connections, inclusion: { in: [ true, false ], message: "This field cannot be blank" }
 
   validates :royal_family_connection_details, presence: true, if: :has_royal_family_connections?
   validate :royal_family_connection_details_length
-
 
   private
 

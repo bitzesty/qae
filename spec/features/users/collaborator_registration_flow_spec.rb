@@ -25,7 +25,7 @@ describe "Collaborator registration flow" do
 
     click_button "Add the collaborator"
 
-    collab = User.find_by_email("collab@example.com")
+    collab = User.find_by(email: "collab@example.com")
     collab.confirmed_at = Time.now
     collab.save!
 

@@ -1,5 +1,4 @@
 class Admin::ReportsController < Admin::BaseController
-
   expose(:import_csv_pdf_guide) do
     File.open("#{Rails.root}/lib/assets/IMPORT_CSV_INTO_MS_EXCEL_GUIDE.pdf")
   end
@@ -17,8 +16,8 @@ class Admin::ReportsController < Admin::BaseController
 
       format.xlsx do
         send_data resource.as_xlsx.stream.string,
-                  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                  disposition: 'attachment'
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          disposition: "attachment"
       end
 
       format.pdf do
@@ -26,9 +25,9 @@ class Admin::ReportsController < Admin::BaseController
 
         if pdf[:hard_copy].blank? || Rails.env.development?
           send_data pdf.data,
-                    filename: pdf.filename,
-                    type: "application/pdf",
-                    disposition: 'attachment'
+            filename: pdf.filename,
+            type: "application/pdf",
+            disposition: "attachment"
         else
           redirect_to pdf.data, allow_other_host: true
         end
@@ -40,8 +39,8 @@ class Admin::ReportsController < Admin::BaseController
     authorize :report, :show?
 
     send_data import_csv_pdf_guide.read,
-              type: "application/pdf",
-              disposition: 'inline'
+      type: "application/pdf",
+      disposition: "inline"
   end
 
   private

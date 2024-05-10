@@ -9,7 +9,7 @@ module InfectedFileCleaner
     end
 
     def override_on_scan_callback(file_attr_name)
-      class_eval <<-EVAL, __FILE__, __LINE__+1
+      class_eval <<-EVAL, __FILE__, __LINE__ + 1
         def on_scan_#{file_attr_name}_with_cleanup(params)
           on_scan_#{file_attr_name}_without_cleanup(params)
 

@@ -37,7 +37,7 @@ class QaeFormBuilder
       errors = super
 
       if delegate_obj.required_row_parent
-        step.form[delegate_obj.required_row_parent].input_value&.each {|a| delegate_obj.required_rows << a["type"] }
+        step.form[delegate_obj.required_row_parent].input_value&.each { |a| delegate_obj.required_rows << a["type"] }
       end
 
       errors
@@ -197,16 +197,16 @@ class QaeFormBuilder
         end
       end
       if @q.subtotals_label
-        y_heading "calculated_sub_total", @q.subtotals_label, {"row_class": "auto-subtotals-row"}
+        y_heading "calculated_sub_total", @q.subtotals_label, { "row_class": "auto-subtotals-row" }
       end
       if @q.others_label
-        y_heading "others", @q.others_label, {"row_class": "others-not-disadvantaged-row"}
+        y_heading "others", @q.others_label, { "row_class": "others-not-disadvantaged-row" }
       end
       if @q.totals_label
-        y_heading "calculated_total", @q.totals_label, {"row_class": "auto-totals-row"}
+        y_heading "calculated_total", @q.totals_label, { "row_class": "auto-totals-row" }
       end
       if @q.proportion_label
-        y_heading "calculated_proportion", @q.proportion_label, {"row_class": "auto-proportion-row"}
+        y_heading "calculated_proportion", @q.proportion_label, { "row_class": "auto-proportion-row" }
       end
     end
 
@@ -222,19 +222,19 @@ class QaeFormBuilder
 
   class MatrixQuestion < Question
     attr_accessor :label,
-                  :others_label,
-                  :subtotals_label,
-                  :totals_label,
-                  :proportion_label,
-                  :corner_label,
-                  :x_headings,
-                  :y_headings,
-                  :values,
-                  :column_widths,
-                  :required_row_parent,
-                  :required_row_options,
-                  :required_rows,
-                  :auto_totals_column
+      :others_label,
+      :subtotals_label,
+      :totals_label,
+      :proportion_label,
+      :corner_label,
+      :x_headings,
+      :y_headings,
+      :values,
+      :column_widths,
+      :required_row_parent,
+      :required_row_options,
+      :required_rows,
+      :auto_totals_column
 
     def after_create
       @x_headings = []
@@ -250,5 +250,4 @@ class QaeFormBuilder
       "question-matrix"
     end
   end
-
 end

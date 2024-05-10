@@ -15,7 +15,7 @@ describe AccountMailers::NotifyNonShortlistedMailer do
     let(:mail) {
       AccountMailers::NotifyNonShortlistedMailer.notify(
         form_answer.id,
-        user.id
+        user.id,
       )
     }
 
@@ -39,7 +39,7 @@ describe AccountMailers::NotifyNonShortlistedMailer do
     let(:mail) {
       AccountMailers::NotifyNonShortlistedMailer.ep_notify(
         form_answer.id,
-        user.id
+        user.id,
       )
     }
 

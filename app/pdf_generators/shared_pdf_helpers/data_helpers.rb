@@ -22,7 +22,7 @@ module SharedPdfHelpers::DataHelpers
   def sub_category_question
     all_questions.detect do |q|
       q.delegate_obj.is_a?(QaeFormBuilder::OptionsQuestion) &&
-      q.sub_category_question.present?
+        q.sub_category_question.present?
     end
   end
 end

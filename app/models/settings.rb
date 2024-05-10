@@ -59,7 +59,6 @@ class Settings < ApplicationRecord
       end
     end
 
-
     def current_submission_start_deadlines
       Rails.cache.fetch("submission_start_deadlines", expires_in: 1.minute) do
         current.deadlines.where(kind: Deadline::SUBMISSION_START_DEADLINES)
@@ -145,7 +144,7 @@ class Settings < ApplicationRecord
       submission_started_deadlines = current_submission_start_deadlines.map(&:trigger_at)
 
       award_year_switch_deadline.present? &&
-      award_year_switch_deadline < Time.zone.now && (
+        award_year_switch_deadline < Time.zone.now && (
         submission_started_deadlines.any?(&:blank?) ||
         submission_started_deadlines.all? { |d| d > Time.zone.now }
       )
@@ -164,12 +163,12 @@ class Settings < ApplicationRecord
     end
 
     def submission_deadline_title
-      formatted_datetime = current_submission_deadline.decorate.formatted_trigger_time(false)
+      formatted_datetime = current_submission_deadline.decorate.formatted_trigger_time(bold: false)
       "Submission deadline: #{formatted_datetime}"
     end
 
     def min_started_trading
-      (Date.current.year - (Date.new(COMPANIES_HOUSE_REGISTERING_SINCE).year))
+      (Date.current.year - Date.new(COMPANIES_HOUSE_REGISTERING_SINCE).year)
     end
   end
 

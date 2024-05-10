@@ -11,8 +11,8 @@ class QaeFormBuilder
       end
 
       year = question.input_value.to_i
-
-      if year < question.min || year > question.max
+      year_max = question.max.respond_to?(:call) ? question.max.call : question.max
+      if year < question.min || (year_max && year > year_max)
         result[question.hash_key] = "The year needs to be between #{question.min} and the current year. Any project that started before that would not be considered an innovation."
       end
 
@@ -23,7 +23,7 @@ class QaeFormBuilder
   class YearQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
-      result << 'question-year'
+      result << "question-year"
       result
     end
   end

@@ -32,15 +32,15 @@ module FormAnswerHelper
     flag_type = if subject
       "icon-flag-#{current_user_class}"
     else
-      current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
+      (current_user_class == "admin") ? "icon-flag-assessor" : "icon-flag-admin"
     end
 
     if comments_count > 0
-      content_tag :span, class: "icon-flagged #{flag_type}" do
+      tag.span(class: "icon-flagged #{flag_type}") do
         "#{current_user_class} flags: ".html_safe +
-        content_tag(:span, class: "flag-count") do
-          comments_count.to_s
-        end
+          tag.span(class: "flag-count") do
+            comments_count.to_s
+          end
       end
     end
   end
@@ -57,7 +57,7 @@ module FormAnswerHelper
     return unless comments_count > 0
 
     output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
-    output += "#{comments_count}"
+    output += comments_count.to_s
     output += "</span></span>"
     output.html_safe
   end

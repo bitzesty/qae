@@ -1,9 +1,13 @@
 class ApplicationMailer < Mail::Notify::Mailer
   include MailerHelper
 
+  def self.delivery_job
+    ::MailDeliveryWorker
+  end
+
   default(
     from: ENV["MAILER_FROM"] || "no-reply@kings-awards-enterprise.service.gov.uk",
-    reply_to: "kingsawards@businessandtrade.gov.uk"
+    reply_to: "kingsawards@businessandtrade.gov.uk",
   )
 
   def send_mail_if_not_bounces(template_id, headers)
@@ -38,6 +42,7 @@ class ApplicationMailer < Mail::Notify::Mailer
     @reception_deadline = deadlines.where(kind: "buckingham_palace_reception_attendee_information_due_by").first
     @reception_deadline_time = formatted_deadline_time(@reception_deadline)
     @reception_date = deadlines.where(kind: "buckingham_palace_attendees_invite").first
+    @reception_date_time = formatted_deadline_time(@reception_date)
   end
 
   def deadlines

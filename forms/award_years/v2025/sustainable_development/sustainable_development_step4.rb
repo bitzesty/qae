@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def development_step4
@@ -59,7 +58,7 @@ class AwardYears::V2025::QaeForms
           yes_no
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
             </p>
           )
           default_option "no"
@@ -70,7 +69,7 @@ class AwardYears::V2025::QaeForms
           sub_ref "D 2.2"
           context %(
             <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
+              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
             </p>
           )
           required
@@ -204,6 +203,7 @@ class AwardYears::V2025::QaeForms
         end
 
         financial_summary :development_financial_summary, "Summary of your company financials (for information only)" do
+          sub_ref "D 4.7"
         end
 
         textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do

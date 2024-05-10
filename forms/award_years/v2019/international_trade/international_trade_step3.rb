@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2019::QaeForms
   class << self
     def trade_step3
@@ -27,15 +26,15 @@ class AwardYears::V2019::QaeForms
           option "3 to 5", "Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips"
           option "6 plus", "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last six years with no dips"
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "3 to 5",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "3 to 5",
+            placeholder_text: %(
               As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
             )
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question

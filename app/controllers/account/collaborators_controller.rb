@@ -1,5 +1,4 @@
 class Account::CollaboratorsController < Account::BaseController
-
   before_action :require_to_be_not_current_user_and_not_account_owner!, only: [:destroy]
   before_action :set_form_answer
 
@@ -18,9 +17,9 @@ class Account::CollaboratorsController < Account::BaseController
   end
   expose(:add_collaborator_interactor) do
     AddCollaborator.new(
-        current_user,
-        account,
-        {})
+      current_user,
+      account,
+      {},)
   end
 
   def index
@@ -41,16 +40,16 @@ class Account::CollaboratorsController < Account::BaseController
     self.add_collaborator_interactor = AddCollaborator.new(
       current_user,
       account,
-      create_params).run
+      create_params,).run
     self.collaborator = add_collaborator_interactor.collaborator
 
     if add_collaborator_interactor.success?
       if params.has_key? :form_id
         redirect_to account_collaborators_path(form_id: params[:form_id]),
-                    notice: "#{collaborator.email} successfully added to Collaborators!"
+          notice: "#{collaborator.email} successfully added to Collaborators!"
       else
         redirect_to account_collaborators_path,
-                    notice: "#{collaborator.email} successfully added to Collaborators!"
+          notice: "#{collaborator.email} successfully added to Collaborators!"
       end
     else
       render :new
@@ -60,7 +59,7 @@ class Account::CollaboratorsController < Account::BaseController
   def update
     if collaborator.update(update_params)
       redirect_to account_collaborators_path,
-                    notice: "The collaborator #{collaborator.email} details were successfully updated."
+        notice: "The collaborator #{collaborator.email} details were successfully updated."
     else
       render :edit
     end
@@ -72,14 +71,10 @@ class Account::CollaboratorsController < Account::BaseController
   def destroy
     form_id = params[:form_id].presence
 
-    collaborator.account_id = Account.create(owner: collaborator).id
-    collaborator.role = "account_admin"
-    collaborator.save!
-    collaborator.form_answers
-                .update_all(user_id: account.owner_id)
+    CollaboratorRemovalService.new(collaborator, account).reassign_form_answers
 
     redirect_to account_collaborators_path(form_id: form_id),
-                notice: "#{collaborator.email} successfully removed from Collaborators!"
+      notice: "#{collaborator.email} successfully removed from Collaborators!"
   end
 
   def set_form_answer
@@ -99,7 +94,7 @@ class Account::CollaboratorsController < Account::BaseController
       :phone_number,
       :email,
       :role,
-      :form_id
+      :form_id,
     )
   end
 
@@ -110,13 +105,13 @@ class Account::CollaboratorsController < Account::BaseController
       :last_name,
       :job_title,
       :phone_number,
-      :role
+      :role,
     )
   end
 
   def require_to_be_not_current_user_and_not_account_owner!
     if current_user.id == collaborator.id ||
-       account_owner.id == collaborator.id
+        account_owner.id == collaborator.id
 
       render head :forbidden
     end

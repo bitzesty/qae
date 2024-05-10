@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe Users::SubmissionStartedNotificationMailer do
-
   let(:user) { create(:user) }
 
   let(:subject) do

@@ -2,8 +2,8 @@ class FinancialYearPointer
   include LatestYearGenerator
 
   attr_reader :financial_pointer,
-              :question,
-              :key
+    :question,
+    :key
 
   def initialize(ops = {})
     ops.each do |k, v|
@@ -15,7 +15,7 @@ class FinancialYearPointer
 
   def data
     {
-      key => fetch_data
+      key => fetch_data,
     }
   end
 
@@ -42,8 +42,8 @@ class FinancialYearPointer
     active_fields.map do |field|
       value = entry(field).to_s.delete(",")
       {
-        value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
-        name: "#{key}_#{field}"
+        value: value.presence || FormFinancialPointer::IN_PROGRESS,
+        name: "#{key}_#{field}",
       }
     end
   end
@@ -58,15 +58,15 @@ class FinancialYearPointer
     active_fields.map do |field|
       value = entry(field).to_s.delete(",")
       {
-        value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
-        name: "#{key}_#{field}"
+        value: value.presence || FormFinancialPointer::IN_PROGRESS,
+        name: "#{key}_#{field}",
       }
     end
   end
 
   def active_fields
-    question.decorate(answers: financial_pointer.filled_answers).
-             active_fields
+    question.decorate(answers: financial_pointer.filled_answers)
+             .active_fields
   end
 
   def entries

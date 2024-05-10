@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2021::QaeForms
   class << self
     def innovation_step2
@@ -27,7 +26,7 @@ class AwardYears::V2021::QaeForms
             [:bold, "Small organisations"],
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
-            )]
+            )],
           ]
         end
 
@@ -40,7 +39,7 @@ class AwardYears::V2021::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model"]
+            ["business_model", "A business model"],
           ]
           application_type_question true
         end
@@ -144,7 +143,6 @@ class AwardYears::V2021::QaeForms
           rows 5
           words_max 100
         end
-
 
         options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
           ref "B 3"

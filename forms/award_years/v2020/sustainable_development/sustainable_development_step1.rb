@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2020::QaeForms
   class << self
     def development_step1
@@ -190,7 +189,7 @@ class AwardYears::V2020::QaeForms
         end
 
         options :external_contribute_to_sustainable_product,
-                "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
+          "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
           ref "A 9"
           required
           context %(
@@ -202,7 +201,7 @@ class AwardYears::V2020::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           classes "sub-question"
           sub_ref "A 9.1"
           required
@@ -246,7 +245,7 @@ class AwardYears::V2020::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 
@@ -260,7 +259,7 @@ class AwardYears::V2020::QaeForms
           ref "A 11"
           context %(
             <p>
-              If your application is successful, you may get contacted by the press. 
+              If your application is successful, you may get contacted by the press.
               <br/>
               Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
             </p>

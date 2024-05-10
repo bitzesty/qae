@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2019::QaeForms
   class << self
     def trade_step1
@@ -181,7 +180,7 @@ class AwardYears::V2019::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 

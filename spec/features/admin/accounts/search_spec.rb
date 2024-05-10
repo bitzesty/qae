@@ -4,7 +4,6 @@ include Warden::Test::Helpers
 describe "Users search", "
   As Admin
   I want to search users." do
-
   let!(:admin) { create(:admin) }
   let!(:user) { create(:user, first_name: "name-12345") }
 

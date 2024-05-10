@@ -33,7 +33,7 @@ class ShortlistedDocumentsWrapper < ActiveRecord::Base
   end
 
   private
-  
+
   def set_submission_date(timestamp = Time.zone.now)
     self.update(submitted_at: timestamp)
   end

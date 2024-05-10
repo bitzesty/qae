@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "CaseSummaryPdfs::Base" do
   let!(:award_year) do
@@ -18,10 +18,10 @@ describe "CaseSummaryPdfs::Base" do
       [:innovation, :trade].each do |award_type|
         form_answer = send("form_answer_#{year}_#{award_type}")
         create :assessor_assignment, form_answer: form_answer,
-                                     submitted_at: Date.today,
-                                     assessor: nil,
-                                     position: "case_summary",
-                                     document: set_case_summary_content(form_answer)
+          submitted_at: Date.current,
+          assessor: nil,
+          position: "case_summary",
+          document: set_case_summary_content(form_answer)
       end
     end
   end
@@ -31,8 +31,8 @@ describe "CaseSummaryPdfs::Base" do
       innovation_case_summaries = CaseSummaryPdfs::Base.new(
         "all", nil, {
           category: "innovation",
-          award_year: award_year
-        }
+          award_year: award_year,
+        },
       ).set_form_answers
        .map(&:id)
 
@@ -44,8 +44,8 @@ describe "CaseSummaryPdfs::Base" do
         "all", nil, {
           category: "trade",
           award_year: award_year,
-          years_mode: "3"
-        }
+          years_mode: "3",
+        },
       ).set_form_answers
        .map(&:id)
 

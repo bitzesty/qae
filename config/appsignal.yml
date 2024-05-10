@@ -5,7 +5,7 @@ default: &defaults
   # Your app's name as reported on AppSignal.com. Required
   name: "QAE"
 
-  revision: "<%= ENV['RELEASE'] %>"
+  revision: "<%= ENV['APP_REVISION'] %>"
 
   # Add default instrumentation of net/http. Default: true
   # instrument_net_http: true
@@ -20,6 +20,9 @@ default: &defaults
   # Ignore these actions, used by our Loadbalancer. Optional
   ignore_actions:
     - Healthcheck::HealthchecksController#check
+
+  ignore_errors:
+    - ActionController::InvalidAuthenticityToken
 
   # Enable allocation tracking for memory metrics. Default: true
   enable_allocation_tracking: true
@@ -36,3 +39,5 @@ production:
   <<: *defaults
   # Configure AppSignal to be active for this environment. Required
   active: true
+  running_in_container: true
+

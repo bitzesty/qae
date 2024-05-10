@@ -9,25 +9,25 @@ class AwardYears::V2025::QaeForms
     def development
       @development ||= QaeFormBuilder.build "Sustainable Development Award Application" do
         step "Consent & Due Diligence",
-             "Consent & Due Diligence",
-             &AwardYears::V2025::QaeForms.development_step1
+          "Consent & Due Diligence",
+          &AwardYears::V2025::QaeForms.development_step1
 
         step "Company information",
-             "Company information",
-             &AwardYears::V2025::QaeForms.development_step2
+          "Company information",
+          &AwardYears::V2025::QaeForms.development_step2
 
         step "Your Sustainable Development",
-             "Your Sustainable Development",
-             &AwardYears::V2025::QaeForms.development_step3
+          "Your Sustainable Development",
+          &AwardYears::V2025::QaeForms.development_step3
 
         step "Commercial Performance",
-             "Commercial Performance",
-             &AwardYears::V2025::QaeForms.development_step4
+          "Commercial Performance",
+          &AwardYears::V2025::QaeForms.development_step4
 
         step "Supplementary Materials & Confirmation",
-             "Supplementary Materials & Confirmation",
-             { id: :add_website_address_documents_step },
-             &AwardYears::V2025::QaeForms.development_step5
+          "Supplementary Materials & Confirmation",
+          { id: :add_website_address_documents_step },
+          &AwardYears::V2025::QaeForms.development_step5
       end
     end
   end

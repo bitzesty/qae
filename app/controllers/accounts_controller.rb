@@ -51,7 +51,7 @@ class AccountsController < ApplicationController
 
       if current_user.role.regular?
         current_user.update_attribute(:completed_registration, true)
-        flash.notice = 'Your account details were successfully saved'
+        flash.notice = "Your account details were successfully saved"
         redirect_to dashboard_path
       else
         redirect_to company_details_account_path
@@ -78,7 +78,7 @@ class AccountsController < ApplicationController
     unless current_user.completed_registration
       current_user.update_attribute(:completed_registration, true)
 
-      flash.notice = 'Your account details were successfully saved'
+      flash.notice = "Your account details were successfully saved"
       redirect_to dashboard_path
     else
       redirect_to password_settings_account_path
@@ -89,11 +89,12 @@ class AccountsController < ApplicationController
     current_user.set_step(5)
 
     if current_user.update_with_password(password_settings_params)
-      flash.notice = 'Your account details were successfully saved'
+      sign_in(current_user, bypass: true)
+      flash.notice = "Your account details were successfully saved"
       redirect_to dashboard_path
     else
       @active_step = 5
-      flash.alert = 'Error updating your password'
+      flash.alert = "Error updating your password"
       current_user.reload
       render :password_settings
     end
@@ -108,7 +109,7 @@ class AccountsController < ApplicationController
       :last_name,
       :job_title,
       :phone_number,
-      :email
+      :email,
     )
   end
 
@@ -120,7 +121,7 @@ class AccountsController < ApplicationController
       :company_city,
       :company_country,
       :company_postcode,
-      :company_phone_number
+      :company_phone_number,
     )
   end
 
@@ -136,7 +137,7 @@ class AccountsController < ApplicationController
       :notification_when_development_award_open,
       :notification_when_mobility_award_open,
       :notification_when_submission_deadline_is_coming,
-      :agree_sharing_of_details_with_lieutenancies
+      :agree_sharing_of_details_with_lieutenancies,
     )
   end
 
@@ -144,14 +145,13 @@ class AccountsController < ApplicationController
     params.require(:user).permit(
       :current_password,
       :password,
-      :password_confirmation
+      :password_confirmation,
     )
   end
 
   def additional_contact_preferences_params
     params.require(:user).permit(
-      :agree_sharing_of_details_with_lieutenancies
+      :agree_sharing_of_details_with_lieutenancies,
     )
   end
-
 end

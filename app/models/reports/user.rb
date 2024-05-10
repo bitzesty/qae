@@ -1,5 +1,4 @@
 class Reports::User
-
   def initialize(user)
     @user = user
   end

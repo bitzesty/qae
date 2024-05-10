@@ -1,27 +1,27 @@
 class Admin::AssessorsController < Admin::UsersController
   before_action :find_resource,
-                except: [
-                  :index,
-                  :new,
-                  :create,
-                  :suspension_status,
-                  :confirm_bulk_activate_pi,
-                  :confirm_bulk_activate_dt,
-                  :bulk_activate_pi,
-                  :bulk_activate_dt,
-                  :confirm_bulk_deactivate_pi,
-                  :confirm_bulk_deactivate_dt,
-                  :bulk_deactivate_pi,
-                  :bulk_deactivate_dt
-                ]
+    except: [
+      :index,
+      :new,
+      :create,
+      :suspension_status,
+      :confirm_bulk_activate_pi,
+      :confirm_bulk_activate_dt,
+      :bulk_activate_pi,
+      :bulk_activate_dt,
+      :confirm_bulk_deactivate_pi,
+      :confirm_bulk_deactivate_dt,
+      :bulk_deactivate_pi,
+      :bulk_deactivate_dt,
+    ]
 
   def index
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
     params[:search].permit!
     authorize :assessor, :index?
 
-    @search = AssessorSearch.new(Assessor.all).
-                             search(params[:search])
+    @search = AssessorSearch.new(Assessor.all)
+                             .search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -205,16 +205,16 @@ class Admin::AssessorsController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:assessor).
-      permit(:email,
-             :company,
-             :first_name,
-             :last_name,
-             :telephone_number,
-             :trade_role,
-             :innovation_role,
-             :development_role,
-             :mobility_role,
-             :promotion_role)
+    params.require(:assessor)
+      .permit(:email,
+        :company,
+        :first_name,
+        :last_name,
+        :telephone_number,
+        :trade_role,
+        :innovation_role,
+        :development_role,
+        :mobility_role,
+        :promotion_role,)
   end
 end

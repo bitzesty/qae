@@ -22,9 +22,9 @@ class FormAnswerAttachmentService
       partial: "admin/form_answer_attachments/form_answer_attachment",
       locals: {
         form_answer_attachment: resource,
-        form_answer: form_answer
+        form_answer: form_answer,
       },
-      content_type: "text/plain"
+      content_type: "text/plain",
     }
   end
 

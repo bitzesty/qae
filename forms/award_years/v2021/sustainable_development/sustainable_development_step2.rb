@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2021::QaeForms
   class << self
     def development_step2
@@ -114,7 +113,7 @@ class AwardYears::V2021::QaeForms
 
               \u2022 GOAL 17: Partnerships to achieve the Goal
               https://www.un.org/development/desa/disabilities/envision2030-goal17.html
-            )]
+            )],
           ]
         end
 

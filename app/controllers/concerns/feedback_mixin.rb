@@ -53,7 +53,7 @@ module FeedbackMixin
   private
 
   def action_type
-    action_name == "unlock" ? "feedback_unsubmit" : "feedback_#{action_name}"
+    (action_name == "unlock") ? "feedback_unsubmit" : "feedback_#{action_name}"
   end
 
   def form_answer
@@ -89,7 +89,7 @@ module FeedbackMixin
           render json: { errors: [] }
         else
           render status: :unprocessable_entity,
-                 json: { errors: @feedback.resource.errors }
+            json: { errors: @feedback.resource.errors }
         end
       end
     end
