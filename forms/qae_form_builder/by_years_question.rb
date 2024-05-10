@@ -9,7 +9,7 @@ class QaeFormBuilder
         question.active_fields.each.with_index(1) do |suffix, idx|
           if !question.input_value(suffix: suffix).present?
             result[question.hash_key(suffix: suffix)] ||= ""
-            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. Financial year #{idx} is required and must be filled in."
+            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. Financial year #{idx} is required and must be filled in. Enter '0' if none"
           end
         end
       end

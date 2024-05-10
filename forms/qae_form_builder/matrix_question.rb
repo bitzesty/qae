@@ -12,7 +12,7 @@ class QaeFormBuilder
               if !question.input_value(suffix: suffix).present?
                 if (question.required_row_parent && question.required_rows.include?(y_heading.key)) || !question.required_row_parent
                   result[question.hash_key(suffix: suffix)] ||= ""
-                  result[question.hash_key(suffix: suffix)] << "Required"
+                  result[question.hash_key(suffix: suffix)] << "Must be filled in. Enter '0' if none"
                 end
               else
                 if !/\A\d+\z/.match(question.input_value(suffix: suffix).to_s)

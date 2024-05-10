@@ -493,22 +493,22 @@ window.FormValidation =
 
       if not val
         if !requiredRowParent
-          @appendMessage(qCell, "Required")
+          @appendMessage(qCell, "Must be filled in. Enter '0' if none")
           @addErrorClass(question)
         # only adds 'required' error when y_heading matches checked answer
         else
           cond = map.get(key)
 
           if cond
-            @appendMessage(qCell, "Required")
+            @appendMessage(qCell, "Must be filled in. Enter '0' if none")
             @addErrorClass(question)
       else if isNaN(val)
-        @appendMessage(qCell, "Only numbers")
+        @appendMessage(qCell, "Enter only numbers")
         @addErrorClass(question)
       else
         t = parseInt(val, 10)
         if t < 0
-          @appendMessage(qCell, "At least 0")
+          @appendMessage(qCell, "Enter a number equal to or greater than 0")
           @addErrorClass(question)
 
     if question.find(".govuk-error-message").filter(-> @innerHTML).length
@@ -550,8 +550,8 @@ window.FormValidation =
         inputCellsCounter += 1
         label = @extractText(subq.attr('id'))
         if not subq.val() and question.hasClass("question-required")
-          @logThis(question, "validateNumberByYears", "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
-          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
+          @logThis(question, "validateNumberByYears", "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
+          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
           @addErrorClass(question)
           continue
         else if not subq.val()
