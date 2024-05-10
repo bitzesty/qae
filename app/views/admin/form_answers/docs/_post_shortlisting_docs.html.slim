@@ -16,16 +16,20 @@
               = link_to "#", class: "text-danger if-no-js-hide js-remove-audit-certificate-link", data: {confirm: "Are you sure?"}
                 span.glyphicon.glyphicon-remove
                 span.visible-lg.visible-md
-                  ' Remove audit certificate
-    - elsif resource.object.audit_certificate.present? && resource.object.audit_certificate.attachment_scan_results.blank?
-      li style="color:green"
-        ' Scanning audit certificate. You may need to refresh the page.
+                  ' Remove
 
-    - if resource.shortlisted_documents_wrapper && policy(resource).download_commercial_figures?
-      - resource.vat_returns_files.each do |vat_returns_file|
-        = render "admin/form_answers/docs/scanned_file_link", file: vat_returns_file, url_namespace: url_namespace
-      - if cff = resource.shortlisted_documents_wrapper.commercial_figures_file
-        = render "admin/form_answers/docs/scanned_file_link", file: cff, url_namespace: url_namespace
+    / Commenting out because it in combination with #commercial-figures-section section, file links are duplicated
+    / No present need for this but keeping it for future reference
+
+    / - elsif resource.object.audit_certificate.present? && resource.object.audit_certificate.attachment_scan_results.blank?
+    /   li style="color:green"
+    /     ' Scanning audit certificate. You may need to refresh the page.
+
+    / - if resource.shortlisted_documents_wrapper && policy(resource).download_commercial_figures?
+    /   - resource.vat_returns_files.each do |vat_returns_file|
+    /     = render "admin/form_answers/docs/scanned_file_link", file: vat_returns_file, url_namespace: url_namespace
+    /   - if cff = resource.shortlisted_documents_wrapper.commercial_figures_file
+    /     = render "admin/form_answers/docs/scanned_file_link", file: cff, url_namespace: url_namespace
 
     - if policy(resource).download_case_summary_pdf?
       li
