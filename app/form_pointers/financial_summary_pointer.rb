@@ -32,9 +32,9 @@ class FinancialSummaryPointer < FormFinancialPointer
 
       cloned = case values[0]
       when Hash
-                 values[0].transform_values { |_v| nil }
+        values[0].transform_values { |_v| nil }
       when Array
-                 []
+        []
       end
 
       diff = ::Utils::Diff.calc(minmax[:min], minmax[:max])
@@ -48,9 +48,9 @@ class FinancialSummaryPointer < FormFinancialPointer
 
   def fill_missing_dates
     input = data.group_by do |x|
-              partitioned_hash.values.each_with_object(Hash[]).with_index do |(x, acc), idx|
-                x.each { |y| acc[y] = idx }
-              end.fetch(x.keys[0], 0)
+      partitioned_hash.values.each_with_object(Hash[]).with_index do |(x, acc), idx|
+        x.each { |y| acc[y] = idx }
+      end.fetch(x.keys[0], 0)
     end
 
     dates, dates_changed = fetch_financial_year_dates
@@ -100,9 +100,9 @@ class FinancialSummaryPointer < FormFinancialPointer
   def fetch_financial_year_dates
     @_financial_year_dates ||= begin
       dates, changed = if data_values(:financial_year_changed_dates).present?
-                         [financial_year_changed_dates, true]
+        [financial_year_changed_dates, true]
       else
-                         [financial_year_dates, false]
+        [financial_year_dates, false]
       end
 
       [dates, changed]

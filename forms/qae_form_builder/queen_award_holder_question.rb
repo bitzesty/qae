@@ -6,7 +6,7 @@ class QaeFormBuilder
 
   class QueenAwardHolderQuestionBuilder < QuestionBuilder
     def year year
-      #TODO: type checking
+      # TODO: type checking
       @q.years << year
     end
 

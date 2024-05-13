@@ -91,10 +91,10 @@ Rails.application.routes.draw do
   end
 
   resource :form_award_eligibility, only: [:show, :update] do
-   collection do
+    collection do
       get :warning
       get :result
-   end
+    end
   end
 
   resource :support_letter, only: [:new, :show, :create]

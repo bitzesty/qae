@@ -15,7 +15,11 @@ class QaeFormBuilder
       if day.blank? || month.blank?
         date = nil
       else
-        date = Date.parse(date.join("/")) rescue nil
+        date = begin
+          Date.parse(date.join("/"))
+        rescue
+          nil
+        end
       end
 
       if question.required? && !date

@@ -140,7 +140,7 @@ class ApplicationController < ActionController::Base
       subject: current_subject,
       auditable: form_answer,
       action_type: action_type,
-      )
+    )
   end
 
   def current_subject

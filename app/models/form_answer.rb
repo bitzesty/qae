@@ -123,7 +123,7 @@ class FormAnswer < ApplicationRecord
         {
           position: 0,
         },
-      ).first
+           ).first
     end
 
     def secondary
@@ -131,7 +131,7 @@ class FormAnswer < ApplicationRecord
         {
           position: 1,
         },
-      ).first
+           ).first
     end
   end
 
@@ -288,18 +288,18 @@ class FormAnswer < ApplicationRecord
     form = award_form.decorate(answers: progress_hash)
 
     res = form.steps.each_with_object(Hash[:halted, Hash[:step, nil]]) do |step, memo|
-            memo[step.index] = Hash[].tap do |hash|
-              s_idx = memo.dig(:halted, :step)
-              q_idx = nil
+      memo[step.index] = Hash[].tap do |hash|
+        s_idx = memo.dig(:halted, :step)
+        q_idx = nil
 
-              hash[:disabled] = !!(s_idx && step.index > s_idx)
-              step.questions.each_with_index do |question, idx|
-                memo[:halted][:step] ||= step.index if question.halted?
-                q_idx ||= idx if question.halted?
+        hash[:disabled] = !!(s_idx && step.index > s_idx)
+        step.questions.each_with_index do |question, idx|
+          memo[:halted][:step] ||= step.index if question.halted?
+          q_idx ||= idx if question.halted?
 
-                hash[question.key] = !!(hash[:disabled] || q_idx && idx > q_idx)
-              end
-            end
+          hash[question.key] = !!(hash[:disabled] || q_idx && idx > q_idx)
+        end
+      end
     end
 
     instance_variable_set(:"@_disabled_questions_map", res)
@@ -317,7 +317,7 @@ class FormAnswer < ApplicationRecord
     form = award_form.decorate(answers: progress_hash)
 
     value = form.steps.any? do |step|
-              step.questions.any?(&:halted?)
+      step.questions.any?(&:halted?)
     end
 
     instance_variable_set(:"@_form_halted", value)
@@ -542,7 +542,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def set_progress
-    #TODO: move this logic to it's specific class when you create one class per document type.
+    # TODO: move this logic to it's specific class when you create one class per document type.
     if award_type == "promotion"
       questions_that_dont_count = []
     else

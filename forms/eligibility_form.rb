@@ -15,9 +15,9 @@ class EligibilityForm
 
   def basic_eligibility
     @basic_eligibility ||= if form_answer.basic_eligibility.try(:persisted?)
-        form_answer.basic_eligibility
+      form_answer.basic_eligibility
     else
-        form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.try(:attributes) || {}))
+      form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.try(:attributes) || {}))
     end
   end
 

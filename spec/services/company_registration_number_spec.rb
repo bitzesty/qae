@@ -42,4 +42,3 @@ RSpec.describe CompanyRegistrationNumber do
     end
   end
 end
-

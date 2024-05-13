@@ -8,18 +8,18 @@ class QaeFormBuilder
       return result unless question.visible?
 
       dates = question.active_fields.each_with_object(Hash[]) do |field, outer|
-                suffix = "#{question.key}_#{field}"
-                parts = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
-                  key = "#{suffix}#{sub}"
-                  inner << answers[key]
-                end
+        suffix = "#{question.key}_#{field}"
+        parts = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
+          key = "#{suffix}#{sub}"
+          inner << answers[key]
+        end
 
-                if parts.any?(&:blank?)
-                  outer[suffix] = :blank
-                else
-                  date = parts.join("/")
-                  outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
-                end
+        if parts.any?(&:blank?)
+          outer[suffix] = :blank
+        else
+          date = parts.join("/")
+          outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
+        end
       end
 
       required = question.required?
@@ -113,7 +113,11 @@ class QaeFormBuilder
               date << q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue
+              nil
+            end
 
             c.question_value.call(date)
           else

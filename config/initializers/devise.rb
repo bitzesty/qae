@@ -8,7 +8,7 @@ Devise.setup do |config|
   config.mailer_sender = ENV["MAILER_FROM"] || "no-reply@kings-awards-enterprise.service.gov.uk"
 
   # Configure the class responsible to send e-mails.
-  #config.mailer = "Devise::Mailer"
+  # config.mailer = "Devise::Mailer"
 
   require "devise/orm/active_record"
 

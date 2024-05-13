@@ -5,5 +5,3 @@ namespace :db do
     Feedback.all.map { |f| f.touch_with_version }
   end
 end
-
-

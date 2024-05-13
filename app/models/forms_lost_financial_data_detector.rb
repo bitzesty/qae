@@ -100,7 +100,7 @@ class FormsLostFinancialDataDetector
         date,
       ]
     end.select do |item|
-      #ids.include?(item[0].to_s) &&
+      # ids.include?(item[0].to_s) &&
       possible_question_keys.any? do |k|
         item[1][k.to_s].present?
       end

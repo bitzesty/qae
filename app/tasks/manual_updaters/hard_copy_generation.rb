@@ -47,15 +47,15 @@ module ManualUpdaters
         not_updated_entries_cs_individual = []
 
         year.hard_copy_case_summary_scope.find_each do |form_answer|
-            form_answer.generate_case_summary_hard_copy_pdf!
+          form_answer.generate_case_summary_hard_copy_pdf!
 
-            sleep 3
+          sleep 3
 
-            logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id}] -------------------------------- updated"
+          logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id}] -------------------------------- updated"
         rescue => e
-            not_updated_entries_cs_individual << form_answer.id
+          not_updated_entries_cs_individual << form_answer.id
 
-            logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
+        logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
         end
 
         if not_updated_entries_cs_individual.present?
@@ -80,15 +80,15 @@ module ManualUpdaters
         not_updated_entries_feed_individual = []
 
         year.hard_copy_feedback_scope.find_each do |form_answer|
-            form_answer.generate_feedback_hard_copy_pdf!
+          form_answer.generate_feedback_hard_copy_pdf!
 
-            sleep 3
+          sleep 3
 
-            logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id}] -------------------------------- updated"
+          logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id}] -------------------------------- updated"
         rescue => e
-            not_updated_entries_feed_individual << form_answer.id
+          not_updated_entries_feed_individual << form_answer.id
 
-            logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
+        logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
         end
 
         if not_updated_entries_feed_individual.present?

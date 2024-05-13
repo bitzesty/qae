@@ -117,8 +117,16 @@ class QaePdfForms::General::QuestionPointer
   def fetch_sub_answers
     res = []
 
-    required_sub_fields = question.required_sub_fields rescue []
-    sub_fields = question.sub_fields rescue []
+    required_sub_fields = begin
+      question.required_sub_fields
+    rescue
+      []
+    end
+    sub_fields = begin
+      question.sub_fields
+    rescue
+      []
+    end
     merged_sub_fields = (required_sub_fields + sub_fields).flatten.uniq
 
     merged_sub_fields.each do |sub_field|

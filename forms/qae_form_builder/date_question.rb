@@ -3,15 +3,27 @@ class QaeFormBuilder
     def errors
       result = super
 
-      date_max = Date.parse(question.delegate_obj.date_max) rescue nil
-      date_min = Date.parse(question.delegate_obj.date_min) rescue nil
+      date_max = begin
+        Date.parse(question.delegate_obj.date_max)
+      rescue
+        nil
+      end
+      date_min = begin
+        Date.parse(question.delegate_obj.date_min)
+      rescue
+        nil
+      end
 
       date = []
       question.required_sub_fields.each do |sub_field|
         date << question.input_value(suffix: sub_field.keys[0])
       end
 
-      date = Date.parse(date.join("/")) rescue nil
+      date = begin
+        Date.parse(date.join("/"))
+      rescue
+        nil
+      end
 
       if !date
         if question.required?
@@ -41,7 +53,11 @@ class QaeFormBuilder
       settings = question.delegate_obj.dynamic_date_max
 
       if (key = answers[settings[:conditional].to_s]).present?
-        date_max = Date.parse(settings[:dates][key]) rescue nil
+        date_max = begin
+          Date.parse(settings[:dates][key])
+        rescue
+          nil
+        end
 
         if date_max && date > date_max
           result[question.hash_key] ||= ""

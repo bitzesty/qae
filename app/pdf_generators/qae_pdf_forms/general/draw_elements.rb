@@ -71,10 +71,10 @@ module QaePdfForms::General::DrawElements
   def base_link_sceleton(url, filename, description = nil, ops = {})
     indent(ops[:description_left_margin] || 0) do
       formatted_text [{
-                        text: filename,
+        text: filename,
                         link: url,
                         styles: [:underline],
-                      }]
+      }]
 
       move_down 3.mm
 

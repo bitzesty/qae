@@ -24,17 +24,17 @@ describe Reports::DataPickers::FormDocumentPicker do
       year_1, year_2, year_3 = PreviousWin.available_years
       awards = [
         {
-            "category" => "innovation",
+          "category" => "innovation",
             "year" => year_1,
             "outcome" => "won",
         },
         {
-            "category" => "",
+          "category" => "",
             "year" => year_2,
             "outcome" => "won",
         },
         {
-            "category" => "trade",
+          "category" => "trade",
             "year" => year_3,
             "outcome" => "did_not_win",
         },

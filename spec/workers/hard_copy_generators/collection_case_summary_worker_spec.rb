@@ -11,7 +11,3 @@ RSpec.describe HardCopyPdfGenerators::Collection::CaseSummaryWorker do
     described_class.new.perform
   end
 end
-
-
-
-

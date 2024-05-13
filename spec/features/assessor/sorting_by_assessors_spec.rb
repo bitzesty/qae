@@ -37,7 +37,7 @@ def assessor_names
   within ".applications-table" do
     names = all("tbody tr").map do |tr|
       tr.find(".td-primary-name").text
-      #tr.all("td")[5].text
+      # tr.all("td")[5].text
     end
   end
   names.map { |name| name[0] }

@@ -11,9 +11,9 @@ module Qae
   class Application < Rails::Application
     config.load_defaults 7.0
 
-    #initializer :regenerate_require_cache, before: :load_environment_config do
+    # initializer :regenerate_require_cache, before: :load_environment_config do
     #  Bootscale.regenerate
-    #end
+    # end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -41,7 +41,7 @@ module Qae
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    #NOTE: This works like Rails 4. For Rails 5, we can use
+    # NOTE: This works like Rails 4. For Rails 5, we can use
     # `config.eager_load_paths << Rails.root.join('lib')` but still it is not recommended for Threadsafty.
     # Need to take look in to it.
     # config.enable_dependency_loading = true

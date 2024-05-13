@@ -25,10 +25,10 @@ module AppraisalFormHelper
     @check_options = ENTRY_RELATES_TO_OPTIONS.select do |i|
       options.include?(i.keys.first)
     end.map do |el|
-       [
-         el.keys.first,
-         el.values.first,
-       ]
+      [
+        el.keys.first,
+        el.values.first,
+      ]
     end
   end
 

@@ -76,7 +76,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def data
-    #object.document
+    # object.document
     OpenStruct.new(object.document.merge(persisted?: true))
   end
 
@@ -398,7 +398,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def innovation_desc_short
-   sanitize_html document["innovation_desc_short"]
+    sanitize_html document["innovation_desc_short"]
   end
 
   def development_desc_short
@@ -450,13 +450,13 @@ class FormAnswerDecorator < ApplicationDecorator
   def application_background
     app_background = case award_type
     when "trade"
-                       document["trade_goods_briefly"]
+      document["trade_goods_briefly"]
     when "innovation"
-                       document["innovation_desc_short"]
+      document["innovation_desc_short"]
     when "development"
-                       document["development_management_approach_briefly"]
+      document["development_management_approach_briefly"]
     when "mobility"
-                       document["mobility_desc_short"]
+      document["mobility_desc_short"]
     end
 
     sanitize_html app_background

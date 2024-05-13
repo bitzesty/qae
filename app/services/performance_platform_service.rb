@@ -31,7 +31,7 @@ class PerformancePlatformService
     log_this("completed") unless Rails.env.test?
   end
 
-  #[
+  # [
   #  {
   #      "_id": "23456780",
   #      "_timestamp": "2015-03-10T00:00:00Z",
@@ -40,7 +40,7 @@ class PerformancePlatformService
   #      "channel_type": "digital",
   #      "count": 42
   #  }
-  #]
+  # ]
   def self.perform_transactions_by_channel
     timestamp = (Time.current - 1.week).beginning_of_day.utc
 
@@ -59,7 +59,7 @@ class PerformancePlatformService
     perform_request(TRANSACTIONS_BY_CHANNEL_URL, [result])
   end
 
-  #[
+  # [
   #  {
   #      "_id": "23456789",
   #      "_timestamp": "2015-03-18T00:00:00Z",
@@ -78,7 +78,7 @@ class PerformancePlatformService
   #      "count": 42,
   #      "cumulative_count": 72
   #  }
-  #]
+  # ]
 
   def self.perform_applications_by_stage
     payload = fetch_applications_data

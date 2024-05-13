@@ -73,9 +73,21 @@ class QaeFormBuilder
     def question_possible_sub_keys(question)
       sub_question_keys = []
 
-      sub_fields = question.sub_fields rescue nil
-      required_sub_fields = question.required_sub_fields rescue nil
-      by_year_conditions = question.by_year_conditions rescue nil
+      sub_fields = begin
+        question.sub_fields
+      rescue
+        nil
+      end
+      required_sub_fields = begin
+        question.required_sub_fields
+      rescue
+        nil
+      end
+      by_year_conditions = begin
+        question.by_year_conditions
+      rescue
+        nil
+      end
 
       if sub_fields.present?
         sub_question_keys += sub_fields.map { |f| f.keys.first }
@@ -152,8 +164,16 @@ class QaeFormBuilder
 
     # rubocop:disable Style/MissingRespondToMissing
     def method_missing(meth, *args, &block)
-      klass_builder = QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder") rescue nil
-      klass = QaeFormBuilder.const_get("#{meth.to_s.camelize}Question") rescue nil
+      klass_builder = begin
+        QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder")
+      rescue
+        nil
+      end
+      klass = begin
+        QaeFormBuilder.const_get("#{meth.to_s.camelize}Question")
+      rescue
+        nil
+      end
 
       if klass_builder && klass && args.length >= 2 && args.length <= 3
         id, title, opts = args

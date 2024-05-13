@@ -315,7 +315,11 @@ module Reports::DataPickers::FormDocumentPicker
     year = doc("started_trading_year")
 
     if year && month && day
-      Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y") rescue nil
+      begin
+        Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y")
+      rescue
+        nil
+      end
     end
   end
 
@@ -331,9 +335,9 @@ module Reports::DataPickers::FormDocumentPicker
         question = questions[meth.keys.first.to_sym]&.decorate(answers: answers)
 
         range = if question.respond_to?(:active_by_year_condition)
-                  question.active_by_year_condition&.options&.dig(:data, :identifier)
+          question.active_by_year_condition&.options&.dig(:data, :identifier)
         else
-                  doc(meth.keys.first)
+          doc(meth.keys.first)
         end
 
         target_key = meth.values.first[range]

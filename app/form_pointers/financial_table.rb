@@ -143,18 +143,18 @@ module FinancialTable
   def financial_years_number
     @financial_years_number ||=
       if financial_date_selector_value.present?
-          if one_option_question_or_development?
-            "3"
-          elsif form_answer.innovation?
-            innovation_years_number
-          else
-            financial_date_selector.ops_values[financial_date_selector_value]
-          end
+        if one_option_question_or_development?
+          "3"
+        elsif form_answer.innovation?
+          innovation_years_number
+        else
+          financial_date_selector.ops_values[financial_date_selector_value]
+        end
       elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
-          financial_pointer.period_length
+        financial_pointer.period_length
       else
-          # If not selected yet, render last option as default
-          financial_date_selector.ops_values.values.last
+        # If not selected yet, render last option as default
+        financial_date_selector.ops_values.values.last
       end
   end
 

@@ -5,4 +5,3 @@ module WinnersAwardsHelper
     "https://s3-eu-west-1.amazonaws.com/qae-winners-assets/#{CGI.escape(file_path)}"
   end
 end
-

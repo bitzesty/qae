@@ -232,28 +232,32 @@ class QaeFormBuilder
         question_value = condition.question_value
 
         parent_question_answer = if fetched_answers.present?
-                                   # Used in Reports::AllEntries, as passing json of answers
-                                   # allows to make it faster
-                                   fetched_answers[condition.question_key]
+          # Used in Reports::AllEntries, as passing json of answers
+          # allows to make it faster
+          fetched_answers[condition.question_key]
         else
-                                   step.form[condition.question_key].input_value
+          step.form[condition.question_key].input_value
         end
 
         if question_value == :true
           parent_question_answer.present?
         elsif question_value == :day_month_range
           day, month = if fetched_answers.present?
-                         [
-                           fetched_answers["#{condition.question_key}_day"],
-                           fetched_answers["#{condition.question_key}_month"],
-                         ]
+            [
+              fetched_answers["#{condition.question_key}_day"],
+              fetched_answers["#{condition.question_key}_month"],
+            ]
           else
-                         q = step.form[condition.question_key]
-                         q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
+            q = step.form[condition.question_key]
+            q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
           end
 
           if day.present? && month.present?
-            date = Date.parse("#{day.to_i}/#{month.to_i}/2000") rescue nil
+            date = begin
+              Date.parse("#{day.to_i}/#{month.to_i}/2000")
+            rescue
+              nil
+            end
             if date
               from, to = condition.options.dig(:range)
               date.between?(from, to)
@@ -612,7 +616,11 @@ class QaeFormBuilder
 
     def decorate options = {}
       kls_name = self.class.name.split("::").last
-      kls = QaeFormBuilder.const_get "#{kls_name}Decorator" rescue nil
+      kls = begin
+        QaeFormBuilder.const_get "#{kls_name}Decorator"
+      rescue
+        nil
+      end
       (kls || QuestionDecorator).new self, options
     end
 

@@ -36,7 +36,11 @@ class QaeFormBuilder
               date << q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue
+              nil
+            end
 
             c.question_value.(date)
           else

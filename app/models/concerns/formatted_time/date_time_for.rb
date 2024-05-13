@@ -35,7 +35,11 @@ module FormattedTime::DateTimeFor
           attr_accessible "formatted_#{attr}" if respond_to?(:attr_accessible)
 
           define_method("formatted_#{attr}=") do |value|
-            date = Date.strptime(value, "%d/%m/%Y") rescue nil
+            date = begin
+              Date.strptime(value, "%d/%m/%Y")
+            rescue
+              nil
+            end
             self.public_send("#{attr}=", date)
           end
 
