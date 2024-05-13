@@ -158,7 +158,7 @@ class FormAnswer < ApplicationRecord
   scope :promotion, -> { where(award_type: "promotion") }
   scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
   scope :without_product_figures, ->(condition) {
-    where(%Q{(#{FormAnswer.table_name}.metadata::JSONB->>'product_estimated_figures')::boolean is #{condition}})
+    where(%{(#{FormAnswer.table_name}.metadata::JSONB->>'product_estimated_figures')::boolean is #{condition}})
   }
   scope :with_estimated_figures_provided, -> { without_product_figures(true) }
   scope :with_actual_figures_provided, -> { without_product_figures(false) }
@@ -166,7 +166,7 @@ class FormAnswer < ApplicationRecord
     query = numbers.join("|")
 
     where(
-      %Q{#{table_name}.metadata::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'},
+      %{#{table_name}.metadata::JSONB @? '$.registration_number ? (@.type() == "string" && @ like_regex "[[:<:]](#{query})[[:>:]]" flag "i")'},
     )
   }
 

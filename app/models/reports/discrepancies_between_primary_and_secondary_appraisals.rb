@@ -47,7 +47,7 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
     end
 
     @scope = @year.form_answers.order(:id)
-                  .joins(%Q{
+                  .joins(%{
                                  JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id = form_answers.id
                                  JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id = form_answers.id
                                })

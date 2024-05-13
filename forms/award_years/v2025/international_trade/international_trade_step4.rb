@@ -234,9 +234,9 @@ class AwardYears::V2025::QaeForms
             title: "You do not meet the eligibility criteria for this award.",
             message: ->(resource) do
               value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
-              (value == 3) ? %Q{
+              (value == 3) ? %{
                    Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.
-                 } : %Q{
+                 } : %{
                    Your total overseas sales are showing dips during the period of our entry. If you had a steep year-on-year growth (without dips) over the three most recent financial years, consider applying on an "Outstanding Short-Term Growth" basis by changing your answer in D1. If you had dips in total overseas sales during that period, you do not meet eligibility for the award and cannot proceed.
                  }
             end
