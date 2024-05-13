@@ -4,7 +4,8 @@ module FormAnswerFilteringTestHelper
       expect(page).to have_selector(".td-title", count: n)
     end
   end
-
+  
+  # rubocop:disable Lint/NonLocalExitFromIterator
   def click_status_option(val)
     within ".applications-filter.status-filter" do
       find(".dropdown-toggle").click
@@ -52,6 +53,7 @@ module FormAnswerFilteringTestHelper
     end
     fail "NotFoundOption"
   end
+  # rubocop:enable Lint/NonLocalExitFromIterator
 
   def assign_dummy_assessors(form_answers, assessor)
     Array(form_answers).each do |fa|
