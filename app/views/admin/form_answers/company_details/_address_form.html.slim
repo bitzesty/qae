@@ -142,7 +142,7 @@
               = @form_answer.document["website_url"]
               br
 
-      - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
+      - if CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
         = simple_form_for([namespace_name, resource],
                           remote: true,
                           authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
@@ -259,7 +259,7 @@
               = @form_answer.nominator_email
               br
 
-        - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
+        - if CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
           = simple_form_for([namespace_name, resource],
                             remote: true,
                             authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "address_form_admin_appraisal" }) do |f|
