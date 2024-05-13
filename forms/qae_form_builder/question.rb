@@ -593,7 +593,7 @@ class QaeFormBuilder
       @display_sub_ref_on_js_form = true
       @show_ref_always = false
 
-      self.after_create if self.respond_to?(:after_create)
+      after_create if respond_to?(:after_create)
     end
 
     def context

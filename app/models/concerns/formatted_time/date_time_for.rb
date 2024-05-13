@@ -12,7 +12,7 @@ module FormattedTime::DateTimeFor
               hours.to_i * 3600 + min.to_i * 60
             end
 
-            self.public_send("#{attr}=", seconds)
+            public_send("#{attr}=", seconds)
           end
 
           define_method("formatted_#{attr}") do
@@ -40,7 +40,7 @@ module FormattedTime::DateTimeFor
             rescue
               nil
             end
-            self.public_send("#{attr}=", date)
+            public_send("#{attr}=", date)
           end
 
           define_method("formatted_#{attr}") do

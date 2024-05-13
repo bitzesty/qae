@@ -26,6 +26,6 @@ class Supporter < ApplicationRecord
   end
 
   def notify!
-    Users::SupporterMailer.success(self.id, form_answer.user.id).deliver_later!
+    Users::SupporterMailer.success(id, form_answer.user.id).deliver_later!
   end
 end

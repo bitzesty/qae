@@ -35,7 +35,7 @@ class ShortlistedDocumentsWrapper < ActiveRecord::Base
   private
 
   def set_submission_date(timestamp = Time.zone.now)
-    self.update(submitted_at: timestamp)
+    update(submitted_at: timestamp)
   end
 
   def requirements_fulfilled?

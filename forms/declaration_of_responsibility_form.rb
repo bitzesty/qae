@@ -31,7 +31,7 @@ class DeclarationOfResponsibilityForm
 
   def update(attrs = {})
     ATTRIBUTES.each do |attr_name|
-      self.public_send("#{attr_name}=", attrs[attr_name])
+      public_send("#{attr_name}=", attrs[attr_name])
     end
 
     return false unless valid?

@@ -383,8 +383,8 @@ class FormAnswer < ApplicationRecord
   end
 
   def financial_step
-    h = FINANCIAL_STEPS.select { |y| y === self.award_year.year }
-    h.values[0][self.award_type] - 1
+    h = FINANCIAL_STEPS.select { |y| y === award_year.year }
+    h.values[0][award_type] - 1
   end
 
   #
@@ -489,7 +489,7 @@ class FormAnswer < ApplicationRecord
   def financial_year_changeable?
     key = :most_recent_financial_year
     selected = %i[most_recent_financial_year financial_year_date_day financial_year_date_month]
-    self.award_form
+    award_form
         .questions_by_key[key]
         &.decorate(answers: HashWithIndifferentAccess.new(document || {}).slice(*selected))
         &.year_changeable?
@@ -504,13 +504,13 @@ class FormAnswer < ApplicationRecord
   end
 
   def other_applications_from_same_entity
-    content = self.document.dig("registration_number")
+    content = document.dig("registration_number")
     extracted_numbers = ::CompanyRegistrationNumber.extract_from(content)
 
     return [] if extracted_numbers.empty?
 
     self.class.submitted
-              .where.not(id: self.id)
+              .where.not(id: id)
               .by_registration_numbers(*extracted_numbers)
               .joins(:award_year)
               .order("award_years.year DESC")

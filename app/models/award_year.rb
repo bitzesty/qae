@@ -41,7 +41,7 @@ class AwardYear < ApplicationRecord
   ]
 
   def current?
-    self.year == self.class.current.year
+    year == self.class.current.year
   end
 
   #
