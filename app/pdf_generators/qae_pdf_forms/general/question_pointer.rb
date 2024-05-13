@@ -312,10 +312,11 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_validation_block
+    # rubocop:disable Lint/LiteralAsCondition
     # Valid/pending icon
-    # TODO If it has validation
+    # TODO: If it has validation
     if false
-      # TODO If it is valid
+      # TODO: If it is valid
       if false
         valid_icon = "icon-valid-pdf.png"
       else
@@ -326,6 +327,7 @@ class QaePdfForms::General::QuestionPointer
         at: [0, form_pdf.cursor - 4.mm],
         width: 7.mm
     end
+    # rubocop:enable Lint/LiteralAsCondition
   end
 
   def render_question_sub_title
