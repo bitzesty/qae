@@ -93,7 +93,7 @@ Rails.application.configure do
     "rails",
     format: Appsignal::Logger::LOGFMT,
   )
-  config.logger = ActiveSupport::Logger.new(STDOUT) # Lograge-formatted logs to STDOUT
+  config.logger = ActiveSupport::Logger.new($stdout) # Lograge-formatted logs to STDOUT
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

@@ -32,7 +32,7 @@ module ApplicationHelper
     end
 
     tag.li(**opts) do
-      if step_status == "current" or (step_status != "past" && opts[:cant_access_future])
+      if (step_status == "current") || (step_status != "past" && opts[:cant_access_future])
         tag.span(class: "govuk-body") do
           index_step_text
         end
@@ -49,7 +49,7 @@ module ApplicationHelper
     return inner if question.conditions.empty?
 
     current = inner
-    for condition in question.conditions
+    question.conditions.each do |condition|
       dep = question.form[condition.question_key]
       raise "Can't find parent question for conditional #{question.key} -> #{condition.question_key}" unless dep
 

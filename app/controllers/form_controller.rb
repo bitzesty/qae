@@ -236,7 +236,7 @@ class FormController < ApplicationController
 
   def next_index(hash)
     return 0 if hash.empty?
-    return hash.keys.sort.last.to_i + 1
+    return hash.keys.max.to_i + 1
   end
 
   def updating_step

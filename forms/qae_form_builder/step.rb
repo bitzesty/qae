@@ -142,7 +142,7 @@ class QaeFormBuilder
     private
 
     def count_questions meth
-      questions.map { |q| q.send(meth) ? 1 : 0 }.reduce(:+)
+      questions.sum { |q| q.send(meth) ? 1 : 0 }
     end
   end
 

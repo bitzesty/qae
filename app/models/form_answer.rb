@@ -51,9 +51,7 @@ class FormAnswer < ApplicationRecord
     "mobility" => "Promoting Opportunity",
     "promotion" => "Enterprise Promotion",
   }
-  CURRENT_AWARD_TYPE_FULL_NAMES = AWARD_TYPE_FULL_NAMES.reject do |k, _|
-    k == "promotion"
-  end
+  CURRENT_AWARD_TYPE_FULL_NAMES = AWARD_TYPE_FULL_NAMES.except("promotion")
 
   FINANCIAL_STEPS = {
     ..2023 => {
@@ -173,7 +171,7 @@ class FormAnswer < ApplicationRecord
   }
 
   scope :past, -> {
-    where(award_year_id: AwardYear.past.pluck(:id)).order("award_type")
+    where(award_year_id: AwardYear.past.select(:id)).order("award_type")
   }
 
   scope :hard_copy_generated, -> (mode) {
