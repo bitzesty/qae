@@ -12,7 +12,7 @@ class QaeFormBuilder
 
   class NumberQuestionBuilder < TextQuestionBuilder
     def initialize q
-      super q
+      super(q)
       q.type = :number
     end
 

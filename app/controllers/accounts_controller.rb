@@ -75,13 +75,13 @@ class AccountsController < ApplicationController
   end
 
   def complete_registration
-    unless current_user.completed_registration
+    if current_user.completed_registration?
+      redirect_to password_settings_account_path
+    else
       current_user.update_attribute(:completed_registration, true)
 
       flash.notice = "Your account details were successfully saved"
       redirect_to dashboard_path
-    else
-      redirect_to password_settings_account_path
     end
   end
 

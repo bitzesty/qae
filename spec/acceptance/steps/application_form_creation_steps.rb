@@ -17,15 +17,15 @@ step "I go to dashboard" do
 end
 
 step "I should see innovation application link" do
-  expect(page).to have_link("New application", href:"/apply_innovation_award")
+  expect(page).to have_link("New application", href: "/apply_innovation_award")
 end
 
 step "I should see international trade application link" do
-  expect(page).to have_link("New application", href:"/apply_international_trade_award")
+  expect(page).to have_link("New application", href: "/apply_international_trade_award")
 end
 
 step "I should see sustainable development application link" do
-  expect(page).to have_link("New application", href:"/apply_sustainable_development_award")
+  expect(page).to have_link("New application", href: "/apply_sustainable_development_award")
 end
 
 step "I create innovation form" do

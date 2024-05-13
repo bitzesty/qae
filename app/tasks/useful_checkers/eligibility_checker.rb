@@ -19,7 +19,7 @@ module UsefulCheckers
       ActiveRecord::Base.logger.level = Logger::INFO
 
       self.year = AwardYear.current
-      self.all_apps = year.form_answers.where("state NOT IN (?)", ["eligibility_in_progress", "not_eligible", "not_submitted"])
+      self.all_apps = year.form_answers.where.not(state: ["eligibility_in_progress", "not_eligible", "not_submitted"])
 
       self.trade_apps = all_apps.where(award_type: "trade")
       self.innovation_apps = all_apps.where(award_type: "innovation")

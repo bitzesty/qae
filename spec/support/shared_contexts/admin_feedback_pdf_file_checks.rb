@@ -69,7 +69,7 @@ shared_context "admin feedback pdf file checks" do
       FeedbackForm.fields_for_award_type(form_answer).each do |key, opts|
         if opts[:type] == :strengths
           year = form_answer.award_year.year
-          expect(pdf_content).to include(AppraisalForm.const_get("STRENGTH_OPTIONS_#{year}").detect { |k, v| v == feedback.document["#{key}_rate"] }[0] )
+          expect(pdf_content).to include(AppraisalForm.const_get("STRENGTH_OPTIONS_#{year}").detect { |k, v| v == feedback.document["#{key}_rate"] }[0])
         else
           expect(pdf_content).to include(feedback.document["#{key}_strength"])
           expect(pdf_content).to include(feedback.document["#{key}_weakness"])

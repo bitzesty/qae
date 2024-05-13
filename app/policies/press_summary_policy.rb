@@ -26,7 +26,7 @@ class PressSummaryPolicy < ApplicationPolicy
   end
 
   def can_update_contact_details?
-    ( !deadline_passed? && update? ) || admin?
+    (!deadline_passed? && update?) || admin?
   end
 
   def deadline_passed?

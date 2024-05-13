@@ -27,11 +27,7 @@ class Settings < ApplicationRecord
 
     def current_award_year_switch_date_or_default_trigger_at
       Rails.cache.fetch("award_year_switch_deadline_or_default_trigger_at", expires_in: 1.minute) do
-        if current.deadlines.award_year_switch.trigger_at
-          current.deadlines.award_year_switch.trigger_at
-        else
-          Date.new(current.award_year.year - 1, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
-        end
+        current.deadlines.award_year_switch.trigger_at || Date.new(current.award_year.year - 1, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
       end
     end
 

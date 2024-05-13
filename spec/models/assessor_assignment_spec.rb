@@ -206,7 +206,7 @@ describe AssessorAssignment do
   end
 
   describe "#as_json" do
-    let(:form) { create(:form_answer, :trade ) }
+    let(:form) { create(:form_answer, :trade) }
 
     it "should return error" do
       assessor_assignment = build :assessor_assignment, position: nil, form_answer: form

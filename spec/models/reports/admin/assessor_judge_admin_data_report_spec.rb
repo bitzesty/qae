@@ -1,11 +1,11 @@
 require "rails_helper"
 
 describe Reports::Admin::AssessorJudgeAdminDataReport do
-  let! (:admin) { create(:admin) }
-  let! (:assessor) { create(:assessor, :lead_for_trade) }
-  let! (:judge) { create(:judge, :innovation) }
+  let!(:admin) { create(:admin) }
+  let!(:assessor) { create(:assessor, :lead_for_trade) }
+  let!(:judge) { create(:judge, :innovation) }
 
-  let(:output) { described_class.new().as_csv }
+  let(:output) { described_class.new.as_csv }
   it "creates the output with relevant data for Admins" do
     expect(output).to include(admin.id.to_s)
     expect(output).to include(admin.first_name)

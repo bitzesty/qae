@@ -435,7 +435,7 @@ class QaeFormBuilder
       condition = options[:if]
 
       if condition && condition.respond_to?(:call)
-        @q.additional_pdf_context = text if condition.call()
+        @q.additional_pdf_context = text if condition.call
       else
         @q.additional_pdf_context = text
       end

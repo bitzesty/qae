@@ -127,7 +127,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominee_title
-    object.nominee_title ? object.nominee_title : document["nominee_title"]
+    object.nominee_title || document["nominee_title"]
   end
 
   def progress_class

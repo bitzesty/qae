@@ -102,8 +102,8 @@ class Reports::ReceptionBuckinghamPalaceReport
 
   def scoped_collection
     PalaceAttendee.includes(palace_invite: :form_answer)
-                  .where("form_answers.award_year_id = ?", @year.id)
-                  .where("palace_invites.submitted = ?", true)
+                  .where(form_answers: { award_year_id: @year.id })
+                  .where(palace_invites: { submitted: true })
                   .order("palace_invites.form_answer_id ASC, palace_attendees.id ASC")
   end
 
