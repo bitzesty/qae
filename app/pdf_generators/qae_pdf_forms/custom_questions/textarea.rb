@@ -242,7 +242,7 @@ module QaePdfForms::CustomQuestions::Textarea
     end
 
     style_options = Array.wrap(style_options)
-    styles = { inline_format: true, color: FormPdf::DEFAULT_ANSWER_COLOR, }
+    styles = { inline_format: true, color: FormPdf::DEFAULT_ANSWER_COLOR }
 
     if style_options.present?
       margin_list = style_options.select do |el|

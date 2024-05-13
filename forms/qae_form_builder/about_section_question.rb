@@ -17,9 +17,7 @@ class QaeFormBuilder
       @link = data.link
       %(
         <h3 class="govuk-heading-m">#{data.header}</h3>
-        #{data.context.map { |c|
-          "<p class='govuk-body'>#{c}</p>"}.join
-        }
+        #{data.context.map { |c| "<p class='govuk-body'>#{c}</p>" }.join}
       )
     end
 

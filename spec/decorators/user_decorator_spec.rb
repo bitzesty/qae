@@ -7,7 +7,8 @@ describe UserDecorator do
       last_name: "Bar",
       role: "account_admin",
       company_name: "Umbrella Corporation",
-    )}
+    )
+  }
 
   let(:subject) { UserDecorator.decorate(user) }
 

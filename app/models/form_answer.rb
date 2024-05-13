@@ -113,11 +113,8 @@ class FormAnswer < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :form_answer_transitions, autosave: false
   has_many :assessor_assignments, dependent: :destroy
-  has_many :lead_or_primary_assessor_assignments,
-    -> {
-      where.not(submitted_at: nil)
-              .where(position: [3, 4])
-              .order(position: :desc) },
+  has_many :lead_or_primary_assessor_assignments, 
+    -> { where.not(submitted_at: nil).where(position: [3, 4]).order(position: :desc) },
     class_name: "AssessorAssignment",
     foreign_key: :form_answer_id
   has_many :assessors, through: :assessor_assignments do
