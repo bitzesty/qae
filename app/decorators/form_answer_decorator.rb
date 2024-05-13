@@ -110,14 +110,14 @@ class FormAnswerDecorator < ApplicationDecorator
               old_array << value
             end
           end
-          old_array.reject!{ |i| i.include? "_destroy" }
+          old_array.reject! { |i| i.include? "_destroy" }
         end
       end
     end
   end
 
   def array_keys
-    object.document.select{ |item, value| value.is_a?(Array) }.keys
+    object.document.select { |item, value| value.is_a?(Array) }.keys
   end
 
   def company_name

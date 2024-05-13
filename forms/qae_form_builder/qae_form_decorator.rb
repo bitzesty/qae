@@ -19,7 +19,7 @@ class QaeFormBuilder
     private
 
     def count_questions meth
-      steps.sum{ |step| step.send meth }
+      steps.sum { |step| step.send meth }
     end
   end
 end

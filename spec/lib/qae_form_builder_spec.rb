@@ -7,7 +7,7 @@ describe QaeFormBuilder do
     end
   end
 
-  let(:current_step){ subject.steps.first }
+  let(:current_step) { subject.steps.first }
 
   describe "#build" do
     it "creates the questions" do

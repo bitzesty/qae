@@ -133,7 +133,7 @@ class Eligibility < ApplicationRecord
   end
 
   def any_error_yet?
-    answers.any?{ |answer| !answer_valid?(answer[0], answer[1]) }
+    answers.any? { |answer| !answer_valid?(answer[0], answer[1]) }
   end
 
   def answer_valid?(question, answer)

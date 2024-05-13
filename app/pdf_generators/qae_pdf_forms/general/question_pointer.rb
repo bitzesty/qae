@@ -383,7 +383,7 @@ class QaePdfForms::General::QuestionPointer
         end
       when QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion, QaeFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
-          chosen_option = question.options.detect{ |option| option.value.to_s == humanized_answer.to_s }
+          chosen_option = question.options.detect { |option| option.value.to_s == humanized_answer.to_s }
           form_pdf.render_standart_answer_block(question_option_title)
           if chosen_option
             render_context_for_option(question, chosen_option)

@@ -73,7 +73,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def innovation_type
     if innovation? && doc("application_relate_to_header")
-      types = doc("application_relate_to_header").map{ |hash| hash["type"] }
+      types = doc("application_relate_to_header").map { |hash| hash["type"] }
       types.join(",")
     else
       ""
