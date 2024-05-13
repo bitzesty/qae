@@ -71,11 +71,11 @@ class User < ApplicationRecord
       none
     end
   }
-  scope :debounce_scan_candidates, -> () {
+  scope :debounce_scan_candidates, -> {
     where("debounce_api_latest_check_at IS NULL OR debounce_api_latest_check_at < ?", 6.months.ago)
       .order(id: :asc)
   }
-  scope :want_to_receive_opening_notification_for_at_least_one_award, -> () {
+  scope :want_to_receive_opening_notification_for_at_least_one_award, -> {
     where(%{
       notification_when_innovation_award_open IS TRUE OR
       notification_when_trade_award_open IS TRUE OR

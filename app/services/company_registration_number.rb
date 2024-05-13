@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CompanyRegistrationNumber
-  COMPANY_REGISTRATION_NUMBER_REGEX = %r{(?!\s)((AC|ZC|FC|GE|LP|OC|SE|SA|SZ|SF|GS|SL|SO|SC|ES|NA|NZ|NF|GN|NL|NC|R0|NI|EN|\d{0,2}|SG|FE(\s?))\d{5}(\d|C|R))|((RS|SO)\d{3}(\d{3}|\d{2}[WSRCZF]|\d(FI|RS|SA|IP|US|EN|AS)|CUS))|((NI|SL)\d{5}[\dA])|(OC(([\dP]{5}[CWERTB])|([\dP]{4}(OC|CU))))}i.freeze
+  COMPANY_REGISTRATION_NUMBER_REGEX = %r{(?!\s)((AC|ZC|FC|GE|LP|OC|SE|SA|SZ|SF|GS|SL|SO|SC|ES|NA|NZ|NF|GN|NL|NC|R0|NI|EN|\d{0,2}|SG|FE(\s?))\d{5}(\d|C|R))|((RS|SO)\d{3}(\d{3}|\d{2}[WSRCZF]|\d(FI|RS|SA|IP|US|EN|AS)|CUS))|((NI|SL)\d{5}[\dA])|(OC(([\dP]{5}[CWERTB])|([\dP]{4}(OC|CU))))}i
 
   def self.extract_from(content)
     new(content).extract

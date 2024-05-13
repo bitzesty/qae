@@ -35,8 +35,6 @@ class FinancialSummaryPointer < FormFinancialPointer
                  values[0].transform_values { |_v| nil }
       when Array
                  []
-      else
-                 nil
       end
 
       diff = ::Utils::Diff.calc(minmax[:min], minmax[:max])

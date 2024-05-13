@@ -41,9 +41,8 @@ class FormController < ApplicationController
   end
 
   expose(:support_letter_attachments) do
-    @form_answer.support_letter_attachments.inject({}) do |r, attachment|
+    @form_answer.support_letter_attachments.each_with_object({}) do |attachment, r|
       r[attachment.id] = attachment
-      r
     end
   end
 
@@ -294,9 +293,8 @@ class FormController < ApplicationController
   def set_form_answer
     @form_answer = current_user.account.form_answers.find(params[:id])
 
-    @attachments = @form_answer.form_answer_attachments.inject({}) do |r, attachment|
+    @attachments = @form_answer.form_answer_attachments.each_with_object({}) do |attachment, r|
       r[attachment.id] = attachment
-      r
     end
   end
 

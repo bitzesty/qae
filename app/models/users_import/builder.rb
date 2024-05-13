@@ -76,7 +76,7 @@ class UsersImport::Builder
   end
 
   def assign_password(user)
-    passw = (0...15).map { (65 + rand(26)).chr }.join
+    passw = (0...15).map { (rand(65..90)).chr }.join
     user.password = passw
     user.password_confirmation = passw
     user

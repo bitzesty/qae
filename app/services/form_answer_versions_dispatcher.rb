@@ -27,8 +27,6 @@ class FormAnswerVersionsDispatcher
     # and display "N/A" for such users
     if user
       user.decorate.full_name
-    else
-      nil
     end
   end
 
