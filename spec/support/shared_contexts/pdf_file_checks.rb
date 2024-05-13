@@ -90,12 +90,12 @@ shared_context "pdf file checks" do
   private
 
   def fetch_question_by_question_key(questions, question_key)
-    questions.select { |q| q.key.to_s == question_key.to_s }.first
+    questions.find { |q| q.key.to_s == question_key.to_s }
   end
 
   def question_option_title(question, answer)
-    question.options.select do |option|
+    question.options.find do |option|
       option.value.to_s == answer.to_s
-    end.first.text
+    end.text
   end
 end
