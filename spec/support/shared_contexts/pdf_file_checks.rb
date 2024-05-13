@@ -25,10 +25,10 @@ shared_context "pdf file checks" do
   end
 
   let(:award_application_title) do
-    if form_answer.promotion?
-      award_title = "King's Award for Enterprise Promotion #{AwardYear.current.year}"
+    award_title = if form_answer.promotion?
+      "King's Award for Enterprise Promotion #{AwardYear.current.year}"
     else
-      award_title = form_answer.decorate.award_application_title_print
+      form_answer.decorate.award_application_title_print
     end
     award_title.upcase
   end

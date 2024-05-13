@@ -7,14 +7,14 @@ module ApplicationHelper
     opts[:class] ||= "govuk-body"
     step_status = ""
 
-    if opts[:index]
+    index_step_text = if opts[:index]
       if opts[:index_name]
-        index_step_text = "<span class='step-number'>#{opts[:index_name]}</span> #{name}".html_safe
+        "<span class='step-number'>#{opts[:index_name]}</span> #{name}".html_safe
       else
-        index_step_text = "<span class='step-number'>#{opts[:index]}.</span> #{name}".html_safe
+        "<span class='step-number'>#{opts[:index]}.</span> #{name}".html_safe
       end
     else
-      index_step_text = name
+      name
     end
 
     if opts[:index] && opts[:active]

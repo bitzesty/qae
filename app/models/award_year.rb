@@ -174,10 +174,10 @@ class AwardYear < ApplicationRecord
                           .try(:trigger_at)
 
       deadline ||= Date.new(now.year, 4, 21)
-      if now >= deadline.to_datetime
-        y = now.year + 1
+      y = if now >= deadline.to_datetime
+        now.year + 1
       else
-        y = now.year
+        now.year
       end
 
       where(year: y).first_or_create

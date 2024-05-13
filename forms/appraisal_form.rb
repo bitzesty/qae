@@ -1919,10 +1919,10 @@ class AppraisalForm
     award_type = form_answer.award_type
     award_year = form_answer.award_year
 
-    if moderated
-      assessment_types = [:verdict]
+    assessment_types = if moderated
+      [:verdict]
     else
-      assessment_types = [:rag, :non_rag, :verdict]
+      [:rag, :non_rag, :verdict]
     end
     const_get("#{award_type.upcase}_#{award_year.year}").map do |k, obj|
       methods = []

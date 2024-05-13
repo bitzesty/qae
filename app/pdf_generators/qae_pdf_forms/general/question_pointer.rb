@@ -325,10 +325,10 @@ class QaePdfForms::General::QuestionPointer
     # TODO: If it has validation
     if false
       # TODO: If it is valid
-      if false
-        valid_icon = "icon-valid-pdf.png"
+      valid_icon = if false
+        "icon-valid-pdf.png"
       else
-        valid_icon = "icon-pending-pdf.png"
+        "icon-pending-pdf.png"
       end
 
       form_pdf.image "#{Rails.root}/app/assets/images/#{valid_icon}",

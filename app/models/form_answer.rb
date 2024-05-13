@@ -541,10 +541,10 @@ class FormAnswer < ApplicationRecord
 
   def set_progress
     # TODO: move this logic to it's specific class when you create one class per document type.
-    if award_type == "promotion"
-      questions_that_dont_count = []
+    questions_that_dont_count = if award_type == "promotion"
+      []
     else
-      questions_that_dont_count = [:company_name]
+      [:company_name]
     end
 
     ## questions that don't count are excluded to show 0% progress for applications not started

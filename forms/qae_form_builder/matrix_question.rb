@@ -96,10 +96,10 @@ class QaeFormBuilder
     end
 
     def calculate_proportion(question_key, answers, x_heading, y_heading)
-      if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
-        disadvantaged = answers["#{question_key}_#{x_heading}_calculated_sub_total"].to_f
+      disadvantaged = if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
+        answers["#{question_key}_#{x_heading}_calculated_sub_total"].to_f
       else
-        disadvantaged = answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
+        answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
       end
       total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
       proportion = (disadvantaged.to_f / total * 100).round(2)

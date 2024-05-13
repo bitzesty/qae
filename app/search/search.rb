@@ -50,10 +50,10 @@ class Search
     filter_params.each do |column, value|
       next unless value.present?
 
-      if included_in_model_columns?(column)
-        @search_results = @search_results.where(column => value)
+      @search_results = if included_in_model_columns?(column)
+        @search_results.where(column => value)
       else
-        @search_results = apply_custom_filter(@search_results, column, value)
+        apply_custom_filter(@search_results, column, value)
       end
     end
 
@@ -62,14 +62,14 @@ class Search
     end
 
     if ordered_by
-      if included_in_model_columns?(ordered_by)
+      @search_results = if included_in_model_columns?(ordered_by)
         if ordered_desc
-          @search_results = @search_results.order("#{ordered_by} DESC")
+          @search_results.order("#{ordered_by} DESC")
         else
-          @search_results = @search_results.order(ordered_by)
+          @search_results.order(ordered_by)
         end
       else
-        @search_results = apply_custom_sort(@search_results, params[:sort])
+        apply_custom_sort(@search_results, params[:sort])
       end
     end
 

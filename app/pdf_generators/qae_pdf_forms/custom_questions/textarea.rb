@@ -212,10 +212,10 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def marker_of_list(string, key, n)
-    if key == "<ul>"
-      string << "• "
+    string << if key == "<ul>"
+      "• "
     else
-      string << "#{n}. "
+      "#{n}. "
     end
   end
 

@@ -12,10 +12,10 @@ class QaeFormBuilder
       day = question.input_value(suffix: "day")
       month = question.input_value(suffix: "month")
 
-      if day.blank? || month.blank?
-        date = nil
+      date = if day.blank? || month.blank?
+        nil
       else
-        date = begin
+        begin
           Date.parse(date.join("/"))
         rescue
           nil
