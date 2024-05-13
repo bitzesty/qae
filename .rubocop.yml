@@ -112,6 +112,13 @@ Rails/SkipsModelValidations:
     - db/migrate/**/*.rb
     - spec/**/*.rb
 
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - development
+    - test
+
 Style/Documentation:
   Enabled: false
 
