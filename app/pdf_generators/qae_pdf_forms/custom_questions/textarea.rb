@@ -73,7 +73,7 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def wysywyg_list_leading_tag?(tag_abbr)
-    LIST_TAGS.include?(tag_abbr.gsub(/(\<|\>)/, ""))
+    LIST_TAGS.include?(tag_abbr.gsub(/(<|>)/, ""))
   end
 
   def wysywyg_list_ending_tag?(tag_abbr)

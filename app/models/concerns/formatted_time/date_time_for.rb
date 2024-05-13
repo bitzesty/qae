@@ -6,7 +6,7 @@ module FormattedTime::DateTimeFor
       mod = Module.new do
         attrs.each do |attr|
           define_method("formatted_#{attr}=") do |value|
-            hours, min = value.match(/(\d{2})\:(\d{2})/).try(:captures)
+            hours, min = value.match(/(\d{2}):(\d{2})/).try(:captures)
 
             seconds = if hours && min
               hours.to_i * 3600 + min.to_i * 60

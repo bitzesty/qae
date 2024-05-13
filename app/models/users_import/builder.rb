@@ -4,7 +4,7 @@ class UsersImport::Builder
   attr_reader :csv
 
   def initialize(filepath)
-    file = File.open(filepath).read
+    file = File.read(filepath)
     @csv = CSV.parse(file, headers: true)
   end
 

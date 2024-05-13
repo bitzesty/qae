@@ -23,7 +23,7 @@ class AuditEvent
   end
 
   def description_for_action_type(action_type)
-    I18n.translate("audit_logs.action_types.#{action_type}")
+    I18n.t("audit_logs.action_types.#{action_type}")
   end
 
   def user_string

@@ -14,7 +14,7 @@ class FeedbackPolicy < ApplicationPolicy
       admin?
     end
   end
-  alias :create? :update?
+  alias_method :create?, :update?
 
   def submit?
     return @can_submit unless @can_submit.nil?

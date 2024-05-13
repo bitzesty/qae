@@ -7,7 +7,7 @@ class SicCode < ActiveYaml::Base
   set_filename "sic_codes"
 
   def self.load_csv(csv_filename = "#{Rails.root}/sic_codes.csv")
-    csv = CSV.parse File.open(csv_filename).read
+    csv = CSV.parse File.read(csv_filename)
 
     headers = {
       0 => "code",

@@ -17,7 +17,7 @@ class QaeFormBuilder
       @subsidiaries ||= answers[delegate_obj.key.to_s] || []
     end
 
-    alias :entities :subsidiaries
+    alias_method :entities, :subsidiaries
 
     def required_sub_fields_list
       %w(name location employees)

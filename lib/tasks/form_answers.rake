@@ -60,7 +60,7 @@ namespace :form_answers do
   desc "fixes attachment arrays"
   task fix_attachments: :environment do
     FormAnswer.find_each do |f|
-      if f.document["innovation_materials"].kind_of? Array
+      if f.document["innovation_materials"].is_a? Array
         array = f.document["innovation_materials"]
         hash = {}
         array.each_index do |i|

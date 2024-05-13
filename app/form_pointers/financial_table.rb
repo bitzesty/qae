@@ -30,15 +30,17 @@ module FinancialTable
 
       res.shift(diff.abs) if diff.negative?
 
-      diff.times do
-        date_to_calculate_from = res.first
-        if Utils::Date.valid?(date_to_calculate_from)
-          date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
-          res.unshift(date)
-        else
-          res.unshift(nil)
+      if diff.positive?
+        diff.times do
+          date_to_calculate_from = res.first
+          if Utils::Date.valid?(date_to_calculate_from)
+            date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
+            res.unshift(date)
+          else
+            res.unshift(nil)
+          end
         end
-      end if diff.positive?
+      end
     end
 
     if res.any?(&:present?)

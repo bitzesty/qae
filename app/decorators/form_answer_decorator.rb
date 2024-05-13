@@ -119,7 +119,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def array_keys
-    object.document.select{ |item, value| value.kind_of?(Array) }.keys
+    object.document.select{ |item, value| value.is_a?(Array) }.keys
   end
 
   def company_name

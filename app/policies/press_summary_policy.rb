@@ -7,7 +7,7 @@ class PressSummaryPolicy < ApplicationPolicy
     (!record.submitted? && subject.lead_or_assigned?(form_answer)) || admin?
   end
 
-  alias :create? :update?
+  alias_method :create?, :update?
 
   def approve?
     !record.approved? && subject.lead?(form_answer)
