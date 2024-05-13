@@ -1,11 +1,11 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Admin: Download original pdf of application at the deadline", %q{
+describe "Admin: Download original pdf of application at the deadline", '
 As an Admin
 I want to download original PDF of application at the deadline
 So that I can see original application data was at the deadline moment
-} do
+' do
   before do
     login_admin(create(:admin))
 

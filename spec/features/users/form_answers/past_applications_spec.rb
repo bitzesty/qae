@@ -1,11 +1,11 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Past Applications", %q{
+describe "Past Applications", '
 As an Applicant
 I want to be able to see Past Applications for previous years
 So that I see
-} do
+' do
   let(:previous_year) do
     Date.new(2020, 4, 1)
   end

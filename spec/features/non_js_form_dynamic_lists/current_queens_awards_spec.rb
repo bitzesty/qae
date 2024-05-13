@@ -1,11 +1,11 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Non JS | Dynamic Lists | Current King's Awards", %q{
+describe "Non JS | Dynamic Lists | Current King's Awards", "
 As a User
 I want to be able to add Current King's Awards I hold
 So that I can fill form completelly even if Javascript is turned off
-} do
+" do
   include_context "non js form base"
 
   let(:innovation_award_year) do

@@ -1,11 +1,11 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Admin: Download all Case Summary as one pdf", %q{
+describe "Admin: Download all Case Summary as one pdf", '
 As an Admin
 I want to download all Case Summary PDFS as one pdf per category from Dashboard
 So that I can print and review application case summaries
-} do
+' do
   let!(:admin) { create(:admin) }
 
   before do

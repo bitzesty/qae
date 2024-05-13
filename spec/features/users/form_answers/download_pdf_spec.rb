@@ -1,11 +1,11 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Download a pdf of the award form filled", %q{
+describe "Download a pdf of the award form filled", '
 As a User
 I want to be able to download a pdf of the filled in form filled in with whatever I have entered so far
 So that I can review my progress or share the pdf with others
-} do
+' do
   let!(:user) do
     FactoryBot.create :user
   end

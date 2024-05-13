@@ -2,11 +2,11 @@ require "rails_helper"
 include Warden::Test::Helpers
 include ActiveJob::TestHelper
 
-describe "Collaborators", %q{
+describe "Collaborators", '
 As a an Admin
 I want to be able to add collaborators to any account
 So that they can collaborate applications
-} do
+' do
   let!(:admin) { create(:admin) }
 
   let!(:form_answer) do
