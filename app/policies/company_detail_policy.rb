@@ -8,6 +8,8 @@ class CompanyDetailPolicy < ApplicationPolicy
   end
 
   def can_manage_address?
-    admin?
+    if admin?
+      record.submitted_and_after_the_deadline? || subject.superadmin?
+    end
   end
 end
