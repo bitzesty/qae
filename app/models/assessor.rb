@@ -212,9 +212,7 @@ class Assessor < ApplicationRecord
   end
 
   def assigned_categories_as(roles)
-    FormAnswer::POSSIBLE_AWARDS.map do |award|
-      award if roles.include?(get_role(award).to_s)
-    end.compact
+    FormAnswer::POSSIBLE_AWARDS.select { |award| roles.include?(get_role(award).to_s) }
   end
 
   def nil_if_blank

@@ -115,11 +115,17 @@ Rails/SkipsModelValidations:
 Style/Documentation:
   Enabled: false
 
+Style/EmptyMethod:
+  EnforcedStyle: compact
+
 Style/HashConversion:
   Enabled: false
 
 Style/NumericLiteralPrefix:
   Enabled: false
+
+Style/SingleLineMethods:
+  AllowIfMethodIsEmpty: true
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

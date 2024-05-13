@@ -271,8 +271,7 @@ class AppraisalForm
     )
   end
 
-  def self.non_rag_options_for(object, section)
-  end
+  def self.non_rag_options_for(object, section); end
 
   def self.strength_options_for(object, section)
     year = object.award_year.year
@@ -1926,7 +1925,7 @@ class AppraisalForm
       assessment_types = [:rag, :non_rag, :verdict]
     end
     const_get("#{award_type.upcase}_#{award_year.year}").map do |k, obj|
-      methods = Array.new
+      methods = []
       methods << Array(rate(k)) if (!moderated && (obj[:type] != :non_rag)) || (moderated && obj[:type] == :verdict)
       methods << desc(k) if assessment_types.include?(obj[:type])
       methods

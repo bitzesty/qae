@@ -65,8 +65,7 @@ class Account::CollaboratorsController < Account::BaseController
     end
   end
 
-  def confirm_deletion
-  end
+  def confirm_deletion; end
 
   def destroy
     form_id = params[:form_id].presence

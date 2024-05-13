@@ -144,8 +144,8 @@ class FormAnswer < ApplicationRecord
     inclusion: {
       in: POSSIBLE_AWARDS,
     }
-  validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
-  validates :sic_code, format: { with: SicCode::REGEX }, allow_nil: true, allow_blank: true
+  validates :urn, uniqueness: { allow_blank: true }
+  validates :sic_code, format: { with: SicCode::REGEX }, allow_blank: true
   validate :validate_answers
 
   # scopes

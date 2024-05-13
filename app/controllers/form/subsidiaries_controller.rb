@@ -45,8 +45,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
     )
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.item = item_class.new(item_params)

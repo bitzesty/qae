@@ -16,7 +16,7 @@ module AutosaveTokenGeneration
   def generate_token
     loop do
       token = SecureRandom.hex(10)
-      break token unless self.class.where(autosave_token: token).exists?
+      break token unless self.class.exists?(autosave_token: token)
     end
   end
 end

@@ -22,7 +22,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
     params[:search] ||= {
       sort: "company_or_nominee_name",
       search_filter: {
-        status: FormAnswerStatus::AssessorFilter::checked_options.invert.values,
+        status: FormAnswerStatus::AssessorFilter.checked_options.invert.values,
       },
     }
     params[:search].permit!

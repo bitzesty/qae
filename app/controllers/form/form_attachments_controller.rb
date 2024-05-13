@@ -44,11 +44,9 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     )
   end
 
-  def index
-  end
+  def index; end
 
-  def new
-  end
+  def new; end
 
   def create
     self.form_answer_attachment = current_user.form_answer_attachments.new(

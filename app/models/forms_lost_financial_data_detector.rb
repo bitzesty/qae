@@ -27,8 +27,7 @@ class FormsLostFinancialDataDetector
     self.forms = fetch_forms
   end
 
-  def restore
-  end
+  def restore; end
 
   def possible_question_keys
     QUESTIONS.map do |q|

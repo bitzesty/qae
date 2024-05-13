@@ -25,7 +25,7 @@ module TriggerAtDecorator
     return date_placeholder unless object.trigger_at
 
     str_format = "#{object.trigger_at.day.ordinalize} %B"
-    str_format = str_format + " %Y" if format.present? && format == "with_year"
+    str_format += " %Y" if format.present? && format == "with_year"
 
     object.trigger_at.strftime(str_format)
   end

@@ -34,8 +34,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
     )
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.form_link = FormLink.new(link_params)

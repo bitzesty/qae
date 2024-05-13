@@ -44,8 +44,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
     )
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.item = item_class.new(question,

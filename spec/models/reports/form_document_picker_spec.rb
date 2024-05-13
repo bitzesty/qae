@@ -5,8 +5,7 @@ describe Reports::DataPickers::FormDocumentPicker do
     klass = Class.new do
       include Reports::DataPickers::FormDocumentPicker
 
-      def obj;
-      end
+      def obj; end
     end
   end
 
@@ -53,26 +52,19 @@ describe Reports::DataPickers::FormDocumentPicker do
       klass = Class.new do
         include Reports::DataPickers::FormDocumentPicker
 
-        def business_form?
-        end
+        def business_form?; end
 
-        def question_visible?(key)
-        end
+        def question_visible?(key); end
 
-        def obj
-        end
+        def obj; end
 
-        def trade?
-        end
+        def trade?; end
 
-        def innovation?
-        end
+        def innovation?; end
 
-        def development?
-        end
+        def development?; end
 
-        def mobility?
-        end
+        def mobility?; end
       end
     end
     let(:subject) { custom_class.new }

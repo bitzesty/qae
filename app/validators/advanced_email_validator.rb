@@ -25,7 +25,7 @@ class AdvancedEmailValidator < ActiveModel::Validator
 
   def validate_address_well_formed(record, parsed)
     maybe_set_error(record, "is not a valid address") do
-      not (parsed.local &&
+      !(parsed.local &&
            parsed.domain &&
            parsed.address == record.email &&
            parsed.local != record.email)
