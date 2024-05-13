@@ -6,7 +6,7 @@ class QaeFormBuilder
       if question.required?
         question.required_sub_fields.each do |sub_field|
           suffix = sub_field.keys[0]
-          if !question.input_value(suffix: suffix).present?
+          if question.input_value(suffix: suffix).blank?
             result[question.hash_key(suffix: suffix)] ||= ""
             result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. #{suffix.to_s.humanize} is required and and must be filled in."
           end

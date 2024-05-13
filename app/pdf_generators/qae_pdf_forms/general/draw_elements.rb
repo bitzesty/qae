@@ -91,10 +91,10 @@ module QaePdfForms::General::DrawElements
     indent 32.mm do
       render_urn if form_answer.urn.present? && pdf_blank_mode.blank?
       render_award_information
-      render_company_name unless pdf_blank_mode.present?
+      render_company_name if pdf_blank_mode.blank?
     end
 
-    if !form_answer.urn.present? || pdf_blank_mode
+    if form_answer.urn.blank? || pdf_blank_mode
       move_down 6.mm
       render_intro_text
       move_down 2.mm

@@ -28,7 +28,7 @@ class CurrentAwardTypePicker
 
     categories = lead_categories + regular_categories
 
-    if !params[:year].present? || params[:year].to_i > 2016
+    if params[:year].blank? || params[:year].to_i > 2016
       categories -= ["promotion"]
     end
 

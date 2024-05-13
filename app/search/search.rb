@@ -48,7 +48,7 @@ class Search
     @search_results = scope
 
     filter_params.each do |column, value|
-      next unless value.present?
+      next if value.blank?
 
       @search_results = if included_in_model_columns?(column)
         @search_results.where(column => value)

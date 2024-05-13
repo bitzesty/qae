@@ -15,7 +15,7 @@ class QaeFormBuilder
           # only validate the first product or at least one field is filled in
           if product_number == 1 || !entity.values.all?(&:blank?)
             question.required_sub_fields_list.each do |attr|
-              if !entity[attr].present?
+              if entity[attr].blank?
                 result[question.key] ||= {}
                 result[question.key][product_number] ||= {}
                 result[question.key][product_number][attr] ||= ""

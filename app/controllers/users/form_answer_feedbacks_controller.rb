@@ -42,7 +42,7 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
   end
 
   def require_application_to_have_a_feedback!
-    unless form_answer.feedback.present?
+    if form_answer.feedback.blank?
       redirect_to dashboard_url,
         notice: "There are no any feedback for this application!"
       return false

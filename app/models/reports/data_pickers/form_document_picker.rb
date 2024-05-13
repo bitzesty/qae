@@ -91,7 +91,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def current_queens_award_holder
     awards = obj.previous_wins
-    return if !awards || awards.empty?
+    return if awards.blank?
 
     categories = PreviousWin::CATEGORIES.invert
 

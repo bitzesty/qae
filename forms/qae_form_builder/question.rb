@@ -32,7 +32,7 @@ class QaeFormBuilder
       return {} if skip_base_validation?
 
       if question.required?
-        if !question.input_value.present?
+        if question.input_value.blank?
           result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and and must be filled in."
         end
       end
