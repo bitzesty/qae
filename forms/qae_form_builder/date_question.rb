@@ -42,9 +42,7 @@ class QaeFormBuilder
         end
       end
 
-      result = process_dynamic_dates(date, result)
-
-      result
+      process_dynamic_dates(date, result)
     end
 
     def process_dynamic_dates(date, result)

@@ -8,12 +8,9 @@ module CaseSummaryHelper
     lead = subject.lead?(form_answer)
     primary = subject.primary?(form_answer)
 
-    assessments =
-      if lead || primary
-        all
-      end
-
-    assessments
+    if lead || primary
+      all
+    end
   end
 
   def wrap_case_summary(summary, title = "Case Summary")

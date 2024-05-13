@@ -19,11 +19,9 @@ class CompanyRegistrationNumber
 
     sanitized = sanitize(content).strip
     parts = tokenize(content)
-    numbers = parts.each_with_object([]) do |part, memo|
+    parts.each_with_object([]) do |part, memo|
       memo << part if COMPANY_REGISTRATION_NUMBER_REGEX.match?(part)
     end
-
-    numbers
   end
 
   private

@@ -87,7 +87,7 @@ class FormsLostFinancialDataDetector
       entry[1].include?("current_step_id")
     end
 
-    res = entries.map do |entry|
+    entries.map do |entry|
       hash_of_params = eval(entry[1])
 
       id = hash_of_params["id"]
@@ -107,8 +107,6 @@ class FormsLostFinancialDataDetector
     end.sort do |a, b|
       b[2] <=> a[2]
     end
-
-    res
   end
 
   def fetch_date(str)

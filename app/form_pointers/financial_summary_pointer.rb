@@ -22,7 +22,7 @@ class FinancialSummaryPointer < FormFinancialPointer
 
     cloned = input.deep_dup
 
-    result = cloned.each_with_object([]) do |h, memo|
+    cloned.each_with_object([]) do |h, memo|
       key, values = h.keys[0], h.values[0]
 
       if values.length == minmax[:max]
@@ -42,8 +42,6 @@ class FinancialSummaryPointer < FormFinancialPointer
 
       memo << Hash[key, values]
     end
-
-    result
   end
 
   def fill_missing_dates

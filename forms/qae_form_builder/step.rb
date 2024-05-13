@@ -57,13 +57,11 @@ class QaeFormBuilder
         end
       end
 
-      allowed_params = allowed_params.select do |k, v|
+      allowed_params.select do |k, v|
         v.present? ||
           document[k.to_s].present? ||
           QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
       end
-
-      allowed_params
     end
 
     def hashify_params(params)
