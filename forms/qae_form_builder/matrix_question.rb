@@ -195,16 +195,16 @@ class QaeFormBuilder
         end
       end
       if @q.subtotals_label
-        y_heading "calculated_sub_total", @q.subtotals_label, { "row_class": "auto-subtotals-row" }
+        y_heading "calculated_sub_total", @q.subtotals_label, { row_class: "auto-subtotals-row" }
       end
       if @q.others_label
-        y_heading "others", @q.others_label, { "row_class": "others-not-disadvantaged-row" }
+        y_heading "others", @q.others_label, { row_class: "others-not-disadvantaged-row" }
       end
       if @q.totals_label
-        y_heading "calculated_total", @q.totals_label, { "row_class": "auto-totals-row" }
+        y_heading "calculated_total", @q.totals_label, { row_class: "auto-totals-row" }
       end
       if @q.proportion_label
-        y_heading "calculated_proportion", @q.proportion_label, { "row_class": "auto-proportion-row" }
+        y_heading "calculated_proportion", @q.proportion_label, { row_class: "auto-proportion-row" }
       end
     end
 

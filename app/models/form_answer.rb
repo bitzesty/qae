@@ -276,7 +276,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def disabled_questions_hash(flatten: false)
-    ivar = flatten ? :"@_disabled_questions_flat_map" : :"@_disabled_questions_map"
+    ivar = flatten ? :@_disabled_questions_flat_map : :@_disabled_questions_map
 
     if instance_variable_defined?(ivar)
       return instance_variable_get(ivar)
@@ -300,15 +300,15 @@ class FormAnswer < ApplicationRecord
       end
     end
 
-    instance_variable_set(:"@_disabled_questions_map", res)
-    instance_variable_set(:"@_disabled_questions_flat_map", res.values.reduce({}, :merge))
+    instance_variable_set(:@_disabled_questions_map, res)
+    instance_variable_set(:@_disabled_questions_flat_map, res.values.reduce({}, :merge))
 
     instance_variable_get(ivar)
   end
 
   def halted?
-    if instance_variable_defined?(:"@_form_halted")
-      return instance_variable_get(:"@_form_halted")
+    if instance_variable_defined?(:@_form_halted)
+      return instance_variable_get(:@_form_halted)
     end
 
     progress_hash = HashWithIndifferentAccess.new(document || {})
@@ -318,7 +318,7 @@ class FormAnswer < ApplicationRecord
       step.questions.any?(&:halted?)
     end
 
-    instance_variable_set(:"@_form_halted", value)
+    instance_variable_set(:@_form_halted, value)
   end
 
   def head_of_business
