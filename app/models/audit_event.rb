@@ -27,7 +27,7 @@ class AuditEvent
   end
 
   def user_string
-    user_type = (subject.class.name == "User") ? "Applicant" : subject.class.name
+    user_type = subject.instance_of?(::User) ? "Applicant" : subject.class.name
     "#{subject.full_name} (#{user_type})"
   end
 end

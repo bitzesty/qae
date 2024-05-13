@@ -12,7 +12,7 @@ class Subsidiary
   validates :description, presence: true
 
   # Should be 100 words maximum (limit + 10%).to_i + 1)
-  validate :words_in_description, if: Proc.new { |m| m.description.present? }
+  validate :words_in_description, if: proc { |m| m.description.present? }
 
   def initialize(attrs = {})
     attrs.each do |key, value|

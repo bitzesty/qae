@@ -16,7 +16,7 @@ class QaeFormBuilder
       question.sub_fields.each do |sub_field|
         suffix = sub_field.keys[0]
 
-        length = question.input_value(suffix: suffix).to_s.split(" ").reject(&:blank?).length
+        length = question.input_value(suffix: suffix).to_s.split(" ").count { |element| element.present? }
 
         limit = question.delegate_obj.sub_fields_words_max
 

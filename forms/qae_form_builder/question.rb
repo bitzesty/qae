@@ -43,9 +43,7 @@ class QaeFormBuilder
     private
 
     def skip_base_validation?
-      SKIP_PRESENCE_VALIDATION_QUESTIONS.any? do |klass|
-        question.delegate_obj.class.name.demodulize == klass
-      end
+      SKIP_PRESENCE_VALIDATION_QUESTIONS.any?(question.delegate_obj.class.name.demodulize)
     end
 
     def limit_with_buffer(limit)
@@ -118,7 +116,7 @@ class QaeFormBuilder
       meth = halt_options.dig(:if)
 
       if meth.respond_to?(:call)
-        meth.(self)
+        meth.call(self)
       elsif respond_to?(meth)
         send(meth)
       end

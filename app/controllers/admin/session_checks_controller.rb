@@ -1,3 +1,4 @@
+# rubocop:disable Rails/ApplicationController
 class Admin::SessionChecksController < ActionController::Base
   include SessionStatusCheckMixin
 
@@ -19,3 +20,4 @@ class Admin::SessionChecksController < ActionController::Base
     ADMIN_NAMESPACE
   end
 end
+# rubocop:enable Rails/ApplicationController

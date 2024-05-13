@@ -572,11 +572,11 @@ class QaePdfForms::General::QuestionPointer
   def complex_question
     render_question_title_with_ref_or_not
 
-    if question.delegate_obj.class.to_s == "QaeFormBuilder::AddressQuestion"
+    if question.delegate_obj.instance_of?(::QaeFormBuilder::AddressQuestion)
       render_context_and_answer_blocks
     end
 
-    if question.delegate_obj.class.to_s == "QaeFormBuilder::PressContactDetailsQuestion"
+    if question.delegate_obj.instance_of?(::QaeFormBuilder::PressContactDetailsQuestion)
       render_context_and_answer_blocks
     end
 

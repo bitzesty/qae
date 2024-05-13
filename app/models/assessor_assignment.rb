@@ -1,5 +1,5 @@
 class AssessorAssignment < ApplicationRecord
-  has_paper_trail unless: Proc.new { |t| Rails.env.test? }
+  has_paper_trail unless: proc { |t| Rails.env.test? }
 
   enum position: {
     primary: 0,

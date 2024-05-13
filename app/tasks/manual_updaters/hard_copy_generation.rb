@@ -55,7 +55,7 @@ module ManualUpdaters
         rescue => e
           not_updated_entries_cs_individual << form_answer.id
 
-        logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
+          logy "[#{ENV["MAILER_HOST"]} | CS IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
         end
 
         if not_updated_entries_cs_individual.present?
@@ -88,7 +88,7 @@ module ManualUpdaters
         rescue => e
           not_updated_entries_feed_individual << form_answer.id
 
-        logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
+          logy "[#{ENV["MAILER_HOST"]} | FEED IND | #{form_answer.id} | ERROR] --------------------------------- #{e.message}"
         end
 
         if not_updated_entries_feed_individual.present?

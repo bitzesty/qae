@@ -37,7 +37,7 @@ end
 
 class DummyForm
   def self.step1
-    @step1 = Proc.new {
+    @step1 = proc {
       options :option_question1, "Are you keen to choose any option?" do
         ref "X 1"
         option "option1", "option1 value"

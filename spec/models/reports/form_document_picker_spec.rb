@@ -25,18 +25,18 @@ describe Reports::DataPickers::FormDocumentPicker do
       awards = [
         {
           "category" => "innovation",
-            "year" => year_1,
-            "outcome" => "won",
+          "year" => year_1,
+          "outcome" => "won",
         },
         {
           "category" => "",
-            "year" => year_2,
-            "outcome" => "won",
+          "year" => year_2,
+          "outcome" => "won",
         },
         {
           "category" => "trade",
-            "year" => year_3,
-            "outcome" => "did_not_win",
+          "year" => year_3,
+          "outcome" => "did_not_win",
         },
       ]
 
