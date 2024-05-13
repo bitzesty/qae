@@ -673,7 +673,7 @@ class QaePdfForms::General::QuestionPointer
 
   def sub_question_block_without_title(sub_answer)
     if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
-      form_pdf.indent -25.mm do # compensating 25mm indent for subquestion
+      form_pdf.indent(-25.mm) do # compensating 25mm indent for subquestion
         render_info_about_conditional_parent
       end
     end

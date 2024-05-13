@@ -146,7 +146,7 @@ class QaeFormBuilder
     def submit text, &block
       s = StepSubmit.new text
       b = StepSubmitBuilder.new s
-      b.instance_eval &block if block
+      b.instance_eval(&block) if block
       @step.submit = s
     end
 
@@ -167,7 +167,7 @@ class QaeFormBuilder
     def create_question builder_klass, klass, id, title, opts = {}, &block
       q = klass.new @step, id, title, opts
       b = builder_klass.new q
-      b.instance_eval &block if block
+      b.instance_eval(&block) if block
       @step.questions << q
 
       if q.respond_to?(:linkable?) && q.linkable?

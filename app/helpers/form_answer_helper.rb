@@ -74,7 +74,7 @@ module FormAnswerHelper
 
   def each_index_or_empty(collection, attrs, &block)
     if collection.any?
-      collection.each_with_index &block
+      collection.each_with_index(&block)
     else
       yield(attrs, 0)
     end

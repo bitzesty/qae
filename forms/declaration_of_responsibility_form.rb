@@ -14,7 +14,7 @@ class DeclarationOfResponsibilityForm
 
   attr_reader :form_answer
 
-  attr_accessor *ATTRIBUTES
+  attr_accessor(*ATTRIBUTES)
 
   ATTRIBUTES.each do |attr_name|
     class_eval <<-EVAL, __FILE__, __LINE__ + 1

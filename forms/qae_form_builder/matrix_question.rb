@@ -181,7 +181,7 @@ class QaeFormBuilder
     def x_headings headings
       headings.each do |heading|
         if heading.is_a?(Array)
-          x_heading *heading
+          x_heading(*heading)
         else
           x_heading heading.to_s.parameterize.underscore, heading
         end
@@ -191,7 +191,7 @@ class QaeFormBuilder
     def y_headings headings
       headings.each do |heading|
         if heading.is_a?(Array)
-          y_heading *heading
+          y_heading(*heading)
         else
           y_heading heading.to_s.parameterize.underscore, heading
         end
