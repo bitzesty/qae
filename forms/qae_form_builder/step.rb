@@ -150,6 +150,7 @@ class QaeFormBuilder
       @step.submit = s
     end
 
+    # rubocop:disable Style/MissingRespondToMissing
     def method_missing(meth, *args, &block)
       klass_builder = QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder") rescue nil
       klass = QaeFormBuilder.const_get("#{meth.to_s.camelize}Question") rescue nil
@@ -161,6 +162,7 @@ class QaeFormBuilder
         super
       end
     end
+    # rubocop:enable Style/MissingRespondToMissing
 
     private
 

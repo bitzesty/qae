@@ -7,10 +7,12 @@ class QaeFormBuilder
       @decorator_options = decorator_options
     end
 
+    # rubocop:disable Style/MissingRespondToMissing
     def method_missing(meth, *args, &block)
       result = @delegate_obj.send(meth, *args, &block)
       wrap result, @decorator_options
     end
+    # rubocop:enable Style/MissingRespondToMissing
 
     private
 
