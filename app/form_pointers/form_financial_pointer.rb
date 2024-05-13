@@ -58,8 +58,8 @@ class FormFinancialPointer
 
         if index = fetched.index { |data| data[:exports].present? }
           fetched.insert(index + 1, uk_sales_data) if uk_sales_data.present?
-        else
-          fetched += [uk_sales_data] if uk_sales_data.present?
+        elsif uk_sales_data.present?
+          fetched += [uk_sales_data]
         end
       end
 

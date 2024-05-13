@@ -146,28 +146,24 @@ class FormController < ApplicationController
         if redirected
           @form_answer.save(validate: false)
           redirect_to(dashboard_url)
-        else
-          if submitted && saved
-            redirect_to submit_confirm_url(@form_answer)
+        elsif submitted && saved
+          redirect_to submit_confirm_url(@form_answer)
+        elsif saved
+          if @form_answer.halted?
+            params[:next_step] = params[:current_step]
           else
-            if saved
-              if @form_answer.halted?
-                params[:next_step] = params[:current_step]
-              else
-                params[:next_step] ||= @form.steps[1].title.parameterize
-              end
-
-              redirect_to edit_form_url(@form_answer, step: params[:next_step])
-            else
-              params[:step] = @form_answer.steps_with_errors.try(:first)
-              # avoid redirecting to supporters page
-              if !params[:step] || params[:step] == "letters-of-support"
-                params[:step] = @form.steps.first.title.parameterize
-              end
-
-              render template: "qae_form/show"
-            end
+            params[:next_step] ||= @form.steps[1].title.parameterize
           end
+
+          redirect_to edit_form_url(@form_answer, step: params[:next_step])
+        else
+          params[:step] = @form_answer.steps_with_errors.try(:first)
+          # avoid redirecting to supporters page
+          if !params[:step] || params[:step] == "letters-of-support"
+            params[:step] = @form.steps.first.title.parameterize
+          end
+
+          render template: "qae_form/show"
         end
       end
 

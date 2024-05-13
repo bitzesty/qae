@@ -9,15 +9,13 @@ class QaeFormBuilder
             result[question.key] ||= {}
             result[question.key][index] ||= ""
             result[question.key][index] << " #{attr.humanize.capitalize} can't be blank."
-          else
-            if attr == "details"
-              limit = question.delegate_obj.details_words_max
-              length = award[attr].split(" ").length
+          elsif attr == "details"
+            limit = question.delegate_obj.details_words_max
+            length = award[attr].split(" ").length
 
-              if limit && limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
-                result[question.key][index] ||= ""
-                result[question.key][index] << " #{attr.humanize.capitalize} exeeded #{limit} words limit."
-              end
+            if limit && limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
+              result[question.key][index] ||= ""
+              result[question.key][index] << " #{attr.humanize.capitalize} exeeded #{limit} words limit."
             end
           end
         end

@@ -14,11 +14,9 @@ class QaeFormBuilder
                   result[question.hash_key(suffix: suffix)] ||= ""
                   result[question.hash_key(suffix: suffix)] << "Must be filled in. Enter '0' if none"
                 end
-              else
-                if !/\A\d+\z/.match(question.input_value(suffix: suffix).to_s)
-                  result[question.hash_key(suffix: suffix)] ||= ""
-                  result[question.hash_key(suffix: suffix)] << "Must be a whole number"
-                end
+              elsif !/\A\d+\z/.match(question.input_value(suffix: suffix).to_s)
+                result[question.hash_key(suffix: suffix)] ||= ""
+                result[question.hash_key(suffix: suffix)] << "Must be a whole number"
               end
             end
           end

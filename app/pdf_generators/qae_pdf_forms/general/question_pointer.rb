@@ -744,8 +744,8 @@ class QaePdfForms::General::QuestionPointer
     if entry[:value].present?
       if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
         entry[:value]
-      else
-        "£#{entry[:value]}" if entry[:value] != "-"
+      elsif entry[:value] != "-"
+        "£#{entry[:value]}"
       end
     end
   end

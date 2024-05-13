@@ -18,11 +18,9 @@ namespace :form_answers do
           f.update_column(:submitted_at, current_time)
           puts "[form answer] #{f.id} updating submitted_at with #{current_time}"
         end
-      else
-        if f.submitted
-          f.update_column(:submitted_at, f.created_at)
-          puts "[form answer] #{f.id} updating submitted_at with #{f.created_at}"
-        end
+      elsif f.submitted
+        f.update_column(:submitted_at, f.created_at)
+        puts "[form answer] #{f.id} updating submitted_at with #{f.created_at}"
       end
     end
   end

@@ -40,12 +40,10 @@ module QaePdfForms::CustomQuestions::Lists
         form_pdf.default_bottom_margin
         render_word_limit
       end
+    elsif question.delegate_obj.is_a?(QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
+      render_by_trade_goods_question
     else
-      if question.delegate_obj.is_a?(QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
-        render_by_trade_goods_question
-      else
-        render_word_limit
-      end
+      render_word_limit
     end
   end
 

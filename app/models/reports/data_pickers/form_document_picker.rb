@@ -295,12 +295,10 @@ module Reports::DataPickers::FormDocumentPicker
     elsif mobility?
       if obj.award_year.year <= 2020
         doc("mobility_desc_short")
+      elsif obj.award_year.year <= 2023
+        (doc("application_category") == "initiative") ? doc("initiative_desc_short") : doc("organisation_desc_short")
       else
-        if obj.award_year.year <= 2023
-          (doc("application_category") == "initiative") ? doc("initiative_desc_short") : doc("organisation_desc_short")
-        else
-          doc("initiative_desc_short")
-        end
+        doc("initiative_desc_short")
       end
     else
       (obj.award_year.year <= 2023) ? doc("trade_goods_briefly") : doc("trade_description_short")

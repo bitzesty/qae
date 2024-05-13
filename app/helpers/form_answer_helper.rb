@@ -19,12 +19,10 @@ module FormAnswerHelper
       else
         fa.flagged_critical_comments_count
       end
+    elsif current_subject.is_a?(Admin)
+      fa.flagged_critical_comments_count
     else
-      if current_subject.is_a?(Admin)
-        fa.flagged_critical_comments_count
-      else
-        fa.flagged_admin_comments_count
-      end
+      fa.flagged_admin_comments_count
     end
 
     current_user_class = current_subject.model_name.to_s.parameterize
