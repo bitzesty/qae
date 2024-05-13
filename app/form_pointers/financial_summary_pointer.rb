@@ -53,7 +53,7 @@ class FinancialSummaryPointer < FormFinancialPointer
               partitioned_hash.values.each_with_object(Hash[]).with_index do |(x, acc), idx|
                 x.each { |y| acc[y] = idx }
               end.fetch(x.keys[0], 0)
-            end
+    end
 
     dates, dates_changed = fetch_financial_year_dates
 

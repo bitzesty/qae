@@ -53,5 +53,5 @@ RSpec.describe Eligibility::Mobility, type: :model do
   it "should return award_name" do
     expect(eligibility.class.award_name).to eq "Social Mobility Award"
   end
-end
+  end
 end

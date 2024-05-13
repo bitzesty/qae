@@ -228,7 +228,7 @@ describe AwardYear do
          allow_any_instance_of(AwardYear).to receive(:aggregated_feedback_hard_copy_state) { "not_nil" }
          expect(award_year.aggregated_feedback_generation_can_be_started?).to be_falsey
        end
-      end
+     end
 
      context "check_aggregated_hard_copy_pdf_generation_status!" do
        it "should return false" do

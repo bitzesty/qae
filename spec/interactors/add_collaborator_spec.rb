@@ -54,7 +54,7 @@ describe "Interactors::AddCollaborator" do
       FactoryBot.create :user, :completed_profile,
         first_name: "Another Account Admin Dave",
         role: "account_admin"
-    end
+   end
 
    let(:existing_user_email) { existing_user_with_another_account_association.email }
    let(:role) { "regular" }

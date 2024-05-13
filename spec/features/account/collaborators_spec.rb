@@ -34,7 +34,7 @@ So that they can collaborate form answers
     create :innovation_eligibility,
       form_answer: form_answer,
       account: account
- end
+  end
 
   let!(:trade_eligibility) do
     create :trade_eligibility,

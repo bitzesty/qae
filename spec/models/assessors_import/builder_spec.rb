@@ -23,7 +23,7 @@ describe AssessorsImport::Builder do
        response = subject.process
        expect(response[:not_saved]).not_to be_empty
      end
-   end
+    end
 
     context "with emails already used by accessors" do
       before do

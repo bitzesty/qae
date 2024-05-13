@@ -20,7 +20,7 @@ class QaeFormBuilder
                   date = parts.join("/")
                   outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
                 end
-              end
+      end
 
       required = question.required?
 

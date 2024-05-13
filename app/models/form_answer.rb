@@ -113,7 +113,7 @@ class FormAnswer < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :form_answer_transitions, autosave: false
   has_many :assessor_assignments, dependent: :destroy
-  has_many :lead_or_primary_assessor_assignments, 
+  has_many :lead_or_primary_assessor_assignments,
     -> { where.not(submitted_at: nil).where(position: [3, 4]).order(position: :desc) },
     class_name: "AssessorAssignment",
     foreign_key: :form_answer_id
@@ -300,7 +300,7 @@ class FormAnswer < ApplicationRecord
                 hash[question.key] = !!(hash[:disabled] || q_idx && idx > q_idx)
               end
             end
-          end
+    end
 
     instance_variable_set(:"@_disabled_questions_map", res)
     instance_variable_set(:"@_disabled_questions_flat_map", res.values.reduce({}, :merge))
@@ -318,7 +318,7 @@ class FormAnswer < ApplicationRecord
 
     value = form.steps.any? do |step|
               step.questions.any?(&:halted?)
-            end
+    end
 
     instance_variable_set(:"@_form_halted", value)
   end

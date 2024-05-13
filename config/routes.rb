@@ -94,7 +94,7 @@ Rails.application.routes.draw do
    collection do
       get :warning
       get :result
-    end
+   end
   end
 
   resource :support_letter, only: [:new, :show, :create]
