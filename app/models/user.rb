@@ -50,21 +50,21 @@ class User < ApplicationRecord
   belongs_to :account, optional: true
 
   # scopes
-  scope :not_including, -> (user) { where.not(id: user.id) }
+  scope :not_including, ->(user) { where.not(id: user.id) }
   scope :by_email, -> { order(:email) }
   scope :qae_opt_in_group, -> { where(subscribed_to_emails: true) }
   scope :bit_opt_in, -> { where(agree_being_contacted_by_department_of_business: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
-  scope :by_query_part, -> (email) {
+  scope :by_query_part, ->(email) {
     where("email ilike ? OR first_name ilike ? OR last_name ilike ?",
       "%#{email}%", "%#{email}%", "%#{email}%",)
   }
-  scope :not_in_ids, -> (ids) { where.not(id: ids) }
+  scope :not_in_ids, ->(ids) { where.not(id: ids) }
   scope :bounced_emails, -> { where(marked_at_bounces_email: true) }
   scope :not_bounced_emails, -> {
     where("marked_at_bounces_email IS FALSE OR marked_at_bounces_email IS NULL")
   }
-  scope :allowed_to_get_award_open_notification, -> (award_type) {
+  scope :allowed_to_get_award_open_notification, ->(award_type) {
     if FormAnswer::BUSINESS_AWARD_TYPES.index(award_type)
       where("notification_when_#{award_type}_award_open" => true)
     else

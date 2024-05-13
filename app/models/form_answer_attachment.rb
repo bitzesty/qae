@@ -30,7 +30,7 @@ class FormAnswerAttachment < ApplicationRecord
     file_size: { maximum: 5.megabytes.to_i }
 
   def filename
-    read_attribute(:file)
+    self[:file]
   end
 
   def created_by_admin?

@@ -175,6 +175,7 @@ module FinancialTable
     form = question.form
     years = 5
 
+    # rubocop:disable Lint/EnsureReturn
     begin
       result = question.by_year_conditions.find do |c|
         date = []
@@ -195,5 +196,6 @@ module FinancialTable
     ensure
       return years.to_s
     end
+    # rubocop:enable Lint/EnsureReturn
   end
 end

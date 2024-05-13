@@ -144,8 +144,8 @@ class FormAnswer < ApplicationRecord
   validate :validate_answers
 
   # scopes
-  scope :for_award_type, -> (award_type) { where(award_type: award_type) }
-  scope :for_year, -> (year) { joins(:award_year).where(award_years: { year: year }) }
+  scope :for_award_type, ->(award_type) { where(award_type: award_type) }
+  scope :for_year, ->(year) { joins(:award_year).where(award_years: { year: year }) }
   scope :shortlisted, -> { where(state: %w(reserved recommended)) }
   scope :not_shortlisted, -> { where(state: "not_recommended") }
   scope :winners, -> { where(state: "awarded") }
@@ -174,7 +174,7 @@ class FormAnswer < ApplicationRecord
     where(award_year_id: AwardYear.past.select(:id)).order("award_type")
   }
 
-  scope :hard_copy_generated, -> (mode) {
+  scope :hard_copy_generated, ->(mode) {
     submitted.where("#{mode}_hard_copy_generated" => true)
   }
 

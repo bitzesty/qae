@@ -48,6 +48,8 @@ class QaeFormBuilder
   end
 
   class TradeCommercialSuccessQuestionDecorator < QuestionDecorator
+    delegate :placeholder_preselected_conditions, to: :delegate_obj
+
     def linked_answers
       answers[delegate_obj.question_key.to_s] || []
     end
@@ -73,10 +75,6 @@ class QaeFormBuilder
 
         answers["applied_for_queen_awards"] == "yes" && condition_enabled
       end
-    end
-
-    def placeholder_preselected_conditions
-      delegate_obj.placeholder_preselected_conditions
     end
 
     def preselected_condition_by_option(option)

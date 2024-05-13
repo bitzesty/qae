@@ -11,6 +11,8 @@ class FormAnswerDecorator < ApplicationDecorator
   NOT_ASSIGNED = "Not Assigned"
   ASSESSORS_NOT_ASSIGNED = "Assessors are not assigned"
 
+  delegate :company_or_nominee_name, to: :object
+
   def pdf_generator(pdf_blank_mode = false)
     "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object, pdf_blank_mode)
   end
@@ -65,10 +67,6 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def award_application_title_print
     "The King's Awards for Enterprise: #{object.award_type_full_name} #{object.award_year.try(:year)}"
-  end
-
-  def company_or_nominee_name
-    object.company_or_nominee_name
   end
 
   def company_nominee_or_application_name
