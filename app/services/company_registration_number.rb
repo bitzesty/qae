@@ -20,7 +20,7 @@ class CompanyRegistrationNumber
     sanitized = sanitize(content).strip
     parts = tokenize(content)
     numbers = parts.each_with_object([]) do |part, memo|
-      memo << part if part =~ COMPANY_REGISTRATION_NUMBER_REGEX
+      memo << part if COMPANY_REGISTRATION_NUMBER_REGEX.match?(part)
     end
 
     numbers

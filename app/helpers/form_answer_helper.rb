@@ -76,7 +76,7 @@ module FormAnswerHelper
     if collection.any?
       collection.each_with_index &block
     else
-      block.(attrs, 0)
+      yield(attrs, 0)
     end
   end
 

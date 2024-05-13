@@ -167,7 +167,7 @@ class QaeFormBuilder
     def create_question builder_klass, klass, id, title, opts = {}, &block
       q = klass.new @step, id, title, opts
       b = builder_klass.new q
-      b.instance_eval &block if block_given?
+      b.instance_eval &block if block
       @step.questions << q
 
       if q.respond_to?(:linkable?) && q.linkable?

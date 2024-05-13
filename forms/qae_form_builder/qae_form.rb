@@ -22,7 +22,7 @@ class QaeFormBuilder
       step = Step.new self, title, short_title, options
 
       builder = StepBuilder.new step
-      builder.instance_eval &block if block_given?
+      builder.instance_eval &block if block
       @steps << step
       step
     end

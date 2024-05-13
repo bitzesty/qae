@@ -8,7 +8,7 @@ class QaeFormBuilder
 
       @q.context = data.map { |d| form_context(d) }.join
 
-      @q.pdf_context_with_header_blocks = data.map { |d| pdf_context(d) }.flatten(1)
+      @q.pdf_context_with_header_blocks = data.flat_map { |d| pdf_context(d) }
     end
 
     private
