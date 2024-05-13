@@ -56,13 +56,13 @@ class CheckAccountOnBouncesEmail
 
     VALID_DEBOUNCE_API_CODES.include?(code.to_i)
   rescue RestClient::Exceptions::ReadTimeout => e
-  #
-  # RARE CASE:
-  #
-  # Mark email as valid in case of getting Timeout error
-  # as Debounce API sometimes returns Timeout error
-  # for valid emails.
-  #
+    #
+    # RARE CASE:
+    #
+    # Mark email as valid in case of getting Timeout error
+    # as Debounce API sometimes returns Timeout error
+    # for valid emails.
+    #
 
     true
   end

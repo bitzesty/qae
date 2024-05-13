@@ -4,7 +4,7 @@ module FormAnswerFilteringTestHelper
       expect(page).to have_selector(".td-title", count: n)
     end
   end
-  
+
   # rubocop:disable Lint/NonLocalExitFromIterator
   def click_status_option(val)
     within ".applications-filter.status-filter" do

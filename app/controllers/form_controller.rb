@@ -41,9 +41,7 @@ class FormController < ApplicationController
   end
 
   expose(:support_letter_attachments) do
-    @form_answer.support_letter_attachments.each_with_object({}) do |attachment, r|
-      r[attachment.id] = attachment
-    end
+    @form_answer.support_letter_attachments.index_by(&:id)
   end
 
   expose(:all_form_questions) do
@@ -292,10 +290,7 @@ class FormController < ApplicationController
 
   def set_form_answer
     @form_answer = current_user.account.form_answers.find(params[:id])
-
-    @attachments = @form_answer.form_answer_attachments.each_with_object({}) do |attachment, r|
-      r[attachment.id] = attachment
-    end
+    @attachments = @form_answer.form_answer_attachments.index_by(&:id)
   end
 
   def nickname
