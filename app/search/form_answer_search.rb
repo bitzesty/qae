@@ -91,7 +91,7 @@ class FormAnswerSearch < Search
                  )
                  OR (awd_yrs.year < 2023 AND audit_certificates.id IS NULL))")
       when "additional_finances_not_reviewed"
-       out = out.joins(
+        out = out.joins(
           "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id",
         ).joins(
           "LEFT OUTER JOIN shortlisted_documents_wrappers ON shortlisted_documents_wrappers.form_answer_id = form_answers.id",

@@ -14,7 +14,7 @@ RSpec.describe Admin::FormAnswerStateTransitionsController do
     it "should create a resource" do
       allow_any_instance_of(AssessmentSubmissionService).to receive(:perform) {}
       post :create, params: {
-        form_answer_id: form_answer.id ,
+        form_answer_id: form_answer.id,
         form_answer_state_transition: { state: "recommended" },
       }
 

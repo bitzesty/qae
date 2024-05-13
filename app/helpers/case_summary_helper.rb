@@ -9,9 +9,9 @@ module CaseSummaryHelper
     primary = subject.primary?(form_answer)
 
     assessments =
-    if lead || primary
-      all
-    end
+      if lead || primary
+        all
+      end
 
     assessments
   end

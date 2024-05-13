@@ -21,7 +21,8 @@ So that I can print and review application case summaries
       FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |award_type, value|
         ops = {
           id: "case_summaries",
-          category: award_type, format: :pdf,
+          category: award_type, 
+          format: :pdf,
           year: AwardYear.current.year,
         }
 

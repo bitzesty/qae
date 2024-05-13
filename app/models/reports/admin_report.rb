@@ -51,7 +51,7 @@ class Reports::AdminReport
     if category == "trade" &&
         id == "case-index" &&
         year.year != 2016
-       # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+      # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
       sub_type = "_#{years_mode}"
     end
 
@@ -81,7 +81,7 @@ class Reports::AdminReport
     if category == "trade" &&
         id == "case_summaries" &&
         year.year != 2016
-       # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+      # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
       sub_type = "_#{years_mode}"
     end
 

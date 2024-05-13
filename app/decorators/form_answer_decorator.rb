@@ -473,6 +473,7 @@ class FormAnswerDecorator < ApplicationDecorator
       (!development? || year < 2020) &&
       (!mobility? || year < 2020)
   end
+
   def this_entry_relates_to
     source_value = if document["application_relate_to"].present?
       document["application_relate_to"]

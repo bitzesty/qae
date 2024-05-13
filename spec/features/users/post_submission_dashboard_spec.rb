@@ -14,7 +14,7 @@ describe "User sees the post submission dashboard" do
   describe "visits the post submission dashboard", js: true do
     it "sees applications properly" do
       visit dashboard_path
-      expect(page).to have_content"Edit application"
+      expect(page).to have_content "Edit application"
       expect(page).to have_content("Current Applications")
 
       settings.destroy

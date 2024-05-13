@@ -36,7 +36,7 @@ module MailgunHelper
         return false if response.is_a?(Hash) && response["is_valid"].to_s == "false"
         response.size > 0
       end
-    rescue Exception => e
+    rescue
       false
     end
   end

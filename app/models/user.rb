@@ -124,7 +124,7 @@ class User < ApplicationRecord
     :company_name,
   ]
 
-  def set_step (step)
+  def set_step(step)
     @current_step = step
   end
 

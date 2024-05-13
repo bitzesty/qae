@@ -192,7 +192,6 @@ module QaePdfForms::CustomQuestions::Textarea
     li_style = styles_picker(@styles)
     print_pdf(@string.join(""), li_style)
 
-    key = "<ul>"
     @keys_history << key
     @ns_history << @counter
     @string = []
@@ -241,10 +240,10 @@ module QaePdfForms::CustomQuestions::Textarea
     if style_options.to_s.include?(";")
       style_options = style_options[0].split(";").map(&:strip)
     end
-    style_options = Array.wrap(style_options)
 
-    styles = { inline_format: true,
-                       color: FormPdf::DEFAULT_ANSWER_COLOR, }
+    style_options = Array.wrap(style_options)
+    styles = { inline_format: true, color: FormPdf::DEFAULT_ANSWER_COLOR, }
+
     if style_options.present?
       margin_list = style_options.select do |el|
         el.include?("margin-left")
