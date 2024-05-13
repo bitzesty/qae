@@ -10,7 +10,7 @@ class CheckAccountOnBouncesEmail
     "8" => "Role. Role accounts such as info, support, etc.",
   }
 
-  VALID_DEBOUNCE_API_CODES = [ 4, 5, 7, 8 ]
+  VALID_DEBOUNCE_API_CODES = [4, 5, 7, 8]
 
   attr_accessor :user,
     :email,

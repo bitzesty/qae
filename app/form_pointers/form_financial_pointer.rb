@@ -21,8 +21,7 @@ class FormFinancialPointer
   YEAR_LABELS = %w(day month year)
   IN_PROGRESS = "-"
 
-  TRADE_AUTOEXCLUDED_QUESTION_KEYS = [
-  ]
+  TRADE_AUTOEXCLUDED_QUESTION_KEYS = []
 
   UK_SALES_EXCLUDED_FORM_TYPES = [
     :trade,
