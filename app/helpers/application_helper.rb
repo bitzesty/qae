@@ -9,9 +9,15 @@ module ApplicationHelper
 
     index_step_text = if opts[:index]
       if opts[:index_name]
-        "<span class='step-number'>#{opts[:index_name]}</span> #{name}".html_safe
+        capture do
+          concat(tag.span(opts[:index_name], class: "step-number"))
+          concat(name)
+        end
       else
-        "<span class='step-number'>#{opts[:index]}.</span> #{name}".html_safe
+        capture do
+          concat(tag.span(opts[:index], class: "step-number"))
+          concat(name)
+        end
       end
     else
       name
@@ -120,11 +126,11 @@ module ApplicationHelper
     text = sanitize(text)
     paragraphs = split_paragraphs(text)
 
+    # rubocop:disable Rails/OutputSafety
     if paragraphs.present?
-      paragraphs.map! { |paragraph|
-        raw(paragraph)
-      }.join("<br/><br/>").html_safe
+      paragraphs.map! { |paragraph| raw(paragraph) }.join("<br/><br/>").html_safe
     end
+    # rubocop:enable Rails/OutputSafety
   end
 
   def ordinal(n)

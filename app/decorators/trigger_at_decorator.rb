@@ -9,7 +9,11 @@ module TriggerAtDecorator
     trigger_at = "midday" if midday?
 
     if format[:bold]
-      h.tag.strong(trigger_on) + " at #{trigger_at}".html_safe
+      h.capture do
+        h.concat(h.tag.strong(trigger_on))
+        h.concat(" at ")
+        h.concat(trigger_at)
+      end
     else
       "#{trigger_on} at #{trigger_at}"
     end
@@ -39,11 +43,14 @@ module TriggerAtDecorator
   private
 
   def placeholder
-    "<strong>-- --- #{AwardYear.current.year}</strong> at --:--".html_safe
+    h.capture do
+      h.concat(h.tag.strong("-- --- #{AwardYear.current.year}"))
+      h.concat(" at --:--")
+    end
   end
 
   def date_placeholder
-    "<strong>-- --- #{AwardYear.current.year}</strong>".html_safe
+    h.tag.strong("-- --- #{AwardYear.current.year}")
   end
 
   def midday?

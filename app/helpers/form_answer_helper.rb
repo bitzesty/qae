@@ -35,10 +35,8 @@ module FormAnswerHelper
 
     if comments_count > 0
       tag.span(class: "icon-flagged #{flag_type}") do
-        "#{current_user_class} flags: ".html_safe +
-          tag.span(class: "flag-count") do
-            comments_count.to_s
-          end
+        concat("#{current_user_class} flags: ")
+        concat(tag.span(comments_count.to_s, class: "flag-count"))
       end
     end
   end
@@ -54,10 +52,10 @@ module FormAnswerHelper
   def application_comments(comments_count)
     return unless comments_count > 0
 
-    output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
-    output += comments_count.to_s
-    output += "</span></span>"
-    output.html_safe
+    tag.span(class: "icon-comment") do
+      concat("Comments: ")
+      concat(tag.span(comments_count.to_s, class: "comment-count"))
+    end
   end
 
   def award_types_collection(year)
