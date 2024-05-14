@@ -123,7 +123,7 @@ class Reports::AdminReport
   end
 
   def category
-    params[:category] if ::FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
+    params[:category] if ::FormAnswer::AWARD_TYPE_FULL_NAMES.key?(params[:category])
   end
 
   def years_mode
