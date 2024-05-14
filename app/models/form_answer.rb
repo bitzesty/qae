@@ -605,11 +605,11 @@ class FormAnswer < ApplicationRecord
     "::AwardYears::V#{year}::QaeForms"
   end
 
-  def self.transition_class
+  private_class_method def self.transition_class
     FormAnswerTransition
   end
 
-  def self.initial_state
+  private_class_method def self.initial_state
     FormAnswerStateMachine.initial_state
   end
 end
