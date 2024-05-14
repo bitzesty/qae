@@ -68,6 +68,10 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
   EnforcedStyle: space
 
+# If we want a boolean called :true, we should allow that. These are likely not mistakes.
+Lint/BooleanSymbol:
+  Enabled: false
+
 Metrics/ModuleLength:
   Enabled: false
 
