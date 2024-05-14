@@ -177,15 +177,6 @@ Rails/LexicallyScopedActionFilter:
     - 'app/controllers/users/press_summaries_controller.rb'
     - 'app/controllers/users/registrations_controller.rb'
 
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/NegateInclude:
-  Exclude:
-    - 'app/form_pointers/form_answers_base_pointer.rb'
-    - 'app/form_pointers/form_financial_pointer.rb'
-    - 'app/models/assessor_assignment.rb'
-    - 'app/models/reports/discrepancies_between_primary_and_secondary_appraisals.rb'
-
 # Offense count: 41
 # Configuration parameters: Include.
 # Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb

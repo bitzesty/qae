@@ -179,7 +179,7 @@ class AssessorAssignment < ApplicationRecord
     struct.rates(form_answer, rate_type).each do |section, _|
       val = section_rate(section)
       c = "#{rate_type.upcase}_ALLOWED_VALUES"
-      if val && !struct.const_get(c).include?(val)
+      if val && struct.const_get(c).exclude?(val)
         sect_name = struct.rate(section)
         message = "#{rate_type} field for '#{section_name(section)}' has not permitted value."
         errors.add(sect_name, message: message)

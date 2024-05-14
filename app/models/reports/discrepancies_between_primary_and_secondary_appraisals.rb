@@ -41,7 +41,7 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
     @award_type = award_type
 
     if current_subject.is_a?(Assessor) &&
-        !current_subject.lead_roles.include?(@award_type)
+        current_subject.lead_roles.exclude?(@award_type)
 
       raise "Access Denied!"
     end
