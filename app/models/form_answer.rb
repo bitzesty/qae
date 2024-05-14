@@ -111,25 +111,19 @@ class FormAnswer < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :form_answer_transitions, autosave: false
   has_many :assessor_assignments, dependent: :destroy
+  # rubocop:disable Rails/InverseOf
   has_many :lead_or_primary_assessor_assignments,
     -> { where.not(submitted_at: nil).where(position: [3, 4]).order(position: :desc) },
     class_name: "AssessorAssignment",
     foreign_key: :form_answer_id
+  # rubocop:enable Rails/InverseOf
   has_many :assessors, through: :assessor_assignments do
     def primary
-      where(assessor_assignments:
-        {
-          position: 0,
-        },
-           ).first
+      where(assessor_assignments: { position: 0 }).first
     end
 
     def secondary
-      where(assessor_assignments:
-        {
-          position: 1,
-        },
-           ).first
+      where(assessor_assignments: { position: 1 }).first
     end
   end
 

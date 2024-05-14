@@ -45,7 +45,7 @@ class User < ApplicationRecord
   has_many :support_letter_attachments, dependent: :destroy
   has_many :supporters, dependent: :destroy
 
-  has_one :owned_account, foreign_key: :owner_id, class_name: "Account"
+  has_one :owned_account, foreign_key: :owner_id, class_name: "Account", inverse_of: :owner
 
   belongs_to :account, optional: true
 

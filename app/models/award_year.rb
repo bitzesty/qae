@@ -6,6 +6,7 @@ class AwardYear < ApplicationRecord
   has_many :feedbacks
   has_one :settings, inverse_of: :award_year, autosave: true
 
+  # rubocop:disable Rails/InverseOf
   has_many :aggregated_case_summary_hard_copies, -> { where(type_of_report: "case_summary") },
     class_name: "AggregatedAwardYearPdf",
     dependent: :destroy
@@ -13,6 +14,7 @@ class AwardYear < ApplicationRecord
   has_many :aggregated_feedback_hard_copies, -> { where(type_of_report: "feedback") },
     class_name: "AggregatedAwardYearPdf",
     dependent: :destroy
+  # rubocop:enable Rails/InverseOf
 
   after_create :create_settings
 
