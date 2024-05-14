@@ -27,7 +27,7 @@ SimpleCov.start "rails" do
   add_filter "/app/pdf_generators/"
   add_filter "/app/tasks/"
   add_filter do |source_file|
-    source_file.filename =~ /app\/controllers/ && source_file.lines.count < 8
+    source_file.filename.include?('app/controllers') && source_file.lines.count < 8
   end
 end
 

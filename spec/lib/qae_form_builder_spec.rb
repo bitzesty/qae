@@ -22,7 +22,7 @@ describe QaeFormBuilder do
 
     it "adds help context" do
       help = current_step.questions[1].help
-      expect(help.first.title =~ /That is the/).to be_present
+      expect(help.first.title.include?('That is the')).to be_present
     end
 
     it "assigns required flag" do

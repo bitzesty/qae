@@ -602,7 +602,7 @@ class QaePdfForms::General::QuestionPointer
   def render_table_with_optional_extra
     cells = sub_answers.select do |a|
       a[0].match(/\/{1}[0-9]{2}\/{1}/).present? ||
-        a[0].match(/Year/).present?
+        a[0].include?('Year').present?
     end
 
     if cells.present?
