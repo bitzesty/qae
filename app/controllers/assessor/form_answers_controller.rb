@@ -7,7 +7,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
     FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
       financial_summary_view: true,
-    },)
+    })
   end
 
   helper_method :resource,

@@ -19,7 +19,7 @@ class Account::CollaboratorsController < Account::BaseController
     AddCollaborator.new(
       current_user,
       account,
-      {},)
+      {})
   end
 
   def index
@@ -40,7 +40,7 @@ class Account::CollaboratorsController < Account::BaseController
     self.add_collaborator_interactor = AddCollaborator.new(
       current_user,
       account,
-      create_params,).run
+      create_params).run
     self.collaborator = add_collaborator_interactor.collaborator
 
     if add_collaborator_interactor.success?

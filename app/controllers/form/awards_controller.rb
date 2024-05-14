@@ -49,7 +49,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
   def create
     self.item = item_class.new(question,
       params[:holder],
-      item_params,)
+      item_params)
 
     if item.valid?
       @form_answer.document = add_result_doc
@@ -68,7 +68,7 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
   def confirm_deletion
     self.item = item_class.new(question,
       params[:holder],
-      item_params,)
+      item_params)
   end
 
   def destroy
@@ -85,13 +85,13 @@ class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
   def edit
     self.item = item_class.new(question,
       params[:holder],
-      item_params,)
+      item_params)
   end
 
   def update
     self.item = item_class.new(question,
       params[:holder],
-      item_params,)
+      item_params)
 
     if item.valid?
       @form_answer.document = update_result_doc

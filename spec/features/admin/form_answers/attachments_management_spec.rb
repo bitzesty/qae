@@ -26,7 +26,7 @@ describe "Form answer attachments management", '
       form_answer.form_answer_attachments.create!(
         file: Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root, "spec", "support", "file_samples", "photo_with_size_less_than_5MB.jpg",
+            Rails.root, "spec", "support", "file_samples", "photo_with_size_less_than_5MB.jpg"
           ),
         ),
         attachable: admin,

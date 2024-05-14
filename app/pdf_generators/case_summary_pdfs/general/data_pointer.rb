@@ -1,7 +1,7 @@
 module CaseSummaryPdfs::General::DataPointer
   PREVIOUS_AWARDS = { "innovation" => "Innovation",
                       "international_trade" => "International Trade",
-                      "sustainable_development" => "Sustainable Development", }
+                      "sustainable_development" => "Sustainable Development" }
 
   COLOR_LABELS = %w[positive average negative neutral]
   POSITIVE_COLOR = "6B8E23"

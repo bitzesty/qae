@@ -61,7 +61,7 @@ So that I see
         create(:form_answer, :innovation,
           :awarded,
           award_year: previous_award_year,
-          user: user,)
+          user: user)
       end
 
       before do

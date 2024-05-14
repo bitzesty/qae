@@ -6,7 +6,7 @@ describe CustomEmailForm do
     CustomEmailForm.new(admin_id: admin.id,
       scope: scope,
       message: "message",
-      subject: "subject",)
+      subject: "subject")
   end
 
   context "myself" do

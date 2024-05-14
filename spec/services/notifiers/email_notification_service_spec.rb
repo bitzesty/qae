@@ -284,7 +284,7 @@ describe Notifiers::EmailNotificationService do
         create(:palace_invite,
           email: form_answer.decorate.head_of_business_email,
           form_answer: form_answer,
-          submitted: true,)
+          submitted: true)
 
         expect(AccountMailers::BuckinghamPalaceInviteMailer).not_to receive(:invite)
 

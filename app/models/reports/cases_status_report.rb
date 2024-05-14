@@ -128,7 +128,7 @@ class Reports::CasesStatusReport
                         :audit_certificate,
                         :feedback,
                         :primary_assessor,
-                        :secondary_assessor,)
+                        :secondary_assessor)
   end
 
   def mapping

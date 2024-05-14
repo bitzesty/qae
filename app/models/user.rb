@@ -57,7 +57,7 @@ class User < ApplicationRecord
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :by_query_part, ->(email) {
     where("email ilike ? OR first_name ilike ? OR last_name ilike ?",
-      "%#{email}%", "%#{email}%", "%#{email}%",)
+      "%#{email}%", "%#{email}%", "%#{email}%")
   }
   scope :not_in_ids, ->(ids) { where.not(id: ids) }
   scope :bounced_emails, -> { where(marked_at_bounces_email: true) }

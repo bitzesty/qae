@@ -69,7 +69,7 @@ describe "Admin generates the CSV reports" do
     let!(:attendee) do
       create(:palace_attendee, palace_invite: palace_invite,
         title: title,
-        first_name: first_name,)
+        first_name: first_name)
     end
 
     it "produces proper output" do

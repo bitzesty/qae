@@ -56,7 +56,7 @@ So that I can fill form completelly even if Javascript is turned off
       within("#non_js_#{question_key}-list-question") do
         subsidiaries.each do |subsidiary|
           expect(page).to have_selector(
-            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1,
+            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1
           )
         end
       end
@@ -100,12 +100,12 @@ So that I can fill form completelly even if Javascript is turned off
       within("#non_js_#{question_key}-list-question") do
         subsidiaries.each do |subsidiary|
           expect(page).to have_selector(
-            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1,
+            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1
           )
         end
 
         expect(page).to have_selector(
-          "li[non-js-attribute=#{new_name}]", count: 1,
+          "li[non-js-attribute=#{new_name}]", count: 1
         )
       end
     end
@@ -129,11 +129,11 @@ So that I can fill form completelly even if Javascript is turned off
 
       within("#non_js_#{question_key}-list-question") do
         expect(page).to have_selector(
-          "li[non-js-attribute=#{first_item[:name]}]", count: 1,
+          "li[non-js-attribute=#{first_item[:name]}]", count: 1
         )
 
         expect(page).to have_selector(
-          "li[non-js-attribute=#{new_name}]", count: 1,
+          "li[non-js-attribute=#{new_name}]", count: 1
         )
 
         expect(page).to_not have_selector(
@@ -157,7 +157,7 @@ So that I can fill form completelly even if Javascript is turned off
 
       within("#non_js_#{question_key}-list-question") do
         expect(page).to have_selector(
-          "li[non-js-attribute=#{first_item[:name]}]", count: 1,
+          "li[non-js-attribute=#{first_item[:name]}]", count: 1
         )
 
         expect(page).to_not have_selector(

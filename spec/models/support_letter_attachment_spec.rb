@@ -13,21 +13,21 @@ RSpec.describe SupportLetterAttachment, type: :model do
       let(:too_big_file) do
         Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root, "spec", "support", "file_samples", "photo_with_size_more_than_5MB.jpg",
+            Rails.root, "spec", "support", "file_samples", "photo_with_size_more_than_5MB.jpg"
           ),
         )
       end
       let(:file_with_wrong_extension) do
         Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root, "spec", "support", "file_samples", "simple_txt_sample.log",
+            Rails.root, "spec", "support", "file_samples", "simple_txt_sample.log"
           ),
         )
       end
       let(:normal_file) do
         Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root, "spec", "support", "file_samples", "photo_with_size_less_than_5MB.jpg",
+            Rails.root, "spec", "support", "file_samples", "photo_with_size_less_than_5MB.jpg"
           ),
         )
       end

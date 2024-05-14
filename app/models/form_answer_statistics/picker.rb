@@ -96,7 +96,7 @@ class FormAnswerStatistics::Picker
       .where(state: "application_in_progress")
       .where("(form_answer_transitions.to_state = ? AND
         form_answer_transitions.created_at > ?) OR (form_answers.created_at > ?)",
-        "application_in_progress", time_range, time_range,)
+        "application_in_progress", time_range, time_range)
       .group("form_answers.id")
   end
 
@@ -104,7 +104,7 @@ class FormAnswerStatistics::Picker
     fa_year_scope.joins(:form_answer_transitions)
       .where(state: "eligibility_in_progress")
       .where("form_answer_transitions.to_state = ? AND
-        form_answer_transitions.created_at > ?", "eligibility_in_progress", time_range,)
+        form_answer_transitions.created_at > ?", "eligibility_in_progress", time_range)
       .group("form_answers.id")
   end
 
@@ -112,7 +112,7 @@ class FormAnswerStatistics::Picker
     fa_year_scope.joins(:form_answer_transitions)
       .where(state: "not_eligible")
       .where("form_answer_transitions.to_state = ? AND
-        form_answer_transitions.created_at > ?", "not_eligible", time_range,)
+        form_answer_transitions.created_at > ?", "not_eligible", time_range)
       .group("form_answers.id")
   end
 

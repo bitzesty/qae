@@ -132,7 +132,7 @@ describe AssessorAssignmentService do
         subject.save
         expect(subject.update_params).to eq(
           "commercial_success_desc" => "I am description",
-          "strategy_desc" => "should be saved",)
+          "strategy_desc" => "should be saved")
       end
     end
   end

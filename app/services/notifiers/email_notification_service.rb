@@ -75,7 +75,7 @@ class Notifiers::EmailNotificationService
     end
 
     send_emails_to_collaborators!(
-      collaborator_data, AccountMailers::ReminderToSubmitMailer,
+      collaborator_data, AccountMailers::ReminderToSubmitMailer
     )
   end
 
