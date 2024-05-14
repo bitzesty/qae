@@ -119,7 +119,6 @@ module CaseSummaryPdfs::General::DataPointer
       render_financial_block(true)
 
       pdf_doc.move_down 10.mm
-      render_application_background
     else
       # type and sub category Qs are missing for SD2020+, so need to move up
       if form_answer.development? && form_answer.award_year.year >= 2020
@@ -127,8 +126,8 @@ module CaseSummaryPdfs::General::DataPointer
       end
 
       pdf_doc.move_down y_coord("general_block").mm
-      render_application_background
     end
+    render_application_background
 
     pdf_doc.move_down 7.mm
     render_case_summary_comments

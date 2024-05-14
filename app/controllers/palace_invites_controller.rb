@@ -7,13 +7,12 @@ class PalaceInvitesController < ApplicationController
     if palace_invite_attributes.present? &&
         @invite_form.update(palace_invite_attributes.to_h.merge({ submitted: params[:submit].present? }))
       log_event
-      if @invite.submitted?
-        flash.notice = "Windsor Castle Attendee details have been successfully submitted."
-        redirect_to edit_palace_invite_url(id: @invite.token)
+      flash.notice = if @invite.submitted?
+        "Windsor Castle Attendee details have been successfully submitted."
       else
-        flash.notice = "Windsor Castle Attendee details have been successfully updated."
-        redirect_to edit_palace_invite_url(id: @invite.token)
+        "Windsor Castle Attendee details have been successfully updated."
       end
+      redirect_to edit_palace_invite_url(id: @invite.token)
     else
       render :edit
     end

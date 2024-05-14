@@ -26,11 +26,7 @@ class PalaceInvite < ApplicationRecord
   end
 
   def attendees_limit
-    if form_answer.promotion?
-      1 # nominator
-    else
-      1 # 2020 COVID inspired rules
-    end
+    1
   end
 
   private

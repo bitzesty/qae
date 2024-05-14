@@ -45,12 +45,11 @@ module ManualUpdaters
 
         p ""
         p "[MANUAL SUBMISSION | SUCCESS] DONE! Check it at https://www.kings-awards-enterprise.service.gov.uk/admin/form_answers/#{form_answer.id}"
-        p ""
       else
         p ""
         p "[MANUAL SUBMISSION | ERROR] seems URN is not generated! Please, check why!"
-        p ""
       end
+      p ""
     end
   end
 end
