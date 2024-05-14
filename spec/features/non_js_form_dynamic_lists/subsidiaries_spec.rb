@@ -21,7 +21,7 @@ So that I can fill form completelly even if Javascript is turned off
     FactoryBot.create :form_answer, :trade,
       user: user,
       account: account,
-      document: { company_name: "Bitzesty", question_key => subsidiaries }
+      document: { :company_name => "Bitzesty", question_key => subsidiaries }
   end
 
   let!(:basic_eligibility) do

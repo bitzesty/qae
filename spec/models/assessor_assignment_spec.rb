@@ -211,7 +211,7 @@ describe AssessorAssignment do
     it "should return error" do
       assessor_assignment = build :assessor_assignment, position: nil, form_answer: form
       assessor_assignment.valid?
-      expect(assessor_assignment.as_json).to eq({ :error => ["Position is empty - it is a required field and an option should be selected from the following list"] })
+      expect(assessor_assignment.as_json).to eq({ error: ["Position is empty - it is a required field and an option should be selected from the following list"] })
     end
 
     it "should return empty json" do

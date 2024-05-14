@@ -164,7 +164,7 @@ class QaeFormBuilder
     end
 
     def fieldset_data_hash
-      result = { answer: delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
+      result = { :answer => delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
 
       if delegate_obj.drop_condition.present?
         result["drop-question"] = Array.wrap(delegate_obj.drop_condition).map do |k|

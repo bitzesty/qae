@@ -25,7 +25,7 @@ RSpec.describe Admin::FormAnswerStateTransitionsController do
         form_answer_state_transition: { state: "recommended" },
       }, xhr: true
 
-      expect(response).to render_template(:partial => "admin/form_answers/_states_list")
+      expect(response).to render_template(partial: "admin/form_answers/_states_list")
     end
   end
 end

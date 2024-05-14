@@ -19,10 +19,10 @@ RSpec.describe Assessor::ReportsController do
 
   describe "GET show" do
     it "renders the show template" do
-      get :show, params: { id: "feedbacks", category: "trade" }, :format => "pdf"
+      get :show, params: { id: "feedbacks", category: "trade" }, format: "pdf"
       expect(response.content_type).to eq("application/pdf")
 
-      get :show, params: { id: "case_summaries", category: "trade" }, :format => "csv"
+      get :show, params: { id: "case_summaries", category: "trade" }, format: "csv"
       expect(response.content_type).to eq("text/csv")
     end
   end

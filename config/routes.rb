@@ -41,34 +41,34 @@ Rails.application.routes.draw do
   get "/additional_information_and_contact" => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
   get "/apply-for-kings-award-for-enterprise" => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
 
-  get "/sign_up_complete" => "content_only#sign_up_complete", as: "sign_up_complete"
-  get "/privacy" => "content_only#privacy", as: "privacy"
-  get "/cookies" => "content_only#cookies", as: "cookies"
-  get "/accessibility-statement" => "content_only#accessibility_statement", as: "accessibility_statement"
+  get "/sign_up_complete" => "content_only#sign_up_complete", :as => "sign_up_complete"
+  get "/privacy" => "content_only#privacy", :as => "privacy"
+  get "/cookies" => "content_only#cookies", :as => "cookies"
+  get "/accessibility-statement" => "content_only#accessibility_statement", :as => "accessibility_statement"
 
-  get "/new_innovation_form" => "form#new_innovation_form", as: "new_innovation_form"
-  get "/new_international_trade_form" => "form#new_international_trade_form", as: "new_international_trade_form"
-  get "/new_sustainable_development_form" => "form#new_sustainable_development_form", as: "new_sustainable_development_form"
-  get "/new_social_mobility_form" => "form#new_social_mobility_form", as: "new_social_mobility_form"
+  get "/new_innovation_form" => "form#new_innovation_form", :as => "new_innovation_form"
+  get "/new_international_trade_form" => "form#new_international_trade_form", :as => "new_international_trade_form"
+  get "/new_sustainable_development_form" => "form#new_sustainable_development_form", :as => "new_sustainable_development_form"
+  get "/new_social_mobility_form" => "form#new_social_mobility_form", :as => "new_social_mobility_form"
 
-  get "/form/:id" => "form#edit_form", as: "edit_form"
-  post "/form/:id" => "form#save", as: "save_form"
-  post "/form/:id/attachments" => "form#add_attachment", as: "attachments"
-  get "/form/:id/confirmation" => "form#submit_confirm", as: "submit_confirm"
-  get "/dashboard" => "content_only#dashboard", as: "dashboard"
+  get "/form/:id" => "form#edit_form", :as => "edit_form"
+  post "/form/:id" => "form#save", :as => "save_form"
+  post "/form/:id/attachments" => "form#add_attachment", :as => "attachments"
+  get "/form/:id/confirmation" => "form#submit_confirm", :as => "submit_confirm"
+  get "/dashboard" => "content_only#dashboard", :as => "dashboard"
 
-  get "/apply_innovation_award" => "content_only#apply_innovation_award", as: "apply_innovation_award"
-  get "/award_info_innovation" => "content_only#award_info_innovation", as: "award_info_innovation"
+  get "/apply_innovation_award" => "content_only#apply_innovation_award", :as => "apply_innovation_award"
+  get "/award_info_innovation" => "content_only#award_info_innovation", :as => "award_info_innovation"
 
-  get "/apply_international_trade_award" => "content_only#apply_international_trade_award", as: "apply_international_trade_award"
-  get "/award_info_trade" => "content_only#award_info_trade", as: "award_info_trade"
+  get "/apply_international_trade_award" => "content_only#apply_international_trade_award", :as => "apply_international_trade_award"
+  get "/award_info_trade" => "content_only#award_info_trade", :as => "award_info_trade"
 
-  get "/apply_sustainable_development_award" => "content_only#apply_sustainable_development_award", as: "apply_sustainable_development_award"
-  get "/award_info_development" => "content_only#award_info_development", as: "award_info_development"
-  get "/apply_social_mobility_award" => "content_only#apply_social_mobility_award", as: "apply_social_mobility_award"
-  get "/award_info_mobility" => "content_only#award_info_mobility", as: "award_info_mobility"
+  get "/apply_sustainable_development_award" => "content_only#apply_sustainable_development_award", :as => "apply_sustainable_development_award"
+  get "/award_info_development" => "content_only#award_info_development", :as => "award_info_development"
+  get "/apply_social_mobility_award" => "content_only#apply_social_mobility_award", :as => "apply_social_mobility_award"
+  get "/award_info_mobility" => "content_only#award_info_mobility", :as => "award_info_mobility"
 
-  get "/award_winners_section" => "content_only#award_winners_section", as: "award_winners_section"
+  get "/award_winners_section" => "content_only#award_winners_section", :as => "award_winners_section"
 
   root to: QAE.production? ? redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply") : "content_only#dashboard"
 
