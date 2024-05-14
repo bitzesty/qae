@@ -1,13 +1,16 @@
 class FormAwardEligibilitiesController < ApplicationController
   include Wicked::Wizard
 
-  before_action :authenticate_user!, :check_account_completion,
-    :check_number_of_collaborators
+  before_action :authenticate_user!, :check_account_completion, :check_number_of_collaborators
   before_action :set_form_answer
   before_action :set_steps_and_eligibilities, :setup_wizard
+
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
   ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
+
   before_action do
     allow_assessor_access!(@form_answer)
   end

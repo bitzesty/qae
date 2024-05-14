@@ -19,7 +19,9 @@ class Form::MaterialsBaseController < Form::BaseController
     existing_materials.keys.map(&:to_i).max.to_i + 1
   end
 
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :check_materials_limit, only: [:create]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   private
 

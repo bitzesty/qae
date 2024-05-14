@@ -6,9 +6,12 @@ class FormController < ApplicationController
   before_action :authenticate_user!
   before_action :check_account_completion, :check_number_of_collaborators, unless: -> { admin_signed_in? || assessor_signed_in? }
   before_action :check_deadlines
+
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy, :submit_confirm, :save, :add_attachment
   ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   before_action :check_trade_deadline, :check_trade_count_limit, only: :new_international_trade_form
   before_action :check_development_deadline, :check_development_count_limit, only: :new_sustainable_development_form
@@ -22,11 +25,9 @@ class FormController < ApplicationController
     :new_social_mobility_form,
   ]
 
-  before_action :get_collaborators, only: [
-    :submit_confirm,
-  ]
+  # rubocop:disable Rails/LexicallyScopedActionFilter
+  before_action :get_collaborators, only: [:submit_confirm]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
-
   before_action :check_eligibility!, only: [
     :create,
     :destroy,
@@ -35,6 +36,7 @@ class FormController < ApplicationController
     :add_attachment,
     :submit_confirm,
   ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   before_action do
     allow_assessor_access!(@form_answer)
