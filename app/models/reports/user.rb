@@ -24,7 +24,7 @@ class Reports::User
   def awards_assigned
     if @user.is_a?(Assessor) || @user.is_a?(Judge)
       @user.roles
-        .reject { |role| role.include?('promotion') }
+        .reject { |role| role.include?("promotion") }
         .map { |role| FormAnswer::AWARD_TYPE_FULL_NAMES[role] }
         .join(", ")
     else
