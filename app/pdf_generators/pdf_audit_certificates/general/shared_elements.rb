@@ -1,6 +1,6 @@
 module PdfAuditCertificates::General::SharedElements
   DEFAULT_OFFSET = 110.mm
-  NOT_CURRENCY_QUESTION_KEYS = %w(employees)
+  NOT_CURRENCY_QUESTION_KEYS = %w[employees]
 
   def render_main_header
     render_certificate_info
@@ -29,7 +29,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_base_paragraph
-    p1 = %{We have performed the work agreed with #{form_answer.company_name} in line with the requirements set out in the document “King’s Awards for Enterprise: #{form_answer.award_type_full_name} #{form_answer.award_year.year}” which constitutes the application form for the award.}
+    p1 = %(We have performed the work agreed with #{form_answer.company_name} in line with the requirements set out in the document “King’s Awards for Enterprise: #{form_answer.award_type_full_name} #{form_answer.award_year.year}” which constitutes the application form for the award.)
     render_text_line(p1, 2, { leading: 2 })
 
     p2 = "Our work was carried out solely to assist your process for considering #{form_answer.company_name} for a King’s Awards for Enterprise. We have reviewed the figures provided by #{form_answer.company_name} in section C of the application form.  We have used the guidance in section C of the application form of the as our own guidance in terms of the information that #{form_answer.company_name} should have provided. "
@@ -200,31 +200,31 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
-    dotted_line = %{...............................................................................................................................}
+    dotted_line = %(...............................................................................................................................)
 
     b1 = %{Signed (External Accountant) ............................................................................}
     render_text_line(b1, 1)
     render_text_line(dotted_line, 1)
 
-    b2 = %{Company partnership name: ............................................................................}
+    b2 = %(Company partnership name: ............................................................................)
     render_text_line(b2, 1)
     render_text_line(dotted_line, 1)
 
-    b3 = %{Company registration number/Professional body practising certificate number: }
+    b3 = %(Company registration number/Professional body practising certificate number: )
     render_text_line(b3, 1)
     render_text_line(dotted_line, 1)
     render_text_line(dotted_line, 1)
 
-    b4 = %{Address: ..............................................................................................................}
+    b4 = %(Address: ..............................................................................................................)
     render_text_line(b4, 1)
 
-    b5 = %{Telephone number: ...........................................................................................}
+    b5 = %(Telephone number: ...........................................................................................)
     render_text_line(b5, 1)
 
-    b6 = %{Email: ...................................................................................................................}
+    b6 = %(Email: ...................................................................................................................)
     render_text_line(b6, 1)
 
-    b7 = %{Date: ....................................................................................................................}
+    b7 = %(Date: ....................................................................................................................)
     render_text_line(b7, 5)
   end
 
@@ -235,13 +235,13 @@ module PdfAuditCertificates::General::SharedElements
     line = "We confirm we have updated the figures originally submitted in our application to The King’s Award for Enterprise. The revised figures should be used as the basis of our application."
     render_text_line(line, 2, default_text_ops)
 
-    b1 = %{Signed ................................................................................................................}
+    b1 = %(Signed ................................................................................................................)
     render_text_line(b1, 1)
 
-    b2 = %{Job title: ..............................................................................................................}
+    b2 = %(Job title: ..............................................................................................................)
     render_text_line(b2, 1)
 
-    b3 = %{Company: ..........................................................................................................}
+    b3 = %(Company: ..........................................................................................................)
     render_text_line(b3, 1)
 
     move_down 6.mm

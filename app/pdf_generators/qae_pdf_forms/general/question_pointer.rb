@@ -9,9 +9,9 @@ class QaePdfForms::General::QuestionPointer
   include FinancialTable
   include QuestionTextHelper
 
-  NOT_CURRENCY_QUESTION_KEYS = %w(employees).freeze
-  SKIP_HEADER_HINT_KEYS = %w(head_of_business_header).freeze
-  RENDER_INLINE_KEYS = %w(head_of_business_title).freeze
+  NOT_CURRENCY_QUESTION_KEYS = %w[employees].freeze
+  SKIP_HEADER_HINT_KEYS = %w[head_of_business_header].freeze
+  RENDER_INLINE_KEYS = %w[head_of_business_title].freeze
 
   attr_reader :form_pdf,
     :form_answer,

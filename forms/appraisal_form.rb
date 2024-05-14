@@ -5,63 +5,63 @@ class AppraisalForm
   SUPPORTED_YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
   RAG_OPTIONS_2016 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2017 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2018 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2019 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2020 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2021 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2022 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2023 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2024 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2025 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   CSR_RAG_OPTIONS_2016 = [
@@ -1977,7 +1977,7 @@ class AppraisalForm
 
   class << self
     def group_labels_by(year, type)
-      %w(rag csr_rag strength verdict).map do |label_type|
+      %w[rag csr_rag strength verdict].map do |label_type|
         const_get("#{label_type.upcase}_OPTIONS_#{year}").detect do |el|
           el[1] == type
         end

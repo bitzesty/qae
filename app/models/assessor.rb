@@ -93,7 +93,7 @@ class Assessor < ApplicationRecord
   end
 
   def applications_scope(award_year = nil)
-    c = assigned_categories_as(%w(lead))
+    c = assigned_categories_as(%w[lead])
     join = "LEFT OUTER JOIN assessor_assignments ON
     assessor_assignments.form_answer_id = form_answers.id"
 
@@ -116,7 +116,7 @@ class Assessor < ApplicationRecord
   # with account's other applications
   # they were not assigned to
   def extended_applications_scope
-    c = assigned_categories_as(%w(lead regular))
+    c = assigned_categories_as(%w[lead regular])
 
     out = FormAnswer.where("
       form_answers.award_type in (?)
@@ -191,7 +191,7 @@ class Assessor < ApplicationRecord
   end
 
   def all_assigned_award_types
-    assigned_categories_as(%w(lead regular)).map do |cat|
+    assigned_categories_as(%w[lead regular]).map do |cat|
       FormAnswer::AWARD_TYPE_FULL_NAMES[cat]
     end.join(", ")
   end

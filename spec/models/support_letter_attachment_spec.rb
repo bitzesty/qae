@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe SupportLetterAttachment, type: :model do
   describe "validations" do
-    %w(user form_answer attachment).each do |field_name|
+    %w[user form_answer attachment].each do |field_name|
       it { should validate_presence_of field_name }
     end
 

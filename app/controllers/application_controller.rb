@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :should_enable_js?
 
-  %w(innovation trade mobility development).each do |award|
+  %w[innovation trade mobility development].each do |award|
     define_method :"#{award}_submission_started?" do
       public_send(:"#{award}_submission_started_deadline").passed?
     end

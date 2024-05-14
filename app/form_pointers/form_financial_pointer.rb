@@ -18,7 +18,7 @@ class FormFinancialPointer
     QaeFormBuilder::OneOptionByYearsLabelQuestion,
     QaeFormBuilder::OneOptionByYearsQuestion,
   ]
-  YEAR_LABELS = %w(day month year)
+  YEAR_LABELS = %w[day month year]
   IN_PROGRESS = "-"
 
   TRADE_AUTOEXCLUDED_QUESTION_KEYS = []

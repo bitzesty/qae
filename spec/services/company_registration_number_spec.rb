@@ -21,8 +21,8 @@ RSpec.describe CompanyRegistrationNumber do
     end
 
     it "extracts company registration number from HTML block" do
-      content = %{<blockquote>Registered Company Number -&nbsp;.06883289</blockquote>\r\n\r\n<p>&nbsp;</p>\r\n}
-      alternative_content = %{<p>My company number is :06883289.</p>\r\n}
+      content = %(<blockquote>Registered Company Number -&nbsp;.06883289</blockquote>\r\n\r\n<p>&nbsp;</p>\r\n)
+      alternative_content = %(<p>My company number is :06883289.</p>\r\n)
 
       expect(
         described_class.extract_from(content),
@@ -34,7 +34,7 @@ RSpec.describe CompanyRegistrationNumber do
     end
 
     it "extracts multiple company registration numbers from HTML block" do
-      content = %{<p>My company numbers are 06883289 and 02429054 as well as 05637000</p>\r\n}
+      content = %(<p>My company numbers are 06883289 and 02429054 as well as 05637000</p>\r\n)
 
       expect(
         described_class.extract_from(content),

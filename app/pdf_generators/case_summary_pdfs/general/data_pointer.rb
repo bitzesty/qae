@@ -3,7 +3,7 @@ module CaseSummaryPdfs::General::DataPointer
                       "international_trade" => "International Trade",
                       "sustainable_development" => "Sustainable Development", }
 
-  COLOR_LABELS = %w(positive average negative neutral)
+  COLOR_LABELS = %w[positive average negative neutral]
   POSITIVE_COLOR = "6B8E23"
   AVERAGE_COLOR = "DAA520"
   NEGATIVE_COLOR = "FF0000"
@@ -221,7 +221,7 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_financial_table_header
-    pdf_doc.table [year_rows], row_colors: %w(FFFFFF),
+    pdf_doc.table [year_rows], row_colors: %w[FFFFFF],
       cell_style: { size: 12, font_style: :bold },
       column_widths: column_widths
   end
@@ -230,7 +230,7 @@ module CaseSummaryPdfs::General::DataPointer
     financial_metrics_by_years.each do |row|
       if row[0] == CaseSummaryPdfs::Pointer::DATE_LABEL
         pdf_doc.table([row],
-          row_colors: %w(FFFFFF),
+          row_colors: %w[FFFFFF],
           cell_style: { size: 12, font_style: :bold },
           column_widths: column_widths,
         )

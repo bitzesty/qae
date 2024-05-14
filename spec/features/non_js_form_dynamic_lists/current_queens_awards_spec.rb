@@ -82,7 +82,7 @@ So that I can fill form completelly even if Javascript is turned off
         form_answer.reload.document
       }
 
-      %w(Category Year).each do |field_name|
+      %w[Category Year].each do |field_name|
         expect_to_see "#{field_name} is required and an option must be selected from the following list"
       end
 

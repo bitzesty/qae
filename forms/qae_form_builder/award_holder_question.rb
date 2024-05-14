@@ -42,9 +42,9 @@ class QaeFormBuilder
   class AwardHolderQuestionDecorator < MultiQuestionDecorator
     def required_sub_fields_list
       if delegate_obj.award_years_present
-        %w(title year details)
+        %w[title year details]
       else
-        %w(title details)
+        %w[title details]
       end
     end
   end

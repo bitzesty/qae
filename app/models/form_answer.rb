@@ -42,7 +42,7 @@ class FormAnswer < ApplicationRecord
     "promotion", # Enterprise Promotion Award
   ]
 
-  BUSINESS_AWARD_TYPES = %w(trade innovation development mobility)
+  BUSINESS_AWARD_TYPES = %w[trade innovation development mobility]
 
   AWARD_TYPE_FULL_NAMES = {
     "trade" => "International Trade",
@@ -146,7 +146,7 @@ class FormAnswer < ApplicationRecord
   # scopes
   scope :for_award_type, ->(award_type) { where(award_type: award_type) }
   scope :for_year, ->(year) { joins(:award_year).where(award_years: { year: year }) }
-  scope :shortlisted, -> { where(state: %w(reserved recommended)) }
+  scope :shortlisted, -> { where(state: %w[reserved recommended]) }
   scope :not_shortlisted, -> { where(state: "not_recommended") }
   scope :winners, -> { where(state: "awarded") }
   scope :unsuccessful_applications, -> { submitted.where("state not in ('awarded', 'withdrawn')") }
@@ -483,7 +483,7 @@ class FormAnswer < ApplicationRecord
     return false if !business?
     return true if award_year && award_year.before_vocf_switch?
 
-    %w(trade innovation).include?(award_type)
+    %w[trade innovation].include?(award_type)
   end
 
   def financial_year_changeable?

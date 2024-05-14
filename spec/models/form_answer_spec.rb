@@ -125,7 +125,7 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "validations" do
-    %w(user).each do |field_name|
+    %w[user].each do |field_name|
       it { should validate_presence_of field_name }
     end
 

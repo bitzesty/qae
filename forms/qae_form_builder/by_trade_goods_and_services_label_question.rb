@@ -50,7 +50,7 @@ class QaeFormBuilder
     end
 
     def required_sub_fields_list
-      %w(desc_short total_overseas_trade)
+      %w[desc_short total_overseas_trade]
     end
   end
 

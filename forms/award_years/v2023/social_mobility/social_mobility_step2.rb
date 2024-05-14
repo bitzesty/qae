@@ -707,9 +707,9 @@ class AwardYears::V2023::QaeForms
         textarea :initiative_community_society_impact, "Impact on community and society." do
           sub_ref "B 7a"
           required
-          question_sub_title %{
+          question_sub_title %(
             What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?
-          }
+          )
           context %(
             <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )

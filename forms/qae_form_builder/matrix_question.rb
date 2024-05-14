@@ -1,6 +1,6 @@
 class QaeFormBuilder
-  AUTO_CALCULATED_HEADINGS = %w(total_system_calculated calculated_total calculated_proportion calculated_sub_total).freeze
-  EXCLUDED_HEADINGS = %w(calculated_sub_total others calculated_total calculated_proportion).freeze
+  AUTO_CALCULATED_HEADINGS = %w[total_system_calculated calculated_total calculated_proportion calculated_sub_total].freeze
+  EXCLUDED_HEADINGS = %w[calculated_sub_total others calculated_total calculated_proportion].freeze
   class MatrixQuestionValidator < QuestionValidator
     def errors
       result = super

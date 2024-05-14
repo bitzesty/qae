@@ -41,7 +41,7 @@ class QaeFormBuilder
 
   class QueenAwardApplicationsQuestionDecorator < MultiQuestionDecorator
     def required_sub_fields_list
-      %w(category year outcome)
+      %w[category year outcome]
     end
   end
 end

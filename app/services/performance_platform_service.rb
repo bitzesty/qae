@@ -199,7 +199,7 @@ class PerformancePlatformService
   def self.generate_transactions_id(data)
     string = ""
 
-    %w(_timestamp period channel channel_type).each do |attr|
+    %w[_timestamp period channel channel_type].each do |attr|
       string << data[attr]
     end
 
@@ -210,7 +210,7 @@ class PerformancePlatformService
   def self.generate_applications_id(data)
     string = ""
 
-    %w(_timestamp period award stage).each do |attr|
+    %w[_timestamp period award stage].each do |attr|
       string << data[attr]
     end
 

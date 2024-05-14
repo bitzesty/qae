@@ -20,7 +20,7 @@ class QaeFormBuilder
     alias_method :entities, :subsidiaries
 
     def required_sub_fields_list
-      %w(name location employees)
+      %w[name location employees]
     end
   end
 end

@@ -1,5 +1,5 @@
 module FeedbackPdfs::General::DataPointer
-  COLOR_LABELS = %w(positive average negative neutral)
+  COLOR_LABELS = %w[positive average negative neutral]
 
   POSITIVE_COLOR = "6B8E23"
   AVERAGE_COLOR = "DAA520"
@@ -108,7 +108,7 @@ module FeedbackPdfs::General::DataPointer
 
   def render_headers(table_lines, column_widths)
     pdf_doc.move_down 10.mm
-    pdf_doc.table table_lines, row_colors: %w(F0F0F0),
+    pdf_doc.table table_lines, row_colors: %w[F0F0F0],
       cell_style: { size: 12, font_style: :bold },
       column_widths: column_widths
   end

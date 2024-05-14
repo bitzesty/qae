@@ -232,7 +232,7 @@ module QaePdfForms::General::DrawElements
 
   def render_table(table_lines, ops = {})
     default_options = {
-      row_colors: %w(F0F0F0 FFFFFF),
+      row_colors: %w[F0F0F0 FFFFFF],
       cell_style: { size: 10, font_style: :bold },
     }
 

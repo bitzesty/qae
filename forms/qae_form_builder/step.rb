@@ -2,10 +2,10 @@ require "active_support/inflector"
 
 class QaeFormBuilder
   class StepDecorator < QaeDecorator
-    QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w(
+    QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w[
       innovation_materials
       org_chart
-    )
+    ]
 
     def next
       @next ||= form.steps[index + 1]

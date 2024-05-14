@@ -302,7 +302,7 @@ class FormController < ApplicationController
     end
   end
 
-  %w(innovation trade mobility development).each do |award|
+  %w[innovation trade mobility development].each do |award|
     define_method :"check_#{award}_deadline" do
       return if admin_in_read_only_mode?
 

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include PgSearch::Model
   extend Enumerize
 
-  POSSIBLE_ROLES = %w(account_admin regular)
+  POSSIBLE_ROLES = %w[account_admin regular]
 
   devise :database_authenticatable, :registerable,
     :recoverable, :trackable, :validatable, :confirmable,
@@ -76,19 +76,19 @@ class User < ApplicationRecord
       .order(id: :asc)
   }
   scope :want_to_receive_opening_notification_for_at_least_one_award, -> {
-    where(%{
+    where(%(
       notification_when_innovation_award_open IS TRUE OR
       notification_when_trade_award_open IS TRUE OR
       notification_when_development_award_open IS TRUE OR
       notification_when_mobility_award_open IS TRUE
-    }.squish)
+    ).squish)
   }
 
   before_validation :create_account, on: :create
   around_save :update_user_full_name
 
-  enumerize :prefered_method_of_contact, in: %w(phone email)
-  enumerize :qae_info_source, in: %w(
+  enumerize :prefered_method_of_contact, in: %w[phone email]
+  enumerize :qae_info_source, in: %w[
     govuk
     competitor
     business_event
@@ -100,7 +100,7 @@ class User < ApplicationRecord
     mail_from_qae
     word_of_mouth
     other
-  )
+  ]
   enumerize :role, in: POSSIBLE_ROLES, predicates: true
 
   # searching
