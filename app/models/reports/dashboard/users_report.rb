@@ -1,6 +1,6 @@
 class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
   def initialize(kind:)
-    @kind = kind
+    @kind = valid_kind(kind)
   end
 
   def stats
@@ -93,5 +93,9 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
 
   def csv_filename
     "account_registrations_#{kind}.csv"
+  end
+
+  def valid_kind(value)
+    value if value.presence.in?(%w[by_month by_week by_day])
   end
 end

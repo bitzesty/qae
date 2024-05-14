@@ -2,7 +2,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
   attr_reader :award_type
 
   def initialize(kind:, award_type: nil)
-    @kind = kind
+    @kind = valid_kind(kind)
     @award_type = award_type
   end
 
@@ -108,5 +108,9 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
 
   def csv_filename
     "#{award_type || "all"}_applications_report_#{kind}.csv"
+  end
+
+  def valid_kind(value)
+    value if value.presence.in?(%w[by_month by_week by_day])
   end
 end
