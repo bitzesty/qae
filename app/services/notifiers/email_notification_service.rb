@@ -193,7 +193,7 @@ class Notifiers::EmailNotificationService
 
   class << self
     def log_this(message)
-      p "[EmailNotificationService] #{Time.zone.now} #{message}"
+      Rails.logger.debug "[EmailNotificationService] #{Time.zone.now} #{message}"
     end
   end
 

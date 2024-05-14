@@ -42,7 +42,7 @@ class AssessorsImport::Builder
   private
 
   def log(msg)
-    puts msg unless Rails.env.test?
+    Rails.logger.debug msg unless Rails.env.test?
   end
 
   def assign_password(user)

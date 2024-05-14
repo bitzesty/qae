@@ -55,9 +55,9 @@ class FormsLostFinancialDataDetector
 
   def set_form(f, doc)
     possible_question_keys.each do |k|
-      puts "[#{f.id}] #{k}: #{doc[k]}"
+      Rails.logger.debug "[#{f.id}] #{k}: #{doc[k]}"
       if doc[k].present?
-        puts "[#{f.id}] #{k}: #{doc[k]} --------------- ADDED"
+        Rails.logger.debug "[#{f.id}] #{k}: #{doc[k]} --------------- ADDED"
         f.document[k] = doc[k]
       end
     end

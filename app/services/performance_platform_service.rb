@@ -105,7 +105,7 @@ class PerformancePlatformService
         http.request req
       end
 
-      puts res.body
+      Rails.logger.debug res.body
 
       nil
     end
@@ -236,7 +236,7 @@ class PerformancePlatformService
 
   class << self
     def log_this(message)
-      p "[PerformancePlatformService] #{Time.zone.now} #{message}"
+      Rails.logger.debug "[PerformancePlatformService] #{Time.zone.now} #{message}"
     end
   end
 end

@@ -56,7 +56,7 @@ class UsersImport::Builder
   private
 
   def log(msg)
-    puts msg unless Rails.env.test?
+    Rails.logger.debug msg unless Rails.env.test?
   end
 
   def map

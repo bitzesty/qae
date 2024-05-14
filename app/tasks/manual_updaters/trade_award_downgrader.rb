@@ -13,7 +13,7 @@ class ManualUpdaters::TradeAwardDowngrader
 
     raise ArgumentError, "Application is already 3 to 5 years" if document["trade_commercial_success"] != "6 plus"
 
-    puts "Downgrading Trade Application ##{form_answer.id}"
+    Rails.logger.debug "Downgrading Trade Application ##{form_answer.id}"
 
     # financial year changed dates
     %w[day month].each do |attr|
@@ -34,6 +34,6 @@ class ManualUpdaters::TradeAwardDowngrader
     form_answer.document = document
     form_answer.save!
 
-    puts "Sucess!"
+    Rails.logger.debug "Sucess!"
   end
 end

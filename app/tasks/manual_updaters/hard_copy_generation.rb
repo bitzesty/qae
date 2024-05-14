@@ -129,8 +129,7 @@ module ManualUpdaters
       end
 
       def logy(m)
-        puts m
-        Rails.logger.info m
+        Rails.logger.debug m
       end
     end
   end
