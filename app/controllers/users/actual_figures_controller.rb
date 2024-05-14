@@ -39,11 +39,7 @@ class Users::ActualFiguresController < Users::BaseController
     # This is fix of "missing 'audit_certificate' param"
     # if no any was selected in file input
     if params[:commercial_figures_file].blank?
-      params.merge!(
-        commercial_figures_file: {
-          attachment: "",
-        },
-      )
+      params[:commercial_figures_file] = { attachment: "" }
     end
 
     params.require(:commercial_figures_file).permit(:attachment)

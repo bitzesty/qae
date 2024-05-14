@@ -194,9 +194,9 @@ class FormController < ApplicationController
   def add_attachment
     FormAnswer.transaction do
       attachment_params = params[:form]
-      attachment_params.merge!(form_answer_id: @form_answer.id)
+      attachment_params[:form_answer_id] = @form_answer.id
 
-      attachment_params.merge!(original_filename: attachment_params[:file].original_filename) if attachment_params[:file].respond_to?(:original_filename)
+      attachment_params[:original_filename] = attachment_params[:file].original_filename if attachment_params[:file].respond_to?(:original_filename)
 
       attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
 
