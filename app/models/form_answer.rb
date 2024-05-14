@@ -323,7 +323,7 @@ class FormAnswer < ApplicationRecord
 
   def head_of_business
     [
-      document["head_of_business_first_name"].to_s, 
+      document["head_of_business_first_name"].to_s,
       document["head_of_business_last_name"].to_s,
     ].compact_blank.join(" ")
   end

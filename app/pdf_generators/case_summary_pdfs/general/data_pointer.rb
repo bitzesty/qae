@@ -13,12 +13,6 @@ module CaseSummaryPdfs::General::DataPointer
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
   end
 
-  def current_awards_question
-    all_questions.detect do |q|
-      q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardHolderQuestion)
-    end
-  end
-
   def organisation_type
     filled_answers["organisation_type"].capitalize
   end
@@ -44,13 +38,6 @@ module CaseSummaryPdfs::General::DataPointer
 
   def sic_code
     form_answer.decorate.sic_code_name || undefined_value
-  end
-
-  def current_awards_question
-    all_questions.detect do |q|
-      q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardHolderQuestion) ||
-        q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardApplicationsQuestion)
-    end
   end
 
   def current_awards

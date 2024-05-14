@@ -217,8 +217,4 @@ class Assessor < ApplicationRecord
       public_send(:"#{award}_role=", nil) if get_role(award).blank?
     end
   end
-
-  def self.leads_for(category)
-    where(role_meth(category) => "lead")
-  end
 end
