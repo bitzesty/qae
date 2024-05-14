@@ -92,6 +92,9 @@ Naming/VariableNumber:
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: optional
 
+Performance/MapCompact:
+  Enabled: false
+
 Rails:
   Enabled: true
 
