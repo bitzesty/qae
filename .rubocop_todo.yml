@@ -13,23 +13,6 @@ Layout/TrailingWhitespace:
   Exclude:
     - 'app/models/form_answer.rb'
 
-# Offense count: 12
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'app/controllers/concerns/audit_certificate_context.rb'
-    - 'app/controllers/users/actual_figures_controller.rb'
-    - 'app/controllers/users/audit_certificates_controller.rb'
-    - 'app/controllers/users/vat_returns_controller.rb'
-    - 'app/form_pointers/form_financial_pointer.rb'
-    - 'app/models/assessor_assignment.rb'
-    - 'app/models/concerns/mailgun_helper.rb'
-    - 'app/models/reports/dashboard/base.rb'
-    - 'app/models/reports/data_pickers/form_document_picker.rb'
-    - 'app/pdf_generators/pdf_audit_certificates/base.rb'
-    - 'app/validators/file_size_validator.rb'
-
 # Offense count: 300
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Lint/BooleanSymbol:

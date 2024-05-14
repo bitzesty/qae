@@ -11,7 +11,7 @@ class Users::VatReturnsController < Users::BaseController
     @vat_returns = figures_wrapper.vat_returns_files.new(vat_returns_file_params)
     @vat_returns.form_answer = form_answer
 
-    if saved = @vat_returns.save
+    if (saved = @vat_returns.save)
       log_event
     end
 

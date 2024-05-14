@@ -55,7 +55,7 @@ class FormFinancialPointer
       unless UK_SALES_EXCLUDED_FORM_TYPES.include?(form_answer.object.award_type.to_sym)
         uk_sales_data = UkSalesCalculator.new(fetched).data
 
-        if index = fetched.index { |data| data[:exports].present? }
+        if (index = fetched.index { |data| data[:exports].present? })
           fetched.insert(index + 1, uk_sales_data) if uk_sales_data.present?
         elsif uk_sales_data.present?
           fetched += [uk_sales_data]

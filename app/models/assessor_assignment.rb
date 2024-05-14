@@ -194,7 +194,7 @@ class AssessorAssignment < ApplicationRecord
   def section_name(key)
     @_sections ||= struct.struct(form_answer).to_h
     section_key = key.to_s.gsub(/_desc$/, "").gsub(/_rate$/, "")
-    if section = @_sections.dig(section_key.to_sym)
+    if (section = @_sections.dig(section_key.to_sym))
       section[:label].gsub(/:$/, "")
     end
   end

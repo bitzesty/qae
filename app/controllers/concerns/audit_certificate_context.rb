@@ -9,7 +9,7 @@ module AuditCertificateContext
 
     audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
-    if saved = audit_certificate.save
+    if (saved = audit_certificate.save)
       log_event
 
       if form_answer.assessors.primary.present?

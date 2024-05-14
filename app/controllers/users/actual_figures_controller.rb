@@ -11,7 +11,7 @@ class Users::ActualFiguresController < Users::BaseController
     @actual_figures = figures_wrapper.build_commercial_figures_file(commercial_figures_file_params)
     @actual_figures.form_answer = form_answer
 
-    if saved = @actual_figures.save
+    if (saved = @actual_figures.save)
       log_event
     end
 

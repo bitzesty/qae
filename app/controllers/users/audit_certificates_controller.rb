@@ -32,7 +32,7 @@ class Users::AuditCertificatesController < Users::BaseController
   def create
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
-    if saved = audit_certificate.save
+    if (saved = audit_certificate.save)
       log_event
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!

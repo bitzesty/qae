@@ -32,7 +32,7 @@ module MailgunHelper
       return true if Rails.env.test?
       body = Curl::Easy.perform(url(email)).body
 
-      if response = JSON.parse(body)
+      if (response = JSON.parse(body))
         return false if response.is_a?(Hash) && response["is_valid"].to_s == "false"
         response.size > 0
       end

@@ -140,7 +140,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_county
     if business_form?
-      if county = doc("organization_address_county")
+      if (county = doc("organization_address_county"))
         county.split(" - ").first
       else
         ""

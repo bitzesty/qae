@@ -10,7 +10,7 @@ class Reports::Dashboard::Base
   end
 
   def submission_deadline_label(award_year)
-    if deadline = submission_deadline(award_year)
+    if (deadline = submission_deadline(award_year))
       "(#{deadline.strftime("%m/%d/%Y")})"
     else
       ""
