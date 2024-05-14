@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Form answer attachments management", '
   As Admin

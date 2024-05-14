@@ -68,6 +68,7 @@ RSpec.configure do |config|
   config.include UserStepDefinitions, type: :feature
   config.include ExpectationHelper, type: :feature
   config.include DeadlineHelper, type: :feature
+  config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.raise_error_for_unimplemented_steps = true

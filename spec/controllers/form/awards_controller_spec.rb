@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Form::AwardsController do
   let!(:user) { create(:user) }

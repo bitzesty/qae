@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Assessor::ReportsController do
   let!(:assessor) { create(:assessor) }

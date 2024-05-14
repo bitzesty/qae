@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Assessor: Download original pdf of application at the deadline", '
 As an Assessor (Lead / Primary)

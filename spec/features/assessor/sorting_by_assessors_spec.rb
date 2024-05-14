@@ -1,6 +1,5 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
 Warden.test_mode!
 
 describe "As Lead Assessor I want to sort by assessors", js: true do

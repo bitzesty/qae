@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Assessor Suspension", type: :feature do
   let!(:admin) { create(:admin) }

@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin: Download all Feedbacks as one pdf", '
 As an Admin

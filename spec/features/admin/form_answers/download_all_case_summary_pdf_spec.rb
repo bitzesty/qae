@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin: Download all Case Summary as one pdf", '
 As an Admin

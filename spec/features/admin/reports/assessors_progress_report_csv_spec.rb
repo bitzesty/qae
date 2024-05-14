@@ -1,7 +1,5 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
-
 describe "Assessors Progress Reports CSV" do
   let!(:first_assessor) { create(:assessor, :regular_for_trade) }
   let!(:second_assessor) { create(:assessor, :regular_for_trade) }

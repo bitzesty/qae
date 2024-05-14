@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Non JS | Dynamic Lists | Subsidiaries", '
 As a User

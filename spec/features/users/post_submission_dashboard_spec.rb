@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "User sees the post submission dashboard" do
   let(:user) { create(:user, :completed_profile) }

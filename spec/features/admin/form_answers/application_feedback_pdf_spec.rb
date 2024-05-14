@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin: Download an application's feedback PDF", "
 As an Admin

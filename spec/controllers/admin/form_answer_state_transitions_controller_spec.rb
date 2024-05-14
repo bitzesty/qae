@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Admin::FormAnswerStateTransitionsController do
   let!(:admin) { create(:admin, superadmin: true) }
