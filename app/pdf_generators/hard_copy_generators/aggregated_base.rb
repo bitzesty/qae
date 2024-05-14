@@ -36,6 +36,6 @@ class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
   end
 
   def tempfile_name
-    "#{file_prefix}_#{timestamp}_SEPARATOR".gsub("/", "_")
+    "#{file_prefix}_#{timestamp}_SEPARATOR".tr("/", "_")
   end
 end
