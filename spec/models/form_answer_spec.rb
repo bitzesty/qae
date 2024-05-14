@@ -190,7 +190,7 @@ RSpec.describe FormAnswer, type: :model do
       create(:form_answer, :trade, :submitted)
     end
 
-    let(:award_year) { AwardYear.current.year.to_s[2..-1] }
+    let(:award_year) { AwardYear.current.year.to_s[2..] }
 
     it "creates form with URN" do
       expect(form_answer.urn).to eq("KA0001/#{award_year}T")

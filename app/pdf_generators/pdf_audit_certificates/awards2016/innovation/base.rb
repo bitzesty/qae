@@ -15,7 +15,7 @@ module PdfAuditCertificates::Awards2016::Innovation
       return formatted_data unless indexes.size > 1
 
       first = formatted_data[0...(indexes[-1])]
-      last = formatted_data[indexes[-1]..-1]
+      last = formatted_data[indexes[-1]..]
 
       [first, last]
     end

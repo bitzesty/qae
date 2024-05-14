@@ -20,7 +20,7 @@ class SicCode < ActiveYaml::Base
       7 => "year6",
     }
 
-    res = csv[1..-1].map do |row|
+    res = csv[1..].map do |row|
       out = {}
       headers.each do |index, attr_name|
         out[attr_name] = row[index]
