@@ -594,6 +594,7 @@ class QaeFormBuilder
       after_create if respond_to?(:after_create)
     end
 
+    # rubocop:disable Lint/DuplicateMethods
     def context
       if @context.respond_to?(:call)
         @context.call
@@ -601,7 +602,9 @@ class QaeFormBuilder
         @context
       end
     end
+    # rubocop:enable Lint/DuplicateMethods
 
+    # rubocop:disable Lint/DuplicateMethods
     def title
       if @title.respond_to?(:call)
         @title.call
@@ -609,6 +612,7 @@ class QaeFormBuilder
         @title
       end
     end
+    # rubocop:enable Lint/DuplicateMethods
 
     def decorate options = {}
       kls_name = self.class.name.split("::").last
