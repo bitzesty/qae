@@ -17,10 +17,12 @@ shared_context "admin all case summaries pdf generation" do
   let(:assessor_assignment_document) do
     res = {}
 
+    ratings = %w[negative positive average]
+
     AppraisalForm.struct(form_answer).each do |key, values|
       res["#{key}_desc"] = "Lorem Ipsum"
       if values[:type] != :non_rag
-        res["#{key}_rate"] = ["negative", "positive", "average"].sample
+        res["#{key}_rate"] = ratings.sample
       end
     end
 

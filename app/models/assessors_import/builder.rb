@@ -3,6 +3,8 @@ require "csv"
 class AssessorsImport::Builder
   attr_reader :csv
 
+  FIELDS = %w[first_name last_name company trade_role innovation_role promotion_role development_role]
+
   def initialize(filepath)
     file = File.read(filepath)
     @csv = CSV.parse(file, headers: true)
@@ -17,7 +19,7 @@ class AssessorsImport::Builder
       if a.new_record? && email.present?
         log "saving: #{email}"
 
-        ["first_name", "last_name", "company", "trade_role",	"innovation_role",	"promotion_role",	"development_role"].each do |db_h|
+        FIELDS.each do |db_h|
           a.send(:"#{db_h}=", row[db_h])
         end
 

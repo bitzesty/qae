@@ -222,8 +222,10 @@ namespace :form_answers do
 
     puts "Updating form answers..."
 
+    keys = %w[personal_address_county nominee_personal_address_county organization_address_county]
+
     county_mapper.each do |wrong_county, correct_county|
-      %w[personal_address_county nominee_personal_address_county organization_address_county].each do |key|
+      keys.each do |key|
         FormAnswer.where("document ->> '#{key}' = '#{wrong_county}'").find_each do |answer|
           answer.document[key] = correct_county
           answer.save(validate: false)

@@ -17,6 +17,8 @@ So that I can print and review application case summaries
     end
 
     it "should be links to download case summaries" do
+      years = [3, 6]
+
       FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |award_type, value|
         ops = {
           id: "case_summaries",
@@ -26,19 +28,12 @@ So that I can print and review application case summaries
         }
 
         if award_type == "trade"
-          [3, 6].map do |i|
-            expect(page).to have_link("Download",
-              href: admin_report_path(
-                ops.merge({ years_mode: i }),
-              ),
-            )
+          years.map do |i|
+            expect(page)
+              .to have_link("Download", href: admin_report_path(ops.merge({ years_mode: i })))
           end
         else
-          expect(page).to have_link("Download",
-            href: admin_report_path(
-              ops,
-            ),
-          )
+          expect(page).to have_link("Download", href: admin_report_path(ops))
         end
       end
     end

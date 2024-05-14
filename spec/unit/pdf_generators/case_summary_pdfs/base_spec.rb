@@ -14,15 +14,15 @@ describe "CaseSummaryPdfs::Base" do
   end
 
   before do
-    [:current_year].each do |year|
-      [:innovation, :trade].each do |award_type|
-        form_answer = send(:"form_answer_#{year}_#{award_type}")
-        create :assessor_assignment, form_answer: form_answer,
-          submitted_at: Date.current,
-          assessor: nil,
-          position: "case_summary",
-          document: set_case_summary_content(form_answer)
-      end
+    award_types = %i[innovation trade]
+
+    award_types.each do |award_type|
+      form_answer = send(:"form_answer_current_year_#{award_type}")
+      create :assessor_assignment, form_answer: form_answer,
+        submitted_at: Date.current,
+        assessor: nil,
+        position: "case_summary",
+        document: set_case_summary_content(form_answer)
     end
   end
 
@@ -60,9 +60,11 @@ describe "CaseSummaryPdfs::Base" do
   def set_case_summary_content(form_answer)
     res = {}
 
+    ratings = %w[negative positive average]
+
     AppraisalForm.struct(form_answer).each do |key, value|
       res["#{key}_desc"] = "Lorem Ipsum"
-      res["#{key}_rate"] = ["negative", "positive", "average"].sample
+      res["#{key}_rate"] = ratings.sample
     end
 
     res

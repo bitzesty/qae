@@ -1940,12 +1940,15 @@ class AppraisalForm
   def self.all
     out = []
 
+    assessment_types_with_description = %i[strengths rag non_rag verdict]
+    assessment_types = %i[rag non_rag verdict]
+
     AppraisalForm::SUPPORTED_YEARS.map do |year|
       const_get("ALL_FORMS_#{year}").each do |form|
         form.each do |k, obj|
-          out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
+          out << rate(k).to_sym if assessment_types_with_description.include?(obj[:type])
           # strengths doesn't have description
-          out << desc(k).to_sym if [:rag, :non_rag, :verdict].include?(obj[:type])
+          out << desc(k).to_sym if assessment_types.include?(obj[:type])
         end
       end
 

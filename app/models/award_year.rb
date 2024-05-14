@@ -103,7 +103,7 @@ class AwardYear < ApplicationRecord
   def aggregated_hard_copies_completed?(type)
     CURRENT_YEAR_AWARDS.all? do |award_category|
       if award_category == "trade" && type == "case_summary"
-        ["3", "6"].all? do |i|
+        CASE_SUMMARY_YEAR_MODES.all? do |i|
           copy_record = send(:"#{type}_#{award_category}_#{i}_hard_copy_pdf")
           copy_record.present? && copy_record.file.present?
         end

@@ -13,11 +13,13 @@ shared_context "admin feedback pdf file checks" do
   let(:feedback_content) do
     res = {}
 
+    ratings = %w[average neutral negative positive]
+
     FeedbackForm.fields_for_award_type(form_answer).each_with_index do |block, index|
       key = block[0]
 
       if block[1][:type] == :strengths
-        res["#{key}_rate"] = %w[average neutral negative positive].sample
+        res["#{key}_rate"] = ratings.sample
       else
         res["#{key}_strength"] = "#{index}_strength"
         res["#{key}_weakness"] = "#{index}_weakness"

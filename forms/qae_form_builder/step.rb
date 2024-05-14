@@ -95,11 +95,13 @@ class QaeFormBuilder
         sub_question_keys += required_sub_fields.map { |f| f.keys.first }
       end
 
+      range_values = %i[day month year]
+
       if by_year_conditions.present?
         sub_question_keys += question.by_year_conditions.map do |c|
           (1..c.years).map do |y|
             if question.delegate_obj.is_a?(QaeFormBuilder::ByYearsLabelQuestion)
-              [:day, :month, :year].map do |i|
+              range_values.map do |i|
                 "#{y}of#{c.years}#{i}"
               end
             else
@@ -123,7 +125,7 @@ class QaeFormBuilder
       if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
         sub_question_keys += (1..3).map do |y|
           if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion)
-            [:day, :month, :year].map do |i|
+            range_values.map do |i|
               "#{y}of3#{i}"
             end
           else
