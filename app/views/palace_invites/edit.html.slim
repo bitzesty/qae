@@ -8,6 +8,9 @@ div
   .article-container.article-container-wider
     article.group role="article"
       .inner
+        - if @invite.submitted?
+          p.govuk-body
+            | Thank you for providing the guest details for the Royal Reception.
         p.govuk-body
           | On
           =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_day
