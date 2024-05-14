@@ -1,4 +1,4 @@
-class ShortlistedDocumentsWrapper < ActiveRecord::Base
+class ShortlistedDocumentsWrapper < ApplicationRecord
   include Reviewable
 
   has_one :commercial_figures_file

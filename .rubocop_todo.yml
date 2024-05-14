@@ -114,15 +114,6 @@ Performance/StringInclude:
     - 'spec/lib/qae_form_builder_spec.rb'
     - 'spec/rails_helper.rb'
 
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/ApplicationRecord:
-  Exclude:
-    - 'app/models/audit_certificate.rb'
-    - 'app/models/commercial_figures_file.rb'
-    - 'app/models/shortlisted_documents_wrapper.rb'
-    - 'app/models/vat_returns_file.rb'
-
 # Offense count: 22
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: slashes, arguments

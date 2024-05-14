@@ -1,4 +1,4 @@
-class AuditCertificate < ActiveRecord::Base
+class AuditCertificate < ApplicationRecord
   include ShortlistedDocument
   include Reviewable
 
