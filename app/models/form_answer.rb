@@ -511,6 +511,14 @@ class FormAnswer < ApplicationRecord
               .order("award_years.year DESC")
   end
 
+  def self.transition_class
+    FormAnswerTransition
+  end
+
+  def self.initial_state
+    FormAnswerStateMachine.initial_state
+  end
+
   private
 
   def nominator_full_name_from_document
@@ -603,13 +611,5 @@ class FormAnswer < ApplicationRecord
 
   def award_form_class_name(year)
     "::AwardYears::V#{year}::QaeForms"
-  end
-
-  private_class_method def self.transition_class
-    FormAnswerTransition
-  end
-
-  private_class_method def self.initial_state
-    FormAnswerStateMachine.initial_state
   end
 end
