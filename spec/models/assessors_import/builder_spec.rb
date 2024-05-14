@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe AssessorsImport::Builder do
-  let(:csv_path) { File.join(Rails.root, "spec", "support", "file_samples", "emails.csv") }
+  let(:csv_path) { Rails.root.join("spec/support/file_samples/emails.csv") }
   subject { AssessorsImport::Builder.new(csv_path) }
 
   describe "#initialize" do

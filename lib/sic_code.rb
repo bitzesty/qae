@@ -3,10 +3,10 @@ require "csv"
 class SicCode < ActiveYaml::Base
   REGEX = /\A\d{4}(\/\d{1})?\z/ # based on the sic codes spreadsheet
 
-  set_root_path "#{Rails.root}/db/fixtures"
+  set_root_path Rails.root.join("db/fixtures")
   set_filename "sic_codes"
 
-  def self.load_csv(csv_filename = "#{Rails.root}/sic_codes.csv")
+  def self.load_csv(csv_filename = Rails.root.join("sic_codes.csv"))
     csv = CSV.parse File.read(csv_filename)
 
     headers = {
@@ -28,7 +28,7 @@ class SicCode < ActiveYaml::Base
       out
     end
 
-    file = File.open("#{Rails.root}/sic_codes.yml", "w+")
+    file = File.open(Rails.root.join("sic_codes.yml"), "w+")
     file.write(res.to_yaml)
     file.close
   end

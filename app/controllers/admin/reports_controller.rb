@@ -1,6 +1,6 @@
 class Admin::ReportsController < Admin::BaseController
   expose(:import_csv_pdf_guide) do
-    File.open("#{Rails.root}/lib/assets/IMPORT_CSV_INTO_MS_EXCEL_GUIDE.pdf")
+    File.open(Rails.root.join("lib/assets/IMPORT_CSV_INTO_MS_EXCEL_GUIDE.pdf"))
   end
 
   def show

@@ -1,6 +1,6 @@
 module SharedPdfHelpers::DrawElements
   DEFAULT_OFFSET = 50.mm
-  IMAGES_PATH = "#{Rails.root}/app/assets/images/"
+  IMAGES_PATH = Rails.root.join("app/assets/images/")
   LOGO_ICON = "logo-pdf.png"
   AWARD_GENERAL_INFO_PREFIX = "The King's Awards for Enterprise"
 

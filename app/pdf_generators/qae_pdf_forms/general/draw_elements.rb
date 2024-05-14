@@ -2,7 +2,7 @@ require "open-uri"
 
 module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm
-  IMAGES_PATH = "#{Rails.root}/app/assets/images/".freeze
+  IMAGES_PATH = Rails.root.join("app/assets/images/").freeze
   LOGO_ICON = "logo-pdf.png".freeze
   ATTACHMENT_ICON = "icon-attachment.png".freeze
   ALERT_ICON = "icon-important-print.png".freeze
@@ -14,7 +14,7 @@ module QaePdfForms::General::DrawElements
     elsif link
       "#{current_host}#{attachment_file.url}"
     else
-      "#{Rails.root}/public#{attachment_file.url}"
+      Rails.root.join("public#{attachment_file.url}")
     end
   end
 

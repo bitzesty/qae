@@ -308,7 +308,7 @@ class QaePdfForms::General::QuestionPointer
 
   def render_context_or_help_block(context)
     if question.classes == "application-notice help-notice"
-      form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
+      form_pdf.image Rails.root.join("app/assets/images/icon-important-print.png"),
         at: [-10.mm, form_pdf.cursor - 3.5.mm],
         width: 6.5.mm,
         height: 6.5.mm
@@ -331,7 +331,7 @@ class QaePdfForms::General::QuestionPointer
         "icon-pending-pdf.png"
       end
 
-      form_pdf.image "#{Rails.root}/app/assets/images/#{valid_icon}",
+      form_pdf.image Rails.root.join("app/assets/images/#{valid_icon}"),
         at: [0, form_pdf.cursor - 4.mm],
         width: 7.mm
     end

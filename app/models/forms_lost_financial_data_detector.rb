@@ -82,7 +82,7 @@ class FormsLostFinancialDataDetector
   end
 
   def get_target_requests_from_logfile
-    content = File.read("#{Rails.root}/logfile.log")
+    content = File.read(Rails.root.join("logfile.log"))
     entries = content.scan(/^(.*)Parameters: (.*)$/).select do |entry|
       entry[1].include?("current_step_id")
     end
