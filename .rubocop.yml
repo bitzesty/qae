@@ -138,6 +138,9 @@ Style/HashConversion:
 Style/NumericLiteralPrefix:
   Enabled: false
 
+Style/SafeNavigation:
+  Enabled: false
+
 Style/SingleLineMethods:
   AllowIfMethodIsEmpty: true
 
