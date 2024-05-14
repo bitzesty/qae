@@ -15,14 +15,14 @@ describe AssessorAssignmentDecorator do
     context "with accessed_at value" do
       context "with an editor" do
         it "returns the editable name and accessed date on a string" do
-          assessor_assignment.assessed_at = Time.now
+          assessor_assignment.assessed_at = Time.current
           expect(subject.last_editor_info).to eq("Updated by #{editor.full_name} - #{I18n.l(assessor_assignment.assessed_at, format: :date_at_time)}")
         end
       end
 
       context "without an editor name" do
         it "returns the editable as Anonymous and accessed date on a string" do
-          assessor_assignment.assessed_at = Time.now
+          assessor_assignment.assessed_at = Time.current
           assessor_assignment.editable = User.new
           expect(subject.last_editor_info).to eq("Updated by Anonymous - #{I18n.l(assessor_assignment.assessed_at, format: :date_at_time)}")
         end

@@ -2,15 +2,15 @@ require "rails_helper"
 
 describe Notifiers::EmailNotificationService do
   let!(:sent_notification) do
-    create(:email_notification, trigger_at: Time.now - 1.day, sent: true, kind: kind)
+    create(:email_notification, trigger_at: Time.current - 1.day, sent: true, kind: kind)
   end
 
   let!(:current_notification) do
-    create(:email_notification, trigger_at: Time.now - 1.day, kind: kind)
+    create(:email_notification, trigger_at: Time.current - 1.day, kind: kind)
   end
 
   let!(:future_notification) do
-    create(:email_notification, trigger_at: Time.now + 1.day, kind: kind)
+    create(:email_notification, trigger_at: Time.current + 1.day, kind: kind)
   end
 
   let(:user) do

@@ -131,7 +131,7 @@ describe "Assessors Progress Reports CSV" do
       )
 
       if entry[2].present?
-        assessment.submitted_at = Time.now
+        assessment.submitted_at = Time.current
       end
 
       assessment.save!(validate: false)
