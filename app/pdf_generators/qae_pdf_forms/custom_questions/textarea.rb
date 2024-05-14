@@ -107,7 +107,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
     content.map! do |el|
       if el.include?("\r\n")
-        element = el.delete!("\r").delete!("\n").delete!("\t")
+        el.delete!("\r").delete!("\n").delete!("\t")
       end
       el
     end.reject!(&:blank?)

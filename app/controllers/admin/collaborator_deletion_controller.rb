@@ -1,6 +1,5 @@
 class Admin::CollaboratorDeletionController < Admin::BaseController
   def destroy
-    form_id = params[:form_id].presence
     collaborator = User.find(params[:id])
     account = collaborator.account
 

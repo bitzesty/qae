@@ -226,8 +226,7 @@ class AwardYear < ApplicationRecord
   end
 
   def fetch_deadline(title)
-    res = settings
-            .deadlines
+    settings.deadlines
             .where(kind: title)
             .first
   end

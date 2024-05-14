@@ -202,14 +202,9 @@ class FormFinancialPointer
     dates_by_years = data_values(:financial_year_changed_dates)
 
     if dates_by_years.present?
-      res = []
-      last_year = dates_by_years.last.split("/")[-1][-1].to_i
-
-      dates_by_years.each do |date|
-        res << date.join("/")
+      dates_by_years.each_with_object([]) do |date, memo|
+        memo << date.join("/")
       end
-
-      res
     else
       []
     end

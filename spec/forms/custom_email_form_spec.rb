@@ -22,7 +22,7 @@ describe CustomEmailForm do
 
     it "sends email to users with qae_opt_in_group" do
       user_1 = create(:user, subscribed_to_emails: true, email: "1@example.com")
-      user_2 = create(:user, subscribed_to_emails: false, email: "2@example.com")
+      create(:user, subscribed_to_emails: false, email: "2@example.com")
       user_3 = create(:user, subscribed_to_emails: true, email: "3@example.com")
 
       expect(form.users).to eq([user_1, user_3])
@@ -34,7 +34,7 @@ describe CustomEmailForm do
 
     it "sends email to users with bis_opt_in" do
       user_1 = create(:user, agree_being_contacted_by_department_of_business: true, email: "1@example.com")
-      user_2 = create(:user, agree_being_contacted_by_department_of_business: false, email: "2@example.com")
+      create(:user, agree_being_contacted_by_department_of_business: false, email: "2@example.com")
       user_3 = create(:user, agree_being_contacted_by_department_of_business: true, email: "3@example.com")
 
       expect(form.users).to eq([user_1, user_3])

@@ -26,6 +26,6 @@ module UserDeviseHelper
   end
 
   def parsed_flash_alert
-    message = flash.alert.to_s.strip
+    flash.alert.to_s.strip
   end
 end

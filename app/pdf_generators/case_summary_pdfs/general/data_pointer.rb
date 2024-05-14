@@ -251,15 +251,15 @@ module CaseSummaryPdfs::General::DataPointer
     period_length = financial_pointer.period_length(exclude_innovation_years)
     first_row_width = case period_length
     when 2
-      first_row_width = 607
+      607
     when 3
-      first_row_width = 527
+      527
     when 4
-      first_row_width = 447
+      447
     when 5
-      first_row_width = 367
+      367
     when 6
-      first_row_width = 287
+      287
     end
 
     res = { 0 => first_row_width }
@@ -277,7 +277,7 @@ module CaseSummaryPdfs::General::DataPointer
   # and less space we need for the data (column 1), since it's only one column
   # for the overall growth table
   def benchmarks_column_widths
-    first_row_width = case financial_pointer.period_length
+    case financial_pointer.period_length
     when 2
       {
         0 => 607,

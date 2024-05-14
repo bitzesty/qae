@@ -93,9 +93,6 @@ module QaePdfForms::CustomQuestions::Lists
   end
 
   def award_applications_query_conditions(item)
-    category = item["category"].presence && QaePdfForms::General::QuestionPointer::PREVIOUS_AWARDS[item["category"]]
-    outcome = item["outcome"].presence && question.outcomes.detect { |o| o.value == item["outcome"] }.try(:text)
-
     [
       item["category"],
       item["year"],

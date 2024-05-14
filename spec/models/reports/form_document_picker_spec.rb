@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Reports::DataPickers::FormDocumentPicker do
   let(:dummy_class) do
-    klass = Class.new do
+    Class.new do
       include Reports::DataPickers::FormDocumentPicker
 
       def obj; end
@@ -49,7 +49,7 @@ describe Reports::DataPickers::FormDocumentPicker do
 
   describe "instance methods" do
     let(:custom_class) do
-      klass = Class.new do
+      Class.new do
         include Reports::DataPickers::FormDocumentPicker
 
         def business_form?; end

@@ -264,7 +264,7 @@ describe Notifiers::EmailNotificationService do
     let!(:account_holder) { form_answer.account.owner }
 
     it "triggers current notification" do
-      mailer = double(deliver_later!: true)
+      double(deliver_later!: true)
 
       expect {
         described_class.run

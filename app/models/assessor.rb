@@ -118,10 +118,7 @@ class Assessor < ApplicationRecord
   def extended_applications_scope
     c = assigned_categories_as(%w[lead regular])
 
-    out = FormAnswer.where("
-      form_answers.award_type in (?)
-      AND form_answers.state NOT IN (?)
-    ", c, "withdrawn",)
+    FormAnswer.where(award_type: c).where.not(state: "withdrawn")
   end
 
   def full_name

@@ -246,7 +246,7 @@ module QaePdfForms::General::DrawElements
     text title, style: :bold,
       size: 16,
       align: :left
-    stroke_color = "999999"
+
     move_down 4.mm
     stroke_horizontal_line 0, 192.mm
     default_bottom_margin

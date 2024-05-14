@@ -435,8 +435,6 @@ class QaePdfForms::General::QuestionPointer
           render_supporters
         end
       when QaeFormBuilder::TextareaQuestion
-        title = (q_visible? && humanized_answer.present?) ? humanized_answer : ""
-
         form_pdf.default_bottom_margin
         render_word_limit
         render_wysywyg_content
@@ -640,7 +638,6 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_inline_date
-    headers = sub_answers.map { |a| a[0] }
     row = sub_answers.map { |a| a[1] }
     row[1] = to_month(row[1]) if row[1].present?
     empty_date = false

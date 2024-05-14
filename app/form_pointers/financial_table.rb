@@ -57,7 +57,7 @@ module FinancialTable
     # Probably better just to check if date is valid and only then push as correct one
     # Should help to avoid all that weirdness when trying to display invalid dates
     #
-    corrected_result = res.each_with_object([]) do |entry, memo|
+    res.each_with_object([]) do |entry, memo|
       memo << if ::Utils::Date.valid?(entry)
         Date.parse(entry).strftime("%d/%m/%Y")
       else

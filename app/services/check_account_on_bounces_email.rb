@@ -55,7 +55,7 @@ class CheckAccountOnBouncesEmail
     @code = JSON.parse(res.body)["debounce"]["code"]
 
     VALID_DEBOUNCE_API_CODES.include?(code.to_i)
-  rescue RestClient::Exceptions::ReadTimeout => e
+  rescue RestClient::Exceptions::ReadTimeout
     #
     # RARE CASE:
     #
