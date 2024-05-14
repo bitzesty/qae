@@ -37,7 +37,7 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
       session[:custom_redirect] = users_form_answer_feedback_url(params[:id], format: :pdf)
       redirect_to new_user_session_url
 
-      return false
+      false
     end
   end
 
@@ -45,7 +45,7 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
     if form_answer.feedback.blank?
       redirect_to dashboard_url,
         notice: "There are no any feedback for this application!"
-      return false
+      false
     end
   end
 end

@@ -109,14 +109,14 @@ class Users::AuditCertificatesController < Users::BaseController
   def check_if_audit_certificate_already_exist!
     if audit_certificate.present? && audit_certificate.persisted?
       head :ok
-      return
+      nil
     end
   end
 
   def check_if_vocf_is_required!
     unless form_answer.requires_vocf?
       redirect_to dashboard_url
-      return
+      nil
     end
   end
 end

@@ -232,7 +232,7 @@ class FormController < ApplicationController
 
   def next_index(hash)
     return 0 if hash.empty?
-    return hash.keys.max.to_i + 1
+    hash.keys.max.to_i + 1
   end
 
   def updating_step
@@ -326,7 +326,7 @@ class FormController < ApplicationController
           notice: "Form can't be updated as submission ended!"
       end
 
-      return false
+      false
     end
   end
 
@@ -341,7 +341,7 @@ class FormController < ApplicationController
   def check_eligibility!
     if @form_answer.eligibility.present? && !this_form_eligible?
       redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
-      return false
+      false
     end
   end
 

@@ -38,9 +38,7 @@ class CurrentAwardTypePicker
   end
 
   def show_award_tabs_for_assessor?
-    if current_subject.categories_as_lead.size > 0
-      return true if visible_categories.size > 1
-    end
+    current_subject.categories_as_lead.size > 0 && visible_categories.size > 1
   end
 
   class AwardCategory < OpenStruct

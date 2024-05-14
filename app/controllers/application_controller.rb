@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
       else
         render text: "You have no permissions!"
       end
-      return
+      nil
     end
   end
 
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
         else
           render text: "You have no permissions!"
         end
-        return false
+        false
       end
     end
   end
@@ -204,7 +204,7 @@ class ApplicationController < ActionController::Base
   def check_account_completion
     if !current_user.completed_registration?
       redirect_to correspondent_details_account_path
-      return
+      nil
     end
   end
 

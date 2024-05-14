@@ -58,7 +58,7 @@ class PalaceInvitesController < ApplicationController
       flash.notice = "Access denied!"
       redirect_to dashboard_url
 
-      return
+      nil
     end
   end
 
@@ -68,7 +68,7 @@ class PalaceInvitesController < ApplicationController
 
     redirect_to palace_invite_expired_url(id: @invite.token)
 
-    return
+    nil
   end
 
   def action_type

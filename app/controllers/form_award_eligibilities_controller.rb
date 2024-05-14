@@ -81,7 +81,7 @@ class FormAwardEligibilitiesController < ApplicationController
         redirect_to action: :show, form_id: @form_answer.id
       end
 
-      return
+      nil
     else
       render :show
     end
@@ -94,7 +94,7 @@ class FormAwardEligibilitiesController < ApplicationController
       redirect_to public_send(:"#{@form_answer.award_type}_award_eligible_failure_path", form_id: @form_answer.id)
     end
 
-    return
+    nil
   end
 
   def warning

@@ -96,7 +96,7 @@ class Users::PressSummariesController < Users::BaseController
     if !@press_summary.submitted? || @press_summary.applicant_submitted?
       redirect_to dashboard_url,
         notice: "Press Summary can't be updated!"
-      return
+      nil
     end
   end
 end

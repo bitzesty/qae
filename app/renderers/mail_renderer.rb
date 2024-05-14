@@ -11,7 +11,7 @@ class MailRenderer
     end
 
     def compiled_method_container
-      return self.class
+      self.class
     end
   end
 

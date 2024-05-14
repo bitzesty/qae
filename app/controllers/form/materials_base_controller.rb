@@ -27,7 +27,7 @@ class Form::MaterialsBaseController < Form::BaseController
     if existing_materials.count >= MAX_ATTACHMENTS
       redirect_to form_form_answer_form_attachments_url(@form_answer),
         alert: "You can add up to #{MAX_ATTACHMENTS} files or website addresses as maximum!"
-      return
+      nil
     end
   end
 end

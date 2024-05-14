@@ -37,11 +37,11 @@ module FormAnswerMixin
     if request.xhr? || request.format.js?
       head :ok, content_type: "text/html"
 
-      return
+      nil
     else
       flash.notice = "Financial data updated"
       redirect_to action: :show
-      return
+      nil
     end
   end
 
