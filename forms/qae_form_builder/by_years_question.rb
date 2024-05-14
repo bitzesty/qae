@@ -78,9 +78,8 @@ class QaeFormBuilder
         if c.question_value.respond_to?(:call)
           q = form[c.question_key]
           if q.is_a?(QaeFormBuilder::DateQuestion) || q.is_a?(QaeFormBuilder::DateQuestionDecorator)
-            date = []
-            q.required_sub_fields.each do |sub|
-              date << q.input_value(suffix: sub.keys[0])
+            date = q.required_sub_fields.map do |sub|
+              q.input_value(suffix: sub.keys[0])
             end
 
             date = begin

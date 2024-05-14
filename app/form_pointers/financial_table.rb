@@ -178,11 +178,10 @@ module FinancialTable
     # rubocop:disable Lint/EnsureReturn
     begin
       result = question.by_year_conditions.find do |c|
-        date = []
         q = form[c.question_key]
 
-        q.required_sub_fields.each do |sub|
-          date << doc.dig("#{q.key}_#{sub.keys[0]}")
+        date = q.required_sub_fields.map do |sub|
+          doc.dig("#{q.key}_#{sub.keys[0]}")
         end
 
         date = Date.parse(date.join("/"))
