@@ -105,6 +105,9 @@ Rails/ApplicationRecord:
 Rails/FindBy:
   Enabled: false
 
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
 Rails/Output:
   Exclude:
     - lib/**/*
