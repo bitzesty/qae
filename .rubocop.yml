@@ -111,9 +111,7 @@ Rails/Output:
     - db/migrate/**/*.rb
 
 Rails/SkipsModelValidations:
-  Exclude:
-    - db/migrate/**/*.rb
-    - spec/**/*.rb
+  Enabled: false
 
 Rails/UnknownEnv:
   Environments:
