@@ -303,10 +303,10 @@ class FormController < ApplicationController
   end
 
   %w(innovation trade mobility development).each do |award|
-    define_method "check_#{award}_deadline" do
+    define_method :"check_#{award}_deadline" do
       return if admin_in_read_only_mode?
 
-      unless public_send("#{award}_submission_started?")
+      unless public_send(:"#{award}_submission_started?")
         flash.alert = "Sorry, submission is still closed"
         redirect_to dashboard_url
       end

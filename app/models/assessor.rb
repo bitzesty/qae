@@ -217,7 +217,7 @@ class Assessor < ApplicationRecord
 
   def nil_if_blank
     FormAnswer::POSSIBLE_AWARDS.each do |award|
-      public_send("#{award}_role=", nil) if get_role(award).blank?
+      public_send(:"#{award}_role=", nil) if get_role(award).blank?
     end
   end
 

@@ -7,7 +7,7 @@ class QaePdfForms::General::StepPointer
 
   def initialize(ops = {})
     ops.each do |k, v|
-      instance_variable_set("@#{k}", v)
+      instance_variable_set(:"@#{k}", v)
     end
 
     @step_questions = step.questions.reject do |question|

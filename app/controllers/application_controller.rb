@@ -80,13 +80,13 @@ class ApplicationController < ActionController::Base
   helper_method :should_enable_js?
 
   %w(innovation trade mobility development).each do |award|
-    define_method "#{award}_submission_started?" do
-      public_send("#{award}_submission_started_deadline").passed?
+    define_method :"#{award}_submission_started?" do
+      public_send(:"#{award}_submission_started_deadline").passed?
     end
     helper_method "#{award}_submission_started?"
 
-    define_method "#{award}_submission_started_deadline" do
-      Settings.public_send("current_#{award}_submission_start_deadline")
+    define_method :"#{award}_submission_started_deadline" do
+      Settings.public_send(:"current_#{award}_submission_start_deadline")
     end
     helper_method "#{award}_submission_started_deadline"
   end

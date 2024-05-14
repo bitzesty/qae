@@ -50,8 +50,8 @@ class AwardYear < ApplicationRecord
   #
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AggregatedAwardYearPdf::TYPES.each do |pdf_type|
-      define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
-        send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
+      define_method(:"#{pdf_type}_#{award_category}_hard_copy_pdf") do
+        send(:"aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
       end
     end
   end
@@ -61,8 +61,8 @@ class AwardYear < ApplicationRecord
   # for '3 to 5' and '6 plus' years
   #
   CASE_SUMMARY_YEAR_MODES.map do |i|
-    define_method("case_summary_trade_#{i}_hard_copy_pdf") do
-      send("aggregated_case_summary_hard_copies").find_by(
+    define_method(:"case_summary_trade_#{i}_hard_copy_pdf") do
+      send(:aggregated_case_summary_hard_copies).find_by(
         award_category: "trade",
         sub_type: i,
       )
@@ -102,11 +102,11 @@ class AwardYear < ApplicationRecord
     CURRENT_YEAR_AWARDS.all? do |award_category|
       if award_category == "trade" && type == "case_summary"
         ["3", "6"].all? do |i|
-          copy_record = send("#{type}_#{award_category}_#{i}_hard_copy_pdf")
+          copy_record = send(:"#{type}_#{award_category}_#{i}_hard_copy_pdf")
           copy_record.present? && copy_record.file.present?
         end
       else
-        copy_record = send("#{type}_#{award_category}_hard_copy_pdf")
+        copy_record = send(:"#{type}_#{award_category}_hard_copy_pdf")
         copy_record.present? && copy_record.file.present?
       end
     end
@@ -121,7 +121,7 @@ class AwardYear < ApplicationRecord
   end
 
   def check_hard_copy_pdf_generation_status!(type)
-    scope = send("hard_copy_#{type}_scope")
+    scope = send(:"hard_copy_#{type}_scope")
 
     condition_rule = if type == "form_data"
       scope.count == scope.hard_copy_generated(type).count

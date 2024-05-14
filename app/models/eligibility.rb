@@ -71,7 +71,7 @@ class Eligibility < ApplicationRecord
     end
 
     if options[:boolean] || options[:acts_like_boolean]
-      define_method "#{name}?" do
+      define_method :"#{name}?" do
         ["1", "true", "yes", true].include?(public_send(name))
       end
     end

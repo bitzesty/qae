@@ -85,9 +85,9 @@ class Reports::AdminReport
       sub_type = "_#{years_mode}"
     end
 
-    attachment = year.send("#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
+    attachment = year.send(:"#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
 
-    if year.send("aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
+    if year.send(:"aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
         attachment.present? &&
         attachment.file.present?
       # Render Hard Copy if it's generated for this year

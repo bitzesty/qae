@@ -5,17 +5,17 @@ module FormattedTime::DateTimeFor
     def formatted_time_for(*attrs)
       mod = Module.new do
         attrs.each do |attr|
-          define_method("formatted_#{attr}=") do |value|
+          define_method(:"formatted_#{attr}=") do |value|
             hours, min = value.match(/(\d{2}):(\d{2})/).try(:captures)
 
             seconds = if hours && min
               hours.to_i * 3600 + min.to_i * 60
             end
 
-            public_send("#{attr}=", seconds)
+            public_send(:"#{attr}=", seconds)
           end
 
-          define_method("formatted_#{attr}") do
+          define_method(:"formatted_#{attr}") do
             seconds = public_send(attr)
 
             if seconds
@@ -34,16 +34,16 @@ module FormattedTime::DateTimeFor
         attrs.each do |attr|
           attr_accessible "formatted_#{attr}" if respond_to?(:attr_accessible)
 
-          define_method("formatted_#{attr}=") do |value|
+          define_method(:"formatted_#{attr}=") do |value|
             date = begin
               Date.strptime(value, "%d/%m/%Y")
             rescue
               nil
             end
-            public_send("#{attr}=", date)
+            public_send(:"#{attr}=", date)
           end
 
-          define_method("formatted_#{attr}") do
+          define_method(:"formatted_#{attr}") do
             date = public_send(attr)
             date && date.strftime("%d/%m/%Y")
           end

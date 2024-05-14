@@ -243,6 +243,6 @@ end
 
 def build_assignment_with(award_type, meth)
   obj = build(:assessor_assignment, award_type)
-  obj.public_send("#{form.desc(meth)}=", "123")
+  obj.public_send(:"#{form.desc(meth)}=", "123")
   obj
 end

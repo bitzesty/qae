@@ -91,7 +91,7 @@ class FormAwardEligibilitiesController < ApplicationController
     if @form_answer.eligible?
       redirect_to edit_form_url(@form_answer)
     else
-      redirect_to public_send("#{@form_answer.award_type}_award_eligible_failure_path", form_id: @form_answer.id)
+      redirect_to public_send(:"#{@form_answer.award_type}_award_eligible_failure_path", form_id: @form_answer.id)
     end
 
     return

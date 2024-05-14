@@ -19,7 +19,7 @@ class UsersImport::Builder
 
         u.imported = true
         map.each do |csv_h, db_h|
-          u.send("#{db_h}=", user[csv_h])
+          u.send(:"#{db_h}=", user[csv_h])
         end
         u.role = "account_admin"
         u = assign_password(u)

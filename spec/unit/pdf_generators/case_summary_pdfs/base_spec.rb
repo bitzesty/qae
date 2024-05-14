@@ -16,7 +16,7 @@ describe "CaseSummaryPdfs::Base" do
   before do
     [:current_year].each do |year|
       [:innovation, :trade].each do |award_type|
-        form_answer = send("form_answer_#{year}_#{award_type}")
+        form_answer = send(:"form_answer_#{year}_#{award_type}")
         create :assessor_assignment, form_answer: form_answer,
           submitted_at: Date.current,
           assessor: nil,

@@ -7,7 +7,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
   end
 
   def stats
-    public_send("stats_#{kind}")
+    public_send(:"stats_#{kind}")
   end
 
   def scope(award_year)

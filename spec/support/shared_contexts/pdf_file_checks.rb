@@ -43,7 +43,7 @@ shared_context "pdf file checks" do
 
   let(:match_name_condition) do
     if award_type == :promotion
-      form_answer.send("nominee_full_name_from_document").upcase
+      form_answer.send(:nominee_full_name_from_document).upcase
     else
       company_name
     end

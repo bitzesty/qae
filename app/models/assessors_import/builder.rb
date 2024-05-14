@@ -18,7 +18,7 @@ class AssessorsImport::Builder
         log "saving: #{email}"
 
         ["first_name", "last_name", "company", "trade_role",	"innovation_role",	"promotion_role",	"development_role"].each do |db_h|
-          a.send("#{db_h}=", row[db_h])
+          a.send(:"#{db_h}=", row[db_h])
         end
 
         a = assign_password(a)

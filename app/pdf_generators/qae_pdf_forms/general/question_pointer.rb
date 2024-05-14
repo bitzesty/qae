@@ -58,7 +58,7 @@ class QaePdfForms::General::QuestionPointer
 
   def initialize(ops = {})
     ops.each do |k, v|
-      instance_variable_set("@#{k}", v)
+      instance_variable_set(:"@#{k}", v)
     end
 
     @key = question.key

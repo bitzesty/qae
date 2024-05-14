@@ -173,7 +173,7 @@ module CaseSummaryPdfs::General::DataPointer
   # so, that we are setting them here
   COLOR_LABELS.each do |label|
     AppraisalForm::SUPPORTED_YEARS.each do |year|
-      const_set("#{label.upcase}_LABELS_#{year}", AppraisalForm.group_labels_by(year, label))
+      const_set(:"#{label.upcase}_LABELS_#{year}", AppraisalForm.group_labels_by(year, label))
     end
   end
 

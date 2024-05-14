@@ -44,7 +44,7 @@ class SicCode < ActiveYaml::Base
   }
 
   def by_year(year)
-    public_send("year#{year}")
+    public_send(:"year#{year}")
   end
 
   def name

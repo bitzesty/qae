@@ -173,7 +173,7 @@ module PdfAuditCertificates::General::SharedElements
   def benchmarks_row(metric)
     res = [I18n.t("#{financials_i18_prefix}.benchmarks.#{metric}")]
 
-    res += financial_pointer.send("#{metric}_list").map do |entry|
+    res += financial_pointer.send(:"#{metric}_list").map do |entry|
       formatted_uk_sales_value(entry)
     end
 
@@ -424,7 +424,7 @@ module PdfAuditCertificates::General::SharedElements
 
   def table_default_ops(table_type)
     {
-      column_widths: send("#{table_type}_column_widths"),
+      column_widths: send(:"#{table_type}_column_widths"),
       cell_style: {
         size: 10,
         padding: [3, 3, 3, 3],

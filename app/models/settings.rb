@@ -48,9 +48,9 @@ class Settings < ApplicationRecord
     end
 
     %w(innovation trade mobility development).each do |award|
-      define_method "current_#{award}_submission_start_deadline" do
+      define_method :"current_#{award}_submission_start_deadline" do
         Rails.cache.fetch("#{award}_submission_start_deadline", expires_in: 1.minute) do
-          current.deadlines.public_send("#{award}_submission_start")
+          current.deadlines.public_send(:"#{award}_submission_start")
         end
       end
     end

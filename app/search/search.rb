@@ -97,11 +97,11 @@ class Search
   def apply_custom_sort(scoped_results, sort_value)
     column, order = sort_value.split(".")
     desc = order == "desc"
-    public_send("sort_by_#{column}", scoped_results, desc)
+    public_send(:"sort_by_#{column}", scoped_results, desc)
   end
 
   def apply_custom_filter(scoped_results, column, value)
-    public_send("filter_by_#{column}", scoped_results, value)
+    public_send(:"filter_by_#{column}", scoped_results, value)
   end
 
   class Filter < OpenStruct

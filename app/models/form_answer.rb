@@ -252,7 +252,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def eligibility
-    public_send("#{award_type}_eligibility")
+    public_send(:"#{award_type}_eligibility")
   end
 
   def eligibility_class
@@ -408,9 +408,9 @@ class FormAnswer < ApplicationRecord
   end
 
   def hard_copy_ready_for?(mode)
-    send("#{mode}_hard_copy_generated?") &&
-      send("#{mode}_hard_copy_pdf").present? &&
-      send("#{mode}_hard_copy_pdf").file.present?
+    send(:"#{mode}_hard_copy_generated?") &&
+      send(:"#{mode}_hard_copy_pdf").present? &&
+      send(:"#{mode}_hard_copy_pdf").file.present?
   end
 
   #

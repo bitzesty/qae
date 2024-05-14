@@ -25,7 +25,7 @@ class Notifiers::EmailNotificationService
   end
 
   %w(innovation trade mobility development).each do |award|
-    define_method "#{award}_submission_started_notification" do |award_year|
+    define_method :"#{award}_submission_started_notification" do |award_year|
       submission_started_notification(award_year, award)
     end
   end
