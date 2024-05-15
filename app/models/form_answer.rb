@@ -133,7 +133,7 @@ class FormAnswer < ApplicationRecord
     inclusion: {
       in: POSSIBLE_AWARDS,
     }
-  validates :urn, uniqueness: { allow_blank: true }
+  validates :urn, uniqueness: { allow_blank: true } # rubocop:disable Rails/UniqueValidationWithoutIndex
   validates :sic_code, format: { with: SicCode::REGEX }, allow_blank: true
   validate :validate_answers
 

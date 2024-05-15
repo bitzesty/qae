@@ -3,8 +3,7 @@ class PalaceInvite < ApplicationRecord
 
   has_many :palace_attendees, dependent: :destroy, autosave: true
 
-  validates :form_answer_id, presence: true,
-    uniqueness: true
+  validates :form_answer_id, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   before_create :set_token
 

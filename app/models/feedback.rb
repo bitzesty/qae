@@ -9,7 +9,7 @@ class Feedback < ApplicationRecord
   belongs_to :authorable, polymorphic: true, optional: true
   belongs_to :award_year, optional: true
 
-  validates :form_answer_id, uniqueness: true
+  validates :form_answer_id, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   before_create :set_award_year!
 

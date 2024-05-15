@@ -8,7 +8,7 @@ class AuditCertificate < ApplicationRecord
       maximum: 15.megabytes.to_i,
     }
 
-  validates :form_answer_id, uniqueness: true, presence: true
+  validates :form_answer_id, uniqueness: true, presence: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   before_save :clean_changes_description
 
