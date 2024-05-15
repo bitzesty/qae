@@ -4,6 +4,16 @@ class Search
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
+  VALID_SORT_OPTIONS = %w[
+    applied_before
+    audit_updated_at
+    flag
+    full_name
+    primary_assessor_name
+    secondary_assessor_name
+    sic_code
+  ]
+
   attr_reader :scope, :params, :ordered_desc, :filter_params, :query
   attr_accessor :ordered_by
 
@@ -96,6 +106,11 @@ class Search
 
   def apply_custom_sort(scoped_results, sort_value)
     column, order = sort_value.split(".")
+
+    unless VALID_SORT_OPTIONS.include?(column)
+      raise ArgumentError, "The :column option must be one of #{VALID_SORT_OPTIONS}, but is \"#{column}\""
+    end
+
     desc = order == "desc"
     public_send(:"sort_by_#{column}", scoped_results, desc)
   end
