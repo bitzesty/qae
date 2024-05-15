@@ -91,7 +91,7 @@ class FormsLostFinancialDataDetector
     end
 
     entries.map do |entry|
-      hash_of_params = eval(entry[1])
+      hash_of_params = JSON.parse(entry[1].gsub!("=>", ":"))
 
       id = hash_of_params["id"]
       form = hash_of_params["form"]
