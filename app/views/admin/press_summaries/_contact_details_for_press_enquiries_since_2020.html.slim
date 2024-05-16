@@ -17,9 +17,11 @@
     .row
       .col-md-2
         = f.input :title,
-                  as: :string,
+                  as: :select,
                   label: "Title",
-                  input_html: { class: 'form-control' }
+                  input_html: { class: 'form-control' },
+                  collection: User::POSSIBLE_TITLES,
+                  include_blank: false
     .row
       .col-md-8
         = f.input :name,
