@@ -27,10 +27,10 @@
           = render "admin/form_answers/section_appraisal_form_secondary"
           = render "section_appraisal_form_moderated"
 
-  - if show_case_summary_section?
+  - if show_case_summary_section?(@form_answer)
     = render "section_case_summary"
 
-  - if show_feedback_section?
+  - if show_feedback_section?(@form_answer)
     .panel.panel-default.panel-parent[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
       .panel-heading#feedback-heading
         h2.panel-title
@@ -47,7 +47,7 @@
         .panel-body[data-controller="inline-flash"]
           = render "admin/feedbacks/section", form_answer: @form_answer
 
-  - if show_winners_section?
+  - if show_winners_section?(@form_answer)
     .panel.panel-default.panel-parent[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]
       .panel-heading#winners-heading
         h2.panel-title
@@ -56,9 +56,9 @@
       #section-winners.section-application-info.panel-collapse.collapse.in aria-labelledby="winners-heading"
         .panel-body
           .panel-group#panel-winners-parent
-            - if show_press_summary_subsection?
+            - if show_press_summary_subsection?(@form_answer)
               = render "section_press_summary"
-            - if show_palace_attendees_subsection?
+            - if show_palace_attendees_subsection?(@form_answer)
               = render "section_palace_attendees"
 
   .panel.panel-default.panel-parent[data-controller="element-focus" data-element-focus-selector-value="input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [href='#']"]

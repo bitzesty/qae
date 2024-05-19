@@ -22,7 +22,7 @@ module AppraisalFormHelper
   ENTRY_RELATES_TO_MOBILITY_OPS = ["mentoring", "career_opportunities_accessibility", "workplace_fostering"]
 
   def options_available(options)
-    @check_options = ENTRY_RELATES_TO_OPTIONS.select do |i|
+    ENTRY_RELATES_TO_OPTIONS.select do |i|
       options.include?(i.keys.first)
     end.map do |el|
       [

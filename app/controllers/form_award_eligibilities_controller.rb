@@ -16,10 +16,8 @@ class FormAwardEligibilitiesController < ApplicationController
   end
 
   def show
-    #    if award eligibility is not passed
-    #      and there's no basic eligibility
-    #      or basic eligibility is not eligible
-    #      and there's no step
+    # if award eligibility is not passed and there's no basic eligibility
+    # or basic eligibility is not eligible and there's no step
 
     if !params[:id] &&
         (@form_answer.promotion? ||
