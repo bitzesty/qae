@@ -74,8 +74,8 @@ describe "Admin generates the CSV reports" do
 
     it "produces proper output" do
       expect(output.size).to eq(2)
-      expect(output[1][2]).to eq(title)
-      expect(output[1][3]).to eq(first_name)
+      expect(output[1][3]).to eq(title)
+      expect(output[1][4]).to eq(first_name)
     end
   end
 end

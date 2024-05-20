@@ -3,12 +3,16 @@ class Reports::ReceptionBuckinghamPalaceReport
 
   MAPPING = [
     {
-      label: "Award / Category",
-      method: :award_category,
-    },
-    {
       label: "Organisation / Company (NOT included on envelope)",
       method: :organisation_company,
+    },
+    {
+      label: "Job Title / Position",
+      method: :job_name,
+    },
+    {
+      label: "Award / Category",
+      method: :award_category,
     },
     {
       label: "Title",
@@ -23,10 +27,6 @@ class Reports::ReceptionBuckinghamPalaceReport
       method: :last_name,
     },
     {
-      label: "Job Title / Position",
-      method: :job_name,
-    },
-    {
       label: "Decorations / Post Nominals",
       method: :post_nominals,
     },
@@ -39,11 +39,11 @@ class Reports::ReceptionBuckinghamPalaceReport
       method: :address_2,
     },
     {
-      label: "Address 3",
+      label: "City or town",
       method: :address_3,
     },
     {
-      label: "Address 4",
+      label: "County",
       method: :address_4,
     },
     {
@@ -51,26 +51,33 @@ class Reports::ReceptionBuckinghamPalaceReport
       method: :postcode,
     },
     {
+      label: "Dietary needs",
+      method: :dietary_requirements,
+    },
+    {
+      label: "Disabled access required",
+      method: :disabled_access,
+    },
+    {
+      label: "Accessibility details (for example, wheelchair user or person hard of hearing)",
+      method: :additional_info,
+    },
+    {
       label: "Telephone number (if known)",
       method: :phone_number,
+    },
+    {
+      label: "Royal Affiliation / Previous Links",
+      method: :royal_family_connection_details,
     },
     {
       label: "Product or brief description",
       method: :product_description,
     },
     {
-      label: "Additional Information, for example, Wheelchair user",
-      method: :additional_info,
-    },
-    {
       label: "Previous years won",
       method: :previous_years_won,
     },
-    {
-      label: "Royal Affiliation / Previous Links",
-      method: :royal_family_connection_details,
-    },
-
   ]
 
   def initialize(year)
