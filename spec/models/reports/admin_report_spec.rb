@@ -69,7 +69,7 @@ end
 def create_test_forms
   create(:form_answer, :trade, :submitted)
   create(:form_answer, :innovation, :submitted)
-  create(:form_answer, :promotion, :submitted)
+  create(:form_answer, :development, :submitted)
   create(:form_answer, :mobility, :submitted)
 end
 

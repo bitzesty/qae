@@ -1,6 +1,0 @@
-- file = support_letter_attachments[attachment_id.to_i]
-span.support-letter-attachment-filename
-  = render "shared/attachment_with_virus_check_status", item: file,
-                                                        mount_name: :attachment
-
-input.js-support-letter-attachment-id type="hidden" name="form[#{question.key}][#{index}][letter_of_support]" value=attachment_id *possible_read_only_ops

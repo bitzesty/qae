@@ -5,7 +5,7 @@ describe FormAnswerStatistics::Picker do
 
   context "for current awarding year" do
     let(:award_year) { AwardYear.current }
-    let(:current_date) { DateTime.new(2019, 10, 31) }
+    let(:current_date) { DateTime.new(Date.current.year, 10, 31) }
 
     describe "#applications_table" do
       it "calculates proper stats", :aggregate_failures do

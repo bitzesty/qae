@@ -32,9 +32,4 @@ So that I can print and review application's feedback
     let(:award_type) { :mobility }
     include_context "admin application feedback pdf download"
   end
-
-  describe "Enterprise Promotion Award" do
-    let(:award_type) { :promotion }
-    include_context "admin application feedback pdf download"
-  end
 end

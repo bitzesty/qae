@@ -25,12 +25,7 @@ shared_context "pdf file checks" do
   end
 
   let(:award_application_title) do
-    if form_answer.promotion?
-      award_title = "King's Award for Enterprise Promotion #{AwardYear.current.year}"
-    else
-      award_title = form_answer.decorate.award_application_title_print
-    end
-    award_title.upcase
+    form_answer.decorate.award_application_title_print.upcase
   end
 
   let(:company_name) do
@@ -42,11 +37,7 @@ shared_context "pdf file checks" do
   end
 
   let(:match_name_condition) do
-    if award_type == :promotion
-      form_answer.send("nominee_full_name_from_document").upcase
-    else
-      company_name
-    end
+    company_name
   end
 
   before do

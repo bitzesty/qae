@@ -82,18 +82,6 @@ FactoryBot.define do
       end
     end
 
-    trait :promotion do
-      award_type { "promotion" }
-      award_year_id { AwardYear.where(year: 2018).first_or_create.id }
-      document do
-        FormAnswer::DocumentParser.parse_json_document(
-          JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_promotion.json")),
-          ),
-        )
-      end
-    end
-
     trait :with_audit_certificate do
       document do
         FormAnswer::DocumentParser.parse_json_document(

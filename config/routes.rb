@@ -97,7 +97,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :support_letter, only: [:new, :show, :create]
   resource :feedback, only: [:show, :create] do
     get :success
   end
@@ -119,9 +118,7 @@ Rails.application.routes.draw do
       resources :actual_figures, only: [:new, :show, :create, :destroy]
       resources :vat_returns, only: [:new, :show, :create, :destroy]
 
-      resource :support_letter_attachments, only: :create
-      resources :supporters, only: [:create, :destroy]
-      resources :support_letters, only: [:create, :show, :destroy]
+      resources :support_letters, only: [:show]
       resource :press_summary, only: [:show, :update] do
         get :acceptance
         get :success

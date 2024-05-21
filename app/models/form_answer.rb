@@ -1,9 +1,3 @@
-require_relative "../../forms/award_years/v2018/qae_forms"
-require_relative "../../forms/award_years/v2019/qae_forms"
-require_relative "../../forms/award_years/v2020/qae_forms"
-require_relative "../../forms/award_years/v2021/qae_forms"
-require_relative "../../forms/award_years/v2022/qae_forms"
-require_relative "../../forms/award_years/v2023/qae_forms"
 require_relative "../../forms/award_years/v2024/qae_forms"
 require_relative "../../forms/award_years/v2025/qae_forms"
 
