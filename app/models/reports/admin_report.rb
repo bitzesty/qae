@@ -46,7 +46,7 @@ class Reports::AdminReport
       time = Time.zone.now.strftime("%e_%b_%Y_at_%-l:%M%P")
       "#{::FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award#{sub_type}_#{id}_#{time}.csv"
     when "reception-buckingham-palace"
-      "royal-reception-guest-list"
+      "royal-reception-guest-list.csv"
     end
   end
 
