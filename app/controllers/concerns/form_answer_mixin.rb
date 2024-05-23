@@ -78,7 +78,7 @@ module FormAnswerMixin
   end
 
   def allowed_params
-    ops = params.require(:form_answer).permit!
+    ops = params.require(:form_answer).permit(*PermittedParams::FORM_ANSWER)
     ops = ops.to_h
 
     ops.reject! do |k, v|
@@ -113,6 +113,6 @@ module FormAnswerMixin
       updated_at: Time.zone.now,
       updated_by_id: pundit_user.id,
       updated_by_type: pundit_user.class,
-    }.merge(params[:financial_data].permit!)
+    }.merge(params[:financial_data].permit(*PermittedParams::FINANCIAL_DATA))
   end
 end

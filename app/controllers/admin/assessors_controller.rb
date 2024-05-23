@@ -152,7 +152,7 @@ class Admin::AssessorsController < Admin::UsersController
 
   def bulk_deactivate_dt
     authorize Assessor, :deactivate?
-    @form = ConfirmationForm.new("bulk_activate_assessors", params[:confirmation_form])
+    @form = ConfirmationForm.new("bulk_deactivate_assessors", params[:confirmation_form])
 
     if @form.valid?
       if @form.confirmed?

@@ -77,7 +77,11 @@ class User < ApplicationRecord
           )
         }
         scope :allowed_to_get_award_open_notification, -> (award_type) {
-          where("notification_when_#{award_type}_award_open" => true)
+          if FormAnswer::BUSINESS_AWARD_TYPES.index(award_type)
+            where("notification_when_#{award_type}_award_open" => true)
+          else
+            none
+          end
         }
         scope :debounce_scan_candidates, -> () {
           order(id: :asc).where(

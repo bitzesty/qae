@@ -51,7 +51,7 @@ describe "Progress halt" do
         click_button "Save and continue"
 
         within("div[data-question-key=\"overseas_sales\"] > .govuk-form-group > .if-js-hide") do
-          expect(page).not_to have_selector(".govuk-error-summary.govuk-visually-hidden")
+          expect(page).not_to have_selector(".govuk-error-summary.hide")
           expect(page).to have_selector(".govuk-error-summary.govuk-error-summary--question-halted", count: 1)
           expect(page).to have_selector(".govuk-error-summary .govuk-error-summary__title", text: "You do not meet the eligibility criteria for this award.")
           expect(page).to have_selector(".govuk-error-summary .govuk-error-summary__body", text: "Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.")

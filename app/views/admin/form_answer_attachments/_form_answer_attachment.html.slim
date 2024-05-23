@@ -8,7 +8,7 @@
 
           = f.submit 'Remove', class: 'if-js-hide'
 
-          = link_to "#", class: "text-danger if-no-js-hide", data: {confirm: "Are you sure?"}
+          = link_to "#", class: "text-danger if-no-js-hide", data: {confirm: "Are you sure?"}, aria: { label: "Remove #{form_answer_attachment.decorate.display_name}"}
             span.glyphicon.glyphicon-remove
             span.visible-lg.visible-md
               ' Remove
@@ -24,4 +24,4 @@
 
     - else
       span.glyphicon.glyphicon-file
-      = "Scanning '#{form_answer_attachment.decorate.display_name}' file"
+      p.overflow-break-word = "Scanning '#{form_answer_attachment.decorate.display_name}' file"

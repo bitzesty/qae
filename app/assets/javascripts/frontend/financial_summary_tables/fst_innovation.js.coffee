@@ -16,7 +16,11 @@ class FinancialSummaryTableInnovation extends FinancialSummaryTableBase
     @tableSummary.find("td.js-label-absolute-cell span").text("(year #{numberOfYears} minus 1)")
     @tableSummary.find("td.js-label-percent-cell span").text("(year #{numberOfYears} over year 1)")
 
-  morphTable: (table, yearsLabels) =>
+  morphTable: (table, numberOfYears, yearsLabels) =>
+    table.find("tr").each (i, row) =>
+      $(row).find("td:gt(#{numberOfYears}), th:gt(#{numberOfYears})").hide()
+      $(row).find("td:lt(#{numberOfYears + 1}), th:lt(#{numberOfYears + 1})").show()
+
     table.find("th").each (i, th) =>
       if i > 0
         $("span.year", th).text(yearsLabels[i - 1])

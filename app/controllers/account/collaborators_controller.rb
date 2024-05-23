@@ -71,11 +71,7 @@ class Account::CollaboratorsController < Account::BaseController
   def destroy
     form_id = params[:form_id].presence
 
-    collaborator.account_id = Account.create(owner: collaborator).id
-    collaborator.role = "account_admin"
-    collaborator.save!
-    collaborator.form_answers
-                .update_all(user_id: account.owner_id)
+    CollaboratorRemovalService.new(collaborator, account).reassign_form_answers
 
     redirect_to account_collaborators_path(form_id: form_id),
       notice: "#{collaborator.email} successfully removed from Collaborators!"

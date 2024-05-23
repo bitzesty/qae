@@ -50,7 +50,7 @@ class FinancialSummaryTableTrade extends FinancialSummaryTableBase
         if i > 0
           previousValue = salesOverseasValues[i - 1]
           growth = ((value - previousValue) / previousValue) * 100
-          salesGrowthRow.find("td:eq(#{i + 1})").text(growth.toFixed(0))
+          salesGrowthRow.find("td:eq(#{i + 1})").text(parseInt(growth).toLocaleString())
         else
          salesGrowthRow.find("td:eq(#{i + 1})").text("-")
 
@@ -69,11 +69,11 @@ class FinancialSummaryTableTrade extends FinancialSummaryTableBase
     else
       salesOverseasValues.each (i, value) ->
         if turnoverValues[i] > 0
-          value = (value / turnoverValues[i] * 100).toFixed(0)
+          value = (value / turnoverValues[i] * 100)
         else
           value = "-"
 
-        salesPercentRow.find("td:eq(#{i + 1})").text(value)
+        salesPercentRow.find("td:eq(#{i + 1})").text(parseInt(value).toLocaleString())
 
   renderTableSummary: () ->
     totalOverseasGrowth = @tableSummary.find("td[data-type='fs-overall-overseas-sales-growth']")
@@ -94,8 +94,8 @@ class FinancialSummaryTableTrade extends FinancialSummaryTableBase
     firstYear = overseasSalesValues[0]
     lastYear = overseasSalesValues[overseasSalesValues.length - 1]
     diff = lastYear - firstYear
-    totalOverseasGrowth.text(diff)
-    totalOverseasGrowthPercentage.text((diff / firstYear * 100).toFixed(0))
+    totalOverseasGrowth.text(diff.toLocaleString())
+    totalOverseasGrowthPercentage.text(parseInt(diff / firstYear * 100).toLocaleString())
 
 $(document).ready ->
   if $(".financial-summary-tables-trade").length > 0

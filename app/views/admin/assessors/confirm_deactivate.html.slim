@@ -13,7 +13,7 @@
   .row
     .col-xs-6
       .form-group
-        = f.input :confirmation, as: :radio_buttons, collection: [["Yes, deactivate this assessor", true], ["No", false]], label: false
+        = f.input :confirmation, as: :radio_buttons, collection: [["Yes, deactivate this assessor", true], ["No", false]], label: false, wrapper_html: { class: "deactivate-assessors__radio-inputs"}
 
   .row
     .col-md-4.col-sm-6.confirmation-buttons

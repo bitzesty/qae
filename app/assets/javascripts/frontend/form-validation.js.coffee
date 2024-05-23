@@ -493,22 +493,22 @@ window.FormValidation =
 
       if not val
         if !requiredRowParent
-          @appendMessage(qCell, "Required")
+          @appendMessage(qCell, "Must be filled in. Enter '0' if none")
           @addErrorClass(question)
         # only adds 'required' error when y_heading matches checked answer
         else
           cond = map.get(key)
 
           if cond
-            @appendMessage(qCell, "Required")
+            @appendMessage(qCell, "Must be filled in. Enter '0' if none")
             @addErrorClass(question)
       else if isNaN(val)
-        @appendMessage(qCell, "Only numbers")
+        @appendMessage(qCell, "Enter only numbers")
         @addErrorClass(question)
       else
         t = parseInt(val, 10)
         if t < 0
-          @appendMessage(qCell, "At least 0")
+          @appendMessage(qCell, "Enter a number equal to or greater than 0")
           @addErrorClass(question)
 
     if question.find(".govuk-error-message").filter(-> @innerHTML).length
@@ -550,8 +550,8 @@ window.FormValidation =
         inputCellsCounter += 1
         label = @extractText(subq.attr('id'))
         if not subq.val() and question.hasClass("question-required")
-          @logThis(question, "validateNumberByYears", "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
-          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
+          @logThis(question, "validateNumberByYears", "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
+          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
           @addErrorClass(question)
           continue
         else if not subq.val()
@@ -1016,7 +1016,7 @@ $(document).on 'change', '[data-question-haltable] .show-question input.govuk-in
   if !(values.includes(null))
     pairs = values.reduce (result, value, index, array) ->
       [first, second] = array.slice(index, index + 2)
-      if first && second
+      if (first != undefined && second != undefined)
         result.push([first, second])
 
       result
@@ -1044,6 +1044,15 @@ $(document).on 'change', '[data-question-haltable] .show-question input.govuk-in
       links.addClass('js-step-disabled')
       links.attr('inert', true)
 
+$(document).on 'keydown', '[data-question-haltable] .show-question input.govuk-input', (e) ->
+  if e.key == 'Tab' || e.keyCode == 9
+    e.preventDefault()
+
+    $(this).trigger('change')
+
+    setTimeout((() =>
+      focusNextElement()
+    ), 10)
 
 eachCons = (list, n, callback) ->
   return [] if n == 0
@@ -1055,3 +1064,15 @@ eachCons = (list, n, callback) ->
 
     callback.call(this, data)
     start += 1
+
+focusNextElement = ->
+  focussableElements = 'a:not([disabled]), button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([disabled])'
+  if document.activeElement and document.activeElement.form
+    focussable = Array::filter.call(document.activeElement.form.querySelectorAll(focussableElements), (element) ->
+      element.offsetWidth > 0 or element.offsetHeight > 0 or element == document.activeElement
+    )
+
+    index = focussable.indexOf(document.activeElement)
+    if index > -1
+      nextElement = focussable[index + 1] or focussable[0]
+      nextElement.focus()
