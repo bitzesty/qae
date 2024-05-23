@@ -1841,6 +1841,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 }
 
+.overflow-break-word {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .page-header-nav .btn-link.pull-left,
 .search-form h2 .btn-link {
   margin-right: pxToRem(30);

@@ -21,6 +21,10 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = true # ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, s-maxage=31536000, max-age=15552000",
+    "Expires" => 1.year.from_now.to_formatted_s(:rfc822),
+  }
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new(harmony: true)
@@ -40,7 +44,7 @@ Rails.application.configure do
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
@@ -93,9 +97,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # AWS SES mail settings are in config/initializers/aws_ses.rb
-
-  # configure the devise email layout
-  # config.to_prepare { Devise::Mailer.layout "mailer" }
 end

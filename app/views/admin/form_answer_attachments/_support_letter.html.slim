@@ -14,7 +14,7 @@ li.form_answer_attachment
 
     - else
       span.glyphicon.glyphicon-file
-      = "Scanning '#{sl_attachment.original_filename}' file"
+      p.overflow-break-word = "Scanning '#{sl_attachment.original_filename}' file"
 
   - else
     = link_to [namespace_name, support_letter.form_answer, support_letter],

@@ -23,9 +23,13 @@ class FinancialSummaryTableInnovationUnit extends FinancialSummaryTableBase
         @showFinancials = false
         ""
 
-    @morphTable(@tableData, yearsLabels)
+    @morphTable(@tableData, numberOfYears, yearsLabels)
 
-  morphTable: (table, yearsLabels) =>
+  morphTable: (table, numberOfYears, yearsLabels) =>
+    table.find("tr").each (i, row) =>
+      $(row).find("td:gt(#{numberOfYears}), th:gt(#{numberOfYears})").hide()
+      $(row).find("td:lt(#{numberOfYears + 1}), th:lt(#{numberOfYears + 1})").show()
+
     table.find("th").each (i, th) =>
       if i > 0
         $("span.year", th).text(yearsLabels[i - 1])
@@ -44,11 +48,6 @@ class FinancialSummaryTableInnovationUnit extends FinancialSummaryTableBase
     else
       @wrapper.hide()
       @wrapper.closest(".question-block").hide()
-
-  morphTable: (table, yearsLabels) =>
-    table.find("th").each (i, th) =>
-      if i > 0
-        $("span.year", th).text(yearsLabels[i - 1])
 
   renderTableData: () =>
     @fillInRow("fs-two-units-sold")

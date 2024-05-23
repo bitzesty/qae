@@ -1,4 +1,6 @@
 module QaePdfForms::CustomQuestions::FinancialTableSummary
+  include ActionView::Helpers::NumberHelper
+
   ###########################
   # TRADE FINANCIAL SUMMARY #
   ###########################
@@ -17,9 +19,9 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows = []
 
     rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    rows << ["D5.1 Overseas sales (£)"] + fs_get_all_financial_values(:overseas_sales)
-    rows << ["D5.2 Turnover (£)"] + fs_get_all_financial_values(:total_turnover)
-    rows << ["D5.3 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
+    rows << ["D5.1 Overseas sales (£)"] + format_number(fs_get_all_financial_values(:overseas_sales))
+    rows << ["D5.2 Turnover (£)"] + format_number(fs_get_all_financial_values(:total_turnover))
+    rows << ["D5.3 Net profit after tax but before dividends (£)"] + format_number(fs_get_all_financial_values(:net_profit))
 
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -35,8 +37,8 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     growth_rows = []
 
     growth_rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    growth_rows << ["Year on year overseas sales growth (%)"] + fs_calculate_growth(fs_get_all_financial_values(:overseas_sales))
-    growth_rows << ["Overseas sales as percentage of turnover (%)"] + fs_calculate_proportion(fs_get_all_financial_values(:overseas_sales), fs_get_all_financial_values(:total_turnover))
+    growth_rows << ["Year on year overseas sales growth (%)"] + format_number(fs_calculate_growth(fs_get_all_financial_values(:overseas_sales)))
+    growth_rows << ["Overseas sales as percentage of turnover (%)"] + format_number(fs_calculate_proportion(fs_get_all_financial_values(:overseas_sales), fs_get_all_financial_values(:total_turnover)))
 
     form_pdf.table(growth_rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -51,8 +53,8 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
 
     overall_growth_rows = []
 
-    overall_growth_rows << ["Overall overseas sales growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + fs_calculate_overall_growth(fs_get_all_financial_values(:overseas_sales))
-    overall_growth_rows << ["Overall overseas sales growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:overseas_sales))
+    overall_growth_rows << ["Overall overseas sales growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + format_number(fs_calculate_overall_growth(fs_get_all_financial_values(:overseas_sales)))
+    overall_growth_rows << ["Overall overseas sales growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + format_number(fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:overseas_sales)))
 
     form_pdf.table(overall_growth_rows, fs_table_default_ops.merge(column_widths: fs_overall_table_column_widths))
   end
@@ -91,11 +93,11 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows = []
 
     rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    rows << ["D4.1 Turnover (£)"] + fs_get_all_financial_values(:total_turnover)
-    rows << ["D4.2 Of which exports (£)"] + fs_get_all_financial_values(:exports)
-    rows << ["D4.3 Of which UK sales (£)"] + fs_get_all_financial_values(:uk_sales, true)
-    rows << ["D4.4 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
-    rows << ["D4.5 Net assets (£)"] + fs_get_all_financial_values(:total_net_assets)
+    rows << ["D4.1 Turnover (£)"] + format_number(fs_get_all_financial_values(:total_turnover))
+    rows << ["D4.2 Of which exports (£)"] + format_number(fs_get_all_financial_values(:exports))
+    rows << ["D4.3 Of which UK sales (£)"] + format_number(fs_get_all_financial_values(:uk_sales, true))
+    rows << ["D4.4 Net profit after tax but before dividends (£)"] + format_number(fs_get_all_financial_values(:net_profit))
+    rows << ["D4.5 Net assets (£)"] + format_number(fs_get_all_financial_values(:total_net_assets))
 
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -111,7 +113,7 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     growth_rows = []
 
     growth_rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    growth_rows << ["Year on year turnover growth (%)"] + fs_calculate_growth(fs_get_all_financial_values(:total_turnover))
+    growth_rows << ["Year on year turnover growth (%)"] + format_number(fs_calculate_growth(fs_get_all_financial_values(:total_turnover)))
 
     form_pdf.table(growth_rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -126,8 +128,8 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
 
     overall_growth_rows = []
 
-    overall_growth_rows << ["Overall turnover growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + fs_calculate_overall_growth(fs_get_all_financial_values(:total_turnover))
-    overall_growth_rows << ["Overall turnover growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:total_turnover))
+    overall_growth_rows << ["Overall turnover growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + format_number(fs_calculate_overall_growth(fs_get_all_financial_values(:total_turnover)))
+    overall_growth_rows << ["Overall turnover growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + format_number(fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:total_turnover)))
 
     form_pdf.table(overall_growth_rows, fs_table_default_ops.merge(column_widths: fs_overall_table_column_widths))
   end
@@ -166,9 +168,9 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows = []
 
     rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    rows << ["D4.1 Turnover (£)"] + fs_get_all_financial_values(:total_turnover)
-    rows << ["D4.2 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
-    rows << ["D4.3 Net assets (£)"] + fs_get_all_financial_values(:total_net_assets)
+    rows << ["D4.1 Turnover (£)"] + format_number(fs_get_all_financial_values(:total_turnover))
+    rows << ["D4.2 Net profit after tax but before dividends (£)"] + format_number(fs_get_all_financial_values(:net_profit))
+    rows << ["D4.3 Net assets (£)"] + format_number(fs_get_all_financial_values(:total_net_assets))
 
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -184,7 +186,7 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     growth_rows = []
 
     growth_rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    growth_rows << ["Year on year turnover growth (%)"] + fs_calculate_growth(fs_get_all_financial_values(:total_turnover))
+    growth_rows << ["Year on year turnover growth (%)"] + format_number(fs_calculate_growth(fs_get_all_financial_values(:total_turnover)))
 
     form_pdf.table(growth_rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -199,8 +201,8 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
 
     overall_growth_rows = []
 
-    overall_growth_rows << ["Overall turnover growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + fs_calculate_overall_growth(fs_get_all_financial_values(:total_turnover))
-    overall_growth_rows << ["Overall turnover growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:total_turnover))
+    overall_growth_rows << ["Overall turnover growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + format_number(fs_calculate_overall_growth(fs_get_all_financial_values(:total_turnover)))
+    overall_growth_rows << ["Overall turnover growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + format_number(fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:total_turnover)))
 
     form_pdf.table(overall_growth_rows, fs_table_default_ops.merge(column_widths: fs_overall_table_column_widths))
   end
@@ -238,11 +240,11 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows = []
 
     rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    rows << ["D4.1 Turnover (£)"] + fs_get_all_financial_values(:total_turnover)
-    rows << ["D4.2 Of which exports (£)"] + fs_get_all_financial_values(:exports)
-    rows << ["D4.3 Of which UK sales (£)"] + fs_get_all_financial_values(:uk_sales, true)
-    rows << ["D4.4 Net profit after tax but before dividends (£)"] + fs_get_all_financial_values(:net_profit)
-    rows << ["D4.5 Net assets (£)"] + fs_get_all_financial_values(:total_net_assets)
+    rows << ["D4.1 Turnover (£)"] + format_number(fs_get_all_financial_values(:total_turnover))
+    rows << ["D4.2 Of which exports (£)"] + format_number(fs_get_all_financial_values(:exports))
+    rows << ["D4.3 Of which UK sales (£)"] + format_number(fs_get_all_financial_values(:uk_sales, true))
+    rows << ["D4.4 Net profit after tax but before dividends (£)"] + format_number(fs_get_all_financial_values(:net_profit))
+    rows << ["D4.5 Net assets (£)"] + format_number(fs_get_all_financial_values(:total_net_assets))
 
     form_pdf.table(rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -258,7 +260,7 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     growth_rows = []
 
     growth_rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    growth_rows << ["Year on year turnover growth (%)"] + fs_calculate_growth(fs_get_all_financial_values(:total_turnover))
+    growth_rows << ["Year on year turnover growth (%)"] + format_number(fs_calculate_growth(fs_get_all_financial_values(:total_turnover)))
 
     form_pdf.table(growth_rows, fs_table_default_ops)
     form_pdf.move_cursor_to form_pdf.cursor - 3.mm
@@ -273,8 +275,8 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
 
     overall_growth_rows = []
 
-    overall_growth_rows << ["Overall turnover growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + fs_calculate_overall_growth(fs_get_all_financial_values(:total_turnover))
-    overall_growth_rows << ["Overall turnover growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:total_turnover))
+    overall_growth_rows << ["Overall turnover growth in £ \n\r #{fs_overall_growth_year_note(:total)}"] + format_number(fs_calculate_overall_growth(fs_get_all_financial_values(:total_turnover)))
+    overall_growth_rows << ["Overall turnover growth % \n\r #{fs_overall_growth_year_note(:percent)}"] + format_number(fs_calculate_overall_growth_percentage(fs_get_all_financial_values(:total_turnover)))
 
     form_pdf.table(overall_growth_rows, fs_table_default_ops.merge(column_widths: fs_overall_table_column_widths))
   end
@@ -312,12 +314,12 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     rows = []
 
     rows << [""] + fs_enumerize_years(fs_financial_table_headers_filled_in)
-    rows << ["D6.1 Number of units/contracts sold"] + fs_get_all_financial_values(:units_sold)
-    rows << ["D6.2 Sales (in £) of innovative product/service"] + fs_get_all_financial_values(:sales)
-    rows << ["D6.3 Of which exports (£)"] + fs_get_all_financial_values(:sales_exports)
-    rows << ["D6.4 Of which royalties or licences (£)"] + fs_get_all_financial_values(:sales_royalties)
-    rows << ["D6.6 Average unit selling price/contract value (£)"] + fs_get_all_financial_values(:avg_unit_price)
-    rows << ["D6.8 Direct cost of single unit/contract (£)"] + fs_get_all_financial_values(:avg_unit_cost_self)
+    rows << ["D6.1 Number of units/contracts sold"] + format_number(fs_get_all_financial_values(:units_sold))
+    rows << ["D6.2 Sales (in £) of innovative product/service"] + format_number(fs_get_all_financial_values(:sales))
+    rows << ["D6.3 Of which exports (£)"] + format_number(fs_get_all_financial_values(:sales_exports))
+    rows << ["D6.4 Of which royalties or licences (£)"] + format_number(fs_get_all_financial_values(:sales_royalties))
+    rows << ["D6.6 Average unit selling price/contract value (£)"] + format_number(fs_get_all_financial_values(:avg_unit_price))
+    rows << ["D6.8 Direct cost of single unit/contract (£)"] + format_number(fs_get_all_financial_values(:avg_unit_cost_self))
 
     form_pdf.table(rows, fs_table_default_ops)
   end
@@ -458,6 +460,10 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   end
 
   def fs_calculate_overall_growth_percentage(values)
-    [(values.last.to_f / values.first.to_f * 100).round.to_s + "%"]
+    [(values.last.to_f / values.first.to_f * 100).round.to_s]
+  end
+
+  def format_number(values)
+    values.map { |v| number_with_delimiter(v) }
   end
 end
