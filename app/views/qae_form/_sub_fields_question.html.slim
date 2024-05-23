@@ -28,13 +28,27 @@ div role="group" id="#{question.key}"
 
       - klass <<(QaeFormBuilder::SubFieldsQuestionDecorator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
 
-      input.govuk-input.js-trigger-autosave[
-        class=klass
-        type="text"
-        id=question.input_name(suffix: sub_field_key)
-        value=question.input_value(suffix: sub_field_key)
-        name=question.input_name(suffix: sub_field_key)
-        autocomplete="off" *possible_read_only_ops
-        data-word-max=question.sub_fields_words_max
-        aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{sub_field_key}" : nil )
-      ]
+      - if sub_field_key == :title
+        select.govuk-select.js-trigger-autosave[
+          class=klass
+          name=question.input_name(suffix: sub_field_key)
+          id=question.input_name(suffix: sub_field_key)
+          aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{sub_field_key}" : nil )
+        ]
+          option value='' disabled=true selected=(User::POSSIBLE_TITLES.exclude?(question.input_value(suffix: sub_field_key)))
+            | Select a title
+          - User::POSSIBLE_TITLES.each do |option|
+            option value="#{option}" selected=((question.input_value(suffix: sub_field_key)).to_s == option.to_s)
+              = option
+
+      - else
+        input.govuk-input.js-trigger-autosave[
+          class=klass
+          type="text"
+          id=question.input_name(suffix: sub_field_key)
+          value=question.input_value(suffix: sub_field_key)
+          name=question.input_name(suffix: sub_field_key)
+          autocomplete="off" *possible_read_only_ops
+          data-word-max=question.sub_fields_words_max
+          aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{sub_field_key}" : nil )
+        ]
