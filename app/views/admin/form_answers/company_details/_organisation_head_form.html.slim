@@ -29,11 +29,9 @@
               .row
                 .col-md-2
                   = f.input :head_of_business_title,
-                            as: :select,
+                            as: :string,
                             label: "Title",
-                            input_html: { class: "form-control" },
-                            collection: User::POSSIBLE_TITLES,
-                            include_blank: false
+                            input_html: { class: "form-control" }
                 .col-md-3
                   = f.input :head_of_business_first_name,
                             as: :string,
