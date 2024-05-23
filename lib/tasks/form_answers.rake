@@ -237,4 +237,64 @@ namespace :form_answers do
 
     puts "Fixed #{counter} form answers!"
   end
+
+  desc "Backfill `head_of_business_title` and/or `press_contact_details_title` for all form answers w/ incorrect value"
+  task backfill_whitelisted_titles: :environment do
+    Rails.logger = Logger.new($stdout)
+
+    t = ::FormAnswer.arel_table
+    op1 = Arel::Nodes::InfixOperation.new("->>", t[:document], Arel::Nodes.build_quoted("head_of_business_title"))
+    op2 = Arel::Nodes::InfixOperation.new("->>", t[:document], Arel::Nodes.build_quoted("press_contact_details_title"))
+    whitelisted_values = ::User::POSSIBLE_TITLES
+
+    query = op1.not.in(whitelisted_values).or(op2.not.in(whitelisted_values))
+    scope = ::FormAnswer.for_year(AwardYear.current.year).where(query)
+
+    count = scope.count
+
+    idx = 0
+    to_do = Hash[]
+
+    Rails.logger.info "\e[32mCorrecting #{count} records…\e[0m"
+
+    scope.find_each do |record|
+      idx += 1
+
+      head_of_business_title = record.document.dig("head_of_business_title")
+      press_contact_details_title = record.document.dig("press_contact_details_title")
+
+      next if [head_of_business_title, press_contact_details_title].all?(&:blank?)
+
+      normalized_head_of_business_title = if head_of_business_title.present?
+        head_of_business_title.remove(/(\(|\[).*(\)|\])/).scan(/[[:word:]]*/i).join.capitalize
+      end
+
+      normalized_press_contact_details_title = if press_contact_details_title.present?
+        press_contact_details_title.remove(/(\(|\[).*(\)|\])/).scan(/[[:word:]]*/i).join.capitalize
+      end
+
+      if normalized_head_of_business_title.in?(whitelisted_values)
+        record.document[:head_of_business_title] = normalized_head_of_business_title
+      elsif head_of_business_title.present?
+        (to_do[record.id] ||= {})["head_of_business_title"] = head_of_business_title
+      end
+
+      if normalized_press_contact_details_title.in?(whitelisted_values)
+        record.document[:press_contact_details_title] = normalized_press_contact_details_title
+      elsif press_contact_details_title.present?
+        (to_do[record.id] ||= {})["press_contact_details_title"] = press_contact_details_title
+      end
+
+      record.save(validate: false)
+
+      Rails.logger.info "[#{idx}/#{count}]" if (idx % 10).zero?
+    end
+
+    Rails.logger.info "\e[32mRecords to correct:\e[0m"
+    to_do.entries.each do |identifier, hash|
+      $stdout.puts "#{identifier} ~> #{hash}\n"
+    end
+
+    Rails.logger.info "\e[32mCompleted!\e[0m"
+  end
 end
