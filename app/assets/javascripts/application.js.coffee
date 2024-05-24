@@ -367,6 +367,20 @@ jQuery ->
       else
         $(this).prop("checked", false)
 
+  clearManuallyEnteredYearEnds = () ->
+    console.log("clearManuallyEnteredYearEnds")
+    $(".js-financial-conditional > .by-years-wrapper").each ->
+      $(this).find(".js-year-end").each ->
+        fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year=#{$(this).attr("data-year")}]").closest(".js-fy-entries").find(".govuk-date-input")
+        fy_day = fy_input.find(".js-fy-day").val("")
+        fy_month = fy_input.find(".js-fy-month").val("")
+        fy_year = fy_input.find(".js-fy-year").val("")
+
+  # Clear manually entered year ends when the most recent financial year is changed
+  $(".js-most-recent-financial-year-options input").each ->
+    $(this).change ->
+      clearManuallyEnteredYearEnds()
+
   # Update the financial year labels
   updateYearEnd = () ->
     base = $(".js-financial-conditional .js-year-end")
@@ -1478,4 +1492,3 @@ jQuery ->
       reindexUploadListInputs(list)
       triggerAutosave()
       false
-
