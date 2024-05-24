@@ -80,7 +80,7 @@ getLatestFinancialYearParts = () ->
   if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 7) || parseInt(fy_month, 10) > 9
     fy_year = parseInt(fy_year, 10) - 1
 
-  if $(".js-most-recent-financial-year input:checked").val() && $(".js-most-recent-financial-year .js-conditional-question").hasClass("show-question")
+  if $(".js-most-recent-financial-year input:checked").val()
     fy_year = parseInt($(".js-most-recent-financial-year input:checked").val())
 
   return [fy_day, fy_month, fy_year]
@@ -328,7 +328,7 @@ jQuery ->
 
     # overriding financial year with the selected radio button value
     # also check if the question is visible
-    if $(".js-most-recent-financial-year input:checked").val() && $(".js-most-recent-financial-year .js-conditional-question").hasClass("show-question")
+    if $(".js-most-recent-financial-year input:checked").val()
       fy_year = parseInt($(".js-most-recent-financial-year input:checked").val())
 
     # Updates the latest changed financial year input
@@ -350,7 +350,22 @@ jQuery ->
     # We should change the last year date regardless if it's present or not
     fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
 
-    updateYearEnd()
+    # If the latest financial year is not set, we set it
+    if $('input:radio[name="form\\[most_recent_financial_year\\]"]:checked').size() == 0
+    # If day and month entered are valid, we set the latest financial year
+      fy_date = new Date(fy_year + "-" + fy_month + "-" + fy_day)
+      if fy_date instanceof Date && !isNaN(fy_date.getTime())
+        setDefaultRecentFinancialYear()
+        updateYearEnd()
+
+  # Update the recent financial year end
+  setDefaultRecentFinancialYear = () ->
+    [fy_day, fy_month, fy_year] = getLatestFinancialYearParts()
+    $(".js-most-recent-financial-year-options input").each ->
+      if $(this).val() == fy_year.toString()
+        $(this).prop("checked", true)
+      else
+        $(this).prop("checked", false)
 
   # Update the financial year labels
   updateYearEnd = () ->

@@ -5,7 +5,7 @@
   .govuk-radios
     - for answer in question.options do
       .govuk-radios__item
-        input.js-trigger-autosave.govuk-radios__input type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) aria-describedby="#{question.input_name}_#{answer.value.to_s.parameterize}_hint" *possible_read_only_ops
+        input.js-trigger-autosave.govuk-radios__input type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) aria-describedby="#{question.input_name}_#{answer.value.to_s.parameterize}_hint" *possible_read_only_ops
         label.govuk-label.govuk-radios__label for="#{question.input_name}_#{answer.value.to_s.parameterize}"
           = answer.text.html_safe
         span.question-context id="#{question.input_name}_#{answer.value.to_s.parameterize}_hint"
