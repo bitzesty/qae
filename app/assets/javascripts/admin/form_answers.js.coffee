@@ -38,7 +38,6 @@ ready = ->
     $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
     $(".attachment-link", wrapper).prependTo("#new_commercial_figures_file")
-
     toggleCommercialFiguresButtonVisibility()
 
     wrapper = $("#audit-certificate-form")
@@ -50,68 +49,9 @@ ready = ->
 
   toggleCommercialFiguresButtonVisibility = ->
     if ($('.commercial-figures-file').length == 0)
-      $('#commercial-figures-attachment-form').removeClass('visuallyhidden')
+      $('#commercial-figures-attachment-form').removeClass('hide')
     else
-      $('#commercial-figures-attachment-form').addClass('visuallyhidden')
-
-  $(".edit-review-audit").on "click", (e) ->
-    $(".save-review-audit").show()
-
-  $(".section-applicant-status").on "click", "a", (e) ->
-    e.preventDefault()
-    state = $(this).data("state")
-    form = $("#new_form_answer_state_transition")
-    form.find("option[value='#{state}']").prop("selected", true)
-    $(".section-applicant-status .dropdown-toggle").html($(this).data("label"))
-    form.submit()
-
-  $("#new_form_answer_state_transition").on "ajax:success", (e, data, status, xhr) ->
-    $(".section-applicant-status .dropdown-menu").replaceWith(data)
-    if data == ""
-      stateToggle = $(".section-applicant-status .dropdown-toggle")
-      stateToggle.replaceWith("<p class='p-lg'>"+stateToggle.text()+"</p>")
-
-  $('.custom-select').each ->
-    field = $(this)[0]
-    if $(this).is(':disabled') or $(this).is('[readonly]')
-      return
-    accessibleAutocomplete.enhanceSelectElement
-      selectElement: field
-      showAllValues: true
-      dropdownArrow: ->
-        '<span class=\'autocomplete__arrow\'></span>'
-    return
-
-  $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
-    panel = this.closest(".form-group")
-
-    removeExistingErrorMessages(panel)
-
-    $(this).closest(".form-group").removeClass("form-edit")
-    formValueBox = $(this).closest(".form-group").find(".edit-value")
-    selected = $(this).find("select :selected")
-
-
-    if (selected.val() == "")
-      formValueBox.html("<span class='p-empty'>Not assigned</span>")
-      message = "Assessor has been unassigned"
-    else
-      assessor = selected.text()
-      formValueBox.text(assessor)
-      message = "#{assessor} has been assigned"
-
-    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
-
-  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
-    errors = data.responseJSON['errors']
-    panel = this.closest('.form-group')
-
-    removeExistingErrorMessages(panel)
-
-    Object.entries(errors).forEach ([key, values]) ->
-      field = panel.querySelector("[id$=#{key}]")
-      if field and shouldValidateField(field)
-        showErrorForInvalidField(field, values, '.form-group')
+      $('#commercial-figures-attachment-form').addClass('hide')
 
   $("#new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
     data.formData =
@@ -146,7 +86,7 @@ ready = ->
             moveAttachDocumentButton()
           else
             section = $(form).closest("#commercial-figures-section")
-            section.find(".document-list .p-empty").addClass("visuallyhidden")
+            section.find(".document-list .p-empty").addClass("hide")
             section.find(".document-list ul").append(result.text())
 
           window.fire(form, 'ajax:x:success', null)
@@ -173,8 +113,8 @@ ready = ->
 
     form.parents('.commercial-figures-file').remove()
     if $('.commercial-figures-file').length == 0
-      section.find(".document-list .p-empty").removeClass("visuallyhidden")
-      $('#commercial-figures-attachment-form').toggleClass('visuallyhidden', $('.commercial-figures-file').length != 0)
+      section.find(".document-list .p-empty").removeClass("hide")
+      $('#commercial-figures-attachment-form').toggleClass('hide', $('.commercial-figures-file').length != 0)
       initializeFileUpload()
 
     toggleCommercialFiguresButtonVisibility()
@@ -200,7 +140,7 @@ ready = ->
             initializeFileUpload()
           else
             section = $(form).closest("#vat-returns-section")
-            section.find(".document-list .p-empty").addClass("visuallyhidden")
+            section.find(".document-list .p-empty").addClass("hide")
             section.find(".document-list ul").append(result.text())
 
           window.fire(form, 'ajax:x:success', null)
@@ -226,7 +166,7 @@ ready = ->
 
     form.parents('.vat-returns-file').remove()
     if $('.vat-returns-file').length == 0
-      section.find(".document-list .p-empty").removeClass("visuallyhidden")
+      section.find(".document-list .p-empty").removeClass("hide")
       $('#shortlisted-documents-status').attr('data-status-reversible', 'false')
     else
       $('#shortlisted-documents-status').attr('data-status-reversible', 'true')
@@ -267,7 +207,7 @@ ready = ->
             initializeFileUpload()
           else
             sidebarSection = $(form).closest(".sidebar-section")
-            sidebarSection.find(".document-list .p-empty").addClass("visuallyhidden")
+            sidebarSection.find(".document-list .p-empty").addClass("hide")
             sidebarSection.find(".document-list ul").append(result.text())
             sidebarSection.removeClass("show-attachment-form")
             $("#form_answer_attachment_title").val(null)
@@ -331,8 +271,67 @@ ready = ->
       type: 'DELETE'
     window.fire(form[0], 'ajax:x:success', null)
     form.parents('.form_answer_attachment').remove()
-    if $('.form_answer_attachment').length == 0
-      sidebarSection.find(".document-list .p-empty").removeClass("visuallyhidden")
+    if sidebarSection.find('.form_answer_attachment').length == 0
+      sidebarSection.find(".document-list .p-empty").removeClass("hide")
+
+  $(".edit-review-audit").on "click", (e) ->
+    $(".save-review-audit").show()
+
+  $(".section-applicant-status").on "click", "a", (e) ->
+    e.preventDefault()
+    state = $(this).data("state")
+    form = $("#new_form_answer_state_transition")
+    form.find("option[value='#{state}']").prop("selected", true)
+    $(".section-applicant-status .dropdown-toggle").html($(this).data("label"))
+    form.submit()
+
+  $("#new_form_answer_state_transition").on "ajax:success", (e, data, status, xhr) ->
+    $(".section-applicant-status .dropdown-menu").replaceWith(data)
+    if data == ""
+      stateToggle = $(".section-applicant-status .dropdown-toggle")
+      stateToggle.replaceWith("<p class='p-lg'>"+stateToggle.text()+"</p>")
+
+  $('.custom-select').each ->
+    field = $(this)[0]
+    if $(this).is(':disabled') or $(this).is('[readonly]')
+      return
+    accessibleAutocomplete.enhanceSelectElement
+      selectElement: field
+      showAllValues: true
+      dropdownArrow: ->
+        '<span class=\'autocomplete__arrow\'></span>'
+    return
+
+  $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
+    panel = this.closest(".form-group")
+
+    removeExistingErrorMessages(panel)
+
+    $(this).closest(".form-group").removeClass("form-edit")
+    formValueBox = $(this).closest(".form-group").find(".edit-value")
+    selected = $(this).find("select :selected")
+
+
+    if (selected.val() == "")
+      formValueBox.html("<span class='p-empty'>Not assigned</span>")
+      message = "Assessor has been unassigned"
+    else
+      assessor = selected.text()
+      formValueBox.text(assessor)
+      message = "#{assessor} has been assigned"
+
+    panel.insertAdjacentHTML('afterbegin', buildBannerHtml(message, 'success'))
+
+  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
+    errors = data.responseJSON['errors']
+    panel = this.closest('.form-group')
+
+    removeExistingErrorMessages(panel)
+
+    Object.entries(errors).forEach ([key, values]) ->
+      field = panel.querySelector("[id$=#{key}]")
+      if field and shouldValidateField(field)
+        showErrorForInvalidField(field, values, '.form-group')
 
   $(document).on 'click', '.form-edit-link', (e) ->
     e.preventDefault()

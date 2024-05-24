@@ -10,7 +10,7 @@ table.govuk-table.user-financial-summary-table.table-data
   thead
     tr.govuk-table__row.year-header data-type="fs-changed-dates"
       th.govuk-table__header
-        span.visuallyhidden Financial data type
+        span.visuallyhidden Financial data entered
       th.govuk-table__header
         span.year
         span.legend
@@ -92,7 +92,7 @@ table.govuk-table.user-financial-summary-table.table-growth
   thead
     tr.govuk-table__row.year-header data-type="fs-changed-dates"
       th.govuk-table__header
-        span.visuallyhidden Financial data type
+        span.visuallyhidden Overseas sales annual percentages
       th.govuk-table__header
         span.year
         span.legend
@@ -155,6 +155,14 @@ span.question-context.question-debug.govuk-hint
   | The table below displays the financial data calculated from the figures you have entered in question D5.1.
 
 table.govuk-table.user-financial-summary-table.table-summary class="govuk-!-width-two-thirds"
+  thead
+    tr.govuk-table__row.year-header data-type="fs-changed-dates"
+        th.govuk-table__header
+          span.visuallyhidden Overall overseas sales growth
+        th.govuk-table__header
+          span.year
+          span.legend
+            | Amount
   tbody
     tr.govuk-table__row
       td.govuk-table__cell.js-label-absolute-cell
