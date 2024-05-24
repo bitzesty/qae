@@ -29,9 +29,6 @@ class Eligibility::Trade < Eligibility
                 <li>Outstanding Short Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years</li>
                 <li>Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years</li>
               </ul>
-              <p class='govuk-hint'>
-                For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.
-              </p>
             )
 
   property :sales_above_100_000_pounds,
