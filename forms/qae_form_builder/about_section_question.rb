@@ -255,7 +255,7 @@ class QaeFormBuilder
         :header => "Periods the figures are required for",
         :context => [
           "Depending on which award you are applying for, you must be able to provide financial figures for your three most recent financial years, covering exactly 36 consecutive months; or if you are applying for a 6-year award (see question D1), you must provide figures for the last six financial years, covering exactly 72 consecutive months.",
-          "If you have changed your year-end during the period of your application, see D2.3 for an explanation of how this must be dealt with.",
+          "If you have changed your year-end during the period of your application, see D3.2 for an explanation of how this must be dealt with.",
         ],
       )
     end

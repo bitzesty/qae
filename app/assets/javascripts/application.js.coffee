@@ -356,7 +356,7 @@ jQuery ->
       fy_date = new Date(fy_year + "-" + fy_month + "-" + fy_day)
       if fy_date instanceof Date && !isNaN(fy_date.getTime())
         setDefaultRecentFinancialYear()
-        updateYearEnd()
+    updateYearEnd()
 
   # Update the recent financial year end
   setDefaultRecentFinancialYear = () ->
