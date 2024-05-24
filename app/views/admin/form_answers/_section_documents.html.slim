@@ -61,8 +61,8 @@
       ' Other Docs
     div[data-controller="inline-flash"]
       .document-list
-        p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.uploaded_not_by_user.any?}"
-          ' No documents have been attached.
+        p.p-empty class="#{'hide' if @form_answer.form_answer_attachments.uploaded_not_by_user.any?}"
+          ' No other documents have been attached.
         - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
           ul.list-unstyled.list-actions
             = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.uploaded_not_by_user.visible_for(current_subject))

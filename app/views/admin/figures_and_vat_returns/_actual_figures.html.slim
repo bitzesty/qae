@@ -3,8 +3,8 @@ label
 
 div[data-controller="inline-flash"]
   .document-list.space-y-3
-    p.p-empty class="#{'visuallyhidden' if figures_form.commercial_figures_file.present?}"
-      ' No document has been attached.
+    p.p-empty class="#{'hide' if figures_form.commercial_figures_file.present?}"
+      ' No variance explanation document has been attached.
     ul.list-unstyled.list-actions
       - if figures_form.commercial_figures_file.present?
         = render(partial: "admin/figures_and_vat_returns/file", collection: Array.wrap(figures_form.commercial_figures_file), as: :attachment)
