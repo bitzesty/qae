@@ -178,7 +178,7 @@ class AwardYears::V2025::QaeForms
           required
           show_ref_always true
           text %(
-            I confirm that we have demonstrated strong environmental, social and corporate governance practices for at least five years.
+            I confirm that we have demonstrated strong environmental, social and corporate governance practices for the period of the application.
           )
         end
 
