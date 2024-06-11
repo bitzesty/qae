@@ -2,7 +2,7 @@ require "open-uri"
 
 module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm
-  IMAGES_PATH = "#{Rails.root}/app/assets/images/".freeze
+  IMAGES_PATH = Rails.root.join("app/assets/images/").freeze
   LOGO_ICON = "logo-pdf.png".freeze
   ATTACHMENT_ICON = "icon-attachment.png".freeze
   ALERT_ICON = "icon-important-print.png".freeze
@@ -14,7 +14,7 @@ module QaePdfForms::General::DrawElements
     elsif link
       "#{current_host}#{attachment_file.url}"
     else
-      "#{Rails.root}/public#{attachment_file.url}"
+      Rails.root.join("public#{attachment_file.url}")
     end
   end
 
@@ -54,7 +54,7 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       attachment_path(attachment.file, true),
       attachment.original_filename.truncate(60),
-      description ? description : nil,)
+      description || nil)
 
     move_down 5.mm
   end
@@ -64,17 +64,17 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       v["link"],
       v["link"],
-      v["description"] ? v["description"] : v["link"],
-      {},)
+      v["description"] || v["link"],
+      {})
   end
 
   def base_link_sceleton(url, filename, description = nil, ops = {})
-    indent (ops[:description_left_margin] || 0) do
+    indent(ops[:description_left_margin] || 0) do
       formatted_text [{
-                        text: filename,
-                        link: url,
-                        styles: [:underline],
-                      }]
+        text: filename,
+        link: url,
+        styles: [:underline],
+      }]
 
       move_down 3.mm
 
@@ -91,10 +91,10 @@ module QaePdfForms::General::DrawElements
     indent 32.mm do
       render_urn if pdf_blank_mode.blank?
       render_award_information
-      render_company_name unless pdf_blank_mode.present?
+      render_company_name if pdf_blank_mode.blank?
     end
 
-    if !form_answer.urn.present? || pdf_blank_mode
+    if form_answer.urn.blank? || pdf_blank_mode
       move_down 6.mm
       render_intro_text
       move_down 2.mm
@@ -178,10 +178,10 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_award_information
-    if form_answer.promotion?
-      award_title = "King's Award for Enterprise Promotion #{form_answer.award_year.year}"
+    award_title = if form_answer.promotion?
+      "King's Award for Enterprise Promotion #{form_answer.award_year.year}"
     else
-      award_title = form_answer.decorate.award_application_title_print
+      form_answer.decorate.award_application_title_print
     end
     text award_title.upcase,
       header_text_properties.merge(style: :bold)
@@ -233,7 +233,7 @@ module QaePdfForms::General::DrawElements
 
   def render_table(table_lines, ops = {})
     default_options = {
-      row_colors: %w(F0F0F0 FFFFFF),
+      row_colors: %w[F0F0F0 FFFFFF],
       cell_style: { size: 10, font_style: :bold },
     }
 
@@ -247,7 +247,7 @@ module QaePdfForms::General::DrawElements
     text title, style: :bold,
       size: 16,
       align: :left
-    stroke_color = "999999"
+
     move_down 4.mm
     stroke_horizontal_line 0, 192.mm
     default_bottom_margin

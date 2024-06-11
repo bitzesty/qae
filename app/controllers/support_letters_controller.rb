@@ -32,7 +32,7 @@ class SupportLettersController < ApplicationController
       if supporter.support_letter && supporter.support_letter.persisted? && action_name != "show"
         redirect_to support_letter_path(access_key: supporter.access_key),
           notice: "Support Letter has been submitted already!"
-        return
+        nil
       end
     else
       head 404

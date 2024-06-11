@@ -11,7 +11,7 @@ class PalaceInviteForm
 
   def update(attributes = {})
     attributes.each do |k, v|
-      public_send("#{k}=", v) if respond_to?("#{k}=")
+      public_send(:"#{k}=", v) if respond_to?(:"#{k}=")
     end
 
     if attributes[:submitted].present?

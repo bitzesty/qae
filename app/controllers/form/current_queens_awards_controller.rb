@@ -57,14 +57,13 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     )
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.item = item_class.new(categories,
       years,
       outcomes,
-      item_params,)
+      item_params)
 
     if item.valid?
       @form_answer.document = add_result_doc
@@ -84,7 +83,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     self.item = item_class.new(categories,
       years,
       [],
-      item_params,)
+      item_params)
   end
 
   def destroy
@@ -102,14 +101,14 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     self.item = item_class.new(categories,
       years,
       outcomes,
-      item_params,)
+      item_params)
   end
 
   def update
     self.item = item_class.new(categories,
       years,
       outcomes,
-      item_params,)
+      item_params)
 
     if item.valid?
       @form_answer.document = update_result_doc

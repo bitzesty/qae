@@ -31,16 +31,19 @@ class QaeFormBuilder
         if c.question_value.respond_to?(:call)
           q = form[c.question_key]
           if q.is_a?(QaeFormBuilder::DateQuestion) || q.is_a?(QaeFormBuilder::DateQuestionDecorator)
-            date = []
-            q.required_sub_fields.each do |sub|
-              date << q.input_value(suffix: sub.keys[0])
+            date = q.required_sub_fields.map do |sub|
+              q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue
+              nil
+            end
 
-            c.question_value.(date)
+            c.question_value.call(date)
           else
-            c.question_value.(form[c.question_key].input_value)
+            c.question_value.call(form[c.question_key].input_value)
           end
         else
           form[c.question_key].input_value == c.question_value

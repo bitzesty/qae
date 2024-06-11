@@ -20,7 +20,7 @@ describe "Interactors::AddCollaborator" do
     AddCollaborator.new(
       account_admin,
       account,
-      create_params,)
+      create_params)
   end
 
   describe "Add new user account and add him to Collaborators" do
@@ -50,26 +50,26 @@ describe "Interactors::AddCollaborator" do
   end
 
   describe "Attempt to add to Collaborators of existing user, which is belongs_to another Account" do
-   let!(:existing_user_with_another_account_association) do
+    let!(:existing_user_with_another_account_association) do
       FactoryBot.create :user, :completed_profile,
         first_name: "Another Account Admin Dave",
         role: "account_admin"
     end
 
-   let(:existing_user_email) { existing_user_with_another_account_association.email }
-   let(:role) { "regular" }
-   let(:create_params) do
-     { email: existing_user_email, role: role }
-   end
+    let(:existing_user_email) { existing_user_with_another_account_association.email }
+    let(:role) { "regular" }
+    let(:create_params) do
+      { email: existing_user_email, role: role }
+    end
 
-   it "should not add existing user to collaborators as it already associated with another account" do
-     expect { add_collaborator_interactor.run }
-       .to not_change { account.reload.users.count }
-       .and not_change { MailDeliveryWorker.jobs.size }
+    it "should not add existing user to collaborators as it already associated with another account" do
+      expect { add_collaborator_interactor.run }
+        .to not_change { account.reload.users.count }
+        .and not_change { MailDeliveryWorker.jobs.size }
 
-     expect(account.reload.users.count).to be_eql 1
-     expect(add_collaborator_interactor.errors).to be_eql ["User already associated with another account!"]
-   end
+      expect(account.reload.users.count).to be_eql 1
+      expect(add_collaborator_interactor.errors).to be_eql ["User already associated with another account!"]
+    end
   end
 
   describe "Attempt to add user to Collaborators twice" do

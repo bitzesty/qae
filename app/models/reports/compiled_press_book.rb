@@ -275,7 +275,7 @@ class Reports::CompiledPressBook
   end
 
   def group_form_answers(form_answers)
-    groupped = form_answers.group_by do |fa|
+    form_answers.group_by do |fa|
       fa.document["organization_address_region"]
     end
   end

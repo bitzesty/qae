@@ -32,7 +32,7 @@ class QaeFormBuilder
       return {} if skip_base_validation?
 
       if question.required?
-        if !question.input_value.present?
+        if question.input_value.blank?
           result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and and must be filled in."
         end
       end
@@ -43,9 +43,7 @@ class QaeFormBuilder
     private
 
     def skip_base_validation?
-      SKIP_PRESENCE_VALIDATION_QUESTIONS.any? do |klass|
-        question.delegate_obj.class.name.demodulize == klass
-      end
+      SKIP_PRESENCE_VALIDATION_QUESTIONS.any?(question.delegate_obj.class.name.demodulize)
     end
 
     def limit_with_buffer(limit)
@@ -61,7 +59,7 @@ class QaeFormBuilder
       unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
         url = "http://#{url}"
       end
-      url_regexp = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
+      url_regexp = /\A(http|https):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
       (url =~ url_regexp) ? true : false
     end
   end
@@ -118,7 +116,7 @@ class QaeFormBuilder
       meth = halt_options.dig(:if)
 
       if meth.respond_to?(:call)
-        meth.(self)
+        meth.call(self)
       elsif respond_to?(meth)
         send(meth)
       end
@@ -166,7 +164,7 @@ class QaeFormBuilder
     end
 
     def fieldset_data_hash
-      result = { "answer": delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
+      result = { :answer => delegate_obj.parameterized_title, "question-key" => delegate_obj.key }
 
       if delegate_obj.drop_condition.present?
         result["drop-question"] = Array.wrap(delegate_obj.drop_condition).map do |k|
@@ -232,28 +230,32 @@ class QaeFormBuilder
         question_value = condition.question_value
 
         parent_question_answer = if fetched_answers.present?
-                                   # Used in Reports::AllEntries, as passing json of answers
-                                   # allows to make it faster
-                                   fetched_answers[condition.question_key]
+          # Used in Reports::AllEntries, as passing json of answers
+          # allows to make it faster
+          fetched_answers[condition.question_key]
         else
-                                   step.form[condition.question_key].input_value
+          step.form[condition.question_key].input_value
         end
 
         if question_value == :true
           parent_question_answer.present?
         elsif question_value == :day_month_range
           day, month = if fetched_answers.present?
-                         [
-                           fetched_answers["#{condition.question_key}_day"],
-                           fetched_answers["#{condition.question_key}_month"],
-                         ]
+            [
+              fetched_answers["#{condition.question_key}_day"],
+              fetched_answers["#{condition.question_key}_month"],
+            ]
           else
-                         q = step.form[condition.question_key]
-                         q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
+            q = step.form[condition.question_key]
+            q.required_sub_fields.map { |field| q.input_value(suffix: field.keys[0]) }
           end
 
           if day.present? && month.present?
-            date = Date.parse("#{day.to_i}/#{month.to_i}/2000") rescue nil
+            date = begin
+              Date.parse("#{day.to_i}/#{month.to_i}/2000")
+            rescue
+              nil
+            end
             if date
               from, to = condition.options.dig(:range)
               date.between?(from, to)
@@ -263,12 +265,10 @@ class QaeFormBuilder
           else
             false
           end
+        elsif parent_question_answer.is_a?(Array)
+          parent_question_answer.find { |a| a["type"].to_s == question_value.to_s }.present?
         else
-          if parent_question_answer.is_a?(Array)
-            parent_question_answer.find { |a| a["type"].to_s == question_value.to_s }.present?
-          else
-            parent_question_answer == question_value.to_s
-          end
+          parent_question_answer == question_value.to_s
         end
       end &&
         (!dc || (dc.present? && has_drops?))
@@ -435,7 +435,7 @@ class QaeFormBuilder
       condition = options[:if]
 
       if condition && condition.respond_to?(:call)
-        @q.additional_pdf_context = text if condition.call()
+        @q.additional_pdf_context = text if condition.call
       else
         @q.additional_pdf_context = text
       end
@@ -591,9 +591,10 @@ class QaeFormBuilder
       @display_sub_ref_on_js_form = true
       @show_ref_always = false
 
-      self.after_create if self.respond_to?(:after_create)
+      after_create if respond_to?(:after_create)
     end
 
+    # rubocop:disable Lint/DuplicateMethods
     def context
       if @context.respond_to?(:call)
         @context.call
@@ -601,7 +602,9 @@ class QaeFormBuilder
         @context
       end
     end
+    # rubocop:enable Lint/DuplicateMethods
 
+    # rubocop:disable Lint/DuplicateMethods
     def title
       if @title.respond_to?(:call)
         @title.call
@@ -609,10 +612,15 @@ class QaeFormBuilder
         @title
       end
     end
+    # rubocop:enable Lint/DuplicateMethods
 
     def decorate options = {}
       kls_name = self.class.name.split("::").last
-      kls = QaeFormBuilder.const_get "#{kls_name}Decorator" rescue nil
+      kls = begin
+        QaeFormBuilder.const_get "#{kls_name}Decorator"
+      rescue
+        nil
+      end
       (kls || QuestionDecorator).new self, options
     end
 

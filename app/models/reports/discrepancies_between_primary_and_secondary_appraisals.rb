@@ -41,16 +41,16 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
     @award_type = award_type
 
     if current_subject.is_a?(Assessor) &&
-        !current_subject.lead_roles.include?(@award_type)
+        current_subject.lead_roles.exclude?(@award_type)
 
       raise "Access Denied!"
     end
 
     @scope = @year.form_answers.order(:id)
-                  .joins(%Q{
+                  .joins(%(
                                  JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id = form_answers.id
                                  JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id = form_answers.id
-                               })
+                               ))
                   .where(primary_assignments: { position: AssessorAssignment.positions[:primary] })
                   .where.not(primary_assignments: { position: nil })
                   .where(secondary_assignments: { position: AssessorAssignment.positions[:secondary] })

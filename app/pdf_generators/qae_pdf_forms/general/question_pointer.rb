@@ -9,9 +9,9 @@ class QaePdfForms::General::QuestionPointer
   include FinancialTable
   include QuestionTextHelper
 
-  NOT_CURRENCY_QUESTION_KEYS = %w(employees).freeze
-  SKIP_HEADER_HINT_KEYS = %w(head_of_business_header).freeze
-  RENDER_INLINE_KEYS = %w(head_of_business_title).freeze
+  NOT_CURRENCY_QUESTION_KEYS = %w[employees].freeze
+  SKIP_HEADER_HINT_KEYS = %w[head_of_business_header].freeze
+  RENDER_INLINE_KEYS = %w[head_of_business_title].freeze
 
   attr_reader :form_pdf,
     :form_answer,
@@ -58,7 +58,7 @@ class QaePdfForms::General::QuestionPointer
 
   def initialize(ops = {})
     ops.each do |k, v|
-      instance_variable_set("@#{k}", v)
+      instance_variable_set(:"@#{k}", v)
     end
 
     @key = question.key
@@ -117,8 +117,16 @@ class QaePdfForms::General::QuestionPointer
   def fetch_sub_answers
     res = []
 
-    required_sub_fields = question.required_sub_fields rescue []
-    sub_fields = question.sub_fields rescue []
+    required_sub_fields = begin
+      question.required_sub_fields
+    rescue
+      []
+    end
+    sub_fields = begin
+      question.sub_fields
+    rescue
+      []
+    end
     merged_sub_fields = (required_sub_fields + sub_fields).flatten.uniq
 
     merged_sub_fields.each do |sub_field|
@@ -300,7 +308,7 @@ class QaePdfForms::General::QuestionPointer
 
   def render_context_or_help_block(context)
     if question.classes == "application-notice help-notice"
-      form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
+      form_pdf.image Rails.root.join("app/assets/images/icon-important-print.png"),
         at: [-10.mm, form_pdf.cursor - 3.5.mm],
         width: 6.5.mm,
         height: 6.5.mm
@@ -312,20 +320,22 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_validation_block
+    # rubocop:disable Lint/LiteralAsCondition
     # Valid/pending icon
-    # TODO If it has validation
+    # TODO: If it has validation
     if false
-      # TODO If it is valid
-      if false
-        valid_icon = "icon-valid-pdf.png"
+      # TODO: If it is valid
+      valid_icon = if false
+        "icon-valid-pdf.png"
       else
-        valid_icon = "icon-pending-pdf.png"
+        "icon-pending-pdf.png"
       end
 
-      form_pdf.image "#{Rails.root}/app/assets/images/#{valid_icon}",
+      form_pdf.image Rails.root.join("app/assets/images/#{valid_icon}"),
         at: [0, form_pdf.cursor - 4.mm],
         width: 7.mm
     end
+    # rubocop:enable Lint/LiteralAsCondition
   end
 
   def render_question_sub_title
@@ -373,7 +383,7 @@ class QaePdfForms::General::QuestionPointer
         end
       when QaeFormBuilder::TradeMostRecentFinancialYearOptionsQuestion, QaeFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
-          chosen_option = question.options.detect{ |option| option.value.to_s == humanized_answer.to_s }
+          chosen_option = question.options.detect { |option| option.value.to_s == humanized_answer.to_s }
           form_pdf.render_standart_answer_block(question_option_title)
           if chosen_option
             render_context_for_option(question, chosen_option)
@@ -425,8 +435,6 @@ class QaePdfForms::General::QuestionPointer
           render_supporters
         end
       when QaeFormBuilder::TextareaQuestion
-        title = (q_visible? && humanized_answer.present?) ? humanized_answer : ""
-
         form_pdf.default_bottom_margin
         render_word_limit
         render_wysywyg_content
@@ -542,7 +550,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def attachment_by_type(_k, v)
-    if v.keys.include?("file")
+    if v.key?("file")
       attachment = form_pdf.form_answer_attachments.detect do |a|
         a.id.to_s == v["file"]
       end
@@ -550,7 +558,7 @@ class QaePdfForms::General::QuestionPointer
       if attachment.present?
         form_pdf.draw_link_with_file_attachment(attachment, v["description"])
       end
-    elsif v.keys.include?("link")
+    elsif v.key?("link")
       if v["link"].present?
         form_pdf.draw_link(v)
       end
@@ -562,11 +570,11 @@ class QaePdfForms::General::QuestionPointer
   def complex_question
     render_question_title_with_ref_or_not
 
-    if question.delegate_obj.class.to_s == "QaeFormBuilder::AddressQuestion"
+    if question.delegate_obj.instance_of?(::QaeFormBuilder::AddressQuestion)
       render_context_and_answer_blocks
     end
 
-    if question.delegate_obj.class.to_s == "QaeFormBuilder::PressContactDetailsQuestion"
+    if question.delegate_obj.instance_of?(::QaeFormBuilder::PressContactDetailsQuestion)
       render_context_and_answer_blocks
     end
 
@@ -594,7 +602,7 @@ class QaePdfForms::General::QuestionPointer
   def render_table_with_optional_extra
     cells = sub_answers.select do |a|
       a[0].match(/\/{1}[0-9]{2}\/{1}/).present? ||
-        a[0].match(/Year/).present?
+        a[0].include?("Year").present?
     end
 
     if cells.present?
@@ -630,7 +638,6 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_inline_date
-    headers = sub_answers.map { |a| a[0] }
     row = sub_answers.map { |a| a[1] }
     row[1] = to_month(row[1]) if row[1].present?
     empty_date = false
@@ -673,7 +680,7 @@ class QaePdfForms::General::QuestionPointer
 
   def sub_question_block_without_title(sub_answer)
     if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
-      form_pdf.indent -25.mm do # compensating 25mm indent for subquestion
+      form_pdf.indent(-25.mm) do # compensating 25mm indent for subquestion
         render_info_about_conditional_parent
       end
     end
@@ -734,8 +741,8 @@ class QaePdfForms::General::QuestionPointer
     if entry[:value].present?
       if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
         entry[:value]
-      else
-        "£#{entry[:value]}" if entry[:value] != "-"
+      elsif entry[:value] != "-"
+        "£#{entry[:value]}"
       end
     end
   end

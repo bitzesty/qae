@@ -7,7 +7,7 @@ class QaeFormBuilder
 
   class QueenAwardApplicationsQuestionBuilder < QuestionBuilder
     def year year
-      #TODO: type checking
+      # TODO: type checking
       @q.years << year
     end
 
@@ -41,7 +41,7 @@ class QaeFormBuilder
 
   class QueenAwardApplicationsQuestionDecorator < MultiQuestionDecorator
     def required_sub_fields_list
-      %w(category year outcome)
+      %w[category year outcome]
     end
   end
 end

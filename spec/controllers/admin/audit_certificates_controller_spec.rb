@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Admin::AuditCertificatesController do
   let!(:admin) { create(:admin, superadmin: true) }
@@ -13,7 +12,7 @@ RSpec.describe Admin::AuditCertificatesController do
     it "assigns @resources" do
       allow_any_instance_of(FormAnswer).to receive(:promotion?) { false }
       allow_any_instance_of(FormAnswer).to receive(:shortlisted?) { true }
-      get :download_initial_pdf, params: { form_answer_id: form_answer.id }, :format => "pdf"
+      get :download_initial_pdf, params: { form_answer_id: form_answer.id }, format: "pdf"
       expect(response.content_type).to eq("application/pdf")
     end
   end

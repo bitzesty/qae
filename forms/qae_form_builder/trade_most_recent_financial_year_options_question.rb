@@ -47,16 +47,16 @@ class QaeFormBuilder
       to_ts = to&.trigger_at
 
       date, range = if [from_ts, to_ts].all?(&:present?)
-                      begin
-                        r = (Date.new(1900, from_ts.month, from_ts.day)..Date.new(1900, to_ts.month, to_ts.day))
-                      rescue ArgumentError
-                        r = (Date.new(1900, from_ts.month, from_ts.day - 1)..Date.new(1900, to_ts.month, to_ts.day - 1))
-                      end
-                      d = if financial_year_date_parts.values.none?(&:nil?)
-                        Date.new(1900, financial_year_date_parts[:month], financial_year_date_parts[:day])
-                      end
+        begin
+          r = (Date.new(1900, from_ts.month, from_ts.day)..Date.new(1900, to_ts.month, to_ts.day))
+        rescue ArgumentError
+          r = (Date.new(1900, from_ts.month, from_ts.day - 1)..Date.new(1900, to_ts.month, to_ts.day - 1))
+        end
+        d = if financial_year_date_parts.values.none?(&:nil?)
+          Date.new(1900, financial_year_date_parts[:month], financial_year_date_parts[:day])
+        end
 
-                      [d, r]
+        [d, r]
       end
 
       [date, range]

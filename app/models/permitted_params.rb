@@ -330,5 +330,3 @@ module PermittedParams
     data_attributes: {},
   ]
 end
-
-

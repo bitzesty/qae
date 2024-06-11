@@ -354,19 +354,19 @@ en:
       awarded: Awarded
       not_awarded: Not awarded
     state_short:
-      eligibility_in_progress: Eligibility in progress
-      application_in_progress: Application in progress
-      submitted: Submitted
-      withdrawn: Withdrawn/Ineligible
-      not_eligible: Not eligible
-      not_submitted: Not submitted
-      assessment_in_progress: Assessment in progress
-      disqualified: Disqualified - <br /> no additional <br /> financials
-      recommended: Recommended
-      reserved: Reserved
-      not_recommended: Not recommended
-      awarded: Awarded
-      not_awarded: Not awarded
+      eligibility_in_progress_html: Eligibility in progress
+      application_in_progress_html: Application in progress
+      submitted_html: Submitted
+      withdrawn_html: Withdrawn/Ineligible
+      not_eligible_html: Not eligible
+      not_submitted_html: Not submitted
+      assessment_in_progress_html: Assessment in progress
+      disqualified_html: Disqualified - <br /> no additional <br /> financials
+      recommended_html: Recommended
+      reserved_html: Reserved
+      not_recommended_html: Not recommended
+      awarded_html: Awarded
+      not_awarded_html: Not awarded
   confirmation_form:
     errors:
       activate_assessor: "You must select whether you want to activate this assessor or not."

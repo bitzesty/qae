@@ -132,13 +132,12 @@ def assert_description_change(section_id, header_id)
 end
 
 def assert_multiple_description_change(section_id, header_id, prefix)
-  text = "should NOT be saved"
-  text2 = "should be saved"
+  text = "should be saved"
   find("#{header_id} .panel-title a").click
   take_a_nap
 
   within section_id do
-    fill_in("#{prefix}_verdict", with: text2)
+    fill_in("#{prefix}_verdict", with: text)
     all(".form-cancel-link").each(&:click)
     all(".form-edit-link").last.click
     all(".form-save-link").last.click
@@ -150,11 +149,11 @@ def assert_multiple_description_change(section_id, header_id, prefix)
   take_a_nap
 
   within section_id do
-    expect(page).to have_content(text2)
+    expect(page).to have_content(text)
 
     all(".form-edit-link").last.click
 
-    expect(page.find("##{prefix}_verdict").text).to eq text2
+    expect(page.find("##{prefix}_verdict").text).to eq text
   end
 end
 

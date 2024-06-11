@@ -88,7 +88,7 @@ RSpec.describe Assessor, type: :model do
       expect(Reports::AssessorsProgressReport).to receive_message_chain(:new, :build)
       Reports::AssessorReport.new("assessors-progress", year, assessor, category: "trade").as_csv
 
-      expect{ Reports::AssessorReport.new("assessors-progress", year, assessor, category: "invalid").as_csv }.to raise_error(ArgumentError)
+      expect { Reports::AssessorReport.new("assessors-progress", year, assessor, category: "invalid").as_csv }.to raise_error(ArgumentError)
     end
   end
 

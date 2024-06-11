@@ -1,11 +1,9 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
-include FormAnswerFilteringTestHelper
-
-Warden.test_mode!
-
 describe "As Admin I want to filter applications", js: true do
+  include FormAnswerFilteringTestHelper
+  Warden.test_mode!
+
   let!(:admin) { create(:admin) }
 
   before do

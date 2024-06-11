@@ -1,6 +1,6 @@
 module SharedPdfHelpers::DrawElements
   DEFAULT_OFFSET = 50.mm
-  IMAGES_PATH = "#{Rails.root}/app/assets/images/"
+  IMAGES_PATH = Rails.root.join("app/assets/images/")
   LOGO_ICON = "logo-pdf.png"
   AWARD_GENERAL_INFO_PREFIX = "The King's Awards for Enterprise"
 
@@ -42,13 +42,13 @@ module SharedPdfHelpers::DrawElements
 
   def render_headers(table_lines, column_widths)
     pdf_doc.move_down 30.mm
-    pdf_doc.table table_lines, row_colors: %w(F0F0F0),
+    pdf_doc.table table_lines, row_colors: %w[F0F0F0],
       cell_style: { size: 12, font_style: :bold },
       column_widths: column_widths
   end
 
   def render_table(table_lines, column_widths = {})
-    pdf_doc.table table_lines, row_colors: %w(FFFFFF),
+    pdf_doc.table table_lines, row_colors: %w[FFFFFF],
       cell_style: { size: 12 },
       column_widths: column_widths
   end

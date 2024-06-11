@@ -29,7 +29,7 @@ class AwardYears::V2024::QaeForms
 
         header :due_diligence_checks, "Organisation's conduct & due diligence checks" do
           ref "A 2"
-          context %{
+          context %(
             <p class="govuk-body">Please be aware that due diligence checks inform the decision to grant an award.</p>
             <p class="govuk-body">Before you apply, please consider any issues that may prevent your application from receiving routine clearance as part of the due diligence process that we undertake with a number of Government Departments and Agencies.</p>
             <p class="govuk-body">Therefore, please check with your accountant and legal representatives if there are any outstanding or recent issues, as The King's Awards for Enterprise Office starts the due diligence process immediately after the submission and is unable to repeat the due diligence process.</p>
@@ -96,7 +96,7 @@ class AwardYears::V2024::QaeForms
                 </ul>
               </div>
             </details>
-          }
+          )
           pdf_context_with_header_blocks [
             [:normal, %(
               Please be aware that due diligence checks inform the decision to grant an award.

@@ -18,11 +18,10 @@ class FormFinancialPointer
     QaeFormBuilder::OneOptionByYearsLabelQuestion,
     QaeFormBuilder::OneOptionByYearsQuestion,
   ]
-  YEAR_LABELS = %w(day month year)
+  YEAR_LABELS = %w[day month year]
   IN_PROGRESS = "-"
 
-  TRADE_AUTOEXCLUDED_QUESTION_KEYS = [
-  ]
+  TRADE_AUTOEXCLUDED_QUESTION_KEYS = []
 
   UK_SALES_EXCLUDED_FORM_TYPES = [
     :trade,
@@ -56,10 +55,10 @@ class FormFinancialPointer
       unless UK_SALES_EXCLUDED_FORM_TYPES.include?(form_answer.object.award_type.to_sym)
         uk_sales_data = UkSalesCalculator.new(fetched).data
 
-        if index = fetched.index { |data| data[:exports].present? }
+        if (index = fetched.index { |data| data[:exports].present? })
           fetched.insert(index + 1, uk_sales_data) if uk_sales_data.present?
-        else
-          fetched += [uk_sales_data] if uk_sales_data.present?
+        elsif uk_sales_data.present?
+          fetched += [uk_sales_data]
         end
       end
 
@@ -151,7 +150,7 @@ class FormFinancialPointer
 
   def fetch_financial_questions
     financial_step.questions.select do |question|
-      !FormPdf::HIDDEN_QUESTIONS.include?(question.key.to_s) &&
+      FormPdf::HIDDEN_QUESTIONS.exclude?(question.key.to_s) &&
         TARGET_FINANCIAL_DATA_QUESTION_TYPES.include?(question.delegate_obj.class) &&
         award_form[question.key].visible? &&
         !excluded_by_ignored_questions_list?(question)
@@ -203,14 +202,9 @@ class FormFinancialPointer
     dates_by_years = data_values(:financial_year_changed_dates)
 
     if dates_by_years.present?
-      res = []
-      last_year = dates_by_years.last.split("/")[-1][-1].to_i
-
-      dates_by_years.each do |date|
-        res << date.join("/")
+      dates_by_years.each_with_object([]) do |date, memo|
+        memo << date.join("/")
       end
-
-      res
     else
       []
     end

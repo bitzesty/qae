@@ -2,7 +2,7 @@
 
 - provide(:page_wrapper_class, "page-award-form #{'page-read-only-form' if current_form_is_not_editable?}")
 
-- if application_collaborator_group_mode?
+- if application_collaborator_group_mode?(@form_answer)
   - provide(:body_end) do
     .js-collaborators-bar.hidden
 
@@ -34,6 +34,6 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
 
       = render "qae_form/step_error"
 
-- if application_collaborator_group_mode?
+- if application_collaborator_group_mode?(@form_answer)
   = content_for(:javascript_code) do
     | ApplicationCollaboratorsConnectionManager.init('#{@form_answer.id}', '#{Pusher.host}', #{Pusher.port}, '#{Pusher.key}', '#{Rails.env}', #{Time.now.utc.to_i});

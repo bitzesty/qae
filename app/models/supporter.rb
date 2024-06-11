@@ -1,26 +1,20 @@
 require "securerandom"
 
 class Supporter < ApplicationRecord
-  begin :associations
-        belongs_to :form_answer, optional: true
-        belongs_to :user, optional: true
+  # associations
+  belongs_to :form_answer, optional: true
+  belongs_to :user, optional: true
 
-        has_one :support_letter, dependent: :destroy
-  end
+  has_one :support_letter, dependent: :destroy
 
-  begin :associations
-        validates :email, :form_answer, presence: true
-  end
-
-  begin :validations
-        validates :email, email: true
-
-        validates :first_name,
-          :last_name,
-          :user,
-          :form_answer,
-          :relationship_to_nominee, presence: true
-  end
+  # validations
+  validates :email, email: true
+  validates :email,
+    :first_name,
+    :last_name,
+    :user,
+    :form_answer,
+    :relationship_to_nominee, presence: true
 
   before_create :generate_access_key
   after_create :notify!, unless: proc { Rails.env.test? }
@@ -32,6 +26,6 @@ class Supporter < ApplicationRecord
   end
 
   def notify!
-    Users::SupporterMailer.success(self.id, form_answer.user.id).deliver_later!
+    Users::SupporterMailer.success(id, form_answer.user.id).deliver_later!
   end
 end

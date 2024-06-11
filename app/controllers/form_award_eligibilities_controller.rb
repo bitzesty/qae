@@ -1,22 +1,23 @@
 class FormAwardEligibilitiesController < ApplicationController
   include Wicked::Wizard
 
-  before_action :authenticate_user!, :check_account_completion,
-    :check_number_of_collaborators
+  before_action :authenticate_user!, :check_account_completion, :check_number_of_collaborators
   before_action :set_form_answer
   before_action :set_steps_and_eligibilities, :setup_wizard
+
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
   ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
+
   before_action do
     allow_assessor_access!(@form_answer)
   end
 
   def show
-    #    if award eligibility is not passed
-    #      and there's no basic eligibility
-    #      or basic eligibility is not eligible
-    #      and there's no step
+    # if award eligibility is not passed and there's no basic eligibility
+    # or basic eligibility is not eligible and there's no step
 
     if !params[:id] &&
         (@form_answer.promotion? ||
@@ -81,7 +82,7 @@ class FormAwardEligibilitiesController < ApplicationController
         redirect_to action: :show, form_id: @form_answer.id
       end
 
-      return
+      nil
     else
       render :show
     end
@@ -91,10 +92,10 @@ class FormAwardEligibilitiesController < ApplicationController
     if @form_answer.eligible?
       redirect_to edit_form_url(@form_answer)
     else
-      redirect_to public_send("#{@form_answer.award_type}_award_eligible_failure_path", form_id: @form_answer.id)
+      redirect_to public_send(:"#{@form_answer.award_type}_award_eligible_failure_path", form_id: @form_answer.id)
     end
 
-    return
+    nil
   end
 
   def warning

@@ -2,15 +2,15 @@ require "rails_helper"
 
 describe Notifiers::EmailNotificationService do
   let!(:sent_notification) do
-    create(:email_notification, trigger_at: Time.now - 1.day, sent: true, kind: kind)
+    create(:email_notification, trigger_at: Time.current - 1.day, sent: true, kind: kind)
   end
 
   let!(:current_notification) do
-    create(:email_notification, trigger_at: Time.now - 1.day, kind: kind)
+    create(:email_notification, trigger_at: Time.current - 1.day, kind: kind)
   end
 
   let!(:future_notification) do
-    create(:email_notification, trigger_at: Time.now + 1.day, kind: kind)
+    create(:email_notification, trigger_at: Time.current + 1.day, kind: kind)
   end
 
   let(:user) do
@@ -264,7 +264,7 @@ describe Notifiers::EmailNotificationService do
     let!(:account_holder) { form_answer.account.owner }
 
     it "triggers current notification" do
-      mailer = double(deliver_later!: true)
+      double(deliver_later!: true)
 
       expect {
         described_class.run
@@ -284,7 +284,7 @@ describe Notifiers::EmailNotificationService do
         create(:palace_invite,
           email: form_answer.decorate.head_of_business_email,
           form_answer: form_answer,
-          submitted: true,)
+          submitted: true)
 
         expect(AccountMailers::BuckinghamPalaceInviteMailer).not_to receive(:invite)
 

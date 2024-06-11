@@ -160,10 +160,12 @@ class FormAnswerStateMachine
   private
 
   def get_metadata(subject)
-    meta = {
-      transitable_id: subject.id,
-      transitable_type: subject.class.to_s,
-    } if subject.present?
+    if subject.present?
+      meta = {
+        transitable_id: subject.id,
+        transitable_type: subject.class.to_s,
+      }
+    end
     meta ||= {}
     meta
   end

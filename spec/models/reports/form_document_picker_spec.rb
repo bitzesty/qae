@@ -2,11 +2,10 @@ require "rails_helper"
 
 describe Reports::DataPickers::FormDocumentPicker do
   let(:dummy_class) do
-    klass = Class.new do
+    Class.new do
       include Reports::DataPickers::FormDocumentPicker
 
-      def obj;
-      end
+      def obj; end
     end
   end
 
@@ -25,19 +24,19 @@ describe Reports::DataPickers::FormDocumentPicker do
       year_1, year_2, year_3 = PreviousWin.available_years
       awards = [
         {
-            "category" => "innovation",
-            "year" => year_1,
-            "outcome" => "won",
+          "category" => "innovation",
+          "year" => year_1,
+          "outcome" => "won",
         },
         {
-            "category" => "",
-            "year" => year_2,
-            "outcome" => "won",
+          "category" => "",
+          "year" => year_2,
+          "outcome" => "won",
         },
         {
-            "category" => "trade",
-            "year" => year_3,
-            "outcome" => "did_not_win",
+          "category" => "trade",
+          "year" => year_3,
+          "outcome" => "did_not_win",
         },
       ]
 
@@ -50,29 +49,22 @@ describe Reports::DataPickers::FormDocumentPicker do
 
   describe "instance methods" do
     let(:custom_class) do
-      klass = Class.new do
+      Class.new do
         include Reports::DataPickers::FormDocumentPicker
 
-        def business_form?
-        end
+        def business_form?; end
 
-        def question_visible?(key)
-        end
+        def question_visible?(key); end
 
-        def obj
-        end
+        def obj; end
 
-        def trade?
-        end
+        def trade?; end
 
-        def innovation?
-        end
+        def innovation?; end
 
-        def development?
-        end
+        def development?; end
 
-        def mobility?
-        end
+        def mobility?; end
       end
     end
     let(:subject) { custom_class.new }

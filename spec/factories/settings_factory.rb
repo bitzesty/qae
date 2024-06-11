@@ -3,19 +3,19 @@ FactoryBot.define do
     skip_create
 
     initialize_with do
-        if attributes.present?
-          Settings.where(attributes).first_or_create
-        else
-          Settings.first_or_create
-        end
+      if attributes.present?
+        Settings.where(attributes).first_or_create
+      else
+        Settings.first_or_create
+      end
     rescue ActiveRecord::RecordNotUnique
-        retry
+      retry
     end
   end
 
   trait :submission_deadlines do
     after(:create) do |settings|
-      %w(innovation trade mobility development).each do |award|
+      %w[innovation trade mobility development].each do |award|
         settings.deadlines.where(kind: "#{award}_submission_start").first.update_column(:trigger_at, Time.zone.now - 20.days)
       end
 

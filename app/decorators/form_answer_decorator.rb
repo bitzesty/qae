@@ -11,6 +11,8 @@ class FormAnswerDecorator < ApplicationDecorator
   NOT_ASSIGNED = "Not Assigned"
   ASSESSORS_NOT_ASSIGNED = "Assessors are not assigned"
 
+  delegate :company_or_nominee_name, to: :object
+
   def pdf_generator(pdf_blank_mode = false)
     "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object, pdf_blank_mode)
   end
@@ -40,7 +42,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def pdf_filename
     timestamp = Time.zone.now.strftime("%d-%m-%Y_%-l-%M%P")
-    "#{object.award_type_full_name.gsub(" ", "_")}_Award_#{timestamp}.pdf"
+    "#{object.award_type_full_name.tr(" ", "_")}_Award_#{timestamp}.pdf"
   end
 
   def csv_filename
@@ -67,16 +69,12 @@ class FormAnswerDecorator < ApplicationDecorator
     "The King's Awards for Enterprise: #{object.award_type_full_name} #{object.award_year.try(:year)}"
   end
 
-  def company_or_nominee_name
-    object.company_or_nominee_name
-  end
-
   def company_nominee_or_application_name
     company_or_nominee_name || application_name
   end
 
   def data
-    #object.document
+    # object.document
     OpenStruct.new(object.document.merge(persisted?: true))
   end
 
@@ -112,14 +110,14 @@ class FormAnswerDecorator < ApplicationDecorator
               old_array << value
             end
           end
-          old_array.reject!{ |i| i.include? "_destroy" }
+          old_array.reject! { |i| i.include? "_destroy" }
         end
       end
     end
   end
 
   def array_keys
-    object.document.select{ |item, value| value.kind_of?(Array) }.keys
+    object.document.select { |item, value| value.is_a?(Array) }.keys
   end
 
   def company_name
@@ -127,7 +125,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominee_title
-    object.nominee_title ? object.nominee_title : document["nominee_title"]
+    object.nominee_title || document["nominee_title"]
   end
 
   def progress_class
@@ -135,11 +133,11 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def state_text
-    I18n.t(object.state.to_s, scope: "form_answers.state")
+    h.t(object.state.to_s, scope: "form_answers.state")
   end
 
   def state_short_text
-    I18n.t(object.state.to_s, scope: "form_answers.state_short").html_safe
+    h.t("#{object.state}_html", scope: "form_answers.state_short")
   end
 
   def progress_text_short
@@ -181,8 +179,7 @@ class FormAnswerDecorator < ApplicationDecorator
       step.short_title == "Declaration of Corporate Responsibility"
     end.questions.select do |q|
       q.is_a?(QaeFormBuilder::TextareaQuestion) && q.required
-    end.map(&:key)
-       .map(&:to_s)
+    end.map { |x| x.key.to_s }
   end
 
   def corp_responsibility_missing?
@@ -398,7 +395,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def innovation_desc_short
-   sanitize_html document["innovation_desc_short"]
+    sanitize_html document["innovation_desc_short"]
   end
 
   def development_desc_short
@@ -450,13 +447,13 @@ class FormAnswerDecorator < ApplicationDecorator
   def application_background
     app_background = case award_type
     when "trade"
-                       document["trade_goods_briefly"]
+      document["trade_goods_briefly"]
     when "innovation"
-                       document["innovation_desc_short"]
+      document["innovation_desc_short"]
     when "development"
-                       document["development_management_approach_briefly"]
+      document["development_management_approach_briefly"]
     when "mobility"
-                       document["mobility_desc_short"]
+      document["mobility_desc_short"]
     end
 
     sanitize_html app_background
@@ -473,6 +470,7 @@ class FormAnswerDecorator < ApplicationDecorator
       (!development? || year < 2020) &&
       (!mobility? || year < 2020)
   end
+
   def this_entry_relates_to
     source_value = if document["application_relate_to"].present?
       document["application_relate_to"]

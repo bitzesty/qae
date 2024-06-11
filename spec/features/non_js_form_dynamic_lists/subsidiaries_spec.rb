@@ -1,11 +1,10 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
-describe "Non JS | Dynamic Lists | Subsidiaries", %q{
+describe "Non JS | Dynamic Lists | Subsidiaries", '
 As a User
 I want to be able to add UK subsidiaries, associates or plants
 So that I can fill form completelly even if Javascript is turned off
-} do
+' do
   include_context "non js form base"
 
   let(:question_key) { "trading_figures_add" }
@@ -21,7 +20,7 @@ So that I can fill form completelly even if Javascript is turned off
     FactoryBot.create :form_answer, :trade,
       user: user,
       account: account,
-      document: { company_name: "Bitzesty", question_key => subsidiaries }
+      document: { :company_name => "Bitzesty", question_key => subsidiaries }
   end
 
   let!(:basic_eligibility) do
@@ -56,7 +55,7 @@ So that I can fill form completelly even if Javascript is turned off
       within("#non_js_#{question_key}-list-question") do
         subsidiaries.each do |subsidiary|
           expect(page).to have_selector(
-            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1,
+            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1
           )
         end
       end
@@ -100,12 +99,12 @@ So that I can fill form completelly even if Javascript is turned off
       within("#non_js_#{question_key}-list-question") do
         subsidiaries.each do |subsidiary|
           expect(page).to have_selector(
-            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1,
+            "li[non-js-attribute=#{subsidiary[:name]}]", count: 1
           )
         end
 
         expect(page).to have_selector(
-          "li[non-js-attribute=#{new_name}]", count: 1,
+          "li[non-js-attribute=#{new_name}]", count: 1
         )
       end
     end
@@ -129,11 +128,11 @@ So that I can fill form completelly even if Javascript is turned off
 
       within("#non_js_#{question_key}-list-question") do
         expect(page).to have_selector(
-          "li[non-js-attribute=#{first_item[:name]}]", count: 1,
+          "li[non-js-attribute=#{first_item[:name]}]", count: 1
         )
 
         expect(page).to have_selector(
-          "li[non-js-attribute=#{new_name}]", count: 1,
+          "li[non-js-attribute=#{new_name}]", count: 1
         )
 
         expect(page).to_not have_selector(
@@ -157,7 +156,7 @@ So that I can fill form completelly even if Javascript is turned off
 
       within("#non_js_#{question_key}-list-question") do
         expect(page).to have_selector(
-          "li[non-js-attribute=#{first_item[:name]}]", count: 1,
+          "li[non-js-attribute=#{first_item[:name]}]", count: 1
         )
 
         expect(page).to_not have_selector(

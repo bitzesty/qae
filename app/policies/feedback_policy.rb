@@ -1,9 +1,4 @@
 class FeedbackPolicy < ApplicationPolicy
-  def create?
-    admin? || (assessor? && subject.assigned?(form_answer)) &&
-      form_answer.reload.feedback.blank?
-  end
-
   def update?
     return @can_update unless @can_update.nil?
     return false if record.locked?
@@ -14,7 +9,7 @@ class FeedbackPolicy < ApplicationPolicy
       admin?
     end
   end
-  alias :create? :update?
+  alias_method :create?, :update?
 
   def submit?
     return @can_submit unless @can_submit.nil?

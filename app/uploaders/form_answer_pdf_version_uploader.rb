@@ -6,7 +6,7 @@ class FormAnswerPdfVersionUploader < CarrierWave::Uploader::Base
   end
 
   def extension_allowlist
-    %w(pdf)
+    %w[pdf]
   end
 
   def store_dir

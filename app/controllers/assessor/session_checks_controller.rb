@@ -1,3 +1,4 @@
+# rubocop:disable Rails/ApplicationController
 class Assessor::SessionChecksController < ActionController::Base
   include SessionStatusCheckMixin
 
@@ -19,3 +20,4 @@ class Assessor::SessionChecksController < ActionController::Base
     ASSESSOR_NAMESPACE
   end
 end
+# rubocop:enable Rails/ApplicationController

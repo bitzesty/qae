@@ -11,7 +11,7 @@ class FormAnswer
       method = "#{form_answer.award_type}_eligibility"
 
       unless form_answer.public_send(method)
-        form_answer.public_send("build_#{method}", account_id: account.id).save!
+        form_answer.public_send(:"build_#{method}", account_id: account.id).save!
       end
 
       form_answer.public_send(method)
@@ -22,11 +22,10 @@ class FormAnswer
         return nil if form_answer.promotion?
 
         if form_answer.form_basic_eligibility.try(:persisted?)
-          form_answer.form_basic_eligibility
         else
           form_answer.build_form_basic_eligibility(filter(account.basic_eligibility.try(:attributes) || {}).merge(account_id: account.id)).save!
-          form_answer.form_basic_eligibility
         end
+        form_answer.form_basic_eligibility
       end
     end
 

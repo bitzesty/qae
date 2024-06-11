@@ -1,6 +1,7 @@
 class Admin::FormAnswersController < Admin::BaseController
   include FormAnswerMixin
 
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :load_resource, only: [
     :review,
     :show,
@@ -8,6 +9,7 @@ class Admin::FormAnswersController < Admin::BaseController
     :update_financials,
     :remove_audit_certificate,
   ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
 
@@ -15,7 +17,7 @@ class Admin::FormAnswersController < Admin::BaseController
     FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
       financial_summary_view: true,
-    },)
+    })
   end
 
   expose(:target_scope) do

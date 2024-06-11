@@ -32,7 +32,7 @@ class Users::AuditCertificatesController < Users::BaseController
   def create
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
-    if saved = audit_certificate.save
+    if (saved = audit_certificate.save)
       log_event
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
@@ -88,11 +88,7 @@ class Users::AuditCertificatesController < Users::BaseController
     # This is fix of "missing 'audit_certificate' param"
     # if no any was selected in file input
     if params[:audit_certificate].blank?
-      params.merge!(
-        audit_certificate: {
-          attachment: "",
-        },
-      )
+      params[:audit_certificate] = { attachment: "" }
     end
 
     params.require(:audit_certificate).permit(:attachment)
@@ -109,14 +105,14 @@ class Users::AuditCertificatesController < Users::BaseController
   def check_if_audit_certificate_already_exist!
     if audit_certificate.present? && audit_certificate.persisted?
       head :ok
-      return
+      nil
     end
   end
 
   def check_if_vocf_is_required!
     unless form_answer.requires_vocf?
       redirect_to dashboard_url
-      return
+      nil
     end
   end
 end

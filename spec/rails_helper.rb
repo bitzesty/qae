@@ -27,7 +27,7 @@ SimpleCov.start "rails" do
   add_filter "/app/pdf_generators/"
   add_filter "/app/tasks/"
   add_filter do |source_file|
-    source_file.filename =~ /app\/controllers/ && source_file.lines.count < 8
+    source_file.filename.include?("app/controllers") && source_file.lines.count < 8
   end
 end
 
@@ -47,7 +47,7 @@ ActiveRecord::Migration.check_pending!
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 
-Dir[Rails.root.join("spec", "support", "**", "*.rb")].sort.each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -68,6 +68,7 @@ RSpec.configure do |config|
   config.include UserStepDefinitions, type: :feature
   config.include ExpectationHelper, type: :feature
   config.include DeadlineHelper, type: :feature
+  config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.raise_error_for_unimplemented_steps = true

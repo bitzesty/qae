@@ -3,10 +3,10 @@ class AssessorAssignmentDecorator < ApplicationDecorator
     return unless object.assessed_at
     editor = object.editable
     if editor
-      if editor.first_name.present? && editor.last_name.present?
-        name = "#{editor.first_name} #{editor.last_name}"
+      name = if editor.first_name.present? && editor.last_name.present?
+        "#{editor.first_name} #{editor.last_name}"
       else
-        name = "Anonymous"
+        "Anonymous"
       end
 
       "Updated by #{name} - #{l object.assessed_at, format: :date_at_time}"

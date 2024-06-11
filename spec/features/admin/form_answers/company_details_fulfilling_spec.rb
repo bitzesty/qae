@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin fulfills the company details" do
   let!(:admin) { create(:admin) }

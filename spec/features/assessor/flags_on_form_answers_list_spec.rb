@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "assessor sees the proper number of flags and sort by it" do
   let!(:assessor) { create(:assessor, :lead_for_all) }

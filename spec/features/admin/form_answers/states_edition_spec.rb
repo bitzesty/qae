@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "As Admin I want to change the applications states.", js: true do
   let!(:admin) { create(:admin) }

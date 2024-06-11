@@ -18,6 +18,7 @@ class ContentOnlyController < ApplicationController
       :submitted_nomination_successful,
     ]
 
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :get_current_form,
     only: [
       :award_info_innovation,
@@ -25,7 +26,9 @@ class ContentOnlyController < ApplicationController
       :award_info_development,
       :award_info_mobility,
     ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :get_collaborators,
     only: [
       :award_info_innovation,
@@ -33,14 +36,14 @@ class ContentOnlyController < ApplicationController
       :award_info_development,
       :award_info_mobility,
     ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
-  before_action :restrict_access_if_admin_in_read_only_mode!,
-    only: [:dashboard]
-
+  # rubocop:disable Rails/LexicallyScopedActionFilter
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: [:dashboard]
   before_action :clean_flash, only: [:sign_up_complete]
-
   before_action :check_trade_count_limit, only: :apply_international_trade_award
   before_action :check_development_count_limit, only: :apply_sustainable_development_award
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   expose(:form_answer) do
     current_user.form_answers.find(params[:id])

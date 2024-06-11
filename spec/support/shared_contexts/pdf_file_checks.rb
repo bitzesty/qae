@@ -25,10 +25,10 @@ shared_context "pdf file checks" do
   end
 
   let(:award_application_title) do
-    if form_answer.promotion?
-      award_title = "King's Award for Enterprise Promotion #{AwardYear.current.year}"
+    award_title = if form_answer.promotion?
+      "King's Award for Enterprise Promotion #{AwardYear.current.year}"
     else
-      award_title = form_answer.decorate.award_application_title_print
+      form_answer.decorate.award_application_title_print
     end
     award_title.upcase
   end
@@ -43,7 +43,7 @@ shared_context "pdf file checks" do
 
   let(:match_name_condition) do
     if award_type == :promotion
-      form_answer.send("nominee_full_name_from_document").upcase
+      form_answer.send(:nominee_full_name_from_document).upcase
     else
       company_name
     end
@@ -90,12 +90,12 @@ shared_context "pdf file checks" do
   private
 
   def fetch_question_by_question_key(questions, question_key)
-    questions.select { |q| q.key.to_s == question_key.to_s }.first
+    questions.find { |q| q.key.to_s == question_key.to_s }
   end
 
   def question_option_title(question, answer)
-    question.options.select do |option|
+    question.options.find do |option|
       option.value.to_s == answer.to_s
-    end.first.text
+    end.text
   end
 end

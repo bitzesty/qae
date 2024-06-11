@@ -4,7 +4,7 @@ class QaeFormBuilder
       result = super
 
       if question.required?
-        if !question.input_value.present?
+        if question.input_value.blank?
           result[question.hash_key] ||= ""
           result[question.hash_key] = "Question #{question.ref || question.sub_ref} is incomplete. It is required and and an option must be selected from the following dropdown list."
         end

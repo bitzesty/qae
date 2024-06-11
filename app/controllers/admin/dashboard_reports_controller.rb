@@ -63,6 +63,6 @@ class Admin::DashboardReportsController < Admin::BaseController
   end
 
   def permitted_kind_value
-    params[:kind] if params[:kind].presence.in?(%w(by_month by_week by_day))
+    params[:kind] if params[:kind].presence.in?(%w[by_month by_week by_day])
   end
 end

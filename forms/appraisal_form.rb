@@ -5,63 +5,63 @@ class AppraisalForm
   SUPPORTED_YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
   RAG_OPTIONS_2016 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2017 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2018 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2019 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2020 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2021 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2022 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2023 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2024 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   RAG_OPTIONS_2025 = [
-    %w(Red negative),
-    %w(Amber average),
-    %w(Green positive),
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   CSR_RAG_OPTIONS_2016 = [
@@ -271,8 +271,7 @@ class AppraisalForm
     )
   end
 
-  def self.non_rag_options_for(object, section)
-  end
+  def self.non_rag_options_for(object, section); end
 
   def self.strength_options_for(object, section)
     year = object.award_year.year
@@ -1920,13 +1919,13 @@ class AppraisalForm
     award_type = form_answer.award_type
     award_year = form_answer.award_year
 
-    if moderated
-      assessment_types = [:verdict]
+    assessment_types = if moderated
+      [:verdict]
     else
-      assessment_types = [:rag, :non_rag, :verdict]
+      [:rag, :non_rag, :verdict]
     end
     const_get("#{award_type.upcase}_#{award_year.year}").map do |k, obj|
-      methods = Array.new
+      methods = []
       methods << Array(rate(k)) if (!moderated && (obj[:type] != :non_rag)) || (moderated && obj[:type] == :verdict)
       methods << desc(k) if assessment_types.include?(obj[:type])
       methods
@@ -1941,12 +1940,15 @@ class AppraisalForm
   def self.all
     out = []
 
+    assessment_types_with_description = %i[strengths rag non_rag verdict]
+    assessment_types = %i[rag non_rag verdict]
+
     AppraisalForm::SUPPORTED_YEARS.map do |year|
       const_get("ALL_FORMS_#{year}").each do |form|
         form.each do |k, obj|
-          out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
+          out << rate(k).to_sym if assessment_types_with_description.include?(obj[:type])
           # strengths doesn't have description
-          out << desc(k).to_sym if [:rag, :non_rag, :verdict].include?(obj[:type])
+          out << desc(k).to_sym if assessment_types.include?(obj[:type])
         end
       end
 
@@ -1978,7 +1980,7 @@ class AppraisalForm
 
   class << self
     def group_labels_by(year, type)
-      %w(rag csr_rag strength verdict).map do |label_type|
+      %w[rag csr_rag strength verdict].map do |label_type|
         const_get("#{label_type.upcase}_OPTIONS_#{year}").detect do |el|
           el[1] == type
         end

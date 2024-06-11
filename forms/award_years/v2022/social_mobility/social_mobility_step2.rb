@@ -255,14 +255,14 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["careers_advice", "Careers advice"],
-            [ "fairer_recruitment", "Fairer recruitment"],
-            [ "skills_development", "Skills development"],
-            [ "work_placements", "Work placements"],
-            [ "early_careers", "Early careers"],
-            [ "job_opportunities", "Job opportunities"],
-            [ "advancement", "Advancement"],
-            [ "advocacy_and_leadership", "Advocacy and leadership"],
-            [ "other_activity_types", "Other activity types"],
+            ["fairer_recruitment", "Fairer recruitment"],
+            ["skills_development", "Skills development"],
+            ["work_placements", "Work placements"],
+            ["early_careers", "Early careers"],
+            ["job_opportunities", "Job opportunities"],
+            ["advancement", "Advancement"],
+            ["advocacy_and_leadership", "Advocacy and leadership"],
+            ["other_activity_types", "Other activity types"],
           ]
           conditional :application_category, "initiative"
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
@@ -419,15 +419,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -465,15 +465,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -511,15 +511,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -557,15 +557,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -695,9 +695,9 @@ class AwardYears::V2022::QaeForms
         textarea :initiative_community_society_impact, "Impact on community and society." do
           sub_ref "B 7a"
           required
-          question_sub_title %{
+          question_sub_title %(
             What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?
-          }
+          )
           context %(
             <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
@@ -777,14 +777,14 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["careers_advice", "Careers advice"],
-            [ "fairer_recruitment", "Fairer recruitment"],
-            [ "skills_development", "Skills development"],
-            [ "work_placements", "Work placements"],
-            [ "early_careers", "Early careers"],
-            [ "job_opportunities", "Job opportunities"],
-            [ "advancement", "Advancement"],
-            [ "advocacy_and_leadership", "Advocacy and leadership"],
-            [ "other_activity_types", "Other activity types"],
+            ["fairer_recruitment", "Fairer recruitment"],
+            ["skills_development", "Skills development"],
+            ["work_placements", "Work placements"],
+            ["early_careers", "Early careers"],
+            ["job_opportunities", "Job opportunities"],
+            ["advancement", "Advancement"],
+            ["advocacy_and_leadership", "Advocacy and leadership"],
+            ["other_activity_types", "Other activity types"],
           ]
           conditional :application_category, "organisation"
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
@@ -923,15 +923,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -969,15 +969,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -1015,15 +1015,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -1061,15 +1061,15 @@ class AwardYears::V2022::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
@@ -1180,9 +1180,9 @@ class AwardYears::V2022::QaeForms
         textarea :organisation_community_society_impact, "Impact on community and society." do
           sub_ref "B 7b"
           required
-          question_sub_title %{
+          question_sub_title %(
             What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?
-          }
+          )
           context %(
             <p>For example, has your organisation’s activities led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )

@@ -22,25 +22,28 @@ module AppraisalFormHelper
   ENTRY_RELATES_TO_MOBILITY_OPS = ["mentoring", "career_opportunities_accessibility", "workplace_fostering"]
 
   def options_available(options)
-    @check_options = ENTRY_RELATES_TO_OPTIONS.select do |i|
+    ENTRY_RELATES_TO_OPTIONS.select do |i|
       options.include?(i.keys.first)
     end.map do |el|
-       [
-         el.keys.first,
-         el.values.first,
-       ]
+      [
+        el.keys.first,
+        el.values.first,
+      ]
     end
   end
 
   def render_section(form_answer, f)
     section_odd_even = false
-    AppraisalForm.struct(form_answer, f).map do |k, section|
+
+    output = AppraisalForm.struct(form_answer, f).map do |k, section|
       section_obj = OpenStruct.new(section.merge(desc: "#{k}_desc", rate: "#{k}_rate"))
       partial = "admin/form_answers/appraisal_form_components/#{section[:type]}_section"
 
       section_odd_even = !section_odd_even
 
       render partial: partial, locals: { section: section_obj, f: f, section_odd_even: section_odd_even }
-    end.join.html_safe
+    end
+
+    safe_join(output)
   end
 end

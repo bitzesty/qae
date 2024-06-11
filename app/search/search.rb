@@ -4,6 +4,16 @@ class Search
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
+  VALID_SORT_OPTIONS = %w[
+    applied_before
+    audit_updated_at
+    flag
+    full_name
+    primary_assessor_name
+    secondary_assessor_name
+    sic_code
+  ]
+
   attr_reader :scope, :params, :ordered_desc, :filter_params, :query
   attr_accessor :ordered_by
 
@@ -48,12 +58,12 @@ class Search
     @search_results = scope
 
     filter_params.each do |column, value|
-      next unless value.present?
+      next if value.blank?
 
-      if included_in_model_columns?(column)
-        @search_results = @search_results.where(column => value)
+      @search_results = if included_in_model_columns?(column)
+        @search_results.where(column => value)
       else
-        @search_results = apply_custom_filter(@search_results, column, value)
+        apply_custom_filter(@search_results, column, value)
       end
     end
 
@@ -62,14 +72,14 @@ class Search
     end
 
     if ordered_by
-      if included_in_model_columns?(ordered_by)
+      @search_results = if included_in_model_columns?(ordered_by)
         if ordered_desc
-          @search_results = @search_results.order("#{ordered_by} DESC")
+          @search_results.order("#{ordered_by} DESC")
         else
-          @search_results = @search_results.order(ordered_by)
+          @search_results.order(ordered_by)
         end
       else
-        @search_results = apply_custom_sort(@search_results, params[:sort])
+        apply_custom_sort(@search_results, params[:sort])
       end
     end
 
@@ -96,12 +106,17 @@ class Search
 
   def apply_custom_sort(scoped_results, sort_value)
     column, order = sort_value.split(".")
+
+    unless VALID_SORT_OPTIONS.include?(column)
+      raise ArgumentError, "The :column option must be one of #{VALID_SORT_OPTIONS}, but is \"#{column}\""
+    end
+
     desc = order == "desc"
-    public_send("sort_by_#{column}", scoped_results, desc)
+    public_send(:"sort_by_#{column}", scoped_results, desc)
   end
 
   def apply_custom_filter(scoped_results, column, value)
-    public_send("filter_by_#{column}", scoped_results, value)
+    public_send(:"filter_by_#{column}", scoped_results, value)
   end
 
   class Filter < OpenStruct

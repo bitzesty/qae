@@ -165,7 +165,7 @@ class AssessmentSubmissionService
       }
 
       form_answer.update_column(
-        :discrepancies_between_primary_and_secondary_appraisals, res,
+        :discrepancies_between_primary_and_secondary_appraisals, res
       )
     end
   end

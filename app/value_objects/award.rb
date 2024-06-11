@@ -19,7 +19,7 @@ class Award
     @holder = holder
 
     attrs.each do |key, value|
-      instance_variable_set("@#{key}", value.to_s.strip)
+      instance_variable_set(:"@#{key}", value.to_s.strip)
     end
   end
 

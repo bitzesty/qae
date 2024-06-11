@@ -1,11 +1,10 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
-describe "Non JS | Dynamic Lists | Current King's Awards", %q{
+describe "Non JS | Dynamic Lists | Current King's Awards", "
 As a User
 I want to be able to add Current King's Awards I hold
 So that I can fill form completelly even if Javascript is turned off
-} do
+" do
   include_context "non js form base"
 
   let(:innovation_award_year) do
@@ -64,7 +63,7 @@ So that I can fill form completelly even if Javascript is turned off
       within("#non_js_applied_for_queen_awards_details-list-question") do
         awards.each do |award|
           expect(page).to have_selector(
-            "li[non-js-attribute=#{item_entry(award)}]", count: 1,
+            "li[non-js-attribute=#{item_entry(award)}]", count: 1
           )
         end
       end
@@ -82,7 +81,7 @@ So that I can fill form completelly even if Javascript is turned off
         form_answer.reload.document
       }
 
-      %w(Category Year).each do |field_name|
+      %w[Category Year].each do |field_name|
         expect_to_see "#{field_name} is required and an option must be selected from the following list"
       end
 
@@ -99,12 +98,12 @@ So that I can fill form completelly even if Javascript is turned off
       within("#non_js_applied_for_queen_awards_details-list-question") do
         awards.each do |award|
           expect(page).to have_selector(
-            "li[non-js-attribute=#{item_entry(award)}]", count: 1,
+            "li[non-js-attribute=#{item_entry(award)}]", count: 1
           )
         end
 
         expect(page).to have_selector(
-          "li[non-js-attribute=#{new_award_category}_#{new_award_category_year}]", count: 1,
+          "li[non-js-attribute=#{new_award_category}_#{new_award_category_year}]", count: 1
         )
       end
     end
@@ -127,11 +126,11 @@ So that I can fill form completelly even if Javascript is turned off
 
       within("#non_js_applied_for_queen_awards_details-list-question") do
         expect(page).to have_selector(
-          "li[non-js-attribute=#{item_entry(first_award)}]", count: 1,
+          "li[non-js-attribute=#{item_entry(first_award)}]", count: 1
         )
 
         expect(page).to have_selector(
-          "li[non-js-attribute=#{new_award_category}_#{new_award_category_year}]", count: 1,
+          "li[non-js-attribute=#{new_award_category}_#{new_award_category_year}]", count: 1
         )
 
         expect(page).to_not have_selector(
@@ -155,7 +154,7 @@ So that I can fill form completelly even if Javascript is turned off
 
       within("#non_js_applied_for_queen_awards_details-list-question") do
         expect(page).to have_selector(
-          "li[non-js-attribute=#{item_entry(first_award)}]", count: 1,
+          "li[non-js-attribute=#{item_entry(first_award)}]", count: 1
         )
 
         expect(page).to_not have_selector(

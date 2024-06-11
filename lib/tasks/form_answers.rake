@@ -18,11 +18,9 @@ namespace :form_answers do
           f.update_column(:submitted_at, current_time)
           puts "[form answer] #{f.id} updating submitted_at with #{current_time}"
         end
-      else
-        if f.submitted
-          f.update_column(:submitted_at, f.created_at)
-          puts "[form answer] #{f.id} updating submitted_at with #{f.created_at}"
-        end
+      elsif f.submitted
+        f.update_column(:submitted_at, f.created_at)
+        puts "[form answer] #{f.id} updating submitted_at with #{f.created_at}"
       end
     end
   end
@@ -32,12 +30,12 @@ namespace :form_answers do
     not_updated_entries = []
 
     AwardYear.current.form_answers.submitted.find_each do |form_answer|
-        form_answer.generate_pdf_version!
-        sleep 1
+      form_answer.generate_pdf_version!
+      sleep 1
 
-        puts "[form_answer]---------------------------------#{form_answer.id} updated"
+      puts "[form_answer]---------------------------------#{form_answer.id} updated"
     rescue
-        not_updated_entries << form_answer.id
+      not_updated_entries << form_answer.id
     end
 
     puts "[not_updated_entries] ------------ #{not_updated_entries.inspect}"
@@ -60,7 +58,7 @@ namespace :form_answers do
   desc "fixes attachment arrays"
   task fix_attachments: :environment do
     FormAnswer.find_each do |f|
-      if f.document["innovation_materials"].kind_of? Array
+      if f.document["innovation_materials"].is_a? Array
         array = f.document["innovation_materials"]
         hash = {}
         array.each_index do |i|
@@ -224,8 +222,10 @@ namespace :form_answers do
 
     puts "Updating form answers..."
 
+    keys = %w[personal_address_county nominee_personal_address_county organization_address_county]
+
     county_mapper.each do |wrong_county, correct_county|
-      %w(personal_address_county nominee_personal_address_county organization_address_county).each do |key|
+      keys.each do |key|
         FormAnswer.where("document ->> '#{key}' = '#{wrong_county}'").find_each do |answer|
           answer.document[key] = correct_county
           answer.save(validate: false)

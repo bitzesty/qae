@@ -1,6 +1,6 @@
 class FileUploader < CarrierWave::Uploader::Base
-  POSSIBLE_IMG_EXTENSIONS = %w(jpg jpeg gif png)
-  POSSIBLE_DOC_EXTENSIONS = %w(chm csv diff doc docx dot dxf eps gml ics kml odp ods odt pdf ppt pptx ps rdf rtf sch txt wsdl xls xlsm xlsx xlt xsd xslt zip msg)
+  POSSIBLE_IMG_EXTENSIONS = %w[jpg jpeg gif png]
+  POSSIBLE_DOC_EXTENSIONS = %w[chm csv diff doc docx dot dxf eps gml ics kml odp ods odt pdf ppt pptx ps rdf rtf sch txt wsdl xls xlsm xlsx xlt xsd xslt zip msg]
 
   def extension_allowlist
     POSSIBLE_IMG_EXTENSIONS + POSSIBLE_DOC_EXTENSIONS

@@ -7,7 +7,8 @@ describe UserDecorator do
       last_name: "Bar",
       role: "account_admin",
       company_name: "Umbrella Corporation",
-    )}
+    )
+  }
 
   let(:subject) { UserDecorator.decorate(user) }
 
@@ -58,7 +59,7 @@ describe UserDecorator do
 
     context "when already confirmed" do
       it "returns false" do
-        user.confirmed_at = Time.now
+        user.confirmed_at = Time.current
         subject = UserDecorator.decorate(user)
         expect(subject.confirmation_status).to be_falsy
       end

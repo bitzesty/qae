@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Admin::FormAnswerStateTransitionsController do
   let!(:admin) { create(:admin, superadmin: true) }
@@ -14,7 +13,7 @@ RSpec.describe Admin::FormAnswerStateTransitionsController do
     it "should create a resource" do
       allow_any_instance_of(AssessmentSubmissionService).to receive(:perform) {}
       post :create, params: {
-        form_answer_id: form_answer.id ,
+        form_answer_id: form_answer.id,
         form_answer_state_transition: { state: "recommended" },
       }
 
@@ -25,7 +24,7 @@ RSpec.describe Admin::FormAnswerStateTransitionsController do
         form_answer_state_transition: { state: "recommended" },
       }, xhr: true
 
-      expect(response).to render_template(:partial => "admin/form_answers/_states_list")
+      expect(response).to render_template(partial: "admin/form_answers/_states_list")
     end
   end
 end

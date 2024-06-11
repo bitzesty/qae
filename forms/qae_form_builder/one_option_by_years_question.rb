@@ -28,7 +28,7 @@ class QaeFormBuilder
     end
 
     def active_fields
-      (1..3).map{ |y| "#{y}of3" }
+      (1..3).map { |y| "#{y}of3" }
     end
 
     def fields_count

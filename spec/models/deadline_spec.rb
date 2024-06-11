@@ -8,12 +8,12 @@ RSpec.describe Deadline do
 
   describe "#passed?" do
     it "returns true when deadline is passed" do
-      deadline = Deadline.new(trigger_at: Time.zone.now - 2.hours)
+      deadline = Deadline.new(trigger_at: Time.current - 2.hours)
       expect(deadline).to be_passed
     end
 
     it "returns false when deadline is not passed" do
-      deadline = Deadline.new(trigger_at: Time.zone.now + 2.hours)
+      deadline = Deadline.new(trigger_at: Time.current + 2.hours)
       expect(deadline).not_to be_passed
     end
 
@@ -25,7 +25,7 @@ RSpec.describe Deadline do
 
   describe "class methods" do
     it ".with_states_to_trigger should filter correctly" do
-      time = Time.now
+      time = Time.current
       target = Deadline.where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time).to_sql
       expect(target).to eq Deadline.with_states_to_trigger(time).to_sql
     end
