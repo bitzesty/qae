@@ -99,6 +99,7 @@ class QaeFormBuilder
       else
         answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
       end
+      disadvantaged ||= 0
       total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
       proportion = (disadvantaged.to_f / total * 100).round(2)
       answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion

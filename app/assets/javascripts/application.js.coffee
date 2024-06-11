@@ -80,7 +80,7 @@ getLatestFinancialYearParts = () ->
   if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 7) || parseInt(fy_month, 10) > 9
     fy_year = parseInt(fy_year, 10) - 1
 
-  if $(".js-most-recent-financial-year input:checked").val() && $(".js-most-recent-financial-year .js-conditional-question").hasClass("show-question")
+  if $(".js-most-recent-financial-year input:checked").val()
     fy_year = parseInt($(".js-most-recent-financial-year input:checked").val())
 
   return [fy_day, fy_month, fy_year]
@@ -328,7 +328,7 @@ jQuery ->
 
     # overriding financial year with the selected radio button value
     # also check if the question is visible
-    if $(".js-most-recent-financial-year input:checked").val() && $(".js-most-recent-financial-year .js-conditional-question").hasClass("show-question")
+    if $(".js-most-recent-financial-year input:checked").val()
       fy_year = parseInt($(".js-most-recent-financial-year input:checked").val())
 
     # Updates the latest changed financial year input
@@ -350,7 +350,36 @@ jQuery ->
     # We should change the last year date regardless if it's present or not
     fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
 
+    # If the latest financial year is not set, we set it
+    if $('input:radio[name="form\\[most_recent_financial_year\\]"]:checked').size() == 0
+    # If day and month entered are valid, we set the latest financial year
+      fy_date = new Date(fy_year + "-" + fy_month + "-" + fy_day)
+      if fy_date instanceof Date && !isNaN(fy_date.getTime())
+        setDefaultRecentFinancialYear()
     updateYearEnd()
+
+  # Update the recent financial year end
+  setDefaultRecentFinancialYear = () ->
+    [fy_day, fy_month, fy_year] = getLatestFinancialYearParts()
+    $(".js-most-recent-financial-year-options input").each ->
+      if $(this).val() == fy_year.toString()
+        $(this).prop("checked", true)
+      else
+        $(this).prop("checked", false)
+
+  clearManuallyEnteredYearEnds = () ->
+    console.log("clearManuallyEnteredYearEnds")
+    $(".js-financial-conditional > .by-years-wrapper").each ->
+      $(this).find(".js-year-end").each ->
+        fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year=#{$(this).attr("data-year")}]").closest(".js-fy-entries").find(".govuk-date-input")
+        fy_day = fy_input.find(".js-fy-day").val("")
+        fy_month = fy_input.find(".js-fy-month").val("")
+        fy_year = fy_input.find(".js-fy-year").val("")
+
+  # Clear manually entered year ends when the most recent financial year is changed
+  $(".js-most-recent-financial-year-options input").each ->
+    $(this).change ->
+      clearManuallyEnteredYearEnds()
 
   # Update the financial year labels
   updateYearEnd = () ->
@@ -830,220 +859,7 @@ jQuery ->
   $(document).debounce "change", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "focusout", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
 
-  updateUploadListVisiblity = (list, button, max) ->
-    list_elements = list.find("li")
-    count = list_elements.length
-    wrapper = button.closest('div.js-upload-wrapper')
-
-    if count > 0
-      list.removeClass("visuallyhidden")
-
-    if !max || count < max
-      button.each ->
-        $(this).removeClass("visuallyhidden")
-
-    else
-      button.each ->
-        $(this).addClass("visuallyhidden")
-
-  reindexUploadListInputs = (list) ->
-    idx = 0
-    list.find("li").each (i, li) ->
-      process_input = (j, input_el) ->
-        name = $(input_el).attr("name")
-        match = /([^\[]+)\[([^\]]+)\]\[([0-9]*)\](.*)/.exec name
-        if match
-          $(input_el).attr("name", "#{match[1]}[#{match[2]}][#{idx}]#{match[4]}")
-
-      $(li).find("input").each process_input
-      $(li).find("textarea").each process_input
-      idx++
-
-  appendRemoveLinkForWebsiteLink = (div) ->
-    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning remove-website").prop("href", "#").text("Remove")
-    div.append(remove_link)
-
-  appendRemoveLinkForAttachment = (div, wrapper, data) ->
-    attachment_id = data.result['id']
-    form_answer_id = data.result['form_answer_id']
-    list_namespace = wrapper.attr("data-list-namespace")
-    destroy_url = "/form/form_answers/" + form_answer_id + "/" + list_namespace + "/" + attachment_id
-
-    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning")
-                          .prop("href", destroy_url)
-                          .attr("data-method", "delete")
-                          .attr("data-remote", "true")
-                          .text("Remove")
-    div.append(remove_link)
-
   govuk_buttons = $( ".website-document-btns" )
-
-  $('.js-file-upload').each (idx, el) ->
-    form = $(el).closest('form')
-    attachments_url = form.data 'attachments-url'
-    $el = $(el)
-
-    wrapper = $el.closest('div.js-upload-wrapper')
-    button = wrapper.find(".js-button-add")
-    list = wrapper.find('.js-uploaded-list')
-
-    max = wrapper.data('max-attachments')
-    name = wrapper.data('name')
-    form_name = wrapper.data('form-name')
-    needs_description = !!wrapper.data('description')
-    has_filename = !!wrapper.data('filename')
-    is_link = !!$el.data('add-link')
-
-    govuk_button = $(el).closest('.govuk-button')
-
-    #  Searching for inputs only excludes 'Add website address' button
-    if $(el).is("input")
-      $el.on "focus", ->
-        button.addClass("onfocus")
-        govuk_button.removeClass('govuk-button govuk-button--secondary')
-        govuk_button.addClass('upload-focus')
-
-      $el.on "blur", ->
-        button.removeClass("onfocus")
-        govuk_button.addClass('govuk-button govuk-button--secondary')
-        govuk_button.removeClass('upload-focus')
-
-    progress_all = (e, data) ->
-      # TODO
-
-    upload_started = (e, data) ->
-      # Show `Uploading...`
-      govuk_button.addClass("visuallyhidden")
-      new_el = $("<li class='js-uploading'>")
-      div = $("<div>")
-      uid = '_' + Math.random().toString(36).substr(2, 9);
-      label = $("<label class='govuk-label' for='#{uid}'>").text("Uploading...")
-      div.append(label)
-      new_el.append(div)
-      list.append(new_el)
-      list.removeClass("visuallyhidden")
-      wrapper.removeClass("govuk-form-group--error")
-      wrapper.find(".govuk-error-message").empty()
-
-    success_or_error = (e, data) ->
-      errors = data.result.errors
-
-      if errors
-        failed(errors.toString())
-      else
-        upload_done(e, data)
-
-    failed = (error_message) ->
-      if error_message
-        wrapper.addClass("govuk-form-group--error")
-        wrapper.find(".govuk-error-message").html(error_message)
-
-      # Remove `Uploading...`
-      list.find(".js-uploading").remove()
-      list.removeClass("visuallyhidden")
-      govuk_button.removeClass("visuallyhidden")
-
-    upload_done = (e, data, link) ->
-      # Remove `Uploading...`
-      list.find(".js-uploading").remove()
-      list.addClass("visuallyhidden")
-      wrapper.removeClass("govuk-form-group--error")
-      wrapper.find(".govuk-error-message").empty()
-
-      # Show new upload
-      new_el = $("<li>")
-
-      if link
-        div = $("<div>")
-        uid = '_' + Math.random().toString(36).substr(2, 9);
-        label = $("<label class='govuk-label' for='#{uid}'>").text('Website address')
-        input = $("<input class=\"govuk-input js-trigger-autosave\" type=\"text\" id='#{uid}'>").prop('name', "#{form_name}[#{name}][][link]")
-        label.append("<br/>")
-        label.append(input)
-        appendRemoveLinkForWebsiteLink(div)
-        updateUploadListVisiblity(list, govuk_buttons, max)
-        div.append(label)
-        new_el.append(div)
-      else
-        new_el.addClass("js-file-uploaded")
-
-        if has_filename
-          filename = wrapper.data('filename')
-        else
-          if data.result['original_filename']
-            filename = data.result['original_filename']
-          else
-            filename = "File uploaded"
-        div = $("<div><p class='govuk-body'>#{filename}</p></div>")
-
-        hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
-
-        div.append(hidden_input)
-        new_el.append(div)
-        appendRemoveLinkForAttachment(div, wrapper, data)
-
-      if needs_description
-        desc_div = $("<div>")
-        unique_name = "#{form_name}[#{name}][][description]"
-        label = ($("<label class='govuk-label'>").text("Description").attr("for", unique_name))
-        label.append($("<textarea class='govuk-textarea js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
-             .attr("name", unique_name)
-             .attr("id", unique_name))
-        desc_div.append(label)
-        new_el.append(desc_div)
-
-      list.append(new_el)
-      new_el.find("textarea").val("")
-      new_el.find('.js-char-count').charcount()
-      list.removeClass('visuallyhidden')
-      updateUploadListVisiblity(list, govuk_button, max)
-      updateUploadListVisiblity(list, govuk_buttons, max)
-      reindexUploadListInputs(list)
-      new_el.find('input,textarea,select').filter(':visible').first().focus()
-
-    updateUploadListVisiblity(list, govuk_buttons, max)
-
-    if is_link
-      $el.click (e) ->
-        e.preventDefault()
-        if !$(this).hasClass("read-only")
-          upload_done(null, null, true)
-        false
-    else
-      $el.fileupload(
-        url: attachments_url + ".json"
-        forceIframeTransport: true
-        dataType: 'json'
-        formData: [
-          {
-            name: "authenticity_token",
-            value: $("meta[name='csrf-token']").attr("content")
-          },
-          {
-            name: "question_key",
-            value: $el.data("question-key")
-          }
-        ]
-        progressall: progress_all
-        send: upload_started
-        always: success_or_error
-      )
-
-  $(document).on "click", ".js-upload-wrapper .remove-link", (e) ->
-    e.preventDefault()
-
-    if !$(this).hasClass("read-only")
-      li = $(this).closest 'li'
-      list = li.closest(".js-uploaded-list")
-      wrapper = list.closest(".js-upload-wrapper")
-      button = wrapper.find(".button-add")
-      max = wrapper.data('max-attachments')
-
-      li.remove()
-      updateUploadListVisiblity(list, button, max)
-      reindexUploadListInputs(list)
-      triggerAutosave()
-      false
 
   # Show current holder info when they are a current holder on basic eligibility current holder question
   if $(".eligibility_current_holder").length > 0
@@ -1464,3 +1280,215 @@ jQuery ->
   #
   # Init WYSYWYG editor for QAE Form textareas - end
   #
+
+  appendRemoveLinkForWebsiteLink = (div) ->
+    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning remove-website").prop("href", "#").text("Remove")
+    div.append(remove_link)
+
+  appendRemoveLinkForAttachment = (div, wrapper, data) ->
+    attachment_id = data.result['id']
+    form_answer_id = data.result['form_answer_id']
+    list_namespace = wrapper.attr("data-list-namespace")
+    destroy_url = "/form/form_answers/" + form_answer_id + "/" + list_namespace + "/" + attachment_id
+
+    remove_link = $("<a>").addClass("remove-link govuk-button govuk-button--warning")
+                          .prop("href", destroy_url)
+                          .attr("data-method", "delete")
+                          .attr("data-remote", "true")
+                          .text("Remove")
+    div.append(remove_link)
+
+  updateUploadListVisiblity = (list, button, max) ->
+    list_elements = list.find("li")
+    count = list_elements.length
+    wrapper = button.closest('div.js-upload-wrapper')
+
+    if count > 0
+      list.removeClass("hide")
+
+    if !max || count < max
+      button.each ->
+        $(this).removeClass("hide")
+
+    else
+      button.each ->
+        $(this).addClass("hide")
+
+  reindexUploadListInputs = (list) ->
+    idx = 0
+    list.find("li").each (i, li) ->
+      process_input = (j, input_el) ->
+        name = $(input_el).attr("name")
+        match = /([^\[]+)\[([^\]]+)\]\[([0-9]*)\](.*)/.exec name
+        if match
+          $(input_el).attr("name", "#{match[1]}[#{match[2]}][#{idx}]#{match[4]}")
+
+      $(li).find("input").each process_input
+      $(li).find("textarea").each process_input
+      idx++
+
+  $('.js-file-upload').each (idx, el) ->
+    form = $(el).closest('form')
+    attachments_url = form.data 'attachments-url'
+    $el = $(el)
+
+    wrapper = $el.closest('div.js-upload-wrapper')
+    button = wrapper.find(".js-button-add")
+    list = wrapper.find('.js-uploaded-list')
+
+    max = wrapper.data('max-attachments')
+    name = wrapper.data('name')
+    form_name = wrapper.data('form-name')
+    needs_description = !!wrapper.data('description')
+    has_filename = !!wrapper.data('filename')
+    is_link = !!$el.data('add-link')
+
+    govuk_button = $(el).closest('.govuk-button')
+
+    #  Searching for inputs only excludes 'Add website address' button
+    if $(el).is("input")
+      $el.on "focus", ->
+        button.addClass("onfocus")
+        govuk_button.removeClass('govuk-button govuk-button--secondary')
+        govuk_button.addClass('upload-focus')
+
+      $el.on "blur", ->
+        button.removeClass("onfocus")
+        govuk_button.addClass('govuk-button govuk-button--secondary')
+        govuk_button.removeClass('upload-focus')
+
+    progress_all = (e, data) ->
+      # TODO
+
+    upload_started = (e, data) ->
+      # Show `Uploading...`
+      govuk_button.addClass("hide")
+      new_el = $("<li class='js-uploading'>")
+      div = $("<div>")
+      uid = '_' + Math.random().toString(36).substr(2, 9);
+      label = $("<label class='govuk-label' for='#{uid}'>").text("Uploading...")
+      div.append(label)
+      new_el.append(div)
+      list.append(new_el)
+      list.removeClass("hide")
+      wrapper.removeClass("govuk-form-group--error")
+      wrapper.find(".govuk-error-message").empty()
+
+    success_or_error = (e, data) ->
+      errors = data.result.errors
+
+      if errors
+        failed(errors.toString())
+      else
+        upload_done(e, data)
+
+    failed = (error_message) ->
+      if error_message
+        wrapper.addClass("govuk-form-group--error")
+        wrapper.find(".govuk-error-message").html(error_message)
+
+      # Remove `Uploading...`
+      list.find(".js-uploading").remove()
+      list.removeClass("hide")
+      govuk_button.removeClass("hide")
+
+    upload_done = (e, data, link) ->
+      # Remove `Uploading...`
+      list.find(".js-uploading").remove()
+      list.addClass("hide")
+      wrapper.removeClass("govuk-form-group--error")
+      wrapper.find(".govuk-error-message").empty()
+
+      # Show new upload
+      new_el = $("<li>")
+
+      if link
+        div = $("<div>")
+        uid = '_' + Math.random().toString(36).substr(2, 9);
+        label = $("<label class='govuk-label' for='#{uid}'>").text('Website address')
+        input = $("<input class=\"govuk-input js-trigger-autosave\" type=\"text\" id='#{uid}'>").prop('name', "#{form_name}[#{name}][][link]")
+        label.append("<br/>")
+        label.append(input)
+        appendRemoveLinkForWebsiteLink(div)
+        updateUploadListVisiblity(list, govuk_buttons, max)
+        div.append(label)
+        new_el.append(div)
+      else
+        new_el.addClass("js-file-uploaded")
+
+        if has_filename
+          filename = wrapper.data('filename')
+        else
+          if data.result['original_filename']
+            filename = data.result['original_filename']
+          else
+            filename = "File uploaded"
+        div = $("<div><p class='govuk-body'>#{filename}</p></div>")
+
+        hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
+
+        div.append(hidden_input)
+        new_el.append(div)
+        appendRemoveLinkForAttachment(div, wrapper, data)
+
+      if needs_description
+        desc_div = $("<div>")
+        unique_name = "#{form_name}[#{name}][][description]"
+        label = ($("<label class='govuk-label'>").text("Description").attr("for", unique_name))
+        label.append($("<textarea class='govuk-textarea js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
+             .attr("name", unique_name)
+             .attr("id", unique_name))
+        desc_div.append(label)
+        new_el.append(desc_div)
+
+      list.append(new_el)
+      new_el.find("textarea").val("")
+      new_el.find('.js-char-count').charcount()
+      list.removeClass('hide')
+      updateUploadListVisiblity(list, govuk_button, max)
+      reindexUploadListInputs(list)
+      new_el.find('input,textarea,select').filter(':visible').first().focus()
+
+    updateUploadListVisiblity(list, govuk_buttons, max)
+
+    if is_link
+      $el.click (e) ->
+        e.preventDefault()
+        if !$(this).hasClass("read-only")
+          upload_done(null, null, true)
+        false
+    else
+      $el.fileupload(
+        url: attachments_url + ".json"
+        forceIframeTransport: true
+        dataType: 'json'
+        formData: [
+          {
+            name: "authenticity_token",
+            value: $("meta[name='csrf-token']").attr("content")
+          },
+          {
+            name: "question_key",
+            value: $el.data("question-key")
+          }
+        ]
+        progressall: progress_all
+        send: upload_started
+        always: success_or_error
+      )
+
+  $(document).on "click", ".js-upload-wrapper .remove-link", (e) ->
+    e.preventDefault()
+
+    if !$(this).hasClass("read-only")
+      li = $(this).closest 'li'
+      list = li.closest(".js-uploaded-list")
+      wrapper = list.closest(".js-upload-wrapper")
+      button = wrapper.find(".button-add")
+      max = wrapper.data('max-attachments')
+
+      li.remove()
+      updateUploadListVisiblity(list, button, max)
+      reindexUploadListInputs(list)
+      triggerAutosave()
+      false

@@ -34,7 +34,7 @@ describe "Form answer attachments management", '
 
     it "destroys the attachment" do
       click_button "Remove"
-      expect(page).to have_content("No documents")
+      expect(page).to have_content("No other documents")
     end
   end
 

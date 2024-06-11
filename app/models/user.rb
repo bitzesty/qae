@@ -3,6 +3,7 @@ class User < ApplicationRecord
   extend Enumerize
 
   POSSIBLE_ROLES = %w[account_admin regular]
+  POSSIBLE_TITLES = %w[Mr Mrs Miss Ms Mx Dr Professor Reverend Sir Baron Baroness Dame Lady Lord]
 
   devise :database_authenticatable, :registerable,
     :recoverable, :trackable, :validatable, :confirmable,
