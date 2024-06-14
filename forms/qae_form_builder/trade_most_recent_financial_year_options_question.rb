@@ -6,6 +6,8 @@ class QaeFormBuilder
       date, range = question.get_changeable_date_range
 
       if date.present? && range.present? && !date.in?(range) && question.year_has_changed?
+        from = Settings.current_award_year_switch_date
+        to = Settings.current_submission_deadline
         result[question.key] = "You can only change the year if your dates in question D2 range between #{from.decorate.formatted_trigger_date} to #{to.decorate.formatted_trigger_date}."
       end
 
