@@ -100,4 +100,28 @@ describe FormController do
       end
     end
   end
+
+  describe "#add_attachment" do
+    let(:file) { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/cat.jpg"), "image/jpeg") }
+
+    it "adds attachment to the form answer" do
+      expect {
+        post :add_attachment, params: {
+          form: {
+            file: file,
+          },
+          id: form_answer.id,
+          question_key: "org_chart",
+        }
+      }.to change {
+        form_answer.reload.form_answer_attachments.count
+      }.by(1)
+
+      expect(response).to have_http_status(:created)
+
+      id = JSON.parse(response.body)["id"]
+      attachment = FormAnswerAttachment.find_by(id: id)
+      expect(attachment).to be_present
+    end
+  end
 end
