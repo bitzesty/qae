@@ -125,7 +125,7 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "validations" do
-    %w(user).each do |field_name|
+    %w[user].each do |field_name|
       it { should validate_presence_of field_name }
     end
 
@@ -141,13 +141,13 @@ RSpec.describe FormAnswer, type: :model do
       form_answer.document = form_answer.document.merge(started_trading_day: "2",
         started_trading_month: 12,
         started_trading_year: Date.current.year - 2,
-        trade_commercial_success: "3 to 5",)
+        trade_commercial_success: "3 to 5")
       expect(form_answer).to be_invalid
 
       form_answer.document = form_answer.document.merge(started_trading_day: "2",
         started_trading_month: 12,
         started_trading_year: Date.current.year - 7,
-        trade_commercial_success: "3 to 5",)
+        trade_commercial_success: "3 to 5")
       expect(form_answer).to be_valid
     end
 
@@ -190,7 +190,7 @@ RSpec.describe FormAnswer, type: :model do
       create(:form_answer, :trade, :submitted)
     end
 
-    let(:award_year) { AwardYear.current.year.to_s[2..-1] }
+    let(:award_year) { AwardYear.current.year.to_s[2..] }
 
     it "creates form with URN" do
       expect(form_answer.urn).to eq("KA0001/#{award_year}T")

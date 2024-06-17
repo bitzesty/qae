@@ -1,7 +1,8 @@
 require "app_responder"
-include AuditHelper
 
 class ApplicationController < ActionController::Base
+  include AuditHelper
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception, prepend: true
@@ -44,7 +45,7 @@ class ApplicationController < ActionController::Base
       else
         render text: "You have no permissions!"
       end
-      return
+      nil
     end
   end
 
@@ -62,7 +63,7 @@ class ApplicationController < ActionController::Base
         else
           render text: "You have no permissions!"
         end
-        return false
+        false
       end
     end
   end
@@ -79,14 +80,14 @@ class ApplicationController < ActionController::Base
   end
   helper_method :should_enable_js?
 
-  %w(innovation trade mobility development).each do |award|
-    define_method "#{award}_submission_started?" do
-      public_send("#{award}_submission_started_deadline").passed?
+  %w[innovation trade mobility development].each do |award|
+    define_method :"#{award}_submission_started?" do
+      public_send(:"#{award}_submission_started_deadline").passed?
     end
     helper_method "#{award}_submission_started?"
 
-    define_method "#{award}_submission_started_deadline" do
-      Settings.public_send("current_#{award}_submission_start_deadline")
+    define_method :"#{award}_submission_started_deadline" do
+      Settings.public_send(:"current_#{award}_submission_start_deadline")
     end
     helper_method "#{award}_submission_started_deadline"
   end
@@ -140,7 +141,7 @@ class ApplicationController < ActionController::Base
       subject: current_subject,
       auditable: form_answer,
       action_type: action_type,
-      )
+    )
   end
 
   def current_subject
@@ -204,7 +205,7 @@ class ApplicationController < ActionController::Base
   def check_account_completion
     if !current_user.completed_registration?
       redirect_to correspondent_details_account_path
-      return
+      nil
     end
   end
 
@@ -232,10 +233,10 @@ class ApplicationController < ActionController::Base
   end
 
   def load_award_year_and_settings
-    if params[:year] && AwardYear::AVAILABLE_YEARS.include?(params[:year].to_i)
-      @award_year = AwardYear.for_year(params[:year].to_i).first_or_create
+    @award_year = if params[:year] && AwardYear::AVAILABLE_YEARS.include?(params[:year].to_i)
+      AwardYear.for_year(params[:year].to_i).first_or_create
     else
-      @award_year = AwardYear.current
+      AwardYear.current
     end
 
     @settings = @award_year.settings

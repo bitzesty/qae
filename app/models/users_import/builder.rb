@@ -4,7 +4,7 @@ class UsersImport::Builder
   attr_reader :csv
 
   def initialize(filepath)
-    file = File.open(filepath).read
+    file = File.read(filepath)
     @csv = CSV.parse(file, headers: true)
   end
 
@@ -19,7 +19,7 @@ class UsersImport::Builder
 
         u.imported = true
         map.each do |csv_h, db_h|
-          u.send("#{db_h}=", user[csv_h])
+          u.send(:"#{db_h}=", user[csv_h])
         end
         u.role = "account_admin"
         u = assign_password(u)
@@ -56,7 +56,7 @@ class UsersImport::Builder
   private
 
   def log(msg)
-    puts msg unless Rails.env.test?
+    Rails.logger.debug msg unless Rails.env.test?
   end
 
   def map
@@ -76,7 +76,7 @@ class UsersImport::Builder
   end
 
   def assign_password(user)
-    passw = (0...15).map { (65 + rand(26)).chr }.join
+    passw = (0...15).map { rand(65..90).chr }.join
     user.password = passw
     user.password_confirmation = passw
     user

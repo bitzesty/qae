@@ -41,8 +41,8 @@ module FormHelper
     text.to_s.split.count
   end
 
-  def application_collaborator_group_mode?
+  def application_collaborator_group_mode?(application)
     current_form_is_editable? &&
-      @form_answer.has_more_than_one_contributor?
+      application.has_more_than_one_contributor?
   end
 end

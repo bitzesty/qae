@@ -25,4 +25,3 @@ end
 if ::ActionMailer::MessageDelivery.included_modules.exclude?(Extensions::ActionMailer::MessageDeliveryDecorator)
   ::ActionMailer::MessageDelivery.prepend(Extensions::ActionMailer::MessageDeliveryDecorator)
 end
-

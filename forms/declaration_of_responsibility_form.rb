@@ -14,7 +14,7 @@ class DeclarationOfResponsibilityForm
 
   attr_reader :form_answer
 
-  attr_accessor *ATTRIBUTES
+  attr_accessor(*ATTRIBUTES)
 
   ATTRIBUTES.each do |attr_name|
     class_eval <<-EVAL, __FILE__, __LINE__ + 1
@@ -25,13 +25,13 @@ class DeclarationOfResponsibilityForm
   def initialize(form_answer)
     @form_answer = form_answer
     ATTRIBUTES.each do |attr_name|
-      public_send("#{attr_name}=", form_answer.document[attr_name.to_s])
+      public_send(:"#{attr_name}=", form_answer.document[attr_name.to_s])
     end
   end
 
   def update(attrs = {})
     ATTRIBUTES.each do |attr_name|
-      self.public_send("#{attr_name}=", attrs[attr_name])
+      public_send(:"#{attr_name}=", attrs[attr_name])
     end
 
     return false unless valid?
@@ -52,7 +52,7 @@ class DeclarationOfResponsibilityForm
   private
 
   ATTRIBUTES.each do |attr_name|
-    define_method("words_in_#{attr_name}") do
+    define_method(:"words_in_#{attr_name}") do
       if public_send(attr_name.to_s).split.size > 500
         errors.add(attr_name, "is too long (maximum is 500 words)")
       end

@@ -20,7 +20,7 @@ class Users::CollaboratorAccessController < Users::BaseController
           section: params[:section],
           joined_at: params[:timestamp],
         },
-      },
+      }
     )
 
     render(

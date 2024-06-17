@@ -8,19 +8,19 @@ class QaeFormBuilder
       return result unless question.visible?
 
       dates = question.active_fields.each_with_object(Hash[]) do |field, outer|
-                suffix = "#{question.key}_#{field}"
-                parts = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
-                  key = "#{suffix}#{sub}"
-                  inner << answers[key]
-                end
+        suffix = "#{question.key}_#{field}"
+        parts = REQUIRED_SUB_FIELDS.each_with_object([]) do |sub, inner|
+          key = "#{suffix}#{sub}"
+          inner << answers[key]
+        end
 
-                if parts.any?(&:blank?)
-                  outer[suffix] = :blank
-                else
-                  date = parts.join("/")
-                  outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
-                end
-              end
+        if parts.any?(&:blank?)
+          outer[suffix] = :blank
+        else
+          date = parts.join("/")
+          outer[suffix] = ::Utils::Date.valid?(date) ? Date.parse(date) : :invalid
+        end
+      end
 
       required = question.required?
 
@@ -92,7 +92,7 @@ class QaeFormBuilder
     def active_fields
       return [] unless fields_count
 
-      (1..fields_count).map{ |y| "#{y}of#{fields_count}" }
+      (1..fields_count).map { |y| "#{y}of#{fields_count}" }
     end
 
     def fields_count
@@ -108,12 +108,15 @@ class QaeFormBuilder
           q = form[c.question_key]
           if q.is_a?(QaeFormBuilder::DateQuestion) || q.is_a?(QaeFormBuilder::DateQuestionDecorator)
 
-            date = []
-            q.required_sub_fields.each do |sub|
-              date << q.input_value(suffix: sub.keys[0])
+            date = q.required_sub_fields.map do |sub|
+              q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue
+              nil
+            end
 
             c.question_value.call(date)
           else

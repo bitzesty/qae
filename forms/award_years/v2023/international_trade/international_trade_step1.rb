@@ -97,54 +97,52 @@ class AwardYears::V2023::QaeForms
             )],
             [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
             [:normal, %(
-                \u2022 Biotechnology & Biological Sciences Research Council
-                \u2022 Charity Commission
-                \u2022 Companies House
-                \u2022 Competition and Markets Authority
-                \u2022 Crown Commercial Service
-                \u2022 Department for Business, Energy and Industrial Strategy
-                \u2022 Department for Communities and Local Government
-                \u2022 Department for Culture Media & Sport
-                \u2022 Department for Education
-                \u2022 Department for Environment, Food & Rural Affairs
-                \u2022 Department for International Trade
-                \u2022 Department for Transport
-                \u2022 Department of Economic Development, Isle of Man
-                \u2022 Department for the Economy NI
-                \u2022 Department of Health
-                \u2022 Environment Agency
-                \u2022 Financial Conduct Authority
-                \u2022 Food Standards Agency
-                \u2022 Forestry Commission
-                \u2022 Guernsey Government
-                \u2022 Health and Safety Executive
-                \u2022 HM Courts & Tribunals Service
-                \u2022 HM Revenue & Customs
-                \u2022 Home Office
-                \u2022 Insolvency Service
-                \u2022 Intellectual Property Office
-                \u2022 Invest NI
-                \u2022 Jersey Government
-                \u2022 Ministry of Defence
-                \u2022 Ministry of Justice
-                \u2022 Medical Research Council Technology
-                \u2022 National Measurement Office
-                \u2022 Natural England
-                \u2022 Natural Environment Research Council
-                \u2022 Office of the Scottish Charity Regulator
-                \u2022 Scottish Government
-                \u2022 Scottish Environment Protection Agency
-                \u2022 Scottish Funding Council
-                \u2022 Serious Fraud Office
-                \u2022 UK Export Finance
-                \u2022 Wales Government
-              )
-            ],
+              \u2022 Biotechnology & Biological Sciences Research Council
+              \u2022 Charity Commission
+              \u2022 Companies House
+              \u2022 Competition and Markets Authority
+              \u2022 Crown Commercial Service
+              \u2022 Department for Business, Energy and Industrial Strategy
+              \u2022 Department for Communities and Local Government
+              \u2022 Department for Culture Media & Sport
+              \u2022 Department for Education
+              \u2022 Department for Environment, Food & Rural Affairs
+              \u2022 Department for International Trade
+              \u2022 Department for Transport
+              \u2022 Department of Economic Development, Isle of Man
+              \u2022 Department for the Economy NI
+              \u2022 Department of Health
+              \u2022 Environment Agency
+              \u2022 Financial Conduct Authority
+              \u2022 Food Standards Agency
+              \u2022 Forestry Commission
+              \u2022 Guernsey Government
+              \u2022 Health and Safety Executive
+              \u2022 HM Courts & Tribunals Service
+              \u2022 HM Revenue & Customs
+              \u2022 Home Office
+              \u2022 Insolvency Service
+              \u2022 Intellectual Property Office
+              \u2022 Invest NI
+              \u2022 Jersey Government
+              \u2022 Ministry of Defence
+              \u2022 Ministry of Justice
+              \u2022 Medical Research Council Technology
+              \u2022 National Measurement Office
+              \u2022 Natural England
+              \u2022 Natural Environment Research Council
+              \u2022 Office of the Scottish Charity Regulator
+              \u2022 Scottish Government
+              \u2022 Scottish Environment Protection Agency
+              \u2022 Scottish Funding Council
+              \u2022 Serious Fraud Office
+              \u2022 UK Export Finance
+              \u2022 Wales Government
+            )],
             [:bold, "Small organisations"],
             [:normal, %(
-                Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
-              )
-            ],
+              Queen's Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all of the questions to a degree you can.
+            )],
           ]
         end
 

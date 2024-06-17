@@ -44,11 +44,9 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     )
   end
 
-  def index
-  end
+  def index; end
 
-  def new
-  end
+  def new; end
 
   def create
     self.form_answer_attachment = current_user.form_answer_attachments.new(
@@ -70,7 +68,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   end
 
   def confirm_deletion
-    self.form_answer_attachment = self.form_answer_attachments.find(params[:form_attachment_id])
+    self.form_answer_attachment = form_answer_attachments.find(params[:form_attachment_id])
   end
 
   def destroy

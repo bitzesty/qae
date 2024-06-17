@@ -1,7 +1,6 @@
 class HardCopyGenerators::Base
   attr_reader :form_answer,
     :pdf,
-    :tempfile_name,
     :timestamp,
     :tmpfile,
     :use_latest_version
@@ -37,7 +36,7 @@ class HardCopyGenerators::Base
   private
 
   def tempfile_name
-    "#{file_prefix}_#{form_answer.urn}_#{timestamp}_SEPARATOR".gsub("/", "_")
+    "#{file_prefix}_#{form_answer.urn}_#{timestamp}_SEPARATOR".tr("/", "_")
   end
 
   def original_filename

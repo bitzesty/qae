@@ -1,11 +1,10 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
-describe "Palace Attendees", %q{
+describe "Palace Attendees", '
 As a head of organization
 I want to be able to setup Buckingham Palace attendees details
 So that I provide a full list of attendees for Buckingham Palace reception
-} do
+' do
   let(:user) do
     create :user, :completed_profile, role: "account_admin"
   end

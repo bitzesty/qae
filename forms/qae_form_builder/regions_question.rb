@@ -27,6 +27,7 @@ class QaeFormBuilder
       @entities ||= answers[delegate_obj.key.to_s] || []
     end
   end
+
   class RegionsQuestion < DropdownQuestion
   end
 end

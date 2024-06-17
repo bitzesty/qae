@@ -1,6 +1,6 @@
 class QaeFormBuilder
-  AUTO_CALCULATED_HEADINGS = %w(total_system_calculated calculated_total calculated_proportion calculated_sub_total).freeze
-  EXCLUDED_HEADINGS = %w(calculated_sub_total others calculated_total calculated_proportion).freeze
+  AUTO_CALCULATED_HEADINGS = %w[total_system_calculated calculated_total calculated_proportion calculated_sub_total].freeze
+  EXCLUDED_HEADINGS = %w[calculated_sub_total others calculated_total calculated_proportion].freeze
   class MatrixQuestionValidator < QuestionValidator
     def errors
       result = super
@@ -9,16 +9,14 @@ class QaeFormBuilder
           question.x_headings.each do |x_heading|
             suffix = "#{x_heading.key}_#{y_heading.key}"
             if !AUTO_CALCULATED_HEADINGS.any? { |excluded| question.input_name(suffix: suffix).include?(excluded) }
-              if !question.input_value(suffix: suffix).present?
+              if question.input_value(suffix: suffix).blank?
                 if (question.required_row_parent && question.required_rows.include?(y_heading.key)) || !question.required_row_parent
                   result[question.hash_key(suffix: suffix)] ||= ""
                   result[question.hash_key(suffix: suffix)] << "Must be filled in. Enter '0' if none"
                 end
-              else
-                if !/\A\d+\z/.match(question.input_value(suffix: suffix).to_s)
-                  result[question.hash_key(suffix: suffix)] ||= ""
-                  result[question.hash_key(suffix: suffix)] << "Must be a whole number"
-                end
+              elsif !/\A\d+\z/.match(question.input_value(suffix: suffix).to_s)
+                result[question.hash_key(suffix: suffix)] ||= ""
+                result[question.hash_key(suffix: suffix)] << "Must be a whole number"
               end
             end
           end
@@ -96,10 +94,10 @@ class QaeFormBuilder
     end
 
     def calculate_proportion(question_key, answers, x_heading, y_heading)
-      if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
-        disadvantaged = answers["#{question_key}_#{x_heading}_calculated_sub_total"].to_f
+      disadvantaged = if y_headings.any? { |heading| heading.key == "calculated_sub_total" }
+        answers["#{question_key}_#{x_heading}_calculated_sub_total"].to_f
       else
-        disadvantaged = answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
+        answers["#{question_key}_#{x_heading}_total_disadvantaged"].to_f
       end
       disadvantaged ||= 0
       total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
@@ -182,7 +180,7 @@ class QaeFormBuilder
     def x_headings headings
       headings.each do |heading|
         if heading.is_a?(Array)
-          x_heading *heading
+          x_heading(*heading)
         else
           x_heading heading.to_s.parameterize.underscore, heading
         end
@@ -192,22 +190,22 @@ class QaeFormBuilder
     def y_headings headings
       headings.each do |heading|
         if heading.is_a?(Array)
-          y_heading *heading
+          y_heading(*heading)
         else
           y_heading heading.to_s.parameterize.underscore, heading
         end
       end
       if @q.subtotals_label
-        y_heading "calculated_sub_total", @q.subtotals_label, { "row_class": "auto-subtotals-row" }
+        y_heading "calculated_sub_total", @q.subtotals_label, { row_class: "auto-subtotals-row" }
       end
       if @q.others_label
-        y_heading "others", @q.others_label, { "row_class": "others-not-disadvantaged-row" }
+        y_heading "others", @q.others_label, { row_class: "others-not-disadvantaged-row" }
       end
       if @q.totals_label
-        y_heading "calculated_total", @q.totals_label, { "row_class": "auto-totals-row" }
+        y_heading "calculated_total", @q.totals_label, { row_class: "auto-totals-row" }
       end
       if @q.proportion_label
-        y_heading "calculated_proportion", @q.proportion_label, { "row_class": "auto-proportion-row" }
+        y_heading "calculated_proportion", @q.proportion_label, { row_class: "auto-proportion-row" }
       end
     end
 

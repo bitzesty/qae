@@ -3,19 +3,22 @@ class QaeFormBuilder
     def errors
       result = super
 
-      date = []
-      question.required_sub_fields.each do |sub_field|
-        date << question.input_value(suffix: sub_field.keys[0])
+      date = question.required_sub_fields.map do |sub_field|
+        question.input_value(suffix: sub_field.keys[0])
       end
 
       date << Date.current.year.to_s
       day = question.input_value(suffix: "day")
       month = question.input_value(suffix: "month")
 
-      if day.blank? || month.blank?
-        date = nil
+      date = if day.blank? || month.blank?
+        nil
       else
-        date = Date.parse(date.join("/")) rescue nil
+        begin
+          Date.parse(date.join("/"))
+        rescue
+          nil
+        end
       end
 
       if question.required? && !date

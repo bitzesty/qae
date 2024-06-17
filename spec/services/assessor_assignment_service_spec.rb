@@ -33,7 +33,7 @@ describe AssessorAssignmentService do
         allow(assessor).to receive(:lead?).and_return(false)
       end
 
-      it "can not change the assigned assessor"do
+      it "can not change the assigned assessor" do
         expect(subject.permitted_params).to_not include(:assessor_id)
       end
     end
@@ -132,7 +132,7 @@ describe AssessorAssignmentService do
         subject.save
         expect(subject.update_params).to eq(
           "commercial_success_desc" => "I am description",
-          "strategy_desc" => "should be saved",)
+          "strategy_desc" => "should be saved")
       end
     end
   end

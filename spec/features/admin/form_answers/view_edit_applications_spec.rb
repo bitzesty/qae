@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 feature "Admin view application", js: true do
   scenario "As an admin I can only see the application in read only mode" do

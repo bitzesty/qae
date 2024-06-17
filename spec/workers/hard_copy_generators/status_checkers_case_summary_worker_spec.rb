@@ -9,7 +9,3 @@ RSpec.describe HardCopyPdfGenerators::StatusCheckers::CaseSummaryWorker do
     described_class.new.perform
   end
 end
-
-
-
-

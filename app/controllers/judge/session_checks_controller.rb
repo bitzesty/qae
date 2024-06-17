@@ -1,3 +1,4 @@
+# rubocop:disable Rails/ApplicationController
 class Judge::SessionChecksController < ActionController::Base
   include SessionStatusCheckMixin
 
@@ -19,3 +20,4 @@ class Judge::SessionChecksController < ActionController::Base
     JUDGE_NAMESPACE
   end
 end
+# rubocop:enable Rails/ApplicationController

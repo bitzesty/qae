@@ -1,12 +1,12 @@
 require "rails_helper"
-include Warden::Test::Helpers
-include ActiveJob::TestHelper
 
-describe "Collaborators", %q{
+describe "Collaborators", '
 As a Account Admin
 I want to be able to add / remove collaborators to Account
 So that they can collaborate form answers
-} do
+' do
+  include ActiveJob::TestHelper
+
   let!(:account_admin) do
     create :user,
       :completed_profile,
@@ -34,7 +34,7 @@ So that they can collaborate form answers
     create :innovation_eligibility,
       form_answer: form_answer,
       account: account
- end
+  end
 
   let!(:trade_eligibility) do
     create :trade_eligibility,

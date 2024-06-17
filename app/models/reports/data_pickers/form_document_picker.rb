@@ -73,7 +73,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def innovation_type
     if innovation? && doc("application_relate_to_header")
-      types = doc("application_relate_to_header").map{ |hash| hash["type"] }
+      types = doc("application_relate_to_header").map { |hash| hash["type"] }
       types.join(",")
     else
       ""
@@ -91,7 +91,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def current_queens_award_holder
     awards = obj.previous_wins
-    return if !awards || awards.empty?
+    return if awards.blank?
 
     categories = PreviousWin::CATEGORIES.invert
 
@@ -140,7 +140,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_county
     if business_form?
-      if county = doc("organization_address_county")
+      if (county = doc("organization_address_county"))
         county.split(" - ").first
       else
         ""
@@ -295,12 +295,10 @@ module Reports::DataPickers::FormDocumentPicker
     elsif mobility?
       if obj.award_year.year <= 2020
         doc("mobility_desc_short")
+      elsif obj.award_year.year <= 2023
+        (doc("application_category") == "initiative") ? doc("initiative_desc_short") : doc("organisation_desc_short")
       else
-        if obj.award_year.year <= 2023
-          (doc("application_category") == "initiative") ? doc("initiative_desc_short") : doc("organisation_desc_short")
-        else
-          doc("initiative_desc_short")
-        end
+        doc("initiative_desc_short")
       end
     else
       (obj.award_year.year <= 2023) ? doc("trade_goods_briefly") : doc("trade_description_short")
@@ -315,7 +313,11 @@ module Reports::DataPickers::FormDocumentPicker
     year = doc("started_trading_year")
 
     if year && month && day
-      Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y") rescue nil
+      begin
+        Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y")
+      rescue
+        nil
+      end
     end
   end
 
@@ -331,9 +333,9 @@ module Reports::DataPickers::FormDocumentPicker
         question = questions[meth.keys.first.to_sym]&.decorate(answers: answers)
 
         range = if question.respond_to?(:active_by_year_condition)
-                  question.active_by_year_condition&.options&.dig(:data, :identifier)
+          question.active_by_year_condition&.options&.dig(:data, :identifier)
         else
-                  doc(meth.keys.first)
+          doc(meth.keys.first)
         end
 
         target_key = meth.values.first[range]

@@ -32,4 +32,3 @@ RSpec.describe CompanyRegistrationNumberValidator do
     end
   end
 end
-

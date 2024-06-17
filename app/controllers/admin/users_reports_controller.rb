@@ -2,7 +2,7 @@ class Admin::UsersReportsController < Admin::BaseController
   def assessors_judges_admins_data
     authorize :reports, :show?
 
-    @report = Reports::Admin::AssessorJudgeAdminDataReport.new()
+    @report = Reports::Admin::AssessorJudgeAdminDataReport.new
 
     respond_to do |format|
       format.csv do

@@ -19,7 +19,9 @@ class Form::MaterialsBaseController < Form::BaseController
     existing_materials.keys.map(&:to_i).max.to_i + 1
   end
 
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :check_materials_limit, only: [:create]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   private
 
@@ -27,7 +29,7 @@ class Form::MaterialsBaseController < Form::BaseController
     if existing_materials.count >= MAX_ATTACHMENTS
       redirect_to form_form_answer_form_attachments_url(@form_answer),
         alert: "You can add up to #{MAX_ATTACHMENTS} files or website addresses as maximum!"
-      return
+      nil
     end
   end
 end

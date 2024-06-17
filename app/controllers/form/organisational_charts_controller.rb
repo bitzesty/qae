@@ -49,8 +49,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     "header_org_chart"
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.form_answer_attachment = current_user.form_answer_attachments.new(

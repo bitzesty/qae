@@ -61,7 +61,7 @@ class QaeFormBuilder
   class << self
     def build title, &block
       form = QaeForm.new title
-      form.instance_eval &block if block_given?
+      form.instance_eval(&block) if block
       form
     end
   end

@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "User uploads VAT returns and actual figures" do
   let(:user) { create(:user, :completed_profile) }

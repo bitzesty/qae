@@ -34,7 +34,7 @@ describe TriggerAtDecorator do
     context "without a trigger_at value" do
       it "returns a placeholder value" do
         deadline = build_stubbed(:deadline, trigger_at: nil).decorate
-        expect(deadline.formatted_trigger_time_short).to eq("<strong>-- --- #{AwardYear.current.year}</strong> at --:--".html_safe)
+        expect(deadline.formatted_trigger_time_short).to eq("<strong>-- --- #{AwardYear.current.year}</strong> at --:--")
       end
     end
 
@@ -50,7 +50,7 @@ describe TriggerAtDecorator do
     context "without a trigger_at value" do
       it "returns a date placeholder value" do
         deadline = build_stubbed(:deadline, trigger_at: nil).decorate
-        expect(deadline.formatted_trigger_date).to eq("<strong>-- --- #{AwardYear.current.year}</strong>".html_safe)
+        expect(deadline.formatted_trigger_date).to eq("<strong>-- --- #{AwardYear.current.year}</strong>")
       end
     end
 

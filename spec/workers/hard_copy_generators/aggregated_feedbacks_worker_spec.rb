@@ -12,7 +12,3 @@ RSpec.describe HardCopyPdfGenerators::Aggregated::FeedbacksWorker do
     described_class.new.perform
   end
 end
-
-
-
-

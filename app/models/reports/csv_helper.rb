@@ -56,7 +56,7 @@ module Reports::CsvHelper
   private
 
   def headers
-    mapping.map { |m| m[:label] }
+    mapping.pluck(:label)
   end
 
   def sanitize_string(string)

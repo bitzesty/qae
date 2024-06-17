@@ -1,11 +1,10 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
-describe "Admin: ability to remove Verification of Commercial Figures", %q{
+describe "Admin: ability to remove Verification of Commercial Figures", '
 As an Admin
 I want to have ability to delete the Verification of Commercial Figures in case the user has uploaded it in error
 So that User can re-upload Verification of Commercial Figures
-} do
+' do
   let!(:form_answer) do
     create(:form_answer, :submitted, :with_audit_certificate)
   end
@@ -61,7 +60,7 @@ So that User can re-upload Verification of Commercial Figures
       wait_for_ajax
 
       expect {
-        find(".js-remove-audit-certificate-link").click()
+        find(".js-remove-audit-certificate-link").click
         page.driver.browser.switch_to.alert.accept
 
         wait_for_ajax

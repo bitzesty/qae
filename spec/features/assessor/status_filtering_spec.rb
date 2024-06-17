@@ -1,18 +1,16 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
-include FormAnswerFilteringTestHelper
-
-Warden.test_mode!
-
 describe "As Lead Assessor I want to filter applications by state", js: true do
+  include FormAnswerFilteringTestHelper
+  Warden.test_mode!
+
   before do
     @forms = []
     @forms << create(
       :form_answer,
       :trade,
       state: "not_submitted",
-      document: { sic_code: "1623" },)
+      document: { sic_code: "1623" })
 
     @forms << create(:form_answer, :development, state: "application_in_progress")
     @forms << create(:form_answer, :trade, state: "not_eligible")

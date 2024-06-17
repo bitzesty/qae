@@ -4,9 +4,7 @@ describe Settings do
   context "after create" do
     let(:settings) { Settings.current }
     let(:deadlines) {
-      Deadline::AVAILABLE_DEADLINES.sort do |a, b|
-        a <=> b
-      end
+      Deadline::AVAILABLE_DEADLINES.sort
     }
 
     it "creates all kinds of deadlines" do

@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Lord-Lieutenant data sharing" do
   let(:new_user) { create :user }

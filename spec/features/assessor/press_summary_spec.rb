@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Assessor press_summary management", js: true do
   let(:assessor) { create(:assessor, :lead_for_all) }

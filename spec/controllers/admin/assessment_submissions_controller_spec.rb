@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Admin::AssessmentSubmissionsController do
   let!(:admin) { create(:admin, superadmin: true) }
@@ -25,7 +24,7 @@ RSpec.describe Admin::AssessmentSubmissionsController do
     let(:form_answer) { assessor_assignment.form_answer }
 
     context "primary assessment" do
-      let!(:assessor_assignment) { create(:assessor_assignment, position: "primary", locked_at: Time.now) }
+      let!(:assessor_assignment) { create(:assessor_assignment, position: "primary", locked_at: Time.current) }
 
       before do
         form_answer.update_column(:state, "recommended")

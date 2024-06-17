@@ -14,7 +14,7 @@ class FormAnswerVersionsDispatcher
   def whodunnit_hash
     @whodunnit_hash ||= begin
       keys = @form_answer.versions.map(&:whodunnit).uniq.compact
-      Hash[keys.map { |key| [key, get_full_name(key)] }]
+      keys.index_with { |key| get_full_name(key) }
     end
   end
 
@@ -27,8 +27,6 @@ class FormAnswerVersionsDispatcher
     # and display "N/A" for such users
     if user
       user.decorate.full_name
-    else
-      nil
     end
   end
 

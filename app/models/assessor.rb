@@ -93,7 +93,7 @@ class Assessor < ApplicationRecord
   end
 
   def applications_scope(award_year = nil)
-    c = assigned_categories_as(%w(lead))
+    c = assigned_categories_as(%w[lead])
     join = "LEFT OUTER JOIN assessor_assignments ON
     assessor_assignments.form_answer_id = form_answers.id"
 
@@ -108,7 +108,7 @@ class Assessor < ApplicationRecord
       (form_answers.award_type in (?) OR
       (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))
       AND form_answers.state NOT IN (?)
-    ", c, [0, 1], id, "withdrawn",)
+    ", c, [0, 1], id, "withdrawn")
   end
 
   # we're using extended scope on the resource page
@@ -116,12 +116,9 @@ class Assessor < ApplicationRecord
   # with account's other applications
   # they were not assigned to
   def extended_applications_scope
-    c = assigned_categories_as(%w(lead regular))
+    c = assigned_categories_as(%w[lead regular])
 
-    out = FormAnswer.where("
-      form_answers.award_type in (?)
-      AND form_answers.state NOT IN (?)
-    ", c, "withdrawn",)
+    FormAnswer.where(award_type: c).where.not(state: "withdrawn")
   end
 
   def full_name
@@ -191,7 +188,7 @@ class Assessor < ApplicationRecord
   end
 
   def all_assigned_award_types
-    assigned_categories_as(%w(lead regular)).map do |cat|
+    assigned_categories_as(%w[lead regular]).map do |cat|
       FormAnswer::AWARD_TYPE_FULL_NAMES[cat]
     end.join(", ")
   end
@@ -212,18 +209,12 @@ class Assessor < ApplicationRecord
   end
 
   def assigned_categories_as(roles)
-    FormAnswer::POSSIBLE_AWARDS.map do |award|
-      award if roles.include?(get_role(award).to_s)
-    end.compact
+    FormAnswer::POSSIBLE_AWARDS.select { |award| roles.include?(get_role(award).to_s) }
   end
 
   def nil_if_blank
     FormAnswer::POSSIBLE_AWARDS.each do |award|
-      self.public_send("#{award}_role=", nil) if get_role(award).blank?
+      public_send(:"#{award}_role=", nil) if get_role(award).blank?
     end
-  end
-
-  def self.leads_for(category)
-    where(role_meth(category) => "lead")
   end
 end

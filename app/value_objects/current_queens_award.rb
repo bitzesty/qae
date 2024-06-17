@@ -12,12 +12,12 @@ class CurrentQueensAward
 
   validates :category, length: { maximum: 100 },
     inclusion: {
-      in: -> (record) { record.categories },
+      in: ->(record) { record.categories },
     }
 
   validates :year, length: { maximum: 4 },
     inclusion: {
-      in: -> (record) { record.years },
+      in: ->(record) { record.years },
     }
 
   def initialize(categories, years, outcomes, attrs = {})
@@ -26,7 +26,7 @@ class CurrentQueensAward
     @outcomes = outcomes.map { |o| [o.value, o.text] }
 
     attrs.each do |key, value|
-      instance_variable_set("@#{key}", value.to_s.strip)
+      instance_variable_set(:"@#{key}", value.to_s.strip)
     end
   end
 end

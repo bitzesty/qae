@@ -22,7 +22,7 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
   private
 
   def attach_generated_file!
-    pdf_record = award_year.send("aggregated_#{type_of_report}_hard_copies").new(
+    pdf_record = award_year.send(:"aggregated_#{type_of_report}_hard_copies").new(
       file: tmpfile,
       type_of_report: type_of_report,
       sub_type: sub_type,
@@ -51,7 +51,7 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
     ops[:years_mode] = sub_type if award_category == "trade"
 
     @pdf = CaseSummaryPdfs::Base.new(
-      "all", nil, ops,
+      "all", nil, ops
     )
   end
 end

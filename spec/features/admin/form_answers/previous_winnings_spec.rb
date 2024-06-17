@@ -1,6 +1,5 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
 describe "Admin sets up previous winnings" do
   let!(:admin) { create(:admin) }
 

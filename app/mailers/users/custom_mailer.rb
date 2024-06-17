@@ -1,6 +1,6 @@
 class Users::CustomMailer < ApplicationMailer
   def notify(user_id, user_class, body, subject)
-    if %w(Admin User Assessor).include?(user_class)
+    if %w[Admin User Assessor].include?(user_class)
       @user = user_class.constantize.find(user_id).decorate
       @body = body
 
