@@ -75,6 +75,11 @@
   opacity: 0.5;
 }
 
+.js-review-sections {
+  ul li.step-errors:not(.js-step-disabled) {
+    background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.2em;
+  }
+}
 
 .js-review-sections li ul {
   padding: 1em 0 0 0;
@@ -82,6 +87,7 @@
 
   li.step-errors {
     background: transparent;
+    padding-left: 1.1em;
   }
 }
 
