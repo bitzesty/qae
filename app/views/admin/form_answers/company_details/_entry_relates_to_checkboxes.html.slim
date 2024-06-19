@@ -1,8 +1,10 @@
-- if @form_answer.send("#{awards[0]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[0].upcase}_OPS")) || @form_answer.send("#{awards[1]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[1].upcase}_OPS"))
+- check_options = (@form_answer.send("#{awards[0]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[0].upcase}_OPS"))) || (@form_answer.send("#{awards[1]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[1].upcase}_OPS")))
+
+- unless check_options.blank?
   - name = awards[0] == "innovation" ? "application_relate_to_header" : "application_relate_to"
   - values = awards[0] == "innovation" ? @form_answer.document["application_relate_to_header"] : @form_answer.document["application_relate_to"]
 
-  - @check_options.each_with_index do |check_option, placement|
+  - check_options.each_with_index do |check_option, placement|
     - value_selected = values.is_a?(Array) && values.detect { |el| el['type'].to_s == check_option[0].to_s }
 
     .form-control

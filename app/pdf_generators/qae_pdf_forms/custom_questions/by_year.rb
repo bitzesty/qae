@@ -1,6 +1,6 @@
 module QaePdfForms::CustomQuestions::ByYear
   EMPTY_STRING = "".freeze
-  YEAR_LABELS = %w(day month year).freeze
+  YEAR_LABELS = %w[day month year].freeze
   FORMATTED_FINANCIAL_YEAR_WITH_DATE = "Financial year ended %<date>s".freeze
   FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE = "Financial year %<index>d".freeze
   ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze
@@ -18,9 +18,9 @@ module QaePdfForms::CustomQuestions::ByYear
     financial_dates_year_headers(format: FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE).each_with_index do |header_item, placement|
       form_pdf.default_bottom_margin
       title = if OMIT_COLON_KEYS.include?(question.key)
-                "#{header_item} #{ANSWER_FONT_START}#{rows[placement].join("/")}#{ANSWER_FONT_END}"
+        "#{header_item} #{ANSWER_FONT_START}#{rows[placement].join("/")}#{ANSWER_FONT_END}"
       else
-                "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
+        "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
       end
 
       form_pdf.text title, inline_format: true
@@ -33,7 +33,7 @@ module QaePdfForms::CustomQuestions::ByYear
         ApplicationController.helpers.formatted_uk_sales_value(field)
       end
 
-      (res.all? { |el| el == {} }) ? [] : res
+      res.all?({}) ? [] : res
     else
       active_fields.map do |field|
         entry = year_entry(field).to_s.delete(",")
@@ -59,9 +59,9 @@ module QaePdfForms::CustomQuestions::ByYear
 
       financial_table_headers.each.with_index(1) do |item, idx|
         frmt = if !::Utils::Date.valid?(item)
-                 FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
+          FORMATTED_FINANCIAL_YEAR_WITHOUT_DATE
         else
-                 opts.dig(:format)
+          opts.dig(:format)
         end
 
         frmt ||= FORMATTED_FINANCIAL_YEAR_WITH_DATE

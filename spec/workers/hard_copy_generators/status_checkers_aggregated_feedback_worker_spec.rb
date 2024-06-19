@@ -9,7 +9,3 @@ RSpec.describe HardCopyPdfGenerators::StatusCheckers::AggregatedFeedbackWorker d
     described_class.new.perform
   end
 end
-
-
-
-

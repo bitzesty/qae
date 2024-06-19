@@ -62,12 +62,12 @@ class AwardYears::V2025::QaeForms
 
         text :other_organisation_type, "" do
           classes "text-words-max"
-          context %{
+          context %(
             <p class="govuk-body">Please specify</p>
-          }
-          pdf_context %{
+          )
+          pdf_context %(
             <p class="govuk-body">Please specify if selected Other</p>
-          }
+          )
           conditional :organisation_type, :other
           text_words_max 50
         end
@@ -207,9 +207,9 @@ class AwardYears::V2025::QaeForms
         textarea :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
           classes "sub-question"
           sub_ref "B 8.1"
-          context %{
+          context %(
             <p>Please note, when evaluating your application, the assessors may check your organisation's online presence.</p>
-          }
+          )
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do

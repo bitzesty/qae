@@ -8,7 +8,3 @@ RSpec.describe HardCopyPdfGenerators::FeedbackWorker do
     described_class.new.perform(1)
   end
 end
-
-
-
-

@@ -9,14 +9,14 @@ class FormPdf < Prawn::Document
   UNDEFINED_TITLE = "No answer ..."
   NOTHING_SELECTED = "Nothing selected"
   UNDEFINED_TYPE = "undefined type UNDEFINED"
-  TABLE_WITH_COMMENT_QUESTION = %w(financial_year_dates total_turnover exports net_profit total_net_assets)
-  INLINE_DATE_QUESTION = %w(
+  TABLE_WITH_COMMENT_QUESTION = %w[financial_year_dates total_turnover exports net_profit total_net_assets]
+  INLINE_DATE_QUESTION = %w[
     started_trading
     financial_year_date
     nominee_date_of_birth
     innovation_was_launched_in_the_market
     development_was_launched_since
-  )
+  ]
   JUST_NOTES = [
     "QaeFormBuilder::HeaderQuestion",
   ]
@@ -61,7 +61,7 @@ class FormPdf < Prawn::Document
     steps.each do |step|
       QaePdfForms::General::StepPointer.new(award_form: award_form,
         form_pdf: self,
-        step: step,).render!
+        step: step).render!
     end
 
     render_submission_deadline_block(32)

@@ -52,7 +52,7 @@ class Judge < ApplicationRecord
 
   def assigned_award_types
     FormAnswer::POSSIBLE_AWARDS.select do |category|
-      public_send("#{category}_role").present?
+      public_send(:"#{category}_role").present?
     end
   end
 

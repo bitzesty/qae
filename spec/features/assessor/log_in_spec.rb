@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Log in" do
   let(:subject) { create(:assessor, :lead_for_all, password: "my98ssdkjv9823kds=2") }

@@ -43,14 +43,13 @@ module ManualUpdaters
         #
         HardCopyPdfGenerators::FormDataWorker.perform_async(form_answer.id, true)
 
-        p ""
-        p "[MANUAL SUBMISSION | SUCCESS] DONE! Check it at https://www.kings-awards-enterprise.service.gov.uk/admin/form_answers/#{form_answer.id}"
-        p ""
+        Rails.logger.debug ""
+        Rails.logger.debug "[MANUAL SUBMISSION | SUCCESS] DONE! Check it at https://www.kings-awards-enterprise.service.gov.uk/admin/form_answers/#{form_answer.id}"
       else
-        p ""
-        p "[MANUAL SUBMISSION | ERROR] seems URN is not generated! Please, check why!"
-        p ""
+        Rails.logger.debug ""
+        Rails.logger.debug "[MANUAL SUBMISSION | ERROR] seems URN is not generated! Please, check why!"
       end
+      Rails.logger.debug ""
     end
   end
 end

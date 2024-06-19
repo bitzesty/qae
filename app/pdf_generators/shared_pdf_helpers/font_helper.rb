@@ -1,6 +1,6 @@
 module SharedPdfHelpers::FontHelper
   def set_fonts!
-    self.font_families.update(
+    font_families.update(
       "OpenSans" => {
         normal: font_path("OpenSans-Regular.ttf"),
         bold: font_path("OpenSans-Bold.ttf"),
@@ -9,7 +9,7 @@ module SharedPdfHelpers::FontHelper
       },
     )
 
-    self.font("OpenSans")
+    font("OpenSans")
   end
 
   private

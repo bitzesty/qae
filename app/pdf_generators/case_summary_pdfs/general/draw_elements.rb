@@ -48,7 +48,7 @@ module CaseSummaryPdfs::General::DrawElements
       header_text_properties.merge(
         at: [0.mm, 97.mm + default_offset + offset],
         width: 272.mm,
-    )
+      )
   end
 
   def y_coord(mode)

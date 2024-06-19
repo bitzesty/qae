@@ -12,7 +12,7 @@ module Utils
       end
       min, max = range.minmax
 
-      return date >= min && date <= max
+      date >= min && date <= max
     rescue
       false
     end

@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin downloads CSV reports" do
   let!(:admin) { create(:admin) }

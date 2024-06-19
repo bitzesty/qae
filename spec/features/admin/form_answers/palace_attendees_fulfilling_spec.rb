@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin fulfills the Palace Attendees" do
   let!(:admin) { create(:admin) }

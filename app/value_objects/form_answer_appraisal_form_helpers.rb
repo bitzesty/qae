@@ -25,7 +25,6 @@ module FormAnswerAppraisalFormHelpers
 
   def discrepancies_between_primary_and_secondary_appraisals_details
     list = discrepancies_source["discrepancies"]
-    total_number_of_keys = list.count
 
     list.map.with_index do |discrepancy, index|
       "#{discrepancy[1]} (#{discrepancy[2]} - #{discrepancy[3]})"

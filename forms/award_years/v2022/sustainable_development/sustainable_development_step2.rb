@@ -224,9 +224,9 @@ class AwardYears::V2022::QaeForms
           classes "word-max-strict"
           ref "B 2"
           required
-          question_sub_title %{
+          question_sub_title %(
             Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
-          }
+          )
           context %{
             <p>
               Please include:
@@ -255,9 +255,9 @@ class AwardYears::V2022::QaeForms
           classes "word-max-strict"
           ref "B 3"
           required
-          question_sub_title %{
+          question_sub_title %(
             Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-          }
+          )
           context %{
             <p>
               Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
@@ -292,9 +292,9 @@ class AwardYears::V2022::QaeForms
           classes "word-max-strict"
           ref "B 4"
           required
-          question_sub_title %{
+          question_sub_title %(
             Please describe the driving force of your organisation’s sustainability.
-          }
+          )
           context %{
             <p>
               a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?
@@ -330,9 +330,9 @@ class AwardYears::V2022::QaeForms
           classes "word-max-strict"
           ref "B 5"
           required
-          question_sub_title %{
+          question_sub_title %(
             Describe how your organisation’s culture fosters and supports sustainability.
-          }
+          )
           context %{
             <p>
               Please include:

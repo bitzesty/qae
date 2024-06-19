@@ -73,7 +73,7 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def wysywyg_list_leading_tag?(tag_abbr)
-    LIST_TAGS.include?(tag_abbr.gsub(/(\<|\>)/, ""))
+    LIST_TAGS.include?(tag_abbr.gsub(/(<|>)/, ""))
   end
 
   def wysywyg_list_ending_tag?(tag_abbr)
@@ -83,7 +83,7 @@ module QaePdfForms::CustomQuestions::Textarea
   def wysywyg_print_lists(key, line)
     wysywyg_list_content_generator(wysywyg_prepare_list_content(line),
       wysywyg_get_list_left_margin(line),
-      key,)
+      key)
   end
 
   def wysywyg_get_list_left_margin(line)
@@ -107,7 +107,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
     content.map! do |el|
       if el.include?("\r\n")
-        element = el.gsub!("\r", "").gsub!("\n", "").gsub!("\t", "")
+        el.delete!("\r").delete!("\n").delete!("\t")
       end
       el
     end.reject!(&:blank?)
@@ -192,7 +192,6 @@ module QaePdfForms::CustomQuestions::Textarea
     li_style = styles_picker(@styles)
     print_pdf(@string.join(""), li_style)
 
-    key = "<ul>"
     @keys_history << key
     @ns_history << @counter
     @string = []
@@ -213,10 +212,10 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def marker_of_list(string, key, n)
-    if key == "<ul>"
-      string << "• "
+    string << if key == "<ul>"
+      "• "
     else
-      string << "#{n}. "
+      "#{n}. "
     end
   end
 
@@ -241,10 +240,10 @@ module QaePdfForms::CustomQuestions::Textarea
     if style_options.to_s.include?(";")
       style_options = style_options[0].split(";").map(&:strip)
     end
-    style_options = Array.wrap(style_options)
 
-    styles = { inline_format: true,
-                       color: FormPdf::DEFAULT_ANSWER_COLOR, }
+    style_options = Array.wrap(style_options)
+    styles = { inline_format: true, color: FormPdf::DEFAULT_ANSWER_COLOR }
+
     if style_options.present?
       margin_list = style_options.select do |el|
         el.include?("margin-left")

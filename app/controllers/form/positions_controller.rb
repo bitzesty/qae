@@ -38,11 +38,9 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
     }
   end
 
-  def index
-  end
+  def index; end
 
-  def new
-  end
+  def new; end
 
   def create
     self.item = item_class.new(item_params)

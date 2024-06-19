@@ -1,9 +1,9 @@
 module CaseSummaryPdfs::General::DataPointer
   PREVIOUS_AWARDS = { "innovation" => "Innovation",
                       "international_trade" => "International Trade",
-                      "sustainable_development" => "Sustainable Development", }
+                      "sustainable_development" => "Sustainable Development" }
 
-  COLOR_LABELS = %w(positive average negative neutral)
+  COLOR_LABELS = %w[positive average negative neutral]
   POSITIVE_COLOR = "6B8E23"
   AVERAGE_COLOR = "DAA520"
   NEGATIVE_COLOR = "FF0000"
@@ -11,12 +11,6 @@ module CaseSummaryPdfs::General::DataPointer
 
   def undefined_value
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
-  end
-
-  def current_awards_question
-    all_questions.detect do |q|
-      q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardHolderQuestion)
-    end
   end
 
   def organisation_type
@@ -44,13 +38,6 @@ module CaseSummaryPdfs::General::DataPointer
 
   def sic_code
     form_answer.decorate.sic_code_name || undefined_value
-  end
-
-  def current_awards_question
-    all_questions.detect do |q|
-      q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardHolderQuestion) ||
-        q.delegate_obj.is_a?(QaeFormBuilder::QueenAwardApplicationsQuestion)
-    end
   end
 
   def current_awards
@@ -119,7 +106,6 @@ module CaseSummaryPdfs::General::DataPointer
       render_financial_block(true)
 
       pdf_doc.move_down 10.mm
-      render_application_background
     else
       # type and sub category Qs are missing for SD2020+, so need to move up
       if form_answer.development? && form_answer.award_year.year >= 2020
@@ -127,8 +113,8 @@ module CaseSummaryPdfs::General::DataPointer
       end
 
       pdf_doc.move_down y_coord("general_block").mm
-      render_application_background
     end
+    render_application_background
 
     pdf_doc.move_down 7.mm
     render_case_summary_comments
@@ -173,7 +159,7 @@ module CaseSummaryPdfs::General::DataPointer
   # so, that we are setting them here
   COLOR_LABELS.each do |label|
     AppraisalForm::SUPPORTED_YEARS.each do |year|
-      const_set("#{label.upcase}_LABELS_#{year}", AppraisalForm.group_labels_by(year, label))
+      const_set(:"#{label.upcase}_LABELS_#{year}", AppraisalForm.group_labels_by(year, label))
     end
   end
 
@@ -221,7 +207,7 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_financial_table_header
-    pdf_doc.table [year_rows], row_colors: %w(FFFFFF),
+    pdf_doc.table [year_rows], row_colors: %w[FFFFFF],
       cell_style: { size: 12, font_style: :bold },
       column_widths: column_widths
   end
@@ -230,7 +216,7 @@ module CaseSummaryPdfs::General::DataPointer
     financial_metrics_by_years.each do |row|
       if row[0] == CaseSummaryPdfs::Pointer::DATE_LABEL
         pdf_doc.table([row],
-          row_colors: %w(FFFFFF),
+          row_colors: %w[FFFFFF],
           cell_style: { size: 12, font_style: :bold },
           column_widths: column_widths,
         )
@@ -251,15 +237,15 @@ module CaseSummaryPdfs::General::DataPointer
     period_length = financial_pointer.period_length(exclude_innovation_years)
     first_row_width = case period_length
     when 2
-      first_row_width = 607
+      607
     when 3
-      first_row_width = 527
+      527
     when 4
-      first_row_width = 447
+      447
     when 5
-      first_row_width = 367
+      367
     when 6
-      first_row_width = 287
+      287
     end
 
     res = { 0 => first_row_width }
@@ -277,7 +263,7 @@ module CaseSummaryPdfs::General::DataPointer
   # and less space we need for the data (column 1), since it's only one column
   # for the overall growth table
   def benchmarks_column_widths
-    first_row_width = case financial_pointer.period_length
+    case financial_pointer.period_length
     when 2
       {
         0 => 607,

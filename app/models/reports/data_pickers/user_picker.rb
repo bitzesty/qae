@@ -1,7 +1,5 @@
 module Reports::DataPickers::UserPicker
-  def user
-    obj.user
-  end
+  delegate :user, to: :obj
 
   def contact_title
     user.try(:title)

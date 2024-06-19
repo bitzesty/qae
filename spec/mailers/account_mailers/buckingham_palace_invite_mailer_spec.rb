@@ -30,7 +30,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
 
     # this field is no longer used in 2019 awards, but we're using closed award year here
     # can be simplified when 2020 awards kick in
-    fa.document.merge!("queen_award_holder" => "no")
+    fa.document["queen_award_holder"] = "no"
     fa.save!
 
     fa

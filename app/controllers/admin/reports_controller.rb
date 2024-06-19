@@ -1,6 +1,6 @@
 class Admin::ReportsController < Admin::BaseController
   expose(:import_csv_pdf_guide) do
-    File.open("#{Rails.root}/lib/assets/IMPORT_CSV_INTO_MS_EXCEL_GUIDE.pdf")
+    File.open(Rails.root.join("lib/assets/IMPORT_CSV_INTO_MS_EXCEL_GUIDE.pdf"))
   end
 
   def show
@@ -47,7 +47,7 @@ class Admin::ReportsController < Admin::BaseController
 
   def stream_csv
     headers["Content-Type"] = "text/csv; charset=utf-8" # In Rails 5 it's set to HTML??
-    headers["Content-Disposition"] = %{attachment; filename="#{csv_filename}"}
+    headers["Content-Disposition"] = %(attachment; filename="#{csv_filename}")
 
     headers["X-Accel-Buffering"] = "no"
     headers["Cache-Control"] = "no-cache"

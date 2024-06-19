@@ -3,9 +3,7 @@ FactoryBot.define do
     association :form_answer, factory: :form_answer
     file do
       Rack::Test::UploadedFile.new(
-        File.join(
-          Rails.root, "spec", "fixtures", "cat.jpg",
-        ),
+        Rails.root.join("spec/fixtures/cat.jpg"),
       )
     end
 

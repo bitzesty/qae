@@ -1,5 +1,5 @@
 class Notifiers::AccountNotifier
-  attr_reader :account, :form_answer, :recipients
+  attr_reader :account, :form_answer
 
   def form_owner
     @form_owner ||= form_answer.user

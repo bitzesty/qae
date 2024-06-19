@@ -81,6 +81,6 @@ class Admin::AdminsController < Admin::UsersController
         :password,
         :password_confirmation,
         :first_name,
-        :last_name,)
+        :last_name)
   end
 end

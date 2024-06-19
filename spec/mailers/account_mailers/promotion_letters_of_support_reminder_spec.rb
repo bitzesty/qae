@@ -21,7 +21,7 @@ describe AccountMailers::PromotionLettersOfSupportReminderMailer do
   before do
     doc = form_answer.document
     form_answer.document = doc.merge(nominee_info_first_name: "Jovan",
-      nominee_info_last_name: "Savovich",)
+      nominee_info_last_name: "Savovich")
     form_answer.save!
   end
 

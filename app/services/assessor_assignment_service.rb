@@ -41,9 +41,9 @@ class AssessorAssignmentService
       # but there is only single huge form for all of the descriptions
       # it's needed to updated only description marked explicitly by the admin
       # to achieve data other description fields should be removed from params
-      if updated_section =~ DESC_REGEX
+      if DESC_REGEX.match?(updated_section)
         p.delete_if { |k, _| k =~ DESC_REGEX && k != updated_section }
-      elsif updated_section =~ RATE_REGEX
+      elsif RATE_REGEX.match?(updated_section)
         p.delete_if { |k, _| k != updated_section && (k =~ DESC_REGEX || k =~ RATE_REGEX) }
       end
     end

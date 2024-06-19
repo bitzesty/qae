@@ -28,7 +28,7 @@ class CurrentAwardTypePicker
 
     categories = lead_categories + regular_categories
 
-    if !params[:year].present? || params[:year].to_i > 2016
+    if params[:year].blank? || params[:year].to_i > 2016
       categories -= ["promotion"]
     end
 
@@ -38,9 +38,7 @@ class CurrentAwardTypePicker
   end
 
   def show_award_tabs_for_assessor?
-    if current_subject.categories_as_lead.size > 0
-      return true if visible_categories.size > 1
-    end
+    current_subject.categories_as_lead.size > 0 && visible_categories.size > 1
   end
 
   class AwardCategory < OpenStruct

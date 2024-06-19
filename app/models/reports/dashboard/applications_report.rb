@@ -2,12 +2,12 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
   attr_reader :award_type
 
   def initialize(kind:, award_type: nil)
-    @kind = kind
+    @kind = valid_kind(kind)
     @award_type = award_type
   end
 
   def stats
-    public_send("stats_#{kind}")
+    public_send(:"stats_#{kind}")
   end
 
   def scope(award_year)
@@ -92,15 +92,15 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
       when "by_day"
         columns = ["6 days before deadline", "5 days before deadline", "4 days before deadline", "3 days before deadline", "2 days before deadline", "1 day before deadline", "Totals on deadline"]
       end
-      csv << (headers + columns.map{ |c| [c] << nil }).flatten
+      csv << (headers + columns.map { |c| [c] << nil }).flatten
       subheaders = [""]
-      columns.each{ subheaders << ["In progress", "Submitted"] }
+      columns.each { subheaders << ["In progress", "Submitted"] }
       csv << subheaders.flatten
 
       stats.each do |row|
         content = []
         content << row.label
-        row.content.each{ |c| content << ((c == "&nbsp;") ? nil : c) }
+        row.content.each { |c| content << ((c == "&nbsp;") ? nil : c) }
         csv << content
       end
     end
@@ -108,5 +108,9 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
 
   def csv_filename
     "#{award_type || "all"}_applications_report_#{kind}.csv"
+  end
+
+  def valid_kind(value)
+    value if value.presence.in?(%w[by_month by_week by_day])
   end
 end

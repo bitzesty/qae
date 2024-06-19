@@ -1,4 +1,4 @@
-class CommercialFiguresFile < ActiveRecord::Base
+class CommercialFiguresFile < ApplicationRecord
   include ShortlistedDocument
 
   validates :attachment, presence: true,

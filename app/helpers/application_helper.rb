@@ -7,32 +7,36 @@ module ApplicationHelper
     opts[:class] ||= "govuk-body"
     step_status = ""
 
-    if opts[:index]
+    index_step_text = if opts[:index]
       if opts[:index_name]
-        index_step_text = "<span class='step-number'>#{opts[:index_name]}</span> #{name}".html_safe
+        capture do
+          concat(tag.span(opts[:index_name], class: "step-number"))
+          concat(name)
+        end
       else
-        index_step_text = "<span class='step-number'>#{opts[:index]}.</span> #{name}".html_safe
+        capture do
+          concat(tag.span(opts[:index], class: "step-number"))
+          concat(name)
+        end
       end
     else
-      index_step_text = name
+      name
     end
 
     if opts[:index] && opts[:active]
       if opts[:index] == opts[:active]
         step_status = "current"
         opts[:class] += " step-current"
-      else
-        if opts[:disable_progression].present? && opts[:disable_progression]
-          opts[:class] += " step-regular"
-        elsif opts[:index] < opts[:active]
-          step_status = "past"
-          opts[:class] += " step-past"
-        end
+      elsif opts[:disable_progression].present? && opts[:disable_progression]
+        opts[:class] += " step-regular"
+      elsif opts[:index] < opts[:active]
+        step_status = "past"
+        opts[:class] += " step-past"
       end
     end
 
     tag.li(**opts) do
-      if step_status == "current" or (step_status != "past" && opts[:cant_access_future])
+      if (step_status == "current") || (step_status != "past" && opts[:cant_access_future])
         tag.span(class: "govuk-body") do
           index_step_text
         end
@@ -49,7 +53,7 @@ module ApplicationHelper
     return inner if question.conditions.empty?
 
     current = inner
-    for condition in question.conditions
+    question.conditions.each do |condition|
       dep = question.form[condition.question_key]
       raise "Can't find parent question for conditional #{question.key} -> #{condition.question_key}" unless dep
 
@@ -122,23 +126,23 @@ module ApplicationHelper
     text = sanitize(text)
     paragraphs = split_paragraphs(text)
 
+    # rubocop:disable Rails/OutputSafety
     if paragraphs.present?
-      paragraphs.map! { |paragraph|
-        raw(paragraph)
-      }.join("<br/><br/>").html_safe
+      paragraphs.map! { |paragraph| raw(paragraph) }.join("<br/><br/>").html_safe
     end
+    # rubocop:enable Rails/OutputSafety
   end
 
   def ordinal(n)
     ending = case n % 100
     when 11, 12, 13 then "th"
     else
-             case n % 10
-             when 1 then "st"
-             when 2 then "nd"
-             when 3 then "rd"
-             else "th"
-             end
+      case n % 10
+      when 1 then "st"
+      when 2 then "nd"
+      when 3 then "rd"
+      else "th"
+      end
     end
     n.to_s + ending
   end

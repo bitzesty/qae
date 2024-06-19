@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Form::FormAttachmentsController do
   let!(:user) { create(:user) }

@@ -245,10 +245,10 @@ class AwardYears::V2025::QaeForms
         header :innovation_timeline_header, "Innovation development" do
           ref "C 2"
           linkable true
-          context %{
+          context %(
             <p class="govuk-body">
               The questions in subsection C2 help the assessors understand the development of your innovation.
-          }
+          )
         end
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
@@ -257,7 +257,7 @@ class AwardYears::V2025::QaeForms
           sub_ref "C 2.1"
           required
           min 2000
-          max -> { Time.now.year }
+          max -> { Time.current.year }
         end
 
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
@@ -427,7 +427,7 @@ class AwardYears::V2025::QaeForms
         header :innovation_value_add_header, "Innovation value-add" do
           ref "C 3"
           linkable true
-          context %{
+          context %(
             <p class="govuk-body">
               The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
             </p>
@@ -437,7 +437,7 @@ class AwardYears::V2025::QaeForms
             <p class="govuk-body">
               You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
             </p>
-          }
+          )
           pdf_context_with_header_blocks [
             [:normal, %(
               The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.

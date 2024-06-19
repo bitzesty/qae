@@ -2,8 +2,7 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :restrict_access_if_admin_in_read_only_mode!
 
-  def additional_contact_preferences
-  end
+  def additional_contact_preferences; end
 
   def correspondent_details
     @active_step = 1
@@ -22,8 +21,7 @@ class AccountsController < ApplicationController
     @active_step = 5
   end
 
-  def useful_information
-  end
+  def useful_information; end
 
   def update_correspondent_details
     current_user.set_step(1)
@@ -75,13 +73,13 @@ class AccountsController < ApplicationController
   end
 
   def complete_registration
-    unless current_user.completed_registration
+    if current_user.completed_registration?
+      redirect_to password_settings_account_path
+    else
       current_user.update_attribute(:completed_registration, true)
 
       flash.notice = "Your account details were successfully saved"
       redirect_to dashboard_path
-    else
-      redirect_to password_settings_account_path
     end
   end
 

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe UsersImport::Builder do
-  subject { described_class.new("#{Rails.root}/spec/fixtures/users.csv") }
+  subject { described_class.new(Rails.root.join("spec/fixtures/users.csv")) }
 
   describe "#process" do
     it "imports the users" do

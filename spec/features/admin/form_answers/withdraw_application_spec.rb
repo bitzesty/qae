@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin withdraws the application", js: true do
   let!(:admin) { create(:admin) }

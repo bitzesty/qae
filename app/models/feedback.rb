@@ -1,5 +1,5 @@
 class Feedback < ApplicationRecord
-  has_paper_trail unless: Proc.new { |t| Rails.env.test? }
+  has_paper_trail unless: proc { |t| Rails.env.test? }
 
   belongs_to :form_answer, optional: true
 
@@ -9,7 +9,7 @@ class Feedback < ApplicationRecord
   belongs_to :authorable, polymorphic: true, optional: true
   belongs_to :award_year, optional: true
 
-  validates :form_answer_id, uniqueness: true
+  validates :form_answer_id, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   before_create :set_award_year!
 

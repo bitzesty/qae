@@ -20,7 +20,8 @@ FactoryBot.define do
           self_contained_enterprise: true,
           current_holder: "no",
           adherence_to_esg_principles: true,
-        }}
+        }
+      }
     end
 
     trait :trade do
@@ -33,7 +34,8 @@ FactoryBot.define do
           current_holder_of_qae_for_trade: false,
           qae_for_trade_award_year: "2015",
           growth_over_the_last_three_years: true,
-        } }
+        }
+      }
     end
 
     trait :innovation do
@@ -47,7 +49,8 @@ FactoryBot.define do
           number_of_innovative_products: 1,
           had_impact_on_commercial_performace_over_two_years: true,
           have_you_recovered_all_investments: true,
-        }}
+        }
+      }
     end
 
     trait :development do
@@ -58,7 +61,8 @@ FactoryBot.define do
           has_management_and_two_employees: "yes",
           sustainable_development: "yes",
           adheres_to_sustainable_principles: "yes",
-        }}
+        }
+      }
     end
 
     trait :mobility do
@@ -73,7 +77,8 @@ FactoryBot.define do
           social_mobility_activities: "yes",
           active_for_atleast_two_years: "yes",
           evidence_of_impact: "yes",
-        }}
+        }
+      }
     end
 
     trait :promotion do
@@ -90,7 +95,8 @@ FactoryBot.define do
           nominee_has_honours: false,
           nominee_was_put_forward_for_honours_this_year: false,
           able_to_get_two_letters_of_support: true,
-        }}
+        }
+      }
     end
 
     factory :basic_eligibility, class: "Eligibility::Basic", traits: [:basic]

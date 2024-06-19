@@ -11,7 +11,3 @@ RSpec.describe HardCopyPdfGenerators::Collection::FormDataWorker do
     described_class.new.perform
   end
 end
-
-
-
-

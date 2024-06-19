@@ -27,11 +27,7 @@ class Settings < ApplicationRecord
 
     def current_award_year_switch_date_or_default_trigger_at
       Rails.cache.fetch("award_year_switch_deadline_or_default_trigger_at", expires_in: 1.minute) do
-        if current.deadlines.award_year_switch.trigger_at
-          current.deadlines.award_year_switch.trigger_at
-        else
-          Date.new(current.award_year.year - 1, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
-        end
+        current.deadlines.award_year_switch.trigger_at || Date.new(current.award_year.year - 1, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
       end
     end
 
@@ -51,10 +47,10 @@ class Settings < ApplicationRecord
       end
     end
 
-    %w(innovation trade mobility development).each do |award|
-      define_method "current_#{award}_submission_start_deadline" do
+    %w[innovation trade mobility development].each do |award|
+      define_method :"current_#{award}_submission_start_deadline" do
         Rails.cache.fetch("#{award}_submission_start_deadline", expires_in: 1.minute) do
-          current.deadlines.public_send("#{award}_submission_start")
+          current.deadlines.public_send(:"#{award}_submission_start")
         end
       end
     end

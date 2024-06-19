@@ -1,11 +1,10 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
-describe "Admin: Download an application's feedback PDF", %q{
+describe "Admin: Download an application's feedback PDF", "
 As an Admin
 I want to Print/download an application's feedback as a pdf
 So that I can print and review application's feedback
-} do
+" do
   let!(:admin) { create(:admin) }
   let!(:user) { create :user }
 

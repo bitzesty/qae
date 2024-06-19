@@ -51,7 +51,7 @@ class Reports::AdminReport
     if category == "trade" &&
         id == "case-index" &&
         year.year != 2016
-       # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+      # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
       sub_type = "_#{years_mode}"
     end
 
@@ -83,13 +83,13 @@ class Reports::AdminReport
     if category == "trade" &&
         id == "case_summaries" &&
         year.year != 2016
-       # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+      # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
       sub_type = "_#{years_mode}"
     end
 
-    attachment = year.send("#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
+    attachment = year.send(:"#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
 
-    if year.send("aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
+    if year.send(:"aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
         attachment.present? &&
         attachment.file.present?
       # Render Hard Copy if it's generated for this year
@@ -125,7 +125,7 @@ class Reports::AdminReport
   end
 
   def category
-    params[:category] if ::FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
+    params[:category] if ::FormAnswer::AWARD_TYPE_FULL_NAMES.key?(params[:category])
   end
 
   def years_mode

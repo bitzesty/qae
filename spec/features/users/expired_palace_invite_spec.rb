@@ -1,5 +1,5 @@
 require "rails_helper"
-include Warden::Test::Helpers
+
 Warden.test_mode!
 
 describe "expired reception attendee information deadline" do

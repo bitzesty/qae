@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
     end
 
     it ".confirmed should exclude ids" do
-      expect(User.where("confirmed_at IS NOT NULL").to_sql).to eq User.confirmed.to_sql
+      expect(User.where.not(confirmed_at: nil).to_sql).to eq User.confirmed.to_sql
     end
   end
 

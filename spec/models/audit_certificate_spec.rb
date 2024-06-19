@@ -6,7 +6,7 @@ RSpec.describe AuditCertificate, type: :model do
   end
 
   describe "validations" do
-    %w(form_answer_id attachment).each do |field_name|
+    %w[form_answer_id attachment].each do |field_name|
       it { should validate_presence_of field_name }
     end
 

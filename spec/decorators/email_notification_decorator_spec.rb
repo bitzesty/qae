@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe EmailNotificationDecorator do
-  let(:email_notification) { EmailNotification.new(trigger_at: Time.now) }
+  let(:email_notification) { EmailNotification.new(trigger_at: Time.current) }
   let(:subject) { EmailNotificationDecorator.decorate(email_notification) }
 
   describe "#header" do

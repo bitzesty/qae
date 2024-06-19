@@ -1,5 +1,5 @@
 class AggregatedAwardYearPdf < ApplicationRecord
-  TYPES = %w(case_summary feedback)
+  TYPES = %w[case_summary feedback]
 
   belongs_to :award_year, optional: true
 

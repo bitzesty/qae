@@ -1,5 +1,5 @@
 class AssessorAssignment < ApplicationRecord
-  has_paper_trail unless: Proc.new { |t| Rails.env.test? }
+  has_paper_trail unless: proc { |t| Rails.env.test? }
 
   enum position: {
     primary: 0,
@@ -8,40 +8,36 @@ class AssessorAssignment < ApplicationRecord
     case_summary: 4,
   }
 
-  begin :validations
-        validates :form_answer_id,
-          :position,
-          presence: true
+  # validations
+  validates :form_answer_id,
+    :position,
+    presence: true
 
-        validate :award_specific_attributes
-        validate :mandatory_fields_for_submitted
+  validate :award_specific_attributes
+  validate :mandatory_fields_for_submitted
 
-        validate do
-          validate_rate :rag
-          validate_rate :strengths
-          validate_rate :verdict
-        end
-
-        validate :assessor_existence
-        validate :assessor_assignment_to_category
-        validates :assessor_id,
-          uniqueness: { scope: [:form_answer_id] },
-          allow_nil: true
+  validate do
+    validate_rate :rag
+    validate_rate :strengths
+    validate_rate :verdict
   end
 
-  begin :associations
-        belongs_to :assessor, optional: true
-        belongs_to :form_answer, optional: true
-        belongs_to :editable, polymorphic: true, optional: true
-        belongs_to :award_year, optional: true
-  end
+  validate :assessor_existence
+  validate :assessor_assignment_to_category
+  validates :assessor_id,
+    uniqueness: { scope: [:form_answer_id] },
+    allow_nil: true
 
-  begin :scopes
-        scope :submitted, -> { where.not(submitted_at: nil) }
-  end
+  # associations
+  belongs_to :assessor, optional: true
+  belongs_to :form_answer, optional: true
+  belongs_to :editable, polymorphic: true, optional: true
+  belongs_to :award_year, optional: true
+
+  # scopes
+  scope :submitted, -> { where.not(submitted_at: nil) }
 
   around_save :notify_form_answer
-
   before_create :set_award_year!
 
   store_accessor :document, *AppraisalForm.all
@@ -183,7 +179,7 @@ class AssessorAssignment < ApplicationRecord
     struct.rates(form_answer, rate_type).each do |section, _|
       val = section_rate(section)
       c = "#{rate_type.upcase}_ALLOWED_VALUES"
-      if val && !struct.const_get(c).include?(val)
+      if val && struct.const_get(c).exclude?(val)
         sect_name = struct.rate(section)
         message = "#{rate_type} field for '#{section_name(section)}' has not permitted value."
         errors.add(sect_name, message: message)
@@ -198,7 +194,7 @@ class AssessorAssignment < ApplicationRecord
   def section_name(key)
     @_sections ||= struct.struct(form_answer).to_h
     section_key = key.to_s.gsub(/_desc$/, "").gsub(/_rate$/, "")
-    if section = @_sections.dig(section_key.to_sym)
+    if (section = @_sections.dig(section_key.to_sym))
       section[:label].gsub(/:$/, "")
     end
   end

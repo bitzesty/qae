@@ -68,6 +68,10 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
   EnforcedStyle: space
 
+# If we want a boolean called :true, we should allow that. These are likely not mistakes.
+Lint/BooleanSymbol:
+  Enabled: false
+
 Metrics/ModuleLength:
   Enabled: false
 
@@ -92,6 +96,9 @@ Naming/VariableNumber:
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: optional
 
+Performance/MapCompact:
+  Enabled: false
+
 Rails:
   Enabled: true
 
@@ -102,30 +109,44 @@ Rails/ApplicationRecord:
 Rails/FindBy:
   Enabled: false
 
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
 Rails/Output:
   Exclude:
     - lib/**/*
     - db/migrate/**/*.rb
 
 Rails/SkipsModelValidations:
-  Exclude:
-    - db/migrate/**/*.rb
-    - spec/**/*.rb
+  Enabled: false
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - development
+    - test
+
+Style/ArgumentsForwarding:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: compact
 
 Style/HashConversion:
   Enabled: false
 
-Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: comma
+Style/NumericLiteralPrefix:
+  Enabled: false
 
-Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: consistent_comma
+Style/SafeNavigation:
+  Enabled: false
 
-Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: consistent_comma
-
-Style/WordArray:
-  MinSize: 0
+Style/SingleLineMethods:
+  AllowIfMethodIsEmpty: true
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -133,8 +154,17 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 
-Style/Documentation:
-  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/WordArray:
+  MinSize: 0
 
 Metrics/ClassLength:
   Enabled: false

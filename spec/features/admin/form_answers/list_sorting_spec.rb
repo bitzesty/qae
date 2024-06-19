@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Form answer list sorting", js: true do
   let!(:subject) { create(:admin) }

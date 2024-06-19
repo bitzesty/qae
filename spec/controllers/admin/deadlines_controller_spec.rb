@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 RSpec.describe Admin::DeadlinesController do
   let!(:admin) { create(:admin, superadmin: true) }
@@ -10,7 +9,7 @@ RSpec.describe Admin::DeadlinesController do
   describe "PUT update" do
     it "should update a resource" do
       deadline = create(:deadline)
-      time = Time.now
+      time = Time.current
       put :update, params: { id: deadline.id, deadline: { trigger_at: time } }
       expect(response).to redirect_to admin_settings_path
     end

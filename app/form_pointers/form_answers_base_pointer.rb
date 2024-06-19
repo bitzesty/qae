@@ -17,7 +17,7 @@ module FormAnswersBasePointer
   def fetch_answers(pdf_blank_mode = false)
     doc = pdf_blank_mode.present? ? {} : form_answer.document
     ActiveSupport::HashWithIndifferentAccess.new(doc).select do |key, _value|
-      !HIDDEN_QUESTIONS.include?(key.to_s)
+      HIDDEN_QUESTIONS.exclude?(key.to_s)
     end.merge(ActiveSupport::HashWithIndifferentAccess.new(form_answer.financial_data))
   end
 

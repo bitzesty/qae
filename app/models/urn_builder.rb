@@ -28,7 +28,7 @@ class UrnBuilder
       "mobility" => "P",
       "trade" => "T",
     }[fa.award_type]
-    generated_urn += "#{award_year.year.to_s[2..-1]}#{suffix}"
+    generated_urn += "#{award_year.year.to_s[2..]}#{suffix}"
 
     generated_urn
   end

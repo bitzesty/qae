@@ -10,6 +10,7 @@ class QaeFormBuilder
     def links
       @q.links = true
     end
+
     def description
       @q.description = true
     end

@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Admin sees the proper number of flags and sort by it" do
   let!(:admin) { create(:admin) }

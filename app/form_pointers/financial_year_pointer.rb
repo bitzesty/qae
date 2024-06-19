@@ -7,7 +7,7 @@ class FinancialYearPointer
 
   def initialize(ops = {})
     ops.each do |k, v|
-      instance_variable_set("@#{k}", v)
+      instance_variable_set(:"@#{k}", v)
     end
 
     @key = question.key
@@ -70,7 +70,7 @@ class FinancialYearPointer
   end
 
   def entries
-    question.active_fields[0..-1].map do |field|
+    question.active_fields.map do |field|
       FormFinancialPointer::YEAR_LABELS.map do |year_label|
         entry(field, year_label)
       end

@@ -1,11 +1,10 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
-describe "Verification of Commercial Figures", %q{
+describe "Verification of Commercial Figures", '
 As a User
 I want to be able to download an Verification of Commercial Figures
 So that I can check, complete it and then upload it to application
-} do
+' do
   let!(:user) do
     create :user
   end

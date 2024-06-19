@@ -1,5 +1,5 @@
 require "rails_helper"
-include Warden::Test::Helpers
+
 Warden.test_mode!
 
 describe "Collaborator registration flow" do
@@ -26,7 +26,7 @@ describe "Collaborator registration flow" do
     click_button "Add the collaborator"
 
     collab = User.find_by(email: "collab@example.com")
-    collab.confirmed_at = Time.now
+    collab.confirmed_at = Time.current
     collab.save!
 
     click_button "Sign out"

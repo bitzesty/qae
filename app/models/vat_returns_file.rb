@@ -1,4 +1,4 @@
-class VatReturnsFile < ActiveRecord::Base
+class VatReturnsFile < ApplicationRecord
   include ShortlistedDocument
 
   validates :attachment, presence: true,
