@@ -54,7 +54,7 @@
 
     p.govuk-button-group
       - if f.object.persisted?
-        = f.submit "Save collaborator details", class: "govuk-button", disabled: add_collaborator_interactor.readonly?
+        = f.submit "Save collaborator details", class: "govuk-button"
       - else
         = f.submit "Add the collaborator", class: "govuk-button"
       = link_to "Cancel", account_collaborators_path, class: "govuk-button govuk-button--secondary"

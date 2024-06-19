@@ -11,7 +11,6 @@ class AddCollaborator
   def initialize(current_user, account, params)
     @current_user = current_user
     @account = account
-    @readonly = false
     @params = params
     @email = params[:email]
     @collaborator = find_or_build_collaborator
@@ -35,7 +34,6 @@ class AddCollaborator
           @errors = ["This user already added to collaborators!"]
         elsif user.account.present?
           @errors = ["User already associated with another account!"]
-          @readonly = true
         end
 
         user.role = params[:role]
@@ -60,9 +58,5 @@ class AddCollaborator
 
   def valid?
     @errors.blank?
-  end
-
-  def readonly?
-    !!@readonly
   end
 end
