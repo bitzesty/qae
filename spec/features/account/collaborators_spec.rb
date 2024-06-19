@@ -140,7 +140,38 @@ So that they can collaborate form answers
                 }
               end
 
-              expect_to_see "User already associated with another account!"
+              within(".collaborator_email") do
+                expect_to_see "User already associated with another account"
+              end
+            end
+
+            it "can add collaborator after changing the email" do
+              within("#new_collaborator") do
+                fill_in "Email", with: user_associated_with_another_account.email
+                choose("Admin and collaborator")
+
+                expect {
+                  click_on "Add the collaborator"
+                }.to_not change {
+                  account.reload.users.count
+                }
+              end
+
+              within(".collaborator_email") do
+                expect_to_see "User already associated with another account"
+              end
+
+              within("#new_collaborator") do
+                fill_in "Email", with: "valid@example.test"
+
+                expect {
+                  click_on "Add the collaborator"
+                }.to change {
+                  account.reload.users.count
+                }
+              end
+
+              expect_to_see "valid@example.test successfully added to Collaborators!"
             end
           end
 
