@@ -297,4 +297,27 @@ namespace :form_answers do
 
     Rails.logger.info "\e[32mCompleted!\e[0m"
   end
+
+  desc "Populate `nickname` field for Innovation and Promoting Opportunity applications"
+  task populate_nickname: :environment do
+    scope = FormAnswer.where(nickname: nil).where(award_type: FormAnswer::AWARD_TYPES_WITH_NICKNAME_REQUIRED)
+    count = scope.count
+
+    idx = 0
+
+    print "\e[32mPopulating nickname for #{count} records…\e[0m"
+
+    scope.find_in_batches(batch_size: 500) do |collection|
+      idx += collection.size
+      ids = collection.map(&:id).join(",").to_s
+
+      query = %{
+        UPDATE form_answers
+        SET nickname = CASE WHEN award_type = 'mobility' THEN 'Promoting Opportunity' ELSE 'Innovation' END
+        WHERE form_answers.id IN (#{ids})
+      }.squish
+
+      ActiveRecord::Base.connection.execute(query)
+    end
+  end
 end
