@@ -8,11 +8,11 @@ br
     p.govuk-hint
       | If you have more than one innovation (and want them to be considered for an award), you will have to submit a separate application for each of them.
     p.govuk-hint
-      | Please create a reference. This will help you and your collaborators distinguish between different applications. Your reference will appear on the Applications page. Once chosen, it is permanent.
+      | Please create a reference, for example, 'Fibre optic device' so that it helps you and your collaborators to distinguish between different innovation applications. Your reference will appear on the Applications page. Once chosen, it is permanent.
   - elsif local_assigns[:award_type] == "mobility"
     p.govuk-hint
       | If you are applying for more than one Promoting Opportunity Award (through social mobility), you will have to submit a separate application for each.
     p.govuk-hint
-      | You can create a reference, for example, 'Fibre optic device' so that it helps you and your collaborators to distinguish between different innovation applications. It will appear on the Applications page. Once chosen, your reference is permanent.
+      | Please create a reference. This will help you and your collaborators distinguish between different applications. Your reference will appear on the Applications page. Once chosen, it is permanent.
 
   = text_field_tag :nickname, "", autocomplete: "off", required: true, aria: { required: true }, type: "text", class: "govuk-input govuk-!-width-two-thirds", id: 'award-nickname'
