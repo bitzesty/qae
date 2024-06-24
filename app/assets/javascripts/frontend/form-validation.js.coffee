@@ -7,7 +7,7 @@ window.FormValidation =
     @validates = true
     $(".govuk-form-group--error").removeClass("govuk-form-group--error")
     $(".govuk-error-message").empty()
-    $(".steps-progress-bar .js-step-link").removeClass("step-errors")
+    $(".steps-progress-bar a.js-step-link").parent().removeClass("step-errors")
 
   clearErrors: (container) ->
     if container.closest(".question-financial").length > 0
@@ -190,7 +190,7 @@ window.FormValidation =
 
   addSubfieldError: (question, subquestion) ->
     questionRef = question.attr("data-question_ref")
-    input = $(subquestion).find('input,textarea,select').filter(':visible')
+    input = $(subquestion).find('input,textarea,select')
     if input.length
       label = @extractText(input.attr('id'))
       incompleteMessage = "Question #{questionRef} is incomplete. It is required and must be filled in."
@@ -954,6 +954,7 @@ window.FormValidation =
     stepContainer.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
     stepContainer.find(".govuk-error-message").empty()
     $(".steps-progress-bar .js-step-link[data-step='" + currentStep + "']").removeClass("step-errors")
+    $("li, a", $(".steps-progress-bar .js-step-link[data-step='" + currentStep + "']")).removeClass("step-errors")
 
     for question in stepContainer.find(".question-block")
       question = $(question)

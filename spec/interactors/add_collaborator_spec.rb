@@ -68,7 +68,7 @@ describe "Interactors::AddCollaborator" do
         .and not_change { MailDeliveryWorker.jobs.size }
 
       expect(account.reload.users.count).to be_eql 1
-      expect(add_collaborator_interactor.errors).to be_eql ["User already associated with another account!"]
+      expect(add_collaborator_interactor.collaborator.errors[:email]).to be_eql ["User already associated with another account"]
     end
   end
 
