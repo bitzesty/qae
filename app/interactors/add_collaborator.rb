@@ -30,10 +30,13 @@ class AddCollaborator
       user = User.find_by email: email
 
       if user.present?
+        @invalid = true
+
         if user.account_id == account.id
           @errors = ["This user already added to collaborators!"]
         elsif user.account.present?
-          @errors = ["User already associated with another account!"]
+          user = User.new(params)
+          user.errors.add(:email, "User already associated with another account")
         end
 
         user.role = params[:role]
@@ -57,6 +60,6 @@ class AddCollaborator
   end
 
   def valid?
-    @errors.blank?
+    @errors.blank? && !@invalid
   end
 end

@@ -1,8 +1,8 @@
 .steps-progress-bar
   ol.govuk-list
-    = step_link_to "My details",           correspondent_details_account_path, index: 1, active: @active_step, disable_progression: current_user.completed_registration?
-    = step_link_to "My contact preferences",  contact_settings_account_path,      index: 2, active: @active_step, disable_progression: current_user.completed_registration?
-    = step_link_to "Organisation details", company_details_account_path,       index: 3, active: @active_step, disable_progression: current_user.completed_registration?
-    = step_link_to "Collaborators",        account_collaborators_path,         index: 4, active: @active_step, disable_progression: current_user.completed_registration?
+    = step_link_to " My details",           correspondent_details_account_path, index: 1, active: @active_step, disable_progression: current_user.completed_registration?
+    = step_link_to " My contact preferences",  contact_settings_account_path,      index: 2, active: @active_step, disable_progression: current_user.completed_registration?
+    = step_link_to " Organisation details", company_details_account_path,       index: 3, active: @active_step, disable_progression: current_user.completed_registration?
+    = step_link_to " Collaborators",        account_collaborators_path,         index: 4, active: @active_step, disable_progression: current_user.completed_registration?
     - if current_user.completed_registration
-      = step_link_to "Password change",           password_settings_account_path,     index: 5, active: @active_step, disable_progression: current_user.completed_registration?
+      = step_link_to " Password change",           password_settings_account_path,     index: 5, active: @active_step, disable_progression: current_user.completed_registration?
