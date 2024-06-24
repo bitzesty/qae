@@ -31,6 +31,7 @@ end
 step "I create innovation form" do
   step "I go to dashboard"
   click_link "New application", href: "/apply_innovation_award"
+  fill_in "nickname", with: "Innovation"
   click_button "Save and start eligibility questionnaire"
   click_link "Continue to eligibility questions"
   click_button "Continue" # eligibility step

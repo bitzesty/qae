@@ -51,6 +51,7 @@ FactoryBot.define do
 
     trait :innovation do
       award_type { "innovation" }
+      nickname { "Innovation" }
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
@@ -73,6 +74,7 @@ FactoryBot.define do
 
     trait :mobility do
       award_type { "mobility" }
+      nickname { "Promoting Opportunity" }
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(

@@ -51,7 +51,21 @@ describe FormController do
 
   describe "#new_social_mobility_form" do
     it "allows to open mobility form" do
-      expect(get(:new_social_mobility_form)).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
+      expect(get(:new_social_mobility_form, params: { nickname: "Promoting Opportunity" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
+    end
+
+    it "does not allow to create an application without nickname/reference field filled" do
+      expect { get(:new_social_mobility_form, params: { nickname: "" }) }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  describe "#new_innovation_form" do
+    it "allows to open innovation form" do
+      expect(get(:new_innovation_form, params: { nickname: "Innovation" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "innovation").last))
+    end
+
+    it "does not allow to create an application without nickname/reference field filled" do
+      expect { get(:new_innovation_form, params: { nickname: "" }) }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
@@ -69,7 +83,7 @@ describe FormController do
 
     describe "#new_social_mobility_form" do
       it "allows to create an application if mobility deadline has past" do
-        expect(get(:new_social_mobility_form)).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
+        expect(get(:new_social_mobility_form, params: { nickname: "Promoting Opportunity" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
       end
 
       it "does not allow to create an application if mobility start deadline has not past" do
@@ -91,7 +105,7 @@ describe FormController do
 
     describe "#new_innovation_form" do
       it "allows to create an application if innovation start deadline has past" do
-        expect(get(:new_innovation_form)).to redirect_to(edit_form_url(FormAnswer.where(award_type: "innovation").last))
+        expect(get(:new_innovation_form, params: { nickname: "Innovation" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "innovation").last))
       end
 
       it "does not allow to create an application if innovation start deadline has not past" do
