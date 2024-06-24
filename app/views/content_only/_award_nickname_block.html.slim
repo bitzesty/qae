@@ -2,11 +2,11 @@ br
 
 .govuk-form-group
   h2.govuk-label-wrapper
-    = label_tag :nickname, "Please choose a reference for this application (optional):", class: 'govuk-label govuk-label--l', for: 'award-nickname'
+    = label_tag :nickname, "Please choose a reference for this application:", class: 'govuk-label govuk-label--l', for: 'award-nickname'
 
   p.govuk-hint
     | If you have more than one innovation (and want them to be considered for an award), you will have to submit a separate application for each of them.
   p.govuk-hint
     | You can create a reference, for example, 'Fibre optic device' so that it helps you and your collaborators to distinguish between different innovation applications. It will appear on the Applications page. Once chosen, your reference is permanent.
 
-  = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "govuk-input govuk-!-width-two-thirds", id: 'award-nickname'
+  = text_field_tag :nickname, "", autocomplete: "off", required: true, type: "text", class: "govuk-input govuk-!-width-two-thirds", id: 'award-nickname'

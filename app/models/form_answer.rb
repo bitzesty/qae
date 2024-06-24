@@ -44,6 +44,8 @@ class FormAnswer < ApplicationRecord
 
   BUSINESS_AWARD_TYPES = %w[trade innovation development mobility]
 
+  AWARD_TYPES_WITH_NICKNAME_REQUIRED = %w[innovation mobility]
+
   AWARD_TYPE_FULL_NAMES = {
     "trade" => "International Trade",
     "innovation" => "Innovation",
@@ -133,6 +135,7 @@ class FormAnswer < ApplicationRecord
     inclusion: {
       in: POSSIBLE_AWARDS,
     }
+  validates :nickname, presence: true, if: -> { award_type.in?(AWARD_TYPES_WITH_NICKNAME_REQUIRED) }
   validates :urn, uniqueness: { allow_blank: true } # rubocop:disable Rails/UniqueValidationWithoutIndex
   validates :sic_code, format: { with: SicCode::REGEX }, allow_blank: true
   validate :validate_answers

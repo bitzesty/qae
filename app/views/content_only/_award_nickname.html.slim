@@ -1,3 +1,6 @@
+- is_nickname_required = award_type.in?(FormAnswer::AWARD_TYPES_WITH_NICKNAME_REQUIRED)
+- is_promotion = award_type == "promotion"
+
 .page-pre-eligibility
   h2.govuk-heading-l The Process
 
@@ -7,7 +10,7 @@
       ul.govuk-list.govuk-list--bullet
         li
           ' This is to ensure that your
-          - if award_type == "promotion"
+          - if is_promotion
             ' nominee
           - else
             ' organisation
@@ -25,7 +28,7 @@
     li
       p.govuk-body
         ' Submit your
-        - if award_type == "promotion"
+        - if is_promotion
           ' nomination
         - else
           ' application
@@ -36,15 +39,15 @@
           ' .
         li
           ' You can still edit submitted
-          - if award_type == "promotion"
+          - if is_promotion
             ' nominations
           - else
             ' applications
           ' up to this date.
 
-  - if award_type == "innovation"
+  - if is_nickname_required
     = render "content_only/award_nickname_block"
 
   p#get-started.get-started.group.govuk-body
-    - title = award_type == "innovation" ? "Save and start eligibility questionnaire" : "Start eligibility questionnaire"
+    - title = is_nickname_required ? "Save and start eligibility questionnaire" : "Start eligibility questionnaire"
     = submit_tag title, class: "govuk-button", rel: "external"
