@@ -3,5 +3,5 @@ h1.govuk-heading-xl Sustainable Development Award Application
 .article-related-positioning-container
   .article-container
     article.group role="article"
-      = form_tag new_sustainable_development_form_path, method: :get do
-        = render "award_nickname", award_type: "development"
+      = simple_form_for @form_answer, url: new_sustainable_development_form_path, html: { class: "qae-form" } do |f|
+        = render partial: "content_only/award_nickname", locals: { award_type: "development", f: f }
