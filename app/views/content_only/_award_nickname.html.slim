@@ -46,7 +46,7 @@
           ' up to this date.
 
   - if is_nickname_required
-    = render "content_only/award_nickname_block"
+    = render partial: "content_only/award_nickname_block", locals: { award_type: award_type }
 
   p#get-started.get-started.group.govuk-body
     - title = is_nickname_required ? "Save and start eligibility questionnaire" : "Start eligibility questionnaire"
