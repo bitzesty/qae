@@ -43,7 +43,7 @@ describe "Eligibility forms" do
     it "process the eligibility form" do
       visit dashboard_path
       new_application("Innovation Award")
-      # fill_in("nickname", with: "innovation nick")
+      fill_in("nickname", with: "innovation nick")
       click_button("Save and start eligibility questionnaire")
       click_link("Continue to eligibility questions")
       form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes", "Yes", "Yes", "Yes"])
