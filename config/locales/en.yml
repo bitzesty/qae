@@ -108,7 +108,7 @@ en:
         form_answer:
           attributes:
             nickname:
-              blank: Reference is required and must be filled in
+              blank: Reference is required and must be filled in.
 
   time:
     formats:
