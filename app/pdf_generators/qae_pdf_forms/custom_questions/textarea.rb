@@ -241,7 +241,7 @@ module QaePdfForms::CustomQuestions::Textarea
       style_options = style_options[0].split(";").map(&:strip)
     end
 
-    style_options = Array.wrap(style_options)
+    style_options = Array.wrap(style_options).reject(&:blank?)
     styles = { inline_format: true, color: FormPdf::DEFAULT_ANSWER_COLOR }
 
     if style_options.present?

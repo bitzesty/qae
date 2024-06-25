@@ -39,6 +39,16 @@ class ContentOnlyController < ApplicationController
   # rubocop:enable Rails/LexicallyScopedActionFilter
 
   # rubocop:disable Rails/LexicallyScopedActionFilter
+  before_action :build_form,
+    only: [
+      :apply_innovation_award,
+      :apply_international_trade_award,
+      :apply_sustainable_development_award,
+      :apply_social_mobility_award,
+    ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
+
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [:dashboard]
   before_action :clean_flash, only: [:sign_up_complete]
   before_action :check_trade_count_limit, only: :apply_international_trade_award
@@ -89,6 +99,10 @@ class ContentOnlyController < ApplicationController
     current_account.form_answers
                    .where(award_year: target_award_year)
                    .order("award_type")
+  end
+
+  def build_form
+    @form_answer = current_account.form_answers.build
   end
 
   def get_current_form

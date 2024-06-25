@@ -46,10 +46,10 @@ Rails.application.routes.draw do
   get "/cookies" => "content_only#cookies", :as => "cookies"
   get "/accessibility-statement" => "content_only#accessibility_statement", :as => "accessibility_statement"
 
-  get "/new_innovation_form" => "form#new_innovation_form", :as => "new_innovation_form"
-  get "/new_international_trade_form" => "form#new_international_trade_form", :as => "new_international_trade_form"
-  get "/new_sustainable_development_form" => "form#new_sustainable_development_form", :as => "new_sustainable_development_form"
-  get "/new_social_mobility_form" => "form#new_social_mobility_form", :as => "new_social_mobility_form"
+  post "/new_innovation_form" => "form#new_innovation_form", :as => "new_innovation_form"
+  post "/new_international_trade_form" => "form#new_international_trade_form", :as => "new_international_trade_form"
+  post "/new_sustainable_development_form" => "form#new_sustainable_development_form", :as => "new_sustainable_development_form"
+  post "/new_social_mobility_form" => "form#new_social_mobility_form", :as => "new_social_mobility_form"
 
   get "/form/:id" => "form#edit_form", :as => "edit_form"
   post "/form/:id" => "form#save", :as => "save_form"
