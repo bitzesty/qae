@@ -105,6 +105,10 @@ en:
           attributes:
             position:
               blank: 'is empty - it is a required field and an option should be selected from the following list'
+        form_answer:
+          attributes:
+            nickname:
+              blank: Reference is required and must be filled in
 
   time:
     formats:

@@ -51,66 +51,74 @@ describe FormController do
 
   describe "#new_social_mobility_form" do
     it "allows to open mobility form" do
-      expect(get(:new_social_mobility_form, params: { nickname: "Promoting Opportunity" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
+      response = post(:new_social_mobility_form, params: { form_answer: { nickname: "Promoting Opportunity" } })
+
+      expect(response).not_to have_http_status(:unprocessable_entity)
+      expect(response).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
     end
 
     it "does not allow to create an application without nickname/reference field filled" do
-      expect { get(:new_social_mobility_form, params: { nickname: "" }) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(post(:new_social_mobility_form, params: { form_answer: { nickname: "" } })).to have_http_status(:unprocessable_entity)
     end
   end
 
   describe "#new_innovation_form" do
     it "allows to open innovation form" do
-      expect(get(:new_innovation_form, params: { nickname: "Innovation" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "innovation").last))
+      response = post(:new_innovation_form, params: { form_answer: { nickname: "Innovation" } })
+
+      expect(response).not_to have_http_status(:unprocessable_entity)
+      expect(response).to redirect_to(edit_form_url(FormAnswer.where(award_type: "innovation").last))
     end
 
     it "does not allow to create an application without nickname/reference field filled" do
-      expect { get(:new_innovation_form, params: { nickname: "" }) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect(post(:new_innovation_form, params: { form_answer: { nickname: "" } })).to have_http_status(:unprocessable_entity)
     end
   end
 
   context "individual deadlines" do
     describe "#new_international_trade_form" do
       it "allows to create an application if trade start deadline has past" do
-        expect(get(:new_international_trade_form)).to redirect_to(edit_form_url(FormAnswer.where(award_type: "trade").last))
+        expect(post(:new_international_trade_form)).to redirect_to(edit_form_url(FormAnswer.where(award_type: "trade").last))
       end
 
       it "does not allow to create an application if trade start deadline has not past" do
         Settings.current.deadlines.trade_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
-        expect(get(:new_international_trade_form)).to redirect_to(dashboard_url)
+        expect(post(:new_international_trade_form)).to redirect_to(dashboard_url)
       end
     end
 
     describe "#new_social_mobility_form" do
       it "allows to create an application if mobility deadline has past" do
-        expect(get(:new_social_mobility_form, params: { nickname: "Promoting Opportunity" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
+        expect(post(:new_social_mobility_form, params: { form_answer: { nickname: "Promoting Opportunity" } })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "mobility").last))
       end
 
       it "does not allow to create an application if mobility start deadline has not past" do
         Settings.current.deadlines.mobility_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
-        expect(get(:new_social_mobility_form)).to redirect_to(dashboard_url)
+        expect(post(:new_social_mobility_form)).to redirect_to(dashboard_url)
       end
     end
 
     describe "#new_sustainable_development_form" do
       it "allows to create an application if trade development deadline has past" do
-        expect(get(:new_sustainable_development_form)).to redirect_to(edit_form_url(FormAnswer.where(award_type: "development").last))
+        expect(post(:new_sustainable_development_form)).to redirect_to(edit_form_url(FormAnswer.where(award_type: "development").last))
       end
 
       it "does not allow to create an application if development start deadline has not past" do
         Settings.current.deadlines.development_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
-        expect(get(:new_sustainable_development_form)).to redirect_to(dashboard_url)
+        expect(post(:new_sustainable_development_form)).to redirect_to(dashboard_url)
       end
     end
 
     describe "#new_innovation_form" do
       it "allows to create an application if innovation start deadline has past" do
-        expect(get(:new_innovation_form, params: { nickname: "Innovation" })).to redirect_to(edit_form_url(FormAnswer.where(award_type: "innovation").last))
+        response = post(:new_innovation_form, params: { form_answer: { nickname: "Innovation" } })
+
+        expect(response).to redirect_to(edit_form_url(FormAnswer.where(award_type: "innovation").last))
       end
 
       it "does not allow to create an application if innovation start deadline has not past" do
         Settings.current.deadlines.innovation_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
-        expect(get(:new_innovation_form)).to redirect_to(dashboard_url)
+        expect(post(:new_innovation_form)).to redirect_to(dashboard_url)
       end
     end
   end
