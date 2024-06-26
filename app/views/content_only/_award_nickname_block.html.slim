@@ -2,7 +2,7 @@ br
 
 .govuk-form-group
   h2.govuk-label-wrapper
-    = label_tag :nickname, "Please choose a reference for this application:", class: 'govuk-label govuk-label--l', for: 'award-nickname'
+    = label_tag :nickname, "Please choose a reference for this application:", class: "govuk-label govuk-label--l", for: "award-reference"
 
   - if local_assigns[:award_type] == "innovation"
     p.govuk-hint
@@ -15,4 +15,4 @@ br
     p.govuk-hint
       | Please create a reference. This will help you and your collaborators distinguish between different applications. Your reference will appear on the Applications page. Once chosen, it is permanent.
 
-  = text_field_tag :nickname, "", autocomplete: "off", required: true, aria: { required: true }, type: "text", class: "govuk-input govuk-!-width-two-thirds", id: 'award-nickname'
+  = f.input :nickname, required: true, label: false, input_html: { id: "award-reference", class: "govuk-input govuk-!-width-two-thirds", autocomplete: "off"}

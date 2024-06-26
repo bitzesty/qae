@@ -3,5 +3,5 @@ h1.govuk-heading-xl International Trade Award Application
 .article-related-positioning-container
   .article-container
     article.group role="article"
-      = form_tag new_international_trade_form_path, method: :get do
-        = render "award_nickname", award_type: "trade"
+      = simple_form_for @form_answer, url: new_international_trade_form_path, html: { class: "qae-form" } do |f|
+        = render partial: "content_only/award_nickname", locals: { award_type: "trade", f: f }

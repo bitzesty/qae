@@ -46,8 +46,25 @@
           ' up to this date.
 
   - if is_nickname_required
-    = render partial: "content_only/award_nickname_block", locals: { award_type: award_type }
+    = render partial: "content_only/award_nickname_block", locals: { award_type: award_type, f: f }
 
   p#get-started.get-started.group.govuk-body
     - title = is_nickname_required ? "Save and start eligibility questionnaire" : "Start eligibility questionnaire"
-    = submit_tag title, class: "govuk-button", rel: "external"
+    = f.submit title, class: "govuk-button"
+
+javascript:
+  setTimeout(() => {
+    const element = document.querySelector('.govuk-form-group--error')
+
+    if (element) {
+      const input = element.querySelector('[aria-invalid="true"]')
+      const scrollIntoViewOptions = { behavior: 'smooth', block: 'center', inline: 'nearest' }
+
+      if (input) {
+        input.focus()
+        input.scrollIntoView(scrollIntoViewOptions)
+      } else {
+        element.scrollIntoView(scrollIntoViewOptions)
+      }
+    }
+  }, '100')

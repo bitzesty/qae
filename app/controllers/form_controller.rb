@@ -62,19 +62,19 @@ class FormController < ApplicationController
   end
 
   def new_innovation_form
-    build_new_form("innovation")
+    build_new_form("innovation", "innovation")
   end
 
   def new_international_trade_form
-    build_new_form("trade")
+    build_new_form("trade", "international_trade")
   end
 
   def new_sustainable_development_form
-    build_new_form("development")
+    build_new_form("development", "sustainable_development")
   end
 
   def new_social_mobility_form
-    build_new_form("mobility")
+    build_new_form("mobility", "social_mobility")
   end
 
   def edit_form
@@ -272,18 +272,20 @@ class FormController < ApplicationController
     result
   end
 
-  def build_new_form(award_type)
-    form_answer = FormAnswer.create!(
-      user: current_user,
-      account: current_user.account,
-      award_type: award_type,
-      nickname: nickname,
-      document: {
-        company_name: current_user.company_name,
-      },
+  def build_new_form(award_type, partial_name)
+    @form_answer = current_user.account.form_answers.build(
+      permitted_params.merge(
+        award_type: award_type,
+        document: { company_name: current_user.company_name },
+        user: current_user,
+      ),
     )
 
-    redirect_to edit_form_url(form_answer)
+    if @form_answer.save
+      redirect_to edit_form_url(@form_answer)
+    else
+      render "content_only/apply_#{partial_name}_award", status: :unprocessable_entity
+    end
   end
 
   def set_form_answer
@@ -291,8 +293,8 @@ class FormController < ApplicationController
     @attachments = @form_answer.form_answer_attachments.index_by(&:id)
   end
 
-  def nickname
-    params[:nickname].presence
+  def permitted_params
+    params.fetch(:form_answer, {}).permit(:nickname)
   end
 
   def check_deadlines
