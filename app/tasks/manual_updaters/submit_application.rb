@@ -41,6 +41,8 @@ module ManualUpdaters
 
         # generate hard copy PDF file
         #
+        puts "****************************************************************************************"
+        puts "generate hard copy PDF file"
         HardCopyPdfGenerators::FormDataWorker.perform_async(form_answer.id, true)
 
         Rails.logger.debug ""

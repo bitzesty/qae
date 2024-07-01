@@ -1,0 +1,30 @@
+.col-md-3.col-sm-4.award-year-z-index.applications-filter
+  label.applications-filter__label
+    ' Award year
+  .input__award-years
+    - current_year = AwardYear.current.year
+    - selected_year = params[:year] ? params[:year].to_i : current_year
+    - other_years = AwardYear.admin_switch.keys
+
+    input type="radio" id="current_year" name="year" value="#{current_year}" data-url="#{url_for(params.permit(:controller, :action).merge(year: current_year))}" checked=(current_year == selected_year)
+    ' Current year
+    input type="radio" id="all_years" name="year" value="all_years" data-url="#{url_for(params.permit(:controller, :action).merge(year: :all_years))}" checked=(params[:year].to_s == 'all_years' || !params[:year])
+    ' All years
+    input type="radio" id="other" name="year" value="other" checked=(current_year != selected_year && other_years.include?(params[:year].to_i))
+    ' Other
+
+  .dropdown.other-years-dropdown class="#{(current_year != selected_year && other_years.include?(params[:year].to_i) ? '' : 'hide')}"
+    a.dropdown-toggle.btn.btn-block.btn-default href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+      - current_year = params[:year] ? params[:year].to_i : AwardYear.current.year
+      - current_year_text = params[:year].to_s == "all_years" ? "All Years" : "#{current_year - 1} - #{current_year}"
+
+      = current_year_text
+      span.caret-container
+        span.caret
+    ul.dropdown-menu.dropdown-menu-right
+      li class="#{'active' if params[:year].to_s == 'all_years'}"
+        = link_to "All Years", url_for(params.permit(:controller, :action).merge(year: :all_years))
+
+      - AwardYear.admin_switch.each do |year, label|
+        li class="#{'active' if label == current_year_text}"
+          = link_to label, url_for(params.permit(:controller, :action).merge(year: year))

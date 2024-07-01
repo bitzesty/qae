@@ -7,12 +7,13 @@ h1.admin-page-heading
     .col-md-4.col-sm-5.col-xs-12
       .applications-filter
         = f.label :query, "Search", class: "search-input__label"
+        = f.hint "By company name, reference number or category", class: "search-input__hint"
         .form-group.search-input
           = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden", aria: { hidden: true }
           = f.input :query, label: false, input_html: { class: "form-control", type: "search", aria: { label: 'Search applications' }}
           = submit_tag :submit, class: 'search-submit'
 
-  = render "shared/form_answers/top_statuses_filters", f: f,
+  = render "admin/form_answers/filters/top_statuses_filters", f: f,
                                                        options: FormAnswerStatus::AdminFilter.options,
                                                        sub_options: FormAnswerStatus::AdminFilter.sub_options
 

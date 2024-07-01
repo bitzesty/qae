@@ -123,4 +123,13 @@ filterApplicationsDropdowns = () ->
                           .length
       $(this).closest(".applications-filter").find("label[data-value='select_all'] input").prop("checked", unselected is 0)
 
+  # On clicking the award year radio
+  $(document).on "click", ".applications-filter .input__award-years input[type='radio']", (e) ->
+    e.stopPropagation()
+    # if other selected, show dropdown of years, otherwise get form answers for current year or all years
+    if $(this).attr('id') == "other"
+      $(this).closest(".applications-filter").find(".other-years-dropdown").removeClass("hide")
+    else
+      window.location = $(this).data('url')
+
 $(document).ready(ready)
