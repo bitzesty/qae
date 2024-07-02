@@ -1,3 +1,3 @@
 Ckeditor.setup do |config|
-  config.cdn_url = "//cdn.ckeditor.com/ckeditor5/42.0.0/ckeditor5.js"
+  config.cdn_url = "//cdn.ckeditor.com/4.22.1/full/ckeditor.js"
 end
