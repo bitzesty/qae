@@ -51,9 +51,17 @@ class AwardYears::V2025::QaeForms
           financial_date_pointer
         end
 
+        trade_most_recent_financial_year_options :most_recent_financial_year, "Which year would you like to be your most recent financial year that you will submit figures for?" do
+          ref "D 2.1"
+          required
+          option (AwardYear.current.year - 2).to_s, (AwardYear.current.year - 2).to_s
+          option (AwardYear.current.year - 1).to_s, (AwardYear.current.year - 1).to_s
+          classes "js-most-recent-financial-year fs-trackable fs-two-trackable"
+        end
+
         options :financial_year_date_changed, "Did your year-end date change during your three most recent financial years that you will be providing figures for?" do
           classes "sub-question js-financial-year-change fs-trackable"
-          sub_ref "D 2.1"
+          sub_ref "D 2.2"
           required
           context %(
             <p>
@@ -66,7 +74,7 @@ class AwardYears::V2025::QaeForms
 
         one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question one-option-by-years fs-trackable"
-          sub_ref "D 2.2"
+          sub_ref "D 2.3"
           required
           context %(
             <p>
@@ -80,7 +88,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :financial_adjustments_explanation, "Explain adjustments to figures." do
           classes "sub-question word-max-strict"
-          sub_ref "D 2.3"
+          sub_ref "D 2.4"
           required
           context %(
             <p>
@@ -94,7 +102,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
           classes "sub-question word-max-strict"
-          sub_ref "D 2.4"
+          sub_ref "D 2.5"
           required
           rows 2
           words_max 100
