@@ -13,7 +13,7 @@ h1.admin-page-heading
           = f.input :query, label: false, input_html: { class: "form-control", type: "search", aria: { label: 'Search applications' }}
           = submit_tag :submit, class: 'search-submit'
 
-  = render "admin/form_answers/filters/top_statuses_filters", f: f,
+  = render "shared/form_answers/top_statuses_filters", f: f,
                                                        options: FormAnswerStatus::AdminFilter.options,
                                                        sub_options: FormAnswerStatus::AdminFilter.sub_options
 

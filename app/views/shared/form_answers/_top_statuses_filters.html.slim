@@ -1,5 +1,6 @@
 .row
-  = render "layouts/vertical_admin_award_year"
+  = render "shared/form_answers/admin_award_year"
+.row
   .col-lg-4.col-md-5.col-sm-7.applications-filter.status-filter
     = f.simple_fields_for [:filters, @search.filters] do |g|
       = g.input :status,
