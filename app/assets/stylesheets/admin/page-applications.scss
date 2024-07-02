@@ -25,12 +25,31 @@
   }
 
   .search-input__hint {
-    margin-bottom: pxToRem(20);
+    padding-bottom: pxToRem(20);
+  }
+
+  .search-input__hint + .search-input {
+    top: pxToRem(10);
   }
 
   .input__award-years {
-    .input {
+    display: inline-block;
+
+    input {
+      margin-right: pxToRem(10);
+      width: 20px;
+      height: 20px;
+      margin-top: -2px;
+      vertical-align: middle;
+    }
+
+    label {
       margin-right: pxToRem(20);
+      font-weight: normal;
+    }
+
+    .dropdown {
+      width: pxToRem(200);
     }
   }
 
