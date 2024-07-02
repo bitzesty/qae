@@ -929,11 +929,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     margin: 0;
     padding: 0;
     border: none;
-    background: transparent;
-    background-image: image-url("icon-search.png");
+    background: #1C1C1B;
+    background-image: image-url("icon-search-white.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: pxToRem(15) pxToRem(21);
+    background-size: pxToRem(18) pxToRem(18);
     text-align: left !important;
     text-indent: -9999px;
     white-space: nowrap;
@@ -943,7 +943,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     z-index: 1000;
 
     @include is-retina {
-      background-image: image-url("icon-search@2.png");
+      background-image: image-url("icon-search-white.png");
     }
 
     .lte-ie7 & {
@@ -1998,6 +1998,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     position: relative;
     z-index: 2;
   }
+}
+
+.award-year-radios {
+  padding-left: 15px;
 }
 
 .award-year-container {
