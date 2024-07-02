@@ -21,10 +21,10 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   expose(:target_scope) do
-    if params[:year].to_s == "all_years"
-      FormAnswer.all
-    else
+    if AwardYear.admin_switch.keys.include?(params[:year].to_i)
       @award_year.form_answers
+    else
+      FormAnswer.all
     end
   end
 
