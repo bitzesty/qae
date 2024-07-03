@@ -133,7 +133,8 @@ filterApplicationsDropdowns = () ->
       dropdown = dropdownWrapper.find(".dropdown-toggle")
       dropdown.focus().click()
     else
-      search_query = $(this).closest(".new_search").find("#search_query").val()
+      search_query = $(this).closest("#new_search").find("#search_query").val()
+      console.log(search_query)
       url = new URL($(this).data('url'), document.baseURI)
       url.searchParams.set('[search][query]', search_query)
       window.location = url
