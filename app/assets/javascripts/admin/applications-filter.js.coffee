@@ -128,8 +128,14 @@ filterApplicationsDropdowns = () ->
     e.stopPropagation()
     # if other selected, show dropdown of years, otherwise get form answers for current year or all years
     if $(this).attr('id') == "other"
-      $(this).closest(".applications-filter").find(".other-years-dropdown").removeClass("hide")
+      dropdownWrapper = $(this).closest(".applications-filter").find(".other-years-dropdown")
+      dropdownWrapper.removeClass("hide")
+      dropdown = dropdownWrapper.find(".dropdown-toggle")
+      dropdown.focus().click()
     else
-      window.location = $(this).data('url')
+      search_query = $(this).closest(".new_search").find("#search_query").val()
+      url = new URL($(this).data('url'), document.baseURI)
+      url.searchParams.set('[search][query]', search_query)
+      window.location = url
 
 $(document).ready(ready)

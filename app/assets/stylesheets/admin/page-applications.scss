@@ -33,6 +33,7 @@
   }
 
   .input__award-years {
+    min-height: pxToRem(33);
     display: inline-block;
 
     input {
@@ -46,6 +47,8 @@
     label {
       margin-right: pxToRem(20);
       font-weight: normal;
+      padding-bottom: pxToRem(1);
+      padding-top: pxToRem(4);
     }
 
     .dropdown {
