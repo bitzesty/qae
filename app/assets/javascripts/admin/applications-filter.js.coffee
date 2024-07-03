@@ -123,7 +123,7 @@ filterApplicationsDropdowns = () ->
                           .length
       $(this).closest(".applications-filter").find("label[data-value='select_all'] input").prop("checked", unselected is 0)
 
-  # On clicking the award year radio
+  # On clicking the award year radio set search query to entered text
   $(document).on "click", ".applications-filter .input__award-years input[type='radio']", (e) ->
     e.stopPropagation()
     # if other selected, show dropdown of years, otherwise get form answers for current year or all years
@@ -134,9 +134,17 @@ filterApplicationsDropdowns = () ->
       dropdown.focus().click()
     else
       search_query = $(this).closest("#new_search").find("#search_query").val()
-      console.log(search_query)
       url = new URL($(this).data('url'), document.baseURI)
       url.searchParams.set('[search][query]', search_query)
       window.location = url
+
+  # On clicking the award year from the other year dropdown set search query to entered text
+  $(document).on "click", ".applications-filter .other-years-dropdown .dropdown-menu li", (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    search_query = $(this).closest("#new_search").find("#search_query").val()
+    url = new URL($(this).data('url'), document.baseURI)
+    url.searchParams.set('[search][query]', search_query)
+    window.location = url
 
 $(document).ready(ready)

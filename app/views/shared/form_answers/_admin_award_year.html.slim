@@ -24,9 +24,9 @@ fieldset.award-year-z-index.applications-filter.award-year-radios
         span.caret-container
           span.caret
       ul.dropdown-menu.dropdown-menu-right
-        li class="#{'active' if params[:year].to_s == 'all_years' || !params[:year]}"
-          = link_to "All Years", url_for(params.permit(:controller, :action).merge(year: :all_years, search: params[:search]))
+        li class="#{'active' if params[:year].to_s == 'all_years' || !params[:year]}" data-url="#{url_for(params.permit(:controller, :action).merge(year: :all_years, search: params[:search]))}"
+          = link_to "All Years", "#"
 
         - AwardYear.admin_switch.each do |year, label|
-          li class="#{'active' if label == current_year_text}"
-            = link_to label, url_for(params.permit(:controller, :action).merge(year: year, search: params[:search]))
+          li class="#{'active' if label == current_year_text}" data-url="#{url_for(params.permit(:controller, :action).merge(year: year, search: params[:search]))}"
+            = link_to label, "#"
