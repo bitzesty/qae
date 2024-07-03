@@ -64,22 +64,12 @@ class AwardYears::V2025::QaeForms
           sub_ref "D 2.2"
           required
           yes_no
-          context %(
-            <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
-            </p>
-          )
           default_option "no"
         end
 
         one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question one-option-by-years fs-trackable"
           sub_ref "D 2.3"
-          context %(
-            <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - (the submission deadline).
-            </p>
-          )
           required
           type :date
           label ->(y) { "Financial year #{y}" }

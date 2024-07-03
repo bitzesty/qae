@@ -63,11 +63,6 @@ class AwardYears::V2025::QaeForms
           classes "sub-question js-financial-year-change fs-trackable"
           sub_ref "D 2.2"
           required
-          context %(
-            <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the submission deadline.
-            </p>
-          )
           yes_no
           default_option "no"
         end
@@ -76,11 +71,6 @@ class AwardYears::V2025::QaeForms
           classes "sub-question one-option-by-years fs-trackable"
           sub_ref "D 2.3"
           required
-          context %(
-            <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the submission deadline.
-            </p>
-          )
           type :date
           label ->(y) { "Financial year #{y}" }
           conditional :financial_year_date_changed, :yes
