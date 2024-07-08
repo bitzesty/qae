@@ -123,4 +123,27 @@ filterApplicationsDropdowns = () ->
                           .length
       $(this).closest(".applications-filter").find("label[data-value='select_all'] input").prop("checked", unselected is 0)
 
+  # On clicking the award year radios
+  $(document).on "click", ".applications-filter .input__award-years input[type='radio']", (e) ->
+    e.stopPropagation()
+    # if other selected, show dropdown of years, otherwise submit form
+    if $(this).attr('id') == "other"
+      dropdownWrapper = $(this).closest(".applications-filter").find(".other-years-dropdown")
+      dropdownWrapper.removeClass("hide")
+      dropdown = dropdownWrapper.find(".dropdown-toggle")
+      dropdown.focus().click()
+    else
+      selected_year = $(this).val()
+      $(this).closest(".input__award-years").find("select option[value='#{selected_year}']").attr('selected', true).change()
+      $(this).closest('form').submit()
+
+  # On clicking the award year from the other year dropdown
+  $(document).on "click", ".applications-filter .other-years-dropdown .dropdown-menu li", (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    # Set value of other radio button to selected year and submit
+    selected_year = $(this).attr('id')
+    $(this).closest(".input__award-years").find("select option[value='#{selected_year}']").attr('selected', true).change()
+    $(this).closest('form').submit()
+
 $(document).ready(ready)
