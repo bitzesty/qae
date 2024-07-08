@@ -263,8 +263,7 @@ class QaeFormBuilder
         header: "Periods the figures are required for",
         context: [
           "You must provide financial figures for your three most recent financial years, covering 36 months.",
-          "If you have changed your year-end during the period of your application, see D2.3 for an explanation of how this must be dealt with.",
-          "For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date("with_year")} - the application submission deadline.",
+          "If you have changed your year-end during the period of your application, see D2.4 for an explanation of how this must be dealt with.",
         ],
       )
     end

@@ -24,6 +24,38 @@
     }
   }
 
+  .search-input__hint {
+    padding-bottom: pxToRem(20);
+  }
+
+  .search-input__hint + .search-input {
+    top: pxToRem(10);
+  }
+
+  .input__award-years {
+    min-height: pxToRem(33);
+    display: inline-block;
+
+    input {
+      margin-right: pxToRem(10);
+      width: 20px;
+      height: 20px;
+      margin-top: -2px;
+      vertical-align: middle;
+    }
+
+    label {
+      margin-right: pxToRem(20);
+      font-weight: normal;
+      padding-bottom: pxToRem(1);
+      padding-top: pxToRem(4);
+    }
+
+    .dropdown {
+      width: pxToRem(200);
+    }
+  }
+
   .dropdown {
     position: relative;
     display: inline-block;
@@ -557,7 +589,7 @@
       display: inline;
     }
   }
-  
+
   .alert ~ form > .form-edit-link {
     display: flex;
     float: right;

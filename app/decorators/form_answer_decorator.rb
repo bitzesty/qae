@@ -518,7 +518,13 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def last_updated_by
-    latest_update && latest_update.subject.full_name
+    if latest_update
+      if latest_update.subject
+        latest_update.subject.full_name
+      else
+        "Deleted user"
+      end
+    end
   end
 
   private
