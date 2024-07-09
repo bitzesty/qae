@@ -7,6 +7,7 @@ describe UserDecorator do
       last_name: "Bar",
       role: "account_admin",
       company_name: "Umbrella Corporation",
+      account: Account.new(owner: User.new),
     )
   }
 
@@ -95,6 +96,13 @@ describe UserDecorator do
   end
 
   describe "#role_name" do
+    context "when user is account owner" do
+      it "returns Account owner" do
+        user.account.owner = user
+        expect(subject.role_name).to eq("Account owner")
+      end
+    end
+
     context "when user is account_admin" do
       it "returns Admin and collaborator" do
         user.role = "account_admin"

@@ -34,13 +34,17 @@ class UserDecorator < ApplicationDecorator
   end
 
   def role_name
-    case object.role.to_s.humanize
-    when "Account admin"
-      "Admin and collaborator"
-    when "Regular"
-      "Collaborator only"
+    if account.owner == self
+      "Account owner"
     else
-      object.role.to_s.humanize
+      case role.to_s.humanize
+      when "Account admin"
+        "Admin and collaborator"
+      when "Regular"
+        "Collaborator only"
+      else
+        role.to_s.humanize
+      end
     end
   end
 
