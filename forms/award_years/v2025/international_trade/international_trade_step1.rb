@@ -186,7 +186,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :major_issues_overcome, "Please explain any major issues that you have overcome in recent years and the remedial steps you have taken." do
           ref "A 2.2"
-          classes "sub-question"
+          classes "sub-question text-words-max"
           required
           context %(
             <p class="govuk-body">For example, what steps did you take following a major Health and Safety incident.</p>
