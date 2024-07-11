@@ -35,7 +35,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 2.1"
           required
           conditional :principal_business, :no
@@ -250,7 +250,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 10.2"
           rows 5
           words_max 100
@@ -411,7 +411,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :other_awards_desc, "List the awards you have won in the past." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 17.1"
           required
           form_hint "If you can't fit all of your awards below, then choose those you're most proud of."

@@ -55,7 +55,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :adjustments_explanation, "Explain adjustments to figures." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 2.2"
           required
           rows 2
@@ -72,7 +72,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 2.3"
           required
           rows 1
@@ -203,7 +203,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_in_turnover, "Explain any losses, drops in the total turnover, export sales, total net assets or reductions in net profit." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 4.6"
           required
           rows 3
@@ -219,7 +219,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow, cash generated, and investment received." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 4.7"
           required
           context %(
@@ -235,7 +235,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :investments_details, "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the years in which they were made." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 4.8"
           required
           rows 3
@@ -248,7 +248,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investments outlined in question D4.8. How long did it take or will it take to recover the investments?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 4.9"
           required
           rows 3
@@ -372,7 +372,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_in_sales, "Explain any drop in sales or the number of units sold (if applicable)." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 6.5"
           section :innovation_financials
           rows 2
@@ -400,7 +400,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :avg_unit_price_desc, "Explain your unit selling prices or contract values, highlighting any changes over the above periods (if applicable)." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 6.7"
           section :innovation_financials
           rows 2
@@ -425,7 +425,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :costs_change_desc, "Explain your direct unit or contract costs, highlighting any changes over the above periods (if applicable)." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 6.9"
           section :innovation_financials
           rows 2
@@ -439,6 +439,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business." do
           ref "D 7"
+          classes "text-words-max"
           required
           context %(
             <p>
@@ -476,6 +477,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
           ref "D 8"
+          classes "text-words-max"
           required
           context %(
             <ul>
@@ -506,7 +508,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :innovation_grant_funding_sources, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your innovation (at any time)." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 9.1"
           required
           context %(
@@ -518,7 +520,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :innovation_grant_funding_sources_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 9.2"
           required
           context %(
@@ -551,7 +553,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :product_estimates_use, "Explain your use of estimates and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 10.2"
           required
           rows 2
