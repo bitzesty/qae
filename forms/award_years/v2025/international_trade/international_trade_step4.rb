@@ -83,7 +83,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_figures_adjustment_explanation, "Explain adjustments to figures." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 3.2"
           required
           context %(
@@ -103,7 +103,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 3.3"
           required
           rows 5
@@ -252,7 +252,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_in_turnover, "If you have had any losses, drops in turnover, or reductions in net profit, please explain them." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 5.4"
           required
           context %(
@@ -268,7 +268,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow and cash generated." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 5.5"
           required
           rows 5
@@ -276,7 +276,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 5.6"
           required
           rows 5
@@ -299,7 +299,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your export products or services (at any time)." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 6.1"
           required
           context %(
@@ -311,7 +311,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :funding_details_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 6.2"
           required
           context %(
@@ -344,7 +344,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 7.2"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes

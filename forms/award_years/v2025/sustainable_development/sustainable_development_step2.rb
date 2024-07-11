@@ -35,7 +35,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit and the arrangements made." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 2.1"
           required
           conditional :principal_business, :no
@@ -205,7 +205,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 8.1"
           context %(
             <p>Please note, when evaluating your application, the assessors may check your organisation's online presence.</p>
@@ -305,7 +305,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :part_of_joint_entry_names, "Please enter their names." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 12.1"
           required
           conditional :part_of_joint_entry, "yes"
@@ -330,7 +330,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :external_contributors, "Specify the organisations that have contributed, and state what, how and when they contributed." do
           sub_ref "B 13.1"
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           required
           conditional :external_contribute_to_sustainable_product, "yes"
           words_max 100
@@ -412,7 +412,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :other_awards_desc, "List the awards you have won in the past." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 15.1"
           required
           context %(
