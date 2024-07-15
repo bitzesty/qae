@@ -138,8 +138,10 @@ window.FormValidation =
         return question.find("input[type='checkbox']").filter(":checked").length
 
   validateWordLimit: (question) ->
-    wordLimit = $(question.context).attr("data-word-max")
-    wordCount = $(question.context).val().split(" ").length
+    textarea = question.find("textarea")
+    wordLimit = textarea.attr("data-word-max")
+    normalizedContent = textarea.val().replace(/&nbsp;/g, ' ').replace(/\n/g, ' ');
+    wordCount = normalizedContent.split(" ").length
     if wordCount > wordLimit
       @logThis(question, "validateWordLimit", "Word limit exceeded")
       @addErrorMessage(question, "Exceeded #{wordLimit} word limit.")
