@@ -140,7 +140,8 @@ window.FormValidation =
   validateWordLimit: (question) ->
     textarea = question.find("textarea")
     wordLimit = textarea.attr("data-word-max")
-    normalizedContent = textarea.val().replace(/&nbsp;/g, ' ').replace(/\n/g, ' ');
+    textareaValue = textarea.val() || '';
+    normalizedContent = textareaValue.replace(/(&nbsp;|\n|\s)+/g, ' ').trim();
     wordCount = normalizedContent.split(" ").length
     if wordCount > wordLimit
       @logThis(question, "validateWordLimit", "Word limit exceeded")
