@@ -17,7 +17,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_recipients_info
-    render_text_line("<b>To</b>: The Kings Award’s Office, The Department for Business, Energy & Industrial Strategy", 1, inline_format: true)
+    render_text_line("<b>To</b>: The Kings Award's Office, The Department for Business and Trade", 1, inline_format: true)
   end
 
   def render_company_info
