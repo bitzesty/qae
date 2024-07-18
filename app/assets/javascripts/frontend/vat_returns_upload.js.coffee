@@ -1,5 +1,12 @@
 window.VatReturnsUpload =
   init: ->
+    list = $('.vat-returns-wrapper .js-uploaded-list')
+    parent = list.closest('div.js-upload-wrapper')
+    max = parent.data('max-attachments')
+    govuk_button = $('.upload-file-btn')
+
+    updateUploadListVisiblity(list, govuk_button, max)
+
     $('.js-vat-returns-upload').each (idx, el) ->
       VatReturnsUpload.fileupload_init(el)
 
@@ -17,7 +24,7 @@ window.VatReturnsUpload =
     max = parent.data('max-attachments')
     list = parent.find('.js-uploaded-list')
     form = parent.find('form.vat-returns-upload-form')
-    govuk_button = $( ".upload-file-btn" )
+    govuk_button = $('.upload-file-btn')
 
     progress_all = (e, data) ->
       # TODO
