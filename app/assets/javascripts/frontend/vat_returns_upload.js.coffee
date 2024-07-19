@@ -1,5 +1,12 @@
 window.VatReturnsUpload =
   init: ->
+    list = $('.vat-returns-wrapper .js-uploaded-list')
+    parent = list.closest('div.js-upload-wrapper')
+    max = parent.data('max-attachments')
+    govuk_button = $('.upload-file-btn')
+
+    updateUploadListVisiblity(list, govuk_button, max)
+
     $('.js-vat-returns-upload').each (idx, el) ->
       VatReturnsUpload.fileupload_init(el)
 
@@ -14,8 +21,10 @@ window.VatReturnsUpload =
     $el = $(el)
 
     parent = $el.closest('div.js-upload-wrapper')
+    max = parent.data('max-attachments')
     list = parent.find('.js-uploaded-list')
     form = parent.find('form.vat-returns-upload-form')
+    govuk_button = $('.upload-file-btn')
 
     progress_all = (e, data) ->
       # TODO
@@ -60,6 +69,8 @@ window.VatReturnsUpload =
       list.find(".li-figures-upload").removeClass("govuk-!-display-none")
       $(".js-vat-returns-status-message").remove()
 
+      updateUploadListVisiblity(list, govuk_button, max)
+
     failed = (error_message) ->
       parent.find(".govuk-error-message").html(error_message)
       list.addClass("govuk-!-display-none")
@@ -91,3 +102,17 @@ window.VatReturnsUpload =
       send: upload_started
       always: success_or_error
     )
+
+updateUploadListVisiblity = (list, button, max) ->
+  list_elements = list.find("li").not('.dummy')
+  count = list_elements.length
+  wrapper = button.closest('div.js-upload-wrapper')
+
+  if count > 0
+    list.removeClass("hide")
+
+  if !max || count < max
+    button.removeClass("hide")
+
+  else
+    button.addClass("hide")
