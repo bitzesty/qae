@@ -64,7 +64,7 @@ class Reports::CaseIndexReport
     scope = @year.form_answers
       .shortlisted
       .where(award_type: @category)
-      .order(:sic_code)
+      .order(Arel.sql("form_answers.document #>> '{sic_code}', form_answers.company_or_nominee_name"))
 
     if @category == "trade"
       years_mode_query = (@years_mode.to_s == "3") ? "3 to 5" : "6 plus"
