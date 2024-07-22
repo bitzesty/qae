@@ -153,16 +153,31 @@ module QaePdfForms::General::DrawElements
 
     render_text(block_2)
 
+    render_text("Copying answers from a document into online application forms", size: 14, style: :bold)
+    render_text("If you want to copy your answers from a text document like Microsoft Word into an online application form, please paste text without formatting for it to appear correctly. You can do so in one of three ways:")
+
+    block_3 = %(
+      1. <b>Remove formatting when pasting</b>
+        #{bullet} Use the shortcut Ctrl+Shift+V (Windows) or Command+Shift+V (Mac) to paste text without formatting.
+      2. <b>First remove formatting in Microsoft Word</b>
+        #{bullet} Option 1: Select the text and press Ctrl+Shift+N (Windows) or Command+Shift+N (Mac).
+        #{bullet} Option 2: Select the text and click the ‘Clear Formatting’ button on the Home tab.
+      3. <b>Use an online tool</b>
+        #{bullet} Use an online tool to remove formatting, such as https://www.striphtml.com/.
+    )
+
+    render_text(block_3)
+
     render_text("Use of web-based AI and editing tools in King's Awards applications:", size: 14, style: :bold)
     render_text("We recognise that web-based AI and editing tools can greatly assist writing and editing and can help improve grammar and overall style. There may be issues to consider when entering information and generating text via web-based AI and online editing tools. We have included more guidance online in the 'Useful Application Info' section.")
 
     render_text("Need help?", size: 14, style: :bold)
 
-    block_3 = %(If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with us:
+    block_4 = %(If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with us:
       By calling 020 4551 0081
       Or emailing <b>kingsawards@businessandtrade.gov.uk</b>)
 
-    render_text(block_3)
+    render_text(block_4)
   end
 
   def render_logo
