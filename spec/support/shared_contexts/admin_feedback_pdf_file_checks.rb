@@ -40,7 +40,7 @@ shared_context "admin feedback pdf file checks" do
 
   let(:pdf_content) do
     rendered_pdf = pdf_generator.render
-    PDF::Inspector::Text.analyze(rendered_pdf).strings
+    PDF::Inspector::Text.analyze(rendered_pdf).strings.join
   end
 
   let(:urn) do
