@@ -38,14 +38,14 @@ module CaseSummaryPdfs::General::DrawElements
   end
 
   def render_organization_type
-    pdf_doc.text_box "Organisation Type: #{organisation_type}", header_text_properties.merge(
+    pdf_doc.text_box "<b>Organisation Type:</b> #{organisation_type}", description_list_properties.merge(
       at: [0.mm, 112.mm + default_offset],
     )
   end
 
   def render_type(offset: 0.mm)
-    pdf_doc.text_box "Type: #{application_type}",
-      header_text_properties.merge(
+    pdf_doc.text_box "<b>Type:</b> #{application_type}",
+      description_list_properties.merge(
         at: [0.mm, 97.mm + default_offset + offset],
         width: 272.mm,
       )
@@ -78,8 +78,8 @@ module CaseSummaryPdfs::General::DrawElements
   end
 
   def render_sic_code
-    pdf_doc.text_box "SIC code: #{sic_code}",
-      header_text_properties.merge(width: 272.mm, at: [0.mm, 104.5.mm + default_offset])
+    pdf_doc.text_box "<b>SIC code:</b> #{sic_code}",
+      description_list_properties.merge(width: 272.mm, at: [0.mm, 104.5.mm + default_offset])
   end
 
   def render_current_awards(offset: 0)
@@ -88,8 +88,8 @@ module CaseSummaryPdfs::General::DrawElements
 
     awards.each_with_index do |awards_line, index|
       if index == 0
-        pdf_doc.text_box "Current Awards: #{awards_line}",
-          header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset])
+        pdf_doc.text_box "<b>Current Awards:</b> #{awards_line}",
+          description_list_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset])
       else
         pdf_doc.text_box awards_line.to_s,
           header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord("awards").mm + default_offset + offset - index * ONE_LINE_OFFSET])
