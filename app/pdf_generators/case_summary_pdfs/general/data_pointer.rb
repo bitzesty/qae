@@ -8,8 +8,7 @@ module CaseSummaryPdfs::General::DataPointer
   AVERAGE_COLOR = "DAA520"
   NEGATIVE_COLOR = "FF0000"
   NEUTRAL_COLOR = "ECECEC"
-  LINK_REGEXP = /((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))*\))+(?:\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))*@\)
-|[^\s`!()\[\]{};:'".,<>?]))/im
+  LINK_REGEXP = /((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}\/)(?:[^\s()<>`!{}:;'"\[\]]*))/im
 
   def undefined_value
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
