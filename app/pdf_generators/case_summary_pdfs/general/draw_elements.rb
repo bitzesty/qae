@@ -15,10 +15,10 @@ module CaseSummaryPdfs::General::DrawElements
 
   def social_media_links_offset
     @_social_media_links_offset ||= case social_media_links.size
-      when 0..1 then 0
-      when 2..3 then -2.5.mm
-      when 4..6 then -5.mm
-      else -7.5.mm
+    when 0..1 then 0
+    when 2..3 then -2.5.mm
+    when 4..6 then -5.mm
+    else -7.5.mm
     end
   end
 
@@ -28,7 +28,10 @@ module CaseSummaryPdfs::General::DrawElements
     render_urn(0, 127)
     render_applicant(0, 119.5)
 
-    unless form_answer.promotion?
+    if form_answer.promotion?
+      render_website_address(offset: 15.mm)
+      render_social_media_links(offset: 15.mm)
+    else
       render_organization_type
       render_sic_code
       render_website_address(offset: sic_code_offset)
@@ -42,9 +45,6 @@ module CaseSummaryPdfs::General::DrawElements
         render_current_awards(offset: sic_code_offset + social_media_links_offset)
         render_sub_category(0, y_coord("sub_category") + sic_code_offset.to_i + (social_media_links_offset / 3)) # No idea why division by 3 is needed but it seems to work and offset the text properly
       end
-    else
-      render_website_address(offset: 15.mm)
-      render_social_media_links(offset: 15.mm)
     end
 
     render_award_general_information(130, 142)
@@ -100,21 +100,21 @@ module CaseSummaryPdfs::General::DrawElements
     pdf_doc.formatted_text_box(
       [
         { text: "Website address: ", styles: [:bold], **description_list_properties },
-        { text: website_url, link: website_url, styles: [:underline], color: "035DA5", **description_list_properties }
+        { text: website_url, link: website_url, styles: [:underline], color: "035DA5", **description_list_properties },
       ],
       at: [0.mm, 97.mm + default_offset + offset],
-      width: 272.mm
+      width: 272.mm,
     )
- end
+  end
 
   def render_social_media_links(offset: 0)
     pdf_doc.formatted_text_box(
       [
         { text: "Links to social media accounts: ", styles: [:bold], **description_list_properties },
-        { text: social_media_links.join(", "), **description_list_properties }
+        { text: social_media_links.join(", "), **description_list_properties },
       ],
       at: [0.mm, 89.5.mm + default_offset + offset],
-      width: 272.mm
+      width: 272.mm,
     )
 
     pdf_doc.move_down(social_media_links_offset.abs)
