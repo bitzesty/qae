@@ -11,11 +11,12 @@ class QaeFormBuilder
 
       if limit && limit_with_buffer(limit) && length && length > (limit_with_buffer(limit) - 1)
         result[question.hash_key] ||= ""
-        if limit_with_buffer(limit) > 15
-          result[question.hash_key] << " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} words or less (as we allow 10% leeway)."
+        error = if limit_with_buffer(limit) > 15
+          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} words or less (as we allow 10% leeway)."
         else
-          result[question.hash_key] << " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} word or less."
+          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} word or less."
         end
+        result[question.hash_key] << error
       end
 
       result
