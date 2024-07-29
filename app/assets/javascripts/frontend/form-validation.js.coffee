@@ -141,17 +141,28 @@ window.FormValidation =
     questionRef = question.attr("data-question_ref")
     textarea = question.find("textarea")
     wordLimit = textarea.attr("data-word-max")
-    maxWordLimit = Math.round(wordLimit * 1.1)
-    textareaValue = textarea.val() || '';
-    # change newlines to space, remove leading and trailing spaces, remove multiple spaces
-    normalizedContent = textareaValue
-      .replace(/\n/g,' ')
-      .replace(/(^\s*)|(\s*$)/gi,'')
-      .replace(/[ ]{2,}/gi,' ')
-    wordCount = normalizedContent.split(" ").length;
-    if wordCount > maxWordLimit
-      @logThis(question, "validateWordLimit", "Word limit exceeded")
-      @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{maxWordLimit} words or less (as we allow 10% leeway).")
+    wordLimitWithBuffer = 0
+    if wordLimit > 15
+      wordLimitWithBuffer = parseInt(wordLimit * 1.1);
+    else
+      wordLimitWithBuffer = wordLimit;
+
+    editorInstance = CKEDITOR.instances[textarea.attr("id")]
+    if editorInstance?
+      editorContent = editorInstance.getData()
+      normalizedContent = editorContent
+        .replace(/<[^>]*>/g, ' ') # Remove HTML tags
+        .replace(/&nbsp;/g, ' ') # Replace non-breaking spaces
+        .replace(/\s+/g, ' ') # Replace multiple spaces with single space
+        .trim()
+      wordCount = normalizedContent.split(' ').length
+
+      if wordCount > wordLimitWithBuffer
+        @logThis(question, "validateWordLimit", "Word limit of #{wordLimit} exceeded. Word count at #{wordCount}.")
+        if wordLimit > 15
+          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less (as we allow 10% leeway).")
+        else
+          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less.")
 
   validateSubfieldWordLimit: (question) ->
     wordLimit = $(question.context).attr("data-word-max")
