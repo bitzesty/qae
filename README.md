@@ -8,10 +8,11 @@
 
 - Ruby 3.2.2
   - `gem install bundler -v 2.5.6`
-- Node.js
+- Node.js LTS
 - Rails 7.0
 - Postgresql 9.5+ with `hstore` extension
 - Redis 4+
+- Docker
 
 ### Running the application
 
@@ -21,30 +22,39 @@ There are environment variables that you may want to modify in the `.env` file.
 cp .env.example .env
 ```
 
-Ensure the postgres database and redis server are running.
+This ensures the necessary environment variables set before running the Docker commands.
 
-```
-./bin/setup
-```
+#### Running with docker
 
-Run the application with the following commands:
+1. Build the containers:
+   
+   ```
+   docker-compose build
+   ```
 
-```
-bundle exec rails s
-bundle exec sidekiq -C config/sidekiq.yml
-```
+2. In a new terminal, set up and migrate the database:
+   
+   ```
+   docker-compose run --rm web bundle exec rails db:prepare
+   ```
 
-or with foreman:
+3. Run the containers:
 
-```
-foreman start
-```
+   ```
+   docker-compose up
+   ```
 
-### Running with docker
+Your application should now be running at http://localhost:3000
 
-    $ cp Dockerfile.local Dockerfile
-    $ cp docker-compose.yml.local docker-compose.yml
-    $ docker-compose up
+##### Running Rails with the production config
+
+Locally the docker image will run Rails in development, if you need to run as production
+then specify the production file `docker-compose -f docker-compose.prod.yml`
+
+You will need to generate a local ssl certificate for nginx.
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./certs/privkey.pem -out ./certs/fullchain.pem
+
+Your application should now be running at https://localhost/
 
 ### Installing Poxa
 

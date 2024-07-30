@@ -1,39 +1,49 @@
 version: "3.8"
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+      - ./public:/rails/public:ro
+    depends_on:
+      - web
+  
   web: &web
     env_file: 
       - .env
     build:
       context: .
       args:
-        RAILS_ENV: ${RAILS_ENV:-development}
+        RAILS_ENV: production
     environment:
-      - RAILS_ENV=${RAILS_ENV:-development}
+      - RAILS_ENV=production
       - REDIS_URL=redis://redis-db:6379
-      - DATABASE_URL=postgres://root:password@postgres-db/qae_development
+      - DATABASE_URL=postgres://root:password@postgres-db/qae_production
     depends_on:
       postgres-db:
         condition: service_healthy
       redis-db:
         condition: service_started
-    command: /rails/bin/rails server
+    command: /rails/bin/rails server -b 0.0.0.0
     entrypoint: ["/rails/bin/docker-entrypoint"]
-    volumes:
-      - .:/rails:cached
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
   
   postgres-db:
     image: postgres
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: qae_development
+      POSTGRES_DB: qae_production
     volumes:
       - ./tmp/postgres-db:/var/lib/postgresql/data
       - ./init-hstore.sql:/docker-entrypoint-initdb.d/init-hstore.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d qae_development"]
+      test: ["CMD-SHELL", "pg_isready -U root -d qae_production"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -49,4 +59,3 @@ services:
   sidekiq:
     <<: *web
     command: bundle exec sidekiq
-    ports: []
