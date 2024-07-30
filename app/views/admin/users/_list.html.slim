@@ -9,32 +9,8 @@
             = sort_link f, 'Email', @search, :email
           th.sortable
             = sort_link f, 'Company', @search, :company_name
-          th.filter
-            - role_names = { "account_admin" => "Admin and collaborator", "regular" => "Collaborator only" }
-            = f.simple_fields_for [:filters, @search.filters] do |f|
-              - role_collection = User.role.options.map{ |role| [role_names[role[1]], role[1]] }
-              = f.input :role, collection: role_collection, label: false, input_html: {multiple: true, class: 'if-js-hide', aria: { label: "Search applications" } }
-              = f.submit "Filter", class: "if-js-hide"
-              label.if-js-hide Ctrl + left click for multi select
-            .dropdown.if-no-js-hide
-              button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                ' Role:
-                span.text-filter
-                  ' All
-                span.caret
-              ul.dropdown-menu role="menu"
-                li.checkbox role="menuitem"
-                  label data-value="select_all"
-                    input type="checkbox"
-                    span.label-contents
-                      em Select all
-                li.divider
-                - User.role.options.each do |role|
-                  li.checkbox role="menuitem"
-                    label data-value=role[1]
-                      input type="checkbox"
-                      span.label-contents
-                        = role_names[role[1]]
+          th
+            ' Role
           th.sortable
             = sort_link f, 'Signed in on', @search, :last_sign_in_at
           th.sortable

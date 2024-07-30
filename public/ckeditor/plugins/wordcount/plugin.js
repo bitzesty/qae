@@ -293,52 +293,6 @@ CKEDITOR.plugins.add("wordcount", {
                 return true;
             }
 
-            //If the limit is already over, allow the deletion of characters/words. Otherwise,
-            //the user would have to delete at one go the number of offending characters
-            var deltaWord = wordCount - lastWordCount;
-            var deltaChar = charCount - lastCharCount;
-
-            lastWordCount = wordCount;
-            lastCharCount = charCount;
-
-            if (lastWordCount == -1) {
-                lastWordCount = wordCount;
-            }
-            if (lastCharCount == -1) {
-                lastCharCount = charCount;
-            }
-
-            // Check for word limit and/or char limit
-            if ((config.maxWordCount > -1 && wordCount > maxWordCountWithBuffer(config.maxWordCount) && deltaWord > 0) ||
-                (config.maxCharCount > -1 && charCount > config.maxCharCount && deltaChar > 0)) {
-
-                limitReached(editorInstance, limitReachedNotified);
-            } else if ((config.maxWordCount == -1 || wordCount <= maxWordCountWithBuffer(config.maxWordCount)) &&
-            (config.maxCharCount == -1 || charCount <= config.maxCharCount)) {
-
-                limitRestored(editorInstance);
-            } else {
-                snapShot = editorInstance.getSnapshot();
-            }
-
-            // Fire Custom Events
-            if (config.charCountGreaterThanMaxLengthEvent && config.charCountLessThanMaxLengthEvent) {
-                if (charCount > config.maxCharCount && config.maxCharCount > -1) {
-                    config.charCountGreaterThanMaxLengthEvent(charCount, config.maxCharCount);
-                } else {
-                    config.charCountLessThanMaxLengthEvent(charCount, config.maxCharCount);
-                }
-            }
-
-            if (config.wordCountGreaterThanMaxLengthEvent && config.wordCountLessThanMaxLengthEvent) {
-                if (wordCount > maxWordCountWithBuffer(config.maxWordCount) && config.maxWordCount > -1) {
-                    config.wordCountGreaterThanMaxLengthEvent(wordCount, config.maxWordCount);
-
-                } else {
-                    config.wordCountLessThanMaxLengthEvent(wordCount, config.maxWordCount);
-                }
-            }
-
             return true;
         }
 
@@ -378,53 +332,6 @@ CKEDITOR.plugins.add("wordcount", {
         }, editor, null, 100);
 
         editor.on("dataReady", function (event) {
-            updateCounter(event.editor);
-        }, editor, null, 100);
-
-        editor.on("paste", function(event) {
-            if (config.maxWordCount > 0 || config.maxCharCount > 0) {
-
-                // Check if pasted content is above the limits
-                var wordCount = -1,
-                    charCount = -1,
-                    text = event.editor.getData() + event.data.dataValue;
-
-
-                if (config.showCharCount) {
-                    charCount = countCharacters(text, event.editor);
-                }
-
-                if (config.showWordCount) {
-                    wordCount = countWords(text);
-                }
-
-
-                // Instantiate the notification when needed and only have one instance
-                if(notification === null) {
-                    notification = new CKEDITOR.plugins.notification(event.editor, {
-                        message: event.editor.lang.wordcount.pasteWarning,
-                        type: 'warning',
-                        duration: config.pasteWarningDuration
-                    });
-                }
-
-                if (config.maxCharCount > 0 && charCount > config.maxCharCount && config.hardLimit) {
-                    if(!notification.isVisible()) {
-                        notification.show();
-                    }
-                    event.cancel();
-                }
-
-                if (config.maxWordCount > 0 && wordCount > maxWordCountWithBuffer(config.maxWordCount) && config.hardLimit) {
-                    if(!notification.isVisible()) {
-                        notification.show();
-                    }
-                    event.cancel();
-                }
-            }
-        }, editor, null, 100);
-
-        editor.on("afterPaste", function (event) {
             updateCounter(event.editor);
         }, editor, null, 100);
 

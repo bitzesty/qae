@@ -36,7 +36,7 @@ class FormAnswerSearch < Search
   end
 
   def sort_by_sic_code(scoped_results, desc = false)
-    scoped_results.order(Arel.sql("(form_answers.document #>> '{sic_code}') #{sort_order(desc)}"))
+    scoped_results.order(Arel.sql("(form_answers.document #>> '{sic_code}') #{sort_order(desc)}, form_answers.company_or_nominee_name #{sort_order(desc)}"))
   end
 
   def sort_by_primary_assessor_name(scoped_results, desc = false)
