@@ -59,9 +59,9 @@ class AppraisalForm
   ]
 
   RAG_OPTIONS_2025 = [
-    %w[Red negative],
-    %w[Amber average],
-    %w[Green positive],
+    ["Does not meet expectations", "negative"],
+    ["Meets expectations", "average"],
+    ["Exceeds expectations", "positive"],
   ]
 
   CSR_RAG_OPTIONS_2016 = [
