@@ -47,8 +47,8 @@ module CaseSummaryPdfs::General::DrawElements
       end
     end
 
-    render_award_general_information(130, 142)
-    render_award_title(130, 134.5)
+    render_award_general_information(130, 127)
+    render_award_title(130, 119.5)
   end
 
   def render_organization_type
