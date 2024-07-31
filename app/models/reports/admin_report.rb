@@ -61,6 +61,8 @@ class Reports::AdminReport
       "#{category}_award#{sub_type}_#{id}_#{time}.csv"
     when "reception-buckingham-palace"
       "royal-reception-guest-list.csv"
+    when "registered-users"
+      "users-of-started-applications.csv"
     end
   end
 

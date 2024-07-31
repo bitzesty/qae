@@ -4,7 +4,7 @@
 
 = render "file_upload_details"
 
-.js-upload-wrapper
+.js-upload-wrapper data-max-attachments=5
   ul.js-uploaded-list.no-bullets.list-group.list-add class=("govuk-!-display-none" unless figures_form.vat_returns_files.any?)
     - figures_form.vat_returns_files.each do |vat_returns_file|
       li.list-group-item.file
@@ -22,7 +22,7 @@
         .govuk-error-message
       .clear
 
-      span.govuk-button.govuk-button--secondary role="button"
+      span.govuk-button.govuk-button--secondary.upload-file-btn role="button"
         span Upload a file
         = f.input :attachment,
                   as: :file,

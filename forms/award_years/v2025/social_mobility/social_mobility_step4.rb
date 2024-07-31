@@ -8,6 +8,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your organisation is financially viable." do
           sub_ref "D 1"
+          classes "text-words-max"
           required
           context %(
             <p>
@@ -77,7 +78,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_adjustments_explanation, "Explain adjustments to figures." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 2.4"
           required
           context %(
@@ -91,7 +92,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 2.5"
           required
           rows 2
@@ -168,7 +169,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_in_turnover, "If you have had any losses, drops in turnover (or income), or reductions in net profit, please explain them." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 4.4"
           required
           context %(
@@ -190,6 +191,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
           ref "D 5"
+          classes "text-words-max"
           required
           context %(
             <ul>
@@ -219,7 +221,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 6.1"
           required
           context %(
@@ -252,7 +254,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :product_estimates_use, "Explain the use of estimates and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 7.2"
           required
           rows 5

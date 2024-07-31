@@ -79,7 +79,7 @@ class Reports::FormAnswer
     if po_sd_provided_actual_figures?
       "N/A - provided actual figures"
     else
-      bool obj.audit_certificate.present?
+      bool(obj.audit_certificate.present? || obj.shortlisted_documents_submitted?)
     end
   end
 
@@ -87,7 +87,7 @@ class Reports::FormAnswer
     if po_sd_provided_actual_figures?
       "N/A"
     else
-      bool obj.audit_certificate.try(:reviewed?)
+      bool(obj.audit_certificate.try(:reviewed?) || obj.shortlisted_documents_wrapper&.reviewed?)
     end
   end
 

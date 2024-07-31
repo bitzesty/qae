@@ -336,6 +336,10 @@ class FormAnswerDecorator < ApplicationDecorator
     document["website_url"]
   end
 
+  def social_media_links
+    document["social_media_links"]
+  end
+
   def head_of_business_title
     document["head_of_business_title"] || document["head__of_bussines_title"]
   end

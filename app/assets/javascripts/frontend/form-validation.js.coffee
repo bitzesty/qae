@@ -138,11 +138,31 @@ window.FormValidation =
         return question.find("input[type='checkbox']").filter(":checked").length
 
   validateWordLimit: (question) ->
-    wordLimit = $(question.context).attr("data-word-max")
-    wordCount = $(question.context).val().split(" ").length
-    if wordCount > wordLimit
-      @logThis(question, "validateWordLimit", "Word limit exceeded")
-      @addErrorMessage(question, "Exceeded #{wordLimit} word limit.")
+    questionRef = question.attr("data-question_ref")
+    textarea = question.find("textarea")
+    wordLimit = textarea.attr("data-word-max")
+    wordLimitWithBuffer = 0
+    if wordLimit > 15
+      wordLimitWithBuffer = parseInt(wordLimit * 1.1);
+    else
+      wordLimitWithBuffer = wordLimit;
+
+    editorInstance = CKEDITOR.instances[textarea.attr("id")]
+    if editorInstance?
+      editorContent = editorInstance.getData()
+      normalizedContent = editorContent
+        .replace(/<[^>]*>/g, ' ') # Remove HTML tags
+        .replace(/&nbsp;/g, ' ') # Replace non-breaking spaces
+        .replace(/\s+/g, ' ') # Replace multiple spaces with single space
+        .trim()
+      wordCount = normalizedContent.split(' ').length
+
+      if wordCount > wordLimitWithBuffer
+        @logThis(question, "validateWordLimit", "Word limit of #{wordLimit} exceeded. Word count at #{wordCount}.")
+        if wordLimit > 15
+          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less (as we allow 10% leeway).")
+        else
+          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less.")
 
   validateSubfieldWordLimit: (question) ->
     wordLimit = $(question.context).attr("data-word-max")

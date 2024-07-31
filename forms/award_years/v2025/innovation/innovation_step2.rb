@@ -40,7 +40,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit and the arrangements made." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 2.1"
           required
           conditional :principal_business, :no
@@ -347,7 +347,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :other_awards_desc, "List the awards you have won in the past." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 13.1"
           required
           context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"

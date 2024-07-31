@@ -378,7 +378,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_activities_other_specify, "Please list other activity types" do
           required
-          classes "sub-question js-conditional-question-checkbox"
+          classes "sub-question js-conditional-question-checkbox text-words-max"
           sub_ref "C 2.1"
           conditional :initiative_activities, "other_activity_types"
           words_max 50
@@ -390,7 +390,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_desc_short, "Provide a one-line description of your initiative." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.1"
           required
           context %(
@@ -406,14 +406,14 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_desc_medium, "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.2"
           required
           words_max 300
         end
 
         textarea :initiative_motivations, "Outline the factors or issues that motivated your organisation to provide the initiative." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.3"
           required
           context %(
@@ -431,7 +431,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_exemplary_evidence, "Describe what makes your initiative exemplary." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.4"
           required
           context %(
@@ -449,7 +449,7 @@ class AwardYears::V2025::QaeForms
         textarea :initiative_evidence_exemplary, "Provide evidence of what makes your initiative exemplary." do
           sub_ref "C 3.5"
           required
-          classes "sub-question"
+          classes "sub-question text-words-max"
           words_max 200
           context %(
             <p>To support your answer in C3.4, provide <strong>third-party evidence</strong> of what makes your initiative exemplary compared to other similar initiatives and how you are going 'above and beyond' compared to your sector. For example, provide links to independent evaluation reports, details of awards won, client feedback ratings and how that compares with other similar organisations.</p>
@@ -457,7 +457,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_day_to_day_running, "Who is responsible for and who runs the initiative day-to-day?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.6"
           required
           words_max 200
@@ -467,7 +467,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :goals_targets_monitor, "Describe what goals or targets you set and how you monitor them in the context of your initiative." do
-          classes "question"
+          classes "question text-words-max"
           ref "C 4"
           required
           words_max 500
@@ -492,7 +492,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :goals_targets_compare, "Describe how the goals or targets you set compare to the outcomes." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 4.1"
           required
           words_max 200
@@ -502,7 +502,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :addressing_shortfalls, "Explain any shortfalls and if you do anything to address them." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 4.2"
           required
           words_max 200
@@ -663,6 +663,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :disadvantaged_group_not_in_list, "If you are putting forward a group that is not on this list, please provide details and explain why you believe the group you support should be considered disadvantaged." do
           sub_ref "C 5.4.1"
+          classes "text-words-max"
           context %(
             <p><em>
               Answer this question if you provided numbers for 'Other disadvantaged group' in question C5.4.
@@ -719,7 +720,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.5, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.5.1"
           required
           words_max 150
@@ -820,7 +821,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :disadvantaged_groups_numbers_explained, "Explain how you collected the impact numbers." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.8"
           required
           context %(
@@ -830,7 +831,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_qualitative_impact, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.9"
           required
           context %(
@@ -857,7 +858,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_feedback, "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.10"
           required
           context %(
@@ -882,7 +883,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.1"
           required
           context %(
@@ -892,21 +893,21 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_member_engagement, "Explain if and how you engage the organisation’s members or workforce in the design and implementation of your initiative." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.2"
           required
           words_max 200
         end
 
         textarea :initiative_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.3"
           required
           words_max 200
         end
 
         textarea :initiative_organisation_benefits, "Are there any other benefits of the initiative to your organisation that you haven't yet outlined in the previous responses?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.4"
           required
           context %(
@@ -925,6 +926,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_community_society_impact, "Impact on community and society." do
           sub_ref "C 7"
+          classes "text-words-max"
           required
           context %(
             <p>What is the impact of your initiative on the local community and at a regional and national level, and how is this exemplary?</p>
@@ -935,6 +937,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_investments, "Investments in the initiative" do
           sub_ref "C 8"
+          classes "text-words-max"
           required
           question_sub_title %{
             List all investments and reinvestments (capital and operating costs) in your promoting opportunity through social mobility initiative. Include the years in which they were made.

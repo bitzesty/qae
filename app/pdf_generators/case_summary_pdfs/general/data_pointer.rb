@@ -8,6 +8,7 @@ module CaseSummaryPdfs::General::DataPointer
   AVERAGE_COLOR = "DAA520"
   NEGATIVE_COLOR = "FF0000"
   NEUTRAL_COLOR = "ECECEC"
+  LINK_REGEXP = /((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}\/)(?:[^\s()<>`!{}:;'"\[\]]*))/im
 
   def undefined_value
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
@@ -53,6 +54,16 @@ module CaseSummaryPdfs::General::DataPointer
     else
       undefined_value
     end
+  end
+
+  def website_url
+    matches = LINK_REGEXP.match(form_answer.decorate.website_url)
+    matches ? matches[0] : ""
+  end
+
+  def social_media_links
+    text = form_answer.decorate.social_media_links
+    text ? text.scan(LINK_REGEXP).flatten.map { |v| v.sub(/^https?:\/\/(www.)?/, "") } : []
   end
 
   def case_summaries_table_headers

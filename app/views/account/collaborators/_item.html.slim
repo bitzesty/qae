@@ -1,4 +1,4 @@
-li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator == account_owner ? "Account owner" : collaborator.role_name} summary"
+li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator.role_name} summary"
   h3.collaborator__name.govuk-heading-s
     = collaborator.full_name_with_status
   p.collaborator__jobtitle.govuk-body

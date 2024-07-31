@@ -16,18 +16,18 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_urn(x_coord, y_coord)
-    pdf_doc.text_box "KA Ref: #{form_answer.urn}",
-      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box "<b>KA Ref:</b> #{form_answer.urn}",
+      description_list_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
   def render_applicant(x_coord, y_coord)
-    pdf_doc.text_box "Applicant: #{form_answer.decorate.company_nominee_or_application_name}",
-      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box "<b>Applicant:</b> #{form_answer.decorate.company_nominee_or_application_name}",
+      description_list_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
   def render_sub_category(x_coord, y_coord)
-    pdf_doc.text_box "Sub-category: #{sub_category}",
-      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box "<b>Sub-category:</b> #{sub_category}",
+      description_list_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
   def render_award_general_information(x_coord, y_coord)
@@ -87,5 +87,9 @@ module SharedPdfHelpers::DrawElements
       valign: :top,
       style: :bold,
     }
+  end
+
+  def description_list_properties
+    header_text_properties.merge(style: :normal, inline_format: true)
   end
 end
