@@ -263,7 +263,7 @@ class AppraisalForm
 
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select RAG", "blank"]
+    end || ["Select evaluation", "blank"]
 
     OpenStruct.new(
       options: options,
