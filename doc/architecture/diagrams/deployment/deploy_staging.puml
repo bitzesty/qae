@@ -1,0 +1,29 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Staging Environment Deployment
+
+Person(developer, "Developer", "A member of the development team")
+Person(developer2, "Developer2", "Another member of the development team")
+
+System_Boundary(github, "GitHub") {
+    Container(main_branch, "Main Branch", "Git Branch", "The main branch of the repository")
+    Container(staging_branch, "Staging Branch", "Git Branch", "The staging branch of the repository")
+    Container(pull_request, "Pull Request", "GitHub PR", "Request to merge main into staging")
+    Container(github_actions, "GitHub Actions", "CI/CD", "Runs tests and deploys code")
+}
+
+System_Ext(staging_env, "Staging Environment", "Deployment target for testing")
+
+Rel(developer, pull_request, "1. Raises pull request from main to staging")
+Rel(pull_request, github_actions, "2. Triggers")
+Rel(github_actions, pull_request, "3. Runs unit tests, integration tests, security and linting")
+Rel(developer2, pull_request, "4. Reviews code")
+Rel(developer, pull_request, "5. Approves and merges")
+Rel(developer, staging_branch, "6. Merges into")
+Rel(staging_branch, github_actions, "7. Triggers deployment")
+Rel(github_actions, staging_env, "8. Deploys code")
+
+@enduml

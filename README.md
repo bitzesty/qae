@@ -60,6 +60,20 @@ If you need to test malware scanning locally, install [Vigilion](https://github.
 
     $ bundle exec rspec
 
+## Documentation
+
+We have documentation within the doc folder. Architecture decisions and technical diagrams are stored within doc/architecture/decisions and doc/architecture/diagrams respectively.
+
+We use [adr-tools](https://github.com/npryce/adr-tools) to manage our architecture decisions.
+
+Diagrams are written using [PlantUML](https://plantuml.com/) and C4 notation.
+
+If you're using an IDE or editor with a PlantUML plugin, there's often a setting to specify the format (png) and output directory. For example, in VS Code with the PlantUML extension, you can add this to your settings.json:
+
+```json
+"plantuml.outputDirectory": "."
+```
+
 ## Deploying
 
 Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging). Production deployment is a manually triggered action (production branch). For more details see the Github Actions.

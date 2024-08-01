@@ -1,0 +1,29 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Production Environment Deployment Process
+
+Person(developer, "Developer", "A member of the development team")
+Person(developer2, "Developer2", "Another member of the development team")
+
+System_Boundary(github, "GitHub") {
+    Container(staging_branch, "Staging Branch", "Git Branch", "The staging branch of the repository")
+    Container(production_branch, "Production Branch", "Git Branch", "The production branch of the repository")
+    Container(pull_request, "Pull Request", "GitHub PR", "Request to merge staging into production")
+    Container(github_actions, "GitHub Actions", "CI/CD", "Runs tests and prepares deployment")
+}
+
+System_Ext(production_env, "Production Environment", "Live deployment environment")
+
+Rel(developer, pull_request, "1. Raises pull request from staging to production")
+Rel(pull_request, github_actions, "2. Triggers")
+Rel(github_actions, pull_request, "3. Runs unit tests, integration tests, security and linting")
+Rel(developer2, pull_request, "4. Reviews code")
+Rel(developer, pull_request, "5. Approves and merges")
+Rel(developer, production_branch, "6. Merges into")
+Rel(developer, github_actions, "7. Manually triggers deployment")
+Rel(github_actions, production_env, "8. Deploys code")
+
+@enduml
