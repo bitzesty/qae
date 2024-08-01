@@ -1,9 +1,9 @@
-@startuml
+@startuml Staging Environment Deployment Process
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 LAYOUT_WITH_LEGEND()
 
-title Staging Environment Deployment
+title Staging Environment Deployment Process
 
 Person(developer, "Developer", "A member of the development team")
 Person(developer2, "Developer2", "Another member of the development team")
