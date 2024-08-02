@@ -39,7 +39,7 @@ class FormAwardEligibilitiesController < ApplicationController
         @award_eligibility.force_validate_now = true
         @award_eligibility.valid?
 
-        step = @award_eligibility.errors.keys.first
+        step = @award_eligibility.errors.try(:keys).try(:first)
       end
 
       if step
