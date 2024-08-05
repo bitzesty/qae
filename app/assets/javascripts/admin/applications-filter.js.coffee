@@ -132,10 +132,16 @@ filterApplicationsDropdowns = () ->
       dropdownWrapper.removeClass("hide")
       dropdown = dropdownWrapper.find(".dropdown-toggle")
       dropdown.focus().click()
+      $(this).prop('disabled', true);
     else
       selected_year = $(this).val()
       $(this).closest(".input__award-years").find("select option[value='#{selected_year}']").attr('selected', true).change()
+      $(this).prop('disabled', true);
       $(this).closest('form').submit()
+
+  # If other option is selected on page load, disable the radio button
+  if $(".applications-filter .input__award-years input[type='radio']:checked").attr('id') == "other"
+    $(".applications-filter .input__award-years input[type='radio']:checked").prop('disabled', true);
 
   # On clicking the award year from the other year dropdown
   $(document).on "click", ".applications-filter .other-years-dropdown .dropdown-menu li", (e) ->
@@ -144,6 +150,13 @@ filterApplicationsDropdowns = () ->
     # Set value of other radio button to selected year and submit
     selected_year = $(this).attr('id')
     $(this).closest(".input__award-years").find("select option[value='#{selected_year}']").attr('selected', true).change()
+    $(this).closest('form').submit()
+
+  # On clicking the search button disable the radio button input
+  $(document).on "click", ".applications-filter .search-input input.search-submit", (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    $(".applications-filter .input__award-years input[type='radio']:checked").prop('disabled', true);
     $(this).closest('form').submit()
 
 $(document).ready(ready)
