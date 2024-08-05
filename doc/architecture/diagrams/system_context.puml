@@ -1,0 +1,24 @@
+@startuml System Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context diagram for Kings Awards for Enterprise (KAE)
+
+Person(admin, "Admin", "Members of the policy and supplier teams who manage the service")
+Person(applicant, "Applicant", "UK businesses eligible to apply for an award")
+Person(assessor, "Assessor", "Industry professionals, PhD students and other experts who assess applications")
+Person(judge, "Judge", "Panel members who select winners based on submissions and assessments")
+
+System(kae, "Kings Awards for Enterprise", "Provides ability for managing, applying for and judging the awards for the Kings Awards for Enterprise initiative")
+
+System_Ext(notify, "Gov.uk Notify", "Provides end user communication capability")
+
+Rel(admin, kae, "Administers application")
+Rel(applicant, kae, "Applies for award")
+Rel(assessor, kae, "Assesses application")
+Rel(judge, kae, "Makes decision regarding awards")
+
+Rel(kae, notify, "Sends communications using")
+
+@enduml
