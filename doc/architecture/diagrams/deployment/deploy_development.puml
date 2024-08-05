@@ -1,0 +1,31 @@
+@startuml Development Environment Deployment Process
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Development Environment Deployment Process
+
+Person(developer, "Developer", "A member of the development team")
+Person(developer2, "Developer2", "Another member of the development team")
+
+System_Boundary(github, "GitHub") {
+    Container(main_branch, "Main Branch", "Git Branch", "The main branch of the repository")
+    Container(feature_branch, "Feature Branch", "Git Branch", "A branch for developing new features")
+    Container(pull_request, "Pull Request", "GitHub PR", "Request to merge feature into main")
+    Container(github_actions, "GitHub Actions", "CI/CD", "Runs tests and deploys code")
+}
+
+System_Ext(dev_env, "Development Environment", "Deployment target for testing")
+
+Rel(developer, main_branch, "1. Branches from")
+Rel(developer, feature_branch, "2. Writes feature code")
+Rel(developer, pull_request, "3. Opens pull request")
+Rel(pull_request, github_actions, "4. Triggers")
+Rel(github_actions, pull_request, "5. Runs unit tests, integration tests, security and linting")
+Rel(developer2, pull_request, "6. Reviews code")
+Rel(developer, pull_request, "7. Approves and merges")
+Rel(developer, main_branch, "8. Merges into")
+Rel(main_branch, github_actions, "9. Triggers deployment")
+Rel(github_actions, dev_env, "10. Deploys code")
+
+@enduml
