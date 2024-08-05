@@ -5,7 +5,10 @@ LAYOUT_WITH_LEGEND()
 
 title System Context diagram for Kings Awards for Enterprise (KAE)
 
-Person(users, "Users", "People who interact with the KAE system")
+Person(applicants, "Applicants", "UK businesses eligible to apply for an award")
+Person(assessors, "Assessors", "Industry professionals, PhD students and other experts who assess applications")
+Person(judges, "Judges", "Panel members who select winners based on submissions and assessments")
+Person(admins, "Admins", "Members of the policy and supplier teams who manage the service")
 
 System_Boundary(kae_system, "Kings Awards for Enterprise (KAE) System") {
     Container(kae_app, "KAE Application", "Ruby on Rails", "Main application for KAE")
@@ -21,7 +24,11 @@ System_Ext(cdn, "AWS CloudFront CDN", "Content Delivery Network")
 System_Ext(notify, "GOV.UK Notify", "Email service")
 System_Ext(appsignal, "Appsignal", "Monitoring and error reporting")
 
-Rel(users, cdn, "Connects via", "HTTPS")
+Rel(applicants, cdn, "Submits applications", "HTTPS")
+Rel(assessors, cdn, "Assesses applications", "HTTPS")
+Rel(judges, cdn, "Reviews assessments and selects winners", "HTTPS")
+Rel(admins, cdn, "Manages the service", "HTTPS")
+
 Rel(cdn, kae_app, "Fronts", "HTTPS")
 Rel(cdn, poxa, "Fronts", "WebSocket")
 
