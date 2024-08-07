@@ -4,8 +4,6 @@ require "capybara/rails"
 require "capybara/rspec"
 require "selenium/webdriver"
 
-Capybara.server = :puma # , { Silent: true }
-
 Capybara.register_driver(:chrome_headless) do |app|
   options = ::Selenium::WebDriver::Chrome::Options.new
 
@@ -18,6 +16,18 @@ Capybara.register_driver(:chrome_headless) do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-# Capybara.default_driver = :chrome_headless
+Capybara.register_server :puma do |app, port, host, options = {}|
+  require "rack/handler/puma"
+  puma_options = { Host: host, Port: port, Threads: "0:1", workers: 0, daemon: false }
+  Rack::Handler::Puma.run(app, **puma_options.merge(options))
+end
+
+Capybara.configure do |config|
+  config.default_max_wait_time = 5
+  config.default_normalize_ws = true
+  config.disable_animation = true
+  config.enable_aria_label = true
+  config.server = :puma
+end
+
 Capybara.javascript_driver = :chrome_headless
-Capybara.default_max_wait_time = 5
