@@ -158,6 +158,7 @@ group :development do
   gem "standard", require: false
   # Fixes https://github.com/rails/rails/issues/26658#issuecomment-255590071
   gem "rb-readline"
+  gem "dockerfile-rails", ">= 1.6"
 end
 
 group :development, :test do

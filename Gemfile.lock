@@ -177,6 +177,8 @@ GEM
       zxcvbn (~> 0.1.7)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dockerfile-rails (1.6.17)
+      rails (>= 3.0.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.8.1)
@@ -362,6 +364,8 @@ GEM
       activerecord (>= 4.0.0)
       activesupport (>= 4.0.0)
     nio4r (2.5.9)
+    nokogiri (1.16.5-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.16.5-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.5-x86_64-darwin)
@@ -705,6 +709,7 @@ GEM
     zxcvbn (0.1.9)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-21
   arm64-darwin-22
   arm64-darwin-23
@@ -733,6 +738,7 @@ DEPENDENCIES
   devise-authy (>= 1.10.0)
   devise-security (~> 0.18.0)
   devise_zxcvbn (>= 4.4.1)
+  dockerfile-rails (>= 1.6)
   dotenv-rails
   draper (~> 4.0)
   email_validator

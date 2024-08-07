@@ -2,7 +2,7 @@ name: CI
 on: [push]
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     services:
       db:
         image: postgres:12-alpine
@@ -45,7 +45,7 @@ jobs:
           ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: '20'
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
       - name: Build and run tests
@@ -78,7 +78,7 @@ jobs:
   deploy_dev:
     needs: [test]
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
     steps:
@@ -95,7 +95,7 @@ jobs:
           ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: '20'
       - name: 'Deploy dev'
         env:
           name: dev
@@ -121,7 +121,7 @@ jobs:
   deploy_staging:
     needs: [test]
     if: github.ref == 'refs/heads/staging'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
     steps:
@@ -138,7 +138,7 @@ jobs:
           ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: '20'
       - name: 'Deploy staging'
         env:
           name: staging
