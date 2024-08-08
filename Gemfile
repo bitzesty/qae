@@ -52,6 +52,9 @@ gem "json"
 gem "jbuilder", "~> 2.10.1"
 gem "gon", ">= 6.4.0"
 
+# XML builder
+gem "builder"
+
 # XLSX generation
 gem "rubyXL", "~> 3.4"
 
@@ -133,9 +136,6 @@ gem "bootscale", require: false
 
 # IE 8 and lower detection
 gem "browser", "6.0.0"
-
-# Healthchecks
-gem "rails-healthcheck"
 
 # An implementation of Matrix and Vector classes.
 gem "matrix"

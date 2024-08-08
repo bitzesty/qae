@@ -464,9 +464,6 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-healthcheck (1.4.0)
-      actionpack
-      railties
     rails-html-sanitizer (1.4.4)
       loofah (~> 2.19, >= 2.19.1)
     rails_autolink (1.1.8)
@@ -726,6 +723,7 @@ DEPENDENCIES
   bootscale
   bootstrap-sass (~> 3.4)
   browser (= 6.0.0)
+  builder
   capybara (~> 3.39.0)
   carrierwave (~> 3.0)
   ckeditor
@@ -780,7 +778,6 @@ DEPENDENCIES
   rack-ssl-enforcer
   rails (= 7.0.8.1)
   rails-controller-testing
-  rails-healthcheck
   rails-html-sanitizer (~> 1.4.4)
   rails_autolink
   rb-readline
