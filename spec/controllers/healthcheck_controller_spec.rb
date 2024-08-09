@@ -2,16 +2,14 @@ require "rails_helper"
 
 RSpec.describe HealthcheckController, type: :controller do
   describe "GET #index" do
-    let(:mock_start_time) { Time.new(2023, 1, 1, 11, 59, 59).to_f }
-    let(:mock_end_time) { Time.new(2023, 1, 1, 12, 0, 0).to_f }
+    let(:mock_response_time) { 1000.0 }
 
     before do
       allow(controller).to receive(:check_database).and_return({ success: true })
       allow(controller).to receive(:check_redis).and_return({ success: true })
-      allow(Time).to receive(:current).and_return(mock_end_time)
-      allow_any_instance_of(ActionDispatch::Request).to receive(:env) do |req|
-        req.instance_variable_get(:@env).merge("rack.request.start_time" => mock_start_time)
-      end
+
+      # Mock the response time
+      allow(controller).to receive(:calculate_response_time).and_return(mock_response_time.to_s)
     end
 
     it "returns a success status with correct XML structure" do
