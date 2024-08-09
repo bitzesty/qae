@@ -87,7 +87,7 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   config.lograge.enabled = true
-  config.lograge.ignore_actions = ["HealthchecksController#show"]
+  config.lograge.ignore_actions = ["HealthcheckController#index"]
   config.lograge.keep_original_rails_log = true
   config.lograge.logger = Appsignal::Logger.new(
     "rails",
