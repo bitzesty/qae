@@ -3,11 +3,11 @@ require "date"
 
 class AsimFormatter
   def call(data)
+
     end_time = Time.now.utc
     start_time = end_time - (data[:duration] || 0)
 
     {
-      "EventMessage" => data[:message],
       "EventCount" => 1,
       "EventStartTime" => format_time(start_time),
       "EventEndTime" => format_time(end_time),
@@ -17,18 +17,16 @@ class AsimFormatter
       "EventOriginalSeverity" => data[:level],
       "EventSchema" => "ProcessEvent",
       "EventSchemaVersion" => "0.1.4",
-      "EventOriginalUid" => data[:original_id],
       "EventProduct" => "KAE",
       "EventProductVersion" => Rails.version,
-      "EventVendor" => "Ruby",
-      "EventReportUrl" => data[:report_url],
+      "EventVendor" => "Ruby on Rails",
       "EventOwner" => data[:owner],
-      "ActingAppType" => "Rails",
+      "ActingAppType" => "Ruby on Rails",
       "SrcIpAddr" => data[:remote_ip],
       "SrcPortNumber" => ENV["PORT"] || 3000,
       "IpAddr" => data[:remote_ip],
-      "SrcUserId" => data[:user_id],
       "HttpUserAgent" => data[:user_agent],
+      "Dvc" => ENV['DOMAIN'] || 'unknown',
       "DvcDomain" => ENV['DOMAIN'] || 'unknown',
       "AdditionalFields" => {
         "RailsLogFormatterAsimVersion" => "1.0.0",
