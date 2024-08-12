@@ -25,6 +25,8 @@ class AsimFormatter
       "SrcIpAddr" => data[:remote_ip],
       "SrcPortNumber" => ENV["PORT"] || 3000,
       "IpAddr" => data[:remote_ip],
+      "SrcUserId" => Current.user_id,
+      "SrcUserType" => Current.user_type,
       "HttpUserAgent" => data[:user_agent],
       "Dvc" => ENV['DOMAIN'] || 'unknown',
       "DvcDomain" => ENV['DOMAIN'] || 'unknown',

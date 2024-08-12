@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_context_tags
+  before_action :set_current_attributes
   before_action :set_paper_trail_whodunnit
   before_action :disable_browser_caching!
 
@@ -164,6 +165,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_current_attributes
+    Current.user_id = current_user.id || current_admin.id
+    Current.user_type = if current_user.present?
+                          "User"
+                        elsif current_admin.present?
+                          "Admin"
+                        else
+                          "Other"
+                        end
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
