@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require Rails.root.join("lib/formatters/asim_formatter")
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -70,4 +71,16 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  config.log_tags = JsonTaggedLogger::LogTagsConfig.generate(
+    :request_id,
+    :remote_ip,
+    JsonTaggedLogger::TagFromSession.get(:user_id),
+    :user_agent,
+  )
+  logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger = JsonTaggedLogger::Logger.new(logger)
+
+  config.lograge.enabled = true
+  config.lograge.formatter = AsimFormatter.new
 end
