@@ -291,6 +291,9 @@ GEM
     js_cookie_rails (2.1.4)
       railties (>= 3.1)
     json (2.6.3)
+    json_tagged_logger (0.7.0)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
     jwt (2.8.1)
       base64
     kaminari (1.2.2)
@@ -751,6 +754,7 @@ DEPENDENCIES
   jquery-ui-rails (>= 7.0.0)
   js_cookie_rails (= 2.1.4)
   json
+  json_tagged_logger
   kaminari
   launchy
   letter_opener
