@@ -167,7 +167,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_current_attributes
-    Current.user_id = current_user.id || current_admin.id
+    Current.user_id = current_user&.id || current_admin&.id
     Current.user_type = if current_user.present?
                           "User"
                         elsif current_admin.present?
