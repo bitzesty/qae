@@ -92,7 +92,7 @@ Rails.application.configure do
     JsonTaggedLogger::TagFromSession.get(:user_id),
     :user_agent,
   )
-  logger = ActiveSupport::Logger.new(STDOUT)
+  logger = ActiveSupport::Logger.new($stdout)
   config.logger = JsonTaggedLogger::Logger.new(logger)
 
   config.lograge.enabled = true

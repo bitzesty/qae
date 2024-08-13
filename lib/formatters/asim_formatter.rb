@@ -3,7 +3,6 @@ require "date"
 
 class AsimFormatter
   def call(data)
-
     end_time = Time.now.utc
     start_time = end_time - (data[:duration] || 0)
 
@@ -28,8 +27,8 @@ class AsimFormatter
       "SrcUserId" => Current.user_id,
       "SrcUserType" => Current.user_type,
       "HttpUserAgent" => data[:user_agent],
-      "Dvc" => ENV['DOMAIN'] || 'unknown',
-      "DvcDomain" => ENV['DOMAIN'] || 'unknown',
+      "Dvc" => ENV["DOMAIN"] || "unknown",
+      "DvcDomain" => ENV["DOMAIN"] || "unknown",
       "AdditionalFields" => {
         "RailsLogFormatterAsimVersion" => "1.0.0",
         "TraceHeaders" => trace_headers(data),
