@@ -13,5 +13,5 @@ test:
 
 production:
   <<: *default
-  url: <%= PaasResolver.pgsql_uri %>
+  url: <%= CredentialsResolver.pgsql_uri %>
   pool: <%= ENV['DB_POOL'] || ENV['MAX_THREADS'] || 5 %>
