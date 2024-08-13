@@ -56,7 +56,7 @@ class AsimFormatter
   def event_result(data)
     status = data[:status]
     if status
-      status >= 400 ? "Failure" : "Success"
+      (status >= 400) ? "Failure" : "Success"
     else
       "NA"
     end
