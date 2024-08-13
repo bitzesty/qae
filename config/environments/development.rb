@@ -72,15 +72,21 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+  # Enable ASIM logging if ENABLE_ASIM_LOGGER is set to 'true'
+  if ENV['ENABLE_ASIM_LOGGER'] == 'true'
+    config.lograge.enabled = true
+    config.lograge.formatter = AsimFormatter.new
+    config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+  else
+    # normal development logging configuration
+    config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT))
+  end
+
   config.log_tags = JsonTaggedLogger::LogTagsConfig.generate(
     :request_id,
     :remote_ip,
     JsonTaggedLogger::TagFromSession.get(:user_id),
-    :user_agent,
+    :user_agent
   )
-  logger = ActiveSupport::Logger.new(STDOUT)
-  config.logger = JsonTaggedLogger::Logger.new(logger)
 
-  config.lograge.enabled = true
-  config.lograge.formatter = AsimFormatter.new
 end
