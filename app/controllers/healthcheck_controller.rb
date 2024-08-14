@@ -35,9 +35,7 @@ class HealthcheckController < Api::BaseController
   end
 
   def calculate_response_time
-    start_time = request.env["rack.request.start_time"]
-    return "-" if start_time.blank?
-    ((Time.current - start_time) * 1000).round(3)
+    Thread.current[:response_time] || "-"
   end
 
   def check_database
