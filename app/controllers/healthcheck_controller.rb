@@ -62,7 +62,7 @@ class HealthcheckController < Api::BaseController
   end
 
   def check_redis
-    Redis.new(url: PaasResolver.redis_uri).ping
+    Redis.new(url: CredentialsResolver.redis_uri).ping
     { success: true }
   rescue => e
     { success: false, message: e.message }
