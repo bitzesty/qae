@@ -166,9 +166,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Used for ASIM Logging
   def set_current_attributes
     Current.user_id = current_user&.id || current_admin&.id
-    Current.user_type = if current_user.present?
+    Current.user_type = if current_user.present? || current_judge.present? || current_assessor.present?
       "User"
     elsif current_admin.present?
       "Admin"
@@ -257,9 +258,17 @@ class ApplicationController < ActionController::Base
 
   def user_for_paper_trail
     if current_admin.present? && current_admin.superadmin?
+      "SUPERADMIN:#{current_admin.id}"
+    elsif current_admin.present?
       "ADMIN:#{current_admin.id}"
+    elsif current_assessor.present?
+      "ASSESSOR:#{current_assessor.id}"
+    elsif current_judge.present?
+      "JUDGE:#{current_judge.id}"
     elsif current_user.present?
       "USER:#{current_user.id}"
+    else
+      "UNKNOWN"
     end
   end
 
