@@ -12,11 +12,11 @@ class Reports::AssessorsProgressReport
     "Secondary Assigned",
     "Secondary Assessed",
     "Total Assigned",
-    "Total Assessed"
+    "Total Assessed",
   ]
 
   attr_accessor :year,
-                :award_category
+    :award_category
 
   def initialize(year, award_category)
     self.year = year
@@ -26,7 +26,7 @@ class Reports::AssessorsProgressReport
   def build
     data = Reports::DataPickers::AssessorProgressPicker.new(
       year,
-      award_category
+      award_category,
     ).results
 
     CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|

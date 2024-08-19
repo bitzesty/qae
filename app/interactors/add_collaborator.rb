@@ -1,12 +1,12 @@
 class AddCollaborator
   attr_reader :current_user,
-              :account,
-              :params,
-              :collaborator,
-              :email,
-              :success,
-              :new_user,
-              :errors
+    :account,
+    :params,
+    :collaborator,
+    :email,
+    :success,
+    :new_user,
+    :errors
 
   def initialize(current_user, account, params)
     @current_user = current_user
@@ -30,10 +30,13 @@ class AddCollaborator
       user = User.find_by email: email
 
       if user.present?
+        @invalid = true
+
         if user.account_id == account.id
           @errors = ["This user already added to collaborators!"]
         elsif user.account.present?
-          @errors = ["User already associated with another account!"]
+          user = User.new(params)
+          user.errors.add(:email, "User already associated with another account")
         end
 
         user.role = params[:role]
@@ -43,7 +46,7 @@ class AddCollaborator
 
     @new_user = true
     user = User.new(params)
-    user.agreed_with_privacy_policy = '1'
+    user.agreed_with_privacy_policy = "1"
     user.skip_password_validation = true
     user
   end
@@ -57,6 +60,6 @@ class AddCollaborator
   end
 
   def valid?
-    @errors.blank?
+    @errors.blank? && !@invalid
   end
 end

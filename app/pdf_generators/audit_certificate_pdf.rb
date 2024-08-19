@@ -9,13 +9,13 @@ class AuditCertificatePdf < Prawn::Document
   include SharedPdfHelpers::LanguageHelper
 
   attr_reader :audit_data,
-              :form_answer,
-              :award_type,
-              :award_type_full_name,
-              :company_name,
-              :financial_pointer,
-              :step_questions,
-              :filled_answers
+    :form_answer,
+    :award_type,
+    :award_type_full_name,
+    :company_name,
+    :financial_pointer,
+    :step_questions,
+    :filled_answers
 
   def initialize(form_answer)
     super()
@@ -26,7 +26,7 @@ class AuditCertificatePdf < Prawn::Document
     @company_name = @form_answer.company_name
     @financial_pointer = FinancialSummaryPointer.new(@form_answer, {
       exclude_ignored_questions: true,
-      financial_summary_view: true
+      financial_summary_view: true,
     })
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions
@@ -76,10 +76,10 @@ class AuditCertificatePdf < Prawn::Document
       start_count_at: 1,
       at: [
         bounds.right - 50,
-        bounds.bottom + 0
+        bounds.bottom + 0,
       ],
       align: :right,
-      size: 14
+      size: 14,
     }
   end
 

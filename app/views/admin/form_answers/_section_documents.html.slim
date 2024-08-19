@@ -21,34 +21,34 @@
       ' Application & Supporting Docs
     = render "admin/form_answers/docs/application_and_supporting_docs"
 
-.well
-  .sidebar-section.space-y-2
-    h2
-      ' Post Shortlisting Docs
+- if @form_answer.requires_vocf? || @form_answer.provided_estimates?
+  .well
+    .sidebar-section.space-y-2
+      h2
+        ' Post Shortlisting Docs
 
-    - if @form_answer.requires_vocf?
-      div[data-controller="inline-flash"]
-        .document-list.space-y-2
-          = render(partial: "admin/form_answers/docs/status", locals: { form_answer: @form_answer })
+      - if @form_answer.requires_vocf?
+        div[data-controller="inline-flash"]
+          .document-list.space-y-2
+            = render(partial: "admin/form_answers/docs/status", locals: { form_answer: @form_answer })
 
-        - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
-          .sidebar-section.no-margin-bottom.space-y-3
-            - if @form_answer.requires_vocf?
+          - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
+            .sidebar-section.no-margin-bottom.space-y-3
               #audit-certificate-form[data-controller="inline-flash"]
                 - audit_certificate = @form_answer.build_audit_certificate
                 = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: audit_certificate
 
-    - elsif @form_answer.provided_estimates?
-      - figures_form = @form_answer.shortlisted_documents_wrapper || @form_answer.build_shortlisted_documents_wrapper
+      - elsif @form_answer.provided_estimates?
+        - figures_form = @form_answer.shortlisted_documents_wrapper || @form_answer.build_shortlisted_documents_wrapper
 
-      = render(partial: "admin/figures_and_vat_returns/status", locals: { form_answer: @form_answer, figures_form: figures_form })
+        = render(partial: "admin/figures_and_vat_returns/status", locals: { form_answer: @form_answer, figures_form: figures_form })
 
-      #vat-returns-section[data-controller="inline-flash"]
-        = render(partial: "admin/figures_and_vat_returns/vat_returns", locals: { form_answer: @form_answer, figures_form: figures_form })
-      #commercial-figures-section[data-controller="inline-flash"]
-        = render(partial: "admin/figures_and_vat_returns/actual_figures", locals: { form_answer: @form_answer, figures_form: figures_form })
+        #vat-returns-section[data-controller="inline-flash"]
+          = render(partial: "admin/figures_and_vat_returns/vat_returns", locals: { form_answer: @form_answer, figures_form: figures_form })
+        #commercial-figures-section[data-controller="inline-flash"]
+          = render(partial: "admin/figures_and_vat_returns/actual_figures", locals: { form_answer: @form_answer, figures_form: figures_form })
 
-    = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
+      = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section
@@ -61,11 +61,12 @@
       ' Other Docs
     div[data-controller="inline-flash"]
       .document-list
-        p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.any?}"
-          ' No documents have been attached.
-        ul.list-unstyled.list-actions
-          - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
+        p.p-empty class="#{'hide' if @form_answer.form_answer_attachments.uploaded_not_by_user.any?}"
+          ' No other documents have been attached.
+        - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
+          ul.list-unstyled.list-actions
             = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.uploaded_not_by_user.visible_for(current_subject))
+
         .clear
         br
       #application-attachment-form

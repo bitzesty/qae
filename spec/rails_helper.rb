@@ -1,18 +1,19 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
-# Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
-require "shoulda/matchers"
-require 'webmock/rspec'
 require "simplecov"
-require "codeclimate-test-reporter"
 
-WebMock.disable_net_connect!(allow: Capybara.server_host, allow_localhost: true)
+SimpleCov.start "rails" do
+  add_filter "/spec/"
+  add_filter "/lib/tasks/"
+  add_filter "vendor"
+  add_filter "/forms/award_years/"
+  add_filter "/app/pdf_generators/"
+  add_filter "/app/tasks/"
 
-SimpleCov.add_filter "vendor"
+  enable_coverage_for_eval
+
+  add_filter do |source_file|
+    source_file.filename.include?("app/controllers") && source_file.lines.count < 8
+  end
+end
 
 class LineFilter < SimpleCov::Filter
   def matches?(source_file)
@@ -20,16 +21,18 @@ class LineFilter < SimpleCov::Filter
   end
 end
 
-SimpleCov.start 'rails' do
-  add_filter '/spec/'
-  add_filter "/lib/tasks/"
-  add_filter "/app/forms/award_years/"
-  add_filter "/app/pdf_generators/"
-  add_filter "/app/tasks/"
-  add_filter do |source_file|
-    source_file.filename =~ /app\/controllers/ && source_file.lines.count < 8
-  end
-end
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+require "spec_helper"
+ENV["RAILS_ENV"] ||= "test"
+require_relative "../config/environment"
+# Prevent database truncation if the environment is production
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require "rspec/rails"
+require "shoulda/matchers"
+require "webmock/rspec"
+require "codeclimate-test-reporter"
+
+WebMock.disable_net_connect!(allow: Capybara.server_host, allow_localhost: true)
 
 ActiveRecord::Migration.check_pending!
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -47,7 +50,7 @@ ActiveRecord::Migration.check_pending!
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -68,6 +71,7 @@ RSpec.configure do |config|
   config.include UserStepDefinitions, type: :feature
   config.include ExpectationHelper, type: :feature
   config.include DeadlineHelper, type: :feature
+  config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.raise_error_for_unimplemented_steps = true
@@ -113,7 +117,9 @@ RSpec.configure do |config|
   end
 end
 
+RSpec::Matchers.define_negated_matcher :not_change, :change
+
 def stub_sendgrid_bounced_emails_check_request(email)
-  stub_request(:get, "https://sendgrid.com/api/bounces.get.jsonapi_key=test_smtp_password&api_user=test_smtp_username&email=#{email}").
-    to_return(status: 200, body: "", headers: {})
+  stub_request(:get, "https://sendgrid.com/api/bounces.get.jsonapi_key=test_smtp_password&api_user=test_smtp_username&email=#{email}")
+    .to_return(status: 200, body: "", headers: {})
 end

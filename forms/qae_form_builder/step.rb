@@ -1,24 +1,18 @@
-require 'active_support/inflector'
+require "active_support/inflector"
 
 class QaeFormBuilder
-
   class StepDecorator < QaeDecorator
-
-    QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w(
+    QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w[
       innovation_materials
       org_chart
-    )
+    ]
 
     def next
-      @next ||= begin
-        form.steps[index + 1]
-      end
+      @next ||= form.steps[index + 1]
     end
 
     def previous
-      @previous ||= begin
-        form.steps[index-1] if index-1 >=0
-      end
+      @previous ||= (form.steps[index - 1] if index - 1 >= 0)
     end
 
     def index
@@ -63,13 +57,11 @@ class QaeFormBuilder
         end
       end
 
-      allowed_params = allowed_params.select do |k, v|
+      allowed_params.select do |k, v|
         v.present? ||
-        document[k.to_s].present? ||
-        QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
+          document[k.to_s].present? ||
+          QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
       end
-
-      allowed_params
     end
 
     def hashify_params(params)
@@ -79,9 +71,21 @@ class QaeFormBuilder
     def question_possible_sub_keys(question)
       sub_question_keys = []
 
-      sub_fields = question.sub_fields rescue nil
-      required_sub_fields = question.required_sub_fields rescue nil
-      by_year_conditions = question.by_year_conditions rescue nil
+      sub_fields = begin
+        question.sub_fields
+      rescue
+        nil
+      end
+      required_sub_fields = begin
+        question.required_sub_fields
+      rescue
+        nil
+      end
+      by_year_conditions = begin
+        question.by_year_conditions
+      rescue
+        nil
+      end
 
       if sub_fields.present?
         sub_question_keys += sub_fields.map { |f| f.keys.first }
@@ -91,11 +95,13 @@ class QaeFormBuilder
         sub_question_keys += required_sub_fields.map { |f| f.keys.first }
       end
 
+      range_values = %i[day month year]
+
       if by_year_conditions.present?
         sub_question_keys += question.by_year_conditions.map do |c|
           (1..c.years).map do |y|
             if question.delegate_obj.is_a?(QaeFormBuilder::ByYearsLabelQuestion)
-              [:day, :month, :year].map do |i|
+              range_values.map do |i|
                 "#{y}of#{c.years}#{i}"
               end
             else
@@ -119,7 +125,7 @@ class QaeFormBuilder
       if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
         sub_question_keys += (1..3).map do |y|
           if question.delegate_obj.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion)
-            [:day, :month, :year].map do |i|
+            range_values.map do |i|
               "#{y}of3#{i}"
             end
           else
@@ -136,12 +142,11 @@ class QaeFormBuilder
     private
 
     def count_questions meth
-      questions.map { |q| q.send(meth) ? 1 : 0 }.reduce(:+)
+      questions.sum { |q| q.send(meth) ? 1 : 0 }
     end
   end
 
   class StepBuilder
-
     def initialize step
       @step = step
     end
@@ -153,13 +158,22 @@ class QaeFormBuilder
     def submit text, &block
       s = StepSubmit.new text
       b = StepSubmitBuilder.new s
-      b.instance_eval &block if block
+      b.instance_eval(&block) if block
       @step.submit = s
     end
 
+    # rubocop:disable Style/MissingRespondToMissing
     def method_missing(meth, *args, &block)
-      klass_builder = QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder") rescue nil
-      klass = QaeFormBuilder.const_get("#{meth.to_s.camelize}Question") rescue nil
+      klass_builder = begin
+        QaeFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder")
+      rescue
+        nil
+      end
+      klass = begin
+        QaeFormBuilder.const_get("#{meth.to_s.camelize}Question")
+      rescue
+        nil
+      end
 
       if klass_builder && klass && args.length >= 2 && args.length <= 3
         id, title, opts = args
@@ -168,13 +182,14 @@ class QaeFormBuilder
         super
       end
     end
+    # rubocop:enable Style/MissingRespondToMissing
 
     private
 
-    def create_question builder_klass, klass, id, title, opts={}, &block
+    def create_question builder_klass, klass, id, title, opts = {}, &block
       q = klass.new @step, id, title, opts
       b = builder_klass.new q
-      b.instance_eval &block if block_given?
+      b.instance_eval(&block) if block
       @step.questions << q
 
       if q.respond_to?(:linkable?) && q.linkable?
@@ -212,7 +227,7 @@ class QaeFormBuilder
   class Step
     attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit, :sub_headers
 
-    def initialize form, title, short_title, opts={}
+    def initialize form, title, short_title, opts = {}
       @form = form
       @title = title
       @short_title = short_title
@@ -224,6 +239,5 @@ class QaeFormBuilder
     def decorate options = {}
       StepDecorator.new self, options
     end
-
   end
 end

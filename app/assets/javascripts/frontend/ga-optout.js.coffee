@@ -21,11 +21,19 @@ jQuery ->
       $(".govuk-cookie-banner").attr("hidden", "true")
 
   if $("#ga-optout-input").length
-    $("#ga-optout-input").prop("checked", Cookies.get("gaconsent") == "reject" || Cookies.get("gaoptout"))
+
+    document.querySelector('.cookie-consent-form').addEventListener 'submit', (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+
+    $("#ga-optout-input").prop("checked", Cookies.get("gaconsent") == "reject" || !Cookies.get("gaconsent"))
+    $("#ga-optin-input").prop("checked", Cookies.get("gaconsent") == "accept")
     $("#ga-optout").on "click", (e) ->
       e.preventDefault()
 
       if $("#ga-optout-input").prop("checked")
         Cookies.set("gaconsent", "reject", { expires: 3650 })
-      else
+      else if $("#ga-optin-input").prop("checked")
         Cookies.set("gaconsent", "accept", { expires: 3650 })
+
+      $(".cookie-settings-banner").removeClass("hide").focus()

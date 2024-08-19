@@ -430,7 +430,7 @@ table .ellipsis {
   }
 }
 
-.govuk-form-group--error {
+.govuk-form-group--error:not(.js-question-disabled) {
   .govuk-error-message {
     display: block;
     margin-bottom: pxToRem(5);
@@ -929,11 +929,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     margin: 0;
     padding: 0;
     border: none;
-    background: transparent;
-    background-image: image-url("icon-search.png");
+    background: #1C1C1B;
+    background-image: image-url("icon-search-white.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: pxToRem(15) pxToRem(21);
+    background-size: pxToRem(18) pxToRem(18);
     text-align: left !important;
     text-indent: -9999px;
     white-space: nowrap;
@@ -943,7 +943,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     z-index: 1000;
 
     @include is-retina {
-      background-image: image-url("icon-search@2.png");
+      background-image: image-url("icon-search-white.png");
     }
 
     .lte-ie7 & {
@@ -1583,9 +1583,9 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .btn-rag {
-  position: absolute;
   right: 0;
   top: pxToRem(-5);
+  padding-right: pxToRem(5);
 
   @include screen-xs-max {
     display: block;
@@ -1595,6 +1595,25 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   &.open {
     .lte-ie7 & {
       z-index: 9999;
+    }
+  }
+
+  .btn {
+    padding-left: pxToRem(5) !important;
+
+    &.rag-positive {
+      background-color: #CCE1D8;
+      color: #015A30 !important;
+    }
+
+    &.rag-average {
+      background-color: #C0D3E8;
+      color: #152C48 !important;
+    }
+
+    &.rag-negative {
+      background-color: #F6D7D2;
+      color: #942415 !important;
     }
   }
 
@@ -1624,7 +1643,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   .caret {
     position: absolute;
     top: 50%;
-    right: 0;
+    right: pxToRem(5);
     margin-top: pxToRem(-2);
   }
 
@@ -1635,7 +1654,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   .dropdown-toggle {
-    padding-right: pxToRem(25);
+    padding-right: pxToRem(20);
     padding-left: 0;
 
     @include screen-xs-max {
@@ -1653,10 +1672,6 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
         width: 100%;
       }
     }
-  }
-
-  &.rag-editable .dropdown-toggle {
-    padding-right: pxToRem(40);
   }
 
   .dropdown-menu {
@@ -1692,88 +1707,14 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     color: #a94442 !important;
   }
 
-  .rag-blank {
+  .rag-blank, .rag-neutral, .rag-positive, .rag-average, .rag-negative {
     &,
     a,
     a:hover,
     a:focus {
       color: $black;
-    }
-
-    .icon-rag {
-      background-image: image-url("icon-grade-blank.png");
-
-      @include is-retina {
-        background-image: image-url("icon-grade-blank@2.png");
-      }
-    }
-  }
-
-  .rag-neutral {
-    &,
-    a,
-    a:hover,
-    a:focus {
-      color: $black;
-    }
-
-    .icon-rag {
-      background-image: image-url("icon-grade-neutral.png");
-
-      @include is-retina {
-        background-image: image-url("icon-grade-neutral@2.png");
-      }
-    }
-  }
-
-  .rag-positive {
-    &,
-    a,
-    a:hover,
-    a:focus {
-      color: $green;
-    }
-
-    .icon-rag {
-      background-image: image-url("icon-grade-green.png");
-
-      @include is-retina {
-        background-image: image-url("icon-grade-green@2.png");
-      }
-    }
-  }
-
-  .rag-average {
-    &,
-    a,
-    a:hover,
-    a:focus {
-      color: $amber;
-    }
-
-    .icon-rag {
-      background-image: image-url("icon-grade-amber.png");
-
-      @include is-retina {
-        background-image: image-url("icon-grade-amber@2.png");
-      }
-    }
-  }
-
-  .rag-negative {
-    &,
-    a,
-    a:hover,
-    a:focus {
-      color: $red;
-    }
-
-    .icon-rag {
-      background-image: image-url("icon-grade-red.png");
-
-      @include is-retina {
-        background-image: image-url("icon-grade-red@2.png");
-      }
+      text-decoration: none;
+      font: normal pxToRem(16) 'Arial', sans-serif;
     }
   }
 
@@ -1785,6 +1726,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     a:hover,
     a:focus {
       text-decoration: none;
+      font-weight: normal;
     }
   }
 }
@@ -1839,6 +1781,12 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
       text-decoration: none;
     }
   }
+}
+
+.overflow-break-word {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .page-header-nav .btn-link.pull-left,
@@ -1992,6 +1940,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     position: relative;
     z-index: 2;
   }
+}
+
+.award-year-radios {
+  padding-left: 15px;
+  margin-top: pxToRem(20);
 }
 
 .award-year-container {

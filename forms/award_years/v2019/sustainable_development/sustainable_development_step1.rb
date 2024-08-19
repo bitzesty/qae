@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2019::QaeForms
   class << self
     def development_step1
@@ -190,7 +189,7 @@ class AwardYears::V2019::QaeForms
         end
 
         options :external_contribute_to_sustainable_product,
-                "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
+          "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
           ref "A 9"
           required
           context %(
@@ -202,7 +201,7 @@ class AwardYears::V2019::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           classes "sub-question"
           sub_ref "A 9.1"
           required
@@ -246,7 +245,7 @@ class AwardYears::V2019::QaeForms
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
-            { region: "Region" }
+            { region: "Region" },
           ])
         end
 

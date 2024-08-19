@@ -7,12 +7,15 @@ class QaeFormBuilder
 
       if question.required?
         question.active_fields.each.with_index(1) do |suffix, idx|
-          if !question.input_value(suffix: suffix).present?
+          if question.input_value(suffix: suffix).blank?
             result[question.hash_key(suffix: suffix)] ||= ""
-            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. Financial year #{idx} is required and must be filled in."
+            result[question.hash_key(suffix: suffix)] << "Question #{question.ref || question.sub_ref} is incomplete. Financial year #{idx} is required and must be filled in. Enter '0' if none"
           end
         end
       end
+
+      # Need to raise a validation error without displaying error as there will be custom warning.
+      result["#{question.hash_key}/halted"] = "" if question.halted?
 
       if question.fields_count && question.validatable_years_position.present?
         validatable_years = (1..question.fields_count).to_a[*question.validatable_years_position]
@@ -60,7 +63,7 @@ class QaeFormBuilder
     def active_fields
       return [] unless fields_count
 
-      (1..fields_count).map{|y| "#{y}of#{fields_count}"}
+      (1..fields_count).map { |y| "#{y}of#{fields_count}" }
     end
 
     def fields_count
@@ -75,16 +78,19 @@ class QaeFormBuilder
         if c.question_value.respond_to?(:call)
           q = form[c.question_key]
           if q.is_a?(QaeFormBuilder::DateQuestion) || q.is_a?(QaeFormBuilder::DateQuestionDecorator)
-            date = []
-            q.required_sub_fields.each do |sub|
-              date << q.input_value(suffix: sub.keys[0])
+            date = q.required_sub_fields.map do |sub|
+              q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue
+              nil
+            end
 
-            c.question_value.(date)
+            c.question_value.call(date)
           else
-            c.question_value.(form[c.question_key].input_value)
+            c.question_value.call(form[c.question_key].input_value)
           end
         else
           form[c.question_key].input_value == c.question_value
@@ -139,16 +145,15 @@ class QaeFormBuilder
 
   class ByYearsQuestion < Question
     attr_accessor :type,
-                  :by_year_conditions,
-                  :label,
-                  :employees_question,
-                  :first_year_min_value,
-                  :first_year_validation_message,
-                  :validatable_years_position
+      :by_year_conditions,
+      :label,
+      :employees_question,
+      :first_year_min_value,
+      :first_year_validation_message,
+      :validatable_years_position
 
     def after_create
       @by_year_conditions = []
     end
   end
-
 end

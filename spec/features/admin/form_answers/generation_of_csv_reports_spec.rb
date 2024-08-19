@@ -13,7 +13,7 @@ describe "Admin generates the CSV reports" do
     data = Reports::AdminReport.new(id, AwardYear.current).as_csv
 
     if data.is_a?(Enumerator)
-      data.entries.map { |row| CSV.parse(row) }.flatten(1)
+      data.entries.flat_map { |row| CSV.parse(row) }
     else
       CSV.parse(data)
     end
@@ -62,20 +62,20 @@ describe "Admin generates the CSV reports" do
 
     let!(:palace_invite) do
       create :palace_invite, form_answer: development,
-                             email: user.email,
-                             submitted: true
+        email: user.email,
+        submitted: true
     end
 
     let!(:attendee) do
       create(:palace_attendee, palace_invite: palace_invite,
-                               title: title,
-                               first_name: first_name)
+        title: title,
+        first_name: first_name)
     end
 
     it "produces proper output" do
       expect(output.size).to eq(2)
-      expect(output[1][2]).to eq(title)
-      expect(output[1][3]).to eq(first_name)
+      expect(output[1][3]).to eq(title)
+      expect(output[1][4]).to eq(first_name)
     end
   end
 end

@@ -1,12 +1,10 @@
-require 'rails_helper'
-include Warden::Test::Helpers
+require "rails_helper"
 
-describe "Admin: Download all Feedbacks as one pdf", %q{
+describe "Admin: Download all Feedbacks as one pdf", '
 As an Admin
 I want to download all Feedbacks as one pdf per category from Dashboard
 So that I can print and review application feedbacks
-} do
-
+' do
   let!(:admin) { create(:admin) }
 
   before do
@@ -21,11 +19,11 @@ So that I can print and review application feedbacks
     it "should be links to download feedbacks" do
       FormAnswer::AWARD_TYPE_FULL_NAMES.each do |award_type, value|
         if award_type != "promotion"
-          expect(page).to have_link('Download',
+          expect(page).to have_link("Download",
             href: admin_report_path(
               id: "feedbacks",
               category: award_type, format: :pdf, year: AwardYear.current.year
-            )
+            ),
           )
         end
       end

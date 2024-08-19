@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2024::QaeForms
   class << self
     def mobility_step3
@@ -347,7 +346,7 @@ class AwardYears::V2024::QaeForms
           ineligible_option "core_activity"
 
           pdf_context_with_header_blocks [
-            [:italic, "If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are discretionary or that are in partnership with businesses for whom it is discretionary."]
+            [:italic, "If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are discretionary or that are in partnership with businesses for whom it is discretionary."],
           ]
         end
 
@@ -367,7 +366,7 @@ class AwardYears::V2024::QaeForms
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds who are leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and tracking the progress of employees from non-graduate routes."],
             ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility by encouraging supply chains to take action on social mobility."],
-            ["other_activity_types", "<strong>Other activity types - list the activities in C2.1</strong>"]
+            ["other_activity_types", "<strong>Other activity types - list the activities in C2.1</strong>"],
           ]
         end
 
@@ -560,7 +559,7 @@ class AwardYears::V2024::QaeForms
             ["job_opportunities", "Job opportunities"],
             ["advancement", "Advancement"],
             ["advocacy_and_leadership", "Advocacy and leadership"],
-            ["other_activity_types", "Other activity types (as listed in C2.1)"]
+            ["other_activity_types", "Other activity types (as listed in C2.1)"],
           ]
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
@@ -585,7 +584,7 @@ class AwardYears::V2024::QaeForms
             ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
             ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
@@ -595,7 +594,7 @@ class AwardYears::V2024::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Other disadvantaged group"]
+            ["others", "Other disadvantaged group"],
           ]
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
@@ -618,7 +617,7 @@ class AwardYears::V2024::QaeForms
             <p><em>When answering this question, please refer to the guidance under C5.</em></p>
           )
           pdf_context_with_header_blocks [
-            [:italic, "When answering this question, please refer to the guidance under C5."]
+            [:italic, "When answering this question, please refer to the guidance under C5."],
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -637,7 +636,7 @@ class AwardYears::V2024::QaeForms
             ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
             ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
@@ -679,19 +678,19 @@ class AwardYears::V2024::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
@@ -721,19 +720,19 @@ class AwardYears::V2024::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
@@ -747,7 +746,7 @@ class AwardYears::V2024::QaeForms
           classes "sub-question"
           sub_ref "C 5.7"
           required
-          context  %(
+          context %(
             <p>This may include but is not limited to internal records, third-party evidence, survey responses.</p>
           )
           words_max 150

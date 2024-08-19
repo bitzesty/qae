@@ -20,15 +20,15 @@ class UrnBuilder
 
     next_seq = fa.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.connection.quote(sequence_attr)})")
 
-    generated_urn = "KA#{sprintf('%.4d', next_seq)}/"
+    generated_urn = "KA#{sprintf("%.4d", next_seq)}/"
     suffix = {
       "promotion" => "EP",
       "development" => "S",
       "innovation" => "I",
       "mobility" => "P",
-      "trade" => "T"
+      "trade" => "T",
     }[fa.award_type]
-    generated_urn += "#{award_year.year.to_s[2..-1]}#{suffix}"
+    generated_urn += "#{award_year.year.to_s[2..]}#{suffix}"
 
     generated_urn
   end

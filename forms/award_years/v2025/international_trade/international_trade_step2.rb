@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2025::QaeForms
   class << self
     def trade_step2
@@ -36,7 +35,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 2.1"
           required
           conditional :principal_business, :no
@@ -63,12 +62,12 @@ class AwardYears::V2025::QaeForms
 
         text :other_organisation_type, "" do
           classes "text-words-max"
-          context %{
+          context %(
             <p class="govuk-body">Please specify</p>
-          }
-          pdf_context %{
+          )
+          pdf_context %(
             <p class="govuk-body">Please specify if selected Other</p>
-          }
+          )
           conditional :organisation_type, :other
           text_words_max 50
         end
@@ -143,7 +142,7 @@ class AwardYears::V2025::QaeForms
           ref "B 6"
           pdf_context_with_header_blocks [
             [:normal, "If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man."],
-            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"],
           ]
           county_context %(
             <p class='govuk-hint'>If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man.</p>
@@ -156,7 +155,7 @@ class AwardYears::V2025::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County/Crown Dependency" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
           sub_fields_words_max 50
         end
@@ -187,7 +186,7 @@ class AwardYears::V2025::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -232,7 +231,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/."],
-            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."]
+            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."],
           ]
         end
 
@@ -251,7 +250,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 10.2"
           rows 5
           words_max 100
@@ -308,13 +307,18 @@ class AwardYears::V2025::QaeForms
           ref "B 12"
           required
           yes_no
+          context %(
+            <p class="govuk-hint">If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK).</p>
+          )
         end
 
         subsidiaries_associates_plants :trading_figures_add, "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them." do
           required
           classes "sub-question"
           sub_ref "B 12.1"
-          pdf_title "For each of the UK subsidiaries included in this application enter: 1. name, 2. location, 3. number of UK employees (FTE - full-time equivalent), 4. the reason why you are including them."
+          context %(
+            <p class="govuk-hint">If your organisation is based in the Channel Islands or Isle of Man, you should include only the subsidiaries that are located there (do not include subsidiaries that are in the UK). Also, only count the employees who are located there (do not include employees who are in the UK).</p>
+          )
           conditional :trading_figures, :yes
           details_words_max 100
         end
@@ -380,7 +384,7 @@ class AwardYears::V2025::QaeForms
           children_options_depends_on :category
           dependable_values [:international_trade]
 
-          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context")
+          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context", next_year: AwardYear.current.year, two_years: AwardYear.current.year + 1)
         end
 
         options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
@@ -407,7 +411,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :other_awards_desc, "List the awards you have won in the past." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 17.1"
           required
           form_hint "If you can't fit all of your awards below, then choose those you're most proud of."
@@ -429,7 +433,7 @@ class AwardYears::V2025::QaeForms
             ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper or publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

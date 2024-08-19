@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def development_step4
@@ -9,6 +8,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :explain_why_your_organisation_is_financially_viable, "Explain how your organisation is financially viable." do
           ref "D 1"
+          classes "text-words-max"
           required
           context %(
             <p>
@@ -46,32 +46,31 @@ class AwardYears::V2025::QaeForms
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year end date." do
+          classes "fs-trackable"
           ref "D 2"
           required
           financial_date_pointer
         end
 
+        trade_most_recent_financial_year_options :most_recent_financial_year, "Which year would you like to be your most recent financial year that you will submit figures for?" do
+          ref "D 2.1"
+          required
+          option (AwardYear.current.year - 2).to_s, (AwardYear.current.year - 2).to_s
+          option (AwardYear.current.year - 1).to_s, (AwardYear.current.year - 1).to_s
+          classes "js-most-recent-financial-year fs-trackable fs-two-trackable"
+        end
+
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three</span> most recent financial years that you will be providing figures for?" do
-          classes "sub-question js-financial-year-change"
-          sub_ref "D 2.1"
+          classes "sub-question js-financial-year-change fs-trackable"
+          sub_ref "D 2.2"
           required
           yes_no
-          context %(
-            <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
-            </p>
-          )
           default_option "no"
         end
 
         one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question one-option-by-years"
-          sub_ref "D 2.2"
-          context %(
-            <p>
-              For the purpose of this application, your most recent financial year is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - (the submission deadline).
-            </p>
-          )
+          classes "sub-question one-option-by-years fs-trackable"
+          sub_ref "D 2.3"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -79,8 +78,8 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_adjustments_explanation, "Explain adjustments to figures." do
-          classes "sub-question word-max-strict"
-          sub_ref "D 2.3"
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "D 2.4"
           context %(
             <p>
               If your financial year-end has changed, you will need to agree with your accountants on how to allocate your figures in all section D questions so that they show three 12-month periods (36 months). This allows for a comparison between years. Please explain what approach you will take to adjust the figures.
@@ -93,8 +92,8 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
-          classes "sub-question"
-          sub_ref "D 2.4"
+          classes "sub-question text-words-max"
+          sub_ref "D 2.5"
           required
           rows 2
           words_max 100
@@ -106,15 +105,13 @@ class AwardYears::V2025::QaeForms
           ref "D 3"
           required
           context %(
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
-
           conditional :financial_year_date_changed, :true
-
           employees_question
         end
 
@@ -126,7 +123,7 @@ class AwardYears::V2025::QaeForms
         one_option_by_years :total_turnover, "Total income or turnover" do
           ref "D 4.1"
           required
-          classes "sub-question"
+          classes "sub-question fs-total-turnover fs-trackable"
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -135,13 +132,13 @@ class AwardYears::V2025::QaeForms
         end
 
         one_option_by_years :exports, "Of which exports" do
-          classes "sub-question"
+          classes "sub-question fs-exports fs-trackable"
           sub_ref "D 4.2"
           required
           context %(
-            <p>
-              Please enter '0' if you had none. If you don't have exact export figures, you can provide approximate ones.
-            </p>
+            <p>If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as exports. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as exports.</p>
+
+            <p>Please enter '0' if you had none. If you don't have exact export figures, you can provide approximate ones.</p>
           )
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -150,24 +147,22 @@ class AwardYears::V2025::QaeForms
 
         # UK sales = turnover - exports
         turnover_exports_calculation :uk_sales, "Of which UK sales" do
-          classes "sub-question"
+          classes "sub-question fs-uk-sales"
           sub_ref "D 4.3"
           label ->(y) { "Financial year #{y}" }
-
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
           exports :exports
           one_option_financial_data_mode true
-
           context %(
-            <p>
-              This number is automatically calculated using your total turnover and export figures.
-            </p>
+            <p>This number is automatically calculated using your total turnover and export figures.</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, these will be your local sales.</p>
           )
         end
 
         one_option_by_years :net_profit, "Net income or net profit after tax but before dividends" do
-          classes "sub-question"
+          classes "sub-question fs-net-profit fs-trackable"
           sub_ref "D 4.4"
           required
           type :money
@@ -176,7 +171,7 @@ class AwardYears::V2025::QaeForms
         end
 
         one_option_by_years :total_net_assets, "Total net assets" do
-          classes "sub-question total-net-assets"
+          classes "sub-question total-net-assets fs-total-assets fs-trackable"
           sub_ref "D 4.5"
           required
           context %(
@@ -191,7 +186,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_in_turnover, "If you have had any losses, drops in turnover (or income), or reductions in net profit, please explain them." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 4.6"
           required
           rows 5
@@ -206,8 +201,13 @@ class AwardYears::V2025::QaeForms
           )
         end
 
+        financial_summary :development_financial_summary, "Summary of your company financials (for information only)" do
+          sub_ref "D 4.7"
+        end
+
         textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
           ref "D 5"
+          classes "text-words-max"
           required
           context %(
             <p>
@@ -220,6 +220,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
           ref "D 6"
+          classes "text-words-max"
           required
           context %(
             <ul>
@@ -243,13 +244,13 @@ class AwardYears::V2025::QaeForms
           yes_no
           context %(
             <p>Answer yes if you received such support during the last five years.</p>
-            
+
             <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
 
         textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 7.1"
           required
           context %(
@@ -283,7 +284,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :product_estimates_use, "Explain the use of estimates and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 8.2"
           required
           rows 5

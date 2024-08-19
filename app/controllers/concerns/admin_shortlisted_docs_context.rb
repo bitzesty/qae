@@ -3,8 +3,8 @@ module AdminShortlistedDocsContext
     authorize form_answer, :download_commercial_figures?
 
     send_data resource.attachment.read,
-              filename: resource.attachment.file.filename,
-              disposition: "attachment"
+      filename: resource.attachment.file.filename,
+      disposition: "attachment"
   end
 
   def create
@@ -24,8 +24,8 @@ module AdminShortlistedDocsContext
 
         format.js do
           render partial: "admin/figures_and_vat_returns/file",
-                 locals: { attachment: attachment },
-                 content_type: "text/plain"
+            locals: { attachment: attachment },
+            content_type: "text/plain"
         end
       end
     else
@@ -37,12 +37,12 @@ module AdminShortlistedDocsContext
 
         format.js do
           render partial: "admin/figures_and_vat_returns/form",
-                 locals: {
-                   form_answer: form_answer, 
-                   attachment: attachment
-                 },
-                 content_type: "text/plain",
-                 status: 422
+            locals: {
+              form_answer: form_answer,
+              attachment: attachment,
+            },
+            content_type: "text/plain",
+            status: :unprocessable_entity
         end
       end
     end
@@ -82,11 +82,11 @@ module AdminShortlistedDocsContext
   end
 
   def begin_of_association_chain
-    @_begin_of_association_chain ||= 
-      (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
+    @_begin_of_association_chain ||=
+      form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
 
     return @_begin_of_association_chain if @_begin_of_association_chain.persisted?
-    
+
     @_begin_of_association_chain.save!
     @_begin_of_association_chain
   end

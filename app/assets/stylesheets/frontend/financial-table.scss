@@ -1,0 +1,23 @@
+.user-financial-summary-table {
+  &.trade-data, &.trade-growth {
+    td.label-cell {
+      width: 110px;
+    }
+  }
+
+  th, td {
+    font-size: 12px !important;
+  }
+
+  th {
+    text-align: right;
+
+    span.year {
+      display: block;
+    }
+
+    span.legend {
+      font-weight: normal;
+    }
+  }
+}

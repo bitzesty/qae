@@ -1,15 +1,17 @@
 require "award_years/v2018/qae_forms"
 require "award_years/v2019/qae_forms"
-require 'award_years/v2020/qae_forms'
+require "award_years/v2020/qae_forms"
 
 class FormController < ApplicationController
   before_action :authenticate_user!
   before_action :check_account_completion, :check_number_of_collaborators, unless: -> { admin_signed_in? || assessor_signed_in? }
   before_action :check_deadlines
+
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
-    :new, :create, :update, :destroy,
-    :submit_confirm, :save, :add_attachment
+    :new, :create, :update, :destroy, :submit_confirm, :save, :add_attachment
   ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   before_action :check_trade_deadline, :check_trade_count_limit, only: :new_international_trade_form
   before_action :check_development_deadline, :check_development_count_limit, only: :new_sustainable_development_form
@@ -20,32 +22,28 @@ class FormController < ApplicationController
     :new_innovation_form,
     :new_international_trade_form,
     :new_sustainable_development_form,
-    :new_social_mobility_form
+    :new_social_mobility_form,
   ]
 
-  before_action :get_collaborators, only: [
-    :submit_confirm
-  ]
+  # rubocop:disable Rails/LexicallyScopedActionFilter
+  before_action :get_collaborators, only: [:submit_confirm]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
-
   before_action :check_eligibility!, only: [
     :create,
     :destroy,
     :save,
     :update,
     :add_attachment,
-    :submit_confirm
+    :submit_confirm,
   ]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   before_action do
     allow_assessor_access!(@form_answer)
   end
 
   expose(:support_letter_attachments) do
-    @form_answer.support_letter_attachments.inject({}) do |r, attachment|
-      r[attachment.id] = attachment
-      r
-    end
+    @form_answer.support_letter_attachments.index_by(&:id)
   end
 
   expose(:all_form_questions) do
@@ -55,7 +53,7 @@ class FormController < ApplicationController
   expose(:questions_with_references) do
     all_form_questions.select do |q|
       !q.is_a?(QaeFormBuilder::HeaderQuestion) &&
-      (q.ref.present? || q.sub_ref.present?)
+        (q.ref.present? || q.sub_ref.present?)
     end
   end
 
@@ -64,19 +62,19 @@ class FormController < ApplicationController
   end
 
   def new_innovation_form
-    build_new_form("innovation")
+    build_new_form("innovation", "innovation")
   end
 
   def new_international_trade_form
-    build_new_form("trade")
+    build_new_form("trade", "international_trade")
   end
 
   def new_sustainable_development_form
-    build_new_form("development")
+    build_new_form("development", "sustainable_development")
   end
 
   def new_social_mobility_form
-    build_new_form("mobility")
+    build_new_form("mobility", "social_mobility")
   end
 
   def edit_form
@@ -150,23 +148,24 @@ class FormController < ApplicationController
         if redirected
           @form_answer.save(validate: false)
           redirect_to(dashboard_url)
-        else
-          if submitted && saved
-            redirect_to submit_confirm_url(@form_answer)
+        elsif submitted && saved
+          redirect_to submit_confirm_url(@form_answer)
+        elsif saved
+          if @form_answer.halted?
+            params[:next_step] = params[:current_step]
           else
-            if saved
-              params[:next_step] ||= @form.steps[1].title.parameterize
-              redirect_to edit_form_url(@form_answer, step: params[:next_step])
-            else
-              params[:step] = @form_answer.steps_with_errors.try(:first)
-              # avoid redirecting to supporters page
-              if !params[:step] || params[:step] == "letters-of-support"
-                params[:step] = @form.steps.first.title.parameterize
-              end
-
-              render template: "qae_form/show"
-            end
+            params[:next_step] ||= @form.steps[1].title.parameterize
           end
+
+          redirect_to edit_form_url(@form_answer, step: params[:next_step])
+        else
+          params[:step] = @form_answer.steps_with_errors.try(:first)
+          # avoid redirecting to supporters page
+          if !params[:step] || params[:step] == "letters-of-support"
+            params[:step] = @form.steps.first.title.parameterize
+          end
+
+          render template: "qae_form/show"
         end
       end
 
@@ -197,9 +196,9 @@ class FormController < ApplicationController
   def add_attachment
     FormAnswer.transaction do
       attachment_params = params[:form]
-      attachment_params.merge!(form_answer_id: @form_answer.id)
+      attachment_params[:form_answer_id] = @form_answer.id
 
-      attachment_params.merge!(original_filename: attachment_params[:file].original_filename) if attachment_params[:file].respond_to?(:original_filename)
+      attachment_params[:original_filename] = attachment_params[:file].original_filename if attachment_params[:file].respond_to?(:original_filename)
 
       attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
 
@@ -212,7 +211,7 @@ class FormController < ApplicationController
       end
 
       if @attachment.save
-        @form_answer.document[@attachment.question_key]  ||= {}
+        @form_answer.document[@attachment.question_key] ||= {}
         attachments_hash = @form_answer.document[@attachment.question_key]
         index = next_index(attachments_hash)
         attachments_hash[index] = { file: @attachment.id }
@@ -222,7 +221,7 @@ class FormController < ApplicationController
         render json: @attachment, status: :created, content_type: "text/plain"
       else
         render json: { errors: humanized_upload_errors }.to_json,
-               status: :unprocessable_entity
+          status: :unprocessable_entity
       end
     end
   end
@@ -235,7 +234,7 @@ class FormController < ApplicationController
 
   def next_index(hash)
     return 0 if hash.empty?
-    return hash.keys.sort.last.to_i + 1
+    hash.keys.max.to_i + 1
   end
 
   def updating_step
@@ -273,31 +272,29 @@ class FormController < ApplicationController
     result
   end
 
-  def build_new_form(award_type)
-    form_answer = FormAnswer.create!(
-      user: current_user,
-      account: current_user.account,
-      award_type: award_type,
-      nickname: nickname,
-      document: {
-        company_name: current_user.company_name
-      }
+  def build_new_form(award_type, partial_name)
+    @form_answer = current_user.account.form_answers.build(
+      permitted_params.merge(
+        award_type: award_type,
+        document: { company_name: current_user.company_name },
+        user: current_user,
+      ),
     )
 
-    redirect_to edit_form_url(form_answer)
+    if @form_answer.save
+      redirect_to edit_form_url(@form_answer)
+    else
+      render "content_only/apply_#{partial_name}_award", status: :unprocessable_entity
+    end
   end
 
   def set_form_answer
     @form_answer = current_user.account.form_answers.find(params[:id])
-
-    @attachments = @form_answer.form_answer_attachments.inject({}) do |r, attachment|
-      r[attachment.id] = attachment
-      r
-    end
+    @attachments = @form_answer.form_answer_attachments.index_by(&:id)
   end
 
-  def nickname
-    params[:nickname].presence
+  def permitted_params
+    params.fetch(:form_answer, {}).permit(:nickname)
   end
 
   def check_deadlines
@@ -309,11 +306,11 @@ class FormController < ApplicationController
     end
   end
 
-  %w(innovation trade mobility development).each do |award|
-    define_method "check_#{award}_deadline" do
+  %w[innovation trade mobility development].each do |award|
+    define_method :"check_#{award}_deadline" do
       return if admin_in_read_only_mode?
 
-      unless public_send("#{award}_submission_started?")
+      unless public_send(:"#{award}_submission_started?")
         flash.alert = "Sorry, submission is still closed"
         redirect_to dashboard_url
       end
@@ -330,10 +327,10 @@ class FormController < ApplicationController
         render json: { error: "ERROR: Form can't be updated as submission ended!" }
       else
         redirect_to dashboard_path,
-                    notice: "Form can't be updated as submission ended!"
+          notice: "Form can't be updated as submission ended!"
       end
 
-      return false
+      false
     end
   end
 
@@ -348,7 +345,7 @@ class FormController < ApplicationController
   def check_eligibility!
     if @form_answer.eligibility.present? && !this_form_eligible?
       redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
-      return false
+      false
     end
   end
 

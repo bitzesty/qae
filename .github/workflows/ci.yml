@@ -22,7 +22,7 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions/cache@v2
         with:
           path: vendor/bundle
@@ -45,7 +45,7 @@ jobs:
           ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: '20'
       - run: npm install -g yarn
       - uses: nanasess/setup-chromedriver@master
       - name: Build and run tests
@@ -63,6 +63,18 @@ jobs:
           bundle install --jobs 4 --retry 3
           RAILS_ENV=test bundle exec rake db:create db:migrate
           RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RSpec::Github::Formatter --format progress
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Lint Ruby files
+        run: bundle exec rubocop --require rubocop-rails --format github
   deploy_dev:
     needs: [test]
     if: github.ref == 'refs/heads/main'
@@ -83,7 +95,7 @@ jobs:
           ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: '20'
       - name: 'Deploy dev'
         env:
           name: dev
@@ -98,8 +110,10 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: |
           npm install -g yarn
-          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-          sudo dpkg -i cf-cli_amd64.deb
+          wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+          echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+          sudo apt-get update
+          sudo apt-get install cf7-cli
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
@@ -124,7 +138,7 @@ jobs:
           ruby-version: 3.2.2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: '20'
       - name: 'Deploy staging'
         env:
           name: staging

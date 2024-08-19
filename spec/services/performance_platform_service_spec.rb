@@ -24,7 +24,7 @@ describe PerformancePlatformService do
         "channel_type" => "digital",
         "count" => 1,
         "_timestamp" => timestamp,
-        "_id" => id
+        "_id" => id,
       }
 
       url = "https://www.performance.service.gov.uk/data/queens-awards-for-enterprise/transactions-by-channel"
@@ -66,7 +66,7 @@ describe PerformancePlatformService do
         "stage" => "0-percent",
         "count" => 1,
         "cumulative_count" => 2,
-        "_id" => id_1
+        "_id" => id_1,
       }
 
       report_2 = {
@@ -76,7 +76,7 @@ describe PerformancePlatformService do
         "stage" => "75-99-percent",
         "count" => 1,
         "cumulative_count" => 1,
-        "_id" => id_2
+        "_id" => id_2,
       }
 
       report_3 = {
@@ -86,7 +86,7 @@ describe PerformancePlatformService do
         "stage" => "75-99-percent",
         "count" => 1,
         "cumulative_count" => 1,
-        "_id" => id_3
+        "_id" => id_3,
       }
 
       data = described_class.fetch_applications_data

@@ -3,8 +3,10 @@ require "csv"
 class AssessorsImport::Builder
   attr_reader :csv
 
+  FIELDS = %w[first_name last_name company trade_role innovation_role promotion_role development_role]
+
   def initialize(filepath)
-    file = File.open(filepath).read
+    file = File.read(filepath)
     @csv = CSV.parse(file, headers: true)
   end
 
@@ -17,8 +19,8 @@ class AssessorsImport::Builder
       if a.new_record? && email.present?
         log "saving: #{email}"
 
-        ['first_name', 'last_name', 'company', 'trade_role',	'innovation_role',	'promotion_role',	'development_role'].each do |db_h|
-          a.send("#{db_h}=", row[db_h])
+        FIELDS.each do |db_h|
+          a.send(:"#{db_h}=", row[db_h])
         end
 
         a = assign_password(a)
@@ -40,11 +42,11 @@ class AssessorsImport::Builder
   private
 
   def log(msg)
-    puts msg unless Rails.env.test?
+    Rails.logger.debug msg unless Rails.env.test?
   end
 
   def assign_password(user)
-    passw = (0...15).map { (65 + rand(26)).chr }.join
+    passw = (0...15).map { rand(65..90).chr }.join
     user.password = passw
     user.password_confirmation = passw
     user

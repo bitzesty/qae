@@ -1,4 +1,4 @@
-li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator == account_owner ? "Account owner" : collaborator.role_name} summary"
+li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator.role_name} summary"
   h3.collaborator__name.govuk-heading-s
     = collaborator.full_name_with_status
   p.collaborator__jobtitle.govuk-body
@@ -12,3 +12,6 @@ li.list-group-item id=dom_id(collaborator) aria-label="#{role = collaborator == 
     = role
   - if current_user.account_admin? && collaborator != account_owner
     = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link govuk-link"
+  - if collaborator == account_owner
+    p.collaborator__role.govuk-body
+      ' To update or delete, contact kingsawards@businessandtrade.gov.uk

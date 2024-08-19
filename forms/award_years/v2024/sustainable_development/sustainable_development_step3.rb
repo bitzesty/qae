@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2024::QaeForms
   class << self
     def development_step3
@@ -24,7 +23,7 @@ class AwardYears::V2024::QaeForms
               <li>Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.</li>
             </ul>
           )
-          pdf_context %{
+          pdf_context %(
             <p>If your application is successful, this description will appear in the London Gazette.</p>
             <p>Some good examples from previously shortlisted organisations:</p>
             <p>
@@ -32,7 +31,7 @@ class AwardYears::V2024::QaeForms
               \u2022 Manufacturer of environmentally friendly cleaning products since 2007. Loved by professionals, approved by the planet.
               \u2022 Our IT Disposal and Gifting service transforms waste for the benefit of people and the planet.
             </p>
-          }
+          )
           rows 2
           words_max 15
         end
@@ -50,11 +49,11 @@ class AwardYears::V2024::QaeForms
 
         header :sustainable_development_core_business_header, "Core business and your approach to sustainability" do
           ref "C 2"
-          context %{
+          context %(
             <p class='govuk-hint'>
               In questions C2.1 to C2.7, describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
             </p>
-          }
+          )
         end
 
         textarea :briefly_describe_your_core_business, "A brief summary of your organisation." do
@@ -137,22 +136,22 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 2.7"
           required
-          context %{
+          context %(
             <p>
               For example, how are you changing your business to respond to future sustainability challenges in your business or sector?
             </p>
-          }
+          )
           rows 2
           words_max 200
         end
 
         header :leadership_and_management, "Leadership and management" do
           ref "C 3"
-          context %{
+          context %(
             <p class="govuk-hint">
               In questions C3.1 to C3.8, describe the driving force of your organisation's sustainability.
             </p>
-          }
+          )
         end
 
         textarea :describe_the_driving_force_of_your_organisation, "Who is ultimately responsible for the organisation's sustainability interventions and their success?" do
@@ -167,9 +166,9 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 3.2"
           required
-          context %{
+          context %(
             <p>You may include flow charts to make it easier for assessors to understand how your programme is managed in section E of this form.</p>
-          }
+          )
           rows 2
           words_max 200
         end
@@ -186,11 +185,11 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 3.4"
           required
-          context %{
+          context %(
             <p>
               For example, businesses in your supply chain, stakeholders, customers, local communities or even competitors.
             </p>
-          }
+          )
           rows 4
           words_max 400
         end
@@ -207,11 +206,11 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 3.6"
           required
-          context %{
+          context %(
             <p>
               Describe your organisation's diversity and inclusion strategy and any policies. Provide evidence that these are effective.
             </p>
-          }
+          )
           rows 5
           words_max 500
         end
@@ -226,11 +225,11 @@ class AwardYears::V2024::QaeForms
 
         header :culture_and_values, "Culture and values regarding sustainability" do
           ref "C 4"
-          context %{
+          context %(
             <p class="govuk-hint">
               In questions C4.1 to C4.4, describe how your organisation's culture fosters and supports sustainability.
             </p>
-          }
+          )
         end
 
         textarea :culture_and_values_regarding_sustainability, "How is sustainability embedded in your organisation's culture and values?" do
@@ -270,25 +269,25 @@ class AwardYears::V2024::QaeForms
 
         header :sustainable_development_interventions_header, "Your sustainable development interventions in detail" do
           ref "C 5"
-          context %{
+          context %(
             <p class="govuk-hint">
               In questions C5.1 to C5.4, describe your interventions using the UN SDGs to structure your answer to each section, but only where relevant.
             </p>
             <p class="govuk-hint">
               You need to summarise your interventions for sustainable development and demonstrate a sustainable strategy across the business.
             </p>
-          }
+          )
         end
 
         textarea :describe_your_interventions_using_un, "Which UN SDGs are your efforts targeted towards?" do
           required
           classes "word-max-strict sub-question"
           sub_ref "C 5.1"
-          context %{
+          context %(
             <p>
               Please note, you do not need to address each UN SDG, only the ones that are most applicable to your sustainable development interventions.
             </p>
-          }
+          )
           rows 2
           words_max 200
         end
@@ -297,11 +296,11 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 5.2"
           required
-          context %{
+          context %(
             <p>
               For example, this could be, to regenerate, to restore, to reduce emissions or to promote good health and wellbeing within the local community and society in general.
             </p>
-          }
+          )
           rows 2
           words_max 200
         end
@@ -323,7 +322,7 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 5.4"
           required
-          context %{
+          context %(
             <p>
               For example, they may be exemplary as a result of:
             </p>
@@ -336,7 +335,7 @@ class AwardYears::V2024::QaeForms
             <p>
               If you have any external documents or other media to support your answer, please add these in Section E and reference them by their names in your answers.
             </p>
-          }
+          )
           pdf_context %(
             For example, it may be exemplary as a result of:
 
@@ -386,11 +385,11 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 6.3"
           required
-          context %{
+          context %(
             <p>
               Describe the impact on your organisation, workforce, customers, stakeholders, supply chain, communities, regions or others, such as overseas clients or markets and how you are part of the circular economy.
             </p>
-          }
+          )
           rows 3
           words_max 300
         end
@@ -399,14 +398,14 @@ class AwardYears::V2024::QaeForms
           classes "word-max-strict sub-question"
           ref "C 6.4"
           required
-          context %{
+          context %(
             <p>
               Explain and, if possible, provide evidence or research on how you have compared your organisation to others in your sector, including a web link if available.
             </p>
             <p>
               Explain how you know that your sustainability performance is exemplary compared with the sector in general.
             </p>
-          }
+          )
           rows 3
           words_max 300
         end
@@ -435,11 +434,11 @@ class AwardYears::V2024::QaeForms
         textarea :governance, "Additional information about your Environmental, Social, and Corporate Governance (ESG). (optional)" do
           classes "word-max-strict sub-question"
           ref "C 6.7"
-          context %{
+          context %(
             <p>
               Please highlight your responsible business conduct and its impact within your organisation, supply chain and the wider community, if not already covered.
             </p>
-          }
+          )
           rows 2
           words_max 200
         end

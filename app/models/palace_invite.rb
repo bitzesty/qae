@@ -3,8 +3,7 @@ class PalaceInvite < ApplicationRecord
 
   has_many :palace_attendees, dependent: :destroy, autosave: true
 
-  validates :form_answer_id, presence: true,
-                             uniqueness: true
+  validates :form_answer_id, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   before_create :set_token
 
@@ -26,11 +25,7 @@ class PalaceInvite < ApplicationRecord
   end
 
   def attendees_limit
-    if form_answer.promotion?
-      1 # nominator
-    else
-      1 # 2020 COVID inspired rules
-    end
+    1
   end
 
   private

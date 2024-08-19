@@ -4,7 +4,7 @@ module QaePdfForms::CustomQuestions::Matrix
   end
 
   def matrix_rows
-    y_headings = if question.required_row_parent.present? && !question.required_row_options.blank?
+    y_headings = if question.required_row_parent.present? && question.required_row_options.present?
       checked_options = form_pdf.filled_answers.fetch(question.required_row_parent, []).map(&:values).flatten
       if checked_options.size.zero?
         question.y_headings
@@ -15,16 +15,14 @@ module QaePdfForms::CustomQuestions::Matrix
       question.y_headings
     end
 
-    rows = y_headings.map do |y_heading|
-      columns = ["#{y_heading.label}"]
+    y_headings.map do |y_heading|
+      columns = [y_heading.label.to_s]
       question.x_headings.each do |x_heading|
         columns << form_pdf.filled_answers[question.key.to_s + "_#{x_heading.key}_#{y_heading.key}"]
       end
 
       columns
     end
-
-    rows
   end
 
   def millimeterized_column_widths
@@ -40,7 +38,7 @@ module QaePdfForms::CustomQuestions::Matrix
   def matrix_options
     {
       header: true,
-      column_widths: millimeterized_column_widths
+      column_widths: millimeterized_column_widths,
     }
   end
 

@@ -43,19 +43,20 @@ FactoryBot.define do
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_trade.json"))
-          )
+            File.read(Rails.root.join("spec/fixtures/form_answer_trade.json")),
+          ),
         )
       end
     end
 
     trait :innovation do
       award_type { "innovation" }
+      nickname { "Innovation" }
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_innovation.json"))
-          )
+            File.read(Rails.root.join("spec/fixtures/form_answer_innovation.json")),
+          ),
         )
       end
     end
@@ -65,19 +66,20 @@ FactoryBot.define do
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_development.json"))
-          )
+            File.read(Rails.root.join("spec/fixtures/form_answer_development.json")),
+          ),
         )
       end
     end
 
     trait :mobility do
       award_type { "mobility" }
+      nickname { "Promoting Opportunity" }
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_mobility.json"))
-          )
+            File.read(Rails.root.join("spec/fixtures/form_answer_mobility.json")),
+          ),
         )
       end
     end
@@ -88,8 +90,8 @@ FactoryBot.define do
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_promotion.json"))
-          )
+            File.read(Rails.root.join("spec/fixtures/form_answer_promotion.json")),
+          ),
         )
       end
     end
@@ -98,8 +100,8 @@ FactoryBot.define do
       document do
         FormAnswer::DocumentParser.parse_json_document(
           JSON.parse(
-            File.read(Rails.root.join("spec/fixtures/form_answer_trade.json"))
-          )
+            File.read(Rails.root.join("spec/fixtures/form_answer_trade.json")),
+          ),
         )
       end
       audit_certificate

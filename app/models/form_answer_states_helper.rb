@@ -8,7 +8,7 @@ module FormAnswerStatesHelper
   end
 
   (FormAnswerStateMachine::STATES - [:submitted]).each do |permitted_state|
-    define_method("#{permitted_state}?") do
+    define_method(:"#{permitted_state}?") do
       state == permitted_state.to_s
     end
   end

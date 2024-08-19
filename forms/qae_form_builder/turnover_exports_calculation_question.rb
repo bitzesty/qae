@@ -31,16 +31,19 @@ class QaeFormBuilder
         if c.question_value.respond_to?(:call)
           q = form[c.question_key]
           if q.is_a?(QaeFormBuilder::DateQuestion) || q.is_a?(QaeFormBuilder::DateQuestionDecorator)
-            date = []
-            q.required_sub_fields.each do |sub|
-              date << q.input_value(suffix: sub.keys[0])
+            date = q.required_sub_fields.map do |sub|
+              q.input_value(suffix: sub.keys[0])
             end
 
-            date = Date.parse(date.join("/")) rescue nil
+            date = begin
+              Date.parse(date.join("/"))
+            rescue
+              nil
+            end
 
-            c.question_value.(date)
+            c.question_value.call(date)
           else
-            c.question_value.(form[c.question_key].input_value)
+            c.question_value.call(form[c.question_key].input_value)
           end
         else
           form[c.question_key].input_value == c.question_value
@@ -73,9 +76,9 @@ class QaeFormBuilder
 
   class TurnoverExportsCalculationCondition
     attr_accessor :question_key,
-                  :question_value,
-                  :years,
-                  :span_class
+      :question_value,
+      :years,
+      :span_class
     def initialize question_key, question_value, years, **options
       @question_key = question_key
       @question_value = question_value
@@ -86,14 +89,13 @@ class QaeFormBuilder
 
   class TurnoverExportsCalculationQuestion < Question
     attr_accessor :by_year_conditions,
-                  :label,
-                  :turnover_question,
-                  :exports_question,
-                  :one_option_financial_data_mode
+      :label,
+      :turnover_question,
+      :exports_question,
+      :one_option_financial_data_mode
 
     def after_create
       @by_year_conditions = []
     end
   end
-
 end

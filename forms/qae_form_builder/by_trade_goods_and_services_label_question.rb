@@ -2,7 +2,7 @@ class QaeFormBuilder
   class ByTradeGoodsAndServicesLabelQuestionValidator < QuestionValidator
     HUMANIZED_ATTRS = {
       "desc_short" => "Description",
-      "total_overseas_trade" => "Trade percentage"
+      "total_overseas_trade" => "Trade percentage",
     }
 
     def errors
@@ -15,7 +15,7 @@ class QaeFormBuilder
           # only validate the first product or at least one field is filled in
           if product_number == 1 || !entity.values.all?(&:blank?)
             question.required_sub_fields_list.each do |attr|
-              if !entity[attr].present?
+              if entity[attr].blank?
                 result[question.key] ||= {}
                 result[question.key][product_number] ||= {}
                 result[question.key][product_number][attr] ||= ""
@@ -46,16 +46,16 @@ class QaeFormBuilder
 
   class ByTradeGoodsAndServicesLabelQuestionDecorator < QuestionDecorator
     def trade_goods_and_services
-      @trade_goods_and_services ||= (answers[delegate_obj.key.to_s] || [])
+      @trade_goods_and_services ||= answers[delegate_obj.key.to_s] || []
     end
 
     def required_sub_fields_list
-      %w(desc_short total_overseas_trade)
+      %w[desc_short total_overseas_trade]
     end
   end
 
   class ByTradeGoodsAndServicesLabelQuestionBuilder < QuestionBuilder
-    def rows num=3
+    def rows num = 3
       @q.rows = num
     end
 

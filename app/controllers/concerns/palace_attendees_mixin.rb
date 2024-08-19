@@ -53,8 +53,8 @@ module PalaceAttendeesMixin
             locals: {
               index: 0,
               pa: palace_attendee,
-              palace_invite: invite
-            }
+              palace_invite: invite,
+            },
           )
         else
           redirect_to [namespace_name, invite.form_answer]
@@ -86,9 +86,11 @@ module PalaceAttendeesMixin
       :phone_number,
       :has_royal_family_connections,
       :royal_family_connection_details,
+      :dietary_requirements,
+      :disabled_access,
       :additional_info,
       :palace_invite_id,
-      :id
+      :id,
     )
   end
 

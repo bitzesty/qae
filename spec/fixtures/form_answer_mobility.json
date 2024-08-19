@@ -5,6 +5,7 @@
 "product_age": "4",
 "roi_details": "1",
 "website_url": "example.com",
+"social_media_links": "\u003cp\u003eFacebook: https://www.facebook.com/MassiveDynamics\u003c/p\u003e\r\n\r\n\u003cp\u003eLinkedIn: https://www.linkedin.com/company/massive-dynamics/mycompany/\u003c/p\u003e\r\n\r\n\u003cp\u003eInstagram: https://www.instagram.com/massivedynamics/\u003c/p\u003e\r\n\r\n\u003cp\u003eYouTube: https://www.youtube.com/@massive-dynamics\u003c/p\u003e\r\n\r\n\u003cp\u003e\r\n",
 "applying_for": "organisation",
 "company_name": "1231",
 "exports_1of3": "",
@@ -697,5 +698,6 @@
 "disadvantaged_groups_opportunities_numbers": "",
 "received_grant": "no",
 "strong_esg_record": "on",
-"major_issues_overcome": "test"
+"major_issues_overcome": "test",
+"most_recent_financial_year": "2024"
 }

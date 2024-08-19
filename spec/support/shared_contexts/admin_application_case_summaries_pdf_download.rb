@@ -1,27 +1,29 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin application case summaries pdf download" do
   let!(:form_answer) do
     create :form_answer, award_type,
-                         :recommended,
-                         user: user
+      :recommended,
+      user: user
   end
 
   let!(:assessor_assignment) do
     create :assessor_assignment, form_answer: form_answer,
-                                 submitted_at: Date.today,
-                                 assessor: nil,
-                                 position: "case_summary",
-                                 document: assessor_assignment_document
+      submitted_at: Date.current,
+      assessor: nil,
+      position: "case_summary",
+      document: assessor_assignment_document
   end
 
   let(:assessor_assignment_document) do
     res = {}
 
+    ratings = %w[negative positive average]
+
     AppraisalForm.struct(form_answer).each do |key, value|
       res["#{key}_desc"] = "Lorem Ipsum"
       if value[:type] != :non_rag
-        res["#{key}_rate"] = ["negative", "positive", "average"].sample
+        res["#{key}_rate"] = ratings.sample
       end
     end
 

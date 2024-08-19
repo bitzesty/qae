@@ -13,43 +13,44 @@ step "I am eligible user" do
 end
 
 step "I go to dashboard" do
-  visit '/dashboard'
+  visit "/dashboard"
 end
 
 step "I should see innovation application link" do
-  expect(page).to have_link("New application", href:'/apply_innovation_award')
+  expect(page).to have_link("New application", href: "/apply_innovation_award")
 end
 
 step "I should see international trade application link" do
-  expect(page).to have_link("New application", href:'/apply_international_trade_award')
+  expect(page).to have_link("New application", href: "/apply_international_trade_award")
 end
 
 step "I should see sustainable development application link" do
-  expect(page).to have_link("New application", href:'/apply_sustainable_development_award')
+  expect(page).to have_link("New application", href: "/apply_sustainable_development_award")
 end
 
 step "I create innovation form" do
   step "I go to dashboard"
-  click_link "New application", href: '/apply_innovation_award'
+  click_link "New application", href: "/apply_innovation_award"
+  fill_in "award-reference", with: "Innovation"
   click_button "Save and start eligibility questionnaire"
   click_link "Continue to eligibility questions"
-  click_button "Continue" #eligibility step
+  click_button "Continue" # eligibility step
 end
 
 step "I create international trade form" do
   step "I go to dashboard"
-  click_link "New application", href: '/apply_international_trade_award'
+  click_link "New application", href: "/apply_international_trade_award"
   click_button "Start eligibility questionnaire"
   click_link "Continue to eligibility questions"
-  click_button "Continue" #eligibility step
+  click_button "Continue" # eligibility step
 end
 
 step "I create sustainable development form" do
   step "I go to dashboard"
-  click_link "New application", href: '/apply_sustainable_development_award'
+  click_link "New application", href: "/apply_sustainable_development_award"
   click_button "Start eligibility questionnaire"
   click_link "Continue to eligibility questions"
-  click_button "Continue" #eligibility step
+  click_button "Continue" # eligibility step
 end
 
 step "I should see qae form" do

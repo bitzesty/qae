@@ -9,5 +9,4 @@ class FormAnswer::CommentDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %d/%m/%y")
   #     end
   #   end
-
 end

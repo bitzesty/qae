@@ -1,4 +1,6 @@
 module AssessmentSubmissionMixin
+  delegate :form_answer, to: :resource
+
   def create
     authorize resource, :submit?
     @service = AssessmentSubmissionService.new(resource, current_subject)
@@ -25,13 +27,9 @@ module AssessmentSubmissionMixin
   end
 
   def action_type
-    appraisal_type = resource.position == "case_summary" ? "case_summary" : "#{resource.position}_appraisal"
-    appraisal_action = action_name == "create" ? "submit" : "unsubmit"
+    appraisal_type = (resource.position == "case_summary") ? "case_summary" : "#{resource.position}_appraisal"
+    appraisal_action = (action_name == "create") ? "submit" : "unsubmit"
     "#{appraisal_type}_#{appraisal_action}"
-  end
-
-  def form_answer
-    resource.form_answer
   end
 
   private

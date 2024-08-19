@@ -13,8 +13,8 @@
             span.caret
         ul.dropdown-menu.dropdown-menu-right
           li class="#{'active' if params[:year].to_s == 'all_years'}"
-            = link_to "All Years", url_for(params.permit(:controller, :action).merge(year: :all_years))
+            = link_to "All Years", url_for(params.permit(:controller, :action, :year).merge(year: :all_years))
 
           - AwardYear.admin_switch.each do |year, label|
             li class="#{'active' if label == current_year_text}"
-              = link_to label, url_for(params.permit(:controller, :action).merge(year: year))
+              = link_to label, url_for(params.permit(:controller, :action, :year).merge(year: year))

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe VatReturnsFile, type: :model do
   let(:sdw) { create(:shortlisted_documents_wrapper) }

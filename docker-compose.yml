@@ -1,28 +1,52 @@
-version: "2"
+version: "3.8"
 services:
-  web:
+  web: &web
+    env_file: 
+      - .env
     build:
       context: .
-    command: bundle exec puma -C config/puma.rb
+      args:
+        RAILS_ENV: ${RAILS_ENV:-development}
     environment:
-      - PORT=3000
-      - SECRET_KEY_BASE=PLACEHOLDERSECRETBASEKEY
-      - RAILS_SERVE_STATIC_FILES=enabled
-      - LANG=en_US.UTF-8
-      - RAILS_ENV=production
-      - RACK_ENV=production
-    labels:
-      - convox.port.443.protocol=https
-      - convox.deployment.minimum=50
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - REDIS_URL=redis://redis-db:6379
+      - DATABASE_URL=postgres://root:password@postgres-db/qae_development
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+      redis-db:
+        condition: service_started
+    command: /rails/bin/rails server
+    entrypoint: ["/rails/bin/docker-entrypoint"]
+    volumes:
+      - .:/rails:cached
     ports:
-      - 80:3000/tcp
-      - 443:3000/tcp
-  worker:
-    build:
-      context: .
-    command: bundle exec sidekiq -C config/sidekiq.yml
+      - "3000:3000"
+  
+  postgres-db:
+    image: postgres
     environment:
-      - SECRET_KEY_BASE=PLACEHOLDERSECRETBASEKEY
-      - LANG=en_US.UTF-8
-      - RAILS_ENV=production
-      - RACK_ENV=production
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: qae_development
+    volumes:
+      - ./tmp/postgres-db:/var/lib/postgresql/data
+      - ./init-hstore.sql:/docker-entrypoint-initdb.d/init-hstore.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d qae_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis-db:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  sidekiq:
+    <<: *web
+    command: bundle exec sidekiq
+    ports: []

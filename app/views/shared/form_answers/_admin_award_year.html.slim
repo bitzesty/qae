@@ -1,0 +1,42 @@
+- current_year = AwardYear.current.year
+- selected_year = params[:year] ? params[:year].to_i : namespace_name == :admin ? 'all_years' : current_year
+- other_years = AwardYear.admin_switch.keys.select{ |year| year <= current_year }
+
+fieldset.award-year-z-index.applications-filter.award-year-radios
+  label.applications-filter__label
+    ' Award year
+  .input__award-years
+    .if-no-js-hide
+      input type="radio" id="current_year" name="year" value="#{current_year}" checked=(current_year == params[:year].to_i || (namespace_name == :assessor && other_years.exclude?(params[:year].to_i)))
+      label for="current_year"
+        | Current year
+      input type="radio" id="all_years" name="year" value="all_years" checked=(params[:year].to_s == 'all_years' || (namespace_name == :admin && other_years.exclude?(params[:year].to_i)))
+      label for="all_years"
+        | All years
+      input type="radio" id="other" name="year" value="#{selected_year}" checked=(current_year != selected_year && other_years.include?(params[:year].to_i))
+      label for="other"
+        | Other
+
+      .dropdown.other-years-dropdown class="#{(current_year != selected_year && other_years.include?(params[:year].to_i) ? '' : 'hide')}"
+        a.dropdown-toggle.btn.btn-block.btn-default href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+          - current_year_text = params[:year].to_s == "all_years" || !params[:year] || !other_years.include?(params[:year].to_i) || selected_year == "all_years" ? "All Years" : "#{selected_year - 1} - #{selected_year}"
+
+          = current_year_text
+          span.caret-container
+            span.caret
+        ul.dropdown-menu.dropdown-menu-right
+          li class="#{'active' if params[:year].to_s == 'all_years' || !params[:year]}" id="all_years"
+            = link_to "All Years", "#"
+
+          - AwardYear.admin_switch.each do |year, label|
+            - if year <= current_year
+              li class="#{'active' if label == current_year_text}" id="#{year}"
+                = link_to label, "#"
+
+    select name="year" id="award_year" class="form-control if-js-hide"
+      option value="all_years" selected=(params[:year].to_s == 'all_years' || (namespace_name == :admin && other_years.exclude?(params[:year].to_i)))
+        | All years
+      - AwardYear.admin_switch.each do |year, label|
+        - if year <= current_year
+          option value="#{year}" selected=(year == selected_year)
+            = label

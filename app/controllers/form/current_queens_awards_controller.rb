@@ -1,5 +1,4 @@
 class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving of CurrentQueensAwards
   # This section is used in case if JS disabled
 
@@ -43,7 +42,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     {
       "category" => item_params[:category],
       "year" => item_params[:year],
-      "outcome" => item_params[:outcome]
+      "outcome" => item_params[:outcome],
     }
   end
 
@@ -53,19 +52,18 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
       current_queens_award: {
         category: item.category,
         year: item.year,
-        outcome: item.outcome
-      }
+        outcome: item.outcome,
+      },
     )
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.item = item_class.new(categories,
-                               years,
-                               outcomes,
-                               item_params)
+      years,
+      outcomes,
+      item_params)
 
     if item.valid?
       @form_answer.document = add_result_doc
@@ -74,7 +72,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
       redirect_to edit_form_url(
         id: @form_answer.id,
         step: step.title.parameterize,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :new
@@ -83,9 +81,9 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
   def confirm_deletion
     self.item = item_class.new(categories,
-                               years,
-                               [],
-                               item_params)
+      years,
+      [],
+      item_params)
   end
 
   def destroy
@@ -95,22 +93,22 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     redirect_to edit_form_url(
       id: @form_answer.id,
       step: step.title.parameterize,
-      anchor: anchor
+      anchor: anchor,
     )
   end
 
   def edit
     self.item = item_class.new(categories,
-                               years,
-                               outcomes,
-                               item_params)
+      years,
+      outcomes,
+      item_params)
   end
 
   def update
     self.item = item_class.new(categories,
-                               years,
-                               outcomes,
-                               item_params)
+      years,
+      outcomes,
+      item_params)
 
     if item.valid?
       @form_answer.document = update_result_doc
@@ -119,16 +117,16 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
       redirect_to edit_form_url(
         id: @form_answer.id,
         step: step.title.parameterize,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :edit
     end
   end
 
-  def item_detect_condition(el, attrs=nil)
+  def item_detect_condition(el, attrs = nil)
     el["category"] == (attrs.present? ? attrs[:category] : ops_hash[:category]) &&
-    el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
+      el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
   end
 
   private
@@ -137,7 +135,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     params.require(:current_queens_award).permit(
       :category,
       :year,
-      :outcome
+      :outcome,
     )
   end
 end

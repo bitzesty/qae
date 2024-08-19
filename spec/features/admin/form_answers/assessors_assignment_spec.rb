@@ -1,7 +1,5 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
-
 describe "Admin assigns the primary and secondary assessors" do
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer) }

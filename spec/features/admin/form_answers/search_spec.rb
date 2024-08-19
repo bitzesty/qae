@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe "Form answer search", "
   As Admin

@@ -27,11 +27,7 @@ class Settings < ApplicationRecord
 
     def current_award_year_switch_date_or_default_trigger_at
       Rails.cache.fetch("award_year_switch_deadline_or_default_trigger_at", expires_in: 1.minute) do
-        if current.deadlines.award_year_switch.trigger_at
-          current.deadlines.award_year_switch.trigger_at
-        else
-          Date.new(current.award_year.year - 1, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
-        end
+        current.deadlines.award_year_switch.trigger_at || Date.new(current.award_year.year - 1, AwardYear::DEFAULT_FINANCIAL_SWITCH_MONTH, AwardYear::DEFAULT_FINANCIAL_SWITCH_DAY)
       end
     end
 
@@ -51,14 +47,13 @@ class Settings < ApplicationRecord
       end
     end
 
-    %w(innovation trade mobility development).each do |award|
-      define_method "current_#{award}_submission_start_deadline" do
+    %w[innovation trade mobility development].each do |award|
+      define_method :"current_#{award}_submission_start_deadline" do
         Rails.cache.fetch("#{award}_submission_start_deadline", expires_in: 1.minute) do
-          current.deadlines.public_send("#{award}_submission_start")
+          current.deadlines.public_send(:"#{award}_submission_start")
         end
       end
     end
-
 
     def current_submission_start_deadlines
       Rails.cache.fetch("submission_start_deadlines", expires_in: 1.minute) do
@@ -145,7 +140,7 @@ class Settings < ApplicationRecord
       submission_started_deadlines = current_submission_start_deadlines.map(&:trigger_at)
 
       award_year_switch_deadline.present? &&
-      award_year_switch_deadline < Time.zone.now && (
+        award_year_switch_deadline < Time.zone.now && (
         submission_started_deadlines.any?(&:blank?) ||
         submission_started_deadlines.all? { |d| d > Time.zone.now }
       )
@@ -164,12 +159,12 @@ class Settings < ApplicationRecord
     end
 
     def submission_deadline_title
-      formatted_datetime = current_submission_deadline.decorate.formatted_trigger_time(false)
+      formatted_datetime = current_submission_deadline.decorate.formatted_trigger_time(bold: false)
       "Submission deadline: #{formatted_datetime}"
     end
 
     def min_started_trading
-      (Date.current.year - (Date.new(COMPANIES_HOUSE_REGISTERING_SINCE).year))
+      (Date.current.year - Date.new(COMPANIES_HOUSE_REGISTERING_SINCE).year)
     end
   end
 

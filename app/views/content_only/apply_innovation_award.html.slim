@@ -4,5 +4,5 @@ h1.govuk-heading-xl Innovation Award Application
 
 .article-related-positioning-container
   article.group role="article"
-    = form_tag new_innovation_form_path, method: :get do
-      = render "award_nickname", award_type: "innovation"
+    = simple_form_for @form_answer, url: new_innovation_form_path, html: { class: "qae-form" } do |f|
+      = render partial: "content_only/award_nickname", locals: { award_type: "innovation", f: f }

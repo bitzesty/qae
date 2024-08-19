@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2024::QaeForms
   class << self
     def innovation_step3
@@ -30,7 +29,7 @@ class AwardYears::V2024::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model or process"]
+            ["business_model", "A business model or process"],
           ]
           application_type_question true
         end
@@ -263,14 +262,13 @@ class AwardYears::V2024::QaeForms
           words_max 250
         end
 
-
         header :innovation_timeline_header, "Innovation development" do
           ref "C 2"
           linkable true
-          context %{
+          context %(
             <p class="govuk-body">
               The questions in subsection C2 help the assessors understand the development of your innovation.
-          }
+          )
         end
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
@@ -449,7 +447,7 @@ class AwardYears::V2024::QaeForms
         header :innovation_value_add_header, "Innovation value-add" do
           ref "C 3"
           linkable true
-          context %{
+          context %(
             <p class="govuk-body">
               The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
             </p>
@@ -459,7 +457,7 @@ class AwardYears::V2024::QaeForms
             <p class="govuk-body">
               You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
             </p>
-          }
+          )
           pdf_context_with_header_blocks [
             [:normal, %(
               The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
@@ -467,7 +465,7 @@ class AwardYears::V2024::QaeForms
               Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
 
               You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
-            )]
+            )],
           ]
         end
 

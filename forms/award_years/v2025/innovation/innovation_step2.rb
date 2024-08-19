@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2025::QaeForms
   class << self
     def innovation_step2
@@ -41,7 +40,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit and the arrangements made." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 2.1"
           required
           conditional :principal_business, :no
@@ -68,12 +67,12 @@ class AwardYears::V2025::QaeForms
 
         text :other_organisation_type, "" do
           classes "text-words-max"
-          context %{
+          context %(
             <p class="govuk-body">Please specify</p>
-          }
-          pdf_context %{
+          )
+          pdf_context %(
             <p class="govuk-body">Please specify if selected Other</p>
-          }
+          )
           conditional :organisation_type, :other
           text_words_max 50
         end
@@ -84,7 +83,7 @@ class AwardYears::V2025::QaeForms
           ref "B 3.1"
           context %(
             <p>To be eligible, the organisations must be based in the UK, including the Channel Islands and Isle of Man.</p>
-            
+
             <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
@@ -147,7 +146,7 @@ class AwardYears::V2025::QaeForms
           ref "B 6"
           pdf_context_with_header_blocks [
             [:normal, "If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man."],
-            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"],
           ]
           county_context %(
             <p class='govuk-hint'>If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man.</p>
@@ -160,7 +159,7 @@ class AwardYears::V2025::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County/Crown Dependency" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
           sub_fields_words_max 50
         end
@@ -191,7 +190,7 @@ class AwardYears::V2025::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -348,7 +347,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :other_awards_desc, "List the awards you have won in the past." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "B 13.1"
           required
           context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
@@ -372,7 +371,7 @@ class AwardYears::V2025::QaeForms
             ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper or publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

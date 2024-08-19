@@ -1,7 +1,5 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
-
 describe "Assessors Progress Reports CSV" do
   let!(:first_assessor) { create(:assessor, :regular_for_trade) }
   let!(:second_assessor) { create(:assessor, :regular_for_trade) }
@@ -11,7 +9,7 @@ describe "Assessors Progress Reports CSV" do
       primary: 0,
       secondary: 1,
       moderated: 2,
-      case_summary: 4
+      case_summary: 4,
     }
   }
 
@@ -36,7 +34,7 @@ describe "Assessors Progress Reports CSV" do
       [1, "case_summary", true],
       [1, "primary", false],
       [2, "secondary", false],
-      [1, "case_summary", false]
+      [1, "case_summary", false],
     ].each do |entry|
       build_entry!(entry, first_assessor)
     end
@@ -68,7 +66,7 @@ describe "Assessors Progress Reports CSV" do
       [3, "case_summary", true],
       [3, "primary", false],
       [2, "secondary", false],
-      [1, "case_summary", false]
+      [1, "case_summary", false],
     ].each do |entry|
       build_entry!(entry, second_assessor)
     end
@@ -86,7 +84,7 @@ describe "Assessors Progress Reports CSV" do
   let(:data) {
     Reports::DataPickers::AssessorProgressPicker.new(
       AwardYear.current,
-      "trade"
+      "trade",
     ).results
   }
 
@@ -127,11 +125,11 @@ describe "Assessors Progress Reports CSV" do
       assessment = AssessorAssignment.new(
         position: positions[entry[1].to_sym],
         assessor_id: assessor.id,
-        form_answer_id: f.id
+        form_answer_id: f.id,
       )
 
       if entry[2].present?
-        assessment.submitted_at = Time.now
+        assessment.submitted_at = Time.current
       end
 
       assessment.save!(validate: false)

@@ -1,8 +1,9 @@
-require 'sidekiq/web'
-require 'sidekiq/cron/web'
+require "sidekiq/web"
+require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
-  Healthcheck.routes(self)
+  get "/pingdom/ping.xml", to: "healthcheck#index"
+  get "/health_check", to: "healthcheck#index"
   # Content Security Policy report_uri (http://content-security-policy.com/)
   post "/csp_report_uri", to: "csp_report_uri#report"
 
@@ -11,64 +12,64 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations",
     passwords: "users/passwords",
     sessions: "users/sessions",
-    unlocks: "users/unlocks"
+    unlocks: "users/unlocks",
   }
 
   devise_for :admins, controllers: {
     confirmations: "admins/confirmations",
-    devise_authy: "admin/devise_authy"
+    devise_authy: "admin/devise_authy",
   }, path_names: {
     verify_authy: "/verify-token",
     enable_authy: "/enable-two-factor",
-    verify_authy_installation: "/verify-installation"
+    verify_authy_installation: "/verify-installation",
   }
 
   authenticate :admin do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => "/sidekiq"
   end
 
   devise_for :assessors, controllers: {
-    confirmations: "assessors/confirmations"
+    confirmations: "assessors/confirmations",
   }
   devise_for :judges, controllers: {
-    confirmations: "judges/confirmations"
+    confirmations: "judges/confirmations",
   }
 
-  get "/awards_for_organisations"                       => redirect("https://www.gov.uk/kings-awards-for-enterprise/business-awards")
-  get "/enterprise_promotion_awards"                    => redirect("https://www.gov.uk/kings-awards-for-enterprise/enterprise-promotion-award")
-  get "/how_to_apply"                                   => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
-  get "/timeline"                                       => redirect("https://www.gov.uk/kings-awards-for-enterprise/timeline")
-  get "/additional_information_and_contact"             => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
-  get "/apply-for-kings-award-for-enterprise"          => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
+  get "/awards_for_organisations" => redirect("https://www.gov.uk/kings-awards-for-enterprise/business-awards")
+  get "/enterprise_promotion_awards" => redirect("https://www.gov.uk/kings-awards-for-enterprise/enterprise-promotion-award")
+  get "/how_to_apply" => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
+  get "/timeline" => redirect("https://www.gov.uk/kings-awards-for-enterprise/timeline")
+  get "/additional_information_and_contact" => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
+  get "/apply-for-kings-award-for-enterprise" => redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply")
 
-  get "/sign_up_complete"                               => "content_only#sign_up_complete",                               as: "sign_up_complete"
-  get "/privacy"                                        => "content_only#privacy",                                        as: "privacy"
-  get "/cookies"                                        => "content_only#cookies",                                        as: "cookies"
-  get "/accessibility-statement"                        => "content_only#accessibility_statement",                        as: "accessibility_statement"
+  get "/sign_up_complete" => "content_only#sign_up_complete", :as => "sign_up_complete"
+  get "/privacy" => "content_only#privacy", :as => "privacy"
+  get "/cookies" => "content_only#cookies", :as => "cookies"
+  get "/accessibility-statement" => "content_only#accessibility_statement", :as => "accessibility_statement"
 
-  get  "/new_innovation_form"                           => "form#new_innovation_form",                                    as: "new_innovation_form"
-  get  "/new_international_trade_form"                  => "form#new_international_trade_form",                           as: "new_international_trade_form"
-  get  "/new_sustainable_development_form"              => "form#new_sustainable_development_form",                       as: "new_sustainable_development_form"
-  get  "/new_social_mobility_form"                      => "form#new_social_mobility_form",                               as: "new_social_mobility_form"
+  post "/new_innovation_form" => "form#new_innovation_form", :as => "new_innovation_form"
+  post "/new_international_trade_form" => "form#new_international_trade_form", :as => "new_international_trade_form"
+  post "/new_sustainable_development_form" => "form#new_sustainable_development_form", :as => "new_sustainable_development_form"
+  post "/new_social_mobility_form" => "form#new_social_mobility_form", :as => "new_social_mobility_form"
 
-  get  "/form/:id"                                      => "form#edit_form",                                              as: "edit_form"
-  post "/form/:id"                                      => "form#save",                                                   as: "save_form"
-  post "/form/:id/attachments"                          => "form#add_attachment",                                         as: "attachments"
-  get  "/form/:id/confirmation"                         => "form#submit_confirm",                                         as: "submit_confirm"
-  get "/dashboard"                                      => "content_only#dashboard",                                      as: "dashboard"
+  get "/form/:id" => "form#edit_form", :as => "edit_form"
+  post "/form/:id" => "form#save", :as => "save_form"
+  post "/form/:id/attachments" => "form#add_attachment", :as => "attachments"
+  get "/form/:id/confirmation" => "form#submit_confirm", :as => "submit_confirm"
+  get "/dashboard" => "content_only#dashboard", :as => "dashboard"
 
-  get "/apply_innovation_award"                         => "content_only#apply_innovation_award",                         as: "apply_innovation_award"
-  get "/award_info_innovation"                          => "content_only#award_info_innovation",                          as: "award_info_innovation"
+  get "/apply_innovation_award" => "content_only#apply_innovation_award", :as => "apply_innovation_award"
+  get "/award_info_innovation" => "content_only#award_info_innovation", :as => "award_info_innovation"
 
-  get "/apply_international_trade_award"                => "content_only#apply_international_trade_award",                as: "apply_international_trade_award"
-  get "/award_info_trade"                               => "content_only#award_info_trade",                               as: "award_info_trade"
+  get "/apply_international_trade_award" => "content_only#apply_international_trade_award", :as => "apply_international_trade_award"
+  get "/award_info_trade" => "content_only#award_info_trade", :as => "award_info_trade"
 
-  get "/apply_sustainable_development_award"            => "content_only#apply_sustainable_development_award",            as: "apply_sustainable_development_award"
-  get "/award_info_development"                         => "content_only#award_info_development",                         as: "award_info_development"
-  get "/apply_social_mobility_award"                    => "content_only#apply_social_mobility_award",                    as: "apply_social_mobility_award"
-  get "/award_info_mobility"                            => "content_only#award_info_mobility",                            as: "award_info_mobility"
+  get "/apply_sustainable_development_award" => "content_only#apply_sustainable_development_award", :as => "apply_sustainable_development_award"
+  get "/award_info_development" => "content_only#award_info_development", :as => "award_info_development"
+  get "/apply_social_mobility_award" => "content_only#apply_social_mobility_award", :as => "apply_social_mobility_award"
+  get "/award_info_mobility" => "content_only#award_info_mobility", :as => "award_info_mobility"
 
-  get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
+  get "/award_winners_section" => "content_only#award_winners_section", :as => "award_winners_section"
 
   root to: QAE.production? ? redirect("https://www.gov.uk/kings-awards-for-enterprise/how-to-apply") : "content_only#dashboard"
 
@@ -91,7 +92,7 @@ Rails.application.routes.draw do
   end
 
   resource :form_award_eligibility, only: [:show, :update] do
-   collection do
+    collection do
       get :warning
       get :result
     end
@@ -155,7 +156,7 @@ Rails.application.routes.draw do
         :current_queens_awards,
         :awards,
         :subsidiaries,
-        :form_links
+        :form_links,
       ].each do |resource_name|
         resource resource_name, only: [:new, :create, :edit, :update, :destroy] do
           get :confirm_deletion
@@ -219,9 +220,9 @@ Rails.application.routes.draw do
       patch :unlock, on: :member
     end
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 
@@ -260,6 +261,9 @@ Rails.application.routes.draw do
         post :scan_via_debounce_api
       end
     end
+
+    resources :collaborator_deletion, only: [:destroy]
+
     resources :assessors do
       member do
         get :confirm_activate
@@ -367,9 +371,9 @@ Rails.application.routes.draw do
     resource :users_feedback, only: [:show]
     resources :audit_logs, only: :index
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 
@@ -387,9 +391,9 @@ Rails.application.routes.draw do
       get :download, on: :collection
     end
 
-    scope format: true, constraints: { format: 'json' } do
+    scope format: true, constraints: { format: "json" } do
       resource :session_checks, only: [:show]
-      post 'session_checks/extend' => 'session_checks#extend'
+      post "session_checks/extend" => "session_checks#extend"
     end
   end
 end

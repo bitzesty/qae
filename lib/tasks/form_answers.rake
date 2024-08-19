@@ -1,5 +1,4 @@
 namespace :form_answers do
-
   #
   # bundle exec rake form_answers:force_submit[FORM_ANSWER_ID]
   #
@@ -11,7 +10,7 @@ namespace :form_answers do
 
   desc "Populate submitted_at"
   task populate_submitted_at: :environment do
-    current_award_year_id = AwardYear.find_by_year(2017).id
+    current_award_year_id = AwardYear.find_by(year: 2017).id
     current_time = Time.current
     FormAnswer.where(submitted_at: nil).find_each do |f|
       if f.award_year_id == current_award_year_id
@@ -19,11 +18,9 @@ namespace :form_answers do
           f.update_column(:submitted_at, current_time)
           puts "[form answer] #{f.id} updating submitted_at with #{current_time}"
         end
-      else
-        if f.submitted
-          f.update_column(:submitted_at, f.created_at)
-          puts "[form answer] #{f.id} updating submitted_at with #{f.created_at}"
-        end
+      elsif f.submitted
+        f.update_column(:submitted_at, f.created_at)
+        puts "[form answer] #{f.id} updating submitted_at with #{f.created_at}"
       end
     end
   end
@@ -33,14 +30,12 @@ namespace :form_answers do
     not_updated_entries = []
 
     AwardYear.current.form_answers.submitted.find_each do |form_answer|
-      begin
-        form_answer.generate_pdf_version!
-        sleep 1
+      form_answer.generate_pdf_version!
+      sleep 1
 
-        puts "[form_answer]---------------------------------#{form_answer.id} updated"
-      rescue
-        not_updated_entries << form_answer.id
-      end
+      puts "[form_answer]---------------------------------#{form_answer.id} updated"
+    rescue
+      not_updated_entries << form_answer.id
     end
 
     puts "[not_updated_entries] ------------ #{not_updated_entries.inspect}"
@@ -63,7 +58,7 @@ namespace :form_answers do
   desc "fixes attachment arrays"
   task fix_attachments: :environment do
     FormAnswer.find_each do |f|
-      if f.document["innovation_materials"].kind_of? Array
+      if f.document["innovation_materials"].is_a? Array
         array = f.document["innovation_materials"]
         hash = {}
         array.each_index do |i|
@@ -81,11 +76,11 @@ namespace :form_answers do
 
   def fix_address f, old_key, new_key
     replace_key f, "#{new_key}_building", "#{old_key}_building"
-    replace_key f, "#{new_key}_street",   "#{old_key}_street"
-    replace_key f, "#{new_key}_city",     "#{old_key}_city"
-    replace_key f, "#{new_key}_county",   "#{old_key}_county"
+    replace_key f, "#{new_key}_street", "#{old_key}_street"
+    replace_key f, "#{new_key}_city", "#{old_key}_city"
+    replace_key f, "#{new_key}_county", "#{old_key}_county"
     replace_key f, "#{new_key}_postcode", "#{old_key}_postcode"
-    replace_key f, "#{new_key}_region",   "#{old_key}_region"
+    replace_key f, "#{new_key}_region", "#{old_key}_region"
   end
 
   desc "normalize address fields to use the same fields for different kind of documentss"
@@ -96,7 +91,7 @@ namespace :form_answers do
     end
   end
 
-  desc 'fixes missing org_chart from document'
+  desc "fixes missing org_chart from document"
   task fix_missing_org_chart: :environment do
     FormAnswerAttachment.where(question_key: "org_chart").find_each do |attachment|
       attachment.form_answer.document["org_chart"] = { "0" => { "file" => attachment.id } }
@@ -104,7 +99,7 @@ namespace :form_answers do
     end
   end
 
-  desc 'Adds search indexed data'
+  desc "Adds search indexed data"
   task refresh_search_indexes: :environment do
     FormAnswer.find_each do |f|
       user = f.user
@@ -172,7 +167,7 @@ namespace :form_answers do
         "overseas_sales_indirect_3of6",
         "overseas_sales_indirect_4of6",
         "overseas_sales_indirect_5of6",
-        "overseas_sales_indirect_6of6"
+        "overseas_sales_indirect_6of6",
 
       ]
       attributes.each do |a|
@@ -189,7 +184,7 @@ namespace :form_answers do
         company_or_nominee_name: f.company_or_nominee_from_document,
         nominee_full_name: f.nominee_full_name_from_document,
         nominator_full_name: f.send(:nominator_full_name_from_document),
-        nominator_email: f.send(:nominator_email_from_document)
+        nominator_email: f.send(:nominator_email_from_document),
       }
 
       f.update_columns(args)
@@ -222,13 +217,15 @@ namespace :form_answers do
     counter = 0
     county_mapper = {
       "Befordshire" => "Bedfordshire",
-      "Stafffordshire" => "Staffordshire"
+      "Stafffordshire" => "Staffordshire",
     }
 
     puts "Updating form answers..."
 
+    keys = %w[personal_address_county nominee_personal_address_county organization_address_county]
+
     county_mapper.each do |wrong_county, correct_county|
-      %w(personal_address_county nominee_personal_address_county organization_address_county).each do |key|
+      keys.each do |key|
         FormAnswer.where("document ->> '#{key}' = '#{wrong_county}'").find_each do |answer|
           answer.document[key] = correct_county
           answer.save(validate: false)
@@ -239,5 +236,88 @@ namespace :form_answers do
     end
 
     puts "Fixed #{counter} form answers!"
+  end
+
+  desc "Backfill `head_of_business_title` and/or `press_contact_details_title` for all form answers w/ incorrect value"
+  task backfill_whitelisted_titles: :environment do
+    Rails.logger = Logger.new($stdout)
+
+    t = ::FormAnswer.arel_table
+    op1 = Arel::Nodes::InfixOperation.new("->>", t[:document], Arel::Nodes.build_quoted("head_of_business_title"))
+    op2 = Arel::Nodes::InfixOperation.new("->>", t[:document], Arel::Nodes.build_quoted("press_contact_details_title"))
+    whitelisted_values = ::User::POSSIBLE_TITLES
+
+    query = op1.not.in(whitelisted_values).or(op2.not.in(whitelisted_values))
+    scope = ::FormAnswer.for_year(AwardYear.current.year).where(query)
+
+    count = scope.count
+
+    idx = 0
+    to_do = Hash[]
+
+    Rails.logger.info "\e[32mCorrecting #{count} records…\e[0m"
+
+    scope.find_each do |record|
+      idx += 1
+
+      head_of_business_title = record.document.dig("head_of_business_title")
+      press_contact_details_title = record.document.dig("press_contact_details_title")
+
+      next if [head_of_business_title, press_contact_details_title].all?(&:blank?)
+
+      normalized_head_of_business_title = if head_of_business_title.present?
+        head_of_business_title.remove(/(\(|\[).*(\)|\])/).scan(/[[:word:]]*/i).join.capitalize
+      end
+
+      normalized_press_contact_details_title = if press_contact_details_title.present?
+        press_contact_details_title.remove(/(\(|\[).*(\)|\])/).scan(/[[:word:]]*/i).join.capitalize
+      end
+
+      if normalized_head_of_business_title.in?(whitelisted_values)
+        record.document[:head_of_business_title] = normalized_head_of_business_title
+      elsif head_of_business_title.present?
+        (to_do[record.id] ||= {})["head_of_business_title"] = head_of_business_title
+      end
+
+      if normalized_press_contact_details_title.in?(whitelisted_values)
+        record.document[:press_contact_details_title] = normalized_press_contact_details_title
+      elsif press_contact_details_title.present?
+        (to_do[record.id] ||= {})["press_contact_details_title"] = press_contact_details_title
+      end
+
+      record.save(validate: false)
+
+      Rails.logger.info "[#{idx}/#{count}]" if (idx % 10).zero?
+    end
+
+    Rails.logger.info "\e[32mRecords to correct:\e[0m"
+    to_do.entries.each do |identifier, hash|
+      $stdout.puts "#{identifier} ~> #{hash}\n"
+    end
+
+    Rails.logger.info "\e[32mCompleted!\e[0m"
+  end
+
+  desc "Populate `nickname` field for Innovation and Promoting Opportunity applications"
+  task populate_nickname: :environment do
+    scope = FormAnswer.where(nickname: nil).where(award_type: FormAnswer::AWARD_TYPES_WITH_NICKNAME_REQUIRED)
+    count = scope.count
+
+    idx = 0
+
+    print "\e[32mPopulating nickname for #{count} records…\e[0m"
+
+    scope.find_in_batches(batch_size: 500) do |collection|
+      idx += collection.size
+      ids = collection.map(&:id).join(",").to_s
+
+      query = %{
+        UPDATE form_answers
+        SET nickname = CASE WHEN award_type = 'mobility' THEN 'Promoting Opportunity' ELSE 'Innovation' END
+        WHERE form_answers.id IN (#{ids})
+      }.squish
+
+      ActiveRecord::Base.connection.execute(query)
+    end
   end
 end

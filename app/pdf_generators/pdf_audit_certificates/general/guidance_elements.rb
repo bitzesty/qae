@@ -1,4 +1,3 @@
-# coding: utf-8
 module PdfAuditCertificates::General::GuidanceElements
   def render_applicant_guidance_section
     render_applicant_guidance_header
@@ -22,23 +21,22 @@ module PdfAuditCertificates::General::GuidanceElements
 
     p4 = "For applicants that are not for profit organisations or charities, to be eligible for a King’s Award for Enterprise, your organisation must be on a sustainable financial footing."
 
-    p5 = "Once you and your external accountant have completed this report, please upload it to The King’s Awards for Enterprise online portal by #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(false)}. We are unable to accept late reports due to the strict assessment and judging timetable."
+    p5 = "Once you and your external accountant have completed this report, please upload it to The King’s Awards for Enterprise online portal by #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(bold: false)}. We are unable to accept late reports due to the strict assessment and judging timetable."
 
     [p1, p2, p3, p4, p5].each do |paragraph|
       render_text_line(paragraph, 2, leading: 2)
     end
   end
 
-
   def render_accountant_guidance_intro
     header = "GUIDANCE FOR ACCOUNTANTS"
 
     render_text_line(header, 3, style: :bold)
 
-    if form_answer.innovation?
-      table = "tables"
+    table = if form_answer.innovation?
+      "tables"
     else
-      table = "table"
+      "table"
     end
 
     ps = []

@@ -1,12 +1,10 @@
-require 'rails_helper'
-include Warden::Test::Helpers
+require "rails_helper"
 
-describe "Admin: Download an application's case summaries PDF", %q{
+describe "Admin: Download an application's case summaries PDF", "
 As an Admin
 I want to Print/download an application's case summaries as a pdf
 So that I can print and review application's case summaries
-} do
-
+" do
   let!(:admin) { create(:admin) }
   let!(:user) { create :user }
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2020::QaeForms
   class << self
     def development_step2
@@ -114,7 +113,7 @@ class AwardYears::V2020::QaeForms
 
               \u2022 GOAL 17: Partnerships to achieve the Goal
               https://www.un.org/development/desa/disabilities/envision2030-goal17.html
-            )]
+            )],
           ]
         end
 
@@ -211,9 +210,9 @@ class AwardYears::V2020::QaeForms
           classes "word-max-strict"
           ref "B 2"
           required
-          question_sub_title %{
+          question_sub_title %(
             Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
-          }
+          )
           context %{
             <p>
               Please include:
@@ -270,9 +269,9 @@ class AwardYears::V2020::QaeForms
           classes "word-max-strict"
           ref "B 4"
           required
-          question_sub_title %{
+          question_sub_title %(
             Please describe the driving force of your organisation’s sustainability.
-          }
+          )
           context %{
             <p>
               a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?
@@ -308,9 +307,9 @@ class AwardYears::V2020::QaeForms
           classes "word-max-strict"
           ref "B 5"
           required
-          question_sub_title %{
+          question_sub_title %(
             Describe how your organisation’s culture fosters and supports sustainability.
-          }
+          )
           context %{
             <p>
               Please include:

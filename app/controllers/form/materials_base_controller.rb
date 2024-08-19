@@ -12,26 +12,24 @@ class Form::MaterialsBaseController < Form::BaseController
   end
 
   expose(:existing_materials) do
-    if innovation_materials_doc.present?
-      innovation_materials_doc
-    else
-      {}
-    end
+    innovation_materials_doc.presence || {}
   end
 
   expose(:next_document_position) do
     existing_materials.keys.map(&:to_i).max.to_i + 1
   end
 
+  # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :check_materials_limit, only: [:create]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   private
 
-    def check_materials_limit
-      if existing_materials.count >= MAX_ATTACHMENTS
-        redirect_to form_form_answer_form_attachments_url(@form_answer),
-                    alert: "You can add up to #{MAX_ATTACHMENTS} files or website addresses as maximum!"
-        return
-      end
+  def check_materials_limit
+    if existing_materials.count >= MAX_ATTACHMENTS
+      redirect_to form_form_answer_form_attachments_url(@form_answer),
+        alert: "You can add up to #{MAX_ATTACHMENTS} files or website addresses as maximum!"
+      nil
     end
+  end
 end

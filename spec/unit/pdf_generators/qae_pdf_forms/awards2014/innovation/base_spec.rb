@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "QaePdfForms::Awards2016::Innovation::Base" do
   let!(:award_year) { AwardYear.current }
@@ -12,12 +12,11 @@ describe "QaePdfForms::Awards2016::Innovation::Base" do
 
   let(:step2_question_answers) {
     {
-      company_name: "BitZesty"
+      company_name: "BitZesty",
     }
   }
 
   let(:award_type) { :innovation }
-
 
   let(:form_answer) do
     fa = FactoryBot.build(:form_answer, :submitted, award_type, user: user)

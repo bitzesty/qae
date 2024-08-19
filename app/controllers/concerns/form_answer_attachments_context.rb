@@ -19,17 +19,17 @@ module FormAnswerAttachmentsContext
       respond_to do |format|
         format.html do
           redirect_to [namespace_name, form_answer],
-                      alert: service.errors
+            alert: service.errors
         end
 
         format.js do
           render partial: "admin/form_answer_attachments/form",
-                 locals: {
-                   form_answer_attachment: service.resource,
-                   form_answer: form_answer
-                 },
-                 content_type: "text/plain",
-                 status: 422
+            locals: {
+              form_answer_attachment: service.resource,
+              form_answer: form_answer,
+            },
+            content_type: "text/plain",
+            status: :unprocessable_entity
         end
       end
     end

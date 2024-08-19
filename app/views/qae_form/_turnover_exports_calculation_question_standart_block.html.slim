@@ -22,7 +22,7 @@
               - sales_value = turnover_q.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",").to_i - exports_q.input_value(suffix: "#{y}of#{c.years}").to_s.delete(",").to_i
             - else
               - sales_value = "-"
-            span.js-sales-value data-year="#{y}of#{c.years}" data-turnover=question.turnover_question data-exports=question.exports_question
+            span.js-sales-value.fs-calculated data-year="#{y}of#{c.years}" data-turnover=question.turnover_question data-exports=question.exports_question
               = sales_value
             input.small.js-trigger-autosave.visuallyhidden tabindex="-1" type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=sales_value id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
     .clear

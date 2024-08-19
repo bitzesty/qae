@@ -1,21 +1,20 @@
-# -*- coding: utf-8 -*-
-require 'open-uri'
+require "open-uri"
 
 module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm
-  IMAGES_PATH = "#{Rails.root}/app/assets/images/".freeze
+  IMAGES_PATH = Rails.root.join("app/assets/images/").freeze
   LOGO_ICON = "logo-pdf.png".freeze
   ATTACHMENT_ICON = "icon-attachment.png".freeze
   ALERT_ICON = "icon-important-print.png".freeze
   ALERT_BIG_ICON = "icon-important-big-print.png".freeze
 
-  def attachment_path(attachment_file, link=false)
+  def attachment_path(attachment_file, link = false)
     if Rails.env.production?
       attachment_file.url
     elsif link
       "#{current_host}#{attachment_file.url}"
     else
-      "#{Rails.root}/public#{attachment_file.url}"
+      Rails.root.join("public#{attachment_file.url}")
     end
   end
 
@@ -28,11 +27,11 @@ module QaePdfForms::General::DrawElements
     end
   end
 
-  def path_to_attachment_file(attachment_file, link=false)
+  def path_to_attachment_file(attachment_file, link = false)
     file = attachment_icon(attachment_file)
 
     if Rails.env.production?
-      open(file)
+      File.open(file)
     else
       file
     end
@@ -55,7 +54,7 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       attachment_path(attachment.file, true),
       attachment.original_filename.truncate(60),
-      description ? description : nil)
+      description || nil)
 
     move_down 5.mm
   end
@@ -65,23 +64,23 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       v["link"],
       v["link"],
-      v["description"] ? v["description"] : v["link"],
+      v["description"] || v["link"],
       {})
   end
 
-  def base_link_sceleton(url, filename, description=nil, ops = {})
-    indent (ops[:description_left_margin] || 0) do
+  def base_link_sceleton(url, filename, description = nil, ops = {})
+    indent(ops[:description_left_margin] || 0) do
       formatted_text [{
-                        text: filename,
-                        link: url,
-                        styles: [:underline]
-                      }]
+        text: filename,
+        link: url,
+        styles: [:underline],
+      }]
 
       move_down 3.mm
 
       if description.present?
         text description,
-             color: FormPdf::DEFAULT_ANSWER_COLOR
+          color: FormPdf::DEFAULT_ANSWER_COLOR
       end
     end
   end
@@ -90,12 +89,12 @@ module QaePdfForms::General::DrawElements
     render_logo
     move_down 8.mm
     indent 32.mm do
-      render_urn if form_answer.urn.present? && pdf_blank_mode.blank?
+      render_urn if pdf_blank_mode.blank?
       render_award_information
-      render_company_name unless pdf_blank_mode.present?
+      render_company_name if pdf_blank_mode.blank?
     end
 
-    if !form_answer.urn.present? || pdf_blank_mode
+    if form_answer.urn.blank? || pdf_blank_mode
       move_down 6.mm
       render_intro_text
       move_down 2.mm
@@ -105,7 +104,7 @@ module QaePdfForms::General::DrawElements
     move_down 7.mm
   end
 
-  def render_submission_deadline_block(indent_value=0)
+  def render_submission_deadline_block(indent_value = 0)
     title = Settings.submission_deadline_title
 
     if title.present?
@@ -154,42 +153,58 @@ module QaePdfForms::General::DrawElements
 
     render_text(block_2)
 
+    render_text("Copying answers from a document into online application forms", size: 14, style: :bold)
+    render_text("If you want to copy your answers from a text document like Microsoft Word into an online application form, please paste text without formatting for it to appear correctly. You can do so in one of three ways:")
+
+    block_3 = %(
+      1. <b>Remove formatting when pasting</b>
+        #{bullet} Use the shortcut Ctrl+Shift+V (Windows) or Command+Shift+V (Mac) to paste text without formatting.
+      2. <b>First remove formatting in Microsoft Word</b>
+        #{bullet} Option 1: Select the text and press Ctrl+Shift+N (Windows) or Command+Shift+N (Mac).
+        #{bullet} Option 2: Select the text and click the ‘Clear Formatting’ button on the Home tab.
+      3. <b>Use an online tool</b>
+        #{bullet} Use an online tool to remove formatting, such as https://www.striphtml.com/.
+    )
+
+    render_text(block_3)
+
     render_text("Use of web-based AI and editing tools in King's Awards applications:", size: 14, style: :bold)
     render_text("We recognise that web-based AI and editing tools can greatly assist writing and editing and can help improve grammar and overall style. There may be issues to consider when entering information and generating text via web-based AI and online editing tools. We have included more guidance online in the 'Useful Application Info' section.")
 
     render_text("Need help?", size: 14, style: :bold)
 
-    block_3 = %(If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with us:
+    block_4 = %(If you need digital assistance with filling in the form or have any questions, please feel free to get in touch with us:
       By calling 020 4551 0081
       Or emailing <b>kingsawards@businessandtrade.gov.uk</b>)
 
-    render_text(block_3)
+    render_text(block_4)
   end
 
   def render_logo
     image "#{IMAGES_PATH}#{LOGO_ICON}",
-          at: [0, 137.5.mm + DEFAULT_OFFSET],
-          width: 25.mm
+      at: [0, 137.5.mm + DEFAULT_OFFSET],
+      width: 25.mm
   end
 
   def render_urn
-    text form_answer.urn,
-         header_text_properties
+    identification = form_answer.urn.presence || "Draft ID: #{form_answer.id}"
+    text identification,
+      header_text_properties
   end
 
   def render_award_information
-    if form_answer.promotion?
-      award_title = "King's Award for Enterprise Promotion #{form_answer.award_year.year}"
+    award_title = if form_answer.promotion?
+      "King's Award for Enterprise Promotion #{form_answer.award_year.year}"
     else
-      award_title = form_answer.decorate.award_application_title_print
+      form_answer.decorate.award_application_title_print
     end
     text award_title.upcase,
-         header_text_properties.merge(style: :bold)
+      header_text_properties.merge(style: :bold)
   end
 
   def render_company_name
     text "<b>#{form_answer.decorate.company_name.try(:upcase)}</b>",
-         header_text_properties.merge(inline_format: true)
+      header_text_properties.merge(inline_format: true)
   end
 
   def render_intro_text
@@ -198,19 +213,19 @@ module QaePdfForms::General::DrawElements
       stroke_bounds
 
       image "#{IMAGES_PATH}#{ALERT_BIG_ICON}",
-            at: [5.5.mm, cursor - 3.mm],
-            width: 22.5.mm
+        at: [5.5.mm, cursor - 3.mm],
+        width: 22.5.mm
 
       intro_text = %(
-        This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>.
+        This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? "nomination" : "application"} is for <b>reference only</b>.
 
         To apply for this award, <b>you must complete the online form</b>. <b>Do not send this PDF version of the form</b> to apply for this award.
       )
 
       text_box intro_text,
-               at: [35.mm, cursor - 3.mm],
-               width: 145.mm,
-               inline_format: true
+        at: [35.mm, cursor - 3.mm],
+        width: 145.mm,
+        inline_format: true
     end
   end
 
@@ -228,13 +243,13 @@ module QaePdfForms::General::DrawElements
     ##
     # force title to be a String, as Integer may
     # raise undefined method `gsub'
-    text title.to_s, ops.merge!({inline_format: true})
+    text title.to_s, ops.merge!({ inline_format: true })
   end
 
   def render_table(table_lines, ops = {})
     default_options = {
-      row_colors: %w(F0F0F0 FFFFFF),
-      cell_style: { size: 10, font_style: :bold }
+      row_colors: %w[F0F0F0 FFFFFF],
+      cell_style: { size: 10, font_style: :bold },
     }
 
     options = {}.merge(default_options).merge(ops)
@@ -245,9 +260,9 @@ module QaePdfForms::General::DrawElements
 
   def render_header(title)
     text title, style: :bold,
-                size: 16,
-                align: :left
-    stroke_color = "999999"
+      size: 16,
+      align: :left
+
     move_down 4.mm
     stroke_horizontal_line 0, 192.mm
     default_bottom_margin
@@ -259,7 +274,7 @@ module QaePdfForms::General::DrawElements
     host = default_url_options[:host]
     port = default_url_options[:port]
 
-    "http://#{host}#{port ? ':' + port.to_s : ''}"
+    "http://#{host}#{port ? ":" + port.to_s : ""}"
   end
 
   def default_bottom_margin
@@ -271,11 +286,11 @@ module QaePdfForms::General::DrawElements
       width: 160.mm,
       size: 16,
       align: :left,
-      valign: :top
+      valign: :top,
     }
   end
 
   def render_value_or_undefined(val, undefined_text)
-    val.present? ? val : undefined_text
+    val.presence || undefined_text
   end
 end

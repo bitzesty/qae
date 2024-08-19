@@ -9,4 +9,5 @@ input[
   id="q_#{question.key}"*possible_read_only_ops
   aria-describedby=(@form_answer.validator_errors && @form_answer.validator_errors[question.hash_key] ? "error_for_#{question.key}" : nil )
   data-word-max=question.text_words_max
+  aria-label=(strip_tags(question.context) unless (question.ref || question.sub_ref))
 ]

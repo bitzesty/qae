@@ -1,13 +1,11 @@
-require 'rails_helper'
-include Warden::Test::Helpers
+require "rails_helper"
 
-describe 'Form answer attachments management', %q{
+describe "Form answer attachments management", '
   As Admin
   I want to see be able to view/create the attachments per application.
-} do
-
-  let!(:admin){ create(:admin)}
-  let!(:form_answer){ create(:form_answer)}
+' do
+  let!(:admin) { create(:admin) }
+  let!(:form_answer) { create(:form_answer) }
 
   before do
     login_admin admin
@@ -16,7 +14,7 @@ describe 'Form answer attachments management', %q{
 
   it "adds the attachment" do
     within "#new_form_answer_attachment" do
-      attach_file "form_answer_attachment_file", "#{Rails.root}/spec/fixtures/cat.jpg"
+      attach_file "form_answer_attachment_file", Rails.root.join("spec/fixtures/cat.jpg")
       find("input[type='submit']").click
     end
     expect(page).to have_selector(".form_answer_attachment", count: 1)
@@ -26,19 +24,17 @@ describe 'Form answer attachments management', %q{
     before do
       form_answer.form_answer_attachments.create!(
         file: Rack::Test::UploadedFile.new(
-          File.join(
-            Rails.root,'spec','support','file_samples','photo_with_size_less_than_5MB.jpg'
-          )
+          Rails.root.join("spec/support/file_samples/photo_with_size_less_than_5MB.jpg"),
         ),
         attachable: admin,
-        file_scan_results: "clean"
+        file_scan_results: "clean",
       )
       visit admin_form_answer_path(form_answer)
     end
 
     it "destroys the attachment" do
       click_button "Remove"
-      expect(page).to have_content("No documents")
+      expect(page).to have_content("No other documents")
     end
   end
 

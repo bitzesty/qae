@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe UsersImport::Builder do
-  subject {described_class.new("#{Rails.root}/spec/fixtures/users.csv")}
+  subject { described_class.new(Rails.root.join("spec/fixtures/users.csv")) }
 
   describe "#process" do
     it "imports the users" do
@@ -14,9 +14,9 @@ describe UsersImport::Builder do
       expect(row.imported).to eq(true)
     end
     it "fails if save return false" do
-      allow_any_instance_of(User).to receive(:save) {true}
-      allow_any_instance_of(User).to receive(:save) {true}
-      allow_any_instance_of(User).to receive(:save) {false}
+      allow_any_instance_of(User).to receive(:save) { true }
+      allow_any_instance_of(User).to receive(:save) { true }
+      allow_any_instance_of(User).to receive(:save) { false }
       response = subject.process
       expect(response[:not_saved].size).to eq 2
     end

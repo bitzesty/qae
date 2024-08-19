@@ -1,5 +1,4 @@
 class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionController
-
   # This controller handles saving of Subsidiaries on Trade Form
   # This section is used in case if JS disabled
 
@@ -32,7 +31,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
       "name" => item_params[:name],
       "location" => item_params[:location],
       "employees" => item_params[:employees],
-      "description" => item_params[:description]
+      "description" => item_params[:description],
     }
   end
 
@@ -41,13 +40,12 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
       @form_answer.id,
       subsidiary: {
         name: item.name,
-        location: item.location
-      }
+        location: item.location,
+      },
     )
   end
 
-  def new
-  end
+  def new; end
 
   def create
     self.item = item_class.new(item_params)
@@ -58,7 +56,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :new
@@ -75,7 +73,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
 
     redirect_to edit_form_url(
       id: @form_answer.id,
-      anchor: anchor
+      anchor: anchor,
     )
   end
 
@@ -92,16 +90,16 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: anchor
+        anchor: anchor,
       )
     else
       render :edit
     end
   end
 
-  def item_detect_condition(el, attrs=nil)
+  def item_detect_condition(el, attrs = nil)
     el["name"] == (attrs.present? ? attrs[:name] : ops_hash[:name]) &&
-    el["location"] == (attrs.present? ? attrs[:location] : ops_hash[:location])
+      el["location"] == (attrs.present? ? attrs[:location] : ops_hash[:location])
   end
 
   private
@@ -111,7 +109,7 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
       :name,
       :location,
       :employees,
-      :description
+      :description,
     )
   end
 end

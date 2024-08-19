@@ -1,11 +1,9 @@
 require "rails_helper"
 
-include Warden::Test::Helpers
-include FormAnswerFilteringTestHelper
-
-Warden.test_mode!
-
 describe "As Lead Assessor I want to filter applications by state", js: true do
+  include FormAnswerFilteringTestHelper
+  Warden.test_mode!
+
   before do
     @forms = []
     @forms << create(

@@ -1,4 +1,4 @@
-class ShortlistedDocumentsWrapper < ActiveRecord::Base
+class ShortlistedDocumentsWrapper < ApplicationRecord
   include Reviewable
 
   has_one :commercial_figures_file
@@ -33,9 +33,9 @@ class ShortlistedDocumentsWrapper < ActiveRecord::Base
   end
 
   private
-  
+
   def set_submission_date(timestamp = Time.zone.now)
-    self.update(submitted_at: timestamp)
+    update(submitted_at: timestamp)
   end
 
   def requirements_fulfilled?

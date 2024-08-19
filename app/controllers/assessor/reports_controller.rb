@@ -1,5 +1,4 @@
 class Assessor::ReportsController < Assessor::BaseController
-
   def index
     authorize :report, :show?
   end
@@ -12,7 +11,7 @@ class Assessor::ReportsController < Assessor::BaseController
       format.html
 
       format.csv do
-        send_data resource.as_csv, type: "text/csv", disposition: 'attachment'
+        send_data resource.as_csv, type: "text/csv", disposition: "attachment"
       end
 
       format.pdf do
@@ -20,9 +19,9 @@ class Assessor::ReportsController < Assessor::BaseController
 
         if pdf[:hard_copy].blank? || Rails.env.development?
           send_data pdf.data,
-                    filename: pdf.filename,
-                    type: "application/pdf",
-                    disposition: 'attachment'
+            filename: pdf.filename,
+            type: "application/pdf",
+            disposition: "attachment"
         else
           redirect_to pdf.data, allow_other_host: true
         end

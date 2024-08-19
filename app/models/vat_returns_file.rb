@@ -1,11 +1,11 @@
-class VatReturnsFile < ActiveRecord::Base
+class VatReturnsFile < ApplicationRecord
   include ShortlistedDocument
 
   validates :attachment, presence: true,
-            on: :create,
-            file_size: {
-              maximum: 5.megabytes.to_i
-            }
+    on: :create,
+    file_size: {
+      maximum: 5.megabytes.to_i,
+    }
 
   belongs_to :shortlisted_documents_wrapper, optional: true
 

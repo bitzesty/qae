@@ -3,32 +3,32 @@ module QaePdfForms::CustomQuestions::Lists
     QaeFormBuilder::AwardHolderQuestion,
     QaeFormBuilder::QueenAwardApplicationsQuestion,
     QaeFormBuilder::PositionDetailsQuestion,
-    QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+    QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion,
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/personal honour title",
     "Year",
-    "Details"
+    "Details",
   ].freeze
   AWARD_APPLICATIONS_LIST_HEADERS = [
     "Award",
     "Year",
-    "Outcome"
+    "Outcome",
   ].freeze
   NOMINATION_AWARD_LIST_HEADERS = [
     "Award/personal honour title",
-    "Details"
+    "Details",
   ].freeze
   POSITION_LIST_HEADERS = [
     "Name",
     "Start Date",
     "End Date",
     "Ongoing",
-    "Details"
+    "Details",
   ].freeze
   TRADE_GOODS_AND_SERVICES_HEADERS = [
     "Product/Service",
-    "% of your total overseas trade"
+    "% of your total overseas trade",
   ].freeze
   UNDEFINED_CELL_VALUE = "Undefined".freeze
 
@@ -40,12 +40,10 @@ module QaePdfForms::CustomQuestions::Lists
         form_pdf.default_bottom_margin
         render_word_limit
       end
+    elsif question.delegate_obj.is_a?(QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
+      render_by_trade_goods_question
     else
-      if question.delegate_obj.is_a?(QaeFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
-        render_by_trade_goods_question
-      else
-        render_word_limit
-      end
+      render_word_limit
     end
   end
 
@@ -62,7 +60,7 @@ module QaePdfForms::CustomQuestions::Lists
 
       form_pdf.default_bottom_margin
       form_pdf.text "#{text}:",
-                    inline_format: true
+        inline_format: true
     end
   end
 
@@ -89,19 +87,16 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["category"].present? && prepared_item["year"].present?
       [
         prepared_item["category"],
-        prepared_item["year"]
+        prepared_item["year"],
       ]
     end
   end
 
   def award_applications_query_conditions(item)
-    category = item["category"].presence && QaePdfForms::General::QuestionPointer::PREVIOUS_AWARDS[item["category"]]
-    outcome = item["outcome"].presence && question.outcomes.detect { |o| o.value == item["outcome"] }.try(:text)
-
     [
       item["category"],
       item["year"],
-      item["outcome"]
+      item["outcome"],
     ]
   end
 
@@ -111,12 +106,12 @@ module QaePdfForms::CustomQuestions::Lists
         [
           prepared_item["title"],
           prepared_item["year"],
-          prepared_item["details"]
+          prepared_item["details"],
         ]
       else
         [
           prepared_item["title"],
-          prepared_item["details"]
+          prepared_item["details"],
         ]
       end
     end
@@ -126,18 +121,18 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        position_date(prepared_item['start_month'], prepared_item['start_year']),
-        position_date(prepared_item['end_month'], prepared_item['end_year']),
-        prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
-        prepared_item["details"]
+        position_date(prepared_item["start_month"], prepared_item["start_year"]),
+        position_date(prepared_item["end_month"], prepared_item["end_year"]),
+        (prepared_item["ongoing"].to_s == "1") ? "yes" : "no",
+        prepared_item["details"],
       ]
     end
   end
 
   def position_date(month, year)
     [
-      month || '-',
-      year || '-'
+      month || "-",
+      year || "-",
     ].join("/")
   end
 
@@ -147,7 +142,7 @@ module QaePdfForms::CustomQuestions::Lists
         prepared_item["name"],
         prepared_item["location"],
         prepared_item["employees"],
-        prepared_item["description"]
+        prepared_item["description"],
       ]
     end
   end
@@ -156,7 +151,7 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["desc_short"].present? || prepared_item["total_overseas_trade"].present?
       [
         form_pdf.render_value_or_undefined(prepared_item["desc_short"], UNDEFINED_CELL_VALUE),
-        form_pdf.render_value_or_undefined(prepared_item["total_overseas_trade"], UNDEFINED_CELL_VALUE)
+        form_pdf.render_value_or_undefined(prepared_item["total_overseas_trade"], UNDEFINED_CELL_VALUE),
       ]
     end
   end

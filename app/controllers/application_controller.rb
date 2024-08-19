@@ -1,7 +1,8 @@
 require "app_responder"
-include AuditHelper
 
 class ApplicationController < ActionController::Base
+  include AuditHelper
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception, prepend: true
@@ -31,8 +32,8 @@ class ApplicationController < ActionController::Base
 
   def admin_in_read_only_mode?
     @admin_in_read_only_mode ||= (admin_signed_in? || assessor_signed_in?) &&
-                                 session["warden.user.user.key"] &&
-                                 session[:admin_in_read_only_mode]
+      session["warden.user.user.key"] &&
+      session[:admin_in_read_only_mode]
   end
   helper_method :admin_in_read_only_mode?
 
@@ -44,7 +45,7 @@ class ApplicationController < ActionController::Base
       else
         render text: "You have no permissions!"
       end
-      return
+      nil
     end
   end
 
@@ -62,7 +63,7 @@ class ApplicationController < ActionController::Base
         else
           render text: "You have no permissions!"
         end
-        return false
+        false
       end
     end
   end
@@ -73,20 +74,20 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
 
   def should_enable_js?
-    browser = Browser.new(request.env['HTTP_USER_AGENT'], accept_language: "en-gb")
+    browser = Browser.new(request.env["HTTP_USER_AGENT"], accept_language: "en-gb")
 
     !browser.ie? || browser.ie?([">8"])
   end
   helper_method :should_enable_js?
 
-  %w(innovation trade mobility development).each do |award|
-    define_method "#{award}_submission_started?" do
-      public_send("#{award}_submission_started_deadline").passed?
+  %w[innovation trade mobility development].each do |award|
+    define_method :"#{award}_submission_started?" do
+      public_send(:"#{award}_submission_started_deadline").passed?
     end
     helper_method "#{award}_submission_started?"
 
-    define_method "#{award}_submission_started_deadline" do
-      Settings.public_send("current_#{award}_submission_start_deadline")
+    define_method :"#{award}_submission_started_deadline" do
+      Settings.public_send(:"current_#{award}_submission_start_deadline")
     end
     helper_method "#{award}_submission_started_deadline"
   end
@@ -139,8 +140,8 @@ class ApplicationController < ActionController::Base
     AuditLog.create!(
       subject: current_subject,
       auditable: form_answer,
-      action_type: action_type
-      )
+      action_type: action_type,
+    )
   end
 
   def current_subject
@@ -152,9 +153,9 @@ class ApplicationController < ActionController::Base
   # to protect sensitive data
   #
   def disable_browser_caching!
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
   end
 
   def set_context_tags
@@ -171,8 +172,8 @@ class ApplicationController < ActionController::Base
         :email,
         :password,
         :password_confirmation,
-        :agreed_with_privacy_policy
-      ]
+        :agreed_with_privacy_policy,
+      ],
     )
     devise_parameter_sanitizer.permit(
       :account_update,
@@ -196,15 +197,15 @@ class ApplicationController < ActionController::Base
         :company_phone_number,
         :prefered_method_of_contact,
         :subscribed_to_emails,
-        :agree_being_contacted_by_department_of_business
-      ]
+        :agree_being_contacted_by_department_of_business,
+      ],
     )
   end
 
   def check_account_completion
     if !current_user.completed_registration?
       redirect_to correspondent_details_account_path
-      return
+      nil
     end
   end
 
@@ -227,15 +228,15 @@ class ApplicationController < ActionController::Base
   def require_to_be_account_admin!
     unless current_user.account_admin?
       redirect_to dashboard_path,
-                  notice: "Access denied!"
+        notice: "Access denied!"
     end
   end
 
   def load_award_year_and_settings
-    if params[:year] && AwardYear::AVAILABLE_YEARS.include?(params[:year].to_i)
-      @award_year = AwardYear.for_year(params[:year].to_i).first_or_create
+    @award_year = if params[:year] && AwardYear::AVAILABLE_YEARS.include?(params[:year].to_i)
+      AwardYear.for_year(params[:year].to_i).first_or_create
     else
-      @award_year = AwardYear.current
+      AwardYear.current
     end
 
     @settings = @award_year.settings
@@ -266,7 +267,7 @@ class ApplicationController < ActionController::Base
   def check_applications_limit(type_of_award)
     if current_account.has_award_in_this_year?(type_of_award)
       redirect_to dashboard_url, flash: {
-        alert: "You can not submit more than one #{FormAnswer::AWARD_TYPE_FULL_NAMES[type_of_award.to_s]} form per year!"
+        alert: "You can not submit more than one #{FormAnswer::AWARD_TYPE_FULL_NAMES[type_of_award.to_s]} form per year!",
       }
     end
   end

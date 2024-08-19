@@ -1,23 +1,20 @@
-class AuditCertificate < ActiveRecord::Base
+class AuditCertificate < ApplicationRecord
   include ShortlistedDocument
   include Reviewable
 
-  begin :validations
-    validates :attachment, presence: true,
-                           on: :create,
-                           file_size: {
-                             maximum: 15.megabytes.to_i
-                           }
+  validates :attachment, presence: true,
+    on: :create,
+    file_size: {
+      maximum: 15.megabytes.to_i,
+    }
 
-    validates :form_answer_id, uniqueness: true,
-              presence: true
-  end
+  validates :form_answer_id, uniqueness: true, presence: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   before_save :clean_changes_description
 
   enum status: {
     no_changes_necessary: 0,
-    confirmed_changes: 1
+    confirmed_changes: 1,
   }
 
   private

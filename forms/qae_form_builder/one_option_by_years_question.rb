@@ -28,7 +28,7 @@ class QaeFormBuilder
     end
 
     def active_fields
-      (1..3).map{|y| "#{y}of3"}
+      (1..3).map { |y| "#{y}of3" }
     end
 
     def fields_count
@@ -36,7 +36,7 @@ class QaeFormBuilder
     end
 
     def active_by_year_condition
-      delegate_obj.by_year_conditions.find {|c|
+      delegate_obj.by_year_conditions.find { |c|
         form[c.question_key].input_value == c.question_value
       }
     end
@@ -77,11 +77,10 @@ class QaeFormBuilder
 
   class OneOptionByYearsQuestion < Question
     attr_accessor :type,
-                  :label,
-                  :employees_question,
-                  :first_year_min_value,
-                  :first_year_validation_message,
-                  :validatable_years_position
-
+      :label,
+      :employees_question,
+      :first_year_min_value,
+      :first_year_validation_message,
+      :validatable_years_position
   end
 end

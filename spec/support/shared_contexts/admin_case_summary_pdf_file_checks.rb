@@ -1,21 +1,21 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin case summary pdf file checks" do
   let!(:user) { create :user }
 
   let!(:form_answer) do
     create :form_answer,
-           :recommended,
-           award_type,
-           user: user
+      :recommended,
+      award_type,
+      user: user
   end
 
   let!(:assessor_assignment) do
     create :assessor_assignment, form_answer: form_answer,
-                                 submitted_at: Date.today,
-                                 assessor: nil,
-                                 position: "case_summary",
-                                 document: assessor_assignment_document
+      submitted_at: Date.current,
+      assessor: nil,
+      position: "case_summary",
+      document: assessor_assignment_document
   end
 
   let(:assessor_assignment_document) do
@@ -38,7 +38,7 @@ shared_context "admin case summary pdf file checks" do
 
   let(:pdf_content) do
     rendered_pdf = pdf_generator.render
-    PDF::Inspector::Text.analyze(rendered_pdf).strings
+    PDF::Inspector::Text.analyze(rendered_pdf).strings.join
   end
 
   let(:urn) do
@@ -47,6 +47,14 @@ shared_context "admin case summary pdf file checks" do
 
   let(:applicant) do
     "Applicant: #{form_answer.decorate.company_nominee_or_application_name}"
+  end
+
+  let(:website_url) do
+    "Website address: #{form_answer.decorate.website_url}"
+  end
+
+  let(:social_media_links) do
+    "Links to social media accounts: facebook.com/MassiveDynamics, linkedin.com/company/massive-dynamics/mycompany/,instagram.com/massivedynamics/, youtube.com/@massive-dynamics"
   end
 
   let(:award_general_information) do
@@ -61,6 +69,8 @@ shared_context "admin case summary pdf file checks" do
     it "should include main header information" do
       expect(pdf_content).to include(urn)
       expect(pdf_content).to include(applicant)
+      expect(pdf_content).to include(website_url)
+      expect(pdf_content).to include(social_media_links)
       expect(pdf_content).to include(award_general_information)
       expect(pdf_content).to include(award_title)
     end

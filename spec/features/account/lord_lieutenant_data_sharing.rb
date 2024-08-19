@@ -1,5 +1,4 @@
-require 'rails_helper'
-include Warden::Test::Helpers
+require "rails_helper"
 
 describe "Lord-Lieutenant data sharing" do
   let(:new_user) { create :user }
@@ -21,7 +20,6 @@ describe "Lord-Lieutenant data sharing" do
   end
 
   context "As a returning user" do
-
     context "who has previously submitted their data sharing preference for Lord-Lieutenants" do
       before do
         login_as returning_user

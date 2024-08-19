@@ -5,21 +5,21 @@
 module UsefulCheckers
   class EligibilityChecker
     attr_accessor :year,
-                  :all_apps,
-                  :trade_apps,
-                  :innovation_apps,
-                  :development_apps,
-                  :mobility_apps,
-                  :wrong_trade_apps,
-                  :wrong_innovation_apps,
-                  :wrong_development_apps,
-                  :wrong_mobility_apps
+      :all_apps,
+      :trade_apps,
+      :innovation_apps,
+      :development_apps,
+      :mobility_apps,
+      :wrong_trade_apps,
+      :wrong_innovation_apps,
+      :wrong_development_apps,
+      :wrong_mobility_apps
 
     def initialize
       ActiveRecord::Base.logger.level = Logger::INFO
 
       self.year = AwardYear.current
-      self.all_apps = year.form_answers.where("state NOT IN (?)", ["eligibility_in_progress", "not_eligible", "not_submitted"])
+      self.all_apps = year.form_answers.where.not(state: ["eligibility_in_progress", "not_eligible", "not_submitted"])
 
       self.trade_apps = all_apps.where(award_type: "trade")
       self.innovation_apps = all_apps.where(award_type: "innovation")
@@ -28,7 +28,7 @@ module UsefulCheckers
     end
 
     def run
-      puts ""
+      Rails.logger.debug ""
 
       self.wrong_trade_apps = trade_apps.select do |app|
         e = app.eligibility
@@ -37,14 +37,14 @@ module UsefulCheckers
         !e.valid?
       end
 
-      puts "[TRADE] #{wrong_trade_apps.count} entries"
-      puts ""
+      Rails.logger.debug "[TRADE] #{wrong_trade_apps.count} entries"
+      Rails.logger.debug ""
 
       wrong_trade_apps.map do |app|
         details(app)
       end
 
-      puts ""
+      Rails.logger.debug ""
 
       self.wrong_innovation_apps = innovation_apps.select do |app|
         e = app.eligibility
@@ -53,14 +53,14 @@ module UsefulCheckers
         !e.valid?
       end
 
-      puts "[INNOVATION] #{wrong_innovation_apps.count} entries"
-      puts ""
+      Rails.logger.debug "[INNOVATION] #{wrong_innovation_apps.count} entries"
+      Rails.logger.debug ""
 
       wrong_innovation_apps.map do |app|
         details(app)
       end
 
-      puts ""
+      Rails.logger.debug ""
 
       self.wrong_development_apps = development_apps.select do |app|
         e = app.eligibility
@@ -69,13 +69,13 @@ module UsefulCheckers
         !e.valid?
       end
 
-      puts "[DEVELOPMENT] #{wrong_development_apps.count} entries"
-      puts ""
+      Rails.logger.debug "[DEVELOPMENT] #{wrong_development_apps.count} entries"
+      Rails.logger.debug ""
 
       wrong_development_apps.map do |app|
         details(app)
       end
-      puts ""
+      Rails.logger.debug ""
 
       self.wrong_mobility_apps = mobility_apps.select do |app|
         e = app.eligibility
@@ -84,13 +84,13 @@ module UsefulCheckers
         !e.valid?
       end
 
-      puts "[MOBILITY] #{wrong_mobility_apps.count} entries"
-      puts ""
+      Rails.logger.debug "[MOBILITY] #{wrong_mobility_apps.count} entries"
+      Rails.logger.debug ""
 
       wrong_mobility_apps.map do |app|
         details(app)
       end
-      puts ""
+      Rails.logger.debug ""
     end
 
     def details(app)
@@ -99,22 +99,22 @@ module UsefulCheckers
       e.force_validate_now = true
       e.valid?
 
-      puts "   [#{app.id} | #{app.award_type}] STATE: #{app.state}"
-      puts ""
-      puts "        BASIC ELIGIBILITY"
-      puts ""
+      Rails.logger.debug "   [#{app.id} | #{app.award_type}] STATE: #{app.state}"
+      Rails.logger.debug ""
+      Rails.logger.debug "        BASIC ELIGIBILITY"
+      Rails.logger.debug ""
       b.answers.map do |k, v|
-        puts "        #{k}: #{v}"
+        Rails.logger.debug "        #{k}: #{v}"
       end
-      puts ""
-      puts "        #{app.award_type.upcase} ELIGIBILITY"
-      puts ""
+      Rails.logger.debug ""
+      Rails.logger.debug "        #{app.award_type.upcase} ELIGIBILITY"
+      Rails.logger.debug ""
       e.answers.map do |k, v|
-        puts "        #{k}: #{v}"
+        Rails.logger.debug "        #{k}: #{v}"
       end
-      puts ""
-      puts "        #{e.errors.full_messages.join(', ')}"
-      puts ""
+      Rails.logger.debug ""
+      Rails.logger.debug "        #{e.errors.full_messages.join(", ")}"
+      Rails.logger.debug ""
     end
   end
 end

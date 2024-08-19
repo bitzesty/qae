@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2025::QaeForms
   class << self
     def mobility_step2
@@ -36,7 +35,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit and the arrangements made." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 2.1"
           required
           conditional :principal_business, :no
@@ -139,7 +138,7 @@ class AwardYears::V2025::QaeForms
           ref "B 6"
           pdf_context_with_header_blocks [
             [:normal, "If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man."],
-            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal, "If the address is elsewhere in the country, please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"],
           ]
           county_context %(
             <p class='govuk-hint'>If the address is in one of the Channel Islands or the Isle of Man, select the Bailiwick of Guernsey (for islands of Guernsey, Herm, Alderney and Sark) or Bailiwick of Jersey (for the island of Jersey) or Isle of Man.</p>
@@ -152,7 +151,7 @@ class AwardYears::V2025::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County/Crown Dependency" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
           sub_fields_words_max 50
         end
@@ -183,7 +182,7 @@ class AwardYears::V2025::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -226,7 +225,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/."],
-            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."]
+            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."],
           ]
         end
 
@@ -291,7 +290,7 @@ class AwardYears::V2025::QaeForms
         end
 
         options :part_of_joint_entry,
-                "Is this application part of a joint entry with any contributing organisations?" do
+          "Is this application part of a joint entry with any contributing organisations?" do
           ref "B 12"
           required
           context %(
@@ -306,7 +305,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :part_of_joint_entry_names, "Please enter their names." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 12.1"
           required
           conditional :part_of_joint_entry, "yes"
@@ -331,14 +330,14 @@ class AwardYears::V2025::QaeForms
         textarea :external_specify_organisations_contributions, "Specify the organisations that have contributed, and state what, how and when they contributed." do
           sub_ref "B 13.1"
           required
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           words_max 100
           rows 1
           conditional :external_contribute_to_sustainable_product, "yes"
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           sub_ref "B 13.2"
           classes "sub-question"
           required
@@ -412,7 +411,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :other_awards_desc, "List the awards you have won in the past." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "B 15.1"
           required
           context %(
@@ -440,7 +439,7 @@ class AwardYears::V2025::QaeForms
             ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper/publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 Warden.test_mode!
 
@@ -7,7 +6,6 @@ describe "Assessment flow", %(
   As Assessor
   I want to participate in assessment flow.
 ), js: true do
-
   let!(:form_answer) { create(:form_answer, :innovation) }
   let!(:lead) { create(:assessor, :lead_for_all) }
   let!(:primary) { create(:assessor, :regular_for_innovation) }

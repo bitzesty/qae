@@ -1,5 +1,4 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
 describe MailRenderer do
   describe "#submission_started_notification" do
@@ -117,7 +116,7 @@ describe MailRenderer do
     end
   end
 
-  def deadline_str(format="%d/%m/%Y")
+  def deadline_str(format = "%d/%m/%Y")
     DateTime.new(Date.current.year, 9, 21, 10, 30)
             .strftime(format)
   end

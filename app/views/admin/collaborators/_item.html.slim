@@ -1,11 +1,11 @@
 li.list-group-item id=dom_id(collaborator)
   .pull-right
     - if params.has_key? :form_id
-      = link_to "Remove", account_collaborator_path(collaborator, form_id: params[:form_id]),
+      = link_to "Remove", admin_collaborator_deletion_path(collaborator, form_id: params[:form_id]),
                           method: :delete,
                           class: "remove-link text-danger"
     - else
-      = link_to "Remove", account_collaborator_path(collaborator),
+      = link_to "Remove", admin_collaborator_deletion_path(collaborator),
                           method: :delete,
                           class: "remove-link text-danger"
   p

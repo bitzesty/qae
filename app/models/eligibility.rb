@@ -7,7 +7,7 @@ class Eligibility < ApplicationRecord
   belongs_to :form_answer, optional: true
 
   attr_accessor :current_step,
-                :force_validate_now
+    :force_validate_now
 
   validate :current_step_validation
 
@@ -71,8 +71,8 @@ class Eligibility < ApplicationRecord
     end
 
     if options[:boolean] || options[:acts_like_boolean]
-      define_method "#{name}?" do
-        ['1', 'true', 'yes', true].include?(public_send(name))
+      define_method :"#{name}?" do
+        ["1", "true", "yes", true].include?(public_send(name))
       end
     end
 
@@ -133,7 +133,7 @@ class Eligibility < ApplicationRecord
   end
 
   def any_error_yet?
-    answers.any?{ |answer| !answer_valid?(answer[0], answer[1]) }
+    answers.any? { |answer| !answer_valid?(answer[0], answer[1]) }
   end
 
   def answer_valid?(question, answer)

@@ -1,9 +1,9 @@
 - persisted = supporter["support_letter_id"].present? || supporter["supporter_id"].present?
 li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
   - if !admin_in_read_only_mode?
-    - if supporter["support_letter_id"].present? && @form_answer.support_letters.find_by_id(supporter["support_letter_id"])
+    - if supporter["support_letter_id"].present? && @form_answer.support_letters.find_by(id: supporter["support_letter_id"])
       - url = users_form_answer_support_letter_path(form_answer_id: @form_answer.id, id: supporter["support_letter_id"])
-    - elsif supporter["supporter_id"].present? && @form_answer.supporters.find_by_id(supporter["supporter_id"])
+    - elsif supporter["supporter_id"].present? && @form_answer.supporters.find_by(id: supporter["supporter_id"])
       - url = users_form_answer_supporter_path(form_answer_id: @form_answer.id, id: supporter["supporter_id"])
     - else
       - url = "#"
@@ -62,7 +62,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         - else
           | Send support request
   span.clear
-  - if persisted && (s = @form_answer.supporters.find_by_id(supporter["supporter_id"])) && s.support_letter.present? && question.list_type != :manuall_upload
+  - if persisted && (s = @form_answer.supporters.find_by(id: supporter["supporter_id"])) && s.support_letter.present? && question.list_type != :manuall_upload
     .visible-read-only
       .application-notice.help-notice
         p Letter of support received

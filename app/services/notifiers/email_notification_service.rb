@@ -24,8 +24,8 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  %w(innovation trade mobility development).each do |award|
-    define_method "#{award}_submission_started_notification" do |award_year|
+  %w[innovation trade mobility development].each do |award|
+    define_method :"#{award}_submission_started_notification" do |award_year|
       submission_started_notification(award_year, award)
     end
   end
@@ -38,7 +38,7 @@ class Notifiers::EmailNotificationService
 
     user_ids.each do |user_id|
       Users::AwardYearOpenNotificationMailer.notify(
-        user_id
+        user_id,
       ).deliver_later!
     end
   end
@@ -81,38 +81,38 @@ class Notifiers::EmailNotificationService
 
   def shortlisted_notifier(award_year)
     gather_data_and_send_emails!(
-      award_year.form_answers.shortlisted.where(award_type: %w(innovation trade)),
-      AccountMailers::NotifyShortlistedMailer
+      award_year.form_answers.shortlisted.where(award_type: %w[innovation trade]),
+      AccountMailers::NotifyShortlistedMailer,
     )
   end
 
   def shortlisted_po_sd_notifier(award_year)
     gather_data_and_send_emails!(
-      award_year.form_answers.shortlisted.with_estimated_figures_provided.where(award_type: %w(mobility development)),
+      award_year.form_answers.shortlisted.with_estimated_figures_provided.where(award_type: %w[mobility development]),
       AccountMailers::NotifyShortlistedMailer,
-      :notify_po_sd
+      :notify_po_sd,
     )
   end
 
   def shortlisted_po_sd_with_actual_figures_notifier(award_year)
     gather_data_and_send_emails!(
-      award_year.form_answers.shortlisted.with_actual_figures_provided.where(award_type: %w(mobility development)),
+      award_year.form_answers.shortlisted.with_actual_figures_provided.where(award_type: %w[mobility development]),
       AccountMailers::NotifyShortlistedMailer,
-      :notify_po_sd_with_actual_figures
+      :notify_po_sd_with_actual_figures,
     )
   end
 
   def not_shortlisted_notifier(award_year)
     gather_data_and_send_emails!(
       award_year.form_answers.business.not_shortlisted,
-      AccountMailers::NotifyNonShortlistedMailer
+      AccountMailers::NotifyNonShortlistedMailer,
     )
   end
 
   def shortlisted_audit_certificate_reminder(award_year)
     collaborator_data = []
 
-    award_year.form_answers.where(award_type: %w(innovation trade)).shortlisted.each do |form_answer|
+    award_year.form_answers.where(award_type: %w[innovation trade]).shortlisted.each do |form_answer|
       next if form_answer.audit_certificate
 
       form_answer.collaborators.each do |collaborator|
@@ -126,7 +126,7 @@ class Notifiers::EmailNotificationService
   def shortlisted_po_sd_reminder(award_year)
     collaborator_data = []
 
-    award_year.form_answers.where(award_type: %w(mobility development)).shortlisted.provided_estimates.each do |form_answer|
+    award_year.form_answers.where(award_type: %w[mobility development]).shortlisted.provided_estimates.each do |form_answer|
       next if form_answer.shortlisted_documents_wrapper.try(:submitted?)
 
       form_answer.collaborators.each do |collaborator|
@@ -140,21 +140,21 @@ class Notifiers::EmailNotificationService
   def unsuccessful_notification(award_year)
     gather_data_and_send_emails!(
       award_year.form_answers.business.unsuccessful_applications,
-      AccountMailers::UnsuccessfulFeedbackMailer
+      AccountMailers::UnsuccessfulFeedbackMailer,
     )
   end
 
   def unsuccessful_ep_notification(award_year)
     gather_data_and_send_emails!(
       award_year.form_answers.promotion.unsuccessful_applications,
-      AccountMailers::UnsuccessfulFeedbackMailer
+      AccountMailers::UnsuccessfulFeedbackMailer,
     )
   end
 
   def winners_notification(award_year)
     gather_data_and_send_emails!(
       award_year.form_answers.business.winners,
-      AccountMailers::BusinessAppsWinnersMailer
+      AccountMailers::BusinessAppsWinnersMailer,
     )
   end
 
@@ -171,10 +171,9 @@ class Notifiers::EmailNotificationService
     form_answer_ids = []
 
     award_year.form_answers.business.winners.each do |form_answer|
-
       invite = PalaceInvite.where(
         email: form_answer.decorate.head_of_business_email,
-        form_answer_id: form_answer.id
+        form_answer_id: form_answer.id,
       ).first_or_create
 
       unless invite.submitted?
@@ -194,7 +193,7 @@ class Notifiers::EmailNotificationService
 
   class << self
     def log_this(message)
-      p "[EmailNotificationService] #{Time.zone.now} #{message}"
+      Rails.logger.debug "[EmailNotificationService] #{Time.zone.now} #{message}"
     end
   end
 
@@ -222,7 +221,7 @@ class Notifiers::EmailNotificationService
       mailer.public_send(
         mailer_method,
         entry[:form_answer_id],
-        entry[:collaborator_id]
+        entry[:collaborator_id],
       ).deliver_later!
     end
   end
@@ -236,7 +235,7 @@ class Notifiers::EmailNotificationService
     user_ids.each do |user_id|
       Users::SubmissionStartedNotificationMailer.notify(
         user_id,
-        award_type
+        award_type,
       ).deliver_later!
     end
   end

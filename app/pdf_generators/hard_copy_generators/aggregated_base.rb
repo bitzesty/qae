@@ -1,11 +1,10 @@
 class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
-
   attr_accessor :award_category,
-                :award_year,
-                :type_of_report
+    :award_year,
+    :type_of_report
 
   def initialize(award_category, award_year, type_of_report)
-    @timestamp = Time.zone.now.strftime('%d_%b_%Y_%H_%M')
+    @timestamp = Time.zone.now.strftime("%d_%b_%Y_%H_%M")
     @award_category = award_category
     @award_year = award_year
     @type_of_report = type_of_report
@@ -16,11 +15,11 @@ class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
   private
 
   def attach_generated_file!
-    pdf_record = award_year.send("aggregated_#{type_of_report}_hard_copies").new(
+    pdf_record = award_year.send(:"aggregated_#{type_of_report}_hard_copies").new(
       file: tmpfile,
       type_of_report: type_of_report,
       award_category: award_category,
-      original_filename: "#{file_prefix}.pdf"
+      original_filename: "#{file_prefix}.pdf",
     )
 
     pdf_record.save!
@@ -37,6 +36,6 @@ class HardCopyGenerators::AggregatedBase < HardCopyGenerators::Base
   end
 
   def tempfile_name
-    "#{file_prefix}_#{timestamp}_SEPARATOR".gsub("/", "_")
+    "#{file_prefix}_#{timestamp}_SEPARATOR".tr("/", "_")
   end
 end

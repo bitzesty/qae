@@ -10,7 +10,7 @@ class PerformancePlatformService
     "trade" => "international-trade",
     "innovation" => "innovation",
     "development" => "sustainable-development",
-    "promotion" => "qaep"
+    "promotion" => "qaep",
   }
 
   POSSIBLE_RANGES = [
@@ -19,7 +19,7 @@ class PerformancePlatformService
     "50-74-percent",
     "25-49-percent",
     "1-24-percent",
-    "0-percent"
+    "0-percent",
   ]
 
   def self.run
@@ -31,7 +31,7 @@ class PerformancePlatformService
     log_this("completed") unless Rails.env.test?
   end
 
-  #[
+  # [
   #  {
   #      "_id": "23456780",
   #      "_timestamp": "2015-03-10T00:00:00Z",
@@ -40,7 +40,7 @@ class PerformancePlatformService
   #      "channel_type": "digital",
   #      "count": 42
   #  }
-  #]
+  # ]
   def self.perform_transactions_by_channel
     timestamp = (Time.current - 1.week).beginning_of_day.utc
 
@@ -51,7 +51,7 @@ class PerformancePlatformService
       "channel" => "online",
       "channel_type" => "digital",
       "count" => form_answers_count,
-      "_timestamp" => timestamp.iso8601
+      "_timestamp" => timestamp.iso8601,
     }
 
     result["_id"] = generate_transactions_id(result)
@@ -59,7 +59,7 @@ class PerformancePlatformService
     perform_request(TRANSACTIONS_BY_CHANNEL_URL, [result])
   end
 
-  #[
+  # [
   #  {
   #      "_id": "23456789",
   #      "_timestamp": "2015-03-18T00:00:00Z",
@@ -78,7 +78,7 @@ class PerformancePlatformService
   #      "count": 42,
   #      "cumulative_count": 72
   #  }
-  #]
+  # ]
 
   def self.perform_applications_by_stage
     payload = fetch_applications_data
@@ -90,8 +90,8 @@ class PerformancePlatformService
     if ENV["PERFORMANCE_PLATFORM_TOKEN"].present?
 
       headers = {
-        "Content-Type" =>"application/json",
-        "Authorization" => "Bearer #{ENV['PERFORMANCE_PLATFORM_TOKEN']}"
+        "Content-Type" => "application/json",
+        "Authorization" => "Bearer #{ENV["PERFORMANCE_PLATFORM_TOKEN"]}",
       }
 
       uri = URI(url)
@@ -105,7 +105,7 @@ class PerformancePlatformService
         http.request req
       end
 
-      puts res.body
+      Rails.logger.debug res.body
 
       nil
     end
@@ -183,7 +183,7 @@ class PerformancePlatformService
           "award" => award,
           "stage" => stage,
           "count" => count,
-          "cumulative_count" => cumulative_count
+          "cumulative_count" => cumulative_count,
         }
 
         data["_id"] = generate_applications_id(data)
@@ -199,7 +199,7 @@ class PerformancePlatformService
   def self.generate_transactions_id(data)
     string = ""
 
-    %w(_timestamp period channel channel_type).each do |attr|
+    %w[_timestamp period channel channel_type].each do |attr|
       string << data[attr]
     end
 
@@ -210,7 +210,7 @@ class PerformancePlatformService
   def self.generate_applications_id(data)
     string = ""
 
-    %w(_timestamp period award stage).each do |attr|
+    %w[_timestamp period award stage].each do |attr|
       string << data[attr]
     end
 
@@ -236,7 +236,7 @@ class PerformancePlatformService
 
   class << self
     def log_this(message)
-      p "[PerformancePlatformService] #{Time.zone.now} #{message}"
+      Rails.logger.debug "[PerformancePlatformService] #{Time.zone.now} #{message}"
     end
   end
 end

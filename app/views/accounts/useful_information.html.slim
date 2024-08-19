@@ -14,9 +14,10 @@
         li You can skip some questions depending on previous answers: the PDF version does not have this automatic feature built in and might mean you spend time on questions you don't need to.
         li You do not need to fill in the application form in one go: the data you enter is saved and you can come back to it later.
         li The majority of previous applicants reported taking around 20 hours to fill in the form. Please make enough time to prepare your responses and to ensure submission before the deadline.
+        li = "We've made the online version of this form accessible. You can learn more about accessibility options from our #{link_to('accessibility statement', "/accessibility-statement")}.".html_safe
 
       h2.govuk-heading-l Collaborators
-      p.govuk-body = "We recommend that you #{link_to('add collaborators', account_collaborators_path)} to the account. Collaborators are usually colleagues in the same organisation who can help fill in the application. However, we advise that only one person works on a section at a time to avoid data-saving issues.".html_safe
+      p.govuk-body = "We recommend that you #{link_to('add collaborators', account_collaborators_path)} to the account. Collaborators are usually colleagues in the same organisation who can help fill in the application. Collaborators can work on the form simultaneously if they are on different sections.".html_safe
       p.govuk-body = "Adding collaborators means that more people in your organisation can receive key notifications."
       p.govuk-body = "Please be aware that all additional collaborators are able to see and edit all of your applications if you apply for more than one Award."
 
@@ -31,7 +32,7 @@
 
       h2.govuk-heading-l Due Diligence Checks
 
-      p.govuk-body If your application is shortlisted, the Department for Business, Energy & Industrial Strategy will undertake due diligence checks with other Government Departments and Agencies using your organisation's name, company/charity registration number and address.
+      p.govuk-body If your application is shortlisted, the Department for Business and Trade will undertake due diligence checks with other Government Departments and Agencies using your organisation's name, company/charity registration number and address.
 
       details class='govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-0' data-module="govuk-details"
         summary.govuk-details__summary
@@ -45,7 +46,7 @@
             li Companies House
             li Competition and Markets Authority
             li Crown Commercial Service
-            li Department for Business, Energy and Industrial Strategy
+            li Department for Business and Trade
             li Department for Communities and Local Government
             li Department for Culture, Media & Sport
             li Department for Education
@@ -96,7 +97,10 @@
         li Environmental pollution;
         li Failure to fully comply with administrative filing requirements as stipulated by any government department or agency.
 
-      p.govuk-body Further information can be found on the application form. Please be aware - firms have previously failed this part of the process for as little as a few hundred pounds so it really is worth checking with your finance team.
-      p.govuk-body You can download a Memorandum of Understanding between the Department for Business, Energy & Industrial Strategy and HMRC regarding due diligence checks made.
       p.govuk-body
-        .download-link.govuk-link = link_to('Download the Memorandum of Understanding', 'https://s3.eu-west-2.amazonaws.com/www.queens-awards-enterprise.service.gov.uk/memorandum_of_understanding_2023.pdf', target: "_blank")
+        | Also, please check the
+        =< link_to('risk rating matrix', 'https://www.gov.uk/government/publications/sharing-hmrc-information-to-assist-the-kings-award-for-enterprise-committees-recommendations/memorandum-of-understanding-accessing-hmrc-information-to-assist-the-kings-award-for-enterprise-committees-to-make-recommendations-about-awards-to-u--4#annex-c--risk-rating-matrix', class: 'govuk-link', target: "_blank")
+        |  in the HRMC's
+        =< link_to('Memorandum of Understanding', 'https://www.gov.uk/government/publications/sharing-hmrc-information-to-assist-the-kings-award-for-enterprise-committees-recommendations/memorandum-of-understanding-accessing-hmrc-information-to-assist-the-kings-award-for-enterprise-committees-to-make-recommendations-about-awards-to-u--4', class: 'govuk-link', target: "_blank")
+        |  (created to assist the King's Award for Enterprise Committee in making recommendations about awards to UK companies).
+      p.govuk-body Further information can be found on the application form. Please be aware - firms have previously failed this part of the process for as little as a few hundred pounds so it really is worth checking with your finance team.

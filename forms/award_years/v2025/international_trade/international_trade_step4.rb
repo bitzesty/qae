@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def trade_step4
@@ -8,32 +7,32 @@ class AwardYears::V2025::QaeForms
         end
 
         trade_commercial_success :trade_commercial_success, "Which award subcategory are you applying for?" do
-          classes "js-entry-period"
+          classes "js-entry-period fs-trackable"
           ref "D 1"
           required
           option "3 to 5", "Outstanding Short-Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years"
           option "6 plus", "Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years"
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "3 to 5",
-                                            parent_question_answer_key: "3_years_application",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "3 to 5",
+            parent_question_answer_key: "3_years_application",
+            placeholder_text: %(
               As you currently hold a King's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
             )
 
           placeholder_preselected_condition :applied_for_queen_awards_details,
-                                            question_suffix: :year,
-                                            question_value: "",
-                                            parent_question_answer_key: "application_disabled",
-                                            placeholder_text: %(
+            question_suffix: :year,
+            question_value: "",
+            parent_question_answer_key: "application_disabled",
+            placeholder_text: %(
               As you currently hold a King's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 
-          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context")
+          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context", next_year: AwardYear.current.year, two_years: AwardYear.current.year + 1)
 
           financial_date_selector({
             "3 to 5" => "3",
-            "6 plus" => "6"
+            "6 plus" => "6",
           })
           default_option "6 plus"
           sub_category_question
@@ -48,6 +47,7 @@ class AwardYears::V2025::QaeForms
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+          classes "fs-year-end fs-trackable"
           ref "D 2"
           required
           financial_date_pointer
@@ -58,20 +58,11 @@ class AwardYears::V2025::QaeForms
           required
           option (AwardYear.current.year - 2).to_s, (AwardYear.current.year - 2).to_s
           option (AwardYear.current.year - 1).to_s, (AwardYear.current.year - 1).to_s
-          default_option (AwardYear.current.year - 1).to_s
-
           classes "js-most-recent-financial-year"
-          context %(
-            <p>
-              Answer this question if your dates in question D2 range between #{Settings.current_award_year_switch_date.decorate.formatted_trigger_date} to #{Settings.current_submission_deadline.decorate.formatted_trigger_date}.
-            </p>
-          )
-
-          conditional :financial_year_date, :day_month_range, range: AwardYear.fy_date_range_threshold(minmax: true), data: {value: AwardYear.fy_date_range_threshold(minmax: true, format: true), type: :range}
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period that you will be providing figures for?" do
-          classes "sub-question js-financial-year-change"
+          classes "sub-question js-financial-year-change fs-trackable fs-are-dates-changed"
           sub_ref "D 3"
           required
           yes_no
@@ -79,20 +70,12 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
-          classes "sub-question"
+          classes "sub-question fs-changed-dates fs-trackable"
           sub_ref "D 3.1"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
-
-          context %(
-            <p>
-              For the purpose of this application, your most recent financial year-end is your last financial year ending before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_date('with_year')} - the application submission deadline.
-            </p>
-          )
-
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
-
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           conditional :trade_commercial_success, :true
@@ -100,7 +83,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_figures_adjustment_explanation, "Explain adjustments to figures." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 3.2"
           required
           context %(
@@ -120,7 +103,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 3.3"
           required
           rows 5
@@ -133,9 +116,9 @@ class AwardYears::V2025::QaeForms
           ref "D 4"
           required
           context %(
-            <p>
-              You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
-            </p>
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -154,9 +137,12 @@ class AwardYears::V2025::QaeForms
 
         by_years :overseas_sales, "Total overseas sales" do
           ref "D 5.1"
-          classes "sub-question"
+          classes "sub-question fs-overseas-sales fs-trackable"
           required
           context %(
+            <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
             <p>
               Include only:
             </p>
@@ -186,9 +172,15 @@ class AwardYears::V2025::QaeForms
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
+            </p>
           )
 
           pdf_context %(
+            <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
             <p>
               Include only:
             </p>
@@ -211,6 +203,9 @@ class AwardYears::V2025::QaeForms
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
+            </p>
           )
 
           type :money
@@ -218,11 +213,21 @@ class AwardYears::V2025::QaeForms
           by_year_condition :trade_commercial_success, "6 plus", 6
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           first_year_min_value "100000", "Cannot be less than £100,000"
+          halt if: ->(q) { q.has_drops? },
+            title: "You do not meet the eligibility criteria for this award.",
+            message: ->(resource) do
+              value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
+              (value == 3) ? %(
+                   Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.
+                 ) : %{
+                   Your total overseas sales are showing dips during the period of our entry. If you had a steep year-on-year growth (without dips) over the three most recent financial years, consider applying on an "Outstanding Short-Term Growth" basis by changing your answer in D1. If you had dips in total overseas sales during that period, you do not meet eligibility for the award and cannot proceed.
+                 }
+            end
           drop_block_conditional
         end
 
         by_years :total_turnover, "Total turnover (the UK and overseas)" do
-          classes "sub-question"
+          classes "sub-question fs-total-turnover fs-trackable"
           sub_ref "D 5.2"
           type :money
           required
@@ -237,7 +242,7 @@ class AwardYears::V2025::QaeForms
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
-          classes "sub-question"
+          classes "sub-question fs-net-profit fs-trackable"
           sub_ref "D 5.3"
           required
           type :money
@@ -247,7 +252,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_in_turnover, "If you have had any losses, drops in turnover, or reductions in net profit, please explain them." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 5.4"
           required
           context %(
@@ -263,7 +268,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow and cash generated." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 5.5"
           required
           rows 5
@@ -271,11 +276,15 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "D 5.6"
           required
           rows 5
           words_max 300
+        end
+
+        financial_summary :trade_financial_summary, "Summary of your company financials (for information only)" do
+          sub_ref "D 5.7"
         end
 
         options :received_grant, "Have you received any grant funding or made use of any other government support?" do
@@ -284,13 +293,13 @@ class AwardYears::V2025::QaeForms
           yes_no
           context %(
             <p>Answer yes if you received such support during the last five years or at any time if it was in relation to your export products or services.</p>
-            
+
             <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
           )
         end
 
         textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your export products or services (at any time)." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 6.1"
           required
           context %(
@@ -302,7 +311,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :funding_details_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 6.2"
           required
           context %(
@@ -335,7 +344,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "D 7.2"
           required
           conditional :are_any_of_the_figures_used_estimates, :yes

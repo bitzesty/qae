@@ -20,14 +20,14 @@
                         required: true,
                         label: "New Password",
                         autofocus: true,
-                        input_html: { class: "password-strength-meter js-disable-copy govuk-input--width-10", autocomplete: "off" }
+                        input_html: { class: "password-strength-meter js-disable-copy govuk-input--width-#{Devise.password_length.begin}", autocomplete: "off" }
 
             .guidance-panel.if-no-js-hide
               #password-guidance.application-notice.help-notice
                 .alert.alert-warning
                   p.text-underline Please improve your password
                   p#password-too-short
-                    ' It must be at least 10 characters.
+                    ' It must be at least #{Devise.password_length.begin} characters.
                   p#parts-of-email It shouldn't include part or all of your email address.
                   p#password-entropy
                     ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
@@ -36,7 +36,7 @@
               = f.input :password_confirmation,
                         label: "Confirm your new password",
                         required: true,
-                        input_html: { class: "js-disable-copy govuk-input--width-10", autocomplete: "off" }
+                        input_html: { class: "js-disable-copy govuk-input--width-#{Devise.password_length.begin}", autocomplete: "off" }
 
             .if-no-js-hide
               #password-confirmation-guidance.application-notice.help-notice

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2021::QaeForms
   class << self
     def trade_step4
@@ -31,7 +30,7 @@ class AwardYears::V2021::QaeForms
             [:bold, "Answering questions"],
             [:normal, %(
               The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
-            )]
+            )],
           ]
         end
 

@@ -1,16 +1,15 @@
-require 'rails_helper'
-include Warden::Test::Helpers
+require "rails_helper"
 
 RSpec.describe Admin::EmailNotificationsController do
-  let!(:admin) {create(:admin, superadmin: true)}
-  let!(:email_notification) {create(:email_notification)}
+  let!(:admin) { create(:admin, superadmin: true) }
+  let!(:email_notification) { create(:email_notification) }
   before do
     sign_in admin
   end
 
   describe "POST create" do
     it "should create a resource" do
-      post :create, params: { email_notification: FactoryBot.attributes_for(:email_notification, formatted_trigger_at_date: Date.today.strftime("%d/%m/%Y"), formatted_trigger_at_time: '1:00') }
+      post :create, params: { email_notification: FactoryBot.attributes_for(:email_notification, formatted_trigger_at_date: Date.current.strftime("%d/%m/%Y"), formatted_trigger_at_time: "1:00") }
       expect(response).to redirect_to admin_settings_path
       expect(EmailNotification.count).to eq 2
     end
@@ -20,7 +19,6 @@ RSpec.describe Admin::EmailNotificationsController do
       expect(response).to render_template("show")
       expect(EmailNotification.count).to eq 1
     end
-
   end
 
   describe "PUT update" do

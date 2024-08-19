@@ -7,7 +7,7 @@ window.FormValidation =
     @validates = true
     $(".govuk-form-group--error").removeClass("govuk-form-group--error")
     $(".govuk-error-message").empty()
-    $(".steps-progress-bar .js-step-link").removeClass("step-errors")
+    $(".steps-progress-bar a.js-step-link").parent().removeClass("step-errors")
 
   clearErrors: (container) ->
     if container.closest(".question-financial").length > 0
@@ -138,11 +138,31 @@ window.FormValidation =
         return question.find("input[type='checkbox']").filter(":checked").length
 
   validateWordLimit: (question) ->
-    wordLimit = $(question.context).attr("data-word-max")
-    wordCount = $(question.context).val().split(" ").length
-    if wordCount > wordLimit
-      @logThis(question, "validateWordLimit", "Word limit exceeded")
-      @addErrorMessage(question, "Exceeded #{wordLimit} word limit.")
+    questionRef = question.attr("data-question_ref")
+    textarea = question.find("textarea")
+    wordLimit = textarea.attr("data-word-max")
+    wordLimitWithBuffer = 0
+    if wordLimit > 15
+      wordLimitWithBuffer = parseInt(wordLimit * 1.1);
+    else
+      wordLimitWithBuffer = wordLimit;
+
+    editorInstance = CKEDITOR.instances[textarea.attr("id")]
+    if editorInstance?
+      editorContent = editorInstance.getData()
+      normalizedContent = editorContent
+        .replace(/<[^>]*>/g, ' ') # Remove HTML tags
+        .replace(/&nbsp;/g, ' ') # Replace non-breaking spaces
+        .replace(/\s+/g, ' ') # Replace multiple spaces with single space
+        .trim()
+      wordCount = normalizedContent.split(' ').length
+
+      if wordCount > wordLimitWithBuffer
+        @logThis(question, "validateWordLimit", "Word limit of #{wordLimit} exceeded. Word count at #{wordCount}.")
+        if wordLimit > 15
+          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less (as we allow 10% leeway).")
+        else
+          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less.")
 
   validateSubfieldWordLimit: (question) ->
     wordLimit = $(question.context).attr("data-word-max")
@@ -190,7 +210,7 @@ window.FormValidation =
 
   addSubfieldError: (question, subquestion) ->
     questionRef = question.attr("data-question_ref")
-    input = $(subquestion).find('input,textarea,select').filter(':visible')
+    input = $(subquestion).find('input,textarea,select')
     if input.length
       label = @extractText(input.attr('id'))
       incompleteMessage = "Question #{questionRef} is incomplete. It is required and must be filled in."
@@ -493,22 +513,22 @@ window.FormValidation =
 
       if not val
         if !requiredRowParent
-          @appendMessage(qCell, "Required")
+          @appendMessage(qCell, "Must be filled in. Enter '0' if none")
           @addErrorClass(question)
         # only adds 'required' error when y_heading matches checked answer
         else
           cond = map.get(key)
 
           if cond
-            @appendMessage(qCell, "Required")
+            @appendMessage(qCell, "Must be filled in. Enter '0' if none")
             @addErrorClass(question)
       else if isNaN(val)
-        @appendMessage(qCell, "Only numbers")
+        @appendMessage(qCell, "Enter only numbers")
         @addErrorClass(question)
       else
         t = parseInt(val, 10)
         if t < 0
-          @appendMessage(qCell, "At least 0")
+          @appendMessage(qCell, "Enter a number equal to or greater than 0")
           @addErrorClass(question)
 
     if question.find(".govuk-error-message").filter(-> @innerHTML).length
@@ -550,8 +570,8 @@ window.FormValidation =
         inputCellsCounter += 1
         label = @extractText(subq.attr('id'))
         if not subq.val() and question.hasClass("question-required")
-          @logThis(question, "validateNumberByYears", "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
-          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in.")
+          @logThis(question, "validateNumberByYears", "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
+          @appendMessage(errContainer, "Question #{questionRef} is incomplete. #{label} is required and must be filled in. Enter '0' if none.")
           @addErrorClass(question)
           continue
         else if not subq.val()
@@ -954,6 +974,7 @@ window.FormValidation =
     stepContainer.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
     stepContainer.find(".govuk-error-message").empty()
     $(".steps-progress-bar .js-step-link[data-step='" + currentStep + "']").removeClass("step-errors")
+    $("li, a", $(".steps-progress-bar .js-step-link[data-step='" + currentStep + "']")).removeClass("step-errors")
 
     for question in stepContainer.find(".question-block")
       question = $(question)
@@ -981,6 +1002,79 @@ $(document).on 'change', 'input[type=checkbox]', ->
       question.find(".govuk-form-group--error").removeClass("govuk-form-group--error")
       window.FormValidation.validateMatrix(question)
 
+$(document).on 'change', '[data-question-haltable] .show-question input.govuk-input', ->
+  questions = $(document).find('.question-block')
+  questions.removeClass('js-question-disabled')
+  questions.removeAttr('inert')
+
+  links = $(document).find('.steps-progress-bar li.js-step-link:not(.step-past):not(.step-current)')
+  links.removeClass('js-step-disabled')
+  links.removeAttr('inert')
+
+  question = $(this).closest('[data-question-haltable]')
+
+  targets = []
+  targets.push($(question).find('.show-question [data-target="haltable"]'))
+  targets.push($('.js-next-link[data-target="haltable"]'))
+
+  $.map targets, (target) ->
+    state = $(target).attr('data-halt-state')
+    classValue = $(target).attr('data-halt-class-value')
+
+    if state == 'visible'
+      $(target).addClass(classValue)
+    else if state == 'hidden'
+      $(target).removeClass(classValue)
+
+  values = question.find('.show-question input.govuk-input').toArray().map((el) ->
+    value = $(el).val()
+    if value
+      Number(value)
+    else
+      null
+  )
+
+  if !(values.includes(null))
+    pairs = values.reduce (result, value, index, array) ->
+      [first, second] = array.slice(index, index + 2)
+      if (first != undefined && second != undefined)
+        result.push([first, second])
+
+      result
+    , []
+
+    check = pairs.every ([f, s]) -> s >= f
+
+    if !(check)
+      questions = $(document).find('.question-block')
+      index = questions.index(question)
+      $.map questions, (q, idx) ->
+        if idx > index
+          $(q).addClass('js-question-disabled')
+          $(q).attr('inert', true)
+
+      $.map targets, (target) ->
+        state = $(target).attr('data-halt-state')
+        classValue = $(target).attr('data-halt-class-value')
+
+        if state == 'visible'
+          $(target).removeClass(classValue)
+        else if state == 'hidden'
+          $(target).addClass(classValue)
+
+      links.addClass('js-step-disabled')
+      links.attr('inert', true)
+
+$(document).on 'keydown', '[data-question-haltable] .show-question input.govuk-input', (e) ->
+  if e.key == 'Tab' || e.keyCode == 9
+    e.preventDefault()
+
+    $(this).trigger('change')
+
+    setTimeout((() =>
+      focusNextElement()
+    ), 10)
+
 eachCons = (list, n, callback) ->
   return [] if n == 0
   start = 0
@@ -991,3 +1085,15 @@ eachCons = (list, n, callback) ->
 
     callback.call(this, data)
     start += 1
+
+focusNextElement = ->
+  focussableElements = 'a:not([disabled]), button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([disabled])'
+  if document.activeElement and document.activeElement.form
+    focussable = Array::filter.call(document.activeElement.form.querySelectorAll(focussableElements), (element) ->
+      element.offsetWidth > 0 or element.offsetHeight > 0 or element == document.activeElement
+    )
+
+    index = focussable.indexOf(document.activeElement)
+    if index > -1
+      nextElement = focussable[index + 1] or focussable[0]
+      nextElement.focus()

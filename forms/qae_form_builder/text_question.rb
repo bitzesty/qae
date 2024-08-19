@@ -6,7 +6,7 @@ class QaeFormBuilder
     def errors
       result = super
 
-      length = question.input_value.to_s.split(" ").reject(&:blank?).length
+      length = question.input_value.to_s.split(" ").count { |element| element.present? }
 
       limit = question.delegate_obj.text_words_max
 
@@ -41,5 +41,4 @@ class QaeFormBuilder
   class TextQuestion < Question
     attr_accessor :type, :style, :text_words_max
   end
-
 end

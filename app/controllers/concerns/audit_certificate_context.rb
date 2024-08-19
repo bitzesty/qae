@@ -9,7 +9,7 @@ module AuditCertificateContext
 
     audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
-    if saved = audit_certificate.save
+    if (saved = audit_certificate.save)
       log_event
 
       if form_answer.assessors.primary.present?
@@ -26,11 +26,11 @@ module AuditCertificateContext
         end
 
         format.js do
-          render  partial: "admin/form_answers/docs/post_shortlisting_docs",
+          render partial: "admin/form_answers/docs/post_shortlisting_docs",
             locals: {
-            resource: form_answer.decorate
-          },
-          content_type: "text/plain"
+              resource: form_answer.decorate,
+            },
+            content_type: "text/plain"
         end
       else
         format.html do
@@ -69,11 +69,7 @@ module AuditCertificateContext
     # This is fix of "missing 'audit_certificate' param"
     # if no any was selected in file input
     if params[:audit_certificate].blank?
-      params.merge!(
-        audit_certificate: {
-          attachment: ""
-        }
-      )
+      params[:audit_certificate] = { attachment: "" }
     end
 
     params.require(:audit_certificate).permit(:attachment)

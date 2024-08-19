@@ -58,3 +58,21 @@
       - else
         = f.submit "Add the collaborator", class: "govuk-button"
       = link_to "Cancel", account_collaborators_path, class: "govuk-button govuk-button--secondary"
+
+javascript:
+  setTimeout(() => {
+    const element = document.querySelector('.govuk-form-group--error')
+
+    if (element) {
+      const input = element.querySelector('[aria-invalid="true"]')
+      const scrollIntoViewOptions = { behavior: 'smooth', block: 'center', inline: 'nearest' }
+
+      if (input) {
+        input.focus()
+        input.scrollIntoView(scrollIntoViewOptions)
+      } else {
+        element.scrollIntoView(scrollIntoViewOptions)
+      }
+    }
+  }, '100')
+  

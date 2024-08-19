@@ -6,13 +6,15 @@ class AwardYear < ApplicationRecord
   has_many :feedbacks
   has_one :settings, inverse_of: :award_year, autosave: true
 
+  # rubocop:disable Rails/InverseOf
   has_many :aggregated_case_summary_hard_copies, -> { where(type_of_report: "case_summary") },
-                                                    class_name: "AggregatedAwardYearPdf",
-                                                    dependent: :destroy
+    class_name: "AggregatedAwardYearPdf",
+    dependent: :destroy
 
   has_many :aggregated_feedback_hard_copies, -> { where(type_of_report: "feedback") },
-                                                 class_name: "AggregatedAwardYearPdf",
-                                                 dependent: :destroy
+    class_name: "AggregatedAwardYearPdf",
+    dependent: :destroy
+  # rubocop:enable Rails/InverseOf
 
   after_create :create_settings
 
@@ -23,6 +25,8 @@ class AwardYear < ApplicationRecord
 
   DEFAULT_FINANCIAL_SWITCH_DAY = 20
   DEFAULT_FINANCIAL_SWITCH_MONTH = 4
+
+  CASE_SUMMARY_YEAR_MODES = %w[3 6]
 
   scope :past, -> {
     where(year: past_years)
@@ -39,7 +43,7 @@ class AwardYear < ApplicationRecord
   ]
 
   def current?
-    self.year == self.class.current.year
+    year == self.class.current.year
   end
 
   #
@@ -48,8 +52,8 @@ class AwardYear < ApplicationRecord
   #
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AggregatedAwardYearPdf::TYPES.each do |pdf_type|
-      define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
-        send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
+      define_method(:"#{pdf_type}_#{award_category}_hard_copy_pdf") do
+        send(:"aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
       end
     end
   end
@@ -58,11 +62,11 @@ class AwardYear < ApplicationRecord
   # For trade category Case summary would have 2 hard copies
   # for '3 to 5' and '6 plus' years
   #
-  ["3", "6"].map do |i|
-    define_method("case_summary_trade_#{i}_hard_copy_pdf") do
-      send("aggregated_case_summary_hard_copies").find_by(
-        award_category: 'trade',
-        sub_type: i
+  CASE_SUMMARY_YEAR_MODES.map do |i|
+    define_method(:"case_summary_trade_#{i}_hard_copy_pdf") do
+      send(:aggregated_case_summary_hard_copies).find_by(
+        award_category: "trade",
+        sub_type: i,
       )
     end
   end
@@ -73,38 +77,38 @@ class AwardYear < ApplicationRecord
 
   def form_data_generation_can_be_started?
     Settings.after_current_submission_deadline? &&
-    form_data_hard_copies_state.nil?
+      form_data_hard_copies_state.nil?
   end
 
   def case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    case_summary_hard_copies_state.nil?
+      case_summary_hard_copies_state.nil?
   end
 
   def feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    feedback_hard_copies_state.nil?
+      feedback_hard_copies_state.nil?
   end
 
   def aggregated_case_summary_generation_can_be_started?
     Settings.winners_stage? &&
-    aggregated_case_summary_hard_copy_state.nil?
+      aggregated_case_summary_hard_copy_state.nil?
   end
 
   def aggregated_feedback_generation_can_be_started?
     Settings.unsuccessful_stage? &&
-    aggregated_feedback_hard_copy_state.nil?
+      aggregated_feedback_hard_copy_state.nil?
   end
 
   def aggregated_hard_copies_completed?(type)
     CURRENT_YEAR_AWARDS.all? do |award_category|
       if award_category == "trade" && type == "case_summary"
-        ["3", "6"].all? do |i|
-          copy_record = send("#{type}_#{award_category}_#{i}_hard_copy_pdf")
+        CASE_SUMMARY_YEAR_MODES.all? do |i|
+          copy_record = send(:"#{type}_#{award_category}_#{i}_hard_copy_pdf")
           copy_record.present? && copy_record.file.present?
         end
       else
-        copy_record = send("#{type}_#{award_category}_hard_copy_pdf")
+        copy_record = send(:"#{type}_#{award_category}_hard_copy_pdf")
         copy_record.present? && copy_record.file.present?
       end
     end
@@ -119,7 +123,7 @@ class AwardYear < ApplicationRecord
   end
 
   def check_hard_copy_pdf_generation_status!(type)
-    scope = send("hard_copy_#{type}_scope")
+    scope = send(:"hard_copy_#{type}_scope")
 
     condition_rule = if type == "form_data"
       scope.count == scope.hard_copy_generated(type).count
@@ -172,10 +176,10 @@ class AwardYear < ApplicationRecord
                           .try(:trigger_at)
 
       deadline ||= Date.new(now.year, 4, 21)
-      if now >= deadline.to_datetime
-        y = now.year + 1
+      y = if now >= deadline.to_datetime
+        now.year + 1
       else
-        y = now.year
+        now.year
       end
 
       where(year: y).first_or_create
@@ -224,8 +228,7 @@ class AwardYear < ApplicationRecord
   end
 
   def fetch_deadline(title)
-    res = settings
-            .deadlines
+    settings.deadlines
             .where(kind: title)
             .first
   end
@@ -266,11 +269,11 @@ class AwardYear < ApplicationRecord
 
     def buckingham_palace_reception_attendee_information_due_by
       current_year_deadline(
-        "buckingham_palace_reception_attendee_information_due_by"
+        "buckingham_palace_reception_attendee_information_due_by",
       ).trigger_at
     end
 
-    def start_trading_since(years_number=3)
+    def start_trading_since(years_number = 3)
       if AwardYear.current.year < 2019
         Date.new(AwardYear.current.year - 1 - years_number, 9, 3).strftime("%d/%m/%Y")
       else
@@ -310,7 +313,7 @@ class AwardYear < ApplicationRecord
 
       start_date =
         begin
-          Date.new(AwardYear.current.year - 1 - to, month, opts[:include_end_date] == true ? day : (day + 1))
+          Date.new(AwardYear.current.year - 1 - to, month, (opts[:include_end_date] == true) ? day : (day + 1))
         rescue Date::Error # avoiding 32th day of the month error
           Date.new(AwardYear.current.year - 1 - to, month + 1, 1)
         end

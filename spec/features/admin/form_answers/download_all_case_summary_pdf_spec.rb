@@ -1,12 +1,10 @@
-require 'rails_helper'
-include Warden::Test::Helpers
+require "rails_helper"
 
-describe "Admin: Download all Case Summary as one pdf", %q{
+describe "Admin: Download all Case Summary as one pdf", '
 As an Admin
 I want to download all Case Summary PDFS as one pdf per category from Dashboard
 So that I can print and review application case summaries
-} do
-
+' do
   let!(:admin) { create(:admin) }
 
   before do
@@ -19,27 +17,23 @@ So that I can print and review application case summaries
     end
 
     it "should be links to download case summaries" do
+      years = [3, 6]
+
       FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |award_type, value|
         ops = {
           id: "case_summaries",
-          category: award_type, format: :pdf,
-          year: AwardYear.current.year
+          category: award_type,
+          format: :pdf,
+          year: AwardYear.current.year,
         }
 
         if award_type == "trade"
-          [3, 6].map do |i|
-            expect(page).to have_link('Download',
-              href: admin_report_path(
-                ops.merge({years_mode: i})
-              )
-            )
+          years.map do |i|
+            expect(page)
+              .to have_link("Download", href: admin_report_path(ops.merge({ years_mode: i })))
           end
         else
-          expect(page).to have_link('Download',
-            href: admin_report_path(
-              ops
-            )
-          )
+          expect(page).to have_link("Download", href: admin_report_path(ops))
         end
       end
     end

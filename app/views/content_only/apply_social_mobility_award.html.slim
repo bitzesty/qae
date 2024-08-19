@@ -1,7 +1,6 @@
 h1.govuk-heading-xl Promoting Opportunity Award (through social mobility) Application
 
 .article-related-positioning-container
-  .article-container
-    article.group role="article"
-      = form_tag new_social_mobility_form_path, method: :get do
-        = render "award_nickname", award_type: "mobility"
+  article.group role="article"
+    = simple_form_for @form_answer, url: new_social_mobility_form_path, html: { class: "qae-form" } do |f|
+      = render partial: "content_only/award_nickname", locals: { award_type: "mobility", f: f }

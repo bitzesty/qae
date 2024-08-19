@@ -7,15 +7,14 @@
 #
 
 class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::AggregatedBase
-
   attr_accessor :sub_type
 
-  def initialize(award_category, award_year, type_of_report, sub_type=nil)
-    @timestamp = Time.zone.now.strftime('%d_%b_%Y_%H_%M')
+  def initialize(award_category, award_year, type_of_report, sub_type = nil)
+    @timestamp = Time.zone.now.strftime("%d_%b_%Y_%H_%M")
     @award_category = award_category
     @award_year = award_year
     @type_of_report = type_of_report
-    @sub_type = sub_type || 'standart'
+    @sub_type = sub_type || "standart"
 
     set_pdf!
   end
@@ -23,12 +22,12 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
   private
 
   def attach_generated_file!
-    pdf_record = award_year.send("aggregated_#{type_of_report}_hard_copies").new(
+    pdf_record = award_year.send(:"aggregated_#{type_of_report}_hard_copies").new(
       file: tmpfile,
       type_of_report: type_of_report,
       sub_type: sub_type,
       award_category: award_category,
-      original_filename: "#{file_prefix}.pdf"
+      original_filename: "#{file_prefix}.pdf",
     )
 
     pdf_record.save!
@@ -48,7 +47,7 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
   end
 
   def set_pdf!
-    ops = {category: award_category, award_year: award_year}
+    ops = { category: award_category, award_year: award_year }
     ops[:years_mode] = sub_type if award_category == "trade"
 
     @pdf = CaseSummaryPdfs::Base.new(

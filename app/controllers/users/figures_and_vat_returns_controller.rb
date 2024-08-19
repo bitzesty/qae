@@ -27,8 +27,8 @@ class Users::FiguresAndVatReturnsController < Users::BaseController
   private
 
   def form_answer
-    @form_answer ||= current_user.account.
-                       form_answers.
-                       find(params[:form_answer_id])
+    @form_answer ||= current_user.account
+                       .form_answers
+                       .find(params[:form_answer_id])
   end
 end

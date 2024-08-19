@@ -1,73 +1,110 @@
-## ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) King's Awards for Enterprise
+# ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) King's Awards for Enterprise
 
 "QAE" is the application which powers the application process for The King's Awards for Enterprise.
 
-# Setup
+## Development
 
-## Pre-requisites
+### Prerequisites
 
 - Ruby 3.2.2
-- `gem install bundler -v 2.5.6`
-- Rails 7.0.5
-- Postgresql 9.5+
-- Redis 2.8
-- Cloudfountry Client
+  - `gem install bundler -v 2.5.6`
+- Node.js LTS
+- Rails 7.0
+- Postgresql 9.5+ with `hstore` extension
+- Redis 4+
+- Docker
 
-### Running application
+### Running the application
 
-```
-./bin/setup
-bundle exec rails s
-bundle exec sidekiq -C config/sidekiq.yml
-```
-
-If you're running this on your local dev setup, start redis first before starting sidekiq
-
-### Running with docker
-
-    $ cp Dockerfile.local Dockerfile
-    $ cp docker-compose.yml.local docker-compose.yml
-    $ docker-compose up
-
-#### Help
-
-If you see the following error:
+There are environment variables that you may want to modify in the `.env` file.
 
 ```
-ActiveRecord::StatementInvalid: PG::UndefinedFile: ERROR:  could not open extension control file "/usr/share/postgresql/9.3/extension/hstore.control": No such file or directory
-: CREATE EXTENSION IF NOT EXISTS "hstore"
+cp .env.example .env
 ```
 
-This means, that `hstore postgresql` extension needs to be installed:
+This ensures the necessary environment variables set before running the Docker commands.
 
+#### Running with docker
+
+1. Build the containers:
+   
+   ```
+   docker-compose build
+   ```
+
+2. In a new terminal, set up and migrate the database:
+   
+   ```
+   docker-compose run --rm web bundle exec rails db:prepare
+   ```
+
+3. Run the containers:
+
+   ```
+   docker-compose up
+   ```
+
+Your application should now be running at http://localhost:3000
+
+##### Running Rails with the production config
+
+Locally the docker image will run Rails in development, if you need to run as production
+then specify the production file `docker-compose -f docker-compose.prod.yml`
+
+You will need to generate a local ssl certificate for nginx.
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./certs/privkey.pem -out ./certs/fullchain.pem
+
+Your application should now be running at https://localhost/
+
+### Installing Poxa
+
+If you need to test collaborators editing the application at the same time, install [poxa](https://github.com/bitzesty/poxa).
+
+### Installing Malware Scanning
+
+Files are uploaded to S3 and then scanned with ClamAV via the Vigilion service.
+
+If you need to test malware scanning locally, install [Vigilion](https://github.com/bitzesty/vigilion-scanner) and set the `VIGILION_ACCESS_KEY_ID` and `VIGILION_SECRET_ACCESS_KEY` and `DISABLE_VIRUS_SCANNER` to `false` in the `.env` file.
+
+### Running the tests
+
+    $ bundle exec rspec
+
+## Documentation
+
+We have documentation within the doc folder. Architecture decisions and technical diagrams are stored within doc/architecture/decisions and doc/architecture/diagrams respectively.
+
+We use [adr-tools](https://github.com/npryce/adr-tools) to manage our architecture decisions.
+
+Diagrams are written using [PlantUML](https://plantuml.com/) and C4 notation.
+
+If you're using an IDE or editor with a PlantUML plugin, there's often a setting to specify the format (png) and output directory. For example, in VS Code with the PlantUML extension, you can add this to your settings.json:
+
+```json
+"plantuml.outputDirectory": "."
 ```
-sudo apt-get install postgresql-contrib
-```
 
-### Install Poxa
+## Deploying
 
-If you need to test collaborators editing the application at the same time, install poxa.
-
-# Deploying
-
-Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging, production). For more details see the Github Actions.
+Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (main, staging). Production deployment is a manually triggered action (production branch). For more details see the Github Actions.
 
 CF based GOV.UK PaaS is used for hosting [https://cloud.service.gov.uk](https://www.cloud.service.gov.uk/).
 
-# License
+## License
 
-qae is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
+QAE is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
 software, and may be redistributed under the terms specified in the
 [LICENSE] file.
 
 [license]: https://github.com/bitzesty/qae/blob/master/LICENSE
 
-# About Bit Zesty
+## Helpful links
+- [GDS service standards](https://www.gov.uk/service-manual/service-standard)
+- [GDS design principles](https://www.gov.uk/design-principles)
+
+## About Bit Zesty
 
 ![Bit Zesty](https://bitzesty.com/wp-content/uploads/2017/01/logo_dark.png)
 
-qae is maintained by Bit Zesty LTD.
-The names and logos for Bit Zesty are trademarks of Bit Zesty LTD.
+QAE is maintained by [Bit Zesty Limited](https://bitzesty.com/).
 
-See [our other projects](https://bitzesty.com/client-stories/) or
-[hire us](https://bitzesty.com/contact/) to design, develop, and support your product or service.

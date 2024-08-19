@@ -1,9 +1,8 @@
 class QaeFormBuilder
-
   class QaeForm
     attr_reader :title, :opts, :steps, :questions_by_key
 
-    def initialize title, opts={}
+    def initialize title, opts = {}
       @title = title
       @opts = opts
       @steps = []
@@ -23,7 +22,7 @@ class QaeFormBuilder
       step = Step.new self, title, short_title, options
 
       builder = StepBuilder.new step
-      builder.instance_eval &block if block_given?
+      builder.instance_eval(&block) if block
       @steps << step
       step
     end

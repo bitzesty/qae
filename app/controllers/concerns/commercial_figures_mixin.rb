@@ -1,9 +1,8 @@
 module CommercialFiguresMixin
-
   def show
     send_data file_record.attachment.read,
-              filename: file_record.attachment.file.filename,
-              disposition: "attachment"
+      filename: file_record.attachment.file.filename,
+      disposition: "attachment"
   end
 
   def destroy
@@ -34,11 +33,11 @@ module CommercialFiguresMixin
       format.json do
         if saved
           render json: record,
-                 status: :created,
-                 content_type: "text/plain"
+            status: :created,
+            content_type: "text/plain"
         else
           render json: { errors: humanized_errors(record) }.to_json,
-                 status: :unprocessable_entity
+            status: :unprocessable_entity
         end
       end
     end
@@ -52,20 +51,18 @@ module CommercialFiguresMixin
       .gsub("Attachment ", "")
   end
 
-
   def figures_wrapper
-    @figures_wrapper ||= (form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper)
+    @figures_wrapper ||= form_answer.shortlisted_documents_wrapper || form_answer.build_shortlisted_documents_wrapper
 
     @figures_wrapper.save! if !@figures_wrapper.persisted?
 
     @figures_wrapper
   end
 
-
   def form_answer
-    @form_answer ||= current_user.account.
-                       form_answers.
-                       find(params[:form_answer_id])
+    @form_answer ||= current_user.account
+                       .form_answers
+                       .find(params[:form_answer_id])
   end
 
   def scope

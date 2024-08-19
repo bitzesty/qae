@@ -1,8 +1,7 @@
-require 'rails_helper'
-include Warden::Test::Helpers
+require "rails_helper"
 
 RSpec.describe Admin::AuditLogsController do
-  let!(:admin) {create(:admin, superadmin: true)}
+  let!(:admin) { create(:admin, superadmin: true) }
   before do
     sign_in admin
   end

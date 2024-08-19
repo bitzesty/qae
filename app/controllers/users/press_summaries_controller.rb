@@ -2,10 +2,11 @@ class Users::PressSummariesController < Users::BaseController
   skip_before_action :authenticate_user!, raise: false
 
   before_action :check_deadline, :load_press_summary, except: [:success, :failure]
-  before_action :check_promotion_award_acceptance,
-                except: [:acceptance, :update_acceptance, :success, :failure]
 
+  # rubocop:disable Rails/LexicallyScopedActionFilter
+  before_action :check_promotion_award_acceptance, except: [:acceptance, :update_acceptance, :success, :failure]
   before_action :require_press_summary_to_be_valid!, only: [:show, :update]
+  # rubocop:enable Rails/LexicallyScopedActionFilter
 
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
@@ -62,7 +63,7 @@ class Users::PressSummariesController < Users::BaseController
       :name,
       :last_name,
       :phone_number,
-      :email
+      :email,
     )
   end
 
@@ -88,15 +89,15 @@ class Users::PressSummariesController < Users::BaseController
     FormFinancialPointer.new(
       award,
       exclude_ignored_questions: true,
-      financial_summary_view: true
+      financial_summary_view: true,
     ).data.detect { |r| r[:employees].present? }
   end
 
   def require_press_summary_to_be_valid!
     if !@press_summary.submitted? || @press_summary.applicant_submitted?
       redirect_to dashboard_url,
-                  notice: "Press Summary can't be updated!"
-      return
+        notice: "Press Summary can't be updated!"
+      nil
     end
   end
 end

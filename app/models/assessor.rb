@@ -9,8 +9,8 @@ class Assessor < ApplicationRecord
   # to specific category (award type), they act per specific form answer.
 
   devise :database_authenticatable,
-         :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable, :session_limitable
+    :recoverable, :trackable, :validatable, :confirmable,
+    :zxcvbnable, :lockable, :timeoutable, :session_limitable
   include PasswordValidator
 
   validates :first_name, :last_name, presence: true
@@ -18,31 +18,31 @@ class Assessor < ApplicationRecord
   has_many :assessor_assignments
 
   has_many :form_answers,
-           through: :assessor_assignments
+    through: :assessor_assignments
 
   before_validation :nil_if_blank
 
   validates :trade_role,
-            :innovation_role,
-            :development_role,
-            :mobility_role,
-            :promotion_role,
-            inclusion: {
-              in: AVAILABLE_ROLES
-            },
-            allow_nil: true
+    :innovation_role,
+    :development_role,
+    :mobility_role,
+    :promotion_role,
+    inclusion: {
+      in: AVAILABLE_ROLES,
+    },
+    allow_nil: true
 
   pg_search_scope :basic_search,
-                  against: [
-                    :first_name,
-                    :last_name,
-                    :email
-                  ],
-                  using: {
-                    tsearch: {
-                      prefix: true
-                    }
-                  }
+    against: [
+      :first_name,
+      :last_name,
+      :email,
+    ],
+    using: {
+      tsearch: {
+        prefix: true,
+      },
+    }
 
   default_scope { where(deleted: false) }
 
@@ -51,7 +51,6 @@ class Assessor < ApplicationRecord
   scope :not_suspended, -> { where(suspended_at: nil) }
   scope :trade_and_development, -> { available_for("development").or(available_for("trade")) }
   scope :mobility_and_innovation, -> { available_for("mobility").or(available_for("innovation")) }
-
 
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AVAILABLE_ROLES.each do |role|
@@ -94,7 +93,7 @@ class Assessor < ApplicationRecord
   end
 
   def applications_scope(award_year = nil)
-    c = assigned_categories_as(%w(lead))
+    c = assigned_categories_as(%w[lead])
     join = "LEFT OUTER JOIN assessor_assignments ON
     assessor_assignments.form_answer_id = form_answers.id"
 
@@ -117,12 +116,9 @@ class Assessor < ApplicationRecord
   # with account's other applications
   # they were not assigned to
   def extended_applications_scope
-    c = assigned_categories_as(%w(lead regular))
+    c = assigned_categories_as(%w[lead regular])
 
-    out = FormAnswer.where("
-      form_answers.award_type in (?)
-      AND form_answers.state NOT IN (?)
-    ", c, "withdrawn")
+    FormAnswer.where(award_type: c).where.not(state: "withdrawn")
   end
 
   def full_name
@@ -192,7 +188,7 @@ class Assessor < ApplicationRecord
   end
 
   def all_assigned_award_types
-    assigned_categories_as(%w(lead regular)).map do |cat|
+    assigned_categories_as(%w[lead regular]).map do |cat|
       FormAnswer::AWARD_TYPE_FULL_NAMES[cat]
     end.join(", ")
   end
@@ -213,18 +209,12 @@ class Assessor < ApplicationRecord
   end
 
   def assigned_categories_as(roles)
-    FormAnswer::POSSIBLE_AWARDS.map do |award|
-      award if roles.include?(get_role(award).to_s)
-    end.compact
+    FormAnswer::POSSIBLE_AWARDS.select { |award| roles.include?(get_role(award).to_s) }
   end
 
   def nil_if_blank
     FormAnswer::POSSIBLE_AWARDS.each do |award|
-      self.public_send("#{award}_role=", nil) if get_role(award).blank?
+      public_send(:"#{award}_role=", nil) if get_role(award).blank?
     end
-  end
-
-  def self.leads_for(category)
-    where(role_meth(category) => "lead")
   end
 end

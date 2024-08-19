@@ -1,26 +1,28 @@
-require 'rails_helper'
+require "rails_helper"
 
 shared_context "admin all case summaries pdf generation" do
   let!(:form_answer) do
     create :form_answer, award_type,
-                         :submitted
+      :submitted
   end
 
   let!(:assessor_assignment) do
     create :assessor_assignment, form_answer: form_answer,
-                                 submitted_at: Date.today,
-                                 assessor: nil,
-                                 position: "case_summary",
-                                 document: assessor_assignment_document
+      submitted_at: Date.current,
+      assessor: nil,
+      position: "case_summary",
+      document: assessor_assignment_document
   end
 
   let(:assessor_assignment_document) do
     res = {}
 
-    AppraisalForm.struct(form_answer).each do |key, _|
+    ratings = %w[negative positive average]
+
+    AppraisalForm.struct(form_answer).each do |key, values|
       res["#{key}_desc"] = "Lorem Ipsum"
-      if _[:type] != :non_rag
-        res["#{key}_rate"] = ["negative", "positive", "average"].sample
+      if values[:type] != :non_rag
+        res["#{key}_rate"] = ratings.sample
       end
     end
 
@@ -33,9 +35,9 @@ shared_context "admin all case summaries pdf generation" do
 
   describe "Download PDF" do
     before do
-      ops = {category: award_type, format: :pdf}
+      ops = { category: award_type, format: :pdf }
       # For trade category it would have year depends links ('3 years' and '6 years')
-      ops[:years_mode] = '3' if award_type == :trade
+      ops[:years_mode] = "3" if award_type == :trade
 
       visit admin_report_path("case_summaries", ops)
     end

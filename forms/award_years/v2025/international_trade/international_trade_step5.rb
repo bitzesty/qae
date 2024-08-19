@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def trade_step5
@@ -9,6 +8,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :impact_on_society, "The impact of your business operations on society." do
           ref "E 1"
+          classes "text-words-max"
           required
           context %(
             <p>
@@ -41,6 +41,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :impact_on_environment, "The environmental impact of your business operations." do
           ref "E 2"
+          classes "text-words-max"
           required
           context %(
             <p>
@@ -81,6 +82,7 @@ class AwardYears::V2025::QaeForms
         textarea :employees_relations, "Relations with your workforce." do
           ref "E 3"
           required
+          classes "text-words-max"
           context %(
             <p>
               Examples of areas you may wish to describe:
@@ -115,6 +117,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :partners_relations, "Relations with customers and suppliers." do
           ref "E 4"
+          classes "text-words-max"
           required
           context %(
             <p>
@@ -147,6 +150,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :governance, "Additional environmental, social, and corporate governance (ESG) examples. (optional)" do
           ref "E 5"
+          classes "text-words-max"
           context %(
             <p>
               Feel free to provide any additional information about your ESG practices. If you have already covered your ESG practices in full in this section or section C of the form, just state so.

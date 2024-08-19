@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def mobility_step3
@@ -18,7 +17,7 @@ class AwardYears::V2025::QaeForms
               Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
             </p>
             <p class='govuk-body'>
-            The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+            The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups" further down in this section.
             </p>
             <p class='govuk-body'>
               Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
@@ -72,7 +71,7 @@ class AwardYears::V2025::QaeForms
             </p>
 
             <p class="govuk-body">
-              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement.
             </p>
 
             <h3 class="govuk-heading-m">Evidence</h3>
@@ -85,6 +84,10 @@ class AwardYears::V2025::QaeForms
               The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
             </p>
 
+            <p class="govuk-body">
+              Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
+            </p>
+
             <h3 class="govuk-heading-m">Supporting materials </h3>
 
             <p class="govuk-body">
@@ -92,7 +95,7 @@ class AwardYears::V2025::QaeForms
             </p>
 
             <p class="govuk-body">
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             </p>
 
             <h3 class="govuk-heading-m">Small organisations</h3>
@@ -104,7 +107,7 @@ class AwardYears::V2025::QaeForms
             <h3 class="govuk-heading-m">Small initiatives</h3>
 
             <p class="govuk-body">
-              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
+              The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
             </p>
 
             <p class="govuk-body">
@@ -130,7 +133,7 @@ class AwardYears::V2025::QaeForms
 
               Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.
 
-              The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups further down in this section.
+              The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under “Disadvantaged groups" further down in this section.
 
               Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.
 
@@ -190,7 +193,7 @@ class AwardYears::V2025::QaeForms
 
               This is not an exhaustive list. However, if you are putting forward a group that is not on this list, you will have to explain why you believe the group you support should be considered disadvantaged.
 
-              Please note, to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement.
             )],
 
             [:bold, "Evidence"],
@@ -198,13 +201,15 @@ class AwardYears::V2025::QaeForms
               Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
 
               The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
+
+              Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.
             )],
 
             [:bold, "Supporting materials"],
             [:normal, %(
               To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.
 
-              Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
+              Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
             )],
 
             [:bold, "Small organisations"],
@@ -214,7 +219,7 @@ class AwardYears::V2025::QaeForms
 
             [:bold, "Small initiatives"],
             [:normal, %(
-              The King’s Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact – we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
+              The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.
 
               If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals.
             )],
@@ -347,7 +352,7 @@ class AwardYears::V2025::QaeForms
           ineligible_option "core_activity"
 
           pdf_context_with_header_blocks [
-            [:italic, "If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are discretionary or that are in partnership with businesses for whom it is discretionary."]
+            [:italic, "If you have selected option D, you are not eligible to apply for this award. Organisations whose core activity is to improve social mobility (including all education and training providers) are not eligible if applying based on business-as-usual activities. As an enterprise award, it is focused on recognising social mobility initiatives that are discretionary or that are in partnership with businesses for whom it is discretionary."],
           ]
         end
 
@@ -367,13 +372,13 @@ class AwardYears::V2025::QaeForms
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds who are leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and tracking the progress of employees from non-graduate routes."],
             ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility by encouraging supply chains to take action on social mobility."],
-            ["other_activity_types", "<strong>Other activity types - list the activities in C2.1</strong>"]
+            ["other_activity_types", "<strong>Other activity types - list the activities in C2.1</strong>"],
           ]
         end
 
         textarea :initiative_activities_other_specify, "Please list other activity types" do
           required
-          classes "sub-question js-conditional-question-checkbox"
+          classes "sub-question js-conditional-question-checkbox text-words-max"
           sub_ref "C 2.1"
           conditional :initiative_activities, "other_activity_types"
           words_max 50
@@ -385,7 +390,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_desc_short, "Provide a one-line description of your initiative." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.1"
           required
           context %(
@@ -401,14 +406,14 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_desc_medium, "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.2"
           required
           words_max 300
         end
 
         textarea :initiative_motivations, "Outline the factors or issues that motivated your organisation to provide the initiative." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.3"
           required
           context %(
@@ -426,7 +431,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_exemplary_evidence, "Describe what makes your initiative exemplary." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.4"
           required
           context %(
@@ -444,7 +449,7 @@ class AwardYears::V2025::QaeForms
         textarea :initiative_evidence_exemplary, "Provide evidence of what makes your initiative exemplary." do
           sub_ref "C 3.5"
           required
-          classes "sub-question"
+          classes "sub-question text-words-max"
           words_max 200
           context %(
             <p>To support your answer in C3.4, provide <strong>third-party evidence</strong> of what makes your initiative exemplary compared to other similar initiatives and how you are going 'above and beyond' compared to your sector. For example, provide links to independent evaluation reports, details of awards won, client feedback ratings and how that compares with other similar organisations.</p>
@@ -452,7 +457,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_day_to_day_running, "Who is responsible for and who runs the initiative day-to-day?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 3.6"
           required
           words_max 200
@@ -462,7 +467,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :goals_targets_monitor, "Describe what goals or targets you set and how you monitor them in the context of your initiative." do
-          classes "question"
+          classes "question text-words-max"
           ref "C 4"
           required
           words_max 500
@@ -487,7 +492,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :goals_targets_compare, "Describe how the goals or targets you set compare to the outcomes." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 4.1"
           required
           words_max 200
@@ -497,7 +502,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :addressing_shortfalls, "Explain any shortfalls and if you do anything to address them." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 4.2"
           required
           words_max 200
@@ -509,10 +514,14 @@ class AwardYears::V2025::QaeForms
         header :disadvantaged_participants_header, "The impact on participants." do
           ref "C 5"
           context %(
-            <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups at the start of this section.</p>
-            <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
+            <p class="govuk-body">For the purpose of this application, the disadvantaged participants are as defined in the list under “Disadvantaged groups" at the start of this section.</p>
+
             <p class="govuk-body">Your answer should consider the goals or targets that you have outlined in question C4.</p>
-            <p class="govuk-body">Please note, to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative.</p>
+
+            <p class="govuk-body">Please note that to be eligible for the award, the participants must be based in the UK and be over 16 years old at the start of the engagement with your initiative. If your organisation is based in the Channel Islands or Isle of Man, for the purpose of this award application, you should count only the participants who are located there (do not count participants who are in the UK).</p>
+
+            <p class="govuk-body">A participant may fit into more than one disadvantaged group category or activity type - you can count them more than once by including them in each relevant category. However, <strong>when you count the total, only count them once.</strong></p>
+
             <p class="govuk-body">Provide totals for at least the last two years (full 24 months) and no more than the last five years. Please cover the same number of years in all your answers to ensure consistency across all of them.</p>
           )
         end
@@ -529,7 +538,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
 
           auto_totals_column true
@@ -559,7 +568,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C2 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Activity type"
 
@@ -574,7 +583,7 @@ class AwardYears::V2025::QaeForms
             ["job_opportunities", "Job opportunities"],
             ["advancement", "Advancement"],
             ["advocacy_and_leadership", "Advocacy and leadership"],
-            ["other_activity_types", "Other activity types (as listed in C2.1)"]
+            ["other_activity_types", "Other activity types (as listed in C2.1)"],
           ]
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
@@ -595,7 +604,7 @@ class AwardYears::V2025::QaeForms
             ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
             ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
@@ -605,7 +614,7 @@ class AwardYears::V2025::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Other disadvantaged group"]
+            ["others", "Other disadvantaged group"],
           ]
         end
 
@@ -622,7 +631,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
 
@@ -637,7 +646,7 @@ class AwardYears::V2025::QaeForms
             ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
             ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
@@ -647,13 +656,14 @@ class AwardYears::V2025::QaeForms
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
             ["families_prisoners", "Families of prisoners"],
-            ["others", "Other disadvantaged group"]
+            ["others", "Other disadvantaged group"],
           ]
           column_widths({ 1 => 16, 2 => 16, 3 => 16, 4 => 16, 5 => 16 })
         end
 
         textarea :disadvantaged_group_not_in_list, "If you are putting forward a group that is not on this list, please provide details and explain why you believe the group you support should be considered disadvantaged." do
           sub_ref "C 5.4.1"
+          classes "text-words-max"
           context %(
             <p><em>
               Answer this question if you provided numbers for 'Other disadvantaged group' in question C5.4.
@@ -675,7 +685,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -694,7 +704,7 @@ class AwardYears::V2025::QaeForms
             ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
             ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
             ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
             ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
             ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
@@ -710,7 +720,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :disadvantaged_groups_impact_employment_explained, "If, in question C5.5, jobs retained for more than a year are significantly lower than those secured during the support or within a year of support ending, please explain why." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.5.1"
           required
           words_max 150
@@ -729,7 +739,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -741,19 +751,19 @@ class AwardYears::V2025::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
@@ -776,7 +786,7 @@ class AwardYears::V2025::QaeForms
           )
           pdf_context_with_header_blocks [
             [:italic, "You must answer C5.3 before answering this question. Also, please refer to the guidance under C5."],
-            [:normal, "If none, please enter '0'."]
+            [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
           subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
@@ -788,19 +798,19 @@ class AwardYears::V2025::QaeForms
 
           y_headings [
             ["ethnic", "Black, Asian and minority ethnic people, including Gypsy and Traveller people"],
-            [ "refugees", "Asylum seekers and refugees or children of refugees"],
-            [ "young_language", "Young people (over 16 years old) with English as a second language"],
-            [ "living_situation", "Long-term unemployed or people who grew up in workless households"],
+            ["refugees", "Asylum seekers and refugees or children of refugees"],
+            ["young_language", "Young people (over 16 years old) with English as a second language"],
+            ["living_situation", "Long-term unemployed or people who grew up in workless households"],
             ["people_low_incomes", "People on low incomes"],
-            [ "lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
-            [ "free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
-            [ "homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
-            [ "care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children\'s homes, or other arrangements outside the immediate or extended family"],
-            [ "young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
+            ["lone_parents", "Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them"],
+            ["free_meals", "People who received free school meals or if there are children in the person’s current household who receive free school meals"],
+            ["homeless_insecurely_housed", "Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing"],
+            ["care_leavers", "Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family"],
+            ["young_education", "Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that"],
             ["school_attainment", "People who attended schools with lower-than-average attainment or if there are children in the person’s current household who attend school with lower-than-average attainment"],
-            ["parents_qualification","People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
+            ["parents_qualification", "People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was a secondary school"],
             ["mental_disability", "People with a physical or mental disability that has a substantial and adverse long- term effect on a person’s ability to do normal daily activities"],
-            ["recovered","People recovering or who have recovered from addiction "],
+            ["recovered", "People recovering or who have recovered from addiction "],
             ["domestic_violence", "Survivors of domestic violence"],
             ["military_veterans", "Military veterans"],
             ["ex_offenders", "Ex-offenders"],
@@ -811,17 +821,17 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :disadvantaged_groups_numbers_explained, "Explain how you collected the impact numbers." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.8"
           required
-          context  %(
+          context %(
             <p>This may include but is not limited to internal records, third-party evidence, survey responses.</p>
           )
           words_max 150
         end
 
         textarea :initiative_qualitative_impact, "Provide qualitative evidence on the impact that your initiative has achieved for your participants." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.9"
           required
           context %(
@@ -848,7 +858,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_feedback, "Describe what feedback, if any, you sought on how your initiative could be improved. What, if any, of the suggested improvements have you implemented?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 5.10"
           required
           context %(
@@ -873,7 +883,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.1"
           required
           context %(
@@ -883,21 +893,21 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :initiative_member_engagement, "Explain if and how you engage the organisation’s members or workforce in the design and implementation of your initiative." do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.2"
           required
           words_max 200
         end
 
         textarea :initiative_long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.3"
           required
           words_max 200
         end
 
         textarea :initiative_organisation_benefits, "Are there any other benefits of the initiative to your organisation that you haven't yet outlined in the previous responses?" do
-          classes "sub-question"
+          classes "sub-question text-words-max"
           sub_ref "C 6.4"
           required
           context %(
@@ -916,6 +926,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_community_society_impact, "Impact on community and society." do
           sub_ref "C 7"
+          classes "text-words-max"
           required
           context %(
             <p>What is the impact of your initiative on the local community and at a regional and national level, and how is this exemplary?</p>
@@ -926,6 +937,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :initiative_investments, "Investments in the initiative" do
           sub_ref "C 8"
+          classes "text-words-max"
           required
           question_sub_title %{
             List all investments and reinvestments (capital and operating costs) in your promoting opportunity through social mobility initiative. Include the years in which they were made.

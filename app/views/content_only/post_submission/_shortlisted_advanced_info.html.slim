@@ -10,7 +10,7 @@ p.govuk-body
 
 p.govuk-body
   strong
-    = "You have to do so by #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(false)}."
+    = "You have to do so by #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(bold: false)}."
 
 p.govuk-body
   | Please read detailed instructions on how to do that now as it may take time to obtain the required documents. We are unable to accept late documents due to the strict assessment and judging timetable.
@@ -38,7 +38,7 @@ details.govuk-details data-module="govuk-details"
     p.govuk-body
       ' Please upload the Independent Accountant's Report provided by the accountant, by
       strong
-        = Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(false)
+        = Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(bold: false)
 
 
 
@@ -57,7 +57,7 @@ details.govuk-details data-module="govuk-details"
         li
           | Upload any latest financial statements and VAT returns by following the “Provide the latest financial information” link, which you can find next to each shortlisted application, which is listed below the instructions on this page.
         li
-          | Check how the estimated figures you provided in section C of your application form compare with the actuals. (If you do not have your filled-in application form handy, you can find it next to the shortlisted application, which is listed below the instructions on this page)
+          | Check how the estimated figures you provided in section D of your application form compare with the actuals. (If you do not have your filled-in application form handy, you can find it next to the shortlisted application, which is listed below the instructions on this page)
         li
           | You will have to create and submit a separate variance explanation document (via the “Provide the latest financial information” link), if:
           ul.govuk-list.no-bullet
@@ -69,4 +69,4 @@ details.govuk-details data-module="govuk-details"
     p.govuk-body
       ' Please complete these steps by
       strong
-        = Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(false)
+        = Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(bold: false)

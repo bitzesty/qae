@@ -1,12 +1,10 @@
 require "rails_helper"
-include Warden::Test::Helpers
 
-describe "Past Applications", %q{
+describe "Past Applications", '
 As an Applicant
 I want to be able to see Past Applications for previous years
 So that I see
-} do
-
+' do
   let(:previous_year) do
     Date.new(2020, 4, 1)
   end
@@ -27,12 +25,12 @@ So that I see
 
     settings.email_notifications.create!(
       kind: "winners_notification",
-      trigger_at: previous_year
+      trigger_at: previous_year,
     )
 
     settings.email_notifications.create!(
       kind: "unsuccessful_notification",
-      trigger_at: previous_year
+      trigger_at: previous_year,
     )
 
     settings.reload
@@ -60,9 +58,9 @@ So that I see
     describe "Successful Applications" do
       let!(:past_awarded_form_answer) do
         create(:form_answer, :innovation,
-                             :awarded,
-                             award_year: previous_award_year,
-                             user: user)
+          :awarded,
+          award_year: previous_award_year,
+          user: user)
       end
 
       before do

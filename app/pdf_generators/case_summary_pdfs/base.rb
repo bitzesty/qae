@@ -1,5 +1,4 @@
 class CaseSummaryPdfs::Base < ReportPdfBase
-
   attr_reader :form_answers
 
   def generate!
@@ -16,10 +15,10 @@ class CaseSummaryPdfs::Base < ReportPdfBase
       start_count_at: 1,
       at: [
         bounds.right - 50,
-        bounds.top + 20
+        bounds.top + 20,
       ],
       align: :right,
-      size: 14
+      size: 14,
     }
   end
 
@@ -45,18 +44,14 @@ class CaseSummaryPdfs::Base < ReportPdfBase
                       .group("form_answers.id")
                       .having("count(assessor_assignments) > 0")
                       .where("assessor_assignments.submitted_at IS NOT NULL AND assessor_assignments.position IN (3,4)")
-                      .order(Arel.sql("form_answers.award_year_id, form_answers.document #>> '{sic_code}'"))
+                      .order(Arel.sql("form_answers.award_year_id, form_answers.document #>> '{sic_code}', form_answers.company_or_nominee_name"))
                       .group("form_answers.id")
                       .where("form_answers.award_year_id =?", award_year.id)
 
     if options[:category] == "trade"
-      years_mode = options[:years_mode].to_s == '3' ? '3 to 5' : '6 plus'
+      years_mode = (options[:years_mode].to_s == "3") ? "3 to 5" : "6 plus"
       scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode}'")
     end
-
-    puts "*"*100
-    puts scope.count
-    puts "*"*100
 
     scope
   end

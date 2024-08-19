@@ -5,11 +5,10 @@ module Reviewable
     belongs_to :reviewable, polymorphic: true, optional: true
 
     validates :reviewable_type,
-              :reviewable_id,
-              :reviewed_at,
-              presence: true,
-              if: :reviewed?
-
+      :reviewable_id,
+      :reviewed_at,
+      presence: true,
+      if: :reviewed?
   end
 
   def reviewed?

@@ -19,12 +19,10 @@ module FormAnswerHelper
       else
         fa.flagged_critical_comments_count
       end
+    elsif current_subject.is_a?(Admin)
+      fa.flagged_critical_comments_count
     else
-      if current_subject.is_a?(Admin)
-        fa.flagged_critical_comments_count
-      else
-        fa.flagged_admin_comments_count
-      end
+      fa.flagged_admin_comments_count
     end
 
     current_user_class = current_subject.model_name.to_s.parameterize
@@ -32,15 +30,13 @@ module FormAnswerHelper
     flag_type = if subject
       "icon-flag-#{current_user_class}"
     else
-      current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
+      (current_user_class == "admin") ? "icon-flag-assessor" : "icon-flag-admin"
     end
 
     if comments_count > 0
-      content_tag :span, class: "icon-flagged #{flag_type}" do
-        "#{current_user_class} flags: ".html_safe +
-        content_tag(:span, class: "flag-count") do
-          comments_count.to_s
-        end
+      tag.span(class: "icon-flagged #{flag_type}") do
+        concat("#{current_user_class} flags: ")
+        concat(tag.span(comments_count.to_s, class: "flag-count"))
       end
     end
   end
@@ -56,10 +52,10 @@ module FormAnswerHelper
   def application_comments(comments_count)
     return unless comments_count > 0
 
-    output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
-    output += "#{comments_count}"
-    output += "</span></span>"
-    output.html_safe
+    tag.span(class: "icon-comment") do
+      concat("Comments: ")
+      concat(tag.span(comments_count.to_s, class: "comment-count"))
+    end
   end
 
   def award_types_collection(year)
@@ -74,9 +70,9 @@ module FormAnswerHelper
 
   def each_index_or_empty(collection, attrs, &block)
     if collection.any?
-      collection.each_with_index &block
+      collection.each_with_index(&block)
     else
-      block.(attrs, 0)
+      yield(attrs, 0)
     end
   end
 

@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2024::QaeForms
   class << self
     def innovation_step2
@@ -68,12 +67,12 @@ class AwardYears::V2024::QaeForms
 
         text :other_organisation_type, "" do
           classes "text-words-max"
-          context %{
+          context %(
             <p class="govuk-body">Please specify</p>
-          }
-          pdf_context %{
+          )
+          pdf_context %(
             <p class="govuk-body">Please specify if selected Other</p>
-          }
+          )
           conditional :organisation_type, :other
           text_words_max 50
         end
@@ -141,7 +140,7 @@ class AwardYears::V2024::QaeForms
           required
           ref "B 6"
           pdf_context_with_header_blocks [
-            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"],
           ]
           county_context %(
             <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
@@ -153,7 +152,7 @@ class AwardYears::V2024::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
           sub_fields_words_max 50
         end
@@ -184,7 +183,7 @@ class AwardYears::V2024::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -363,7 +362,7 @@ class AwardYears::V2024::QaeForms
             ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper or publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

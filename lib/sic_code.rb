@@ -3,11 +3,11 @@ require "csv"
 class SicCode < ActiveYaml::Base
   REGEX = /\A\d{4}(\/\d{1})?\z/ # based on the sic codes spreadsheet
 
-  set_root_path "#{Rails.root}/db/fixtures"
+  set_root_path Rails.root.join("db/fixtures")
   set_filename "sic_codes"
 
-  def self.load_csv(csv_filename = "#{Rails.root}/sic_codes.csv")
-    csv = CSV.parse File.open(csv_filename).read
+  def self.load_csv(csv_filename = Rails.root.join("sic_codes.csv"))
+    csv = CSV.parse File.read(csv_filename)
 
     headers = {
       0 => "code",
@@ -17,10 +17,10 @@ class SicCode < ActiveYaml::Base
       4 => "year3",
       5 => "year4",
       6 => "year5",
-      7 => "year6"
+      7 => "year6",
     }
 
-    res = csv[1..-1].map do |row|
+    res = csv[1..].map do |row|
       out = {}
       headers.each do |index, attr_name|
         out[attr_name] = row[index]
@@ -28,7 +28,7 @@ class SicCode < ActiveYaml::Base
       out
     end
 
-    file = File.open("#{Rails.root}/sic_codes.yml", "w+")
+    file = File.open(Rails.root.join("sic_codes.yml"), "w+")
     file.write(res.to_yaml)
     file.close
   end
@@ -40,11 +40,11 @@ class SicCode < ActiveYaml::Base
     "1*" => "Those SIC codes for which the sector is not covered in PRODCOM database,
     UK exports published as zero, no principal products, UK sales and/or exports not
     available or suppressed implying ratios not defined or no principal products for
-    some years and ratios smaller than 0.5%"
+    some years and ratios smaller than 0.5%",
   }
 
   def by_year(year)
-    public_send("year#{year}")
+    public_send(:"year#{year}")
   end
 
   def name

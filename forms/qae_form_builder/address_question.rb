@@ -17,7 +17,7 @@ class QaeFormBuilder
           { street: "Street", ignore_validation: true },
           { city: "Town or city" },
           { country: "Country" },
-          { postcode: "Postcode" }
+          { postcode: "Postcode" },
         ]
       end
     end
@@ -27,7 +27,7 @@ class QaeFormBuilder
       # are rendering together in same block
       # and the :building is the first one
       sub_fields.reject do |f|
-        f.keys.include?(:street)
+        f.key?(:street)
       end.map do |f|
         [f.keys.first, f.values.first]
       end

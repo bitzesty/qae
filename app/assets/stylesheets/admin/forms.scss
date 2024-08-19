@@ -10,7 +10,7 @@
   }
 }
 
-.has-royal-family-connections-wrapper {
+.has-royal-family-connections-wrapper, .disabled-access-wrapper {
   padding-left: pxToRem(20);
 }
 
@@ -38,5 +38,24 @@ input.form-control, select.form-control,
 .btn-admin-group {
   & > .btn {
     margin-right: 15px !important;
+  }
+}
+
+.deactivate-assessors__radio-inputs {
+  span.govuk-radios__item {
+    min-height: 24px;
+    :hover {
+      background-color: #e6e6e6;
+      border-color: grey;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 5px;
+      margin-left: -5px;
+      padding-left: 24px;
+      padding-right: 4px;
+    }
+    input {
+      top: 1.5px;
+    }
   }
 }

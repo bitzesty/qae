@@ -4,104 +4,104 @@ class Reports::RegisteredUsers
   MAPPING = [
     {
       label: "URN",
-      method: :urn
+      method: :urn,
     },
     {
       label: "ApplicantName",
-      method: :company_or_nominee_name
+      method: :company_or_nominee_name,
     },
     {
       label: "RegisteredUserId",
-      method: :user_id
+      method: :user_id,
     },
     {
       label: "RegisteredUserTitle",
-      method: :contact_title
+      method: :contact_title,
     },
     {
       label: "RegisteredUserFirstname",
-      method: :contact_first_name
+      method: :contact_first_name,
     },
     {
       label: "RegisteredUserSurname",
-      method: :contact_surname
+      method: :contact_surname,
     },
     {
       label: "RegisteredUserEmail",
-      method: :contact_email
+      method: :contact_email,
     },
     {
       label: "RegisteredUserTelephone",
-      method: :contact_telephone
+      method: :contact_telephone,
     },
     {
       label: "RegisteredUserCompany",
-      method: :company_name
+      method: :company_name,
     },
     {
       label: "FormType",
-      method: :award_type
+      method: :award_type,
     },
     {
       label: "PercentageComplete",
-      method: :percentage_complete
+      method: :percentage_complete,
     },
     {
       label: "Section A",
-      method: :section1
+      method: :section1,
     },
     {
       label: "Section B",
-      method: :section2
+      method: :section2,
     },
     {
       label: "Section C",
-      method: :section3
+      method: :section3,
     },
     {
       label: "Section D",
-      method: :section4
+      method: :section4,
     },
     {
       label: "Section E",
-      method: :section5
+      method: :section5,
     },
     {
       label: "Section F",
-      method: :section6
+      method: :section6,
     },
     {
       label: "Created",
-      method: :created_at
+      method: :created_at,
     },
     {
       label: "UserCreationDate",
-      method: :user_creation_date
+      method: :user_creation_date,
     },
     {
       label: "SIC code",
-      method: :sic_code
+      method: :sic_code,
     },
     {
       label: "Region",
-      method: :business_region
+      method: :business_region,
     },
     {
       label: "Employees",
-      method: :employees
+      method: :employees,
     },
     {
       label: "KAOPermission",
-      method: :qao_permission
+      method: :qao_permission,
     },
     {
       label: "HowDidYouHearAboutKA",
-      method: :qae_info_source
+      method: :qae_info_source,
     },
     {
       label: "HowDidYouHearAboutKAOther",
-      method: :qae_info_source_other
-    }
+      method: :qae_info_source_other,
+    },
   ]
 
   def initialize(year)
@@ -120,10 +120,10 @@ class Reports::RegisteredUsers
 
   def scoped_collection
     @year.form_answers.preload(:user,
-                               :assessor_assignments,
-                               :primary_assessor,
-                               :secondary_assessor,
-                               :form_answer_progress)
+      :assessor_assignments,
+      :primary_assessor,
+      :secondary_assessor,
+      :form_answer_progress)
   end
 
   def mapping

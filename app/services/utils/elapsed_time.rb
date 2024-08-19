@@ -9,7 +9,7 @@ module Utils
     end.freeze
 
     def self.call
-      @clock.()
+      @clock.call
     end
   end
 end

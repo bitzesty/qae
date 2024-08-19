@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2018::QaeForms
   class << self
     def promotion_step6
@@ -17,7 +16,7 @@ class AwardYears::V2018::QaeForms
           required
           sub_fields([
             { first_name: "First name" },
-            { last_name: "Surname" }
+            { last_name: "Surname" },
           ])
         end
 
@@ -28,7 +27,7 @@ class AwardYears::V2018::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
         end
 

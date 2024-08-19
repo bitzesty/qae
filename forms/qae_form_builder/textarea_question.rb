@@ -3,18 +3,20 @@ class QaeFormBuilder
     def errors
       result = super
 
-      length = ActionView::Base.full_sanitizer.sanitize(
-        question.input_value.to_s
-      ).split(" ")
-       .reject do |a|
-        a.blank?
-      end.length
+      length = ActionView::Base.full_sanitizer.sanitize(question.input_value.to_s)
+        .split(" ")
+        .count { |a| a.present? }
 
       limit = question.delegate_obj.words_max
 
-      if limit && limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
+      if limit && limit_with_buffer(limit) && length && length > (limit_with_buffer(limit) - 1)
         result[question.hash_key] ||= ""
-        result[question.hash_key] << " Exceeded #{limit} words limit."
+        error = if limit_with_buffer(limit) > 15
+          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} words or less (as we allow 10% leeway)."
+        else
+          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} word or less."
+        end
+        result[question.hash_key] << error
       end
 
       result

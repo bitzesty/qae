@@ -42,7 +42,7 @@ class Form::SupportersController < Form::BaseController
       first_name: @supporter.first_name,
       last_name: @supporter.last_name,
       relationship_to_nominee: @supporter.relationship_to_nominee,
-      email: @supporter.email
+      email: @supporter.email,
     }
 
     supporters << new_supporter
@@ -61,11 +61,7 @@ class Form::SupportersController < Form::BaseController
   end
 
   def supporters_doc
-    if @form_answer.document["supporters"].present?
-      @form_answer.document["supporters"]
-    else
-      []
-    end
+    @form_answer.document["supporters"].presence || []
   end
 
   def supporter_params
@@ -73,7 +69,7 @@ class Form::SupportersController < Form::BaseController
       :first_name,
       :last_name,
       :relationship_to_nominee,
-      :email
+      :email,
     )
   end
 end

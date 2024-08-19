@@ -6,7 +6,7 @@ class QaeFormBuilder
       if question.required?
         question.required_sub_fields.each do |sub_field|
           suffix = sub_field.keys[0]
-          if !question.input_value(suffix: suffix).present?
+          if question.input_value(suffix: suffix).blank?
             result[question.hash_key(suffix: suffix)] ||= ""
             result[question.hash_key(suffix: suffix)] << " Can't be blank."
           end
@@ -33,7 +33,7 @@ class QaeFormBuilder
   end
 
   class UserInfoQuestionBuilder < QuestionBuilder
-    def sub_fields fields=[]
+    def sub_fields fields = []
       @q.sub_fields = fields
     end
   end

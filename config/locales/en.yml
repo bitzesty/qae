@@ -105,6 +105,10 @@ en:
           attributes:
             position:
               blank: 'is empty - it is a required field and an option should be selected from the following list'
+        form_answer:
+          attributes:
+            nickname:
+              blank: Reference is required and must be filled in.
 
   time:
     formats:
@@ -273,7 +277,7 @@ en:
       queen_awards_question_additional_context: |
         If you won the award in the previous 4 years you can only apply for an International Trade Award on an Outstanding Short-Term Growth basis, and you need to be able to demonstrate that your international trade has resulted in outstanding year-on-year growth in the last 3 years with no dips.
 
-        If you won the award in the last year, unfortunately, you cannot apply for the International Trade Award this year. If your international trade continues to result in outstanding year-on-year growth, you can apply again in 2024 for an award to be given in 2025 (on Outstanding Short-Term Growth over a 3 years basis), providing you include two new years of trading results in your application.
+        If you won the award in the last year, unfortunately, you cannot apply for the International Trade Award this year. If your international trade continues to result in outstanding year-on-year growth, you can apply again in %{next_year} for an award to be given in %{two_years} (on Outstanding Short-Term Growth over a 3 years basis), providing you include two new years of trading results in your application.
     development:
       years_question_additional_context: 'If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years.'
     audit_certificates:
@@ -354,19 +358,19 @@ en:
       awarded: Awarded
       not_awarded: Not awarded
     state_short:
-      eligibility_in_progress: Eligibility in progress
-      application_in_progress: Application in progress
-      submitted: Submitted
-      withdrawn: Withdrawn/Ineligible
-      not_eligible: Not eligible
-      not_submitted: Not submitted
-      assessment_in_progress: Assessment in progress
-      disqualified: Disqualified - <br /> no additional <br /> financials
-      recommended: Recommended
-      reserved: Reserved
-      not_recommended: Not recommended
-      awarded: Awarded
-      not_awarded: Not awarded
+      eligibility_in_progress_html: Eligibility in progress
+      application_in_progress_html: Application in progress
+      submitted_html: Submitted
+      withdrawn_html: Withdrawn/Ineligible
+      not_eligible_html: Not eligible
+      not_submitted_html: Not submitted
+      assessment_in_progress_html: Assessment in progress
+      disqualified_html: Disqualified - <br /> no additional <br /> financials
+      recommended_html: Recommended
+      reserved_html: Reserved
+      not_recommended_html: Not recommended
+      awarded_html: Awarded
+      not_awarded_html: Not awarded
   confirmation_form:
     errors:
       activate_assessor: "You must select whether you want to activate this assessor or not."

@@ -14,10 +14,10 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
     invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 00))
 
     attendees_info_due = settings.deadlines.where(
-      kind: "buckingham_palace_reception_attendee_information_due_by"
+      kind: "buckingham_palace_reception_attendee_information_due_by",
     ).first
     attendees_info_due.update_column(:trigger_at,
-      DateTime.new(Date.current.year, 5, 6, 00, 00)
+      DateTime.new(Date.current.year, 5, 6, 00, 00),
     )
 
     settings.reload
@@ -30,7 +30,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
 
     # this field is no longer used in 2019 awards, but we're using closed award year here
     # can be simplified when 2020 awards kick in
-    fa.document.merge!("queen_award_holder" => "no")
+    fa.document["queen_award_holder"] = "no"
     fa.save!
 
     fa
@@ -50,7 +50,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
 
   let(:mail) do
     AccountMailers::BuckinghamPalaceInviteMailer.invite(
-      form_answer.id
+      form_answer.id,
     )
   end
 

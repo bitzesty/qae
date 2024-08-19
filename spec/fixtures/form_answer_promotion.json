@@ -2,6 +2,7 @@
 "supporters": "[\"{\\\"supporter_id\\\":\\\"\\\",\\\"first_name\\\":\\\"\\\",\\\"last_name\\\":\\\"\\\",\\\"relationship_to_nominee\\\":\\\"\\\",\\\"email\\\":\\\"\\\"}\",\"{\\\"supporter_id\\\":33,\\\"first_name\\\":\\\"1\\\",\\\"last_name\\\":\\\"2\\\",\\\"relationship_to_nominee\\\":\\\"3\\\",\\\"email\\\":\\\"4@ex.com\\\"}\",\"{\\\"supporter_id\\\":34,\\\"first_name\\\":\\\"1\\\",\\\"last_name\\\":\\\"2\\\",\\\"relationship_to_nominee\\\":\\\"3\\\",\\\"email\\\":\\\"4@ex.com\\\"}\"]",
 "former_name": "1",
 "website_url": "www.example.com",
+"social_media_links": "\u003cp\u003eFacebook: https://www.facebook.com/MassiveDynamics\u003c/p\u003e\r\n\r\n\u003cp\u003eLinkedIn: https://www.linkedin.com/company/massive-dynamics/mycompany/\u003c/p\u003e\r\n\r\n\u003cp\u003eInstagram: https://www.instagram.com/massivedynamics/\u003c/p\u003e\r\n\r\n\u003cp\u003eYouTube: https://www.youtube.com/@massive-dynamics\u003c/p\u003e\r\n\r\n\u003cp\u003e\r\n",
 "award_holder": "no",
 "nominee_email": "testo@example.com",
 "nominee_phone": "123123",

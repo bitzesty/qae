@@ -1,5 +1,5 @@
 require "rails_helper"
-include Warden::Test::Helpers
+
 Warden.test_mode!
 
 describe "Eligibility forms" do
@@ -16,7 +16,7 @@ describe "Eligibility forms" do
     it "process the eligibility form", js: true do
       visit dashboard_path
       new_application("International Trade Award")
-      # fill_in("nickname", with: "trade nick")
+      # fill_in("award-reference", with: "trade nick")
       click_button("Start eligibility questionnaire")
       click_link("Continue to eligibility questions")
 
@@ -31,10 +31,10 @@ describe "Eligibility forms" do
         "Yes",
         "Yes",
         "No",
-        "Yes"
+        "Yes",
       ])
       expect(page).to have_content("You are eligible to begin your application")
-      first('.previous-answers').click_link("Continue")
+      first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an International Trade Award.")
     end
   end
@@ -43,7 +43,7 @@ describe "Eligibility forms" do
     it "process the eligibility form" do
       visit dashboard_path
       new_application("Innovation Award")
-      # fill_in("nickname", with: "innovation nick")
+      fill_in("award-reference", with: "innovation nick")
       click_button("Save and start eligibility questionnaire")
       click_link("Continue to eligibility questions")
       form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes", "Yes", "Yes", "Yes"])
@@ -54,7 +54,7 @@ describe "Eligibility forms" do
       form_choice("Yes")
       form_choice("Yes")
       expect(page).to have_content("You are eligible to begin your application")
-      first('.previous-answers').click_link("Continue")
+      first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an Innovation Award.")
     end
   end
@@ -63,7 +63,7 @@ describe "Eligibility forms" do
     it "process the eligibility form" do
       visit dashboard_path
       new_application("Sustainable Development Award")
-      # fill_in "nickname", with: "development nick"
+      # fill_in("award-reference", with: "development nick")
       click_button "Start eligibility questionnaire"
       click_link("Continue to eligibility questions")
       form_choice([
@@ -77,10 +77,10 @@ describe "Eligibility forms" do
         "Yes",
         "Yes",
         "Yes",
-        "Yes"
+        "Yes",
       ])
       expect(page).to have_content("You are eligible to begin your application")
-      first('.previous-answers').click_link("Continue")
+      first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for a Sustainable Development Award.")
     end
   end
@@ -105,5 +105,5 @@ end
 
 def new_application(type)
   header = find(".applications-list .govuk-summary-list__row .govuk-summary-list__key .govuk-heading-s", text: type)
-  header.find(:xpath, '../..').first("a").click
+  header.find(:xpath, "../..").first("a").click
 end

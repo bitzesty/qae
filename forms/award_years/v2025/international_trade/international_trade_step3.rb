@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class AwardYears::V2025::QaeForms
   class << self
     def trade_step3
@@ -8,7 +7,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :trade_business_as_a_whole, "Describe your business as a whole." do
-          classes "word-max-strict"
+          classes "word-max-strict text-words-max"
           sub_ref "C 1"
           required
           rows 5
@@ -16,7 +15,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.1"
           required
           rows 5
@@ -24,7 +23,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           ref "C 2"
           required
           rows 5
@@ -32,7 +31,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :trade_description_short, "Provide a one-line description of your international trade." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.1"
           context %(
             <p>
@@ -69,7 +68,7 @@ class AwardYears::V2025::QaeForms
           )
           check_options [
             ["products", "Products"],
-            ["services", "Services"]
+            ["services", "Services"],
           ]
           application_type_question true
         end
@@ -98,7 +97,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :trade_plans_desc, "Describe your international trade strategy." do
           ref "C 3"
-          classes "word-max-strict"
+          classes "word-max-strict text-words-max"
           required
           context %(
             <p>
@@ -132,7 +131,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :actual_planned_performance_comparison, "Please explain how your actual performance compared to your planned performance as outlined in question C3." do
           sub_ref "C 3.1"
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           required
           rows 3
           words_max 250
@@ -141,16 +140,14 @@ class AwardYears::V2025::QaeForms
         header :overseas_markets_header, "Overseas Markets" do
           ref "C 4"
           context %(
-            <p class="govuk-body">
-              If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?
-            </p>
+            <p class="govuk-body">If applicable, demonstrate why penetration of a particular market represents a significant achievement. For example, are you the first, leading, fastest growing UK (or Channel Islands or Isle of Man) exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?</p>
           )
         end
 
         textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
           required
           sub_ref "C 4.1"
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           context %(
             <p>
               Include evidence of how you segment and manage geographical regions to demonstrate your company's focus. Please supply market share information.
@@ -161,7 +158,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (individual countries) during the final year of your entry?" do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 4.2"
           required
           rows 1
@@ -169,7 +166,7 @@ class AwardYears::V2025::QaeForms
         end
 
         textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry and their contribution to total overseas sales." do
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 4.3"
           required
           rows 3
@@ -184,12 +181,12 @@ class AwardYears::V2025::QaeForms
           )
           check_options [
             ["franchise", "As a franchise"],
-            ["other", "Other business models"]
+            ["other", "Other business models"],
           ]
         end
 
-        textarea :operate_model_benefits, "Explain your franchise or other business models and the rationale for this. Describe the benefits this brings to the UK." do
-          classes "sub-question word-max-strict"
+        textarea :operate_model_benefits, "Explain your franchise or other business models and the rationale for this. Describe the benefits this brings to the UK (or Channel Islands or Isle of Man)." do
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 5.1"
           required
           rows 3
@@ -198,7 +195,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :economic_uncertainty_response, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
           sub_ref "C 6"
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           required
           context %(
             <ul>

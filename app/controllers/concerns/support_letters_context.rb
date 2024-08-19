@@ -4,9 +4,9 @@ module SupportLettersContext
 
     if support_letter_attachment.present?
       send_data support_letter_attachment.attachment.read,
-                filename: support_letter_attachment.original_filename,
-                disposition: "attachment"
-      return
+        filename: support_letter_attachment.original_filename,
+        disposition: "attachment"
+      nil
     else
       render "admin/support_letters/show"
     end

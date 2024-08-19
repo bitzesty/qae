@@ -3,11 +3,11 @@ h2
 ul.download-list
   li.download-item
     p.download-item__title
-      ' Registered users entry
+      ' Users of started applications
     / p.download-item__description
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 
-    = link_to "Download", admin_report_path("registered-users", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Registered users entry" }
+    = link_to "Download", admin_report_path("registered-users", format: :csv, year: @award_year.year), class: "download-link", aria: { label: "Download Users of started applications" }
 
 
   li.download-item
@@ -41,7 +41,7 @@ ul.download-list
 
   li.download-item
     p.download-item__title
-      ' Reception Buckingham Palace
+      ' Royal Reception guest list
     / p.download-item__description
       ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 

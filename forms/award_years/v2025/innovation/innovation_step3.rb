@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2025::QaeForms
   class << self
     def innovation_step3
@@ -30,14 +29,14 @@ class AwardYears::V2025::QaeForms
           check_options [
             ["product", "A product"],
             ["service", "A service"],
-            ["business_model", "A business model or process"]
+            ["business_model", "A business model or process"],
           ]
           application_type_question true
         end
 
         textarea :innovation_desc_short, "Provide a one-line description of your innovative product, service, business model or process." do
           sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.2"
           required
           context %(
@@ -106,7 +105,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_hold_existing_patent_details, "Provide a link to your published patent document. If you do not have a patent, please explain the reasons why not." do
           sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.4.1"
           required
           context %(
@@ -127,11 +126,14 @@ class AwardYears::V2025::QaeForms
           sub_ref "C 1.5"
           required
           yes_no
+          context %(
+            <p>If your organisation is based in the Channel Islands or Isle of Man, answer if the whole of your innovation was conceived and developed in the Channel Islands or Isle of Man (if parts of it were conceived or developed in the UK, answer "No").</p>
+          )
         end
 
         textarea :innovation_other_countries_it_was_developed, "Describe in what other countries and, if applicable, by what parties it was developed." do
           sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.5.1"
           required
           conditional :innovation_conceived_and_developed, :no
@@ -159,7 +161,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_contributors, "Please enter their names." do
           sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.6.1"
           required
           conditional :innovation_joint_contributors, :yes
@@ -182,7 +184,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_external_contributors, "Name any external organisations or individuals that contributed to your innovation and explain their contributions." do
           sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.7.1"
           required
           conditional :innovation_any_contributors, :yes
@@ -213,7 +215,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.7.3"
           required
           conditional :innovation_any_contributors, :yes
@@ -232,7 +234,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
           sub_section :innovation_background_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 1.8.1"
           required
           conditional :innovation_under_license, :yes
@@ -243,10 +245,10 @@ class AwardYears::V2025::QaeForms
         header :innovation_timeline_header, "Innovation development" do
           ref "C 2"
           linkable true
-          context %{
+          context %(
             <p class="govuk-body">
               The questions in subsection C2 help the assessors understand the development of your innovation.
-          }
+          )
         end
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
@@ -255,7 +257,7 @@ class AwardYears::V2025::QaeForms
           sub_ref "C 2.1"
           required
           min 2000
-          max 2020
+          max -> { Time.current.year }
         end
 
         date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
@@ -276,7 +278,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.3"
           required
           context %(
@@ -290,7 +292,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_desc_long, "Describe your innovation and why it is innovative." do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.4"
           required
           context %(
@@ -341,7 +343,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_selection_details, "How did you select this innovation as the one to satisfy the gap in the market?" do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.5"
           required
           context %(
@@ -355,7 +357,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_overcomes_issues, "Describe any challenges you encountered in developing your innovation and how you overcame them." do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.6"
           required
           context %(
@@ -369,7 +371,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_strategies, "Explain the market opportunities and what strategies you used to penetrate the market." do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.7"
           required
           context %(
@@ -383,7 +385,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_competitors, "Who offers products, services or business models that compete with yours?" do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.8"
           required
           context %(
@@ -397,7 +399,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.9"
           required
           context %(
@@ -411,7 +413,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_additional_comments, "Additional comments (optional)" do
           sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.10"
           context %(
             <p>
@@ -425,7 +427,7 @@ class AwardYears::V2025::QaeForms
         header :innovation_value_add_header, "Innovation value-add" do
           ref "C 3"
           linkable true
-          context %{
+          context %(
             <p class="govuk-body">
               The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
             </p>
@@ -435,7 +437,7 @@ class AwardYears::V2025::QaeForms
             <p class="govuk-body">
               You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
             </p>
-          }
+          )
           pdf_context_with_header_blocks [
             [:normal, %(
               The questions in subsection C3 give you the opportunity to describe how your innovation adds value beyond the direct financial impact.
@@ -443,13 +445,13 @@ class AwardYears::V2025::QaeForms
               Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
 
               You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
-            )]
+            )],
           ]
         end
 
         textarea :innovation_befits_details_business, "How has the innovation added value to your business?" do
           sub_section :innovation_value_add_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 3.1"
           required
           context %(
@@ -504,7 +506,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :innovation_befits_details_customers, "Does the innovation benefit your customers, and if so, how?" do
           sub_section :innovation_value_add_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 3.2"
           required
           context %(
@@ -550,7 +552,7 @@ class AwardYears::V2025::QaeForms
 
         textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation benefit others, and if so, how and to whom?" do
           sub_section :innovation_value_add_header
-          classes "sub-question word-max-strict"
+          classes "sub-question word-max-strict text-words-max"
           sub_ref "C 3.3"
           required
           context %(

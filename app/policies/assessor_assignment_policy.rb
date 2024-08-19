@@ -34,6 +34,6 @@ class AssessorAssignmentPolicy < ApplicationPolicy
 
   def can_unlock?
     record.locked? &&
-    admin_or_lead?
+      admin_or_lead?
   end
 end

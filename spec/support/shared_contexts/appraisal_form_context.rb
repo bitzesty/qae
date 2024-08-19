@@ -72,14 +72,14 @@ def assert_rag_change(section_id, header_id)
 
   expect(page).to have_css(section_id) # Forces capybara to wait for the section to become visible
   within section_id do
-    expect(page).to have_selector(rag, text: "Select RAG", count: 4)
+    expect(page).to have_selector(rag, text: "Select evaluation", count: 4)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
 
     first(".btn-rag").click
     find(".dropdown-menu .rag-negative").click
     wait_for_ajax
-    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
-    expect(page).to have_selector(rag, text: "Red", count: 1)
+    expect(page).to have_selector(rag, text: "Select evaluation", count: 3)
+    expect(page).to have_selector(rag, text: "Does not meet expectations", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
   end
 
@@ -89,8 +89,8 @@ def assert_rag_change(section_id, header_id)
   take_a_nap
 
   within section_id do
-    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
-    expect(page).to have_selector(rag, text: "Red", count: 1)
+    expect(page).to have_selector(rag, text: "Select evaluation", count: 3)
+    expect(page).to have_selector(rag, text: "Does not meet expectations", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
   end
   visit show_path
@@ -100,8 +100,8 @@ def assert_description_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
   take_a_nap
 
-  selector = section_id == moderated ? "assessor_assignment_verdict_desc" : "assessor_assignment_level_of_innovation_desc"
-  parent_selector = section_id == moderated ? ".form-overall-verdict" : ".form-level-of-innovation"
+  selector = (section_id == moderated) ? "assessor_assignment_verdict_desc" : "assessor_assignment_level_of_innovation_desc"
+  parent_selector = (section_id == moderated) ? ".form-overall-verdict" : ".form-level-of-innovation"
 
   within section_id do
     within ".#{selector}" do
@@ -132,13 +132,12 @@ def assert_description_change(section_id, header_id)
 end
 
 def assert_multiple_description_change(section_id, header_id, prefix)
-  text = "should NOT be saved"
-  text2 = "should be saved"
+  text = "should be saved"
   find("#{header_id} .panel-title a").click
   take_a_nap
 
   within section_id do
-    fill_in("#{prefix}_verdict", with: text2)
+    fill_in("#{prefix}_verdict", with: text)
     all(".form-cancel-link").each(&:click)
     all(".form-edit-link").last.click
     all(".form-save-link").last.click
@@ -150,11 +149,11 @@ def assert_multiple_description_change(section_id, header_id, prefix)
   take_a_nap
 
   within section_id do
-    expect(page).to have_content(text2)
+    expect(page).to have_content(text)
 
     all(".form-edit-link").last.click
 
-    expect(page.find("##{prefix}_verdict").text).to eq  text2
+    expect(page.find("##{prefix}_verdict").text).to eq text
   end
 end
 

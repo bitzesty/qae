@@ -10,7 +10,7 @@ module FinancialTable
   def financial_table_headers
     if financial_year_changed_dates?
       financial_table_changed_dates_headers
-    elsif (financial_date_day.to_i > 0 && financial_date_month.to_i > 0)
+    elsif financial_date_day.to_i > 0 && financial_date_month.to_i > 0
       financial_table_pointer_headers
     else
       financial_table_default_headers
@@ -30,15 +30,17 @@ module FinancialTable
 
       res.shift(diff.abs) if diff.negative?
 
-      diff.times do 
-        date_to_calculate_from = res.first
-        if Utils::Date.valid?(date_to_calculate_from)
-          date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
-          res.unshift(date) 
-        else
-          res.unshift(nil)
+      if diff.positive?
+        diff.times do
+          date_to_calculate_from = res.first
+          if Utils::Date.valid?(date_to_calculate_from)
+            date = Date.parse(date_to_calculate_from).years_ago(1).strftime("%d/%m/%Y")
+            res.unshift(date)
+          else
+            res.unshift(nil)
+          end
         end
-      end if diff.positive?
+      end
     end
 
     if res.any?(&:present?)
@@ -55,7 +57,7 @@ module FinancialTable
     # Probably better just to check if date is valid and only then push as correct one
     # Should help to avoid all that weirdness when trying to display invalid dates
     #
-    corrected_result = res.each_with_object([]) do |entry, memo|
+    res.each_with_object([]) do |entry, memo|
       memo << if ::Utils::Date.valid?(entry)
         Date.parse(entry).strftime("%d/%m/%Y")
       else
@@ -134,27 +136,25 @@ module FinancialTable
   def financial_date_pointer_value
     FinancialYearPointer.new(
       question: financial_date_pointer,
-      financial_pointer: financial_pointer
+      financial_pointer: financial_pointer,
     ).latest_year_label
   end
 
   def financial_years_number
     @financial_years_number ||=
-      begin
-        if financial_date_selector_value.present?
-          if one_option_question_or_development?
-            "3"
-          elsif form_answer.innovation?
-            innovation_years_number
-          else
-            financial_date_selector.ops_values[financial_date_selector_value]
-          end
-        elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
-          financial_pointer.period_length
+      if financial_date_selector_value.present?
+        if one_option_question_or_development?
+          "3"
+        elsif form_answer.innovation?
+          innovation_years_number
         else
-          # If not selected yet, render last option as default
-          financial_date_selector.ops_values.values.last
+          financial_date_selector.ops_values[financial_date_selector_value]
         end
+      elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
+        financial_pointer.period_length
+      else
+        # If not selected yet, render last option as default
+        financial_date_selector.ops_values.values.last
       end
   end
 
@@ -166,7 +166,8 @@ module FinancialTable
     question.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestionDecorator) ||
       question.is_a?(QaeFormBuilder::OneOptionByYearsQuestionDecorator) ||
       question.is_a?(QaeFormBuilder::OneOptionByYearsLabelQuestion) ||
-      question.is_a?(QaeFormBuilder::OneOptionByYearsQuestion)
+      question.is_a?(QaeFormBuilder::OneOptionByYearsQuestion) ||
+      (question.delegate_obj.is_a?(QaeFormBuilder::FinancialSummaryQuestion) && question.one_option?)
   end
 
   def innovation_years_number
@@ -174,13 +175,13 @@ module FinancialTable
     form = question.form
     years = 5
 
+    # rubocop:disable Lint/EnsureReturn
     begin
       result = question.by_year_conditions.find do |c|
-        date = []
         q = form[c.question_key]
 
-        q.required_sub_fields.each do |sub|
-          date << doc.dig("#{q.key}_#{sub.keys[0]}")
+        date = q.required_sub_fields.map do |sub|
+          doc.dig("#{q.key}_#{sub.keys[0]}")
         end
 
         date = Date.parse(date.join("/"))
@@ -194,5 +195,6 @@ module FinancialTable
     ensure
       return years.to_s
     end
+    # rubocop:enable Lint/EnsureReturn
   end
 end

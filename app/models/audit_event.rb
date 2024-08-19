@@ -23,11 +23,11 @@ class AuditEvent
   end
 
   def description_for_action_type(action_type)
-    I18n.translate("audit_logs.action_types.#{action_type}")
+    I18n.t("audit_logs.action_types.#{action_type}")
   end
 
   def user_string
-    user_type = subject.class.name == "User" ? "Applicant" : subject.class.name
+    user_type = subject.instance_of?(::User) ? "Applicant" : subject.class.name
     "#{subject.full_name} (#{user_type})"
   end
 end

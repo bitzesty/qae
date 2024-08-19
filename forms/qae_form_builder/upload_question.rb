@@ -10,6 +10,7 @@ class QaeFormBuilder
     def links
       @q.links = true
     end
+
     def description
       @q.description = true
     end
@@ -18,5 +19,4 @@ class QaeFormBuilder
   class UploadQuestion < Question
     attr_accessor :max_attachments, :links, :description
   end
-
 end

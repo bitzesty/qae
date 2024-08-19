@@ -10,16 +10,14 @@ class EligibilityForm
   end
 
   def eligibility
-    @eligibility ||= form_answer.public_send("#{form_answer.award_type}_eligibility") || form_answer.public_send("build_#{form_answer.award_type}_eligibility", filter(form_answer.user.public_send("#{form_answer.award_type}_eligibility").try(:attributes) || {}))
+    @eligibility ||= form_answer.public_send(:"#{form_answer.award_type}_eligibility") || form_answer.public_send(:"build_#{form_answer.award_type}_eligibility", filter(form_answer.user.public_send(:"#{form_answer.award_type}_eligibility").try(:attributes) || {}))
   end
 
   def basic_eligibility
-    @basic_eligibility ||= begin
-      if form_answer.basic_eligibility.try(:persisted?)
-        form_answer.basic_eligibility
-      else
-        form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.try(:attributes) || {}))
-      end
+    @basic_eligibility ||= if form_answer.basic_eligibility.try(:persisted?)
+      form_answer.basic_eligibility
+    else
+      form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.try(:attributes) || {}))
     end
   end
 

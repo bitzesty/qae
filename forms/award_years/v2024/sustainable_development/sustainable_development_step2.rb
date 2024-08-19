@@ -1,4 +1,3 @@
-# coding: utf-8
 class AwardYears::V2024::QaeForms
   class << self
     def development_step2
@@ -63,12 +62,12 @@ class AwardYears::V2024::QaeForms
 
         text :other_organisation_type, "" do
           classes "text-words-max"
-          context %{
+          context %(
             <p class="govuk-body">Please specify</p>
-          }
-          pdf_context %{
+          )
+          pdf_context %(
             <p class="govuk-body">Please specify if selected Other</p>
-          }
+          )
           conditional :organisation_type, :other
           text_words_max 50
         end
@@ -115,10 +114,10 @@ class AwardYears::V2024::QaeForms
           classes "sub-question text-words-max"
           sub_ref "B 4.1"
           required
-          context %{
+          context %(
             <p>Usually, this is the same name as your organisation's full legal name.</p>
             <p>However, you may choose to include the name you are trading as or a brand name. If you do so, you may be asked to provide evidence that the legal entity uses the trading name or owns the brand. Also, the evidence in the application form must be clearly linked to the provided trading name or brand.</p>
-          }
+          )
           text_words_max 50
         end
 
@@ -139,7 +138,7 @@ class AwardYears::V2024::QaeForms
           required
           ref "B 6"
           pdf_context_with_header_blocks [
-            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"]
+            [:normal, "Please double-check the county using the GOV.UK tool: https://www.gov.uk/find-local-council"],
           ]
           county_context %(
             <p class='govuk-hint'>Please double-check the county using the GOV.UK tool:
@@ -151,7 +150,7 @@ class AwardYears::V2024::QaeForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
           ])
           sub_fields_words_max 50
         end
@@ -182,7 +181,7 @@ class AwardYears::V2024::QaeForms
             { first_name: "First name" },
             { last_name: "Last name" },
             { telephone: "Telephone" },
-            { email: "Email address" }
+            { email: "Email address" },
           ])
           sub_fields_words_max 50
         end
@@ -200,9 +199,9 @@ class AwardYears::V2024::QaeForms
         textarea :social_media_links, "Links to social media accounts, for example, LinkedIn, Twitter, Instagram (optional)." do
           classes "sub-question"
           sub_ref "B 8.1"
-          context %{
+          context %(
             <p>Please note, when evaluating your application, the assessors may check your organisation's online presence.</p>
-          }
+          )
         end
 
         sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code." do
@@ -219,7 +218,7 @@ class AwardYears::V2024::QaeForms
           )
           pdf_context_with_header_blocks [
             [:normal, "The Standard Industrial Classification (SIC) is a system for classifying industries. You can find more information about SIC at https://resources.companieshouse.gov.uk/sic/."],
-            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."]
+            [:normal, "Select the first four digits of the SIC code that best represents the current activities of your business."],
           ]
         end
 
@@ -307,7 +306,7 @@ class AwardYears::V2024::QaeForms
         end
 
         options :external_contribute_to_sustainable_product,
-                "Did any external organisations or individuals significantly contribute to your sustainable development interventions?" do
+          "Did any external organisations or individuals significantly contribute to your sustainable development interventions?" do
           ref "B 13"
           required
           context %(
@@ -331,7 +330,7 @@ class AwardYears::V2024::QaeForms
         end
 
         options :external_are_aware_about_award,
-                "Are they aware that you're applying for this award?" do
+          "Are they aware that you're applying for this award?" do
           classes "sub-question"
           sub_ref "B 13.2"
           required
@@ -433,7 +432,7 @@ class AwardYears::V2024::QaeForms
             ["another_event", "A third-party exhibition or event"],
             ["publication", "A newspaper or publication"],
             ["word_of_mouth", "Word of mouth"],
-            ["other", "Other"]
+            ["other", "Other"],
           ]
         end
       end

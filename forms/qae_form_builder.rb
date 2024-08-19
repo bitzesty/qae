@@ -55,14 +55,14 @@ require "qae_form_builder/turnover_exports_calculation_question"
 
 require "qae_form_builder/matrix_question"
 
+require "qae_form_builder/financial_summary_question"
+
 class QaeFormBuilder
   class << self
-
     def build title, &block
       form = QaeForm.new title
-      form.instance_eval &block if block_given?
+      form.instance_eval(&block) if block
       form
     end
-
   end
 end
