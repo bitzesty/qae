@@ -1,3 +1,5 @@
+require Rails.root.join("lib/formatters/asim_formatter")
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
