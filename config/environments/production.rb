@@ -86,14 +86,18 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  config.log_tags = JsonTaggedLogger::LogTagsConfig.generate(
+    :request_id,
+    :remote_ip,
+    JsonTaggedLogger::TagFromSession.get(:user_id),
+    :user_agent,
+  )
+  logger = ActiveSupport::Logger.new($stdout)
+  config.logger = JsonTaggedLogger::Logger.new(logger)
+
   config.lograge.enabled = true
   config.lograge.ignore_actions = ["HealthcheckController#index"]
-  config.lograge.keep_original_rails_log = true
-  config.lograge.logger = Appsignal::Logger.new(
-    "rails",
-    format: Appsignal::Logger::LOGFMT,
-  )
-  config.logger = ActiveSupport::Logger.new($stdout) # Lograge-formatted logs to STDOUT
+  config.lograge.formatter = AsimFormatter.new
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
