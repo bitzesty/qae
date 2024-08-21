@@ -420,8 +420,12 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     growth_percentages = ["-"]
 
     (1...values.length).each do |i|
-      growth = ((values[i] - values[i - 1]) / values[i - 1]) * 100
-      growth_percentages << growth.round.to_s
+      if values[i - 1] != 0
+        growth = ((values[i] - values[i - 1]) / values[i - 1]) * 100
+        growth_percentages << growth.round.to_s
+      else
+        growth_percentages << "-" # Handle division by zero
+      end
     end
 
     growth_percentages
