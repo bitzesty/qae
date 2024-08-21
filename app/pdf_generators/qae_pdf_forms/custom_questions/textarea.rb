@@ -322,14 +322,11 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def sanitize_content(content)
-    content = Nokogiri::HTML(content)
-    content.xpath("//@style")
-           .remove
-
-    content.children
-           .css("body")
-           .to_html
-           .gsub("<body>", "")
-           .gsub("</body>", "")
+    # Check if content is a standalone strong or em closing tag
+    if content.match?(%r{</(strong|em)>})
+      content
+    else
+      ""
+    end
   end
 end
