@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_context_tags
+  before_action :set_current_attributes
   before_action :set_paper_trail_whodunnit
   before_action :disable_browser_caching!
 
@@ -165,6 +166,18 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Used for ASIM Logging
+  def set_current_attributes
+    Current.user_id = current_user&.id || current_admin&.id
+    Current.user_type = if current_user.present? || current_judge.present? || current_assessor.present?
+      "User"
+    elsif current_admin.present?
+      "Admin"
+    else
+      "Other"
+    end
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
       :sign_up,
@@ -245,9 +258,17 @@ class ApplicationController < ActionController::Base
 
   def user_for_paper_trail
     if current_admin.present? && current_admin.superadmin?
+      "SUPERADMIN:#{current_admin.id}"
+    elsif current_admin.present?
       "ADMIN:#{current_admin.id}"
+    elsif current_assessor.present?
+      "ASSESSOR:#{current_assessor.id}"
+    elsif current_judge.present?
+      "JUDGE:#{current_judge.id}"
     elsif current_user.present?
       "USER:#{current_user.id}"
+    else
+      "UNKNOWN"
     end
   end
 

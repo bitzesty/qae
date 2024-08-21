@@ -129,6 +129,7 @@ gem "puma", "~> 6.4.2"
 gem "appsignal"
 
 # Log formatting
+gem "json_tagged_logger"
 gem "lograge"
 
 # speedup server boot time
