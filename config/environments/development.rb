@@ -75,7 +75,7 @@ Rails.application.configure do
   # Enable ASIM logging if ENABLE_ASIM_LOGGER is set to 'true'
   if ENV["ENABLE_ASIM_LOGGER"] == "true"
     config.lograge.enabled = true
-    config.lograge.formatter = AsimFormatter.new
+    config.lograge.formatter = Formatters::AsimFormatter.new
     config.logger = ActiveSupport::TaggedLogging.new(Logger.new($stdout))
     config.log_tags = JsonTaggedLogger::LogTagsConfig.generate(
       :request_id,
