@@ -99,7 +99,7 @@ Rails.application.configure do
 
   config.lograge.enabled = true
   config.lograge.ignore_actions = ["HealthcheckController#index"]
-  config.lograge.formatter = AsimFormatter.new
+  config.lograge.formatter = Formatters::AsimFormatter.new
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
