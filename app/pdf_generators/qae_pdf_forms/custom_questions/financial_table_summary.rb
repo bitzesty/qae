@@ -464,7 +464,11 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   end
 
   def fs_calculate_overall_growth_percentage(values)
-    [(values.last.to_f / values.first.to_f * 100).round.to_s]
+    if values.first.to_f != 0.0
+      [(values.last.to_f / values.first.to_f * 100).round.to_s]
+    else
+      ["-"] # Handle division by zero
+    end
   end
 
   def format_number(values)
