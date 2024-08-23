@@ -420,8 +420,12 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
     growth_percentages = ["-"]
 
     (1...values.length).each do |i|
-      growth = ((values[i] - values[i - 1]) / values[i - 1]) * 100
-      growth_percentages << growth.round.to_s
+      if values[i - 1] != 0
+        growth = ((values[i] - values[i - 1]) / values[i - 1]) * 100
+        growth_percentages << growth.round.to_s
+      else
+        growth_percentages << "-" # Handle division by zero
+      end
     end
 
     growth_percentages
@@ -460,7 +464,11 @@ module QaePdfForms::CustomQuestions::FinancialTableSummary
   end
 
   def fs_calculate_overall_growth_percentage(values)
-    [(values.last.to_f / values.first.to_f * 100).round.to_s]
+    if values.first.to_f != 0.0
+      [(values.last.to_f / values.first.to_f * 100).round.to_s]
+    else
+      ["-"] # Handle division by zero
+    end
   end
 
   def format_number(values)
