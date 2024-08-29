@@ -15,6 +15,10 @@ class Reports::CasesStatusReport
       method: :company_or_nominee_name,
     },
     {
+      label: "Organisation Name for Certificate B4.1",
+      method: :brand_name,
+    },
+    {
       label: "SIC Code",
       method: :sic_code,
     },

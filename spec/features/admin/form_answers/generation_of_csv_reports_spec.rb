@@ -32,7 +32,7 @@ describe "Admin generates the CSV reports" do
     let(:id) { "cases-status" }
     it "produces proper output" do
       expect(output.size).to eq(2)
-      expect(output[1][9]).to eq("No")
+      expect(output[1][10]).to eq("No")
     end
   end
 

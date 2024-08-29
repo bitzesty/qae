@@ -115,6 +115,10 @@ class Reports::FormAnswer
     end.join(",")
   end
 
+  def brand_name
+    @obj.document["brand_name"]
+  end
+
   def sic_code
     @obj.document["sic_code"]
   end
