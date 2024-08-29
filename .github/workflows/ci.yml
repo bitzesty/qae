@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       db:
-        image: postgres:12-alpine
+        image: postgres:16-alpine
         ports: ['5432:5432']
         env:
           POSTGRES_DB: qae_test
@@ -55,8 +55,11 @@ jobs:
           BUNDLER_VERSION: 2.5.6
           DOCKER_TLS_CERTDIR: ''
         run: |
-          sudo apt update
-          sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-16
+          sudo apt-get -yqq install libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
           gem install bundler
           gem update --system && gem update bundler
           yarn install
