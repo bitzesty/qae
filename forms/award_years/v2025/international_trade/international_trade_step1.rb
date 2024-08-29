@@ -189,7 +189,7 @@ class AwardYears::V2025::QaeForms
           classes "sub-question text-words-max"
           required
           context %(
-            <p class="govuk-body">For example, what steps did you take following a major Health and Safety incident.</p>
+            <p class="govuk-body">For example, what steps did you take following a significant issue that affected your workforce, such as a major Health & Safety incident?</p>
           )
           words_max 200
         end
