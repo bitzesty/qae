@@ -6,6 +6,17 @@
   - provide(:body_end) do
     .js-collaborators-bar.hidden
 
+.govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
+  .govuk-notification-banner__header
+    .govuk-notification-banner__title#govuk-notification-banner-title
+      | Important
+  .govuk-notification-banner__content
+    p.govuk-body.form-banner
+      | Collaborators can work on the form simultaneously in different sections.
+      strong
+        =< "However, we advise that one person works on a section at a time to avoid data saving issues"
+      | .
+
 form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step]), current_step: params[:step]) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
 
   input name="authenticity_token" type="hidden" value=form_authenticity_token
