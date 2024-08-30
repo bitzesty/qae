@@ -56,10 +56,6 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./certs/privkey.pem 
 
 Your application should now be running at https://localhost/
 
-### Installing Poxa
-
-If you need to test collaborators editing the application at the same time, install [poxa](https://github.com/bitzesty/poxa).
-
 ### Installing Malware Scanning
 
 Files are uploaded to S3 and then scanned with ClamAV via the Vigilion service.

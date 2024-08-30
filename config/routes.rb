@@ -396,4 +396,6 @@ Rails.application.routes.draw do
       post "session_checks/extend" => "session_checks#extend"
     end
   end
+
+  mount ActionCable.server => '/cable'
 end

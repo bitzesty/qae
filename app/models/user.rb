@@ -170,6 +170,24 @@ class User < ApplicationRecord
     !completed_registration
   end
 
+  def appear(room)
+    ActionCable.server.broadcast "appearance_#{room}",
+      type: 'appear',
+      user: {
+        id: id,
+        name: full_name,
+        email: email
+      }
+  end
+
+  def disappear(room)
+    ActionCable.server.broadcast "appearance_#{room}",
+      type: 'disappear',
+      user: {
+        id: id
+      }
+  end
+
   private
 
   def first_step?
@@ -188,5 +206,28 @@ class User < ApplicationRecord
     full_name_changed = first_name_changed? || last_name_changed?
     yield
     form_answers.each { |f| f.update(user_full_name: full_name) } if full_name_changed
+  end
+
+  def assign_editor(room)
+    ActionCable.server.broadcast "appearance_#{room}",
+      type: 'editor_changed',
+      editor: id
+  end
+
+  def reassign_editor(room)
+    new_editor = User.where.not(id: id).first
+    if new_editor.present?
+      ActionCable.server.broadcast "appearance_#{room}",
+        type: 'editor_changed',
+        editor: new_editor.id
+    else
+      ActionCable.server.broadcast "appearance_#{room}",
+        type: 'editor_changed',
+        editor: nil
+    end
+  end
+
+  def editor_for_section(room, section)
+    User.where(id: ActionCable.server.connections.map(&:current_user_id)).first
   end
 end

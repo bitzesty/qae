@@ -1,3 +1,4 @@
+#= require actioncable
 #= require govuk-frontend-3.13.0.min
 #= require jquery
 #= require jquery_ujs
@@ -11,7 +12,6 @@
 #= require moment.min
 #= require core
 #= require libs/suchi/isOld.js
-#= require libs/pusher.min.js
 #= require mobile
 #= require browser-check
 #= require vendor/zxcvbn
@@ -22,8 +22,13 @@
 #= require_tree ./frontend
 #= require ./frontend/financial_summary_tables/fst_base.js
 #= require_tree ./frontend/financial_summary_tables
-#
 #= require offline
+#= require_tree ./channels 
+
+do ->
+  @App ||= {}
+  App.cable = ActionCable.createConsumer()
+  ActionCable.logger.enabled = true
 
 safeParse = (str) ->
   try
@@ -109,6 +114,7 @@ jQuery ->
 
   offlineCheck = new Offline
   offlineCheck.start()
+
 
   # This is a very primitive way of testing.
   # Should be refactored once forms stabilize.
@@ -750,7 +756,7 @@ jQuery ->
           window.location.href = redirect_url
 
       else
-        CollaboratorsLog.log("[STANDART MODE] ----------------------- ")
+        CollaboratorsLog.log("[SOLO MODE] ----------------------- ")
 
         autosave()
 

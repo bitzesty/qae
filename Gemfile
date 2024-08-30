@@ -111,9 +111,6 @@ gem "redis-store", "~> 1.4"
 # We use it for communicating with api.debounce.io
 gem "rest-client"
 
-# We are using Pusher with Poxa server for realtime collaborator editing
-gem "pusher", "0.15.2"
-
 # Text Search
 gem "pg_search", "~> 2.3.3"
 

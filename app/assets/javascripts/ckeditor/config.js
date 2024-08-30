@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function (config) {
     showWordCount: true
   };
 
-  config.removePlugins = 'elementspath,contextmenu,liststyle,tabletools,tableselection';
+  config.removePlugins = 'elementspath,contextmenu,liststyle,tabletools,tableselection,exportpdf';
   config.disableNativeSpellChecker = false;
 
   config.allowedContent = {
@@ -24,5 +24,8 @@ CKEDITOR.editorConfig = function (config) {
     a: {
       attributes: '!href'
     },
-  }
+  };
+
+  // Add this line to prevent the error message
+  config.exportPdf_tokenUrl = 'example.com';
 }

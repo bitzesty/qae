@@ -37,7 +37,29 @@ RUN gem update --system --no-document && \
 RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
     --mount=type=cache,id=dev-apt-lib,sharing=locked,target=/var/lib/apt \
     apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl build-essential libpq-dev libvips node-gyp pkg-config python-is-python3 imagemagick libjemalloc2 postgresql-client
+    apt-get install --no-install-recommends -y \
+    curl \
+    build-essential \
+    libpq-dev \
+    libvips \
+    node-gyp \
+    pkg-config \
+    python-is-python3 \
+    imagemagick \
+    libjemalloc2 \
+    lsb-release \
+    wget \
+    gnupg \
+    && \
+    # Add PostgreSQL repository
+    sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    apt-get update && \
+    # Install PostgreSQL 16 client
+    apt-get install -y postgresql-client-16 && \
+    # Clean up
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Node.js
 ARG NODE_VERSION=20.16.0
