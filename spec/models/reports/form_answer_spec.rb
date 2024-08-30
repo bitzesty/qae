@@ -95,7 +95,7 @@ describe Reports::FormAnswer do
     it "should return correct grade" do
       allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment) { build(:assessor_assignment_moderated) }
       allow_any_instance_of(Reports::FormAnswer).to receive(:pick_assignment).with("moderated") { build(:assessor_assignment_moderated, document: { w_rate_1: "positive", w_rate_2: "average" }) }
-      expect(Reports::FormAnswer.new(build(:form_answer)).send(:mso_grade_agreed)).to eq "G,A"
+      expect(Reports::FormAnswer.new(build(:form_answer)).send(:mso_grade_agreed)).to eq "Recommended,Reserved"
     end
   end
 
