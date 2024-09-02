@@ -26,7 +26,7 @@ module Qae
           origins(*(ENV["CORS_HOST"] || "*").split(","))
           resource "*",
             headers: :any,
-            methods: %i[get options]
+            methods: :any
         end
       end
     end
