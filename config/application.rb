@@ -23,10 +23,10 @@ module Qae
     if ENV["CORS_HOST"].present?
       config.middleware.insert_before 0, Rack::Cors do
         allow do
-          origins(*(ENV["CORS_HOST"] || "*").split(","))
+          origins((ENV["CORS_HOST"] || "*").split(","))
           resource "*",
             headers: :any,
-            methods: %i[get options]
+            methods: :any
         end
       end
     end
