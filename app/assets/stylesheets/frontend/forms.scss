@@ -1053,16 +1053,33 @@ select.js-trigger-autosave.custom-select.sic_code-selector {
 }
 
 .js-collaborators-bar {
-  padding-left: 32px;
-  font-weight: bold;
-  font-size: 18px;
-  position: fixed;
-  top: 0;
-  z-index:10000;
-  padding: 10px;
+  position: sticky;
+  top: 5px;
+  z-index: 10000;
+  padding: 0;
   margin: 0 auto;
-  background-color: #FFFAFA;
-  border-radius: 0 0 5px 0;
+
+  .govuk-notification-banner {
+    border: 5px solid #d4351c;
+    background-color: #d4351c;
+
+    .govuk-notification-banner__content > * {
+      max-width: 900px;
+    }
+  }
+
+  .govuk-warning-text {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    z-index: 10000;
+    background-color: #ffffff;
+    padding: 10px;
+
+    .govuk-warning-text__text {
+      padding: 0 !important;
+    }
+  }
 }
 
 .js-ckeditor-spinner-block {
