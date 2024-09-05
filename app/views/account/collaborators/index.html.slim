@@ -16,9 +16,9 @@ h1.govuk-heading-xl
         div
           - if !current_user.account_admin?
             p.govuk-body
-              ' Account users can work on the form simultaneously
-              strong 
-                ' if they are on different sections
+              ' Collaborators can work on the form simultaneously in different sections.
+              strong
+                =< "However, we advise that one person works on a section at a time to avoid data saving issues"
               ' .
 
           - if current_user.account_admin?
@@ -44,9 +44,9 @@ h1.govuk-heading-xl
                     ' Add a collaborator
 
             p.govuk-body
-              | Adding collaborators lets your colleagues sign in and contribute to your applications. Collaborators can work on the form simultaneously 
+              | Adding collaborators lets your colleagues sign in and contribute to your applications. Collaborators can work on the form simultaneously in different sections.
               strong
-                | if they are on different sections
+                =< "However, we advise that one person works on a section at a time to avoid data saving issues"
               | .
 
             p.govuk-body They will also receive any correspondence from us regarding your applications. This will help to ensure that any correspondence from us is less likely to be overlooked or not addressed in time. Also, if you leave the organisation, we will have a person to contact regarding applications.
