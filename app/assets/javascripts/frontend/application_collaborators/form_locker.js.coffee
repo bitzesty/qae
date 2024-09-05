@@ -19,6 +19,12 @@ window.ApplicationCollaboratorsFormLocker =
                                                       .prop('disabled', true)
     $(".js-save-and-come-back").hide()
 
+    # Disable instances of CKEditor
+    #
+    for i of CKEDITOR.instances
+      instance = CKEDITOR.instances[i]
+      instance.setReadOnly(true)
+
     # Update 'Back' link with form_refresh option
     # in order to avoid redirection to NON JS version
     #

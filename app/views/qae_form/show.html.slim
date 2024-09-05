@@ -3,19 +3,7 @@
 - provide(:page_wrapper_class, "page-award-form #{'page-read-only-form' if current_form_is_not_editable?}")
 
 - if application_collaborator_group_mode?(@form_answer)
-  - provide(:body_end) do
-    .js-collaborators-bar.hidden
-
-.govuk-notification-banner role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"
-  .govuk-notification-banner__header
-    .govuk-notification-banner__title#govuk-notification-banner-title
-      | Important
-  .govuk-notification-banner__content
-    p.govuk-body.form-banner
-      | Collaborators can work on the form simultaneously in different sections.
-      strong
-        =< "However, we advise that one person works on a section at a time to avoid data saving issues"
-      | .
+  .js-collaborators-bar.hidden
 
 form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step]), current_step: params[:step]) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
 
