@@ -9,12 +9,12 @@ class QaeFormBuilder
 
       limit = question.delegate_obj.words_max
 
-      if limit && limit_with_buffer(limit) && length && length > (limit_with_buffer(limit) - 1)
+      if limit && limit_with_buffer(limit) && length && length > (limit_with_buffer(limit))
         result[question.hash_key] ||= ""
         error = if limit_with_buffer(limit) > 15
-          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} words or less (as we allow 10% leeway)."
+          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit)} words or less (as we allow 10% leeway)."
         else
-          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit) - 1} word or less."
+          " Question #{question.ref} has a word limit of #{limit}. Your answer has to be #{limit_with_buffer(limit)} words or less."
         end
         result[question.hash_key] << error
       end
