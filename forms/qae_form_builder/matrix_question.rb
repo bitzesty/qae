@@ -102,7 +102,7 @@ class QaeFormBuilder
       disadvantaged ||= 0
       total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
       proportion = (disadvantaged.to_f / total * 100).round(2)
-      answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion
+      answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion.nan? ? 0 : proportion
     end
 
     def assign_autocalculated_value(question_key, x_headings, y_headings, answers, disabled_input, x_heading, y_heading)
