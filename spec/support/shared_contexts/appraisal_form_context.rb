@@ -75,7 +75,7 @@ def assert_rag_change(section_id, header_id)
     expect(page).to have_selector(rag, text: "Select RAG", count: 4)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
 
-    first(".btn-rag").click
+    first(".btn-rag .btn").click
     find(".dropdown-menu .rag-negative").click
     wait_for_ajax
     expect(page).to have_selector(rag, text: "Select RAG", count: 3)
@@ -163,7 +163,7 @@ def assert_verdict_change(section_id, header_id)
 
   within section_id do
     expect(page).to have_selector(".rag-text", text: "Select verdict", count: 1)
-    all(".btn-rag").last.click
+    all(".btn-rag .btn").last.click
     find(".dropdown-menu .rag-positive a").click
     wait_for_ajax
   end
