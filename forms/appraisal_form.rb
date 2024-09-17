@@ -59,9 +59,9 @@ class AppraisalForm
   ]
 
   RAG_OPTIONS_2025 = [
-    ["Does not meet expectations", "negative"],
-    ["Meets expectations", "average"],
-    ["Exceeds expectations", "positive"],
+    %w[Red negative],
+    %w[Amber average],
+    %w[Green positive],
   ]
 
   CSR_RAG_OPTIONS_2016 = [
@@ -263,7 +263,7 @@ class AppraisalForm
 
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select evaluation", "blank"]
+    end || ["Select RAG", "blank"]
 
     OpenStruct.new(
       options: options,

@@ -1602,18 +1602,18 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     padding-left: pxToRem(5) !important;
 
     &.rag-positive {
-      background-color: #CCE1D8;
-      color: #015A30 !important;
+      background-color: #6B8E23;
+      color: white !important;
     }
 
     &.rag-average {
-      background-color: #C0D3E8;
-      color: #152C48 !important;
+      background-color: #DAA520;
+      color: white !important;
     }
 
     &.rag-negative {
-      background-color: #F6D7D2;
-      color: #942415 !important;
+      background-color: #FF0000;
+      color: white !important;
     }
   }
 

@@ -4,9 +4,9 @@ module CaseSummaryPdfs::General::DataPointer
                       "sustainable_development" => "Sustainable Development" }
 
   COLOR_LABELS = %w[positive average negative neutral]
-  POSITIVE_COLOR = "017E44"
-  AVERAGE_COLOR = "2C5C96"
-  NEGATIVE_COLOR = "B72C1A"
+  POSITIVE_COLOR = "6B8E23"
+  AVERAGE_COLOR = "DAA520"
+  NEGATIVE_COLOR = "FF0000"
   NEUTRAL_COLOR = "ECECEC"
   LINK_REGEXP = /((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}\/)(?:[^\s()<>`!{}:;'"\[\]]*))/im
 
