@@ -1560,7 +1560,6 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 // RAG dropdown
 .form-label-rag {
   display: block;
-  position: relative;
   margin-top: pxToRem(10);
   margin-bottom: pxToRem(10);
 
@@ -1583,9 +1582,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .btn-rag {
-  position: absolute;
-  right: 0;
-  top: pxToRem(-5);
+  display: block;
+
+  button {
+    float: none !important;
+  }
 
   @include screen-xs-max {
     display: block;
