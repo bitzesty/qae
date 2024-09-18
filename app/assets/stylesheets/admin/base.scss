@@ -1656,7 +1656,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
   }
 
-  &.rag-editable .dropdown-toggle {
+  &.rag-editable:not(.csr-btn-rag) .dropdown-toggle {
     padding-right: pxToRem(40);
   }
 
@@ -1673,7 +1673,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
       }
     }
 
-    a {
+    a:not(.esg-item) {
       padding-top: pxToRem(6);
       padding-bottom: pxToRem(6);
       padding-left: pxToRem(37);
@@ -1775,6 +1775,15 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
       @include is-retina {
         background-image: image-url("icon-grade-red@2.png");
       }
+    }
+  }
+
+  .csr-rag-average {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $blue;
     }
   }
 

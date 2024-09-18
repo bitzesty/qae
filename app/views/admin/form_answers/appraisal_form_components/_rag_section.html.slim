@@ -1,6 +1,7 @@
 - form = AppraisalForm.rag_options_for(f.object, section)
 
 - editable = f.object.editable_for?(current_subject)
+- esg_section = section.desc == "corporate_social_responsibility_desc"
 
 .form-group.rag-section[class="#{'form-edit' if f.object.public_send(section.desc).blank? && editable} form-#{section.label.parameterize}" data-controller="element-focus"]
   .form-container
@@ -13,18 +14,20 @@
     label.form-label.form-label-rag for="#{f.object.position}_#{section.desc}_comment"
       span.rag_section_label
         = section.label
-    .btn-group.btn-rag class="#{'rag-editable' if editable}"
+    .btn-group.btn-rag class="#{'rag-editable' if editable} #{"csr-btn-rag" if esg_section}"
       button.btn.btn-link.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false" class="rag-#{form.option[1]}"
         span.rag-text= form.option[0]
-        span.glyphicon.icon-rag
+        - if !esg_section
+          span.glyphicon.icon-rag
         - if editable
           span.caret
       - if editable
         ul.dropdown-menu role="menu"
           - form.options.each do |opt|
-            li class="rag-#{opt[1]}"
-              = link_to "#"
-                span.icon-rag
+            li class="#{"rag-#{opt[1]}"} #{"csr-rag-#{opt[1]}" if esg_section}"
+              = link_to "#", class: "#{'esg-item' if esg_section}"
+                - if !esg_section
+                  span.icon-rag
                 span.rag-text= opt[0]
 
     .form-value
