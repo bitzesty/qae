@@ -188,9 +188,9 @@ class Reports::FormAnswer
 
   def rag(var)
     {
-      "negative" => "Not recommended",
-      "positive" => "Recommended",
-      "average" => "Reserved",
+      "negative" => "R",
+      "positive" => "G",
+      "average" => "A",
     }[var]
   end
 

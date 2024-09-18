@@ -4,9 +4,9 @@ module CaseSummaryPdfs::General::DataPointer
                       "sustainable_development" => "Sustainable Development" }
 
   COLOR_LABELS = %w[positive average negative neutral]
-  POSITIVE_COLOR = "017E44"
-  AVERAGE_COLOR = "2C5C96"
-  NEGATIVE_COLOR = "B72C1A"
+  POSITIVE_COLOR = "6B8E23"
+  AVERAGE_COLOR = "DAA520"
+  NEGATIVE_COLOR = "FF0000"
   NEUTRAL_COLOR = "ECECEC"
   LINK_REGEXP = /((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}\/)(?:[^\s()<>`!{}:;'"\[\]]*))/im
 
@@ -186,9 +186,9 @@ module CaseSummaryPdfs::General::DataPointer
       end
 
       pdf_doc.text entry[0], header_text_properties
-      pdf_doc.move_down 3.mm
 
       pdf_doc.text entry[2], header_text_properties.merge({ color: color_by_value(entry[2], year) })
+
       pdf_doc.move_down 5.mm
 
       pdf_doc.text entry[1], header_text_properties.merge({ style: :normal })
