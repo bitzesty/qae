@@ -1,9 +1,9 @@
 class SupportLetterAttachment < ApplicationRecord
-  mount_uploader :attachment, FormAnswerAttachmentUploader
-  scan_file :attachment
+  include ScanFiles
 
-  include ::InfectedFileCleaner
-  clean_after_scan :attachment
+  mount_uploader :attachment, FormAnswerAttachmentUploader
+
+  scan_for_viruses :attachment
 
   # associations
   belongs_to :user, optional: true
