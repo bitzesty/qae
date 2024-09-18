@@ -18,7 +18,7 @@ System_Boundary(kae, "Kings Awards For Enterprise") {
 System_Ext(cloudfront, "AWS CloudFront", "WAF and CDN")
 System_Ext(google_analytics, "Google Analytics", "Provides ability to measure site traffic and engagement")
 System_Ext(gov_uk_notify, "Gov.uk Notify", "Email delivery service")
-System_Ext(appsignal, "Appsignal", "Application performance monitoring and error tracking")
+System_Ext(sentry, "Sentry", "Application performance monitoring and error tracking")
 System_Ext(slack, "Slack", "Team communication and collaboration platform")
 
 Rel(cloudfront, kae_service, "Routes requests to")
@@ -33,7 +33,7 @@ Rel(vigilion, document_storage, "Scans documents in")
 Rel(kae_service, vigilion, "Sends scan requests to")
 Rel(vigilion, kae_service, "Sends scan results to")
 Rel(kae_service, poxa, "Manages user access to")
-Rel(kae_service, appsignal, "Sends logs, performance metrics and errors to")
-Rel(appsignal, slack, "Sends alerts to")
+Rel(kae_service, sentry, "Sends logs, performance metrics and errors to")
+Rel(sentry, slack, "Sends alerts to")
 
 @enduml

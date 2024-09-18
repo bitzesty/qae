@@ -11,7 +11,7 @@ module AssessorAssignmentContext
         format.json {
           render status: :unprocessable_entity, json: { errors: assessment.resource.errors }
         }
-        Appsignal.send_error(Exception.new("Failed to save `AssessorAssignment##{assessor_assignment.id}. \n #{assessment.resource.errors} \n #{params}"))
+        Sentry.capture_message("Failed to save `AssessorAssignment##{assessor_assignment.id}. \n #{assessment.resource.errors} \n #{params}", level: :error)
       end
 
       format.html { redirect_back(fallback_location: root_path) }
