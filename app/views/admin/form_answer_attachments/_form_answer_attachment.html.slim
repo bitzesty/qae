@@ -18,7 +18,7 @@
         span.glyphicon.glyphicon-file
         = form_answer_attachment.decorate.display_name
 
-    - elsif form_answer_attachment.file_scan_results.to_s == "infected"
+    - elsif form_answer_attachment.infected?
       span.glyphicon.glyphicon-file
       = "Failed virus scanner check (#{form_answer_attachment.decorate.display_name})"
 
