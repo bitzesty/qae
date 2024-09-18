@@ -2,10 +2,6 @@
 version: v1.7.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-RUBY-FARADAYMIDDLEWARE-20334:
-    - '* > vigilion@1.0.4':
-        reason: None given
-        expires: '2017-06-09T12:30:08.169Z'
   SNYK-RUBY-NOKOGIRI-20299:
     - '*':
         reason: an application using Nokogiri needs to be opt into the DTDLOAD option and opt out of the NONET option in order to be vulnerable
