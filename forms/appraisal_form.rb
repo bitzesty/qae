@@ -263,9 +263,13 @@ class AppraisalForm
 
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || section.label.include?("Environmental, social and corporate governance") ?
-      ["Select evaluation", "blank"] :
-      ["Select RAG", "blank"]
+    end.presence
+
+    if option.blank?
+      option = section.label.include?("Environmental, social and corporate governance") ?
+        ["Select evaluation", "blank"] :
+        ["Select RAG", "blank"]
+    end
 
     OpenStruct.new(
       options: options,
