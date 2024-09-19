@@ -1804,6 +1804,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   .btn-rag .dropdown-toggle {
     padding-right: pxToRem(15) !important;
   }
+
+  .btn-rag .dropdown-menu a {
+    padding-left: pxToRem(10);
+  }
 }
 
 // Fields that are added dynamically
