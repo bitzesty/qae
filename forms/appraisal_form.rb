@@ -119,9 +119,9 @@ class AppraisalForm
   ]
 
   CSR_RAG_OPTIONS_2025 = [
-    ["Weak (0-15)", "negative"],
-    ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-40)", "positive"],
+    ["Doesn't Meet", "negative"],
+    ["Meets", "average"],
+    ["Exceeds", "positive"],
   ]
 
   STRENGTH_OPTIONS_2016 = [
