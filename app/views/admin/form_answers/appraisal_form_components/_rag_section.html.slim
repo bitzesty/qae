@@ -1,7 +1,7 @@
 - form = AppraisalForm.rag_options_for(f.object, section)
 
 - editable = f.object.editable_for?(current_subject)
-- esg_section = section.desc == "corporate_social_responsibility_desc"
+- esg_section = section.label.include?("Environmental, social and corporate governance")
 
 .form-group.rag-section[class="#{'form-edit' if f.object.public_send(section.desc).blank? && editable} form-#{section.label.parameterize}" data-controller="element-focus"]
   .form-container

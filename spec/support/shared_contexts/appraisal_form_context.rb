@@ -72,14 +72,16 @@ def assert_rag_change(section_id, header_id)
 
   expect(page).to have_css(section_id) # Forces capybara to wait for the section to become visible
   within section_id do
-    expect(page).to have_selector(rag, text: "Select RAG", count: 4)
+    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
+    expect(page).to have_selector(rag, text: "Select evaluation", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
 
     first(".btn-rag .btn").click
     find(".dropdown-menu .rag-negative").click
     wait_for_ajax
-    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
+    expect(page).to have_selector(rag, text: "Select RAG", count: 2)
     expect(page).to have_selector(rag, text: "Red", count: 1)
+    expect(page).to have_selector(rag, text: "Select evaluation", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
   end
 
@@ -89,8 +91,9 @@ def assert_rag_change(section_id, header_id)
   take_a_nap
 
   within section_id do
-    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
+    expect(page).to have_selector(rag, text: "Select RAG", count: 2)
     expect(page).to have_selector(rag, text: "Red", count: 1)
+    expect(page).to have_selector(rag, text: "Select evaluation", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
   end
   visit show_path
