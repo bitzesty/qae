@@ -119,9 +119,9 @@ class AppraisalForm
   ]
 
   CSR_RAG_OPTIONS_2025 = [
-    ["Weak (0-15)", "negative"],
-    ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-40)", "positive"],
+    ["Doesn't Meet", "negative"],
+    ["Meets", "average"],
+    ["Exceeds", "positive"],
   ]
 
   STRENGTH_OPTIONS_2016 = [
@@ -263,7 +263,13 @@ class AppraisalForm
 
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select RAG", "blank"]
+    end.presence
+
+    if option.blank?
+      option = section.label.include?("Environmental, social and corporate governance") ?
+        ["Select evaluation", "blank"] :
+        ["Select RAG", "blank"]
+    end
 
     OpenStruct.new(
       options: options,
