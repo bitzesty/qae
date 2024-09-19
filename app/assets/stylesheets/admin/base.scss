@@ -1789,6 +1789,23 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     }
   }
 }
+
+// Use different styles for ESG section
+.form-environmental-social-and-corporate-governance-section-e {
+  .rag-average {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $blue;
+    }
+  }
+
+  .btn-rag .dropdown-toggle {
+    padding-right: pxToRem(15) !important;
+  }
+}
+
 // Fields that are added dynamically
 .list-add {
   margin: 0;
