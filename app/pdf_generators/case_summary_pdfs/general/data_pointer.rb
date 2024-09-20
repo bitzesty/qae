@@ -6,6 +6,7 @@ module CaseSummaryPdfs::General::DataPointer
   COLOR_LABELS = %w[positive average negative neutral]
   POSITIVE_COLOR = "6B8E23"
   AVERAGE_COLOR = "DAA520"
+  AVERAGE_BLUE_COLOR = "3276b1"
   NEGATIVE_COLOR = "FF0000"
   NEUTRAL_COLOR = "ECECEC"
   LINK_REGEXP = /((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}\/)(?:[^\s()<>`!{}:;'"\[\]]*))/im
@@ -88,7 +89,7 @@ module CaseSummaryPdfs::General::DataPointer
   def rag_source(value)
     case value[:type]
     when :rag
-      if value[:label].include?("Corporate social responsibility")
+      if value[:label].include?("Environmental, social and corporate governance")
         AppraisalForm.const_get("CSR_RAG_OPTIONS_#{@award_year.year}")
       else
         AppraisalForm.const_get("RAG_OPTIONS_#{@award_year.year}")
@@ -186,9 +187,9 @@ module CaseSummaryPdfs::General::DataPointer
       end
 
       pdf_doc.text entry[0], header_text_properties
+      pdf_doc.move_down 3.mm
 
       pdf_doc.text entry[2], header_text_properties.merge({ color: color_by_value(entry[2], year) })
-
       pdf_doc.move_down 5.mm
 
       pdf_doc.text entry[1], header_text_properties.merge({ style: :normal })
@@ -199,7 +200,11 @@ module CaseSummaryPdfs::General::DataPointer
   def color_by_value(val, year)
     COLOR_LABELS.map do |label|
       if CaseSummaryPdfs::Pointer.const_get("#{label.upcase}_LABELS_#{year}").include?(val)
-        return self.class.const_get("#{label.upcase}_COLOR")
+        if val == "Meets"
+          return self.class.const_get(:AVERAGE_BLUE_COLOR)
+        else
+          return self.class.const_get("#{label.upcase}_COLOR")
+        end
       end
     end
   end
