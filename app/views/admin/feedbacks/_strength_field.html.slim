@@ -10,16 +10,16 @@
 
     label.form-label.form-label-rag for="feedback_#{field}_rate"
       = value[:label]
-      .btn-group.btn-rag class="#{'rag-editable' unless feedback.locked?}"
-        button.btn.btn-link.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false" class="rag-#{form.option[1]}"
-          span.rag-text= form.option[0]
-          span.glyphicon.icon-rag
-          - if !feedback.locked?
-            span.caret
+    .btn-group.btn-rag class="#{'rag-editable' unless feedback.locked?}"
+      button.btn.btn-link.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false" class="rag-#{form.option[1]}"
+        span.rag-text= form.option[0]
+        span.glyphicon.icon-rag
         - if !feedback.locked?
-          ul.dropdown-menu.pull-right role="menu"
-            - form.options.each do |opt|
-              li class="rag-#{opt[1]}"
-                = link_to "#"
-                  span.icon-rag
-                  span.rag-text= opt[0]
+          span.caret
+      - if !feedback.locked?
+        ul.dropdown-menu role="menu"
+          - form.options.each do |opt|
+            li class="rag-#{opt[1]}"
+              = link_to "#"
+                span.icon-rag
+                span.rag-text= opt[0]
