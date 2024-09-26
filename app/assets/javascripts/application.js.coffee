@@ -543,6 +543,10 @@ jQuery ->
     proportionInput = cell.querySelector('input')
     referenceCell = referenceRow[cell.cellIndex].querySelector('input')
     referenceValue = parseFloat(referenceCell?.value) or 0
+
+    if isNaN(referenceValue)
+      referenceValue = 0
+
     if type == 'disadvantaged'
       proportionInput?.value = ((referenceValue / colSums[cell.cellIndex]) * 100).toFixed(2)
 
