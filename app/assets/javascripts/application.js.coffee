@@ -190,7 +190,7 @@ jQuery ->
             key.includes(v)
           map.set(key, cond)
 
-        if !cond && shouldHideRow
+        if !cond && !row.hasClass('js-prevent-hide') && shouldHideRow
           subq.val("")
           if shouldDisableRow
             subq.prop('disabled', true)
