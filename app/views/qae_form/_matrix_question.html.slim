@@ -10,7 +10,7 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
   tbody
     - question.y_headings.each do |y_heading|
       - disabled_row_input = ["auto-subtotals-row", "auto-totals-row", "auto-proportion-row"].find { |class_name| y_heading.options[:row_class]&.include?(class_name) }
-      tr.govuk-table__row class="#{y_heading.options[:row_class] ? y_heading.options[:row_class] : ''}"
+      tr[class=class_names("govuk-table__row", y_heading.options[:row_class], "js-prevent-hide" => !!disabled_row_input)]
         td.govuk-table__header.row-heading scope="row"
           = y_heading.label
 
