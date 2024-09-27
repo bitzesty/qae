@@ -10,7 +10,7 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
   tbody
     - question.y_headings.each do |y_heading|
       - disabled_row_input = ["auto-subtotals-row", "auto-totals-row", "auto-proportion-row"].find { |class_name| y_heading.options[:row_class]&.include?(class_name) }
-      tr.govuk-table__row class="#{y_heading.options[:row_class] ? y_heading.options[:row_class] : ''}"
+      tr[class=class_names("govuk-table__row", y_heading.options[:row_class], "js-prevent-hide" => !!disabled_row_input)]
         td.govuk-table__header.row-heading scope="row"
           = y_heading.label
 
@@ -18,7 +18,7 @@ table.matrix-question-table.govuk-table class="#{'auto-totals-column' if questio
           - disabled_col_input = x_heading.label == "Total (system calculated)" ? "auto-totals-col" : nil
           - disabled_input = disabled_row_input || disabled_col_input
           - if disabled_input
-            - question.decorate.assign_autocalculated_value(question.key, question.x_headings, question.y_headings, answers, disabled_input, x_heading.key, y_heading.key)
+            - question.decorate.assign_autocalculated_value(question.key, question.x_headings, question.y_headings, answers, x_heading.key, y_heading.key, key: disabled_input)
           - input_value = question.input_value(suffix: "#{x_heading.key}_#{y_heading.key}")
 
           td.govuk-table__cell class="#{('govuk-form-group--error' if @form_answer.validator_errors && @form_answer.validator_errors["#{question.hash_key}_#{x_heading.key}_#{y_heading.key}"].present?)}"

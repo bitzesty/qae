@@ -9,7 +9,9 @@ module QaePdfForms::CustomQuestions::Matrix
       if checked_options.size.zero?
         question.y_headings
       else
-        question.y_headings.filter { |h| h.key.in?(checked_options) }
+        question.y_headings.filter do |h|
+          h.key.in?(checked_options) || h.key.in?(QaeFormBuilder::AUTO_CALCULATED_HEADINGS)
+        end
       end
     else
       question.y_headings
@@ -18,7 +20,11 @@ module QaePdfForms::CustomQuestions::Matrix
     y_headings.map do |y_heading|
       columns = [y_heading.label.to_s]
       question.x_headings.each do |x_heading|
-        columns << form_pdf.filled_answers[question.key.to_s + "_#{x_heading.key}_#{y_heading.key}"]
+        if y_heading.key.in?(QaeFormBuilder::AUTO_CALCULATED_HEADINGS)
+          question.assign_autocalculated_value(question.key, question.x_headings, question.y_headings, form_pdf.filled_answers, x_heading.key, y_heading.key, key: y_heading.key)
+        end
+
+        columns << form_pdf.filled_answers["#{question.key}_#{x_heading.key}_#{y_heading.key}"]
       end
 
       columns
