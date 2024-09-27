@@ -634,6 +634,10 @@ class AwardYears::V2025::QaeForms
             [:normal, "If none, please enter '0'."],
           ]
           corner_label "Disadvantaged group type"
+          subtotals_label "Subtotal number of discrete disadvantaged participants who benefited (the system will calculate this)"
+          others_label "Others receiving support from you who are not disadvantaged who benefited"
+          totals_label "Total number of discrete participants (the system will calculate this)"
+          proportion_label "The proportion of disadvantaged participants from the total (the system will calculate this)"
 
           x_headings [2020, 2021, 2022, 2023, 2024]
 
