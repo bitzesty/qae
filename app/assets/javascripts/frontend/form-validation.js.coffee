@@ -502,7 +502,7 @@ window.FormValidation =
             key.includes(v)
           map.set(key, cond)
 
-        if !cond && shouldHideRow
+        if !cond && !qRow.hasClass('js-prevent-hide') && shouldHideRow
           subq.val("")
           if shouldDisableRow
             subq.prop('disabled', true)
