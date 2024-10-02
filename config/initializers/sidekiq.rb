@@ -1,5 +1,5 @@
 Sidekiq.configure_server do |config|
-  config.logger = Appsignal::Logger.new("sidekiq")
+  config.logger = config.logger = Logger.new($stdout)
   config.logger.formatter = Sidekiq::Logger::Formatters::WithoutTimestamp.new
 
   config.redis = { url: CredentialsResolver.redis_uri }

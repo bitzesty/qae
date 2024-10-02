@@ -160,8 +160,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_context_tags
-    context = { current_user: current_user.try(:id) }
-    Appsignal.tag_request(context)
+    Sentry.set_user(id: current_user.try(:id))
   end
 
   private

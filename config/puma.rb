@@ -3,8 +3,6 @@
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
-#
-plugin :appsignal
 
 workers Integer(ENV.fetch("WEB_CONCURRENCY") { 2 })
 threads_count = ENV.fetch("MAX_THREADS") { 5 }

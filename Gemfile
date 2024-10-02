@@ -126,7 +126,10 @@ gem "nilify_blanks"
 gem "puma", "~> 6.4.2"
 
 # Performance & Error reporting
-gem "appsignal"
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"
+gem "sentry-sidekiq"
 
 # Log formatting
 gem "json_tagged_logger"
