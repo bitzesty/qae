@@ -123,7 +123,7 @@ gem "virtus"
 gem "nilify_blanks"
 
 # Web server
-gem "puma", "~> 6.4.2"
+gem "puma", "~> 6.4.3"
 
 # Performance & Error reporting
 gem "stackprof"
