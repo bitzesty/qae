@@ -4,29 +4,21 @@ window.ApplicationCollaboratorsGeneralRoomTracking =
     # Introduce general channel
     channel_name = 'presence-chat-' + window.rails_env + "-" + window.form_id + '-general'
 
-    CollaboratorsLog.log("[PUSHER INIT GENERAL ROOM] ------------------------ channel_name: " + channel_name)
+    CollaboratorsLog.log("[INIT GENERAL ROOM] ------------------------ channel_name: " + channel_name)
 
-    general_channel = window.pusher.subscribe(channel_name)
+    window.App.generalRoom = App.cable.subscriptions.create { channel: "GeneralRoomChannel", channel_name: channel_name, user_id: window.user_id },
+      connected: ->
+        console.log("connected to GENERAL ROOM")
 
-    # Check if subscription was successful
-    # and track number of max members in room
-    #
-    general_channel.bind 'pusher:subscription_succeeded', (members) ->
-      CollaboratorsLog.log('[GENERAL_ROOM subscription_succeeded] Count: ' + members.count)
-      window.pusher_max_members_count = members.count
+      received: (data) ->
+        console.log("receieved data", data.collaborators)
 
-      return
+        window.general_room_members = data.collaborators
+        ApplicationCollaboratorsAccessManager.set_access_mode()
 
-    # Handle member added
-    general_channel.bind 'pusher:member_added', (member) ->
-      members_count = general_channel.members.count
-      CollaboratorsLog.log('[GENERAL_ROOM member_added] Count: ' + members_count)
-
-      if window.pusher_max_members_count < members_count
-        window.pusher_max_members_count = members_count
-
-      return
+      disconnected: ->
+        console.log("disconnected")
 
   there_are_other_collaborators_here: () ->
-    window.pusher_max_members_count &&
-    window.pusher_max_members_count > 1
+    window.general_room_members &&
+    window.general_room_members.split('/').length > 1
