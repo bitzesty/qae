@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :set_current_attributes
   before_action :set_paper_trail_whodunnit
   before_action :disable_browser_caching!
+  before_action :set_session_identifier
 
   self.responder = AppResponder
   respond_to :html
@@ -91,6 +92,10 @@ class ApplicationController < ActionController::Base
       Settings.public_send(:"current_#{award}_submission_start_deadline")
     end
     helper_method "#{award}_submission_started_deadline"
+  end
+
+  def set_session_identifier
+    cookies["public_tab_ident"] = cookies["_qae_session#{"_development" if Rails.env.development?}"]&.first(8)
   end
 
   protected
