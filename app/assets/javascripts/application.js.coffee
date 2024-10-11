@@ -22,6 +22,7 @@
 #= require_tree ./frontend
 #= require ./frontend/financial_summary_tables/fst_base.js
 #= require_tree ./frontend/financial_summary_tables
+#= require channels
 #
 #= require offline
 
@@ -706,6 +707,7 @@ jQuery ->
     #
     if current_step != $(".js-step-link.step-current").attr('data-step')
 
+      ApplicationCollaboratorsAccessManager.switch_rooms(current_step)
       # If there are more than one one-time form collaborator
       #
       if ApplicationCollaboratorsGeneralRoomTracking.there_are_other_collaborators_here()
@@ -739,7 +741,7 @@ jQuery ->
 
         CollaboratorsLog.log("[COLLABORATOR MODE] ------------ redirect_url ----------- " + redirect_url)
 
-        if ApplicationCollaboratorsAccessManager.does_im_current_editor()
+        if ApplicationCollaboratorsAccessManager.i_am_current_editor()
           CollaboratorsLog.log("[COLLABORATOR MODE] -------------I'm EDITOR---------- SAVE AND REDIRECT")
           # If I'm current editor
           # -> then save form data and once it saved redirect me to proper section in a callback
@@ -754,7 +756,7 @@ jQuery ->
           window.location.href = redirect_url
 
       else
-        CollaboratorsLog.log("[STANDART MODE] ----------------------- ")
+        CollaboratorsLog.log("[STANDARD MODE] ----------------------- ")
 
         autosave()
 

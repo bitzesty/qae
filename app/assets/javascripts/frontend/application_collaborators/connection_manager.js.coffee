@@ -1,6 +1,6 @@
 window.ApplicationCollaboratorsConnectionManager =
 
-  init: (form_id, p_host, p_port, p_key, rails_env, timestamp) ->
+  init: (form_id, user_id, p_host, p_port, p_key, rails_env, timestamp) ->
 
     #
     # Checking if browser supports WebSockets technology
@@ -14,6 +14,7 @@ window.ApplicationCollaboratorsConnectionManager =
 
       window.pusher_key = p_key
       window.rails_env = rails_env
+      window.user_id = user_id
 
       if rails_env == "staging" || rails_env == "production"
         window.pusher_encrypted = true
@@ -22,36 +23,9 @@ window.ApplicationCollaboratorsConnectionManager =
 
       window.pusher_section = $(".js-step-link.step-current").attr('data-step')
 
-      ApplicationCollaboratorsConnectionManager.init_pusher(timestamp)
+      # ApplicationCollaboratorsConnectionManager.init_pusher(timestamp)
       ApplicationCollaboratorsConnectionManager.init_room()
-      ApplicationCollaboratorsGeneralRoomTracking.login()
-
-  init_pusher: (timestamp) ->
-    CollaboratorsLog.log("[PUSHER INIT] form_id: " + window.form_id + ", host: " + window.pusher_host + ", port: " + window.pusher_port + ", key: " + window.pusher_key + ", enc: " + window.pusher_encrypted + ", section: " + window.pusher_section)
-
-    # Init Pusher to use own Poxa server
-    pusher_ops = {
-      wsHost: window.pusher_host,
-      wsPort: window.pusher_port,
-      authTransport: 'jsonp',
-      authEndpoint: "/users/form_answers/" + window.form_id + "/collaborator_access/auth/" + window.pusher_section + "/" + timestamp
-    }
-
-    # Use encryption on live and staging
-    # as they are using HTTPS
-    #
-    if window.pusher_encrypted == "true"
-      pusher_ops["encrypted"] = true
-      CollaboratorsLog.log("[PUSHER OPS] encryption turned on!")
-    else
-      CollaboratorsLog.log("[PUSHER OPS] encryption turned off!")
-
-    window.pusher = new Pusher(window.pusher_key, pusher_ops)
-
-    # Check connection status
-    connection_status = pusher.connection.state
-    CollaboratorsLog.log("PUSHER STATUS: " + connection_status)
-
+      # ApplicationCollaboratorsGeneralRoomTracking.login()
 
   init_room: () ->
     # Introduce new channel
@@ -59,29 +33,45 @@ window.ApplicationCollaboratorsConnectionManager =
 
     CollaboratorsLog.log("[PUSHER INIT ROOM] ------------------------ channel_name: " + channel_name)
 
-    window.pusher_current_channel = window.pusher.subscribe(channel_name)
+    # window.pusher_current_channel = window.pusher.subscribe(channel_name)
 
+    window.App.collaborators = App.cable.subscriptions.create { channel: "CollaboratorsChannel", channel_name: channel_name, user_id: window.user_id },
+        connected: ->
+          console.log("successfully connected")
+  
+        received: (data) ->
+          console.log("receieved data", data.collaborators)
+          # console.log("Member count: " + data.collaborators.split("/").length)
+
+          window.current_channel_members = data.collaborators
+          ApplicationCollaboratorsAccessManager.set_access_mode()
+
+        disconnected: ->
+          console.log("disconnected")
+
+    # App.collaborators.unsubscribed()
+        
     # Check if subscription was successful
-    window.pusher_current_channel.bind 'pusher:subscription_succeeded', (members) ->
-      CollaboratorsLog.log('[subscription_succeeded] Count ' + members.count)
+    # window.pusher_current_channel.bind 'pusher:subscription_succeeded', (members) ->
+    #   CollaboratorsLog.log('[subscription_succeeded] Count ' + members.count)
 
-      ApplicationCollaboratorsAccessManager.set_access_mode()
-      members.each (member) =>
-        ApplicationCollaboratorsAccessManager.register_member(member)
+    #   ApplicationCollaboratorsAccessManager.set_access_mode()
+    #   members.each (member) =>
+    #     ApplicationCollaboratorsAccessManager.register_member(member)
 
-      return
+    #   return
 
-    # Handle member removed
-    window.pusher_current_channel.bind 'pusher:member_removed', (member) ->
-      CollaboratorsLog.log('[member_removed] Count ' + window.pusher_current_channel.members.count)
+    # # Handle member removed
+    # window.pusher_current_channel.bind 'pusher:member_removed', (member) ->
+    #   CollaboratorsLog.log('[member_removed] Count ' + window.pusher_current_channel.members.count)
 
-      ApplicationCollaboratorsAccessManager.try_mark_as_editor()
+    #   ApplicationCollaboratorsAccessManager.try_mark_as_editor()
 
-      return
+    #   return
 
-    # Handle member added
-    window.pusher_current_channel.bind 'pusher:member_added', (member) ->
-      CollaboratorsLog.log('[member_added] Count ' + window.pusher_current_channel.members.count)
-      ApplicationCollaboratorsAccessManager.register_member(member)
+    # # Handle member added
+    # window.pusher_current_channel.bind 'pusher:member_added', (member) ->
+    #   CollaboratorsLog.log('[member_added] Count ' + window.pusher_current_channel.members.count)
+    #   ApplicationCollaboratorsAccessManager.register_member(member)
 
-      return
+    #   return
