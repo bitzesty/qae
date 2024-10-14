@@ -49,7 +49,7 @@ window.ApplicationCollaboratorsAccessManager =
     # CollaboratorsLog.log("[TAB SWITCH] ------------- Log out from (" + room + ") to " + current_step + " --------------------")
 
     # Set new pusher section
-    window.pusher_section = current_step;
+    window.form_section = current_step;
 
     # Set new login timestamp for user
     timestamp = new Date().getTime();
@@ -58,7 +58,8 @@ window.ApplicationCollaboratorsAccessManager =
     ApplicationCollaboratorsConnectionManager.init_room()
 
   i_am_current_editor: () ->
-    ApplicationCollaboratorsAccessManager.current_editor_id() == window.user_id
+    ApplicationCollaboratorsAccessManager.current_editor_id() == window.user_id &&
+      window.tab_ident == ApplicationCollaboratorsAccessManager.current_editor().tab_ident
 
   im_in_viewer_mode: () ->
     !ApplicationCollaboratorsAccessManager.i_am_current_editor()
@@ -75,8 +76,9 @@ window.ApplicationCollaboratorsAccessManager =
     editor = window.current_channel_members.split("/").find((el) => el.includes("EDITOR")).split(":")
     editor_info = {
       id: editor[0],
-      email: editor[1],
-      name: editor[2]
+      tab_ident: editor[1],
+      email: editor[2],
+      name: editor[3]
     }
 
     editor_info
