@@ -17,6 +17,7 @@ window.ApplicationCollaboratorsConnectionManager =
       window.form_section = $(".js-step-link.step-current").attr('data-step')
 
       ApplicationCollaboratorsConnectionManager.init_room()
+      ApplicationCollaboratorsGeneralRoomTracking.login()
 
   init_room: () ->
     # Introduce new channel

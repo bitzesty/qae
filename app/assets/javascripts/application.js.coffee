@@ -707,7 +707,6 @@ jQuery ->
     #
     if current_step != $(".js-step-link.step-current").attr('data-step')
 
-      ApplicationCollaboratorsAccessManager.switch_rooms(current_step)
       # If there are more than one one-time form collaborator
       #
       if ApplicationCollaboratorsGeneralRoomTracking.there_are_other_collaborators_here()
