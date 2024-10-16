@@ -3,15 +3,17 @@ Dear <%= @user.decorate.full_name %>,
 
 Thank you for applying for a King's Award for Enterprise.
 
-I would like to inform you that your application for <%= @company_name %> has been shortlisted for a King's Award for Enterprise: <%= @award_type_full_name %>.
+I am pleased to inform you that your application for <%= @company_name %> has been shortlisted for a King's Award for Enterprise: <%= @award_type_full_name %>.
 
 As you have provided estimated figures, you are now required to provide  latest financial statements and VAT returns and, if applicable, an explanation of the variance between the estimates and the actuals.
 
 #Please do so by <%= @deadline_time %> on <%= @deadline_date %>.
 
-Please follow the steps below:
+#Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
 
-  1. Log into your King's Awards for Enterprise dashboard and follow the steps to upload any latest financial statements and VAT returns by following the “Provide the latest financial information” link here:
+To begin the verification process, please follow the steps below:
+
+  1. Log into your King's Awards for Enterprise account and follow the steps on your dashboard to upload the latest financial statements and VAT returns by following the “Provide the latest financial information” link here:
      <%= users_form_answer_audit_certificate_url(@form_answer) %>
   2. Check how the estimated figures you provided in section D of your application form compare with the actuals. If you do not have access to your application, you can download it from the King's Award for Enterprise account dashboard.
   3. You will have to submit a separate variance explanation document if:
@@ -24,12 +26,15 @@ Please note:
 
   1. These documents must be submitted by <%= @deadline_time %> on <%= @deadline_date %>. We cannot extend this deadline.
   2. Failure to provide this return on time will mean that your application will not be considered at the next stage.
-  3. Please do not make any public announcement of your shortlisted status now or at any time in the future. The assessment process is ongoing, and reaching this stage is not a guarantee of success.
 
-Furthermore, as stipulated in (Section A2.3 - Agree to the outcome of the due diligence checks) in your application, the King's Awards Office will undertake due diligence checks with a range of government departments, agencies and public bodies. If you require further information on this, please contact us.
+As stipulated in your application (Section A2.5 - Agree to the outcome of the due diligence checks), the King's Awards Office will also undertake due diligence checks with a range of government departments, agencies and public bodies. If you require further information on this, please contact us at kingsawards@businessandtrade.gov.uk or via 0800 4551 0081.
+
+I have also included in Appendix A some information regarding government and wider business support for UK businesses which I hope you will find helpful.
 
 Yours sincerely,
 
 Nichola Bruno
 
 Head, The King's Awards for Enterprise Office
+
+<%= render 'appendix_a' %>

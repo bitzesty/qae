@@ -250,7 +250,7 @@ en:
     shortlisted_notifier: "SHORTLISTED - INNOVATION & IT: Email notifying shortlisted applicants of their success, including Verification of Commercial Figures (External Accountant's Report) instructions."
     shortlisted_po_sd_notifier: 'SHORTLISTED - PO & SD: Email notifying shortlisted applicants of their success - to those who provided estimated figures (asking for the latest financial statements & VAT returns submission instructions).'
     shortlisted_po_sd_with_actual_figures_notifier: 'SHORTLISTED - PO & SD: Email notifying shortlisted applicants of their success - to those who provided actual figures.'
-    shortlisted_audit_certificate_reminder: "SHORTLISTED REMINDER - INNOVATION & IT: Reminder for to submit Verification of Commercial Figures (External Accountant's Report) for shortlisted applicants who have not yet done so."
+    shortlisted_audit_certificate_reminder: "SHORTLISTED REMINDER - INNOVATION & IT: Reminder to submit Verification of Commercial Figures (External Accountant's Report) for shortlisted applicants who have not yet done so."
     shortlisted_po_sd_reminder: 'SHORTLISTED REMINDER - PO & SD: Reminder to submit the latest financial statements & VAT returns for shortlisted applicants who have not yet done so.'
     not_shortlisted_notifier: 'NOT SHORTLISTED : Email notifying unsuccessful applicants.'
 
