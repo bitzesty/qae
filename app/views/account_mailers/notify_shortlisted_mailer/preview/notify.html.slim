@@ -12,7 +12,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
     = "Please do so by #{@deadline_time} on #{@deadline_date}."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  | Important note: Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
+  strong
+    | Important note: Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | To begin the verification process, please follow the steps below:
@@ -56,3 +57,5 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   | Nichola Bruno
   br
   | Head, The King's Awards for Enterprise Office
+
+= render "account_mailers/notify_shortlisted_mailer/preview/appendix_a"

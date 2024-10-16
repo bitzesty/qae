@@ -6,7 +6,7 @@ You are now required to use an external accountant to verify the commercial figu
 
 #Please do so by <%= @deadline_time %> on <%= @deadline_date %>.
 
-Important note: Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
+#Important note: Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
 
 To begin the verification process, please follow the steps below:
 
@@ -18,12 +18,10 @@ To begin the verification process, please follow the steps below:
   5. Log in and upload the External Accountant's Report to the King's Award online portal, “Verification of figures” page, by following the link below:
      <%= users_form_answer_audit_certificate_url(@form_answer) %>
 
-
 Please note:
 
   1. The External Accountants Report must be submitted by <%= @deadline_time %> on <%= @deadline_date %>. We cannot extend this deadline.
   2. Failure to provide this return on time will mean that your application will not be considered at the next stage.
-
 
 As stipulated in your application (Section A2.5 - Agree to the outcome of the due diligence checks), the King's Awards Office will also undertake due diligence checks with a range of government departments, agencies and public bodies. If you require further information on this, please contact us at kingsawards@businessandtrade.gov.uk or via 0800 4551 0081.
 
@@ -33,3 +31,5 @@ Yours sincerely,
 
 Nichola Bruno
 Head, The King's Awards for Enterprise Office
+
+<%= render 'appendix_a' %>
