@@ -293,10 +293,9 @@ window.FormValidation =
     questionDay = question.find(".js-date-input-day").val()
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
-    questionYearTouched = !!question.find('.js-date-input-year.dirty').length
-    questionMonthTouched = !!question.find(".js-date-input-month.dirty").length
-    questionDayTouched = !!question.find(".js-date-input-day.dirty").length
-    allTouched = questionYearTouched && questionMonthTouched && questionDayTouched
+    [yearTouched, monthTouched, dayTouched] = ['.js-date-input-year', '.js-date-input-month', '.js-date-input-day'].map (cls) ->
+      !!question.find("#{cls}.dirty").length
+    allTouched = yearTouched and monthTouched and dayTouched
 
     if not val
       return
