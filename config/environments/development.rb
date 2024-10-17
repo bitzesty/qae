@@ -84,6 +84,7 @@ Rails.application.configure do
       :user_agent,
     )
   else
+    config.log_level = ENV.fetch("LOG_LEVEL") { "debug" }
     # normal development logging configuration
     config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new($stdout))
   end
