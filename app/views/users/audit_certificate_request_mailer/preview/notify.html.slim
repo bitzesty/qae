@@ -4,7 +4,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = "We are emailing to remind you that you have until"
 
-h1 style="font-size: 19px; font-weight: 800; line-height: 1.315789474; margin: 0 0 30px 0;"
+h1 style="font-size: 30px; font-weight: 800; line-height: 1.315789474; margin: 0 0 30px 0;"
   = "#{@deadline_time} on #{@deadline}"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
@@ -13,13 +13,13 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = link_to users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer)
 
-h2 style="font-size: 19px; font-weight: 500; line-height: 1.315789474; margin: 0 0 30px 0;"
+h2 style="font-size: 19px; font-weight: 800; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' We cannot extend this deadline.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' If you do not submit your External Accountant's Report before the deadline, we will not have sufficient information to assess your application and it will be withdrawn.
 
-h2 style="font-size: 19px; font-weight: 500; line-height: 1.315789474; margin: 0 0 30px 0;"
+h2 style="font-size: 19px; font-weight: 800; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' Below is a reminder of the steps you need to take:
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
@@ -55,6 +55,5 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   | Nichola Bruno
   br
   | Head, The King's Awards for Enterprise Office
-
-
+hr style="border-color: lightgrey; border-top-width: 2px;"
 = render "account_mailers/notify_shortlisted_mailer/preview/appendix_a"
