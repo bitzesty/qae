@@ -82,6 +82,7 @@ gem "simple_form", "~> 5.0"
 gem "country_select", "~> 3.1"
 gem "email_validator"
 gem "enumerize"
+gem "phonelib"
 
 # PDF generation
 gem "prawn"

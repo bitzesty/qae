@@ -8,9 +8,6 @@ describe "Collaborator registration flow" do
 
   before do
     create(:settings, :submission_deadlines)
-  end
-
-  it "creates and account and collaborator is able to collaborate" do
     login_as(acc_admin, scope: :user)
 
     visit new_account_collaborator_path
@@ -19,7 +16,7 @@ describe "Collaborator registration flow" do
     fill_in("First name", with: "First Name")
     fill_in("Last name", with: "Last Name")
     fill_in("Job title", with: "job title")
-    fill_in("Telephone number", with: "1231233214354235")
+    fill_in("Telephone number", with: "020 4551 0081")
     fill_in("Email", with: "collab@example.com")
     first("input#collaborator_role_account_admin").set(true)
 
@@ -35,17 +32,34 @@ describe "Collaborator registration flow" do
     visit root_path
 
     click_button("Save and continue")
+  end
 
+  it "creates and account and collaborator is able to collaborate" do
     expect(page).to have_content("Contact preferences")
     click_button("Save and continue")
 
     fill_in "Name of the organisation", with: "Disney"
-    fill_in "The organisation's main telephone number", with: "012312312"
+    fill_in "The organisation's main telephone number", with: "020 4551 0082"
     click_button("Save and continue")
 
     # collaborator page
     click_button("Save and continue")
 
     expect(page).to have_content("Applying for a King's Award for your organisation")
+  end
+
+  context "when the company_phone_number is invalid" do
+    it "displays an error message" do
+      expect(page).to have_content("Contact preferences")
+      click_button("Save and continue")
+
+      fill_in "Name of the organisation", with: "Disney"
+      fill_in "The organisation's main telephone number", with: "020 4551 008"
+      click_button("Save and continue")
+
+      expect(page).to have_content(
+        I18n.t("activerecord.errors.models.user.attributes.company_phone_number.invalid"),
+      )
+    end
   end
 end
