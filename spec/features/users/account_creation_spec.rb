@@ -32,27 +32,30 @@ describe "Account forms" do
   end
 
   context "Account details fulfillment" do
+    def fill_in_and_submit_account_details_form
+      fill_in("Title", with: "Mr")
+      fill_in("First name", with: "FirstName")
+      fill_in("Last name", with: "LastName")
+      fill_in("Your job title", with: "job title")
+      fill_in("Your telephone number", with: phone_number)
+
+      click_button("Save and continue")
+    end
+
     context "regular user" do
       let!(:user) { create(:user, role: "regular") }
 
       before do
         create(:settings, :submission_deadlines)
         login_as(user, scope: :user)
+        visit root_path
+        fill_in_and_submit_account_details_form
       end
 
-      let(:phone_number) { "1231233214354235" }
+      let(:phone_number) { "020 4551 0081" }
       let(:company_name) { "BitZestyOrg" }
 
       it "adds the Account details" do
-        visit root_path
-        fill_in("Title", with: "Mr")
-        fill_in("First name", with: "FirstName")
-        fill_in("Last name", with: "LastName")
-        fill_in("Your job title", with: "job title")
-        fill_in("Your telephone number", with: phone_number)
-
-        click_button("Save and continue")
-
         expect(page).to have_content("Contact preferences")
         click_button("Save and continue")
 
@@ -63,6 +66,16 @@ describe "Account forms" do
         expect(user.phone_number).to eq(phone_number)
         expect(user.completed_registration?).to eq(true)
       end
+
+      context "with an invalid phone number" do
+        let(:phone_number) { "020 4551 008" }
+
+        it "displays an error message" do
+          expect(page).to have_content(
+            I18n.t("activerecord.errors.models.user.attributes.phone_number.invalid"),
+          )
+        end
+      end
     end
 
     context "admin user" do
@@ -71,27 +84,20 @@ describe "Account forms" do
       before do
         create(:settings, :submission_deadlines)
         login_as(user, scope: :user)
+        visit root_path
+        fill_in_and_submit_account_details_form
       end
 
-      let(:phone_number) { "1231233214354235" }
+      let(:phone_number) { "020 4551 0081" }
       let(:company_name) { "BitZestyOrg" }
 
       it "adds the Account details" do
-        visit root_path
-        fill_in("Title", with: "Mr")
-        fill_in("First name", with: "FirstName")
-        fill_in("Last name", with: "LastName")
-        fill_in("Your job title", with: "job title")
-        fill_in("Your telephone number", with: phone_number)
-
-        click_button("Save and continue")
-
         expect(page).to have_content("Contact preferences")
         click_button("Save and continue")
 
         expect(page).to have_content("Organisation details")
         fill_in("Name of the organisation", with: company_name)
-        fill_in("The organisation's main telephone number", with: "9876544")
+        fill_in("The organisation's main telephone number", with: "020 4551 0082")
 
         click_button("Save and continue")
 
@@ -101,6 +107,16 @@ describe "Account forms" do
 
         expect(user.phone_number).to eq(phone_number)
         expect(user.company_name).to eq(company_name)
+      end
+
+      context "with an invalid phone number" do
+        let(:phone_number) { "020 4551 008" }
+
+        it "displays an error message" do
+          expect(page).to have_content(
+            I18n.t("activerecord.errors.models.user.attributes.phone_number.invalid"),
+          )
+        end
       end
     end
   end
