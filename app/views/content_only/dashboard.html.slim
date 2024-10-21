@@ -13,7 +13,7 @@
   h1.govuk-heading-xl
     ' Applications
 
-- if Settings.after_current_submission_deadline?
+- if true
   .dashboard-post-submission
     = render "dashboard_post_submission"
 - elsif Settings.after_current_submission_deadline_start?

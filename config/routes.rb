@@ -112,7 +112,9 @@ Rails.application.routes.draw do
       end
 
       # shortlisted docs block
-      resource :audit_certificate, only: [:show, :create, :destroy]
+      resource :audit_certificate, only: [:show, :create, :destroy] do
+        get :guide
+      end
       resource :figures_and_vat_returns, only: [:show] do
         patch :submit, on: :member
       end

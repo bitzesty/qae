@@ -3,12 +3,18 @@ module PdfAuditCertificates::General::SharedElements
   NOT_CURRENCY_QUESTION_KEYS = %w[employees]
 
   def render_main_header
+    render_certificate_title
     render_certificate_info
     render_recipients_info
     render_company_info
     render_urn
 
     move_down 5.mm
+  end
+
+  def render_certificate_title
+    title = "External Accountant's Report"
+    render_text_line(title, 9, default_text_header_ops.merge(aling: :left))
   end
 
   def render_certificate_info
@@ -26,6 +32,12 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_urn
     render_text_line("<b>KA ref</b>: #{form_answer.urn}", 1, inline_format: true)
+  end
+
+  def render_report_intro
+    p1 = "You can print the report, fill it out by hand, and then scan it. Alternatively, you can use digital PDF editing tools like the online Adobe Acrobat PDF Editor (the free version). See ‘Guide to Editing the External Accountant’s Report Using Adobe Acrobat PDF Editor’, which can be downloaded from the 'Verification of Commercial Figures and Applications' page - please also share it with your accountant."
+
+    render_text_line(p1, 2, leading: 2)
   end
 
   def render_base_paragraph
@@ -305,19 +317,10 @@ module PdfAuditCertificates::General::SharedElements
   def render_feedback
     render_text_line("FEEDBACK", 5, style: :bold)
 
-    render_text_line("Immediate feedback", 1, style: :bold)
-    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 2, default_text_ops)
+    render_text_line("We are committed to improving the experience for everyone involved in The King’s Awards for Enterprise process. We want to gather feedback from accountants to make relevant improvements to the verification forms and the financial section of the application form.", 2, default_text_ops)
+    
+    render_text_line("You can provide feedback anonymously by following the link and filling out the <b><u>King’s Awards for Enterprise Accountant’s Report Feedback Form.</u></b>", 2, default_text_ops.merge(inline_format: true))
     move_down 60.mm
-
-    render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
-
-    render_text_line("We are committed to improving experiences for everyone who is involved in The King’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
-
-    render_text_line("Yes       No", 10, style: :bold)
-
-    render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 3, style: :bold)
-
-    render_text_line("Email: ....................................................................................................................", 1)
   end
 
   def render_appendix
