@@ -14,7 +14,7 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_certificate_title
     title = "External Accountant's Report"
-    render_text_line(title, 9, default_text_header_ops.merge(aling: :left))
+    render_text_line(title, 5, default_text_header_ops.merge(aling: :left, size: 16))
   end
 
   def render_certificate_info
