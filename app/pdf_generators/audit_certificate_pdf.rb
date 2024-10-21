@@ -43,6 +43,7 @@ class AuditCertificatePdf < Prawn::Document
 
   def render_content
     render_main_header
+    render_report_intro
     render_applicant_guidance_section
     render_accountant_guidance_section
     render_financial_table

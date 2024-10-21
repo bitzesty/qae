@@ -28,8 +28,12 @@ So that I can check, complete it and then upload it to application
     it "should render page" do
       expect_to_see "Verification of Commercial Figures"
       expect(page).to have_link(
-        "Download the External Accountant's Report form",
+        "External Accountant's Report",
         href: users_form_answer_audit_certificate_url(form_answer, format: :pdf),
+      )
+      expect(page).to have_link(
+        "Guide to Editing the External Accountant's Report Using Adobe Acrobat PDF Editor",
+        href: guide_users_form_answer_audit_certificate_url(form_answer, format: :pdf),
       )
     end
   end
