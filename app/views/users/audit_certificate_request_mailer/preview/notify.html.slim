@@ -4,9 +4,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = "We are emailing to remind you that you have until"
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    = "#{@deadline_time} on #{@deadline}"
+h1 style="font-size: 19px; font-weight: 800; line-height: 1.315789474; margin: 0 0 30px 0;"
+  = "#{@deadline_time} on #{@deadline}"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' to provide verification of the commercial figures. These must be submitted via the External Accountant's Report by following the link below:
@@ -14,16 +13,14 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = link_to users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer)
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    ' We cannot extend this deadline.
+h2 style="font-size: 19px; font-weight: 500; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' We cannot extend this deadline.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' If you do not submit your External Accountant's Report before the deadline, we will not have sufficient information to assess your application and it will be withdrawn.
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    ' Below is a reminder of the steps you need to take:
+h2 style="font-size: 19px; font-weight: 500; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Below is a reminder of the steps you need to take:
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | 1. Log into your King's Awards for Enterprise account and download the External Accountant's Report form by following the link here:<br/>
@@ -42,9 +39,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | 5. Log in and upload the External Accountant's Report to The King's Award online portal, “Verification of figures” page, by following the link here:<br/>
   = link_to(users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer))
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    | Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
+h2 style="font-size: 19px; font-weight: 500; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | I have also included in Appendix A some information regarding government and wider business support for UK businesses which I hope you will find helpful.
@@ -58,6 +54,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   br
   | Nichola Bruno
   br
-  | Head of The King's Awards Office
+  | Head, The King's Awards for Enterprise Office
+
 
 = render "account_mailers/notify_shortlisted_mailer/preview/appendix_a"
