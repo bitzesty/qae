@@ -318,7 +318,7 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line("FEEDBACK", 5, style: :bold)
 
     render_text_line("We are committed to improving the experience for everyone involved in The King’s Awards for Enterprise process. We want to gather feedback from accountants to make relevant improvements to the verification forms and the financial section of the application form.", 2, default_text_ops)
-    
+
     render_text_line("You can provide feedback anonymously by following the link and filling out the <b><u>King’s Awards for Enterprise Accountant’s Report Feedback Form.</u></b>", 2, default_text_ops.merge(inline_format: true))
     move_down 60.mm
   end
