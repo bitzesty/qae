@@ -848,6 +848,23 @@ window.FormValidation =
       @appendMessage(question, "Select a maximum of " + selection_limit)
       @addErrorClass(question)
 
+  validatePhoneNumber: (question) ->
+    questionRef = question.attr("data-question_ref")
+    input = question.find("input[type='tel']").val()
+    phoneUtil = libphonenumber.PhoneNumberUtil.getInstance()
+
+    try parsedInput = phoneUtil.parse(input, 'GB')
+    catch exception
+      # libphonenumber throws an exception if we try and parse something like "1" or "abc"
+      # so we catch the exception and give it something which is parseable but not valid
+      @logThis(question, "validatePhoneNumber", "#{input} not a parseable phone number")
+      parsedInput = phoneUtil.parse('01', 'GB')
+    finally
+      if !phoneUtil.isValidNumber(parsedInput)
+        @logThis(question, "validatePhoneNumber", "#{input} not a valid phone number")
+        @appendMessage(question, "Question #{questionRef} is incomplete. Enter a phone number, like 01635 960 001, 07701 900 982 or +44 808 157 0192.")
+        @addErrorClass(question)
+
   validateWebsiteUrl: (question) ->
     questionRef = question.attr("data-question_ref")
     url = question.find("input[type='website_url']").val()
@@ -983,6 +1000,9 @@ window.FormValidation =
 
     if question.hasClass("sub-fields-word-max")
       @validateSubfieldWordLimit(question)
+
+    if question.find("input[type='tel']").length
+      @validatePhoneNumber(question)
 
     if question.find("input[type='website_url']").length
       @validateWebsiteUrl(question)
