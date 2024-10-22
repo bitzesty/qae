@@ -111,7 +111,9 @@ Rails.application.routes.draw do
       end
 
       # shortlisted docs block
-      resource :audit_certificate, only: [:show, :create, :destroy]
+      resource :audit_certificate, only: [:show, :create, :destroy] do
+        get "Guide-to-Editing-External-Accountants-Report-Using-Adobe-PDF-Editor", as: :guide, to: "audit_certificates#guide"
+      end
       resource :figures_and_vat_returns, only: [:show] do
         patch :submit, on: :member
       end

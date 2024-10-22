@@ -7,22 +7,28 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | King's Awards for Enterprise. I am sorry to inform you that you have not been shortlisted. I know that this will be disappointing news given the time that you have spent preparing your application.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  = "The Awards application process is rigorous and comprehensive and therefore, we are aware that feedback is important. We will write to you in April #{@current_year}, before the next Award round opens, to provide comprehensive feedback. We hope this will assist you with future applications."
+  = "The Awards application process is rigorous and comprehensive and we are aware that feedback is important. We will therefore write to you in April #{@current_year}, before the next Award round opens, to provide comprehensive feedback."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Previous applicants have found the feedback useful to strengthen their application.
+  ' Previous applicants have found the feedback useful in strengthening their application and we hope this will assist you with future applications.
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  strong
-    ' Please note that The King's Awards Office do not have any further information on the assessment of your application at this stage so will not be able to discuss anything related to your
-    => @current_year
-    | application until you have received the feedback.
-
+h1 style="font-size: 19px; font-weight: 800; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Please note that The King's Awards Office do not have any further information on the assessment at this stage so will not be able to discuss anything related to your
+  => @current_year
+  | application until you have received the feedback.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' Thank you for taking the time to enter The King's Awards for Enterprise.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | I have also included in Appendix A some information regarding government and wider business support for UK businesses which I hope you will find helpful.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Yours sincerely,
   br
   br
   ' Nichola Bruno
   br
   ' Head of The King's Awards Office
+hr style="border-color: lightgrey; border-top-width: 2px;"
+= render "account_mailers/notify_shortlisted_mailer/preview/appendix_a"
