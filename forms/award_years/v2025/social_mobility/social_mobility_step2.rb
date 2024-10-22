@@ -179,7 +179,7 @@ class AwardYears::V2025::QaeForms
             { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
-            { telephone: "Telephone" },
+            { telephone: "Telephone", type: "tel" },
             { email: "Email address" },
           ])
           sub_fields_words_max 50
