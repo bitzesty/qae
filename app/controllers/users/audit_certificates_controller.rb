@@ -69,6 +69,12 @@ class Users::AuditCertificatesController < Users::BaseController
     redirect_to users_form_answer_audit_certificate_url(form_answer)
   end
 
+  def guide
+    send_data editing_external_accountants_report_guide.read,
+      type: "application/pdf",
+      disposition: "inline"
+  end
+
   private
 
   def action_type
@@ -114,5 +120,9 @@ class Users::AuditCertificatesController < Users::BaseController
       redirect_to dashboard_url
       nil
     end
+  end
+
+  def editing_external_accountants_report_guide
+    File.open(Rails.root.join("lib/assets/Guide-to-Editing-External-Accountant's-Report-Using-Adobe-PDF-Editor.pdf"))
   end
 end

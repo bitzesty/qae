@@ -8,20 +8,29 @@ to provide the latest financial statements & VAT returns and, if applicable, an 
 
 <%= users_form_answer_figures_and_vat_returns_url(@form_answer) %>
 
-#We cannot extend this deadline.
+##We cannot extend this deadline.
 
 If you do not submit the required latest financial information before the deadline, we will not have sufficient information to assess your application, and it will be withdrawn.
 
-#Below is a reminder of the steps you need to take:
+##Below is a reminder of the steps you need to take:
 
-  1. Log into your King's Awards for Enterprise dashboard and follow the steps to upload any latest financial statements and VAT returns by following the “Provide the latest financial information” link here:
+  1. Log into your King's Awards for Enterprise account and follow the steps on your dashboard to upload the latest financial statements and VAT returns by following the “Provide the latest financial information” link here:
      <%= users_form_answer_figures_and_vat_returns_url(@form_answer) %>
   2. Check how the estimated figures you provided in section D of your application form compare with the actuals. If you do not have access to your application, you can download it from the King's Award for Enterprise account dashboard.
   3. You will have to submit a separate variance explanation document if:
     a) any of the actual figures have decreased by 10% or more. If this is the case, please explain the reasons for the difference.
     b) the actuals include losses which were not previously stated on your application form. If this is the case, please explain the reasons for the losses and how your business remains financially viable.
 
+##Please do not make any public announcement of your shortlisted status now or at any time in the future. This is because the assessment process is ongoing, and reaching this stage is not a guarantee of receiving the Award.
+
+I have also included in Appendix A some information regarding government and wider business support for UK businesses which I hope you will find helpful.
+
+If you require further information on this, please contact us at kingsawards@businessandtrade.gov.uk or via 0800 4551 0081.
+
 Yours sincerely,
 
 Nichola Bruno
-Head of The King’s Awards Office
+Head of The King's Awards Office
+
+---
+<%= render 'account_mailers/notify_shortlisted_mailer/appendix_a' %>
