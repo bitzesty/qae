@@ -157,12 +157,10 @@ class AwardYears::V2025::QaeForms
         end
 
         text :org_telephone, "Main telephone number." do
-          classes "text-words-max"
           required
           ref "B 6.1"
           type "tel"
           style "small"
-          text_words_max 50
         end
 
         sub_fields :press_contact_details, "Contact details for press enquiries." do
@@ -181,7 +179,7 @@ class AwardYears::V2025::QaeForms
             { title: "Title" },
             { first_name: "First name" },
             { last_name: "Last name" },
-            { telephone: "Telephone" },
+            { telephone: "Telephone", type: "tel" },
             { email: "Email address" },
           ])
           sub_fields_words_max 50

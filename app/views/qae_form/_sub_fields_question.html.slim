@@ -3,6 +3,7 @@ div role="group" id="#{question.key}"
     - sub_field_key = sub_field_block[:key]
     - sub_field_title = sub_field_block[:title]
     - sub_field_hint = sub_field_block[:hint]
+    - sub_field_type = sub_field_block[:type]
 
     .govuk-form-group.question-required
       label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
@@ -46,7 +47,7 @@ div role="group" id="#{question.key}"
       - else
         input.govuk-input.js-trigger-autosave[
           class=klass
-          type="text"
+          type=sub_field_type
           id=question.input_name(suffix: sub_field_key)
           value=question.input_value(suffix: sub_field_key)
           name=question.input_name(suffix: sub_field_key)
