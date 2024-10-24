@@ -4,6 +4,8 @@
  *= require jquery-ui
  */
 
+@import "govuk-frontend/dist/govuk/all";
+
 // Bootstrap
 @import "bootstrap-sprockets";
 @import "bootstrap";
