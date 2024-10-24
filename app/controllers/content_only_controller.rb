@@ -13,6 +13,7 @@ class ContentOnlyController < ApplicationController
       :privacy,
       :cookies,
       :accessibility_statement,
+      :admin_accessibility_statement,
       :apply_for_queens_award_for_enterprise,
       :sign_up_complete,
       :submitted_nomination_successful,
