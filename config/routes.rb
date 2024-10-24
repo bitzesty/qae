@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get "/privacy" => "content_only#privacy", :as => "privacy"
   get "/cookies" => "content_only#cookies", :as => "cookies"
   get "/accessibility-statement" => "content_only#accessibility_statement", :as => "accessibility_statement"
+  get "/admin-accessibility-statement" => "content_only#admin_accessibility_statement", :as => "admin_accessibility_statement"
 
   post "/new_innovation_form" => "form#new_innovation_form", :as => "new_innovation_form"
   post "/new_international_trade_form" => "form#new_international_trade_form", :as => "new_international_trade_form"
