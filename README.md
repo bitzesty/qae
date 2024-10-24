@@ -75,6 +75,7 @@ software, and may be redistributed under the terms specified in the
 [license]: https://github.com/bitzesty/qae/blob/master/LICENSE
 
 ## Helpful links
+
 - [GDS service standards](https://www.gov.uk/service-manual/service-standard)
 - [GDS design principles](https://www.gov.uk/design-principles)
 
@@ -83,4 +84,3 @@ software, and may be redistributed under the terms specified in the
 ![Bit Zesty](https://bitzesty.com/wp-content/uploads/2017/01/logo_dark.png)
 
 QAE is maintained by [Bit Zesty Limited](https://bitzesty.com/).
-
