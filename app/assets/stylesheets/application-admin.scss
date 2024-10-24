@@ -2,9 +2,8 @@
  *= require_self
  *= require accessible-autocomplete
  *= require jquery-ui
+ *= require govuk-frontend/dist/govuk/all.scss
  */
-
-@import "govuk-frontend/dist/govuk/all";
 
 // Bootstrap
 @import "bootstrap-sprockets";
