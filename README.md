@@ -27,13 +27,13 @@ This ensures the necessary environment variables set before running the Docker c
 #### Running with docker
 
 1. Build the containers:
-   
+
    ```
    docker-compose build
    ```
 
 2. In a new terminal, set up and migrate the database:
-   
+
    ```
    docker-compose run --rm web bundle exec rails db:prepare
    ```
@@ -99,6 +99,7 @@ software, and may be redistributed under the terms specified in the
 [license]: https://github.com/bitzesty/qae/blob/master/LICENSE
 
 ## Helpful links
+
 - [GDS service standards](https://www.gov.uk/service-manual/service-standard)
 - [GDS design principles](https://www.gov.uk/design-principles)
 
@@ -107,4 +108,3 @@ software, and may be redistributed under the terms specified in the
 ![Bit Zesty](https://bitzesty.com/wp-content/uploads/2017/01/logo_dark.png)
 
 QAE is maintained by [Bit Zesty Limited](https://bitzesty.com/).
-
