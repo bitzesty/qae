@@ -62,9 +62,18 @@ If you need to test collaborators editing the application at the same time, inst
 
 ### Installing Malware Scanning
 
-Files are uploaded to S3 and then scanned with ClamAV via the Vigilion service.
+Files are uploaded to S3 and then scanned with ClamAV via the DBT scanner service.
 
-If you need to test malware scanning locally, install [Vigilion](https://github.com/bitzesty/vigilion-scanner) and set the `VIGILION_ACCESS_KEY_ID` and `VIGILION_SECRET_ACCESS_KEY` and `DISABLE_VIRUS_SCANNER` to `false` in the `.env` file.
+If you need to test malware scanning locally, run the [DBT scanner](https://github.com/uktrade/dit-clamav-rest) via docker-compose.
+
+You will also need to set the following environment variables in the `.env` file:
+
+```
+VIRUS_SCANNER_URL=http://localhost:80
+VIRUS_SCANNER_USERNAME=app1
+VIRUS_SCANNER_PASSWORD=letmein
+```
+
 
 ### Running the tests
 

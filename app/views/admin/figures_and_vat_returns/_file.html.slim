@@ -12,12 +12,12 @@
             span.visible-lg.visible-md
               ' Remove
 
-    - if Rails.env.test? || attachment.clean?
+    - if attachment.clean?
       = link_to [namespace_name, attachment.form_answer, attachment], target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file
         = attachment.original_filename
 
-    - elsif attachment.attachment_scan_results.to_s == "infected"
+    - elsif attachment.infected?
       span.glyphicon.glyphicon-file
       = "Failed virus scanner check (#{attachment.original_filename})"
 
