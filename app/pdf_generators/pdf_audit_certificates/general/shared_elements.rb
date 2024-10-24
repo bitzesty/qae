@@ -319,12 +319,13 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_feedback
+    move_down 8.mm
     render_text_line("FEEDBACK", 5, style: :bold)
 
-    render_text_line("We are committed to improving the experience for everyone involved in The King’s Awards for Enterprise process. We want to gather feedback from accountants to make relevant improvements to the verification forms and the financial section of the application form.", 2, default_text_ops)
+    render_text_line("We are committed to improving the experience for everyone involved in The King’s Awards for Enterprise process. We want to gather feedback <b>from accountants</b> to make relevant improvements to the verification forms and the financial section of the application form.", 2, default_text_ops.merge(inline_format: true))
     move_down 2.mm
 
-    render_text_line("You can provide feedback anonymously by following the link and filling out the <b><u>King’s Awards for Enterprise Accountant’s Report Feedback Form.</u></b>", 2, default_text_ops.merge(inline_format: true))
+    render_text_line("You can provide feedback anonymously by following the link and filling out the <b><u><a href='https://forms.office.com/e/RF5inc5VyY'>King’s Awards for Enterprise Accountant’s Feedback Form.</a></u></b>", 2, default_text_ops.merge(inline_format: true))
     move_down 2.mm
 
     render_text_line("Alternatively, please leave feedback in the space below:", 2, default_text_ops)
