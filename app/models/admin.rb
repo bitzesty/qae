@@ -2,15 +2,11 @@ class Admin < ApplicationRecord
   include PgSearch::Model
   include AutosaveTokenGeneration
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-
-  devise :authy_authenticatable, :database_authenticatable,
-    :recoverable, :trackable, :validatable, :confirmable,
-    :zxcvbnable, :lockable, :timeoutable, :session_limitable
-  include PasswordValidator
+  devise :trackable, :timeoutable, :session_limitable
+  devise :omniauthable, omniauth_providers: %i[dbt_staff_sso]
 
   validates :first_name, :last_name, presence: true
+  validates :email, format: { with: Devise.email_regexp }
 
   has_many :form_answer_attachments, as: :attachable
 

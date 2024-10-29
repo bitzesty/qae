@@ -1,7 +1,6 @@
 unless Admin.exists?
   admin_args = {
     email: "admin@example.com",
-    password: "^#ur9EkLm@1W+OaDvg",
     first_name: "First name",
     last_name: "Last name",
     confirmed_at: DateTime.now
