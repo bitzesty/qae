@@ -206,6 +206,11 @@ Devise.setup do |config|
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
 
+  config.omniauth :dbt_staff_sso,
+    ENV.fetch("DBT_STAFF_SSO_APP_ID", nil), # remove the nils once we have these set in ci etc
+    ENV.fetch("DBT_STAFF_SSO_APP_SECRET", nil),
+    info_fields: OmniAuth::Strategies::DbtStaffSso::INFO_FIELD_NAMES
+
   config.warden do |manager|
     manager.failure_app = QaeFailureApp
   end
