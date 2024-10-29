@@ -64,6 +64,8 @@ gem "devise-authy", ">= 1.10.0"
 gem "pundit", "~> 0.3"
 gem "devise_zxcvbn", ">= 4.4.1"
 gem "devise-security", "~> 0.18.0"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-oauth2"
 
 # GOV.UK Notify support (for mailers)
 gem "mail-notify", "~> 2.0"
