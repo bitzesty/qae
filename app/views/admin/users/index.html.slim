@@ -25,8 +25,9 @@
             = link_to "Edit assessors’ access to the system", suspension_status_admin_assessors_path, class: "btn btn-default btn-md"
             ' &nbsp;
 
-          = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-secondary btn-md' do
-            = "+ Add #{controller_name == "users" ? "applicant" : controller_name.singularize}"
+          - unless controller_name == "admins"
+            = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-secondary btn-md' do
+              = "+ Add #{controller_name == "users" ? "applicant" : controller_name.singularize}"
     .clear
 
     - if @search.query?

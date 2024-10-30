@@ -1,5 +1,6 @@
-class Admin::AdminsController < Admin::UsersController
-  before_action :find_resource, except: [:index, :new, :create, :login_as_assessor, :login_as_user]
+class Admin::AdminsController < Admin::BaseController
+  before_action :find_resource, except: [:index, :login_as_assessor, :login_as_user]
+
   def index
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
     params[:search].permit!
@@ -7,40 +8,7 @@ class Admin::AdminsController < Admin::UsersController
     @search = AdminSearch.new(Admin.all)
                          .search(params[:search])
     @resources = @search.results.page(params[:page])
-  end
-
-  def new
-    @resource = Admin.new
-    authorize @resource, :create?
-  end
-
-  def create
-    @resource = Admin.new(resource_params)
-    authorize @resource, :create?
-    @resource.save
-
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
-
-    location = @resource.persisted? ? admin_admins_path : nil
-    respond_with :admin, @resource, location: location
-  end
-
-  def update
-    authorize @resource, :update?
-    @resource.update(resource_params)
-
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
-
-    respond_with :admin, @resource, location: admin_admins_path
-  end
-
-  def destroy
-    authorize @resource, :destroy?
-    @resource.soft_delete!
-
-    render_flash_message_for(@resource, message: @resource.errors.none? ? nil : @resource.errors.messages.values.flatten.uniq.join("<br />"))
-
-    respond_with :admin, @resource, location: admin_admins_path
+    render template: "admin/users/index"
   end
 
   # NOTE: debug abilities for Admin - BEGIN
@@ -65,14 +33,5 @@ class Admin::AdminsController < Admin::UsersController
 
   def find_resource
     @resource = Admin.find(params[:id])
-  end
-
-  def resource_params
-    params.require(:admin)
-      .permit(:email,
-        :password,
-        :password_confirmation,
-        :first_name,
-        :last_name)
   end
 end
