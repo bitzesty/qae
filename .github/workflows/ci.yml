@@ -42,7 +42,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: 3.2.4
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '20'
@@ -71,7 +71,7 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: 3.2.4
           bundler-cache: true
       - name: Lint Ruby files
         run: bundle exec rubocop --require rubocop-rails --format github
@@ -92,7 +92,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: 3.2.4
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '20'
@@ -135,7 +135,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: 3.2.4
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '20'
