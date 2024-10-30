@@ -31,6 +31,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_out_path_for(scope)
+    if scope == :admin
+      new_admin_session_path
+    else
+      super
+    end
+  end
+
   def admin_in_read_only_mode?
     @admin_in_read_only_mode ||= (admin_signed_in? || assessor_signed_in?) &&
       session["warden.user.user.key"] &&
