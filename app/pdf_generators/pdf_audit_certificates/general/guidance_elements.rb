@@ -13,15 +13,15 @@ module PdfAuditCertificates::General::GuidanceElements
   end
 
   def render_applicant_guidance_text
-    p1 = "We would like to inform you that your application has been shortlisted for a King's Award for Enterprise: #{award_type_short} category. To enable us to proceed with your entry, you are required to provide verification of the commercial figures you provided in your application. This verification must be from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry form)."
+    p1 = "We would like to inform you that your application has been shortlisted for a King's Award for Enterprise: #{award_type_short} category. To enable us to proceed with your entry, you must provide verification of the commercial figures submitted in your application. This verification must be from an external, qualified, practising accountant or auditor (as stated in the commercial performance section of the online entry form)."
 
-    p2 = "We recommend that you send the report to the accountant straight away so that you can agree on the timelines. Let them know if you will be providing revisions to the figures."
+    p2 = "We recommend that you send the report to the accountant immediately to agree on the timelines. Let them know if you will be providing revisions to the figures."
 
-    p3 = "As a shortlisted applicant, you now need to check the figures which you have provided. If you need to make changes or provide actual figures to replace estimates submitted at the time of application, please make changes on this form and then ask your external accountant to complete this. If you have made changes, then you will need to sign the Applicant’s Management’s Statement section of this form."
+    p3 = "As a shortlisted applicant, you must now check the figures you provided. If you need to make changes or provide actual figures if they differ from the estimates submitted at the time of application, please provide the figures in this report and then ask your external accountant to complete the rest. If you make changes to the report, you must sign the Applicant’s Management’s Statement section of this report."
 
-    p4 = "For applicants that are not for profit organisations or charities, to be eligible for a King’s Award for Enterprise, your organisation must be on a sustainable financial footing."
+    p4 = "For applicants who are not-for-profit organisations or charities, to be eligible for a King’s Award for Enterprise, your organisation must be on a sustainable financial footing."
 
-    p5 = "Once you and your external accountant have completed this report, please upload it to The King’s Awards for Enterprise online portal by #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(bold: false)}. We are unable to accept late reports due to the strict assessment and judging timetable."
+    p5 = "Once you and your external accountant have completed this report, please upload it to The King’s Awards for Enterprise online portal by #{Settings.current_audit_certificates_deadline.decorate.formatted_trigger_time(bold: false)}. Due to the strict assessment and judging timetable, we are unable to accept late reports."
 
     [p1, p2, p3, p4, p5].each do |paragraph|
       render_text_line(paragraph, 2, leading: 2)
@@ -41,13 +41,13 @@ module PdfAuditCertificates::General::GuidanceElements
 
     ps = []
 
-    ps << "The figures in the #{table} below have been provided by the applicant during their application for The King’s Awards for Enterprise. Please check the figures the business has submitted to underlying calculations and compare these to a sample of underlying supporting documentation, including, where appropriate, filings with HMRC and/or Companies House. For the avoidance of doubt, we do not expect you to undertake an assurance engagement. We expect an agreed upon procedures engagement to be undertaken. Accountants should exercise their professional judgement when agreeing appropriate procedures. Appendix 1 provides illustrative procedures that may be appropriate and our expectations on sample sizes."
+    ps << "When applying for The King’s Awards for Enterprise, the applicant has provided the figures stated in the #{table} below. Please check the figures the business has submitted to underlying calculations and compare these to a sample of underlying supporting documentation, including filings with HMRC and/or Companies House, where appropriate. For the avoidance of doubt, we do not expect you to undertake an assurance engagement. We expect an agreed-upon engagement of procedures to be undertaken. Accountants should exercise their professional judgement when agreeing on appropriate procedures. Appendix 1 provides illustrative procedures that may be appropriate and our expectations on sample sizes."
 
     ps << "If no exceptions are found, please confirm this by selecting Statement 1 in this form."
 
     ps << "If exceptions are found, but the applicant has adjusted these and explained the exchanges in the appropriate section to this form, then confirm this by selecting Statement 2."
 
-    ps << "If exceptions are found, and they are not adjusted, this should be confirmed in Statement 2."
+    ps << "If exceptions are found and they are not adjusted, this should be confirmed in Statement 2."
 
     ps << "We understand that the External Accountant’s Report has been prepared solely for the organisation’s exclusive use and solely for the purpose of the organisation’s application for The King’s Awards for Enterprise: #{header_full_award_type} #{form_answer.award_year.year}. However, we may request a copy of this Report solely for the purpose of enabling The King’s Award Office to further assess the application. The King’s Award Office accepts that the Accountant will accept no duty, liability or responsibility to The King’s Awards Office in relation to this Report. We will not use the Report for any other purpose, recited or referred to in any document, copied or made available (in whole or in part) to any other person without the Accountant’s prior written express consent. We accept that the Accountant accepts no duty, responsibility or liability to any party, other than the company, in connection with the Report."
 

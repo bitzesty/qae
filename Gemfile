@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 git_source(:github) { |name| "https://github.com/#{name}.git" }
 
-ruby "~> 3.2.2"
+ruby "~> 3.2.4"
 
 gem "rails", "7.0.8.4"
 gem "websocket-extensions", "~> 0.1.5"
@@ -123,10 +123,13 @@ gem "virtus"
 gem "nilify_blanks"
 
 # Web server
-gem "puma", "~> 6.4.2"
+gem "puma", "~> 6.4.3"
 
 # Performance & Error reporting
-gem "appsignal"
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"
+gem "sentry-sidekiq"
 
 # Log formatting
 gem "json_tagged_logger"

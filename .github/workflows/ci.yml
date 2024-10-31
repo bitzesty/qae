@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       db:
-        image: postgres:12-alpine
+        image: postgres:16-alpine
         ports: ['5432:5432']
         env:
           POSTGRES_DB: qae_test
@@ -39,10 +39,13 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: Read Ruby version
+        id: ruby-version
+        run: echo "ruby-version=$(cat .ruby-version)" >> $GITHUB_ENV
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: ${{ env.ruby-version }}
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '20'
@@ -55,8 +58,11 @@ jobs:
           BUNDLER_VERSION: 2.5.6
           DOCKER_TLS_CERTDIR: ''
         run: |
-          sudo apt update
-          sudo apt-get -yqq install postgresql postgresql-client libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-16
+          sudo apt-get -yqq install libpq-dev xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
           gem install bundler
           gem update --system && gem update bundler
           yarn install
@@ -71,7 +77,7 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: ${{ env.ruby-version }}
           bundler-cache: true
       - name: Lint Ruby files
         run: bundle exec rubocop --require rubocop-rails --format github
@@ -92,7 +98,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: ${{ env.ruby-version }}
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '20'
@@ -111,7 +117,7 @@ jobs:
         run: |
           npm install -g yarn
           wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-          echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+          echo "deb [trusted=yes] https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
           sudo apt-get update
           sudo apt-get install cf7-cli
           cf -v
@@ -135,7 +141,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: ${{ env.ruby-version }}
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '20'

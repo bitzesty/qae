@@ -104,18 +104,18 @@ class QaeFormBuilder
       disadvantaged ||= 0
       total = answers["#{question_key}_#{x_heading}_calculated_total"].to_f
       proportion = (disadvantaged.to_f / total * 100).round(2)
-      answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion
+      answers["#{question_key}_#{x_heading}_calculated_proportion"] = proportion.nan? ? 0 : proportion
     end
 
-    def assign_autocalculated_value(question_key, x_headings, y_headings, answers, disabled_input, x_heading, y_heading)
-      case disabled_input
-      when "auto-totals-col"
+    def assign_autocalculated_value(question_key, x_headings, y_headings, answers, x_heading, y_heading, key:)
+      case key
+      when "auto-totals-col", "total_system_calculated"
         calculate_row_total(question_key, x_headings, y_headings, answers)
-      when "auto-totals-row"
+      when "auto-totals-row", "calculated_total"
         calculate_col_total(question_key, x_headings, y_headings, answers)
-      when "auto-subtotals-row"
+      when "auto-subtotals-row", "calculated_sub_total"
         calculate_col_subtotal(question_key, x_headings, y_headings, answers)
-      when "auto-proportion-row"
+      when "auto-proportion-row", "calculated_proportion"
         calculate_proportion(question_key, answers, x_heading, y_heading)
       end
     end

@@ -1,5 +1,6 @@
 #= require govuk-frontend-3.13.0.min
 #= require jquery
+#= require google-libphonenumber/dist/libphonenumber.js
 #= require jquery_ujs
 #= require vendor/file_upload/jquery.ui.widget
 #= require vendor/file_upload/jquery.iframe-transport
@@ -190,7 +191,7 @@ jQuery ->
             key.includes(v)
           map.set(key, cond)
 
-        if !cond && shouldHideRow
+        if !cond && !row.hasClass('js-prevent-hide') && shouldHideRow
           subq.val("")
           if shouldDisableRow
             subq.prop('disabled', true)
@@ -543,6 +544,10 @@ jQuery ->
     proportionInput = cell.querySelector('input')
     referenceCell = referenceRow[cell.cellIndex].querySelector('input')
     referenceValue = parseFloat(referenceCell?.value) or 0
+
+    if isNaN(referenceValue)
+      referenceValue = 0
+
     if type == 'disadvantaged'
       proportionInput?.value = ((referenceValue / colSums[cell.cellIndex]) * 100).toFixed(2)
 

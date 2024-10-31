@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get "/privacy" => "content_only#privacy", :as => "privacy"
   get "/cookies" => "content_only#cookies", :as => "cookies"
   get "/accessibility-statement" => "content_only#accessibility_statement", :as => "accessibility_statement"
+  get "/application-management-interface-accessibility-statement" => "content_only#admin_accessibility_statement", :as => "admin_accessibility_statement"
 
   post "/new_innovation_form" => "form#new_innovation_form", :as => "new_innovation_form"
   post "/new_international_trade_form" => "form#new_international_trade_form", :as => "new_international_trade_form"
@@ -112,7 +113,9 @@ Rails.application.routes.draw do
       end
 
       # shortlisted docs block
-      resource :audit_certificate, only: [:show, :create, :destroy]
+      resource :audit_certificate, only: [:show, :create, :destroy] do
+        get "Guide-to-Editing-External-Accountants-Report-Using-Adobe-PDF-Editor", as: :guide, to: "audit_certificates#guide"
+      end
       resource :figures_and_vat_returns, only: [:show] do
         patch :submit, on: :member
       end

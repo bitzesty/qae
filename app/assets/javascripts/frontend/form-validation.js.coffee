@@ -1,5 +1,6 @@
 window.FormValidation =
   validates: true
+  validate_only_touched_inputs: true
   # validates numbers, including floats and negatives
   numberRegex: /^-?\d*\,?\d*\,?\d*\,?\d*\,?\d*\.?\,?\d*$/
 
@@ -10,8 +11,8 @@ window.FormValidation =
     $(".steps-progress-bar a.js-step-link").parent().removeClass("step-errors")
 
   clearErrors: (container) ->
-    if container.closest(".question-financial").length > 0
-      container.closest("label").find(".govuk-error-message").empty()
+    if container.closest(".span-financial").length > 0
+      container.closest(".span-financial").find(".govuk-error-message").empty()
     else if container.closest('.question-matrix').length > 0
       container.closest("td").find(".govuk-error-message").empty()
     else
@@ -31,10 +32,11 @@ window.FormValidation =
 
   appendMessage: (container, message) ->
     el = container.find(".govuk-error-message").first()
-    if el.text.length > 0
-      el.append(message)
-    else
-      el.append(" #{message}")
+    if not el.text().includes(message)
+      if el.text().length > 0
+        el.append(" #{message}")
+      else
+        el.append(message)
     @validates = false
 
   extractText: (identifier) ->
@@ -202,12 +204,17 @@ window.FormValidation =
 
     if subquestions.length
       for subquestion in subquestions
-        if not @validateSingleQuestion($(subquestion))
+        if (@validate_only_touched_inputs and @hasBeenTouched($(subquestion))) and not @validateSingleQuestion($(subquestion))
+          @addSubfieldError(question, subquestion)
+        else if not @validate_only_touched_inputs and not @validateSingleQuestion($(subquestion))
           @addSubfieldError(question, subquestion)
     else
       if not @validateSingleQuestion(question)
         @addQuestionError(question)
 
+  hasBeenTouched: (question) ->
+    question.find("input").hasClass("dirty") || question.find("select").hasClass("dirty")
+      
   addSubfieldError: (question, subquestion) ->
     questionRef = question.attr("data-question_ref")
     input = $(subquestion).find('input,textarea,select')
@@ -286,18 +293,23 @@ window.FormValidation =
     questionDay = question.find(".js-date-input-day").val()
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
+    [yearTouched, monthTouched, dayTouched] = ['.js-date-input-year', '.js-date-input-month', '.js-date-input-day'].map (cls) ->
+      !!question.find("#{cls}.dirty").length
+    allTouched = yearTouched and monthTouched and dayTouched
+
     if not val
       return
 
     expDate = question.data("date-max")
     diff = @compareDateInDays(questionDate, expDate)
 
-    if not questionYear or not questionMonth or not questionDay
-      errorMessage = "Question #{questionRef} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY."
-      @logThis(question, "validateMaxDate", errorMessage)
-      @addErrorMessage(question, errorMessage)
-      return
-    if not @toDate(questionDate).isValid()
+    if allTouched
+      if not questionYear or not questionMonth or not questionDay
+        errorMessage = "Question #{questionRef} is incomplete. It is required and must be filled in. Use the format DD/MM/YYYY."
+        @logThis(question, "validateMaxDate", errorMessage)
+        @addErrorMessage(question, errorMessage)
+        return
+    if questionYear and questionMonth and questionDay and not @toDate(questionDate).isValid()
       errorMessage = "Question #{questionRef} is incomplete. The date entered is not valid. Use the format DD/MM/YYYY."
       @logThis(question, "validateMaxDate", errorMessage)
       @addErrorMessage(question, errorMessage)
@@ -417,7 +429,12 @@ window.FormValidation =
 
   validateEmployeeMin: (question) ->
     questionRef = question.attr("data-question_ref")
-    for subquestion in question.find("input")
+    selector = if @validate_only_touched_inputs
+      "input.dirty"
+    else 
+      "input"
+
+    for subquestion in question.find(selector)
       shownQuestion = true
       for conditional in $(subquestion).parents('.js-conditional-question')
         if !$(conditional).hasClass('show-question')
@@ -502,7 +519,7 @@ window.FormValidation =
             key.includes(v)
           map.set(key, cond)
 
-        if !cond && shouldHideRow
+        if !cond && !qRow.hasClass('js-prevent-hide') && shouldHideRow
           subq.val("")
           if shouldDisableRow
             subq.prop('disabled', true)
@@ -538,9 +555,14 @@ window.FormValidation =
     $(".govuk-error-message", question).empty()
     questionRef = question.attr("data-question_ref")
 
+    selectors = if @validate_only_touched_inputs
+      "select.dirty, input.dirty, textarea.dirty"
+    else
+      "select, input, textarea"
+
     for subquestion in question.find(".list-add li")
       errors = false
-      for input in $(subquestion).find("select, input, textarea")
+      for input in $(subquestion).find(selectors)
         $(input).closest('.govuk-form-group').find('.govuk-error-message').empty()
         if !$(input).val()
           fieldName = $(input).data("dependable-option-siffix")
@@ -555,8 +577,12 @@ window.FormValidation =
   validateNumberByYears: (question) ->
     inputCellsCounter = 0
     questionRef = question.attr("data-question_ref")
+    selector = if @validate_only_touched_inputs
+      "input.dirty"
+    else 
+      "input"
 
-    for subquestion in question.find("input")
+    for subquestion in question.find(selector)
       subq = $(subquestion)
       qParent = subq.closest(".js-fy-entries")
       errContainer = subq.closest(".span-financial")
@@ -586,7 +612,12 @@ window.FormValidation =
     if typeof(firstYearMinValue) != typeof(undefined)
       firstYearMinValidation = true
 
-    for subquestion in question.find("input")
+    selector = if @validate_only_touched_inputs
+      "input.dirty"
+    else 
+      "input"
+
+    for subquestion in question.find(selector)
       subq = $(subquestion)
       qParent = subq.closest(".js-fy-entries")
       errContainer = subq.closest(".span-financial")
@@ -817,6 +848,23 @@ window.FormValidation =
       @appendMessage(question, "Select a maximum of " + selection_limit)
       @addErrorClass(question)
 
+  validatePhoneNumber: (question) ->
+    questionRef = question.attr("data-question_ref")
+    input = question.find("input[type='tel']").val()
+    phoneUtil = libphonenumber.PhoneNumberUtil.getInstance()
+
+    try parsedInput = phoneUtil.parse(input, 'GB')
+    catch exception
+      # libphonenumber throws an exception if we try and parse something like "1" or "abc"
+      # so we catch the exception and give it something which is parseable but not valid
+      @logThis(question, "validatePhoneNumber", "#{input} not a parseable phone number")
+      parsedInput = phoneUtil.parse('01', 'GB')
+    finally
+      if !phoneUtil.isValidNumber(parsedInput)
+        @logThis(question, "validatePhoneNumber", "#{input} not a valid phone number")
+        @appendMessage(question, "Question #{questionRef} is incomplete. Enter a phone number, like 01635 960 001, 07701 900 982 or +44 808 157 0192.")
+        @addErrorClass(question)
+
   validateWebsiteUrl: (question) ->
     questionRef = question.attr("data-question_ref")
     url = question.find("input[type='website_url']").val()
@@ -853,6 +901,8 @@ window.FormValidation =
     self = @
 
     $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
+      self.validate_only_touched_inputs = true
+      $(@).addClass('dirty')
       self.clearErrors $(this)
       self.clearAriaDescribedby $(this)
       self.validateIndividualQuestion($(@).closest(".question-block"), $(@))
@@ -951,6 +1001,9 @@ window.FormValidation =
     if question.hasClass("sub-fields-word-max")
       @validateSubfieldWordLimit(question)
 
+    if question.find("input[type='tel']").length
+      @validatePhoneNumber(question)
+
     if question.find("input[type='website_url']").length
       @validateWebsiteUrl(question)
 
@@ -966,7 +1019,7 @@ window.FormValidation =
 
   validateStep: (step = null) ->
     @validates = true
-
+    @validate_only_touched_inputs = false
     currentStep = step || $(".js-step-link.step-current").attr("data-step")
 
     stepContainer = $(".article-container[data-step='" + currentStep + "']")

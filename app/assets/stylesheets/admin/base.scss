@@ -1560,7 +1560,6 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 // RAG dropdown
 .form-label-rag {
   display: block;
-  position: relative;
   margin-top: pxToRem(10);
   margin-bottom: pxToRem(10);
 
@@ -1583,9 +1582,11 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
 }
 
 .btn-rag {
-  right: 0;
-  top: pxToRem(-5);
-  padding-right: pxToRem(5);
+  display: block;
+
+  button {
+    float: none !important;
+  }
 
   @include screen-xs-max {
     display: block;
@@ -1595,25 +1596,6 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   &.open {
     .lte-ie7 & {
       z-index: 9999;
-    }
-  }
-
-  .btn {
-    padding-left: pxToRem(5) !important;
-
-    &.rag-positive {
-      background-color: #CCE1D8;
-      color: #015A30 !important;
-    }
-
-    &.rag-average {
-      background-color: #C0D3E8;
-      color: #152C48 !important;
-    }
-
-    &.rag-negative {
-      background-color: #F6D7D2;
-      color: #942415 !important;
     }
   }
 
@@ -1643,7 +1625,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   .caret {
     position: absolute;
     top: 50%;
-    right: pxToRem(5);
+    right: 0;
     margin-top: pxToRem(-2);
   }
 
@@ -1654,7 +1636,7 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
   }
 
   .dropdown-toggle {
-    padding-right: pxToRem(20);
+    padding-right: pxToRem(25);
     padding-left: 0;
 
     @include screen-xs-max {
@@ -1672,6 +1654,10 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
         width: 100%;
       }
     }
+  }
+
+  &.rag-editable .dropdown-toggle {
+    padding-right: pxToRem(40);
   }
 
   .dropdown-menu {
@@ -1707,14 +1693,88 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     color: #a94442 !important;
   }
 
-  .rag-blank, .rag-neutral, .rag-positive, .rag-average, .rag-negative {
+  .rag-blank {
     &,
     a,
     a:hover,
     a:focus {
       color: $black;
-      text-decoration: none;
-      font: normal pxToRem(16) 'Arial', sans-serif;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-blank.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-blank@2.png");
+      }
+    }
+  }
+
+  .rag-neutral {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $black;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-neutral.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-neutral@2.png");
+      }
+    }
+  }
+
+  .rag-positive {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $green;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-green.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-green@2.png");
+      }
+    }
+  }
+
+  .rag-average {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $amber;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-amber.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-amber@2.png");
+      }
+    }
+  }
+
+  .rag-negative {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $red;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-red.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-red@2.png");
+      }
     }
   }
 
@@ -1726,10 +1786,30 @@ label.govuk-label.govuk-checkboxes__label.boolean.optional.govuk-label {
     a:hover,
     a:focus {
       text-decoration: none;
-      font-weight: normal;
     }
   }
 }
+
+// Use different styles for ESG section
+.form-environmental-social-and-corporate-governance-section-e {
+  .rag-average {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $blue;
+    }
+  }
+
+  .btn-rag .dropdown-toggle {
+    padding-right: pxToRem(15) !important;
+  }
+
+  .btn-rag .dropdown-menu a {
+    padding-left: pxToRem(10);
+  }
+}
+
 // Fields that are added dynamically
 .list-add {
   margin: 0;
