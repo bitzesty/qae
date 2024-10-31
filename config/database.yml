@@ -1,22 +1,15 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-
-credentials: &credentials
-  username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-  host: <%= ENV["DB_HOST"] %>
-  port: <%= ENV["DB_PORT"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  <<: *credentials
-  database: qae_development
+  url: <%= ENV['DATABASE_URL'] %>
 
 test:
   <<: *default
-  <<: *credentials
-  database: qae_test
+  url: <%= ENV['DATABASE_URL'] %>
 
 production:
   <<: *default

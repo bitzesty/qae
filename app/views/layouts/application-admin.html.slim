@@ -23,6 +23,7 @@ html.no-js
     / <!--<![endif]-->
 
     = stylesheet_link_tag "application-admin", media: "all"
+    = stylesheet_pack_tag "application-admin"
 
     = yield :section_meta_tags
     = csrf_meta_tags
@@ -140,6 +141,7 @@ html.no-js
 
     #site-footer
       .footer-container
+        = render partial: "layouts/footer"
 
     - if should_enable_js?
       = javascript_include_tag 'application-admin'
