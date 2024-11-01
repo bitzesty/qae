@@ -6,7 +6,7 @@
 
 ### Prerequisites
 
-- Ruby 3.2.2
+- Ruby 3.2.4
   - `gem install bundler -v 2.5.6`
 - Node.js LTS
 - Rails 7.0

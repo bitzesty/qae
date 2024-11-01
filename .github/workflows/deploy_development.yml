@@ -13,10 +13,13 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
+      - name: Read Ruby version
+        id: ruby-version
+        run: echo "ruby-version=$(cat .ruby-version)" >> $GITHUB_ENV
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: ${{ env.ruby-version }}
       - uses: actions/setup-node@v2-beta
         with:
           node-version: "16"
