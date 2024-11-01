@@ -3562,6 +3562,13 @@ CREATE UNIQUE INDEX index_assessors_on_unlock_token ON public.assessors USING bt
 
 
 --
+-- Name: index_audit_certificates_on_form_answer_and_review; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_certificates_on_form_answer_and_review ON public.audit_certificates USING btree (form_answer_id, reviewed_at);
+
+
+--
 -- Name: index_audit_certificates_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3580,6 +3587,13 @@ CREATE UNIQUE INDEX index_award_years_on_year ON public.award_years USING btree 
 --
 
 CREATE INDEX index_case_summary_hard_copy_pdfs_on_form_answer_id ON public.case_summary_hard_copy_pdfs USING btree (form_answer_id);
+
+
+--
+-- Name: index_comments_on_commentable_and_flags; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_comments_on_commentable_and_flags ON public.comments USING btree (commentable_id, commentable_type, section, flagged);
 
 
 --
@@ -3695,6 +3709,20 @@ CREATE INDEX index_form_answers_on_account_id ON public.form_answers USING btree
 
 
 --
+-- Name: index_form_answers_on_assessors; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_assessors ON public.form_answers USING btree (primary_assessor_id, secondary_assessor_id);
+
+
+--
+-- Name: index_form_answers_on_award_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_award_type ON public.form_answers USING btree (award_type);
+
+
+--
 -- Name: index_form_answers_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3702,10 +3730,52 @@ CREATE INDEX index_form_answers_on_award_year_id ON public.form_answers USING bt
 
 
 --
+-- Name: index_form_answers_on_company_or_nominee_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_company_or_nominee_name ON public.form_answers USING btree (company_or_nominee_name);
+
+
+--
 -- Name: index_form_answers_on_metadata; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_form_answers_on_metadata ON public.form_answers USING gin (metadata);
+
+
+--
+-- Name: index_form_answers_on_state; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_state ON public.form_answers USING btree (state);
+
+
+--
+-- Name: index_form_answers_on_state_award_year; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_state_award_year ON public.form_answers USING btree (state, award_type, award_year_id);
+
+
+--
+-- Name: index_form_answers_on_submitted; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_submitted ON public.form_answers USING btree (submitted);
+
+
+--
+-- Name: index_form_answers_on_submitted_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_submitted_at ON public.form_answers USING btree (submitted_at);
+
+
+--
+-- Name: index_form_answers_on_urn; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_form_answers_on_urn ON public.form_answers USING btree (urn);
 
 
 --
@@ -4317,6 +4387,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220927093210'),
 ('20231025022311'),
 ('20240314105208'),
-('20240501155226');
+('20240501155226'),
+('20241101151806');
 
 
