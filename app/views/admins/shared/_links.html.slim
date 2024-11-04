@@ -15,6 +15,9 @@
     p
       = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: 'govuk-link'
   - if devise_mapping.omniauthable?
-    - resource_class.omniauth_providers.each do |provider|
-      p
-        = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: 'govuk-link', method: :post
+    - if Rails.env.development?
+      = link_to "Sign in with Developer", omniauth_authorize_path(resource_name, :developer), class: 'govuk-link', method: :post
+    - else
+      - resource_class.omniauth_providers.excluding(:developer).each do |provider|
+        p
+          = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: 'govuk-link', method: :post

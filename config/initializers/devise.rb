@@ -211,6 +211,8 @@ Devise.setup do |config|
     ENV.fetch("DBT_STAFF_SSO_APP_SECRET", nil),
     info_fields: OmniAuth::Strategies::DbtStaffSso::INFO_FIELD_NAMES
 
+  config.omniauth :developer, fields: [:first_name, :last_name, :email] if Rails.env.development?
+
   config.warden do |manager|
     manager.failure_app = QaeFailureApp
   end

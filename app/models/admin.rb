@@ -3,7 +3,7 @@ class Admin < ApplicationRecord
   include AutosaveTokenGeneration
 
   devise :trackable, :timeoutable, :session_limitable
-  devise :omniauthable, omniauth_providers: %i[dbt_staff_sso]
+  devise :omniauthable, omniauth_providers: %i[dbt_staff_sso developer]
 
   validates :first_name, :last_name, presence: true
   validates :email, format: { with: Devise.email_regexp }
