@@ -10,7 +10,7 @@ class QaeFormBuilder
         { title: "Title" },
         { first_name: "First name" },
         { last_name: "Last name" },
-        { telephone: "Telephone", type: "tel" },
+        { telephone: "Telephone", type: "tel", classes: "telephone-number" },
         { email: "Email address" },
       ]
     end
