@@ -1001,7 +1001,7 @@ window.FormValidation =
     if question.hasClass("sub-fields-word-max")
       @validateSubfieldWordLimit(question)
 
-    if question.find("input[type='tel']").length
+    if question.hasClass("telephone-number") or (triggeringElement && triggeringElement.hasClass("telephone-number"))
       @validatePhoneNumber(question)
 
     if question.find("input[type='website_url']").length
