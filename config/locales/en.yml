@@ -77,6 +77,10 @@ en:
         confirmation: "%{attribute} doesn't match."
         not_a_number: 'Please enter a number.'
       models:
+        palace_attendee:
+          attributes:
+            phone_number:
+              invalid: Enter a phone number, like 01635 960 001, 07701 900 982 or +44 808 157 0192
         user:
           attributes:
             phone_number:
