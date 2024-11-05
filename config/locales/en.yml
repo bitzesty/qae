@@ -81,6 +81,10 @@ en:
           attributes:
             phone_number:
               invalid: Enter a phone number, like 01635 960 001, 07701 900 982 or +44 808 157 0192
+        press_summary:
+          attributes:
+            phone_number:
+              invalid: Enter a phone number, like 01635 960 001, 07701 900 982 or +44 808 157 0192
         user:
           attributes:
             phone_number:
