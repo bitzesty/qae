@@ -1,5 +1,9 @@
 $black-true: #000;
 
+.govuk-label {
+  max-width: calc(100% - 84px);
+}
+
 legend {
   margin: 0 !important;
 
