@@ -853,6 +853,10 @@ input[type="file"] {
   }
 }
 
+.govuk-form-group {
+  display: grid;
+}
+
 .field-with-errors .error,
 .smart-answer article .error,
 .govuk-form-group--error:not(.js-question-disabled) .errors-container li,
