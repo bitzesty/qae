@@ -56,6 +56,10 @@ legend.body-font-size {
   }
 }
 
+.govuk-radios__item .question-context {
+  margin-left: 44px;
+}
+
 .add-collaborator-box .question-context {
   @include core-19;
 }
