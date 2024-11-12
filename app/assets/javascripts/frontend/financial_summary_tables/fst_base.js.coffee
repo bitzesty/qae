@@ -54,7 +54,6 @@ class window.FinancialSummaryTableBase
 
       row.find("td:eq(#{i + 1})").text(value)
 
-
   renderTableGrowth: () =>
     turnoverGrowthRow = @tableGrowth.find("tr[data-type='fs-turnover-growth']")
 
@@ -70,11 +69,12 @@ class window.FinancialSummaryTableBase
       @showFinancials = false
       turnoverGrowthRow.find("td:gt(0)").text("-")
     else
+      presentPercentageValue = @._presentPercentageValue
       turnoverValues.each (i, value) ->
         if i > 0
           previousValue = turnoverValues[i - 1]
           growth = ((value - previousValue) / previousValue) * 100
-          turnoverGrowthRow.find("td:eq(#{i + 1})").text(parseInt(growth).toLocaleString())
+          turnoverGrowthRow.find("td:eq(#{i + 1})").text(presentPercentageValue(parseInt(growth)).toLocaleString())
         else
           turnoverGrowthRow.find("td:eq(#{i + 1})").text("-")
 
@@ -98,4 +98,8 @@ class window.FinancialSummaryTableBase
     lastYear = turnoverValues[turnoverValues.length - 1]
     diff = lastYear - firstYear
     totalTurnoverGrowth.text(diff.toLocaleString())
-    totalTurnoverGrowthPercentage.text(parseInt(diff / firstYear * 100).toLocaleString())
+    totalTurnoverGrowthPercentageValue = @._presentPercentageValue(parseInt(diff / firstYear * 100)).toLocaleString()
+    totalTurnoverGrowthPercentage.text(totalTurnoverGrowthPercentageValue)
+
+  _presentPercentageValue: (value) ->
+    if isNaN(value) then "-" else value
