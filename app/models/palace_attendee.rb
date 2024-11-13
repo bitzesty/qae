@@ -11,6 +11,7 @@ class PalaceAttendee < ApplicationRecord
     :postcode,
     presence: true
 
+  validates :phone_number, phone: { allow_blank: true }
   validates :disabled_access, inclusion: { in: [true, false], message: "This field cannot be blank" }
   validates :has_royal_family_connections, inclusion: { in: [true, false], message: "This field cannot be blank" }
 

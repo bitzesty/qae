@@ -10,7 +10,7 @@ FactoryBot.define do
     address_3 { "MyString" }
     address_4 { "MyString" }
     postcode { "MyString" }
-    phone_number { "MyString" }
+    sequence(:phone_number) { |n| "020 4551 008#{n.to_s[-1]}" }
     disabled_access { false }
     additional_info { "MyText" }
     has_royal_family_connections { false }

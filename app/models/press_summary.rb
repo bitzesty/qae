@@ -3,8 +3,13 @@ class PressSummary < ApplicationRecord
 
   validates :form_answer, :token, presence: true
   validates :body, presence: true, unless: :contact_details_update?
-  validates :name, :email, :phone_number,
+  validates :name, :email,
     presence: true,
+    unless: proc { |c| c.body_update.present? },
+    if: :applicant_submitted?
+
+  validates :phone_number,
+    phone: true,
     unless: proc { |c| c.body_update.present? },
     if: :applicant_submitted?
 

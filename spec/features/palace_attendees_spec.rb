@@ -138,7 +138,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "City or town", with: "Test"
         fill_in "County", with: "Test"
         fill_in "Postcode", with: "Test"
-        fill_in "Telephone number", with: "Test"
+        fill_in "Telephone number", with: "02083015556"
         disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)
         disabled_access.set(true)
 

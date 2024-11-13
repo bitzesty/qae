@@ -22,20 +22,10 @@ class User < ApplicationRecord
   validates :first_name, presence: true, if: -> { first_step? }
   validates :last_name, presence: true, if: -> { first_step? }
   validates :job_title, presence: true, if: -> { first_step? }
-  validates :phone_number, presence: true, if: -> { first_step? }
   validates :password, confirmation: true
 
-  validates :phone_number, length: {
-    minimum: 7,
-    maximum: 20,
-    message: "This is not a valid telephone number",
-  }, if: -> { first_step? }
-
-  validates :company_phone_number, length: {
-    minimum: 7,
-    maximum: 20,
-    message: "This is not a valid telephone number",
-  }, allow_blank: true, if: -> { second_step? }
+  validates :phone_number, phone: { allow_blank: true }, if: -> { first_step? }
+  validates :company_phone_number, phone: { allow_blank: true }, if: -> { second_step? }
 
   validates_with AdvancedEmailValidator
 

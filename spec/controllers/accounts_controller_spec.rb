@@ -4,7 +4,7 @@ describe AccountsController do
   let(:old_password) { "^#ur9EkLm@1W+OaDvgTT" }
   let(:new_password) { "^#ur9EkLm@1W+OaDvg" }
 
-  let(:user) { create(:user, :completed_profile, password: "^#ur9EkLm@1W+OaDvgTT", password_confirmation: "^#ur9EkLm@1W+OaDvgTT") }
+  let(:user) { create(:user, :completed_profile, password: old_password, password_confirmation: old_password) }
 
   before do
     sign_in user
