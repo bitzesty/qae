@@ -39,6 +39,7 @@ html.no-js
   body#assessor-layout data-autosave-token="#{current_assessor.try(:autosave_token)}" class="assessor-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
     #site-wrapper
       #site-wrapper-margin
+        = link_to "Skip to main content", "#main-container", class: "govuk-skip-link skip-link"
         #site-header
           .navbar.clearfix role="navigation"
             .container
