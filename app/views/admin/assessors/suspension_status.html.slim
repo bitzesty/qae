@@ -17,10 +17,10 @@
         | Assessors assigned to Sustainable Development and International Trade awards
     p.govuk-body
       - if @dt_status == "active"
-        span.label-status.label-status-green ACTIVE
+        span.label-status.label-status-activated ACTIVE
         = link_to "Temporarily deactivate", confirm_bulk_deactivate_dt_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state text-danger"
       - else
-        span.label-status.label-status-grey DEACTIVATED
+        span.label-status.label-status-deactivated DEACTIVATED
         = link_to "Re-activate", confirm_bulk_activate_dt_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state"
 
 br
@@ -32,10 +32,10 @@ br
         | Assessors assigned to Promoting Opportunity and Innovation awards
     p.govuk-body
       - if @pi_status == "active"
-        span.label-status.label-status-green ACTIVE
+        span.label-status.label-status-activated ACTIVE
         = link_to "Temporarily deactivate", confirm_bulk_deactivate_pi_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state text-danger"
       - else
-        span.label-status.label-status-grey DEACTIVATED
+        span.label-status.label-status-deactivated DEACTIVATED
         = link_to "Re-activate", confirm_bulk_activate_pi_admin_assessors_path, class: "govuk-link govuk-link--no-visited-state"
 
 br

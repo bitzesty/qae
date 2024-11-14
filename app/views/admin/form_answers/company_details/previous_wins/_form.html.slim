@@ -16,7 +16,10 @@
             .pull-right
               = link_to "Remove", "#", class: "if-no-js-hide remove-link"
               .remove-section.if-js-hide
-                = check_box_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][_destroy]"
+                - checkbox_id = "form_answer_data_attributes_applied_for_queen_awards_details_#{index}__destroy"
+                .input
+                  = check_box_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][_destroy]"
+                = label_tag checkbox_id, "Remove"
 
             .row
               .col-sm-5

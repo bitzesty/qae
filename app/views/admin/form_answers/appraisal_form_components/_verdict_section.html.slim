@@ -21,7 +21,7 @@
       - if rag_editable
         ul.dropdown-menu role="menu"
           - form.options.each do |opt|
-            li class="rag-#{opt[1]}"
+            li class="rag-#{opt[1]}" role="menuitem"
               = link_to "#"
                 span.icon-rag
                 span.rag-text= opt[0]

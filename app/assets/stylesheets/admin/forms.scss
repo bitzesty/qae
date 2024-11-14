@@ -60,6 +60,14 @@ input.form-control, select.form-control,
   }
 }
 
-.qae-form { 
+.qae-form {
   margin-bottom: 50px;
+}
+
+.section-contact-preferences .selectable {
+  cursor: auto;
+
+  input[type="checkbox"] {
+    margin-top: 10px;
+  }
 }
