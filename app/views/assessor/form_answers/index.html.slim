@@ -55,7 +55,9 @@ h1.admin-page-heading
         thead
           tr
             - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
-              th
+              th.form_answer_select
+                span.visuallyhidden
+                  | Select
                 span.if-no-js-hide
                   = check_box_tag :check_all, "Check all", false, aria: { label: "Select all applications for bulk action" }
             th.sortable width="250"
