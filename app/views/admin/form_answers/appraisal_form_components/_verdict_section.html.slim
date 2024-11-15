@@ -6,9 +6,10 @@
   .form-container
     = f.input section.rate,
               as: :select,
-              label: false,
+              label: section.label,
               collection: form.options,
-              input_html: { class: "if-js-hide", "data-updated-section"  => section.desc, id: "#{f.object.position}_#{section.desc}_select"}
+              input_html: { class: "if-js-hide", "data-updated-section"  => section.desc, id: "#{f.object.position}_#{section.desc}_select"},
+              label_html: { class: "visuallyhidden" }
 
     label.form-label.form-label-rag for="#{f.object.position}_verdict"
       = section.label
