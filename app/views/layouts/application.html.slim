@@ -103,9 +103,9 @@ title = content_for?(:title) ? "#{'Appraisal view of ' if admin_in_read_only_mod
     li.govuk-footer__inline-list-item
       = link_to "Privacy Statement", privacy_path, class: 'govuk-footer__link'
     li.govuk-footer__inline-list-item
-      - if request.path.include?("/users")
+      - if request.path.include?("/users") || current_user
         = link_to "Accessibility Statement", accessibility_statement_path, class: 'govuk-footer__link'
-      - else 
+      - else
         = link_to "Accessibility Statement", admin_accessibility_statement_path, class: 'govuk-footer__link'
     li.govuk-footer__inline-list-item
       = link_to "Cookie Policy", cookies_path, class: 'govuk-footer__link'
