@@ -65,9 +65,13 @@ input.form-control, select.form-control,
 }
 
 .section-contact-preferences .selectable {
-  cursor: auto;
-
-  input[type="checkbox"] {
-    margin-top: 10px;
+  label, input {
+    cursor: pointer;
+  }
+  input {
+    position: inherit;
+  }
+  label {
+    display: inline;
   }
 }

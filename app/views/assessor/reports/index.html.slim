@@ -1,5 +1,6 @@
 - title "Assessor: Reports"
-
+h1.admin-page-heading
+  ' Reports
 .row
   = render "layouts/admin_award_year"
 .clear
@@ -11,4 +12,3 @@ br
       = render "assessor/reports/primary_vs_secondary_appraisals" if @award_year.year > 2019
       = render "assessor/reports/assessors_progress"
       = render "assessor/reports/case_summaries"
-
