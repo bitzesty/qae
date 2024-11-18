@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby "~> 3.2.4"
 
-gem "rails", "7.0.8.4"
+gem "rails", "7.2.2"
 gem "websocket-extensions", "~> 0.1.5"
 
 # SSL redirect
@@ -18,7 +18,7 @@ gem "paper_trail", "~> 12.2.0"
 gem "paper_trail-association_tracking"
 
 # Assets & Templates
-gem "sprockets", "~> 3.7.2"
+gem "sprockets", "~> 4.2.1"
 gem "sprockets-rails", ">= 2.0.0"
 gem "sassc-rails", "~> 2.1.2"
 gem "slim-rails", "~> 3.2.0"
@@ -45,7 +45,7 @@ gem "hashie", "~> 3.5"
 gem "responders", "~> 3.0"
 
 # Rails 4 sanitizer
-gem "rails-html-sanitizer", "~> 1.4.4"
+gem "rails-html-sanitizer", "~> 1.6.0"
 
 # JSON
 gem "json"
@@ -96,11 +96,11 @@ gem "vigilion", "~> 1.0.4"
 gem "vigilion-rails", "~> 2.2.0"
 
 # Background jobs
-gem "sidekiq", "~> 6.5.10"
+gem "sidekiq", "~> 7.3.5"
 gem "sidekiq-cron", "~> 1.1"
 gem "sidekiq-throttled"
-gem "sinatra", "3.0.5", require: nil
-gem "rack-protection", "3.0.5"
+gem "sinatra", "4.1.0", require: nil
+gem "rack-protection", "4.1.0"
 
 # CORS configuration
 gem "rack-cors", "~> 1.0"
