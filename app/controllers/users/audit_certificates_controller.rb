@@ -1,6 +1,8 @@
 class Users::AuditCertificatesController < Users::BaseController
   before_action :check_if_vocf_is_required!
   before_action :check_if_audit_certificate_already_exist!, only: [:create]
+  before_action :check_if_before_financial_statement_deadline!, only: [:create, :destroy]
+  before_action :check_if_can_view_audit_certificate!, only: [:show]
 
   expose(:form_answer) do
     current_user.account
@@ -124,5 +126,21 @@ class Users::AuditCertificatesController < Users::BaseController
 
   def editing_external_accountants_report_guide
     File.open(Rails.root.join("lib/assets/Guide-to-Editing-External-Accountant's-Report-Using-Adobe-PDF-Editor.pdf"))
+  end
+
+  def check_if_before_financial_statement_deadline!
+    if form_answer.after_current_audit_certificates_deadline?
+      redirect_to dashboard_url,
+        alert: "You cannot amend the Verification of Commercial Figures after the deadline."
+      nil
+    end
+  end
+
+  def check_if_can_view_audit_certificate!
+    if form_answer.audit_certificate.blank? && form_answer.after_current_audit_certificates_deadline?
+      redirect_to dashboard_url,
+        alert: "You cannot upload the Verification of Commercial Figures after the deadline."
+      nil
+    end
   end
 end

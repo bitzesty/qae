@@ -54,7 +54,7 @@
             - if award.audit_certificate.present?
               li
                 = link_to "View verification of commercial figures", users_form_answer_audit_certificate_url(award), class: 'govuk-link', "aria-label" => "View verification of commercial figures for #{award.id} #{award.award_type_full_name + 'Award'}"
-            - else
+            - elsif !award.after_current_audit_certificates_deadline?
               li
                 = link_to "Download the External Accountant's Report", users_form_answer_audit_certificate_url(award, format: :pdf), "aria-label" => "Download the external accountant’s report form for #{award.id} for #{award.award_type_full_name + 'Award'}", class: 'govuk-link'
               li

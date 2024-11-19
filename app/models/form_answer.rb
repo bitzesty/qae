@@ -360,8 +360,19 @@ class FormAnswer < ApplicationRecord
               .try(:trigger_at)
   end
 
+  def financial_statements_due_date
+    award_year.settings
+              .deadlines
+              .audit_certificates_deadline
+              .try(:trigger_at)
+  end
+
   def submission_ended?
     submission_end_date.present? && (Time.zone.now > submission_end_date)
+  end
+
+  def after_current_audit_certificates_deadline?
+    financial_statements_due_date && Time.zone.now >= financial_statements_due_date
   end
 
   def version_before_deadline
