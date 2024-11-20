@@ -5,16 +5,11 @@ class FileUploader < CarrierWave::Uploader::Base
   storage :custom
 
   def store_dir
-    base_dir = (model.respond_to?(:clean?) && model.clean?) ? "permanent" : "tmp"
     "uploads/#{base_dir}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def read
-    if model.respond_to?(:clean?) && model.clean?
-      read_from_permanent_storage
-    else
-      super
-    end
+    clean? ? read_from_permanent_storage : super
   end
 
   def extension_allowlist
@@ -26,19 +21,11 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def fog_credentials
-    if fog_directory.include?("clean")
-      clean_bucket_credentials
-    else
-      tmp_bucket_credentials
-    end
+    clean? ? clean_bucket_credentials : tmp_bucket_credentials
   end
 
   def fog_directory
-    if model.respond_to?(:clean?) && model.clean?
-      ENV["AWS_S3_PERMANENT_BUCKET"]
-    else
-      ENV["AWS_S3_TMP_BUCKET"]
-    end
+    clean? ? ENV["AWS_S3_PERMANENT_BUCKET"] : ENV["AWS_S3_TMP_BUCKET"]
   end
 
   def permanent_path
@@ -46,6 +33,14 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   private
+
+  def base_dir
+    clean? ? "permanent" : "tmp"
+  end
+
+  def clean?
+    model.respond_to?(:clean?) && model.clean?
+  end
 
   def read_from_permanent_storage
     if Rails.env.production? || ENV["ENABLE_VIRUS_SCANNER_BUCKETS"] == "true"
