@@ -1,6 +1,0 @@
-- if add_collaborator_interactor.success?
-  | $('.js-collaborators-list').replaceWith("#{j render('list', resource: form_answer)}");
-  | $(".js-admin-search-collaborators-error-box").addClass("hidden");
-  | $("#collaborator_candidate_#{user.id}").remove();
-- else
-  | $(".js-admin-search-collaborators-error-box").text("#{add_collaborator_interactor.errors}").removeClass("hidden");

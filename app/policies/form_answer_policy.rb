@@ -135,10 +135,6 @@ class FormAnswerPolicy < ApplicationPolicy
       record.pdf_version.present?
   end
 
-  def can_add_collaborators_to_application?
-    admin?
-  end
-
   private
 
   def audit_certificate_available?

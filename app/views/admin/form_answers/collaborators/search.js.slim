@@ -1,6 +1,0 @@
-- if search_users.valid?
-  | $('.js-admin-search-collaborators-results-box').html("#{j render("search_results")}").removeClass("hidden");
-  | $(".js-admin-search-collaborators-error-box").addClass("hidden");
-- else
-  | $('.js-admin-search-collaborators-results-box').addClass("hidden");
-  | $(".js-admin-search-collaborators-error-box").text("#{search_users.error.html_safe}").removeClass("hidden");
