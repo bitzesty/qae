@@ -142,14 +142,6 @@ class User < ApplicationRecord
     end
   end
 
-  def can_be_added_to_collaborators_to_another_account?
-    account.blank? || (
-      account.present? &&
-      form_answers.blank? &&
-      account.form_answers.blank?
-    )
-  end
-
   def new_member?
     created_at > 3.days.ago
   end
