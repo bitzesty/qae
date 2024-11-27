@@ -34,6 +34,8 @@ class FormAnswer < ApplicationRecord
       },
     }
 
+  ZERO_PROGRESS = 0.06666666666666667
+
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
     "innovation", # Innovation Award
@@ -339,6 +341,12 @@ class FormAnswer < ApplicationRecord
 
   def fill_progress_in_percents
     ((fill_progress || 0) * 100).floor.to_s + "%"
+  end
+
+  def any_progress?
+    return unless fill_progress
+
+    fill_progress > ZERO_PROGRESS
   end
 
   def performance_years
