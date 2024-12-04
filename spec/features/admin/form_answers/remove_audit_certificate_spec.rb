@@ -49,6 +49,7 @@ So that User can re-upload Verification of Commercial Figures
     let!(:admin) { create(:admin) }
 
     before do
+      allow_any_instance_of(AuditCertificate).to receive(:clean?).and_return(true)
       login_admin(admin)
 
       visit admin_form_answer_path(form_answer)
