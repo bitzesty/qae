@@ -8,7 +8,7 @@
 
       = hidden_field_tag :section, "company_name", id: "section_company_name_hidden_field"
       .form-container
-        label.form-label = account_name
+        label.form-label for="form_answer_company_or_nominee_name" = account_name
         .form-value
           p
             - if @form_answer.promotion?

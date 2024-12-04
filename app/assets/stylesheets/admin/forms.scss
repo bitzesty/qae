@@ -60,6 +60,19 @@ input.form-control, select.form-control,
   }
 }
 
-.qae-form { 
+.qae-form {
   margin-bottom: 50px;
 }
+
+.section-contact-preferences .selectable {
+  label, input {
+    cursor: pointer;
+  }
+  input {
+    position: inherit;
+  }
+  label {
+    display: inline;
+  }
+}
+

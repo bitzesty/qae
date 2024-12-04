@@ -27,7 +27,7 @@ class CustomEmailForm
       Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
     rescue => e
       Rails.logger.debug "Error: #{e}"
-      Appsignal.send_error(e)
+      Sentry.capture_message(e, level: :error)
     end
   end
 

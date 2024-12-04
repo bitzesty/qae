@@ -1,10 +1,10 @@
-$govuk-assets-path: "~govuk-frontend/govuk/assets/";
+$govuk-assets-path: "~govuk-frontend/dist/govuk/assets/";
 
 p {
   margin-top: 0 !important;
 }
 
-@import "node_modules/govuk-frontend/govuk/all";
+@import "node_modules/govuk-frontend/dist/govuk/all";
 
 .alert,
 .notice {

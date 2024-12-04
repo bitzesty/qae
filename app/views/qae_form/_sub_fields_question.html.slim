@@ -3,6 +3,8 @@ div role="group" id="#{question.key}"
     - sub_field_key = sub_field_block[:key]
     - sub_field_title = sub_field_block[:title]
     - sub_field_hint = sub_field_block[:hint]
+    - sub_field_type = sub_field_block[:type]
+    - klass = sub_field_block[:classes]
 
     .govuk-form-group.question-required
       label.govuk-label for=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key)
@@ -20,11 +22,11 @@ div role="group" id="#{question.key}"
 
       - case sub_field_key
       - when :email
-        - klass = 'large'
+        - klass += ' large'
       - when :title
-        - klass = 'tiny'
+        - klass += ' tiny'
       - else
-        - klass = 'govuk-input--width-10'
+        - klass += ' govuk-input--width-10'
 
       - klass <<(QaeFormBuilder::SubFieldsQuestionDecorator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
 
@@ -46,7 +48,7 @@ div role="group" id="#{question.key}"
       - else
         input.govuk-input.js-trigger-autosave[
           class=klass
-          type="text"
+          type=sub_field_type
           id=question.input_name(suffix: sub_field_key)
           value=question.input_value(suffix: sub_field_key)
           name=question.input_name(suffix: sub_field_key)

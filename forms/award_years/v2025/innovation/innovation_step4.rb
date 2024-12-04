@@ -266,6 +266,7 @@ class AwardYears::V2025::QaeForms
         end
 
         options :innovation_part_of, "How would the innovation that forms the basis of this application fit within the overall business?" do
+          classes "question-context govuk-hint"
           ref "D 5"
           required
           option "it's integral to the whole business", "It's integral to the whole business"

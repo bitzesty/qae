@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby "~> 3.2.4"
 
-gem "rails", "7.0.8.1"
+gem "rails", "7.0.8.4"
 gem "websocket-extensions", "~> 0.1.5"
 
 # SSL redirect
@@ -52,6 +52,9 @@ gem "json"
 gem "jbuilder", "~> 2.10.1"
 gem "gon", ">= 6.4.0"
 
+# XML builder
+gem "builder"
+
 # XLSX generation
 gem "rubyXL", "~> 3.4"
 
@@ -79,6 +82,7 @@ gem "simple_form", "~> 5.0"
 gem "country_select", "~> 3.1"
 gem "email_validator"
 gem "enumerize"
+gem "phonelib"
 
 # PDF generation
 gem "prawn"
@@ -120,12 +124,16 @@ gem "virtus"
 gem "nilify_blanks"
 
 # Web server
-gem "puma", "~> 6.4.2"
+gem "puma", "~> 6.4.3"
 
 # Performance & Error reporting
-gem "appsignal"
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"
+gem "sentry-sidekiq"
 
 # Log formatting
+gem "json_tagged_logger"
 gem "lograge"
 
 # speedup server boot time
@@ -133,9 +141,6 @@ gem "bootscale", require: false
 
 # IE 8 and lower detection
 gem "browser", "6.0.0"
-
-# Healthchecks
-gem "rails-healthcheck"
 
 # An implementation of Matrix and Vector classes.
 gem "matrix"

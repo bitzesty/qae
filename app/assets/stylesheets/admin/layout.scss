@@ -59,6 +59,10 @@ body {
   color: #fff;
   position: relative;
   top: pxToRem(-40);
+
+  a {
+    color: white;
+  }
 }
 
 .dev-banner {

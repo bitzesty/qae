@@ -48,6 +48,7 @@
 
   <body class="govuk-template__body app-body-class <%= yield(:body_classes) %>">
     <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <script>document.body.className += ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
 
     <%= yield :body_start %>
     <%= render "layouts/cookie_banner" %>

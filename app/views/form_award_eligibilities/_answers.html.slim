@@ -3,7 +3,7 @@
   - if question != step
     - if (final_eligibility_page?(step) && !@already_has_invalid_questions) || answer.present?
       .govuk-summary-list__row
-        dt.govuk-summary-list__key class="govuk-!-width-three-quarters"
+        dt.govuk-summary-list__key class="govuk-!-width-one-half"
           = eligibility.class.label(question).html_safe
           - if final_eligibility_page?(step) && !@already_has_invalid_questions && !eligibility.answer_valid?(question, answer)
             - @already_has_invalid_questions = true
