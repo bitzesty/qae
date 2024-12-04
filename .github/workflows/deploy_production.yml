@@ -37,7 +37,7 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: |
-          curl -v -L -o cf-cli_amd64.deb $CF_PACKAGE_URL
+          curl -v -L -o cf-cli_amd64.deb "$CF_PACKAGE_URL"
           sudo dpkg -i cf-cli_amd64.deb
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
