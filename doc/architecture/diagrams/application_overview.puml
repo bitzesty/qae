@@ -5,35 +5,42 @@ LAYOUT_WITH_LEGEND()
 
 title Application Overview: Container View for Kings Awards for Enterprise
 
-System_Boundary(kae, "Kings Awards For Enterprise") {
-    Container(kae_service, "KAE Service", "Container: Ruby on Rails", "Web application that powers the service, both the front and backend")
-    Container(kae_worker, "KAE Worker", "Container: Sidekiq", "Background job processor")
-    Container(poxa, "Poxa", "Container: Elixir", "Websocket server for real-time updates")
-    ContainerDb(message_broker, "Message Broker", "Container: Redis", "Provides message broker capability, caching, and background job queue")
-    ContainerDb(application_db, "Application Database", "Container: PostgreSQL", "Provides storage for structured data")
-    ContainerDb(document_storage, "Document Storage", "Container: AWS S3", "Provides document storage capability")
-    Container(vigilion, "Vigilion", "Container: Ruby", "Provides antivirus and vulnerability scanning")
+System_Boundary(dbt_platform, "DBT Platform") {
+    System_Ext(cloudfront, "AWS CloudFront", "WAF and CDN")
+    System_Ext(sentry, "Sentry", "Application performance monitoring and error tracking")
+    System_Ext(dbt_staff_sso, "DBT Staff SSO", "Provides staff authentication")
+    System_Ext(dbt_scanner, "DBT ClamAV API", "Provides antivirus and vulnerability scanning")
+
+    System_Boundary(kae, "Kings Awards For Enterprise") {
+        Container(kae_service, "KAE Service", "Container: Ruby on Rails", "Web application that powers the service, both the front and backend")
+        Container(kae_worker, "KAE Worker", "Container: Sidekiq", "Background job processor")
+        ContainerDb(message_broker, "Message Broker", "Container: Redis", "Provides message broker capability, caching, and background job queue")
+        ContainerDb(application_db, "Application Database", "Container: PostgreSQL", "Provides storage for structured data")
+        ContainerDb(temp_document_storage, "Temporary File Storage", "Container: AWS S3", "Files uploaded by applicants that are awaiting scanning")
+        ContainerDb(document_storage, "File Storage", "Container: AWS S3", "Provides document storage capability")
+    }
 }
 
-System_Ext(cloudfront, "AWS CloudFront", "WAF and CDN")
 System_Ext(google_analytics, "Google Analytics", "Provides ability to measure site traffic and engagement")
-System_Ext(gov_uk_notify, "Gov.uk Notify", "Email delivery service")
-System_Ext(sentry, "Sentry", "Application performance monitoring and error tracking")
-System_Ext(slack, "Slack", "Team communication and collaboration platform")
+System_Ext(gov_uk_notify, "GOV.UK Notify", "Email delivery service")
+
+Person(user, "User", "End user accessing the application")
 
 Rel(cloudfront, kae_service, "Routes requests to")
-Rel(cloudfront, poxa, "Routes WebSocket connections to")
 Rel(kae_service, google_analytics, "Sends metrics to")
 Rel(kae_worker, gov_uk_notify, "Sends emails using")
 Rel(kae_service, message_broker, "Writes to")
 Rel(kae_worker, message_broker, "Reads from")
 Rel(kae_service, application_db, "Reads from and writes to")
-Rel(kae_service, document_storage, "Reads from and writes to")
-Rel(vigilion, document_storage, "Scans documents in")
-Rel(kae_service, vigilion, "Sends scan requests to")
-Rel(vigilion, kae_service, "Sends scan results to")
-Rel(kae_service, poxa, "Manages user access to")
+Rel(kae_worker, application_db, "Reads from and writes to")
+Rel(kae_service, temp_document_storage, "Reads from and writes to")
+Rel(kae_service, document_storage, "Reads from")
+Rel(dbt_scanner, temp_document_storage, "Scans documents in")
+Rel(kae_service, dbt_scanner, "Sends scan requests to")
+Rel(dbt_scanner, kae_service, "Sends scan results to")
+Rel(kae_worker, temp_document_storage, "Moves clean files to permanent storage")
+Rel(kae_service, dbt_staff_sso, "Admin authentication")
 Rel(kae_service, sentry, "Sends logs, performance metrics and errors to")
-Rel(sentry, slack, "Sends alerts to")
+Rel(user, cloudfront, "Accesses application through")
 
 @enduml
