@@ -9,16 +9,15 @@
         = resource.model_name
         '  - Sign in
 
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      - unless devise_mapping.omniauthable?
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .govuk-form-group
+            = f.input :email, required: false, autofocus: true, label: "Email", input_html: {class: "govuk-input--width-20"}
 
-      .govuk-form-group
-        = f.input :email, required: false, autofocus: true, label: "Email", input_html: {class: "govuk-input--width-20"}
+          .govuk-form-group
+            = f.input :password, required: false, label: "Password", input_html: {class: "govuk-input--width-10"}
 
-      .govuk-form-group
-        = f.input :password, required: false, label: "Password", input_html: {class: "govuk-input--width-10"}
-
-      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-
-      = f.button :submit, "Sign in", class: "button large"
+          = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          = f.button :submit, "Sign in", class: "button large"
 
     = render "admins/shared/links"

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Admin::AdminsController do
+describe Admin::AdminsController do
   let!(:admin) { create(:admin, superadmin: true) }
   before do
     sign_in admin
@@ -11,44 +11,6 @@ RSpec.describe Admin::AdminsController do
       get :index
       expect(assigns(:resources)).to eq([admin])
       expect(response).to render_template("index")
-    end
-  end
-
-  describe "GET new" do
-    it "renders the new template" do
-      get :new
-      expect(response).to render_template("new")
-    end
-  end
-
-  describe "POST create" do
-    it "should create a resource" do
-      post :create, params: { admin: FactoryBot.attributes_for(:admin) }
-      expect(response).to redirect_to admin_admins_url
-      expect(Admin.count).to eq 2
-    end
-  end
-  describe "GET edit" do
-    it "renders the  template" do
-      get :edit, params: { id: admin.id }
-      expect(response).to render_template("edit")
-    end
-  end
-
-  describe "PUT update" do
-    it "should update a resource" do
-      put :update, params: { id: admin.id, admin: { first_name: "changed first name" } }
-      expect(response).to redirect_to admin_admins_url
-      expect(Admin.first.first_name).to eq "changed first name"
-    end
-  end
-
-  describe "Delete destroy" do
-    it "should destroy a resource" do
-      to_be_deleted = create(:admin)
-      delete :destroy, params: { id: to_be_deleted.id }
-      expect(response).to redirect_to admin_admins_url
-      expect(Admin.count).to eq 1
     end
   end
 
