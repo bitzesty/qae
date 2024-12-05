@@ -15,8 +15,8 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-require("govuk-frontend/dist/govuk/all").initAll()
-require.context('govuk-frontend/dist/govuk/assets/images', true)
+require("govuk-frontend/govuk/all").initAll()
+require.context('govuk-frontend/govuk/assets/images', true)
 import './application.scss';
 
 
