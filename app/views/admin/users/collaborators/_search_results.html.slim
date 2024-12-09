@@ -1,0 +1,9 @@
+- if candidates.present?
+  - candidates.each do |candidate|
+    li.list-group-item id="user_#{candidate.id}"
+      p.pull-right
+        = link_to "#{candidate.full_name} (#{candidate.email})", edit_admin_user_path(candidate)
+
+      br
+
+      p= render "admin/users/collaborators/transfer_form", collaborator: candidate

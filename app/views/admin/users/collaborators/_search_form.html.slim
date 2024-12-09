@@ -1,0 +1,27 @@
+= simple_form_for :search,
+                  url: search_admin_user_collaborators_url(resource),
+                  remote: true,
+                  method: :get,
+                  as: nil,
+                  html: { class: "admin-search-collaborators-form" } do |f|
+
+  .form-container
+    label.form-label for="admin-search-collaborators-query" Add collaborator
+
+    .alert.alert-danger.hidden.js-admin-search-collaborators-error-box role="alert"
+
+    .form-block
+      .row
+        .col-md-12
+          = f.input :query,
+                    as: :string,
+                    label: false,
+                    input_html: { class: "form-control", id: "admin-search-collaborators-query" },
+                    wrapper_html: { class: 'pull-left col-md-10 admin-search-collaborators-query' },
+                    placeholder: "Type part of email, first name or last name"
+
+          .text-right
+            = f.submit "Search", class: "btn btn-primary pull-right"
+    .clear
+
+ul.list-unstyled.list-actions.hidden.js-admin-search-collaborators-results-box

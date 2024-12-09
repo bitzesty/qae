@@ -1,5 +1,10 @@
 class Admin::AdminsController < Admin::UsersController
   before_action :find_resource, except: [:index, :new, :create, :login_as_assessor, :login_as_user]
+
+  expose(:collaborators) do
+    nil
+  end
+
   def index
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
     params[:search].permit!

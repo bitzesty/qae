@@ -34,8 +34,6 @@ class FormAnswer < ApplicationRecord
       },
     }
 
-  ZERO_PROGRESS = 0.06666666666666667
-
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
     "innovation", # Innovation Award
@@ -328,11 +326,14 @@ class FormAnswer < ApplicationRecord
   end
 
   def company_or_nominee_from_document
-    comp_attr = promotion? ? "organization_name" : "company_name"
     name = document[comp_attr]
     name = nominee_full_name_from_document if promotion? && name.blank?
     name = name.try(:strip)
     name.presence
+  end
+
+  def comp_attr
+    promotion? ? "organization_name" : "company_name"
   end
 
   def nominee_full_name_from_document
@@ -346,7 +347,7 @@ class FormAnswer < ApplicationRecord
   def any_progress?
     return unless fill_progress
 
-    fill_progress > ZERO_PROGRESS
+    document.except(comp_attr).any? || eligibility&.answers&.any?
   end
 
   def performance_years

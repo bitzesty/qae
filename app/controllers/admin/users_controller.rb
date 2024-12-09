@@ -1,6 +1,10 @@
 class Admin::UsersController < Admin::BaseController
   before_action :find_resource, except: [:index, :new, :create]
 
+  expose(:collaborators) do
+    @resource.account.collaborators_without(@resource)
+  end
+
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
     params[:search].permit!

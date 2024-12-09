@@ -1,4 +1,8 @@
 class Admin::JudgesController < Admin::UsersController
+  expose(:collaborators) do
+    nil
+  end
+
   def index
     params[:search] ||= JudgeSearch::DEFAULT_SEARCH
     params[:search].permit!

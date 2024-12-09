@@ -263,6 +263,10 @@ Rails.application.routes.draw do
         patch :unlock
         post :scan_via_debounce_api
       end
+
+      resources :collaborators, only: [:create], module: :users do
+        get :search, on: :collection
+      end
     end
 
     resources :collaborator_deletion, only: [:destroy]

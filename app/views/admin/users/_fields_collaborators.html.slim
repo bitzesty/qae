@@ -1,6 +1,4 @@
-/ TODO collaborators new/delete, also the collaborators variable
 - if action_name == "edit"
-  - collaborators = resource.account.collaborators_without(resource)
   - if collaborators.any?
     = render "admin/collaborators/list", collaborators: collaborators
   - else
@@ -11,3 +9,6 @@
             br
             p.p-empty This user has not added any collaborators.
             br
+  
+  - if policy(resource).can_add_collaborators_to_account?
+    = render "admin/users/collaborators/search_form", resource: resource
