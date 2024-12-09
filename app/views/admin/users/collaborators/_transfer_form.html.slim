@@ -1,0 +1,29 @@
+= simple_form_for :user, url: admin_user_collaborators_url(collaborator_id: collaborator.id), method: :post do |f|    
+  - if collaborator&.account.collaborators_without(collaborator).any? && collaborator.account.owner == collaborator
+    .question-group
+      h3= f.label :new_owner_id, { label: "Owner", for: "new_owner_id_#{collaborator.id}" }
+      .row
+        .col-sm-6
+          = f.select :new_owner_id,
+                      collaborator.account.collaborators_without(collaborator).map { |u| [u.email, u.id] },
+                      { include_blank: 'Select New Owner…' },
+                      { class: "form-control", id: "new_owner_id_#{collaborator.id}" }
+
+  .question-group
+    h3= f.label :role, { label: "Role", for: "role_#{collaborator.id}" }
+    .row
+      .col-sm-4
+        = f.select :role,
+                    User::POSSIBLE_ROLES.map { |r| [r.humanize, r] },
+                    { selected: collaborator.role },
+                    { class: "form-control", id: "role_#{collaborator.id}" }
+
+  - if collaborator.form_answers.any?
+    .question-group
+      h3= f.label :transfer_form_answers, { label: "Transfer existing Application/s", for: "transfer_form_answers_#{collaborator.id}" }
+      .row
+        .col-sm-2
+          = f.check_box :transfer_form_answers, value: true, id: "transfer_form_answers_#{collaborator.id}"
+
+  br
+    = f.submit "Transfer", class: "btn btn-secondary"

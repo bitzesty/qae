@@ -3,3 +3,13 @@
     = "Edit #{controller_name == "users" ? "applicant" : controller_name.singularize}"
 
 = render 'form', resource: @resource
+
+- if collaborators
+  .panel.panel-default[data-controller="element-focus"]
+    .panel-heading id="section-collaborators-header"
+      h2.panel-title
+        a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-collaborators" aria-expanded="false" aria-controls="section-collaborators" data-element-focus-target="reveal"
+          ' Collaborators
+    #section-collaborators.section-collaborators.panel-collapse.collapse[aria-labelledby="section-collaborators-header" data-element-scroll-target="accordion"]
+      .panel-body
+        = render "fields_collaborators", resource: @resource

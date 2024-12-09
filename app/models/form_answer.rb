@@ -326,11 +326,14 @@ class FormAnswer < ApplicationRecord
   end
 
   def company_or_nominee_from_document
-    comp_attr = promotion? ? "organization_name" : "company_name"
     name = document[comp_attr]
     name = nominee_full_name_from_document if promotion? && name.blank?
     name = name.try(:strip)
     name.presence
+  end
+
+  def comp_attr
+    promotion? ? "organization_name" : "company_name"
   end
 
   def nominee_full_name_from_document
@@ -339,6 +342,12 @@ class FormAnswer < ApplicationRecord
 
   def fill_progress_in_percents
     ((fill_progress || 0) * 100).floor.to_s + "%"
+  end
+
+  def any_progress?
+    return unless fill_progress
+
+    document.except(comp_attr).any? || eligibility&.answers&.any?
   end
 
   def performance_years
