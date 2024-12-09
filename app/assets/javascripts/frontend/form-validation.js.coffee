@@ -890,7 +890,7 @@ window.FormValidation =
     qRef = question.attr("data-question_ref")
     qTitle = $.trim(question.find("h2").first().text())
 
-    if typeof console != "undefined"
+    if typeof console != "undefined" && false
       console.log "-----------------------------"
       console.log("[STEP]: " + stepTitle)
       console.log("  [QUESTION] " + qRef + ": "+ qTitle)

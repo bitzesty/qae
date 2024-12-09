@@ -2,12 +2,11 @@ window.ApplicationCollaboratorsEditorBar =
 
   render_collaborators_bar: () ->
     editor = ApplicationCollaboratorsAccessManager.current_editor()
-    currentEditorName = editor.info.name + " (" + editor.info.email + ")"
+    currentEditorName = editor.name + " (" + editor.email + ")"
 
-    members = window.pusher_current_channel.members
-    me = members.me
+    me = window.user_id
 
-    if me.info.email == editor.info.email
+    if me == editor.id
       header = "You cannot edit this section unless you close it elsewhere first."
       message = "It looks like you have already opened this section in another tab or window. To avoid data-saving issues, you can only have it open in one tab or window at a time. Please close the other tabs or windows to continue editing."
     else
