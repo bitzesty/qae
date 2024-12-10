@@ -67,7 +67,7 @@ module AdminActions
     end
 
     def progressed_form_answers?
-      collaborator.form_answers.any? && collaborator.form_answers.any?(&:any_progress?)
+      collaborator.form_answers.touched.any?
     end
 
     def transfer_form_answers?

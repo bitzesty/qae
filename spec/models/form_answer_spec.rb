@@ -9,6 +9,27 @@ RSpec.describe FormAnswer, type: :model do
       target = FormAnswer.submitted.where("feedback_hard_copy_generated" => true).to_sql
       expect(target).to eq FormAnswer.hard_copy_generated("feedback").to_sql
     end
+
+    describe ".touched" do
+      let!(:eligibility_with_answers) { create(:eligibility, answers: { anything: :something }, type: :trade) }
+      let!(:form_answer_with_touched_document) { create(:form_answer, document: { anything: :something }) }
+
+      before do
+        create(:form_answer, document: {})
+        create(:form_answer, document: { organization_name: :anything })
+        create(:form_answer, document: { company_name: :anything })
+        create(:eligibility, answers: {}, type: :trade)
+      end
+
+      it "returns only touched form_answers" do
+        expect(FormAnswer.touched).to match_array(
+          [
+            eligibility_with_answers.form_answer,
+            form_answer_with_touched_document,
+          ],
+        )
+      end
+    end
   end
 
   describe "#unsuccessful?" do

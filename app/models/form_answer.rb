@@ -190,6 +190,12 @@ class FormAnswer < ApplicationRecord
   scope :vocf_free, -> { where(award_type: %w[mobility development]) }
   scope :provided_estimates, -> { where("document #>> '{product_estimated_figures}' = 'yes'") }
 
+  scope :touched, -> {
+    joins("LEFT JOIN eligibilities ON eligibilities.form_answer_id = form_answers.id")
+      .where("eligibilities.id IS NOT NULL AND eligibilities.type = form_answers.award_type AND eligibilities.answers::jsonb <> '{}'::jsonb")
+      .or(where("(document::jsonb - 'organization_name' - 'company_name') <> '{}'::jsonb"))
+  }
+
   # callbacks
   before_save :set_award_year, unless: :award_year
   before_save :set_urn
@@ -342,12 +348,6 @@ class FormAnswer < ApplicationRecord
 
   def fill_progress_in_percents
     ((fill_progress || 0) * 100).floor.to_s + "%"
-  end
-
-  def any_progress?
-    return unless fill_progress
-
-    document.except(comp_attr).any? || eligibility&.answers&.any?
   end
 
   def performance_years
