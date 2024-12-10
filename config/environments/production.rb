@@ -1,3 +1,5 @@
+require Rails.root.join("lib/formatters/asim_formatter")
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -86,14 +88,18 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  config.lograge.enabled = true
-  config.lograge.ignore_actions = ["HealthchecksController#show"]
-  config.lograge.keep_original_rails_log = true
-  config.lograge.logger = Appsignal::Logger.new(
-    "rails",
-    format: Appsignal::Logger::LOGFMT,
+  config.log_tags = JsonTaggedLogger::LogTagsConfig.generate(
+    :request_id,
+    :remote_ip,
+    JsonTaggedLogger::TagFromSession.get(:user_id),
+    :user_agent,
   )
-  config.logger = ActiveSupport::Logger.new($stdout) # Lograge-formatted logs to STDOUT
+  logger = ActiveSupport::Logger.new($stdout)
+  config.logger = JsonTaggedLogger::Logger.new(logger)
+
+  config.lograge.enabled = true
+  config.lograge.ignore_actions = ["HealthcheckController#index"]
+  config.lograge.formatter = Formatters::AsimFormatter.new
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

@@ -3,8 +3,6 @@
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
-#
-plugin :appsignal
 
 workers Integer(ENV.fetch("WEB_CONCURRENCY") { 2 })
 threads_count = ENV.fetch("MAX_THREADS") { 5 }
@@ -18,9 +16,3 @@ bind "tcp://0.0.0.0:#{ENV.fetch("PORT") { 3000 }}"
 # Specifies the `environment` that Puma will run in.
 #
 environment ENV.fetch("RACK_ENV") { "development" }
-
-on_worker_boot do
-  # Worker specific setup for Rails 4.1+
-  # See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot
-  ActiveRecord::Base.establish_connection
-end

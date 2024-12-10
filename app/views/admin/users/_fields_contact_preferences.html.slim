@@ -22,7 +22,7 @@
   = f.input :agree_sharing_of_details_with_lieutenancies, label: "I am happy for my and my organisation's name, contact details and application status to be shared with Lieutenancies so that they can contact us to assist as appropriate.", wrapper_class: "selectable"
 
 .question-group
-  h3 = f.label :qae_info_source, label: "How did the #{controller_name == "users" ? "applicant" : controller_name.singularize} hear about The King's Awards?"
+  h3 = "How did the #{controller_name == "users" ? "applicant" : controller_name.singularize} hear about The King's Awards?"
   .row
     .col-md-4.col-sm-5
       = f.input :qae_info_source,

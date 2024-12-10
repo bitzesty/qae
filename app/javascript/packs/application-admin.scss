@@ -1,3 +1,3 @@
-$govuk-assets-path: "~govuk-frontend/govuk/assets/";
-@import "node_modules/govuk-frontend/govuk/objects/width-container";
-@import "node_modules/govuk-frontend/govuk/components/footer/index";
+$govuk-assets-path: "~govuk-frontend/dist/govuk/assets/";
+@import "node_modules/govuk-frontend/dist/govuk/components/footer/footer";
+@import "node_modules/govuk-frontend/dist/govuk/objects/width-container";

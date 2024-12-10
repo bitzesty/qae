@@ -6,13 +6,13 @@
         a data-toggle="collapse" data-parent="#panel-winners" href="#section-palace-attendees" aria-expanded="true" aria-controls="section-palace-attendees"
           ' Palace Attendees
     #section-palace-attendees.section-palace-attendees.panel-collapse.collapse aria-labelledby="palace-attendees-heading"
-      .panel-body.if-no-js-hide
-        - palace_invite.palace_attendees.build if palace_invite.palace_attendees.blank?
-        - palace_invite.palace_attendees.each_with_index do |pa, index|
-          = render(partial: "admin/form_answers/winners_components/palace_attendee", locals: { index: index, pa: pa, palace_invite: palace_invite })
-      .panel-body.if-js-hide
+      .panel-body
         - palace_invite.prebuild_if_necessary.palace_attendees.each_with_index do |pa, index|
           = render(partial: "admin/form_answers/winners_components/palace_attendee", locals: { index: index, pa: pa, palace_invite: palace_invite })
+      / While the palace attendee limit is 1, there is no need to have a JS and non JS form.
+      / .panel-body.if-js-hide
+      /   - palace_invite.palace_attendees.each_with_index do |pa, index|
+      /     = render(partial: "admin/form_answers/winners_components/palace_attendee", locals: { index: index + 1, pa: pa, palace_invite: palace_invite })
 
       #palace-invite-submit-form[data-controller="inline-flash"]
         = render "admin/form_answers/winners_components/palace_invite_submit_form", palace_invite: palace_invite

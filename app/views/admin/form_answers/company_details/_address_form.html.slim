@@ -172,8 +172,9 @@
 
                   = f.input :organization_address_street,
                             as: :string,
-                            label: false,
-                            input_html: { class: "form-control" }
+                            label: "Street",
+                            input_html: { class: "form-control" },
+                            label_html: { class: "visuallyhidden" }
               .row
                 .col-md-6
                   = f.input :organization_address_city,

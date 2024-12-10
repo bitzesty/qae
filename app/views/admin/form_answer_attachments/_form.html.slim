@@ -14,11 +14,11 @@
           span[aria-hidden="true"] &times;
 
     .attachment-link.if-js-hide
-      = form.label :file, "Attach document", class: "hide"
+      = form.label :file, "Attach document", class: "visuallyhidden"
       = form.file_field :file
 
     .form-group
-      label.form-label Document title
+      = form.label :title, "Document title"
       = form.text_field :title, class: "form-control attachment-title"
       - if current_subject.is_a?(Admin)
         .checkbox

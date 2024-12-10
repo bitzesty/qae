@@ -27,13 +27,13 @@ This ensures the necessary environment variables set before running the Docker c
 #### Running with docker
 
 1. Build the containers:
-   
+
    ```
    docker-compose build
    ```
 
 2. In a new terminal, set up and migrate the database:
-   
+
    ```
    docker-compose run --rm web bundle exec rails db:prepare
    ```
@@ -69,6 +69,20 @@ If you need to test malware scanning locally, install [Vigilion](https://github.
 ### Running the tests
 
     $ bundle exec rspec
+
+## Documentation
+
+We have documentation within the doc folder. Architecture decisions and technical diagrams are stored within doc/architecture/decisions and doc/architecture/diagrams respectively.
+
+We use [adr-tools](https://github.com/npryce/adr-tools) to manage our architecture decisions.
+
+Diagrams are written using [PlantUML](https://plantuml.com/) and C4 notation.
+
+If you're using an IDE or editor with a PlantUML plugin, there's often a setting to specify the format (png) and output directory. For example, in VS Code with the PlantUML extension, you can add this to your settings.json:
+
+```json
+"plantuml.outputDirectory": "."
+```
 
 ## Deploying
 

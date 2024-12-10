@@ -15,10 +15,11 @@
             span[aria-hidden="true"] &times;
 
     .attachment-link.if-js-hide
+      = form.label :attachment, "Attach document", class: "visuallyhidden", for: "audit_certificate_attachment"
       = form.file_field :attachment
 
     .form-group
-      label.form-label Document title
+      = form.label :attachment, "Document title", class: "form-label", for: "audit_certificate_attachment_input"
       = form.text_field :attachment, class: "form-control attachment-title", id: "audit_certificate_attachment_input"
 
     .form-actions.text-right

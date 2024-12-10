@@ -9,6 +9,7 @@ h1.admin-page-heading
         = f.label :query, "Search", class: "search-input__label"
         = f.hint "By company name, reference number or category", class: "search-input__hint"
         .form-group.search-input
+          = label_tag :award_type, "Award Type", class: "visuallyhidden", aria: { hidden: true }
           = text_field_tag :award_type, params[:award_type], class: "visuallyhidden", aria: { hidden: true }, tabindex: "-1"
           = f.input :query, label: false, input_html: { class: "form-control", type: "search", aria: {label: 'Search applications'} }
           = submit_tag :submit, class: 'search-submit'
@@ -54,7 +55,9 @@ h1.admin-page-heading
         thead
           tr
             - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
-              th
+              th.form_answer_select
+                span.visuallyhidden
+                  | Select
                 span.if-no-js-hide
                   = check_box_tag :check_all, "Check all", false, aria: { label: "Select all applications for bulk action" }
             th.sortable width="250"

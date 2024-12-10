@@ -15,6 +15,7 @@
             span[aria-hidden="true"] &times;
 
     .attachment-link.if-js-hide
+      = form.label :attachment, "Attach document", class: "visuallyhidden"
       = form.file_field :attachment
 
     .form-actions.text-right

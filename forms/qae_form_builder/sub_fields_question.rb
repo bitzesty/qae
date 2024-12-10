@@ -44,7 +44,7 @@ class QaeFormBuilder
 
     def rendering_sub_fields
       sub_fields.map do |f|
-        { key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint) }
+        { key: f.keys.first, title: f.values.first, hint: f.try(:[], :hint), type: f.fetch(:type, "text"), classes: f.fetch(:classes, "") }
       end
     end
   end
