@@ -173,6 +173,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "action-cable-testing"
   gem "factory_bot_rails"
   gem "capybara", "~> 3.39.0"
   gem "poltergeist"
