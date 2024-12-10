@@ -12,7 +12,6 @@
 #= require moment.min
 #= require core
 #= require libs/suchi/isOld.js
-#= require libs/pusher.min.js
 #= require mobile
 #= require browser-check
 #= require vendor/zxcvbn
