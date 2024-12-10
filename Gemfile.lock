@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.1.0)
+    action-cable-testing (0.6.1)
+      actioncable (>= 5.0)
     actioncable (7.0.8.4)
       actionpack (= 7.0.8.4)
       activesupport (= 7.0.8.4)
@@ -727,6 +729,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action-cable-testing
   active_hash
   amoeba (= 3.0.0)
   binding_of_caller
