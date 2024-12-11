@@ -1,11 +1,11 @@
 window.ApplicationCollaboratorsAccessManager =
 
   set_access_mode: () ->
-    editor_id = ApplicationCollaboratorsAccessManager.current_editor_id()
+    editor_id = ApplicationCollaboratorsAccessManager.current_editor().id
 
     CollaboratorsLog.log("[SET ACCESS MODE] ------------ CURRENT EDITOR IS -------- " + editor_id)
     previous_editor_id = window.last_editor_id
-    console.log("previous editor was: " + previous_editor_id)
+
     ApplicationCollaboratorsAccessManager.track_current_editor(editor_id)
 
     if ApplicationCollaboratorsAccessManager.i_am_current_editor()
@@ -13,7 +13,7 @@ window.ApplicationCollaboratorsAccessManager =
 
       ApplicationCollaboratorsEditorBar.hide_collaborators_bar()
 
-      if previous_editor_id != undefined && previous_editor_id != ApplicationCollaboratorsAccessManager.current_editor_id()
+      if previous_editor_id != undefined && previous_editor_id != ApplicationCollaboratorsAccessManager.current_editor().id
         CollaboratorsLog.log("[NOW IM EDITOR] ---- REFRESHING PAGE")
 
         ApplicationCollaboratorsEditorBar.show_loading_bar()
@@ -38,16 +38,11 @@ window.ApplicationCollaboratorsAccessManager =
       ApplicationCollaboratorsEditorBar.render_collaborators_bar()
 
   i_am_current_editor: () ->
-    ApplicationCollaboratorsAccessManager.current_editor_id() == window.user_id &&
+    ApplicationCollaboratorsAccessManager.current_editor().id == window.user_id &&
       window.tab_ident == ApplicationCollaboratorsAccessManager.current_editor().tab_ident
 
   im_in_viewer_mode: () ->
     !ApplicationCollaboratorsAccessManager.i_am_current_editor()
-
-  current_editor_id: () ->
-    editor_id = window.current_channel_members.split("/").find((el) => el.includes("EDITOR")).split(":")[0]
-    
-    return editor_id
 
   current_editor: () ->
     editor = window.current_channel_members.split("/").find((el) => el.includes("EDITOR")).split(":")
