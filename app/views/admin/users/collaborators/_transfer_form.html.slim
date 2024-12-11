@@ -22,8 +22,11 @@
     .question-group
       h3= f.label :transfer_form_answers, { label: "Transfer existing Application/s", for: "transfer_form_answers_#{collaborator.id}" }
       .row
-        .col-sm-2
+        .col-sm-1
           = f.check_box :transfer_form_answers, value: true, id: "transfer_form_answers_#{collaborator.id}"
+        .col-sm-11
+          .alert.alert-warning
+            p Ticking this box will transfer all applications to the new account. All collaborators on the new account will have access to these applications and the associated information.
 
   br
     = f.submit "Transfer", class: "btn btn-secondary"
