@@ -16,7 +16,7 @@ services:
         condition: service_healthy
       redis-db:
         condition: service_started
-    command: /rails/bin/rails server
+    command: /rails/bin/rails server -b 0.0.0.0
     entrypoint: ["/rails/bin/docker-entrypoint"]
     volumes:
       - .:/rails:cached
