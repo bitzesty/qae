@@ -315,7 +315,7 @@ class AwardYear < ApplicationRecord
         begin
           Date.new(AwardYear.current.year - 1 - to, month, (opts[:include_end_date] == true) ? day : (day + 1))
         rescue Date::Error # avoiding 32th day of the month error
-          Date.new(AwardYear.current.year - 1 - to, month + 1, 1)
+          Date.new(AwardYear.current.year - 1 - to, (month == 12) ? month : month + 1, 1)
         end
 
       end_date =
