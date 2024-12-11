@@ -1,8 +1,4 @@
 .form-group
   .form-container
     label.form-label User accounts
-
     = render "admin/form_answers/collaborators/list"
-
-  - if policy(resource).can_add_collaborators_to_application?
-    = render "admin/form_answers/collaborators/form"

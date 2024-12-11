@@ -190,6 +190,12 @@ class FormAnswer < ApplicationRecord
   scope :vocf_free, -> { where(award_type: %w[mobility development]) }
   scope :provided_estimates, -> { where("document #>> '{product_estimated_figures}' = 'yes'") }
 
+  scope :touched, -> {
+    joins("LEFT JOIN eligibilities ON eligibilities.form_answer_id = form_answers.id")
+      .where("eligibilities.id IS NOT NULL AND eligibilities.type = form_answers.award_type AND eligibilities.answers::jsonb <> '{}'::jsonb")
+      .or(where("(document::jsonb - 'organization_name' - 'company_name') <> '{}'::jsonb"))
+  }
+
   # callbacks
   before_save :set_award_year, unless: :award_year
   before_save :set_urn
@@ -326,11 +332,14 @@ class FormAnswer < ApplicationRecord
   end
 
   def company_or_nominee_from_document
-    comp_attr = promotion? ? "organization_name" : "company_name"
     name = document[comp_attr]
     name = nominee_full_name_from_document if promotion? && name.blank?
     name = name.try(:strip)
     name.presence
+  end
+
+  def comp_attr
+    promotion? ? "organization_name" : "company_name"
   end
 
   def nominee_full_name_from_document

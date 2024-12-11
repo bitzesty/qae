@@ -15,6 +15,10 @@ class Admin::AssessorsController < Admin::UsersController
       :bulk_deactivate_dt,
     ]
 
+  expose(:collaborators) do
+    nil
+  end
+
   def index
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
     params[:search].permit!
