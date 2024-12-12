@@ -23,12 +23,12 @@ RSpec.describe CollaboratorsChannel, type: :channel do
       it "makes the first joining user an editor" do
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s, "current_tab" => tab_one })
 
-        expect(Rails.cache.read(channel_name)).to eq("#{user.id}:#{tab_one}:#{user.email}:#{user.full_name}:EDITOR")
+        expect(Rails.cache.read(channel_name)).to eq(["#{user.id}:#{tab_one}:#{user.email}:#{user.full_name}:EDITOR"])
       end
 
       it "broadcasts the collaborators for the room" do
         expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async)
-          .with(channel_name, "#{user.id}:#{tab_one}:#{user.email}:#{user.full_name}:EDITOR")
+          .with(channel_name, ["#{user.id}:#{tab_one}:#{user.email}:#{user.full_name}:EDITOR"])
 
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s, "current_tab" => tab_one })
       end
@@ -37,18 +37,18 @@ RSpec.describe CollaboratorsChannel, type: :channel do
     context "when there is already an editor for the channel" do
       let(:second_user_tab) { "2392j123" }
       before do
-        Rails.cache.write(channel_name, current_editor)
+        Rails.cache.write(channel_name, [current_editor])
       end
 
       it "adds the second user as a non-editor" do
         subscribe({ "channel_name" => channel_name, "user_id" => user_two.id.to_s, "current_tab" => second_user_tab })
 
-        expect(Rails.cache.read(channel_name)).to eq("#{current_editor}/#{user_two.id}:#{second_user_tab}:#{user_two.email}:#{user_two.full_name}")
+        expect(Rails.cache.read(channel_name)).to eq([current_editor, "#{user_two.id}:#{second_user_tab}:#{user_two.email}:#{user_two.full_name}"])
       end
 
       it "broadcasts the collaborators for the room" do
         expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async)
-          .with(channel_name, "#{current_editor}/#{user_two.id}:#{second_user_tab}:#{user_two.email}:#{user_two.full_name}")
+          .with(channel_name, [current_editor, "#{user_two.id}:#{second_user_tab}:#{user_two.email}:#{user_two.full_name}"])
 
         subscribe({ "channel_name" => channel_name, "user_id" => user_two.id, "current_tab" => second_user_tab })
       end
@@ -59,7 +59,7 @@ RSpec.describe CollaboratorsChannel, type: :channel do
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s, "current_tab" => tab_one })
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s, "current_tab" => tab_two })
 
-        expect(Rails.cache.read(channel_name)).to eq("#{current_editor}/#{user.id}:#{tab_two}:#{user.email}:#{user.full_name}")
+        expect(Rails.cache.read(channel_name)).to eq([current_editor, "#{user.id}:#{tab_two}:#{user.email}:#{user.full_name}"])
       end
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe CollaboratorsChannel, type: :channel do
   describe "#unsubscribed" do
     context "when the editor leaves the channel" do
       before do
-        Rails.cache.write(channel_name, "")
+        Rails.cache.write(channel_name, [])
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s, "current_tab" => tab_one })
       end
 
@@ -75,12 +75,12 @@ RSpec.describe CollaboratorsChannel, type: :channel do
         expect(subscription).to be_confirmed
         subscription.unsubscribe_from_channel
 
-        expect(Rails.cache.read(channel_name)).to eq ""
+        expect(Rails.cache.read(channel_name)).to eq []
       end
 
       it "broadcasts the new collaborator list" do
         expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async)
-        .with(channel_name, "")
+        .with(channel_name, [])
 
         subscription.unsubscribe_from_channel
       end
@@ -88,18 +88,18 @@ RSpec.describe CollaboratorsChannel, type: :channel do
 
     context "when the editor leaves the channel and another user is present" do
       before do
-        Rails.cache.write(channel_name, "")
+        Rails.cache.write(channel_name, [])
       end
 
       it "makes the second user the new editor" do
         sub_one = subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s, "current_tab" => tab_one })
         subscribe({ "channel_name" => channel_name, "user_id" => user_two.id.to_s, "current_tab" => tab_two })
 
-        expect(Rails.cache.read(channel_name)).to eq("#{current_editor}/#{user_two.id}:#{tab_two}:#{user_two.email}:#{user_two.full_name}")
+        expect(Rails.cache.read(channel_name)).to eq([current_editor, "#{user_two.id}:#{tab_two}:#{user_two.email}:#{user_two.full_name}"])
 
         sub_one.unsubscribe_from_channel
 
-        expect(Rails.cache.read(channel_name)).to eq("#{user_two.id}:#{tab_two}:#{user_two.email}:#{user_two.full_name}:EDITOR")
+        expect(Rails.cache.read(channel_name)).to eq(["#{user_two.id}:#{tab_two}:#{user_two.email}:#{user_two.full_name}:EDITOR"])
       end
     end
 
@@ -110,7 +110,7 @@ RSpec.describe CollaboratorsChannel, type: :channel do
 
         sub_two.unsubscribe_from_channel
 
-        expect(Rails.cache.read(channel_name)).to eq(current_editor)
+        expect(Rails.cache.read(channel_name)).to eq([current_editor])
       end
     end
 
@@ -122,7 +122,7 @@ RSpec.describe CollaboratorsChannel, type: :channel do
 
           sub_one.unsubscribe_from_channel
 
-          expect(Rails.cache.read(channel_name)).to eq("#{user.id}:#{tab_two}:#{user.email}:#{user.full_name}:EDITOR")
+          expect(Rails.cache.read(channel_name)).to eq(["#{user.id}:#{tab_two}:#{user.email}:#{user.full_name}:EDITOR"])
         end
       end
 
@@ -133,7 +133,7 @@ RSpec.describe CollaboratorsChannel, type: :channel do
 
           sub_two.unsubscribe_from_channel
 
-          expect(Rails.cache.read(channel_name)).to eq("#{user.id}:#{tab_one}:#{user.email}:#{user.full_name}:EDITOR")
+          expect(Rails.cache.read(channel_name)).to eq(["#{user.id}:#{tab_one}:#{user.email}:#{user.full_name}:EDITOR"])
         end
       end
     end
