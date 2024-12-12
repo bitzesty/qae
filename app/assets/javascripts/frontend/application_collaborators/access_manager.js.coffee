@@ -45,7 +45,7 @@ window.ApplicationCollaboratorsAccessManager =
     !ApplicationCollaboratorsAccessManager.i_am_current_editor()
 
   current_editor: () ->
-    editor = window.current_channel_members.split("/").find((el) => el.includes("EDITOR")).split(":")
+    editor = window.current_channel_members.find((el) => el.includes("EDITOR")).split(":")
     editor_info = {
       id: editor[0],
       tab_ident: editor[1],

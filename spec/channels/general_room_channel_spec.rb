@@ -16,11 +16,11 @@ RSpec.describe GeneralRoomChannel, type: :channel do
       it "adds the subscribing user ID to the redis cache" do
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s })
 
-        expect(Rails.cache.read(channel_name)).to eq(user.id.to_s)
+        expect(Rails.cache.read(channel_name)).to eq([user.id.to_s])
       end
 
       it "broadcasts the new room member" do
-        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, user.id.to_s)
+        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, [user.id.to_s])
 
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s })
       end
@@ -34,11 +34,11 @@ RSpec.describe GeneralRoomChannel, type: :channel do
       it "adds the subscribing user ID to the redis cache" do
         subscribe({ "channel_name" => channel_name, "user_id" => user_two.id.to_s })
 
-        expect(Rails.cache.read(channel_name)).to eq("#{user.id}/#{user_two.id}")
+        expect(Rails.cache.read(channel_name)).to eq([user.id.to_s, user_two.id.to_s])
       end
 
       it "broadcasts the new room member" do
-        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, "#{user.id}/#{user_two.id}")
+        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, [user.id.to_s, user_two.id.to_s])
 
         subscribe({ "channel_name" => channel_name, "user_id" => user_two.id.to_s })
       end
@@ -52,13 +52,13 @@ RSpec.describe GeneralRoomChannel, type: :channel do
 
         sub_one.unsubscribe_from_channel
 
-        expect(Rails.cache.read(channel_name)).to eq ""
+        expect(Rails.cache.read(channel_name)).to eq []
       end
 
       it "broadcasts the new (empty) room members" do
         sub_one = subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s })
 
-        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, "")
+        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, [])
         sub_one.unsubscribe_from_channel
       end
     end
@@ -68,13 +68,13 @@ RSpec.describe GeneralRoomChannel, type: :channel do
         subscribe({ "channel_name" => channel_name, "user_id" => user.id.to_s })
         sub_two = subscribe({ "channel_name" => channel_name, "user_id" => user_two.id.to_s })
 
-        expect(Rails.cache.read(channel_name)).to eq("#{user.id}/#{user_two.id}")
+        expect(Rails.cache.read(channel_name)).to eq([user.id.to_s, user_two.id.to_s])
 
-        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, user.id.to_s)
+        expect(Collaborators::BroadcastCollabWorker).to receive(:perform_async).with(channel_name, [user.id.to_s])
 
         sub_two.unsubscribe_from_channel
 
-        expect(Rails.cache.read(channel_name)).to eq(user.id.to_s)
+        expect(Rails.cache.read(channel_name)).to eq([user.id.to_s])
       end
     end
   end

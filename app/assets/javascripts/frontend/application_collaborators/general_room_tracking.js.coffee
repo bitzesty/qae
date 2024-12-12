@@ -13,4 +13,4 @@ window.ApplicationCollaboratorsGeneralRoomTracking =
 
   there_are_other_collaborators_here: () ->
     window.general_room_members &&
-    window.general_room_members.split('/').length > 1
+    window.general_room_members.length > 1
