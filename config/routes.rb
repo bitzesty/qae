@@ -263,6 +263,10 @@ Rails.application.routes.draw do
         patch :unlock
         post :scan_via_debounce_api
       end
+
+      resources :collaborators, only: [:create], module: :users do
+        get :search, on: :collection
+      end
     end
 
     resources :collaborator_deletion, only: [:destroy]
@@ -351,9 +355,6 @@ Rails.application.routes.draw do
       resources :case_summaries, only: [:index]
       resources :draft_notes, only: [:create, :update]
       resources :review_corp_responsibility, only: [:create]
-      resources :collaborators, only: [:create], module: "form_answers" do
-        get :search, on: :collection
-      end
     end
 
     resource :settings, only: [:show] do
