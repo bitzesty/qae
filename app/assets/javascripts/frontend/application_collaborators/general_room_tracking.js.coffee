@@ -6,7 +6,7 @@ window.ApplicationCollaboratorsGeneralRoomTracking =
 
     CollaboratorsLog.log("[INIT GENERAL ROOM] ------------------------ channel_name: " + channel_name)
 
-    window.App.generalRoom = App.cable.subscriptions.create { channel: "GeneralRoomChannel", channel_name: channel_name, user_id: window.user_id },
+    window.App.generalRoom = App.cable.subscriptions.create { channel: "GeneralRoomChannel", channel_name: channel_name, user_id: window.user_id, current_tab: window.tab_ident },
       received: (data) ->
         window.general_room_members = data.collaborators
         ApplicationCollaboratorsAccessManager.set_access_mode()
