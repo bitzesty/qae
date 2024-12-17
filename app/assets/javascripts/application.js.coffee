@@ -12,7 +12,6 @@
 #= require moment.min
 #= require core
 #= require libs/suchi/isOld.js
-#= require libs/pusher.min.js
 #= require mobile
 #= require browser-check
 #= require vendor/zxcvbn
@@ -23,6 +22,7 @@
 #= require_tree ./frontend
 #= require ./frontend/financial_summary_tables/fst_base.js
 #= require_tree ./frontend/financial_summary_tables
+#= require channels
 #
 #= require offline
 
@@ -740,7 +740,7 @@ jQuery ->
 
         CollaboratorsLog.log("[COLLABORATOR MODE] ------------ redirect_url ----------- " + redirect_url)
 
-        if ApplicationCollaboratorsAccessManager.does_im_current_editor()
+        if ApplicationCollaboratorsAccessManager.i_am_current_editor()
           CollaboratorsLog.log("[COLLABORATOR MODE] -------------I'm EDITOR---------- SAVE AND REDIRECT")
           # If I'm current editor
           # -> then save form data and once it saved redirect me to proper section in a callback
@@ -755,7 +755,7 @@ jQuery ->
           window.location.href = redirect_url
 
       else
-        CollaboratorsLog.log("[STANDART MODE] ----------------------- ")
+        CollaboratorsLog.log("[STANDARD MODE] ----------------------- ")
 
         autosave()
 

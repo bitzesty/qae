@@ -35,4 +35,4 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
 
 - if application_collaborator_group_mode?(@form_answer)
   = content_for(:javascript_code) do
-    | ApplicationCollaboratorsConnectionManager.init('#{@form_answer.id}', '#{Pusher.host}', #{Pusher.port}, '#{Pusher.key}', '#{Rails.env}', #{Time.now.utc.to_i});
+    | ApplicationCollaboratorsConnectionManager.init('#{@form_answer.id}',  '#{current_user.id}', '#{Rails.env}');

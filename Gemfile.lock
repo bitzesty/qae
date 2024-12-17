@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.1.0)
+    action-cable-testing (0.6.1)
+      actioncable (>= 5.0)
     actioncable (7.0.8.4)
       actionpack (= 7.0.8.4)
       activesupport (= 7.0.8.4)
@@ -429,11 +431,6 @@ GEM
       nio4r (~> 2.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
-    pusher (0.15.2)
-      httpclient (~> 2.5)
-      multi_json (~> 1.0)
-      pusher-signature (~> 0.1.8)
-    pusher-signature (0.1.8)
     raabro (1.4.0)
     racc (1.8.1)
     rack (2.2.9)
@@ -732,6 +729,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action-cable-testing
   active_hash
   amoeba (= 3.0.0)
   binding_of_caller
@@ -788,7 +786,6 @@ DEPENDENCIES
   pry-byebug
   puma (~> 6.4.3)
   pundit (~> 0.3)
-  pusher (= 0.15.2)
   rack-cors (~> 1.0)
   rack-mini-profiler (>= 0.10.1)
   rack-protection (= 3.0.5)
