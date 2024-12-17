@@ -1,6 +1,8 @@
 window.ApplicationCollaboratorsAccessManager =
 
   set_access_mode: () ->
+    return if !window.current_channel_members
+
     editor_id = ApplicationCollaboratorsAccessManager.current_editor().id
 
     CollaboratorsLog.log("[SET ACCESS MODE] ------------ CURRENT EDITOR IS -------- " + editor_id)
@@ -45,15 +47,7 @@ window.ApplicationCollaboratorsAccessManager =
     !ApplicationCollaboratorsAccessManager.i_am_current_editor()
 
   current_editor: () ->
-    editor = window.current_channel_members.find((el) => el.includes("EDITOR")).split(":")
-    editor_info = {
-      id: editor[0],
-      tab_ident: editor[1],
-      email: editor[2],
-      name: editor[3]
-    }
-
-    editor_info
+    window.current_channel_members[0]
 
   track_current_editor: (editor_id) ->
     window.last_editor_id = editor_id
