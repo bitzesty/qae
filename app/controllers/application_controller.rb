@@ -95,7 +95,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_session_identifier
-    cookies["public_tab_ident"] = cookies["_qae_session#{"_development" if Rails.env.development?}"]&.first(8)
+    return unless session_cookie
+
+    cookies["public_tab_ident"] = Digest::SHA256.digest(session_cookie)
+  end
+
+  def session_cookie
+    cookies["_qae_session#{"_development" if Rails.env.development?}"]
   end
 
   protected
