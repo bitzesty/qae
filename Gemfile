@@ -45,7 +45,7 @@ gem "hashie", "~> 3.5"
 gem "responders", "~> 3.0"
 
 # Rails 4 sanitizer
-gem "rails-html-sanitizer", "~> 1.4.4"
+gem "rails-html-sanitizer", "~> 1.6.2"
 
 # JSON
 gem "json"
