@@ -101,7 +101,8 @@ class ApplicationController < ActionController::Base
   end
 
   def session_cookie
-    cookies["_qae_session#{"_development" if Rails.env.development?}"]
+    cookies["_qae_session_#{Rails.env}"]
+    # cookies["_qae_session#{"_development" if Rails.env.development?}"]
   end
 
   protected
