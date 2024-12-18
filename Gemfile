@@ -92,8 +92,7 @@ gem "nokogiri"
 # Uploads
 gem "carrierwave", "~> 3.0"
 gem "fog-aws"
-gem "vigilion", "~> 1.0.4"
-gem "vigilion-rails", "~> 2.2.0"
+gem "aws-sdk-s3", "~> 1"
 
 # Background jobs
 gem "sidekiq", "~> 6.5.10"
