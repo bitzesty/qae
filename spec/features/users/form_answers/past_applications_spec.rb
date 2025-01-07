@@ -68,7 +68,6 @@ So that I see
       end
 
       it "should display past successful applications" do
-        # save_and_open_page
         expect(page).to have_selector("div.dashboard-post-submission", count: 1)
       end
     end
