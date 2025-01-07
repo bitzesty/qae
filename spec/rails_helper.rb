@@ -115,6 +115,8 @@ RSpec.configure do |config|
     config.include(Shoulda::Matchers::ActiveModel, type: :model)
     config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   end
+
+  OmniAuth.config.test_mode = true
 end
 
 RSpec::Matchers.define_negated_matcher :not_change, :change

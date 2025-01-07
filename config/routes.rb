@@ -15,14 +15,12 @@ Rails.application.routes.draw do
     unlocks: "users/unlocks",
   }
 
-  devise_for :admins, controllers: {
-    confirmations: "admins/confirmations",
-    devise_authy: "admin/devise_authy",
-  }, path_names: {
-    verify_authy: "/verify-token",
-    enable_authy: "/enable-two-factor",
-    verify_authy_installation: "/verify-installation",
-  }
+  devise_for :admins, controllers: { omniauth_callbacks: "admins/omniauth_callbacks" }
+
+  devise_scope :admin do
+    get "admins/sign_in", to: "devise/sessions#new", as: :new_admin_session
+    delete "admins/sign_out", to: "devise/sessions#destroy", as: :destroy_admin_session
+  end
 
   authenticate :admin do
     mount Sidekiq::Web => "/sidekiq"

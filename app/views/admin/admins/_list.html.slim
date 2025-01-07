@@ -10,7 +10,7 @@
           th.sortable
             = sort_link f, 'Signed in on', @search, :last_sign_in_at
           th.sortable
-            = sort_link f, "Confirmed on", @search, :confirmed_at
+            = sort_link f, 'Single sign on ID', @search, :sso_uid
       tbody
         - if AdminDecorator.decorate_collection(resources).none?
           tr
@@ -30,10 +30,4 @@
                     = admin.formatted_last_sign_in_at_long
                   span.hidden-lg
                     = admin.formatted_last_sign_in_at_short
-              td
-                - if admin.confirmed_at.present?
-                  small.text-muted
-                    = l admin.confirmed_at, format: :date_at_time
-                - else
-                  small.text-danger
-                    ' Not confirmed
+              td = admin.sso_uid
