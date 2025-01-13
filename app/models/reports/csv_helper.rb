@@ -9,7 +9,7 @@ module Reports::CsvHelper
         form_answer = Reports::FormAnswer.new(form_answer)
 
         csv << mapping.map do |m|
-          sanitize_string(
+          Utils::String.sanitize(
             form_answer.call_method(m[:method]),
           )
         end
@@ -21,7 +21,7 @@ module Reports::CsvHelper
     CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|
       csv << headers
 
-      scope.find_each do |fa|
+      find_each_with_order(scope) do |fa|
         f = if builder.nil?
           Reports::FormAnswer.new(fa, limited_access)
         else
@@ -40,7 +40,7 @@ module Reports::CsvHelper
     @_csv_enumerator ||= Enumerator.new do |yielder|
       yielder << CSV.generate_line(headers, encoding: "UTF-8", force_quotes: true)
 
-      scope.find_each do |fa|
+      find_each_with_order(scope) do |fa|
         f = Reports::FormAnswer.new(fa, limited_access)
 
         row = mapping.map do |m|
@@ -55,11 +55,17 @@ module Reports::CsvHelper
 
   private
 
-  def headers
-    mapping.pluck(:label)
+  def find_each_with_order(scope, batch_size: 100, &block)
+    ordered_ids = scope.pluck(:id)
+
+    ordered_ids.in_groups_of(batch_size, false) do |ids|
+      scope.model.where(id: ids).index_by(&:id).values_at(*ordered_ids).each do |fa|
+        yield fa
+      end
+    end
   end
 
-  def sanitize_string(string)
-    string.present? ? string.to_s.tr("\n", "").squish : ""
+  def headers
+    mapping.pluck(:label)
   end
 end
