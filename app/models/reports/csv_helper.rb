@@ -59,7 +59,7 @@ module Reports::CsvHelper
     ordered_ids = scope.pluck(:id)
 
     ordered_ids.in_groups_of(batch_size, false) do |ids|
-      scope.model.where(id: ids).index_by(&:id).values_at(*ordered_ids).each do |fa|
+      scope.model.where(id: ids).index_by(&:id).values_at(*ordered_ids).compact.each do |fa|
         yield fa
       end
     end
