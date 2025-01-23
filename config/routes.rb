@@ -106,12 +106,6 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :form_answers, only: [:show] do
-      resources :collaborator_access, only: [] do
-        collection do
-          get "auth/:section/:timestamp" => "collaborator_access#auth"
-        end
-      end
-
       # shortlisted docs block
       resource :audit_certificate, only: [:show, :create, :destroy] do
         get "Guide-to-Editing-External-Accountants-Report-Using-Adobe-PDF-Editor", as: :guide, to: "audit_certificates#guide"

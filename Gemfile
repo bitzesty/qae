@@ -92,8 +92,7 @@ gem "nokogiri"
 # Uploads
 gem "carrierwave", "~> 3.0"
 gem "fog-aws"
-gem "vigilion", "~> 1.0.4"
-gem "vigilion-rails", "~> 2.2.0"
+gem "aws-sdk-s3", "~> 1"
 
 # Background jobs
 gem "sidekiq", "~> 6.5.10"
@@ -111,9 +110,6 @@ gem "redis-store", "~> 1.4"
 
 # We use it for communicating with api.debounce.io
 gem "rest-client"
-
-# We are using Pusher with Poxa server for realtime collaborator editing
-gem "pusher", "0.15.2"
 
 # Text Search
 gem "pg_search", "~> 2.3.3"
@@ -177,6 +173,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "action-cable-testing"
   gem "factory_bot_rails"
   gem "capybara", "~> 3.39.0"
   gem "poltergeist"
