@@ -134,6 +134,11 @@
   > tbody > tr:first-child > td {
     padding-top: pxToRem(16);
   }
+
+  > tbody > tr > .form_answer_select,
+  > thead > tr > .form_answer_select {
+    text-align: center !important;
+  }
 }
 
 .applications-table, .assessor-table {
@@ -153,7 +158,6 @@
   td > a {
     color: $blue-link-colour;
   }
-
 }
 
 .nav-tabs.submitted-tabs {

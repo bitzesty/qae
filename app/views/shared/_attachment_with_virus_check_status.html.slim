@@ -1,19 +1,18 @@
 p.govuk-body.display-inline
   - if item && item.send(mount_name)
-    - scan_results = item.send("#{mount_name}_scan_results")
     - if item.clean?
       = link_to item.try(:original_filename),
                 item.send(mount_name).url,
                 target: "_blank"
-    - elsif scan_results == "scanning" || scan_results == "pending"
+    - elsif item.pending_or_scanning?
       = item.try(:original_filename)
       br
-      |  (scanning on viruses)
-    - elsif scan_results == "infected"
+      | Scanning file
+    - elsif item.infected?
       = item.try(:original_filename)
       br
-      |  has been blocked (virus detected), please remove.
+      |  Uploaded file has been blocked (virus detected), please remove
     - else
       = item.try(:original_filename)
       br
-      |  didn't pass virus scanner check, please remove
+      |  File didn't pass virus scanner check, please remove

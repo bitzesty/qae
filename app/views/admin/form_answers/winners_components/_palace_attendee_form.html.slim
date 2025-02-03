@@ -11,78 +11,61 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
       = f.input :palace_invite_id, as: :hidden
       .row
         .col-md-2
-          label Title
-          = f.input :title, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :title, as: :string, label: "Title", input_html: { class: "form-control", id: "palace_attendee_title_#{index}" }
       .row
         .col-md-5
-          label First name
-          = f.input :first_name, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :first_name, as: :string, label: "First name", input_html: { class: "form-control", id: "palace_attendee_first_name_#{index}" }
       .row
         .col-md-5
-          label Surname
-          = f.input :last_name, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :last_name, as: :string, label: "Last name", input_html: { class: "form-control", id: "palace_attendee_last_name_#{index}" }
       .row
         .col-md-8
-          label Job title/position
-          = f.input :job_name, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :job_name, as: :string, label: "Job title/position", input_html: { class: "form-control", id: "palace_attendee_job_name_#{index}" }
       .row
         .col-md-8
-          label Decorations/post-nominals
-          = f.input :post_nominals, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :post_nominals, as: :string, label: "Decorations/post-nominals", input_html: { class: "form-control", id: "palace_attendee_post_nominals_#{index}" }
       .row
         .col-md-8
-          label Do you or your organisation have any associations and connections with The Royal Family?
+          = f.label :has_royal_family_connections, "Do you or your organisation have any associations and connections with The Royal Family?"
           span.govuk-hint
             | Answer yes, if:
             ol.govuk-list.govuk-list--number
               li.govuk-hint 1. A member of The Royal Family has visited your organisation or is a patron of your charity, or your company is a Duchy company.
               li.govuk-hint 2. You have met a member of a Royal Family before, have received an Honour or Royal award, are involved with The Prince's Trust or any other organisation supported by a member of The Royal Family, or have other associations with The Royal Family.
-          = f.input :has_royal_family_connections, as: :radio_buttons, label: false, input_html: { class: "js-has-royal-connections" }, wrapper_html: { class: "has-royal-family-connections-wrapper" }
+          = f.input :has_royal_family_connections, as: :radio_buttons, label: false, input_html: { class: "js-has-royal-connections"}, wrapper_html: { class: "has-royal-family-connections-wrapper" }
       .row.royal-connection-wrapper
         .col-md-8
-          label Please provide details of your or your organisation's associations with the Royal Family.
-          = f.input :royal_family_connection_details, as: :text, input_html: { rows: 5, data: { "word-max" => 100 }, class: "js-char-count js-royal-connection-details form-control" }, label: false
+          = f.input :royal_family_connection_details, as: :text, label: "Please provide details of your or your organisation's associations with the Royal Family.", input_html: { rows: 5, data: { "word-max" => 100 }, class: "js-char-count js-royal-connection-details form-control", id: "palace_attendee_royal_family_connection_details_#{index}" }
 
       .row
         .col-md-8
-          label Address line 1
-          = f.input :address_1, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :address_1, as: :string, label: "Address line 1", input_html: { class: "form-control", id: "palace_attendee_address_1_#{index}" }
           p.help-block The address should match the identification documents the attendee will bring on the evening. More detailed guidance will be provided with the formal invitation.
       .row
         .col-md-8
-          label Address line 2
-          = f.input :address_2, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :address_2, as: :string, label: "Address line 2", input_html: { class: "form-control", id: "palace_attendee_address_2__#{index}" }
+        .col-md-8
+          = f.input :address_3, as: :string, label: "City or town", input_html: { class: "form-control", id: "palace_attendee_address_3__#{index}" }
       .row
         .col-md-8
-          label City or town
-          = f.input :address_3, input_html: { class: "form-control" }, label: false, as: :string
-      .row
-        .col-md-8
-          label County
-          = f.input :address_4, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :address_4, as: :string, label: "County", input_html: { class: "form-control", id: "palace_attendee_address_4_#{index}" }
       .row
         .col-md-2
-          label Postcode
-          = f.input :postcode, input_html: { class: "form-control" }, label: false, as: :string
-      .row
+          = f.input :postcode, as: :string, label: "Postcode", input_html: { class: "form-control", id: "palace_attendee_postcode_#{index}" }
         .col-md-3
-          label Telephone number
-          = f.input :phone_number, input_html: { class: "form-control" }, label: false, as: :string
+          = f.input :phone_number, as: :string, label: "Telephone number", input_html: { class: "form-control", id: "palace_attendee_phone_number_#{index}" }
           p.help-block If known
       .row
         .col-md-12
-          label Dietary needs
-          = f.input :dietary_requirements, input_html: { class: "form-control", rows: 2 }, label: false, as: :text
+          = f.input :dietary_requirements, as: :text, label: "Dietary needs", input_html: { class: "form-control", id: "palace_attendee_dietary_requirements_#{index}", rows: 2 }
       .row
         .col-md-8
-          label Does the attendee require disabled access?
-          = f.input :disabled_access, as: :radio_buttons, label: false, wrapper_html: { class: "disabled-access-wrapper" }
+          = f.input :disabled_access, as: :radio_buttons, label: "Does the attendee require disabled access?", wrapper_html: { class: "disabled-access-wrapper", id: "palace_attendee_disabled_access_#{index}" }
 
       - unless @form_answer.promotion?
         .row
           .col-md-12
-            label Accessibility details (for example, wheelchair user or person hard of hearing)
-            = f.input :additional_info, as: :text, input_html: { class: "form-control", rows: 2 }, label: false
+            = f.input :additional_info, as: :text, label: "Accessibility details (for example, wheelchair user or person hard of hearing)", input_html: { class: "form-control", id: "palace_attendee_additional_info_#{index}", rows: 2 }
       .row
         .col-md-12
           .form-actions.text-right

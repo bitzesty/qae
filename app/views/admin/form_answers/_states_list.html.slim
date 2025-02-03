@@ -1,5 +1,5 @@
 - if policy
   ul.dropdown-menu.pull-right role="menu"
     - collection.each do |state|
-      li.checkbox role="presentation"
+      li.checkbox role="menuitem"
         = link_to t(state, scope: "form_answers.state"), "#", "data-state" => state.to_s, "data-label" => t("#{state}_html", scope: "form_answers.state_short")

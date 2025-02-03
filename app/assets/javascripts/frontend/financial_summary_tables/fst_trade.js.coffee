@@ -46,11 +46,12 @@ class FinancialSummaryTableTrade extends FinancialSummaryTableBase
       @showFinancials = false
       salesGrowthRow.find("td:gt(0)").text("-")
     else
+      presentPercentageValue = @._presentPercentageValue
       salesOverseasValues.each (i, value) ->
         if i > 0
           previousValue = salesOverseasValues[i - 1]
-          growth = ((value - previousValue) / previousValue) * 100
-          salesGrowthRow.find("td:eq(#{i + 1})").text(parseInt(growth).toLocaleString())
+          growth = presentPercentageValue(parseInt(((value - previousValue) / previousValue) * 100))
+          salesGrowthRow.find("td:eq(#{i + 1})").text(growth.toLocaleString())
         else
          salesGrowthRow.find("td:eq(#{i + 1})").text("-")
 
@@ -67,13 +68,14 @@ class FinancialSummaryTableTrade extends FinancialSummaryTableBase
       @showFinancials = false
       salesPercentRow.find("td:gt(0)").text("-")
     else
+      presentPercentageValue = @._presentPercentageValue
       salesOverseasValues.each (i, value) ->
         if turnoverValues[i] > 0
-          value = (value / turnoverValues[i] * 100)
+          value = presentPercentageValue(parseInt(value / turnoverValues[i] * 100))
         else
           value = "-"
 
-        salesPercentRow.find("td:eq(#{i + 1})").text(parseInt(value).toLocaleString())
+        salesPercentRow.find("td:eq(#{i + 1})").text(value.toLocaleString())
 
   renderTableSummary: () ->
     totalOverseasGrowth = @tableSummary.find("td[data-type='fs-overall-overseas-sales-growth']")
@@ -95,7 +97,8 @@ class FinancialSummaryTableTrade extends FinancialSummaryTableBase
     lastYear = overseasSalesValues[overseasSalesValues.length - 1]
     diff = lastYear - firstYear
     totalOverseasGrowth.text(diff.toLocaleString())
-    totalOverseasGrowthPercentage.text(parseInt(diff / firstYear * 100).toLocaleString())
+    totalOverseasGrowthPercentageValue = @._presentPercentageValue(parseInt(diff / firstYear * 100)).toLocaleString()
+    totalOverseasGrowthPercentage.text(totalOverseasGrowthPercentageValue)
 
 $(document).ready ->
   if $(".financial-summary-tables-trade").length > 0

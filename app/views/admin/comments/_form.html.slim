@@ -4,6 +4,7 @@
   = f.hidden_field :section, id: "#{f.object.section}_section_hidden_field"
   = f.text_area :body, id: "#{f.object.section}_comment_body", class: 'form-control', rows: 4, "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.section}-new-comment", required: true
   .comment-actions
+    = f.label :flagged, "Select", for: "#{f.object.section}_flagged_hidden_checkbox"
     = f.check_box :flagged, id: "#{f.object.section}_flagged_hidden_checkbox"
     = link_to "#flag-comment", class: "link-flag-comment js-link-flag-comment"
       span.unflagged-visible

@@ -7,9 +7,10 @@
   .form-container
     = f.input section.rate,
               as: :select,
-              label: false,
+              label: section.label,
               collection: form.options,
-              input_html: { class: "if-js-hide", "data-updated-section" => section.rate, id: "#{f.object.position}_#{section.desc}_select" }
+              input_html: { class: "if-js-hide", "data-updated-section" => section.rate, id: "#{f.object.position}_#{section.desc}_select" },
+              label_html: { class: "visuallyhidden" }
 
     label.form-label.form-label-rag for="#{f.object.position}_#{section.desc}_comment"
       span.rag_section_label
@@ -24,7 +25,7 @@
       - if editable
         ul.dropdown-menu role="menu"
           - form.options.each do |opt|
-            li class="rag-#{opt[1]}"
+            li class="rag-#{opt[1]}" role="menuitem"
               = link_to "#"
                 - if !esg_section
                   span.icon-rag

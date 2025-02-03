@@ -1,3 +1,41 @@
+.govuk-header__link--homepage {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    font-family: GDS Transport, arial, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    margin-right: 10px;
+}
+
+.govuk-header__logotype-crown {
+    fill: currentColor;
+    margin-right: 1px;
+    position: relative;
+    top: -1px;
+    vertical-align: top;
+}
+
+.govuk-header__link--service-name {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    font-family: GDS Transport, arial, sans-serif;
+    font-size: 18px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.1111111111;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 40.0625em) {
+    .govuk-header__link--service-name {
+        font-size: 24px;
+        font-size: 1.5rem;
+        line-height: 1.25;
+    }
+}
 
 // #global-header {
 //   .header-wrapper .header-global .site-search {
