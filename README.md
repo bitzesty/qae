@@ -1,6 +1,6 @@
 # ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) King's Awards for Enterprise
 
-"QAE" is the application which powers the application process for The King's Awards for Enterprise.
+"KAE" is the application which powers the application process for The King's Awards for Enterprise.
 
 ## Development
 
