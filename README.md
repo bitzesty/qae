@@ -1,6 +1,6 @@
 # ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) King's Awards for Enterprise
 
-"QAE" is the application which powers the application process for The King's Awards for Enterprise.
+"KAE" is the application which powers the application process for The King's Awards for Enterprise.
 
 ## Development
 
@@ -101,11 +101,11 @@ CF based GOV.UK PaaS is used for hosting [https://cloud.service.gov.uk](https://
 
 ## License
 
-QAE is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
+KAE is Copyright © 2014 Crown Copyright & Bit Zesty. It is free
 software, and may be redistributed under the terms specified in the
 [LICENSE] file.
 
-[license]: https://github.com/bitzesty/qae/blob/master/LICENSE
+[license]: https://github.com/businessandtrade-partners/kae/blob/master/LICENSE
 
 ## Helpful links
 
@@ -116,4 +116,4 @@ software, and may be redistributed under the terms specified in the
 
 ![Bit Zesty](https://bitzesty.com/wp-content/uploads/2017/01/logo_dark.png)
 
-QAE is maintained by [Bit Zesty Limited](https://bitzesty.com/).
+KAE is maintained by [Bit Zesty Limited](https://bitzesty.com/).
